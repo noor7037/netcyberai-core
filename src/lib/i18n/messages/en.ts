@@ -6461,6 +6461,12 @@ export const en = {
   'fam.off.app': 'The app is closed for a short while. Please try again later.',
   'fam.home.continueTitle': 'Keep going',
   'fam.home.continueLead': 'Pick up a topic, or try a new one.',
+  'fam.home.askTitle': 'What do you want to understand today?',
+  'fam.home.askLead': 'Ask a question in your own words, or pick a chapter.',
+  'fam.home.subjectsTitle': 'Your subjects',
+  'fam.home.subjectFree': 'Free',
+  'fam.home.subjectStart': 'Start here',
+  'fam.home.subjectMeter': '{checked} checked · {mastered} mastered',
   'fam.progress.title': 'Your progress',
   'fam.progress.summary': '{topics} topics checked, {mastered} mastered',
   'fam.progress.mastered': 'Mastered',
@@ -6879,12 +6885,4 @@ export const en = {
   'control.queue.err.failed': 'That did not work. Try again.',
   'control.queue.err.authenticator_needed': 'Sign in again with your authenticator to review responses.',
   // m2-12 end
-  // d1 begin
-  'fam.check.mastered': 'Topic mastered!',
-  'fam.check.masteredBody': 'You got it right on two days a week apart. That is how you know you have learned it.',
-  // d1 end
-  // d1-2 begin
-  // d1-2 end
-  // d1-3 begin
-  // d1-3 end
 } as const;

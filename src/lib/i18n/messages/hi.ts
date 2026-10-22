@@ -6450,6 +6450,12 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.off.app': 'ऐप थोड़ी देर के लिए बंद है। कृपया बाद में कोशिश करें।',
   'fam.home.continueTitle': 'आगे बढ़ते रहें',
   'fam.home.continueLead': 'कोई विषय दोबारा खोलें, या नया आज़माएँ।',
+  'fam.home.askTitle': 'आज क्या समझना है?',
+  'fam.home.askLead': 'अपने शब्दों में सवाल पूछें, या कोई अध्याय चुनें।',
+  'fam.home.subjectsTitle': 'आपके विषय',
+  'fam.home.subjectFree': 'मुफ़्त',
+  'fam.home.subjectStart': 'यहाँ से शुरू करें',
+  'fam.home.subjectMeter': '{checked} जाँचे · {mastered} पक्के',
   'fam.progress.title': 'आपकी प्रगति',
   'fam.progress.summary': '{topics} विषय जाँचे, {mastered} पक्के',
   'fam.progress.mastered': 'पक्का',
@@ -6867,12 +6873,4 @@ export const hi: Record<keyof typeof en, string> = {
   'control.queue.err.failed': 'यह नहीं हो सका। फिर कोशिश करें।',
   'control.queue.err.authenticator_needed': 'जवाबों की समीक्षा के लिए अपने ऑथेंटिकेटर से फिर से साइन इन करें।',
   // m2-12 end
-  // d1 begin
-  'fam.check.mastered': 'विषय पक्का हो गया!',
-  'fam.check.masteredBody': 'आपने इसे एक हफ़्ते के अंतर पर दो दिन सही किया। यही बताता है कि आपने इसे सीख लिया है।',
-  // d1 end
-  // d1-2 begin
-  // d1-2 end
-  // d1-3 begin
-  // d1-3 end
 };

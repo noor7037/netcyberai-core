@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
       }
     }
     // Recorded as checked: the only way progress moves (M1-6).
-    const { correct, revisitOn, masteredNow } = await recordAnswer(db, { accountId, childId: child.childId, item, choice, hintUsed: body.hintUsed === true, day, itemKey });
+    const { correct, revisitOn } = await recordAnswer(db, { accountId, childId: child.childId, item, choice, hintUsed: body.hintUsed === true, day, itemKey });
     // An answer counted on an earlier day: that day's plan, if one was made, is marked from its answers again.
     if (day !== today) {
       const planned = (await db.query(`select 1 from family.plan_days where account_id = $1 and child_id = $2 and day = $3`, [accountId, child.childId, day])).rows.length > 0;
@@ -72,6 +72,6 @@ export async function POST(req: NextRequest) {
     }
     // A wrong answer also says when the topic comes back (M2-2), so the child knows it is not the end of it.
     const revisitDay = revisitOn ? dayLabel(revisitOn, child.language) : null;
-    return NextResponse.json({ correct, explanation: correct ? item.y : item.w[choice] || item.y, answer: correct ? choice : null, revisitOn, revisitDay, ...(key ? { day } : {}), ...(masteredNow ? { mastered: true } : {}) });
+    return NextResponse.json({ correct, explanation: correct ? item.y : item.w[choice] || item.y, answer: correct ? choice : null, revisitOn, revisitDay, ...(key ? { day } : {}) });
   });
 }

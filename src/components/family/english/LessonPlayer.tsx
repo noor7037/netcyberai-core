@@ -1,5 +1,4 @@
 'use client';
-import { Picture } from '../Picture';
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
@@ -49,7 +48,7 @@ function Stars({ n, total = 3 }: { n: number; total?: number }) {
     <span className="flex gap-1" aria-hidden="true">
       {Array.from({ length: total }, (_, i) => (
         <span key={i} className={`text-4xl ${i < n ? 'animate-pop-in motion-reduce:animate-none' : 'opacity-25'}`} style={{ animationDelay: `${i * 220}ms`, animationFillMode: 'both' }}>
-          <Picture e="⭐" />
+          ⭐
         </span>
       ))}
     </span>
@@ -74,7 +73,7 @@ export function CheckItemView({ item, value, onChange, w, track, hindi }: { item
           </div>
           {item.prompt.say && (
             <button type="button" onClick={() => void speak(item.prompt.say as string, 'en', 0.85)} aria-label={fill(w['fam.english.listenTo'], { text: item.prompt.say })} className="min-h-[44px] min-w-[44px] rounded-full bg-white text-xl text-slate shadow-sm ring-1 ring-slate/10">
-              <Picture e="🔊" />
+              🔊
             </button>
           )}
         </div>
@@ -206,16 +205,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
             {result.results.map((r) => (
               <li key={r.key} className={`flex flex-col gap-1 rounded-2xl p-3 text-slate ${r.correct ? 'bg-leaf/15' : 'bg-sunshine/25'}`}>
                 <span className="text-sm font-bold text-slate">
-                  {r.correct ? (
-                    <>
-                      <Picture e="🌟" /> {w['fam.english.results.right']}
-                    </>
-                  ) : (
-                    <>
-                      <Picture e="💡" /> {w['fam.english.results.learn']}
-                    </>
-                  )}
-                  :{' '}
+                  {r.correct ? `🌟 ${w['fam.english.results.right']}` : `💡 ${w['fam.english.results.learn']}`}:{' '}
                   {/[A-Za-z0-9\u0900-\u097F]/.test(r.answer) ? <span lang="en">{r.answer}</span> : <Pic pic={r.answer} size={22} />}
                 </span>
                 {!r.correct && r.why && (
@@ -230,7 +220,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
         )}
         {result.passed && (
           <div className="w-full rounded-2xl bg-grape/10 p-4 text-left text-slate">
-            <p className="text-sm font-bold uppercase tracking-wide text-slate/70"><Picture e="🏡" /> {w['fam.english.results.home']}</p>
+            <p className="text-sm font-bold uppercase tracking-wide text-slate/70">🏡 {w['fam.english.results.home']}</p>
             <p className="text-lg font-bold text-slate"><span lang="en">{lesson.home.en}</span></p>
             {lesson.home.hi && (
               <p lang="hi" className="text-base text-slate/80">
@@ -281,7 +271,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
       <div key={at} className="flex flex-col gap-4 pb-24 animate-rise-in motion-reduce:animate-none">
         {at === 0 && warmup.length > 0 && (
           <>
-            <h2 className="text-xl font-extrabold text-slate"><Picture e="🔁" /> {w['fam.english.warmup']}</h2>
+            <h2 className="text-xl font-extrabold text-slate">🔁 {w['fam.english.warmup']}</h2>
             {warmup.map((c) => (
               <CheckItemView key={c.key} item={c} value={answers[`warm:${c.key}`]} onChange={(v) => setAnswers({ ...answers, [`warm:${c.key}`]: v })} w={w} track={track} hindi={hindi} />
             ))}
@@ -290,7 +280,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
         {stepIndex >= 0 && stepIndex < lesson.steps.length && <StepView step={lesson.steps[stepIndex]} w={w} hindi={hindi} track={track} />}
         {onLast && reads && (
           <>
-            <h2 className="text-xl font-extrabold text-slate"><Picture e="✍️" /> {w['fam.english.check.title']}</h2>
+            <h2 className="text-xl font-extrabold text-slate">✍️ {w['fam.english.check.title']}</h2>
             <p className="text-base text-slate">{w['fam.english.check.intro']}</p>
             {checkItems.map((c, i) => (
               <div key={c.key} className="flex flex-col gap-1">
@@ -320,13 +310,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
           </button>
         ) : (
           <button type="button" disabled={sending || (reads && !allAnswered)} onClick={() => void send()} className={`min-h-[52px] rounded-full px-8 text-lg font-extrabold shadow-md disabled:opacity-50 ${theme.button}`}>
-            {reads ? (
-              w['fam.english.check.send']
-            ) : (
-              <>
-                <Picture e="🎉" /> {w['fam.english.grownup']}
-              </>
-            )}
+            {reads ? w['fam.english.check.send'] : `🎉 ${w['fam.english.grownup']}`}
           </button>
         )}
         </div>

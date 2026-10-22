@@ -1,5 +1,4 @@
 'use client';
-import { Picture } from '../Picture';
 
 import { useCallback, useEffect, useState } from 'react';
 import { chartSeries, colors } from '@/lib/design-tokens';
@@ -129,8 +128,8 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
           <span style={{ width: `${totalWords ? (100 * r.totals.wordsLearning) / totalWords : 0}%`, background: chartSeries[1] }} />
         </div>
         <p className="flex flex-wrap gap-4 text-base font-semibold text-slate">
-          <span><Picture e="🌳" /> {w['fam.english.parent.learned']}: {r.totals.wordsLearned}</span>
-          <span><Picture e="🌱" /> {w['fam.english.parent.learning']}: {r.totals.wordsLearning}</span>
+          <span>🌳 {w['fam.english.parent.learned']}: {r.totals.wordsLearned}</span>
+          <span>🌱 {w['fam.english.parent.learning']}: {r.totals.wordsLearning}</span>
         </p>
       </section>
 
@@ -140,7 +139,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
           <ul className="flex flex-col gap-2">
             {r.canDos.map((c) => (
               <li key={c.unitKey} className="flex items-start gap-2 rounded-2xl bg-leaf/10 p-3 text-slate">
-                <span aria-hidden="true"><Picture e="✅" /></span>
+                <span aria-hidden="true">✅</span>
                 <span>{lang === 'hi' ? c.hi : c.en}</span>
               </li>
             ))}
@@ -176,7 +175,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
 
       {data.home && (
         <section className="flex flex-col gap-1 rounded-3xl bg-grape/10 p-4 text-slate">
-          <h2 className="text-sm font-bold uppercase tracking-wide text-slate"><Picture e="🏡" /> {w['fam.english.parent.home']}</h2>
+          <h2 className="text-sm font-bold uppercase tracking-wide text-slate">🏡 {w['fam.english.parent.home']}</h2>
           <p lang="en" className="text-lg font-bold text-slate">
             {data.home.en}
           </p>
@@ -213,7 +212,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
         <button type="button" onClick={() => void save()} className="min-h-[44px] self-start rounded-full bg-royal px-5 font-bold text-white">
           {w['fam.english.parent.save']}
         </button>
-        {saved && <p aria-live="polite" className="text-sm font-semibold text-slate"><Picture e="✅" /> {w['fam.english.parent.saved']}</p>}
+        {saved && <p aria-live="polite" className="text-sm font-semibold text-slate">✅ {w['fam.english.parent.saved']}</p>}
       </section>
       <p className="text-sm text-slate">{fill(w['fam.english.parent.noRanks'], { name })}</p>
     </div>

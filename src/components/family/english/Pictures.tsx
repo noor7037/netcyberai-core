@@ -1,10 +1,8 @@
 import { colors as C, deepColors as D } from '@/lib/design-tokens';
 import type { Scene } from '@/lib/family/english/course';
-import { Picture } from '../Picture';
 
 // The course's pictures (docs/family-app/12 §10): an allowed emoji, or one of our own small drawings ("own:<name>"),
-// and scenes built from them in an SVG frame. An emoji is drawn from the bundled picture set (D1, C290), so every phone
-// shows the same picture.
+// and scenes built from them in an SVG frame. Nothing is downloaded: emoji are the phone's own font.
 
 function OwnPicture({ name, size }: { name: string; size: number | string }) {
   const s = { width: size, height: size };
@@ -104,7 +102,11 @@ export function Pic({ pic, size = 40, className = '' }: { pic?: string; size?: n
       </span>
     );
   }
-  return <Picture e={pic} size={size} className={className} />;
+  return (
+    <span aria-hidden="true" className={`inline-block select-none leading-none ${className}`} style={{ fontSize: typeof size === 'number' ? size * 0.9 : size }}>
+      {pic}
+    </span>
+  );
 }
 
 // A scene's sky and ground, by place, from the design tokens' hues.

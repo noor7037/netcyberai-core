@@ -1,5 +1,4 @@
 'use client';
-import { Picture } from '../Picture';
 
 import { useState } from 'react';
 import { colors } from '@/lib/design-tokens';
@@ -17,7 +16,7 @@ type PatternStep = Extract<Step, { type: 'pattern' }>;
 function ListenButton({ text, label, className = '' }: { text: string; label: string; className?: string }) {
   return (
     <button type="button" onClick={() => void speak(text)} aria-label={fill(label, { text })} className={`inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white text-xl text-slate shadow-sm ring-1 ring-slate/10 ${className}`}>
-      <span aria-hidden="true"><Picture e="🔊" /></span>
+      <span aria-hidden="true">🔊</span>
     </button>
   );
 }

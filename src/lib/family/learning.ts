@@ -47,23 +47,19 @@ export async function changeFreeSubject(db: Db, accountId: string, childId: stri
 export async function recordAnswer(
   db: Db,
   a: { accountId: string; childId: string; item: ItemSecret; choice: number; hintUsed: boolean; day: string; itemKey?: string }
-): Promise<{ correct: boolean; revisitOn: string | null; masteredNow: boolean }> {
+): Promise<{ correct: boolean; revisitOn: string | null }> {
   const correct = a.choice === a.item.a;
-  if (!(SUBJECTS as readonly string[]).includes(a.item.s)) return { correct, revisitOn: null, masteredNow: false };
+  if (!(SUBJECTS as readonly string[]).includes(a.item.s)) return { correct, revisitOn: null };
   const shown = `${a.item.q} → ${a.item.o[a.choice] ?? ''}`.slice(0, 500);
   await db.query(
     `insert into family.attempts (account_id, child_id, subject, topic_key, item_key, kind, answer, correct, hint_used, answered_on)
      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
     [a.accountId, a.childId, a.item.s, a.item.k, (a.itemKey ?? `${a.item.k}#${a.item.i}`).slice(0, 120), a.item.kind, shown, correct, a.hintUsed, a.day]
   );
-  if (a.item.k.endsWith('.question')) return { correct, revisitOn: null, masteredNow: false };
+  if (a.item.k.endsWith('.question')) return { correct, revisitOn: null };
   const revisitOn = await noteRevisits(db, { accountId: a.accountId, childId: a.childId, topicKey: a.item.k, subject: a.item.s, day: a.day, correct });
-  // Whether this answer made the topic mastered (D1, C292: the one moment the app celebrates).
-  const masteredOn = async () =>
-    (await db.query(`select mastered_on is not null as m from family.topic_progress where account_id = $1 and child_id = $2 and topic_key = $3`, [a.accountId, a.childId, a.item.k])).rows[0]?.m === true;
-  const before = await masteredOn();
   await recomputeTopic(db, a.accountId, a.childId, a.item.k);
-  return { correct, revisitOn, masteredNow: !before && (await masteredOn()) };
+  return { correct, revisitOn };
 }
 
 export type TopicProgress = { topicKey: string; subject: Subject; title: string; answered: number; correct: number; mastered: boolean; lastCorrectOn: string | null };

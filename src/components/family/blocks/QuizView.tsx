@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Celebrate } from '../ui/Celebrate';
 import type { PublicItem } from '@/lib/family/items';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '../client';
@@ -11,7 +10,7 @@ import { Card, SUBJECT_TONE } from './BlockViews';
 // every answer (the phone never holds the key). A second wrong answer shows the exact misunderstanding that option
 // reveals, and offers a different explanation with new targeted questions (onRetry).
 // With no connection (M2-9, C283), an answer is kept on the phone (onOffline) and checked when the internet is back.
-type State = { picked: number | null; tries: number; hint: string | null; result: { correct: boolean; explanation: string; revisitDay?: string | null; mastered?: boolean } | null; busy: boolean; kept?: boolean };
+type State = { picked: number | null; tries: number; hint: string | null; result: { correct: boolean; explanation: string; revisitDay?: string | null } | null; busy: boolean; kept?: boolean };
 type Offline = (token: string, choice: number) => Promise<boolean>;
 
 function Question({ item, w, tone, onRetry, onAnswered, onOffline }: { item: PublicItem; w: Words; tone: string; onRetry: (token: string, choice: number) => void; onAnswered?: (correct: boolean) => void; onOffline?: Offline }) {
@@ -22,7 +21,7 @@ function Question({ item, w, tone, onRetry, onAnswered, onOffline }: { item: Pub
   };
   const answer = async (choice: number) => {
     setS((x) => ({ ...x, picked: choice, busy: true }));
-    const r = await familyApi<{ correct: boolean; explanation: string; revisitDay?: string | null; mastered?: boolean }>('/api/family/check', 'POST', { token: item.token, choice, hintUsed: s.hint !== null });
+    const r = await familyApi<{ correct: boolean; explanation: string; revisitDay?: string | null }>('/api/family/check', 'POST', { token: item.token, choice, hintUsed: s.hint !== null });
     if (!r.ok && r.status === 0 && onOffline && (await onOffline(item.token, choice))) return setS((x) => ({ ...x, busy: false, kept: true }));
     if (!r.ok) return setS((x) => ({ ...x, busy: false }));
     const tries = s.tries + 1;
@@ -65,8 +64,6 @@ function Question({ item, w, tone, onRetry, onAnswered, onOffline }: { item: Pub
           {w['fam.offline.pack.answerSaved']}
         </p>
       )}
-      {/* D1 (C292): the app's one celebration, when this answer made the topic mastered. */}
-      {done && s.result?.correct && s.result.mastered && <Celebrate title={w['fam.check.mastered']} body={w['fam.check.masteredBody']} />}
       {done && s.result && (
         <div role="status" className={`flex flex-col gap-2 rounded-xl px-3 py-2 text-sm text-slate ${s.result!.correct ? 'bg-emerald/10' : 'bg-coral/10'}`}>
           <p className="font-bold">{s.result!.correct ? w['fam.check.right'] : w['fam.check.notYet']}</p>

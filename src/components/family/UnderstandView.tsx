@@ -123,7 +123,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </div>
       )}
       {state === 'refused' && noInternet && (
-        <section role="status" data-needs-internet className="flex flex-col gap-2 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+        <section role="status" data-needs-internet className="fam-card flex flex-col gap-2 bg-white p-5 text-base text-slate">
           <p className="font-bold">{w['fam.offline.pack.needsInternet']}</p>
           <p>{w['fam.offline.pack.needsInternetLead']}</p>
           <a href="/family/offline" className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline">
@@ -132,7 +132,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </section>
       )}
       {state === 'refused' && !noInternet && (
-        <section role="status" className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-base text-slate shadow-sm ring-1 ring-slate/10">
+        <section role="status" className="fam-card flex flex-col gap-3 bg-white p-5 text-base text-slate">
           <p>{refusal}</p>
           {goTo && (
             <Link href={`/family/study?subject=${goTo.subject}`} prefetch={saving ? false : undefined} className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline">
@@ -188,7 +188,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       {(state === 'done' || state === 'incomplete') && (
         <nav aria-label={w['fam.understand.followUps']} className="grid grid-cols-2 gap-2">
           {FOLLOW_UPS.map((f) => (
-            <button key={f} type="button" onClick={() => again({ input, followUp: f })} className="min-h-[44px] rounded-2xl bg-white px-3 py-2 text-sm font-bold text-royal-deep shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
+            <button key={f} type="button" onClick={() => again({ input, followUp: f })} className="fam-press min-h-[48px] rounded-2xl bg-white px-3 py-2 text-sm font-bold text-royal-deep shadow-md ring-1 ring-royal/15 hover:bg-off-white">
               {w[`fam.followUp.${f}`]}
             </button>
           ))}
