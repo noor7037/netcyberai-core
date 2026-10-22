@@ -26,7 +26,7 @@ const TOPIC = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 const NO_STORE = { 'Cache-Control': 'no-store' };
 const answer = (videos: VideoPick[]) => NextResponse.json({ videos }, { headers: NO_STORE });
 
-type Refresh = { line: Line; child: FamilyChild; language: VideoLanguage; days: number; perDay: number; cached: VideoPick[]; staleAuto: number };
+type Refresh = { line: Line; child: FamilyChild; language: VideoLanguage; days: number; perDay: number; wider: boolean; cached: VideoPick[]; staleAuto: number };
 type Found = { cached: VideoPick[] } | { refresh: Refresh };
 
 export async function GET(req: NextRequest) {
@@ -50,7 +50,9 @@ export async function GET(req: NextRequest) {
     const cached = await readPicks(db, line.key, language, days);
     if (!cached.refreshDue || searchedEmptyLately(line.key, language)) return { cached: cached.picks };
     const perDay = await setting(db, 'family.video_searches_per_day', 90);
-    return { refresh: { line, child, language, days, perDay, cached: cached.picks, staleAuto: cached.staleAuto } };
+    // Videos from channels Control has not listed only when Control turns them on (C230-R; off unless set to 1).
+    const wider = (await setting(db, 'family.video_wider_catalogue', 0)) === 1;
+    return { refresh: { line, child, language, days, perDay, wider, cached: cached.picks, staleAuto: cached.staleAuto } };
   });
   if (!found) return answer([]);
   if ('cached' in found) return answer(found.cached);
@@ -67,7 +69,7 @@ export async function GET(req: NextRequest) {
     noteSearch(r.line.key, r.language, { failed: true });
     return answer(await dropStale(session, r));
   }
-  const ranked = rankVideos(result.candidates, { topicTitles: [r.line.topicEn ?? '', r.line.title], language: r.language, channels });
+  const ranked = rankVideos(result.candidates, { topicTitles: [r.line.topicEn ?? '', r.line.title], language: r.language, channels, wider: r.wider });
   noteSearch(r.line.key, r.language, { found: ranked.length });
 
   // 4. Saved (a reviewer's pinned and rejected picks stay as they are) and read back as the family sees them.

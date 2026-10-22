@@ -98,7 +98,7 @@ It is a learning tool, so the subject entitlement applies (§10).
 ## 5. Video inside the response
 
 - **Found per topic, not hand-curated:**
-  - The video finder searches official and reviewer-approved channels first, then the wider catalogue.
+  - The video finder searches official and reviewer-approved channels first, then the wider catalogue. The wider catalogue's videos are shown only when Control turns them on; they are off for the pilot (C230-R).
   - It ranks candidates on what the provider gives: title, description, chapter timestamps, duration, language,
     channel, whether captions exist, and whether it may be embedded and is made for children.
   - It keeps the best few per topic and language, and sends the child to the right timestamp when the description has
