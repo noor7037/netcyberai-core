@@ -269,11 +269,62 @@ describe('the catalog CSV', () => {
     // Every line names NCERT's own PDF of the book: its contents (units and chapters) or the chapter (topics).
     expect(r.lines.every((l) => l.sourceUrl.startsWith('https://ncert.nic.in/textbook/pdf/'))).toBe(true);
     expect(r.lines.filter((l) => l.level === 'topic').every((l) => !l.sourceUrl.endsWith('ps.pdf'))).toBe(true);
-    // A Hindi book's title is its printed Devanagari title, in both columns; topics have none.
+    // A Hindi book's title is its printed Devanagari title, in both columns.
     expect(r.lines.filter((l) => l.subject === 'hindi').every((l) => l.titleHi === l.titleEn)).toBe(true);
-    expect(r.lines.filter((l) => l.level === 'topic').every((l) => l.titleHi === null)).toBe(true);
+    // Topics have none, apart from Class 5 EVS (P1-1): all 67 of its topics have the heading of NCERT's Hindi edition.
+    const topics = r.lines.filter((l) => l.level === 'topic');
+    const isC5Evs = (l: { classLevel: number; subject: string }) => l.classLevel === 5 && l.subject === 'evs';
+    expect(topics.filter((l) => !isC5Evs(l)).every((l) => l.titleHi === null)).toBe(true);
+    expect(topics.filter(isC5Evs).filter((l) => l.titleHi !== null)).toHaveLength(67);
+    expect(r.lines.filter((l) => l.titleHi !== null)).toHaveLength(283);
     // English books have no Hindi edition: no Hindi title.
     expect(r.lines.filter((l) => l.subject === 'english').every((l) => l.titleHi === null)).toBe(true);
+  });
+
+  it('every Hindi title of Class 5 EVS is Devanagari and has its page in NCERT\'s Hindi edition recorded', () => {
+    const r = readCatalogCsv(readFileSync(path.resolve(__dirname, '../../data/catalog/ncert-2026-27-classes-1-5.csv'), 'utf8'), '2026-10-22');
+    const evs = r.lines.filter((l) => l.classLevel === 5 && l.subject === 'evs');
+    expect(evs).toHaveLength(82);
+    // The record of where each Hindi title is printed in हमारा अद्भुत संसार: one line per key, its PDF and page, and how the
+    // line was matched (the book's topic headings are not numbered).
+    const sources = parseCsvChecked(readFileSync(path.resolve(__dirname, '../../data/catalog/hindi-sources/ncert-2026-27-classes-1-5.csv'), 'utf8')).rows.filter((row) => row.some((c) => c !== ''));
+    expect(sources[0]).toEqual(['key', 'title_hi', 'source_url', 'source_page', 'ncert_ref', 'ncert_title_en', 'checked_on', 'matched_by']);
+    const byKey = new Map(sources.slice(1).map(([key, titleHi, sourceUrl, sourcePage, ncertRef, ncertTitleEn, checkedOn, matchedBy]) => [key, { titleHi, sourceUrl, sourcePage, ncertRef, ncertTitleEn, checkedOn, matchedBy }]));
+    expect(byKey.size).toBe(sources.length - 1);
+    for (const l of evs) {
+      // Every line has its Hindi title: Devanagari, typed from the page (NFC, no joiners, no doubled or edge spaces), with
+      // only the punctuation NCERT prints in these headings.
+      expect(l.titleHi, l.key).not.toBeNull();
+      const hi = l.titleHi!;
+      expect(hi, l.key).toMatch(/[ऀ-ॿ]/);
+      expect(hi, l.key).toMatch(/^[ऀ-ॿ0-9 ,!?()—-]+$/);
+      expect(hi, l.key).not.toMatch(/ {2}|^ | $/);
+      expect(hi, l.key).toBe(hi.normalize('NFC'));
+      const src = byKey.get(l.key);
+      expect(src, l.key).toBeDefined();
+      expect(src!.titleHi, l.key).toBe(hi);
+      expect(src!.ncertTitleEn, l.key).toBe(l.titleEn);
+      expect(src!.sourcePage, l.key).toMatch(/^[0-9]{1,2}$/);
+      expect(src!.checkedOn, l.key).toBe('2026-10-22');
+      expect(src!.matchedBy, l.key).not.toBe('');
+      const [, , , unit, chapter, topic] = l.key.split('.');
+      if (l.level === 'topic') {
+        // The Hindi PDF of the same chapter (ehev1NN for the English eeev1NN), and the topic's place among its headings.
+        expect(src!.sourceUrl, l.key).toBe(l.sourceUrl.replace('/textbook/pdf/eeev1', '/textbook/pdf/ehev1'));
+        expect(src!.sourceUrl, l.key).toMatch(/^https:\/\/ncert\.nic\.in\/textbook\/pdf\/ehev1(0[1-9]|10)\.pdf$/);
+        expect(src!.ncertRef, l.key).toBe(`ch. ${Number(chapter.slice(2))}, heading ${Number(topic.slice(1))}`);
+      } else {
+        // Units and chapters: the Hindi edition's contents page.
+        expect(src!.sourceUrl, l.key).toBe('https://ncert.nic.in/textbook/pdf/ehev1ps.pdf');
+        expect(src!.sourcePage, l.key).toBe('15');
+        expect(src!.ncertRef, l.key).toBe(l.level === 'unit' ? `Unit ${Number(unit.slice(1))}` : `ch. ${Number(chapter.slice(2))}`);
+      }
+    }
+    // No source line without its line in the file.
+    expect([...byKey.keys()].sort()).toEqual(evs.map((l) => l.key).sort());
+    // Each heading is on the same page of both editions, apart from the last one of chapter 10, which the longer Hindi
+    // text moves to the next page.
+    expect(evs.filter((l) => l.level === 'topic' && byKey.get(l.key)!.sourcePage !== l.sourcePage).map((l) => [l.key, l.sourcePage, byKey.get(l.key)!.sourcePage])).toEqual([['cbse.c5.evs.u5.ch10.t09', '13', '14']]);
   });
 
   it('the committed CBSE file for classes 11 and 12 (commerce, humanities, English, Hindi) passes the same check', () => {
