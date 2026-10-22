@@ -81,7 +81,7 @@ OUTSIDE_MAY_NAME_FAMILY_TABLE = {
 LEGACY: set[str] = set()
 
 VENDOR_IMPORT = re.compile(r"""from\s+['"](@anthropic-ai/|openai|@google/generative-ai|@google/genai|@google-cloud/|googleapis|groq-sdk|@mistralai/)""")
-VENDOR_HOST = re.compile(r"(api\.anthropic\.com|api\.openai\.com|generativelanguage\.googleapis\.com|aiplatform\.googleapis\.com|youtube\.googleapis\.com|www\.googleapis\.com/youtube)")
+VENDOR_HOST = re.compile(r"(api\.anthropic\.com|api\.openai\.com|api\.cloudflare\.com|generativelanguage\.googleapis\.com|aiplatform\.googleapis\.com|youtube\.googleapis\.com|www\.googleapis\.com/youtube)")
 AI_ADAPTERS = "src/lib/ai/adapters/"
 
 IMPORT_RE = re.compile(r"""(?:import|export)\s[^'"]*?from\s+['"](?P<mod>[^'"]+)['"]|import\(\s*['"](?P<dyn>[^'"]+)['"]\s*\)""")

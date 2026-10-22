@@ -11,7 +11,7 @@ import { ASKED_PURPOSES } from '@/lib/family/consent';
 import { FAMILY_MODULES } from '@/lib/family/modules';
 
 // M2-7 (C281): voice input. A child speaks a question in Study; the recording goes once to the family.voice_input
-// profile (speech to text, a provider cleared for minors), on the real AI platform and the real migrations (PGlite),
+// profile (speech to text, a provider cleared for minors: Whisper on Cloudflare Workers AI since C230-U), on the real AI platform and the real migrations (PGlite),
 // with the vendor replaced at fetch. No consent, no microphone and no call; the seconds a day are capped; the recording
 // is never stored or logged; only the words come back, an Aadhaar-like number taken out. Made-up names and keys only.
 
@@ -19,7 +19,11 @@ const ACCOUNT = 'f9000000-0000-4000-8000-0000000000a1';
 const CHILD = 'f9000000-0000-4000-8000-0000000000a2';
 const SMALL = 'f9000000-0000-4000-8000-0000000000a3';
 const FOUNDER = 'f9000000-0000-4000-8000-0000000000f1';
-const OPENAI_KEY = `sk-${'c'.repeat(30)}VOIC`;
+const ACCOUNT_ID = 'd'.repeat(32);
+const TOKEN = `cfat_${'V'.repeat(36)}`;
+const WORKERS_KEY = `${ACCOUNT_ID}:${TOKEN}`;
+const WHISPER = '@cf/openai/whisper-large-v3-turbo';
+const RUN_URL = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/ai/run/${WHISPER}`;
 // A WebM header, then a marker that must never be found anywhere afterwards.
 const MARK = 'VOICE-SAMPLE-7f3a9c';
 const AUDIO = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.from(MARK)]);
@@ -58,6 +62,7 @@ describe('reading a recording', () => {
 
 describe('the capability on the AI platform', () => {
   it('voice input takes only a provider that can hear', async () => {
+    expect(capableAdapter('family.voice_input', 'workers-ai')?.capability).toBe('speech_to_text');
     expect(capableAdapter('family.voice_input', 'openai')?.capability).toBe('speech_to_text');
     expect(capableAdapter('family.voice_input', 'anthropic')).toBeNull();
     expect(capableAdapter('family.resolver', 'anthropic')?.capability).toBe('text');
@@ -82,9 +87,10 @@ const cookieFor = async (child: string) => {
   return `ncf_session=${await signFamilySession({ accountId: ACCOUNT, tokenVersion: 0, sessionId: 's1' })}; ncf_child=${child}`;
 };
 
-type Call = { url: string; form: FormData; headers: Record<string, string> };
+type Call = { url: string; body: string; headers: Record<string, string> };
 let calls: Call[] = [];
-let reply: () => Response = () => Response.json({ text: 'What is photosynthesis?', usage: { input_tokens: 40, output_tokens: 6 } });
+const heard = (text: string) => () => Response.json({ success: true, result: { text } });
+let reply: () => Response = heard('What is photosynthesis?');
 const logged: string[] = [];
 
 beforeAll(async () => {
@@ -103,10 +109,10 @@ beforeAll(async () => {
   `);
   const k = aiEncryptionKey();
   if (!k) throw new Error('test key missing');
-  const s = sealAiKey(k, 'openai', OPENAI_KEY);
-  await q(`insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by) values ('openai', $1, $2, $3, $4, 'VOIC', $5)`, [s.ciphertext, s.iv, s.tag, s.keyVersion, FOUNDER]);
-  await q(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.org/terms', cleared_at = now(), cleared_by = $1 where provider_id in ('openai', 'anthropic')`, [FOUNDER]);
-  await q(`update control.ai_profiles set provider_id = 'openai', model = 'test-transcribe', fallback = '[]', enabled = true where profile_id = 'family.voice_input'`);
+  const s = sealAiKey(k, 'workers-ai', WORKERS_KEY);
+  await q(`insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by) values ('workers-ai', $1, $2, $3, $4, 'VVVV', $5)`, [s.ciphertext, s.iv, s.tag, s.keyVersion, FOUNDER]);
+  await q(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.org/terms', cleared_at = now(), cleared_by = $1 where provider_id in ('workers-ai', 'anthropic')`, [FOUNDER]);
+  await q(`update control.ai_profiles set provider_id = 'workers-ai', model = $1, fallback = '[]', enabled = true where profile_id = 'family.voice_input'`, [WHISPER]);
   cookie = await cookieFor(CHILD);
 }, 90_000);
 afterAll(async () => {
@@ -115,13 +121,13 @@ afterAll(async () => {
 });
 beforeEach(async () => {
   calls = [];
-  reply = () => Response.json({ text: 'What is photosynthesis?', usage: { input_tokens: 40, output_tokens: 6 } });
+  reply = heard('What is photosynthesis?');
   logged.length = 0;
   for (const level of ['log', 'info', 'warn', 'error', 'debug'] as const) vi.spyOn(console, level).mockImplementation((...a: unknown[]) => void logged.push(a.map(String).join(' ')));
   vi.stubGlobal(
     'fetch',
     vi.fn(async (url: string, init: RequestInit) => {
-      calls.push({ url: String(url), form: init.body as FormData, headers: init.headers as Record<string, string> });
+      calls.push({ url: String(url), body: String(init.body), headers: init.headers as Record<string, string> });
       return reply();
     })
   );
@@ -169,28 +175,25 @@ describe('the voice route', () => {
     expect([calls.length, await seconds()]).toEqual([0, 0]);
   });
 
-  it('returns only the words; the request carries the recording, the model and the language, and no name', async () => {
+  it('returns only the words; the request carries the recording, the task and the language, and no name', async () => {
     const r = await post({ audio: B64, seconds: 7.4 });
     expect(r).toEqual({ status: 200, body: { text: 'What is photosynthesis?', left: 112, maxSeconds: 30 } });
     expect(calls).toHaveLength(1);
     const call = calls[0];
-    expect(call.url).toBe('https://api.openai.com/v1/audio/transcriptions');
-    expect(call.headers.authorization).toBe(`Bearer ${OPENAI_KEY}`);
-    const file = call.form.get('file') as File;
-    expect(file.name).toBe('audio.webm');
-    expect(file.type).toBe('audio/webm');
-    expect(Buffer.from(await file.arrayBuffer()).equals(AUDIO)).toBe(true);
-    expect([call.form.get('model'), call.form.get('language'), call.form.get('response_format')]).toEqual(['test-transcribe', 'hi', 'json']);
-    const fields = [...call.form.keys()].sort();
-    expect(fields).toEqual(['file', 'language', 'model', 'response_format']);
-    expect(JSON.stringify([fields.map((f) => (f === 'file' ? file.name : call.form.get(f))), call.headers])).not.toMatch(/Zoya|Kabir|voice@example/);
+    expect(call.url).toBe(RUN_URL);
+    expect(call.headers.authorization).toBe(`Bearer ${TOKEN}`);
+    const body = JSON.parse(call.body);
+    expect(Object.keys(body).sort()).toEqual(['audio', 'language', 'task']);
+    expect(Buffer.from(body.audio, 'base64').equals(AUDIO)).toBe(true);
+    expect([body.task, body.language]).toEqual(['transcribe', 'hi']);
+    expect(JSON.stringify([call.body, call.headers])).not.toMatch(/Zoya|Kabir|voice@example/);
     expect(await seconds()).toBe(8);
   });
 
   it('meters counts and tokens only, and the recording is written nowhere and logged nowhere', async () => {
     await post({ audio: B64, seconds: 3 });
     expect(await q(`select profile_id, provider_id, model, requests, failures, tokens_in::int, tokens_out::int from control.ai_usage`)).toEqual([
-      { profile_id: 'family.voice_input', provider_id: 'openai', model: 'test-transcribe', requests: 1, failures: 0, tokens_in: 40, tokens_out: 6 },
+      { profile_id: 'family.voice_input', provider_id: 'workers-ai', model: WHISPER, requests: 1, failures: 0, tokens_in: 0, tokens_out: 0 },
     ]);
     expect(await q(`select requests from family.ai_daily`)).toEqual([{ requests: 1 }]);
     // No table in the family, content or control schemas holds the recording or the words heard.
@@ -203,7 +206,7 @@ describe('the voice route', () => {
   });
 
   it('an Aadhaar-like number heard is taken out before it is returned', async () => {
-    reply = () => Response.json({ text: 'My Aadhaar is 2345 6789 0123. What is a prime number?' });
+    reply = heard('My Aadhaar is 2345 6789 0123. What is a prime number?');
     const r = await post({ audio: B64, seconds: 4 });
     expect(r.body.text).toBe('My Aadhaar is . What is a prime number?');
     expect(JSON.stringify(r.body)).not.toMatch(/\d{4}\s?\d{4}\s?\d{4}/);
@@ -230,7 +233,7 @@ describe('the voice route', () => {
   });
 
   it('no words heard (or only an ID number): the seconds are given back', async () => {
-    reply = () => Response.json({ text: '  2345 6789 0123 ' });
+    reply = heard('  2345 6789 0123 ');
     expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'not_heard', left: 120, maxSeconds: 30 } });
     expect(await seconds()).toBe(0);
   });
@@ -250,11 +253,11 @@ describe('the voice route', () => {
     await q(`alter table control.ai_profiles disable trigger ai_profiles_minors_check`);
     await q(`alter table control.ai_providers disable trigger ai_providers_clearance_check`);
     try {
-      await q(`update control.ai_providers set cleared_for_minors = false where provider_id = 'openai'`);
+      await q(`update control.ai_providers set cleared_for_minors = false where provider_id = 'workers-ai'`);
       expect(await post({ audio: B64, seconds: 5 })).toEqual({ status: 503, body: { error: 'ai_not_cleared_for_minors' } });
       expect([calls.length, await seconds()]).toEqual([0, 0]);
     } finally {
-      await q(`update control.ai_providers set cleared_for_minors = true where provider_id = 'openai'`);
+      await q(`update control.ai_providers set cleared_for_minors = true where provider_id = 'workers-ai'`);
       await q(`alter table control.ai_providers enable trigger ai_providers_clearance_check`);
       await q(`alter table control.ai_profiles enable trigger ai_profiles_minors_check`);
     }
@@ -264,10 +267,10 @@ describe('the voice route', () => {
     await q(`update control.ai_profiles set provider_id = 'anthropic', model = 'test-model', fallback = '[]' where profile_id = 'family.voice_input'`);
     expect(await post({ audio: B64, seconds: 5 })).toEqual({ status: 503, body: { error: 'ai_not_switched_on' } });
     expect(calls).toHaveLength(0);
-    await q(`update control.ai_profiles set fallback = '[{"provider":"openai","model":"test-transcribe"}]' where profile_id = 'family.voice_input'`);
+    await q(`update control.ai_profiles set fallback = $1::jsonb where profile_id = 'family.voice_input'`, [JSON.stringify([{ provider: 'workers-ai', model: WHISPER }])]);
     expect((await post({ audio: B64, seconds: 5 })).status).toBe(200);
-    expect(calls.map((c) => c.url)).toEqual(['https://api.openai.com/v1/audio/transcriptions']);
-    await q(`update control.ai_profiles set provider_id = 'openai', model = 'test-transcribe', fallback = '[]' where profile_id = 'family.voice_input'`);
+    expect(calls.map((c) => c.url)).toEqual([RUN_URL]);
+    await q(`update control.ai_profiles set provider_id = 'workers-ai', model = $1, fallback = '[]' where profile_id = 'family.voice_input'`, [WHISPER]);
   });
 
   it('a withdrawn voice consent stops the microphone again', async () => {

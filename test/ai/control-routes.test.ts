@@ -88,7 +88,7 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'openai', 'youtube']);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'openai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
       expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),

@@ -232,6 +232,8 @@ describe('the three plans are data: per-student prices a month and a year, and t
     expect((await platform((c) => loadPlan(c, 'growth')))!.features).toEqual(GROWTH_FEATURES);
   });
 
+  // It builds a whole database from the migrations inside the test, which takes seconds and grows with every
+  // migration: under the full suite's load the 5-second default is not enough, so it has its own limit.
   it('a plan that had a price for the whole school keeps it in the audit log; its prices per student start empty; the first plan keeps none', async () => {
     const small = await createTestDb({
       before: { migration: '_c212_pricing', sql: `insert into plans (plan_id, name, grace_days, price_minor, period) values ('old-priced', 'Old Priced', 5, 1200000, 'year');` },
@@ -246,7 +248,7 @@ describe('the three plans are data: per-student prices a month and a year, and t
     expect((await small.query(`select col_description('plans'::regclass, attnum) as said from pg_attribute where attrelid = 'plans'::regclass and attname = 'price_minor'`)).rows[0].said).toMatch(/^Retired by C212/);
     await small.pg.close();
     expect(await rows(`select column_name from information_schema.columns where table_schema = 'public' and table_name = 'plans' and column_name in ('price_minor', 'period')`)).toEqual([]);
-  });
+  }, 60_000);
 });
 
 describe('a school’s subscription records its period', () => {
