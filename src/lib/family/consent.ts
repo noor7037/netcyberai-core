@@ -7,7 +7,8 @@ export const FAMILY_PURPOSES = ['study_core', 'school_link', 'opportunity_matchi
 export type FamilyPurpose = (typeof FAMILY_PURPOSES)[number];
 // The purposes the app asks for now: study_core (M1) and english_programme (the English course, C274). The others
 // arrive with their milestones (voice_practice with E-9).
-export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme'];
+// photo_input (M2-6, C280; 03 §11): the homework helper sends a child's photo to a provider, so it has its own purpose.
+export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme', 'photo_input'];
 // The notice the parent read when tapping (its words are the fam.consent.* messages of this version).
 export const FAMILY_NOTICE_VERSION = 'fam-notice-1';
 

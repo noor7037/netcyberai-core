@@ -166,7 +166,8 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 }
 
 // `english`: the English course (C274) when Control has it switched on: whether the parent has given its consent.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
+// `photo`: the same for photo questions (M2-6, C280), when Control has the homework helper switched on.
+export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -259,6 +260,17 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
             </div>
             <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)}>
               {english.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
+            </button>
+          </div>
+        )}
+        {photo && (
+          <div className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3" data-consent="photo_input">
+            <div className="min-w-0">
+              <p className="text-base font-semibold text-slate">{w['fam.consent.purpose.photo_input']}</p>
+              <p className="text-sm text-slate/70">{photo.granted ? w['fam.parent.granted'] : w['fam.parent.notGranted']}</p>
+            </div>
+            <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)}>
+              {photo.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
             </button>
           </div>
         )}
