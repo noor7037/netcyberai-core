@@ -1,4 +1,5 @@
 import type { Sql } from '@/lib/jobs/types';
+import { oldestQueueAgeDays } from '@/lib/content/response-queue';
 import { indiaDate } from '@/lib/time/india';
 
 // Control → Apps health and usage (docs/family-app/10 §6; M2-11, C285): the AI platform's requests, failures and cap
@@ -24,8 +25,9 @@ export type Alert =
   | { kind: 'ai_failures'; profileId: string; failures: number; requests: number }
   | { kind: 'ai_cap'; profileId: string; refusals: number }
   | { kind: 'key_test_failed'; providerId: string }
-  | { kind: 'video_quota'; used: number; limit: number };
-export type Health = { day: string; profiles: ProfileHealth[]; failedKeys: string[]; video: { used: number; limit: number }; counts: M2Counts; alerts: Alert[] };
+  | { kind: 'video_quota'; used: number; limit: number }
+  | { kind: 'review_queue'; oldestDays: number; targetDays: number };
+export type Health = { day: string; profiles: ProfileHealth[]; failedKeys: string[]; video: { used: number; limit: number }; queue: { oldestDays: number | null; targetDays: number }; counts: M2Counts; alerts: Alert[] };
 
 const num = (v: unknown) => {
   const n = Number(v ?? 0);
@@ -50,7 +52,7 @@ export function readM2Counts(raw: unknown): M2Counts {
 
 // The alerts, from today's numbers and Control's thresholds. A profile's failures alert only past a minimum of
 // requests, so one failed call in the morning is not an alarm.
-export function alertsOf(h: Omit<Health, 'alerts' | 'day' | 'counts'>, t: Thresholds): Alert[] {
+export function alertsOf(h: Omit<Health, 'alerts' | 'day' | 'counts' | 'queue'> & { queue?: Health['queue'] }, t: Thresholds): Alert[] {
   const out: Alert[] = [];
   for (const p of h.profiles) {
     if (p.requestsToday >= t.aiMinRequests && p.failuresToday / p.requestsToday >= t.aiFailureShare) out.push({ kind: 'ai_failures', profileId: p.profileId, failures: p.failuresToday, requests: p.requestsToday });
@@ -58,6 +60,8 @@ export function alertsOf(h: Omit<Health, 'alerts' | 'day' | 'counts'>, t: Thresh
   }
   for (const providerId of h.failedKeys) out.push({ kind: 'key_test_failed', providerId });
   if (h.video.limit > 0 && h.video.used >= h.video.limit * t.videoQuotaShare) out.push({ kind: 'video_quota', used: h.video.used, limit: h.video.limit });
+  // The review queue (M2-12, C286): an AI-made response families asked for, waiting longer than its target (07 §4).
+  if (h.queue && h.queue.oldestDays !== null && h.queue.oldestDays > h.queue.targetDays) out.push({ kind: 'review_queue', oldestDays: h.queue.oldestDays, targetDays: h.queue.targetDays });
   return out;
 }
 
@@ -90,6 +94,7 @@ export async function loadHealth(db: Sql, day: string = indiaDate()): Promise<He
     })),
     failedKeys: keys.rows.map((r: Record<string, unknown>) => String(r.provider_id)),
     video: { used: num(searches.rows[0]?.searches), limit: await settingNumber(db, 'family.video_searches_per_day', 90) },
+    queue: await oldestQueueAgeDays(db).then(({ oldestDays, targetDays }) => ({ oldestDays, targetDays })),
   };
   const thresholds: Thresholds = {
     aiFailureShare: await settingNumber(db, 'control.alert.ai_failure_share', 0.2),

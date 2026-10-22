@@ -6774,6 +6774,7 @@ export const en = {
   'control.health.revisitsDue': 'Revisits due now',
   'control.health.photoQuestions7d': 'Photo questions, last 7 days',
   'control.health.videoSearchesToday': 'Video searches today',
+  'control.health.alert.reviewQueue': 'The oldest response families asked for has waited {days} days for review (target {target}). Clear the queue in Control → Content.',
   // m2-11 end
   // m2-12 begin
   'control.import.title': "Import from a board's PDF",

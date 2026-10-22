@@ -18,6 +18,8 @@ function alertText(a: Alert, lang: Lang): string {
       return t(lang, 'control.health.alert.keyTest', { provider: a.providerId });
     case 'video_quota':
       return t(lang, 'control.health.alert.videoQuota', { used: count(a.used), limit: count(a.limit) });
+    case 'review_queue':
+      return t(lang, 'control.health.alert.reviewQueue', { days: count(a.oldestDays), target: count(a.targetDays) });
   }
 }
 

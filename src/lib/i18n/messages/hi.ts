@@ -6762,6 +6762,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.health.revisitsDue': 'अभी दोहराने वाले विषय',
   'control.health.photoQuestions7d': 'फ़ोटो प्रश्न, पिछले 7 दिन',
   'control.health.videoSearchesToday': 'आज वीडियो खोज',
+  'control.health.alert.reviewQueue': 'परिवारों के माँगे सबसे पुराने उत्तर को समीक्षा के लिए {days} दिन हो गए (लक्ष्य {target})। Control → Content में कतार साफ़ करें।',
   // m2-11 end
   // m2-12 begin
   'control.import.title': 'बोर्ड की PDF से जोड़ें',
@@ -6856,7 +6857,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.queue.block.rightOption': 'सही उत्तर',
   'control.queue.block.hint': 'संकेत: {text}',
   'control.queue.block.why': 'क्यों: {text}',
-  'control.queue.block.term': '{en}: {local}',
+  'control.queue.block.term': '{en} — अर्थ: {local}',
   'control.queue.block.sentence': 'वाक्य: {text}',
   'control.queue.err.not_found': 'यह जवाब अब यहाँ नहीं है।',
   'control.queue.err.not_ai_made': 'यह जवाब पहले से जाँचा हुआ है।',

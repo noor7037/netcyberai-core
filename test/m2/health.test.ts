@@ -18,6 +18,11 @@ describe('alerts', () => {
   it('a cap refusal, a failed key test and the video quota near its end', () => {
     expect(alertsOf({ profiles: [p('family.homework', 3, 0, 2)], failedKeys: ['youtube'], video: { used: 72, limit: 90 } }, T).map((a) => a.kind)).toEqual(['ai_cap', 'key_test_failed', 'video_quota']);
   });
+  it('a review queue past its target', () => {
+    const base = { profiles: [], failedKeys: [], video: { used: 0, limit: 90 } };
+    expect(alertsOf({ ...base, queue: { oldestDays: 8, targetDays: 7 } }, T)).toEqual([{ kind: 'review_queue', oldestDays: 8, targetDays: 7 }]);
+    expect(alertsOf({ ...base, queue: { oldestDays: 7, targetDays: 7 } }, T)).toEqual([]);
+  });
 });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
