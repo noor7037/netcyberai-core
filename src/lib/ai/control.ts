@@ -4,7 +4,7 @@ import { indiaDate } from '@/lib/time/india';
 import { adapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER } from './adapters';
 import { aiEncryptionKey, sealAiKey } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
-import { chainOf, PROFILES, profileById } from './platform';
+import { capableAdapter, chainOf, PROFILES, profileById } from './platform';
 
 // Control → AI (docs/family-app/10 §3, §7; C249). NetCyberAI's founder only (super_admin with the authenticator,
 // checked by the route). Every statement runs as the platform role (nca_super), from a fixed, parameterised list.
@@ -234,12 +234,14 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   const profile = profileById(profileId);
   if (!profile) return { ok: false, code: 'profile' };
   const providers = [next.providerId, ...next.fallback.map((f) => f.provider)].filter((p): p is string => p !== null);
-  if (next.fallback.length > 3 || providers.some((p) => !knownProvider(p))) return { ok: false, code: 'provider' };
+  // A provider must have an adapter of the profile's capability: voice input (speech_to_text, C281) takes only a provider
+  // that can hear, so Anthropic cannot be chosen for it.
+  if (next.fallback.length > 3 || providers.some((p) => !knownProvider(p) || capableAdapter(profile.id, p) === null)) return { ok: false, code: 'provider' };
   if ((next.model !== null && !MODEL.test(next.model)) || next.fallback.some((f) => !MODEL.test(f.model))) return { ok: false, code: 'model' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
   if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
   // The code's half of the minors check; the database adds Control's clearance (its trigger) below.
-  if (profile.carriesChildWords && providers.some((p) => adapterFor(p)?.minorsEligible !== true)) return { ok: false, code: 'not_cleared_for_minors' };
+  if (profile.carriesChildWords && providers.some((p) => capableAdapter(profile.id, p)?.minorsEligible !== true)) return { ok: false, code: 'not_cleared_for_minors' };
   const before = await profileSettings(db, profileId);
   if (!before) return { ok: false, code: 'profile' };
   try {

@@ -54,6 +54,8 @@ FAMILY_DOORS = {
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
     # The homework helper screens a photo with the upload screen every stored file uses (M2-6, C280).
     "@/lib/privacy/upload-check": {"src/lib/family/homework.ts"},
+    # Voice input applies the 12-digit rule to the words it hears before they are shown (M2-7, C281).
+    "@/lib/privacy/aadhaar": {"src/lib/family/voice.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")

@@ -6537,6 +6537,21 @@ export const en = {
   'fam.homework.err.not_for_class': 'The homework helper starts from Class 1.',
   // m2-6 end
   // m2-7 begin
+  'fam.consent.purpose.voice_practice': 'Voice: speak a question or practise out loud (the recording becomes words and is not kept)',
+  'fam.voice.speak': 'Speak your question',
+  'fam.voice.stop': 'Stop',
+  'fam.voice.recording': 'Recording… {s} of {max} seconds',
+  'fam.voice.sending': 'Turning your words into text…',
+  'fam.voice.privacy': 'Your voice is turned into words and not kept.',
+  'fam.voice.check': 'Check the words and fix any mistakes, then ask.',
+  'fam.voice.err.denied': 'The microphone is not allowed. Allow it for this app, or type your question.',
+  'fam.voice.err.unsupported': 'Recording does not work here. Type your question instead.',
+  'fam.voice.err.voice_cap': "That's all the speaking time for today. Type your question, or speak again tomorrow.",
+  'fam.voice.err.not_heard': 'No words were heard. Try again, a little closer to the phone.',
+  'fam.voice.err.not_audio': 'That recording could not be used. Try again.',
+  'fam.voice.err.consent_required': 'Speaking a question needs a grown-up to say yes in the parent area.',
+  'fam.voice.err.off': 'Speaking a question is not switched on yet.',
+  'fam.voice.err.not_for_class': 'Speaking a question starts from Class 1.',
   // m2-7 end
   // m2-8 begin
   // m2-8 end

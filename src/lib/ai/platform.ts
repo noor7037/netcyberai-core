@@ -1,6 +1,6 @@
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, type AdapterResult, type ChatImage, type ChatMessage, type TextAdapter } from './adapters';
+import { adapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
 import { scrubRequest } from './preprocess';
@@ -26,15 +26,26 @@ import { scrubRequest } from './preprocess';
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
 export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input';
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean };
+export type Capability = 'text' | 'speech_to_text';
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability };
 
-// Code-defined: which profiles exist and whether a child's words may pass. Control sets each one's provider, model,
-// prompt version and on switch; never this list. M2 (C275): the homework helper reads a photo, voice input hears a child.
+// Code-defined: which profiles exist, whether a child's words may pass, and which capability each one uses. Control
+// sets each one's provider, model, prompt version and on switch; never this list. M2 (C275): the homework helper reads a
+// photo, voice input hears a child (speech_to_text, M2-7, C281: prepareTranscription below).
 export const PROFILES: readonly AiProfile[] = [
-  { id: 'family.resolver', carriesChildWords: true },
-  { id: 'family.homework', carriesChildWords: true },
-  { id: 'family.voice_input', carriesChildWords: true },
+  { id: 'family.resolver', carriesChildWords: true, capability: 'text' },
+  { id: 'family.homework', carriesChildWords: true, capability: 'text' },
+  { id: 'family.voice_input', carriesChildWords: true, capability: 'speech_to_text' },
 ];
+
+// The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
+// (a provider without a speech adapter cannot serve voice input). Control checks a choice against it; the platform
+// skips a provider without one.
+export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | null {
+  const profile = profileById(profileId);
+  if (!profile) return null;
+  return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
+}
 
 export type AiContext = {
   accountId: string;
@@ -111,15 +122,15 @@ async function count(db: Sql, day: string, profile: string, link: Link, c: { req
   ]);
 }
 
-type Ready = { link: Link; adapter: TextAdapter; apiKey: string };
+type Ready<A> = { link: Link; adapter: A; apiKey: string };
 
-// Opens each provider's key inside this call only. A provider without an adapter, a key, or a key that opens is
-// left out of the chain.
-async function usableLinks(db: Sql, chain: Link[], providers: Map<string, ProviderRow>, env: Record<string, string | undefined>): Promise<Ready[]> {
-  const ready: Ready[] = [];
+// Opens each provider's key inside this call only. A provider without an adapter (of the capability `find` looks up),
+// a key, or a key that opens is left out of the chain.
+async function usableLinks<A extends { needsKey: boolean }>(db: Sql, chain: Link[], providers: Map<string, ProviderRow>, env: Record<string, string | undefined>, find: (providerId: string) => A | null): Promise<Ready<A>[]> {
+  const ready: Ready<A>[] = [];
   const k = aiEncryptionKey(env);
   for (const link of chain) {
-    const adapter = adapterFor(link.provider, env);
+    const adapter = find(link.provider);
     const provider = providers.get(link.provider);
     if (!adapter || !provider?.enabled) continue;
     if (!adapter.needsKey) {
@@ -148,11 +159,13 @@ export type PreparedText = { send: (onDelta?: (text: string) => void) => Promise
 export type SentText = { result: AiResult; record: (db: Sql) => Promise<void> };
 export type Prepared = { ok: true; text: PreparedText } | { ok: false; reason: AiRefusal };
 
-// 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
-export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
-  const env = process.env;
+type Checked = { ok: true; profile: AiProfile; row: ProfileRow; chain: Link[]; providers: Map<string, ProviderRow> } | { ok: false; reason: AiRefusal };
+
+// 1 and 2, for either capability: the profile switched on, and the minors check on the whole chain, against the
+// adapter of the profile's own capability.
+async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capability: Capability, env: Record<string, string | undefined>): Promise<Checked> {
   const profile = profileById(profileId);
-  if (!profile || !UUID.test(ctx.accountId) || !DAY.test(ctx.day)) return { ok: false, reason: 'failed' };
+  if (!profile || profile.capability !== capability || !UUID.test(ctx.accountId) || !DAY.test(ctx.day)) return { ok: false, reason: 'failed' };
 
   // 1. Switched on?
   const row = await profileRow(db, profile.id);
@@ -163,21 +176,42 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
   const { rows: providerRows } = await db.query(`select provider_id, cleared_for_minors, enabled from control.ai_providers where provider_id = any($1::text[])`, [chain.map((l) => l.provider)]);
   const providers = new Map((providerRows as ProviderRow[]).map((p) => [p.provider_id, p]));
   if (profile.carriesChildWords || row.carries_child_words) {
-    const cleared = chain.every((l) => providers.get(l.provider)?.cleared_for_minors === true && adapterFor(l.provider, env)?.minorsEligible === true);
+    // Every provider in the chain must be cleared in Control, and its adapter eligible in code. A text provider needs
+    // its adapter (as before); a provider with no speech adapter is not refused for that alone: it is skipped at step 3.
+    const cleared = chain.every((l) => {
+      const adapter = capableAdapter(profile.id, l.provider, env);
+      const eligible = adapter ? adapter.minorsEligible === true : capability !== 'text';
+      return providers.get(l.provider)?.cleared_for_minors === true && eligible;
+    });
     if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
   }
+  return { ok: true, profile, row, chain, providers };
+}
+
+// 4. The family's daily cap, counted before the request leaves.
+async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link): Promise<boolean> {
+  const limit = await dailyLimit(db);
+  if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
+    await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
+    return false;
+  }
+  return true;
+}
+
+// 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
+export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
+  const env = process.env;
+  const checked = await checkProfile(db, ctx, profileId, 'text', env);
+  if (!checked.ok) return checked;
+  const { profile, row, chain, providers } = checked;
 
   // 3. A provider that can answer (and, for a request with photos, that can see them).
   const withPhotos = request.messages.some((m) => (m.images?.length ?? 0) > 0);
-  const ready = (await usableLinks(db, chain, providers, env)).filter((r) => !withPhotos || r.adapter.vision);
+  const ready = (await usableLinks(db, chain, providers, env, (p) => adapterFor(p, env))).filter((r) => !withPhotos || r.adapter.vision);
   if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
 
-  // 4. The family's daily cap, counted before the request leaves.
-  const limit = await dailyLimit(db);
-  if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
-    await count(db, ctx.day, profile.id, ready[0].link, { capRefusals: 1 });
-    return { ok: false, reason: 'cap_reached' };
-  }
+  // 4. The family's daily cap.
+  if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
 
   // 5. Nothing that names a child leaves the server.
   const clean = scrubRequest(request, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
@@ -216,6 +250,59 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     return { result: { ok: false, reason: 'failed' }, record };
   };
   return { ok: true, text: { send } };
+}
+
+// ---- speech to text (M2-7, C281) -----------------------------------------------------------------------------------
+
+export type SpeechInput = { audio: Uint8Array; mediaType: SpeechMediaType; language: 'en' | 'hi' };
+export type TranscriptResult = { ok: true; text: string; provider: string; model: string } | { ok: false; reason: AiRefusal };
+export type SentTranscript = { result: TranscriptResult; record: (db: Sql) => Promise<void> };
+export type PreparedSpeech = { send: () => Promise<SentTranscript> };
+export type PreparedTranscription = { ok: true; speech: PreparedSpeech } | { ok: false; reason: AiRefusal };
+
+// The same seven steps as prepareText, for a recording: 1–4 here, in the caller's transaction (the profile, the minors
+// check on the whole chain, a provider with a speech adapter and a key, the family's daily cap). Step 5 has nothing to
+// clean: the request is the recording, the model, the language and a fixed file name, with no name, email or number of
+// the family's. 6 (send, no database) and 7 (record: counts and tokens only) as for text. The recording lives only in
+// the prepared call's closure and is never stored or logged; the words that come back are the caller's to check.
+export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeechInput): Promise<PreparedTranscription> {
+  const env = process.env;
+  const checked = await checkProfile(db, ctx, profileId, 'speech_to_text', env);
+  if (!checked.ok) return checked;
+  const { profile, chain, providers } = checked;
+
+  // 3. A provider that can hear: one without a speech adapter is skipped.
+  const ready = await usableLinks(db, chain, providers, env, (p) => speechAdapterFor(p, env));
+  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+
+  // 4. The family's daily cap.
+  if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
+
+  let sent = false;
+  const send = async (): Promise<SentTranscript> => {
+    const usage: { link: Link; counts: Counts }[] = [];
+    const record = async (tx: Sql) => {
+      for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
+    };
+    if (sent) return { result: { ok: false, reason: 'failed' }, record };
+    sent = true;
+    // 6. Down the chain until one hears it.
+    for (const { link, adapter, apiKey } of ready) {
+      let result: SpeechResult;
+      try {
+        result = await adapter.transcribe({ apiKey, model: link.model, audio: input.audio, mediaType: input.mediaType, language: input.language });
+      } catch {
+        result = { ok: false, failure: 'network' };
+      }
+      if (result.ok) {
+        usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
+        return { result: { ok: true, text: result.text, provider: link.provider, model: link.model }, record };
+      }
+      usage.push({ link, counts: { requests: 1, failures: 1 } });
+    }
+    return { result: { ok: false, reason: 'failed' }, record };
+  };
+  return { ok: true, speech: { send } };
 }
 
 // The three steps on one client: for a caller with nothing to do between them.

@@ -29,7 +29,7 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   // m2-6
   { id: 'homework', tab: 'study', flag: 'homework', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-7
-  { id: 'voice_input', tab: 'study', flag: 'voice_input', entitlement: 'learning', built: false, milestone: 'M2' },
+  { id: 'voice_input', tab: 'study', flag: 'voice_input', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-9
   { id: 'offline', tab: 'study', flag: 'offline', entitlement: 'learning', built: false, milestone: 'M2' },
 ];

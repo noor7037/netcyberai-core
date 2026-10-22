@@ -6800,7 +6800,8 @@ try {
   if (FAMILY_ONLY) {
     const { chromium } = await import('playwright');
     mkdirSync(OUT, { recursive: true });
-    const browser = await chromium.launch();
+    // A fake microphone (M2-7): voice input's recording state is pictured without a real one.
+    const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
     const rows = await runFamilyMatrix({ browser, base, db, secret, out: OUT, only: ONLY ? ONLY.split(',').filter(Boolean) : [] });
     await browser.close();
     writeFileSync(path.join(OUT, 'app.log'), appLog);

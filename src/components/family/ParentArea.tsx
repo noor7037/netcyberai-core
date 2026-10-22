@@ -164,7 +164,8 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 }
 
 // `english`: the English course (C274) when Control has it switched on: whether the parent has given its consent.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null }) {
+// `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
+export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, voice = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; voice?: { granted: boolean } | null }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -251,6 +252,17 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
             </div>
             <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)}>
               {english.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
+            </button>
+          </div>
+        )}
+        {voice && (
+          <div data-consent-voice className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3">
+            <div className="min-w-0">
+              <p className="text-base font-semibold text-slate">{w['fam.consent.purpose.voice_practice']}</p>
+              <p className="text-sm text-slate/70">{voice.granted ? w['fam.parent.granted'] : w['fam.parent.notGranted']}</p>
+            </div>
+            <button type="button" className={linkButton} onClick={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)}>
+              {voice.granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
             </button>
           </div>
         )}

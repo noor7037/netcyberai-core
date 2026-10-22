@@ -35,6 +35,10 @@ export const FAMILY_SCREENS = [
   // m2-6: the homework helper's start screen, and its link in Study (C280).
   ['full', 'family-homework', '/family/study/homework', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-start]' }],
   ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-link]' }],
+  // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
+  ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
+  ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
+  ['full', 'family-parent-area-voice', '/family/parent', { parent: true, settle: '[data-consent-voice]' }],
   // m2-2: today's plan first on the home (C276).
   ['full', 'family-home-plan', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-plan]' }],
   // The English course (C274): the course map, and a lesson's first card.
@@ -92,7 +96,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
     for (const motion of FAMILY_MOTIONS) {
       for (const width of FAMILY_WIDTHS) {
         for (const [who, name, route, opts] of screens) {
-          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1 });
+          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
@@ -104,6 +108,13 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           });
           const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
           if (opts.settle) await page.locator(opts.settle).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${opts.settle} never appeared`));
+          // `mic`: start a recording on Chromium's fake microphone (the browser is launched with it), so the recording
+          // state can be pictured. Nothing is sent: the context closes while it records.
+          if (opts.mic) {
+            await page.locator('[data-voice-input] button').first().click();
+            await page.locator('[data-voice-state="recording"]').waitFor({ timeout: 10000 }).catch(() => errors.push('the recording never started'));
+            await page.waitForTimeout(1600);
+          }
           await page.waitForTimeout(400);
           const seen = await page.evaluate(() => {
             const main = document.querySelector('main') ?? document.body;

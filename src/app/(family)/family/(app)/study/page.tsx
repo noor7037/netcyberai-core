@@ -9,6 +9,7 @@ import { classText } from '@/lib/family/fill';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
+import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -49,8 +50,10 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
   const homeworkOn = await familyPageRead(page, (db) => familyModuleOn(db, 'homework', page.session.accountId));
+  // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on.
+  const voiceOn = page.consents.voice_practice && (await familyPageRead(page, (db) => familyModuleOn(db, 'voice_input', page.session.accountId)));
   const tone = subject;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton'] as MessageKey[]);
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', ...(voiceOn ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' || subject === 'evs' || subject === 'biology' ? 'emerald' : 'royal'} />
@@ -81,7 +84,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           <>
-            <StudyQuestion w={w} subject={subject} tone={tone} />
+            <StudyQuestion w={w} subject={subject} tone={tone} voice={voiceOn} />
             {homeworkOn && (
               <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
                 <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">

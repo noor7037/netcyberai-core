@@ -28,7 +28,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.calm.note',
-  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open',
+  'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.voice_practice',
 ];
 
 export default async function FamilyParentPage() {
@@ -48,10 +48,14 @@ export default async function FamilyParentPage() {
   // The English course (C274): its consent and reports show when Control has the course switched on.
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   const english = switches && switchOn(switches, 'english_programme') ? { granted: page.consents.english_programme } : null;
+  // Voice input (M2-7, C281): its consent shows when Control has voice input switched on; a yes already given stays
+  // withdrawable even when the module is off.
+  const voice = switches && (switchOn(switches, 'voice_input') || page.consents.voice_practice) ? { granted: page.consents.voice_practice } : null;
   return (
     <main lang={lang} className="mx-auto w-full max-w-xl px-4 py-6">
       <ParentArea
         english={english}
+        voice={voice}
         calm={calm}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}
