@@ -6,7 +6,7 @@
 //
 // Before: v3 offered explanation, worked_example, diagram, key_points, check, practice, english_moment, sources.
 // After:  v4 offers the same, word for word, plus the five interactive blocks below, after the diagram line.
-// Before-and-after sample responses: test/m2/fixtures/resolver-v3-before.jsonl and resolver-v4-after.jsonl.
+// Before-and-after example responses: test/m2/fixtures/resolver-v3-before.jsonl and resolver-v4-after.jsonl.
 //
 // Registered, not active: Control chooses v4 (control.ai_profiles.prompt_version) for it to go live.
 
