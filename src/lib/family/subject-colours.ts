@@ -1,4 +1,4 @@
-import { colors, deepColors } from '@/lib/design-tokens';
+import { colors } from '@/lib/design-tokens';
 import type { Subject } from './subjects';
 
 // One colour per subject (docs/family-app/09 §2; D1, C291), used everywhere a subject appears: chips and tabs, a card's
@@ -43,9 +43,3 @@ export const SUBJECT_COLOURS: Record<Subject, SubjectColour> = {
 // A subject's colour; a subject the app does not know takes Mathematics' blue rather than nothing.
 export const subjectColour = (subject: string | null | undefined): SubjectColour => SUBJECT_COLOURS[subject as Subject] ?? SUBJECT_COLOURS.mathematics;
 
-// The deep hue as a hex, for an SVG stroke or a chart on white.
-export const subjectDeepHex = (subject: string) => {
-  const c = subjectColour(subject).hex;
-  const deep: Record<string, string> = { [colors.royal]: deepColors.royalDeep, [colors.grape]: deepColors.grapeDeep, [colors.tangerine]: deepColors.tangerineDeep, [colors.coral]: deepColors.coralDeep, [colors.gold]: deepColors.goldDeep };
-  return deep[c] ?? c;
-};
