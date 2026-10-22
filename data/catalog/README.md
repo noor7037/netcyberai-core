@@ -543,3 +543,149 @@ page is 1), not the numbers printed on the pages.
 4. A mechanical check used while drafting: every English word of three or more letters in each `title_en` appears in
    the text of its cited page (`pdftotext -raw`); all 692 lines pass. Devanagari titles were checked by eye, because
    the PDFs' text layer garbles them.
+
+## cbse-2026-27-classes-11-12-commerce-humanities-languages.csv
+
+CBSE, academic year 2026-27, Classes XI and XII: the app's other subjects for these classes, Accountancy, Business
+Studies, Economics, History, Geography, Political Science, English and Hindi (subject ids `accountancy`,
+`business_studies`, `economics`, `history`, `geography`, `political_science`, `english`, `hindi`). Same columns and rules
+as the files above. Every line is `in_review`; every line was read on **2026-10-22**. 703 lines (41 units, 187 chapters,
+475 topics). Load it the same way:
+
+```
+node scripts/content/catalog-sql.mjs data/catalog/cbse-2026-27-classes-11-12-commerce-humanities-languages.csv --ref "<the PR that committed it>" > load.sql
+```
+
+Each subject has one document for both classes, linked from https://cbseacademic.nic.in/curriculum_2027.html under
+"Secondary Curriculum: Part - 2 (XI-XII)": the six main subjects under "Academic Electives - (Group-A)", English Core and
+Hindi Core under "Languages - (Group-L)" (the page has no separate languages part for Classes XI–XII). Pages are the
+PDF's page numbers (page 1 is the first page of the file); a line printed across a page break names both pages (`11-12`).
+
+| Class | Subject | Document (link name on the curriculum page) | Units | Chapters | Topics | Pages used |
+|---|---|---|---|---|---|---|
+| XI | accountancy | "Accountancy", code 055: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Accountancy_SecP2_2026-27.pdf | 2 | 3 | 0 | 2 (course structure) |
+| XII | accountancy | same document | 3 | 5 | 0 | 9 (course structure) |
+| XI | business_studies | "Business Studies", code 054: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/BusinessStudies_SecP2_2026-27.pdf | 2 | 10 | 44 | 2 (course structure), 2–7 (the "Content" column) |
+| XII | business_studies | same document | 2 | 12 | 51 | 9 (course structure), 9–15 (the "Content" column) |
+| XI | economics | "Economics", code 030: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Economics_SecP2_2026-27.pdf | 2 | 7 | 0 | 2 (course structure) |
+| XII | economics | same document | 2 | 8 | 0 | 6 (course structure) |
+| XI | history | "History", code 027: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/History_SecP2_2026-27.pdf | 5 | 12 | 3 | 3 (course structure), 4 (Theme 1's items) |
+| XII | history | same document | 3 | 12 | 0 | 9–10 (course structure) |
+| XI | geography | "Geography", code 029: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Geography_SecP2_2026-27.pdf | 3 | 27 | 75 | 3–4 (course structure), 5–8 (course content), 10 (note of formatively assessed topics) |
+| XII | geography | same document | 3 | 24 | 132 | 11–12 (course structure), 12–16 (course content), 18–19 (note of formatively assessed topics) |
+| XI | political_science | "Political Science", code 028: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/PoliticalScience_SecP2_2026-27.pdf | 2 | 18 | 89 | 3 (course structure), 4–9 (course content) |
+| XII | political_science | same document | 2 | 15 | 79 | 10 (course structure), 11–15 (course content) |
+| XI | english | "English Core", code 301: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/English_core_SecP2_2026-27.pdf | 2 | 15 | 0 | 8 ("Prescribed Books") |
+| XII | english | same document | 2 | 19 | 2 | 12 ("Prescribed Books") |
+| XI | hindi | "Hindi Core", हिंदी (आधार), code 302: https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/Hindi_Core_SecP2_2026-27.pdf | 3 | 0 | 0 | 9 (निर्धारित पाठ्यपुस्तकें) |
+| XII | hindi | same document | 3 | 0 | 0 | 11 (निर्धारित पुस्तकें) |
+
+### How the lines were taken from the documents
+
+- **The same rules as the files above:** units and chapters as the course structure prints them, topics only where the
+  document lists them under a chapter, wording as printed (line breaks joined, repeated spaces made one, capitals,
+  punctuation and slips kept), numbers and labels ("Unit 1:", "Chapter 2", "a)", "Part A") left out, learning outcomes
+  never taken. Where a heading in the text words a unit or chapter differently from the course structure table, the
+  table wins (each case is on the subject's proof page).
+- **Units and chapters.** Every one of these course structures groups its units or chapters into larger parts, so the
+  part is the CSV unit and the course structure's own units, chapters or themes are the CSV chapters: Accountancy,
+  Business Studies and Economics: "Part A", "Part B" (for Economics the two NCERT books); Political Science: "PART A",
+  "PART B" (capitals kept, "INDIAN CONSTITUTION AT WORK"); Geography: the books the course structure names
+  ("Book- Fundamentals of Physical Geography" …), whose own "Unit-I", "Unit-II" groupings are not kept (the CSV has three
+  levels and the book is the unit, as for Class X Social Science); History XI: the "Section Title" column ("Reading of
+  World History", "EARLY SOCIETIES" …); History XII: the three parts of "Themes in Indian History"; English and Hindi: the
+  prescribed books. Part C (project or practical work) and map work are not taken.
+- **Topics.** Accountancy and Economics print each unit's content as running text (Accountancy also as notes and as
+  bullets that are paragraphs, several longer than the 300-character limit for a title), so they have no topics, the
+  same rule as Classes XI–XII Physics. Business Studies: each box of the "Content" column is one topic, its lines
+  joined. Geography: the bullets under each chapter of the course content. Political Science: the items printed at the
+  first level under each chapter ("a)", "b)" …, and two first-level items without a letter). History XI: Theme 1's three
+  lettered items (page 4); the other themes, and all of Class XII, list learning outcomes only. English XII: the two
+  parts of "Memories of Childhood". **A list printed under a topic is not taken** (the CSV has no fourth level):
+  Political Science's bullets under its lettered items, and in Geography XII the items under "Types of agriculture:"
+  (2), "Commercial Agriculture" (8) and "Case Studies –" (2); the topic is the item's own text, worded as printed. Labels
+  that only introduce a list ("Topics to be focused:", "Concept and types:") are not topics.
+- **History XII chapters** join each theme's two printed lines, title and subtitle, with a space ("Bricks, Beads and
+  Bones The Harappa Civilisation"). Slips kept as the table prints them: "Kingship, Caste and class" (the course content
+  says "KINSHIP"), "The Harappa Civilisation", "BCE600", "(c.600 BCE 600 CE)" (no dash is printed).
+- **Business Studies** boxes that hold more than one item are one topic each (to confirm whether to split them): Class XI
+  "Global Enterprises – Feature Joint venture Public private partnership – concept", the two banking boxes of Unit 4,
+  "Internal trade - meaning and types services rendered by a wholesaler and a retailer"; Class XII "Dimensions of Business
+  Environment … Demonetization - concept and features", "Structure of organisation … Formal and informal organization -
+  concept", "The Consumer Protection Act, 2019: Meaning of consumer …" (its printed source link, "Source:
+  http://egazette.nic.in/…", is left out).
+- **Political Science** first-level items are kept in printed order even where the letters are out of order or
+  repeated (Class XII International Organizations e, f, h, i, j, g; Environment and Natural Resources … d, f, g, e; The
+  Crisis of Democratic Order a, c, c, d, d). Two first-level items carry no letter and are topics: "Implementation of
+  73rdand 74th Amendments" (a bullet) and "Contents of amendments made so far" (printed as "9."). In Class XII "Russia",
+  "Balkan States" and "Central Asian States" are printed at the first level (with bullets), so they are topics. "elect
+  ions" (Class XII, page 13) is printed with a space inside the word and is written "elections", as split words were
+  joined for Class IX Social Science. Slips kept: "73rd and 74thamendments", "Fourth General Election1967",
+  "Non-tradition notions of Security.", "Lok Sabha Elections (2004- 2019)".
+- **Geography.** Notes printed with a chapter ("(To be tested through internal assessments in the form of project and
+  presentation)") are left out of its name; those chapters print no bullets and have no topics. Page 11 prints
+  "Book-India People and Economy" above the first Class XII table; it heads the second table and is used there. The
+  course structure's spellings are kept ("Fundamental of Human Geography", "Landform and their Evolution").
+- **Hindi Core** prints in Devanagari; each title is in both `title_en` and `title_hi` exactly as printed, never
+  translated, typed from the page rendered as a picture and checked against the PDF's text for the punctuation
+  ("आरोह, भाग-1" with a hyphen, "वितान भाग–1" with a dash; Class XII "‘अभिव्यक्ति और माध्यम’" in quotation marks).
+- **Keys and positions** count from 1 under the parent, in printed order. English XII: Flamingo prints "Prose" (1–8)
+  then "Poetry"; the poems follow as positions 9–13, as for Class X First Flight.
+
+### Choices to confirm (the supervisor)
+
+- **Formatively assessed lines (19).** Geography prints, after the course content, topics "included in the syllabus
+  but … assessed only formatively". As for Classes XI–XII Science they are included, after the course-structure
+  chapters of the book they are listed under, the name being the text before the first dash: Class XI "Minerals and
+  Rocks" (page 10); Class XII "Population Composition" and "Human Settlements" with their six items each (page 18),
+  "Migration" with its three items (page 19). To keep the course structure only, delete `cbse.c11.geography.u1.ch15`,
+  `cbse.c12.geography.u1.ch09` and `.ch10` with their topics, and `cbse.c12.geography.u2.ch10` with its topics.
+- **Accountancy XII "Or".** The table prints Part B twice, joined by "Or": Financial Statement Analysis or Computerized
+  Accounting. Both are in; the option is the third unit (`cbse.c12.accountancy.u3`, `.u3.ch01`).
+- **History XI introduction and timelines.** "Introduction of World History" and the four "Introduction Timeline …"
+  rows have no theme number and no marks, but the table prints them as rows of the "Theme Title" column (the course
+  content gives the timelines learning outcomes). They are chapters (`cbse.c11.history.u1.ch01`, and `.ch01` of `u2` to
+  `u5`; the unit `u1`, "Reading of World History", holds only the introduction).
+- **Geography practical books.** "Geography Practical Part I" (XI) and "Geography Practical II" (XII) are books with
+  chapters and marks in the course structure, so they are units (`cbse.c11.geography.u3`, `cbse.c12.geography.u3`), unlike
+  the experiment lists of the science practicals, which were not taken.
+- **Hindi Core has units only.** The document names the three prescribed books and lists only the lessons removed from
+  them (pages 9 and 11), not the lessons studied, so the books are the units and there are no chapters. The Class X
+  Hindi file does not list its books as units; delete the six `hindi` lines to match it.
+- **English Core and Hindi Core** are the `english` and `hindi` syllabi: they are the core courses. English Elective
+  (`English_elective_SecP2_2026-27.pdf`) and Hindi Elective (`Hindi_Elective_SecP2_2026-27.pdf`) are separate courses
+  and are not in this file.
+
+### Not in this file (never guessed)
+
+| What | Where we looked | What was found |
+|---|---|---|
+| **Hindi Core lessons** | `Hindi_Core_SecP2_2026-27.pdf`, all 11 pages | Pages 9 and 11 name the books (आरोह, वितान, अभिव्यक्ति और माध्यम) and the lessons removed; no list of the lessons studied. Not filled from the NCERT books. |
+| **Accountancy and Economics topics** | the two documents | Content printed as running text (see "Topics"). The Accountancy sub-headings ("Introduction to Accounting", "Theory Base of Accounting" …) are not present in every unit (Class XII Unit 1 starts with bullets) and are not taken. |
+| **Political Science Annexure** ("Additional Reference Material", pages 21–34) | `PoliticalScience_SecP2_2026-27.pdf` | "for classroom transaction and will not be assessed in the Board examination": reading text under "Sub-Topic" headings, not syllabus lines. |
+| **Lists under a topic** | Political Science, Geography XII | Not taken: the CSV has three levels (see "Topics"). |
+| **Project work, practical files, map work, question paper designs, listening and speaking, reading passages, writing tasks** | all eight documents | Assessment and exam formats, not chapters or topics. |
+| **Grammar** | English Core page 6, Hindi Core pages 8–11 | English XI prints only question types ("Questions on Gap filling (Tenses, Clauses)", "Questions on re-ordering/transformation of sentences"); English XII and Hindi Core have no grammar section. Not taken, as for Classes IX–X. |
+
+### Hindi titles of the other documents
+
+`title_hi` is empty on every line that is not Hindi. Checked on 2026-10-22: the curriculum page (also with
+`?lang=hindi`, the same page) links no Hindi version of Accountancy, Business Studies, Economics or English Core. It has
+links to "Geography (Hindi)", "History (Hindi)" and "Political Science (Hindi)" (`GeographyHi_SecP2_2026-27.pdf`,
+`HistoryHindi_SecP2_2026-27.pdf`, `PoliticalScienceHi_SecP2_2026-27.pdf`), but they are commented out in the page and
+the files return HTTP 404. The same file names with a Hindi ending (`Hi`, `Hindi`, `_hi`, `_Hi`, `_Hindi`) for all six
+subjects return HTTP 404 too. Nothing was translated.
+
+### How the supervisor checks a line
+
+As for the files above: open the line's `source_url` at `source_page`, find the title, then check its parent and its
+position. **Mechanical check:** for 693 of the 697 English-language lines the whole title (spaces removed, dashes and
+quotation marks made plain) is found in the text of its cited page (`pdftotext -layout` and `-raw`). The other four were
+compared by eye: three titles printed across a page break (the page number at the foot interrupts them) and the Consumer
+Protection Act box (its source link is left out); every word of three or more letters of all 697 titles is on the cited
+pages, except "elections" (printed "elect ions", see above). The six Hindi lines were compared with the page by eye. The
+importer's checker (`readCatalogCsv`, run with the date 2026-10-22) finds no problem; `test/content/catalog-csv.test.ts`
+checks the counts above, the eight source documents and the Hindi-title rule.
+
+Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
+pages `class11-accountancy.md` to `class12-hindi.md`.

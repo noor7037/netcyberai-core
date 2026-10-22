@@ -232,6 +232,46 @@ describe('the catalog CSV', () => {
     // English books have no Hindi edition: no Hindi title.
     expect(r.lines.filter((l) => l.subject === 'english').every((l) => l.titleHi === null)).toBe(true);
   });
+
+  it('the committed CBSE file for classes 11 and 12 (commerce, humanities, English, Hindi) passes the same check', () => {
+    const text = readFileSync(path.resolve(__dirname, '../../data/catalog/cbse-2026-27-classes-11-12-commerce-humanities-languages.csv'), 'utf8');
+    const r = readCatalogCsv(text, '2026-10-22');
+    expect(r.problems).toEqual([]);
+    const count = (s: { units: unknown[]; chapters: unknown[]; topics: unknown[] }) => [s.units.length, s.chapters.length, s.topics.length];
+    expect(Object.fromEntries(r.syllabi.map((s) => [`${s.board} ${s.classLevel} ${s.subject} ${s.academicYear}`, count(s)]))).toEqual({
+      'CBSE 11 accountancy 2026-27': [2, 3, 0],
+      'CBSE 12 accountancy 2026-27': [3, 5, 0],
+      'CBSE 11 business_studies 2026-27': [2, 10, 44],
+      'CBSE 12 business_studies 2026-27': [2, 12, 51],
+      'CBSE 11 economics 2026-27': [2, 7, 0],
+      'CBSE 12 economics 2026-27': [2, 8, 0],
+      'CBSE 11 history 2026-27': [5, 12, 3],
+      'CBSE 12 history 2026-27': [3, 12, 0],
+      'CBSE 11 geography 2026-27': [3, 27, 75],
+      'CBSE 12 geography 2026-27': [3, 24, 132],
+      'CBSE 11 political_science 2026-27': [2, 18, 89],
+      'CBSE 12 political_science 2026-27': [2, 15, 79],
+      'CBSE 11 english 2026-27': [2, 15, 0],
+      'CBSE 12 english 2026-27': [2, 19, 2],
+      'CBSE 11 hindi 2026-27': [3, 0, 0],
+      'CBSE 12 hindi 2026-27': [3, 0, 0],
+    });
+    // One document per subject for both classes, in CBSE's Senior Secondary Curriculum Part 2 (English Core, Hindi Core).
+    expect(new Set(r.lines.map((l) => l.sourceUrl))).toEqual(
+      new Set(
+        ['Accountancy', 'BusinessStudies', 'Economics', 'History', 'Geography', 'PoliticalScience', 'English_core', 'Hindi_Core'].map(
+          (s) => `https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart2/${s}_SecP2_2026-27.pdf`
+        )
+      )
+    );
+    expect(r.lines.every((l) => l.sourceUrl.startsWith('https://cbseacademic.nic.in/web_material/CurriculumMain27/'))).toBe(true);
+    // CBSE prints Hindi Core in Devanagari, so its titles are Hindi in both columns; the other documents have no Hindi
+    // version, so nothing is filled in.
+    const hindi = r.lines.filter((l) => l.subject === 'hindi');
+    expect(hindi.length).toBeGreaterThan(0);
+    expect(hindi.every((l) => /[ऀ-ॿ]/.test(l.titleEn) && l.titleHi === l.titleEn)).toBe(true);
+    expect(r.lines.filter((l) => l.subject !== 'hindi').every((l) => l.titleHi === null)).toBe(true);
+  });
 });
 
 describe('the diff between two versions, by stable key', () => {
