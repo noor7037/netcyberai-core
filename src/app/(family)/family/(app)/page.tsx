@@ -3,19 +3,29 @@ import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { HabitCard } from '@/components/family/HabitCard';
 import { PlanCard } from '@/components/family/PlanCard';
+import { HomeAsk } from '@/components/family/ui/HomeAsk';
+import { ProgressRing } from '@/components/family/ui/ProgressRing';
+import { SubjectGrid } from '@/components/family/ui/SubjectGrid';
+import { classSubjects } from '@/lib/family/catalog';
+import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { familyModuleOn } from '@/lib/family/flags';
 import { childHabit } from '@/lib/family/habit';
-import { dayPlan } from '@/lib/family/plan';
-import { indiaDate } from '@/lib/time/india';
 import { childProgress } from '@/lib/family/learning';
+import { subjectAccess } from '@/lib/family/modules';
+import { dayPlan } from '@/lib/family/plan';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
+import { indiaDate } from '@/lib/time/india';
 
 // The Family app's home, in child mode (M1-2, C248; M1-6, C252): the app opens here, because most pilot children use a
 // parent's phone. It shows where the child is: the topics they have checked, which are mastered (right on two days a
 // week apart), and the way to study. Progress is made only of checked answers. A family that has not finished the
-// parent's first steps is taken to the next one. With the plan module on, today's plan comes first (M2-2, C276); the habit module adds the week, the badges and the jar (M2-3, C277).
+// parent's first steps is taken to the next one.
+// D1 (C230-Q), the overview board's home: the ask card first, the child's subjects as tiles in their own colours
+// (checked and mastered per subject, "free", a lock), and progress as a ring. Learning first: no streaks, no ranks.
+// M2-2 (C276): with the plan module on, today's plan follows the ask card (the learning-first routine).
+// M2-3 (C277): with the habit module on, the week, the badges and the jar follow the plan.
 const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.home.parent', 'fam.home.whoIsLearning'];
 
 export default async function FamilyHomePage() {
@@ -25,38 +35,57 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, plan, habit } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
+    subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
   }));
   const mastered = progress.filter((p) => p.mastered).length;
+  const tiles = subjects.map((s) => {
+    const mine = progress.filter((p) => p.subject === s);
+    return { subject: s, name: t(lang, `fam.subject.${s}` as MessageKey), open: subjectAccess(child, s).open, free: child.freeSubject === s, checked: mine.length, mastered: mine.filter((p) => p.mastered).length };
+  });
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} />
-      <main className="mx-auto -mt-4 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-10">
+      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-5 px-4 pb-10">
+        <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
         {plan && <PlanCard plan={plan} lang={lang} />}
         {habit && <HabitCard habit={habit} lang={lang} />}
-        <section data-family-start className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
-          <h2 className="text-xl font-extrabold text-slate">{progress.length ? t(lang, 'fam.home.continueTitle') : t(lang, 'fam.home.startTitle')}</h2>
-          <p className="mt-1 text-base text-slate/80">{progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.startLead')}</p>
-          <Link href="/family/study" className="mt-4 flex min-h-[44px] items-center justify-center rounded-2xl bg-royal px-4 text-base font-bold text-white hover:bg-royal-deep">
-            {t(lang, 'fam.home.study')}
-          </Link>
-        </section>
+        <SubjectGrid
+          title={t(lang, 'fam.home.subjectsTitle')}
+          tiles={tiles}
+          delay={120}
+          words={{
+            free: t(lang, 'fam.home.subjectFree'),
+            locked: t(lang, 'fam.subject.locked'),
+            start: t(lang, 'fam.home.subjectStart'),
+            meter: (checked, done) => t(lang, 'fam.home.subjectMeter', { checked, mastered: done }),
+          }}
+        />
         {progress.length > 0 && (
-          <section data-family-progress aria-labelledby="fam-progress" className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate/10">
-            <h2 id="fam-progress" className="text-lg font-extrabold text-slate">
-              {t(lang, 'fam.progress.title')}
-            </h2>
-            <p className="mt-1 text-sm text-slate/80">{t(lang, 'fam.progress.summary', { topics: progress.length, mastered })}</p>
-            <ul className="mt-3 flex flex-col gap-2">
+          <section data-family-progress aria-labelledby="fam-progress" className="fam-card fam-rise bg-white p-5" style={{ ['--d' as string]: '240ms' } as React.CSSProperties}>
+            <div className="flex items-center gap-4">
+              <ProgressRing value={mastered} max={progress.length} size={72} stroke={8} track="text-leaf/20" arc="text-emerald">
+                <span className="text-lg font-black text-slate">{mastered}</span>
+              </ProgressRing>
+              <div className="min-w-0">
+                <h2 id="fam-progress" className="text-lg font-extrabold text-slate">
+                  {t(lang, 'fam.progress.title')}
+                </h2>
+                <p className="mt-0.5 text-sm text-slate/80">{t(lang, 'fam.progress.summary', { topics: progress.length, mastered })}</p>
+              </div>
+            </div>
+            <ul className="mt-4 flex flex-col gap-2">
               {progress.slice(0, 6).map((p) => (
-                <li key={p.topicKey} className="flex items-center justify-between gap-3 rounded-2xl bg-off-white px-3 py-2">
-                  <span className="min-w-0 text-sm font-semibold text-slate">{p.title}</span>
-                  <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${p.mastered ? 'bg-emerald-text text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
-                    {p.mastered ? t(lang, 'fam.progress.mastered') : t(lang, 'fam.progress.rightOf', { right: p.correct, all: p.answered })}
-                  </span>
+                <li key={p.topicKey}>
+                  <Link href={`/family/understand?kind=${/\.t\d+$/.test(p.topicKey) ? 'topic' : 'chapter'}&key=${encodeURIComponent(p.topicKey)}`} className="fam-press flex min-h-[48px] items-center justify-between gap-3 rounded-2xl bg-off-white px-3 py-2">
+                    <span className="min-w-0 text-sm font-semibold text-slate">{p.title}</span>
+                    <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${p.mastered ? 'bg-emerald-text text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
+                      {p.mastered ? t(lang, 'fam.progress.mastered') : t(lang, 'fam.progress.rightOf', { right: p.correct, all: p.answered })}
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
