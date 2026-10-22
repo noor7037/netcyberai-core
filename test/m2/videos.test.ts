@@ -176,7 +176,13 @@ describe('ranking, on metadata only', () => {
     { channelId: 'UCapproved000000000004', kind: 'approved' as const },
     { channelId: BAD, kind: 'blocked' as const },
   ];
-  const rank = (c: VideoCandidate[], language: 'en' | 'hi' = 'en') => rankVideos(c, { topicTitles: ['Rational numbers'], language, channels });
+  const rank = (c: VideoCandidate[], language: 'en' | 'hi' = 'en') => rankVideos(c, { topicTitles: ['Rational numbers'], language, channels, wider: true });
+
+  it('keeps only listed channels unless Control turns on the wider catalogue (C230-R)', () => {
+    const c = [cand('ooooooooooo'), cand('aaaaaaaaaaa', { channelId: 'UCapproved000000000004' }), cand('fffffffffff', { channelId: OFFICIAL })];
+    expect(rankVideos(c, { topicTitles: ['Rational numbers'], language: 'en', channels }).map((p) => p.video_id)).toEqual(['fffffffffff', 'aaaaaaaaaaa']);
+    expect(rankVideos([cand('ooooooooooo')], { topicTitles: ['Rational numbers'], language: 'en', channels: [] })).toEqual([]);
+  });
 
   it('puts official before approved before others, and keeps three', () => {
     const r = rank([cand('ooooooooooo'), cand('aaaaaaaaaaa', { channelId: 'UCapproved000000000004' }), cand('fffffffffff', { channelId: OFFICIAL }), cand('ppppppppppp')]);
@@ -220,8 +226,21 @@ describe('the family route', () => {
     expect(await searchesToday()).toBe(0);
   });
 
+  it('shows only the channels Control listed until it turns on the wider catalogue (C230-R)', async () => {
+    await saveKey();
+    await q(`insert into content.video_channels (channel_id, title, kind, added_by) values ($1, 'Official Maths', 'official', $2)`, [OFFICIAL, FOUNDER]);
+    yt.byChannel = { [OFFICIAL]: ['fffffffffff'] };
+    yt.wide = ['ooooooooooo'];
+    yt.videos = [item('fffffffffff', OFFICIAL, 'Rational numbers | Class 9'), item('ooooooooooo', OTHER, 'Rational numbers in 10 minutes')];
+    expect((await videos()).map((v) => v.videoId)).toEqual(['fffffffffff']);
+    await q(`delete from content.video_picks where topic_key = $1`, [TOPIC]);
+    await q(`delete from content.video_channels`);
+    await q(`delete from content.video_searches`);
+  });
+
   it('searches official channels first, then the wider catalogue, with the topic’s title and no child’s name', async () => {
     await saveKey();
+    await q(`insert into control.settings (key, value) values ('family.video_wider_catalogue', '1'::jsonb) on conflict (key) do update set value = excluded.value`);
     await q(`insert into content.video_channels (channel_id, title, kind, added_by) values ($1, 'Official Maths', 'official', $3), ($2, 'Bad Maths', 'blocked', $3)`, [OFFICIAL, BAD, FOUNDER]);
     yt.byChannel = { [OFFICIAL]: ['fffffffffff'] };
     yt.wide = ['ooooooooooo', 'bbbbbbbbbbb', 'xxxxxxxxxxx', 'nnnnnnnnnnn'];

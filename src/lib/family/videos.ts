@@ -70,16 +70,18 @@ export function videoPlan(line: Line, child: FamilyChild, channels: VideoChannel
   return { query: videoQuery(line, child), language: child.language === 'hi' ? 'hi' : 'en', channelIds: preferred.map((c) => c.channelId) };
 }
 
-// Ranks what the provider returned and keeps the best three. Never: a blocked channel, a video that may not be embedded,
+// Ranks what the provider returned and keeps the best three. Only official and approved channels, unless Control turns
+// on the wider catalogue (family.video_wider_catalogue; off for the pilot, C230-R: an automatic pick reaches a child
+// before any person has seen it, so an unlisted channel waits until it is listed). Never: a blocked channel, a video that may not be embedded,
 // is not public or is age-restricted, one shorter than 30 seconds or longer than ten hours, or one whose title and
 // chapters share no word with the topic.
-export function rankVideos(candidates: VideoCandidate[], a: { topicTitles: string[]; language: VideoLanguage; channels: VideoChannel[] }): RankedPick[] {
+export function rankVideos(candidates: VideoCandidate[], a: { topicTitles: string[]; language: VideoLanguage; channels: VideoChannel[]; wider?: boolean }): RankedPick[] {
   const kind = new Map(a.channels.map((c) => [c.channelId, c.kind]));
   const topicWords = Array.from(new Set(a.topicTitles.flatMap(words)));
   const ranked: RankedPick[] = [];
   for (const c of candidates) {
     const k = kind.get(c.channelId);
-    if (k === 'blocked' || !c.embeddable || !c.isPublic || c.ageRestricted) continue;
+    if (k === 'blocked' || (!k && !a.wider) || !c.embeddable || !c.isPublic || c.ageRestricted) continue;
     if (c.durationS < 30 || c.durationS > 36000 || !c.title) continue;
     const inTitle = overlap(topicWords, c.title);
     const chapters = c.chapters.filter((ch) => ch.s < c.durationS).map((ch) => ({ ...ch, fit: overlap(topicWords, ch.title) }));
