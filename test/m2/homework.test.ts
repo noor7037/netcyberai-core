@@ -175,8 +175,16 @@ const count = async () => Number((await db.pg.query(`select coalesce(sum(photo_q
 
 describe('the photo route', () => {
   it('needs its module switched on', async () => {
+    await db.pg.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'photo_input', true, 'parent_tap', 'v1')`, [ACCOUNT]);
     expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('off');
     await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', true, 'test')`);
+  });
+
+  it("needs the parent's photo_input consent: without it nothing is read, counted or sent (03 §11)", async () => {
+    await db.pg.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'photo_input', false, 'parent_tap', 'v1')`, [ACCOUNT]);
+    expect(await post('/api/family/homework', { photo: JPEG })).toEqual({ status: 403, body: { error: 'photo_consent' } });
+    expect([screen.calls, ai.requests.length, await count()]).toEqual([0, 0, 0]);
+    await db.pg.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'photo_input', true, 'parent_tap', 'v1')`, [ACCOUNT]);
   });
 
   it('a photo with an Aadhaar number or card is refused before any AI call or count', async () => {
