@@ -1,5 +1,6 @@
 'use client';
 
+import { useStepUp } from '@/components/auth/StepUp';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
@@ -33,6 +34,7 @@ const NUMERIC: AccountField[] = ['phoneNumberId', 'wabaId'];
 const CHARS_KEY: Record<AccountField, MessageKey> = { phoneNumberId: 'wa.fault.digits', wabaId: 'wa.fault.digits', accessToken: 'wa.fault.chars.accessToken', appSecret: 'wa.fault.chars.appSecret', verifyToken: 'wa.fault.chars.verifyToken' };
 
 export function WhatsAppAccountPanel() {
+  const { stepUpFetch } = useStepUp();
   const { t, lang } = useT();
   // undefined while loading; null when the server did not answer.
   const [state, setState] = useState<State | null | undefined>(undefined);
@@ -58,7 +60,7 @@ export function WhatsAppAccountPanel() {
 
   async function post(body: Record<string, unknown>, done: (a: Record<string, unknown>) => string) {
     setBusy(true);
-    const res = await fetch('/api/control/whatsapp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
+    const res = await stepUpFetch('/api/control/whatsapp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
     const answer = (await res?.json().catch(() => null)) ?? {};
     setBusy(false);
     const code = typeof answer.code === 'string' ? answer.code : '';

@@ -6508,6 +6508,16 @@ async function cookieFor(person, secret) {
     .sign(new TextEncoder().encode(secret));
 }
 
+// A step-up proof (src/lib/auth/jwt.ts signStepUpToken, F1-1b), signed with this run's secret only.
+async function stepUpFor(person, secret) {
+  return new SignJWT({ typ: 'step_up', tv: 0 })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setSubject(person.sub)
+    .setIssuedAt()
+    .setExpirationTime('2h')
+    .sign(new TextEncoder().encode(secret));
+}
+
 // Is something already listening on this port? (An earlier run left behind
 // would otherwise be photographed in place of this one.)
 function portInUse(port) {
@@ -6609,7 +6619,11 @@ process.on('exit', () => {
 try {
   await waitFor(`${base}/login`);
   const cookies = {};
-  for (const [name, person] of Object.entries(PEOPLE)) cookies[name] = await cookieFor(person, secret);
+  const stepUps = {};
+  for (const [name, person] of Object.entries(PEOPLE)) {
+    cookies[name] = await cookieFor(person, secret);
+    stepUps[name] = await stepUpFor(person, secret);
+  }
 
   if (SERVE) {
     console.log(`harness: the app is running on ${base} with illustrative data.`);
@@ -6676,7 +6690,12 @@ try {
       const mine = screens.filter(([w]) => w === who);
       if (!mine.length) continue;
       const context = await browser.newContext({ viewport: { width, height: width === 390 ? 844 : 900 }, reducedMotion: 'reduce', deviceScaleFactor: 1 });
-      await context.addCookies([{ name: 'nca_access', value: cookies[who], domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' }, seenAllCookie(who)]);
+      // Each person stepped up a moment ago (F1-1b, C260), so screens that save keys or view as a school go straight on.
+      await context.addCookies([
+        { name: 'nca_access', value: cookies[who], domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' },
+        { name: 'nca_step_up', value: stepUps[who], domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' },
+        seenAllCookie(who),
+      ]);
       const page = await context.newPage();
       const errors = [];
       page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));

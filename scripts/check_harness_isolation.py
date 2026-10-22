@@ -56,6 +56,7 @@ SIGNER_USERS = {
     "src/lib/auth/outcome-response.ts",  # turns a finished sign-in into cookies
     "src/app/api/control/impersonate/start/route.ts",  # time-boxed, audited impersonation
     "src/lib/auth/devices.ts",  # "Trust this browser" (F1-1, C257): only after a sign-in step was passed
+    "src/app/api/auth/step-up/route.ts",  # step-up (F1-1b, C260): only after the password and a second factor
     # The Family app's own tokens (C248): defined in session.ts, issued only after a right email code (verify), and
     # parent mode only after the PIN (pin, unlock) or a PIN reset by the account's own email code.
     "src/lib/family/session.ts",
@@ -67,7 +68,7 @@ SIGNER_USERS = {
 }
 JOSE_RE = re.compile(r"""(?:from|require\(|import\()\s*['"]jose(?:/[^'"]*)?['"]""")
 SECRET_RE = re.compile(r"\bappSessionSecret\b|\bAPP_SESSION_SECRET\b")
-SIGNER_RE = re.compile(r"\b(?:signAccessToken|signPendingToken|signDeviceToken|signFamilyToken|signFamilySession|signParentMode|signCodeStep)\b|\bSignJWT\b")
+SIGNER_RE = re.compile(r"\b(?:signAccessToken|signPendingToken|signDeviceToken|signStepUpToken|signFamilyToken|signFamilySession|signParentMode|signCodeStep)\b|\bSignJWT\b")
 # The harness by name anywhere in a file; PGlite only as an import (comments
 # in src/ may say that tests run on it).
 HARNESS_REF_RE = re.compile(

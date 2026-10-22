@@ -122,6 +122,28 @@ export async function verifyDeviceToken(token: string): Promise<{ userId: string
   }
 }
 
+// Step-up for sensitive actions (F1-1b, C260): proof that the person passed their password and authenticator (or an
+// emailed code) again in the last 15 minutes. Bound to the person and users.token_version; never accepted where any
+// other token is expected (`typ` is checked). Checked by src/lib/auth/step-up.ts.
+export async function signStepUpToken(userId: string, tokenVersion: number, ttlSeconds: number): Promise<string> {
+  return new SignJWT({ typ: 'step_up', tv: tokenVersion })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setSubject(userId)
+    .setIssuedAt()
+    .setExpirationTime(`${ttlSeconds}s`)
+    .sign(secretKey());
+}
+
+export async function verifyStepUpToken(token: string): Promise<{ userId: string; tokenVersion: number } | null> {
+  try {
+    const { payload } = await jwtVerify(token, secretKey(), { algorithms: ['HS256'] });
+    if (payload.typ !== 'step_up' || typeof payload.sub !== 'string') return null;
+    return { userId: payload.sub, tokenVersion: Number(payload.tv) };
+  } catch {
+    return null;
+  }
+}
+
 // ---- The Family app's tokens (M1-2, C248) ------------------------------------------------------------------------
 // Signed with the same key and algorithm as every token above, but never interchangeable with them: each carries its
 // own `typ` and the audience 'nca-family', and is verified against both. A staff access token is refused wherever a

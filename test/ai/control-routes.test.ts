@@ -23,6 +23,8 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
+import { STEP_UP_COOKIE, STEP_UP_TTL_SECONDS } from '@/lib/auth/step-up';
+import { signStepUpToken } from '@/lib/auth/jwt';
 import { GET, POST } from '@/app/api/control/ai/route';
 
 const FOUNDER = randomUUID();
@@ -43,6 +45,7 @@ async function cookieFor(sub: string, role: string, schoolId: string | null, aal
   return `${ACCESS_COOKIE}=${token}`;
 }
 let founder = '';
+let founderNoStepUp: string;
 let founderAal1 = '';
 let principal = '';
 const post = async (body: unknown, cookie = founder) => {
@@ -56,7 +59,9 @@ beforeAll(async () => {
   h.db = await startHarnessDb({ port: 0 });
   await q(`insert into schools (school_id, name, jurisdiction) values ($1, 'Made-up School', 'IN-HR')`, [SCHOOL]);
   await q(`insert into users (user_id, school_id, role, display_name) values ($1, null, 'super_admin', 'Farid Founder'), ($2, $3, 'principal', 'Priya Principal')`, [FOUNDER, PRINCIPAL, SCHOOL]);
-  founder = await cookieFor(FOUNDER, 'super_admin', null, 'aal2');
+  founderNoStepUp = await cookieFor(FOUNDER, 'super_admin', null, 'aal2');
+  // The founder stepped up in the last 15 minutes (F1-1b): saving a key needs it.
+  founder = `${founderNoStepUp}; ${STEP_UP_COOKIE}=${await signStepUpToken(FOUNDER, 0, STEP_UP_TTL_SECONDS)}`;
   founderAal1 = await cookieFor(FOUNDER, 'super_admin', null, 'aal1');
   principal = await cookieFor(PRINCIPAL, 'principal', SCHOOL, 'aal1');
 }, 90_000);
@@ -90,6 +95,13 @@ describe('who is let in', () => {
 });
 
 describe('a key: write-only', () => {
+  it('saving or replacing a key asks for the authenticator again first (F1-1b); other changes do not', async () => {
+    const r = await post({ action: 'credential', providerId: 'anthropic', apiKey: 'sk-ant-test-only-0123456789abcdef' }, founderNoStepUp);
+    expect(r.status).toBe(403);
+    expect(r.body).toEqual({ error: 'step_up_required', method: 'authenticator' });
+    expect((await post({ action: 'cap', value: 2000 }, founderNoStepUp)).body.error).not.toBe('step_up_required');
+  });
+
   it('is sealed, shown only by its last four characters, audited without it, and never sent back', async () => {
     expect(await post({ action: 'credential', providerId: 'anthropic', apiKey: KEY })).toEqual({ status: 200, body: { ok: true } });
     const stored = await q(`select ciphertext, key_last4, set_by from control.ai_credentials where provider_id = 'anthropic'`);
