@@ -194,7 +194,8 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 // `english`: the English course (C274) when Control has it switched on: whether the parent has given its consent.
 // `photo`: the same for photo questions (M2-6, C280), when Control has the homework helper switched on.
 // `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, voice = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
+// `offers` (C230-V): whether the parent agreed to hear about offers; always shown, optional, off until turned on.
+export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -271,6 +272,8 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
 
       <Section title={w['fam.parent.privacy']}>
         <ConsentRow w={w} consent="study_core" granted={studyCore} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
+        {/* The note belongs to study_core alone: withdrawing an optional purpose (English, photos, voice, offers) stops only that. */}
+        <p className="text-sm text-slate/70">{w['fam.parent.withdrawNote']}</p>
         {english && <ConsentRow w={w} consent="english_programme" granted={english.granted} onToggle={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)} />}
         {photo && (
           <ConsentRow w={w} consent="photo_input" granted={photo.granted} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />
@@ -278,7 +281,9 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
         {voice && (
           <ConsentRow w={w} consent="voice_practice" granted={voice.granted} data={{ 'data-consent-voice': true }} onToggle={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)} />
         )}
-        <p className="text-sm text-slate/70">{w['fam.parent.withdrawNote']}</p>
+        {offers && (
+          <ConsentRow w={w} consent="offers" granted={offers.granted} data={{ 'data-consent': 'offers' }} onToggle={() => void post('/api/family/consent', { purpose: 'offers', granted: !offers.granted, tap: true }, null)} />
+        )}
       </Section>
 
       {english?.granted && children.length > 0 && (

@@ -3,15 +3,17 @@
 // means not granted. A purpose changes only by the parent's own tap: every caller is a route the parent posted to,
 // and the route says so (`verification_method` 'parent_tap'). Nothing is processed before `study_core` is granted.
 
-export const FAMILY_PURPOSES = ['study_core', 'school_link', 'opportunity_matching', 'photo_input', 'english_programme', 'voice_practice'] as const;
+export const FAMILY_PURPOSES = ['study_core', 'school_link', 'opportunity_matching', 'photo_input', 'english_programme', 'voice_practice', 'offers'] as const;
 export type FamilyPurpose = (typeof FAMILY_PURPOSES)[number];
 // The purposes the app asks for now: study_core (M1), english_programme (the English course, C274), photo_input (the
 // homework helper sends a child's photo to a provider, M2-6, C280; 03 §11) and voice_practice (a question spoken
 // instead of typed, M2-7, C281; the English course's voice practice will use the same consent). The others arrive with
-// their milestones.
-export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme', 'photo_input', 'voice_practice'];
-// The notice the parent read when tapping (its words are the fam.consent.* messages of this version).
-export const FAMILY_NOTICE_VERSION = 'fam-notice-1';
+// their milestones. offers (C230-V): news and offers from NetCyberAI by email, optional, off until the parent turns it on;
+// messages about the family's own account or plan need no consent, offers do.
+export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme', 'photo_input', 'voice_practice', 'offers'];
+// The notice the parent read when tapping (its words are the fam.consent.* messages of this version). fam-notice-2
+// (C230-V): the offers row joined the notice; a tap recorded with -1 was made before it existed.
+export const FAMILY_NOTICE_VERSION = 'fam-notice-2';
 
 export const isFamilyPurpose = (v: unknown): v is FamilyPurpose => typeof v === 'string' && (FAMILY_PURPOSES as readonly string[]).includes(v);
 
