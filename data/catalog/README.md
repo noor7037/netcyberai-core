@@ -59,10 +59,12 @@ the Academic Year 2026-27", Secondary Curriculum Part 1, Class IX and Class X �
   Elements; Evolution); the CSV has no column for "assessed only formatively".
 - **Pages** are the PDF's page numbers (page 1 is the first page of the file). A line printed across a page break
   names both pages (`4-5`).
-- **Hindi titles (`title_hi`) are empty on every line.** CBSE's 2026-27 curriculum page links no Hindi version of
-  these four documents (its Hindi PDFs are the Hindi language syllabi), and no NCERT Hindi document was read for this
-  file. Titles were not translated: the app shows the English title until a Hindi title from an official document is
-  added in a new version. Checked again on 2026-10-21; see "Hindi titles and Class X Science topics: checked again".
+- **Hindi titles (`title_hi`).** CBSE's 2026-27 curriculum page links no Hindi version of these four documents (its
+  Hindi PDFs are the Hindi language syllabi; checked again on 2026-10-21, see "Hindi titles and Class X Science topics:
+  checked again"). Since 2026-10-22, 130 of the 276 lines carry the Hindi name of the same chapter or section from
+  NCERT's Hindi edition of the textbook, copied as printed; the other lines have none and the app shows the English
+  title. Nothing was translated. See
+  ["Hindi titles from NCERT's Hindi editions"](#hindi-titles-from-ncerts-hindi-editions-classes-ixxii) below.
 
 ### Hindi titles and Class X Science topics: checked again (2026-10-21)
 
@@ -423,7 +425,10 @@ text for the formatively assessed topics, not curriculum lines.
   excluded (an exclusion, not content).
 - **Pages** are the PDF's page numbers (page 1 is the first page of the file). Chemistry and Biology print the same
   numbers at the foot of each page; Physics and Mathematics print none.
-- **Hindi titles (`title_hi`) are empty on every line.** Checked on 2026-10-22: the 2026-27 page (also with
+- **Hindi titles (`title_hi`).** Since 2026-10-22, 116 of the 155 lines carry the Hindi name of the same chapter or
+  unit from NCERT's Hindi edition of the textbook, copied as printed: see
+  ["Hindi titles from NCERT's Hindi editions"](#hindi-titles-from-ncerts-hindi-editions-classes-ixxii) below. CBSE
+  itself publishes none. Checked on 2026-10-22: the 2026-27 page (also with
   `?lang=hindi`) links no Hindi version of these four documents. Its live Hindi links for Classes XI–XII are the Hindi
   language syllabi (`Hindi_Core_SecP2_`, `Hindi_Elective_SecP2_2026-27.pdf`); the Hindi versions of Geography, History,
   Knowledge Tradition, Physical Education and Political Science are commented out in the page. The same file names
@@ -436,6 +441,96 @@ text for the formatively assessed topics, not curriculum lines.
 
 Proof sheets for the founder's approval: [`docs/family-app/catalog-proof/`](../../docs/family-app/catalog-proof/README.md),
 pages `class11-physics.md` to `class12-mathematics.md`.
+
+### Hindi titles from NCERT's Hindi editions (Classes IX–XII)
+
+Added on 2026-10-22 (F2 handover, item 4), in both CBSE files above: `cbse-2026-27-maths-science.csv` (Classes IX–X
+Mathematics and Science) and `cbse-2026-27-classes-11-12-science-maths.csv` (Classes XI–XII Physics, Chemistry,
+Biology, Mathematics). CBSE publishes no Hindi version of these curriculum documents, but CBSE schools teach the subjects
+from NCERT's textbooks, and NCERT publishes each one in Hindi. Where a CBSE line is one chapter, unit or numbered section
+of the NCERT book, its `title_hi` is that chapter's, unit's or section's name in NCERT's Hindi edition, as printed, the
+precedent of C262 (Classes 6–8). Nothing was translated or transliterated. `title_en` is unchanged (CBSE's wording), and
+so are every other column and every `checked_on` (the date the line was read in CBSE's document).
+
+| Class | Subject | Hindi edition (as ncert.nic.in lists it) | Contents PDF (pages) | Headings from | Units | Chapters | Topics | Lines |
+|---|---|---|---|---|---|---|---|---|
+| IX | mathematics | Ganita Manjari (Hindi), गणित मंजरी भाग 1 (https://ncert.nic.in/textbook.php?ihmh1=0-8) | https://ncert.nic.in/textbook/pdf/ihmh1ps.pdf (19) | `ihmh101`–`ihmh108.pdf` | 0/6 | 8/15 | 33/88 | 41/109 |
+| IX | science | Anveshan, अन्वेषण (https://ncert.nic.in/textbook.php?ihsc1=0-13) | https://ncert.nic.in/textbook/pdf/ihsc1ps.pdf (23–24) | `ihsc101`–`ihsc113.pdf` | 0/4 | 12/12 | 42/78 | 54/94 |
+| X | mathematics | Ganit (https://ncert.nic.in/textbook.php?jhmh1=0-14) | https://ncert.nic.in/textbook/pdf/jhmh1ps.pdf (13–16) | `jhmh101`–`jhmh111.pdf` | 0/7 | 15/15 | 10/34 | 25/56 |
+| X | science | Vigyan (https://ncert.nic.in/textbook.php?jhsc1=0-13) | https://ncert.nic.in/textbook/pdf/jhsc1ps.pdf (13) | — | 0/5 | 10/12 | — | 10/17 |
+| XI | physics | Bhautiki-I, Bhautiki-II (https://ncert.nic.in/textbook.php?khph1=0-7, ?khph2=0-7) | `khph1ps.pdf` (13–14), `khph2ps.pdf` (15–17) | — | 0/10 | 14/14 | — | 14/24 |
+| XII | physics | Bhautiki-I, Bhautiki-II (?lhph1=0-8, ?lhph2=0-6) | `lhph1ps.pdf` (13–15), `lhph2ps.pdf` (13–14) | — | 0/9 | 14/14 | — | 14/23 |
+| XI | chemistry | Rasayan Vigyan bhag-I, bhag-II (?khch1=0-6, ?khch2=0-3) | `khch1ps.pdf` (11–12), `khch2ps.pdf` (11) | — | 9/11 | — | — | 9/11 |
+| XII | chemistry | Rasayan vigyan bhag I, bhag II (?lhch1=0-5, ?lhch2=0-5) | `lhch1ps.pdf` (13–14), `lhch2ps.pdf` (11–12) | — | 10/14 | — | — | 10/14 |
+| XI | biology | Jeev Vigyan (?khbo1=0-19) | `khbo1ps.pdf` (11–12) | — | 5/5 | 19/20 | — | 24/25 |
+| XII | biology | Jeev Vigyan (?lhbo1=0-13) | `lhbo1ps.pdf` (11–12) | — | 5/5 | 13/14 | — | 18/19 |
+| XI | mathematics | Ganit (?khmh1=0-14) | `khmh1ps.pdf` (13–15) | — | 0/5 | 14/15 | — | 14/20 |
+| XII | mathematics | Ganit-I, Ganit-II (?lhmh1=0-6, ?lhmh2=0-7) | `lhmh1ps.pdf` (13–14), `lhmh2ps.pdf` (15–16) | — | 0/6 | 13/13 | — | 13/19 |
+
+All PDFs are under https://ncert.nic.in/textbook/pdf/ and every `?…` link is on https://ncert.nic.in/textbook.php; the
+books are the ones that page lists for these classes on 2026-10-22. In all: 246 of 431 lines (130 of 276 and 116 of
+155). The English editions used to match the lines are the same books' English versions (`iemh1`, `iemh2`, `iesc1`,
+`jemh1`, `jesc1`, `keph1`–`2`, `kech1`–`2`, `kebo1`, `kemh1`, `leph1`–`2`, `lech1`–`2`, `lebo1`, `lemh1`–`2`).
+
+**Where each Hindi title's source is recorded.** The catalog CSV keeps one source per line (CBSE's document, as before).
+Each Hindi title's own source is a line of
+[`hindi-sources/cbse-2026-27-classes-9-12.csv`](hindi-sources/cbse-2026-27-classes-9-12.csv): the key, the Hindi title,
+the Hindi PDF and page it is printed on, the NCERT chapter, unit or section (`ch. 3`, `Unit 5`, `§6.8.1`), NCERT's
+English name for it, and the day it was read. `test/content/catalog-csv.test.ts` checks that every `title_hi` in the two
+files is Devanagari and has its line there, with the same title. The proof sheets show both beside each line.
+
+How a line was matched (one to one, by number and content):
+
+- **Chapters.** A CBSE chapter takes the Hindi name of the one NCERT chapter it is, recorded with that chapter's number.
+  Classes X–XII: CBSE names the chapters as NCERT does, apart from small differences ("Units and Measurements",
+  "Relations & Functions", "Control and co-ordination in animals and plants" for NCERT's "Control and Coordination",
+  "Magnetic effects of current" for "Magnetic Effects of Electric Current", "Reproduction" for "How do Organisms
+  Reproduce?"). **Class IX** uses NCERT's new 2026-27 books, and CBSE names their chapters in its own words: the IX
+  Science course structure gives each unit's NCERT chapter numbers (I: 2, 3, 11, 12; II: 5, 8, 9; III: 4, 6, 7, 10; IV:
+  13), which fix the match; IX Mathematics gives none, so its chapters were matched by content: each CBSE chapter's key
+  concepts are the sections of exactly one NCERT chapter ("Coordinate Geometry" is chapter 1, "Orienting Yourself: The
+  Use of Coordinates"; "Circles" is chapter 5, "I'm Up and Down, and Round and Round"). **The supervisor should
+  confirm** the Class IX matches and the Class X ones whose wording differs; each proof sheet prints NCERT's English name
+  beside them.
+- **Two Class X Mathematics chapter lines are NCERT sections**: "TRIGONOMETRIC IDENTITIES" is §8.4 of "Introduction to
+  Trigonometry", and "HEIGHTS AND DISTANCES: …" is §9.1, the one section of "Some Applications of Trigonometry". Each
+  takes that section's Hindi heading (to confirm).
+- **Units** only where NCERT prints the same unit: Chemistry (NCERT's "Unit 1" … are its chapters, one per CBSE unit)
+  and Biology (NCERT groups its chapters in the same units, I–V and VI–X). The Physics and Mathematics books and the
+  Class IX–X books print no units, so those unit lines have none.
+- **Topics** (Classes IX–X Mathematics, IX Science) only where a CBSE topic and one numbered heading of the NCERT chapter
+  (a section or sub-section) name the same thing: the heading's words are in the topic or the topic's in the heading,
+  and the topic covers no other heading ("Heron’s formula" is §6.8.1 "Heron’s formula"; "Isotopes" is §8.9.1). A topic
+  that spans two headings ("Perimeter of a circle: Introduction to Pi and its irrationality": §6.2 and §6.3), names
+  something the chapter does not head ("Tower of Hanoi puzzle"), or matches only an unnumbered heading
+  ("Brahmagupta’s formula …") has none.
+
+How the titles were read:
+
+- **From the printed page.** NCERT's text layer is damaged in the new books (letters doubled, vowel signs out of place)
+  and in a legacy 8-bit font in the older ones, so every title was typed from a picture of the printed contents line or
+  heading; no picture is kept (C262, C273). Chapter and unit names are the contents page's; section names are the
+  heading in the chapter's PDF.
+- **Mechanical check:** every letter and vowel sign of each typed title is found in one line of the cited page's text
+  layer (the legacy font converted letter by letter): 245 of 246. The one exception is §6.3 of Class IX Science,
+  "घर्षण बल— प्रायः अनदेखा परंतु सदैव विद्यमान बल", whose visarga the text layer stores as a colon.
+- **Kept as printed:** the spacing around dashes ("अगले पद का पूर्वानुमान— अनुक्रमों …", " — " in the other Class IX
+  titles, "अर्धचालक इलेक्ट्रॉनिकी– पदार्थ, …", "जैव प्रौद्योगिकी- सिद्धांत व प्रक्रम"), "d- एवं f- ब्लॉक के तत्व",
+  "तरलों के यांत्रिकी गुण", "वैद्युत" or "विद्युत" as each title prints it, and "जीव जनन कैसे करते हैं" (the Hindi contents
+  prints no question mark; the English has one). Physics XI chapter 1: Part I's own contents prints "मात्रक एवं मापन"
+  (used); the list of Part I printed in Part II says "मात्रक और मापन".
+
+Not filled (never guessed):
+
+| Lines | Why |
+|---|---|
+| Unit lines of Physics and Mathematics (XI–XII) and of Classes IX–X (52) | NCERT's books print no units. |
+| Class IX Mathematics: "Linear Equations in Two Variables", "4-gons (Quadrilaterals)", "Surface Area and Volume", "Statistics" and their topics | Their NCERT chapters are in Ganita Manjari Part II (13 "Two Variables, One Line", 12 "Quadrilaterals", 14 "Math of Space: Surface Area and Volume", 10 "How Quantities Combine: Understanding Data"). NCERT has published no Hindi edition of Part II: textbook.php lists Part I only, and `ihmh2ps.pdf` returns HTTP 404 (2026-10-22). |
+| Class IX Mathematics: "Introduction to Euclid’s Geometry: Axioms and Postulates", "Lines and Angles", "Triangles – Congruence Theorems" and their topics | No chapter of either part has these names or is these chapters one to one; the nearest, Part II chapter 9 "Propositions and their Converses", has no Hindi edition either. |
+| Class X Science: "Periodic Classification of Elements", "Evolution" | Not in NCERT's 2026-27 book (chapter 8 is "Heredity" only); CBSE assesses them only formatively. |
+| The nine formatively assessed lines of the XI–XII file (Chemistry units 10–11 and 11–14, "Digestion and Absorption", "Environmental Issues", "Principle of Mathematical Induction") | No chapter in NCERT's current books. |
+| Topics with no matching numbered heading (25 in IX Mathematics, 36 in IX Science, 24 in X Mathematics) | See "Topics" above: CBSE's key concepts are finer or broader than the book's sections. |
+| Every CISCE line (ICSE IX–X, ISC XI–XII) | CISCE's syllabuses are not NCERT's books, CISCE publishes no Hindi version, and no CISCE line names an NCERT chapter as its source, so NCERT's Hindi names are not borrowed. |
 
 ## ncert-2026-27-classes-1-5.csv
 
@@ -1040,7 +1135,9 @@ the same lessons as the two appendices. Pages are the PDF's page numbers (page 1
 letters ("Baat Athanni Ki - Sudarshan"). Checked on 2026-10-22: the 2027 and 2028 Regulations and Syllabuses pages link
 no Hindi version of any document, and the text of none of the downloaded PDFs (the subject documents, the two Appendix I
 lists, the Regulations and the bifurcation circular) contains Devanagari. The Hindi lessons are copied in Roman letters as printed; nothing
-was transliterated or translated.
+was transliterated or translated. NCERT's Hindi editions, used for the CBSE Mathematics and Science lines since
+2026-10-22, are not used here either: CISCE's syllabuses are not NCERT's books and no line names an NCERT chapter as its
+source (checked again on 2026-10-22, F2).
 
 ### How the supervisor checks a line
 
@@ -1216,7 +1313,7 @@ pages (`9-10`). The page links in the table open at the class's course structure
 | Practical work, project work, practical files, map work, question-paper patterns, the list of scientists (Biology) | Assessment and exam formats, not chapters or topics. |
 | The English Language paper and the Indian-language section | Question types (composition, comprehension, grammar), not chapters. |
 | Chemistry XII chapters, Chemistry XI chapters outside Equilibrium and Hydrocarbons, and chapters of the science units with no sub-heading | Content printed as running text (see "Chapters, science and mathematics"). |
-| Hindi titles (`title_hi`) | Empty on every line. Every document used is in English, and CISCE's ISC 2027 and 2028 pages link no Hindi version of any of them (checked 2026-10-22). Appendix I prints the Hindi books in Roman letters ("Saara Aakash (Novel): Rajendra Yadav"); no Devanagari title is printed. Nothing was translated or transliterated. |
+| Hindi titles (`title_hi`) | Empty on every line. Every document used is in English, and CISCE's ISC 2027 and 2028 pages link no Hindi version of any of them (checked 2026-10-22). Appendix I prints the Hindi books in Roman letters ("Saara Aakash (Novel): Rajendra Yadav"); no Devanagari title is printed. Nothing was translated or transliterated. NCERT's Hindi chapter names are not borrowed: CISCE's syllabuses are not NCERT's books and no line names an NCERT chapter as its source (checked again 2026-10-22, F2). |
 
 ### How the supervisor checks a line
 
