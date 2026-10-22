@@ -29,18 +29,21 @@ export const SUBJECT_IDS = [
 export type Subject = (typeof SUBJECT_IDS)[number];
 export const isSubject = (v: unknown): v is Subject => typeof v === 'string' && (SUBJECT_IDS as readonly string[]).includes(v);
 
-// The school subjects of each stage (NCF 2023's stages), in the order the Study page shows them.
-export function stageSubjects(classLevel: number): Subject[] {
+// The school subjects of each stage (NCF 2023's stages), in the order the Study page shows them. A board that divides a
+// stage's subjects differently says so here (C272): ICSE (CISCE) teaches Classes 9 and 10 as Physics, Chemistry and
+// Biology, and History and Civics with Geography, not as Science and Social Science.
+export function stageSubjects(classLevel: number, board?: string): Subject[] {
   if (classLevel <= 0) return [];
   if (classLevel <= 2) return ['mathematics', 'english', 'hindi'];
   if (classLevel <= 5) return ['mathematics', 'evs', 'english', 'hindi'];
+  if (classLevel >= 9 && classLevel <= 10 && board === 'CISCE') return ['mathematics', 'physics', 'chemistry', 'biology', 'history', 'geography', 'english', 'hindi'];
   if (classLevel <= 10) return ['mathematics', 'science', 'social_science', 'english', 'hindi'];
   return ['mathematics', 'physics', 'chemistry', 'biology', 'accountancy', 'business_studies', 'economics', 'history', 'geography', 'political_science', 'english', 'hindi'];
 }
 
 // The stage's subjects first, then any other known subject the catalog holds for the class.
-export function subjectsOfClass(classLevel: number, catalogSubjects: readonly string[]): Subject[] {
-  const stage = stageSubjects(classLevel);
+export function subjectsOfClass(classLevel: number, catalogSubjects: readonly string[], board?: string): Subject[] {
+  const stage = stageSubjects(classLevel, board);
   if (classLevel <= 0) return [];
   const extra = SUBJECT_IDS.filter((s) => catalogSubjects.includes(s) && !stage.includes(s));
   return [...stage, ...extra];
