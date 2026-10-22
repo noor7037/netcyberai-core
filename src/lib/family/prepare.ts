@@ -40,9 +40,13 @@ async function linesOf(db: Db, versionId: string): Promise<{ kind: 'chapter' | '
     [versionId]
   );
   const out: { kind: 'chapter' | 'topic'; key: string }[] = [];
+  const seen = new Set<string>();
   for (const r of rows) {
     const chapter = String(r.chapter_key);
-    if (!out.some((l) => l.kind === 'chapter' && l.key === chapter)) out.push({ kind: 'chapter', key: chapter });
+    if (!seen.has(chapter)) {
+      seen.add(chapter);
+      out.push({ kind: 'chapter', key: chapter });
+    }
     if (r.topic_key) out.push({ kind: 'topic', key: String(r.topic_key) });
   }
   return out;

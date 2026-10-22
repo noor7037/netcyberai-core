@@ -51,9 +51,9 @@ export async function loadWorksheet(db: Db, ctx: { accountId: string; child: Fam
   if (!(await claimSubject(db, ctx.accountId, child.childId, line.subject))) return { state: 'not_open', line };
   const { rows } = await db.query(
     `select blocks, status from content.responses
-      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and status <> 'withdrawn'
-        and (status = 'checked' or not $7::boolean)
-      order by (status = 'checked') desc, prompt_version desc`,
+      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and status <> 'withdrawn'
+        and case when $7::boolean then status = 'checked' else style = $6 end
+      order by (status = 'checked') desc, (style = $6) desc, prompt_version desc`,
     [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, (await reviewedOnlySubjects(db)).includes(line.subject)]
   );
   // Checked responses first, then AI-made ones (checked only, in a "checked explanations only" subject, C300); the sheet

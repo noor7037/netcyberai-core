@@ -104,13 +104,16 @@ function toPublic(b: Block, ctx: Seal, topicKey: string, subject: string): Publi
 }
 
 // A complete response from the shared library for this child's class, language and style, as the events the phone
-// draws (items sealed for this child), or null when there is none.
+// draws (items sealed for this child), or null when there is none. Checked only (C300): any checked response in the
+// child's language, their own style and the current prompt version first, so a new prompt version or another style
+// never hides what a reviewer has checked.
 async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: string, checkedOnly: boolean): Promise<ResolverEvent[] | null> {
   const child = ctx.child;
   const { rows } = await db.query(
     `select response_id, blocks, status from content.responses
-      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and style = $6 and prompt_version = $7 and status <> 'withdrawn'
-        and (status = 'checked' or not $8::boolean)
+      where board_id = $1 and class_level = $2 and subject = $3 and topic_key = $4 and language = $5 and status <> 'withdrawn'
+        and case when $8::boolean then status = 'checked' else style = $6 and prompt_version = $7 end
+      order by (style = $6) desc, (prompt_version = $7) desc, checked_at desc nulls last
       limit 1`,
     [syllabusBoardOf(child), child.classLevel, line.subject, line.key, child.language, child.style, promptVersion, checkedOnly]
   );

@@ -122,6 +122,13 @@ describe('checked explanations only (C300)', () => {
     const ev = await ask({ kind: 'topic', key: TOPIC });
     expect(ev[0]).toMatchObject({ t: 'meta', label: 'checked', cached: true });
     expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    // Another style, or a newer prompt version, still finds what a reviewer checked.
+    await db.pg.query(`update family.children set style = 'hinglish' where child_id = $1`, [CHILD]);
+    expect((await ask({ kind: 'topic', key: TOPIC }))[0]).toMatchObject({ t: 'meta', label: 'checked' });
+    await db.pg.query(`update family.children set style = 'hi' where child_id = $1`, [CHILD]);
+    await db.pg.query(`update content.responses set prompt_version = 'v0' where topic_key = $1 and language = 'hi'`, [TOPIC]);
+    expect((await ask({ kind: 'topic', key: TOPIC }))[0]).toMatchObject({ t: 'meta', label: 'checked' });
+    await db.pg.query(`update content.responses set prompt_version = 'v1' where topic_key = $1 and language = 'hi'`, [TOPIC]);
     expect(ai.calls).toHaveLength(0);
   });
 
