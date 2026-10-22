@@ -35,8 +35,14 @@ export const FAMILY_SCREENS = [
   // m2-6: the homework helper's start screen, and its link in Study (C280).
   ['full', 'family-homework', '/family/study/homework', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-start]' }],
   ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-link]' }],
+  // Worksheets (M2-4, C278): the worksheet on screen, and the parent's print with the answer key.
+  ['full', 'family-worksheet', '/family/study/worksheet/cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  ['full', 'family-worksheet-parent', '/family/parent/worksheet/cbse.c9.mathematics.u1.ch01.t01', { parent: true, child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-worksheet-key], #ws-key' }],
   // m2-2: today's plan first on the home (C276).
   ['full', 'family-home-plan', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-plan]' }],
+  // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
+  ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
+  ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
@@ -46,6 +52,11 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-l2-pattern', '/family/english/lesson/b.u01.l2', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l3-story', '/family/english/lesson/b.u01.l3', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l4-roleplay', '/family/english/lesson/b.u01.l4', { settle: '[role=progressbar]' }],
+  // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
+  ...[['graph', 't01', 'graph'], ['number-line', 't02', 'number_line'], ['fraction', 't03', 'fraction_model'], ['geometry', 't04', 'geometry'], ['pendulum', 't05', 'simulation'], ['refraction', 't06', 'simulation']].map(
+    ([name, t, block]) => ['full', `family-interactive-${name}`, `/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.${t}`, { child: 'f0000000-0000-4000-8000-0000000fc002', settle: `[data-block="${block}"]` }]
+  ),
+  // m2-8 end
 ];
 
 export const FAMILY_WIDTHS = [360, 390, 1440];

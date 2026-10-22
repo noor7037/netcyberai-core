@@ -6,7 +6,11 @@ import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import type { Words } from '@/lib/family/fill';
 import { SUBJECTS } from '@/lib/family/modules';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
+import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
+
+// The interactive blocks (M2-8) come as their own chunk, only when a response carries one (09 §4: first-load budget).
+const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
 
 // Understand (M1-5, C251): asks the server, and draws each checked block as it arrives. Follow-ups stay on the topic
 // ("simpler", "another example", "explain differently", "practise more"); this is not an open chat. Every response
@@ -123,6 +127,12 @@ export function UnderstandView({ w, input, tone, initial = null }: { w: Words; i
             return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
           case 'diagram':
             return <DiagramView key={i} b={b} tone={tone} />;
+          case 'graph':
+          case 'number_line':
+          case 'fraction_model':
+          case 'geometry':
+          case 'simulation':
+            return <InteractiveView key={i} b={b} w={w} tone={tone} />;
           case 'check':
           case 'practice':
             return <QuizView key={i} kind={b.type} items={b.items} w={w} tone={tone} onRetry={(token, choice) => again({ input, retry: { token, choice } })} />;
