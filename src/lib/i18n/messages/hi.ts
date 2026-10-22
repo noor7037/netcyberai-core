@@ -6533,6 +6533,27 @@ export const hi: Record<keyof typeof en, string> = {
   // m2-10 begin
   // m2-10 end
   // m2-11 begin
+  'control.health.title': 'सेहत और उपयोग',
+  'control.health.alerts': 'आज की चेतावनियाँ',
+  'control.health.allClear': 'आज कोई चेतावनी नहीं।',
+  'control.health.alertsNote': 'चेतावनियों में सिर्फ़ गिनती और आईडी होती हैं, किसी बच्चे का डेटा कभी नहीं। ये यहीं दिखती हैं; ईमेल चेतावनियाँ बाद में आएँगी।',
+  'control.health.alert.aiFailures': '{profile}: आज {requests} में से {failures} AI अनुरोध विफल हुए। कुछ भी बढ़ाने से पहले प्रदाता जाँचें।',
+  'control.health.alert.aiCap': '{profile}: आज परिवार {refusals} बार दैनिक AI सीमा तक पहुँचे।',
+  'control.health.alert.keyTest': '{provider} कुंजी की पिछली जाँच विफल रही। उसे Control → AI में बदलें।',
+  'control.health.alert.videoQuota': 'आज वीडियो खोज: {limit} में से {used}। सीमा पर खोज रुक जाती है; पहले मिले वीडियो दिखते रहते हैं।',
+  'control.health.ai': 'प्रोफ़ाइल के अनुसार AI',
+  'control.health.aiNone': 'इस महीने अभी तक कोई AI अनुरोध नहीं।',
+  'control.health.col.profile': 'प्रोफ़ाइल',
+  'control.health.col.today': 'आज',
+  'control.health.col.failures': 'आज विफल',
+  'control.health.col.capRefusals': 'आज सीमा पर मना',
+  'control.health.col.month': 'इस महीने',
+  'control.health.col.tokens': 'इस महीने टोकन',
+  'control.health.plansDone7d': 'पूरी योजनाएँ, पिछले 7 दिन',
+  'control.health.childrenPlanDone7d': 'योजना पूरी करने वाले बच्चे',
+  'control.health.revisitsDue': 'अभी दोहराने वाले विषय',
+  'control.health.photoQuestions7d': 'फ़ोटो प्रश्न, पिछले 7 दिन',
+  'control.health.videoSearchesToday': 'आज वीडियो खोज',
   // m2-11 end
   // m2-12 begin
   // m2-12 end

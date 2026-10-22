@@ -6545,6 +6545,27 @@ export const en = {
   // m2-10 begin
   // m2-10 end
   // m2-11 begin
+  'control.health.title': 'Health and usage',
+  'control.health.alerts': 'Alerts today',
+  'control.health.allClear': 'No alerts today.',
+  'control.health.alertsNote': 'Alerts carry counts and ids only, never a child’s data. They show here; email alerts come later.',
+  'control.health.alert.aiFailures': '{profile}: {failures} of {requests} AI requests failed today. Check the provider before raising anything.',
+  'control.health.alert.aiCap': '{profile}: families reached the daily AI cap {refusals} times today.',
+  'control.health.alert.keyTest': 'The last test of the {provider} key failed. Replace it in Control → AI.',
+  'control.health.alert.videoQuota': 'Video searches today: {used} of {limit}. Searches stop at the limit; videos already found still show.',
+  'control.health.ai': 'AI by profile',
+  'control.health.aiNone': 'No AI requests this month yet.',
+  'control.health.col.profile': 'Profile',
+  'control.health.col.today': 'Today',
+  'control.health.col.failures': 'Failed today',
+  'control.health.col.capRefusals': 'Cap refusals today',
+  'control.health.col.month': 'This month',
+  'control.health.col.tokens': 'Tokens this month',
+  'control.health.plansDone7d': 'Plans done, last 7 days',
+  'control.health.childrenPlanDone7d': 'Children who finished a plan',
+  'control.health.revisitsDue': 'Revisits due now',
+  'control.health.photoQuestions7d': 'Photo questions, last 7 days',
+  'control.health.videoSearchesToday': 'Video searches today',
   // m2-11 end
   // m2-12 begin
   // m2-12 end
