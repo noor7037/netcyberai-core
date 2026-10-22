@@ -42,6 +42,8 @@ export function AiControls({ initial }: { initial: Data }) {
   const [keys, setKeys] = useState<Record<string, string>>({});
   // Cloudflare's key in two boxes (C317): the Account ID and the API token.
   const [cf, setCf] = useState({ account: '', token: '' });
+  // A box says what is wrong only once the founder has left it, never while it is still being filled in.
+  const [cfLeft, setCfLeft] = useState({ account: false, token: false });
   const [terms, setTerms] = useState<Record<string, string>>({});
   const [drafts, setDrafts] = useState<Record<string, Draft>>(() => Object.fromEntries(initial.profiles.map((p) => [p.profileId, draftOf(p)])));
   const [cap, setCap] = useState(initial.cap === null ? '' : String(initial.cap));
@@ -142,7 +144,8 @@ export function AiControls({ initial }: { initial: Data }) {
                         maxLength={200}
                         label={t('control.ai.key.account')}
                         helperText={t('control.ai.key.accountHelp')}
-                        error={cf.account.trim() && !workersAccountLooksRight(cleanWorkersAccount(cf.account)) ? t('control.ai.err.account_id_format') : undefined}
+                        error={cfLeft.account && cf.account.trim() && !workersAccountLooksRight(cleanWorkersAccount(cf.account)) ? t('control.ai.err.account_id_format') : undefined}
+                        onBlur={() => setCfLeft({ ...cfLeft, account: true })}
                         disabled={!data.keyReady}
                         value={cf.account}
                         onChange={(e) => setCf({ ...cf, account: e.target.value })}
@@ -155,7 +158,8 @@ export function AiControls({ initial }: { initial: Data }) {
                         maxLength={400}
                         label={t('control.ai.key.token')}
                         helperText={t('control.ai.key.tokenHelp')}
-                        error={cf.token.trim() && !workersTokenLooksRight(cleanWorkersToken(cf.token)) ? t('control.ai.err.token_format') : undefined}
+                        error={cfLeft.token && cf.token.trim() && !workersTokenLooksRight(cleanWorkersToken(cf.token)) ? t('control.ai.err.token_format') : undefined}
+                        onBlur={() => setCfLeft({ ...cfLeft, token: true })}
                         disabled={!data.keyReady}
                         value={cf.token}
                         onChange={(e) => setCf({ ...cf, token: e.target.value })}
@@ -165,7 +169,10 @@ export function AiControls({ initial }: { initial: Data }) {
                         data-ai-key-save
                         disabled={busy || !data.keyReady || !workersAccountLooksRight(cleanWorkersAccount(cf.account)) || !workersTokenLooksRight(cleanWorkersToken(cf.token))}
                         className={`${TAP} sm:mt-7`}
-                        onClick={() => void send({ action: 'credential', providerId: 'workers-ai', accountId: cf.account, token: cf.token }, 'control.ai.saved', () => setCf({ account: '', token: '' }))}
+                        onClick={() => void send({ action: 'credential', providerId: 'workers-ai', accountId: cf.account, token: cf.token }, 'control.ai.saved', () => {
+                          setCf({ account: '', token: '' });
+                          setCfLeft({ account: false, token: false });
+                        })}
                       >
                         {t('control.ai.key.save')}
                       </button>
