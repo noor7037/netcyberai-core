@@ -26,7 +26,11 @@ export const SUBJECT_IDS = [
 export type Subject = (typeof SUBJECT_IDS)[number];
 export const isSubject = (v: unknown): v is Subject => typeof v === 'string' && (SUBJECT_IDS as readonly string[]).includes(v);
 
-// Subjects open to every child (C298): the Control setting's key, and its stored value read as known subject ids only.
-// Control writes it and the Family app enforces it, so both read it through this one rule.
-export const OPEN_SUBJECTS_KEY = 'family.open_subjects';
-export const openSubjectsOf = (v: unknown): Subject[] => (Array.isArray(v) ? SUBJECT_IDS.filter((s) => v.includes(s)) : []);
+// Control's two lists of subjects for the Family app, and a stored list read as known subject ids only. Control writes
+// them and the Family app enforces them, so both read them through this one rule.
+//   open           open to every child, whatever their free subject is (C298: the pilot's EVS)
+//   reviewed_only  a chapter or topic shows only an explanation NetCyberAI has checked (C300: the pilot's EVS)
+export const SUBJECT_LIST_KEYS = { open: 'family.open_subjects', reviewed_only: 'family.reviewed_only_subjects' } as const;
+export type SubjectList = keyof typeof SUBJECT_LIST_KEYS;
+export const OPEN_SUBJECTS_KEY = SUBJECT_LIST_KEYS.open;
+export const subjectListOf = (v: unknown): Subject[] => (Array.isArray(v) ? SUBJECT_IDS.filter((s) => v.includes(s)) : []);

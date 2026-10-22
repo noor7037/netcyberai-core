@@ -320,6 +320,14 @@ describe('the daily cap', () => {
     expect((await run({ ...ctxA, day: '2026-10-22' })).ok).toBe(true);
   });
 
+  it('staff preparing the shared library take no family cap place (C300)', async () => {
+    await q(`update control.settings set value = '0'::jsonb where key = 'family.ai.daily_requests'`);
+    expect(await run()).toEqual({ ok: false, reason: 'cap_reached' });
+    replies.push(() => anthropicOk(['prepared']));
+    expect((await run({ accountId: A, childFirstNames: [], day: DAY, staffPreparing: true })).ok).toBe(true);
+    expect(await q(`select requests from family.ai_daily where account_id = $1`, [A])).toEqual([]);
+  });
+
   it('the cap message, in English and Hindi', () => {
     expect(en[REFUSAL_MESSAGE.cap_reached]).toBe("You have used today's explanations. More tomorrow.");
     expect(hi[REFUSAL_MESSAGE.cap_reached]).toMatch(/कल/);

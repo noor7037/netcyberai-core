@@ -3,7 +3,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { changeFreeSubject, claimSubject, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
-import { readOpenSubjects, setOpenSubjects } from '@/lib/control/family-settings';
+import { readSubjectList, setSubjectList } from '@/lib/control/family-settings';
 
 // P1 slice 2 (C298; C230-S): a subject Control opens to every child is open whatever the child opened first, and
 // opening it never uses up the free subject. The setting no code read (family.free_subjects_per_child) is gone.
@@ -55,10 +55,10 @@ describe('subjects open to every child', () => {
   });
 
   it('Control sets it, audited; unknown subjects are refused', async () => {
-    expect(await asPlatform((tx) => setOpenSubjects(tx, { userId: FOUNDER }, ['evs', 'not-a-subject']))).toEqual({ ok: false, code: 'bad_subjects' });
-    expect(await asPlatform((tx) => setOpenSubjects(tx, { userId: FOUNDER }, []))).toEqual({ ok: true, subjects: [] });
-    expect(await asPlatform((tx) => setOpenSubjects(tx, { userId: FOUNDER }, ['evs']))).toEqual({ ok: true, subjects: ['evs'] });
-    expect(await asPlatform((tx) => readOpenSubjects(tx))).toEqual(['evs']);
+    expect(await asPlatform((tx) => setSubjectList(tx, { userId: FOUNDER }, 'open', ['evs', 'not-a-subject']))).toEqual({ ok: false, code: 'bad_subjects' });
+    expect(await asPlatform((tx) => setSubjectList(tx, { userId: FOUNDER }, 'open', []))).toEqual({ ok: true, subjects: [] });
+    expect(await asPlatform((tx) => setSubjectList(tx, { userId: FOUNDER }, 'open', ['evs']))).toEqual({ ok: true, subjects: ['evs'] });
+    expect(await asPlatform((tx) => readSubjectList(tx, 'open'))).toEqual(['evs']);
     const audit = (await db.pg.query(`select before_state, after_state from audit_log where event_action = 'family.open_subjects_set' order by created_at`)).rows;
     expect(audit).toEqual([
       { before_state: { subjects: ['evs'] }, after_state: { subjects: [] } },

@@ -1,7 +1,7 @@
 import { recomputeTopic } from './account';
 import { noteRevisits } from './plan';
 import type { ItemSecret } from './items';
-import { OPEN_SUBJECTS_KEY, openSubjectsOf } from '@/lib/contracts/subjects';
+import { SUBJECT_LIST_KEYS, subjectListOf } from '@/lib/contracts/subjects';
 import { SUBJECTS, canChangeFreeSubject, type Subject } from './modules';
 
 // Learning records (docs/family-app/02 §4.1–4.2; M1-6, C252). Progress moves only on checked answers: an answer is
@@ -19,7 +19,13 @@ export async function setting(db: Db, key: string, fallback: number): Promise<nu
 
 // Subjects open to every child (C298), as Control set them: only known subject ids are kept.
 export async function openSubjects(db: Db): Promise<Subject[]> {
-  return openSubjectsOf((await db.query(`select value from control.settings where key = $1`, [OPEN_SUBJECTS_KEY])).rows[0]?.value);
+  return subjectListOf((await db.query(`select value from control.settings where key = $1`, [SUBJECT_LIST_KEYS.open])).rows[0]?.value);
+}
+
+// Subjects whose chapters and topics show only an explanation NetCyberAI has checked (C300): no AI-made one, and none
+// made live. A typed question, a follow-up and a wrong answer's retry stay live, under the AI platform's checks.
+export async function reviewedOnlySubjects(db: Db): Promise<Subject[]> {
+  return subjectListOf((await db.query(`select value from control.settings where key = $1`, [SUBJECT_LIST_KEYS.reviewed_only])).rows[0]?.value);
 }
 
 // The child's free subject: the first subject they study becomes it. Returns whether this subject is open. A subject
