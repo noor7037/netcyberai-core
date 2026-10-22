@@ -52,7 +52,7 @@ const post = async (body: unknown, cookie = founder) => {
 
 beforeAll(async () => {
   process.env.APP_SESSION_SECRET = 'test-only-secret-for-ai-control-route-tests-0123456789';
-  process.env.PAYMENT_CREDENTIALS_KEY = randomBytes(32).toString('base64');
+  process.env.AI_CREDENTIALS_KEY = randomBytes(32).toString('base64');
   h.db = await startHarnessDb({ port: 0 });
   await q(`insert into schools (school_id, name, jurisdiction) values ($1, 'Made-up School', 'IN-HR')`, [SCHOOL]);
   await q(`insert into users (user_id, school_id, role, display_name) values ($1, null, 'super_admin', 'Farid Founder'), ($2, $3, 'principal', 'Priya Principal')`, [FOUNDER, PRINCIPAL, SCHOOL]);
@@ -64,7 +64,7 @@ afterAll(async () => {
   await h.db?.stop();
 });
 beforeEach(() => {
-  process.env.PAYMENT_CREDENTIALS_KEY ??= randomBytes(32).toString('base64');
+  process.env.AI_CREDENTIALS_KEY ??= randomBytes(32).toString('base64');
 });
 
 describe('who is let in', () => {
@@ -110,13 +110,13 @@ describe('a key: write-only', () => {
   });
 
   it('with no server key, saving is refused plainly and the page says so', async () => {
-    const saved = process.env.PAYMENT_CREDENTIALS_KEY;
-    delete process.env.PAYMENT_CREDENTIALS_KEY;
+    const saved = process.env.AI_CREDENTIALS_KEY;
+    delete process.env.AI_CREDENTIALS_KEY;
     try {
       expect(await post({ action: 'credential', providerId: 'openai', apiKey: `sk-${'o'.repeat(30)}` })).toEqual({ status: 409, body: expect.objectContaining({ code: 'no_encryption_key' }) });
       expect((await (await GET(req(undefined, founder))).json()).keyReady).toBe(false);
     } finally {
-      process.env.PAYMENT_CREDENTIALS_KEY = saved;
+      process.env.AI_CREDENTIALS_KEY = saved;
     }
   });
 

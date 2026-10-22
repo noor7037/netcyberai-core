@@ -6557,6 +6557,8 @@ const childEnv = {
   PAYMENT_PROVIDER: 'stand-in',
   // A key for this run only, so saving a gateway's keys can be shown (C171). It is made here, used here and never written anywhere.
   PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64'),
+  // The AI providers' own sealing key (C256), made the same way, for this run only.
+  AI_CREDENTIALS_KEY: randomBytes(32).toString('base64'),
   PAYMENT_STANDIN_SECRET: `${secret}-payments-stand-in-secret-0123456789`,
   // The WhatsApp stand-in signs its delivery notices with this (C183). No phone is reached, with or without it.
   WHATSAPP_STANDIN_SECRET: `${secret}-whatsapp-stand-in-secret-0123456789`,

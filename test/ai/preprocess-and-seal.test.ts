@@ -40,7 +40,7 @@ describe('scrubText', () => {
 });
 
 describe('sealed AI keys', () => {
-  const env = { PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64'), PAYMENT_CREDENTIALS_KEY_VERSION: '1' };
+  const env = { AI_CREDENTIALS_KEY: randomBytes(32).toString('base64'), AI_CREDENTIALS_KEY_VERSION: '1' };
   const k = aiEncryptionKey(env)!;
   const key = `sk-ant-${'z'.repeat(32)}`;
 
@@ -50,11 +50,13 @@ describe('sealed AI keys', () => {
     const row = { ciphertext: s.ciphertext, iv: s.iv, tag: s.tag, key_version: s.keyVersion };
     expect(unsealAiKey(k, 'anthropic', row)).toBe(key);
     expect(() => unsealAiKey(k, 'openai', row)).toThrow();
-    const other = aiEncryptionKey({ PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64') })!;
+    const other = aiEncryptionKey({ AI_CREDENTIALS_KEY: randomBytes(32).toString('base64') })!;
     expect(() => unsealAiKey(other, 'anthropic', row)).toThrow();
   });
 
   it('no server key, no sealing', () => {
     expect(aiEncryptionKey({})).toBeNull();
+    // The payments key never opens AI keys (C256).
+    expect(aiEncryptionKey({ PAYMENT_CREDENTIALS_KEY: randomBytes(32).toString('base64') })).toBeNull();
   });
 });
