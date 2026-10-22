@@ -20,7 +20,7 @@ import {
   pendulumPeriod,
   projectile,
   refraction,
-  samplePoints,
+  plotPoints,
   triangleAngles,
   type Fraction,
 } from '@/lib/family/interactive';
@@ -190,7 +190,7 @@ export function GraphView({ b, w, tone }: { b: Graph; w: Words; tone: string }) 
         <Slider key={s.param} label={fill(w['fam.block.graph.slider'], { name: s.param })} value={params[s.param]} min={s.min} max={s.max} step={s.step} onChange={(v) => setParams((p) => ({ ...p, [s.param]: v }))} />
       ))}
       <Values
-        lines={samplePoints(b.fn, params, b.xFrom, b.xTo).map((p) => (p.y === null ? fill(w['fam.block.graph.noValue'], { x: num(p.x) }) : fill(w['fam.block.graph.point'], { x: num(p.x), y: num(p.y) })))}
+        lines={plotPoints(b.fn, params, b.xFrom, b.xTo).map((p) => (p.y === null ? fill(w['fam.block.graph.noValue'], { x: num(p.x) }) : fill(w['fam.block.graph.point'], { x: num(p.x), y: num(p.y) })))}
       />
     </Card>
   );
