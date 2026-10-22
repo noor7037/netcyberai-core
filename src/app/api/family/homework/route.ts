@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
     const sent = await first.prepared.send();
     const read = sent.result.ok ? parseRead(sent.result.text, first.subjects) : null;
     const verdict = read?.ok
-      ? await first.moderation.check({ user: read.read.question, assistant: [...read.read.hints, ...read.read.steps, read.read.answer, ...read.read.mistakes.map((m) => m.feedback)].join('\n') })
+      ? await first.moderation.check({ user: read.read.question, assistant: [...read.read.hints, ...read.read.steps, read.read.answer, ...read.read.mistakes.flatMap((m) => [m.answer, m.feedback])].join('\n') })
       : undefined;
 
     // 3. The metering and the answer, in a second short transaction.
