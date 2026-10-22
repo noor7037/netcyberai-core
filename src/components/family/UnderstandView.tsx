@@ -8,6 +8,7 @@ import { SUBJECTS } from '@/lib/family/modules';
 import { dataSaverBlocks, droppedCount } from '@/lib/family/data-saver';
 import { queueAnswer } from './offline/store';
 import { useDataSaver } from './useDataSaver';
+import { AiNotice } from './AiNotice';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
@@ -120,6 +121,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           <span data-label={meta.label} className={`rounded-full px-3 py-1 text-xs font-bold ${meta.label === 'checked' ? 'bg-white text-emerald-text ring-1 ring-emerald-text/40' : 'bg-white text-slate ring-1 ring-slate/20'}`}>
             {meta.label === 'checked' ? w['fam.label.checked'] : w['fam.label.aiMade']}
           </span>
+          <AiNotice w={w} made={meta.label} />
         </div>
       )}
       {state === 'refused' && noInternet && (

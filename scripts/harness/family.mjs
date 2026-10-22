@@ -44,6 +44,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-parent-area-voice', '/family/parent', { parent: true, settle: '[data-consent-voice]' }],
   // Worksheets (M2-4, C278): the worksheet on screen, and the parent's print with the answer key.
   ['full', 'family-worksheet', '/family/study/worksheet/cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  // W2 (C315): how the AI works, the page every "made by AI" notice links to.
+  ['full', 'family-about-ai', '/family/about-ai', { settle: '[data-ai-feature]' }],
   ['full', 'family-worksheet-parent', '/family/parent/worksheet/cbse.c9.mathematics.u1.ch01.t01', { parent: true, child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-worksheet-key], #ws-key' }],
   // m2-2: today's plan first on the home (C276).
   ['full', 'family-home-plan', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-plan]' }],

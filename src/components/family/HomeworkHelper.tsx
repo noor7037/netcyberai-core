@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import type { LadderView } from '@/lib/family/homework';
+import { AiNotice } from './AiNotice';
 import { familyApi } from './client';
 import { FamIcon, rise } from './FamIcon';
 
@@ -149,6 +150,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
           <p lang={titleLang(v.question)} className="mt-1 break-words text-lg font-semibold text-slate">
             {v.question}
           </p>
+          <AiNotice w={w} made="ai_made" />
         </div>
       </div>
 
