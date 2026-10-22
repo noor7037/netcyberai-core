@@ -10,7 +10,8 @@ import { prepareChapters, prepareNext, prepareState, type Run } from '@/lib/fami
 // Both take the chapters to work on (C316: ?chapters=a,b / chapterKeys: [...]); none means the whole version. GET also
 // lists the version's chapters to choose from.
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60;
+// One explanation, answered whole (C322), can take over a minute (C323).
+export const maxDuration = 300;
 
 class Refused extends Error {
   constructor(readonly res: NextResponse) {
