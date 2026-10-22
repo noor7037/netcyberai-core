@@ -3,7 +3,9 @@ import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
-import { familyModuleOn } from '@/lib/family/flags';
+import { readFamilySwitches, switchOn } from '@/lib/family/flags';
+import { voiceDay } from '@/lib/family/voice';
+import { indiaDate } from '@/lib/time/india';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText } from '@/lib/family/fill';
 import { subjectAccess } from '@/lib/family/modules';
@@ -49,11 +51,14 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
-  const homeworkOn = await familyPageRead(page, (db) => familyModuleOn(db, 'homework', page.session.accountId));
-  // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on.
-  const voiceOn = page.consents.voice_practice && (await familyPageRead(page, (db) => familyModuleOn(db, 'voice_input', page.session.accountId)));
+  const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
+  const homeworkOn = switchOn(switches, 'homework');
+  // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on, with the
+  // seconds left of the child's day.
+  const voice =
+    page.consents.voice_practice && switchOn(switches, 'voice_input') ? { secondsLeft: (await familyPageRead(page, (db) => voiceDay(db, page.session.accountId, child.childId, indiaDate()))).left } : null;
   const tone = subject;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', ...(voiceOn ? VOICE_KEYS : [])] as MessageKey[]);
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone={subject === 'science' || subject === 'evs' || subject === 'biology' ? 'emerald' : 'royal'} />
@@ -84,7 +89,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           <>
-            <StudyQuestion w={w} subject={subject} tone={tone} voice={voiceOn} />
+            <StudyQuestion w={w} subject={subject} tone={tone} voice={voice} />
             {homeworkOn && (
               <Link href="/family/study/homework" data-homework-link className="flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 hover:bg-slate/5">
                 <span aria-hidden className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-xl">

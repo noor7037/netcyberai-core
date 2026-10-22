@@ -12,7 +12,35 @@ export const VOICE_MAX_BYTES = 1_000_000;
 export const VOICE_TEXT_MAX = 500;
 export const VOICE_SECONDS_SETTING = 'family.voice_input_seconds_per_day';
 
-export type AudioType = 'audio/webm' | 'audio/ogg' | 'audio/mp4' | 'audio/wav';
+type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
+
+// The day's limit as Control set it, and the seconds this child has used today.
+export async function voiceDay(db: Db, accountId: string, childId: string, day: string): Promise<{ limit: number; used: number; left: number }> {
+  const { rows: s } = await db.query(`select value from control.settings where key = $1`, [VOICE_SECONDS_SETTING]);
+  const v = Number(s[0]?.value);
+  const limit = Math.max(0, Math.round(Number.isFinite(v) && v >= 0 ? v : 120));
+  const { rows } = await db.query(`select voice_seconds from family.day_counts where account_id = $1 and child_id = $2 and day = $3`, [accountId, childId, day]);
+  const used = Number(rows[0]?.voice_seconds ?? 0);
+  return { limit, used, left: Math.max(0, limit - used) };
+}
+
+// Takes the seconds from the child's day if they fit under the limit (one statement, so two recordings at once cannot
+// both take the last seconds); null when they do not.
+export async function takeVoiceSeconds(db: Db, accountId: string, childId: string, day: string, seconds: number, limit: number): Promise<number | null> {
+  const { rows } = await db.query(
+    `insert into family.day_counts as d (account_id, child_id, day, voice_seconds) select $1, $2, $3, $5::int where $5::int <= $4::int
+     on conflict (child_id, day) do update set voice_seconds = d.voice_seconds + $5::int where d.voice_seconds + $5::int <= $4::int
+     returning voice_seconds`,
+    [accountId, childId, day, limit, seconds]
+  );
+  return rows.length ? Number(rows[0].voice_seconds) : null;
+}
+
+export async function giveBackVoiceSeconds(db: Db, accountId: string, childId: string, day: string, seconds: number): Promise<void> {
+  await db.query(`update family.day_counts set voice_seconds = greatest(voice_seconds - $4::int, 0) where account_id = $1 and child_id = $2 and day = $3`, [accountId, childId, day, seconds]);
+}
+
+export type AudioType ='audio/webm' | 'audio/ogg' | 'audio/mp4' | 'audio/wav';
 
 // The container by its own bytes, never by what the phone says it is: WebM (EBML), Ogg, MP4 (ftyp) or WAV (RIFF/WAVE).
 export function sniffAudio(bytes: Uint8Array): AudioType | null {
@@ -29,6 +57,17 @@ export function sniffAudio(bytes: Uint8Array): AudioType | null {
 export function countedSeconds(duration: unknown): number {
   const d = typeof duration === 'number' && Number.isFinite(duration) ? Math.ceil(duration) : VOICE_MAX_SECONDS;
   return Math.min(VOICE_MAX_SECONDS, Math.max(1, d));
+}
+
+// The fewest seconds a recording of this size can hold, so a phone that says "1 second" for a long recording is
+// still charged for it: a WAV by its own byte rate; a compressed recording at 32 KB a second (256 kbps, more than any
+// phone's voice recording uses), which never charges an honest recording more than its timer says.
+export function leastSeconds(bytes: Uint8Array, type: AudioType): number {
+  if (type === 'audio/wav' && bytes.length >= 44) {
+    const rate = (bytes[28] | (bytes[29] << 8) | (bytes[30] << 16) | (bytes[31] << 24)) >>> 0;
+    if (rate >= 1000) return Math.min(VOICE_MAX_SECONDS, Math.max(1, Math.ceil((bytes.length - 44) / rate)));
+  }
+  return Math.min(VOICE_MAX_SECONDS, Math.max(1, Math.ceil(bytes.length / 32_000)));
 }
 
 // The words as the child will see them: one line of plain text, at most 500 characters, with any number the

@@ -6,7 +6,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { aiEncryptionKey, sealAiKey } from '@/lib/ai/credentials';
 import { capableAdapter } from '@/lib/ai/platform';
 import { setProfile } from '@/lib/ai/control';
-import { cleanTranscript, countedSeconds, sniffAudio } from '@/lib/family/voice';
+import { cleanTranscript, countedSeconds, leastSeconds, sniffAudio } from '@/lib/family/voice';
 import { ASKED_PURPOSES } from '@/lib/family/consent';
 import { FAMILY_MODULES } from '@/lib/family/modules';
 
@@ -36,6 +36,15 @@ describe('reading a recording', () => {
   });
   it('counts 1 to 30 seconds, and a missing timer as 30', () => {
     expect([countedSeconds(0.2), countedSeconds(12.1), countedSeconds(400), countedSeconds(undefined), countedSeconds('5'), countedSeconds(NaN)]).toEqual([1, 13, 30, 30, 30, 30]);
+  });
+  it('charges a recording at least what its size can hold', () => {
+    expect(leastSeconds(new Uint8Array(100), 'audio/webm')).toBe(1);
+    expect(leastSeconds(new Uint8Array(320_000), 'audio/webm')).toBe(10);
+    expect(leastSeconds(new Uint8Array(5_000_000), 'audio/ogg')).toBe(30);
+    // A 16 kHz mono 16-bit WAV: 32,000 bytes a second, by its own header.
+    const wav = new Uint8Array(44 + 32_000 * 4);
+    new DataView(wav.buffer).setUint32(28, 32_000, true);
+    expect(leastSeconds(wav, 'audio/wav')).toBe(4);
   });
   it('takes an Aadhaar-like number out and keeps the words to 500 characters', () => {
     expect(cleanTranscript('My number is 2345 6789 0123, what is a fraction?')).toBe('My number is , what is a fraction?');
@@ -204,10 +213,10 @@ describe('the voice route', () => {
     await q(`update control.settings set value = '20'::jsonb where key = 'family.voice_input_seconds_per_day'`);
     expect((await post({ audio: B64, seconds: 15 })).body).toMatchObject({ left: 5, maxSeconds: 5 });
     expect(await seconds()).toBe(15);
-    expect(await post({ audio: B64, seconds: 6 })).toEqual({ status: 429, body: { error: 'voice_cap', limit: 20, left: 5 } });
-    expect(await post({ audio: B64 })).toEqual({ status: 429, body: { error: 'voice_cap', limit: 20, left: 5 } });
+    expect(await post({ audio: B64, seconds: 6 })).toEqual({ status: 429, body: { error: 'voice_cap', limit: 20, left: 5, maxSeconds: 5 } });
+    expect(await post({ audio: B64 })).toEqual({ status: 429, body: { error: 'voice_cap', limit: 20, left: 5, maxSeconds: 5 } });
     expect((await post({ audio: B64, seconds: 5 })).status).toBe(200);
-    expect(await post({ audio: B64, seconds: 1 })).toEqual({ status: 429, body: { error: 'voice_cap', limit: 20, left: 0 } });
+    expect(await post({ audio: B64, seconds: 1 })).toEqual({ status: 429, body: { error: 'voice_cap', limit: 20, left: 0, maxSeconds: 0 } });
     expect(calls).toHaveLength(2);
     expect(await seconds()).toBe(20);
     await q(`update control.settings set value = '120'::jsonb where key = 'family.voice_input_seconds_per_day'`);
@@ -215,9 +224,26 @@ describe('the voice route', () => {
 
   it('a failed call gives the seconds back', async () => {
     reply = () => new Response('{}', { status: 500 });
-    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 503, body: { error: 'ai_failed' } });
+    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 503, body: { error: 'ai_failed', left: 120, maxSeconds: 30 } });
     expect(await seconds()).toBe(0);
     expect(await q(`select requests, failures from control.ai_usage`)).toEqual([{ requests: 1, failures: 1 }]);
+  });
+
+  it('no words heard (or only an ID number): the seconds are given back', async () => {
+    reply = () => Response.json({ text: '  2345 6789 0123 ' });
+    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'not_heard', left: 120, maxSeconds: 30 } });
+    expect(await seconds()).toBe(0);
+  });
+
+  it("a long recording claimed as 1 second is charged for what its size can hold", async () => {
+    const long = Buffer.concat([AUDIO, Buffer.alloc(320_000, 7)]).toString('base64');
+    expect((await post({ audio: long, seconds: 1 })).status).toBe(200);
+    expect(await seconds()).toBe(11);
+  });
+
+  it('a body larger than any recording is refused before it is read', async () => {
+    expect((await post({ audio: B64, seconds: 2, pad: 'x'.repeat(1_400_000) })).status).toBe(413);
+    expect(calls).toHaveLength(0);
   });
 
   it('the minors check refuses a provider not cleared, and gives the seconds back', async () => {

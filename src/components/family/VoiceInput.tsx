@@ -29,10 +29,12 @@ async function toBase64(blob: Blob): Promise<string> {
 
 type State = 'idle' | 'recording' | 'sending';
 
-export function VoiceInput({ w, onText }: { w: Words; onText: (text: string) => void }) {
+// `secondsLeft`: what the server says is left of today's speaking time, so a recording never runs past it.
+export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS }: { w: Words; onText: (text: string) => void; secondsLeft?: number }) {
   const [state, setState] = useState<State>('idle');
   const [elapsed, setElapsed] = useState(0);
-  const [limit, setLimit] = useState(MAX_SECONDS);
+  const [limit, setLimit] = useState(Math.max(0, Math.min(MAX_SECONDS, secondsLeft)));
+  const busy = useRef(false);
   const [error, setError] = useState<string | null>(null);
   const [heard, setHeard] = useState(false);
   const recorder = useRef<MediaRecorder | null>(null);
@@ -61,28 +63,41 @@ export function VoiceInput({ w, onText }: { w: Words; onText: (text: string) => 
     setState('sending');
     const r = await familyApi<{ text: string; maxSeconds: number }>('/api/family/voice', 'POST', { audio: await toBase64(blob), seconds });
     setState('idle');
+    busy.current = false;
+    // The server says how long the next recording may be (the seconds left today, 30 at most).
     if (typeof r.data.maxSeconds === 'number') setLimit(Math.max(0, Math.min(MAX_SECONDS, r.data.maxSeconds)));
-    if (!r.ok) {
-      if (r.error === 'voice_cap') setLimit(0);
-      return setError(say(r.error));
-    }
+    if (!r.ok) return setError(say(r.error));
     onText(r.data.text);
     setHeard(true);
   };
 
   const start = async () => {
+    // One recording at a time: a second tap while the microphone is opening does nothing.
+    if (busy.current) return;
+    busy.current = true;
     setError(null);
     setHeard(false);
-    if (typeof window === 'undefined' || !navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') return setError(say('unsupported'));
-    let media: MediaStream;
+    const fail = (code: string) => {
+      release();
+      recorder.current = null;
+      busy.current = false;
+      setState('idle');
+      setError(say(code));
+    };
+    if (typeof window === 'undefined' || !navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') return fail('unsupported');
     try {
-      media = await navigator.mediaDevices.getUserMedia({ audio: true });
+      stream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
     } catch {
-      return setError(say('denied'));
+      return fail('denied');
     }
-    stream.current = media;
+    const max = Math.max(1, limit);
     const mimeType = TYPES.find((t) => MediaRecorder.isTypeSupported(t));
-    const rec = new MediaRecorder(media, mimeType ? { mimeType } : undefined);
+    let rec: MediaRecorder;
+    try {
+      rec = new MediaRecorder(stream.current, mimeType ? { mimeType } : undefined);
+    } catch {
+      return fail('unsupported');
+    }
     const chunks: Blob[] = [];
     rec.ondataavailable = (e) => {
       if (e.data.size > 0) chunks.push(e.data);
@@ -93,14 +108,18 @@ export function VoiceInput({ w, onText }: { w: Words; onText: (text: string) => 
       recorder.current = null;
       const blob = new Blob(chunks, { type: rec.mimeType || mimeType || 'audio/webm' });
       chunks.length = 0;
-      void send(blob, Math.min(seconds, MAX_SECONDS));
+      // Never more than the time this recording was allowed (the timer may stop it a moment late).
+      void send(blob, Math.min(seconds, max));
     };
     recorder.current = rec;
     started.current = Date.now();
     setElapsed(0);
-    rec.start();
+    try {
+      rec.start();
+    } catch {
+      return fail('unsupported');
+    }
     setState('recording');
-    const max = Math.max(1, limit);
     timer.current = setInterval(() => {
       const s = Math.floor((Date.now() - started.current) / 1000);
       setElapsed(Math.min(s, max));
@@ -156,6 +175,7 @@ export function VoiceInput({ w, onText }: { w: Words; onText: (text: string) => 
         </div>
       )}
       <p className="text-sm text-slate/80">{w['fam.voice.privacy']}</p>
+      {limit < 1 && !error && state === 'idle' && <p className="rounded-2xl bg-slate/5 px-3 py-2 text-sm text-slate">{say('voice_cap')}</p>}
       {heard && (
         <p role="status" className="rounded-2xl bg-sunshine/30 px-3 py-2 text-sm text-slate">
           {w['fam.voice.check']}

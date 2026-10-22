@@ -1,5 +1,5 @@
 import { sseData } from './sse';
-import { CALL_TIMEOUT_MS, JSON_ONLY, type AdapterResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, JSON_ONLY, SPEECH_TIMEOUT_MS, type AdapterResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // OpenAI's Chat Completions API, streamed over fetch (no SDK). Text arrives as choices[0].delta.content; with
 // stream_options.include_usage the last chunk carries the token counts; the stream ends with `data: [DONE]`.
@@ -100,7 +100,7 @@ export const openaiSpeechAdapter: SpeechAdapter = {
     form.append('response_format', 'json');
     let res: Response;
     try {
-      res = await fetch(TRANSCRIBE_URL, { method: 'POST', headers: { authorization: `Bearer ${request.apiKey}` }, body: form, signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
+      res = await fetch(TRANSCRIBE_URL, { method: 'POST', headers: { authorization: `Bearer ${request.apiKey}` }, body: form, signal: AbortSignal.timeout(SPEECH_TIMEOUT_MS) });
     } catch {
       return { ok: false, failure: 'network' };
     }

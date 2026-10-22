@@ -40,6 +40,10 @@ export const CALL_TIMEOUT_MS = 60_000;
 
 // ---- speech to text (M2-7, C281: voice input) ----------------------------------------------------------------------
 
+// A transcription of at most 30 seconds takes a few seconds; one that takes longer is given up, so two providers in
+// a chain still fit inside a route's minute.
+export const SPEECH_TIMEOUT_MS = 25_000;
+
 // A short recording of a child speaking a question: read inside the call and dropped, never stored or logged.
 export type SpeechMediaType = 'audio/webm' | 'audio/ogg' | 'audio/mp4' | 'audio/wav';
 export type SpeechRequest = { apiKey: string; model: string; audio: Uint8Array; mediaType: SpeechMediaType; language: 'en' | 'hi' };

@@ -254,7 +254,9 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
 
 // ---- speech to text (M2-7, C281) -----------------------------------------------------------------------------------
 
-export type SpeechInput = { audio: Uint8Array; mediaType: SpeechMediaType; language: 'en' | 'hi' };
+const SPEECH_CHAIN_BUDGET_MS = 30_000;
+
+export type SpeechInput ={ audio: Uint8Array; mediaType: SpeechMediaType; language: 'en' | 'hi' };
 export type TranscriptResult = { ok: true; text: string; provider: string; model: string } | { ok: false; reason: AiRefusal };
 export type SentTranscript = { result: TranscriptResult; record: (db: Sql) => Promise<void> };
 export type PreparedSpeech = { send: () => Promise<SentTranscript> };
@@ -286,8 +288,10 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
     };
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
     sent = true;
-    // 6. Down the chain until one hears it.
+    // 6. Down the chain until one hears it, within the route's minute: no next provider once 30 seconds have gone.
+    const began = Date.now();
     for (const { link, adapter, apiKey } of ready) {
+      if (Date.now() - began > SPEECH_CHAIN_BUDGET_MS) break;
       let result: SpeechResult;
       try {
         result = await adapter.transcribe({ apiKey, model: link.model, audio: input.audio, mediaType: input.mediaType, language: input.language });
