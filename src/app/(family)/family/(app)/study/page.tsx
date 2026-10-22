@@ -9,6 +9,7 @@ import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
+import { openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { voiceDay } from '@/lib/family/voice';
@@ -56,7 +57,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subjects = await familyPageRead(page, (db) => classSubjects(db, { board, classLevel: child.classLevel }));
   const requested = subjects.find((s) => s === searchParams.subject);
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
-  const access = subjectAccess(child, subject);
+  // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
+  const openToAll = await familyPageRead(page, (db) => openSubjects(db));
+  const access = subjectAccess(child, subject, openToAll);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   // M2-6 (C280): the homework helper's link, while its module is on.
@@ -68,7 +71,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-9 (C283): a pack downloads only for the child's free subject, with the parent's consent (the pack route checks
   // both too).
   const offline = switchOn(switches, 'offline') && switchOn(switches, 'understand');
-  const packs = offline && catalog && page.consents.study_core && child.freeSubject === subject ? new Map((await familyPageRead(page, (db) => chapterPacks(db, { accountId: page.session.accountId, child }, subject))).map((p) => [p.chapter.key, p])) : null;
+  const packs = offline && catalog && page.consents.study_core && (child.freeSubject === subject || openToAll.includes(subject)) ? new Map((await familyPageRead(page, (db) => chapterPacks(db, { accountId: page.session.accountId, child }, subject))).map((p) => [p.chapter.key, p])) : null;
   const ow = offline ? familyWords(lang, OFFLINE_KEYS) : {};
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
@@ -81,7 +84,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-card relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
           {subjects.map((s) => {
             const on = s === subject;
-            const locked = !!child.freeSubject && child.freeSubject !== s;
+            const locked = !subjectAccess(child, s, openToAll).open;
             return (
               <Link
                 key={s}

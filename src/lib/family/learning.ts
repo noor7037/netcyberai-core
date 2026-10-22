@@ -16,8 +16,18 @@ export async function setting(db: Db, key: string, fallback: number): Promise<nu
   return Number.isFinite(v) && v >= 0 ? v : fallback;
 }
 
-// The child's free subject: the first subject they study becomes it. Returns whether this subject is open.
+// Subjects open to every child (C298), as Control set them: only known subject ids are kept.
+export const OPEN_SUBJECTS_SETTING = 'family.open_subjects';
+export async function openSubjects(db: Db): Promise<Subject[]> {
+  const { rows } = await db.query(`select value from control.settings where key = $1`, [OPEN_SUBJECTS_SETTING]);
+  const v = rows[0]?.value;
+  return Array.isArray(v) ? v.filter((s): s is Subject => typeof s === 'string' && (SUBJECTS as readonly string[]).includes(s)) : [];
+}
+
+// The child's free subject: the first subject they study becomes it. Returns whether this subject is open. A subject
+// open to every child (C298) is open and is never claimed, so it cannot use up the free subject.
 export async function claimSubject(db: Db, accountId: string, childId: string, subject: Subject): Promise<boolean> {
+  if ((await openSubjects(db)).includes(subject)) return true;
   const { rows } = await db.query(
     `update family.children set free_subject = $3, free_subject_set_at = now()
       where account_id = $1 and child_id = $2 and free_subject is null

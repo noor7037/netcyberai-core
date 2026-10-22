@@ -4,30 +4,8 @@
 // asked in them. A subject is one of the known ids below: each has its name in both message files
 // (`fam.subject.<id>`). Safe for the phone: no database or message file is imported here.
 
-export const SUBJECT_IDS = [
-  'mathematics',
-  'science',
-  'evs',
-  'social_science',
-  'english',
-  'hindi',
-  'sanskrit',
-  'physics',
-  'chemistry',
-  'biology',
-  'accountancy',
-  'business_studies',
-  'economics',
-  'history',
-  'geography',
-  'political_science',
-  'computer_science',
-  'informatics_practices',
-  'psychology',
-  'sociology',
-] as const;
-export type Subject = (typeof SUBJECT_IDS)[number];
-export const isSubject = (v: unknown): v is Subject => typeof v === 'string' && (SUBJECT_IDS as readonly string[]).includes(v);
+export { SUBJECT_IDS, isSubject, type Subject } from '@/lib/contracts/subjects';
+import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
 
 // The school subjects of each stage (NCF 2023's stages), in the order the Study page shows them. A board that divides a
 // stage's subjects differently says so here (C272): ICSE (CISCE) teaches Classes 9 and 10 as Physics, Chemistry and

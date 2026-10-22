@@ -6874,4 +6874,11 @@ export const hi: Record<keyof typeof en, string> = {
   'control.queue.err.failed': 'यह नहीं हो सका। फिर कोशिश करें।',
   'control.queue.err.authenticator_needed': 'जवाबों की समीक्षा के लिए अपने ऑथेंटिकेटर से फिर से साइन इन करें।',
   // m2-12 end
+  // p1 begin
+  'control.family.open.title': 'हर बच्चे के लिए खुले विषय',
+  'control.family.open.lead': 'यहाँ चुना गया विषय हर बच्चे के लिए खुला रहता है, चाहे उसने पहले कोई भी विषय खोला हो, और उसका मुफ़्त विषय नहीं बनता। पायलट में पर्यावरण अध्ययन (EVS) खुला है।',
+  'control.family.open.save': 'खुले विषय सहेजें',
+  'control.family.open.saved': 'सहेज दिया। अब हर बच्चा ये विषय खोल सकता है।',
+  'control.family.open.failed': 'सहेजा नहीं गया। अपने ऑथेंटिकेटर से साइन इन करके फिर कोशिश करें।',
+  // p1 end
 };
