@@ -193,6 +193,10 @@ export type Generated = {
   subject: Subject | null;
   // The blocks shown, in the order they passed.
   kept: Block[];
+  // For staff measuring the model (C318): how many JSON objects came, and the type of each one our checks refused
+  // (or "unknown"). Types only, never the words.
+  objects: number;
+  rejected: string[];
   refusedByModel: boolean;
   // A refusal already sent while streaming (a typed question in another subject): nothing more is said.
   stopped: boolean;
@@ -218,6 +222,15 @@ export function namedSubject(text: string): Subject | 'other' | null {
   }
 }
 
+// The "type" a JSON object names, for staff diagnostics (C318); "unknown" when it names none it could be.
+const typeOf = (text: string) => {
+  try {
+    const t = (JSON.parse(text) as { type?: unknown })?.type;
+    return typeof t === 'string' && /^[a-z_]{1,30}$/.test(t) ? t : 'unknown';
+  } catch {
+    return 'unknown';
+  }
+};
 const isRefusal = (text: string) => {
   try {
     return (JSON.parse(text) as { type?: unknown })?.type === 'refuse';
@@ -342,6 +355,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   let error: unknown = null;
   const seen = new Set<BlockType>();
   const kept: Block[] = [];
+  let objects = 0;
+  const rejected: string[] = [];
   // A safety check that failed, or found the words unsafe, stops the answer here; what was already shown had passed.
   const safe = async (turns: { user: string; assistant?: string }): Promise<boolean> => {
     const verdict = await p.moderation!.check(turns);
@@ -374,8 +389,13 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     }
     const s: Subject = subject;
     const b = parseBlockLine(text);
+    objects += 1;
+    if (!b) {
+      rejected.push(typeOf(text));
+      return;
+    }
     // One block of each type, and at most one interactive block (M2-8): the first that passed.
-    if (!b || seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
+    if (seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {
@@ -402,15 +422,15 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   // A typed question is checked before it is sent: one found unsafe is never sent to the model (C314).
   if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
-    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error };
+    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error, objects, rejected };
   }
   // Each JSON object is checked as soon as it closes, however the model laid it out (C316).
-  const objects = jsonObjectScanner();
+  const scan = jsonObjectScanner();
   const sent = await p.text.send((delta) => {
-    for (const o of objects(delta)) enqueue(o);
+    for (const o of scan(delta)) enqueue(o);
   });
   await queue;
-  return { sent, subject, kept, refusedByModel, stopped, error };
+  return { sent, subject, kept, refusedByModel, stopped, error, objects, rejected };
 }
 
 // 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns

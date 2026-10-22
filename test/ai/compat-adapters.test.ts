@@ -80,8 +80,12 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
     reply = () => openaiOk(['Magnets ', 'pull iron.'], 21, 5);
     const pieces: string[] = [];
     // The answer ends at the stop (no usage chunk is asked for), so the counts are estimated: 58 characters sent, 18 back.
-    expect(await workersAiAdapter.streamText(request(), (p) => pieces.push(p))).toEqual({ ok: true, text: 'Magnets pull iron.', tokensIn: 15, tokensOut: 5 });
+    expect(await workersAiAdapter.streamText(request(), (p) => pieces.push(p))).toEqual({ ok: true, text: 'Magnets pull iron.', tokensIn: 15, tokensOut: 5, finish: 'stop' });
     expect(pieces).toEqual(['Magnets ', 'pull iron.']);
+    // Why the stream ended is passed on, so a cut answer can be told from a finished one (C318).
+    reply = () => sse([{ choices: [{ delta: { content: 'Half' } }] }, { choices: [{ delta: {}, finish_reason: 'length' }] }, '[DONE]']);
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toMatchObject({ ok: true, text: 'Half', finish: 'length' });
+    reply = () => openaiOk(['Magnets ', 'pull iron.'], 21, 5);
     expect(calls[0].url).toBe(`https://api.cloudflare.com/client/v4/accounts/${ACCOUNT}/ai/v1/chat/completions`);
     expect(calls[0].headers.authorization).toBe(`Bearer ${TOKEN}`);
     const body = JSON.parse(calls[0].body);
@@ -113,7 +117,7 @@ describe('Workers AI text, through Cloudflare’s OpenAI-compatible route', () =
 
   it('a stream that ends with a stop but no [DONE] is complete; one that just stops is cut short', async () => {
     reply = () => sse([{ choices: [{ delta: { content: 'Iron.' }, finish_reason: null }] }, { choices: [{ delta: {}, finish_reason: 'stop' }] }]);
-    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2 });
+    expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: true, text: 'Iron.', tokensIn: 15, tokensOut: 2, finish: 'stop' });
     reply = () => sse([{ choices: [{ delta: { content: 'Iro' }, finish_reason: null }] }]);
     expect(await workersAiAdapter.streamText(request(), () => undefined)).toEqual({ ok: false, failure: 'cut_short' });
   });
@@ -179,7 +183,7 @@ describe('Workers AI speech to text (Whisper)', () => {
 describe('Gemini (adult tools only, parked)', () => {
   it('posts to Google’s OpenAI-compatible route with the API key, JSON mode and usage', async () => {
     reply = () => openaiOk(['A lesson plan.'], 30, 4);
-    expect(await geminiAdapter.streamText(request({ apiKey: GEMINI_KEY, model: 'gemini-flash-latest', responseFormat: 'json' }), () => undefined)).toEqual({ ok: true, text: 'A lesson plan.', tokensIn: 30, tokensOut: 4 });
+    expect(await geminiAdapter.streamText(request({ apiKey: GEMINI_KEY, model: 'gemini-flash-latest', responseFormat: 'json' }), () => undefined)).toEqual({ ok: true, text: 'A lesson plan.', tokensIn: 30, tokensOut: 4, finish: 'stop' });
     expect(calls[0].url).toBe('https://generativelanguage.googleapis.com/v1beta/openai/chat/completions');
     expect(calls[0].headers.authorization).toBe(`Bearer ${GEMINI_KEY}`);
     const body = JSON.parse(calls[0].body);
