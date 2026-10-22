@@ -6883,4 +6883,8 @@ export const en = {
   'fam.check.mastered': 'Topic mastered!',
   'fam.check.masteredBody': 'You got it right on two days a week apart. That is how you know you have learned it.',
   // d1 end
+  // d1-2 begin
+  // d1-2 end
+  // d1-3 begin
+  // d1-3 end
 } as const;

@@ -6871,4 +6871,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.mastered': 'विषय पक्का हो गया!',
   'fam.check.masteredBody': 'आपने इसे एक हफ़्ते के अंतर पर दो दिन सही किया। यही बताता है कि आपने इसे सीख लिया है।',
   // d1 end
+  // d1-2 begin
+  // d1-2 end
+  // d1-3 begin
+  // d1-3 end
 };
