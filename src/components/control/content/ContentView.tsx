@@ -9,6 +9,7 @@ import type { CatalogProblem } from '@/lib/content/catalog-csv';
 import type { SyllabusDiff } from '@/lib/content/diff';
 import type { CatalogImport, ControlVersion, VersionPreview } from '@/lib/content/library';
 import type { MessageKey } from '@/lib/i18n';
+import { PdfImportView } from './PdfImportView';
 
 // Control → Content (M1-4, docs/family-app/10 §4, §7; docs/34 §10). The syllabus library: import a catalog CSV ("Check
 // file", then "Import as a draft", all or nothing), then each version through review: approve (never by the account
@@ -177,6 +178,15 @@ export function ContentView({ initial }: { initial: ControlVersion[] }) {
             )}
           </div>
         )}
+      </section>
+
+      <PdfImportView onImported={load} />
+
+      <section className={SECTION} data-content-queue-link>
+        <a href="/control/content/responses" className={LINK}>
+          {t('control.queue.link')}
+        </a>
+        <p>{t('control.queue.linkHow')}</p>
       </section>
 
       <section className={SECTION} data-content-versions>

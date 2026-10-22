@@ -170,7 +170,7 @@ describe('checkUpload: a PDF, read without a PDF library', () => {
     expect(await checkUpload({ bytes: pdf(page(text('x')), '/Encrypt 9 0 R'), name: 'eaadhaar.pdf' })).toEqual({ ok: false, reason: 'upload_unreadable' });
     expect(await checkUpload({ bytes: new TextEncoder().encode('%PDF-1.4\n'), name: 'drawing.pdf' })).toEqual({ ok: true, read: 'name_only', ocr: null });
     // Never throws, whatever it is given.
-    expect(readPdf(new TextEncoder().encode('%PDF-1.4\n1 0 obj << /Length 999 /Filter /FlateDecode >>\nstream\nnot zlib\nendstream\nendobj\n'))).toEqual({ encrypted: false, text: '', jpegs: [] });
+    expect(readPdf(new TextEncoder().encode('%PDF-1.4\n1 0 obj << /Length 999 /Filter /FlateDecode >>\nstream\nnot zlib\nendstream\nendobj\n'))).toEqual({ encrypted: false, text: '', jpegs: [], pages: [] });
   });
 });
 

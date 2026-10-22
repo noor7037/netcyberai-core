@@ -12,6 +12,8 @@ import { inflateSync } from 'zlib';
 //   - text is what the content streams show (Tj, TJ, ' and "), decoded through each font's ToUnicode map when the
 //     font says which (by the name the page gives it; one map in the whole file is used for every font), else as
 //     single bytes; a font with neither (rare) reads as noise, and so is not checked;
+//   - pages: the page tree is followed from the catalog's /Pages (/Kids in order), and each page's /Contents streams
+//     are read in order, so each page's text is known; a page whose content cannot be found reads as empty;
 //   - limits: at most 4 MB from one stream, 16 MB in all, 2,000 streams, 200,000 characters of text and the three
 //     largest JPEGs. A file past them is read as far as the limits go.
 // Pure, and it never throws: a file it cannot make sense of reads as no text and no pictures.
@@ -21,8 +23,11 @@ const TOTAL_MAX = 16_000_000;
 const STREAMS_MAX = 2_000;
 const TEXT_MAX = 200_000;
 const JPEGS_MAX = 3;
+const PAGES_MAX = 2_000;
 
-export type PdfRead = { encrypted: boolean; text: string; jpegs: Uint8Array[] };
+// `pages`: the text of each page in the order the page tree gives (page 1 first), for a reader that must say which page
+// a line was read on (Control's catalog import, M2-12). Empty when the file has no page tree that can be followed.
+export type PdfRead = { encrypted: boolean; text: string; jpegs: Uint8Array[]; pages: string[] };
 type CMap = { bytes: number; map: Map<number, string> };
 type Stream = { num: number; dict: string; data: Uint8Array | null; jpeg: Uint8Array | null };
 
@@ -283,8 +288,52 @@ function showText(content: string, cmapFor: (font: string | null) => CMap | null
   }
 }
 
+const refsIn = (s: string): number[] => [...s.matchAll(/(\d+)\s+\d+\s+R/g)].map((m) => Number(m[1]));
+const IS_PAGE = /\/Type\s*\/Page(?![A-Za-z])/;
+const IS_PAGES = /\/Type\s*\/Pages(?![A-Za-z])/;
+
+// The page objects in reading order: from the catalog's /Pages down each /Kids list. A file whose tree cannot be
+// followed gives its page objects in object order.
+function pageOrder(objects: Map<number, string>): number[] {
+  let root: number | null = null;
+  for (const body of objects.values()) {
+    if (!/\/Type\s*\/Catalog\b/.test(body)) continue;
+    const m = /\/Pages\s+(\d+)\s+\d+\s+R/.exec(body);
+    if (m) root = Number(m[1]);
+    break;
+  }
+  const out: number[] = [];
+  const seen = new Set<number>();
+  const walk = (num: number, depth: number) => {
+    if (seen.has(num) || depth > 32 || out.length >= PAGES_MAX) return;
+    seen.add(num);
+    const body = objects.get(num) ?? '';
+    if (IS_PAGES.test(body)) {
+      const kids = /\/Kids\s*\[([^\]]*)\]/.exec(body);
+      for (const k of kids ? refsIn(kids[1]) : []) walk(k, depth + 1);
+    } else if (IS_PAGE.test(body)) out.push(num);
+  };
+  if (root !== null) walk(root, 0);
+  if (out.length > 0) return out;
+  return [...objects.entries()]
+    .filter(([, body]) => IS_PAGE.test(body))
+    .map(([num]) => num)
+    .sort((a, b) => a - b)
+    .slice(0, PAGES_MAX);
+}
+
+// A page's content streams, in order: /Contents is one reference, an array of them, or a reference to such an array.
+function contentsOf(page: string, objects: Map<number, string>): number[] {
+  const m = /\/Contents\s*(\[[^\]]*\]|(\d+)\s+\d+\s+R)/.exec(page);
+  if (!m) return [];
+  if (m[2] === undefined) return refsIn(m[1]);
+  const target = Number(m[2]);
+  const body = (objects.get(target) ?? '').trim();
+  return body.startsWith('[') ? refsIn(body) : [target];
+}
+
 export function readPdf(bytes: Uint8Array): PdfRead {
-  const none: PdfRead = { encrypted: false, text: '', jpegs: [] };
+  const none: PdfRead = { encrypted: false, text: '', jpegs: [], pages: [] };
   try {
     const src = latin1(bytes);
     const encrypted = /\/Encrypt\s*(?:\d+\s+\d+\s+R|<<)/.test(src);
@@ -318,7 +367,20 @@ export function readPdf(bytes: Uint8Array): PdfRead {
       .map((s) => s.jpeg!)
       .sort((a, b) => b.length - a.length)
       .slice(0, JPEGS_MAX);
-    return { encrypted: false, text: out.join('').replace(/[ \t]+/g, ' ').trim(), jpegs };
+    // Each page's own text, read from its content streams in order.
+    const pages: string[] = [];
+    const pageRoom = { left: TEXT_MAX };
+    for (const num of pageOrder(objects)) {
+      const words: string[] = [];
+      for (const ref of contentsOf(objects.get(num) ?? '', objects)) {
+        const data = byNum.get(ref)?.data;
+        if (!data) continue;
+        showText(latin1(data), cmapFor, words, pageRoom);
+        words.push('\n');
+      }
+      pages.push(words.join('').replace(/[ \t]+/g, ' ').trim());
+    }
+    return { encrypted: false, text: out.join('').replace(/[ \t]+/g, ' ').trim(), jpegs, pages };
   } catch {
     return none;
   }

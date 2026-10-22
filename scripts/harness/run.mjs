@@ -6321,6 +6321,47 @@ const familyBrandedDone = async (page) => {
   await hideLogo(page);
   if (familyBrandSeen.name !== BRAND_NAME || !familyBrandSeen.loaded) throw new Error(`the family app's top: ${JSON.stringify(familyBrandSeen)}`);
 };
+// M2-12 (C286): the PDF import form, filled as the founder would, scrolled into view.
+const pdfImportForm = async (page) => {
+  const form = page.locator('[data-content-pdf-import]');
+  await form.locator('[data-content-pdf-file]').setInputFiles({ name: 'syllabus.pdf', mimeType: 'application/pdf', buffer: Buffer.from('%PDF-1.4\n') });
+  await page.locator('#pdf-import-source').fill('https://cbseacademic.nic.in/web_material/CurriculumMain27/SecPart1/Maths_SecP1X_2026-27.pdf');
+  await page.locator('#pdf-import-class').fill('10');
+  await page.locator('#pdf-import-subject').fill('mathematics');
+  await page.locator('#pdf-import-year').fill('2026-27');
+  await form.scrollIntoViewIfNeeded();
+};
+// The review queue: two made-up AI-made responses (made-up topics, asked 6 and 2 times, one 9 days old), the most asked
+// first and opened. Taken away afterwards.
+const QUEUE_TAG = 'harness-m2-12';
+const QUEUE_BLOCKS = JSON.stringify([
+  { type: 'explanation', title: 'Adding fractions', idea: 'Fractions with the same bottom number add their top numbers.', example: '1/5 + 2/5 = 3/5', steps: ['Check the bottom numbers match', 'Add the top numbers'], terms: [{ en: 'denominator', local: 'har' }] },
+  { type: 'check', items: [{ id: 'c1', question: 'What is 1/4 + 2/4?', options: ['3/8', '3/4', '2/4', '1/2'], answer: 1, hint: 'Add only the top numbers.', why: '1 + 2 = 3, the bottom stays 4.', wrong: ['', '', '', ''] }] },
+  { type: 'practice', items: [{ id: 'p1', question: 'What is 2/7 + 3/7?', options: ['5/14', '5/7', '6/7', '1/7'], answer: 1, hint: 'The bottom number stays.', why: '2 + 3 = 5.', wrong: ['', '', '', ''] }] },
+]);
+let queueSeen = null;
+const queueScreen = async (page) => {
+  await db.pg.query(`delete from content.responses where model = $1`, [QUEUE_TAG]);
+  await db.pg.query(
+    `insert into content.responses (board_id, class_level, subject, topic_key, language, style, prompt_version, schema_version, blocks, status, provider, model, asks, created_at) values
+       ('CBSE', 7, 'mathematics', 'cbse.c7.mathematics.harness.t01', 'en', 'en', 'v1', 1, $1::jsonb, 'ai_made', 'anthropic', $2, 6, now() - interval '9 days'),
+       ('CBSE', 7, 'mathematics', 'cbse.c7.mathematics.harness.t02', 'hi', 'hinglish', 'v1', 1, $1::jsonb, 'ai_made', 'anthropic', $2, 2, now() - interval '1 day')`,
+    [QUEUE_BLOCKS, QUEUE_TAG]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-queue-row] [data-queue-open]').first().click();
+  await page.locator('[data-queue-body]').waitFor({ timeout: 20000 });
+  queueSeen = {
+    asks: await page.locator('[data-queue-row]').evaluateAll((els) => els.map((e) => e.getAttribute('data-asks'))),
+    overdue: await page.locator('[data-queue-oldest]').getAttribute('data-queue-oldest'),
+    blocks: await page.locator('[data-queue-body] [data-queue-block]').evaluateAll((els) => els.map((e) => e.getAttribute('data-queue-block')).join()),
+  };
+};
+const queueScreenDone = async () => {
+  await db.pg.query(`delete from content.responses where model = $1`, [QUEUE_TAG]);
+  const seen = queueSeen ?? {};
+  if (seen.asks?.slice(0, 2).join() !== '6,2' || seen.overdue !== 'overdue' || seen.blocks !== 'explanation,check,practice') throw new Error(`the review queue: ${JSON.stringify(seen)}`);
+};
 
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
@@ -6640,6 +6681,12 @@ const SCREENS = [
   ['founder', 'control-apps', '/control/apps'],
   ['founder', 'control-family', '/control/family'],
   // m1-7 end
+  // m2-12 begin
+  // Control → Content (C286): the catalog import from a board's PDF (the form, filled; the reading itself needs a
+  // provider, proven in test/m2/import.test.ts), and the review queue of cached responses, most asked first, one open.
+  ['founder', 'control-content-pdf-import', '/control/content', pdfImportForm],
+  ['founder', 'control-content-responses', '/control/content/responses', queueScreen, queueScreenDone],
+  // m2-12 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
