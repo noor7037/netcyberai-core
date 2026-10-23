@@ -108,7 +108,7 @@ async function buildSchool(db: Sql, queue: JobQueue, by: string, p: Payload): Pr
 }
 
 // The teacher's subjects and class, once invite.send has made the account. Not yet: a retry, a minute or more later.
-async function assignTeacher(db: Sql, by: string, p: Payload): Promise<{ teacherUserId: string; assigned: string[] }> {
+async function assignTeacher(db: Sql, by: string, p: Payload): Promise<{ teacherUserId: string; subjectIds: string[] }> {
   const schoolId = DEMO_SCHOOL.schoolId;
   const { rows } = await db.query(
     `select u.user_id from staff_invitations i join users u on u.user_id = i.auth_user_id and u.school_id = i.school_id
@@ -129,21 +129,21 @@ async function assignTeacher(db: Sql, by: string, p: Payload): Promise<{ teacher
     [schoolId, teacherUserId]
   );
   const teacherId = (await db.query(`select teacher_id from teachers where school_id = $1 and user_id = $2`, [schoolId, teacherUserId])).rows[0].teacher_id as string;
-  const assigned: string[] = [];
+  const subjectIds: string[] = [];
   for (const subject of DEMO_SUBJECTS.filter((x) => x.taught)) {
     const made = await db.query(
       `insert into teacher_subjects (school_id, teacher_id, subject_id, class_id) values ($1, $2, $3, $4) on conflict do nothing returning teacher_id`,
       [schoolId, teacherId, subject.subjectId, DEMO_CLASS.classId]
     );
     if (!made.rows[0]) continue;
-    assigned.push(subject.name);
+    subjectIds.push(subject.subjectId);
     await writeAuditLog(db, {
       schoolId, actorUserId: by, actorRole: 'super_admin', eventAction: 'teacher_subject.assign', targetType: 'teacher_subjects', targetId: teacherId,
       afterState: { teacherId, teacherUserId, subjectId: subject.subjectId, classId: DEMO_CLASS.classId },
     });
   }
   await db.query(`update classes set class_teacher_id = $3 where school_id = $1 and class_id = $2 and class_teacher_id is null`, [schoolId, DEMO_CLASS.classId, teacherUserId]);
-  return { teacherUserId, assigned };
+  return { teacherUserId, subjectIds };
 }
 
 export function demoSetupHandler({ platform, queue }: { platform: Platform; queue: JobQueue }): JobHandler {
@@ -155,7 +155,7 @@ export function demoSetupHandler({ platform, queue }: { platform: Platform; queu
       await platform((db) =>
         writeAuditLog(db, {
           schoolId: DEMO_SCHOOL.schoolId, actorUserId: by, actorRole: 'super_admin', eventAction: 'demo.setup', targetType: 'schools', targetId: DEMO_SCHOOL.schoolId,
-          afterState: { phase: 'assign', ...done },
+          afterState: { phase: 'assign', teacherUserId: done.teacherUserId, subjectIds: done.subjectIds },
         })
       );
       return;
@@ -172,7 +172,7 @@ export function demoSetupHandler({ platform, queue }: { platform: Platform; queu
       });
       await writeAuditLog(db, {
         schoolId: DEMO_SCHOOL.schoolId, actorUserId: by, actorRole: 'super_admin', eventAction: 'demo.setup', targetType: 'schools', targetId: DEMO_SCHOOL.schoolId,
-        afterState: { phase: 'school', ...built },
+        afterState: { phase: 'school', created: built.created, invited: built.invited },
       });
     });
   };
