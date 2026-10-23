@@ -5,8 +5,10 @@ import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
 import { PackButton } from '@/components/family/offline/PackButton';
 import { SaverLink } from '@/components/family/offline/SaverLink';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { SyllabusList } from '@/components/family/SyllabusList';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
 import { openSubjects } from '@/lib/family/learning';
@@ -60,6 +62,10 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject, openToAll);
   const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  // C230-AB: the syllabus the parent saved for this child and subject, below the board's catalog when there is one.
+  // Each line opens Understand as a typed question about it.
+  const own = access.open ? await familyPageRead(page, (db) => readOwnSyllabus(db, page.session.accountId, child.childId, subject)) : null;
+  const ownHref = (itemId: string) => `/family/understand?kind=own&key=${encodeURIComponent(itemId)}`;
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   // M2-6 (C280): the homework helper's link, while its module is on.
   const homeworkOn = switchOn(switches, 'homework');
@@ -178,10 +184,19 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
               ))}
             </ol>
           </section>
-        ) : (
+        ) : own ? null : (
           <p data-family-no-catalog className="fam-card bg-white p-5 text-base text-slate">
             {t(lang, 'fam.study.noCatalog')}
           </p>
+        )}
+        {access.open && own && (
+          <SyllabusList
+            id="fam-own-syllabus"
+            title={t(lang, 'fam.syllabus.yours')}
+            note={t(lang, 'fam.syllabus.yoursNote')}
+            tone={subject}
+            chapters={own.chapters.map((c) => ({ title: c.title, href: ownHref(c.itemId), topics: c.topics.map((tp) => ({ title: tp.title, href: ownHref(tp.itemId) })) }))}
+          />
         )}
       </main>
     </div>

@@ -494,6 +494,11 @@ ALLOWED_PERMISSIVE = (
         ("control.ai_profiles", "ai_profiles_staff_read"),
         ("control.ai_providers", "ai_providers_staff_read"),
         # m2 end
+        # c230-ab begin
+        # A parent's own syllabus for a child: own account only (with the restrictive twins below).
+        ("family.child_syllabi", "child_syllabi_own"),
+        ("family.child_syllabus_items", "child_syllabus_items_own"),
+        # c230-ab end
     }
 )
 
@@ -968,6 +973,11 @@ REQUIRED_RESTRICTIVE = {
     ("control.ai_profiles", "ai_profiles_staff_only"),
     ("control.ai_providers", "ai_providers_staff_only"),
     # m2 end
+    # c230-ab begin
+    # A parent's own syllabus for a child: own account only.
+    ("family.child_syllabi", "child_syllabi_own_only"),
+    ("family.child_syllabus_items", "child_syllabus_items_own_only"),
+    # c230-ab end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

@@ -1,9 +1,11 @@
 import { redirect } from 'next/navigation';
+import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { ParentArea } from '@/components/family/ParentArea';
 import { PinGate } from '@/components/family/PinGate';
 import { classSubjects } from '@/lib/family/catalog';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
-import { syllabusBoardOf } from '@/lib/family/children';
+import { listSyllabi } from '@/lib/family/child-syllabus';
+import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import { calmCard, openSubjects } from '@/lib/family/learning';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
@@ -40,6 +42,20 @@ const AREA_KEYS: MessageKey[] = [
   'fam.err.target_bad', 'fam.err.jar_exists', 'fam.err.jar_not_full', 'fam.err.jar_full', 'fam.err.not_found', 'fam.err.consent_required',
 ];
 
+// C230-AB: a parent's own syllabus for a child (src/components/family/ChildSyllabusEditor.tsx).
+const SYLLABUS_KEYS: MessageKey[] = [
+  'fam.syllabus.title', 'fam.syllabus.lead', 'fam.syllabus.child', 'fam.syllabus.subject', 'fam.syllabus.none', 'fam.syllabus.add', 'fam.syllabus.replace',
+  'fam.syllabus.fromPhotos', 'fam.syllabus.typeIt', 'fam.syllabus.privacy', 'fam.syllabus.reading', 'fam.syllabus.saving', 'fam.syllabus.draftWaiting',
+  'fam.syllabus.check', 'fam.syllabus.discard', 'fam.syllabus.draftNote', 'fam.syllabus.chapter', 'fam.syllabus.topic', 'fam.syllabus.topicOf',
+  'fam.syllabus.addChapter', 'fam.syllabus.addTopic', 'fam.syllabus.moveUp', 'fam.syllabus.moveDown', 'fam.syllabus.removeItem', 'fam.syllabus.morePhotos',
+  'fam.syllabus.fillAll', 'fam.syllabus.save', 'fam.syllabus.savedNote', 'fam.syllabus.count', 'fam.syllabus.edit', 'fam.syllabus.delete',
+  'fam.syllabus.deleteConfirm', 'fam.syllabus.deleteYes', 'fam.syllabus.consent', 'fam.syllabus.err.not_a_photo', 'fam.syllabus.err.too_big',
+  'fam.syllabus.err.personal_info', 'fam.syllabus.err.unreadable', 'fam.syllabus.err.nothing_found', 'fam.syllabus.err.too_many_photos',
+  'fam.syllabus.err.too_many', 'fam.syllabus.err.title_bad', 'fam.syllabus.err.empty', 'fam.syllabus.err.subject_bad', 'fam.syllabus.err.not_for_class',
+  'fam.syllabus.err.ai_not_switched_on', 'fam.syllabus.err.ai_cap_reached', 'fam.syllabus.err.ai_failed', 'fam.err.network', 'fam.err.parent_pin_required',
+  'fam.err.not_found', 'fam.err.consent_required', 'fam.err.bad_request',
+];
+
 export default async function FamilyParentPage() {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
@@ -68,6 +84,14 @@ export default async function FamilyParentPage() {
   const voice = switches && (switchOn(switches, 'voice_input') || page.consents.voice_practice) ? { granted: page.consents.voice_practice } : null;
   // The habit section (M2-3, C277) when Control has the habit module switched on.
   const habit = switches && switchOn(switches, 'habit') ? await familyPageRead(page, (db) => Promise.all(page.children.map((c) => parentHabit(db, page.session.accountId, c.childId, indiaDate(), lang)))) : null;
+  // C230-AB: each child's class subjects (all of them: an own syllabus can be given for any), and the syllabi saved or
+  // waiting to be checked. Nursery, LKG and UKG have no subjects yet, so they are not offered.
+  const own = await familyPageRead(page, async (db) => ({
+    childList: await Promise.all(
+      page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ childId: c.childId, firstName: c.firstName, subjects: await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel }) }))
+    ),
+    syllabi: await listSyllabi(db, page.session.accountId),
+  }));
   return (
     <main lang={lang} className="mx-auto w-full max-w-xl px-4 py-6">
       <ParentArea
@@ -83,6 +107,7 @@ export default async function FamilyParentPage() {
         states={familyStates(lang)}
         studyCore={page.consents.study_core}
       />
+      {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
     </main>
   );
 }
