@@ -13,6 +13,7 @@ import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
+import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { emailSendHandler } from './email-handler';
 import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
@@ -67,6 +68,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     // W2 (C316): the AI smoke test, and preparing chapters' explanations for review one line per run.
     [AI_SMOKE_JOB]: aiSmokeHandler({ platform }),
     [CONTENT_PREPARE_JOB]: contentPrepareHandler({ platform, queue: jobQueue }),
+    // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
+    [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),
   };
 }
 
