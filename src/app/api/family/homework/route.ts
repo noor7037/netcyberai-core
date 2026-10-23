@@ -22,7 +22,9 @@ import { indiaDate } from '@/lib/time/india';
 // provider cleared for minors), and dropped: it is never stored or logged. The answer is a sealed ladder token and
 // what the phone may see of it (src/lib/family/homework.ts). No database connection is held while the AI reads (F1-3).
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60;
+// Longer than a whole answer's own limit (WHOLE_ANSWER_TIMEOUT_MS, C323), so a slow answer ends in the family's plain
+// message rather than the platform cutting the request off (C230-X).
+export const maxDuration = 300;
 
 // parseRead keeps a subject only when it is one of these (the class's own), else 'other'.
 type Pending = { prepared: PreparedText; moderation: PreparedModeration; childId: string; freeSubject: string | null; subjects: Subject[]; day: string };

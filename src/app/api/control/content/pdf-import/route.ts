@@ -17,7 +17,8 @@ import { indiaDate } from '@/lib/time/india';
 // No database connection is held while the AI reads (F1-3): the checks and the AI platform's own in one short
 // transaction, the call with none, the metering and the draft in a second.
 export const dynamic = 'force-dynamic';
-export const maxDuration = 120;
+// Above a whole answer's own limit (C323, C230-X): the reading fails with its message, never a cut-off request.
+export const maxDuration = 300;
 
 type Body = { pdf?: unknown; sourceUrl?: unknown; board?: unknown; classLevel?: unknown; subject?: unknown; academicYear?: unknown };
 const refuse = (code: string, status: number, extra: Record<string, unknown> = {}) => NextResponse.json({ error: code, code, ...extra }, { status, headers: NO_STORE });
