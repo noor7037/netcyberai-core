@@ -40,6 +40,8 @@ export const JSON_ONLY = 'Answer with one JSON object only, and nothing outside 
 
 // The longest a vendor call may take before it is given up (and the next provider in the chain is tried).
 export const CALL_TIMEOUT_MS = 60_000;
+// A whole answer (not streamed, C322) shows nothing until it is done, so it is given longer before it is given up (C323).
+export const WHOLE_ANSWER_TIMEOUT_MS = 120_000;
 
 // ---- speech to text (M2-7, C281: voice input) ----------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 import { sseData } from './sse';
-import { CALL_TIMEOUT_MS, JSON_ONLY, type AdapterRequest, type AdapterResult } from './types';
+import { CALL_TIMEOUT_MS, JSON_ONLY, WHOLE_ANSWER_TIMEOUT_MS, type AdapterRequest, type AdapterResult } from './types';
 
 // The Chat Completions wire format, streamed over fetch (no SDK), shared by every vendor that speaks it: OpenAI itself,
 // Cloudflare Workers AI's OpenAI-compatible route and Gemini's (C230-U). Text arrives as choices[0].delta.content; the
@@ -52,7 +52,7 @@ export async function streamChatCompletions(url: string, token: string, request:
       method: 'POST',
       headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(CALL_TIMEOUT_MS),
+      signal: AbortSignal.timeout(stream ? CALL_TIMEOUT_MS : WHOLE_ANSWER_TIMEOUT_MS),
     });
   } catch {
     return { ok: false, failure: 'network' };
