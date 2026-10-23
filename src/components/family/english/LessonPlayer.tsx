@@ -312,7 +312,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
           {w['fam.english.error']}
         </p>
       )}
-      <div className="fixed inset-x-0 bottom-[60px] z-20 flex justify-end bg-gradient-to-t from-off-white px-4 pb-3 pt-6">
+      <div className="fixed inset-x-0 bottom-0 z-20 flex justify-end bg-gradient-to-t from-off-white px-4 pb-[calc(var(--fam-bottom,0px)+0.75rem)] pt-6">
         <div className="mx-auto flex w-full max-w-xl justify-end">
         {!onLast ? (
           <button type="button" onClick={() => { stopSpeaking(); setAt(at + 1); }} className={`min-h-[52px] rounded-full px-8 text-lg font-extrabold shadow-md ${theme.button}`}>

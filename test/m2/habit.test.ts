@@ -61,6 +61,8 @@ beforeAll(async () => {
       ('${CHILD2}', '${ACCOUNT}', 'Veer', 9, 'CBSE', 'en', 'en', 'IN-KA', 'science', now()),
       ('${OTHER_CHILD}', '${OTHER_ACCOUNT}', 'Zoya', 9, 'CBSE', 'en', 'en', 'IN-KA', 'science', now());
     insert into control.app_flags (app, module, enabled, reason) values ('family', 'habit', true, 'test') on conflict (app, module) do update set enabled = true;
+    -- The plan is on by default once built (C230-Z); these tests count plan days as written here, so it is off.
+    insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', false, 'test') on conflict (app, module) do update set enabled = false;
     insert into content.syllabus_versions (version_id, board_id, class_level, subject, academic_year, version_no, status, audience, import_source, import_ref, approved_by, approved_at)
       values ('${VERSION}', 'CBSE', 9, 'science', '2026-27', 1, 'published', 'everyone', 'repository', 'test', 'f8000000-0000-4000-8000-0000000000f1', now());
     insert into content.chapters (chapter_id, version_id, chapter_key, position, title_en, source_url, source_page, checked_on)

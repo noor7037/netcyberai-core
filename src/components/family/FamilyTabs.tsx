@@ -18,11 +18,13 @@ const ICON: Record<FamilyTab, string> = {
 
 export function FamilyTabs({ tabs, labels, navLabel }: { tabs: FamilyTab[]; labels: Record<FamilyTab, string>; navLabel: string }) {
   const path = usePathname() ?? '';
-  if (path.startsWith('/family/welcome')) return null;
+  // Hidden during the first steps, and inside an English lesson or check (C230-Y): a lesson is one task with its own
+  // close button and its Next button where the tabs would be.
+  if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check')) return null;
   const active = (t: FamilyTab) => (t === 'home' ? path === '/family' : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') : path.startsWith(HREF[t]));
   // D1 (C230-Q): a floating dock above the phone's home bar; the open tab sits on a coloured pill that pops in.
   return (
-    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)]">
+    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[calc(var(--fam-bottom,0px)+0.5rem)]">
       <ul className="fam-dock mx-auto flex max-w-xl rounded-[1.75rem] bg-white p-1.5">
         {tabs.map((t) => {
           const on = active(t);

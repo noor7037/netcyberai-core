@@ -3,8 +3,9 @@ import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { FamilySessionKeeper } from '@/components/family/FamilySessionKeeper';
 import { FamilyTabs } from '@/components/family/FamilyTabs';
+import { NoVoiceNotice } from '@/components/family/english/NoVoiceNotice';
 import { OfflineSync } from '@/components/family/offline/OfflineSync';
-import { familyBanner, offMessage, readFamilySwitches, shellTooOld, switchOn } from '@/lib/family/flags';
+import { familyBanner, offMessage, readFamilySwitches, shellTooOld, shellVersion, switchOn } from '@/lib/family/flags';
 import { visibleTabs } from '@/lib/family/modules';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
 import { t } from '@/lib/i18n';
@@ -52,6 +53,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
       {/* M2-9 (C283): offline packs. The phone store's owner is a one-way tag of the account, never its id. */}
       <OfflineSync owner={createHash('sha256').update(`ncf-offline:${page.session.accountId}`).digest('hex').slice(0, 24)} childId={page.child?.childId ?? null} on={switchOn(switches, 'offline')} />
       <div className="pb-28">{children}</div>
+      <NoVoiceNotice inApp={shellVersion(headers().get('user-agent')) !== null} words={{ app: t(lang, 'fam.voice.needsApp'), browser: t(lang, 'fam.voice.noBrowserVoice'), close: t(lang, 'fam.voice.close') }} />
       <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future'), family: t(lang, 'fam.tab.family') }} />
     </>
   );

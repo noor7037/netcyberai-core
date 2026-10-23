@@ -60,6 +60,9 @@ FAMILY_DOORS = {
     # authenticator) and the platform role's transaction, for this one route only.
     "@/lib/content/route": {"src/app/api/family/prepare/route.ts"},
     "@/lib/control/billing-route": {"src/app/api/family/prepare/route.ts"},
+    # The Android shell's own speech engine (C230-Y): the web view has no speechSynthesis, so the English course and the
+    # read-aloud button speak through the shell's TextToSpeech plugin, from this one file.
+    "@capacitor/core": {"src/components/family/english/speech.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")

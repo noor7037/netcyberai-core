@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import type { Diagram, EnglishMoment, Explanation, KeyPoints, Sources, WorkedExample } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { SUBJECT_THEME } from '@/lib/family/subject-theme';
+import { speak } from '@/components/family/english/speech';
 
 // One component per block type (M1-5, C251): the model's output is data, and only these draw it, as plain text. No
 // block is ever rendered as markup. Each card carries its subject's colour (docs/family-app/09 §2).
@@ -179,18 +180,14 @@ export function DiagramView({ b, tone }: { b: Diagram; tone: string }) {
 
 export function EnglishMomentView({ b, w, tone }: { b: EnglishMoment; w: Words; tone: string }) {
   const [speaking, setSpeaking] = useState(false);
-  // Known only in the browser, after the first paint, so a block drawn with the page matches on both sides.
+  // Known only in the browser, after the first paint, so a block drawn with the page matches on both sides. The phone's
+  // own speech engine in the Android app, the browser's elsewhere (speech.ts, C230-Y); without either, speak() says so.
   const [canSpeak, setCanSpeak] = useState(false);
-  useEffect(() => setCanSpeak('speechSynthesis' in window), []);
+  useEffect(() => setCanSpeak(true), []);
   const say = () => {
     if (!canSpeak) return;
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(b.sentence);
-    u.lang = 'en-IN';
-    u.rate = 0.9;
-    u.onend = () => setSpeaking(false);
     setSpeaking(true);
-    window.speechSynthesis.speak(u);
+    void speak(b.sentence, 'en', 0.9).finally(() => setSpeaking(false));
   };
   return (
     <Card title={w['fam.block.english']} tone={tone} tag="english_moment">

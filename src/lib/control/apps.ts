@@ -132,7 +132,7 @@ export function familyModuleRows(flags: readonly FlagRow[]): { flag: FlagRow; ev
     const row = saved.get(module);
     return row
       ? { flag: row, everSet: true }
-      : { flag: { app: 'family' as const, module, enabled: false, audience: 'everyone' as const, audience_percent: null, audience_schools: null, reason: null, ends_at: null, off_message_en: null, off_message_hi: null, updated_at: '' }, everSet: false };
+      : { flag: { app: 'family' as const, module, enabled: true, audience: 'everyone' as const, audience_percent: null, audience_schools: null, reason: null, ends_at: null, off_message_en: null, off_message_hi: null, updated_at: '' }, everSet: false };
   });
   const extra = Array.from(saved.values()).filter((f) => !built.includes(f.module)).map((flag) => ({ flag, everSet: true }));
   return [...listed, ...extra];

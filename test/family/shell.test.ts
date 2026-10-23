@@ -2,7 +2,7 @@ import { readFileSync, existsSync } from 'fs';
 import { execSync } from 'child_process';
 import path from 'path';
 import { describe, expect, it } from 'vitest';
-import { shellTooOld, shellVersion, type FamilySwitches } from '@/lib/family/flags';
+import { shellNeedsEdgeRoom, shellTooOld, shellVersion, type FamilySwitches } from '@/lib/family/flags';
 
 // M1-8 (C254): the Android shell. It shows only the live Family app over https (no other host, no plain http), has an
 // offline page, reports its version so Control can ask old installs to update, and keeps every signing key out of the
@@ -43,6 +43,25 @@ describe('the Android shell', () => {
     expect(tracked).not.toMatch(/\.(jks|keystore|p12)$|keystore\.properties/m);
     expect(readFileSync(path.join(ROOT, 'android/.gitignore'), 'utf8')).toMatch(/keystore\.properties/);
     expect(gradle).toMatch(/rootProject\.file\('keystore\.properties'\)/);
+  });
+
+  it('shell 2 keeps the page clear of the phone\'s bars, lets the keyboard type by voice, and may ask for the microphone (C230-Y)', () => {
+    expect(config.android.adjustMarginsForEdgeToEdge).toBe('force');
+    // captureInput hands the keyboard a bare connection, which turns off its voice typing and suggestions.
+    expect(config.android.captureInput ?? false).toBe(false);
+    const manifest = readFileSync(path.join(ROOT, 'android/app/src/main/AndroidManifest.xml'), 'utf8');
+    expect(manifest).toMatch(/android\.permission\.RECORD_AUDIO/);
+    expect(manifest).toMatch(/android\.intent\.action\.TTS_SERVICE/);
+    expect(readFileSync(path.join(ROOT, 'android/capacitor.settings.gradle'), 'utf8')).toMatch(/capacitor-community-text-to-speech/);
+  });
+
+  it('only the first shell on Android 15+ gets the page\'s own room for the bars', () => {
+    expect(shellNeedsEdgeRoom('Mozilla/5.0 (Linux; Android 15; wv) NetCyberAIFamily/1')).toBe(true);
+    expect(shellNeedsEdgeRoom('Mozilla/5.0 (Linux; Android 16; wv) NetCyberAIFamily/1')).toBe(true);
+    expect(shellNeedsEdgeRoom('Mozilla/5.0 (Linux; Android 14; wv) NetCyberAIFamily/1')).toBe(false);
+    expect(shellNeedsEdgeRoom('Mozilla/5.0 (Linux; Android 15; wv) NetCyberAIFamily/2')).toBe(false);
+    expect(shellNeedsEdgeRoom('Mozilla/5.0 (Linux; Android 15) Chrome/140')).toBe(false);
+    expect(shellNeedsEdgeRoom(null)).toBe(false);
   });
 
   it('carries no lock or app-watching code in M1', () => {

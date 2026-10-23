@@ -14,6 +14,25 @@
     radial-gradient(30rem 20rem at -12% 18%, rgb(2 207 249 / 0.08), transparent 70%),
     radial-gradient(34rem 26rem at 50% 120%, rgb(29 78 216 / 0.07), transparent 70%);
   background-attachment: fixed;
+  /* Room for the phone's status bar and navigation bar (C230-Y): what the browser reports, or, for the first Android
+     shell on Android 15+ (`data-edge`, which reports nothing), a status bar's and a gesture bar's usual height. */
+  --fam-top: env(safe-area-inset-top, 0px);
+  --fam-bottom: env(safe-area-inset-bottom, 0px);
+  padding-top: var(--fam-top);
+}
+.fam-canvas[data-edge] {
+  --fam-top: max(env(safe-area-inset-top, 0px), 44px);
+  --fam-bottom: max(env(safe-area-inset-bottom, 0px), 28px);
+}
+/* A dark strip behind the status bar, so its white clock and icons stay readable and nothing is drawn under them. */
+.fam-canvas::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--fam-top);
+  background: #061233; /* midnight */
+  z-index: 60;
+  pointer-events: none;
 }
 
 /* ---- the greeting band ----------------------------------------------------------------------------------------- */
@@ -269,4 +288,18 @@
     transition: none !important;
     transform: none !important;
   }
+}
+
+/* ---- loading (C230-Y) ----------------------------------------------------------------------------------------------- */
+
+.fam-skeleton {
+  background: rgb(15 23 42 / 0.08);
+  animation: fam-pulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes fam-pulse {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-skeleton { animation: none; }
 }

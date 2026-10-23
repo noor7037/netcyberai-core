@@ -139,9 +139,10 @@ describe('the routes', () => {
     const { GET } = await import('@/app/api/family/plan/route');
     return GET(new NextRequest('http://localhost/api/family/plan', { headers: { cookie } }));
   };
-  it('the plan needs its module switched on in Control', async () => {
+  it('the plan needs its module switched on in Control (on by default once built, C230-Z; off when Control says so)', async () => {
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', false, 'test')`);
     expect((await get()).status).toBe(403);
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', true, 'test')`);
+    await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'plan'`);
     const res = await get();
     expect(res.status).toBe(200);
     expect((await res.json()).items.length).toBeGreaterThan(0);
