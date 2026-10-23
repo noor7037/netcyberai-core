@@ -101,7 +101,6 @@ export default async function FamilyParentPage() {
   }));
   return (
     <main lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
-      <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
       <ParentArea
         english={english}
         photo={photo}
@@ -114,8 +113,13 @@ export default async function FamilyParentPage() {
         children={page.children.map((c, i) => ({ subjects: subjects[i], childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, freeSubject: c.freeSubject }))}
         states={familyStates(lang)}
         studyCore={page.consents.study_core}
+        afterChildren={
+          <>
+            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
+          </>
+        }
       />
-      {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
     </main>
   );
 }

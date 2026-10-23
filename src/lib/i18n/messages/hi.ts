@@ -6427,7 +6427,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.syllabus.askChapter': 'अध्याय "{chapter}" समझाओ।',
   'fam.syllabus.err.not_a_photo': 'यह फ़ाइल फ़ोटो नहीं है। JPEG, PNG या WebP फ़ोटो लें।',
   'fam.syllabus.err.too_big': 'यह फ़ाइल बहुत बड़ी है। फ़ोटो या PDF 3 MB तक हो सकती है।',
-  'fam.syllabus.err.personal_info': 'इस फ़ोटो में निजी जानकारी दिखती है, जैसे पहचान पत्र। सिर्फ़ विषय-सूची के पन्ने की फ़ोटो लें।',
+  'fam.syllabus.err.personal_info': 'इसमें निजी जानकारी दिखती है, जैसे पहचान पत्र या आधार नंबर। सिर्फ़ विषय-सूची के पन्ने इस्तेमाल करें।',
   'fam.syllabus.err.unreadable': 'यह फ़ोटो पढ़ी नहीं जा सकी। अच्छी रोशनी में साफ़ फ़ोटो लें।',
   'fam.syllabus.err.nothing_found': 'इस फ़ोटो में अध्यायों के नाम नहीं मिले। विषय-सूची के पन्ने की साफ़ फ़ोटो लें।',
   'fam.syllabus.err.too_many_photos': 'एक पाठ्यक्रम ज़्यादा से ज़्यादा 5 फ़ोटो से पढ़ा जा सकता है। इसे सेव करें, और जो छूट गया हो उसे लिख दें।',

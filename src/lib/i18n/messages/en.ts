@@ -6437,7 +6437,7 @@ export const en = {
   'fam.syllabus.askChapter': 'Explain the chapter "{chapter}".',
   'fam.syllabus.err.not_a_photo': 'That file is not a photo. Use a JPEG, PNG or WebP photo.',
   'fam.syllabus.err.too_big': 'That file is too big. A photo or a PDF can be up to 3 MB.',
-  'fam.syllabus.err.personal_info': 'This photo seems to show personal details, like an ID card. Take a photo of the contents page only.',
+  'fam.syllabus.err.personal_info': 'This seems to show personal details, like an ID card or an Aadhaar number. Use the contents pages only.',
   'fam.syllabus.err.unreadable': 'This photo could not be read. Try a clearer one, in good light.',
   'fam.syllabus.err.nothing_found': 'No chapter names were found in this photo. Try a clear photo of the contents page.',
   'fam.syllabus.err.too_many_photos': 'One syllabus can be read from up to 5 photos. Save it, and type anything that is missing.',

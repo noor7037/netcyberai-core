@@ -41,7 +41,9 @@ vi.mock('@/lib/ai/platform', async (original) => ({
     };
   },
 }));
-vi.mock('@/lib/privacy/upload-check', () => ({
+vi.mock('@/lib/privacy/upload-check', async (original) => ({
+  // The real rule for a PDF's words; the photo's OCR screen is stood in for.
+  textProblem: (await original<typeof import('@/lib/privacy/upload-check')>()).textProblem,
   checkUpload: async () => {
     screen.calls += 1;
     return screen.result;
@@ -355,6 +357,13 @@ describe('a PDF of the contents, through the route (C230-AB)', () => {
     const scan = Buffer.from('%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [] /Count 0 >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n', 'latin1').toString('base64');
     const r = await call('/api/family/syllabus/read', 'POST', { childId: CHILD, subject: 'social_science', pdf: scan });
     expect(r.status).toBe(422);
+    expect(ai.requests.length).toBe(calls);
+  });
+
+  it('a PDF whose words hold an Aadhaar number is refused before any AI call', async () => {
+    const calls = ai.requests.length;
+    const r = await call('/api/family/syllabus/read', 'POST', { childId: CHILD, subject: 'social_science', pdf: pdf(['Contents', 'Aadhaar 4123 4567 8901']) });
+    expect(r).toMatchObject({ status: 422, body: { error: 'personal_info' } });
     expect(ai.requests.length).toBe(calls);
   });
 });

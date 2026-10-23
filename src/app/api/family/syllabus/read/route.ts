@@ -3,7 +3,7 @@ import { accountSummary } from '@/lib/family/account';
 import { checkSyllabusRequest, draftFromCatalogLines, draftFromReply, isUuid, keepDraft, PROBLEM_STATUS, type RequestProblem } from '@/lib/family/child-syllabus';
 import { extractedCatalog, pdfPages, PDF_MAX_BYTES } from '@/lib/content/pdf-import';
 import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
-import { PHOTO_MAX_BYTES, screenPhoto } from '@/lib/family/homework';
+import { hasPersonalInfo, PHOTO_MAX_BYTES, screenPhoto } from '@/lib/family/homework';
 import { jsonBody, requireParent } from '@/lib/family/request';
 import { activePromptVersion, prepareText, type PreparedText } from '@/lib/ai/platform';
 import { familySyllabusPrompt } from '@/lib/ai/prompts/family.syllabus_extract';
@@ -16,12 +16,12 @@ import { indiaDate } from '@/lib/time/india';
 //   POST { childId, subject, pdf: <base64 of a PDF with text, at most 3 MB> }
 // A PDF's text is read here (src/lib/content/pdf-import.ts, as Control's catalog import); only titles printed on their
 // own page are kept (extractedCatalog), so nothing the model makes up reaches the draft.
-// Parent mode and the study_core consent. The photo is screened here first (a real photo, not too big, no Aadhaar
-// number or card in its words), read once by the family.syllabus_extract profile through the AI platform, and dropped:
-// it is never stored or logged. The titles it gives start a new draft, or join the end of the draft named by
-// syllabusId (up to 5 photos, one request each: the hosting refuses a body over 4.5 MB). A draft is never shown to the
-// child; the parent checks, edits and saves it (POST /api/family/syllabus). No database connection is held while the
-// AI reads (F1-3).
+// Parent mode and the study_core consent. A PDF's words are screened for an Aadhaar number or card. The photo is
+// screened here first (a real photo, not too big, no Aadhaar number or card in its words), read once by the
+// family.syllabus_extract profile through the AI platform, and dropped: it is never stored or logged. The titles it
+// gives start a new draft, or join the end of the draft named by syllabusId (up to 5 photos, one request each: the
+// hosting refuses a body over 4.5 MB). A draft is never shown to the child; the parent checks, edits and saves it (POST
+// /api/family/syllabus). No database connection is held while the AI reads (F1-3).
 export const dynamic = 'force-dynamic';
 // Longer than a whole answer's own limit (C323, C230-X): a slow read ends in the parent's plain message.
 export const maxDuration = 300;
@@ -49,6 +49,8 @@ export async function POST(req: NextRequest) {
   const pdf = isPdf ? pdfPages(bytes) : null;
   if (pdf && !pdf.ok) return NextResponse.json({ error: pdf.reason }, { status: pdf.reason === 'too_big' ? 413 : 422 });
   const pages = pdf && pdf.ok ? pdf.pages : null;
+  // A PDF's words go to the AI as text, so they pass the photo's rule first: no Aadhaar number or card.
+  if (pages && hasPersonalInfo(pages.join('\n'))) return NextResponse.json({ error: 'personal_info' }, { status: 422 });
 
   try {
     // 0. The cheap refusals first, so a refused request never pays for the photo screen.

@@ -1,7 +1,7 @@
 'use client';
 
 import type { Subject } from '@/lib/family/subjects';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -196,7 +196,8 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 // `photo`: the same for photo questions (M2-6, C280), when Control has the homework helper switched on.
 // `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
 // `offers` (C230-V): whether the parent agreed to hear about offers; always shown, optional, off until turned on.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null }) {
+// `afterChildren`: the sections about the children's school and syllabus (C230-AA, C230-AB), placed after the children.
+export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, afterChildren = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; afterChildren?: ReactNode }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -270,6 +271,8 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
           </Button>
         )}
       </Section>
+
+      {afterChildren}
 
       <Section title={w['fam.parent.privacy']}>
         <p className="text-sm text-slate">{w['fam.parent.privacyIntro']}</p>
