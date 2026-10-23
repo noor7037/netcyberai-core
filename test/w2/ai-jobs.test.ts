@@ -116,6 +116,10 @@ describe('the AI smoke test (C316)', () => {
     expect(row.after_state.checks.map((c: { check: string; ok: boolean; failure: string }) => [c.check, c.ok, c.failure])).toEqual([
       ['text', false, 'not_switched_on'],
       ['text:system', false, 'not_switched_on'],
+      ['prepare:en:user', false, 'not_switched_on'],
+      ['prepare:en:system', false, 'not_switched_on'],
+      ['prepare:hi:user', false, 'not_switched_on'],
+      ['prepare:hi:system', false, 'not_switched_on'],
       ['photo', false, 'not_switched_on'],
       ['voice', false, 'not_switched_on'],
       ['safety', false, 'not_switched_on'],
@@ -130,6 +134,7 @@ describe('the AI smoke test (C316)', () => {
       ['family.homework', '@cf/meta/llama-4-scout-17b-16e-instruct'],
       ['family.voice_input', '@cf/openai/whisper-large-v3-turbo'],
       ['family.moderation', '@cf/meta/llama-guard-3-8b'],
+      ['content.prepare', '@cf/meta/llama-4-scout-17b-16e-instruct'],
     ])
       await q(`update control.ai_profiles set provider_id = 'workers-ai', model = $2 where profile_id = $1`, [profile, model]);
     const s = sealAiKey(aiEncryptionKey()!, 'workers-ai', WORKERS_KEY);
@@ -143,8 +148,11 @@ describe('the AI smoke test (C316)', () => {
         const answer = '{"type":"answer","word":"iron"}';
         if (String(url).endsWith('/chat/completions')) {
           const photo = String(init.body).includes('image_url');
-          const text = photo ? '{"question":"Which of these is attracted by a magnet?"}' : answer;
-          if (JSON.parse(String(init.body)).stream === false) return new Response(JSON.stringify({ choices: [{ message: { content: text } }] }), { status: 200 });
+          // The real explanation prompt (C326): the three required blocks, one per line.
+          const explaining = String(init.body).includes('Poles of Magnet');
+          const blocks = ['{"type":"explanation","title":"Poles"}', '{"type":"check","items":[]}', '{"type":"practice","items":[]}'].join('\n');
+          const text = photo ? '{"question":"Which of these is attracted by a magnet?"}' : explaining ? blocks : answer;
+          if (JSON.parse(String(init.body)).stream === false) return new Response(JSON.stringify({ choices: [{ message: { content: text }, finish_reason: 'stop' }] }), { status: 200 });
           return new Response(`data: ${JSON.stringify({ choices: [{ delta: { content: text } }] })}\n\ndata: ${JSON.stringify({ choices: [{ delta: {}, finish_reason: 'stop' }] })}\n\n`, { status: 200 });
         }
         if (String(url).includes('/run/@cf/meta/llama-4')) {
@@ -170,6 +178,10 @@ describe('the AI smoke test (C316)', () => {
     expect(summary).toEqual([
       ['text', true, 'json: one object, nothing around it'],
       ['text:system', true, 'json: one object, nothing around it'],
+      ['prepare:en:user', true, 'blocks: explanation, check, practice; all required; finish: stop'],
+      ['prepare:en:system', true, 'blocks: explanation, check, practice; all required; finish: stop'],
+      ['prepare:hi:user', true, 'blocks: explanation, check, practice; all required; finish: stop'],
+      ['prepare:hi:system', true, 'blocks: explanation, check, practice; all required; finish: stop'],
       ['transport:compat_stream', true, 'json: one object, nothing around it'],
       ['transport:compat_once', true, 'json: one object, nothing around it'],
       ['transport:native_once', true, 'json: one object, nothing around it'],
@@ -185,9 +197,16 @@ describe('the AI smoke test (C316)', () => {
     expect(row.after_state.checks[0].start).toBe('{"type":"answer","word":"iron"}');
     // The streamed transports keep the first raw bytes, to see where a character is lost (C321).
     expect(row.after_state.checks.find((c: { check: string }) => c.check === 'transport:compat_stream').raw).toContain('data: ');
-    // Twelve calls, metered under each profile; nothing taken from a family's day.
-    expect(sent).toHaveLength(12);
+    // The explanation prompt went both ways, at the profile's full length: once opening the user message, once as a
+    // system message (C326).
+    const explained = sent.filter((x) => x.body.includes('Poles of Magnet')).map((x) => JSON.parse(x.body) as { messages: { role: string }[]; max_tokens: number });
+    expect(explained.map((b) => b.messages.map((m) => m.role).join('+')).sort()).toEqual(['system+user', 'system+user', 'user', 'user']);
+    expect(new Set(explained.map((b) => b.max_tokens)).size).toBe(1);
+    expect(explained[0].max_tokens).toBeGreaterThan(300);
+    // Sixteen calls, metered under each profile; nothing taken from a family's day.
+    expect(sent).toHaveLength(16);
     expect(await q(`select profile_id, sum(requests)::int as requests from control.ai_usage group by 1 order by 1`)).toEqual([
+      { profile_id: 'content.prepare', requests: 4 },
       { profile_id: 'family.homework', requests: 1 },
       { profile_id: 'family.moderation', requests: 1 },
       { profile_id: 'family.resolver', requests: 6 },
