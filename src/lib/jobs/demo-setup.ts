@@ -116,7 +116,11 @@ async function assignTeacher(db: Sql, by: string, p: Payload): Promise<{ teacher
     [schoolId, p.teacherEmail]
   );
   const teacherUserId = rows[0]?.user_id as string | undefined;
-  if (!teacherUserId) throw new Error('the teacher invitation is not sent yet');
+  if (!teacherUserId) {
+    const stopped = await db.query(`select 1 from staff_invitations where school_id = $1 and email_key = lower($2) and status = 'needs_founder'`, [schoolId, p.teacherEmail]);
+    if (stopped.rows.length) throw new PermanentJobError('the teacher inbox already has a sign-in account: the invitation waits for NetCyberAI');
+    throw new Error('the teacher invitation is not sent yet');
+  }
   // The rows and audit the office's Staff screen writes (src/lib/academics/teacher-subjects.ts assign()): its function
   // runs in a school session, and the demo school has no teacher's proposal to confirm, so they are written here.
   await db.query(
