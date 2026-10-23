@@ -213,6 +213,15 @@ describe('4. unlinking', () => {
     expect((await post('unlink', { linkId: body.linkId })).status).toBe(404);
   });
 
+  it('the family role cannot make a link without a code, reopen a closed one, or point one at another guardian', async () => {
+    const { withFamilyContext } = await import('@/lib/auth/db');
+    const [closed] = await q(`select link_id from family.school_links where account_id = $1 and revoked_at is not null limit 1`, [ACCOUNT]);
+    await expect(withFamilyContext(claims, (c) => c.query(`insert into family.school_links (account_id, school_id, parent_id) values ($1, $2, $3)`, [ACCOUNT, A, P2]))).rejects.toThrow();
+    await expect(withFamilyContext(claims, (c) => c.query(`update family.school_links set revoked_at = null, revoked_by = null where link_id = $1`, [closed.link_id]))).rejects.toThrow();
+    await expect(withFamilyContext(claims, (c) => c.query(`update family.school_links set parent_id = $1 where link_id = $2`, [P2, closed.link_id]))).rejects.toThrow();
+    expect(await linkId()).toBeUndefined();
+  });
+
   it('a guardian merged into another at the school ends the link’s reach', async () => {
     const { linkedSchool } = await import('@/lib/family/school');
     const { code } = await issue(P2);

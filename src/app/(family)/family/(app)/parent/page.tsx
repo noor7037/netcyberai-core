@@ -48,7 +48,7 @@ const AREA_KEYS: MessageKey[] = [
 // C230-AB: a parent's own syllabus for a child (src/components/family/ChildSyllabusEditor.tsx).
 const SYLLABUS_KEYS: MessageKey[] = [
   'fam.syllabus.title', 'fam.syllabus.lead', 'fam.syllabus.child', 'fam.syllabus.subject', 'fam.syllabus.none', 'fam.syllabus.add', 'fam.syllabus.replace',
-  'fam.syllabus.fromPhotos', 'fam.syllabus.typeIt', 'fam.syllabus.privacy', 'fam.syllabus.reading', 'fam.syllabus.saving', 'fam.syllabus.draftWaiting',
+  'fam.syllabus.fromPhotos', 'fam.syllabus.fromPdf', 'fam.syllabus.err.not_a_pdf', 'fam.syllabus.err.no_text', 'fam.syllabus.err.encrypted', 'fam.syllabus.err.too_long', 'fam.syllabus.typeIt', 'fam.syllabus.privacy', 'fam.syllabus.reading', 'fam.syllabus.saving', 'fam.syllabus.draftWaiting',
   'fam.syllabus.check', 'fam.syllabus.discard', 'fam.syllabus.draftNote', 'fam.syllabus.chapter', 'fam.syllabus.topic', 'fam.syllabus.topicOf',
   'fam.syllabus.addChapter', 'fam.syllabus.addTopic', 'fam.syllabus.moveUp', 'fam.syllabus.moveDown', 'fam.syllabus.removeItem', 'fam.syllabus.morePhotos',
   'fam.syllabus.fillAll', 'fam.syllabus.save', 'fam.syllabus.savedNote', 'fam.syllabus.count', 'fam.syllabus.edit', 'fam.syllabus.delete',

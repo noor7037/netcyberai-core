@@ -9,8 +9,8 @@ import { indiaDate } from '@/lib/time/india';
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
 //   1. Issue: the principal or a school admin makes a single-use, 7-day connect code for one guardian. Only its SHA-256
 //      is stored; the office reads the code once and gives it to the parent. Audited, never with the code.
-//   2. Redeem: the parent enters it in the parent area; public.family_redeem_connect_code spends it in one statement
-//      and says which school and guardian it was for. The family side records the link (src/lib/family/school.ts).
+//   2. Redeem: the parent enters it in the parent area; public.family_redeem_connect_code spends it and makes the
+//      account's link in one call; the family role can never make a link itself, and a closed link stays closed.
 //   3. Read: as that guardian (withGuardianContext), so the school's parent rules decide every row.
 //   4. Unlink: by the family (its parent area) or the school (the guardian screen); either ends access at once.
 // The Family app reaches this module only through src/lib/family/school.ts (check_family_boundary.py's door).
@@ -86,15 +86,15 @@ export async function disconnectGuardian(db: Sql, staff: Staff, parentId: string
 
 // ---- the family's side ------------------------------------------------------------------------------------------------
 
-// Spends a code in the family's own transaction (the family role, its own account); null when the code is unknown,
-// used or expired. The caller records the link.
-export async function redeemConnectCode(db: Sql, accountId: string, typed: unknown): Promise<{ schoolId: string; parentId: string; schoolName: string } | null> {
+// Spends a code in the family's own transaction (the family role, its own account) and makes the account's link to
+// that guardian, or keeps the open one; null when the code is unknown, used or expired.
+export async function redeemConnectCode(db: Sql, accountId: string, typed: unknown): Promise<{ linkId: string; schoolName: string } | null> {
   const normalized = normalizeConnectCode(typed);
   if (!normalized) return null;
-  const row = (await db.query(`select school_id, parent_id, school_name from public.family_redeem_connect_code($1, $2)`, [hashConnectCode(normalized), accountId])).rows[0] as
-    | { school_id: string; parent_id: string; school_name: string }
+  const row = (await db.query(`select link_id, school_name from public.family_redeem_connect_code($1, $2)`, [hashConnectCode(normalized), accountId])).rows[0] as
+    | { link_id: string; school_name: string }
     | undefined;
-  return row ? { schoolId: row.school_id, parentId: row.parent_id, schoolName: row.school_name } : null;
+  return row ? { linkId: row.link_id, schoolName: row.school_name } : null;
 }
 
 type Claims = { accountId: string; tokenVersion: number };

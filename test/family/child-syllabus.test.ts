@@ -322,3 +322,39 @@ describe('deleting the child', () => {
     expect(await rows(`select 1 from family.child_syllabus_items where syllabus_id = $1`, [(saved as StoredSyllabus).syllabusId])).toHaveLength(0);
   });
 });
+
+describe('a PDF of the contents, through the route (C230-AB)', () => {
+  // A one-page PDF made by hand, with a text layer.
+  const pdf = (lines: string[]) => {
+    const text = Buffer.from(`BT /F1 12 Tf 72 720 Td ${lines.map((l) => `(${l}) Tj 0 -14 Td`).join(' ')} ET`, 'latin1');
+    const objs = ['/Type /Catalog /Pages 2 0 R', '/Type /Pages /Kids [3 0 R] /Count 1', '/Type /Page /Parent 2 0 R /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R', null, '/Type /Font /Subtype /Type1 /BaseFont /Helvetica'];
+    const parts: Buffer[] = [Buffer.from('%PDF-1.4\n', 'latin1')];
+    objs.forEach((d, i) => {
+      if (d === null) parts.push(Buffer.from(`${i + 1} 0 obj\n<< /Length ${text.length} >>\nstream\n`, 'latin1'), text, Buffer.from('\nendstream\nendobj\n', 'latin1'));
+      else parts.push(Buffer.from(`${i + 1} 0 obj\n<< ${d} >>\nendobj\n`, 'latin1'));
+    });
+    parts.push(Buffer.from(`trailer\n<< /Size 6 /Root 1 0 R >>\n%%EOF\n`, 'latin1'));
+    return Buffer.concat(parts).toString('base64');
+  };
+
+  it('keeps only titles printed in the PDF, never screens it as a photo, and sends its pages as text', async () => {
+    ai.reply = JSON.stringify({ units: [], chapters: [{ title: 'Exploring Magnets', page: 1, topics: [] }, { title: 'Made Up Chapter', page: 1, topics: [] }] });
+    const before = screen.calls;
+    const r = await call('/api/family/syllabus/read', 'POST', { childId: CHILD, subject: 'science', pdf: pdf(['Contents', '1. Exploring Magnets']) });
+    expect(r.status).toBe(200);
+    expect(r.body.syllabus).toMatchObject({ source: 'pdf', status: 'draft' });
+    expect(titles(r.body.syllabus)).toEqual([{ title: 'Exploring Magnets', topics: [] }]);
+    expect(screen.calls).toBe(before);
+    const sent = ai.requests.at(-1) as { request: { messages: { content: string; images?: unknown }[] } };
+    expect(sent.request.messages[0].images).toBeUndefined();
+    expect(sent.request.messages[0].content).toContain('--- page 1 ---');
+  });
+
+  it('a PDF with no text (a scan) is refused before any AI call', async () => {
+    const calls = ai.requests.length;
+    const scan = Buffer.from('%PDF-1.4\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [] /Count 0 >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n', 'latin1').toString('base64');
+    const r = await call('/api/family/syllabus/read', 'POST', { childId: CHILD, subject: 'social_science', pdf: scan });
+    expect(r.status).toBe(422);
+    expect(ai.requests.length).toBe(calls);
+  });
+});

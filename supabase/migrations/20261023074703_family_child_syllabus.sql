@@ -1,14 +1,14 @@
 -- A parent's own syllabus for a child (Decision Log C230-AB): for a standalone family whose school does not use
 -- NetCyberAI, or whose board and class are not in the catalog yet. In the parent area (parent PIN), the parent gives the
--- chapter and topic titles of one subject (read from photos of the book's contents pages, or typed), checks them, and
--- saves them. Only a saved (confirmed) syllabus reaches the child's Study page; a draft is never shown to the child.
+-- chapter and topic titles of one subject (read from a PDF or photos of the book's contents pages, or typed), checks
+-- them, and saves them. Only a saved (confirmed) syllabus reaches the child's Study page; a draft is never shown to the child.
 --
 -- family: the syllabus and its lines. Titles only: no photo or file is kept anywhere. Own account only, twice (a
 -- permissive and a restrictive policy), like every family table (M1-1). A syllabus names a child of its own account
 -- (the composite key), and each line names its syllabus with the same account, so no row can point across accounts.
 -- Deleting the child or the account deletes its syllabi.
 --
--- control: the family.syllabus_extract profile, which reads the photos of a book's contents pages for the parent. It
+-- control: the family.syllabus_extract profile, which reads a book's contents pages for the parent. It
 -- carries a printed book's chapter names, never a child's words, so it starts on Workers AI like Control's own syllabus
 -- import (content.syllabus_extract); every line is a draft the parent checks before it is used.
 

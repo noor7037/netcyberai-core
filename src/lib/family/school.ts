@@ -46,13 +46,7 @@ export async function connectSchool(db: Sql, accountId: string, typed: unknown, 
   if (Number(tries.n) > CONNECT_TRIES_PER_DAY) return { ok: false, reason: 'too_many_tries' };
   const spent = await redeemConnectCode(db, accountId, typed);
   if (!spent) return { ok: false, reason: 'bad_code' };
-  const existing = (
-    await db.query(`select link_id from family.school_links where account_id = $1 and school_id = $2 and parent_id = $3 and revoked_at is null`, [accountId, spent.schoolId, spent.parentId])
-  ).rows[0] as { link_id: string } | undefined;
-  const linkId =
-    existing?.link_id ??
-    ((await db.query(`insert into family.school_links (account_id, school_id, parent_id) values ($1, $2, $3) returning link_id`, [accountId, spent.schoolId, spent.parentId])).rows[0] as { link_id: string }).link_id;
-  return { ok: true, linkId, schoolName: spent.schoolName };
+  return { ok: true, linkId: spent.linkId, schoolName: spent.schoolName };
 }
 
 // Which family child is which school child: the parent chooses, never a guess. `pairs` names every school child of

@@ -79,6 +79,7 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
   const [justAdded, setJustAdded] = useState<number | null>(null);
   const nextKey = useRef(1);
   const photoInput = useRef<HTMLInputElement>(null);
+  const pdfInput = useRef<HTMLInputElement>(null);
   if (!child) return null;
 
   const mine = syllabi.filter((s) => s.childId === child.childId && s.subject === subject);
@@ -96,6 +97,26 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
     setError('');
     setNote('');
     setConfirmDelete(false);
+  };
+
+  // One PDF of the contents or syllabus (text, at most 3 MB): only titles printed on their page are kept (C230-AB).
+  const readPdf = async (files: FileList | null) => {
+    const file = files?.[0];
+    if (pdfInput.current) pdfInput.current.value = '';
+    if (!file) return;
+    if (file.size > 3 * 1024 * 1024) return setError(errorText('too_big'));
+    setError('');
+    setNote('');
+    setBusy(fill(w['fam.syllabus.reading'], { n: 1, total: 1 }));
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    const r = await familyApi<{ syllabus: StoredSyllabus }>('/api/family/syllabus/read', 'POST', { childId: child.childId, subject, pdf: btoa(binary) });
+    setBusy(null);
+    if (!r.ok) return setError(errorText(r.error));
+    keep(r.data.syllabus, false);
+    setEditing(toEditing(r.data.syllabus));
+    router.refresh();
   };
 
   // Each photo in its own request, in order; the first starts a draft (or joins the end of the draft being checked),
@@ -269,6 +290,9 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
               <FamIcon name="camera" className="h-5 w-5" />
               {w['fam.syllabus.fromPhotos']}
             </button>
+            <button type="button" disabled={!!busy} onClick={() => pdfInput.current?.click()} className={QUIET}>
+              {w['fam.syllabus.fromPdf']}
+            </button>
             {!saved && (
               <button
                 type="button"
@@ -293,6 +317,7 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
           </p>
         </div>
       )}
+      <input ref={pdfInput} type="file" accept="application/pdf" className="sr-only" tabIndex={-1} aria-hidden onChange={(e) => void readPdf(e.target.files)} />
       <input
         ref={photoInput}
         type="file"

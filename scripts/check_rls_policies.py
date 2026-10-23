@@ -975,17 +975,14 @@ REQUIRED_RESTRICTIVE = {
     ("family.plan_days", "plan_days_own_only"),
     ("family.reward_jars", "reward_jars_own_only"),
     ("family.day_counts", "day_counts_own_only"),
-    # C230-AA (School Link): own account only; the codes for the office only and never a parent; a linked guardian reads
-    # the school's syllabus and subject names for their own children's classes, read only.
+    # C230-AA (School Link): own account only; the codes for the office only and never a parent. (A linked guardian reads
+    # the school's syllabus and subject names for their own children's classes through the tables' own _no_parent
+    # policies, altered in place; their staff and office write policies still refuse a parent.)
     ("family.school_links", "school_links_own_only"),
     ("family.child_links", "child_links_own_only"),
     ("family.connect_attempts", "connect_attempts_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
-    ("syllabus_units", "syllabus_units_parent_scope"),
-    ("syllabus_units", "syllabus_units_parent_no_insert"),
-    ("subjects", "subjects_parent_scope"),
-    ("subjects", "subjects_parent_no_insert"),
     ("content.video_picks", "video_picks_family_only"),
     # m2-10: staff never write the AI settings.
     ("control.ai_profiles", "ai_profiles_staff_only"),
