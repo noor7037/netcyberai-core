@@ -3,6 +3,7 @@ import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
 import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
 import { probeWorkersTransports } from './adapters/workers-ai';
+import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
@@ -387,7 +388,9 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
 // taken. Prepared in the caller's transaction, sent with no database, recorded (counts only) in the next one.
 // `start`: the first words of a made-up answer (C320), kept so a format problem can be seen; the inputs name no one.
 export type SmokeCheck = { check: string; profile: ProfileId; ok: boolean; provider?: string; model?: string; failure?: string; status?: number; ms?: number; note?: string; start?: string; raw?: string };
-export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[] };
+// `topic`: a syllabus line (no child's words) the real explanation prompt is tried on, both ways (C326).
+export type SmokeTopic = { board: string; classLevel: number; subject: string; chapter: string; topic: string };
+export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[]; topic: SmokeTopic };
 export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sql) => Promise<void> };
 
 const SMOKE_QUESTION = 'What does a magnet attract?';
@@ -398,7 +401,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   const steps: Step[] = [];
   const refused = (check: string, profile: ProfileId, reason: string): Step => async () => [{ check, profile, ok: false, failure: reason }];
 
-  const textChain = async (profile: ProfileId, check: string, request: AdapterRequestPart, judge: (text: string) => string | undefined) => {
+  const textChain = async (profile: ProfileId, check: string, request: AdapterRequestPart, judge: (text: string, finish?: string) => string | undefined) => {
     const c = await checkProfile(db, ctx, profile, 'text', env);
     if (!c.ok) return steps.push(refused(check, profile, c.reason));
     const usable = await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env));
@@ -409,12 +412,13 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
       const began = Date.now();
       let r: AdapterResult;
       try {
-        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens: 300, ...(request.instructionsAs ? { instructionsAs: request.instructionsAs } : {}) }, () => {});
+        const maxTokens = request.fullLength ? Number(c.row.max_output_tokens) : 300;
+        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens, ...(request.instructionsAs ? { instructionsAs: request.instructionsAs } : {}) }, () => {});
       } catch {
         r = { ok: false, failure: 'network' };
       }
       usage.push({ profile, link, counts: r.ok ? { requests: 1, tokensIn: r.tokensIn, tokensOut: r.tokensOut } : { requests: 1, failures: 1 } });
-      return [{ check, profile, ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: judge(r.text), start: r.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : { failure: r.failure, status: r.status }) }];
+      return [{ check, profile, ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: judge(r.text, r.finish), start: r.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : { failure: r.failure, status: r.status }) }];
     });
   };
   const jsonNote = (text: string) => {
@@ -431,6 +435,21 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   // The instructions where the adapter puts them, then in a system message, to compare the two (C320).
   await textChain('family.resolver', 'text', jsonAsk, jsonNote);
   await textChain('family.resolver', 'text:system', { ...jsonAsk, instructionsAs: 'system' }, jsonNote);
+  // The real explanation prompt (content.prepare's version) at its full length, with the instructions in the first user
+  // message and in a system message, in English and Hindi (C326): which required blocks arrive, and why it stopped.
+  const blocksNote = (text: string, finish?: string) => {
+    const types = Array.from(text.matchAll(/"type"\s*:\s*"([a-z_]+)"/g), (m) => m[1]);
+    const missing = ['explanation', 'check', 'practice'].filter((t) => !types.includes(t));
+    return `blocks: ${types.join(', ') || 'none'}; ${missing.length ? `missing ${missing.join(', ')}` : 'all required'}; finish: ${finish ?? 'not said'}`;
+  };
+  const explain = resolverPrompt(await activePromptVersion(db, 'content.prepare'), false);
+  for (const language of ['en', 'hi'] as const) {
+    const t = inputs.topic;
+    const ask = { board: t.board, classLevel: t.classLevel, subject: t.subject, openSubjects: [t.subject], classSubjects: [t.subject], chapter: t.chapter, topic: t.topic, question: null, language, style: language, followUp: null, misconception: null };
+    const request = { system: explain.system(ask), user: explain.user(ask), fullLength: true };
+    await textChain('content.prepare', `prepare:${language}:user`, { ...request, instructionsAs: 'user' }, blocksNote);
+    await textChain('content.prepare', `prepare:${language}:system`, { ...request, instructionsAs: 'system' }, blocksNote);
+  }
   // Workers AI: the same question over each of its four transports, to see which keeps the JSON whole (C321).
   {
     const c = await checkProfile(db, ctx, 'family.resolver', 'text', env);
@@ -503,7 +522,8 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
     },
   };
 }
-type AdapterRequestPart = { system: string; user: string; images?: ChatImage[]; instructionsAs?: 'system' | 'user' };
+// `fullLength`: the profile's own output limit instead of the smoke test's short one.
+type AdapterRequestPart = { system: string; user: string; images?: ChatImage[]; instructionsAs?: 'system' | 'user'; fullLength?: boolean };
 
 // The three steps on one client: for a caller with nothing to do between them.
 export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {

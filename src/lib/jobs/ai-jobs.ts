@@ -1,6 +1,6 @@
 import { prepareSmokeTest } from '@/lib/ai/platform';
 import { writeAuditLog } from '@/lib/audit/log';
-import { SMOKE_PHOTO_JPEG, SMOKE_SPEECH } from '@/demo-fixture/ai-smoke/inputs';
+import { SMOKE_PHOTO_JPEG, SMOKE_SPEECH, SMOKE_TOPIC } from '@/demo-fixture/ai-smoke/inputs';
 import { prepareJobStep, preparePayload, type PrepareJobPayload } from '@/lib/family/prepare';
 import { indiaDate } from '@/lib/time/india';
 import { PermanentJobError, type JobHandler, type JobQueue, type Sql } from './types';
@@ -26,7 +26,7 @@ export function aiSmokeHandler({ platform }: { platform: Platform }): JobHandler
   return async (job) => {
     const by = await activeStaff(platform, job.payload.by);
     const ctx = { accountId: by, childFirstNames: [], day: indiaDate() };
-    const prepared = await platform((db) => prepareSmokeTest(db, ctx, { photoJpegBase64: SMOKE_PHOTO_JPEG, speech: SMOKE_SPEECH }));
+    const prepared = await platform((db) => prepareSmokeTest(db, ctx, { photoJpegBase64: SMOKE_PHOTO_JPEG, speech: SMOKE_SPEECH, topic: SMOKE_TOPIC }));
     const checks = await prepared.send();
     await platform(async (db) => {
       await prepared.record(db);
