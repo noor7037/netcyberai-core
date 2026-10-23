@@ -12,7 +12,7 @@ export function FamilyHeader({ w, child, children }: { w: Words; child: FamilyCh
       <span aria-hidden="true" className="fam-band-dots" />
       <div className="mx-auto flex w-full max-w-xl flex-col gap-5">
         <div className="flex items-center justify-between gap-3">
-          <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-white">{w['fam.app.name']}</p>
+          <p className="text-base font-extrabold uppercase tracking-[0.12em] text-white">{w['fam.app.name']}</p>
           <Link
             href="/family/parent"
             className="fam-press flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-royal-deep px-4 text-sm font-bold text-white shadow-lg ring-1 ring-white/40 hover:bg-midnight"

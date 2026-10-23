@@ -143,7 +143,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
           </>
         )}
       </div>
-      <div className="sticky bottom-20 flex justify-end">
+      <div className="sticky bottom-[calc(var(--fam-bottom,0px)+1rem)] flex justify-end">
         {!onSpeaking ? (
           <button type="button" onClick={() => setAt(at + 1)} className={`min-h-[52px] rounded-full px-8 text-lg font-extrabold shadow-md ${theme.button}`}>
             {w['fam.english.next']} →

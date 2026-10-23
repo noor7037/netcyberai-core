@@ -95,11 +95,12 @@ const packToken = (opts: { childId?: string; accountId?: string; topic?: string;
 const key = () => crypto.randomUUID();
 
 describe('the chapter pack', () => {
-  it('needs the offline module switched on in Control', async () => {
+  it('needs the offline module switched on in Control (on by default once built, C230-Z; off when Control says so)', async () => {
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'offline', false, 'test')`);
     const res = await getPack(jar);
     expect(res.status).toBe(403);
     expect((await res.json()).error).toBe('not_switched_on');
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'offline', true, 'test')`);
+    await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'offline'`);
     expect((await getPack(jar)).status).toBe(200);
     // A pack is Understand's responses: with Understand off, no pack.
     await db.pg.query(`update control.app_flags set enabled = false where app = 'family' and module = 'understand'`);

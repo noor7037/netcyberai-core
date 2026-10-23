@@ -190,10 +190,11 @@ const post = async (path: string, body: unknown) => {
 const count = async () => Number((await db.pg.query(`select coalesce(sum(photo_questions), 0)::int as n from family.day_counts where child_id = $1`, [CHILD])).rows[0].n);
 
 describe('the photo route', () => {
-  it('needs its module switched on', async () => {
+  it('needs its module switched on (on by default once built, C230-Z; off when Control says so)', async () => {
     await db.pg.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'photo_input', true, 'parent_tap', 'v1')`, [ACCOUNT]);
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', false, 'test')`);
     expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('off');
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', true, 'test')`);
+    await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'homework'`);
   });
 
   it("needs the parent's photo_input consent: without it nothing is read, counted or sent (03 §11)", async () => {

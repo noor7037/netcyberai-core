@@ -24,8 +24,8 @@ function audienceWords(lang: Lang, f: FlagRow): string {
 }
 
 function Summary({ lang, flag, live, now, everSet = true }: { lang: Lang; flag: FlagRow; live: boolean; now: Date; everSet?: boolean }): ReactNode {
-  // A module never switched on has no row yet (C230-V): it is off for everyone until it is saved here.
-  if (!everSet) return <><Badge variant="warning">{t(lang, 'control.apps.module.off')}</Badge> {t(lang, 'control.apps.module.neverSet')}</>;
+  // A built module with no saved switch is on for everyone (C230-Z); saving one here (for example off) decides from then.
+  if (!everSet) return <><Badge variant="success">{t(lang, 'control.apps.module.on')}</Badge> {t(lang, 'control.apps.module.neverSet')}</>;
   return (
     <>
       <Badge variant={live ? 'success' : 'warning'}>{live ? t(lang, 'control.apps.module.on') : t(lang, 'control.apps.module.off')}</Badge> {audienceWords(lang, flag)}
@@ -128,7 +128,7 @@ function AppSection({ app, data, build, lang, now }: { app: AppId; data: Control
           ) : (
             <ul className="flex flex-col gap-3">
               {modules.map(({ flag: f, everSet }) => {
-                const live = everSet && flagOn(toAppFlag(f), EVERYONE, now);
+                const live = everSet ? flagOn(toAppFlag(f), EVERYONE, now) : true;
                 const key = `control.apps.module.label.${f.module}`;
                 const label = isMessageKey(key) ? t(lang, key) : undefined;
                 return <FlagEditor key={f.module} flag={f} label={label} live={live} schools={data.schools} summary={<Summary lang={lang} flag={f} live={live} now={now} everSet={everSet} />} />;

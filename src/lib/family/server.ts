@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { isLang, type Lang } from '@/lib/i18n';
@@ -31,7 +32,12 @@ export function familyLangBeforeSignIn(): Lang {
 
 // null without a session. A session whose account is gone (deleted, or signed out everywhere) is sent to the route
 // that clears its cookies, so it never loops between sign-in and the app.
-export async function requireFamilyPage(): Promise<FamilyPage | null> {
+// Read once per request (C230-Y): the layout and the page both ask for it, and each read is a database transaction.
+// React's request cache exists in the Next.js server; elsewhere (the unit tests' plain React) each call reads afresh.
+const perRequest: <T extends () => unknown>(fn: T) => T = (React as { cache?: <T extends () => unknown>(fn: T) => T }).cache ?? ((fn) => fn);
+export const requireFamilyPage = perRequest(readFamilyPage);
+
+async function readFamilyPage(): Promise<FamilyPage | null> {
   const jar = cookies();
   const session = await verifyFamilySession(jar.get(FAMILY_SESSION_COOKIE)?.value);
   if (!session) return null;

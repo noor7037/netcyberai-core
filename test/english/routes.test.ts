@@ -92,10 +92,11 @@ const rightAnswers = (key: string) => {
 };
 
 describe('the gates', () => {
-  it('Control switches the course off by default; then the parent must consent', async () => {
+  it('Control can switch the course off (on by default once built, C230-Z); then the parent must consent', async () => {
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', false, 'test')`);
     expect((await R.course.GET(get('/api/family/english'))).status).toBe(403);
     expect(await (await R.course.GET(get('/api/family/english'))).json()).toEqual({ error: 'off' });
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'english_programme', true, 'test')`);
+    await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'english_programme'`);
     expect(await (await R.course.GET(get('/api/family/english'))).json()).toEqual({ error: 'consent_needed' });
     // Only the parent's own tap, in parent mode, gives it.
     expect((await R.consent.POST(post('/api/family/consent', { purpose: 'english_programme', granted: true, tap: true }))).status).toBe(403);

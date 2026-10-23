@@ -37,24 +37,25 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold text-royal underline-offset-4 hover:underline';
 
-// One purpose the parent agreed to (or not): its name, its state in words, and the tap that changes it.
-function ConsentRow({ w, consent, granted, onToggle, data }: { w: Words; consent: string; granted: boolean; onToggle: () => void; data?: Record<string, string | boolean> }) {
+// One purpose the parent agreed to (or not), C230-Y: a short name and an on/off switch, with the full words of what it
+// means one tap away. Each purpose keeps its own switch (DPDP: consent is given for each purpose, never bundled).
+function ConsentRow({ w, consent, granted, onToggle, data, note }: { w: Words; consent: string; granted: boolean; onToggle: () => void; data?: Record<string, string | boolean>; note?: string }) {
+  const name = w[`fam.consent.short.${consent}`];
   return (
-    <div {...data} className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white p-3">
-      <div className="flex min-w-0 flex-col items-start gap-1">
-        <p className="text-base font-semibold text-slate">{w[`fam.consent.purpose.${consent}`]}</p>
-        {granted ? (
-          <span className="flex items-center gap-1 rounded-full bg-emerald-text px-2.5 py-0.5 text-xs font-bold text-white">
-            <FamIcon name="check" className="h-3.5 w-3.5" />
-            {w['fam.parent.granted']}
+    <div {...data} className="flex flex-col rounded-2xl bg-off-white px-3 py-1">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-base font-semibold text-slate">{name}</p>
+        <button type="button" role="switch" aria-checked={granted} aria-label={name} onClick={onToggle} className="fam-press flex min-h-[44px] min-w-[56px] items-center justify-end">
+          <span aria-hidden="true" className={`flex h-7 w-12 items-center rounded-full p-0.5 transition-colors ${granted ? 'justify-end bg-emerald-text' : 'justify-start bg-slate/30'}`}>
+            <span className="h-6 w-6 rounded-full bg-white shadow" />
           </span>
-        ) : (
-          <span className="rounded-full bg-white px-2.5 py-0.5 text-xs font-bold text-slate ring-1 ring-slate/20">{w['fam.parent.notGranted']}</span>
-        )}
+        </button>
       </div>
-      <button type="button" className={linkButton} onClick={onToggle}>
-        {granted ? w['fam.parent.withdraw'] : w['fam.parent.grant']}
-      </button>
+      <details className="pb-2">
+        <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-semibold text-royal">{w['fam.consent.more']}</summary>
+        <p className="text-sm text-slate">{w[`fam.consent.purpose.${consent}`]}</p>
+        {note && <p className="mt-1 text-sm text-slate">{note}</p>}
+      </details>
     </div>
   );
 }
@@ -271,9 +272,9 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
       </Section>
 
       <Section title={w['fam.parent.privacy']}>
-        <ConsentRow w={w} consent="study_core" granted={studyCore} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
-        {/* The note belongs to study_core alone: withdrawing an optional purpose (English, photos, voice, offers) stops only that. */}
-        <p className="text-sm text-slate/70">{w['fam.parent.withdrawNote']}</p>
+        <p className="text-sm text-slate">{w['fam.parent.privacyIntro']}</p>
+        {/* The withdraw note belongs to study_core alone: switching off an optional purpose stops only that. */}
+        <ConsentRow w={w} consent="study_core" granted={studyCore} note={w['fam.parent.withdrawNote']} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
         {english && <ConsentRow w={w} consent="english_programme" granted={english.granted} onToggle={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)} />}
         {photo && (
           <ConsentRow w={w} consent="photo_input" granted={photo.granted} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />

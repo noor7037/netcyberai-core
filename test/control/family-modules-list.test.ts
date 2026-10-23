@@ -19,9 +19,9 @@ describe('the Family modules Control → Apps lists', () => {
     expect(list.find((r) => r.flag.module === 'practice')?.flag.enabled).toBe(false);
   });
 
-  it('a module never saved is listed off, for everyone, ready to be switched on', () => {
+  it('a module never saved is listed on, for everyone (C230-Z: on by default), ready to be switched off', () => {
     const english = familyModuleRows([]).find((r) => r.flag.module === 'english_programme');
-    expect(english).toEqual({ everSet: false, flag: expect.objectContaining({ app: 'family', module: 'english_programme', enabled: false, audience: 'everyone' }) });
+    expect(english).toEqual({ everSet: false, flag: expect.objectContaining({ app: 'family', module: 'english_programme', enabled: true, audience: 'everyone' }) });
     for (const m of ['plan', 'habit', 'worksheets', 'videos', 'homework', 'voice_input', 'offline']) expect(familyModuleRows([]).some((r) => r.flag.module === m), m).toBe(true);
   });
 

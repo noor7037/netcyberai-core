@@ -24,7 +24,8 @@ const GATE_KEYS: MessageKey[] = [
 const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
-  'fam.parent.privacy', 'fam.parent.granted', 'fam.parent.notGranted', 'fam.parent.withdraw', 'fam.parent.grant', 'fam.parent.withdrawNote',
+  'fam.parent.privacy', 'fam.parent.privacyIntro', 'fam.consent.more', 'fam.parent.withdrawNote',
+  'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
