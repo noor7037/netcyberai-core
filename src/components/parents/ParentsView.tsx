@@ -6,6 +6,7 @@ import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { GuardianFamilyApp } from './GuardianFamilyApp';
 import { explainError } from '@/lib/errors/catalogue';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -161,6 +162,8 @@ export function ParentsView() {
               ))}
               <p className="text-xs text-slate/70">{t('par.consent.how')}</p>
             </div>
+
+            {open.mayEdit && <GuardianFamilyApp key={g.parent_id} parentId={g.parent_id} />}
 
             {open.requests && (
               <div data-guardian-requests className="flex flex-col gap-2">

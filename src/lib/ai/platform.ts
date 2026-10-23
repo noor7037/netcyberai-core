@@ -29,7 +29,7 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'family.moderation' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
+export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'family.moderation' | 'family.syllabus_extract' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
 export type Capability = 'text' | 'speech_to_text' | 'moderation';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts); a control profile runs only for Control's staff.
@@ -45,6 +45,9 @@ export const PROFILES: readonly AiProfile[] = [
   // W2 (C314): the safety check (Llama Guard) on a child's typed words and on every live answer before it is shown.
   // It takes no daily-cap place of its own: it runs only beside a call that already took one.
   { id: 'family.moderation', carriesChildWords: true, capability: 'moderation', audience: 'family' },
+  // C230-AB: a parent's photos of a book's contents pages, read for the chapter and topic names of their child's own
+  // syllabus (parent mode). A printed book's titles, never a child's words; the parent checks every line before use.
+  { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family' },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },

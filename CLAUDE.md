@@ -107,6 +107,34 @@ prompts do not repeat them.
 - **Read once per session:** the "Read first" docs at the start, not again for
   each slice.
 
+## Token discipline (founder, 2026-10-23, C230-AC)
+
+The founder pays for every token. Spend them on what reaches the app.
+
+- **Build from what the founder reported.** Map the evidence once, decide, build.
+  No second plan, no re-reading a file already read this session, no re-deriving
+  a fact already established.
+- **Read narrowly:** `grep` first, then only the lines you change and what they
+  call. Never print a whole large file, log or diff; never page through generated
+  output.
+- **Verify once, at the right size:** `tsc`, the changed files' tests and the
+  checkers the slice touches while building; the full `ci_local.sh` once per
+  batch; GitHub CI is the merge gate. Never run two full suites at once.
+- **Wait without polling:** one timed wait for CI, then merge if green. No status
+  checks in between, no narration while waiting.
+- **Reviews:** one `/code-review` at the risk level; a security review only for
+  auth, RLS, money, messaging or personal data, as ONE focused sub-agent with
+  the exact files, not a fan-out.
+- **Sub-agents** only for an independent slice with a tight brief (files, docs
+  section, acceptance test). Never to read, explain or re-check work.
+- **Phone first:** a Family app change is checked at 390 px in the harness before
+  the PR; the founder's phone is the acceptance test.
+- **Ask the founder once,** only for a decision or input only he has, with a
+  recommendation, all questions together. Everything the repository can answer,
+  answer from the repository.
+- **Reports:** at most 15 lines; what he does first, what changed for him, what is
+  blocked and why.
+
 ## Parallel agents (founder, 2026-10-14, C198)
 
 The plan now allows several agents at once. Use them to finish faster; the

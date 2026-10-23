@@ -1,5 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-import { checkUpload } from '@/lib/privacy/upload-check';
+import { checkUpload, textProblem } from '@/lib/privacy/upload-check';
 import { familyHashKey } from './secret';
 
 // The Socratic homework helper (docs/family-app/11 L3; M2-6, C280). A photo of one question becomes a hint ladder: hint
@@ -199,6 +199,9 @@ export function step(l: Ladder, action: unknown, given?: unknown): StepResult {
 
 export const PHOTO_MAX_BYTES = 3 * 1024 * 1024;
 export type PhotoProblem = 'not_a_photo' | 'too_big' | 'personal_info' | 'unreadable';
+
+// The same rule for words read from a file before they leave the server (a parent's PDF of the contents, C230-AB).
+export const hasPersonalInfo = (text: string): boolean => textProblem(text) !== null;
 
 // The screen before anything leaves the server: a real photo (by its own first bytes), not too big, and no Aadhaar
 // number or card in the words the OCR reads. The OCR is injectable for tests.

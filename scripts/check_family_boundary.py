@@ -63,6 +63,10 @@ FAMILY_DOORS = {
     # The Android shell's own speech engine (C230-Y): the web view has no speechSynthesis, so the English course and the
     # read-aloud button speak through the shell's TextToSpeech plugin, from this one file.
     "@capacitor/core": {"src/components/family/english/speech.ts"},
+    # School Link (C230-AA): the school's records, read as the guardian, only through this one family file.
+    "@/lib/school-link": {"src/lib/family/school.ts"},
+    # A parent's own syllabus from a PDF (C230-AB): the PDF reader and its "title on its page" check, as Control's import.
+    "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
@@ -77,7 +81,11 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
 # Outside the family area, these files may name these family tables: the choke point's live session check (the one
 # module allowed to set the family role and account, check_choke_point.py).
 OUTSIDE_MAY_NAME_FAMILY_TABLE = {
-    "src/lib/auth/db.ts": {"accounts"},
+    # The session check, and School Link's guardian context, which checks the family's own link in the same
+    # transaction before reading the school as the guardian (C230-AA).
+    "src/lib/auth/db.ts": {"accounts", "school_links"},
+    # The school's office disconnects a guardian's Family app through this one definer function (C230-AA).
+    "src/lib/school-link/index.ts": {"revoke_school_links_for_guardian"},
     # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
     "src/lib/ai/daily-cap.ts": {"ai_daily"},
     # Control's door to the people (C230-V) returns parents' emails and children's names: only its one reader, which
@@ -152,7 +160,26 @@ def check_sources(root: Path) -> list[str]:
         if family:
             # 1. What family code may import.
             for mod in mods:
-                if mod.startswith(".") or EXTERNAL_OK.match(mod):
+                # A relative import is judged by where it lands (C230-AB): "../../content/x" from family code is
+                # "@/lib/content/x", and gets no free pass for being written relatively.
+                if mod.startswith("."):
+                    landed = (Path(rel).parent / mod).as_posix()
+                    landed = str(Path(landed)).replace("\\", "/")
+                    parts: list[str] = []
+                    for part in landed.split("/"):
+                        if part == "..":
+                            if parts:
+                                parts.pop()
+                        elif part not in ("", "."):
+                            parts.append(part)
+                    landed = "/".join(parts)
+                    if not landed.startswith("src/"):
+                        problems.append(f"{rel}: family code may not import {mod}")
+                        continue
+                    mod = "@/" + landed[len("src/"):]
+                    if in_family_area("src/" + mod[2:] + ".ts") or in_family_area("src/" + mod[2:] + "/"):
+                        continue
+                if EXTERNAL_OK.match(mod):
                     continue
                 if mod.startswith(FAMILY_MAY_IMPORT):
                     continue
@@ -240,6 +267,7 @@ def self_test() -> int:
     cases = [
         ("family imports school code", "src/lib/family/x.ts", "import { a } from '@/lib/fees/family';\n", "may not import"),
         ("family uses a door it was not given", "src/lib/family/x.ts", "import { withFamilyContext } from '@/lib/auth/db';\n", "may not import"),
+        ("family reaches outside by a relative path", "src/lib/family/x.ts", "import { a } from '../content/pdf-import';\n", "may not import @/lib/content/pdf-import"),
         ("family SQL on a school table", "src/lib/family/x.ts", "const q = `select * from students where x = 1`;\n", "family SQL names students"),
         ("family SQL on public.*", "src/app/api/family/x/route.ts", "const q = `select 1 from public.users`;\n", "family SQL names public.users"),
         ("school code imports family code", "src/lib/fees/x.ts", "import { y } from '@/lib/family/session';\n", "imports family code"),

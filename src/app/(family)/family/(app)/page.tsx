@@ -13,7 +13,9 @@ import { childHabit } from '@/lib/family/habit';
 import { childProgress, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { dayPlan } from '@/lib/family/plan';
+import { fill } from '@/lib/family/fill';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
+import { activeLinks, schoolTodayFor } from '@/lib/family/school';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 import { indiaDate } from '@/lib/time/india';
@@ -35,13 +37,16 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
     openToAll: await openSubjects(db),
+    links: await activeLinks(db, page.session.accountId),
   }));
+  // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
+  const atSchool = await schoolTodayFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
     const mine = progress.filter((p) => p.subject === s);
@@ -52,6 +57,12 @@ export default async function FamilyHomePage() {
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-5 px-4 pb-10">
         <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
+        {atSchool && (
+          <section data-school-today className="fam-card flex flex-col gap-1 bg-white p-4">
+            <p className="text-base font-bold text-slate">{fill(t(lang, 'fam.school.homeToday'), { mark: t(lang, `fam.school.mark.${atSchool.today ?? 'none'}` as MessageKey) })}</p>
+            <p className="text-sm text-slate">{atSchool.schoolName}</p>
+          </section>
+        )}
         {plan && <PlanCard plan={plan} lang={lang} />}
         {habit && <HabitCard habit={habit} lang={lang} />}
         <SubjectGrid

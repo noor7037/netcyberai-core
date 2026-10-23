@@ -247,6 +247,9 @@ const APP_USER: Record<string, string> = {
   // c238 begin
   staff_profiles: 'INSERT,SELECT,UPDATE', // a staff member's profile, changed in place by the office; never removed (C238)
   // c238 end
+  // c230-aa begin
+  family_connect_codes: 'INSERT,SELECT,UPDATE', // a guardian's Family app code: made, then spent or expired; never removed (C230-AA)
+  // c230-aa end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -404,6 +407,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // c238 begin
   staff_profiles: '', // a school's staff records are its own: the platform role reads nothing here (C238)
   // c238 end
+  // c230-aa begin
+  family_connect_codes: '', // a school's codes for its guardians: the platform role reads nothing here (C230-AA)
+  // c230-aa end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {
