@@ -63,6 +63,8 @@ FAMILY_DOORS = {
     # The Android shell's own speech engine (C230-Y): the web view has no speechSynthesis, so the English course and the
     # read-aloud button speak through the shell's TextToSpeech plugin, from this one file.
     "@capacitor/core": {"src/components/family/english/speech.ts"},
+    # School Link (C230-AA): the school's records, read as the guardian, only through this one family file.
+    "@/lib/school-link": {"src/lib/family/school.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
@@ -77,7 +79,11 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
 # Outside the family area, these files may name these family tables: the choke point's live session check (the one
 # module allowed to set the family role and account, check_choke_point.py).
 OUTSIDE_MAY_NAME_FAMILY_TABLE = {
-    "src/lib/auth/db.ts": {"accounts"},
+    # The session check, and School Link's guardian context, which checks the family's own link in the same
+    # transaction before reading the school as the guardian (C230-AA).
+    "src/lib/auth/db.ts": {"accounts", "school_links"},
+    # The school's office disconnects a guardian's Family app through this one definer function (C230-AA).
+    "src/lib/school-link/index.ts": {"revoke_school_links_for_guardian"},
     # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
     "src/lib/ai/daily-cap.ts": {"ai_daily"},
     # Control's door to the people (C230-V) returns parents' emails and children's names: only its one reader, which

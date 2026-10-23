@@ -443,6 +443,9 @@ ALLOWED_PERMISSIVE = (
         # C238: a member of staff's profile. Tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("staff_profiles", "staff_profiles_tenant_isolation"),
         # c238 end
+        # C230-AA: School Link's connect codes, school-owned. Tenant isolation only; narrowed to the office and refused to a
+        # parent by the RESTRICTIVE policies required below.
+        ("family_connect_codes", "family_connect_codes_tenant_isolation"),
         # m1 begin
         # M1-1 (C247): the Family app's role (family_app) on its own schemas. Family tables: own account only, granted by
         # a permissive policy and held by a restrictive one of the same condition (REQUIRED_RESTRICTIVE below). Content:
@@ -489,6 +492,10 @@ ALLOWED_PERMISSIVE = (
         ("family.plan_days", "plan_days_own"),
         ("family.reward_jars", "reward_jars_own"),
         ("family.day_counts", "day_counts_own"),
+        # C230-AA (School Link): the family's own links and code tries, own account only (restrictive twins below).
+        ("family.school_links", "school_links_own"),
+        ("family.child_links", "child_links_own"),
+        ("family.connect_attempts", "connect_attempts_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -963,6 +970,17 @@ REQUIRED_RESTRICTIVE = {
     ("family.plan_days", "plan_days_own_only"),
     ("family.reward_jars", "reward_jars_own_only"),
     ("family.day_counts", "day_counts_own_only"),
+    # C230-AA (School Link): own account only; the codes for the office only and never a parent; a linked guardian reads
+    # the school's syllabus and subject names for their own children's classes, read only.
+    ("family.school_links", "school_links_own_only"),
+    ("family.child_links", "child_links_own_only"),
+    ("family.connect_attempts", "connect_attempts_own_only"),
+    ("family_connect_codes", "family_connect_codes_office"),
+    ("family_connect_codes", "family_connect_codes_no_parent"),
+    ("syllabus_units", "syllabus_units_parent_scope"),
+    ("syllabus_units", "syllabus_units_parent_no_insert"),
+    ("subjects", "subjects_parent_scope"),
+    ("subjects", "subjects_parent_no_insert"),
     ("content.video_picks", "video_picks_family_only"),
     # m2-10: staff never write the AI settings.
     ("control.ai_profiles", "ai_profiles_staff_only"),

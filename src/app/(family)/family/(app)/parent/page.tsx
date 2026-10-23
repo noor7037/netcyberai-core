@@ -1,5 +1,7 @@
 import { redirect } from 'next/navigation';
 import { ParentArea } from '@/components/family/ParentArea';
+import { SchoolSection } from '@/components/family/SchoolSection';
+import { activeLinks, linkedSchool } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { classSubjects } from '@/lib/family/catalog';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
@@ -24,7 +26,8 @@ const GATE_KEYS: MessageKey[] = [
 const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
-  'fam.parent.privacy', 'fam.parent.privacyIntro', 'fam.consent.more', 'fam.parent.withdrawNote',
+  'fam.parent.privacy', 'fam.parent.privacyIntro',
+  'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
@@ -68,8 +71,13 @@ export default async function FamilyParentPage() {
   const voice = switches && (switchOn(switches, 'voice_input') || page.consents.voice_practice) ? { granted: page.consents.voice_practice } : null;
   // The habit section (M2-3, C277) when Control has the habit module switched on.
   const habit = switches && switchOn(switches, 'habit') ? await familyPageRead(page, (db) => Promise.all(page.children.map((c) => parentHabit(db, page.session.accountId, c.childId, indiaDate(), lang)))) : null;
+  // Your school (C230-AA): each active link read as the guardian; a link the school has closed meanwhile is not shown.
+  const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
+  const claims = { accountId: page.session.accountId, tokenVersion: page.session.tokenVersion };
+  const schools = (await Promise.all(links.map(async (l) => ({ l, school: await linkedSchool(claims, l.linkId) })))).flatMap(({ l, school }) => (school ? [{ linkId: l.linkId, school, pairs: l.children }] : []));
   return (
-    <main lang={lang} className="mx-auto w-full max-w-xl px-4 py-6">
+    <main lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
+      <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
       <ParentArea
         english={english}
         photo={photo}

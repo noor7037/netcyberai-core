@@ -514,6 +514,50 @@ export async function withFamilyContext<T>(claims: { accountId: string; tokenVer
   return familyTransaction(claims.accountId, claims.tokenVersion, fn);
 }
 
+// School Link (C230-AA; docs/family-app/03 §4): a linked school read AS the guardian its office made the connect code
+// for, so the school's own parent rules decide every row (own children only, read only, its consent ledger first).
+// One transaction, two steps: as the family (live account, its own link, not revoked), then as that guardian in that
+// school, with the guardian still on record and not merged. A link revoked by either side ends here, this request.
+export class SchoolLinkGoneError extends Error {}
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+export async function withGuardianContext<T>(
+  claims: { accountId: string; tokenVersion: number },
+  linkId: string,
+  fn: (client: PoolClient, link: { schoolId: string; parentId: string }) => Promise<T>
+): Promise<T> {
+  if (!UUID_RE.test(linkId)) throw new SchoolLinkGoneError('not a link id');
+  const fam = familyContextStatements(claims.accountId);
+  const client = await getPool().connect();
+  try {
+    await client.query('begin');
+    await client.query(fam.setRole);
+    await client.query(fam.setAccount, [fam.setAccountArg]);
+    const live = (await client.query(fam.checkLive, [claims.accountId])).rows[0];
+    if (!live) throw new FamilySessionRevokedError('account not found');
+    if (Number(live.token_version) !== claims.tokenVersion) throw new FamilySessionRevokedError('token_version mismatch');
+    const link = (
+      await client.query(`select school_id, parent_id from family.school_links where link_id = $1 and account_id = $2 and revoked_at is null`, [linkId, claims.accountId])
+    ).rows[0] as { school_id: string; parent_id: string } | undefined;
+    if (!link) throw new SchoolLinkGoneError('link not active');
+    const stmts = tenantContextStatements(link.school_id, 'parent');
+    await client.query(stmts.setRole);
+    await client.query(stmts.setTenant, [link.school_id]);
+    await client.query(stmts.setRoleGuc, ['parent']);
+    await client.query(stmts.setUser, [link.parent_id]);
+    const guardian = (await client.query(`select 1 from parents where parent_id = $1 and merged_into is null`, [link.parent_id])).rows[0];
+    if (!guardian) throw new SchoolLinkGoneError('guardian not on record');
+    const result = await fn(client, { schoolId: link.school_id, parentId: link.parent_id });
+    await client.query('commit');
+    return result;
+  } catch (err) {
+    await client.query('rollback').catch(() => {});
+    throw err;
+  } finally {
+    await client.query('reset role').catch(() => {});
+    client.release();
+  }
+}
+
 // Before any account (sign-in, the code step) and for screens with no session: the same role with no account, so no
 // family row is visible. Only the sign-in functions, the switches Control sets and published content are reachable.
 export async function withFamilyGate<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
