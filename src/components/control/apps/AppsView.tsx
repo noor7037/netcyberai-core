@@ -24,8 +24,14 @@ function audienceWords(lang: Lang, f: FlagRow): string {
 }
 
 function Summary({ lang, flag, live, now, everSet = true }: { lang: Lang; flag: FlagRow; live: boolean; now: Date; everSet?: boolean }): ReactNode {
-  // A built module with no saved switch is on for everyone (C230-Z); saving one here (for example off) decides from then.
-  if (!everSet) return <><Badge variant="success">{t(lang, 'control.apps.module.on')}</Badge> {t(lang, 'control.apps.module.neverSet')}</>;
+  // A built module with no saved switch is on for everyone (C230-Z), except one marked off by default (the Focus Lock,
+  // C305), which stays off until it is switched on here; saving a switch decides from then.
+  if (!everSet)
+    return flag.enabled ? (
+      <><Badge variant="success">{t(lang, 'control.apps.module.on')}</Badge> {t(lang, 'control.apps.module.neverSet')}</>
+    ) : (
+      <><Badge variant="warning">{t(lang, 'control.apps.module.off')}</Badge> {t(lang, 'control.apps.module.neverSetOff')}</>
+    );
   return (
     <>
       <Badge variant={live ? 'success' : 'warning'}>{live ? t(lang, 'control.apps.module.on') : t(lang, 'control.apps.module.off')}</Badge> {audienceWords(lang, flag)}
@@ -128,7 +134,7 @@ function AppSection({ app, data, build, lang, now }: { app: AppId; data: Control
           ) : (
             <ul className="flex flex-col gap-3">
               {modules.map(({ flag: f, everSet }) => {
-                const live = everSet ? flagOn(toAppFlag(f), EVERYONE, now) : true;
+                const live = everSet ? flagOn(toAppFlag(f), EVERYONE, now) : f.enabled;
                 const key = `control.apps.module.label.${f.module}`;
                 const label = isMessageKey(key) ? t(lang, key) : undefined;
                 return <FlagEditor key={f.module} flag={f} label={label} live={live} schools={data.schools} summary={<Summary lang={lang} flag={f} live={live} now={now} everSet={everSet} />} />;

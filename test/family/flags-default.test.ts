@@ -16,6 +16,12 @@ describe('a built Family module is on unless Control says otherwise', () => {
     expect(switchOn(switches([flag('*'), flag('plan', { enabled: false })]), 'plan')).toBe(false);
     expect(switchOn(switches([flag('*'), flag('plan', { audience: 'staff_preview' })]), 'plan')).toBe(false);
   });
+  it('the Focus Lock is off until Control saves a switch for it (C304), then that switch decides', () => {
+    expect(switchOn(switches([flag('*')]), 'focus_lock')).toBe(false);
+    expect(switchOn(switches([flag('*'), flag('focus_lock')]), 'focus_lock')).toBe(true);
+    expect(switchOn(switches([flag('*'), flag('focus_lock', { audience: 'staff_preview' })]), 'focus_lock')).toBe(false);
+    expect(switchOn(switches([flag('*', { enabled: false }), flag('focus_lock')]), 'focus_lock')).toBe(false);
+  });
   it('the whole app off turns every module off, and a module not built yet stays off', () => {
     expect(switchOn(switches([flag('*', { enabled: false })]), 'plan')).toBe(false);
     expect(switchOn(switches([flag('*')]), 'not_a_module')).toBe(false);

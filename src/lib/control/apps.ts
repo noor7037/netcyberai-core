@@ -128,11 +128,13 @@ const flagFromRow = (r: Record<string, unknown>): FlagRow => ({
 export function familyModuleRows(flags: readonly FlagRow[]): { flag: FlagRow; everSet: boolean }[] {
   const saved = new Map(flags.filter((f) => f.app === 'family' && f.module !== WHOLE_APP).map((f) => [f.module, f]));
   const built = Array.from(new Set(FAMILY_MODULES.filter((m) => m.built).map((m) => m.flag)));
+  const offByDefault = new Set(FAMILY_MODULES.filter((m) => m.offByDefault).map((m) => m.flag));
   const listed = built.map((module) => {
     const row = saved.get(module);
+    // Never saved: on (C230-Z), except a module that is off until Control switches it on (the Focus Lock, C304).
     return row
       ? { flag: row, everSet: true }
-      : { flag: { app: 'family' as const, module, enabled: true, audience: 'everyone' as const, audience_percent: null, audience_schools: null, reason: null, ends_at: null, off_message_en: null, off_message_hi: null, updated_at: '' }, everSet: false };
+      : { flag: { app: 'family' as const, module, enabled: !offByDefault.has(module), audience: 'everyone' as const, audience_percent: null, audience_schools: null, reason: null, ends_at: null, off_message_en: null, off_message_hi: null, updated_at: '' }, everSet: false };
   });
   const extra = Array.from(saved.values()).filter((f) => !built.includes(f.module)).map((flag) => ({ flag, everSet: true }));
   return [...listed, ...extra];

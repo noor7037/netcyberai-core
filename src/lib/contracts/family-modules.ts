@@ -11,7 +11,9 @@ export type FamilyTab = 'home' | 'study' | 'english' | 'future' | 'family';
 export type Entitlement = 'school_info' | 'learning' | 'public' | 'plus';
 // `addOn`: the module only extends others on its tab (M2-9's offline packs extend Understand), so it never shows a tab
 // by itself.
-export type FamilyModule = { id: string; tab: FamilyTab; flag: string; entitlement: Entitlement; built: boolean; milestone: string; addOn?: true };
+// `offByDefault`: a built module that stays off until Control saves a switch for it (the Focus Lock, C304: only for the
+// closed pilot families whose parents gave written consent). Every other built module is on until switched off (C230-Z).
+export type FamilyModule = { id: string; tab: FamilyTab; flag: string; entitlement: Entitlement; built: boolean; milestone: string; addOn?: true; offByDefault?: true };
 
 export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'understand', tab: 'study', flag: 'understand', entitlement: 'learning', built: true, milestone: 'M1' },
@@ -38,4 +40,6 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'offline', tab: 'study', flag: 'offline', entitlement: 'learning', built: true, milestone: 'M2', addOn: true },
   // M3-7 (C337): the home plan after a parent-teacher meeting; Plus, so also behind Control's family.plus_open until P3.
   { id: 'home_plan', tab: 'family', flag: 'home_plan', entitlement: 'plus', built: true, milestone: 'M3' },
+  // m2b-1 (C305): the Focus Lock's server (status, lock health, the parent's notices). Off until Control switches it on.
+  { id: 'focus_lock', tab: 'family', flag: 'focus_lock', entitlement: 'public', built: true, milestone: 'M2b', offByDefault: true },
 ];

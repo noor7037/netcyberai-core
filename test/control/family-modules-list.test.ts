@@ -25,6 +25,11 @@ describe('the Family modules Control → Apps lists', () => {
     for (const m of ['plan', 'habit', 'worksheets', 'videos', 'homework', 'voice_input', 'offline']) expect(familyModuleRows([]).some((r) => r.flag.module === m), m).toBe(true);
   });
 
+  it('the Focus Lock, never saved, is listed off (C304: only for the closed pilot families), ready to be switched on', () => {
+    expect(familyModuleRows([]).find((r) => r.flag.module === 'focus_lock')).toEqual({ everSet: false, flag: expect.objectContaining({ module: 'focus_lock', enabled: false }) });
+    expect(familyModuleRows([row('focus_lock')]).find((r) => r.flag.module === 'focus_lock')).toEqual({ flag: row('focus_lock'), everSet: true });
+  });
+
   it('a saved row the registry no longer lists stays at the end, so it can still be switched off; modules not built are not listed', () => {
     const list = familyModuleRows([row('retired_thing')]);
     expect(list.at(-1)).toEqual({ flag: row('retired_thing'), everSet: true });
