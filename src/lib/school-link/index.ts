@@ -3,7 +3,7 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolSyllabus } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolSyllabus } from '@/lib/contracts/school-link';
 import { indiaDate } from '@/lib/time/india';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
@@ -100,15 +100,21 @@ export async function redeemConnectCode(db: Sql, accountId: string, typed: unkno
 type Claims = { accountId: string; tokenVersion: number };
 
 // The guardian's children at the school, as the school shows them to that guardian today. `matched`: the students this
-// app has matched to one of its children; only they get their class's homework (C329), notices and events (C331).
+// app has matched to one of its children; only they get their class's homework (C329), notices and events (C331) and
+// timetable (C332).
 export async function readLinkedSchool(claims: Claims, linkId: string, opts: { matched?: readonly string[]; today?: string } = {}): Promise<LinkedSchool> {
   const today = opts.today ?? indiaDate();
   return withGuardianContext(claims, linkId, async (db, link) => {
     const home = await loadFamilyHome(db, link, today);
-    const sent = new Map<string, { homework: SchoolHomework[]; notices: SchoolNotice[]; events: SchoolEvent[] }>();
+    const sent = new Map<string, { homework: SchoolHomework[]; notices: SchoolNotice[]; events: SchoolEvent[]; timetable: SchoolPeriod[] }>();
     for (const c of home.children)
       if (opts.matched?.includes(c.studentId))
-        sent.set(c.studentId, { homework: await classHomework(db, c.studentId, today), notices: await classNotices(db, c.studentId, today), events: await classEvents(db, c.studentId, today) });
+        sent.set(c.studentId, {
+          homework: await classHomework(db, c.studentId, today),
+          notices: await classNotices(db, c.studentId, today),
+          events: await classEvents(db, c.studentId, today),
+          timetable: await classTimetable(db, c.studentId),
+        });
     return {
       schoolName: home.schoolName,
       awaitingConsent: home.awaitingConsent,
@@ -125,6 +131,7 @@ export async function readLinkedSchool(claims: Claims, linkId: string, opts: { m
         homework: sent.get(c.studentId)?.homework ?? null,
         notices: sent.get(c.studentId)?.notices ?? null,
         events: sent.get(c.studentId)?.events ?? null,
+        timetable: sent.get(c.studentId)?.timetable ?? null,
       })),
     };
   });
@@ -195,6 +202,21 @@ async function classEvents(db: Sql, studentId: string, today: string): Promise<S
     cancelled: r.cancelled,
     wholeSchool: r.whole_school,
   }));
+}
+
+// One student's class timetable as the school published it, day by day and period by period. In the guardian's session
+// the school's rules (school_link_timetable.sql) let through only the guardian's own children's classes.
+async function classTimetable(db: Sql, studentId: string): Promise<SchoolPeriod[]> {
+  const { rows } = await db.query(
+    `select t.weekday::int as weekday, t.period::int as period, sub.name as subject
+       from students s
+       join timetable_entries t on t.school_id = s.school_id and t.class_id = s.class_id
+       left join subjects sub on sub.school_id = t.school_id and sub.subject_id = t.subject_id
+      where s.student_id = $1
+      order by t.weekday, t.period`,
+    [studentId]
+  );
+  return rows as SchoolPeriod[];
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a

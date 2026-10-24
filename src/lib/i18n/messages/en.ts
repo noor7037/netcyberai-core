@@ -6286,6 +6286,8 @@ export const en = {
   'fam.school.events': 'Coming up at school',
   'fam.school.eventsNone': 'No events planned yet.',
   'fam.school.eventCancelled': 'Cancelled',
+  'fam.school.timetable': 'Timetable',
+  'fam.school.timetableNone': 'The school has not published a timetable for this class yet.',
   'fam.parent.granted': 'You agreed',
   'fam.parent.notGranted': 'You have not agreed',
   'fam.parent.withdraw': 'Withdraw',

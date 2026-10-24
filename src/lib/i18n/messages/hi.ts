@@ -6277,6 +6277,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.school.events': 'स्कूल में आगे क्या है',
   'fam.school.eventsNone': 'अभी कोई कार्यक्रम तय नहीं है।',
   'fam.school.eventCancelled': 'रद्द',
+  'fam.school.timetable': 'समय-सारणी',
+  'fam.school.timetableNone': 'स्कूल ने इस कक्षा की समय-सारणी अभी नहीं दी है।',
   'fam.parent.granted': 'आपने सहमति दी है',
   'fam.parent.notGranted': 'आपने सहमति नहीं दी है',
   'fam.parent.withdraw': 'सहमति वापस लें',
