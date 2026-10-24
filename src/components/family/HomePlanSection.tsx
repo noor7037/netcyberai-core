@@ -93,6 +93,8 @@ function NewPlan({ w, child }: { w: Words; child: HomePlanChild }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const shown = child.subjects.find((s) => s.subject === subject);
+  // No catalog topics in any subject the child can open: nothing to choose, so no form.
+  if (child.subjects.every((s) => s.chapters.every((c) => c.topics.length === 0))) return <p className="text-sm text-slate">{w['fam.homePlan.noTopics']}</p>;
   const make = async () => {
     setBusy(true);
     setError('');

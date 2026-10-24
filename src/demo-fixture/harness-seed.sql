@@ -274,3 +274,10 @@ values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000
 insert into family.reward_jars (account_id, child_id, reward, target_days, started_on)
 values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'A trip to the park', 6, (now() at time zone 'Asia/Kolkata')::date - 6);
 -- m2-3 end
+-- m3-7 begin: Family Plus open for the pictures, and Kabir's home plan after a parent-teacher meeting (C337).
+update control.settings set value = 'true'::jsonb where key = 'family.plus_open';
+insert into family.home_plans (account_id, child_id, starts_on, topics, note)
+values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', (now() at time zone 'Asia/Kolkata')::date,
+        '[{"topicKey": "cbse.c9.mathematics.u1.ch01.t02", "subject": "mathematics"}, {"topicKey": "cbse.c9.mathematics.u1.ch01.t01", "subject": "mathematics"}]'::jsonb,
+        'The teacher said irrational numbers need more practice.');
+-- m3-7 end
