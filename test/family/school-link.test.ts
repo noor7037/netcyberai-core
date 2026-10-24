@@ -141,9 +141,9 @@ describe('2. a verified connection', () => {
     const school = await linkedSchool(claims, link);
     expect(school?.schoolName).toBe('School A');
     expect(school?.children.map((c) => [c.studentId, c.name, c.className, c.today])).toEqual([[S1, 'Aarav Kumar', '6-A', 'present']]);
-    expect(await schoolSyllabusFor(claims, link, S1)).toEqual({ subjects: [{ name: 'Science', chapters: [{ title: 'Exploring Magnets', topics: ['Magnetic and non-magnetic materials', 'Poles of a magnet'] }] }] });
+    expect(await schoolSyllabusFor(claims, link, S1)).toEqual({ subjects: [{ name: 'Science', chapters: [{ title: 'Exploring Magnets', topics: ['Magnetic and non-magnetic materials', 'Poles of a magnet'] }] }], tonight: [] });
     // Another family's child of the same school: nothing.
-    expect(await schoolSyllabusFor(claims, link, S2)).toEqual({ subjects: [] });
+    expect(await schoolSyllabusFor(claims, link, S2)).toEqual({ subjects: [], tonight: [] });
   });
 
   it('the parent says which family child is which school child; a student not shown or a child of another account is refused', async () => {
@@ -167,7 +167,7 @@ describe('3. no cross-tenant reach', () => {
       units: (await c.query(`select chapter from syllabus_units`)).rows.length,
     }));
     expect(seen).toEqual({ students: [S1], parents: [P1], units: 2 });
-    await expect(withGuardianContext(claims, link, (c) => c.query(`insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic) values ($1, $2, $3, 9, 'x', 'y')`, [A, C6A, SCI]))).rejects.toThrow();
+    await expect(withGuardianContext(claims, link, (c) => c.query(`insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic) values ('${A}', '${C6A}', '${SCI}', 9, 'x', 'y')`))).rejects.toThrow();
   });
 
   it('another account cannot use this link, and a link id that is not a link is refused', async () => {
@@ -213,12 +213,14 @@ describe('4. unlinking', () => {
     expect((await post('unlink', { linkId: body.linkId })).status).toBe(404);
   });
 
+  // Refusals are plain statements (the fixed ids written in): the throwaway database's socket mishandles an error raised
+  // while a statement with parameters is planned, which left unhandled errors behind.
   it('the family role cannot make a link without a code, reopen a closed one, or point one at another guardian', async () => {
     const { withFamilyContext } = await import('@/lib/auth/db');
     const [closed] = await q(`select link_id from family.school_links where account_id = $1 and revoked_at is not null limit 1`, [ACCOUNT]);
-    await expect(withFamilyContext(claims, (c) => c.query(`insert into family.school_links (account_id, school_id, parent_id) values ($1, $2, $3)`, [ACCOUNT, A, P2]))).rejects.toThrow();
-    await expect(withFamilyContext(claims, (c) => c.query(`update family.school_links set revoked_at = null, revoked_by = null where link_id = $1`, [closed.link_id]))).rejects.toThrow();
-    await expect(withFamilyContext(claims, (c) => c.query(`update family.school_links set parent_id = $1 where link_id = $2`, [P2, closed.link_id]))).rejects.toThrow();
+    await expect(withFamilyContext(claims, (c) => c.query(`insert into family.school_links (account_id, school_id, parent_id) values ('${ACCOUNT}', '${A}', '${P2}')`))).rejects.toThrow();
+    await expect(withFamilyContext(claims, (c) => c.query(`update family.school_links set revoked_at = null, revoked_by = null where link_id = '${closed.link_id}'`))).rejects.toThrow();
+    await expect(withFamilyContext(claims, (c) => c.query(`update family.school_links set parent_id = '${P2}' where link_id = '${closed.link_id}'`))).rejects.toThrow();
     expect(await linkId()).toBeUndefined();
   });
 
@@ -246,10 +248,10 @@ describe('4. unlinking', () => {
     const { body } = await post('connect', { code });
     await post('children', { linkId: body.linkId, pairs: [{ studentId: S1, childId: CHILD }] });
     const links = await withFamilyContext(claims, (c) => activeLinks(c, ACCOUNT));
-    expect(await schoolTodayFor(claims, links, CHILD)).toEqual({ schoolName: 'School A', today: 'present' });
+    expect(await schoolTodayFor(claims, links, CHILD)).toEqual({ schoolName: 'School A', today: 'present', tonight: [] });
     await q(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values ($1, $2, 'core_records', false, 'school_attested', 'v1')`, [A, S1]);
     expect((await linkedSchool(claims, body.linkId))?.children).toEqual([]);
-    expect(await schoolSyllabusFor(claims, body.linkId, S1)).toEqual({ subjects: [] });
+    expect(await schoolSyllabusFor(claims, body.linkId, S1)).toEqual({ subjects: [], tonight: [] });
     expect(await schoolTodayFor(claims, links, CHILD)).toBeNull();
     // The database rule holds on its own too: read as the guardian, the class syllabus is gone.
     const { withGuardianContext } = await import('@/lib/auth/db');

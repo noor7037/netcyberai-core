@@ -154,6 +154,17 @@ describe('a linked family reads what its matched child’s class covered today (
     await q(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values ($1, $2, 'core_records', true, 'school_attested', 'v1')`, [A, S1]);
   });
 
+  it('no guardian reader selects the teacher’s note, or every column, from the record', async () => {
+    // A parent's session may read the note at row level (it shares the app's role with staff), so the readers must never
+    // ask for it: the guardian readers' SQL names its columns, and none of them is the note.
+    const { readFileSync } = await import('fs');
+    const source = readFileSync('src/lib/school-link/index.ts', 'utf8');
+    expect(source).not.toMatch(/select\s+\*/i);
+    const queries = source.split('`').filter((part) => /syllabus_progress/.test(part));
+    expect(queries.length).toBeGreaterThan(0);
+    for (const sql of queries) expect(sql).not.toMatch(/\bnote\b/);
+  });
+
   it('staff read and write the record as before', async () => {
     const principal = await asStaff('principal', PRINCIPAL)(async (c) => {
       await c.query(`insert into syllabus_progress (school_id, teacher_id, class_id, subject_id, topic, status, date) values ($1, $2, $3, $4, 'Revision', 'taught', current_date)`, [A, T_ROW, C6B, MATH]);
