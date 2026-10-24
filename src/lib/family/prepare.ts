@@ -32,8 +32,16 @@ export type PrepareOutcome = 'kept' | 'incomplete' | 'already' | Extract<Resolve
 // What the model sent back for one line, for staff measuring it (C318): why its stream ended, how many JSON objects
 // came, the block types that passed and those our checks refused. For a line that was not kept, also the first 160
 // characters the model wrote (C320): a staff-prepared syllabus line holds no child's words, and the start shows a
-// format problem (prose instead of JSON) at a glance.
-export type PrepareDetail = { finish: string | null; objects: number; kept: string[]; rejected: string[]; start?: string };
+// format problem (prose instead of JSON) at a glance. For the same line, how the answer ended (C330): its last 400
+// characters, whether it ended inside a JSON object that never closed, and how many objects were dropped as too long;
+// a line that stops short with nothing refused shows here why. Only on this staff path, never on a child's question.
+export type PrepareDetail = { finish: string | null; objects: number; kept: string[]; rejected: string[]; start?: string; tail?: string; unclosed?: boolean; droppedForSize?: number };
+const START_CHARS = 160;
+const TAIL_CHARS = 400;
+// Words kept for staff: control characters and runs of spaces become one space, and a cut never leaves half of a
+// character (a lone surrogate cannot be stored as JSON).
+const plain = (text: string) => text.replace(/[\s\u0000-\u001f\u007f]+/g, ' ').trim();
+const whole = (text: string) => text.replace(/^[\udc00-\udfff]|[\ud800-\udbff]$/g, '');
 
 async function versionOf(db: Db, versionId: string): Promise<Version | null> {
   const { rows } = await db.query(`select version_id, board_id, class_level, subject from content.syllabus_versions where version_id = $1`, [versionId]);
@@ -146,12 +154,15 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
   const outcome: PrepareOutcome = generated.error !== null || !last ? 'failed' : last.t === 'refused' ? last.reason : last.t === 'done' && last.complete ? 'kept' : 'incomplete';
   const state = (await run((db) => prepareState(db, versionId, scope)))!;
   const result = generated.sent.result;
+  const notKept = outcome !== 'kept';
+  const text = result.ok ? plain(result.text) : '';
   const detail: PrepareDetail = {
     finish: result.ok ? (result.finish ?? null) : null,
     objects: generated.objects,
     kept: generated.kept.map((b) => b.type),
     rejected: generated.rejected.slice(0, 20),
-    ...(outcome !== 'kept' && result.ok ? { start: result.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : {}),
+    ...(notKept && result.ok ? { start: whole(text.slice(0, START_CHARS)), tail: whole(text.slice(-TAIL_CHARS)) } : {}),
+    ...(notKept ? { unclosed: generated.unclosed, droppedForSize: generated.droppedForSize } : {}),
   };
   return { state, made: { ...first.want, outcome, detail } };
 }
@@ -180,8 +191,19 @@ export function preparePayload(raw: unknown): PrepareJobPayload | null {
   const detailOf = (d: unknown): PrepareDetail | undefined => {
     const x = d as Partial<PrepareDetail> | null;
     if (!x || typeof x !== 'object') return undefined;
-    const start = typeof x.start === 'string' ? x.start.replace(/[\u0000-\u001f]/g, ' ').slice(0, 160) : undefined;
-    return { finish: typeof x.finish === 'string' && /^[a-z_]{1,30}$/.test(x.finish) ? x.finish : null, objects: Number.isInteger(x.objects) ? Math.max(0, Math.min(Number(x.objects), 999)) : 0, kept: types(x.kept), rejected: types(x.rejected), ...(start ? { start } : {}) };
+    const start = typeof x.start === 'string' ? whole(x.start.replace(/[\u0000-\u001f]/g, ' ').slice(0, START_CHARS)) : undefined;
+    const tail = typeof x.tail === 'string' ? whole(x.tail.replace(/[\u0000-\u001f]/g, ' ').slice(-TAIL_CHARS)) : undefined;
+    const count = (v: unknown) => Math.max(0, Math.min(Number(v), 999));
+    return {
+      finish: typeof x.finish === 'string' && /^[a-z_]{1,30}$/.test(x.finish) ? x.finish : null,
+      objects: Number.isInteger(x.objects) ? count(x.objects) : 0,
+      kept: types(x.kept),
+      rejected: types(x.rejected),
+      ...(start ? { start } : {}),
+      ...(tail ? { tail } : {}),
+      ...(typeof x.unclosed === 'boolean' ? { unclosed: x.unclosed } : {}),
+      ...(Number.isInteger(x.droppedForSize) ? { droppedForSize: count(x.droppedForSize) } : {}),
+    };
   };
   const clean = outcomes.slice(0, 400).map((o) => ({ key: o.key, language: o.language, outcome: o.outcome, ...(detailOf(o.detail) ? { detail: detailOf(o.detail) } : {}) }));
   return { versionId: p.versionId, chapterKeys: p.chapterKeys, by: p.by, runId, outcomes: clean };

@@ -7,7 +7,8 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 // summed up in the audit log) and preparing chapters one line per run. Cloudflare is replaced at fetch for the smoke
 // test; the resolver's AI call is replaced for preparing. Made-up people and words only.
 
-const ai = vi.hoisted(() => ({ incompleteFor: null as string | null }));
+// `answers`: the next answers word for word, one per line prepared (C330); the made-up blocks below once they run out.
+const ai = vi.hoisted(() => ({ incompleteFor: null as string | null, answers: [] as string[] }));
 vi.mock('@/lib/ai/platform', async (original) => {
   const real = await original<typeof import('@/lib/ai/platform')>();
   return {
@@ -24,7 +25,7 @@ vi.mock('@/lib/ai/platform', async (original) => {
       // The line under test comes back with its check's answer as a letter, which our checks refuse.
       const lines = ai.incompleteFor && req.messages[0].content.includes(ai.incompleteFor) ? [full[0], { ...full[1], items: [{ ...item('c1'), answer: 'B' }] }] : full;
       // Spread over lines and fenced, as an open model may write it (C316).
-      const text = `\`\`\`json\n${lines.map((l) => JSON.stringify(l, null, 2)).join('\n')}\n\`\`\``;
+      const text = ai.answers.shift() ?? `\`\`\`json\n${lines.map((l) => JSON.stringify(l, null, 2)).join('\n')}\n\`\`\``;
       return { ok: true, text: { send: async (onDelta: (t: string) => void) => (onDelta(text), { result: { ok: true, text, tokensIn: 1, tokensOut: 1, provider: 'workers-ai', model: 'm' }, record: async () => {} }) } };
     },
   };
@@ -96,6 +97,62 @@ describe('the preparing job (C316)', () => {
     ]);
     // Chapter 5 was not asked for.
     expect(await q(`select distinct topic_key from content.responses order by 1`)).toEqual([{ topic_key: 'jt.c6.science.ch04' }]);
+  });
+
+  it('a line not kept says how its answer ended: its last words, an object left open, objects too long (C330)', async () => {
+    const { contentPrepareHandler } = await import('@/lib/jobs/ai-jobs');
+    const { withPlatformService } = await import('@/lib/auth/db');
+    const queued: { payload: Record<string, unknown>; idempotencyKey: string }[] = [];
+    const queue = { enqueue: async (_db: unknown, spec: { payload: Record<string, unknown>; idempotencyKey: string }) => (queued.push(spec), { jobId: 'n', created: true }) } as never;
+    const handler = contentPrepareHandler({ platform: withPlatformService as never, queue });
+    const explanation = JSON.stringify({ type: 'explanation', title: 'Poles', idea: 'A magnet has two poles.', example: 'A bar magnet.', steps: ['One', 'Two'], terms: [] });
+    // English: the check holds an unescaped quote, so the answer ends inside it. Hindi: the check is far too long.
+    ai.answers = [
+      `\`\`\`json\n${explanation}\n{"type":"check","items":[{"id":"c1","question":"Which end of a 5" bar points north?"}]}\n\`\`\``,
+      `${explanation}\n{"type":"check","items":[],"why":"${'a'.repeat(20_100)}"}\nThat is all.`,
+    ];
+    let payload: Record<string, unknown> = { versionId: VERSION, chapterKeys: ['jt.c6.science.ch05'], by: STAFF, outcomes: [] };
+    let key = 'content.prepare:ended';
+    for (let i = 0; i < 5; i++) {
+      const before = queued.length;
+      await handler(job('content.prepare', payload, key));
+      if (queued.length === before) break;
+      ({ payload, idempotencyKey: key } = queued.at(-1)!);
+    }
+    expect(ai.answers).toEqual([]);
+    const [run] = await q(`select after_state from audit_log where event_action = 'content.prepare_run' and after_state->>'runId' = $1`, ['content.prepare:ended']);
+    // The English line went through the next run's payload check before it reached the audit log.
+    const [en, hi] = run.after_state.outcomes;
+    expect(en).toMatchObject({ key: 'jt.c6.science.ch05', language: 'en', outcome: 'incomplete', detail: { objects: 1, kept: ['explanation'], rejected: [], unclosed: true, droppedForSize: 0 } });
+    expect(en.detail.tail).toMatch(/a 5" bar points north\?"\}\]\} ```$/);
+    expect(en.detail.start).toMatch(/^```json \{"type":"explanation"/);
+    expect(hi).toMatchObject({ key: 'jt.c6.science.ch05', language: 'hi', outcome: 'incomplete', detail: { objects: 1, kept: ['explanation'], rejected: [], unclosed: false, droppedForSize: 1 } });
+    expect(hi.detail.tail).toHaveLength(400);
+    expect(hi.detail.tail).toMatch(/^a+"\} That is all\.$/);
+  });
+
+  it('the job’s payload keeps how a line ended, within bounds (C330)', async () => {
+    const { preparePayload } = await import('@/lib/family/prepare');
+    const line = { key: 'jt.c6.science.ch05', language: 'en', outcome: 'incomplete' };
+    const base = { finish: 'stop', objects: 2, kept: ['explanation', 'check'], rejected: [] };
+    const p = preparePayload({
+      versionId: VERSION,
+      chapterKeys: [],
+      by: STAFF,
+      outcomes: [
+        { ...line, detail: { ...base, tail: `ab${'😀'.repeat(300)}\u0000\nend`, unclosed: true, droppedForSize: 5000 } },
+        { ...line, detail: { ...base, tail: 42, unclosed: 'true', droppedForSize: -3 } },
+        { ...line, detail: { ...base, unclosed: false, droppedForSize: 1.5 } },
+      ],
+    })!;
+    const [a, b, c] = p.outcomes.map((o) => o.detail!);
+    expect(a).toMatchObject({ ...base, unclosed: true, droppedForSize: 999 });
+    // The last 400 characters, control characters as spaces, and never half of a character at the cut.
+    expect(a.tail).toHaveLength(399);
+    expect(a.tail).toMatch(/^😀+ {2}end$/u);
+    expect(() => encodeURIComponent(a.tail!)).not.toThrow();
+    expect(b).toEqual({ ...base, droppedForSize: 0 });
+    expect(c).toEqual({ ...base, unclosed: false });
   });
 
   it('refuses a payload without active staff', async () => {
