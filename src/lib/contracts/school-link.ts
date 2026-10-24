@@ -23,7 +23,13 @@ export type LinkedSchoolChild = {
   // notices the principal approved in the last 30 days, and events the office invited them to, from today on.
   notices: SchoolNotice[] | null;
   events: SchoolEvent[] | null;
+  // The class's published timetable (C332), for a matched child only, otherwise null.
+  timetable: SchoolPeriod[] | null;
 };
+
+// One period of the published timetable: ISO weekday (1 is Monday), the period's number, and its subject in the
+// school's words.
+export type SchoolPeriod = { weekday: number; period: number; subject: string | null };
 
 // A notice as the school sent it (its words never change), and the day it was sent (yyyy-mm-dd, India).
 export type SchoolNotice = { body: string; sentOn: string; wholeSchool: boolean };
