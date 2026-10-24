@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg';
 import type { LinkedSchool, PulseAnswer, SchoolDayMark, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
-import { answerPulse, readLinkedSchool, readSchoolSyllabus, readSchoolToday, redeemConnectCode, requestFollowup, SchoolLinkGoneError, type FollowupRequestResult, type PulseAnswerResult } from '@/lib/school-link';
+import { answerPulse, readLinkedSchool, readSchoolNews, readSchoolSyllabus, readSchoolToday, redeemConnectCode, requestFollowup, SchoolLinkGoneError, type FollowupRequestResult, type PulseAnswerResult, type SchoolNews, type SchoolNewsKind } from '@/lib/school-link';
 
 // The family's side of School Link (C230-AA; docs/family-app/03 §4): the links an account holds and which family child
 // is which student. The school's records are read only through src/lib/school-link (as the guardian), never copied
@@ -187,4 +187,58 @@ export async function schoolStudyFor(
     chapters: subject && subject.chapters.length > 0 ? subject.chapters : null,
     tonight: (syllabus?.tonight ?? []).filter((t) => schoolSubjectIs(t.subject, subjectId)),
   };
+}
+
+// ---- what is new from the school, and what the parent hears of (M3-8a, C338) ------------------------------------------
+
+export const NEWS_KINDS: readonly SchoolNewsKind[] = ['homework', 'notices', 'results'];
+// The kinds a parent can turn off: the school's three, and tonight's practice and plan (pushed in M3-8b).
+export const NOTIFY_KINDS = ['homework', 'notices', 'results', 'tonight'] as const;
+export type NotifyKind = (typeof NOTIFY_KINDS)[number];
+export type { SchoolNews };
+
+export async function notifyOff(db: Sql, accountId: string): Promise<NotifyKind[]> {
+  const { rows } = await db.query(`select kind from family.notify_off where account_id = $1`, [accountId]);
+  return NOTIFY_KINDS.filter((k) => rows.some((r) => r.kind === k));
+}
+
+export async function setNotify(db: Sql, accountId: string, kind: NotifyKind, on: boolean): Promise<void> {
+  if (on) await db.query(`delete from family.notify_off where account_id = $1 and kind = $2`, [accountId, kind]);
+  else await db.query(`insert into family.notify_off (account_id, kind) values ($1, $2) on conflict do nothing`, [accountId, kind]);
+}
+
+export type SeenRow = { linkId: string; kind: SchoolNewsKind; seenAt: string };
+export async function readSeen(db: Sql, accountId: string): Promise<SeenRow[]> {
+  const { rows } = await db.query(`select link_id, kind, seen_at from family.school_seen where account_id = $1`, [accountId]);
+  return (rows as { link_id: string; kind: SchoolNewsKind; seen_at: Date }[]).map((r) => ({ linkId: r.link_id, kind: r.kind, seenAt: new Date(r.seen_at).toISOString() }));
+}
+
+// The parent has looked at the school's part: everything up to now is seen, for the account's own open link only.
+export async function markSchoolSeen(db: Sql, accountId: string, linkId: string): Promise<boolean> {
+  const own = (await db.query(`select 1 from family.school_links where link_id = $1 and account_id = $2 and revoked_at is null`, [linkId, accountId])).rows[0];
+  if (!own) return false;
+  for (const kind of NEWS_KINDS) {
+    await db.query(
+      `insert into family.school_seen (account_id, link_id, kind, seen_at) values ($1, $2, $3, now()) on conflict (account_id, link_id, kind) do update set seen_at = excluded.seen_at`,
+      [accountId, linkId, kind]
+    );
+  }
+  return true;
+}
+
+// What is new from the connected schools for the matched children, kind by kind, leaving out the kinds the parent
+// turned off. A kind never looked at counts from when the link was made, so a new link does not arrive with a pile.
+export async function schoolNewsFor(claims: Claims, links: readonly FamilySchoolLink[], seen: readonly SeenRow[], off: readonly NotifyKind[]): Promise<SchoolNews & { total: number }> {
+  const sum: SchoolNews = { homework: 0, notices: 0, results: 0 };
+  for (const l of links) {
+    if (!l.children.length) continue;
+    const since = Object.fromEntries(NEWS_KINDS.map((k) => [k, seen.find((x) => x.linkId === l.linkId && x.kind === k)?.seenAt ?? l.linkedAt])) as Record<SchoolNewsKind, string>;
+    try {
+      const n = await readSchoolNews(claims, l.linkId, l.children.map((c) => c.studentId), since);
+      for (const k of NEWS_KINDS) if (!off.includes(k)) sum[k] += n[k];
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return { ...sum, total: sum.homework + sum.notices + sum.results };
 }

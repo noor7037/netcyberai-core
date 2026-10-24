@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { LinkedSchool, PulseAnswer, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolPulse, SchoolResult } from '@/lib/contracts/school-link';
@@ -278,6 +278,10 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
     if (!r.ok) return setError(w['fam.school.saveError']);
     router.refresh();
   };
+  // The parent is looking at the school's part: what was new from it is now seen (C338).
+  useEffect(() => {
+    void familyApi('/api/family/school/seen', 'POST', { linkId: link.linkId });
+  }, [link.linkId]);
   const usedElsewhere = (studentId: string) => new Set(Object.entries(choice).filter(([s, c]) => s !== studentId && c).map(([, c]) => c));
   return (
     <div data-school-link={link.linkId} className="flex flex-col gap-3 rounded-2xl bg-off-white p-3">

@@ -498,6 +498,9 @@ ALLOWED_PERMISSIVE = (
         ("family.connect_attempts", "connect_attempts_own"),
         # M3-7 (C337): the home plan after a parent-teacher meeting, own account only (restrictive twin below).
         ("family.home_plans", "home_plans_own"),
+        # M3-8a (C338): when the parent last looked at the school's news, and the kinds turned off; own account only.
+        ("family.school_seen", "school_seen_own"),
+        ("family.notify_off", "notify_off_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -985,6 +988,9 @@ REQUIRED_RESTRICTIVE = {
     ("family.connect_attempts", "connect_attempts_own_only"),
     # M3-7 (C337): own account only on the home plan.
     ("family.home_plans", "home_plans_own_only"),
+    # M3-8a (C338): own account only.
+    ("family.school_seen", "school_seen_own_only"),
+    ("family.notify_off", "notify_off_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

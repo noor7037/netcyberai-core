@@ -226,6 +226,36 @@ export async function requestFollowup(claims: Claims, linkId: string, studentId:
   });
 }
 
+export type SchoolNewsKind = 'homework' | 'notices' | 'results';
+export type SchoolNews = Record<SchoolNewsKind, number>;
+
+// What is new from the school for these students since the parent last looked at each kind (C338): homework set for
+// their classes, notices sent to their classes or the whole school, results published for their classes. Counted as
+// the guardian, from what the school's own rules let that guardian see (the same rules as the lists above).
+export async function readSchoolNews(claims: Claims, linkId: string, studentIds: readonly string[], since: Record<SchoolNewsKind, string>): Promise<SchoolNews> {
+  if (!studentIds.length) return { homework: 0, notices: 0, results: 0 };
+  return withGuardianContext(claims, linkId, async (db) => {
+    const one = async (sql: string, at: string) => Number(((await db.query(sql, [studentIds, at])).rows[0] as { n: number | string }).n);
+    return {
+      homework: await one(
+        `select count(distinct t.target_id) as n from students s join homework_targets t on t.school_id = s.school_id and t.class_id = s.class_id
+          where s.student_id = any($1::uuid[]) and t.assigned_at > $2::timestamptz`,
+        since.homework
+      ),
+      notices: await one(
+        `select count(distinct n.notice_id) as n from students s join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+          where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > $2::timestamptz`,
+        since.notices
+      ),
+      results: await one(
+        `select count(distinct (g.exam_id, g.class_id)) as n from public.guardian_publications() g join students s on s.class_id = g.class_id
+          where s.student_id = any($1::uuid[]) and g.published_at > $2::timestamptz`,
+        since.results
+      ),
+    };
+  });
+}
+
 // The notices the principal approved in the last 30 days for one student's class or the whole school, newest first. In
 // the guardian's session the school's rules (school_link_notices_events.sql) let through only sent notices of the
 // guardian's own children's classes and the whole school; the class filter here keeps each child to their own class.

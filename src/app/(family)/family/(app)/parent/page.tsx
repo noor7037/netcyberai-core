@@ -2,8 +2,9 @@ import { redirect } from 'next/navigation';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { ParentArea } from '@/components/family/ParentArea';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
+import { NotifySection } from '@/components/family/NotifySection';
 import { SchoolSection } from '@/components/family/SchoolSection';
-import { activeLinks, linkedSchool } from '@/lib/family/school';
+import { activeLinks, linkedSchool, notifyOff } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { homePlan, plusOpen } from '@/lib/family/home-plan';
@@ -34,6 +35,9 @@ const PLAN_KEYS: MessageKey[] = [
   'fam.homePlan.noTopics', 'fam.homePlan.errTopics', 'fam.homePlan.errNote', 'fam.homePlan.night', 'fam.homePlan.done', 'fam.homePlan.tonight',
   'fam.homePlan.yourNotes', 'fam.homePlan.stop', 'fam.homePlan.stopNote', 'fam.homePlan.stopYes', 'fam.homePlan.ask', 'fam.homePlan.asked',
   'fam.homePlan.askNoConsent', 'fam.school.saveError', 'fam.common.cancel',
+];
+const NOTIFY_KEYS: MessageKey[] = [
+  'fam.notify.title', 'fam.notify.lead', 'fam.notify.homework', 'fam.notify.notices', 'fam.notify.results', 'fam.notify.tonight', 'fam.notify.on', 'fam.notify.off', 'fam.school.saveError',
 ];
 const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
@@ -99,6 +103,8 @@ export default async function FamilyParentPage() {
   const habit = switches && switchOn(switches, 'habit') ? await familyPageRead(page, (db) => Promise.all(page.children.map((c) => parentHabit(db, page.session.accountId, c.childId, indiaDate(), lang)))) : null;
   // Your school (C230-AA): each active link read as the guardian; a link the school has closed meanwhile is not shown.
   const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
+  // What the app tells the parent about (M3-8a, C338), once a school is connected or the home plan is open to them.
+  const off = await familyPageRead(page, (db) => notifyOff(db, page.session.accountId));
   const claims = { accountId: page.session.accountId, tokenVersion: page.session.tokenVersion };
   const schools = (await Promise.all(links.map(async (l) => ({ l, school: await linkedSchool(claims, l.linkId, l.children.map((c) => c.studentId)) })))).flatMap(({ l, school }) => (school ? [{ linkId: l.linkId, school, pairs: l.children }] : []));
   // The home plan after a parent-teacher meeting (M3-7, C337; Plus): with the module on and Control's Family Plus open
@@ -148,6 +154,7 @@ export default async function FamilyParentPage() {
         afterChildren={
           <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>
