@@ -1,5 +1,5 @@
 import { createHash, createHmac } from 'crypto';
-import { listChildren } from './children';
+import { isPrePrimary, listChildren } from './children';
 import { readFamilySwitches, switchOn } from './flags';
 import { dayPlan, type PlanKind } from './plan';
 import { familyHashKey } from './secret';
@@ -42,7 +42,9 @@ export type Heartbeat = { lockOn: boolean; permissionsOk: boolean; clockChanged:
 const HEARTBEAT_FIELDS = ['lockOn', 'permissionsOk', 'clockChanged'] as const;
 // The three flags as JSON are well under this; anything longer carries something else.
 export const HEARTBEAT_MAX_BYTES = 200;
-// Reports closer together than this are refused (the phone sends one about every 30 minutes, and at once on a change).
+// A report that repeats the last one within this is refused; a report that changes a flag is always taken, so the
+// phone's report "at once on a change" (the lock ending with its window, a permission switched off) is never lost
+// (review of C305). The phone sends one about every 30 minutes.
 export const HEARTBEAT_MIN_SECONDS = 60;
 
 // Exactly the three flags, each true or false: a missing one, another field, or another shape is refused.
@@ -69,13 +71,14 @@ export type NoticeKind = 'stopped' | 'permissions' | 'clock';
 // later stop is told again.
 export async function recordHeartbeat(db: Db, accountId: string, hash: string, hb: Heartbeat): Promise<'ok' | 'unknown_device' | 'too_soon'> {
   const { rows } = await db.query(
-    `select device_id, permissions_ok, coalesce(last_heartbeat_at > now() - make_interval(secs => $3), false) as too_soon
+    `select device_id, lock_on, permissions_ok, clock_changed, coalesce(last_heartbeat_at > now() - make_interval(secs => $3), false) as too_soon
        from family.focus_devices where account_id = $1 and device_hash = $2 for update`,
     [accountId, hash, HEARTBEAT_MIN_SECONDS]
   );
   const d = rows[0];
   if (!d) return 'unknown_device';
-  if (d.too_soon === true) return 'too_soon';
+  const same = d.lock_on === hb.lockOn && d.permissions_ok === hb.permissionsOk && d.clock_changed === hb.clockChanged;
+  if (d.too_soon === true && same) return 'too_soon';
   await db.query(
     `update family.focus_devices set last_heartbeat_at = now(), lock_on = $3, permissions_ok = $4, clock_changed = $5, stop_noticed_at = null
       where account_id = $1 and device_id = $2`,
@@ -119,7 +122,8 @@ export async function deviceId(db: Db, accountId: string, hash: string): Promise
 }
 
 // For each child set for the phone (in the order the family added them): today's plan, done only when every item has a
-// checked answer today (dayPlan), and what is still pending. The day is India's, from the server.
+// checked answer today (dayPlan), and what is still pending. A day with nothing in the plan counts as done: the lock
+// never holds a child with nothing to do (review of C305). The day is India's, from the server.
 export async function focusStatus(db: Db, accountId: string, device: string, day: string): Promise<FocusStatus> {
   const set = new Set(
     (await db.query(`select child_id from family.focus_device_children where account_id = $1 and device_id = $2`, [accountId, device])).rows.map((r) => String(r.child_id))
@@ -131,7 +135,7 @@ export async function focusStatus(db: Db, accountId: string, device: string, day
     out.push({
       childId: child.childId,
       firstName: child.firstName,
-      done: plan.complete,
+      done: plan.complete || plan.items.length === 0,
       pending: plan.items.filter((i) => !i.done).map((i) => ({ key: i.topicKey, title: i.title, subject: i.subject, kind: i.kind })),
     });
   }
@@ -148,7 +152,8 @@ export async function checkDeviceChildren(db: Db, accountId: string, raw: unknow
   if (!Array.isArray(raw) || raw.length < 1 || raw.length > MAX_DEVICE_CHILDREN || !raw.every(isUuid)) return null;
   const ids = Array.from(new Set(raw as string[]));
   if (ids.length !== raw.length) return null;
-  const own = new Set((await listChildren(db, accountId)).map((c) => c.childId));
+  // A pre-primary child has no study plan (dayPlan gives no topics), so the lock has nothing to unlock with: not set.
+  const own = new Set((await listChildren(db, accountId)).filter((c) => !isPrePrimary(c.classLevel)).map((c) => c.childId));
   return ids.every((id) => own.has(id)) ? ids : null;
 }
 

@@ -5856,6 +5856,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.family.peopleLink': 'ऐप इस्तेमाल करने वाले लोगों को देखें',
   'control.apps.module.name': 'मॉड्यूल {name}',
   'control.apps.module.neverSet': 'अपने-आप सबके लिए चालू। बंद करने या कौन देखे यह तय करने के लिए यहाँ बदलें।',
+  'control.apps.module.neverSetOff': 'यहाँ चालू करने तक बंद।',
   'control.apps.module.label.understand': 'समझें: अध्याय या विषय की व्याख्या',
   'control.apps.module.label.practice': 'अभ्यास प्रश्न',
   'control.apps.module.label.progress': 'होम पेज पर प्रगति',

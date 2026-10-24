@@ -372,5 +372,9 @@ describe('the page', () => {
       expect(html).toContain('data-change=');
     }
     expect(renderToStaticMarkup(createElement(AppsView, { data, build: { commit: null, deployedAt: null }, lang: 'en', now: new Date() }))).toContain('Not known here');
+    // A module off by default (the Focus Lock, C305) with no saved switch reads "Off", never "On for everyone".
+    const html = renderToStaticMarkup(createElement(AppsView, { data, build: { commit: null, deployedAt: null }, lang: 'en', now: new Date() }));
+    const focus = html.slice(html.indexOf('data-flag="family:focus_lock"'));
+    expect(focus.slice(0, focus.indexOf('data-flag="family:', 10))).toContain('Off until it is switched on here.');
   });
 });

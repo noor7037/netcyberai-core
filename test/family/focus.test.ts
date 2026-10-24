@@ -268,6 +268,19 @@ describe('the Focus Lock’s server (M2b-1, C305)', () => {
     expect((await status(childB, PHONE_A)).body.pinVersion).toBeNull();
   });
 
+  it('a day with nothing in the plan counts as done, and a pre-primary child is not set for a phone (review of C305)', async () => {
+    const C7 = 'f9000000-0000-4000-8000-0000000000a4';
+    const UKG = 'f9000000-0000-4000-8000-0000000000a5';
+    await q(`insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values ($1, $2, 'Isha', 7, 'CBSE', 'en', 'en', 'IN-KA'), ($3, $2, 'Kabir', 0, 'CBSE', 'en', 'en', 'IN-KA')`, [C7, A, UKG]);
+    // A pre-primary child has no study plan, so the lock would have nothing to unlock with.
+    expect((await register(parentA, PHONE_X, [UKG])).code).toBe(400);
+    // A Class 7 child with no released catalog has nothing to study today: done, with nothing pending, never held.
+    const dev = (await register(parentA, PHONE_X, [C7])).body.deviceId as string;
+    expect((await status(childA, PHONE_X)).body.children).toEqual([{ childId: C7, firstName: 'Isha', done: true, pending: [] }]);
+    await q(`delete from family.focus_devices where device_id = $1`, [dev]);
+    await q(`delete from family.children where child_id = any ($1::uuid[])`, [[C7, UKG]]);
+  });
+
   it('refuses a report with any field beyond the three flags, or any other shape, and changes nothing', async () => {
     const bad = [
       JSON.stringify({ ...FLAGS, app: 'com.example.game' }),
@@ -300,6 +313,13 @@ describe('the Focus Lock’s server (M2b-1, C305)', () => {
       reported: true,
     });
     expect(await beat(childA, PHONE_A, JSON.stringify(FLAGS))).toBe(429);
+    // A report that changes a flag is always taken, however soon after the last (review of C305): the lock ending with
+    // its window must never be lost, or the end of every lock time would read as a stop.
+    expect(await beat(childA, PHONE_A, JSON.stringify({ ...FLAGS, lockOn: false }))).toBe(200);
+    expect((await q(`select lock_on from family.focus_devices where device_id = $1`, [devA]))[0].lock_on).toBe(false);
+    expect(await beat(childA, PHONE_A, JSON.stringify({ ...FLAGS, lockOn: false }))).toBe(429);
+    await age(devA, 2);
+    expect(await beat(childA, PHONE_A, JSON.stringify(FLAGS))).toBe(200);
   });
 
   it('a report that stops while the lock is on tells the parent once; a new gap, again', async () => {

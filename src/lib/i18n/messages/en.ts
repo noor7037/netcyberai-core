@@ -5864,6 +5864,7 @@ export const en = {
   'control.family.peopleLink': 'See the people who use the app',
   'control.apps.module.name': 'Module {name}',
   'control.apps.module.neverSet': 'On for everyone by default. Change it here to switch it off or limit who sees it.',
+  'control.apps.module.neverSetOff': 'Off until it is switched on here.',
   'control.apps.module.label.understand': 'Understand: a chapter or topic explained',
   'control.apps.module.label.practice': 'Practice questions',
   'control.apps.module.label.progress': 'Progress on the home page',
