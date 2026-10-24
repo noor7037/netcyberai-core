@@ -25,6 +25,22 @@ export type LinkedSchoolChild = {
   events: SchoolEvent[] | null;
   // The class's published timetable (C332), for a matched child only, otherwise null.
   timetable: SchoolPeriod[] | null;
+  // The results the school published for the child's class (C333), newest first, for a matched child only, otherwise
+  // null. Never a mark still being entered.
+  results: SchoolResult[] | null;
+};
+
+// A published result, as the report card shows it: each subject's percent and grade by the grading scheme kept with
+// the publication (null while a subject's marks are not complete), the overall, the class teacher's remark and the
+// co-scholastic grades.
+export type SchoolResult = {
+  exam: string;
+  term: string | null;
+  publishedOn: string;
+  subjects: { name: string; percent: number | null; grade: string | null }[];
+  overall: { percent: number | null; grade: string | null };
+  remark: string | null;
+  coScholastic: { area: string; grade: string }[];
 };
 
 // One period of the published timetable: ISO weekday (1 is Monday), the period's number, and its subject in the

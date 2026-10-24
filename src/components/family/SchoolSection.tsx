@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import type { LinkedSchool, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod } from '@/lib/contracts/school-link';
+import type { LinkedSchool, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolResult } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 
@@ -158,6 +158,50 @@ function Timetable({ w, lang, periods }: { w: Words; lang: 'en' | 'hi'; periods:
   );
 }
 
+// A percent and grade as the report card says them (the percent, then the grade), or "not complete" while marks are
+// missing.
+const scored = (w: Words, percent: number | null, grade: string | null) => (percent === null ? w['fam.school.resultNotComplete'] : grade ? `${percent}% · ${grade}` : `${percent}%`);
+
+// The results the school published for a matched child's class (C333), newest first, read only.
+function Results({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolResult[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-results>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.results']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.resultsNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((r, i) => (
+            <li key={i} className="flex flex-col gap-1 rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="font-semibold">
+                {r.exam}
+                {r.term ? ` · ${r.term}` : ''}
+              </p>
+              <p>{fill(w['fam.school.resultPublished'], { date: day(r.publishedOn, lang) })}</p>
+              <ul className="flex flex-col">
+                {r.subjects.map((s, j) => (
+                  <li key={j}>
+                    {s.name}: {scored(w, s.percent, s.grade)}
+                  </li>
+                ))}
+              </ul>
+              <p className="font-semibold">
+                {w['fam.school.resultOverall']}: {scored(w, r.overall.percent, r.overall.grade)}
+              </p>
+              {r.coScholastic.length > 0 && <p>{r.coScholastic.map((c) => `${c.area}: ${c.grade}`).join(' · ')}</p>}
+              {r.remark && (
+                <p className="whitespace-pre-line">
+                  {w['fam.school.resultRemark']}: {r.remark}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; link: SchoolLinkView; children: { childId: string; firstName: string }[] }) {
   const router = useRouter();
   const initial = Object.fromEntries(link.school.children.map((c) => [c.studentId, link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? '']));
@@ -201,6 +245,7 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
               {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
               {c.events && <EventList w={w} lang={lang} items={c.events} />}
               {c.timetable && <Timetable w={w} lang={lang} periods={c.timetable} />}
+              {c.results && <Results w={w} lang={lang} items={c.results} />}
               <label className="flex flex-col gap-1 text-sm font-semibold text-slate" htmlFor={`fam-school-pair-${c.studentId}`}>
                 {w['fam.school.whichChild']}
                 <select
