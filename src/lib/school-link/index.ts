@@ -215,6 +215,17 @@ export async function answerPulse(claims: Claims, linkId: string, studentId: str
   });
 }
 
+export type FollowupRequestResult = 'recorded' | 'already' | 'no_consent' | 'not_found';
+
+// "Ask the teacher to follow up" after a parent-teacher meeting (C337): the school's own follow-up queue, as the
+// guardian; the database decides (public.guardian_followup_request).
+export async function requestFollowup(claims: Claims, linkId: string, studentId: string): Promise<FollowupRequestResult> {
+  return withGuardianContext(claims, linkId, async (db) => {
+    const r = (await db.query(`select public.guardian_followup_request($1) as result`, [studentId])).rows[0] as { result: FollowupRequestResult };
+    return r.result;
+  });
+}
+
 // The notices the principal approved in the last 30 days for one student's class or the whole school, newest first. In
 // the guardian's session the school's rules (school_link_notices_events.sql) let through only sent notices of the
 // guardian's own children's classes and the whole school; the class filter here keeps each child to their own class.

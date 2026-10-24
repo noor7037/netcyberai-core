@@ -1,14 +1,18 @@
 import { redirect } from 'next/navigation';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { ParentArea } from '@/components/family/ParentArea';
+import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { SchoolSection } from '@/components/family/SchoolSection';
 import { activeLinks, linkedSchool } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
-import { classSubjects } from '@/lib/family/catalog';
+import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { homePlan, plusOpen } from '@/lib/family/home-plan';
+import { subjectAccess } from '@/lib/family/modules';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
 import { listSyllabi } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
+import type { Subject } from '@/lib/contracts/subjects';
 import { calmCard, openSubjects } from '@/lib/family/learning';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { parentHabit } from '@/lib/family/habit';
@@ -24,6 +28,12 @@ const GATE_KEYS: MessageKey[] = [
   'fam.pin.resetSave', 'fam.pin.new', 'fam.pin.again', 'fam.pin.mismatch', 'fam.signIn.code', 'fam.common.cancel', 'fam.err.pinWrong', 'fam.err.wait',
   'fam.err.format', 'fam.err.too_simple', 'fam.err.wrong', 'fam.err.locked', 'fam.err.expired', 'fam.err.none', 'fam.err.rate_limited',
   'fam.err.email_unavailable', 'fam.err.network', 'fam.err.no_pin', 'fam.err.not_signed_in',
+];
+const PLAN_KEYS: MessageKey[] = [
+  'fam.homePlan.title', 'fam.homePlan.lead', 'fam.homePlan.notes', 'fam.homePlan.notesHelp', 'fam.homePlan.subject', 'fam.homePlan.chosen', 'fam.homePlan.make',
+  'fam.homePlan.noTopics', 'fam.homePlan.errTopics', 'fam.homePlan.errNote', 'fam.homePlan.night', 'fam.homePlan.done', 'fam.homePlan.tonight',
+  'fam.homePlan.yourNotes', 'fam.homePlan.stop', 'fam.homePlan.stopNote', 'fam.homePlan.stopYes', 'fam.homePlan.ask', 'fam.homePlan.asked',
+  'fam.homePlan.askNoConsent', 'fam.school.saveError', 'fam.common.cancel',
 ];
 const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
@@ -91,6 +101,28 @@ export default async function FamilyParentPage() {
   const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
   const claims = { accountId: page.session.accountId, tokenVersion: page.session.tokenVersion };
   const schools = (await Promise.all(links.map(async (l) => ({ l, school: await linkedSchool(claims, l.linkId, l.children.map((c) => c.studentId)) })))).flatMap(({ l, school }) => (school ? [{ linkId: l.linkId, school, pairs: l.children }] : []));
+  // The home plan after a parent-teacher meeting (M3-7, C337; Plus): with the module on and Control's Family Plus open
+  // for the pilot. Each child's open plan; with none, the catalog of each subject the child can open, to choose from.
+  const plans = await familyPageRead(page, async (db) => {
+    if (!switches || !switchOn(switches, 'home_plan') || !(await plusOpen(db))) return null;
+    const openToAll = await openSubjects(db);
+    return Promise.all(
+      page.children
+        .filter((c) => !isPrePrimary(c.classLevel))
+        .map(async (c) => {
+          const plan = await homePlan(db, page.session.accountId, c, indiaDate(), lang);
+          const subjects: PlanSubject[] = [];
+          if (!plan) {
+            for (const s of await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel })) {
+              if (!subjectAccess(c, s as Subject, openToAll).open) continue;
+              const cat = await readFamilyCatalog(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, subject: s, lang });
+              if (cat) subjects.push({ subject: s, name: familyWords(lang, [`fam.subject.${s}` as MessageKey])[`fam.subject.${s}`], chapters: cat.chapters.map((ch) => ({ title: ch.title, topics: ch.topics })) });
+            }
+          }
+          return { childId: c.childId, firstName: c.firstName, plan, linked: links.some((l) => l.children.some((k) => k.childId === c.childId)), subjects };
+        })
+    );
+  });
   // C230-AB: each child's class subjects (all of them: an own syllabus can be given for any), and the syllabi saved or
   // waiting to be checked. Nursery, LKG and UKG have no subjects yet, so they are not offered.
   const own = await familyPageRead(page, async (db) => ({
@@ -116,6 +148,7 @@ export default async function FamilyParentPage() {
         afterChildren={
           <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>
         }

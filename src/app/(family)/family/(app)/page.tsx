@@ -10,6 +10,7 @@ import { classSubjects } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { familyModuleOn } from '@/lib/family/flags';
 import { childHabit } from '@/lib/family/habit';
+import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { childProgress, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { dayPlan } from '@/lib/family/plan';
@@ -37,13 +38,15 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, meeting } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
     openToAll: await openSubjects(db),
     links: await activeLinks(db, page.session.accountId),
+    // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
+    meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
   const atSchool = await schoolTodayFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
@@ -77,6 +80,14 @@ export default async function FamilyHomePage() {
                 </div>
               </div>
             )}
+          </section>
+        )}
+        {meeting && (
+          <section data-home-plan-tonight className="fam-card flex flex-col gap-2 bg-white p-4">
+            <p className="text-sm font-semibold text-slate">{t(lang, 'fam.homePlan.childHome')}</p>
+            <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(meeting.topicKey)}`} className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+              {meeting.title}
+            </Link>
           </section>
         )}
         {plan && <PlanCard plan={plan} lang={lang} />}

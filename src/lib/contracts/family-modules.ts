@@ -36,4 +36,6 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'voice_input', tab: 'study', flag: 'voice_input', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-9
   { id: 'offline', tab: 'study', flag: 'offline', entitlement: 'learning', built: true, milestone: 'M2', addOn: true },
+  // M3-7 (C337): the home plan after a parent-teacher meeting; Plus, so also behind Control's family.plus_open until P3.
+  { id: 'home_plan', tab: 'family', flag: 'home_plan', entitlement: 'plus', built: true, milestone: 'M3' },
 ];

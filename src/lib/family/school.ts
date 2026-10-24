@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg';
 import type { LinkedSchool, PulseAnswer, SchoolDayMark, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
-import { answerPulse, readLinkedSchool, readSchoolSyllabus, readSchoolToday, redeemConnectCode, SchoolLinkGoneError, type PulseAnswerResult } from '@/lib/school-link';
+import { answerPulse, readLinkedSchool, readSchoolSyllabus, readSchoolToday, redeemConnectCode, requestFollowup, SchoolLinkGoneError, type FollowupRequestResult, type PulseAnswerResult } from '@/lib/school-link';
 
 // The family's side of School Link (C230-AA; docs/family-app/03 §4): the links an account holds and which family child
 // is which student. The school's records are read only through src/lib/school-link (as the guardian), never copied
@@ -106,6 +106,24 @@ export async function answerSchoolPulse(
   if (!matched) return 'not_found';
   try {
     return await answerPulse(claims, input.linkId, input.studentId, input.pulseId, input.answer);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return 'not_found';
+    throw e;
+  }
+}
+
+// The family child's matched school student, if any (the parent chose it; never a guess).
+export function matchedStudent(links: readonly FamilySchoolLink[], childId: string): { linkId: string; studentId: string } | null {
+  return links.flatMap((l) => l.children.filter((c) => c.childId === childId).map((c) => ({ linkId: l.linkId, studentId: c.studentId })))[0] ?? null;
+}
+
+// After a parent-teacher meeting (C337): the parent asks the child's teacher to follow up, in the school's own queue.
+// Only for a child matched to a connected school's student; the database decides the rest (consent for messages).
+export async function askSchoolFollowup(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<FollowupRequestResult> {
+  const m = matchedStudent(links, childId);
+  if (!m) return 'not_found';
+  try {
+    return await requestFollowup(claims, m.linkId, m.studentId);
   } catch (e) {
     if (e instanceof SchoolLinkGoneError) return 'not_found';
     throw e;

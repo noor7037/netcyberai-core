@@ -35,3 +35,31 @@ export async function setSubjectList(db: Sql, by: { userId: string }, list: Subj
   });
   return { ok: true, subjects };
 }
+
+// Family Plus for a pilot (C337): Plus has no checkout before P3 and no school sponsors it yet, so its modules (the home
+// plan after a parent-teacher meeting) are used only when Control opens Plus to every family. Off until set; audited.
+export const PLUS_OPEN_KEY = 'family.plus_open';
+
+export async function readPlusOpen(db: Sql): Promise<boolean> {
+  return (await db.query(`select value from control.settings where key = $1`, [PLUS_OPEN_KEY])).rows[0]?.value === true;
+}
+
+export async function setPlusOpen(db: Sql, by: { userId: string }, raw: unknown): Promise<{ ok: true; open: boolean } | { ok: false; code: 'bad_value' }> {
+  if (typeof raw !== 'boolean') return { ok: false, code: 'bad_value' };
+  const before = await readPlusOpen(db);
+  await db.query(
+    `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+    [PLUS_OPEN_KEY, JSON.stringify(raw), by.userId]
+  );
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: by.userId,
+    actorRole: 'super_admin',
+    eventAction: 'family.plus_open_set',
+    targetType: 'control_setting',
+    targetId: PLUS_OPEN_KEY,
+    beforeState: { open: before },
+    afterState: { open: raw },
+  });
+  return { ok: true, open: raw };
+}
