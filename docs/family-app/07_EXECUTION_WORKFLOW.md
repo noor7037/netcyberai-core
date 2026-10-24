@@ -58,6 +58,21 @@ order, each with one security review and a QA pass:
 3. **Pulse replies (M3-6).** Recommended: a reply from the app needs the school's `operational_communication` consent
    for the child, as a WhatsApp reply does; without it the Pulse is read only.
 
+**Answered by the supervisor (2026-10-24, C230-AD):**
+1. **Push: yes, one free Firebase project for push and App Distribution**, with two corrections.
+   - Firebase Cloud Messaging through its HTTP v1 API with a service account. The legacy "server key" is retired by
+     Google. The service account is stored sealed like the AI keys, never in the repository.
+   - Browser users get standard Web Push (VAPID) with no Firebase.
+   - **A notification's words never carry a child's name, marks, fees or any personal detail** ("New homework from
+     school"; a lock screen is seen by anyone). The detail shows only inside the app, after sign-in.
+   - Until the founder's Firebase project exists: Web Push and unread counts.
+2. **Moving C230-D's logins: as recommended.** Only through a School Link code, never an automatic merge. The old login
+   says so at its next sign-in and then stops. The school's guardian record is never deleted; only the old login is
+   retired, audited.
+3. **Pulse replies: as recommended.** A reply needs the school's `operational_communication` consent for the child, and
+   takes the same inbound path and checks as a WhatsApp reply (the Aadhaar rule, the teacher's queue). Without the
+   consent, the Pulse is read only.
+
 ## 2. The loop for every milestone
 
 1. **Supervisor** writes the milestone prompt from `08` (template W): scope, files, acceptance, models, gates. The
