@@ -147,12 +147,25 @@ export async function pushForAccount(claims: { accountId: string; tokenVersion: 
 
 export const PUSH_SCAN_JOB = 'family.push_scan';
 
-// The job: every account with a browser to tell, one after another. One account's trouble never stops the others.
-export function pushScanHandler({ platform, send = sendWebPush, now = () => new Date() }: { platform: Platform; send?: PushSender; now?: () => Date }) {
+// The list from this run's place: the next account each ten minutes.
+export function scanOrder<T>(list: readonly T[], at: Date): T[] {
+  const from = list.length ? Math.floor(at.getTime() / 600_000) % list.length : 0;
+  return [...list.slice(from), ...list.slice(0, from)];
+}
+
+// A run stops taking new accounts after this long, well inside the runner's limit; the rest are told next time.
+export const SCAN_BUDGET_MS = 200_000;
+
+// The job: every account with a browser to tell, one after another. One account's trouble never stops the others. Each
+// run starts at a different place in the list (by its ten minutes), so a run cut short by its time never leaves the same
+// families out every time.
+export function pushScanHandler({ platform, send = sendWebPush, now = () => new Date(), budgetMs = SCAN_BUDGET_MS }: { platform: Platform; send?: PushSender; now?: () => Date; budgetMs?: number }) {
   return async (): Promise<void> => {
     const at = now();
-    const accounts = await platform(async (db) => (await db.query(`select account_id, token_version from family.push_accounts()`)).rows as { account_id: string; token_version: number }[]);
-    for (const a of accounts) {
+    const started = Date.now();
+    const listed = await platform(async (db) => (await db.query(`select account_id, token_version from family.push_accounts()`)).rows as { account_id: string; token_version: number }[]);
+    for (const a of scanOrder(listed, at)) {
+      if (Date.now() - started > budgetMs) break;
       try {
         await pushForAccount({ accountId: a.account_id, tokenVersion: Number(a.token_version) }, at, send);
       } catch (err) {

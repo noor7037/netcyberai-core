@@ -155,9 +155,15 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
   self.addEventListener('notificationclick', (event) => {
     event.notification.close();
     const url = event.notification.data && PUSH_PAGES.includes(event.notification.data.url) ? event.notification.data.url : '/family';
+    // A Family app tab this worker looks after is brought to the page; any other tab (the website, the staff app) is
+    // left alone and a new window opens.
     event.waitUntil(
-      self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
-        for (const c of list) if (new URL(c.url).origin === self.location.origin && 'focus' in c) return c.navigate(url).then((w) => (w || c).focus());
+      self.clients.matchAll({ type: 'window' }).then(async (list) => {
+        const tab = list.find((c) => new URL(c.url).origin === self.location.origin && new URL(c.url).pathname.startsWith('/family'));
+        if (tab) {
+          const moved = await tab.navigate(url).catch(() => null);
+          if (moved) return moved.focus();
+        }
         return self.clients.openWindow(url);
       })
     );

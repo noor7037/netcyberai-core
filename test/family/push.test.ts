@@ -84,6 +84,15 @@ describe('the standard parts (C339)', () => {
     expect(subscriptionKeysOk(b.p256dh, 'short')).toBe(false);
   });
 
+  it('each run of the job starts at a different account', async () => {
+    const { scanOrder } = await import('@/lib/family/push');
+    const ten = (n: number) => new Date(n * 600_000);
+    expect(scanOrder(['a', 'b', 'c'], ten(0))).toEqual(['a', 'b', 'c']);
+    expect(scanOrder(['a', 'b', 'c'], ten(1))).toEqual(['b', 'c', 'a']);
+    expect(scanOrder(['a', 'b', 'c'], ten(5))).toEqual(['c', 'a', 'b']);
+    expect(scanOrder([], ten(5))).toEqual([]);
+  });
+
   it('the service worker says only fixed words, and opens only the app’s own pages', () => {
     expect(sw.pushNotice({ k: 'homework', u: '/family/parent', l: 'en' })).toEqual({ title: 'New homework from school', body: 'Open NetCyberAI Family to see it.', url: '/family/parent', tag: 'nca-homework' });
     expect(sw.pushNotice({ k: 'tonight', u: '/family', l: 'hi' }).title).toBe('आज रात का अभ्यास तैयार है');
@@ -240,6 +249,15 @@ describe('a family’s browsers (C339)', () => {
       );
     }
     answer = () => 'sent';
+  });
+
+  it('signing out everywhere stops every browser of the account being told', async () => {
+    expect(await subscribe(sub(b2, 'https://updates.push.services.mozilla.com/wpush/v2/two'))).toEqual({ status: 200, body: { ok: true } });
+    const { signOutEverywhere } = await import('@/lib/family/account');
+    const { withFamilyContext } = await import('@/lib/auth/db');
+    await withFamilyContext(claims, (c) => signOutEverywhere(c, ACCOUNT));
+    expect(await q(`select count(*)::int as n from family.push_subscriptions where account_id = $1`, [ACCOUNT])).toEqual([{ n: 0 }]);
+    await q(`update family.accounts set token_version = 0 where account_id = $1`, [ACCOUNT]);
   });
 
   it('tonight’s plan, once an evening from 18:30 in India, when there is one', async () => {
