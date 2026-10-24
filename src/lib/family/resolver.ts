@@ -197,6 +197,10 @@ export type Generated = {
   // (or "unknown"). Types only, never the words.
   objects: number;
   rejected: string[];
+  // What the scanner dropped (C330): the answer ended inside an object that never closed, and how many objects grew
+  // past its size limit. A flag and a count, never the words.
+  unclosed: boolean;
+  droppedForSize: number;
   refusedByModel: boolean;
   // A refusal already sent while streaming (a typed question in another subject): nothing more is said.
   stopped: boolean;
@@ -422,7 +426,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   // A typed question is checked before it is sent: one found unsafe is never sent to the model (C314).
   if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
-    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error, objects, rejected };
+    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0 };
   }
   // Each JSON object is checked as soon as it closes, however the model laid it out (C316).
   const scan = jsonObjectScanner();
@@ -430,7 +434,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     for (const o of scan(delta)) enqueue(o);
   });
   await queue;
-  return { sent, subject, kept, refusedByModel, stopped, error, objects, rejected };
+  return { sent, subject, kept, refusedByModel, stopped, error, objects, rejected, ...scan.dropped() };
 }
 
 // 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns
