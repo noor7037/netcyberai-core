@@ -72,7 +72,7 @@ beforeAll(async () => {
     insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values
       ('${A}', '${S1}', 'core_records', true, 'school_attested', 'v1'), ('${A}', '${S2}', 'core_records', true, 'school_attested', 'v1');
     insert into attendance (school_id, student_id, class_id, date, status, marked_by) values
-      ('${A}', '${S1}', '${C6A}', current_date, 'present', '${PRINCIPAL}');
+      ('${A}', '${S1}', '${C6A}', (now() at time zone 'Asia/Kolkata')::date, 'present', '${PRINCIPAL}');
     insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic) values
       ('${A}', '${C6A}', '${SCI}', 1, 'Exploring Magnets', 'Magnetic and non-magnetic materials'),
       ('${A}', '${C6A}', '${SCI}', 2, 'Exploring Magnets', 'Poles of a magnet'),

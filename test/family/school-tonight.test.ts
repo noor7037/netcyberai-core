@@ -81,13 +81,13 @@ beforeAll(async () => {
     insert into parent_student_map (school_id, parent_id, student_id) values ('${A}', '${P1}', '${S1}');
     insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values ('${A}', '${S1}', 'core_records', true, 'school_attested', 'v1');
     insert into syllabus_progress (progress_id, school_id, teacher_id, class_id, subject_id, topic, status, date, unit_id, note) values
-      ('${G(1)}', '${A}', '${T_ROW}', '${C6A}', '${SCI}', '', 'taught', current_date, '${UNIT}', 'Two children were away.'),
-      ('${G(2)}', '${A}', '${T_ROW}', '${C6A}', '${MATH}', 'Number patterns', 'partial', current_date, null, null),
-      ('${G(3)}', '${A}', '${T_ROW}', '${C6A}', '${ENG}', 'A poem', 'not_taught', current_date, null, null),
-      ('${G(4)}', '${A}', '${T_ROW}', '${C6A}', '${MATH}', 'Fractions', 'delayed', current_date - 2, null, null),
-      ('${G(5)}', '${A}', '${T_ROW}', '${C6A}', '${SCI}', 'Magnetic materials', 'taught', current_date - 1, null, null),
-      ('${G(6)}', '${A}', '${T_ROW}', '${C6B}', '${SCI}', 'Only for 6-B', 'taught', current_date, null, null),
-      ('${G(7)}', '${B}', '${T_ROW_B}', '${CB}', '${SCI_B}', 'Another school', 'taught', current_date, null, null);
+      ('${G(1)}', '${A}', '${T_ROW}', '${C6A}', '${SCI}', '', 'taught', (now() at time zone 'Asia/Kolkata')::date, '${UNIT}', 'Two children were away.'),
+      ('${G(2)}', '${A}', '${T_ROW}', '${C6A}', '${MATH}', 'Number patterns', 'partial', (now() at time zone 'Asia/Kolkata')::date, null, null),
+      ('${G(3)}', '${A}', '${T_ROW}', '${C6A}', '${ENG}', 'A poem', 'not_taught', (now() at time zone 'Asia/Kolkata')::date, null, null),
+      ('${G(4)}', '${A}', '${T_ROW}', '${C6A}', '${MATH}', 'Fractions', 'delayed', (now() at time zone 'Asia/Kolkata')::date - 2, null, null),
+      ('${G(5)}', '${A}', '${T_ROW}', '${C6A}', '${SCI}', 'Magnetic materials', 'taught', (now() at time zone 'Asia/Kolkata')::date - 1, null, null),
+      ('${G(6)}', '${A}', '${T_ROW}', '${C6B}', '${SCI}', 'Only for 6-B', 'taught', (now() at time zone 'Asia/Kolkata')::date, null, null),
+      ('${G(7)}', '${B}', '${T_ROW_B}', '${CB}', '${SCI_B}', 'Another school', 'taught', (now() at time zone 'Asia/Kolkata')::date, null, null);
     insert into family.accounts (account_id, email) values ('${ACCOUNT}', 'parent@example.org'), ('${OTHER_ACCOUNT}', 'other@example.org');
     insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values ('${CHILD}', '${ACCOUNT}', 'Aarav', 6, 'CBSE', 'en', 'en', 'IN-HR');
   `);
@@ -129,7 +129,7 @@ describe('a linked family reads what its matched child’s class covered today (
 
   it('a parent never writes, changes or deletes the record', async () => {
     const writes = [
-      `insert into syllabus_progress (school_id, teacher_id, class_id, subject_id, topic, status, date) values ('${A}', '${T_ROW}', '${C6A}', '${SCI}', 'x', 'taught', current_date)`,
+      `insert into syllabus_progress (school_id, teacher_id, class_id, subject_id, topic, status, date) values ('${A}', '${T_ROW}', '${C6A}', '${SCI}', 'x', 'taught', (now() at time zone 'Asia/Kolkata')::date)`,
       `update syllabus_progress set topic = 'changed' where progress_id = '${G(2)}'`,
       `delete from syllabus_progress where progress_id = '${G(2)}'`,
     ];
@@ -167,7 +167,7 @@ describe('a linked family reads what its matched child’s class covered today (
 
   it('staff read and write the record as before', async () => {
     const principal = await asStaff('principal', PRINCIPAL)(async (c) => {
-      await c.query(`insert into syllabus_progress (school_id, teacher_id, class_id, subject_id, topic, status, date) values ($1, $2, $3, $4, 'Revision', 'taught', current_date)`, [A, T_ROW, C6B, MATH]);
+      await c.query(`insert into syllabus_progress (school_id, teacher_id, class_id, subject_id, topic, status, date) values ($1, $2, $3, $4, 'Revision', 'taught', (now() at time zone 'Asia/Kolkata')::date)`, [A, T_ROW, C6B, MATH]);
       return (await c.query(`select count(*)::int as n from syllabus_progress`)).rows[0].n;
     });
     expect(principal).toBe(7);
