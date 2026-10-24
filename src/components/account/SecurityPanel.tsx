@@ -5,27 +5,14 @@ import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
+import type { DeviceWords } from './device-words';
 
 // Account security (C90): the mobile number used to sign in, the browsers
 // trusted to skip the sign-in codes (F1-1, C257: each with "Forget"), and
 // signing out on every device.
 type Device = { deviceId: string; label: string; proof: 'authenticator' | 'email'; lastUsedAt: string; expiresAt: string; thisDevice: boolean };
-// The device list's words, from the message files (the page picks the language): see DEVICE_WORD_KEYS.
-export const DEVICE_WORD_KEYS = [
-  'account.devices.heading',
-  'account.devices.tip',
-  'account.devices.loading',
-  'account.devices.none',
-  'account.devices.this',
-  'account.devices.skipsBoth',
-  'account.devices.skipsEmail',
-  'account.devices.dates',
-  'account.devices.forget',
-  'account.devices.forgotten',
-  'account.devices.thisForgotten',
-  'account.devices.forgetFailed',
-] as const;
-export type DeviceWords = Record<(typeof DEVICE_WORD_KEYS)[number], string> & { lang: 'en' | 'hi' };
+// The device list's words come from the page, in its language (device-words.ts). This file exports only the panel:
+// it is 'use client', so a list exported from here cannot be read on the server (W2-15).
 const PHONE_ERROR: Record<string, string> = {
   phone_invalid: 'Enter a 10-digit Indian mobile number, for example 98765 43210.',
   phone_taken: 'Another account already uses this number.',
