@@ -28,7 +28,17 @@ export type LinkedSchoolChild = {
   // The results the school published for the child's class (C333), newest first, for a matched child only, otherwise
   // null. Never a mark still being entered.
   results: SchoolResult[] | null;
+  // The Daily Pulse the school sent for the child's class in the last 7 days (C336, R9), newest first, for a matched
+  // child only, otherwise null. canAnswer: the school holds the child's consent for messages (C230-AD); without it the
+  // Pulse is read only.
+  pulse: { items: SchoolPulse[]; canAnswer: boolean } | null;
 };
+
+// A Daily Pulse as the school sent it (its words never change): the lesson's day (yyyy-mm-dd), the school's English and
+// Hindi words, this guardian's answer however it was given (WhatsApp or the app), and whether it can still be answered
+// (sent in the last 24 hours, as a WhatsApp answer is tied to its Pulse).
+export type PulseAnswer = 'understood' | 'needs_help';
+export type SchoolPulse = { pulseId: string; sentOn: string; body: { en: string; hi: string }; answer: PulseAnswer | null; open: boolean };
 
 // A published result, as the report card shows it: each subject's percent and grade by the grading scheme kept with
 // the publication (null while a subject's marks are not complete), the overall, the class teacher's remark and the

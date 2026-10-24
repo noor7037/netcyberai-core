@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg';
-import type { LinkedSchool, SchoolDayMark, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
-import { readLinkedSchool, readSchoolSyllabus, readSchoolToday, redeemConnectCode, SchoolLinkGoneError } from '@/lib/school-link';
+import type { LinkedSchool, PulseAnswer, SchoolDayMark, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
+import { answerPulse, readLinkedSchool, readSchoolSyllabus, readSchoolToday, redeemConnectCode, SchoolLinkGoneError, type PulseAnswerResult } from '@/lib/school-link';
 
 // The family's side of School Link (C230-AA; docs/family-app/03 §4): the links an account holds and which family child
 // is which student. The school's records are read only through src/lib/school-link (as the guardian), never copied
@@ -90,6 +90,24 @@ export async function linkedSchool(claims: Claims, linkId: string, matched: read
     return await readLinkedSchool(claims, linkId, { matched });
   } catch (e) {
     if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// The parent answers the school's Daily Pulse for a child this app has matched (C336). The database decides the rest:
+// the guardian's own consented child, a message sent to the child's class in the last 24 hours, the school's consent for
+// messages; a link the school closed meanwhile is not_found.
+export async function answerSchoolPulse(
+  claims: Claims,
+  links: readonly FamilySchoolLink[],
+  input: { linkId: string; studentId: string; pulseId: string; answer: PulseAnswer }
+): Promise<PulseAnswerResult> {
+  const matched = links.some((l) => l.linkId === input.linkId && l.children.some((c) => c.studentId === input.studentId));
+  if (!matched) return 'not_found';
+  try {
+    return await answerPulse(claims, input.linkId, input.studentId, input.pulseId, input.answer);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return 'not_found';
     throw e;
   }
 }

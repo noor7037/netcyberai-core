@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import type { LinkedSchool, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolResult } from '@/lib/contracts/school-link';
+import type { LinkedSchool, PulseAnswer, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolPulse, SchoolResult } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 
@@ -44,6 +44,62 @@ function HomeworkList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: 
           ))}
         </ul>
       )}
+    </div>
+  );
+}
+
+// The school's Daily Pulse for a matched child's class (C336, R9), newest first. With the school's consent for messages
+// the parent answers it here, as they would by WhatsApp ("1" understood, "2" needs help), and the teacher sees it;
+// without it, read only (C230-AD).
+function PulseList({ w, lang, linkId, studentId, pulse }: { w: Words; lang: 'en' | 'hi'; linkId: string; studentId: string; pulse: { items: SchoolPulse[]; canAnswer: boolean } }) {
+  const router = useRouter();
+  const [busy, setBusy] = useState('');
+  const [error, setError] = useState<Record<string, string>>({});
+  const answerWords = (a: PulseAnswer) => (a === 'understood' ? w['fam.school.pulseUnderstood'] : w['fam.school.pulseNeedsHelp']);
+  const answer = async (pulseId: string, a: PulseAnswer) => {
+    setBusy(pulseId);
+    setError({});
+    const r = await familyApi('/api/family/school/pulse', 'POST', { linkId, studentId, pulseId, answer: a });
+    setBusy('');
+    if (!r.ok && r.error !== 'already') return setError({ [pulseId]: r.error === 'closed' ? w['fam.school.pulseClosed'] : r.error === 'no_consent' ? w['fam.school.pulseReadOnly'] : w['fam.school.saveError'] });
+    router.refresh();
+  };
+  return (
+    <div className="flex flex-col gap-1" data-school-pulse>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.pulse']}</p>
+      {pulse.items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.pulseNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {pulse.items.map((p) => (
+            <li key={p.pulseId} data-pulse={p.pulseId} className="flex flex-col gap-2 rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p>{fill(w['fam.school.pulseFor'], { date: day(p.sentOn, lang) })}</p>
+              <p className="whitespace-pre-line">{lang === 'hi' && p.body.hi.trim() ? p.body.hi : p.body.en}</p>
+              {p.answer ? (
+                <p className="font-semibold">
+                  {fill(w['fam.school.pulseAnswered'], { answer: answerWords(p.answer) })}
+                  {p.answer === 'needs_help' ? ` ${w['fam.school.pulseHelpNote']}` : ''}
+                </p>
+              ) : p.open && pulse.canAnswer ? (
+                <div className="flex flex-wrap gap-2">
+                  <Button type="button" variant="outline" disabled={busy !== ''} onClick={() => void answer(p.pulseId, 'understood')}>
+                    {w['fam.school.pulseUnderstood']}
+                  </Button>
+                  <Button type="button" variant="outline" disabled={busy !== ''} onClick={() => void answer(p.pulseId, 'needs_help')}>
+                    {w['fam.school.pulseNeedsHelp']}
+                  </Button>
+                </div>
+              ) : null}
+              {error[p.pulseId] && (
+                <p role="alert" className="font-semibold text-red-800">
+                  {error[p.pulseId]}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+      {!pulse.canAnswer && pulse.items.some((p) => p.open && !p.answer) && <p className="text-sm text-slate">{w['fam.school.pulseReadOnly']}</p>}
     </div>
   );
 }
@@ -241,6 +297,7 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
                 {c.markedDays > 0 ? ` · ${fill(w['fam.school.present'], { present: c.presentDays, marked: c.markedDays })}` : ''}
                 {c.dueMinor > 0 ? ` · ${fill(w['fam.school.due'], { amount: rupees(c.dueMinor) })}` : ''}
               </p>
+              {c.pulse && <PulseList w={w} lang={lang} linkId={link.linkId} studentId={c.studentId} pulse={c.pulse} />}
               {c.homework && <HomeworkList w={w} lang={lang} items={c.homework} />}
               {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
               {c.events && <EventList w={w} lang={lang} items={c.events} />}
