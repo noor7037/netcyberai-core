@@ -1,4 +1,6 @@
 include ':app'
+// The Focus Lock's rule engine: plain Kotlin on the JVM (M2b-3, docs/34 §9.1).
+include ':focuslock-core'
 include ':capacitor-cordova-android-plugins'
 project(':capacitor-cordova-android-plugins').projectDir = new File('./capacitor-cordova-android-plugins/')
 

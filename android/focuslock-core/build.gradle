@@ -1,0 +1,30 @@
+// The Focus Lock's rule engine (docs/34 §9.1, M2b-3). Plain Kotlin on the JVM: no Android classes are on this
+// module's classpath, so an Android import cannot even compile, and every rule is tested with
+// `./gradlew :focuslock-core:test` without a phone or an emulator. The app, and the FocusLock plugin that M2b-4 and
+// M2b-5 add, depend on it as an ordinary library.
+apply plugin: 'java-library'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+
+java {
+    // The same Java level as the app (app/capacitor.build.gradle), so the app can consume this library.
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+        allWarningsAsErrors.set(true)
+    }
+}
+
+dependencies {
+    testImplementation "junit:junit:$junitVersion"
+}
+
+test {
+    testLogging {
+        events 'failed'
+        exceptionFormat 'full'
+    }
+}
