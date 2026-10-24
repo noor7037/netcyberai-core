@@ -32,6 +32,47 @@ milestone's stack and reports before the next starts.
 - It covers school-internal exams only; board re-evaluation is the board's own process, which we link to.
 - It starts only when a pilot school wants it.
 
+### M3, the rest (build lead, 2026-10-24)
+
+Built: School Link, attendance, fees, the school's syllabus, homework, notices and events, the timetable and published
+results (C230-AA, C329 to C333), each read as the guardian by the school's own row rules. The rest, one PR each, in this
+order, each with one security review and a QA pass:
+
+| Slice | What | Done when |
+|---|---|---|
+| M3-5 Tonight's practice (L10) | For a linked, matched child: what the class covered today (the teacher's syllabus progress for the child's class) opens in the explain-and-ask screen, as the school's own syllabus topics already do (C230-AB). Schools cannot yet adopt catalog versions (no adoption exists; the M3 row's "Teacher app's syllabus map points at catalog topics" is still to build), so the catalog topic's practice follows that | A topic marked covered today shows tonight; none marked shows nothing; another class's never shows |
+| M3-6 The Daily Pulse in the app (R9) | The school's Daily Pulse for a linked guardian, in the app; a reply goes into the same inbound path as a WhatsApp reply | A reply lands in the teacher's queue exactly as a WhatsApp reply does; without the school's consent for messages, read only |
+| M3-7 PTM → 14-day plan (R5, Plus) | The parent's notes, or the teacher's through School Link, become 15 minutes a night for 14 nights on syllabus topics; "Request teacher follow-up" uses the existing queue | A plan maps every night to a catalog topic; the follow-up appears in the teacher's queue; behind the Plus entitlement (no checkout until P3) |
+| M3-8 Push to the app | A linked family hears of new homework, a sent notice, a published result, and tonight's plan | Each push opens the right screen; the parent can turn each kind off |
+| M3-9 C230-D's parent logins to family accounts | A school-side parent login moves to a family account linked to the same guardian | No account is merged by guess; the old login stops only once the family account is linked |
+
+**Open, for the supervisor (asked once, with a recommendation):**
+1. **Push (M3-8).** The Android shell is a web view, which cannot receive web push, so push needs Firebase Cloud
+   Messaging: one free Firebase project in the founder's Google account (the same one the APK pipeline's App
+   Distribution needs), its `google-services.json` in the build, and its server key in Vercel. Recommended: one Firebase
+   project for both; until then, unread counts in the app only.
+2. **Moving C230-D's logins (M3-9).** Some school-side parents sign in with a username and have no inbox. Recommended:
+   no automatic merge; the office gives each such guardian a School Link code (the existing flow; an email is recorded
+   first where there is none); when a family account links to that guardian, the old login says so at its next sign-in
+   and then stops; nothing is deleted silently.
+3. **Pulse replies (M3-6).** Recommended: a reply from the app needs the school's `operational_communication` consent
+   for the child, as a WhatsApp reply does; without it the Pulse is read only.
+
+**Answered by the supervisor (2026-10-24, C230-AD):**
+1. **Push: yes, one free Firebase project for push and App Distribution**, with two corrections.
+   - Firebase Cloud Messaging through its HTTP v1 API with a service account. The legacy "server key" is retired by
+     Google. The service account is stored sealed like the AI keys, never in the repository.
+   - Browser users get standard Web Push (VAPID) with no Firebase.
+   - **A notification's words never carry a child's name, marks, fees or any personal detail** ("New homework from
+     school"; a lock screen is seen by anyone). The detail shows only inside the app, after sign-in.
+   - Until the founder's Firebase project exists: Web Push and unread counts.
+2. **Moving C230-D's logins: as recommended.** Only through a School Link code, never an automatic merge. The old login
+   says so at its next sign-in and then stops. The school's guardian record is never deleted; only the old login is
+   retired, audited.
+3. **Pulse replies: as recommended.** A reply needs the school's `operational_communication` consent for the child, and
+   takes the same inbound path and checks as a WhatsApp reply (the Aadhaar rule, the teacher's queue). Without the
+   consent, the Pulse is read only.
+
 ## 2. The loop for every milestone
 
 1. **Supervisor** writes the milestone prompt from `08` (template W): scope, files, acceptance, models, gates. The
