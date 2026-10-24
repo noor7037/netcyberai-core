@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
+import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea } from '@/components/family/ParentArea';
 import { SchoolSection } from '@/components/family/SchoolSection';
 import { activeLinks, linkedSchool } from '@/lib/family/school';
@@ -11,6 +12,7 @@ import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import { calmCard, openSubjects } from '@/lib/family/learning';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
+import { focusTimeLabel, parentFocus } from '@/lib/family/focus';
 import { parentHabit } from '@/lib/family/habit';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
 import { indiaDate } from '@/lib/time/india';
@@ -43,6 +45,14 @@ const AREA_KEYS: MessageKey[] = [
   'fam.habit.parent.sumMasteredNone', 'fam.habit.parent.sumSupport', 'fam.habit.parent.sumSupportNone', 'fam.habit.parent.talkTitle', 'fam.habit.parent.talk.0',
   'fam.habit.parent.talk.1', 'fam.habit.parent.talk.2', 'fam.habit.parent.talk.3', 'fam.habit.parent.talkNone', 'fam.err.goal_bad', 'fam.err.reward_bad',
   'fam.err.target_bad', 'fam.err.jar_exists', 'fam.err.jar_not_full', 'fam.err.jar_full', 'fam.err.not_found', 'fam.err.consent_required',
+];
+
+// M2b-1 (C305): the Focus Lock's phones and notices (src/components/family/FocusSection.tsx).
+const FOCUS_KEYS: MessageKey[] = [
+  'fam.focus.title', 'fam.focus.lead', 'fam.focus.none', 'fam.focus.phoneFor', 'fam.focus.phoneForNone', 'fam.focus.lastReport', 'fam.focus.noReport',
+  'fam.focus.state.on', 'fam.focus.state.off', 'fam.focus.state.permissions', 'fam.focus.notices', 'fam.focus.notice.stopped', 'fam.focus.notice.permissions',
+  'fam.focus.notice.clock', 'fam.focus.seen', 'fam.focus.remove', 'fam.focus.removeConfirm', 'fam.focus.removeYes', 'fam.common.cancel', 'fam.err.network',
+  'fam.err.not_found', 'fam.err.bad_request', 'fam.err.parent_pin_required',
 ];
 
 // C230-AB: a parent's own syllabus for a child (src/components/family/ChildSyllabusEditor.tsx).
@@ -99,6 +109,15 @@ export default async function FamilyParentPage() {
     ),
     syllabi: await listSyllabi(db, page.session.accountId),
   }));
+  // The Focus Lock (M2b-1, C305): shown when Control has it switched on for this family, or a phone is still set up.
+  const focusRead = await familyPageRead(page, (db) => parentFocus(db, page.session.accountId));
+  const focus =
+    (switches && switchOn(switches, 'focus_lock')) || focusRead.devices.length > 0
+      ? {
+          devices: focusRead.devices.map((d) => ({ deviceId: d.deviceId, names: d.childNames, lastReport: d.lastReportAt ? focusTimeLabel(d.lastReportAt, lang) : null, lockOn: d.lockOn, permissionsOk: d.permissionsOk })),
+          notices: focusRead.notices.map((n) => ({ noticeId: n.noticeId, deviceId: n.deviceId, kind: n.kind, time: focusTimeLabel(n.at, lang) })),
+        }
+      : null;
   return (
     <main lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
       <ParentArea
@@ -116,6 +135,7 @@ export default async function FamilyParentPage() {
         afterChildren={
           <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>
         }

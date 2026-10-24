@@ -506,6 +506,13 @@ ALLOWED_PERMISSIVE = (
         ("family.child_syllabi", "child_syllabi_own"),
         ("family.child_syllabus_items", "child_syllabus_items_own"),
         # c230-ab end
+        # m2b-1 begin
+        # The Focus Lock's phones, the children set for them and the parent's notices: own account only (with the
+        # restrictive twins below).
+        ("family.focus_devices", "focus_devices_own"),
+        ("family.focus_device_children", "focus_device_children_own"),
+        ("family.focus_notices", "focus_notices_own"),
+        # m2b-1 end
     }
 )
 
@@ -993,6 +1000,12 @@ REQUIRED_RESTRICTIVE = {
     ("family.child_syllabi", "child_syllabi_own_only"),
     ("family.child_syllabus_items", "child_syllabus_items_own_only"),
     # c230-ab end
+    # m2b-1 begin
+    # The Focus Lock's phones, the children set for them and the parent's notices: own account only.
+    ("family.focus_devices", "focus_devices_own_only"),
+    ("family.focus_device_children", "focus_device_children_own_only"),
+    ("family.focus_notices", "focus_notices_own_only"),
+    # m2b-1 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by
