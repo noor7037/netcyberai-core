@@ -85,9 +85,9 @@ export async function unlinkSchool(db: Sql, accountId: string, linkId: string): 
 }
 
 // Read the school's part, as the guardian. A link the school closed meanwhile reads as gone (null), never as an error.
-export async function linkedSchool(claims: Claims, linkId: string): Promise<LinkedSchool | null> {
+export async function linkedSchool(claims: Claims, linkId: string, matched: readonly string[] = []): Promise<LinkedSchool | null> {
   try {
-    return await readLinkedSchool(claims, linkId);
+    return await readLinkedSchool(claims, linkId, { matched });
   } catch (e) {
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;
