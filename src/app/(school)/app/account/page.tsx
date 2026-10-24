@@ -3,7 +3,8 @@ import { ChangePasswordForm } from '@/components/account/ChangePasswordForm';
 import { MyLeavePanel } from '@/components/account/MyLeavePanel';
 import { MyQualificationsPanel } from '@/components/account/MyQualificationsPanel';
 import { MySubjectsPanel } from '@/components/account/MySubjectsPanel';
-import { DEVICE_WORD_KEYS, SecurityPanel } from '@/components/account/SecurityPanel';
+import { deviceWords } from '@/components/account/device-words';
+import { SecurityPanel } from '@/components/account/SecurityPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { getServerSession } from '@/lib/auth/server-session';
 import { REGISTER_ROLES } from '@/lib/compliance/register-rules';
@@ -34,7 +35,7 @@ export default async function AccountPage() {
       {session?.role === 'teacher' && <MySubjectsPanel />}
       <ChangePasswordForm />
       <AuthenticatorPanel />
-      <SecurityPanel w={{ lang, ...(Object.fromEntries(DEVICE_WORD_KEYS.map((k) => [k, t(lang, k)])) as Record<(typeof DEVICE_WORD_KEYS)[number], string>) }} />
+      <SecurityPanel w={deviceWords(lang)} />
     </ModulePage>
   );
 }
