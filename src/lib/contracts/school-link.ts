@@ -19,7 +19,18 @@ export type LinkedSchoolChild = {
   // The homework the school set for the child's class and section (C329): only for a child this app has matched to
   // the student, otherwise null. Read only, as the school shows it to that guardian.
   homework: SchoolHomework[] | null;
+  // What the school sent for the child's class or the whole school (C331), for a matched child only, otherwise null:
+  // notices the principal approved in the last 30 days, and events the office invited them to, from today on.
+  notices: SchoolNotice[] | null;
+  events: SchoolEvent[] | null;
 };
+
+// A notice as the school sent it (its words never change), and the day it was sent (yyyy-mm-dd, India).
+export type SchoolNotice = { body: string; sentOn: string; wholeSchool: boolean };
+
+// An event the school invited the family to: the day (yyyy-mm-dd), its start (HH:MM) when set, and whether the school
+// has since cancelled it.
+export type SchoolEvent = { title: string; details: string; heldOn: string; startsAt: string | null; cancelled: boolean; wholeSchool: boolean };
 
 // One piece of homework as a linked family reads it: the subject in the school's words, the due day (yyyy-mm-dd), and
 // the teacher's done mark for this child when there is one.
