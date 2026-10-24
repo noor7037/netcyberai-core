@@ -165,6 +165,7 @@ async function classNotices(db: Sql, studentId: string, today: string): Promise<
     `select n.body, (n.decided_at at time zone 'Asia/Kolkata')::date::text as sent_on, n.class_id is null as whole_school
        from class_notices n
       where n.status = 'sent'
+        and n.school_id = (select s.school_id from students s where s.student_id = $1)
         and (n.class_id is null or n.class_id = (select s.class_id from students s where s.student_id = $1))
         and n.decided_at >= $2::date - 30
       order by n.decided_at desc
@@ -182,6 +183,7 @@ async function classEvents(db: Sql, studentId: string, today: string): Promise<S
             e.status = 'cancelled' as cancelled, cardinality(e.class_ids) = 0 as whole_school
        from school_events e
       where e.invited_at is not null and e.held_on >= $2::date
+        and e.school_id = (select s.school_id from students s where s.student_id = $1)
         and (cardinality(e.class_ids) = 0 or (select s.class_id from students s where s.student_id = $1) = any (e.class_ids))
       order by e.held_on, e.starts_at nulls first
       limit 5`,
