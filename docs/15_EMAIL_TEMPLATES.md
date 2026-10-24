@@ -8,7 +8,12 @@ project that serves the site (today `netcyberai-dev`, `unodnyyfqhxrbusbkite`),
 and again on `netcyberai-prod` before the cutover.
 **Also check there:** Authentication → URL Configuration → Site URL is
 `https://www.netcyberai.com`, so `{{ .SiteURL }}` in the links points at the
-live site.
+live site; and Sign In / Providers → Email → Email OTP length is **6**, the
+number every screen and these emails name.
+**State on `netcyberai-dev`:** the three templates below were pasted on
+2026-10-24 (before that it still had Supabase's link-only defaults, so the
+sign-in email had no code), and its OTP length was changed from 8 to 6 the same
+day. A sign-in email to a demo account was checked: it shows a 6-digit code.
 
 ## Rules every template follows
 
