@@ -297,8 +297,8 @@ them, and how without breaking the audit hash chain, waits for the lawyer
 | 10e. Documents and certificates | C228; close-out C232 part A | Merged (close-out #168) |
 | 10f. Timetable generator | C229 | Merged |
 | 10g. Who teaches what | C231 | Merged (#170) |
-| 10g. Setup complete: sessions, subjects, the checklist | C244 | Built, awaiting merge (#190) |
-| 10g. The coordinator assigns; the assigned-teacher rule in the database | C243 | Built, awaiting merge (#189) |
+| 10g. Setup complete: sessions, subjects, the checklist | C244 | Merged (#190, C230-G) |
+| 10g. The coordinator assigns; the assigned-teacher rule in the database | C243 | Merged (#189, C230-G) |
 | APAAR capture (`17` row 22) | C245 | Stopped: no official format separates an APAAR ID from an Aadhaar number; the founder decides (three ways in C245) |
 | Payroll, Career Graph, Digital Twin, Automation OS | C230 (`29`) | Blocked: waiting for the founder |
 
