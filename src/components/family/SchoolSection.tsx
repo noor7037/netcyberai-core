@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import type { LinkedSchool, SchoolHomework } from '@/lib/contracts/school-link';
+import type { LinkedSchool, SchoolEvent, SchoolHomework, SchoolNotice } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 
@@ -84,6 +84,52 @@ function ConnectForm({ w, again }: { w: Words; again: boolean }) {
   );
 }
 
+// The notices the school sent for a matched child's class or the whole school (C331), read only.
+function NoticeList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolNotice[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-notices>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.notices']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.noticesNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((n, i) => (
+            <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="whitespace-pre-line">{n.body}</p>
+              <p>{fill(w['fam.school.noticeSent'], { date: day(n.sentOn, lang) })}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+// The events the school invited the family to (C331), soonest first; a cancelled one says so.
+function EventList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolEvent[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-events>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.events']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.eventsNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((e, i) => (
+            <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="font-semibold">
+                {e.title}
+                {e.cancelled ? ` · ${w['fam.school.eventCancelled']}` : ''}
+              </p>
+              <p>{e.startsAt ? `${day(e.heldOn, lang)}, ${e.startsAt}` : day(e.heldOn, lang)}</p>
+              <p className="whitespace-pre-line">{e.details}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; link: SchoolLinkView; children: { childId: string; firstName: string }[] }) {
   const router = useRouter();
   const initial = Object.fromEntries(link.school.children.map((c) => [c.studentId, link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? '']));
@@ -124,6 +170,8 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
                 {c.dueMinor > 0 ? ` · ${fill(w['fam.school.due'], { amount: rupees(c.dueMinor) })}` : ''}
               </p>
               {c.homework && <HomeworkList w={w} lang={lang} items={c.homework} />}
+              {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
+              {c.events && <EventList w={w} lang={lang} items={c.events} />}
               <label className="flex flex-col gap-1 text-sm font-semibold text-slate" htmlFor={`fam-school-pair-${c.studentId}`}>
                 {w['fam.school.whichChild']}
                 <select
