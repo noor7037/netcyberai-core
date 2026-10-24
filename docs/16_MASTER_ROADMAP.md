@@ -110,11 +110,9 @@ numbers: supervisor C100–C109, Claude Code from C110.
 5. Before P8: written permission for the real data used in the rehearsal.
 7. AI assistant (C235, `32` §5): choose Vertex AI in asia-south1 (recommended) or a Google AI Studio key, set it in
    Vercel yourself, and set a monthly spend limit. A Gemini app subscription is not an API key.
-8. **Server key for the live site (blocks logins, invites and every file upload):** the live site runs on the test
-   project `unodnyyfqhxrbusbkite`, but Vercel's Production `SUPABASE_SERVICE_ROLE_KEY` still holds the production
-   project's key from the paused cutover (last changed 7 Oct). Paste the `service_role` key of `unodnyyfqhxrbusbkite`
-   (Supabase → Project Settings → API) into that variable and redeploy. Only the founder can see that key; no tool
-   available to the build can read it. Until then: no new logins or reset codes, no logo, document or capture upload.
+8. ~~Server key for the live site~~: **done 2026-10-24.** The founder pasted the test project's `service_role` key
+   into Vercel and redeployed; the test project's log shows the live site's staff invitation accepted (200) where every
+   earlier one was refused (401). At the cutover (P8) this key changes together with the database address (`18`).
 6. Classroom kit (C106): test one projector in a real classroom at 11 am and
    get quotes for a safe power option; this is the founder's offline work.
 
