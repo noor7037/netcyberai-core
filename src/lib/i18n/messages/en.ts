@@ -952,6 +952,11 @@ export const en = {
   'family.consent.other': '{count} children are not shown until the school records your consent for their records.',
   'family.empty': 'No child is linked to this login yet. Ask the school office.',
   'family.whatsapp': 'School messages still come on WhatsApp.',
+  'family.moved.title': 'Your login has moved to the NetCyberAI Family app',
+  'family.moved.lead': 'Your family connected {school} in the NetCyberAI Family app with the school’s code. Everything you saw here is there, with your children’s learning.',
+  'family.moved.stops': 'This old login stops now. Sign in to the Family app with the email you used there.',
+  'family.moved.open': 'Open the Family app',
+  'family.moveHint': 'Ask the school office for a Family app code to see this, and your children’s learning, in the NetCyberAI Family app.',
   // Control → a school → People: logins with a username or an email and a password (founder, C230-D).
   'login.create.title': 'Create a login',
   'login.field.name': 'Name',

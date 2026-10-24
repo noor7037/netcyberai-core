@@ -13,6 +13,9 @@ import { indiaDate } from '@/lib/time/india';
 // The family app's home (C230-D): one card per child, phone first. Today's attendance, the last school days, and
 // what is owed, read in the parent's own session (own children only; see src/lib/family/home.ts). Read only.
 // At the top, the school's logo and name, as on every staff screen (C235-B).
+// M3-9 (C340; C230-AD answer 2): once a Family app account has linked this guardian with the school's code, this old
+// login says so at its next sign-in and stops (public.retire_moved_parent_login, audited); the guardian record stays.
+// Until then, one line tells the parent the school's office can give them a Family app code.
 
 const MARK_STYLE: Record<DayMark, string> = {
   present: 'bg-emerald-text',
@@ -89,11 +92,25 @@ export default async function FamilyHomePage() {
   const session = await getServerSession();
   if (!canAccessFamily(session)) return null;
   const { lang } = getLang(session.sub);
-  const { home, brand } = await withTenantContext(session, async (db) => ({
+  const { home, brand, moved } = await withTenantContext(session, async (db) => ({
+    moved: (await db.query(`select public.retire_moved_parent_login() as moved`)).rows[0]?.moved === true,
     home: await loadFamilyHome(db, { parentId: session.sub, schoolId: session.schoolId }, indiaDate()),
     brand: await loadSchoolBrand(db, session.schoolId),
   }));
   const schoolName = brand?.name ?? home.schoolName;
+  if (moved) {
+    return (
+      <div lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-8" data-parent-login-moved>
+        <h1 className="text-2xl font-extrabold text-slate">{t(lang, 'family.moved.title')}</h1>
+        <p className="text-base text-slate">{t(lang, 'family.moved.lead', { school: schoolName })}</p>
+        <p className="text-base text-slate">{t(lang, 'family.moved.stops')}</p>
+        <a href="/family/sign-in" className="inline-flex min-h-[44px] items-center justify-center self-start rounded-md bg-sapphire px-6 py-3 text-base font-semibold text-off-white">
+          {t(lang, 'family.moved.open')}
+        </a>
+        <ParentSignOut label={t(lang, 'family.signOut')} />
+      </div>
+    );
+  }
   return (
     <div lang={lang} className="mx-auto flex w-full max-w-xl flex-col">
       <header className="flex items-start justify-between gap-3 bg-gradient-to-br from-royal-deep to-royal px-4 pb-6 pt-5 text-white">
@@ -123,6 +140,7 @@ export default async function FamilyHomePage() {
           </ul>
         )}
         <p className="px-1 text-sm text-slate/70">{t(lang, 'family.whatsapp')}</p>
+        <p data-family-move-hint className="px-1 text-sm text-slate/70">{t(lang, 'family.moveHint')}</p>
       </main>
     </div>
   );
