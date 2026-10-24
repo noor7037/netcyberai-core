@@ -3,6 +3,7 @@ import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { ParentArea } from '@/components/family/ParentArea';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { NotifySection } from '@/components/family/NotifySection';
+import { vapidPublicKey } from '@/lib/family/web-push';
 import { SchoolSection } from '@/components/family/SchoolSection';
 import { activeLinks, linkedSchool, notifyOff } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
@@ -38,6 +39,7 @@ const PLAN_KEYS: MessageKey[] = [
 ];
 const NOTIFY_KEYS: MessageKey[] = [
   'fam.notify.title', 'fam.notify.lead', 'fam.notify.homework', 'fam.notify.notices', 'fam.notify.results', 'fam.notify.tonight', 'fam.notify.on', 'fam.notify.off', 'fam.school.saveError',
+  'fam.push.title', 'fam.push.unsupported', 'fam.push.blocked', 'fam.push.isOn', 'fam.push.turnOn', 'fam.push.turnOff',
 ];
 const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
@@ -154,7 +156,7 @@ export default async function FamilyParentPage() {
         afterChildren={
           <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
-            {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} />}
+            {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>

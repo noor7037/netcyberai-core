@@ -14,6 +14,7 @@ import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
+import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
 import { emailSendHandler } from './email-handler';
 import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
@@ -70,6 +71,9 @@ export function productionHandlers(): Record<string, JobHandler> {
     [CONTENT_PREPARE_JOB]: contentPrepareHandler({ platform, queue: jobQueue }),
     // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
     [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),
+    // Every ten minutes: a linked family's browsers hear of new homework, notices and results, and tonight's practice
+    // or plan once an evening, each account inside its own family session (M3-8b, C339).
+    [PUSH_SCAN_JOB]: pushScanHandler({ platform }),
   };
 }
 

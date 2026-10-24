@@ -22,11 +22,12 @@ export function OfflineSync({ owner, childId, on }: { owner: string; childId: st
           await navigator.serviceWorker.register('/sw.js', { scope: '/family' }).catch(() => undefined);
           if ((await listPacks()).length) keepShell();
         } else {
-          // Control switched offline packs off: the worker for /family goes, and so do the saved packs.
+          // Control switched offline packs off: the saved packs go, and so does the worker for /family, unless the parent
+          // turned notifications on, which it carries (M3-8b, C339).
           const reg = await navigator.serviceWorker.getRegistration('/family/').catch(() => undefined);
           if (reg && new URL(reg.scope).pathname.startsWith('/family')) {
             await clearOffline();
-            await reg.unregister();
+            if (!(await reg.pushManager?.getSubscription().catch(() => null))) await reg.unregister();
           }
         }
       }

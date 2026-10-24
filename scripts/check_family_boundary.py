@@ -76,6 +76,8 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/middleware.ts": {"@/lib/family/session"},
     # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
+    # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
+    "src/lib/jobs/handlers.ts": {"@/lib/family/push"},
 }
 
 # Outside the family area, these files may name these family tables: the choke point's live session check (the one

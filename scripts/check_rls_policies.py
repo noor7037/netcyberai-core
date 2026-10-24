@@ -501,6 +501,9 @@ ALLOWED_PERMISSIVE = (
         # M3-8a (C338): when the parent last looked at the school's news, and the kinds turned off; own account only.
         ("family.school_seen", "school_seen_own"),
         ("family.notify_off", "notify_off_own"),
+        # M3-8b (C339): a family's browsers for notifications, and up to when each kind was pushed; own account only.
+        ("family.push_subscriptions", "push_subscriptions_own"),
+        ("family.push_sent", "push_sent_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -991,6 +994,9 @@ REQUIRED_RESTRICTIVE = {
     # M3-8a (C338): own account only.
     ("family.school_seen", "school_seen_own_only"),
     ("family.notify_off", "notify_off_own_only"),
+    # M3-8b (C339): own account only.
+    ("family.push_subscriptions", "push_subscriptions_own_only"),
+    ("family.push_sent", "push_sent_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

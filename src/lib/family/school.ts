@@ -242,3 +242,14 @@ export async function schoolNewsFor(claims: Claims, links: readonly FamilySchool
   }
   return { ...sum, total: sum.homework + sum.notices + sum.results };
 }
+
+// One link's news since the given times, as the guardian (the push job, M3-8b, C339); null when the school closed the
+// link meanwhile.
+export async function readSchoolNewsFor(claims: Claims, link: FamilySchoolLink, since: Record<SchoolNewsKind, string>): Promise<SchoolNews | null> {
+  try {
+    return await readSchoolNews(claims, link.linkId, link.children.map((c) => c.studentId), since);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
