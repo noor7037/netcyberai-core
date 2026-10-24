@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import type { LinkedSchool } from '@/lib/contracts/school-link';
+import type { LinkedSchool, SchoolHomework } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 
@@ -17,6 +17,36 @@ import { familyApi } from './client';
 export type SchoolLinkView = { linkId: string; school: LinkedSchool; pairs: { studentId: string; childId: string }[] };
 
 const rupees = (minor: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(minor / 100);
+// A due day (yyyy-mm-dd) as "24 Oct" / "24 अक्टू॰", read as a calendar day (no time zone moves it).
+const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+
+// The homework the school set for a matched child's class and section (C329), read only.
+function HomeworkList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolHomework[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-homework>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.homework']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.homeworkNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((h, i) => (
+            <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="font-semibold">
+                {h.subject ? `${h.subject}: ` : ''}
+                {h.title}
+              </p>
+              {h.details && <p className="whitespace-pre-line">{h.details}</p>}
+              <p>
+                {h.due ? fill(w['fam.school.homeworkDue'], { date: day(h.due, lang) }) : ''}
+                {h.done ? `${h.due ? ' · ' : ''}${w['fam.school.homeworkDone']}` : ''}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 function ConnectForm({ w, again }: { w: Words; again: boolean }) {
   const router = useRouter();
@@ -54,7 +84,7 @@ function ConnectForm({ w, again }: { w: Words; again: boolean }) {
   );
 }
 
-function LinkCard({ w, link, children }: { w: Words; link: SchoolLinkView; children: { childId: string; firstName: string }[] }) {
+function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; link: SchoolLinkView; children: { childId: string; firstName: string }[] }) {
   const router = useRouter();
   const initial = Object.fromEntries(link.school.children.map((c) => [c.studentId, link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? '']));
   const [choice, setChoice] = useState<Record<string, string>>(initial);
@@ -93,6 +123,7 @@ function LinkCard({ w, link, children }: { w: Words; link: SchoolLinkView; child
                 {c.markedDays > 0 ? ` · ${fill(w['fam.school.present'], { present: c.presentDays, marked: c.markedDays })}` : ''}
                 {c.dueMinor > 0 ? ` · ${fill(w['fam.school.due'], { amount: rupees(c.dueMinor) })}` : ''}
               </p>
+              {c.homework && <HomeworkList w={w} lang={lang} items={c.homework} />}
               <label className="flex flex-col gap-1 text-sm font-semibold text-slate" htmlFor={`fam-school-pair-${c.studentId}`}>
                 {w['fam.school.whichChild']}
                 <select
@@ -156,12 +187,12 @@ function LinkCard({ w, link, children }: { w: Words; link: SchoolLinkView; child
   );
 }
 
-export function SchoolSection({ w, links, children }: { w: Words; links: SchoolLinkView[]; children: { childId: string; firstName: string }[] }) {
+export function SchoolSection({ w, lang, links, children }: { w: Words; lang: 'en' | 'hi'; links: SchoolLinkView[]; children: { childId: string; firstName: string }[] }) {
   return (
     <section data-school-section className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
       <h2 className="text-lg font-extrabold text-slate">{w['fam.school.title']}</h2>
       {links.map((l) => (
-        <LinkCard key={l.linkId} w={w} link={l} children={children} />
+        <LinkCard key={l.linkId} w={w} lang={lang} link={l} children={children} />
       ))}
       <ConnectForm w={w} again={links.length > 0} />
     </section>

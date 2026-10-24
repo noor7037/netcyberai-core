@@ -16,7 +16,14 @@ export type LinkedSchoolChild = {
   dueMinor: number;
   overdueMinor: number;
   nextDue: string | null;
+  // The homework the school set for the child's class and section (C329): only for a child this app has matched to
+  // the student, otherwise null. Read only, as the school shows it to that guardian.
+  homework: SchoolHomework[] | null;
 };
+
+// One piece of homework as a linked family reads it: the subject in the school's words, the due day (yyyy-mm-dd), and
+// the teacher's done mark for this child when there is one.
+export type SchoolHomework = { subject: string | null; title: string; details: string | null; due: string | null; done: boolean | null };
 
 export type LinkedSchool = {
   schoolName: string;

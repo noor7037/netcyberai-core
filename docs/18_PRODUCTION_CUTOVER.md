@@ -66,7 +66,9 @@ Do these any time; none of them changes the live site.
    sender address and name as on dev).
 3. Emails → Templates: Magic Link, Reset Password and Invite user from
    `docs/15_EMAIL_TEMPLATES.md` (or copy them from the dev project).
-4. Sign In / Providers → Email: the same OTP expiry and length as dev.
+4. Sign In / Providers → Email: Email OTP length **6** (every screen and email
+   says "6-digit code"; the dev project sent 8 until 2026-10-24) and the same
+   expiry as dev (3600 seconds).
    Multi-Factor → TOTP enabled (default). Attack Protection → leaked-password
    protection **on**.
 
