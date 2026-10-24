@@ -3,6 +3,7 @@ import * as v2 from './v2';
 import * as v3 from './v3';
 import * as v4 from './v4';
 import * as v5 from './v5';
+import * as v6 from './v6';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v3). A typed
@@ -40,6 +41,8 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v4.RESOLVER_PROMPT_VERSION, namesSubject: true, system: v4.resolverSystem, user: v4.resolverUser },
   // v5 (C323): v3 with the required blocks first, for open models; chosen by Control by name, like v4.
   { version: v5.RESOLVER_PROMPT_VERSION, namesSubject: true, system: v5.resolverSystem, user: v5.resolverUser },
+  // v6 (C334): v5 with no double quotation mark inside a text value; chosen by Control by name.
+  { version: v6.RESOLVER_PROMPT_VERSION, namesSubject: true, system: v6.resolverSystem, user: v6.resolverUser },
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the
