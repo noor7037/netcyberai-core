@@ -186,7 +186,13 @@ describe('making and following the plan', () => {
     expect((await post({ action: 'start', childId: CHILD, topics: [T(1)] })).status).toBe(200);
     expect(await fam(async (c) => (await c.query(`select count(*)::int as n from family.home_plans`)).rows, OTHER)).toEqual([{ n: 0 }]);
     expect(await post({ action: 'stop', childId: CHILD }, OTHER)).toEqual({ status: 404, body: { error: 'not_found' } });
-    expect(await fam(async (c) => (await c.query(`update family.home_plans set note = 'x' returning 1`)).rows, OTHER)).toEqual([]);
+    expect(await fam(async (c) => (await c.query(`update family.home_plans set stopped_at = now() returning 1`)).rows, OTHER)).toEqual([]);
+  });
+
+  it('a plan is stopped, never changed: the family’s role may not rewrite its topics, day or notes', async () => {
+    for (const sql of [`update family.home_plans set topics = '[]'::jsonb`, `update family.home_plans set starts_on = starts_on - 1`, `update family.home_plans set note = 'changed'`]) {
+      expect(await fam((c) => c.query(sql)).then(() => 'ran', (e: Error) => String(e.message)), sql).toMatch(/permission denied/);
+    }
   });
 });
 

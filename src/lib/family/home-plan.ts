@@ -106,6 +106,8 @@ export async function startHomePlan(db: Db, accountId: string, child: FamilyChil
   if (found.size !== asked.length || [...found.values()].some((s) => !subjectAccess(child, s, openToAll).open)) return { ok: false, reason: 'topics' };
   const owned = (await db.query(`select 1 from family.children where account_id = $1 and child_id = $2`, [accountId, child.childId])).rows[0];
   if (!owned) return { ok: false, reason: 'not_found' };
+  // Two plans made at once for one child: the second waits, then stops the first (never a duplicate-row error).
+  await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`home_plan:${child.childId}`]);
   await db.query(`update family.home_plans set stopped_at = now() where account_id = $1 and child_id = $2 and stopped_at is null`, [accountId, child.childId]);
   const made = await db.query(
     `insert into family.home_plans (account_id, child_id, starts_on, topics, note) values ($1, $2, $3::date, $4::jsonb, $5) returning plan_id`,
