@@ -59,7 +59,7 @@ const asGuardian = async <T>(fn: (c: any) => Promise<T>): Promise<T> => (await i
 // error (a mistyped statement) comes back as its message, so it cannot pass for a refusal.
 const changes = async (sql: string): Promise<number | string> => {
   try {
-    return (await asGuardian((c) => c.query(sql))).rowCount ?? 0;
+    return (await asGuardian<{ rowCount: number | null }>((c) => c.query(sql))).rowCount ?? 0;
   } catch (e) {
     const m = String((e as Error).message);
     return /row-level security|permission denied/.test(m) ? 0 : m;
