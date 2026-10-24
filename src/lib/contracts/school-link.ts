@@ -19,7 +19,40 @@ export type LinkedSchoolChild = {
   // The homework the school set for the child's class and section (C329): only for a child this app has matched to
   // the student, otherwise null. Read only, as the school shows it to that guardian.
   homework: SchoolHomework[] | null;
+  // What the school sent for the child's class or the whole school (C331), for a matched child only, otherwise null:
+  // notices the principal approved in the last 30 days, and events the office invited them to, from today on.
+  notices: SchoolNotice[] | null;
+  events: SchoolEvent[] | null;
+  // The class's published timetable (C332), for a matched child only, otherwise null.
+  timetable: SchoolPeriod[] | null;
+  // The results the school published for the child's class (C333), newest first, for a matched child only, otherwise
+  // null. Never a mark still being entered.
+  results: SchoolResult[] | null;
 };
+
+// A published result, as the report card shows it: each subject's percent and grade by the grading scheme kept with
+// the publication (null while a subject's marks are not complete), the overall, the class teacher's remark and the
+// co-scholastic grades.
+export type SchoolResult = {
+  exam: string;
+  term: string | null;
+  publishedOn: string;
+  subjects: { name: string; percent: number | null; grade: string | null }[];
+  overall: { percent: number | null; grade: string | null };
+  remark: string | null;
+  coScholastic: { area: string; grade: string }[];
+};
+
+// One period of the published timetable: ISO weekday (1 is Monday), the period's number, and its subject in the
+// school's words.
+export type SchoolPeriod = { weekday: number; period: number; subject: string | null };
+
+// A notice as the school sent it (its words never change), and the day it was sent (yyyy-mm-dd, India).
+export type SchoolNotice = { body: string; sentOn: string; wholeSchool: boolean };
+
+// An event the school invited the family to: the day (yyyy-mm-dd), its start (HH:MM) when set, and whether the school
+// has since cancelled it.
+export type SchoolEvent = { title: string; details: string; heldOn: string; startsAt: string | null; cancelled: boolean; wholeSchool: boolean };
 
 // One piece of homework as a linked family reads it: the subject in the school's words, the due day (yyyy-mm-dd), and
 // the teacher's done mark for this child when there is one.

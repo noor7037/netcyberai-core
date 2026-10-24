@@ -3,7 +3,10 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolHomework, type SchoolSyllabus } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolResult, type SchoolSyllabus } from '@/lib/contracts/school-link';
+import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
+import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
+import type { GradingScheme } from '@/lib/exams/scheme';
 import { indiaDate } from '@/lib/time/india';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
@@ -100,13 +103,22 @@ export async function redeemConnectCode(db: Sql, accountId: string, typed: unkno
 type Claims = { accountId: string; tokenVersion: number };
 
 // The guardian's children at the school, as the school shows them to that guardian today. `matched`: the students this
-// app has matched to one of its children; only they get their class's homework (C329).
+// app has matched to one of its children; only they get their class's homework (C329), notices and events (C331),
+// timetable (C332) and published results (C333).
 export async function readLinkedSchool(claims: Claims, linkId: string, opts: { matched?: readonly string[]; today?: string } = {}): Promise<LinkedSchool> {
   const today = opts.today ?? indiaDate();
   return withGuardianContext(claims, linkId, async (db, link) => {
     const home = await loadFamilyHome(db, link, today);
-    const homework = new Map<string, SchoolHomework[]>();
-    for (const c of home.children) if (opts.matched?.includes(c.studentId)) homework.set(c.studentId, await classHomework(db, c.studentId, today));
+    const sent = new Map<string, { homework: SchoolHomework[]; notices: SchoolNotice[]; events: SchoolEvent[]; timetable: SchoolPeriod[]; results: SchoolResult[] }>();
+    for (const c of home.children)
+      if (opts.matched?.includes(c.studentId))
+        sent.set(c.studentId, {
+          homework: await classHomework(db, c.studentId, today),
+          notices: await classNotices(db, c.studentId, today),
+          events: await classEvents(db, c.studentId, today),
+          timetable: await classTimetable(db, c.studentId),
+          results: await publishedResults(db, c.studentId),
+        });
     return {
       schoolName: home.schoolName,
       awaitingConsent: home.awaitingConsent,
@@ -120,7 +132,11 @@ export async function readLinkedSchool(claims: Claims, linkId: string, opts: { m
         dueMinor: c.dueMinor,
         overdueMinor: c.overdueMinor,
         nextDue: c.nextDue,
-        homework: homework.get(c.studentId) ?? null,
+        homework: sent.get(c.studentId)?.homework ?? null,
+        notices: sent.get(c.studentId)?.notices ?? null,
+        events: sent.get(c.studentId)?.events ?? null,
+        timetable: sent.get(c.studentId)?.timetable ?? null,
+        results: sent.get(c.studentId)?.results ?? null,
       })),
     };
   });
@@ -151,6 +167,118 @@ async function classHomework(db: Sql, studentId: string, today: string): Promise
     due: r.due,
     done: r.done,
   }));
+}
+
+// The notices the principal approved in the last 30 days for one student's class or the whole school, newest first. In
+// the guardian's session the school's rules (school_link_notices_events.sql) let through only sent notices of the
+// guardian's own children's classes and the whole school; the class filter here keeps each child to their own class.
+async function classNotices(db: Sql, studentId: string, today: string): Promise<SchoolNotice[]> {
+  const { rows } = await db.query(
+    `select n.body, (n.decided_at at time zone 'Asia/Kolkata')::date::text as sent_on, n.class_id is null as whole_school
+       from class_notices n
+      where n.status = 'sent'
+        and n.school_id = (select s.school_id from students s where s.student_id = $1)
+        and (n.class_id is null or n.class_id = (select s.class_id from students s where s.student_id = $1))
+        and n.decided_at >= $2::date - 30
+      order by n.decided_at desc
+      limit 5`,
+    [studentId, today]
+  );
+  return (rows as { body: string; sent_on: string; whole_school: boolean }[]).map((r) => ({ body: r.body, sentOn: r.sent_on, wholeSchool: r.whole_school }));
+}
+
+// The events the office invited one student's class or the whole school to, from today on, soonest first (a cancelled
+// one stays, marked cancelled, so the family knows). Drafts are never read.
+async function classEvents(db: Sql, studentId: string, today: string): Promise<SchoolEvent[]> {
+  const { rows } = await db.query(
+    `select e.title, e.details, e.held_on::text as held_on, to_char(e.starts_at, 'HH24:MI') as starts_at,
+            e.status = 'cancelled' as cancelled, cardinality(e.class_ids) = 0 as whole_school
+       from school_events e
+      where e.invited_at is not null and e.held_on >= $2::date
+        and e.school_id = (select s.school_id from students s where s.student_id = $1)
+        and (cardinality(e.class_ids) = 0 or (select s.class_id from students s where s.student_id = $1) = any (e.class_ids))
+      order by e.held_on, e.starts_at nulls first
+      limit 5`,
+    [studentId, today]
+  );
+  return (rows as { title: string; details: string; held_on: string; starts_at: string | null; cancelled: boolean; whole_school: boolean }[]).map((r) => ({
+    title: r.title,
+    details: r.details,
+    heldOn: r.held_on,
+    startsAt: r.starts_at,
+    cancelled: r.cancelled,
+    wholeSchool: r.whole_school,
+  }));
+}
+
+// One student's class timetable as the school published it, day by day and period by period. In the guardian's session
+// the school's rules (school_link_timetable.sql) let through only the guardian's own children's classes.
+async function classTimetable(db: Sql, studentId: string): Promise<SchoolPeriod[]> {
+  const { rows } = await db.query(
+    `select t.weekday::int as weekday, t.period::int as period, sub.name as subject
+       from students s
+       join timetable_entries t on t.school_id = s.school_id and t.class_id = s.class_id
+       left join subjects sub on sub.school_id = t.school_id and sub.subject_id = t.subject_id
+      where s.student_id = $1
+      order by t.weekday, t.period`,
+    [studentId]
+  );
+  return rows as SchoolPeriod[];
+}
+
+// One student's results as the school published them for their class (C333): the publications in force come from
+// guardian_publications(), which answers only for the session's guardian's own children's classes and never shows a
+// publication's kept attendance or recognition; the papers, marks, remark and co-scholastic grades are read under the
+// school's rules (school_link_marks.sql), which open only published ones. Graded by the scheme kept with the
+// publication through childResult (src/lib/exams/results.ts), as the report card is. The five newest.
+async function publishedResults(db: Sql, studentId: string): Promise<SchoolResult[]> {
+  const pubs = (
+    await db.query(
+      `select g.exam_id, g.class_id, g.scheme, (g.published_at at time zone 'Asia/Kolkata')::date::text as published_on, e.name, e.term
+         from public.guardian_publications() g
+         join exams e on e.exam_id = g.exam_id
+         join students s on s.student_id = $1 and s.class_id = g.class_id and s.school_id = e.school_id
+        order by g.published_at desc
+        limit 5`,
+      [studentId]
+    )
+  ).rows as { exam_id: string; class_id: string; scheme: GradingScheme; published_on: string; name: string; term: string | null }[];
+  const grade = (s: Shown) => (s.grade.kind === 'grade' ? s.grade.grade : null);
+  const results: SchoolResult[] = [];
+  for (const pub of pubs) {
+    const papers = (
+      await db.query(
+        `select p.paper_id, sub.name as subject, p.paper_date::text as paper_date, p.components
+           from exam_papers p
+           left join subjects sub on sub.school_id = p.school_id and sub.subject_id = p.subject_id
+          where p.exam_id = $1 and p.class_id = $2
+          order by sub.name, p.paper_id`,
+        [pub.exam_id, pub.class_id]
+      )
+    ).rows.map((r: Record<string, unknown>) => ({ paperId: r.paper_id as string, subjectName: (r.subject as string | null) ?? '', date: r.paper_date as string | null, components: r.components as PaperComponent[] })) as ResultPaper[];
+    const marks = (
+      await db.query(`select paper_id, component, kind, score from marks where student_id = $1 and paper_id = any ($2::uuid[])`, [studentId, papers.map((p) => p.paperId)])
+    ).rows as { paper_id: string; component: string; kind: MarkKind; score: string | null }[];
+    const perPaper = papers.map((p) =>
+      Object.fromEntries(marks.filter((m) => m.paper_id === p.paperId).map((m) => [m.component, { kind: m.kind, score: m.score === null ? null : Number(m.score) } satisfies Mark]))
+    );
+    const result = childResult(papers, perPaper, pub.scheme);
+    const remark = (await db.query(`select remark from report_remarks where exam_id = $1 and class_id = $2 and student_id = $3 limit 1`, [pub.exam_id, pub.class_id, studentId])).rows[0] as
+      | { remark: string }
+      | undefined;
+    const co = (await db.query(`select area, grade from co_scholastic_grades where exam_id = $1 and class_id = $2 and student_id = $3 order by area`, [pub.exam_id, pub.class_id, studentId]))
+      .rows as { area: string; grade: string }[];
+    results.push({
+      exam: pub.name,
+      term: pub.term,
+      publishedOn: pub.published_on,
+      subjects: papers.map((p, i) => ({ name: p.subjectName, percent: result.papers[i].rounded, grade: grade(result.papers[i]) })),
+      overall: { percent: result.overall.rounded, grade: grade(result.overall) },
+      remark: remark?.remark ?? null,
+      coScholastic: co,
+    });
+  }
+  return results;
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a

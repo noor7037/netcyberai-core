@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import type { LinkedSchool, SchoolHomework } from '@/lib/contracts/school-link';
+import type { LinkedSchool, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolResult } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 
@@ -84,6 +84,124 @@ function ConnectForm({ w, again }: { w: Words; again: boolean }) {
   );
 }
 
+// The notices the school sent for a matched child's class or the whole school (C331), read only.
+function NoticeList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolNotice[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-notices>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.notices']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.noticesNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((n, i) => (
+            <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="whitespace-pre-line">{n.body}</p>
+              <p>{fill(w['fam.school.noticeSent'], { date: day(n.sentOn, lang) })}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+// The events the school invited the family to (C331), soonest first; a cancelled one says so.
+function EventList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolEvent[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-events>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.events']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.eventsNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((e, i) => (
+            <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="font-semibold">
+                {e.title}
+                {e.cancelled ? ` · ${w['fam.school.eventCancelled']}` : ''}
+              </p>
+              <p>{e.startsAt ? `${day(e.heldOn, lang)}, ${e.startsAt}` : day(e.heldOn, lang)}</p>
+              <p className="whitespace-pre-line">{e.details}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+// An ISO weekday's name (1 is Monday) in the family's language: 1 January 2024 was a Monday.
+const weekdayName = (iso: number, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, iso)));
+
+// The class's published timetable (C332), one line a day, read only.
+function Timetable({ w, lang, periods }: { w: Words; lang: 'en' | 'hi'; periods: SchoolPeriod[] }) {
+  const days = Array.from(new Set(periods.map((p) => p.weekday)));
+  return (
+    <div className="flex flex-col gap-1" data-school-timetable>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.timetable']}</p>
+      {days.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.timetableNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-1 rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+          {days.map((d) => (
+            <li key={d}>
+              <span className="font-semibold">{weekdayName(d, lang)}: </span>
+              {periods
+                .filter((p) => p.weekday === d)
+                .map((p) => `${p.period}. ${p.subject ?? '—'}`)
+                .join(' · ')}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+// A percent and grade as the report card says them (the percent, then the grade), or "not complete" while marks are
+// missing.
+const scored = (w: Words, percent: number | null, grade: string | null) => (percent === null ? w['fam.school.resultNotComplete'] : grade ? `${percent}% · ${grade}` : `${percent}%`);
+
+// The results the school published for a matched child's class (C333), newest first, read only.
+function Results({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolResult[] }) {
+  return (
+    <div className="flex flex-col gap-1" data-school-results>
+      <p className="text-sm font-semibold text-slate">{w['fam.school.results']}</p>
+      {items.length === 0 ? (
+        <p className="text-sm text-slate">{w['fam.school.resultsNone']}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {items.map((r, i) => (
+            <li key={i} className="flex flex-col gap-1 rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
+              <p className="font-semibold">
+                {r.exam}
+                {r.term ? ` · ${r.term}` : ''}
+              </p>
+              <p>{fill(w['fam.school.resultPublished'], { date: day(r.publishedOn, lang) })}</p>
+              <ul className="flex flex-col">
+                {r.subjects.map((s, j) => (
+                  <li key={j}>
+                    {s.name}: {scored(w, s.percent, s.grade)}
+                  </li>
+                ))}
+              </ul>
+              <p className="font-semibold">
+                {w['fam.school.resultOverall']}: {scored(w, r.overall.percent, r.overall.grade)}
+              </p>
+              {r.coScholastic.length > 0 && <p>{r.coScholastic.map((c) => `${c.area}: ${c.grade}`).join(' · ')}</p>}
+              {r.remark && (
+                <p className="whitespace-pre-line">
+                  {w['fam.school.resultRemark']}: {r.remark}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; link: SchoolLinkView; children: { childId: string; firstName: string }[] }) {
   const router = useRouter();
   const initial = Object.fromEntries(link.school.children.map((c) => [c.studentId, link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? '']));
@@ -124,6 +242,10 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
                 {c.dueMinor > 0 ? ` · ${fill(w['fam.school.due'], { amount: rupees(c.dueMinor) })}` : ''}
               </p>
               {c.homework && <HomeworkList w={w} lang={lang} items={c.homework} />}
+              {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
+              {c.events && <EventList w={w} lang={lang} items={c.events} />}
+              {c.timetable && <Timetable w={w} lang={lang} periods={c.timetable} />}
+              {c.results && <Results w={w} lang={lang} items={c.results} />}
               <label className="flex flex-col gap-1 text-sm font-semibold text-slate" htmlFor={`fam-school-pair-${c.studentId}`}>
                 {w['fam.school.whichChild']}
                 <select
