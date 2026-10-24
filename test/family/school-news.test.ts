@@ -148,6 +148,18 @@ describe('what is new from the school (C338)', () => {
     expect(await news()).toEqual({ homework: 0, notices: 1, results: 0, total: 1 });
   });
 
+  it('the database refuses a seen mark naming another account’s link', async () => {
+    const { withFamilyContext } = await import('@/lib/auth/db');
+    const other = 'f8000000-0000-4000-8000-0000000000e9';
+    await q(`insert into family.school_links (link_id, account_id, school_id, parent_id) values ($1, $2, $3, $4)`, [other, OTHER, A, P1]);
+    const said = await withFamilyContext(claims, (c) => c.query(`insert into family.school_seen (account_id, link_id, kind, seen_at) values ('${ACCOUNT}', '${other}', 'homework', now())`)).then(
+      () => 'ran',
+      (e: Error) => String(e.message)
+    );
+    expect(said).toMatch(/foreign key/);
+    await q(`delete from family.school_links where link_id = $1`, [other]);
+  });
+
   it('only the parent marks seen or turns kinds off, and only for the account’s own link', async () => {
     expect((await post('/api/family/school/seen', { linkId: link }, { parent: false })).status).toBe(403);
     expect((await post('/api/family/notify', { kind: 'homework', on: false }, { parent: false })).status).toBe(403);

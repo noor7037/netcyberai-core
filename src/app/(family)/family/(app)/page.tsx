@@ -54,8 +54,10 @@ export default async function FamilyHomePage() {
   const atSchool = await schoolTodayFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
   // Tonight's practice (C335, L10): the app's subjects in which the class covered something today, each opening Study.
   const tonight = atSchool ? subjects.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
-  // What is new from the connected schools since the parent last looked (M3-8a, C338), without the kinds turned off.
-  const news = links.length ? await schoolNewsFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, seen, off) : null;
+  // What is new from the connected schools since the parent last looked (M3-8a, C338), without the kinds turned off:
+  // this child's own school news only, so on a shared phone one child never sees a brother's or sister's.
+  const mine = links.map((l) => ({ ...l, children: l.children.filter((c) => c.childId === child.childId) })).filter((l) => l.children.length > 0);
+  const news = mine.length ? await schoolNewsFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, mine, seen, off) : null;
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
     const mine = progress.filter((p) => p.subject === s);
