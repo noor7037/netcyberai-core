@@ -3,7 +3,7 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolHomework, type SchoolSyllabus } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolSyllabus } from '@/lib/contracts/school-link';
 import { indiaDate } from '@/lib/time/india';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
@@ -100,13 +100,15 @@ export async function redeemConnectCode(db: Sql, accountId: string, typed: unkno
 type Claims = { accountId: string; tokenVersion: number };
 
 // The guardian's children at the school, as the school shows them to that guardian today. `matched`: the students this
-// app has matched to one of its children; only they get their class's homework (C329).
+// app has matched to one of its children; only they get their class's homework (C329), notices and events (C331).
 export async function readLinkedSchool(claims: Claims, linkId: string, opts: { matched?: readonly string[]; today?: string } = {}): Promise<LinkedSchool> {
   const today = opts.today ?? indiaDate();
   return withGuardianContext(claims, linkId, async (db, link) => {
     const home = await loadFamilyHome(db, link, today);
-    const homework = new Map<string, SchoolHomework[]>();
-    for (const c of home.children) if (opts.matched?.includes(c.studentId)) homework.set(c.studentId, await classHomework(db, c.studentId, today));
+    const sent = new Map<string, { homework: SchoolHomework[]; notices: SchoolNotice[]; events: SchoolEvent[] }>();
+    for (const c of home.children)
+      if (opts.matched?.includes(c.studentId))
+        sent.set(c.studentId, { homework: await classHomework(db, c.studentId, today), notices: await classNotices(db, c.studentId, today), events: await classEvents(db, c.studentId, today) });
     return {
       schoolName: home.schoolName,
       awaitingConsent: home.awaitingConsent,
@@ -120,7 +122,9 @@ export async function readLinkedSchool(claims: Claims, linkId: string, opts: { m
         dueMinor: c.dueMinor,
         overdueMinor: c.overdueMinor,
         nextDue: c.nextDue,
-        homework: homework.get(c.studentId) ?? null,
+        homework: sent.get(c.studentId)?.homework ?? null,
+        notices: sent.get(c.studentId)?.notices ?? null,
+        events: sent.get(c.studentId)?.events ?? null,
       })),
     };
   });
@@ -150,6 +154,48 @@ async function classHomework(db: Sql, studentId: string, today: string): Promise
     details: r.details,
     due: r.due,
     done: r.done,
+  }));
+}
+
+// The notices the principal approved in the last 30 days for one student's class or the whole school, newest first. In
+// the guardian's session the school's rules (school_link_notices_events.sql) let through only sent notices of the
+// guardian's own children's classes and the whole school; the class filter here keeps each child to their own class.
+async function classNotices(db: Sql, studentId: string, today: string): Promise<SchoolNotice[]> {
+  const { rows } = await db.query(
+    `select n.body, (n.decided_at at time zone 'Asia/Kolkata')::date::text as sent_on, n.class_id is null as whole_school
+       from class_notices n
+      where n.status = 'sent'
+        and n.school_id = (select s.school_id from students s where s.student_id = $1)
+        and (n.class_id is null or n.class_id = (select s.class_id from students s where s.student_id = $1))
+        and n.decided_at >= $2::date - 30
+      order by n.decided_at desc
+      limit 5`,
+    [studentId, today]
+  );
+  return (rows as { body: string; sent_on: string; whole_school: boolean }[]).map((r) => ({ body: r.body, sentOn: r.sent_on, wholeSchool: r.whole_school }));
+}
+
+// The events the office invited one student's class or the whole school to, from today on, soonest first (a cancelled
+// one stays, marked cancelled, so the family knows). Drafts are never read.
+async function classEvents(db: Sql, studentId: string, today: string): Promise<SchoolEvent[]> {
+  const { rows } = await db.query(
+    `select e.title, e.details, e.held_on::text as held_on, to_char(e.starts_at, 'HH24:MI') as starts_at,
+            e.status = 'cancelled' as cancelled, cardinality(e.class_ids) = 0 as whole_school
+       from school_events e
+      where e.invited_at is not null and e.held_on >= $2::date
+        and e.school_id = (select s.school_id from students s where s.student_id = $1)
+        and (cardinality(e.class_ids) = 0 or (select s.class_id from students s where s.student_id = $1) = any (e.class_ids))
+      order by e.held_on, e.starts_at nulls first
+      limit 5`,
+    [studentId, today]
+  );
+  return (rows as { title: string; details: string; held_on: string; starts_at: string | null; cancelled: boolean; whole_school: boolean }[]).map((r) => ({
+    title: r.title,
+    details: r.details,
+    heldOn: r.held_on,
+    startsAt: r.starts_at,
+    cancelled: r.cancelled,
+    wholeSchool: r.whole_school,
   }));
 }
 
