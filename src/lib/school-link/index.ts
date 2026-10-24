@@ -3,7 +3,7 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolSyllabus } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolHomework, type SchoolSyllabus } from '@/lib/contracts/school-link';
 import { indiaDate } from '@/lib/time/india';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
@@ -99,10 +99,14 @@ export async function redeemConnectCode(db: Sql, accountId: string, typed: unkno
 
 type Claims = { accountId: string; tokenVersion: number };
 
-// The guardian's children at the school, as the school shows them to that guardian today.
-export async function readLinkedSchool(claims: Claims, linkId: string, today = indiaDate()): Promise<LinkedSchool> {
+// The guardian's children at the school, as the school shows them to that guardian today. `matched`: the students this
+// app has matched to one of its children; only they get their class's homework (C329).
+export async function readLinkedSchool(claims: Claims, linkId: string, opts: { matched?: readonly string[]; today?: string } = {}): Promise<LinkedSchool> {
+  const today = opts.today ?? indiaDate();
   return withGuardianContext(claims, linkId, async (db, link) => {
     const home = await loadFamilyHome(db, link, today);
+    const homework = new Map<string, SchoolHomework[]>();
+    for (const c of home.children) if (opts.matched?.includes(c.studentId)) homework.set(c.studentId, await classHomework(db, c.studentId, today));
     return {
       schoolName: home.schoolName,
       awaitingConsent: home.awaitingConsent,
@@ -116,9 +120,37 @@ export async function readLinkedSchool(claims: Claims, linkId: string, today = i
         dueMinor: c.dueMinor,
         overdueMinor: c.overdueMinor,
         nextDue: c.nextDue,
+        homework: homework.get(c.studentId) ?? null,
       })),
     };
   });
+}
+
+// The homework set for one student's class and section, due in the last week or later (or set in the last month with
+// no due day), soonest first, and the teacher's done mark for this student. In the guardian's session the school's rules
+// (school_link_homework.sql) let through only the guardian's own children's classes and done marks.
+async function classHomework(db: Sql, studentId: string, today: string): Promise<SchoolHomework[]> {
+  const { rows } = await db.query(
+    `select sub.name as subject, coalesce(t.title, h.title) as title, coalesce(t.details, h.details) as details,
+            coalesce(t.due_date, h.due_date)::text as due, st.done
+       from students s
+       join homework_targets t on t.school_id = s.school_id and t.class_id = s.class_id
+       join homework h on h.school_id = t.school_id and h.homework_id = t.homework_id
+       left join subjects sub on sub.school_id = h.school_id and sub.subject_id = h.subject_id
+       left join homework_status st on st.school_id = t.school_id and st.target_id = t.target_id and st.student_id = s.student_id
+      where s.student_id = $1
+        and (coalesce(t.due_date, h.due_date) >= $2::date - 7 or (coalesce(t.due_date, h.due_date) is null and t.assigned_at >= $2::date - 30))
+      order by coalesce(t.due_date, h.due_date) nulls last, t.assigned_at desc
+      limit 10`,
+    [studentId, today]
+  );
+  return (rows as { subject: string | null; title: string; details: string | null; due: string | null; done: boolean | null }[]).map((r) => ({
+    subject: r.subject,
+    title: r.title,
+    details: r.details,
+    due: r.due,
+    done: r.done,
+  }));
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a
