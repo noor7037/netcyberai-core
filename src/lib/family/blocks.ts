@@ -415,8 +415,14 @@ export function allowedSource(url: string): boolean {
 // them in a list, or add a sentence around them. Braces are counted outside strings, so each complete object is handed
 // on as soon as it closes, whatever the lines; anything outside an object is dropped, and so is an object that never
 // closes or grows past the limit.
+// What was dropped is still told, for staff measuring the model (C330): `dropped()` says whether the answer so far
+// ends inside an object that never closed (an unescaped quote leaves the scanner inside a string to the end), and how
+// many objects grew past the limit. It changes nothing the scanner hands on.
 const OBJECT_MAX_CHARS = 20_000;
-export function jsonObjectScanner(): (text: string) => string[] {
+export type ScanDropped = { unclosed: boolean; droppedForSize: number };
+export type JsonObjectScan = ((text: string) => string[]) & { dropped: () => ScanDropped };
+export function jsonObjectScanner(): JsonObjectScan {
+  let droppedForSize = 0;
   let buf = '';
   let depth = 0;
   let inString = false;
@@ -426,7 +432,7 @@ export function jsonObjectScanner(): (text: string) => string[] {
   // An object past the limit is passed over to its own closing brace, its strings and nesting still followed, so
   // nothing inside it is mistaken for a block of its own.
   let discarding = false;
-  return (text) => {
+  const scan = (text: string): string[] => {
     const out: string[] = [];
     for (const ch of text) {
       if (opening) {
@@ -452,6 +458,7 @@ export function jsonObjectScanner(): (text: string) => string[] {
       if (!discarding) buf += ch;
       if (!discarding && buf.length > OBJECT_MAX_CHARS) {
         discarding = true;
+        droppedForSize += 1;
         buf = '';
       }
       if (inString) {
@@ -473,6 +480,8 @@ export function jsonObjectScanner(): (text: string) => string[] {
     }
     return out;
   };
+  // A "{" followed so far only by spaces is not yet an object, so it is not counted as one left open.
+  return Object.assign(scan, { dropped: (): ScanDropped => ({ unclosed: depth > 0, droppedForSize }) });
 }
 
 export function parseBlockLine(line: string): Block | null {

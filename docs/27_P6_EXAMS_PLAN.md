@@ -115,7 +115,9 @@ decided.
    - A teacher enters marks for the class and subject they teach
      (`teacher_subjects`) or, as class teacher, for their class.
    - The office and the academic coordinator see every class.
-7. **Nothing new reaches a parent in P6.** Report cards are printed or
+7. **Replaced by C333 (2026-10-24):** publishing a class's result now shows each child's own result to their
+   parents at once (the Family app and the parent login), and reopening hides it again. The original rule, kept for
+   history: **Nothing new reaches a parent in P6.** Report cards are printed or
    handed over. Telling guardians that report cards are ready uses the
    existing class notice (P4, through the send-gate). Early Warning stays
    staff-only (C209). The Learning Genome is not sent.
