@@ -24,6 +24,11 @@
 //     live in the page's IndexedDB, not here) or says "needs internet".
 //   - { type: 'family-shell' } keeps the shell and the static files it loads,
 //     so it opens with no network; { type: 'family-clear' } deletes it.
+//
+// Notifications (M3-8b, C339): a parent who turned them on in the parent area
+// gets the push messages here. A message names only a kind of news and the
+// app's page it opens ({ k, u, l }); the words are these, fixed: never a
+// child's name, marks, fees or any personal detail. A tap opens that page.
 
 const VERSION = 'nca-v1';
 const STATIC_CACHE = `${VERSION}-static`;
@@ -31,6 +36,38 @@ const PAGE_CACHE = `${VERSION}-pages`;
 const KEPT_PAGES = ['/app', '/app/my-day', '/app/attendance'];
 const FAMILY_CACHE = `${VERSION}-family`;
 const FAMILY_SHELL = '/family/offline';
+
+const PUSH_WORDS = {
+  en: {
+    homework: 'New homework from school',
+    notices: 'A new notice from school',
+    results: 'A result from school',
+    tonight: 'Tonight’s practice is ready',
+    body: 'Open NetCyberAI Family to see it.',
+  },
+  hi: {
+    homework: 'स्कूल से नया गृहकार्य',
+    notices: 'स्कूल की नई सूचना',
+    results: 'स्कूल से रिज़ल्ट',
+    tonight: 'आज रात का अभ्यास तैयार है',
+    body: 'देखने के लिए NetCyberAI Family खोलें।',
+  },
+};
+const PUSH_PAGES = ['/family', '/family/parent'];
+
+// A push message, as shown: the kind's fixed words in the parent's language, and an app page to open (only the
+// Family app's own pages; anything else opens its home). Nothing from the message is shown as it came.
+function pushNotice(data) {
+  const lang = data && data.l === 'hi' ? 'hi' : 'en';
+  const words = PUSH_WORDS[lang];
+  const kind = data && Object.prototype.hasOwnProperty.call(words, data.k) && data.k !== 'body' ? data.k : null;
+  return {
+    title: kind ? words[kind] : 'NetCyberAI Family',
+    body: words.body,
+    url: data && PUSH_PAGES.includes(data.u) ? data.u : '/family',
+    tag: kind ? `nca-${kind}` : 'nca-news',
+  };
+}
 
 // What to do with a request: 'static', 'kept-page', 'other-page', 'family-page' or 'network'.
 function route(method, url, origin, mode) {
@@ -104,6 +141,34 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
     if (event.data && event.data.type === 'family-clear') event.waitUntil(caches.delete(FAMILY_CACHE));
   });
 
+  self.addEventListener('push', (event) => {
+    let data = null;
+    try {
+      data = event.data ? event.data.json() : null;
+    } catch {
+      data = null;
+    }
+    const n = pushNotice(data);
+    event.waitUntil(self.registration.showNotification(n.title, { body: n.body, tag: n.tag, icon: '/icons/192', badge: '/icons/192', data: { url: n.url } }));
+  });
+
+  self.addEventListener('notificationclick', (event) => {
+    event.notification.close();
+    const url = event.notification.data && PUSH_PAGES.includes(event.notification.data.url) ? event.notification.data.url : '/family';
+    // A Family app tab this worker looks after is brought to the page; any other tab (the website, the staff app) is
+    // left alone and a new window opens.
+    event.waitUntil(
+      self.clients.matchAll({ type: 'window' }).then(async (list) => {
+        const tab = list.find((c) => new URL(c.url).origin === self.location.origin && new URL(c.url).pathname.startsWith('/family'));
+        if (tab) {
+          const moved = await tab.navigate(url).catch(() => null);
+          if (moved) return moved.focus();
+        }
+        return self.clients.openWindow(url);
+      })
+    );
+  });
+
   self.addEventListener('fetch', (event) => {
     const request = event.request;
     const kind = route(request.method, request.url, self.location.origin, request.mode);
@@ -150,4 +215,4 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
 }
 
 // For the tests (test/offline/service-worker.test.ts).
-if (typeof module !== 'undefined') module.exports = { route, keepable, staticFiles, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };
+if (typeof module !== 'undefined') module.exports = { route, keepable, staticFiles, pushNotice, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };

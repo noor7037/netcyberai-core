@@ -55,6 +55,11 @@ export const FAMILY_SCREENS = [
   // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
   ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
   ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
+  // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
+  ['full', 'family-parent-home-plan', '/family/parent', { parent: true, settle: '[data-home-plan-nights]' }],
+  ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
+  // m3-8a: what the app tells the parent about (C338).
+  ['full', 'family-parent-notify', '/family/parent', { parent: true, settle: '[data-notify-section]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
@@ -64,6 +69,8 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-l2-pattern', '/family/english/lesson/b.u01.l2', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l3-story', '/family/english/lesson/b.u01.l3', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l4-roleplay', '/family/english/lesson/b.u01.l4', { settle: '[role=progressbar]' }],
+  // m2b-1 (C305): the parent area's Focus Lock section, two phones of the English family, one with notices to look at.
+  ['english', 'family-parent-focus', '/family/parent', { parent: true, settle: '[data-focus-section]' }],
   // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
   ...[['graph', 't01', 'graph'], ['number-line', 't02', 'number_line'], ['fraction', 't03', 'fraction_model'], ['geometry', 't04', 'geometry'], ['pendulum', 't05', 'simulation'], ['refraction', 't06', 'simulation']].map(
     ([name, t, block]) => ['full', `family-interactive-${name}`, `/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.${t}`, { child: 'f0000000-0000-4000-8000-0000000fc002', settle: `[data-block="${block}"]` }]
@@ -118,8 +125,28 @@ async function seedEnglish(db) {
   }
 }
 
+// The Focus Lock's phones for the English family (M2b-1, C305): made-up hashes, one phone with a report and two notices
+// to look at, one not reported yet. Its section shows because phones are set up; the module itself stays off.
+async function seedFocus(db) {
+  const account = FAMILY.english;
+  const [p1, p2] = ['f0000000-0000-4000-8000-0000000fd001', 'f0000000-0000-4000-8000-0000000fd002'];
+  await db.pg.query(
+    `insert into family.focus_devices (device_id, account_id, device_hash, created_at, last_heartbeat_at, lock_on, permissions_ok, clock_changed, stop_noticed_at) values
+       ($1, $3, repeat('a', 64), now() - interval '3 days', now() - interval '3 hours', true, true, false, now() - interval '1 hour'),
+       ($2, $3, repeat('b', 64), now() - interval '1 day', null, null, null, null, null)
+     on conflict do nothing`,
+    [p1, p2, account]
+  );
+  await db.pg.query(`insert into family.focus_device_children (account_id, device_id, child_id) values ($1, $2, $4), ($1, $3, $4) on conflict do nothing`, [account, p1, p2, 'f0000000-0000-4000-8000-0000000fc005']);
+  await db.pg.query(
+    `insert into family.focus_notices (account_id, device_id, kind, at) values ($1, $2, 'stopped', now() - interval '3 hours'), ($1, $2, 'clock', now() - interval '1 day') on conflict do nothing`,
+    [account, p1]
+  );
+}
+
 export async function runFamilyMatrix({ browser, base, db, secret, out, only }) {
   await seedEnglish(db);
+  await seedFocus(db);
   // The English child has done the first three lessons of unit 1, so the map shows progress and lesson 4 is open.
   await db.pg.query(`insert into family.english_enrolments (account_id, child_id, track, started_on) values ($1, $2, 'b', (now() at time zone 'Asia/Kolkata')::date - 3) on conflict do nothing`, [FAMILY.english, 'f0000000-0000-4000-8000-0000000fc005']);
   for (const [k, s] of [['b.u01.l1', 3], ['b.u01.l2', 2], ['b.u01.l3', 3]]) {
@@ -183,7 +210,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               devanagari: /[ऀ-ॿ]/.test(text),
               // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names and the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'family', 'plus'].includes(w.toLowerCase())),
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'family', 'plus'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });

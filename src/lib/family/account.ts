@@ -16,9 +16,11 @@ export async function setLanguage(db: Db, accountId: string, lang: 'en' | 'hi'):
   await db.query(`update family.accounts set ui_language = $2 where account_id = $1`, [accountId, lang]);
 }
 
-// Every session of this account ends at its next request (token_version is checked live).
+// Every session of this account ends at its next request (token_version is checked live), and no browser of it is told
+// of anything new any more (M3-8b, C339): the parent turns notifications on again after signing in.
 export async function signOutEverywhere(db: Db, accountId: string): Promise<void> {
   await db.query(`update family.accounts set token_version = token_version + 1 where account_id = $1`, [accountId]);
+  await db.query(`delete from family.push_subscriptions where account_id = $1`, [accountId]);
 }
 
 export async function deleteAccount(db: Db, accountId: string): Promise<boolean> {

@@ -1,10 +1,11 @@
+import { t, type Lang } from '@/lib/i18n';
 import { PermanentJobError } from '@/lib/jobs/types';
 
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder'];
+export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice'];
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -115,6 +116,19 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
         ),
         text: `New support ticket from ${school}: ${category}\nOpen: ${link}`,
       };
+    }
+    // To a Family app parent (M2b-1, C305), queued by family.focus_sweep(): what happened to the Focus Lock on one of the
+    // family's phones, and when, in the parent's language. No child's name, no app, no phone: the parent area says which.
+    case 'focus_notice': {
+      const kind = str(data, 'kind');
+      if (kind !== 'stopped' && kind !== 'permissions' && kind !== 'clock') throw new PermanentJobError(`email data has an unknown kind ${kind}`);
+      const at = new Date(str(data, 'at'));
+      if (Number.isNaN(at.getTime())) throw new PermanentJobError('email data has no time');
+      const lang: Lang = data.lang === 'hi' ? 'hi' : 'en';
+      const time = new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit' }).format(at);
+      const lead = t(lang, `fam.email.focus.${kind}`, { time });
+      const more = t(lang, 'fam.email.focus.more');
+      return { subject: t(lang, 'fam.email.focus.subject'), html: wrap(`<p><strong>${escapeHtml(lead)}</strong></p><p>${escapeHtml(more)}</p>`), text: `${lead}\n${more}` };
     }
     default:
       throw new PermanentJobError(`unknown email template ${template}`);

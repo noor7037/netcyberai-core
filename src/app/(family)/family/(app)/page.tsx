@@ -10,12 +10,13 @@ import { classSubjects } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { familyModuleOn } from '@/lib/family/flags';
 import { childHabit } from '@/lib/family/habit';
+import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { childProgress, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { dayPlan } from '@/lib/family/plan';
 import { fill } from '@/lib/family/fill';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
-import { activeLinks, schoolTodayFor } from '@/lib/family/school';
+import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolSubjectIs, schoolTodayFor } from '@/lib/family/school';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 import { indiaDate } from '@/lib/time/india';
@@ -37,16 +38,26 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, meeting, seen, off } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
     openToAll: await openSubjects(db),
     links: await activeLinks(db, page.session.accountId),
+    // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
+    seen: await readSeen(db, page.session.accountId),
+    off: await notifyOff(db, page.session.accountId),
+    meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
   const atSchool = await schoolTodayFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
+  // Tonight's practice (C335, L10): the app's subjects in which the class covered something today, each opening Study.
+  const tonight = atSchool ? subjects.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
+  // What is new from the connected schools since the parent last looked (M3-8a, C338), without the kinds turned off:
+  // this child's own school news only, so on a shared phone one child never sees a brother's or sister's.
+  const mine = links.map((l) => ({ ...l, children: l.children.filter((c) => c.childId === child.childId) })).filter((l) => l.children.length > 0);
+  const news = mine.length ? await schoolNewsFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, mine, seen, off) : null;
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
     const mine = progress.filter((p) => p.subject === s);
@@ -61,6 +72,42 @@ export default async function FamilyHomePage() {
           <section data-school-today className="fam-card flex flex-col gap-1 bg-white p-4">
             <p className="text-base font-bold text-slate">{fill(t(lang, 'fam.school.homeToday'), { mark: t(lang, `fam.school.mark.${atSchool.today ?? 'none'}` as MessageKey) })}</p>
             <p className="text-sm text-slate">{atSchool.schoolName}</p>
+            {tonight.length > 0 && (
+              <div data-school-tonight-home className="mt-2 flex flex-col gap-2">
+                <p className="text-sm font-semibold text-slate">
+                  {t(lang, 'fam.school.tonightTitle')}: {t(lang, 'fam.school.tonightHome')}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {tonight.map((s) => (
+                    <Link key={s} href={`/family/study?subject=${s}`} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+                      {t(lang, `fam.subject.${s}` as MessageKey)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+        {news && news.total > 0 && (
+          <section data-school-news className="fam-card flex flex-col gap-2 bg-white p-4">
+            <p className="text-base font-bold text-slate">{t(lang, 'fam.news.title')}</p>
+            <p className="text-sm text-slate">
+              {(['homework', 'notices', 'results'] as const)
+                .filter((k) => news[k] > 0)
+                .map((k) => t(lang, `fam.news.${k}` as MessageKey, { n: news[k] }))
+                .join(' · ')}
+            </p>
+            <Link href="/family/parent" className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+              {t(lang, 'fam.news.open')}
+            </Link>
+          </section>
+        )}
+        {meeting && (
+          <section data-home-plan-tonight className="fam-card flex flex-col gap-2 bg-white p-4">
+            <p className="text-sm font-semibold text-slate">{t(lang, 'fam.homePlan.childHome')}</p>
+            <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(meeting.topicKey)}`} className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+              {meeting.title}
+            </Link>
           </section>
         )}
         {plan && <PlanCard plan={plan} lang={lang} />}

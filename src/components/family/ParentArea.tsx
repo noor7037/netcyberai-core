@@ -1,5 +1,6 @@
 'use client';
 
+import { forgetThisBrowser } from './push-client';
 import type { Subject } from '@/lib/family/subjects';
 import { useState, type ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
@@ -313,11 +314,11 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
 
       <Section title={w['fam.parent.signOutTitle']}>
         <div className="flex flex-col gap-2 sm:flex-row">
-          {/* M2-9: signing out also clears the chapters and answers kept on this phone. */}
-          <Button variant="outline" onClick={() => void clearOffline().then(() => post('/api/family/auth/sign-out', {}, '/family/sign-in'))}>
+          {/* M2-9: signing out also clears the chapters and answers kept on this phone; M3-8b: and its notifications. */}
+          <Button variant="outline" onClick={() => void forgetThisBrowser().then(clearOffline).then(() => post('/api/family/auth/sign-out', {}, '/family/sign-in'))}>
             {w['fam.parent.signOut']}
           </Button>
-          <Button variant="outline" onClick={() => void clearOffline().then(() => post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in'))}>
+          <Button variant="outline" onClick={() => void forgetThisBrowser().then(clearOffline).then(() => post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in'))}>
             {w['fam.parent.signOutAll']}
           </Button>
         </div>

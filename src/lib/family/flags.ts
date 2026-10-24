@@ -48,7 +48,8 @@ export async function readFamilySwitches(db: Db, accountId: string | null): Prom
 // A built module Control has never saved a switch for is on (C230-Z, the founder's instruction of 2026-10-23: what is
 // merged reaches the app without a step in Control). Control's saved switch, once there, decides; the whole app's switch
 // always applies. Safety checks, a parent's consents and the AI's clearance for children are separate and unchanged.
-const BUILT = new Set(FAMILY_MODULES.filter((m) => m.built).map((m) => m.flag));
+// A module marked offByDefault (the Focus Lock, C304) is off until Control saves a switch for it.
+const BUILT = new Set(FAMILY_MODULES.filter((m) => m.built && !m.offByDefault).map((m) => m.flag));
 
 export function switchOn(s: FamilySwitches, module: string, now = new Date()): boolean {
   const viewer = { accountId: s.accountId, isPreview: s.isPreview };

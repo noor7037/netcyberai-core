@@ -37,7 +37,9 @@ export async function notePulseReply(db: Sql, r: { schoolId: string; phone: stri
   const made = await db.query(`insert into pulse_response_log (school_id, pulse_id, student_id, parent_id, tier, responded_at, provider_message_id) values ($1, $2, $3, $4, $5, $6, $7) on conflict (provider_message_id) where provider_message_id is not null do nothing`, [r.schoolId, pulseId, sent[0].student_id, sent[0].parent_id, answer === 'understood' ? 1 : 2, r.at, r.providerMessageId]);
   if (made.rowCount !== 1) return { recorded: false };
   if (answer === 'understood') return { recorded: true, answer, followupOpened: false };
-  // One open item per child and kind: a second "needs help" does not open a second.
+  // One open item per child and kind: a second "needs help" does not open a second. The same lock as the office's
+  // follow-ups (followups.ts) and an answer from the app (public.guardian_pulse_answer, C336), so two at once open one.
+  await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`followup:${r.schoolId}:${sent[0].student_id}:did_not_understand`]);
   const opened = await db.query(
     `insert into pulse_followups (school_id, student_id, class_id, kind, reason, source)
      select s.school_id, s.student_id, s.class_id, 'did_not_understand', 'A parent replied to the day''s message that the child needs help.', 'parent_reply'

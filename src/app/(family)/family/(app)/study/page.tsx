@@ -21,7 +21,8 @@ import { OFFLINE_KEYS } from '@/lib/family/offline-words';
 import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
-import { activeLinks, schoolChaptersFor } from '@/lib/family/school';
+import { TonightPractice } from '@/components/family/TonightPractice';
+import { activeLinks, schoolStudyFor } from '@/lib/family/school';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { familyWords } from '@/lib/family/words';
@@ -70,7 +71,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const ownHref = (itemId: string) => `/family/understand?kind=own&key=${encodeURIComponent(itemId)}`;
   // The school's own syllabus for this subject (C230-AA), for a child matched to a connected school's student.
   const [switches, links] = await familyPageRead(page, (db) => Promise.all([readFamilySwitches(db, page.session.accountId), access.open ? activeLinks(db, page.session.accountId) : Promise.resolve([])]));
-  const schoolChapters = links.length ? await schoolChaptersFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId, subject) : null;
+  const school = links.length ? await schoolStudyFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId, subject) : { chapters: null, tonight: [] };
+  const schoolChapters = school.chapters;
   // M2-6 (C280): the homework helper's link, while its module is on.
   const homeworkOn = switchOn(switches, 'homework');
   // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on, with the
@@ -85,7 +87,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
   const tone = subject;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
@@ -125,6 +127,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         ) : (
           <>
             <StudyQuestion w={w} subject={subject} tone={tone} voice={voice} />
+            {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
             {homeworkOn && (
               <Link href="/family/study/homework" data-homework-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">

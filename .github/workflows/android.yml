@@ -1,0 +1,73 @@
+# The Android app's build (M2b-3): the Focus Lock rule engine's JVM tests, then a debug APK. Debug only, with no
+# signing, so it needs no secrets; the release and signing pipeline is a later slice (M2b-7). Kept apart from
+# checks.yml (the web app's CI, mirrored by scripts/ci_local.sh) and run only when the Android side changes.
+name: android
+
+on:
+  pull_request:
+    paths:
+      - 'android/**'
+      - 'android-shell/**'
+      - 'capacitor.config.json'
+      - '.github/workflows/android.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'android/**'
+      - 'android-shell/**'
+      - 'capacitor.config.json'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      # The committed gradle-wrapper.jar is Gradle's own (it runs every build).
+      - uses: gradle/actions/wrapper-validation@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: gradle
+
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;34.0.0'
+
+      - run: npm ci
+
+      - name: Copy the shell and the Capacitor plugins into the Android project
+        run: npx cap sync android
+
+      - name: Focus Lock rule engine tests (plain Kotlin on the JVM)
+        working-directory: android
+        run: ./gradlew --no-daemon :focuslock-core:test
+
+      - name: Debug APK
+        working-directory: android
+        run: ./gradlew --no-daemon assembleDebug
+
+      - name: Keep the test report when a test fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: focuslock-core-test-report
+          path: android/focuslock-core/build/reports/tests/test
+          retention-days: 7

@@ -496,6 +496,14 @@ ALLOWED_PERMISSIVE = (
         ("family.school_links", "school_links_own"),
         ("family.child_links", "child_links_own"),
         ("family.connect_attempts", "connect_attempts_own"),
+        # M3-7 (C337): the home plan after a parent-teacher meeting, own account only (restrictive twin below).
+        ("family.home_plans", "home_plans_own"),
+        # M3-8a (C338): when the parent last looked at the school's news, and the kinds turned off; own account only.
+        ("family.school_seen", "school_seen_own"),
+        ("family.notify_off", "notify_off_own"),
+        # M3-8b (C339): a family's browsers for notifications, and up to when each kind was pushed; own account only.
+        ("family.push_subscriptions", "push_subscriptions_own"),
+        ("family.push_sent", "push_sent_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -506,6 +514,13 @@ ALLOWED_PERMISSIVE = (
         ("family.child_syllabi", "child_syllabi_own"),
         ("family.child_syllabus_items", "child_syllabus_items_own"),
         # c230-ab end
+        # m2b-1 begin
+        # The Focus Lock's phones, the children set for them and the parent's notices: own account only (with the
+        # restrictive twins below).
+        ("family.focus_devices", "focus_devices_own"),
+        ("family.focus_device_children", "focus_device_children_own"),
+        ("family.focus_notices", "focus_notices_own"),
+        # m2b-1 end
     }
 )
 
@@ -981,6 +996,14 @@ REQUIRED_RESTRICTIVE = {
     ("family.school_links", "school_links_own_only"),
     ("family.child_links", "child_links_own_only"),
     ("family.connect_attempts", "connect_attempts_own_only"),
+    # M3-7 (C337): own account only on the home plan.
+    ("family.home_plans", "home_plans_own_only"),
+    # M3-8a (C338): own account only.
+    ("family.school_seen", "school_seen_own_only"),
+    ("family.notify_off", "notify_off_own_only"),
+    # M3-8b (C339): own account only.
+    ("family.push_subscriptions", "push_subscriptions_own_only"),
+    ("family.push_sent", "push_sent_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),
@@ -993,6 +1016,12 @@ REQUIRED_RESTRICTIVE = {
     ("family.child_syllabi", "child_syllabi_own_only"),
     ("family.child_syllabus_items", "child_syllabus_items_own_only"),
     # c230-ab end
+    # m2b-1 begin
+    # The Focus Lock's phones, the children set for them and the parent's notices: own account only.
+    ("family.focus_devices", "focus_devices_own_only"),
+    ("family.focus_device_children", "focus_device_children_own_only"),
+    ("family.focus_notices", "focus_notices_own_only"),
+    # m2b-1 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

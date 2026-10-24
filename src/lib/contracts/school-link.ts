@@ -28,7 +28,17 @@ export type LinkedSchoolChild = {
   // The results the school published for the child's class (C333), newest first, for a matched child only, otherwise
   // null. Never a mark still being entered.
   results: SchoolResult[] | null;
+  // The Daily Pulse the school sent for the child's class in the last 7 days (C336, R9), newest first, for a matched
+  // child only, otherwise null. canAnswer: the school holds the child's consent for messages (C230-AD); without it the
+  // Pulse is read only.
+  pulse: { items: SchoolPulse[]; canAnswer: boolean } | null;
 };
+
+// A Daily Pulse as the school sent it (its words never change): the lesson's day (yyyy-mm-dd), the school's English and
+// Hindi words, this guardian's answer however it was given (WhatsApp or the app), and whether it can still be answered
+// (sent in the last 24 hours, as a WhatsApp answer is tied to its Pulse).
+export type PulseAnswer = 'understood' | 'needs_help';
+export type SchoolPulse = { pulseId: string; sentOn: string; body: { en: string; hi: string }; answer: PulseAnswer | null; open: boolean };
 
 // A published result, as the report card shows it: each subject's percent and grade by the grading scheme kept with
 // the publication (null while a subject's marks are not complete), the overall, the class teacher's remark and the
@@ -66,7 +76,12 @@ export type LinkedSchool = {
 };
 
 // The school's own syllabus for one student's class, subject by subject, in the school's order (read only).
-export type SchoolSyllabus = { subjects: { name: string; chapters: { title: string; topics: string[] }[] }[] };
+export type SchoolSyllabus = { subjects: { name: string; chapters: { title: string; topics: string[] }[] }[]; tonight: SchoolTaught[] };
+
+// A topic the child's class covered today (C335, L10), as the teacher recorded it ("taught today", taught or in part),
+// with its subject in the school's words and its chapter when the teacher picked it from the school's syllabus. Never the
+// teacher's note.
+export type SchoolTaught = { subject: string; topic: string; chapter: string | null };
 
 // A connect code as the office reads it once: eight letters and digits in two groups of four, no 0/O/1/I.
 export const CONNECT_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
