@@ -3,7 +3,7 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolResult, type SchoolSyllabus } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
 import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
 import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
 import type { GradingScheme } from '@/lib/exams/scheme';
@@ -293,7 +293,12 @@ async function consented(db: Sql, schoolId: string, studentId: string): Promise<
 }
 
 // Today's mark for one linked student, and the school's name: what the child's home shows (narrow, one small read).
-export async function readSchoolToday(claims: Claims, linkId: string, studentId: string, today = indiaDate()): Promise<{ schoolName: string; today: SchoolDayMark | null } | null> {
+export async function readSchoolToday(
+  claims: Claims,
+  linkId: string,
+  studentId: string,
+  today = indiaDate()
+): Promise<{ schoolName: string; today: SchoolDayMark | null; tonight: SchoolTaught[] } | null> {
   return withGuardianContext(claims, linkId, async (db, link) => {
     if (!(await consented(db, link.schoolId, studentId))) return null;
     const student = (await db.query(`select 1 from students where student_id = $1 and status = 'active'`, [studentId])).rows[0];
@@ -301,15 +306,34 @@ export async function readSchoolToday(claims: Claims, linkId: string, studentId:
     const school = (await db.query(`select name from schools where school_id = $1`, [link.schoolId])).rows[0] as { name: string } | undefined;
     const mark = (await db.query(`select status::text as status from attendance where student_id = $1 and date = $2::date limit 1`, [studentId, today])).rows[0] as { status: string } | undefined;
     const m = mark?.status === 'on_leave' ? 'leave' : mark?.status;
-    return { schoolName: school?.name ?? '', today: m === 'present' || m === 'absent' || m === 'late' || m === 'leave' ? m : null };
+    return { schoolName: school?.name ?? '', today: m === 'present' || m === 'absent' || m === 'late' || m === 'leave' ? m : null, tonight: await taughtToday(db, studentId, today) };
   });
+}
+
+// What one student's class covered today (C335, L10): the teacher's record, taught or in part, never delayed or not
+// taught, never the teacher's note. In the guardian's session the school's rules (school_link_tonight.sql) let through
+// only the guardian's own consented children's classes; the join keeps it to this child's class and school.
+async function taughtToday(db: Sql, studentId: string, today: string): Promise<SchoolTaught[]> {
+  const { rows } = await db.query(
+    `select sub.name as subject, coalesce(nullif(btrim(p.topic), ''), u.topic) as topic, u.chapter
+       from students s
+       join syllabus_progress p on p.school_id = s.school_id and p.class_id = s.class_id
+       left join syllabus_units u on u.school_id = p.school_id and u.unit_id = p.unit_id
+       left join subjects sub on sub.school_id = p.school_id and sub.subject_id = p.subject_id
+      where s.student_id = $1 and p.date = $2::date and p.status in ('taught', 'partial')
+      order by sub.name, p.created_at`,
+    [studentId, today]
+  );
+  return (rows as { subject: string | null; topic: string | null; chapter: string | null }[])
+    .filter((r) => r.subject && r.topic)
+    .map((r) => ({ subject: r.subject as string, topic: r.topic as string, chapter: r.chapter }));
 }
 
 // One linked student's class syllabus, as the school published it (syllabus_units), subject by subject; nothing without
 // the school's consent for the student.
-export async function readSchoolSyllabus(claims: Claims, linkId: string, studentId: string): Promise<SchoolSyllabus> {
+export async function readSchoolSyllabus(claims: Claims, linkId: string, studentId: string, today = indiaDate()): Promise<SchoolSyllabus> {
   return withGuardianContext(claims, linkId, async (db, link) => {
-    if (!(await consented(db, link.schoolId, studentId))) return { subjects: [] };
+    if (!(await consented(db, link.schoolId, studentId))) return { subjects: [], tonight: [] };
     const rows = (
       await db.query(
         `select sub.name as subject, u.chapter, u.topic
@@ -329,6 +353,6 @@ export async function readSchoolSyllabus(claims: Claims, linkId: string, student
       if (!c) s.chapters.push((c = { title: r.chapter, topics: [] }));
       c.topics.push(r.topic);
     }
-    return { subjects };
+    return { subjects, tonight: await taughtToday(db, studentId, today) };
   });
 }

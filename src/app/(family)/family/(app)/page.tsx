@@ -15,7 +15,7 @@ import { subjectAccess } from '@/lib/family/modules';
 import { dayPlan } from '@/lib/family/plan';
 import { fill } from '@/lib/family/fill';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
-import { activeLinks, schoolTodayFor } from '@/lib/family/school';
+import { activeLinks, schoolSubjectIs, schoolTodayFor } from '@/lib/family/school';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 import { indiaDate } from '@/lib/time/india';
@@ -47,6 +47,8 @@ export default async function FamilyHomePage() {
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
   const atSchool = await schoolTodayFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
+  // Tonight's practice (C335, L10): the app's subjects in which the class covered something today, each opening Study.
+  const tonight = atSchool ? subjects.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
     const mine = progress.filter((p) => p.subject === s);
@@ -61,6 +63,20 @@ export default async function FamilyHomePage() {
           <section data-school-today className="fam-card flex flex-col gap-1 bg-white p-4">
             <p className="text-base font-bold text-slate">{fill(t(lang, 'fam.school.homeToday'), { mark: t(lang, `fam.school.mark.${atSchool.today ?? 'none'}` as MessageKey) })}</p>
             <p className="text-sm text-slate">{atSchool.schoolName}</p>
+            {tonight.length > 0 && (
+              <div data-school-tonight-home className="mt-2 flex flex-col gap-2">
+                <p className="text-sm font-semibold text-slate">
+                  {t(lang, 'fam.school.tonightTitle')}: {t(lang, 'fam.school.tonightHome')}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {tonight.map((s) => (
+                    <Link key={s} href={`/family/study?subject=${s}`} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+                      {t(lang, `fam.subject.${s}` as MessageKey)}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         )}
         {plan && <PlanCard plan={plan} lang={lang} />}

@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg';
-import type { LinkedSchool, SchoolDayMark, SchoolSyllabus } from '@/lib/contracts/school-link';
+import type { LinkedSchool, SchoolDayMark, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
 import { readLinkedSchool, readSchoolSyllabus, readSchoolToday, redeemConnectCode, SchoolLinkGoneError } from '@/lib/school-link';
 
 // The family's side of School Link (C230-AA; docs/family-app/03 §4): the links an account holds and which family child
@@ -95,7 +95,11 @@ export async function linkedSchool(claims: Claims, linkId: string, matched: read
 }
 
 // A matched child's day at school, for the child's home: null when not matched, gone, or without the school's consent.
-export async function schoolTodayFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<{ schoolName: string; today: SchoolDayMark | null } | null> {
+export async function schoolTodayFor(
+  claims: Claims,
+  links: readonly FamilySchoolLink[],
+  childId: string
+): Promise<{ schoolName: string; today: SchoolDayMark | null; tonight: SchoolTaught[] } | null> {
   const m = links.flatMap((l) => l.children.filter((c) => c.childId === childId).map((c) => ({ linkId: l.linkId, studentId: c.studentId })))[0];
   if (!m) return null;
   try {
@@ -128,9 +132,23 @@ export function schoolSubjectIs(schoolName: string, subjectId: string): boolean 
 // child is not matched, the link is gone, or the school has no units for that subject. `links` come from activeLinks()
 // in the family's own transaction, read before this (one connection at a time).
 export async function schoolChaptersFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, subjectId: string): Promise<{ title: string; topics: string[] }[] | null> {
+  return (await schoolStudyFor(claims, links, childId, subjectId)).chapters;
+}
+
+// For Study, one read: the school's syllabus for one of the app's subjects (null when none), and what the class covered
+// today in that subject for tonight's practice (C335, L10; empty when nothing).
+export async function schoolStudyFor(
+  claims: Claims,
+  links: readonly FamilySchoolLink[],
+  childId: string,
+  subjectId: string
+): Promise<{ chapters: { title: string; topics: string[] }[] | null; tonight: SchoolTaught[] }> {
   const m = links.flatMap((l) => l.children.filter((c) => c.childId === childId).map((c) => ({ linkId: l.linkId, studentId: c.studentId })))[0];
-  if (!m) return null;
+  if (!m) return { chapters: null, tonight: [] };
   const syllabus = await schoolSyllabusFor(claims, m.linkId, m.studentId);
   const subject = syllabus?.subjects.find((x) => schoolSubjectIs(x.name, subjectId));
-  return subject && subject.chapters.length > 0 ? subject.chapters : null;
+  return {
+    chapters: subject && subject.chapters.length > 0 ? subject.chapters : null,
+    tonight: (syllabus?.tonight ?? []).filter((t) => schoolSubjectIs(t.subject, subjectId)),
+  };
 }

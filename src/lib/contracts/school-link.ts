@@ -66,7 +66,12 @@ export type LinkedSchool = {
 };
 
 // The school's own syllabus for one student's class, subject by subject, in the school's order (read only).
-export type SchoolSyllabus = { subjects: { name: string; chapters: { title: string; topics: string[] }[] }[] };
+export type SchoolSyllabus = { subjects: { name: string; chapters: { title: string; topics: string[] }[] }[]; tonight: SchoolTaught[] };
+
+// A topic the child's class covered today (C335, L10), as the teacher recorded it ("taught today", taught or in part),
+// with its subject in the school's words and its chapter when the teacher picked it from the school's syllabus. Never the
+// teacher's note.
+export type SchoolTaught = { subject: string; topic: string; chapter: string | null };
 
 // A connect code as the office reads it once: eight letters and digits in two groups of four, no 0/O/1/I.
 export const CONNECT_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
