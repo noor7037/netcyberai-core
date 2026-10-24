@@ -102,5 +102,11 @@ describe('an old parent login moves only through the school’s code (C340)', ()
     expect(await as('principal', PRINCIPAL, async (c) => (await c.query(`select public.parent_login_moved() as m`)).rows[0].m)).toBe(false);
     const { withFamilyContext } = await import('@/lib/auth/db');
     expect(await said(() => withFamilyContext({ accountId: ACCOUNT, tokenVersion: 0 }, (c) => c.query(`select public.retire_moved_parent_login()`)))).toMatch(/permission denied/);
+    // The Family app's guardian door sets the same parent settings inside a Family account's session: refused there too.
+    const asGuardianInFamily = await as('parent', P2, async (c) => {
+      await c.query(`select set_config('app.current_account_id', '${ACCOUNT}', true)`);
+      return c.query(`select public.retire_moved_parent_login()`).then(() => 'ran', (e: Error) => String(e.message));
+    }).catch((e: Error) => String(e.message));
+    expect(asGuardianInFamily).toMatch(/only a parent/);
   });
 });
