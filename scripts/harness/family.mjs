@@ -58,6 +58,8 @@ export const FAMILY_SCREENS = [
   // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
   ['full', 'family-parent-home-plan', '/family/parent', { parent: true, settle: '[data-home-plan-nights]' }],
   ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
+  // m3-8a: what the app tells the parent about (C338).
+  ['full', 'family-parent-notify', '/family/parent', { parent: true, settle: '[data-notify-section]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
