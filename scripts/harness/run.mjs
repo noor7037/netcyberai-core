@@ -1257,8 +1257,13 @@ const accountLeaveAlone = async (page) => {
   await clearLeave();
   await db.pg.query(`update users set is_active = false where user_id = $1`, [PEOPLE.office.sub]);
   await page.reload({ waitUntil: 'networkidle' });
+  // The words are folded under the ⓘ beside "My leave" (C235-C), in the page but hidden: open it, as a reader would, so
+  // they are on the picture.
   const how = page.locator('[data-my-leave-how]');
-  await how.waitFor({ timeout: 20000 });
+  await how.waitFor({ state: 'attached', timeout: 20000 });
+  const tip = await page.locator('[data-info-panel]:has([data-my-leave-how])').getAttribute('id');
+  await page.locator(`button[data-info-tip][aria-controls="${tip}"]`).click();
+  await how.waitFor({ timeout: 5000 });
   const words = await how.innerText();
   aloneLeaveSeen = { how: await how.getAttribute('data-my-leave-how'), saysWhy: words.includes('Nobody decides their own'), saysWhatNext: words.includes('“Invite staff”'), namesAnother: words.includes('the other person in the office') };
 };
