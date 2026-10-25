@@ -451,6 +451,14 @@ describe('the Focus Lock’s server (M2b-1, C305)', () => {
     await q(`update control.app_flags set audience = 'everyone', audience_percent = null, ends_at = null where app = 'family' and module = 'focus_lock'`);
   });
 
+  it('the sweep’s two defaults are the module list’s: the Focus Lock off until saved, the plan on (C341)', async () => {
+    const { FAMILY_MODULES } = await import('@/lib/contracts/family-modules');
+    const mod = (flag: string) => FAMILY_MODULES.find((m) => m.flag === flag)!;
+    // family.focus_sweep() calls module_on(account, 'focus_lock', false) and module_on(account, 'plan', true).
+    expect([mod('focus_lock').built, mod('focus_lock').offByDefault === true]).toEqual([true, true]);
+    expect([mod('plan').built, mod('plan').offByDefault === true]).toEqual([true, false]);
+  });
+
   it('a family outside the switch’s audience whose phone never reports again is not told it stopped (C4, C341)', async () => {
     const stoppedUnseen = async () => (await q(`select count(*)::int as n from family.focus_notices where device_id = $1 and kind = 'stopped' and seen_at is null`, [devB]))[0].n;
     // Staff preview only, and family B is not a preview account: its silent phone is never reported.
