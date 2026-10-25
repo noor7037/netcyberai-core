@@ -1,3 +1,4 @@
+import { familyClaims } from '@/lib/family/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { StudyQuestion } from '@/components/family/StudyQuestion';
@@ -71,7 +72,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const ownHref = (itemId: string) => `/family/understand?kind=own&key=${encodeURIComponent(itemId)}`;
   // The school's own syllabus for this subject (C230-AA), for a child matched to a connected school's student.
   const [switches, links] = await familyPageRead(page, (db) => Promise.all([readFamilySwitches(db, page.session.accountId), access.open ? activeLinks(db, page.session.accountId) : Promise.resolve([])]));
-  const school = links.length ? await schoolStudyFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId, subject) : { chapters: null, tonight: [] };
+  const school = links.length ? await schoolStudyFor(familyClaims(page.session), links, child.childId, subject) : { chapters: null, tonight: [] };
   const schoolChapters = school.chapters;
   // M2-6 (C280): the homework helper's link, while its module is on.
   const homeworkOn = switchOn(switches, 'homework');

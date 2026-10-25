@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
-import { FamilySessionRevokedError, withFamilyContext, withFamilyGate } from '@/lib/family/db';
+import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
 import { openItem } from '@/lib/family/items';
 import { claimSubject } from '@/lib/family/learning';
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
   const session = g.session;
-  const claims = { accountId: session.accountId, tokenVersion: session.tokenVersion };
+  const claims = familyClaims(session);
   const body = await jsonBody(req);
   const followUp = FOLLOW_UPS.includes(body.followUp as FollowUp) ? (body.followUp as FollowUp) : null;
   let input: ResolveInput | null = null;

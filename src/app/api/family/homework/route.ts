@@ -3,7 +3,7 @@ import { accountSummary } from '@/lib/family/account';
 import { classSubjects } from '@/lib/family/catalog';
 import { activeChild, isPrePrimary, listChildren, syllabusBoardOf } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
-import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
+import { FamilySessionRevokedError, withFamilyContext, familyClaims } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
 import { newLadder, parseRead, PHOTO_MAX_BYTES, screenPhoto, sealLadder, viewOf } from '@/lib/family/homework';
 import { claimSubject, setting } from '@/lib/family/learning';
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
   const session = g.session;
-  const claims = { accountId: session.accountId, tokenVersion: session.tokenVersion };
+  const claims = familyClaims(session);
   const body = (await req.json().catch(() => null)) as { photo?: unknown } | null;
   const b64 = typeof body?.photo === 'string' ? body.photo.replace(/^data:image\/[a-z]+;base64,/, '') : '';
   if (!b64) return NextResponse.json({ error: 'not_a_photo' }, { status: 400 });

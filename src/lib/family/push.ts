@@ -1,5 +1,5 @@
 import { listChildren } from './children';
-import { withFamilyContext } from './db';
+import { familyClaims, withFamilyContext, type FamilyClaims } from './db';
 import { homePlan, plusOpen } from './home-plan';
 import { familyModuleOn } from './flags';
 import { activeLinks, NEWS_KINDS, notifyOff, readSchoolNewsFor, schoolTodayFor, type NotifyKind } from './school';
@@ -65,7 +65,7 @@ type Mark = { scope: string; kind: NotifyKind; upto: string };
 export type AccountPush = { kinds: NotifyKind[]; sent: number; gone: number; failed: number };
 
 // One account's turn: what to tell, the pushes, then the marks and the browsers' health. Returns what was pushed.
-export async function pushForAccount(claims: { accountId: string; tokenVersion: number }, at: Date, send: PushSender = sendWebPush): Promise<AccountPush> {
+export async function pushForAccount(claims: FamilyClaims, at: Date, send: PushSender = sendWebPush): Promise<AccountPush> {
   const accountId = claims.accountId;
   const scanAt = at.toISOString();
   const today = indiaDay(at);
@@ -167,7 +167,7 @@ export function pushScanHandler({ platform, send = sendWebPush, now = () => new 
     for (const a of scanOrder(listed, at)) {
       if (Date.now() - started > budgetMs) break;
       try {
-        await pushForAccount({ accountId: a.account_id, tokenVersion: Number(a.token_version) }, at, send);
+        await pushForAccount(familyClaims({ accountId: a.account_id, tokenVersion: Number(a.token_version) }), at, send);
       } catch (err) {
         console.error('[push] an account was skipped', err instanceof Error ? err.name : 'error');
       }

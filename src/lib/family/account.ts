@@ -21,6 +21,8 @@ export async function setLanguage(db: Db, accountId: string, lang: 'en' | 'hi'):
 export async function signOutEverywhere(db: Db, accountId: string): Promise<void> {
   await db.query(`update family.accounts set token_version = token_version + 1 where account_id = $1`, [accountId]);
   await db.query(`delete from family.push_subscriptions where account_id = $1`, [accountId]);
+  // Children's own phones (C342) are unlinked too: the parent links them again with a new code.
+  await db.query(`update family.child_devices set revoked_at = now() where account_id = $1 and revoked_at is null`, [accountId]);
 }
 
 export async function deleteAccount(db: Db, accountId: string): Promise<boolean> {

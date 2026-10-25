@@ -15,6 +15,8 @@ export async function POST(req: NextRequest) {
   if (problem) return NextResponse.json({ error: problem }, { status: 400 });
   const g = await requireFamily(req);
   if (g.error) return g.error;
+  // The parent's PIN is never used on a child's own phone (C342): the parent area is on the parent's phone.
+  if (g.session.device) return NextResponse.json({ error: 'child_phone' }, { status: 403 });
   return familyRun(g.session, async (db) => {
     const account = await accountSummary(db, g.session.accountId);
     if (!account) return NextResponse.json({ error: 'not_signed_in' }, { status: 401 });

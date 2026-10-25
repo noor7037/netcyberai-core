@@ -34,14 +34,14 @@ function next(req: NextRequest, requestId: string): NextResponse {
 }
 
 // The Family app's pages that need no session (M1-2, C248): signing in, and the page the Android shell shows offline.
-const FAMILY_OPEN = new Set(['/family/sign-in', '/family/offline', '/family/about-ai']);
+const FAMILY_OPEN = new Set(['/family/sign-in', '/family/link', '/family/offline', '/family/about-ai']);
 
 // The Family app (/family, M1-2, C248) has its own session and cookie; a staff cookie is never read here.
 async function familyGate(req: NextRequest, requestId: string): Promise<NextResponse> {
   const { pathname } = req.nextUrl;
   const session = await verifyFamilySession(req.cookies.get(FAMILY_SESSION_COOKIE)?.value);
   if (FAMILY_OPEN.has(pathname)) {
-    return session && pathname === '/family/sign-in' ? NextResponse.redirect(new URL('/family', req.url)) : next(req, requestId);
+    return session && (pathname === '/family/sign-in' || pathname === '/family/link') ? NextResponse.redirect(new URL('/family', req.url)) : next(req, requestId);
   }
   return session ? next(req, requestId) : NextResponse.redirect(new URL('/family/sign-in', req.url));
 }

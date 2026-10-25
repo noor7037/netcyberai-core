@@ -22,6 +22,8 @@ export const FAMILY = {
 export const FAMILY_SCREENS = [
   [null, 'family-sign-in', '/family/sign-in', {}],
   [null, 'family-offline', '/family/offline', {}],
+  // m2b-2: a child's own phone enters the parent's code (C342).
+  [null, 'family-link', '/family/link', {}],
   ['fresh', 'family-welcome', '/family/welcome', {}],
   ['consented', 'family-pin-setup', '/family/welcome/pin', {}],
   ['pinned', 'family-first-child', '/family/welcome/child', { parent: true }],
@@ -55,6 +57,8 @@ export const FAMILY_SCREENS = [
   // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
   ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
   ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
+  // m2b-2: children's own phones in the parent area (C342).
+  ['full', 'family-parent-phones', '/family/parent', { parent: true, settle: '[data-child-phones]' }],
   // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
   ['full', 'family-parent-home-plan', '/family/parent', { parent: true, settle: '[data-home-plan-nights]' }],
   ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
