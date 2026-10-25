@@ -119,16 +119,32 @@ describe('a child’s phone spends the code (C342)', () => {
     expect(await call(await linkRoute(), '/api/family/child-phone/link', { code }, '', '203.0.113.8')).toMatchObject({ status: 400, body: { error: 'wrong' } });
   });
 
-  it('ten tries an hour from one network, three hundred in all', async () => {
+  it('ten tries an hour from one network (an IPv6 /64 is one), a hundred in all', async () => {
     for (let i = 0; i < 8; i++) await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9');
     // This network has now tried 8 times; the 11th try is refused before any code is looked at.
     await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9');
     await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9');
     expect(await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9')).toMatchObject({ status: 429, body: { error: 'too_many' } });
     expect(await q(`select count(*)::int as n from family.child_link_tries where scope ~ '^[0-9a-f]{64}$' and scope <> '*'`)).toEqual([{ n: 3 }]);
-    await q(`update family.child_link_tries set n = 300 where scope = '*'`);
+    await q(`update family.child_link_tries set n = 100 where scope = '*'`);
     expect(await call(await linkRoute(), '/api/family/child-phone/link', { code: '654321' }, '', '192.0.2.1')).toMatchObject({ status: 429, body: { error: 'too_many' } });
     await q(`update family.child_link_tries set n = 0`);
+  });
+});
+
+describe('counting tries by network (review of C342)', () => {
+  it('an IPv4 address is one network; an IPv6 address counts by its /64', async () => {
+    const { networkOf, tryKey } = await import('@/lib/family/child-phone');
+    expect(networkOf('203.0.113.7')).toBe('203.0.113.7');
+    expect(networkOf('::ffff:203.0.113.7')).toBe('203.0.113.7');
+    expect(networkOf('2001:db8:1:2:aaaa:bbbb:cccc:dddd')).toBe('2001:db8:1:2::/64');
+    expect(networkOf('2001:0db8:0001:0002::1')).toBe('2001:db8:1:2::/64');
+    expect(networkOf('2001:db8::1')).toBe('2001:db8:0:0::/64');
+    expect(networkOf('fe80::1%eth0')).toBe('fe80:0:0:0::/64');
+    expect(networkOf('not an address')).toBe('not an address');
+    expect(networkOf('1:2:3')).toBe('unknown');
+    expect(tryKey('2001:db8:1:2::5')).toBe(tryKey('2001:db8:1:2:ffff::9'));
+    expect(tryKey('2001:db8:1:2::5')).not.toBe(tryKey('2001:db8:1:3::5'));
   });
 });
 

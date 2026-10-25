@@ -10,7 +10,8 @@ export type { ChildPhone };
 //   - The code: six digits, ten minutes, used once, kept only as a keyed hash (the key is the server's own, so the
 //     database alone cannot test codes). A new code for the child replaces the unused one; at most five an hour.
 //   - Spending it: family.redeem_child_link_code, the only way, from a phone with no session yet. At most ten tries an
-//     hour from one network (kept as a keyed hash of its address, never the address) and three hundred in all.
+//     hour from one network (an IPv4 address, or an IPv6 /64; kept as a keyed hash, never the address) and a hundred in
+//     all.
 //   - The phone's session: the family session with its device and child (session.ts); the database shows that child
 //     only and checks the phone is still linked on every request (src/lib/auth/db.ts). It never opens parent mode.
 
@@ -21,8 +22,23 @@ export const CODES_AN_HOUR = 5;
 
 const keyed = (label: string, value: string) => createHmac('sha256', familyHashKey('child-link.v1')).update(`${label}\u0000${value}`).digest('hex');
 export const linkCodeHash = (code: string) => keyed('code', code);
+// The network an address belongs to, for counting tries: an IPv4 address as it is; an IPv6 address by its /64, the block
+// one home or phone is given, so changing the last 64 bits does not buy more tries (review of C342).
+export function networkOf(ip: string): string {
+  const a = ip.trim().toLowerCase().replace(/%.*$/, '');
+  if (!a.includes(':')) return a || 'unknown';
+  const mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/.exec(a);
+  if (mapped) return mapped[1];
+  const [head, tail] = a.split('::');
+  const left = head ? head.split(':') : [];
+  const right = tail ? tail.split(':') : [];
+  const groups = tail === undefined ? left : [...left, ...Array(Math.max(0, 8 - left.length - right.length)).fill('0'), ...right];
+  if (groups.length !== 8 || !groups.every((g) => /^[0-9a-f]{1,4}$/.test(g))) return 'unknown';
+  return `${groups.slice(0, 4).map((g) => g.replace(/^0+(?=.)/, '')).join(':')}::/64`;
+}
+
 // A network's key for counting tries: the address is never kept.
-export const tryKey = (ip: string) => keyed('ip', ip || 'unknown');
+export const tryKey = (ip: string) => keyed('ip', networkOf(ip));
 
 // What the phone typed, made comparable: six digits, spaces and dashes ignored; anything else is not a code.
 export function normalizeLinkCode(raw: unknown): string | null {
