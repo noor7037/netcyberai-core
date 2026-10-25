@@ -6348,7 +6348,7 @@ export const en = {
   'fam.news.results': 'Results: {n}',
   'fam.news.open': 'See it in the parent area',
   'fam.link.title': 'This is my child’s own phone',
-  'fam.link.lead': 'On the parent’s phone, open the parent area and choose “Link this child’s own phone”. Enter the 6-digit code it shows.',
+  'fam.link.lead': 'On the parent’s phone, open the parent area. Under “Children’s own phones”, tap the button with this child’s name, then enter the 6-digit code it shows.',
   'fam.link.code': 'The 6-digit code',
   'fam.link.go': 'Link this phone',
   'fam.link.wrong': 'That code is not right, or it is no longer valid. Ask the parent for a new one.',
