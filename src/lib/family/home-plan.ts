@@ -19,10 +19,16 @@ type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<s
 
 const TOPIC_KEY = /^[a-z0-9][a-z0-9._-]{2,119}\.t\d+$/;
 
-// Plus has no checkout before P3 and no school sponsors it yet: a Plus module is used only when Control opens Plus to
-// every family for a pilot (family.plus_open, C337).
-export async function plusOpen(db: Db): Promise<boolean> {
-  return (await db.query(`select value from control.settings where key = 'family.plus_open'`)).rows[0]?.value === true;
+// Plus has no checkout before P3 and no school sponsors it yet: a Plus module is used only when Control has opened Family
+// Plus for the pilot (family.plus_open, C337) AND the family is on the pilot list (Control's staff-preview accounts,
+// C230-V), never for every family (C230-AE answer 3).
+export async function plusOpen(db: Db, accountId: string): Promise<boolean> {
+  const { rows } = await db.query(
+    `select (select value from control.settings where key = 'family.plus_open') = 'true'::jsonb
+        and exists (select 1 from control.preview_accounts where account_id = $1) as open`,
+    [accountId]
+  );
+  return rows[0]?.open === true;
 }
 
 // "2026-10-25" + n days, as a calendar day (no time zone moves it).
