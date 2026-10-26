@@ -119,6 +119,7 @@ live secret, plan for each line below and tell families first:
 | **Focus Lock phones** (`focus-device.v1`, the phone id's keyed hash, C305) | **Every phone set up** | The parent sets each phone up again; delete `family.focus_devices` rows first so no "stopped" notice is sent for them |
 | **Web Push keys** (`push-vapid.v1`, the VAPID key pair, C339) | **Every browser's notifications** | Delete `family.push_subscriptions`; parents turn notifications on again in the parent area |
 | Upload tickets (`upload-ticket.ts`, 10 minutes) | Uploads in progress | Send the file again |
+| AI marking result links still queued (`marking-report-link.v1`, C351) | A WhatsApp result message not yet sent would carry a link that opens nothing; links already sent keep working (only their hash is kept) | Send the class's results again after the rotation |
 | Intake rate-limit keys (`intake.ts`) | Counts start again | Nothing |
 
 The secret is never rotated by a code change: only a new value in Vercel,
