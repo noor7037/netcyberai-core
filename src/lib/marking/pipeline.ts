@@ -1,7 +1,7 @@
 import { activePromptVersion, prepareText, type AiRefusal, type ChatImage, type PreparedText } from '@/lib/ai/platform';
 import { markPrompt } from '@/lib/ai/prompts/exams.mark';
 import { readPagesPrompt } from '@/lib/ai/prompts/exams.read_pages';
-import { MAX_SHEET_PAGES } from '@/lib/contracts/marking';
+import { MAX_MARKING_ATTEMPTS, MAX_SHEET_PAGES } from '@/lib/contracts/marking';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { PermanentJobError, type ClaimedJob, type JobHandler, type JobQueue, type Sql } from '@/lib/jobs/types';
 import type { DirectUploadStorage } from '@/lib/storage/file-storage';
@@ -32,8 +32,8 @@ import { formSheets, recordPageReading, recordSheetFailure, recordSheetResult, t
 // 200 s), the pictures within PICTURES_MS, and three short transactions.
 
 export const MARKING_SESSION = 'marking.pipeline' as const;
-// The session a marking job runs in: production opens a real one (withSchoolJobContext); a test passes the same
-// statements on its own database.
+// The session a marking job runs in: production opens a real one (the school job session of src/lib/auth/db.ts,
+// passed in by src/lib/jobs/handlers.ts); a test passes the same statements on its own database.
 export type AsMarkingSchool = <T>(schoolId: string, job: typeof MARKING_SESSION, fn: (db: Sql) => Promise<T>) => Promise<T>;
 export type MarkingJobDeps = {
   asSchool: AsMarkingSchool;
@@ -111,6 +111,9 @@ export function markingReadHandler(deps: MarkingJobDeps): JobHandler {
       if (!up?.closed_at) return null;
       const paper = await markingPaper(db, JOB_ACTOR(schoolId), up.paper_id as string);
       if (!paper || paper.published || !paper.mayMark) return null;
+      // Only the upload's own pages: a payload naming none of them does nothing at all.
+      const own = (await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and upload_id = $2 and page_id = any($3::uuid[])`, [schoolId, uploadId, pageIds])).rows[0];
+      if (!Number(own?.n)) return null;
       return (
         await db.query(`select page_id, storage_key from marking_pages where school_id = $1 and upload_id = $2 and page_id = any($3::uuid[]) and state = 'new' order by file_no, page_no`, [
           schoolId,
@@ -119,7 +122,7 @@ export function markingReadHandler(deps: MarkingJobDeps): JobHandler {
         ])
       ).rows.map((r) => ({ pageId: r.page_id as string, storageKey: r.storage_key as string }));
     });
-    // Gone, not closed, or its class published since: nothing to do.
+    // Gone, not closed, not this upload's pages, or its class published since: nothing to do.
     if (pages === null) return;
 
     // 2. The pictures, with no connection held.
@@ -203,8 +206,10 @@ type Taken = SheetToMark & { grade: string };
 // Why a script that was not taken stays unmarked, kept for the teacher when it still waits; nothing for a script that is
 // already marked, approved or set aside (a job run twice).
 async function notTaken(db: Sql, schoolId: string, sheetId: string): Promise<void> {
-  const s = (await db.query(`select state from marking_sheets where school_id = $1 and sheet_id = $2`, [schoolId, sheetId])).rows[0];
+  const s = (await db.query(`select state, attempts from marking_sheets where school_id = $1 and sheet_id = $2`, [schoolId, sheetId])).rows[0];
   if (!s || !['waiting', 'marking'].includes(s.state)) return;
+  // The AI's tries are used up: it gave no answer it could keep.
+  if (Number(s.attempts) >= MAX_MARKING_ATTEMPTS) return recordSheetFailure(db, schoolId, sheetId, 'no_answer');
   const pages = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and sheet_id = $2 and state <> 'blank'`, [schoolId, sheetId])).rows[0]?.n ?? 0);
   await recordSheetFailure(db, schoolId, sheetId, pages === 0 ? 'pages_missing' : pages > MAX_SHEET_PAGES ? 'too_long' : 'not_ready');
 }

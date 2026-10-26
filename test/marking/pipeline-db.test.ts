@@ -284,7 +284,7 @@ beforeAll(async () => {
   expect(saved.ok).toBe(true);
   // Control: Anthropic cleared for children by the founder, its key saved; the two tasks wait for their switch.
   await owner(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.org/terms', cleared_at = now(), cleared_by = $1 where provider_id = 'anthropic'`, [FOUNDER]);
-  const sealed = sealAiKey(aiEncryptionKey() as Buffer, 'anthropic', ANTHROPIC_KEY);
+  const sealed = sealAiKey(aiEncryptionKey()!, 'anthropic', ANTHROPIC_KEY);
   await owner(`insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by) values ('anthropic', $1, $2, $3, $4, 'WXYZ', $5)`, [sealed.ciphertext, sealed.iv, sealed.tag, sealed.keyVersion, FOUNDER]);
   stubVendor();
 }, 120_000);
@@ -462,6 +462,26 @@ describe('closing an upload and the school’s marking jobs (C347)', () => {
     expect(sent.length).toBe(calls);
   });
 
+  it('a crafted job does nothing: pages of another upload, a script or upload that is not there, a bad payload', async () => {
+    const before = await owner(`select page_id, state from marking_pages order by page_id`);
+    const calls = sent.length;
+    const other = (await start(tMaths, paperA, { mode: 'per_file', files: 1 })).body.uploadId as string;
+    // Closed with no page of its own (as owner: closing through the route would make its empty scripts at once).
+    await owner(`update marking_uploads set closed_at = now() where upload_id = $1`, [other]);
+    const job = (type: string, payload: Record<string, unknown>) => jobRow({ job_id: u(701), type, payload, attempts: 1, max_attempts: 3, school_id: A, idempotency_key: 'crafted' });
+    // A run naming the first upload's pages under another upload of the same paper.
+    await handlers['marking.read'](job('marking.read', { uploadId: other, pageIds: [ids.m1] }));
+    await handlers['marking.read'](job('marking.read', { uploadId: u(990), pageIds: [ids.m1] }));
+    await handlers['marking.group'](job('marking.group', { uploadId: u(991) }));
+    await handlers['marking.mark'](job('marking.mark', { sheetId: u(992) }));
+    await expect(handlers['marking.read'](job('marking.read', { uploadId: upload, pageIds: Array(9).fill(ids.m1) }))).rejects.toThrow(/bad payload/);
+    await expect(handlers['marking.mark'](job('marking.mark', { sheetId: 'x' }))).rejects.toThrow(/bad payload/);
+    await expect(handlers['marking.mark']({ ...job('marking.mark', { sheetId: u(992) }), schoolId: null })).rejects.toThrow(/no school/);
+    expect(await owner(`select page_id, state from marking_pages order by page_id`)).toEqual(before);
+    expect(await owner(`select count(*)::int as n from jobs where idempotency_key like $1`, [`%${other}%`])).toEqual([{ n: 0 }]);
+    expect(sent.length).toBe(calls);
+  });
+
   it('the AI never wrote a mark of the paper', async () => {
     expect(await owner(`select count(*)::int as n from marks where paper_id = $1`, [paperA])).toEqual([{ n: 0 }]);
   });
@@ -475,10 +495,11 @@ describe('marking a script again', () => {
     expect(await markAgain(tMaths, dev)).toMatchObject({ status: 200, body: { queued: true } });
     // Pressed again: it already waits, so nothing more is queued.
     expect(await markAgain(tMaths, dev)).toMatchObject({ status: 409, body: { code: 'state' } });
-    expect((await owner(`select idempotency_key from jobs where type = 'marking.mark' and payload ->> 'sheetId' = $1 order by idempotency_key`, [dev])).map((r: { idempotency_key: string }) => r.idempotency_key)).toEqual([
-      `marking.mark:${dev}:0`,
-      `marking.mark:${dev}:1`,
-    ]);
+    // One job when the script was made, one when the teacher asked again.
+    const keys = (await owner(`select idempotency_key, status from jobs where type = 'marking.mark' and payload ->> 'sheetId' = $1 order by created_at`, [dev])) as { idempotency_key: string; status: string }[];
+    expect(keys.map((k) => k.status)).toEqual(['succeeded', 'pending']);
+    expect(new Set(keys.map((k) => k.idempotency_key)).size).toBe(2);
+    expect(keys.every((k) => k.idempotency_key.startsWith(`marking.mark:${dev}:`))).toBe(true);
     await drain();
     expect((await owner(`select state, failure from marking_sheets where sheet_id = $1`, [dev]))[0]).toEqual({ state: 'marked', failure: null });
     expect(await owner(`select count(*)::int as n from marks where paper_id = $1`, [paperA])).toEqual([{ n: 0 }]);
