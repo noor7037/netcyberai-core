@@ -4,7 +4,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { ALL_CONSENT_PURPOSES } from '@/lib/consent/gate';
 import { languageFor, sendWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { StandInWhatsAppProvider, type WhatsAppProvider } from '@/lib/whatsapp/provider';
-import { SCHOOL_PREFIX, TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY, decideTemplate, definitionProblem, listTemplates, markWordingReviewed, metaShapeProblem, positionalBody, recordMetaDecision, renderTemplate, syncTemplates, templateToSend, variablesIn } from '@/lib/whatsapp/templates';
+import { SCHOOL_PREFIX, TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY, decideTemplate, definitionProblem, listTemplates, markWordingReviewed, metaShapeProblem, placeholderOrder, positionalBody, recordMetaDecision, renderTemplate, syncTemplates, templateToSend, variablesIn } from '@/lib/whatsapp/templates';
 
 // Templates with versions and two approvals (docs/25 slice 7c, C184).
 
@@ -33,7 +33,7 @@ describe('the templates written in the code', () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
-  it('every body is in Meta’s shape, and Meta numbers its placeholders in the order of the variables (C344)', () => {
+  it('every body is in Meta’s shape, and Meta numbers its placeholders in the order they appear (C344)', () => {
     for (const d of TEMPLATE_REGISTRY)
       for (const lang of TEMPLATE_LANGUAGES) {
         expect(metaShapeProblem(d.body[lang]), `${d.name} v${d.version} ${lang}`).toBeNull();
@@ -42,7 +42,7 @@ describe('the templates written in the code', () => {
     // The one Meta has already approved (id 2274559680068398), word for word.
     const absence = TEMPLATE_REGISTRY.find((d) => d.name === 'attendance_absence_notification')!;
     expect(absence.version).toBe(2);
-    expect(positionalBody(absence.body.en, absence.variables)).toBe('From {{1}}: {{2}} was marked absent on {{3}}. If this is a mistake, or your child is unwell, please tell the school office.');
+    expect(positionalBody(absence.body.en)).toBe('From {{1}}: {{2}} was marked absent on {{3}}. If this is a mistake, or your child is unwell, please tell the school office.');
   });
 
   it('Meta’s rules, each refused in words', () => {
@@ -55,7 +55,10 @@ describe('the templates written in the code', () => {
     expect(metaShapeProblem(`From {{school}}: one.\n\n\nTwo words here, three more.`)).toMatch(/blank line/);
     expect(metaShapeProblem(`From {{school}}: ${'word '.repeat(220)}end.`)).toMatch(/1024/);
     expect(metaShapeProblem('From {{school}}: your fees are due on {{date}}. Please pay on time.')).toBeNull();
-    expect(positionalBody('From {{school}}: {{child}} on {{date}}.', ['school', 'child', 'date'])).toBe('From {{1}}: {{2}} on {{3}}.');
+    expect(positionalBody('From {{school}}: {{child}} on {{date}}.')).toBe('From {{1}}: {{2}} on {{3}}.');
+    // A Hindi sentence may name them in another order: the numbers still run in order, and so do the values.
+    expect(positionalBody('स्कूल {{school}} की ओर से: याद दिला दें कि {{when}} को {{title}} है।')).toBe('स्कूल {{1}} की ओर से: याद दिला दें कि {{2}} को {{3}} है।');
+    expect(placeholderOrder('स्कूल {{school}} की ओर से: याद दिला दें कि {{when}} को {{title}} है।')).toEqual(['school', 'when', 'title']);
   });
 
   it('a definition that does not name the school first, or whose words and variables disagree, is refused', () => {

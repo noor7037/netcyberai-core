@@ -23,9 +23,12 @@ import type { Sql } from '@/lib/jobs/types';
 //     three words for each placeholder, at most 1024 characters and at most
 //     one blank line between paragraphs. Meta refuses a template otherwise.
 //     metaShapeProblem() holds every version to it, and the tests run it.
-//   - Meta numbers the placeholders {{1}}, {{2}}, ... in the order of
-//     `variables`: attendance_absence_notification v2 (en) is word for word
-//     the body Meta approved (From {{1}}: {{2}} was marked absent on {{3}}. ...).
+//   - Meta numbers the placeholders {{1}}, {{2}}, ... in the order they
+//     appear in each body (a Hindi sentence may put them in another order
+//     than the English one), and a send gives the values in that same order:
+//     positionalBody() and placeholderOrder(). attendance_absence_notification
+//     v2 (en) is word for word the body Meta approved (From {{1}}: {{2}} was
+//     marked absent on {{3}}. ...).
 //   - No template carries more about a child than its purpose needs.
 
 export const TEMPLATE_LANGUAGES = ['en', 'hi'] as const;
@@ -359,9 +362,12 @@ export function metaShapeProblem(body: string): string | null {
   return null;
 }
 
-// Meta's numbered form of a body: each placeholder becomes its place in `variables` ({{school}} → {{1}}, ...).
-export function positionalBody(body: string, variables: readonly string[]): string {
-  return body.replace(VARIABLE, (_, name: string) => `{{${variables.indexOf(name) + 1}}}`);
+// Meta's numbered form of a body: each placeholder becomes its place in the body ({{school}} → {{1}}, ...), so the
+// numbers always run in order. A send gives its values in placeholderOrder(body), the same order.
+export const placeholderOrder = variablesIn;
+export function positionalBody(body: string): string {
+  const order = placeholderOrder(body);
+  return body.replace(VARIABLE, (_, name: string) => `{{${order.indexOf(name) + 1}}}`);
 }
 // What is wrong with a definition, in words; null when nothing is. The tests run it over the whole registry.
 export function definitionProblem(d: TemplateDefinition): string | null {
