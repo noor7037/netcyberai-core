@@ -13,7 +13,9 @@ import { questionsOf } from './setup';
 // teacher's own name. A flagged script is approved only on its own; "approve every script with no flag" takes the
 // rest. Everything runs in the caller's own tenant transaction.
 
-export type SignUrl = (storageKey: string) => Promise<string>;
+// Where the screens fetch a page picture: the app's own route, which reads the page's row under the viewer's own row
+// rules every time and streams the picture (no storage link leaves the server).
+export const pageUrl = (pageId: string) => `/api/app/marking/pages/${pageId}`;
 
 const iso = (v: unknown): string | null => (v === null || v === undefined ? null : v instanceof Date ? v.toISOString() : String(v));
 const num = (v: unknown): number | null => (v === null || v === undefined ? null : Number(v));
@@ -115,7 +117,7 @@ export async function markingOverview(db: Sql, actor: Actor, paperId: string): P
 
 // ---- one script ------------------------------------------------------------------------------------------------------
 
-export async function sheetDetail(db: Sql, actor: Actor, sheetId: string, sign: SignUrl): Promise<SheetDetail | null> {
+export async function sheetDetail(db: Sql, actor: Actor, sheetId: string): Promise<SheetDetail | null> {
   if (!isUuid(sheetId)) return null;
   const s = (await db.query(`select * from marking_sheets where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId])).rows[0];
   if (!s) return null;
@@ -131,11 +133,14 @@ export async function sheetDetail(db: Sql, actor: Actor, sheetId: string, sign: 
   const byQ = new Map(markRows.map((m) => [m.question_id as string, m]));
   const final = finals(markRows as MarkRow[]);
   const counted = countedQuestions(questions, final, counts);
-  const pages = await Promise.all(
-    (await db.query(`select page_id, sheet_position, storage_key, width, height, state from marking_pages where school_id = $1 and sheet_id = $2 order by sheet_position`, [actor.schoolId, sheetId])).rows.map(
-      async (g) => ({ pageId: g.page_id as string, position: Number(g.sheet_position), url: await sign(g.storage_key), width: Number(g.width), height: Number(g.height), state: g.state as PageState })
-    )
-  );
+  const pages = (await db.query(`select page_id, sheet_position, width, height, state from marking_pages where school_id = $1 and sheet_id = $2 order by sheet_position`, [actor.schoolId, sheetId])).rows.map((g) => ({
+    pageId: g.page_id as string,
+    position: Number(g.sheet_position),
+    url: pageUrl(g.page_id as string),
+    width: Number(g.width),
+    height: Number(g.height),
+    state: g.state as PageState,
+  }));
   const parts = markedParts(paper.components, questions);
   const note = (s.match_note ?? {}) as { read?: { name: string | null; rollNo: string | null; seatNo: string | null } | null; candidates?: string[] };
   const rosterById = new Map(roster.map((c) => [c.studentId, c]));

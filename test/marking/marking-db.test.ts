@@ -286,8 +286,8 @@ describe('review and approval (C347)', () => {
     expect(view?.pages).toMatchObject({ read: 5, blank: 1 });
     expect(view?.ai).toMatchObject({ on: false, why: 'no_limit' });
     const meera = view!.sheets[0].sheetId;
-    const detail = await as(tMaths, (c) => sheetDetail(c, actor(tMaths), meera, async (k: string) => `signed:${k}`));
-    expect(detail?.pages.map((p) => p.url)).toEqual([`signed:${A}/marking/${paperA}/${pages.m1}.jpg`, `signed:${A}/marking/${paperA}/${pages.m2}.jpg`]);
+    const detail = await as(tMaths, (c) => sheetDetail(c, actor(tMaths), meera));
+    expect(detail?.pages.map((p) => p.url)).toEqual([`/api/app/marking/pages/${pages.m1}`, `/api/app/marking/pages/${pages.m2}`]);
     expect(detail?.questions.find((q) => q.label === '3(b)')).toMatchObject({ counted: false, final: 0 });
     expect(detail?.totals).toEqual([{ component: 'theory', name: 'Theory', score: 10, max: 20 }]);
   });
