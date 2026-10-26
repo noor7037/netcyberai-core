@@ -41,6 +41,8 @@ import type { NoticeRead, WhatsAppChoiceParams, WhatsAppNotice, WhatsAppProvider
 //                     value { event, message_template_id (a number), message_template_name, message_template_language,
 //                     reason, message_template_category }
 //     https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/reference/message_template_status_update
+//   Words changed     the same, with field "message_template_components_update", value { message_template_id, ... }
+//   One template      GET https://graph.facebook.com/{version}/{template-id}?fields=components → { components: [{ type: "BODY", text }], id }
 //
 // No network call is made in any test: `fetch` is handed in, and the tests hand in recorded answers.
 
@@ -154,6 +156,33 @@ export async function listMetaTemplates(account: MetaTemplateAccount, fetcher: F
   return { ok: false, message: `Meta holds more than ${MAX_TEMPLATE_PAGES * 100} templates; only that many were read` };
 }
 
+// One template's words at Meta, by Meta's id: the body as Meta numbers it; null when Meta does not say (C345, review).
+// Meta keeps a template's id when its words are changed, so a notice that it is approved is believed only with these.
+export async function metaTemplateWords(account: Pick<MetaTemplateAccount, 'accessToken'>, id: string, fetcher: Fetch = fetch as unknown as Fetch): Promise<string | null> {
+  if (!/^[0-9]{1,30}$/.test(id)) return null;
+  try {
+    const res = await fetcher(`${GRAPH_HOST}/${GRAPH_VERSION}/${id}?fields=components`, { method: 'GET', headers: bearer(account.accessToken), signal: AbortSignal.timeout(TIMEOUT_MS) });
+    const answer = obj(await res.json().catch(() => null));
+    if (!res.ok) return null;
+    const body = arr(answer.components).map(obj).find((c) => typeof c.type === 'string' && c.type.toUpperCase() === 'BODY');
+    return body ? str(body.text, 1024) : null;
+  } catch {
+    return null;
+  }
+}
+
+export const MAX_WORDS_ASKED = 5;
+// Before a webhook body is applied, and outside any transaction: Meta's words for each template it says is approved
+// (at most MAX_WORDS_ASKED a body). A template it says anything else of needs no words: moving down is always safe.
+export async function wordsForApprovals(account: Pick<MetaTemplateAccount, 'accessToken'>, notices: readonly WhatsAppNotice[], raises: (event: string) => boolean, fetcher: Fetch = fetch as unknown as Fetch): Promise<Map<string, string | null>> {
+  const words = new Map<string, string | null>();
+  for (const n of notices) {
+    if (n.kind !== 'template_status' || !raises(n.event) || words.has(n.metaTemplateId) || words.size >= MAX_WORDS_ASKED) continue;
+    words.set(n.metaTemplateId, await metaTemplateWords(account, n.metaTemplateId, fetcher));
+  }
+  return words;
+}
+
 // The webhook's first check: Meta asks with the token we chose and expects its challenge back. Null: refuse.
 export function answerChallenge(config: Pick<MetaConfig, 'verifyToken'>, query: { mode: string | null; token: string | null; challenge: string | null }): string | null {
   if (query.mode !== 'subscribe' || !query.token || !query.challenge || query.challenge.length > 200) return null;
@@ -234,10 +263,12 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
       for (const change of arr(obj(entry).changes)) {
         const value = obj(obj(change).value);
         // A template's review moved (C345). Only for OUR business account: the entry is the account, not the number.
-        if (obj(change).field === 'message_template_status_update') {
+        // Its words changed at Meta: it waits, as pending, until Meta's words are read again (review of C345).
+        const field = obj(change).field;
+        if (field === 'message_template_status_update' || field === 'message_template_components_update') {
           if (!this.config.wabaId || str(obj(entry).id, 40) !== this.config.wabaId) continue;
           const tid = typeof value.message_template_id === 'number' || typeof value.message_template_id === 'string' ? String(value.message_template_id) : '';
-          const event = str(value.event, 40);
+          const event = field === 'message_template_components_update' ? 'COMPONENTS_UPDATE' : str(value.event, 40);
           if (/^[0-9]{1,30}$/.test(tid) && event) notices.push({ kind: 'template_status', metaTemplateId: tid, event, category: str(value.message_template_category, 40) });
           continue;
         }

@@ -501,6 +501,8 @@ const META_STATE: Record<string, MetaStatus> = {
   PENDING_DELETION: 'rejected',
   ARCHIVED: 'rejected',
   PAUSED: 'paused',
+  // Meta's notice that a template's words were changed: it waits until Meta's words are read again.
+  COMPONENTS_UPDATE: 'pending',
 };
 
 // Meta's word for a template's state, as ours; null when there is nothing for us to change (a quality warning, a
@@ -576,15 +578,30 @@ export async function reconcileWithMeta(db: Sql, templates: readonly MetaTemplat
   return out;
 }
 
+// Whether Meta's word for a review makes a template approved (so the webhook must read Meta's words first).
+export const raisesToApproved = (event: string) => META_STATE[event.toUpperCase()] === 'approved';
+
 // Meta's webhook says a template's review moved: the version holding that Meta id takes the new state. An id none of
-// ours holds changes nothing ("Refresh from Meta" matches by words, which the notice does not carry).
-export async function applyTemplateStatus(db: Sql, n: { metaTemplateId: string; event: string; category: string | null }): Promise<'applied' | 'stale' | 'unknown'> {
-  const rows = (await db.query(`select id, billing_category, meta_status from whatsapp_templates where school_id is null and meta_template_id = $1 for update`, [n.metaTemplateId])).rows;
+// ours holds changes nothing ("Refresh from Meta" matches by words). Moving down (pending, paused, rejected) is taken
+// as said. Moving UP to approved needs Meta's words, read before the transaction (`metaWords`): Meta keeps a
+// template's id when its words are changed, so an approval of other words must not approve ours (review of C345).
+// Words that are ours: approved. Other words: this version no longer holds Meta's id. No words: nothing changes.
+export async function applyTemplateStatus(db: Sql, n: { metaTemplateId: string; event: string; category: string | null }, metaWords?: ReadonlyMap<string, string | null>): Promise<'applied' | 'stale' | 'unknown'> {
+  const rows = (await db.query(`select id, body, billing_category, meta_status from whatsapp_templates where school_id is null and meta_template_id = $1 for update`, [n.metaTemplateId])).rows;
   if (!rows.length) return 'unknown';
   let applied = false;
   for (const r of rows) {
     const status = metaStatusOf(n.event, n.category, r.billing_category);
     if (status === null || status === r.meta_status) continue;
+    if (status === 'approved') {
+      const words = metaWords?.get(n.metaTemplateId);
+      if (words === undefined || words === null) continue;
+      if (r.body === null || positionalBody(r.body) !== words) {
+        await db.query(`update whatsapp_templates set meta_status = 'not_submitted', meta_template_id = null, meta_decided_at = now() where id = $1`, [r.id]);
+        applied = true;
+        continue;
+      }
+    }
     await db.query(`update whatsapp_templates set meta_status = $2, meta_decided_at = now() where id = $1`, [r.id, status]);
     applied = true;
   }

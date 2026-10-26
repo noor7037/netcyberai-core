@@ -5,8 +5,9 @@ import type { Sql } from '@/lib/jobs/types';
 import { openMetaCredentials } from '@/lib/whatsapp/credentials';
 import { applyNotices } from '@/lib/whatsapp/delivery';
 import { enqueueQueued } from '@/lib/whatsapp/gate';
-import { META_SIGNATURE_HEADER, MetaWhatsAppProvider, answerChallenge } from '@/lib/whatsapp/meta';
+import { META_SIGNATURE_HEADER, MetaWhatsAppProvider, answerChallenge, wordsForApprovals } from '@/lib/whatsapp/meta';
 import { STAND_IN_SIGNATURE_HEADER, StandInWhatsAppProvider, type WhatsAppProvider } from '@/lib/whatsapp/provider';
+import { raisesToApproved } from '@/lib/whatsapp/templates';
 
 // A WhatsApp provider tells us where messages got to (docs/25 slices 7b and 7e, C183, C186). No session: the
 // provider's own signature over the exact body is what lets it speak. A body whose signature does not hold is
@@ -20,13 +21,13 @@ export const dynamic = 'force-dynamic';
 const platform = withPlatformService as <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 const MAX_BODY = 256_000;
 
-async function providerFor(name: string): Promise<{ provider: WhatsAppProvider; header: string } | null> {
+async function providerFor(name: string): Promise<{ provider: WhatsAppProvider; header: string; accessToken?: string } | null> {
   const secret = process.env.WHATSAPP_STANDIN_SECRET ?? '';
   if (name === 'stand-in' && process.env.NODE_ENV !== 'production' && secret.length >= 32) return { provider: new StandInWhatsAppProvider({ secret }), header: STAND_IN_SIGNATURE_HEADER };
   if (name === 'meta') {
     // Saved is enough to listen (Meta checks the address before the account is switched on); sending needs the switch.
     const account = await platform((db) => openMetaCredentials(db, false)).catch(() => null);
-    return account ? { provider: new MetaWhatsAppProvider(account), header: META_SIGNATURE_HEADER } : null;
+    return account ? { provider: new MetaWhatsAppProvider(account), header: META_SIGNATURE_HEADER, accessToken: account.accessToken } : null;
   }
   return null;
 }
@@ -46,7 +47,12 @@ export async function POST(req: NextRequest, { params }: { params: { provider: s
   if (!found) return NextResponse.json({ error: 'not found' }, { status: 404 });
   const rawBody = await req.text();
   if (rawBody.length === 0 || rawBody.length > MAX_BODY) return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
-  const out = await platform((db) => applyNotices(db, found.provider, rawBody, req.headers.get(found.header), enqueueQueued(jobQueue)));
+  const signature = req.headers.get(found.header);
+  // Meta's words for a template it says is approved, asked outside the transaction (C345, review). Only for a body
+  // whose signature holds: readNotice reads nothing otherwise.
+  const read = found.accessToken ? found.provider.readNotice(rawBody, signature) : null;
+  const words = found.accessToken && read?.ok ? await wordsForApprovals({ accessToken: found.accessToken }, read.notices, raisesToApproved) : undefined;
+  const out = await platform((db) => applyNotices(db, found.provider, rawBody, signature, enqueueQueued(jobQueue), words));
   // The provider is told only that it was heard, or that it was not believed.
   return NextResponse.json(out.status === 200 ? { ok: true } : { error: 'not accepted' }, { status: out.status, headers: { 'Cache-Control': 'no-store' } });
 }

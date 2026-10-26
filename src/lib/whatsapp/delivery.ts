@@ -67,7 +67,8 @@ async function applyStatus(db: Sql, provider: WhatsAppProvider, n: Extract<Whats
 
 // One webhook body, as the platform role, in the caller's transaction.
 // `jobs`: how a confirmation (a parent wrote STOP) or a question (which school?) is handed to the job queue; the send-gate gives it.
-export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody: string, signature: string | null, jobs?: InboundJobs): Promise<NoticeOutcome> {
+// `metaWords`: Meta's words for each template a notice says is approved, read before the transaction (C345, review).
+export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody: string, signature: string | null, jobs?: InboundJobs, metaWords?: ReadonlyMap<string, string | null>): Promise<NoticeOutcome> {
   const hash = createHash('sha256').update(`${provider.name}\n${rawBody}`).digest('hex');
   if ((await db.query(`select 1 from webhook_events where payload_hash = $1`, [hash])).rows[0]) return { status: 200, duplicate: true, applied: 0, stale: 0, unknown: 0, inbound: 0 };
   const read = provider.readNotice(rawBody, signature);
@@ -87,7 +88,7 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
       if ((await receiveInbound(db, provider.name, n, jobs)).kind !== 'duplicate') out.inbound += 1;
     } else if (n.kind === 'template_status') {
       // Meta's review of one of our templates moved (C345): only Meta's own notices speak of that.
-      if (provider.name === 'meta') out[await applyTemplateStatus(db, n)] += 1;
+      if (provider.name === 'meta') out[await applyTemplateStatus(db, n, metaWords)] += 1;
     } else out[await applyStatus(db, provider, n)] += 1;
   }
   const ids = read.notices.filter((n) => n.kind === 'status').map((n) => n.providerMessageId);

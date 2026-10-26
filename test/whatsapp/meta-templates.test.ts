@@ -3,10 +3,10 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { applyNotices } from '@/lib/whatsapp/delivery';
-import { GRAPH_VERSION, MetaWhatsAppProvider, createMetaTemplate, listMetaTemplates, templateCreateBody, type MetaTemplate } from '@/lib/whatsapp/meta';
+import { GRAPH_VERSION, MAX_WORDS_ASKED, MetaWhatsAppProvider, createMetaTemplate, listMetaTemplates, metaTemplateWords, templateCreateBody, wordsForApprovals, type MetaTemplate } from '@/lib/whatsapp/meta';
 import { StandInWhatsAppProvider } from '@/lib/whatsapp/provider';
 import { templateExample } from '@/lib/whatsapp/template-examples';
-import { TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY, applyTemplateStatus, decideTemplate, markWordingReviewed, metaStatusOf, placeholderOrder, reconcileWithMeta, recordMetaDecision, recordSubmission, submissionFor, syncTemplates, templateToSend } from '@/lib/whatsapp/templates';
+import { TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY, applyTemplateStatus, decideTemplate, markWordingReviewed, metaStatusOf, placeholderOrder, raisesToApproved, reconcileWithMeta, recordMetaDecision, recordSubmission, submissionFor, syncTemplates, templateToSend } from '@/lib/whatsapp/templates';
 
 // Our templates at Meta (C345): "Submit to Meta", "Refresh from Meta", and Meta's webhook on a template's review.
 // NO NETWORK CALL IS MADE: every answer "from Meta" is in Meta's documented shape, handed in as `fetch`. Every token,
@@ -30,9 +30,14 @@ const recorded = (...answers: ({ ok: boolean; status: number; body: unknown } | 
 };
 const sign = (rawBody: string) => `sha256=${createHmac('sha256', CONFIG.appSecret).update(rawBody).digest('hex')}`;
 // Meta's documented webhook for a template's review (webhooks/reference/message_template_status_update).
-const reviewed = (id: number | string, event: string, category = 'UTILITY', account = ACCOUNT.wabaId) => ({
+const reviewed = (id: number | string, event: string, category = 'UTILITY', account = ACCOUNT.wabaId, time = 1751247548) => ({
   object: 'whatsapp_business_account',
-  entry: [{ id: account, time: 1751247548, changes: [{ value: { event, message_template_id: id, message_template_name: 'attendance_absence_notification', message_template_language: 'en', reason: 'NONE', message_template_category: category }, field: 'message_template_status_update' }] }],
+  entry: [{ id: account, time, changes: [{ value: { event, message_template_id: id, message_template_name: 'attendance_absence_notification', message_template_language: 'en', reason: 'NONE', message_template_category: category }, field: 'message_template_status_update' }] }],
+});
+// Meta's notice that a template's words were changed (webhooks/reference/message_template_components_update).
+const rewritten = (id: number) => ({
+  object: 'whatsapp_business_account',
+  entry: [{ id: ACCOUNT.wabaId, time: 1751247548, changes: [{ value: { message_template_id: id, message_template_name: 'attendance_absence_notification', message_template_language: 'en', message_template_element: 'Other words {{1}} here.' }, field: 'message_template_components_update' }] }],
 });
 const DRAFT = { name: 'attendance_absence_notification', language: 'en' as const, text: ATTENDANCE_AT_META, example: ['Sunrise Public School', 'Aarav', '14-11-2026'] };
 
@@ -96,6 +101,33 @@ describe('Meta’s formats, against Meta’s documented examples', () => {
     expect(new MetaWhatsAppProvider({ ...CONFIG, wabaId: undefined }).readNotice(ours, sign(ours))).toEqual({ ok: true, notices: [] });
     const odd = JSON.stringify(reviewed('12ab', 'APPROVED'));
     expect(provider.readNotice(odd, sign(odd))).toEqual({ ok: true, notices: [] });
+    // Its words changed at Meta: read as a review that sends it back to pending.
+    const changed = JSON.stringify(rewritten(Number(ATTENDANCE_ID)));
+    expect(provider.readNotice(changed, sign(changed))).toEqual({ ok: true, notices: [{ kind: 'template_status', metaTemplateId: ATTENDANCE_ID, event: 'COMPONENTS_UPDATE', category: null }] });
+    expect(metaStatusOf('COMPONENTS_UPDATE', null, 'utility')).toBe('pending');
+  });
+
+  it('before a notice that a template is approved is applied, Meta’s own words for it are read by its id, a few a body, outside any transaction', async () => {
+    const meta = recorded({ ok: true, status: 200, body: { components: [{ type: 'HEADER', format: 'TEXT', text: 'x' }, { type: 'BODY', text: ATTENDANCE_AT_META }], id: ATTENDANCE_ID } });
+    expect(await metaTemplateWords(ACCOUNT, ATTENDANCE_ID, meta.fetcher)).toBe(ATTENDANCE_AT_META);
+    expect(meta.calls).toEqual([{ url: `https://graph.facebook.com/${GRAPH_VERSION}/${ATTENDANCE_ID}?fields=components`, method: 'GET', headers: { Authorization: `Bearer ${ACCOUNT.accessToken}`, 'Content-Type': 'application/json' }, body: null }]);
+    const none = recorded({ ok: true, status: 200, body: {} });
+    expect(await metaTemplateWords(ACCOUNT, '../me', none.fetcher)).toBeNull();
+    expect(none.calls).toEqual([]);
+    expect(await metaTemplateWords(ACCOUNT, ATTENDANCE_ID, recorded({ ok: false, status: 400, body: { error: { code: 100 } } }).fetcher)).toBeNull();
+    expect(await metaTemplateWords(ACCOUNT, ATTENDANCE_ID, recorded(new Error('down')).fetcher)).toBeNull();
+    // Only for a notice that raises a template to approved; moving down needs no words.
+    const asked = recorded({ ok: true, status: 200, body: { components: [{ type: 'BODY', text: 'w' }] } });
+    const notices = [
+      { kind: 'template_status' as const, metaTemplateId: '1', event: 'PAUSED', category: null },
+      { kind: 'template_status' as const, metaTemplateId: '2', event: 'APPROVED', category: 'UTILITY' },
+      { kind: 'template_status' as const, metaTemplateId: '2', event: 'REINSTATED', category: null },
+      ...Array.from({ length: 8 }, (_, i) => ({ kind: 'template_status' as const, metaTemplateId: String(10 + i), event: 'APPROVED', category: 'UTILITY' })),
+    ];
+    const words = await wordsForApprovals(ACCOUNT, notices, raisesToApproved, asked.fetcher);
+    expect([...words.keys()]).toEqual(['2', '10', '11', '12', '13']);
+    expect(words.size).toBe(MAX_WORDS_ASKED);
+    expect(asked.calls).toHaveLength(MAX_WORDS_ASKED);
   });
 
   it('Meta’s words for a review, as ours; a template Meta files in another category does not send', () => {
@@ -225,19 +257,35 @@ describe('on the real schema', () => {
     expect(await platform((c) => reconcileWithMeta(c, listed))).toEqual({ found: 2, changed: 0, otherWords: ['fee_receipt (en)'] });
   });
 
-  it('Meta’s webhook moves a template’s review by Meta’s id: paused stops it, reinstated starts it; an id none of ours holds, and the stand-in, change nothing', async () => {
+  it('Meta’s webhook moves a template’s review by Meta’s id: down as said; up to approved only when Meta’s words are ours; an id none of ours holds, and the stand-in, change nothing', async () => {
     const provider = new MetaWhatsAppProvider(CONFIG);
-    const say = async (body: unknown) => {
+    const say = async (body: unknown, words?: Map<string, string | null>) => {
       const raw = JSON.stringify(body);
-      return platform((c) => applyNotices(c, provider, raw, sign(raw)));
+      return platform((c) => applyNotices(c, provider, raw, sign(raw), undefined, words));
     };
+    const ours = new Map([[ATTENDANCE_ID, ATTENDANCE_AT_META]]);
     expect(await say(reviewed(Number(ATTENDANCE_ID), 'PAUSED'))).toMatchObject({ status: 200, applied: 1 });
     expect((await metaOf('attendance_absence_notification', 'en')).meta_status).toBe('paused');
     expect(await platform((c) => templateToSend(c, A_SCHOOL, 'attendance_absence_notification', 'en', true))).toBeNull();
     expect(await say(reviewed(Number(ATTENDANCE_ID), 'FLAGGED'))).toMatchObject({ status: 200, applied: 0, stale: 1 });
-    expect(await say(reviewed(Number(ATTENDANCE_ID), 'REINSTATED'))).toMatchObject({ status: 200, applied: 1 });
+    // Reinstated, but Meta's words could not be read: it stays paused.
+    expect(await say(reviewed(Number(ATTENDANCE_ID), 'REINSTATED'))).toMatchObject({ status: 200, applied: 0, stale: 1 });
+    expect((await metaOf('attendance_absence_notification', 'en')).meta_status).toBe('paused');
+    expect(await say(reviewed(Number(ATTENDANCE_ID), 'REINSTATED', 'UTILITY', ACCOUNT.wabaId, 1751247549), new Map([[ATTENDANCE_ID, null]]))).toMatchObject({ applied: 0, stale: 1 });
+    // With Meta's words, and they are ours: approved again.
+    expect(await say(reviewed(Number(ATTENDANCE_ID), 'REINSTATED', 'UTILITY', ACCOUNT.wabaId, 1751247550), ours)).toMatchObject({ status: 200, applied: 1 });
     expect((await metaOf('attendance_absence_notification', 'en')).meta_status).toBe('approved');
-    expect(await say(reviewed(123456789, 'APPROVED'))).toMatchObject({ status: 200, applied: 0, unknown: 1 });
+    // Someone changes its words at Meta: it waits as pending; Meta approves the OTHER words under the same id: this
+    // version no longer holds Meta's id, and the real account does not send it.
+    expect(await say(rewritten(Number(ATTENDANCE_ID)))).toMatchObject({ status: 200, applied: 1 });
+    expect((await metaOf('attendance_absence_notification', 'en')).meta_status).toBe('pending');
+    expect(await say(reviewed(Number(ATTENDANCE_ID), 'APPROVED', 'UTILITY'), new Map([[ATTENDANCE_ID, 'From {{1}}: {{2}} was absent on {{3}}. Click https://elsewhere.example now.']]))).toMatchObject({ status: 200, applied: 1 });
+    expect(await metaOf('attendance_absence_notification', 'en')).toMatchObject({ meta_status: 'not_submitted', meta_template_id: null });
+    expect(await platform((c) => templateToSend(c, A_SCHOOL, 'attendance_absence_notification', 'en', true))).toBeNull();
+    // "Refresh from Meta" puts it back only when Meta's words are ours again.
+    await platform((c) => reconcileWithMeta(c, [atMeta('attendance_absence_notification', 'en', ATTENDANCE_AT_META, 'APPROVED', ATTENDANCE_ID)]));
+    expect((await metaOf('attendance_absence_notification', 'en')).meta_status).toBe('approved');
+    expect(await say(reviewed(123456789, 'APPROVED'), new Map([['123456789', ATTENDANCE_AT_META]]))).toMatchObject({ status: 200, applied: 0, unknown: 1 });
     // The notice is kept as what it did, once: the same body again changes nothing.
     expect(await say(reviewed(123456789, 'APPROVED'))).toMatchObject({ status: 200, duplicate: true });
     const kept = (await db.pg.query(`select payload from webhook_events where signature_ok and payload::text like '%template_status%' order by created_at`)).rows.map((r: { payload: { notices: unknown[] } }) => r.payload.notices[0]);
