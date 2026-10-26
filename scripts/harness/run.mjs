@@ -6973,9 +6973,6 @@ if (await portInUse(APP_PORT)) {
   process.exit(2);
 }
 const db = await startHarnessDb({ port: DB_PORT, seedSql: readFileSync(path.join(ROOT, 'src/demo-fixture/harness-seed.sql'), 'utf8') });
-// AM-6: Control → Monitoring reads AI marking's counts through public.marking_monitor(). Until the lead makes it a migration
-// (scripts/harness/am-6-marking-monitor.sql is idempotent), the harness database gets it here, for every Monitoring picture.
-await db.pg.exec(readFileSync(path.join(ROOT, 'scripts/harness/am-6-marking-monitor.sql'), 'utf8'));
 // M2-5: the video finder's picks, for the family player and Control → Content → Videos.
 await seedVideos(db);
 const secret = randomBytes(32).toString('hex');

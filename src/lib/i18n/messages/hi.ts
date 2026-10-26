@@ -2703,7 +2703,7 @@ export const hi: Record<keyof typeof en, string> = {
   // Control: Monitoring (C206). Counts and ages only.
   // Control → Monitoring → AI marking (docs/35, C347): counts and ages only.
   'monitoring.marking.title': 'AI से जाँच',
-  'monitoring.marking.how': 'हर स्कूल के लिए: इस महीने पढ़े गए उत्तर पुस्तिका के पन्ने प्लान की सीमा के मुक़ाबले, और उसकी उत्तर पुस्तिकाएँ जो AI की बाट जोह रही हैं, जाँची जा रही हैं, जाँची जा चुकी हैं और शिक्षक की प्रतीक्षा में हैं, असफल हुईं, और इस महीने स्वीकार हुईं, सबसे पुरानी कब से इंतज़ार में है यह भी। हार मान चुके जाँच के काम दोबारा चलाएँ के साथ सूची में हैं। केवल गिनती और समय: यहाँ किसी बच्चे का नाम, कोई पन्ना या कोई अंक नहीं पढ़ा जाता।',
+  'monitoring.marking.how': 'हर स्कूल के लिए: इस महीने पढ़े गए उत्तर पुस्तिका के पन्ने प्लान की सीमा के मुक़ाबले, और उसकी उत्तर पुस्तिकाएँ जो AI की बाट जोह रही हैं, जाँची जा रही हैं, जाँची जा चुकी हैं और शिक्षक की प्रतीक्षा में हैं, असफल हुईं, और स्वीकार हुईं, सबसे पुरानी कब से इंतज़ार में है यह भी। हार मान चुके जाँच के काम दोबारा चलाएँ के साथ सूची में हैं। केवल गिनती और समय: यहाँ किसी बच्चे का नाम, कोई पन्ना या कोई अंक नहीं पढ़ा जाता।',
   'monitoring.marking.none.title': 'किसी स्कूल ने अभी AI से जाँच नहीं की',
   'monitoring.marking.none.do': 'स्कूल तब शुरू कर सकता है जब उसके प्लान में महीने के पन्नों की सीमा हो (Control → Billing plans) और दोनों जाँच-कामों के लिए प्रदाता चुना गया हो (Control → AI)। तब स्कूल अपने नाम और गिनती के साथ यहाँ दिखते हैं।',
   'monitoring.marking.limitReached': 'पन्नों की सीमा पूरी',
@@ -2714,8 +2714,8 @@ export const hi: Record<keyof typeof en, string> = {
   'monitoring.marking.marking': 'जाँची जा रही हैं',
   'monitoring.marking.marked': 'जाँची गईं, शिक्षक के पास',
   'monitoring.marking.failed': 'असफल',
-  'monitoring.marking.approved': 'इस महीने स्वीकार',
-  'monitoring.marking.oldest': 'सबसे पुरानी प्रतीक्षा',
+  'monitoring.marking.approved': 'स्वीकार',
+  'monitoring.marking.oldest': 'AI की प्रतीक्षा में सबसे पुरानी',
   'monitoring.marking.notListed': '{count} और स्कूल यहाँ सूची में नहीं हैं।',
   'monitoring.marking.limit.do': 'किसी स्कूल ने महीने के अपने पन्ने पूरे कर लिए हैं, इसलिए जब तक Control → Billing plans में प्लान की सीमा नहीं बढ़ती वह और जाँच नहीं कर सकता।',
   'monitoring.marking.backlog.do': 'कोई उत्तर पुस्तिका {minutes} मिनट से ज़्यादा से AI की प्रतीक्षा में है। देखें कि Control → AI में दोनों जाँच-कामों के लिए प्रदाता चुना और चालू है, और ऊपर के पीछे चलने वाले काम चल रहे हैं।',

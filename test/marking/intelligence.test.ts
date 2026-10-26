@@ -665,17 +665,15 @@ describe('a paper’s class view', () => {
   });
 });
 
-const MONITOR_SQL_FILE = path.resolve(__dirname, '../../scripts/harness/am-6-marking-monitor.sql');
-const MONITOR_SQL = readFileSync(MONITOR_SQL_FILE, 'utf8');
+// The one function the monitor reads through (the platform role has no right on the marking tables): AM-1's migration.
+const MIGRATIONS = path.resolve(__dirname, '../../supabase/migrations');
+const MONITOR_MIGRATION = path.join(MIGRATIONS, readdirSync(MIGRATIONS).find((f) => f.endsWith('_am_1_parent_rules.sql')) ?? 'missing');
 
 describe('Control’s monitor for AI marking: counts and ages only', () => {
   const JOB_ERROR = 'Mailbox meera.sharma@family.example rejected "Meera Sharma"; try +91 98123 45678';
   let seen: MarkingData;
 
   beforeAll(async () => {
-    // The one function the monitor reads through (the platform role has no right on the marking tables): the lead's
-    // migration to be; until it is one, the test applies the proposed file to its own throwaway database.
-    await db.pg.exec(MONITOR_SQL);
     // Sunrise (school A, a live school): scripts waiting two hours, being marked, failed; pages kept this month, and a plan limit.
     const upload = (await owner(`select upload_id from marking_uploads where paper_id = $1`, [P2]))[0].upload_id as string;
     for (const [n, st] of [[1, 'waiting'], [2, 'marking'], [3, 'failed']] as const) {
@@ -721,9 +719,9 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
   it('per school, the pages this month against the plan’s limit, the scripts by state and the age of the oldest waiting; a test school left out', () => {
     expect(seen.schools.map((s) => s.schoolName)).toEqual(['Hilltop Made-up School', 'Sunrise Made-up School']);
     const [hilltop, sunrise] = seen.schools;
-    expect(hilltop).toMatchObject({ pagesThisMonth: 3, limit: 3, waiting: 0, marking: 0, marked: 0, failed: 0, approvedThisMonth: 0, oldestWaitingSeconds: null });
+    expect(hilltop).toMatchObject({ pagesThisMonth: 3, limit: 3, waiting: 0, marking: 0, marked: 0, failed: 0, approved: 0, oldestWaitingSeconds: null });
     // Sunrise: its earlier scripts are approved (this month) except Esha’s, still marked and waiting for a teacher.
-    expect(sunrise).toMatchObject({ pagesThisMonth: 4, limit: 50, waiting: 1, marking: 1, marked: 1, failed: 1, approvedThisMonth: 8 });
+    expect(sunrise).toMatchObject({ pagesThisMonth: 4, limit: 50, waiting: 1, marking: 1, marked: 1, failed: 1, approved: 8 });
     expect(sunrise.oldestWaitingSeconds).toBeGreaterThanOrEqual(2 * 3600 - 5);
     expect(sunrise.oldestWaitingSeconds).toBeLessThan(2 * 3600 + 120);
     expect(atLimit(hilltop)).toBe(true);
@@ -749,9 +747,14 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
     const stored = JSON.stringify(await owner(`select (select jsonb_agg(s) from marking_sheets s) as sheets, (select jsonb_agg(q) from marking_questions q) as questions, (select jsonb_agg(p) from marking_pages p) as pages, (select jsonb_agg(st) from students st) as students`));
     for (const secret of ['Meera Sharma', 'Neat working', 'A made-up question', '/marking/']) expect(stored, secret).toContain(secret);
     // It reads no child, page or mark: neither the loader nor the one function it reads through names such a column or table.
-    for (const file of [path.join(SRC, 'lib/control/marking-monitor.ts'), MONITOR_SQL_FILE]) {
-      const source = readFileSync(file, 'utf8').replace(/\/\/.*$/gm, '').replace(/--.*$/gm, '');
-      for (const forbidden of ['marking_marks', 'marking_questions', 'students', 'student_id', 'strengths', 'improve', 'practice', 'storage_key', 'sha256', 'reading', 'match_note', 'payload', 'ai_marks', 'note']) expect(source, `${path.basename(file)}: ${forbidden}`).not.toContain(forbidden);
+    const migration = readFileSync(MONITOR_MIGRATION, 'utf8');
+    const sources: [string, string][] = [
+      ['marking-monitor.ts', readFileSync(path.join(SRC, 'lib/control/marking-monitor.ts'), 'utf8').replace(/\/\/.*$/gm, '')],
+      ['marking_monitor()', migration.slice(migration.indexOf('create function public.marking_monitor()')).replace(/--.*$/gm, '')],
+    ];
+    for (const [name, source] of sources) {
+      expect(source.length, name).toBeGreaterThan(200);
+      for (const forbidden of ['marking_marks', 'marking_questions', 'students', 'student_id', 'strengths', 'improve', 'practice', 'storage_key', 'sha256', 'reading', 'match_note', 'payload', 'ai_marks']) expect(source, `${name}: ${forbidden}`).not.toContain(forbidden);
     }
   });
 
@@ -765,13 +768,13 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
   it('the section says what it counts, in both languages, with a line on what to do only for what waits on NetCyberAI', () => {
     const html = (lang: 'en' | 'hi') => renderToStaticMarkup(h(LangProvider, { lang, children: h(MarkingMonitor, { data: seen, lang, age: (s: number) => ageWords(lang, s) }) }));
     const en = html('en').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-    for (const words of ['AI marking', 'Needs a look', 'Hilltop Made-up School', 'Sunrise Made-up School', 'Pages this month', '3 of 3', '4 of 50', 'Page limit reached', 'Waiting for the AI', 'Being marked', 'Marked, with a teacher', 'Failed', 'Approved this month', 'Oldest waiting', '2 hours', 'Marking jobs that gave up', 'marking.mark', 'Gave up: 1. Waiting for another try: 1.']) expect(en, words).toContain(words);
+    for (const words of ['AI marking', 'Needs a look', 'Hilltop Made-up School', 'Sunrise Made-up School', 'Pages this month', '3 of 3', '4 of 50', 'Page limit reached', 'Waiting for the AI', 'Being marked', 'Marked, with a teacher', 'Failed', 'Approved', 'Oldest waiting for the AI', '2 hours', 'Marking jobs that gave up', 'marking.mark', 'Gave up: 1. Waiting for another try: 1.']) expect(en, words).toContain(words);
     const todo = (s: string) => [...s.matchAll(/data-monitoring-do="([^"]+)"/g)].map((m) => m[1]);
     expect(todo(html('en'))).toEqual(['marking.limit', 'marking.backlog', 'marking.dead']);
     // Retry is the existing button, once for the job that gave up.
     expect(html('en').match(/data-job-retry="/g)).toHaveLength(1);
     const hi = html('hi').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-    for (const words of ['AI से जाँच', 'देखना ज़रूरी', 'इस महीने के पन्ने', 'पन्नों की सीमा पूरी', 'सबसे पुरानी प्रतीक्षा', 'हार मान चुके जाँच के काम']) expect(hi, words).toContain(words);
+    for (const words of ['AI से जाँच', 'देखना ज़रूरी', 'इस महीने के पन्ने', 'पन्नों की सीमा पूरी', 'AI की प्रतीक्षा में सबसे पुरानी', 'हार मान चुके जाँच के काम']) expect(hi, words).toContain(words);
     for (const words of ['Needs a look', 'Pages this month', 'Waiting for the AI', 'Marking jobs that gave up']) expect(hi, words).not.toContain(words);
     // With nothing to look at the section is clear and teaches how a school starts.
     const quiet: MarkingData = { schools: [], schoolsNotListed: 0, jobs: { dead: 0, retrying: 0, listed: [] }, backlogAfterMinutes: 10 };

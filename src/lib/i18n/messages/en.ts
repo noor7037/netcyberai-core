@@ -2709,7 +2709,7 @@ export const en = {
   // Control: Monitoring (C206). Counts and ages only.
   // Control → Monitoring → AI marking (docs/35, C347): counts and ages only.
   'monitoring.marking.title': 'AI marking',
-  'monitoring.marking.how': 'For each school: answer-sheet pages read this month against the plan’s limit, and its scripts waiting for the AI, being marked, marked and waiting for a teacher, failed, and approved this month, with how long the oldest has waited. Marking jobs that gave up are listed with Retry. Counts and ages only: no child’s name, no page and no mark is read here.',
+  'monitoring.marking.how': 'For each school: answer-sheet pages read this month against the plan’s limit, and its scripts waiting for the AI, being marked, marked and waiting for a teacher, failed, and approved, with how long the oldest has waited. Marking jobs that gave up are listed with Retry. Counts and ages only: no child’s name, no page and no mark is read here.',
   'monitoring.marking.none.title': 'No school has used AI marking yet',
   'monitoring.marking.none.do': 'A school can start once its plan has a monthly page limit (Control → Billing plans) and a provider is chosen for both marking tasks (Control → AI). Schools then appear here by name, with counts.',
   'monitoring.marking.limitReached': 'Page limit reached',
@@ -2720,8 +2720,8 @@ export const en = {
   'monitoring.marking.marking': 'Being marked',
   'monitoring.marking.marked': 'Marked, with a teacher',
   'monitoring.marking.failed': 'Failed',
-  'monitoring.marking.approved': 'Approved this month',
-  'monitoring.marking.oldest': 'Oldest waiting',
+  'monitoring.marking.approved': 'Approved',
+  'monitoring.marking.oldest': 'Oldest waiting for the AI',
   'monitoring.marking.notListed': '{count} more schools are not listed here.',
   'monitoring.marking.limit.do': 'A school has used its month’s pages, so it cannot mark more until its plan’s limit is raised in Control → Billing plans.',
   'monitoring.marking.backlog.do': 'A script has waited more than {minutes} minutes for the AI. Check that a provider is chosen and switched on for both marking tasks in Control → AI, and that Background jobs above are running.',

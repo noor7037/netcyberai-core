@@ -68,7 +68,7 @@ export function MarkingMonitor({ data: m, lang, age }: { data: MarkingMonitorDat
                 <Fact id="marking" name={t(lang, 'monitoring.marking.marking')} value={count(s.marking)} />
                 <Fact id="marked" name={t(lang, 'monitoring.marking.marked')} value={count(s.marked)} />
                 <Fact id="failed" name={t(lang, 'monitoring.marking.failed')} value={count(s.failed)} />
-                <Fact id="approved" name={t(lang, 'monitoring.marking.approved')} value={count(s.approvedThisMonth)} />
+                <Fact id="approved" name={t(lang, 'monitoring.marking.approved')} value={count(s.approved)} />
                 <Fact id="oldest" name={t(lang, 'monitoring.marking.oldest')} value={s.oldestWaitingSeconds === null ? t(lang, 'monitoring.none') : age(s.oldestWaitingSeconds)} />
               </dl>
             </li>

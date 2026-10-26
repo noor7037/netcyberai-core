@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg';
+import { AI_MARKING_PAGES_LIMIT } from '@/lib/contracts/marking';
 import { BACKLOG_AFTER_MINUTES } from '@/lib/observability/health';
 import { cutContacts } from './monitoring';
 
@@ -15,8 +16,7 @@ import { cutContacts } from './monitoring';
 // A school here is a LIVE school: a test school's scripts are left out, as everywhere in Control. Jobs belong to the
 // platform, so every dead marking job counts; its school is named only when it is a live one.
 //
-// Which schools are listed: those with a page limit set for AI marking in their plan, and those that have any
-// script or page at all.
+// Which schools are listed: those that have used AI marking (an upload on record), live schools only.
 
 type Sql = Pick<PoolClient, 'query'>;
 
@@ -33,8 +33,8 @@ export type MarkingSchoolRow = {
   marking: number; // being marked now
   marked: number; // marked, with a teacher to check and approve
   failed: number;
-  approvedThisMonth: number;
-  oldestWaitingSeconds: number | null;
+  approved: number; // scripts a person has approved, so far
+  oldestWaitingSeconds: number | null; // the oldest script waiting for the AI or being marked, since it last changed
 };
 export type MarkingDeadJob = { jobId: string; type: string; schoolName: string | null; attempts: number; maxAttempts: number; error: string | null; forSeconds: number };
 export type MarkingMonitor = {
@@ -51,19 +51,30 @@ export async function loadMarkingMonitor(db: Sql): Promise<MarkingMonitor> {
   const at = new Date((await db.query(`select now() as at`)).rows[0].at as string).getTime();
   const since = (v: unknown): number | null => (v ? Math.max(0, Math.floor((at - new Date(v as string).getTime()) / 1000)) : null);
 
-  // The counts come from public.marking_monitor(): the platform role has no right on the marking tables, and that one
-  // function, which names none of a child, a page or a mark, returns counts and times per live school.
-  const rows = (await db.query(`select * from public.marking_monitor()`)).rows;
+  // The counts come from public.marking_monitor() (AM-1's migration): the platform role has no right on the marking
+  // tables, and that one definer function, which names none of a child, a page or a mark, returns per school the pages
+  // this month, the scripts in each state and the age of the oldest waiting. Here they get the school's name (live
+  // schools only) and the plan's page limit.
+  const rows = (await db.query(
+    `select s.name, m.pages_this_month, m.waiting, m.marking, m.marked, m.failed, m.approved, m.oldest_waiting,
+            case when jsonb_typeof(e.limits -> $1::text) = 'number' then (e.limits ->> $1::text)::numeric end as page_limit
+       from public.marking_monitor() m
+       join schools s on s.school_id = m.school_id
+       left join school_module_entitlements e on e.school_id = m.school_id and e.module_id = 'exams'
+      where not s.is_test_fixture
+      order by lower(s.name), s.school_id`,
+    [AI_MARKING_PAGES_LIMIT]
+  )).rows;
   const schools: MarkingSchoolRow[] = rows.slice(0, MARKING_SCHOOLS_LISTED).map((r) => ({
-    schoolName: r.school_name as string,
+    schoolName: r.name as string,
     pagesThisMonth: num(r.pages_this_month),
     limit: r.page_limit === null || r.page_limit === undefined ? null : Number(r.page_limit),
     waiting: num(r.waiting),
     marking: num(r.marking),
     marked: num(r.marked),
     failed: num(r.failed),
-    approvedThisMonth: num(r.approved_this_month),
-    oldestWaitingSeconds: since(r.oldest_waiting_at),
+    approved: num(r.approved),
+    oldestWaitingSeconds: since(r.oldest_waiting),
   }));
 
   // Dead marking jobs, newest first, with the same Retry the Background jobs section offers. The payload is not read.
