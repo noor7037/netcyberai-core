@@ -49,7 +49,7 @@ export default async function FamilyHomePage() {
     // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
     seen: await readSeen(db, page.session.accountId),
     off: await notifyOff(db, page.session.accountId),
-    meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
+    meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
   const atSchool = await schoolTodayFor(familyClaims(page.session), links, child.childId);

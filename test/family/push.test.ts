@@ -264,6 +264,7 @@ describe('a family’s browsers (C339)', () => {
     sent.length = 0;
     expect(await subscribe(sub(b1, 'https://fcm.googleapis.com/fcm/send/one'))).toEqual({ status: 200, body: { ok: true } });
     await q(`update control.settings set value = 'true'::jsonb where key = 'family.plus_open'`);
+    await q(`insert into control.preview_accounts (account_id, added_by) values ($1, $2) on conflict do nothing`, [ACCOUNT, PRINCIPAL]);
     const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date());
     await q(`insert into family.home_plans (account_id, child_id, starts_on, topics) values ($1, $2, $3::date, $4::jsonb)`, [ACCOUNT, CHILD, today, JSON.stringify([{ topicKey: TOPIC, subject: 'science' }])]);
     const evening = (hhmm: string) => new Date(`${today}T${hhmm}:00+05:30`);

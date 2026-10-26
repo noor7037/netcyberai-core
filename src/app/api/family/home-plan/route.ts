@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
   if (action !== 'followup') {
     return familyRun(g.session, async (db) => {
       if (!(await consentState(db, accountId)).study_core) return NextResponse.json({ error: 'consent_required' }, { status: 409 });
-      if (!(await familyModuleOn(db, 'home_plan', accountId)) || !(await plusOpen(db))) return NextResponse.json({ error: 'off' }, { status: 403 });
+      if (!(await familyModuleOn(db, 'home_plan', accountId)) || !(await plusOpen(db, accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
       const child = (await listChildren(db, accountId)).find((c) => c.childId === childId);
       if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
       if (action === 'stop') return (await stopHomePlan(db, accountId, childId)) ? NextResponse.json({ ok: true }) : NextResponse.json({ error: 'not_found' }, { status: 404 });
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
   // The follow-up: the family's own checks first, then the school's door (one connection at a time), then the plan
   // remembers that the school has it.
   const ready = await familyRead(g.session, async (db) => {
-    if (!(await familyModuleOn(db, 'home_plan', accountId)) || !(await plusOpen(db))) return 'off' as const;
+    if (!(await familyModuleOn(db, 'home_plan', accountId)) || !(await plusOpen(db, accountId))) return 'off' as const;
     const open = (await db.query(`select 1 from family.home_plans where account_id = $1 and child_id = $2 and stopped_at is null`, [accountId, childId])).rows[0];
     return open ? { links: await activeLinks(db, accountId) } : ('not_found' as const);
   });
