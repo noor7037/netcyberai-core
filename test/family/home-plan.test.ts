@@ -134,10 +134,16 @@ describe('behind Family Plus (C337)', () => {
     expect(await post({ action: 'start', childId: CHILD, topics: [T(1)] })).toEqual({ status: 403, body: { error: 'off' } });
     expect(await q(`select count(*)::int as n from family.home_plans`)).toEqual([{ n: 0 }]);
   });
-  it('Control opens it, audited', async () => {
+  it('Control opens it for the pilot families only, audited; never for every family (C230-AE)', async () => {
     const { setPlusOpen } = await import('@/lib/control/family-settings');
     const r = await db.pg.transaction(async (c: never) => setPlusOpen(c, { userId: PRINCIPAL }, true));
     expect(r).toEqual({ ok: true, open: true });
+    // On, but this family is not on the pilot list yet: still off for it.
+    expect(await post({ action: 'start', childId: CHILD, topics: [T(1)] })).toEqual({ status: 403, body: { error: 'off' } });
+    await q(`insert into control.preview_accounts (account_id, added_by) values ($1, $2)`, [ACCOUNT, PRINCIPAL]);
+    const { plusOpen } = await import('@/lib/family/home-plan');
+    expect(await fam((c) => plusOpen(c as never, ACCOUNT))).toBe(true);
+    expect(await fam((c) => plusOpen(c as never, OTHER), OTHER)).toBe(false);
     expect(await q(`select event_action, before_state, after_state from audit_log where event_action = 'family.plus_open_set'`)).toEqual([{ event_action: 'family.plus_open_set', before_state: { open: false }, after_state: { open: true } }]);
     expect(await db.pg.transaction(async (c: never) => setPlusOpen(c, { userId: PRINCIPAL }, 'yes'))).toEqual({ ok: false, code: 'bad_value' });
   });
@@ -185,6 +191,9 @@ describe('making and following the plan', () => {
   it('is the family’s own: another account sees and changes none of it', async () => {
     expect((await post({ action: 'start', childId: CHILD, topics: [T(1)] })).status).toBe(200);
     expect(await fam(async (c) => (await c.query(`select count(*)::int as n from family.home_plans`)).rows, OTHER)).toEqual([{ n: 0 }]);
+    // Off the pilot list, the other family is refused before anything else; on it, the plan is still not its own.
+    expect(await post({ action: 'stop', childId: CHILD }, OTHER)).toEqual({ status: 403, body: { error: 'off' } });
+    await q(`insert into control.preview_accounts (account_id, added_by) values ($1, $2)`, [OTHER, PRINCIPAL]);
     expect(await post({ action: 'stop', childId: CHILD }, OTHER)).toEqual({ status: 404, body: { error: 'not_found' } });
     expect(await fam(async (c) => (await c.query(`update family.home_plans set stopped_at = now() returning 1`)).rows, OTHER)).toEqual([]);
   });
