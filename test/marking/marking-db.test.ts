@@ -408,3 +408,17 @@ describe('publishing, families and the report link (C351)', () => {
     ]);
   });
 });
+
+describe('the AI’s cost and its words (review of #318)', () => {
+  it('full marks from the AI alone are checked by a person; the AI’s tries at one script are counted for good', async () => {
+    const dev = (await owner(`select sheet_id from marking_sheets where student_id = $1`, [K3]))[0].sheet_id as string;
+    const qs = await owner(`select question_id, max_marks::float8 as max from marking_questions where paper_id = $1`, [paperA]);
+    expect(await asJob((c) => takeSheetForMarking(c, A, dev))).not.toBeNull();
+    const full = { questions: qs.map((q: { question_id: string; max: number }) => ({ questionId: q.question_id, attempted: true, marks: q.max, steps: [], note: null, reason: null, errorType: 'none' as const, confidence: 1, pageId: null, yFrom: null, yTo: null })), strengths: null, improve: null, practice: [] };
+    const recorded = await asJob((c) => recordSheetResult(c, A, dev, full, { provider: 'stand-in', model: 'test', promptVersion: 'v1' }));
+    expect(recorded?.flags).toContain('unsure');
+    await owner(`update marking_sheets set attempts = 6 where sheet_id = $1`, [dev]);
+    const { askToMarkAgain } = await import('@/lib/marking/review');
+    expect(await as(tMaths, (c) => askToMarkAgain(c, actor(tMaths), dev))).toEqual({ ok: false, reason: 'tries' });
+  });
+});
