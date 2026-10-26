@@ -16,7 +16,8 @@ import { pointsBetween } from './rules';
 //     subject's trend (trend_points). Listed in the order of the exams.
 //   - A MISTAKE THAT KEEPS COMING BACK is a kind of mistake that cost the child marks in at least the school's line
 //     of answers, across at least the school's line of papers (mistake_min_questions, mistake_min_papers).
-//   - PRACTISE NEXT is the practice list on the child's latest approved script in each subject.
+//   - PRACTISE NEXT is the practice list of the child's latest approved script that has one, in each subject, with the
+//     exam it comes from shown (a newer script with no list leaves the last list standing).
 //   - The child is compared only with themselves (docs/27 section 3 rule 2): never with another child, a class
 //     average, a rank or a position. Everything is in syllabus order or in the order of the exams, never by marks.
 //   - Rules only: no language model is called, nothing is stored, and nothing here reaches a parent.
@@ -161,8 +162,8 @@ export function mistakesOf(answers: readonly CountedAnswer[], s: Pick<TopicSetti
   return out;
 }
 
-// What to practise next: the practice list on the child's latest approved script in each subject (the scripts are
-// given oldest first), with the topic each item names. The same words listed twice are listed once.
+// What to practise next: the practice list of the child's latest approved script that has one, in each subject (the
+// scripts are given oldest first), with the topic each item names. The same words listed twice are listed once.
 export type ScriptPractice = { subjectId: string; subjectName: string; paperId: string; examId: string; examName: string; date: string | null; className: string; practice: { unitId: string | null; text: string }[] };
 export function practiceOf(scripts: readonly ScriptPractice[], units: ReadonlyMap<string, UnitInfo>): PracticeGroup[] {
   const latest = new Map<string, ScriptPractice>();

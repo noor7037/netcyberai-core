@@ -650,6 +650,16 @@ describe('a paper’s class view', () => {
     for (const words of ['Question by question', 'Children who may need support', 'Below 50 in 100']) expect(hindi, words).not.toContain(words);
   });
 
+  it('attempted is what the AI said; when it said nothing, an answer the teacher gave marks to is one', async () => {
+    // Zoya’s paper-2 Q1 has AI marks 2: clear what the AI said about it, as for a question it gave nothing for.
+    const row = (await owner(`select m.sheet_id from marking_marks m join marking_sheets s on s.sheet_id = m.sheet_id where s.paper_id = $1 and s.student_id = $2 and m.question_id = $3`, [P2, ZOYA, qid(P2, '1')]))[0];
+    await db.pg.exec(`set session_replication_role = replica; update marking_marks set attempted = null where sheet_id = '${row.sheet_id}' and question_id = '${qid(P2, '1')}'; set session_replication_role = origin;`);
+    expect((await insightsOf(principal, P2))!.questions[0]).toMatchObject({ label: '1', counted: 3, attempted: 3 }); // marks 2: an answer
+    await db.pg.exec(`set session_replication_role = replica; update marking_marks set ai_marks = 0 where sheet_id = '${row.sheet_id}' and question_id = '${qid(P2, '1')}'; set session_replication_role = origin;`);
+    expect((await insightsOf(principal, P2))!.questions[0]).toMatchObject({ counted: 3, attempted: 2 }); // no mark and no word: not one
+    await db.pg.exec(`set session_replication_role = replica; update marking_marks set attempted = true, ai_marks = 2 where sheet_id = '${row.sheet_id}' and question_id = '${qid(P2, '1')}'; set session_replication_role = origin;`);
+  });
+
   it('a paper with no approved script teaches what to do, instead of showing zeros', async () => {
     await owner(`insert into subjects (subject_id, school_id, name) values ($1, $2, 'Science')`, [u(34), A]);
     await owner(`insert into exams (exam_id, school_id, name, term, created_by) values ($1, $2, 'Unit test 2', 'Term 1', $3)`, [u(63), A, PRINCIPAL]);

@@ -79,7 +79,8 @@ export async function paperInsights(db: Sql, actor: Actor, paperId: string): Pro
       chapter: unit?.chapter ?? null,
       topic: unit?.topic ?? null,
       counted: rows.length,
-      attempted: rows.filter((r) => r.attempted !== false && r.errorType !== 'not_attempted').length,
+      // Attempted: the AI said so, or (it said nothing and the teacher marked the answer) the answer has marks.
+      attempted: rows.filter((r) => r.errorType !== 'not_attempted' && (r.attempted === true || (r.attempted === null && r.marks > 0))).length,
       average: rows.length ? round1(rows.reduce((sum, r) => sum + r.marks, 0) / rows.length) : null,
       mistake: top,
     };

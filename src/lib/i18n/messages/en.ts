@@ -3991,7 +3991,7 @@ export const en = {
   'ins.error.misread': 'Misreading the question',
   'ins.error.not_attempted': 'Questions left blank',
   'ins.practice.title': 'Practise next',
-  'ins.practice.none': 'Nothing to practise yet. The practice list on the child’s latest approved answer sheet in each subject appears here.',
+  'ins.practice.none': 'Nothing to practise yet. The practice list of the child’s latest approved answer sheet that has one, in each subject, appears here.',
   'ins.practice.from': 'From the answer sheet of {exam}',
   'ins.practice.fromDate': 'From the answer sheet of {exam}, {date}',
   'ins.practice.topic': 'Topic: {chapter}, {topic}',

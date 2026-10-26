@@ -3985,7 +3985,7 @@ export const hi: Record<keyof typeof en, string> = {
   'ins.error.misread': 'प्रश्न ग़लत पढ़ना',
   'ins.error.not_attempted': 'प्रश्न खाली छोड़ना',
   'ins.practice.title': 'आगे अभ्यास',
-  'ins.practice.none': 'अभी अभ्यास के लिए कुछ नहीं। हर विषय में बच्चे की सबसे नई स्वीकार की गई उत्तर पुस्तिका की अभ्यास सूची यहाँ दिखेगी।',
+  'ins.practice.none': 'अभी अभ्यास के लिए कुछ नहीं। हर विषय में बच्चे की सबसे नई स्वीकार की गई उत्तर पुस्तिका की, जिसमें अभ्यास सूची हो, वह सूची यहाँ दिखेगी।',
   'ins.practice.from': '{exam} की उत्तर पुस्तिका से',
   'ins.practice.fromDate': '{exam} की उत्तर पुस्तिका से, {date}',
   'ins.practice.topic': 'विषय-बिंदु: {chapter}, {topic}',
