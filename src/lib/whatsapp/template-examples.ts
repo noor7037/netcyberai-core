@@ -17,6 +17,8 @@ const EXAMPLES: Record<string, Record<TemplateLanguage, string>> = {
   pay_link: { en: 'https://www.netcyberai.com/pay/AB12CD', hi: 'https://www.netcyberai.com/pay/AB12CD' },
   link: { en: 'https://www.netcyberai.com/c/XY34ZW', hi: 'https://www.netcyberai.com/c/XY34ZW' },
   certificate: { en: 'bonafide certificate', hi: 'बोनाफ़ाइड प्रमाणपत्र' },
+  exam: { en: 'Half-yearly exam', hi: 'अर्धवार्षिक परीक्षा' },
+  'exam_result_ready.link': { en: 'https://www.netcyberai.com/results/Xy12AbCdEfGh', hi: 'https://www.netcyberai.com/results/Xy12AbCdEfGh?lang=hi' },
   number: { en: 'BC-2026-031', hi: 'BC-2026-031' },
   class: { en: '5-A', hi: '5-A' },
   notice: { en: 'The school will be closed on Friday for Diwali.', hi: 'दिवाली के लिए शुक्रवार को स्कूल बंद रहेगा।' },

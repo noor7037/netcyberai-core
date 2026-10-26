@@ -33,6 +33,7 @@ import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
 import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
+import { clearMarking, MK, seedMarking } from './marking-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -3037,6 +3038,36 @@ const settingsExams = async (page) => {
   await examsOn();
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-settings-module="exams"]').scrollIntoViewIfNeeded();
+};
+// AM-5 (C351): "Tell parents on WhatsApp" on a published class's result. The AI-marked 5-A paper published, the
+// school's WhatsApp on, the template approved here, and Aarav's family's consent for messages: the preview lists who
+// will get the private link and why the others will not. Nothing is sent (the list is only opened), and all of it is
+// put back after.
+let tellBefore = null;
+const tellParents = async (page) => {
+  await examsOn();
+  await seedMarking(db, { school: SCHOOL, principal: PEOPLE.principal.sub, teacher: PEOPLE.teacher.sub, publish: true });
+  tellBefore = (await db.pg.query(`select is_pilot, pilot_allow_outbound, monthly_budget_paise from schools where school_id = $1`, [SCHOOL])).rows[0];
+  await db.pg.query(`update schools set is_pilot = false, pilot_allow_outbound = true, monthly_budget_paise = coalesce(monthly_budget_paise, 100000) where school_id = $1`, [SCHOOL]);
+  await db.pg.query(
+    `insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_template_id)
+     values (null, 'exam_result_ready', 1, 'en', 'From {{school}}: {{child}}’s result for {{exam}} is ready. See it here: {{link}} The link is private to your family and works for 30 days.', '{school,child,exam,link}', 'utility', 2880, 'approved', 'harness-am5')`
+  );
+  await db.pg.query(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values ($1, '00000000-0000-4000-8000-000000500001', 'operational_communication', true, 'school_attested', 'harness-am5')`, [SCHOOL]);
+  await page.goto(`${page.url().split('/app/')[0]}/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, { waitUntil: 'networkidle' });
+  await page.locator('[data-tell-preview]').click();
+  await page.locator('[data-tell-list]').waitFor({ timeout: 20000 });
+};
+const tellParentsDone = async () => {
+  const queued = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'exam-result:%'`)).rows[0].n;
+  await db.pg.query(`delete from consent_ledger where school_id = $1 and notice_version = 'harness-am5'`, [SCHOOL]);
+  await db.pg.query(`delete from whatsapp_templates where meta_template_id = 'harness-am5'`);
+  // Put back even when the set-up stopped part way (then the school row was never changed).
+  if (tellBefore) await db.pg.query(`update schools set is_pilot = $2, pilot_allow_outbound = $3, monthly_budget_paise = $4 where school_id = $1`, [SCHOOL, tellBefore.is_pilot, tellBefore.pilot_allow_outbound, tellBefore.monthly_budget_paise]);
+  tellBefore = null;
+  await clearMarking(db, SCHOOL);
+  await examsPutBackOnly();
+  if (queued !== 0) throw new Error(`the preview queued ${queued} messages`);
 };
 const clearGrading = async () => {
   await db.pg.exec(`set session_replication_role = replica;
@@ -6578,6 +6609,8 @@ const SCREENS = [
   // p6-9b begin
   ['principal', 'app-exams-list', '/app/exams', examsMake, examsMakeDone],
   ['principal', 'app-exams-result', `/app/exams/${X_EXAM}/classes/${X_5A}`, examsResult, examsResultDone],
+  // AM-5 (C351): who will get the private result link on WhatsApp, and why the others will not.
+  ['principal', 'app-exams-tell-parents', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParents, tellParentsDone],
   ['teacher', 'app-exams-teacher', '/app/exams', examsTeacher, examsTeacherDone],
   ['teacher', 'app-exams-entry', `/app/exams/papers/${X_MATHS}`, examsEntry, examsEntryDone],
   // p6-9b end

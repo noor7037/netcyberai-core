@@ -337,6 +337,23 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
       hi: 'स्कूल {{school}} की ओर से: {{child}} का {{certificate}} (संख्या {{number}}) तैयार है। PDF यहाँ से डाउनलोड करें: {{link}} हस्ताक्षर वाला काग़ज़ स्कूल दफ़्तर से लिया जा सकता है।',
     },
   },
+  {
+    // AI answer-sheet marking (C351): a published result, sent to a family by a person in the office after seeing who
+    // will get it, one message per child and guardian per publication. The link opens the child's own published result
+    // (and, while the school lets families see them, the checked pages) for 30 days, and stops once the class is
+    // reopened. No mark, grade or remark is in the words: only the school, the child, the exam and the link. Sent under
+    // the same purpose as a certificate's link to its PDF, and worth sending for two days.
+    name: 'exam_result_ready',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'child', 'exam', 'link'],
+    body: {
+      en: 'From {{school}}: {{child}}’s result for {{exam}} is ready. See it here: {{link}} The link is private to your family and works for 30 days.',
+      hi: 'स्कूल {{school}} की ओर से: {{child}} के {{exam}} का परिणाम तैयार है। यहाँ देखें: {{link}} यह लिंक सिर्फ़ आपके परिवार के लिए है और 30 दिन तक चलेगा।',
+    },
+  },
 ];
 
 const VARIABLE = /\{\{([a-z0-9_]+)\}\}/g;

@@ -132,13 +132,15 @@ describe('on the real schema', () => {
   }, 120_000);
   afterAll(async () => db?.stop());
 
-  it('bringing in the code’s versions adds every version 2, waiting for approval; the row from before versions is left as it was', async () => {
+  it('bringing in the code’s versions adds each of them (version 2 of the older ones), waiting for approval; the row from before versions is left as it was', async () => {
     const before = await platform((c) => listTemplates(c));
     expect(before).toEqual([expect.objectContaining({ name: 'attendance_absence_notification', version: 1, language: 'en', body: null, status: 'approved' })]);
     const first = await platform((c) => syncTemplates(c));
     expect(first).toEqual({ added: TEMPLATE_REGISTRY.length * 2, filled: 0 });
     expect(await platform((c) => syncTemplates(c))).toEqual({ added: 0, filled: 0 });
-    const rows = (await platform((c) => listTemplates(c))).filter((r) => r.version === 2);
+    // The code's versions: version 2 of every template from before C344, and version 1 of a template new since
+    // (exam_result_ready, C351), each in Meta's shape from its first words.
+    const rows = (await platform((c) => listTemplates(c))).filter((r) => TEMPLATE_REGISTRY.some((d) => d.name === r.name && d.version === r.version));
     expect(rows).toHaveLength(TEMPLATE_REGISTRY.length * 2);
     expect(rows.every((r) => r.inCode && r.body?.startsWith(SCHOOL_PREFIX[r.language]))).toBe(true);
     // Every new version waits for a person, and nothing sends until one approves it.
