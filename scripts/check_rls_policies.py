@@ -1073,6 +1073,15 @@ REQUIRED_RESTRICTIVE = {
     ("marks", "marks_by_a_person_insert"),
     ("marks", "marks_by_a_person_update"),
     ("marks", "marks_by_a_person_delete"),
+    ("exam_withdrawals", "exam_withdrawals_no_parent"),
+    ("exam_seat_numbers", "exam_seat_numbers_no_parent"),
+    ("marking_setups", "marking_setups_no_parent"),
+    ("marking_uploads", "marking_uploads_no_parent"),
+    ("marking_report_links", "marking_report_links_no_parent"),
+    ("marking_questions", "marking_questions_no_parent"),
+    ("marking_sheets", "marking_sheets_no_parent"),
+    ("marking_pages", "marking_pages_no_parent"),
+    ("marking_marks", "marking_marks_no_parent"),
     # c347 end
 }
 
