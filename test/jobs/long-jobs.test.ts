@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { createTestDb, type TestDb } from '../db/pglite-harness';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
-import { LONG_JOB_MAX_MS, LONG_JOB_START_MS, LONG_JOB_TYPES, runJobs } from '@/lib/jobs/runner';
+import { LONG_JOBS_AT_ONCE, LONG_JOB_MAX_MS, LONG_JOB_START_MS, LONG_JOB_TYPES, runJobs } from '@/lib/jobs/runner';
 import { LEASE_SECONDS } from '@/lib/jobs/policy';
 import { MAX_CALL_TIMEOUT_MS } from '@/lib/ai/adapters/types';
 import { PROFILES } from '@/lib/ai/platform';
@@ -9,7 +9,8 @@ import { PICTURES_MS } from '@/lib/marking/pipeline';
 import type { JobHandler, JobQueue } from '@/lib/jobs/types';
 
 // AI marking's jobs wait minutes for the AI (C347). The job route has 300 s and a started job runs to its end, so a run
-// starts at most one of them, after the short jobs, only while it is young, and a request's kick never starts one.
+// starts at most LONG_JOBS_AT_ONCE of them side by side, after the short jobs, only while it is young, and a request's
+// kick never starts one.
 
 let db: TestDb;
 let queue: JobQueue;
@@ -21,27 +22,31 @@ const enqueue = (type: string, key: string) => db.platform((q) => queue.enqueue(
 const statusOf = async (key: string) => (await db.query(`select status from jobs where idempotency_key = $1`, [key])).rows[0].status as string;
 
 describe('long jobs (AI marking) in the job runner', () => {
-  it('a run takes the short jobs first, then one long job; the rest wait for the next run', async () => {
+  it('a run takes the short jobs first, then up to LONG_JOBS_AT_ONCE long jobs side by side; the rest wait for the next run', async () => {
     const order: string[] = [];
+    let running = 0;
+    let most = 0;
     const handler: JobHandler = async (job) => {
       order.push(job.idempotencyKey);
+      if (LONG_JOB_TYPES.includes(job.type)) {
+        running++;
+        most = Math.max(most, running);
+        await new Promise((r) => setTimeout(r, 20));
+        running--;
+      }
     };
     const handlers = { 'marking.read': handler, 'marking.mark': handler, 'probe.ok': handler };
-    await enqueue('marking.mark', 'm1');
-    await enqueue('marking.read', 'r1');
+    for (let i = 0; i < LONG_JOBS_AT_ONCE + 2; i++) await enqueue(i % 2 ? 'marking.read' : 'marking.mark', `l${i}`);
     await enqueue('probe.ok', 's1');
-    await enqueue('marking.mark', 'm2');
     await enqueue('probe.ok', 's2');
     const first = await runJobs({ handlers, queue, longJobs: true });
-    expect(first.claimed).toBe(3);
+    expect(first.claimed).toBe(2 + LONG_JOBS_AT_ONCE);
     expect(order.slice(0, 2).sort()).toEqual(['s1', 's2']);
-    expect(order).toHaveLength(3);
-    expect(LONG_JOB_TYPES).toContain((await db.query(`select type from jobs where idempotency_key = $1`, [order[2]])).rows[0].type);
-    // One long job a run: two are still waiting.
+    expect(most).toBe(LONG_JOBS_AT_ONCE);
+    // Two long jobs are still waiting for the next run.
     expect((await db.query(`select count(*)::int as n from jobs where status = 'pending'`)).rows[0].n).toBe(2);
     await runJobs({ handlers, queue, longJobs: true });
-    await runJobs({ handlers, queue, longJobs: true });
-    expect(order).toHaveLength(5);
+    expect(order).toHaveLength(4 + LONG_JOBS_AT_ONCE);
   });
 
   it('a request’s kick, or a run without longJobs, never starts one', async () => {

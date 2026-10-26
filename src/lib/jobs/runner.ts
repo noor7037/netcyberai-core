@@ -22,13 +22,15 @@ export const KICK_BUDGET_MS = 8_000;
 // profile (src/lib/ai/platform.ts: 90 s to read pages, 200 s to mark a script) and its reads and writes by the job
 // (src/lib/marking/pipeline.ts), so one ends within LONG_JOB_MAX_MS of starting. /api/jobs/run has 300 s, and a job
 // once started runs to its end; five claimed together and run one after another would not fit. So every claim leaves
-// them out, and only the sweeper (runDueJobs, longJobs) starts ONE a run: after the short jobs, and only while the run
-// is younger than LONG_JOB_START_MS, so it ends by 45 + 240 = 285 s. The lease (LEASE_SECONDS, 300 s from its claim)
-// outlives it. Several runs overlap (the sweeper is called every minute), so a class's scripts are read and marked a
-// few at a time. A request's kick never starts one: the request would wait minutes for it.
+// them out, and only the sweeper (runDueJobs, longJobs) starts them: after the short jobs, only while the run is younger
+// than LONG_JOB_START_MS, at most LONG_JOBS_AT_ONCE side by side (they wait on the AI, not on this server), so they end
+// by 45 + 240 = 285 s. The lease (LEASE_SECONDS, 300 s from its claim) outlives them. Runs overlap (the sweeper is called
+// every minute), so a class of forty is marked in about ten minutes. A request's kick never starts one: the request
+// would wait minutes for it.
 export const LONG_JOB_TYPES: readonly string[] = ['marking.read', 'marking.mark'];
 export const LONG_JOB_START_MS = 45_000;
 export const LONG_JOB_MAX_MS = 240_000;
+export const LONG_JOBS_AT_ONCE = 4;
 
 export type RunSummary = { claimed: number; succeeded: number; retried: number; dead: number; stoppedEarly: boolean };
 
@@ -59,13 +61,11 @@ export async function runJobs(opts: {
     summary.claimed += batch.length;
     for (const job of batch) await runOne(job);
   }
-  // One long job, when this run is still young enough for it to end inside the route's time.
+  // Long jobs side by side, when this run is still young enough for them to end inside the route's time.
   if (opts.longJobs && summary.claimed < limit && now() - started < LONG_JOB_START_MS) {
-    const [job] = await queue.claim(1, opts.onlyKeys, { only: LONG_JOB_TYPES });
-    if (job) {
-      summary.claimed += 1;
-      await runOne(job);
-    }
+    const jobs = await queue.claim(Math.min(LONG_JOBS_AT_ONCE, limit - summary.claimed), opts.onlyKeys, { only: LONG_JOB_TYPES });
+    summary.claimed += jobs.length;
+    await Promise.all(jobs.map(runOne));
   }
   return summary;
 
