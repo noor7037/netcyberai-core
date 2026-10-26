@@ -268,6 +268,13 @@ describe('scripts: read, made, matched and marked by the school’s job (C347)',
     ]);
   });
 
+  it('only the people who mark queue marking jobs (review of #317)', async () => {
+    const queue = (who: Who) => run(who, `insert into jobs (type, payload, idempotency_key, school_id) values ('marking.mark', '{}', $1, $2)`, [`t:${who.user}`, A]);
+    await expect(queue(accountant)).rejects.toThrow(/row-level security/);
+    await expect(queue(tMaths)).resolves.toMatchObject({ rowCount: 1 });
+    await owner(`delete from jobs where idempotency_key like 't:%'`);
+  });
+
   it('AI never writes a mark: the job’s session is refused on marks, on a teacher’s mark and on approval', async () => {
     await expect(asJob((c) => c.query(`insert into marks (school_id, exam_id, subject_id, paper_id, component, student_id, kind, score, max_score, entered_by) values ($1, $2, $3, $4, 'theory', $5, 'score', 5, 0, $6)`, [A, examId, MATHS, paperA, K1, '00000000-0000-0000-0000-000000000000']))).rejects.toThrow(/row-level security/);
     const meera = (await owner(`select sheet_id from marking_sheets where student_id = $1`, [K1]))[0].sheet_id as string;
@@ -326,14 +333,30 @@ describe('review and approval (C347)', () => {
 });
 
 describe('publishing, families and the report link (C351)', () => {
+  it('a guardian reads their own child’s coming papers and exam number, and nothing of another child', async () => {
+    await owner(`update exam_papers set paper_date = (now() at time zone 'Asia/Kolkata')::date + 2 where paper_id = $1`, [paperA]);
+    const seen = (await run(guardian, `select student_id, exam_name, subject_name, seat_no from public.guardian_exam_schedule()`)).rows;
+    expect(seen).toEqual([{ student_id: K1, exam_name: 'Half-yearly', subject_name: 'Mathematics', seat_no: 'HY0001' }]);
+    expect((await run(tMaths, `select count(*)::int as n from public.guardian_exam_schedule()`)).rows[0].n).toBe(0);
+  });
+
   it('a published class refuses every change and approval; a guardian then sees only their own child’s approved script', async () => {
     // Enter the rest so the class can be published: Internal for all three, and Theory for the two still waiting.
     const { saveMarks } = await import('@/lib/exams/marks');
     const entries = [K1, K2, K3].map((s) => ({ studentId: s, component: 'internal', kind: 'score', score: 4 })).concat([K2, K3].map((s) => ({ studentId: s, component: 'theory', kind: 'score', score: 12 })));
     expect((await as(tMaths, (c) => saveMarks(c, actor(tMaths), paperA, entries))).ok).toBe(true);
-    expect(await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).toMatchObject({ ok: true });
     const meera = (await owner(`select sheet_id from marking_sheets where student_id = $1`, [K1]))[0].sheet_id as string;
     const q1 = (await owner(`select question_id from marking_questions where paper_id = $1 and label = '1'`, [paperA]))[0].question_id;
+    // Review of #317: a script changed after approval keeps the class from being published until it is approved again,
+    // and a job's session cannot change an approved script at all.
+    await expect(asJob((c) => c.query(`update marking_sheets set strengths = 'by a job' where sheet_id = $1`, [meera]))).rejects.toThrow(/changed by a person only/);
+    await expect(asJob((c) => c.query(`update marking_marks set ai_marks = 1 where sheet_id = $1 and question_id = $2`, [meera, q1]))).rejects.toThrow(/changed by a person only/);
+    expect(await as(tMaths, (c) => changeSheet(c, actor(tMaths), meera, { strengths: 'Careful working throughout.' }))).toEqual({ ok: true });
+    expect((await owner(`select state, flags from marking_sheets where sheet_id = $1`, [meera]))[0]).toEqual({ state: 'approved', flags: ['unsure', 'changed'] });
+    expect(await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).toEqual({ ok: false, reason: 'scripts_changed' });
+    expect(await as(tMaths, (c) => approveSheets(c, actor(tMaths), paperA, [meera]))).toMatchObject({ ok: true, approved: 1 });
+    expect((await owner(`select flags, match_note from marking_sheets where sheet_id = $1`, [meera]))[0]).toMatchObject({ flags: ['unsure'], match_note: { read: { rollNo: '1' } } });
+    expect(await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).toMatchObject({ ok: true });
     expect(await as(tMaths, (c) => changeSheet(c, actor(tMaths), meera, { questions: [{ questionId: q1, marks: 4 }] }))).toEqual({ ok: false, reason: 'closed' });
     await expect(run(tMaths, `update marking_marks set marks = 4 where sheet_id = $1 and question_id = $2`, [meera, q1])).resolves.toMatchObject({ rowCount: 0 });
 
@@ -367,8 +390,9 @@ describe('publishing, families and the report link (C351)', () => {
     expect((await asPlatform((c) => c.query(`select count(*)::int as n from public.marking_report_marks($1)`, [hash]))).rows[0].n).toBe(4);
     expect((await asPlatform((c) => c.query(`select count(*)::int as n from public.marking_report_pages($1)`, [hash]))).rows[0].n).toBe(2);
     expect((await asPlatform((c) => c.query(`select count(*)::int as n from public.marking_report($1)`, ['0'.repeat(64)]))).rows[0].n).toBe(0);
-    // The app's role cannot read a link's result itself.
+    // The app's role cannot read a link's result itself, nor any school's switch (review of #317).
     await expect(run(principal, `select * from public.marking_report($1)`, [hash])).rejects.toThrow(/permission denied/);
+    await expect(run(principal, `select public.families_see_scripts($1)`, [B])).rejects.toThrow(/permission denied/);
     expect((await as(principal, (c) => reopenClass(c, actor(principal), examId, C7A, 'A mark to correct'))).ok).toBe(true);
     expect((await asPlatform((c) => c.query(`select count(*)::int as n from public.marking_report($1)`, [hash]))).rows[0].n).toBe(0);
     expect((await run(guardian, `select count(*)::int as n from marking_sheets`)).rows[0].n).toBe(0);

@@ -3814,6 +3814,7 @@ export const en = {
   'rc.err.not_allowed': 'You may not do this here.',
   'rc.err.not_found': 'This exam has no paper for this class.',
   'rc.err.not_entered': 'Every paper of this class must be entered before the result is published.',
+  'rc.err.scripts_changed': 'An answer sheet the AI marked was changed after it was approved. Approve it again in AI marking, then publish.',
   'rc.err.no_scheme': 'Save a grading scheme before publishing.',
   'rc.err.published': 'This result is published: its marks and remarks are frozen until the principal reopens it.',
   'rc.err.not_published': 'This result is not published.',

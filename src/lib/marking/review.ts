@@ -297,7 +297,7 @@ export async function chooseChild(db: Sql, actor: Actor, sheetId: string, studen
     const other = (await db.query(`select 1 from marking_sheets where school_id = $1 and paper_id = $2 and student_id = $3 and sheet_id <> $4 and state <> 'set_aside'`, [actor.schoolId, paper.paperId, studentId, sheetId])).rows[0];
     if (other) return { ok: false, reason: 'taken' };
   }
-  const flags = ((s.flags ?? []) as SheetFlag[]).filter((f) => f !== 'identity' && f !== 'two_scripts');
+  const flags = ((s.flags ?? []) as SheetFlag[]).filter((f) => f !== 'identity' && f !== 'two_scripts' && f !== 'check_child');
   await db.query(`update marking_sheets set student_id = $3, matched_by = $4, flags = $5 where school_id = $1 and sheet_id = $2`, [
     actor.schoolId,
     sheetId,
@@ -343,9 +343,11 @@ export async function askToMarkAgain(db: Sql, actor: Actor, sheetId: string): Pr
   const { s, paper } = loaded;
   if (paper.published) return { ok: false, reason: 'closed' };
   if (!paper.mayMark) return { ok: false, reason: 'not_allowed' };
-  if (!['marked', 'failed'].includes(s.state)) return { ok: false, reason: 'state' };
+  // A script the AI left waiting or marking for a quarter of an hour (a run that stopped) may be asked again too.
+  const stale = (await db.query(`select updated_at < now() - interval '15 minutes' as stale from marking_sheets where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId])).rows[0]?.stale === true;
+  if (!(['marked', 'failed'].includes(s.state) || (['waiting', 'marking'].includes(s.state) && stale))) return { ok: false, reason: 'state' };
   await db.query(`update marking_marks set marks = null, note = null where school_id = $1 and sheet_id = $2 and (marks is not null or note is not null)`, [actor.schoolId, sheetId]);
-  await db.query(`update marking_sheets set state = 'waiting', failure = null where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
+  await db.query(`update marking_sheets set state = 'waiting', failure = null, attempts = 0 where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.mark_again', targetType: 'marking_sheets', targetId: sheetId, afterState: { paper_id: paper.paperId } });
   return { ok: true };
 }
@@ -371,9 +373,11 @@ export async function approveSheets(db: Sql, actor: Actor, paperId: string, whic
       [actor.schoolId, paperId]
     )
   ).rows;
+  // A child withdrawn from the exam since their script was matched gets no marks from it.
+  const candidates = new Set((await paperRoster(db, actor.schoolId, paper)).map((c) => c.studentId));
   let chosen: typeof rows;
   if (which === 'unflagged') {
-    chosen = rows.filter((r) => r.state === 'marked' && r.student_id && ((r.flags ?? []) as string[]).length === 0);
+    chosen = rows.filter((r) => r.state === 'marked' && r.student_id && candidates.has(r.student_id) && ((r.flags ?? []) as string[]).length === 0);
   } else {
     if (!Array.isArray(which) || which.length === 0 || which.length > 500) return { ok: false, reason: 'none' };
     chosen = [];
@@ -383,6 +387,7 @@ export async function approveSheets(db: Sql, actor: Actor, paperId: string, whic
       if (r.state === 'approved' && !((r.flags ?? []) as string[]).includes('changed')) continue;
       // Who it is must be settled, and every question must have a mark, before a script is approved.
       if (!r.student_id || ((r.flags ?? []) as string[]).some((f) => f === 'identity' || f === 'two_scripts' || f === 'not_all_read')) return { ok: false, reason: 'flagged', sheetId: id };
+      if (!candidates.has(r.student_id)) return { ok: false, reason: 'child', sheetId: id };
       chosen.push(r);
     }
   }
@@ -392,15 +397,27 @@ export async function approveSheets(db: Sql, actor: Actor, paperId: string, whic
     await db.query(`select sheet_id, question_id, attempted, ai_marks, marks from marking_marks where school_id = $1 and sheet_id = any ($2::uuid[])`, [actor.schoolId, chosen.map((r) => r.sheet_id)])
   ).rows;
   const entries: { studentId: string; component: string; kind: 'score'; score: number }[] = [];
+  const ready: typeof rows = [];
   for (const r of chosen) {
     const final = finals(marks.filter((m) => m.sheet_id === r.sheet_id) as MarkRow[]);
-    if (questions.some((q) => final.get(q.questionId) === null || final.get(q.questionId) === undefined)) return { ok: false, reason: 'flagged', sheetId: r.sheet_id };
+    // A question with no mark (one added after marking): a named script is refused, the rest are left for a person.
+    if (questions.some((q) => final.get(q.questionId) === null || final.get(q.questionId) === undefined)) {
+      if (which === 'unflagged') continue;
+      return { ok: false, reason: 'flagged', sheetId: r.sheet_id };
+    }
+    ready.push(r);
     for (const t of partTotals(parts, questions, final, counts)) entries.push({ studentId: r.student_id, component: t.component, kind: 'score', score: t.score });
   }
+  chosen = ready;
+  if (!chosen.length) return { ok: true, approved: 0, skipped: rows.length };
   const saved = await saveMarks(db, actor, paperId, entries);
   if (!saved.ok) return { ok: false, reason: saved.reason };
+  // Approved: the flags a person has now looked at go, and the other children the match offered are dropped (a family
+  // reads its own child's approved script; it never needs a classmate's id).
   await db.query(
-    `update marking_sheets set state = 'approved', approved_at = now(), flags = array_remove(flags, 'changed') where school_id = $1 and sheet_id = any ($2::uuid[])`,
+    `update marking_sheets set state = 'approved', approved_at = now(), flags = array_remove(array_remove(flags, 'changed'), 'check_child'),
+            match_note = jsonb_build_object('read', match_note -> 'read')
+      where school_id = $1 and sheet_id = any ($2::uuid[])`,
     [actor.schoolId, chosen.map((r) => r.sheet_id)]
   );
   await writeAuditLog(db, {
@@ -428,7 +445,13 @@ export async function markAbsent(db: Sql, actor: Actor, paperId: string, student
   const live = new Set((await db.query(`select student_id from marking_sheets where school_id = $1 and paper_id = $2 and student_id is not null and state <> 'set_aside'`, [actor.schoolId, paperId])).rows.map((r) => r.student_id as string));
   const roster = new Set((await paperRoster(db, actor.schoolId, paper)).map((c) => c.studentId));
   for (const id of studentIds as string[]) if (!roster.has(id) || live.has(id)) return { ok: false, reason: 'child' };
-  const saved = await saveMarks(db, actor, paperId, (studentIds as string[]).flatMap((studentId) => parts.map((p) => ({ studentId, component: p.key, kind: 'absent', score: null }))));
+  // A mark already typed for a part is kept: absent goes only where there is none.
+  const typed = new Set(
+    (await db.query(`select student_id, component from marks where school_id = $1 and paper_id = $2 and student_id = any ($3::uuid[])`, [actor.schoolId, paperId, studentIds])).rows.map((r) => `${r.student_id}|${r.component}`)
+  );
+  const entries = (studentIds as string[]).flatMap((studentId) => parts.filter((p) => !typed.has(`${studentId}|${p.key}`)).map((p) => ({ studentId, component: p.key, kind: 'absent', score: null })));
+  if (!entries.length) return { ok: true, approved: 0, skipped: studentIds.length };
+  const saved = await saveMarks(db, actor, paperId, entries);
   if (!saved.ok) return { ok: false, reason: saved.reason };
   return { ok: true, approved: studentIds.length, skipped: 0 };
 }

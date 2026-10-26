@@ -585,6 +585,30 @@ $$;
 revoke all on function public.guardian_marking_sheets() from public;
 grant execute on function public.guardian_marking_sheets() to app_user;
 
+-- A linked family's exam timetable (C351): for each of the guardian's own consented children, the dated papers of
+-- the open exams of the child's class from yesterday on, with the child's exam number when the exam uses them. Names,
+-- subjects and dates only; never another child's number or any mark.
+create function public.guardian_exam_schedule()
+returns table (student_id uuid, exam_id uuid, exam_name text, subject_name text, paper_date date, seat_no text)
+language sql stable security definer set search_path = '' as $$
+  select s.student_id, e.exam_id, e.name, sb.name, p.paper_date, case when e.numbering = 'seat' then x.seat_no end
+    from public.students s
+    join public.exam_papers p on p.school_id = s.school_id and p.class_id = s.class_id
+    join public.exams e on e.school_id = p.school_id and e.exam_id = p.exam_id
+    join public.subjects sb on sb.school_id = p.school_id and sb.subject_id = p.subject_id
+    left join public.exam_seat_numbers x on x.school_id = s.school_id and x.exam_id = e.exam_id and x.student_id = s.student_id
+   where coalesce(current_setting('app.current_role', true), '') = 'parent'
+     and s.school_id = nullif(current_setting('app.current_tenant_id', true), '')::uuid
+     and s.student_id = any ((select public.guardian_student_ids())::uuid[])
+     and e.status = 'open'
+     and p.paper_date is not null
+     and p.paper_date >= (now() at time zone 'Asia/Kolkata')::date - 1
+     and not exists (select 1 from public.exam_withdrawals w where w.school_id = s.school_id and w.exam_id = e.exam_id and w.student_id = s.student_id)
+   order by p.paper_date, sb.name
+$$;
+revoke all on function public.guardian_exam_schedule() from public;
+grant execute on function public.guardian_exam_schedule() to app_user;
+
 -- Staff read through may_read_marking; a guardian only what guardian_marking_sheets() names; writes by whoever may
 -- mark the paper, never a parent.
 create policy marking_setups_readers on marking_setups as restrictive for select using (public.may_read_marking(paper_id));

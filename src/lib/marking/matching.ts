@@ -94,7 +94,9 @@ export function matchIdentity(read: PageGroup['read'], roster: readonly RosterCh
   const byNumber = (child: RosterChild, by: MatchedBy): Match => {
     const sim = named(child);
     if (sim !== null && sim < NAME_DISAGREES) return { studentId: null, by: 'none', candidates: [child.studentId], flags: ['identity'] };
-    return { studentId: child.studentId, by, candidates: [], flags: [] };
+    // A number alone (no name read) is trusted for the match, but a person checks it: a wrong number would put the
+    // marks on another child (review of #317).
+    return { studentId: child.studentId, by, candidates: [], flags: sim === null ? ['check_child'] : [] };
   };
   const seat = seatKey(read.seatNo);
   if (seat) {
@@ -127,7 +129,9 @@ const hasIdentity = (r: PageReading | null) => !!r && !!(r.name || r.rollNo || r
 const identityOf = (r: PageReading | null): PageGroup['read'] => (r && hasIdentity(r) ? { name: r.name, rollNo: r.rollNo, seatNo: r.seatNo } : null);
 
 // Whether a page plainly starts another child's script than `current`: a first page whose number differs, or (with no
-// number on either) whose name is not the same child's.
+// number on either) whose name is not the same child's. A first page that cannot be compared (a number on one, only a
+// name on the other) starts a new script too: two scripts read as one child wait for the teacher, which is safer than
+// two children's pages kept as one (review of #317).
 function startsAnother(page: PageReading | null, current: PageGroup['read']): boolean {
   if (!page || !page.firstPage || !hasIdentity(page)) return false;
   if (!current) return true;
@@ -135,14 +139,17 @@ function startsAnother(page: PageReading | null, current: PageGroup['read']): bo
   const b = seatKey(current.seatNo) ?? rollKey(current.rollNo);
   if (a && b) return a !== b;
   if (page.name && current.name) return nameSimilarity(page.name, current.name) < NAME_SURE;
-  return false;
+  return true;
 }
 
 function flagsOf(pages: readonly GroupPage[]): SheetFlag[] {
   const flags: SheetFlag[] = [];
   if (pages.some((p) => p.state === 'unreadable' || (p.reading && !p.reading.legible && !p.reading.blank))) flags.push('unreadable');
-  const numbers = [...new Set(pages.map((p) => p.reading?.pageNumber).filter((n): n is number => typeof n === 'number' && Number.isInteger(n) && n > 0))].sort((a, b) => a - b);
+  const printed = pages.map((p) => p.reading?.pageNumber).filter((n): n is number => typeof n === 'number' && Number.isInteger(n) && n > 0);
+  const numbers = [...new Set(printed)].sort((a, b) => a - b);
   if (numbers.length && (numbers[0] > 1 || numbers[numbers.length - 1] - numbers[0] + 1 > numbers.length)) flags.push('missing_page');
+  // A printed page number twice in one script (1, 2, 1, 2): two children's pages may have been kept as one.
+  if (numbers.length < printed.length) flags.push('identity');
   return flags;
 }
 
@@ -154,8 +161,9 @@ export function groupPages(all: readonly GroupPage[], mode: UploadMode): PageGro
   let lastFile = -1;
   for (const p of pages) {
     const newFile = p.fileNo !== lastFile;
-    // A child who writes their name on every page stays one script: only a first page of ANOTHER child starts one.
-    const split = (mode === 'per_file' && newFile) || (run.length > 0 && startsAnother(p.reading, current));
+    // A child who writes their name on every page stays one script: only a first page of ANOTHER child starts one. In
+    // "one file per child", a file whose first page shows no name or number takes the first one shown later.
+    const split = (mode === 'per_file' && newFile) || (run.length > 0 && (mode === 'combined' || current !== null) && startsAnother(p.reading, current));
     if (split && run.length) {
       runs.push(run);
       run = [];

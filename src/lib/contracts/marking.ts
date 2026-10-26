@@ -28,8 +28,10 @@ export type SheetState = (typeof SHEET_STATES)[number];
 //   unreadable    a page could not be read
 //   not_all_read  a question has no mark from the AI
 //   unsure        the AI was less sure than the school's line for at least one question
-//   changed       changed after it was approved: approve it again
-export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed'] as const;
+//   changed       changed after it was approved: approve it again (families do not see it, and the class is not
+//                 published, until then)
+//   check_child   matched by a roll or exam number alone (no name was read): check it is this child
+export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child'] as const;
 export type SheetFlag = (typeof SHEET_FLAGS)[number];
 
 export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'none'] as const;
@@ -49,6 +51,7 @@ export const MAX_PAGES_PER_FILE = 200;
 export const MAX_PAGES_PER_UPLOAD = 1500;
 export const MAX_QUESTIONS = 200;
 export const MAX_SHEET_PAGES = 40; // a script longer than this is split by the teacher, not sent to the AI whole
+export const MAX_MARKING_ATTEMPTS = 3; // the AI's tries at one script before a person asks again
 
 export type MarkingStep = { step: string; marks: number };
 
