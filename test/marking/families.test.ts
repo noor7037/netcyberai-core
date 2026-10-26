@@ -338,6 +338,24 @@ describe('the private report link (C351)', () => {
     expect(await withPlatformService((c) => readReport(c, reportKey))).not.toBeNull();
   });
 
+  it('consent withdrawn, or the child no longer on the roll, and the link opens nothing (review of AM-4)', async () => {
+    const { withPlatformService } = await import('@/lib/auth/db');
+    const { readReport } = await import('@/lib/marking/report-links');
+    // School A is not a test school, so its consent decides.
+    try {
+      expect(await withPlatformService((c) => readReport(c, reportKey))).not.toBeNull();
+      await q(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version, created_at) values ($1, $2, 'core_records', false, 'school_attested', 'v1', now() + interval '5 seconds')`, [A, S1]);
+      expect(await withPlatformService((c) => readReport(c, reportKey))).toBeNull();
+      expect((await reportRoute(reportKey, G1A)).status).toBe(404);
+      await q(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version, created_at) values ($1, $2, 'core_records', true, 'school_attested', 'v1', now() + interval '6 seconds')`, [A, S1]);
+      expect(await withPlatformService((c) => readReport(c, reportKey))).not.toBeNull();
+      await q(`update students set status = 'transferred' where student_id = $1`, [S1]);
+      expect(await withPlatformService((c) => readReport(c, reportKey))).toBeNull();
+    } finally {
+      await q(`update students set status = 'active' where student_id = $1`, [S1]);
+    }
+  });
+
   it('the public page shows one plain page for a key that opens nothing', async () => {
     const { renderToStaticMarkup } = await import('react-dom/server');
     const Page = (await import('@/app/results/[key]/page')).default;

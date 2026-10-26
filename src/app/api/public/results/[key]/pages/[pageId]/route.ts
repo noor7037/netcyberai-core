@@ -30,5 +30,5 @@ export async function GET(_req: Request, { params }: { params: { key: string; pa
     return UNAVAILABLE();
   }
   if (!bytes) return NOT_FOUND();
-  return new NextResponse(Buffer.from(bytes), { status: 200, headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'private, no-store', ...PRIVATE } });
+  return new NextResponse(Buffer.from(bytes), { status: 200, headers: { 'Content-Type': 'image/jpeg', 'Content-Disposition': 'inline', 'Content-Security-Policy': "default-src 'none'; sandbox", 'Cache-Control': 'private, no-store', ...PRIVATE } });
 }

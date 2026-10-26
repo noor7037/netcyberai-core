@@ -35,5 +35,6 @@ export async function GET(req: NextRequest, { params }: { params: { pageId: stri
     throw e;
   }
   if (!bytes) return NOT_FOUND();
-  return new NextResponse(Buffer.from(bytes), { status: 200, headers: { 'Content-Type': 'image/jpeg', 'Cache-Control': 'private, max-age=300', ...PRIVATE } });
+  // As the staff route answers (review of AM-4): a picture shown as a picture only, whatever its bytes also hold.
+  return new NextResponse(Buffer.from(bytes), { status: 200, headers: { 'Content-Type': 'image/jpeg', 'Content-Disposition': 'inline', 'Content-Security-Policy': "default-src 'none'; sandbox", 'Cache-Control': 'private, max-age=300', ...PRIVATE } });
 }
