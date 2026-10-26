@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { withPlatformService } from '@/lib/auth/db';
 import { DEFAULT_MAX_ATTEMPTS, LEASE_SECONDS, afterFailure, errorSummary, retryDelaySeconds } from './policy';
-import type { ClaimedJob, EnqueueResult, JobQueue, JobSpec, JobStatus, Sql } from './types';
+import type { ClaimTypes, ClaimedJob, EnqueueResult, JobQueue, JobSpec, JobStatus, Sql } from './types';
 
 // The Postgres outbox behind JobQueue (C97). Statements are fixed and
 // parameterized; `jobs` is reachable only as nca_super (platform service),
@@ -51,7 +51,7 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
     // Due work, oldest first. FOR UPDATE SKIP LOCKED: two runners at once
     // never take the same job. A running job whose lease ran out (its
     // worker died) is due again.
-    async claim(limit: number, onlyKeys?: string[]): Promise<ClaimedJob[]> {
+    async claim(limit: number, onlyKeys?: string[], types?: ClaimTypes): Promise<ClaimedJob[]> {
       return platform(async (db) => {
         const { rows } = await db.query<Row>(
           `with due as (
@@ -59,6 +59,8 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
              where ((status = 'pending' and next_run_at <= now())
                  or (status = 'running' and locked_until < now()))
                and ($2::text[] is null or idempotency_key = any($2::text[]))
+               and ($4::text[] is null or type = any($4::text[]))
+               and ($5::text[] is null or type <> all($5::text[]))
              order by next_run_at
              limit $1
              for update skip locked
@@ -69,7 +71,7 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
              from due
             where j.job_id = due.job_id
            returning j.job_id, j.type, j.payload, j.attempts, j.max_attempts, j.school_id, j.idempotency_key`,
-          [limit, onlyKeys && onlyKeys.length ? onlyKeys : null, LEASE_SECONDS]
+          [limit, onlyKeys && onlyKeys.length ? onlyKeys : null, LEASE_SECONDS, types?.only ? [...types.only] : null, types?.except ? [...types.except] : null]
         );
         return rows.map(toJob);
       });

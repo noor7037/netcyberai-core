@@ -17,6 +17,9 @@ export type AdapterRequest = {
   responseFormat?: 'json';
   // Where the instructions go, when the caller must choose (only the smoke test does, C320); otherwise the adapter's own.
   instructionsAs?: 'system' | 'user';
+  // The longest this call may take, set by the platform only for a profile with a long answer of its own (AI marking's
+  // two tasks, C349: up to 40 page pictures in, a long JSON answer out). Never above MAX_CALL_TIMEOUT_MS.
+  timeoutMs?: number;
 };
 
 export type AdapterFailure = 'http' | 'refused' | 'network' | 'bad_stream' | 'cut_short';
@@ -42,6 +45,16 @@ export const JSON_ONLY = 'Answer with one JSON object only, and nothing outside 
 export const CALL_TIMEOUT_MS = 60_000;
 // A whole answer (not streamed, C322) shows nothing until it is done, so it is given longer before it is given up (C323).
 export const WHOLE_ANSWER_TIMEOUT_MS = 120_000;
+// The most any one call may be given (a request's own timeoutMs): inside the job runner's 300 s route with room for
+// the job's reads and writes (src/lib/jobs/runner.ts, LONG_JOB_START_MS).
+export const MAX_CALL_TIMEOUT_MS = 240_000;
+
+// The time a call is given: the request's own limit when it has one (at least a second, at most MAX_CALL_TIMEOUT_MS),
+// else the adapter's usual one.
+export function callTimeoutMs(request: Pick<AdapterRequest, 'timeoutMs'>, usual: number): number {
+  const asked = request.timeoutMs;
+  return typeof asked === 'number' && Number.isFinite(asked) ? Math.min(MAX_CALL_TIMEOUT_MS, Math.max(1_000, Math.floor(asked))) : usual;
+}
 
 // ---- speech to text (M2-7, C281: voice input) ----------------------------------------------------------------------
 

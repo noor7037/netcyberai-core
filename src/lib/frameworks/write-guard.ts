@@ -202,6 +202,10 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // Always on: a school can ask for help whatever its account's state.
   ['tickets/**', 'raise-ticket'],
   ['tickets', 'raise-ticket'],
+  // am-2 begin
+  // AI answer-sheet marking (C347) is part of Exams: switched off, nobody uploads answer sheets or asks for marking.
+  ['marking/**', 'exams'],
+  // am-2 end
   ['views/**', 'any-module'],
   ['views', 'any-module'],
   ['bulk/**', 'checks-itself'],
@@ -355,6 +359,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['pulse/**', 'checks-itself'],
   ['tickets/**', 'raise-ticket'],
   ['tickets', 'raise-ticket'],
+  // am-2 begin
+  // AI answer-sheet marking (C347): a page picture of an answer sheet. Switched off with Exams.
+  ['marking/**', 'exams'],
+  // am-2 end
   // Drawn on by several modules' screens (the class chooser in Attendance,
   // staff names, a person's saved views, what the school has switched on).
   ['classes', 'any-module'],
