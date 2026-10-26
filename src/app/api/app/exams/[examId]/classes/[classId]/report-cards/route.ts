@@ -26,7 +26,7 @@ export async function GET(req: NextRequest, { params }: Params) {
   });
 }
 
-const STATUS: Partial<Record<string, number>> = { not_found: 404, published: 409, not_published: 409, not_entered: 409, no_scheme: 409, no_co_scholastic: 409 };
+const STATUS: Partial<Record<string, number>> = { not_found: 404, published: 409, not_published: 409, not_entered: 409, no_scheme: 409, scripts_changed: 409, no_co_scholastic: 409 };
 
 export async function POST(req: NextRequest, { params }: Params) {
   return appRoute(req, async ({ claims, db }) => {

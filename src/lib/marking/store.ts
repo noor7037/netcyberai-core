@@ -1,4 +1,4 @@
-import { ERROR_TYPES, MAX_SHEET_PAGES, type ErrorType, type MarkingLanguage, type MarkingPaper, type MarkingQuestion, type PageReading, type PageState, type SheetFlag, type SheetResult, type UploadMode } from '@/lib/contracts/marking';
+import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, MAX_SHEET_PAGES, type ErrorType, type MarkingLanguage, type MarkingPaper, type MarkingQuestion, type PageReading, type PageState, type SheetFlag, type SheetResult, type UploadMode } from '@/lib/contracts/marking';
 import type { Sql } from '@/lib/jobs/types';
 import { markingPaper, markingSettings, paperRoster } from './context';
 import { assignScripts, groupPages, type GroupPage } from './matching';
@@ -111,8 +111,10 @@ export type SheetToMark = {
 // Takes a script for marking: one waiting, failed (a retry) or left marking by a run that stopped. Null when it is not
 // one to mark (approved, set aside, already marked) or its paper's class is published.
 export async function takeSheetForMarking(db: Sql, schoolId: string, sheetId: string): Promise<SheetToMark | null> {
-  const row = (await db.query(`select sheet_id, paper_id, state from marking_sheets where school_id = $1 and sheet_id = $2 for update`, [schoolId, sheetId])).rows[0];
+  const row = (await db.query(`select sheet_id, paper_id, state, attempts from marking_sheets where school_id = $1 and sheet_id = $2 for update`, [schoolId, sheetId])).rows[0];
   if (!row || !['waiting', 'failed', 'marking'].includes(row.state)) return null;
+  // The AI's tries are bounded: after the last one, only a person's "Mark again" (which counts afresh) starts another.
+  if (Number(row.attempts) >= MAX_MARKING_ATTEMPTS) return null;
   const paper = await markingPaper(db, JOB_ACTOR(schoolId), row.paper_id as string);
   if (!paper || paper.published) return null;
   const setup = (await db.query(`select language, guidance, choice_counts from marking_setups where school_id = $1 and paper_id = $2`, [schoolId, paper.paperId])).rows[0];
@@ -180,7 +182,7 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
         place?.pageId ?? null, place ? Math.min(place.yFrom, place.yTo) : null, place ? Math.max(place.yFrom, place.yTo) : null]
     );
   }
-  const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable');
+  const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable' || f === 'check_child');
   const flags: SheetFlag[] = [...kept, ...(notAll ? (['not_all_read'] as const) : []), ...(unsure ? (['unsure'] as const) : [])];
   const practice = result.practice
     .filter((p) => short(p.text, 300))
