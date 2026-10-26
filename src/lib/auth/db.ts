@@ -301,7 +301,7 @@ export async function withSelfContext<T>(userId: string, fn: (client: PoolClient
 // own name" policy matches nothing, and the older policies that cast the
 // setting straight to a uuid (without nullif) still read a valid uuid, where an
 // empty string would make them fail.
-export const SCHOOL_JOBS = ['early_warning.nightly', 'auditor.weekly'] as const;
+export const SCHOOL_JOBS = ['early_warning.nightly', 'auditor.weekly', 'marking.pipeline'] as const;
 export type SchoolJob = (typeof SCHOOL_JOBS)[number];
 export const NO_PERSON = NIL_UUID;
 const SCHOOL_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

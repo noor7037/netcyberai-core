@@ -521,6 +521,19 @@ ALLOWED_PERMISSIVE = (
         ("family.focus_device_children", "focus_device_children_own"),
         ("family.focus_notices", "focus_notices_own"),
         # m2b-1 end
+        # c347 begin
+        # C347/C348/C351 (AI answer-sheet marking, exam numbers, report links): tenant isolation only; who reads and
+        # writes is narrowed by the RESTRICTIVE policies required below.
+        ("exam_withdrawals", "exam_withdrawals_tenant_isolation"),
+        ("exam_seat_numbers", "exam_seat_numbers_tenant_isolation"),
+        ("marking_setups", "marking_setups_tenant_isolation"),
+        ("marking_questions", "marking_questions_tenant_isolation"),
+        ("marking_uploads", "marking_uploads_tenant_isolation"),
+        ("marking_sheets", "marking_sheets_tenant_isolation"),
+        ("marking_pages", "marking_pages_tenant_isolation"),
+        ("marking_marks", "marking_marks_tenant_isolation"),
+        ("marking_report_links", "marking_report_links_tenant_isolation"),
+        # c347 end
     }
 )
 
@@ -1022,6 +1035,45 @@ REQUIRED_RESTRICTIVE = {
     ("family.focus_device_children", "focus_device_children_own_only"),
     ("family.focus_notices", "focus_notices_own_only"),
     # m2b-1 end
+    # c347 begin
+    # C347/C348/C351: staff read a paper's marking as they read the paper and write it as they may enter its marks, never
+    # once its class is published; a guardian reads only their own child's approved scripts of a publication in force;
+    # withdrawals and report links are the office's; exam numbers are the database's; and no mark is written in a job's
+    # session.
+    ("marking_setups", "marking_setups_readers"),
+    ("marking_setups", "marking_setups_writers"),
+    ("marking_setups", "marking_setups_changers"),
+    ("marking_setups", "marking_setups_removers"),
+    ("marking_questions", "marking_questions_readers"),
+    ("marking_questions", "marking_questions_writers"),
+    ("marking_questions", "marking_questions_changers"),
+    ("marking_questions", "marking_questions_removers"),
+    ("marking_uploads", "marking_uploads_readers"),
+    ("marking_uploads", "marking_uploads_writers"),
+    ("marking_uploads", "marking_uploads_changers"),
+    ("marking_uploads", "marking_uploads_removers"),
+    ("marking_sheets", "marking_sheets_readers"),
+    ("marking_sheets", "marking_sheets_writers"),
+    ("marking_sheets", "marking_sheets_changers"),
+    ("marking_sheets", "marking_sheets_removers"),
+    ("marking_pages", "marking_pages_readers"),
+    ("marking_pages", "marking_pages_writers"),
+    ("marking_pages", "marking_pages_changers"),
+    ("marking_pages", "marking_pages_removers"),
+    ("marking_marks", "marking_marks_readers"),
+    ("marking_marks", "marking_marks_writers"),
+    ("marking_marks", "marking_marks_changers"),
+    ("marking_marks", "marking_marks_removers"),
+    ("exam_withdrawals", "exam_withdrawals_readers"),
+    ("exam_withdrawals", "exam_withdrawals_by_office"),
+    ("exam_withdrawals", "exam_withdrawals_undone_by_office"),
+    ("exam_seat_numbers", "exam_seat_numbers_readers"),
+    ("marking_report_links", "marking_report_links_office"),
+    ("marking_report_links", "marking_report_links_made_by_office"),
+    ("marks", "marks_by_a_person_insert"),
+    ("marks", "marks_by_a_person_update"),
+    ("marks", "marks_by_a_person_delete"),
+    # c347 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

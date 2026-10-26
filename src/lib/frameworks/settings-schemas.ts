@@ -535,6 +535,75 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // p6-9e end
   // p6-9f begin
   // p6-9f end
+  // c347 begin
+  // AI answer-sheet marking (docs/35, C347, C351, C352): the school's own switch and lines. The plan's monthly page
+  // limit (Control) and Control's AI tasks decide whether the school may use it at all; these only narrow it.
+  {
+    moduleId: 'exams',
+    version: 1,
+    fields: [
+      {
+        key: 'ai_marking_on',
+        label: 'AI marks answer sheets',
+        help: 'On: teachers may upload a class’s answer sheets for the AI to mark, and then check and approve every mark themselves. Off: nobody uploads answer sheets, and marks are typed as before.',
+        section: 'AI marking',
+        type: 'boolean',
+        default: true,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'review_below',
+        label: 'Ask the teacher to check a script when the AI is less sure than this, in every 100',
+        help: 'A script with any answer the AI was less sure of than this is flagged, and must be checked and approved on its own, from 50 to 95.',
+        section: 'AI marking',
+        type: 'number',
+        default: 75,
+        min: 50,
+        max: 95,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'families_see_scripts',
+        label: 'Families see the checked answer sheets',
+        help: 'On: once a class’s result is published, its linked families and the private result link show each paper’s checked pages, the marks of every question and the teacher’s notes, for their own child only. Off: families see the published marks only.',
+        section: 'Families',
+        type: 'boolean',
+        default: true,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'children_see_results',
+        label: 'Children see their own published results in the Family app',
+        help: 'On: a linked child’s own view shows their published results, checked answer sheets (when families see them) and what to practise. Off: only the parent sees them.',
+        section: 'Families',
+        type: 'boolean',
+        default: true,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'support_below',
+        label: 'A child may need support below this percent on a paper',
+        help: 'In a paper’s class view, children whose approved marks are below this percent are listed for the teacher, in roll order and never ranked, from 0 to 100.',
+        section: 'Learning',
+        type: 'number',
+        default: 40,
+        min: 0,
+        max: 100,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
+  },
+  // c347 end
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin
