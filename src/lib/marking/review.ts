@@ -1,5 +1,5 @@
 import { writeAuditLog } from '@/lib/audit/log';
-import { ERROR_TYPES, PAGE_STATES, type ErrorType, type MarkingOverview, type MarkingPaper, type MarkingQuestion, type PageState, type QuestionResult, type RosterChild, type SheetChangeInput, type SheetDetail, type SheetFlag, type SheetRow, type SheetState } from '@/lib/contracts/marking';
+import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, PAGE_STATES, type ErrorType, type MarkingOverview, type MarkingPaper, type MarkingQuestion, type PageState, type QuestionResult, type RosterChild, type SheetChangeInput, type SheetDetail, type SheetFlag, type SheetRow, type SheetState } from '@/lib/contracts/marking';
 import { saveMarks, type SaveProblem } from '@/lib/exams/marks';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
@@ -196,7 +196,7 @@ export async function sheetDetail(db: Sql, actor: Actor, sheetId: string): Promi
 
 // ---- the teacher's changes ------------------------------------------------------------------------------------------
 
-export type ChangeProblem = 'not_allowed' | 'not_found' | 'closed' | 'marks' | 'words' | 'state';
+export type ChangeProblem = 'not_allowed' | 'not_found' | 'closed' | 'marks' | 'words' | 'state' | 'tries';
 export type ChangeResult = { ok: true } | { ok: false; reason: ChangeProblem; questionId?: string };
 
 // Words as sent: undefined (left as they are), null or empty (cleared), or at most `max` characters; 'bad' otherwise.
@@ -336,7 +336,8 @@ export async function setAside(db: Sql, actor: Actor, sheetId: string, aside: bo
 }
 
 // The teacher asks the AI to mark a script again: their own changes to it are cleared first, and it waits for the
-// marking job (the caller queues it once this transaction commits).
+// marking job (the caller queues it once this transaction commits). The AI's tries at one script are counted for good
+// (MAX_MARKING_ATTEMPTS): once they are used, the script is marked by hand.
 export async function askToMarkAgain(db: Sql, actor: Actor, sheetId: string): Promise<ChangeResult> {
   const loaded = await loadForChange(db, actor, sheetId);
   if (!loaded) return { ok: false, reason: 'not_found' };
@@ -346,8 +347,10 @@ export async function askToMarkAgain(db: Sql, actor: Actor, sheetId: string): Pr
   // A script the AI left waiting or marking for a quarter of an hour (a run that stopped) may be asked again too.
   const stale = (await db.query(`select updated_at < now() - interval '15 minutes' as stale from marking_sheets where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId])).rows[0]?.stale === true;
   if (!(['marked', 'failed'].includes(s.state) || (['waiting', 'marking'].includes(s.state) && stale))) return { ok: false, reason: 'state' };
+  const tries = Number((await db.query(`select attempts from marking_sheets where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId])).rows[0]?.attempts ?? 0);
+  if (tries >= MAX_MARKING_ATTEMPTS) return { ok: false, reason: 'tries' };
   await db.query(`update marking_marks set marks = null, note = null where school_id = $1 and sheet_id = $2 and (marks is not null or note is not null)`, [actor.schoolId, sheetId]);
-  await db.query(`update marking_sheets set state = 'waiting', failure = null, attempts = 0 where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
+  await db.query(`update marking_sheets set state = 'waiting', failure = null where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.mark_again', targetType: 'marking_sheets', targetId: sheetId, afterState: { paper_id: paper.paperId } });
   return { ok: true };
 }
