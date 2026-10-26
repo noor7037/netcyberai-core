@@ -3023,6 +3023,17 @@ const examsOn = async () => {
   examsEntitlementBefore = (await db.pg.query(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL])).rows[0] ?? null;
   await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'exams', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [SCHOOL]);
 };
+// Puts the exams module back as examsOn() found it, and nothing else.
+const examsPutBackOnly = async () => {
+  if (examsEntitlementBefore === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL]);
+  else await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3 where school_id = $1 and module_id = 'exams'`, [SCHOOL, examsEntitlementBefore.enabled, examsEntitlementBefore.source]);
+};
+// The settings screen with Exams on (C347), at its Exams section.
+const settingsExams = async (page) => {
+  await examsOn();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-settings-module="exams"]').scrollIntoViewIfNeeded();
+};
 const clearGrading = async () => {
   await db.pg.exec(`set session_replication_role = replica;
     delete from grading_schemes where school_id = '${SCHOOL}';
@@ -6421,6 +6432,8 @@ const SCREENS = [
   ['teacher', 'app-parents-teacher', '/app/parents', parentsTeacher, parentsTeacherDone],
   ['principal', 'app-taught-today', '/app/syllabus'],
   ['principal', 'app-settings', '/app/settings', settingsLateFee, settingsLateFeeDone],
+  // C347: Exams has settings of its own (AI marking and what families see); shown while the module is on.
+  ['principal', 'app-settings-exams', '/app/settings', settingsExams, examsPutBackOnly],
   ['teacher', 'app-settings-teacher', '/app/settings', settingsReadOnly],
   ['principal', 'app-settings-holidays', '/app/settings', addHoliday, addHolidayDone],
   ['principal', 'app-settings-payments', '/app/settings', saveGatewayKeys, saveGatewayKeysDone],

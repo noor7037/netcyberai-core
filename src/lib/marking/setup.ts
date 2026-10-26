@@ -135,7 +135,7 @@ export async function saveSetup(db: Sql, actor: Actor, paperId: string, raw: unk
       before.length === clean.length &&
       clean.every((q, i) => {
         const b = before[i];
-        return b && b.label.toLowerCase() === q.label.toLowerCase() && b.component === q.component && b.maxMarks === q.maxMarks && b.choiceGroup === q.choiceGroup;
+        return b && b.label === q.label && b.component === q.component && b.maxMarks === q.maxMarks && b.choiceGroup === q.choiceGroup;
       });
     if (!same) return { ok: false, reason: 'locked' };
   }
