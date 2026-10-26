@@ -367,6 +367,7 @@ describe('the address is never indexed (C351)', () => {
   it('the private link is kept out of search by its own answers (noindex, no-store), never by robots.txt; the sitemap never lists it', async () => {
     // Search engines are never blocked in robots.txt (the SEO audit holds it): a blocked address cannot be fetched, so
     // its noindex would never be seen. The page and its pictures say noindex and no-store themselves.
+    // @ts-expect-error -- a plain .js config, no types
     const config = (await import('../../next.config.js')).default as { headers: () => Promise<{ source: string; headers: { key: string; value: string }[] }[]> };
     const rule = (await config.headers()).find((h) => h.source === '/results/:path*');
     expect(rule?.headers).toEqual(expect.arrayContaining([{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }, { key: 'Cache-Control', value: 'private, no-store, max-age=0' }]));
