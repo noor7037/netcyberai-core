@@ -203,8 +203,11 @@ describe('the offers consent', () => {
   it('a tap is recorded against the notice that names offers', async () => {
     expect(FAMILY_NOTICE_VERSION).toBe('fam-notice-2');
     await recordParentTap(h.db.pg, MEERA, 'offers', false);
-    const [row] = await q(`select granted, notice_version from family.consents where account_id = $1 and purpose = 'offers' order by created_at desc limit 1`, [MEERA]);
-    expect(row).toEqual({ granted: false, notice_version: 'fam-notice-2' });
+    // Both rows can carry the same instant in the test database (its clock is coarser), so "newest first" cannot pick
+    // between them: the tap's own row is looked for among the account's rows.
+    const rows = await q(`select granted, notice_version from family.consents where account_id = $1 and purpose = 'offers'`, [MEERA]);
+    expect(rows).toHaveLength(2);
+    expect(rows).toContainEqual({ granted: false, notice_version: 'fam-notice-2' });
   });
 });
 
