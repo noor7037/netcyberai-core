@@ -19,7 +19,7 @@ describe('the words and the answers', () => {
     expect(definitionProblem(t)).toBeNull();
     expect(t.purpose).toBe('daily_pulse');
     expect(oneLine('5-A, Maths: today the class learned “Fractions”.\nHomework: Exercise 4.\t Due on 14 October.')).toBe('5-A, Maths: today the class learned “Fractions”. Homework: Exercise 4. Due on 14 October.');
-    expect(renderTemplate(t.body.en, { school: 'School A', update: 'x' })).toBe('School A: x Reply 1 if your child understood today’s lesson, or 2 if your child needs help.');
+    expect(renderTemplate(t.body.en, { school: 'School A', update: 'x' })).toBe('From School A: x Reply 1 if your child understood today’s lesson, or 2 if your child needs help.');
   });
   it('an answer is one of two things, said plainly; anything else is just a message', () => {
     for (const yes of ['1', ' 1 ', 'Understood', 'समझ गए']) expect(pulseAnswer(yes), yes).toBe('understood');

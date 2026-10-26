@@ -733,20 +733,20 @@ const messageTemplates = async (page) => {
   await page.locator('[data-templates-sync]').click();
   await page.locator('[data-template="fee_receipt"]').waitFor({ timeout: 20000 });
   const versions = await page.locator('[data-template-version]').count();
-  const firstLines = await page.locator('[data-template-version] p[lang]').evaluateAll((els) => els.map((e) => e.textContent.startsWith('{{school}}: ')));
-  const card = page.locator('[data-template="fee_receipt"] [data-template-version="en-1"]');
+  const firstLines = await page.locator('[data-template-version] p[lang]:not([data-template-no-words])').evaluateAll((els) => els.map((e) => /^(From \{\{school\}\}: |स्कूल \{\{school\}\} की ओर से: )/.test(e.textContent)));
+  const card = page.locator('[data-template="fee_receipt"] [data-template-version="en-2"]');
   await card.locator('[data-template-approve]').click();
   await page.locator('[data-templates-note]').waitFor({ timeout: 20000 });
-  await page.waitForFunction(() => /one sent/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-1"]')?.textContent ?? ''), null, { timeout: 20000 });
+  await page.waitForFunction(() => /one sent/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-2"]')?.textContent ?? ''), null, { timeout: 20000 });
   await card.locator('[data-template-meta]').click();
   await card.locator('select').selectOption('pending');
   await card.locator('input').fill('made-up-meta-id');
   await card.locator('[data-template-meta-save]').click();
-  await page.waitForFunction(() => /With Meta/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-1"]')?.textContent ?? ''), null, { timeout: 20000 });
+  await page.waitForFunction(() => /With Meta/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-2"]')?.textContent ?? ''), null, { timeout: 20000 });
   templatesSeen = { versions, allNameSchoolFirst: firstLines.length > 0 && firstLines.every(Boolean) };
 };
 const messageTemplatesDone = async () => {
-  const row = (await db.pg.query(`select status::text as status, approved_by, meta_status, meta_template_id from whatsapp_templates where template_name = 'fee_receipt' and language = 'en' and version = 1`)).rows[0];
+  const row = (await db.pg.query(`select status::text as status, approved_by, meta_status, meta_template_id from whatsapp_templates where template_name = 'fee_receipt' and language = 'en' and version = 2`)).rows[0];
   const total = (await db.pg.query(`select count(*)::int as n from whatsapp_templates where school_id is null`)).rows[0].n;
   await clearTemplates();
   if (row?.status !== 'approved' || row.approved_by !== PEOPLE.founder.sub || row.meta_status !== 'pending' || row.meta_template_id !== 'made-up-meta-id') throw new Error(`the template was not approved and Meta's decision recorded: ${JSON.stringify(row)}`);

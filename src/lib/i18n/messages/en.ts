@@ -1428,7 +1428,7 @@ export const en = {
   'tpl.review.done': 'Recorded. This Hindi version can now be sent once it is approved.',
   'tpl.sendsNow': 'This version is the one sent',
   'tpl.notInCode': 'These words are no longer in the code',
-  'tpl.noWords': 'This row is from before versions and has no words yet. Bring in the versions written in the code.',
+  'tpl.noWords': 'This row is from before versions and has no words, so it never sends. A newer version, once approved, takes its place.',
   'tpl.detail': '{category} · valid {minutes} min · approved by {by} · Meta id {metaId}',
   'tpl.approve': 'Approve',
   'tpl.approved': 'Approved. This version can be sent.',

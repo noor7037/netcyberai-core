@@ -34,7 +34,7 @@ import { createPgJobQueue, retryDeadJob } from '@/lib/jobs/pg-queue';
 import { runJobs } from '@/lib/jobs/runner';
 import { BACKLOG_AFTER_MINUTES } from '@/lib/observability/health';
 import { indiaDate } from '@/lib/time/india';
-import { decideTemplate, recordMetaDecision } from '@/lib/whatsapp/templates';
+import { SCHOOL_PREFIX, decideTemplate, recordMetaDecision, type TemplateLanguage } from '@/lib/whatsapp/templates';
 
 describe('what may be shown of an error or a reason', () => {
   it('cuts an email address and anything that looks like a phone number, however it is written', () => {
@@ -186,7 +186,7 @@ describe('on the real schema', () => {
   let templatesAtStart: Monitoring['templates'];
   // One version of a platform template, in one language, with our decision and Meta's.
   const template = (name: string, language: string, status: string, meta: string, version = 1) =>
-    db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_status) values (null, $1, $5, $2, '{{school}}: made-up words for the monitoring test.', '{school}', 'utility', 60, $3::whatsapp_template_status, $4)`, [name, language, status, meta, version]);
+    db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_status) values (null, $1, $5, $2, $6, '{school}', 'utility', 60, $3::whatsapp_template_status, $4)`, [name, language, status, meta, version, `${SCHOOL_PREFIX[language as TemplateLanguage]}made-up words for the monitoring test.`]);
 
   beforeAll(async () => {
     db = await startHarnessDb({ port: 0 });

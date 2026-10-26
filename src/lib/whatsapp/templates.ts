@@ -12,11 +12,20 @@ import type { Sql } from '@/lib/jobs/types';
 // at NetCyberAI read the words) and Meta's (recorded from Business Manager).
 //
 //   - New words are a NEW VERSION. A version's words never change.
-//   - EVERY template's first line names the school: the body begins
-//     "{{school}}: ". One platform number serves every school, so a parent
-//     must see at once which school is writing (C183). The gate fills
-//     {{school}} itself from the school's own name; no caller can leave it
-//     out or put another name in.
+//   - EVERY template names the school first: the body begins "From
+//     {{school}}: " (Hindi: "स्कूल {{school}} की ओर से: "). One platform
+//     number serves every school, so a parent must see at once which school
+//     is writing (C183). The gate fills {{school}} itself from the school's
+//     own name; no caller can leave it out or put another name in.
+//   - Every body is in Meta's shape (C344; the supervisor's brief of
+//     2026-10-26): it neither begins nor ends with a placeholder, no
+//     placeholder appears twice or right next to another, there are at least
+//     three words for each placeholder, at most 1024 characters and at most
+//     one blank line between paragraphs. Meta refuses a template otherwise.
+//     metaShapeProblem() holds every version to it, and the tests run it.
+//   - Meta numbers the placeholders {{1}}, {{2}}, ... in the order of
+//     `variables`: attendance_absence_notification v2 (en) is word for word
+//     the body Meta approved (From {{1}}: {{2}} was marked absent on {{3}}. ...).
 //   - No template carries more about a child than its purpose needs.
 
 export const TEMPLATE_LANGUAGES = ['en', 'hi'] as const;
@@ -31,266 +40,267 @@ export type TemplateDefinition = {
   variables: readonly string[];
   body: Record<TemplateLanguage, string>;
 };
-export const SCHOOL_PREFIX = '{{school}}: ';
+// How every body begins: the school's name, after words of its own (Meta refuses a body that begins with a placeholder).
+export const SCHOOL_PREFIX: Record<TemplateLanguage, string> = { en: 'From {{school}}: ', hi: 'स्कूल {{school}} की ओर से: ' };
 
 export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
   {
     name: 'attendance_absence_notification',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 600,
     variables: ['school', 'child', 'date'],
     body: {
-      en: '{{school}}: {{child}} was marked absent on {{date}}. If this is a mistake, or {{child}} is unwell, please tell the school office.',
-      hi: '{{school}}: {{child}} को {{date}} को अनुपस्थित दर्ज किया गया है। अगर यह ग़लती है, या {{child}} अस्वस्थ हैं, तो कृपया स्कूल दफ़्तर को बताएँ।',
+      en: 'From {{school}}: {{child}} was marked absent on {{date}}. If this is a mistake, or your child is unwell, please tell the school office.',
+      hi: 'स्कूल {{school}} की ओर से: {{child}} को {{date}} को अनुपस्थित दर्ज किया गया है। अगर यह ग़लती है, या आपका बच्चा अस्वस्थ है, तो कृपया स्कूल दफ़्तर को बताएँ।',
     },
   },
   {
     name: 'fee_reminder',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'amount', 'due_date', 'pay_link'],
     body: {
-      en: '{{school}}: School fees of ₹{{amount}} are due on {{due_date}}. See what is due and pay here: {{pay_link}} If you have already paid, please ignore this message.',
-      hi: '{{school}}: ₹{{amount}} की स्कूल फ़ीस {{due_date}} को देय है। क्या देय है यह देखें और यहाँ भुगतान करें: {{pay_link}} अगर आप भुगतान कर चुके हैं, तो कृपया इस संदेश को अनदेखा करें।',
+      en: 'From {{school}}: School fees of ₹{{amount}} are due on {{due_date}}. See what is due and pay here: {{pay_link}} If you have already paid, please ignore this message.',
+      hi: 'स्कूल {{school}} की ओर से: ₹{{amount}} की स्कूल फ़ीस {{due_date}} को देय है। क्या देय है यह देखें और यहाँ भुगतान करें: {{pay_link}} अगर आप भुगतान कर चुके हैं, तो कृपया इस संदेश को अनदेखा करें।',
     },
   },
   {
     name: 'fee_overdue',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'amount', 'due_date', 'pay_link'],
     body: {
-      en: '{{school}}: School fees of ₹{{amount}} were due on {{due_date}} and are still unpaid. See what is due and pay here: {{pay_link}} If you need more time, please tell the school office.',
-      hi: '{{school}}: ₹{{amount}} की स्कूल फ़ीस {{due_date}} को देय थी और अभी बाक़ी है। क्या देय है यह देखें और यहाँ भुगतान करें: {{pay_link}} अगर आपको और समय चाहिए, तो कृपया स्कूल दफ़्तर को बताएँ।',
+      en: 'From {{school}}: School fees of ₹{{amount}} were due on {{due_date}} and are still unpaid. See what is due and pay here: {{pay_link}} If you need more time, please tell the school office.',
+      hi: 'स्कूल {{school}} की ओर से: ₹{{amount}} की स्कूल फ़ीस {{due_date}} को देय थी और अभी बाक़ी है। क्या देय है यह देखें और यहाँ भुगतान करें: {{pay_link}} अगर आपको और समय चाहिए, तो कृपया स्कूल दफ़्तर को बताएँ।',
     },
   },
   {
     name: 'fee_payment_initiated',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 720,
     variables: ['school', 'amount', 'utr_last4'],
     body: {
-      en: '{{school}}: We have noted your UPI payment of ₹{{amount}} (UTR ending {{utr_last4}}). The school will check it in its bank account and then send your receipt. Nothing more is needed from you now.',
-      hi: '{{school}}: हमने आपका ₹{{amount}} का UPI भुगतान (UTR के आख़िरी अंक {{utr_last4}}) दर्ज कर लिया है। स्कूल इसे अपने बैंक खाते में जाँचकर आपकी रसीद भेजेगा। अभी आपको और कुछ नहीं करना है।',
+      en: 'From {{school}}: We have noted your UPI payment of ₹{{amount}} (UTR ending {{utr_last4}}). The school will check it in its bank account and then send your receipt. Nothing more is needed from you now.',
+      hi: 'स्कूल {{school}} की ओर से: हमने आपका ₹{{amount}} का UPI भुगतान (UTR के आख़िरी अंक {{utr_last4}}) दर्ज कर लिया है। स्कूल इसे अपने बैंक खाते में जाँचकर आपकी रसीद भेजेगा। अभी आपको और कुछ नहीं करना है।',
     },
   },
   {
     name: 'fee_receipt',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 2880,
     variables: ['school', 'amount', 'receipt_no'],
     body: {
-      en: '{{school}}: Received ₹{{amount}}. Your receipt number is {{receipt_no}}. Thank you.',
-      hi: '{{school}}: ₹{{amount}} प्राप्त हुए। आपकी रसीद संख्या {{receipt_no}} है। धन्यवाद।',
+      en: 'From {{school}}: We have received your payment of ₹{{amount}}. Your receipt number is {{receipt_no}}. Thank you. Please keep this message for your records.',
+      hi: 'स्कूल {{school}} की ओर से: आपका ₹{{amount}} का भुगतान मिल गया है। आपकी रसीद संख्या {{receipt_no}} है। धन्यवाद। कृपया यह संदेश अपने रिकॉर्ड के लिए रखें।',
     },
   },
   {
     // The day's update for a class, in the school's own words for that day, marked ready and sent by a person.
     name: 'daily_pulse',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'daily_pulse',
     staleAfterMinutes: 600,
     variables: ['school', 'update'],
     body: {
-      en: '{{school}}: {{update}} Reply 1 if your child understood today’s lesson, or 2 if your child needs help.',
-      hi: '{{school}}: {{update}} अगर आपके बच्चे को आज का पाठ समझ आया तो 1 लिखें, और अगर मदद चाहिए तो 2 लिखें।',
+      en: 'From {{school}}: {{update}} Reply 1 if your child understood today’s lesson, or 2 if your child needs help.',
+      hi: 'स्कूल {{school}} की ओर से: {{update}} अगर आपके बच्चे को आज का पाठ समझ आया तो 1 लिखें, और अगर मदद चाहिए तो 2 लिखें।',
     },
   },
   {
     // A notice written by staff and approved by the principal, for one class or for every class.
     name: 'class_notice',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'class', 'notice'],
     body: {
-      en: '{{school}}: Notice for {{class}}. {{notice}}',
-      hi: '{{school}}: {{class}} के लिए सूचना। {{notice}}',
+      en: 'From {{school}}: Notice for {{class}}. {{notice}} For any question, please contact the school office.',
+      hi: 'स्कूल {{school}} की ओर से: {{class}} के लिए सूचना। {{notice}} कोई सवाल हो तो कृपया स्कूल दफ़्तर से संपर्क करें।',
     },
   },
   {
     // Parent-teacher meetings (C193): one a guardian and teacher; the parent books by replying with a time.
     name: 'ptm_invitation',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 2880,
     variables: ['school', 'date', 'teacher', 'children', 'from', 'to'],
     body: {
-      en: '{{school}}: Parent-teacher meeting on {{date}}. {{teacher}} would like to meet you about {{children}}, between {{from}} and {{to}}. Reply with the time that suits you, for example 10:30, to book it.',
-      hi: '{{school}}: {{date}} को अभिभावक-शिक्षक बैठक है। {{teacher}} आपसे {{children}} के बारे में {{from}} से {{to}} के बीच मिलना चाहते हैं। जो समय आपको ठीक लगे वह लिखकर भेजें, जैसे 10:30, और वह आपके लिए तय हो जाएगा।',
+      en: 'From {{school}}: Parent-teacher meeting on {{date}}. {{teacher}} would like to meet you about {{children}}, between {{from}} and {{to}}. Reply with the time that suits you, for example 10:30, to book it.',
+      hi: 'स्कूल {{school}} की ओर से: {{date}} को अभिभावक-शिक्षक बैठक है। {{teacher}} आपसे {{children}} के बारे में {{from}} से {{to}} के बीच मिलना चाहते हैं। जो समय आपको ठीक लगे वह लिखकर भेजें, जैसे 10:30, और वह आपके लिए तय हो जाएगा।',
     },
   },
   {
     name: 'ptm_booked',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'date', 'time', 'teacher'],
     body: {
-      en: '{{school}}: Your meeting with {{teacher}} is booked for {{time}} on {{date}}. To change it, reply with another time.',
-      hi: '{{school}}: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर तय है। बदलने के लिए दूसरा समय लिखकर भेजें।',
+      en: 'From {{school}}: Your meeting with {{teacher}} is booked for {{time}} on {{date}}. To change it, reply with another time.',
+      hi: 'स्कूल {{school}} की ओर से: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर तय है। बदलने के लिए दूसरा समय लिखकर भेजें।',
     },
   },
   {
     name: 'ptm_time_not_free',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 720,
     variables: ['school', 'teacher', 'times'],
     body: {
-      en: '{{school}}: That time is not free with {{teacher}}. Free times: {{times}}. Reply with one of them to book it.',
-      hi: '{{school}}: {{teacher}} के साथ वह समय ख़ाली नहीं है। ख़ाली समय: {{times}}। इनमें से एक लिखकर भेजें।',
+      en: 'From {{school}}: That time is not free with {{teacher}}. The free times are {{times}}. Reply with one of them to book it.',
+      hi: 'स्कूल {{school}} की ओर से: {{teacher}} के साथ वह समय ख़ाली नहीं है। ख़ाली समय ये हैं: {{times}}। इनमें से एक लिखकर भेजें।',
     },
   },
   {
     name: 'ptm_reminder',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 900,
     variables: ['school', 'date', 'time', 'teacher'],
     body: {
-      en: '{{school}}: A reminder: your meeting with {{teacher}} is at {{time}} on {{date}}.',
-      hi: '{{school}}: याद दिला दें: {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर है।',
+      en: 'From {{school}}: A reminder that your meeting with {{teacher}} is at {{time}} on {{date}}. Please be on time.',
+      hi: 'स्कूल {{school}} की ओर से: याद दिला दें कि {{teacher}} के साथ आपकी बैठक {{date}} को {{time}} पर है। कृपया समय पर आएँ।',
     },
   },
   {
     name: 'ptm_cancelled',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'date', 'teacher'],
     body: {
-      en: '{{school}}: The parent-teacher meeting on {{date}} has been cancelled, so your meeting with {{teacher}} will not take place. We are sorry for the change.',
-      hi: '{{school}}: {{date}} की अभिभावक-शिक्षक बैठक रद्द हो गई है, इसलिए {{teacher}} के साथ आपकी बैठक नहीं होगी। बदलाव के लिए खेद है।',
+      en: 'From {{school}}: The parent-teacher meeting on {{date}} has been cancelled, so your meeting with {{teacher}} will not take place. We are sorry for the change.',
+      hi: 'स्कूल {{school}} की ओर से: {{date}} की अभिभावक-शिक्षक बैठक रद्द हो गई है, इसलिए {{teacher}} के साथ आपकी बैठक नहीं होगी। बदलाव के लिए खेद है।',
     },
   },
   {
     // School events (C194): to the guardians of the invited classes only; YES and NO are counted.
     name: 'event_invitation',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 2880,
     variables: ['school', 'title', 'when', 'details'],
     body: {
-      en: '{{school}}: {{title}} on {{when}}. {{details}} Reply YES if you will come, or NO if you cannot.',
-      hi: '{{school}}: {{when}} को {{title}}। {{details}} आएँगे तो YES लिखकर भेजें, नहीं आ सकेंगे तो NO।',
+      en: 'From {{school}}: You are invited to {{title}} on {{when}}. {{details}} Reply YES if you will come, or NO if you cannot.',
+      hi: 'स्कूल {{school}} की ओर से: आपको {{when}} को {{title}} में बुलाया गया है। {{details}} आएँगे तो YES लिखकर भेजें, नहीं आ सकेंगे तो NO।',
     },
   },
   {
     name: 'event_reminder',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 900,
     variables: ['school', 'title', 'when'],
     body: {
-      en: '{{school}}: A reminder: {{title}} is on {{when}}.',
-      hi: '{{school}}: याद दिला दें: {{title}} {{when}} को है।',
+      en: 'From {{school}}: A reminder that {{title}} is on {{when}}. We look forward to seeing you.',
+      hi: 'स्कूल {{school}} की ओर से: याद दिला दें कि {{when}} को {{title}} है। हमें आपका इंतज़ार रहेगा।',
     },
   },
   {
     name: 'event_cancelled',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'title', 'when'],
     body: {
-      en: '{{school}}: {{title}} on {{when}} has been cancelled. We are sorry for the change.',
-      hi: '{{school}}: {{when}} का {{title}} रद्द हो गया है। बदलाव के लिए खेद है।',
+      en: 'From {{school}}: {{title}} on {{when}} has been cancelled. We are sorry for the change.',
+      hi: 'स्कूल {{school}} की ओर से: {{when}} का {{title}} रद्द हो गया है। बदलाव के लिए खेद है।',
     },
   },
   {
     // Complaints (C195): the parent is told at each step: noted, passed to the principal, closed with what was done.
     name: 'complaint_received',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'ref', 'owner', 'due'],
     body: {
-      en: '{{school}}: We have noted your concern (reference {{ref}}). {{owner}} will look into it and reply to you by {{due}}.',
-      hi: '{{school}}: हमने आपकी बात दर्ज कर ली है (संदर्भ {{ref}})। {{owner}} इसे देखेंगे और {{due}} तक आपको जवाब देंगे।',
+      en: 'From {{school}}: We have noted your concern (reference {{ref}}). {{owner}} will look into it and reply to you by {{due}}. Thank you for telling us.',
+      hi: 'स्कूल {{school}} की ओर से: हमने आपकी बात दर्ज कर ली है (संदर्भ {{ref}})। {{owner}} इसे देखेंगे और {{due}} तक आपको जवाब देंगे। हमें बताने के लिए धन्यवाद।',
     },
   },
   {
     name: 'complaint_escalated',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'ref'],
     body: {
-      en: '{{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the principal, who will look into it.',
-      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे प्रिंसिपल को सौंप दिया गया है, जो इसे देखेंगे।',
+      en: 'From {{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the principal, who will look into it.',
+      hi: 'स्कूल {{school}} की ओर से: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे प्रिंसिपल को सौंप दिया गया है, जो इसे देखेंगे।',
     },
   },
   {
     // Overdue, and about the principal: it passes to the school admin, so the words do not name the principal (C200).
     name: 'complaint_escalated_office',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'ref'],
     body: {
-      en: '{{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the school office, who will look into it.',
-      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे स्कूल कार्यालय को सौंप दिया गया है, जो इसे देखेगा।',
+      en: 'From {{school}}: Your concern (reference {{ref}}) has not been settled in time, so it has been passed to the school office, who will look into it.',
+      hi: 'स्कूल {{school}} की ओर से: आपकी बात (संदर्भ {{ref}}) समय पर नहीं सुलझी, इसलिए इसे स्कूल कार्यालय को सौंप दिया गया है, जो इसे देखेगा।',
     },
   },
   {
     name: 'complaint_closed',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'ref', 'note'],
     body: {
-      en: '{{school}}: About your concern (reference {{ref}}): {{note}} If this does not settle it, reply to this message.',
-      hi: '{{school}}: आपकी बात (संदर्भ {{ref}}) के बारे में: {{note}} अगर इससे बात न सुलझे, तो इस संदेश का जवाब दें।',
+      en: 'From {{school}}: About your concern (reference {{ref}}): {{note}} If this does not settle it, reply to this message.',
+      hi: 'स्कूल {{school}} की ओर से: आपकी बात (संदर्भ {{ref}}) के बारे में: {{note}} अगर इससे बात न सुलझे, तो इस संदेश का जवाब दें।',
     },
   },
   {
     // Parent AI v1 (C196): an answer to "what can I do at home?", read and approved by a person before it goes.
     name: 'home_help',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 1440,
     variables: ['school', 'child', 'answer'],
     body: {
-      en: '{{school}}: What you can do at home for {{child}}. {{answer}}',
-      hi: '{{school}}: {{child}} के लिए आप घर पर क्या कर सकते हैं। {{answer}}',
+      en: 'From {{school}}: What you can do at home for {{child}}. {{answer}} If you have a question, please ask the school office.',
+      hi: 'स्कूल {{school}} की ओर से: {{child}} के लिए आप घर पर क्या कर सकते हैं। {{answer}} कोई सवाल हो तो कृपया स्कूल दफ़्तर से पूछें।',
     },
   },
   {
     name: 'messages_stopped',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'core_records',
     staleAfterMinutes: 60,
     variables: ['school'],
     body: {
-      en: '{{school}}: You will not get WhatsApp messages from the school any more. To start them again, please tell the school office.',
-      hi: '{{school}}: अब आपको स्कूल से WhatsApp संदेश नहीं मिलेंगे। इन्हें फिर शुरू करने के लिए कृपया स्कूल दफ़्तर को बताएँ।',
+      en: 'From {{school}}: You will not get WhatsApp messages from the school any more. To start them again, please tell the school office.',
+      hi: 'स्कूल {{school}} की ओर से: अब आपको स्कूल से WhatsApp संदेश नहीं मिलेंगे। इन्हें फिर शुरू करने के लिए कृपया स्कूल दफ़्तर को बताएँ।',
     },
   },
   {
@@ -298,34 +308,61 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
     // the office and sent by a person. The parent's reply in this conversation is kept with the request. The
     // details are a name, a date of birth or a gender only: never an Aadhaar number (the app and the database refuse one).
     name: 'data_check_request',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 2880,
     variables: ['school', 'child', 'details'],
     body: {
-      en: '{{school}}: For UDISE+ and APAAR, {{child}}’s details in the school record must match Aadhaar. These differ: {{details}}. Please reply here with the correct details, or tell the school office. Please do not send the Aadhaar number.',
-      hi: '{{school}}: UDISE+ और APAAR के लिए {{child}} का स्कूल रिकॉर्ड आधार से मेल खाना चाहिए। ये अलग हैं: {{details}}। कृपया यहीं सही जानकारी लिखकर भेजें, या स्कूल दफ़्तर को बताएँ। कृपया आधार नंबर न भेजें।',
+      en: 'From {{school}}: For UDISE+ and APAAR, {{child}}’s details in the school record must match Aadhaar. These differ: {{details}}. Please reply here with the correct details, or tell the school office. Please do not send the Aadhaar number.',
+      hi: 'स्कूल {{school}} की ओर से: UDISE+ और APAAR के लिए {{child}} का स्कूल रिकॉर्ड आधार से मेल खाना चाहिए। ये अलग हैं: {{details}}। कृपया यहीं सही जानकारी लिखकर भेजें, या स्कूल दफ़्तर को बताएँ। कृपया आधार नंबर न भेजें।',
     },
   },
   {
     // Certificates (C228): a certificate issued from the record, sent to the family by a person. The link opens the
     // PDF for 30 days while the certificate stands; nothing about the child is in the words beyond the name and number.
     name: 'certificate_issued',
-    version: 1,
+    version: 2,
     category: 'utility',
     purpose: 'operational_communication',
     staleAfterMinutes: 2880,
     variables: ['school', 'child', 'certificate', 'number', 'link'],
     body: {
-      en: '{{school}}: {{child}}’s {{certificate}} (No. {{number}}) is ready. Download the PDF here: {{link}} The signed paper can be collected from the school office.',
-      hi: '{{school}}: {{child}} का {{certificate}} (संख्या {{number}}) तैयार है। PDF यहाँ से डाउनलोड करें: {{link}} हस्ताक्षर वाला काग़ज़ स्कूल दफ़्तर से लिया जा सकता है।',
+      en: 'From {{school}}: {{child}}’s {{certificate}} (No. {{number}}) is ready. Download the PDF here: {{link}} The signed paper can be collected from the school office.',
+      hi: 'स्कूल {{school}} की ओर से: {{child}} का {{certificate}} (संख्या {{number}}) तैयार है। PDF यहाँ से डाउनलोड करें: {{link}} हस्ताक्षर वाला काग़ज़ स्कूल दफ़्तर से लिया जा सकता है।',
     },
   },
 ];
 
 const VARIABLE = /\{\{([a-z0-9_]+)\}\}/g;
 export const variablesIn = (body: string): string[] => [...new Set([...body.matchAll(VARIABLE)].map((m) => m[1]))];
+
+// Meta's rules for a template's body, in words; null when it keeps them all (C344).
+export const WORDS_PER_PLACEHOLDER = 3;
+export function metaShapeProblem(body: string): string | null {
+  const found = [...body.matchAll(VARIABLE)];
+  if (body.length > 1024) return 'is longer than 1024 characters';
+  if (/\n\s*\n\s*\n/.test(body)) return 'has more than one blank line between paragraphs';
+  if (!found.length) return null;
+  const word = /\p{L}/u;
+  if (!word.test(body.slice(0, found[0].index))) return 'begins with a placeholder';
+  const last = found[found.length - 1];
+  if (!word.test(body.slice((last.index ?? 0) + last[0].length))) return 'ends with a placeholder';
+  const names = found.map((m) => m[1]);
+  if (new Set(names).size !== names.length) return 'uses a placeholder more than once';
+  for (let i = 1; i < found.length; i++) {
+    const between = body.slice((found[i - 1].index ?? 0) + found[i - 1][0].length, found[i].index);
+    if (between.trim() === '') return `has {{${found[i - 1][1]}}} and {{${found[i][1]}}} next to each other`;
+  }
+  const words = body.replace(VARIABLE, ' ').split(/\s+/).filter((w) => word.test(w)).length;
+  if (words < WORDS_PER_PLACEHOLDER * found.length) return `has ${found.length} placeholders for ${words} words (at least ${WORDS_PER_PLACEHOLDER} words each)`;
+  return null;
+}
+
+// Meta's numbered form of a body: each placeholder becomes its place in `variables` ({{school}} → {{1}}, ...).
+export function positionalBody(body: string, variables: readonly string[]): string {
+  return body.replace(VARIABLE, (_, name: string) => `{{${variables.indexOf(name) + 1}}}`);
+}
 // What is wrong with a definition, in words; null when nothing is. The tests run it over the whole registry.
 export function definitionProblem(d: TemplateDefinition): string | null {
   if (!/^[a-z][a-z0-9_]{2,60}$/.test(d.name)) return 'the name is lower case letters, digits and underscores';
@@ -333,8 +370,9 @@ export function definitionProblem(d: TemplateDefinition): string | null {
   if (!d.variables.includes('school')) return 'the school is not among the variables';
   for (const lang of TEMPLATE_LANGUAGES) {
     const body = d.body[lang];
-    if (typeof body !== 'string' || !body.startsWith(SCHOOL_PREFIX)) return `the ${lang} body does not begin with the school's name`;
-    if (body.length > 1024) return `the ${lang} body is too long`;
+    if (typeof body !== 'string' || !body.startsWith(SCHOOL_PREFIX[lang])) return `the ${lang} body does not begin with the school's name`;
+    const shape = metaShapeProblem(body);
+    if (shape) return `the ${lang} body ${shape}`;
     const used = variablesIn(body).sort().join();
     if (used !== [...d.variables].sort().join()) return `the ${lang} body uses ${used || 'no variables'}, not exactly ${[...d.variables].sort().join()}`;
     if (/\{\{|\}\}/.test(body.replace(VARIABLE, ''))) return `the ${lang} body has a malformed variable`;
@@ -355,7 +393,7 @@ export async function templateToSend(client: Pick<PoolClient, 'query'>, schoolId
   const { rows } = await client.query(
     `select id, template_name, version, language, body, variables, billing_category, stale_after_minutes, meta_status, meta_template_id
        from whatsapp_templates
-      where template_name = $2 and (school_id = $1 or school_id is null) and status = 'approved' and language in ($3, 'en') and ($4 = false or meta_status = 'approved')
+      where template_name = $2 and (school_id = $1 or school_id is null) and status = 'approved' and body is not null and language in ($3, 'en') and ($4 = false or meta_status = 'approved')
         -- Words in a language other than English go out only once a reader of that language has reviewed them (C190).
         and (language = 'en' or wording_reviewed)
       order by (language = $3) desc, school_id nulls last, version desc
@@ -381,8 +419,9 @@ export function missingVariables(template: Pick<TemplateToSend, 'variables'>, pa
 export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed: boolean; wordingReviewedNote: string | null };
 export const META_STATUSES = ['not_submitted', 'pending', 'approved', 'rejected', 'paused'] as const;
 
-// Every version in the code that the database does not yet hold is written, waiting for approval. A row from
-// before versions (no words) is given its words once, and waits for approval like the rest. Nothing already written is changed. Returns how many were added.
+// Every version in the code that the database does not yet hold is written, waiting for approval. A row of a code
+// version with no words is given its words once, and waits for approval like the rest. Nothing already written is
+// changed. A row from before versions keeps no words and never sends (templateToSend). Returns how many were added.
 export async function syncTemplates(db: Sql): Promise<{ added: number; filled: number }> {
   let added = 0;
   let filled = 0;
@@ -407,7 +446,7 @@ export async function syncTemplates(db: Sql): Promise<{ added: number; filled: n
 export async function listTemplates(db: Sql): Promise<TemplateRow[]> {
   const { rows } = await db.query(
     `select t.id, t.template_name, t.version, t.language, t.body, t.variables, t.billing_category, t.stale_after_minutes, t.status::text as status, u.display_name as approved_by_name, t.approved_at, t.meta_status, t.meta_template_id, t.meta_decided_at, t.wording_reviewed, t.wording_reviewed_note,
-            t.version = (select max(n.version) from whatsapp_templates n where n.school_id is null and n.template_name = t.template_name and n.language = t.language and n.status = 'approved' and (n.language = 'en' or n.wording_reviewed)) as sends_now
+            t.version = (select max(n.version) from whatsapp_templates n where n.school_id is null and n.template_name = t.template_name and n.language = t.language and n.status = 'approved' and n.body is not null and (n.language = 'en' or n.wording_reviewed)) as sends_now
        from whatsapp_templates t left join users u on u.user_id = t.approved_by
       where t.school_id is null order by t.template_name, t.language, t.version desc`
   );

@@ -73,7 +73,7 @@ export function TemplatesPanel() {
                 {r.sendsNow && <Badge variant="success">{t('tpl.sendsNow')}</Badge>}
                 {!r.inCode && r.body !== null && <Badge variant="danger">{t('tpl.notInCode')}</Badge>}
               </div>
-              <p lang={r.language} className="whitespace-pre-wrap rounded-md bg-off-white px-3 py-2">{r.body ?? t('tpl.noWords')}</p>
+              <p lang={r.language} data-template-no-words={r.body === null ? '' : undefined} className="whitespace-pre-wrap rounded-md bg-off-white px-3 py-2">{r.body ?? t('tpl.noWords')}</p>
               <p className="text-xs text-slate/70">{t('tpl.detail', { category: r.category, minutes: r.staleAfterMinutes ?? 0, by: r.approvedByName ?? '—', metaId: r.metaTemplateId ?? '—' })}</p>
               <div className="flex flex-wrap gap-2">
                 {r.status !== 'approved' && r.inCode && (

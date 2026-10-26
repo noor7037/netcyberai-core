@@ -95,7 +95,7 @@ beforeAll(async () => {
     insert into students (student_id, school_id, admission_no, name, status) values ('${STUDENT}', '${SCHOOL}', 'A-1', 'Child', 'active');
     insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version)
       select school_id, student_id, 'operational_communication', true, (enum_range(null::consent_method))[1], 'v1' from students where school_id = '${SCHOOL}';
-    insert into whatsapp_templates (school_id, template_name, status, billing_category) values (null, 'absence_alert', 'approved', 'utility'), (null, 'open_day_invite', 'approved', 'marketing');
+    insert into whatsapp_templates (school_id, template_name, status, billing_category, body, variables) values (null, 'absence_alert', 'approved', 'utility', 'From {{school}}: words for this test only.', '{school}'), (null, 'open_day_invite', 'approved', 'marketing', 'From {{school}}: words for this test only.', '{school}');
     update whatsapp_templates set meta_status = 'approved', meta_template_id = 'made-up' where status = 'approved';
     insert into message_rate_table (channel, billing_category, rate_paise, gst_percent, verified_source, verified_at, effective_from)
       values ('whatsapp', 'utility', 1000, 18, 'TEST VALUE, not a real rate', now(), (now() at time zone 'Asia/Kolkata')::date - 40);
