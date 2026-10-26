@@ -152,6 +152,9 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
         {!data.mayEnter && exam.status === 'open' && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.readOnly')}</p>}
         <div className="flex flex-wrap gap-2">
           <a href={`/app/exams/${exam.examId}/classes/${paper.classId}`} className={TAP}>{t('ex.exam.resultOf', { className: paper.className })}</a>
+          {data.mayEnter && exam.status === 'open' && (
+            <a href={`/app/exams/papers/${paperId}/marking`} data-mark-with-ai className={TAP}>{t('mk.entry.link')}</a>
+          )}
           <a href="/app/exams" className={TAP}>{t('ex.allExams')}</a>
         </div>
       </section>

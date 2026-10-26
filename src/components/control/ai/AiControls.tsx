@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import type { AiOverview, Counts } from '@/lib/ai/control';
-import type { MessageKey } from '@/lib/i18n';
+import { isMessageKey, type MessageKey } from '@/lib/i18n';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersTokenLooksRight } from '@/lib/ai/adapters/workers-key';
 
 // Control → AI (C249), the forms. Every save goes to /api/control/ai and the page's data is read again from there,
@@ -236,6 +236,8 @@ export function AiControls({ initial }: { initial: Data }) {
         {data.profiles.map((p) => {
           const d = drafts[p.profileId] ?? draftOf(p);
           const set = (patch: Partial<Draft>) => setDrafts({ ...drafts, [p.profileId]: { ...d, ...patch } });
+          // What the feature does, for one that says so (AI marking's two tasks, C349).
+          const about = `control.ai.profile.about.${p.profileId}`;
           const options = (
             <>
               <option value="">{t('control.ai.profile.none')}</option>
@@ -249,6 +251,7 @@ export function AiControls({ initial }: { initial: Data }) {
           return (
             <div key={p.profileId} data-ai-profile={p.profileId} className="flex flex-col gap-3 rounded-md border border-slate/10 p-3">
               <p className="font-bold">{t(`control.ai.profile.name.${p.profileId}` as MessageKey)}</p>
+              {isMessageKey(about) && <p data-ai-profile-about>{t(about)}</p>}
               {p.carriesChildWords && <p className="text-slate/70">{t('control.ai.profile.childWords')}</p>}
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <Select id={`provider-${p.profileId}`} label={t('control.ai.profile.provider')} value={d.providerId} onChange={(e) => set({ providerId: e.target.value })}>

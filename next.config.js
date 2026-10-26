@@ -30,6 +30,25 @@ const nextConfig = {
       ],
     },
   },
+  // PDF.js's worker (AI marking's upload screen, C350) is a file the build copies into /_next/static/media. It is
+  // already minified, and as a stand-alone .mjs the build's own minifier cannot read it as a module (it stops with
+  // "'import.meta' cannot be used outside of module code"). It is told the file needs no more minifying, as the build
+  // does for its own polyfills; nothing else is changed.
+  webpack(config) {
+    config.plugins.push({
+      apply(compiler) {
+        const { Compilation } = compiler.webpack;
+        compiler.hooks.thisCompilation.tap('PdfWorkerAlreadyMinified', (compilation) => {
+          compilation.hooks.processAssets.tap({ name: 'PdfWorkerAlreadyMinified', stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONS }, (assets) => {
+            for (const name of Object.keys(assets)) {
+              if (/(^|\/)pdf\.worker\.min\.[^/]*\.mjs$/.test(name)) compilation.updateAsset(name, (source) => source, { minimized: true });
+            }
+          });
+        });
+      },
+    });
+    return config;
+  },
   // The old /demo concept demo was folded into the one demo system on the
   // homepage and /product-tour (Decision Log C74); keep inbound links alive.
   // Free tools retired in the Decision Log C78 audit point to the tool

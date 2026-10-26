@@ -241,7 +241,8 @@ export async function routeScriptPictures(target) {
     const p = MK.pages[pageId] ?? { name: 'Illustrative child', roll: '1', page: 1, sheetPage: 1 };
     const lines = [];
     for (let y = 120; y < 1980; y += 46) lines.push(`<line x1="70" x2="1360" y1="${y}" y2="${y}" stroke="#c9d6e8" stroke-width="2"/>`);
-    const hand = (y, text) => `<text x="150" y="${y}" font-family="Comic Sans MS, Segoe Print, cursive" font-size="40" fill="#1f2a5a">${text}</text>`;
+    // The drawn writing is XML: a "<" in it (Q7 compares fractions) must be written &lt; or the picture does not draw.
+    const hand = (y, text) => `<text x="150" y="${y}" font-family="Comic Sans MS, Segoe Print, cursive" font-size="40" fill="#1f2a5a">${text.replace(/&/g, '&amp;').replace(/</g, '&lt;')}</text>`;
     const qs = p.sheetPage === 1
       ? [[0.16, 'Q1. 1/2 is bigger'], [0.3, 'Q2. 3/5 > 2/5 because more parts'], [0.5, 'Q3. 0 — 1/4 — 2/4 — 3/4 — 1'], [0.74, 'Q4. 0.7 = 7/10']]
       : [[0.08, 'Q5. forty five hundredths = 45/100'], [0.28, 'Q6. 0.75 = 7 tenths and 5 hundredths'], [0.62, 'Q7. 1/6 < 1/3 < 2/3 (6ths: 1, 2, 4)']];

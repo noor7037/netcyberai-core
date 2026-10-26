@@ -321,7 +321,7 @@ export async function setAside(db: Sql, actor: Actor, sheetId: string, aside: bo
   if (aside) {
     await db.query(`update marking_sheets set state = 'set_aside' where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
   } else {
-    // Back as it was: marked when it has marks, else waiting to be marked again; a child already taken is let go.
+    // Back as it was: marked when it has marks, else failed (so "Mark again" is offered); a child already taken is let go.
     const hasMarks = (await db.query(`select 1 from marking_marks where school_id = $1 and sheet_id = $2 limit 1`, [actor.schoolId, sheetId])).rows.length > 0;
     await db.query(
       `update marking_sheets s set state = $3,
