@@ -106,9 +106,10 @@ export async function checkedPaperOf(db: Sql, schoolId: string, studentId: strin
     ? ((await db.query(`select unit_id, chapter, topic from syllabus_units where unit_id = any ($1::uuid[])`, [units])).rows as { unit_id: string; chapter: string; topic: string }[])
     : [];
   const parts = (paper.components ?? []).map((c) => ({ key: c.key, name: c.name, max: Number(c.max) }));
-  // The paper's internal-choice counts: the setup row where this session may read it, else what the questions imply
-  // (impliedChoiceCounts), with the child's published part scores to settle a tie.
-  const setup = (await db.query(`select choice_counts from marking_setups where paper_id = $1`, [paperId])).rows[0] as { choice_counts: Record<string, number> } | undefined;
+  // The paper's internal-choice counts, as the guardian may read them (guardian_choice_counts(): the counts only, never
+  // the teacher's guidance); a paper with no setup row falls back to what the questions imply (impliedChoiceCounts),
+  // with the child's published part scores to settle a tie.
+  const setup = (await db.query(`select choice_counts from public.guardian_choice_counts() where paper_id = $1`, [paperId])).rows[0] as { choice_counts: Record<string, number> } | undefined;
   let counts = setup?.choice_counts ?? null;
   if (!counts) {
     const published = Object.fromEntries(

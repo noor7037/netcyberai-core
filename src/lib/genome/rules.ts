@@ -1,6 +1,7 @@
 import type { SchoolRole } from '@/lib/contracts/modules';
 import type { Mark, PaperComponent } from '@/lib/exams/papers';
 import type { Shown } from '@/lib/exams/results';
+import type { GenomeTopics } from './topics';
 
 // Learning Genome v1 (docs/27 row 9e, C217): what one child's genome is made of, and the rules that find their
 // strengths and gaps. No database here: the server works the numbers out (src/lib/genome/genome.ts) and the screen
@@ -27,8 +28,10 @@ export type GenomeSettings = {
   homeworkDoneBelow: number; // homework in a subject done on fewer than this many of every 100 checked is a gap...
   homeworkMinChecked: number; // ...once at least this many were checked
   windowDays: number; // homework and replies are counted over this many days back, today included
+  mistakeMinQuestions: number; // a kind of mistake that cost marks in at least this many answers...
+  mistakeMinPapers: number; // ...across at least this many papers keeps coming back (C352)
 };
-export const DEFAULT_GENOME_SETTINGS: GenomeSettings = { trendPoints: 10, spreadPoints: 10, needsHelpReplies: 2, understoodReplies: 3, homeworkDoneBelow: 60, homeworkMinChecked: 5, windowDays: 90 };
+export const DEFAULT_GENOME_SETTINGS: GenomeSettings = { trendPoints: 10, spreadPoints: 10, needsHelpReplies: 2, understoodReplies: 3, homeworkDoneBelow: 60, homeworkMinChecked: 5, windowDays: 90, mistakeMinQuestions: 3, mistakeMinPapers: 2 };
 
 // One exam in one subject: the child's marks in the paper, and the percent and grade worked out from them by
 // percent() and grade() (src/lib/exams), as the class result shows them. A paper on which the child has a part with
@@ -83,6 +86,9 @@ export type Genome = {
   latestOverall: ExamOverall | null;
   strengths: Finding[];
   gaps: Finding[];
+  // From the child's approved answer-sheet marks (C352): topics and chapters, mistakes that keep coming back, progress
+  // by chapter and what to practise. Empty until a script is approved and its exam published.
+  topics: GenomeTopics;
 };
 
 // A difference of two shown percents, to one decimal place, so 66.1 - 54.2 is 11.9 and never 11.900000000000006.

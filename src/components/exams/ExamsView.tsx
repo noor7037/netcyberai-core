@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import type { ExamsScreen, ExamSummary, PaperSummary } from '@/lib/exams/exams';
 import type { MessageKey } from '@/lib/i18n';
+import { CandidatesPanel } from '@/components/marking/CandidatesPanel';
 import { PRIMARY, SECTION, TAP } from './SchemeParts';
 import { dayWords } from './exam-format';
 
@@ -251,6 +252,7 @@ function ExamCard({
           <PaperLine key={p.paperId} paper={p} open={exam.status === 'open'} mayRun={data.mayRun} busy={busy} onRemove={() => onRemovePaper(p.paperId)} />
         ))}
       </ul>
+      <CandidatesPanel examId={exam.examId} />
       {classes.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
           {classes.map(([classId, className]) => (
@@ -309,6 +311,11 @@ function PaperLine({ paper, open, mayRun, busy, onRemove }: { paper: PaperSummar
         <a href={`/app/exams/papers/${paper.paperId}`} className={paper.mayEnter && open ? PRIMARY : TAP}>
           {paper.mayEnter && open ? t('ex.enterMarks') : t('ex.paper.open')}
         </a>
+        {paper.mayEnter && open && (
+          <a href={`/app/exams/papers/${paper.paperId}/marking`} data-mark-with-ai className={TAP}>
+            {t('mk.entry.link')}
+          </a>
+        )}
         {mayRun && !paper.hasMarks && !paper.published && (
           <button type="button" data-paper-remove className={TAP} disabled={busy} onClick={onRemove}>{t('ex.paper.remove')}</button>
         )}

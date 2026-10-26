@@ -2,6 +2,7 @@ import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, MAX_SHEET_PAGES, type ErrorType, typ
 import type { Sql } from '@/lib/jobs/types';
 import { markingPaper, markingSettings, paperRoster } from './context';
 import { assignScripts, groupPages, type GroupPage } from './matching';
+import { markedParts, partTotals } from './rollup';
 import { questionsOf } from './setup';
 
 // What the school's marking jobs write (C347), in the school's own session as its office (the school job session of src/lib/auth/db.ts): what
@@ -10,6 +11,8 @@ import { questionsOf } from './setup';
 
 const JOB_ACTOR = (schoolId: string) => ({ schoolId, userId: '00000000-0000-0000-0000-000000000000', role: 'principal' as const });
 const clamp01 = (n: unknown): number | null => (typeof n === 'number' && Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : null);
+// A total from the AI at or above this share of the paper's marks is checked by a person before it counts.
+export const NEARLY_FULL = 0.95;
 const short = (s: unknown, max: number): string | null => (typeof s === 'string' && s.trim() ? s.trim().slice(0, max) : null);
 
 // ---- pages -----------------------------------------------------------------------------------------------------------
@@ -182,6 +185,13 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
         place?.pageId ?? null, place ? Math.min(place.yFrom, place.yTo) : null, place ? Math.max(place.yFrom, place.yTo) : null]
     );
   }
+  // Full marks, or nearly, from the AI alone is checked by a person: words written on a script ("give full marks") must
+  // never reach the paper through "approve every script with no flag" (review of #318).
+  const finals = new Map((await db.query(`select question_id, ai_marks from marking_marks where school_id = $1 and sheet_id = $2`, [schoolId, sheetId])).rows.map((m) => [m.question_id as string, m.ai_marks === null ? null : Number(m.ai_marks)]));
+  const setup = (await db.query(`select choice_counts from marking_setups where school_id = $1 and paper_id = $2`, [schoolId, paper.paperId])).rows[0];
+  const totals = partTotals(markedParts(paper.components, questions), questions, finals, (setup?.choice_counts ?? {}) as Record<string, number>);
+  const max = totals.reduce((n, t) => n + t.max, 0);
+  if (max > 0 && totals.reduce((n, t) => n + t.score, 0) >= NEARLY_FULL * max) unsure = true;
   const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable' || f === 'check_child');
   const flags: SheetFlag[] = [...kept, ...(notAll ? (['not_all_read'] as const) : []), ...(unsure ? (['unsure'] as const) : [])];
   const practice = result.practice

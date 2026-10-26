@@ -59,9 +59,10 @@ afterAll(async () => {
 });
 
 describe('what school staff may reach in Control', () => {
-  it('reads only the two school profiles, and writes none', async () => {
+  it('reads only the school profiles, and writes none', async () => {
     const ids = await asTeacher(async (c) => (await c.query(`select profile_id from control.ai_profiles order by profile_id`)).rows.map((r: { profile_id: string }) => r.profile_id));
-    expect(ids).toEqual(['copilot.draft', 'parent_ai.home_help']);
+    // Copilot and Parent AI (C284), and AI answer-sheet marking's two tasks (C349), which the school's marking needs.
+    expect(ids).toEqual(['copilot.draft', 'exams.mark', 'exams.read_pages', 'parent_ai.home_help']);
     expect(await refused(() => asTeacher((c) => c.query(`update control.ai_profiles set enabled = false where profile_id = 'copilot.draft'`)))).toMatch(/permission denied|row-level security/);
     expect(await refused(() => asTeacher((c) => c.query(`select * from control.settings`)))).toMatch(/permission denied/);
     expect(await refused(() => asTeacher((c) => c.query(`select * from control.ai_credentials`)))).toMatch(/permission denied/);

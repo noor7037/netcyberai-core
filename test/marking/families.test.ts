@@ -180,8 +180,7 @@ describe('School Link: a checked paper, read as the guardian (C351)', () => {
     const { schoolPaperFor } = await import('@/lib/family/school');
     const paper = await schoolPaperFor(claims, await links(), CHILD, PP1, { childView: false });
     expect(paper).toMatchObject({ paperId: PP1, exam: 'Half-yearly', term: 'Term 1', subject: 'Mathematics', publishedOn: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/) });
-    // 5 (the teacher's) + 3 + the better of 7 and 0: the setup row is not the guardian's to read, so the questions'
-    // own structure says that one of 3(a) and 3(b) counts.
+    // 5 (the teacher's) + 3 + the better of 7 and 0: the paper's own count for group A (guardian_choice_counts).
     expect(paper?.parts).toEqual([{ component: 'written', name: 'Written', score: 15, max: 20 }]);
     expect(paper?.questions.map((x) => [x.label, x.marks, x.max, x.counted, x.mistake, x.topic])).toEqual([
       ['1', 5, 5, true, 'none', 'Adding fractions'],
@@ -196,6 +195,17 @@ describe('School Link: a checked paper, read as the guardian (C351)', () => {
     expect(paper?.pages).toEqual([{ pageId: G1A, width: 1400, height: 2000 }, { pageId: G1B, width: 1400, height: 2000 }]);
     // Never the answer key, the steps, the AI's reasons, what it read, the setup's guidance, or the provider and model.
     expect(JSON.stringify(paper)).not.toMatch(/SECRET|TEACHER-GUIDANCE|stand-in/);
+  });
+
+  it('the guardian reads the paper’s internal-choice counts and nothing else of its setup (the teacher’s guidance never)', async () => {
+    const seen = await asStaff('parent', P1, A, async (c) => ({
+      counts: (await c.query(`select paper_id, choice_counts from public.guardian_choice_counts()`)).rows,
+      setups: (await c.query(`select count(*)::int as n from marking_setups`)).rows[0].n,
+    }));
+    expect(seen).toEqual({ counts: [{ paper_id: PP1, choice_counts: { A: 1 } }], setups: 0 });
+    // A parent with no child of that paper's approved scripts reads none, nor does a member of staff.
+    expect((await asStaff<{ rows: { n: number }[] }>('parent', u(999), A, (c) => c.query(`select count(*)::int as n from public.guardian_choice_counts()`))).rows[0].n).toBe(0);
+    expect((await asStaff<{ rows: { n: number }[] }>('teacher', TEACHER, A, (c) => c.query(`select count(*)::int as n from public.guardian_choice_counts()`))).rows[0].n).toBe(0);
   });
 
   it('only the guardian’s own child: a classmate’s script, an unmatched child and another family read nothing', async () => {

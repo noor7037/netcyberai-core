@@ -2,9 +2,11 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { QUIET_ACTION } from '@/components/app-ui/ModulePage';
+import { MarkingMonitor } from '@/components/control/MarkingMonitor';
 import { RetryJobButton } from '@/components/control/RetryJobButton';
 import { Badge } from '@/components/ui/Badge';
 import { SERVICE_ROLE_SETTING_NAME } from '@/lib/auth/env';
+import { markingNeedsALook, type MarkingMonitor as MarkingData } from '@/lib/control/marking-monitor';
 import { HELD_FOR_US, MONITORING_SECTIONS, needsALook, type InvitationWaiting, type Monitoring, type NightlyJob, type NightlyJobState, type SchoolCheckRun, type SchoolCount, type SendGroup } from '@/lib/control/monitoring';
 import { t, tCount, tOr, type Lang, type MessageKey } from '@/lib/i18n';
 import { JOB_STATUSES } from '@/lib/jobs/types';
@@ -116,9 +118,9 @@ function Group({ lang, id, title, group, children }: { lang: Lang; id: string; t
 // The colour of a scheduled run's state: done, nothing to do, a fault, or on its way.
 const stateBadge = (state: NightlyJobState) => (state === 'ran' ? 'success' : state === 'not_needed' ? 'neutral' : state === 'failed' || state === 'not_queued' ? 'danger' : 'warning');
 
-export function MonitoringView({ data: m, invitations, applications, lang }: { data: Monitoring; invitations: InvitationWaiting[]; applications: Record<string, number>; lang: Lang }) {
+export function MonitoringView({ data: m, invitations, applications, lang, marking }: { data: Monitoring; invitations: InvitationWaiting[]; applications: Record<string, number>; lang: Lang; marking?: MarkingData }) {
   const look = needsALook(m);
-  const looking = MONITORING_SECTIONS.filter((s) => look[s]).length + (invitations.length > 0 ? 1 : 0);
+  const looking = MONITORING_SECTIONS.filter((s) => look[s]).length + (invitations.length > 0 ? 1 : 0) + (marking && markingNeedsALook(marking) ? 1 : 0);
   const ago = (seconds: number | null, none: MessageKey = 'monitoring.never') => (seconds === null ? t(lang, none) : t(lang, 'monitoring.ago', { age: ageWords(lang, seconds) }));
   const waited = (seconds: number | null) => (seconds === null ? t(lang, 'monitoring.none') : ageWords(lang, seconds));
   const night = dayInWords(lang, m.nightly.date);
@@ -483,6 +485,8 @@ export function MonitoringView({ data: m, invitations, applications, lang }: { d
           </Link>
         </div>
       </Section>
+
+      {marking && <MarkingMonitor data={marking} lang={lang} age={(seconds) => ageWords(lang, seconds)} />}
 
       <Section id="invitations" title={t(lang, 'monitoring.invites.title')} look={invitations.length > 0} lang={lang} info={t(lang, 'monitoring.invites.how')}>
         {invitations.length === 0 && <p className="max-w-prose text-sm text-slate">{t(lang, 'monitoring.invites.none')}</p>}

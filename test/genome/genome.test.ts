@@ -506,7 +506,7 @@ describe('the module', () => {
     expect(guide).toMatchObject({ audience: 'office_and_teachers', start: { href: '/app/learning-genome' } });
     expect(guide.tips!.map((x) => x.en).join(' ')).toContain('no AI model is used');
     const schema = SETTINGS_SCHEMAS.find((s) => s.moduleId === 'learning-genome')!;
-    expect(schema.fields.map((f) => [f.key, f.default])).toEqual([['trend_points', 10], ['spread_points', 10], ['needs_help_replies', 2], ['understood_replies', 3], ['homework_done_below', 60], ['homework_min_checked', 5], ['window_days', 90]]);
+    expect(schema.fields.map((f) => [f.key, f.default])).toEqual([['trend_points', 10], ['spread_points', 10], ['needs_help_replies', 2], ['understood_replies', 3], ['homework_done_below', 60], ['homework_min_checked', 5], ['window_days', 90], ['mistake_min_questions', 3], ['mistake_min_papers', 2]]);
     expect(schema.fields.every((f) => (f.editableBy as readonly string[]).join() === 'principal,school_admin')).toBe(true);
     // Reads only: both routes belong to the module, and nothing under it writes.
     expect(readModuleFor('/api/app/learning-genome')).toBe('learning-genome');

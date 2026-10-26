@@ -2,7 +2,7 @@
 
 **Written by** the build lead, for the supervisor and Noor. **Asked by** Noor directly (2026-10-27, with Acadine's
 screenshots as reference), to build end to end and hand the PRs to the supervisor for review and merge.
-**Status:** the plan and the build record (Decision Log C347–C352). **Binding rules:** `CLAUDE.md`, `16` §3, `17`
+**Status:** the plan and the build record (Decision Log C347–C354), built 2026-10-27 as PRs #317 to #320 and AM-4 and AM-5 (§8). **Binding rules:** `CLAUDE.md`, `16` §3, `17`
 §1a/§4/§5, `19` §5, `21`, and P6's rules in `27` §3, which all hold here unchanged.
 
 ## 1. What a school gets
@@ -116,7 +116,9 @@ Migrations are the lead's: one at a time, to the test database, md5 checked, ren
    `exams.read_pages`. Reading handwriting needs a strong vision model; the provider must be cleared for children in
    Control (Anthropic is eligible in code; OpenAI is not). If the Anthropic key is not saved yet, it is one paste.
 2. **A monthly page limit** for the plan(s) that include AI marking, in Control → Billing plans. No limit, no marking.
-3. **The WhatsApp template** `exam_result_ready`: approve its words in Control, then Submit to Meta (C345).
+3. **The WhatsApp template** `exam_result_ready`: approve its words (English, and Hindi after a Hindi reader's look) in
+   Control → Message templates, then Submit to Meta (C345). Until Meta approves it, the office's "Tell parents" step says
+   the words are not approved and sends nothing; linked Family app families still get their push.
 
 ## 7. Not in this wave (follow-ups, each needing a decision)
 
@@ -126,3 +128,19 @@ Migrations are the lead's: one at a time, to the test database, md5 checked, ren
   with the exam).
 - Admit cards as PDFs (the exam numbers exist; the printed card is a layout task).
 - Online tests (CBT), OMR bubble sheets and question-paper generation (in Acadine's pictures, not in the brief).
+
+## 8. What was built (2026-10-27)
+
+| PR | Slice | Migration on the test project |
+|---|---|---|
+| #317 | AM-1 core: tables, rules, matching, approval through `saveMarks`, exam numbers, families' read rules, report-link functions, Control's monitor function | `am_1_answer_marking` 20261026222306, `am_1_review` 20261026223956, `am_1_parent_rules` 20261026225012 |
+| #318 | AM-2 pipeline: the two AI tasks and prompts, page uploads, the read, group and mark jobs, long jobs (C353) | none |
+| #319 | AM-3 teacher screens: questions, upload (PDF in the browser), progress, review in the margin, approval; candidates and exam numbers | none |
+| #320 | AM-6 intelligence: the Learning Genome by topic, a paper's class view, Control's AI marking monitor | none |
+| #321 | AM-4 families: the checked paper in the Family app (parent and child view), the exam timetable, the private report link | `am_4_guardian_choice_counts` 20261026233953 |
+| AM-5 | The office's "Tell parents on WhatsApp", the `exam_result_ready` template (needs #315 and #316 first) | none |
+
+Two security reviews (#317, #318) found a script edited after approval reaching families, AI spending through "Mark
+again", and words on a script asking for full marks; each is closed (the PRs list them). Open decisions for the
+supervisor: C354 (no Aadhaar check on answer-sheet pages), how long scanned scripts are kept, and whether the office may
+end and remake a family's report link before the next publication.

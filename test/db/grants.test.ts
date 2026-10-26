@@ -250,6 +250,17 @@ const APP_USER: Record<string, string> = {
   // c230-aa begin
   family_connect_codes: 'INSERT,SELECT,UPDATE', // a guardian's Family app code: made, then spent or expired; never removed (C230-AA)
   // c230-aa end
+  // c347 begin
+  exam_withdrawals: 'DELETE,INSERT,SELECT', // a child withdrawn from an exam by the office, and taken back; never changed (C348)
+  exam_seat_numbers: 'SELECT', // exam numbers are the database's own: issued by its triggers only (C348)
+  marking_setups: 'DELETE,INSERT,SELECT,UPDATE', // AI marking (C347): written by whoever may mark the paper
+  marking_questions: 'DELETE,INSERT,SELECT,UPDATE',
+  marking_uploads: 'DELETE,INSERT,SELECT,UPDATE',
+  marking_sheets: 'DELETE,INSERT,SELECT,UPDATE',
+  marking_pages: 'DELETE,INSERT,SELECT,UPDATE',
+  marking_marks: 'DELETE,INSERT,SELECT,UPDATE',
+  marking_report_links: 'INSERT,SELECT', // a report link is made by the office and never changed (C351)
+  // c347 end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -410,6 +421,19 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // c230-aa begin
   family_connect_codes: '', // a school's codes for its guardians: the platform role reads nothing here (C230-AA)
   // c230-aa end
+  // c347 begin
+  // AI marking and exam numbers: the platform role reads nothing here; the report link and Control's monitor read
+  // only through their definer functions (C347, C351).
+  exam_withdrawals: '',
+  exam_seat_numbers: '',
+  marking_setups: '',
+  marking_questions: '',
+  marking_uploads: '',
+  marking_sheets: '',
+  marking_pages: '',
+  marking_marks: '',
+  marking_report_links: '',
+  // c347 end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {
