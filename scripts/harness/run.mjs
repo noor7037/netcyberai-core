@@ -6927,6 +6927,8 @@ try {
       page.on('response', (r) => {
         // The timetable's clash guard answers 409 on purpose (the clash screen shows it).
         if (r.status() === 409 && r.url().includes('/api/app/timetable')) return;
+        // The upload screen's stand-in server fails one request on purpose, to show it is sent again (marking-screens.mjs).
+        if (r.status() === 503 && /\/api\/app\/marking\/uploads\/[^/]+\/pages$/.test(r.url())) return;
         if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
       });
       for (const [, name, route, prepare, after] of mine) {

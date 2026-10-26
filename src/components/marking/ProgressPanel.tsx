@@ -18,6 +18,8 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
   const { t, lang } = useT();
   const [busy, setBusy] = useState<string | null>(null);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
+  // Scripts the AI has tried as many times as it may: asking again is refused for good (a person marks them).
+  const [noTries, setNoTries] = useState<string[]>([]);
   const live = overview.sheets.filter((s) => s.state !== 'set_aside');
   const count = (state: SheetState) => live.filter((s) => s.state === state).length;
   const marked = count('marked') + count('approved');
@@ -32,6 +34,7 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
     const r = await ask('POST', `/api/app/marking/sheets/${sheetId}/mark-again`);
     setBusy(null);
     // A script still being worked on is taken again only after a quarter of an hour.
+    if (!r.ok && r.body?.code === 'tries') setNoTries((l) => [...l, sheetId]);
     if (!r.ok) return setNote({ ok: false, text: r.body?.code === 'state' && !failed.some((f) => f.sheetId === sheetId) ? t('mk.err.still_working') : errorWords(t, r) });
     setNote({ ok: true, text: t('mk.progress.again') });
     onChanged();
@@ -80,11 +83,12 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
                 <p className="font-semibold">{s.student ? childLine(s.student) : t('mk.review.noChild')}</p>
                 <p className="text-red-800">{failureWords(t, s.failure)}</p>
               </div>
-              {mayChange && (
+              {mayChange && !noTries.includes(s.sheetId) && (
                 <button type="button" data-mark-again={s.sheetId} className={TAP} disabled={busy === s.sheetId} onClick={() => void markAgain(s.sheetId)}>
                   {t('mk.progress.markAgain')}
                 </button>
               )}
+              {noTries.includes(s.sheetId) && <p data-no-tries className="basis-full text-slate/80">{t('mk.err.tries')}</p>}
             </li>
           ))}
         </ul>
@@ -98,9 +102,11 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
             {live.filter((s) => s.state === 'waiting' || s.state === 'marking').map((s) => (
               <li key={s.sheetId} className="flex flex-wrap items-center justify-between gap-2">
                 <span>{s.student ? childLine(s.student) : t('mk.review.noChild')} · {t(STATE_KEYS[s.state])}</span>
-                <button type="button" data-mark-again={s.sheetId} className={TAP} disabled={busy === s.sheetId} onClick={() => void markAgain(s.sheetId)}>
-                  {t('mk.progress.markAgain')}
-                </button>
+                {!noTries.includes(s.sheetId) && (
+                  <button type="button" data-mark-again={s.sheetId} className={TAP} disabled={busy === s.sheetId} onClick={() => void markAgain(s.sheetId)}>
+                    {t('mk.progress.markAgain')}
+                  </button>
+                )}
               </li>
             ))}
           </ul>

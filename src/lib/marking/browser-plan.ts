@@ -1,12 +1,10 @@
-import { PAGE_MAX_BYTES, PAGE_MAX_EDGE, PAGE_MIN_EDGE, PAGES_PER_REQUEST } from '@/lib/contracts/marking';
+import { PAGE_MAX_EDGE, PAGE_MIN_EDGE, PAGES_PER_REQUEST, REQUEST_MAX_BYTES } from '@/lib/contracts/marking';
+
+export { REQUEST_MAX_BYTES };
 
 // The pure part of making a class's scripts into pictures in the browser (C350): how big a page picture is, how hard
 // it is squeezed, how pages are grouped into requests and when a failed request is tried again. No browser here, so
 // every rule is tested (test/marking/browser-plan.test.ts); src/components/marking/render-pages.ts does the drawing.
-
-// Under the host's 4.5 MB body limit, with room for the form's own bytes. A page is at most PAGE_MAX_BYTES, so one
-// page always fits alone.
-export const REQUEST_MAX_BYTES = 4_000_000;
 
 // A page picture's size: the longest side at most `maxEdge` pixels, the shape kept, never made larger than it is.
 export function fitWithin(width: number, height: number, maxEdge: number = PAGE_MAX_EDGE): { width: number; height: number } {

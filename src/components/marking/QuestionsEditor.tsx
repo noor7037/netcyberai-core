@@ -109,7 +109,7 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
               <option key={l} value={l}>{t(LANGUAGE_KEYS[l])}</option>
             ))}
           </Select>
-          <Textarea id="mk-guidance" label={t('mk.setup.guidance')} rows={3} maxLength={2000} value={guidance} disabled={!mayChange} onChange={(e) => setGuidance(e.target.value)} helperText={t('mk.setup.guidanceHow')} />
+          <Textarea id="mk-guidance" label={t('mk.setup.guidance')} rows={3} maxLength={2000} value={guidance} disabled={!mayChange} onChange={(e) => setGuidance(e.target.value)} helperText={<>{t('mk.setup.guidanceHow')} {t('mk.setup.guidanceName')}</>} />
         </div>
       </details>
 
@@ -219,14 +219,16 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
       )}
 
       {problems.length > 0 && forms.length > 0 && (
-        <ul data-structure-problems className="flex flex-col gap-1" role="status">
-          {problems.map((p, i) => (
-            <li key={i} className="flex items-start gap-2 text-amber-text">
-              <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-              <span>{problemWords(t, p, paper.components, lang)}</span>
-            </li>
-          ))}
-        </ul>
+        <div data-structure-problems role="status">
+          <ul className="flex flex-col gap-1">
+            {problems.map((p, i) => (
+              <li key={i} className="flex items-start gap-2 text-amber-text">
+                <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                <span>{problemWords(t, p, paper.components, lang)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
       {problems.length === 0 && forms.length > 0 && <p data-structure-ok className="flex items-center gap-2 text-emerald-text"><Icon name="check" className="h-5 w-5" aria-hidden="true" />{t('mk.q.adds')}</p>}
 

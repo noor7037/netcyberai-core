@@ -272,6 +272,31 @@ describe('sending a class’s files', () => {
     expect(more[0].error).toBe('upload_total');
   });
 
+  it('says what the server refused by its own code: a page too large, a month’s pages used up, an upload already finished', async () => {
+    const run = async (status: number, code: string) => {
+      const states = initialStates(files.slice(0, 1));
+      let calls = 0;
+      await sendFiles(
+        wrap(states).slice(0, 1),
+        { open: async () => opened(2, { n: 0 }), send: async () => { calls += 1; throw new UploadError(status, code); }, sleep: async () => undefined },
+        () => undefined
+      );
+      return { error: states[0].error, calls };
+    };
+    expect(await run(413, 'too_large')).toEqual({ error: 'page_too_big', calls: 1 });
+    expect(await run(422, 'too_small')).toEqual({ error: 'page_too_small', calls: 1 });
+    expect(await run(422, 'not_a_page')).toEqual({ error: 'unreadable', calls: 1 });
+    expect(await run(409, 'limit')).toEqual({ error: 'limit', calls: 1 });
+    expect(await run(409, 'ai_off')).toEqual({ error: 'ai_off', calls: 1 });
+    expect(await run(409, 'upload_closed')).toEqual({ error: 'upload_closed', calls: 1 });
+    expect(await run(409, 'closed')).toEqual({ error: 'closed', calls: 1 });
+    expect(await run(409, 'too_many')).toEqual({ error: 'upload_total', calls: 1 });
+    // The server failing to keep the pages is tried again, then said as it is.
+    expect(await run(503, 'storage')).toEqual({ error: 'storage', calls: 3 });
+    // A code this screen does not know is a refusal; with no code, the status says it.
+    expect(await run(400, 'something_new')).toEqual({ error: 'refused', calls: 1 });
+  });
+
   it('a network that stays down fails the file as a network problem, ready to try again', async () => {
     const states = initialStates(files.slice(0, 1));
     await sendFiles(

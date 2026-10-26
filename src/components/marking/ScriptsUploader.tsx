@@ -26,7 +26,14 @@ const PROBLEM_KEYS: Record<FileProblem, MessageKey> = {
   refused: 'mk.up.err.refused',
   network: 'mk.up.err.network',
   upload_total: 'mk.up.err.upload_total',
+  limit: 'mk.up.err.limit',
+  ai_off: 'mk.up.err.ai_off',
+  upload_closed: 'mk.up.err.upload_closed',
+  storage: 'mk.up.err.storage',
+  closed: 'mk.err.closed',
 };
+// Trying the same file again changes nothing for these.
+const NOT_AGAIN: readonly FileProblem[] = ['too_many_pages', 'unreadable', 'page_too_small', 'limit', 'ai_off', 'upload_closed', 'closed', 'upload_total'];
 
 export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }: { paperId: string; overview: MarkingOverview; mayUpload: boolean; why: MessageKey | null; onChanged: () => void }) {
   const { t } = useT();
@@ -204,7 +211,7 @@ export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }
               {s.status === 'failed' && s.error && (
                 <div className="flex flex-wrap items-center gap-2">
                   <p role="alert" className="text-red-800">{t(PROBLEM_KEYS[s.error])}</p>
-                  {s.error !== 'too_many_pages' && s.error !== 'unreadable' && s.error !== 'page_too_small' && !running && (
+                  {!NOT_AGAIN.includes(s.error) && !running && (
                     <button type="button" data-upload-again className={TAP} onClick={() => void again(s.fileNo)}>{t('mk.up.again')}</button>
                   )}
                 </div>

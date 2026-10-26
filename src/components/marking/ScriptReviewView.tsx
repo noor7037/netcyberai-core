@@ -42,6 +42,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const [active, setActive] = useState<string | null>(null);
   const [picking, setPicking] = useState(false);
   const [confirm, setConfirm] = useState<'again' | 'aside' | null>(null);
+  // The AI has tried this script as many times as it may: asking again is refused for good.
+  const [noTries, setNoTries] = useState(false);
   const [barBottom, setBarBottom] = useState(0);
   const pane = useRef<PagesPaneHandle>(null);
   const live = useRef<{ detail: SheetDetail | null; draft: SheetDraft }>({ detail: null, draft: emptyDraft() });
@@ -192,6 +194,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
     const r = await ask('POST', `/api/app/marking/sheets/${sheetId}/mark-again`);
     if (!r.ok) {
       setBusy(false);
+      if (r.body?.code === 'tries') setNoTries(true);
       // A script still being worked on is taken again only after a quarter of an hour.
       return setNote({ ok: false, text: waiting && r.body?.code === 'state' ? t('mk.err.still_working') : errorWords(t, r) });
     }
@@ -484,7 +487,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
                   {detail.next && (
                     <button type="button" data-approve-next className={TAP} disabled={busy || !mayApprove} onClick={() => void doApprove(true)}>{t('mk.actions.approveNext')}</button>
                   )}
-                  {detail.mayChange && (sheet.state === 'marked' || sheet.state === 'failed' || waiting) && (
+                  {detail.mayChange && !noTries && (sheet.state === 'marked' || sheet.state === 'failed' || waiting) && (
                     <button type="button" data-mark-again className={TAP} disabled={busy} onClick={() => setConfirm('again')}>{t('mk.actions.again')}</button>
                   )}
                   {detail.mayChange && sheet.state !== 'approved' && (
@@ -498,6 +501,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
               {detail.next && sheet.state !== 'set_aside' && (
                 <a href={sheetHref(paperId, detail.next)} className={TAP}>{t('mk.actions.skip')}</a>
               )}
+              {noTries && <span data-no-tries className="basis-full text-slate/80">{t('mk.err.tries')}</span>}
               <span data-save-state={saving} role="status" className="ml-auto text-slate/80">
                 {pending ? (saving === 'error' ? t('mk.save.error') : t('mk.save.pending')) : saving === 'saving' ? t('mk.save.saving') : saving === 'saved' ? t('mk.save.saved') : ''}
               </span>

@@ -89,8 +89,8 @@ async function* photoPages(file: File): AsyncGenerator<{ pageNo: number; blob: B
 
 async function openPdf(file: File): Promise<OpenedFile> {
   // Loaded only now, and only for a PDF; the worker is a separate file the build puts in the app's own assets.
-  const pdfjs = await import('pdfjs-dist/build/pdf.mjs');
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url).toString();
+  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.min.mjs');
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL('pdfjs-dist/legacy/build/pdf.worker.min.mjs', import.meta.url).toString();
   // The file is read from its blob in pieces as pages are asked for, not copied into memory whole.
   const url = URL.createObjectURL(file);
   let doc: Awaited<ReturnType<typeof pdfjs.getDocument>['promise']>;

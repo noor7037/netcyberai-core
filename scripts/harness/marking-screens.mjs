@@ -166,6 +166,8 @@ export function markingScreens({ db, SCHOOL, PEOPLE, CLASS_5A, base, secret, coo
       if (hindi) await backToEnglish(page);
       if (check) await check(page).catch((e) => problems.push(e.message));
     } finally {
+      // The page leaves the screen first, so nothing it asks for later meets a school that has been put back.
+      await page.goto('about:blank').catch(() => undefined);
       await putBack();
     }
     if (axeFound.length) problems.push(`axe found ${axeFound.join('; ')}`);
@@ -373,11 +375,12 @@ export function markingScreens({ db, SCHOOL, PEOPLE, CLASS_5A, base, secret, coo
   };
   const candidatesChecks = (lang) => async () => {
     const { rows } = await db.pg.query(`select reason, withdrawn_by from exam_withdrawals where exam_id = $1`, [MK.exam]);
-    const counts = (await db.pg.query(`select on_roll, withdrawn, candidates, numbered from public.exam_candidate_counts($1) where class_id = $2`, [MK.exam, CLASS_5A])).rows[0];
+    const asOffice = await as(PEOPLE.principal, 'GET', `/api/app/exams/${MK.exam}/candidates`);
+    const counts = asOffice.body?.classes?.find((c) => c.classId === CLASS_5A) ?? {};
     const teacher = await as(PEOPLE.teacher, 'GET', `/api/app/exams/${MK.exam}/candidates`);
     const teacherChange = await as(PEOPLE.teacher, 'POST', `/api/app/exams/${MK.exam}/candidates`, { action: 'numbering', numbering: 'roll' });
     if (rows.length !== 1 || rows[0].reason !== 'Left the school this term' || rows[0].withdrawn_by !== PEOPLE.principal.sub) throw new Error(`the withdrawal in the database: ${JSON.stringify(rows)}`);
-    if (Number(counts.on_roll) !== 9 || Number(counts.withdrawn) !== 1 || Number(counts.candidates) !== 8) throw new Error(`the candidates counted: ${JSON.stringify(counts)}`);
+    if (counts.onRoll !== 9 || counts.withdrawn !== 1 || counts.candidates !== 8) throw new Error(`the candidates counted: ${JSON.stringify(counts)}`);
     if (seen.link < 1 || seen.withdrawals !== 1 || seen.numberingOn !== true) throw new Error(`the candidates on the screen: ${JSON.stringify(seen)}`);
     if (JSON.stringify(seen.counts.slice(0, 3)) !== JSON.stringify(['9', '1', '8'])) throw new Error(`the class counts on the screen: ${JSON.stringify(seen.counts)}`);
     if (teacher.status !== 200 || teacher.body?.mayChange !== false || teacherChange.status !== 403) throw new Error(`a teacher reads but does not change: ${teacher.status} ${teacherChange.status}`);
@@ -457,6 +460,8 @@ export function markingScreens({ db, SCHOOL, PEOPLE, CLASS_5A, base, secret, coo
     await page.locator('[data-upload-close]').click();
     await page.locator('[data-upload-note="ok"]').waitFor({ timeout: 10000 });
     const note = await text(page, '[data-upload-note]');
+    // The screen asks again after closing: let that finish before everything is put back.
+    await page.waitForLoadState('networkidle');
     const requests = sent.requests;
     const pages = requests.flatMap((r) => r.fileNo.map((f, i) => `${f}-${r.pageNo[i]}`));
     const want = [...Array(9).keys()].map((i) => `1-${i + 1}`).concat('2-1');

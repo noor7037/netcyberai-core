@@ -20,7 +20,20 @@ export type FileState = {
 };
 
 // Why a file failed, as a code a screen puts into words.
-export type FileProblem = 'unreadable' | 'too_many_pages' | 'page_too_small' | 'page_too_big' | 'refused' | 'network' | 'upload_total';
+export type FileProblem = 'unreadable' | 'too_many_pages' | 'page_too_small' | 'page_too_big' | 'refused' | 'network' | 'upload_total' | 'limit' | 'ai_off' | 'upload_closed' | 'storage' | 'closed';
+
+// What the pages route says (its refusal's code) and what it means for the file.
+const BY_CODE: Record<string, FileProblem> = {
+  too_large: 'page_too_big',
+  too_small: 'page_too_small',
+  not_a_page: 'unreadable',
+  too_many: 'upload_total',
+  limit: 'limit',
+  ai_off: 'ai_off',
+  upload_closed: 'upload_closed',
+  storage: 'storage',
+  closed: 'closed',
+};
 
 // A file opened for reading: how many pages, and the pictures one by one. `close` lets go of the document.
 export type OpenedFile = {
@@ -96,7 +109,7 @@ export async function sendFiles<F extends FileLike>(
       // What went wrong inside the browser is kept for whoever helps (a network or server refusal is said on the screen).
       if (!(err instanceof FileFailure) && !(err instanceof UploadError)) console.error('A file could not be turned into pages', err);
       state.status = 'failed';
-      state.error = err instanceof FileFailure ? err.problem : err instanceof UploadError ? (err.status === 0 || err.status >= 500 || err.status === 408 || err.status === 429 ? 'network' : err.status === 413 ? 'page_too_big' : 'refused') : 'unreadable';
+      state.error = err instanceof FileFailure ? err.problem : err instanceof UploadError ? ((err.code && BY_CODE[err.code]) || (err.status === 0 || err.status >= 500 || err.status === 408 || err.status === 429 ? 'network' : err.status === 413 ? 'page_too_big' : 'refused')) : 'unreadable';
     } finally {
       opened?.close();
     }
