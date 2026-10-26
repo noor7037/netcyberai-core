@@ -49,6 +49,16 @@ describe('long jobs (AI marking) in the job runner', () => {
     expect(order).toHaveLength(4 + LONG_JOBS_AT_ONCE);
   });
 
+  it('one school’s long jobs never hold up another’s: a run takes at most one a school (review of #318)', async () => {
+    const [A, B] = ['a3180000-0000-4000-8000-000000000001', 'a3180000-0000-4000-8000-000000000002'];
+    await db.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'School A', 'IN-HR'), ($2, 'School B', 'IN-DL')`, [A, B]);
+    for (let i = 0; i < 4; i++) await db.platform((q) => queue.enqueue(q, { type: 'marking.mark', idempotencyKey: `a${i}`, payload: {}, schoolId: A }));
+    await db.platform((q) => queue.enqueue(q, { type: 'marking.mark', idempotencyKey: 'b0', payload: {}, schoolId: B }));
+    const ran: string[] = [];
+    await runJobs({ handlers: { 'marking.mark': async (job) => void ran.push(job.idempotencyKey) }, queue, longJobs: true });
+    expect(ran.sort()).toEqual(['a0', 'b0']);
+  });
+
   it('a request’s kick, or a run without longJobs, never starts one', async () => {
     let ran = 0;
     const handlers = { 'marking.mark': async () => void ran++ };

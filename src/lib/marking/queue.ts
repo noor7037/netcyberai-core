@@ -1,4 +1,4 @@
-import { MAX_MARKING_ATTEMPTS } from '@/lib/contracts/marking';
+import { MARKING_TRIES_PER_JOB } from '@/lib/contracts/marking';
 import type { JobQueue, Sql } from '@/lib/jobs/types';
 
 // The school's marking jobs and their keys (C347). Queued in the caller's own transaction (a teacher's request, or the
@@ -18,8 +18,8 @@ export const MARKING_MARK_JOB = 'marking.mark';
 export const PAGES_PER_READ = 8;
 // Tries before a page or a script is given up (it is then failed, for the teacher to see and retry).
 export const READ_ATTEMPTS = 3;
-// The same as the script's own count (takeSheetForMarking refuses a script past it), so the job's last try is the AI's.
-export const MARK_ATTEMPTS = MAX_MARKING_ATTEMPTS;
+// A job's own tries at its script; the script's tries ever are bounded apart (MAX_MARKING_ATTEMPTS, takeSheetForMarking).
+export const MARK_ATTEMPTS = MARKING_TRIES_PER_JOB;
 
 export const readKey = (uploadId: string, run: number) => `${MARKING_READ_JOB}:${uploadId}:${run}`;
 export const groupKey = (uploadId: string) => `${MARKING_GROUP_JOB}:${uploadId}`;
@@ -27,22 +27,29 @@ export const markKey = (sheetId: string, changedAt: string) => `${MARKING_MARK_J
 
 // A closed upload's pages, in runs of PAGES_PER_READ in scan order (duplicates are never read). The runs are the same
 // every time for a closed upload, so its keys are too. With nothing to read, the scripts are made at once.
-export async function queueReading(db: Sql, queue: JobQueue, schoolId: string, uploadId: string): Promise<{ keys: string[]; runs: number }> {
+// `again`: the teacher pressed "Mark these" once more on an upload already closed (its reading stopped, for example while
+// AI marking was off): only the pages still unread are queued, under keys of this minute, so the press works once more
+// and a double press queues nothing twice (review of #318).
+export async function queueReading(db: Sql, queue: JobQueue, schoolId: string, uploadId: string, opts: { again?: boolean } = {}): Promise<{ keys: string[]; runs: number }> {
   const ids = (
-    await db.query(`select page_id from marking_pages where school_id = $1 and upload_id = $2 and state <> 'duplicate' order by file_no, page_no`, [schoolId, uploadId])
+    await db.query(
+      `select page_id from marking_pages where school_id = $1 and upload_id = $2 and ${opts.again ? `state = 'new'` : `state <> 'duplicate'`} order by file_no, page_no`,
+      [schoolId, uploadId]
+    )
   ).rows.map((r) => r.page_id as string);
+  const minute = opts.again ? `:again:${Math.floor(Date.now() / 60_000)}` : '';
   const keys: string[] = [];
   for (let run = 0; run * PAGES_PER_READ < ids.length; run++) {
-    const key = readKey(uploadId, run);
+    const key = readKey(uploadId, run) + minute;
     await queue.enqueue(db, { type: MARKING_READ_JOB, payload: { uploadId, pageIds: ids.slice(run * PAGES_PER_READ, (run + 1) * PAGES_PER_READ) }, idempotencyKey: key, schoolId, maxAttempts: READ_ATTEMPTS });
     keys.push(key);
   }
-  if (keys.length === 0) keys.push(await queueGrouping(db, queue, schoolId, uploadId));
+  if (keys.length === 0) keys.push(await queueGrouping(db, queue, schoolId, uploadId, minute));
   return { keys, runs: Math.ceil(ids.length / PAGES_PER_READ) };
 }
 
-export async function queueGrouping(db: Sql, queue: JobQueue, schoolId: string, uploadId: string): Promise<string> {
-  const key = groupKey(uploadId);
+export async function queueGrouping(db: Sql, queue: JobQueue, schoolId: string, uploadId: string, suffix = ''): Promise<string> {
+  const key = groupKey(uploadId) + suffix;
   await queue.enqueue(db, { type: MARKING_GROUP_JOB, payload: { uploadId }, idempotencyKey: key, schoolId });
   return key;
 }

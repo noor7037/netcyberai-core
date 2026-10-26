@@ -401,6 +401,15 @@ describe('closing an upload and the school’s marking jobs (C347)', () => {
     expect(jobs[1].payload.pageIds).toEqual([ids.d3]);
     expect(jobs.every((j: { school_id: string }) => j.school_id === A)).toBe(true);
     expect(await send(tMaths, upload, [{ fileNo: 3, pageNo: 1, bytes: fakeJpeg('late') }])).toMatchObject({ status: 409, body: { code: 'upload_closed' } });
+    // Review of #318: an upload closed ten minutes ago whose pages are still unread (their reading stopped) is read
+    // again when the teacher presses once more; the new jobs are taken away here so the class below reads once.
+    const closedAt = (await owner(`select closed_at from marking_uploads where upload_id = $1`, [upload]))[0].closed_at;
+    await owner(`update marking_uploads set closed_at = now() - interval '11 minutes' where upload_id = $1`, [upload]);
+    expect(await close(tMaths, upload)).toMatchObject({ status: 200, body: { runs: 2 } });
+    const again = await owner(`select idempotency_key from jobs where idempotency_key like $1`, [`marking.read:${upload}:%:again:%`]);
+    expect(again).toHaveLength(2);
+    await owner(`delete from jobs where idempotency_key like $1`, [`marking.read:${upload}:%:again:%`]);
+    await owner(`update marking_uploads set closed_at = $2 where upload_id = $1`, [upload, closedAt]);
   });
 
   it('a whole class goes through read, group and mark: matched, marked scripts; a bad answer fails that script only', async () => {

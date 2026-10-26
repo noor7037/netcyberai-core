@@ -2543,6 +2543,7 @@ export const hi: Record<keyof typeof en, string> = {
   'marking.pipeline.failure.blank': 'इस पुस्तिका का हर पन्ना खाली है।',
   'marking.pipeline.refused.closed': 'इस कक्षा का परिणाम प्रकाशित है, इसलिए दोबारा खोले जाने तक कुछ नहीं बदलेगा।',
   'marking.pipeline.refused.state': 'यह पुस्तिका अभी फिर से नहीं जँचवाई जा सकती।',
+  'marking.pipeline.refused.tries': 'AI इस उत्तर पुस्तिका को जितनी बार जाँच सकता है, जाँच चुका है। कृपया इसे ख़ुद जाँचें।',
   'marking.pipeline.refused.questions': 'प्रश्नों के अंक अभी पेपर के अंकों के बराबर नहीं हैं। पहले उन्हें पूरा करें।',
   'marking.pipeline.refused.ai_off': 'स्कूल के लिए AI से जाँच बंद है।',
   'marking.pipeline.refused.limit': 'इस महीने के लिए स्कूल के उत्तर पुस्तिका पन्ने ख़त्म हो गए हैं।',

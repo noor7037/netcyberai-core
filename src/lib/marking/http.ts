@@ -9,6 +9,7 @@ export type MarkingRefusal =
   | 'not_found'
   | 'closed' // the class is published: nothing changes until it is reopened
   | 'state' // the script is not one that can be marked again now
+  | 'tries' // the AI's tries at this script are used: mark it by hand
   | 'questions' // the questions do not make up the paper yet
   | 'ai_off' // AI marking is off for the school (why: no_limit, switched_off, no_provider)
   | 'limit' // the month's pages are used up
@@ -22,6 +23,7 @@ export type MarkingRefusal =
 const STATUS: Record<Exclude<MarkingRefusal, 'not_sent_properly' | 'not_allowed' | 'not_found'>, number> = {
   closed: 409,
   state: 409,
+  tries: 409,
   questions: 409,
   ai_off: 409,
   limit: 409,

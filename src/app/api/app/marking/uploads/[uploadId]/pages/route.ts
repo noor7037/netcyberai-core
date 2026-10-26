@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PAGE_MAX_BYTES, PAGES_PER_REQUEST } from '@/lib/contracts/marking';
+import { PAGE_MAX_BYTES, PAGES_PER_REQUEST, REQUEST_MAX_BYTES } from '@/lib/contracts/marking';
 import { EXAM_READERS } from '@/lib/exams/exams';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRouteAfter } from '@/lib/frameworks/route';
@@ -21,9 +21,9 @@ export async function POST(req: NextRequest, { params }: { params: { uploadId: s
   const read = async (claims: { role: string }): Promise<CheckedPage[] | NextResponse> => {
     if (!(EXAM_READERS as readonly string[]).includes(claims.role)) return markingRefusal('not_allowed');
     if (!isUuid(params.uploadId)) return markingRefusal('not_found');
-    // A body larger than a request's pages and their form wrapping is refused from its declared length, unread.
+    // A body larger than a request may carry (the host refuses one over 4.5 MB) is refused from its declared length, unread.
     const declared = Number(req.headers.get('content-length'));
-    if (Number.isFinite(declared) && declared > PAGES_PER_REQUEST * PAGE_MAX_BYTES + 64 * 1024) return markingRefusal('too_large');
+    if (Number.isFinite(declared) && declared > REQUEST_MAX_BYTES + 64 * 1024) return markingRefusal('too_large');
     const form = await req.formData().catch(() => null);
     if (!form) return markingRefusal('not_sent_properly');
     const named = form.get('uploadId');
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest, { params }: { params: { uploadId: s
     if (files.length < 1 || files.length > PAGES_PER_REQUEST || fileNos.length !== files.length || pageNos.length !== files.length) return markingRefusal('not_sent_properly');
     const pages: CheckedPage[] = [];
     const seen = new Set<string>();
+    if (files.reduce((n, f) => n + (typeof f === 'string' ? 0 : f.size), 0) > REQUEST_MAX_BYTES) return markingRefusal('too_large');
     for (let at = 0; at < files.length; at++) {
       const file = files[at];
       const fileNo = typeof fileNos[at] === 'string' && DIGITS.test(fileNos[at] as string) ? Number(fileNos[at]) : NaN;

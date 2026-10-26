@@ -6,7 +6,7 @@ import { profileById } from '@/lib/ai/platform';
 import { markPrompt } from '@/lib/ai/prompts/exams.mark';
 import { readPagesPrompt } from '@/lib/ai/prompts/exams.read_pages';
 import { jsonObjectIn, labelKey, parseMarking, parseReading } from '@/lib/marking/parse';
-import { checkPage, jpegSize } from '@/lib/marking/upload';
+import { checkPage, jpegSize, stripMetadata } from '@/lib/marking/upload';
 import { anthropicOk } from '../ai/streams';
 import { fakeJpeg } from './fake-jpeg';
 
@@ -148,6 +148,13 @@ describe('parseReading', () => {
 describe('a page picture', () => {
   it('its size comes from the frame header; anything else is not a page', () => {
     expect(jpegSize(fakeJpeg('a', 1400, 2000))).toEqual({ width: 1400, height: 2000 });
+    // What a camera adds is left out before a page is kept (review of #318): an Exif block goes, the picture stays.
+    const exif = Buffer.from([0xff, 0xe1, 0x00, 0x08, 0x45, 0x78, 0x69, 0x66, 0x00, 0x00]);
+    const plain = Buffer.from(fakeJpeg('b', 1400, 2000));
+    const withExif = new Uint8Array(Buffer.concat([plain.subarray(0, 2), exif, plain.subarray(2)]));
+    expect(Buffer.from(stripMetadata(withExif) as Uint8Array).equals(plain)).toBe(true);
+    const page = checkPage({ fileNo: 1, pageNo: 1, bytes: withExif });
+    expect(page.ok && Buffer.from(page.page.bytes).includes(Buffer.from('Exif'))).toBe(false);
     expect(jpegSize(new Uint8Array(Buffer.from('%PDF-1.7 not a picture')))).toBeNull();
     expect(jpegSize(new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))).toBeNull();
     // Cut off inside a segment, or a length that runs past the end.

@@ -2549,6 +2549,7 @@ export const en = {
   'marking.pipeline.failure.blank': 'Every page of this script is blank.',
   'marking.pipeline.refused.closed': 'This class’s result is published, so nothing changes until it is reopened.',
   'marking.pipeline.refused.state': 'This script cannot be marked again now.',
+  'marking.pipeline.refused.tries': 'The AI has tried this answer sheet as many times as it may. Please mark it yourself.',
   'marking.pipeline.refused.questions': 'The questions do not add up to the paper’s marks yet. Finish them first.',
   'marking.pipeline.refused.ai_off': 'AI marking is off for the school.',
   'marking.pipeline.refused.limit': 'The school’s answer-sheet pages for this month are used up.',

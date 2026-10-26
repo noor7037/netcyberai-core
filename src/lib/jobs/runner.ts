@@ -61,9 +61,16 @@ export async function runJobs(opts: {
     summary.claimed += batch.length;
     for (const job of batch) await runOne(job);
   }
-  // Long jobs side by side, when this run is still young enough for them to end inside the route's time.
+  // Long jobs side by side, when this run is still young enough for them to end inside the route's time: one school's at
+  // most each, oldest first, so a school that closes ten classes at once never holds up the others (review of #318).
   if (opts.longJobs && summary.claimed < limit && now() - started < LONG_JOB_START_MS) {
-    const jobs = await queue.claim(Math.min(LONG_JOBS_AT_ONCE, limit - summary.claimed), opts.onlyKeys, { only: LONG_JOB_TYPES });
+    const jobs: ClaimedJob[] = [];
+    while (jobs.length < Math.min(LONG_JOBS_AT_ONCE, limit - summary.claimed)) {
+      const schools = jobs.map((j) => j.schoolId).filter((s): s is string => !!s);
+      const [job] = await queue.claim(1, opts.onlyKeys, { only: LONG_JOB_TYPES, exceptSchools: schools });
+      if (!job) break;
+      jobs.push(job);
+    }
     summary.claimed += jobs.length;
     await Promise.all(jobs.map(runOne));
   }

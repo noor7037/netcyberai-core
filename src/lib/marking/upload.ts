@@ -58,19 +58,60 @@ export function jpegSize(b: Uint8Array): { width: number; height: number } | nul
   return null;
 }
 
+// The picture without what a camera adds (review of #318): APP1 to APP13 and APP15 (Exif with GPS and the phone,
+// XMP, and the rest) are left out; JFIF (APP0), Adobe's colour marker (APP14) and comments stay, as does everything
+// from the image data on. The browser's own pictures carry none of it; a picture sent another way is kept clean too.
+// Null when the file is not a JPEG this can walk.
+export function stripMetadata(b: Uint8Array): Uint8Array | null {
+  if (b.length < 4 || b[0] !== 0xff || b[1] !== 0xd8) return null;
+  const parts: Uint8Array[] = [b.subarray(0, 2)];
+  let i = 2;
+  while (i + 1 < b.length) {
+    if (b[i] !== 0xff) return null;
+    const marker = b[i + 1];
+    if (marker === 0xff) {
+      i++;
+      continue;
+    }
+    if (marker === 0xda || marker === 0xd9) {
+      parts.push(b.subarray(i));
+      const out = new Uint8Array(parts.reduce((n, p) => n + p.length, 0));
+      let at = 0;
+      for (const p of parts) {
+        out.set(p, at);
+        at += p.length;
+      }
+      return out;
+    }
+    if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
+      parts.push(b.subarray(i, i + 2));
+      i += 2;
+      continue;
+    }
+    if (i + 3 >= b.length) return null;
+    const length = (b[i + 2] << 8) | b[i + 3];
+    if (length < 2 || i + 2 + length > b.length) return null;
+    const metadata = (marker >= 0xe1 && marker <= 0xed) || marker === 0xef;
+    if (!metadata) parts.push(b.subarray(i, i + 2 + length));
+    i += 2 + length;
+  }
+  return null;
+}
+
 export type PagePart = { fileNo: number; pageNo: number; bytes: Uint8Array };
 export type CheckedPage = PagePart & { width: number; height: number; sha256: string };
 export type PageProblem = 'not_a_page' | 'too_large' | 'too_small';
 
 export function checkPage(part: PagePart): { ok: true; page: CheckedPage } | { ok: false; reason: PageProblem } {
-  const { bytes } = part;
-  if (bytes.length === 0) return { ok: false, reason: 'not_a_page' };
-  if (bytes.length > PAGE_MAX_BYTES) return { ok: false, reason: 'too_large' };
+  if (part.bytes.length === 0) return { ok: false, reason: 'not_a_page' };
+  if (part.bytes.length > PAGE_MAX_BYTES) return { ok: false, reason: 'too_large' };
+  const bytes = stripMetadata(part.bytes);
+  if (!bytes) return { ok: false, reason: 'not_a_page' };
   const size = jpegSize(bytes);
   if (!size) return { ok: false, reason: 'not_a_page' };
   if (size.width > PAGE_MAX_EDGE || size.height > PAGE_MAX_EDGE) return { ok: false, reason: 'too_large' };
   if (size.width < PAGE_MIN_EDGE || size.height < PAGE_MIN_EDGE) return { ok: false, reason: 'too_small' };
-  return { ok: true, page: { ...part, ...size, sha256: createHash('sha256').update(bytes).digest('hex') } };
+  return { ok: true, page: { ...part, bytes, ...size, sha256: createHash('sha256').update(bytes).digest('hex') } };
 }
 
 export const isFileNo = (n: unknown): n is number => typeof n === 'number' && Number.isInteger(n) && n >= 1 && n <= MAX_FILES_PER_UPLOAD;
@@ -142,6 +183,9 @@ export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage,
   const fresh = pages.filter((p) => !there.has(`${p.fileNo}:${p.pageNo}`));
   const made = new Map<string, { pageId: string; duplicate: boolean }>();
   if (fresh.length) {
+    // One school's pages are counted and compared one request at a time, so two at once can neither pass the month's
+    // limit together nor keep the same picture twice (review of #318).
+    await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`marking-pages:${actor.schoolId}`]);
     const ai = await aiMarkingState(db, actor.schoolId);
     if (!ai.on) return { ok: false, reason: 'ai_off', why: ai.why };
     const inUpload = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and upload_id = $2`, [actor.schoolId, uploadId])).rows[0]?.n ?? 0);
@@ -213,6 +257,9 @@ export async function closeUpload(db: Sql, actor: Actor, queue: JobQueue, upload
     const pages = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and upload_id = $2`, [actor.schoolId, uploadId])).rows[0]?.n ?? 0);
     await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.upload_closed', targetType: 'marking_uploads', targetId: uploadId, afterState: { paper_id: loaded.upload.paperId, pages } });
   }
-  const { runs } = await queueReading(db, queue, actor.schoolId, uploadId);
+  // Closed more than ten minutes ago with pages still unread: their reading stopped (for example while AI marking was
+  // off), so only those go again. A second press soon after closing queues nothing more.
+  const stuck = loaded.upload.closed && (await db.query(`select closed_at < now() - interval '10 minutes' as old from marking_uploads where school_id = $1 and upload_id = $2`, [actor.schoolId, uploadId])).rows[0]?.old === true;
+  const { runs } = await queueReading(db, queue, actor.schoolId, uploadId, { again: stuck });
   return { ok: true, runs };
 }

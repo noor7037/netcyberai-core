@@ -61,6 +61,7 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
                and ($2::text[] is null or idempotency_key = any($2::text[]))
                and ($4::text[] is null or type = any($4::text[]))
                and ($5::text[] is null or type <> all($5::text[]))
+               and ($6::uuid[] is null or school_id is null or school_id <> all($6::uuid[]))
              order by next_run_at
              limit $1
              for update skip locked
@@ -71,7 +72,7 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
              from due
             where j.job_id = due.job_id
            returning j.job_id, j.type, j.payload, j.attempts, j.max_attempts, j.school_id, j.idempotency_key`,
-          [limit, onlyKeys && onlyKeys.length ? onlyKeys : null, LEASE_SECONDS, types?.only ? [...types.only] : null, types?.except ? [...types.except] : null]
+          [limit, onlyKeys && onlyKeys.length ? onlyKeys : null, LEASE_SECONDS, types?.only ? [...types.only] : null, types?.except ? [...types.except] : null, types?.exceptSchools?.length ? [...types.exceptSchools] : null]
         );
         return rows.map(toJob);
       });

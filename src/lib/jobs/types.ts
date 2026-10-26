@@ -52,7 +52,7 @@ export class PermanentJobError extends Error {
 export type EnqueueResult = { jobId: string; created: boolean };
 
 // Which types a claim may take: only these, or every type but these (the runner's long jobs, ./runner.ts).
-export type ClaimTypes = { only?: readonly string[]; except?: readonly string[] };
+export type ClaimTypes = { only?: readonly string[]; except?: readonly string[]; exceptSchools?: readonly string[] };
 
 export interface JobQueue {
   enqueue(db: Sql, spec: JobSpec): Promise<EnqueueResult>;
