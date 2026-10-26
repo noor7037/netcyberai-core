@@ -93,6 +93,8 @@ export async function sendFiles<F extends FileLike>(
       if (rest) await post(rest);
       state.status = cancelled() ? 'waiting' : 'done';
     } catch (err) {
+      // What went wrong inside the browser is kept for whoever helps (a network or server refusal is said on the screen).
+      if (!(err instanceof FileFailure) && !(err instanceof UploadError)) console.error('A file could not be turned into pages', err);
       state.status = 'failed';
       state.error = err instanceof FileFailure ? err.problem : err instanceof UploadError ? (err.status === 0 || err.status >= 500 || err.status === 408 || err.status === 429 ? 'network' : err.status === 413 ? 'page_too_big' : 'refused') : 'unreadable';
     } finally {

@@ -85,7 +85,7 @@ export const PagesPane = forwardRef<PagesPaneHandle, { pages: SheetPage[]; badge
                 ) : (
                   // The address is the app's own route, which checks who is asking every time.
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.url} width={p.width} height={p.height} alt={t('mk.pages.alt', { n: p.position, total: pages.length })} loading={p.position <= 2 ? 'eager' : 'lazy'} draggable={false} className="block h-full w-full select-none" onError={() => setBroken([...broken, p.pageId])} />
+                  <img src={p.url} width={p.width} height={p.height} alt={t('mk.pages.alt', { n: p.position, total: pages.length })} loading={p.position <= 2 ? 'eager' : 'lazy'} draggable={false} className="block h-full w-full select-none" onError={() => setBroken((b) => (b.includes(p.pageId) ? b : [...b, p.pageId]))} />
                 )}
                 <div aria-hidden="true" className="pointer-events-none absolute inset-0">
                   {mine.map((b) => (

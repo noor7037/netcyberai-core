@@ -33,6 +33,8 @@ import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
 import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
+import { clearMarking } from './marking-seed.mjs';
+import { markingScreens } from './marking-screens.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -3193,6 +3195,8 @@ const X_KIDS = [1, 4, 7, 10, 13, 16, 19, 22, 25]; // 5-A in the seed: roll 1 to 
 const xKid = (g) => `00000000-0000-4000-8000-0000005${String(g).padStart(5, '0')}`;
 let xEntitlementBefore;
 const clearExams = async () => {
+  // AI marking's rows hang on the exams and papers deleted below (with triggers off): they go first (AM-3).
+  await clearMarking(db, SCHOOL);
   await db.pg.exec(`set session_replication_role = replica;
     delete from marks where school_id = '${SCHOOL}';
     delete from exam_papers where school_id = '${SCHOOL}';
@@ -6707,6 +6711,11 @@ const SCREENS = [
   ['founder', 'control-content-pdf-import', '/control/content', pdfImportForm],
   ['founder', 'control-content-responses', '/control/content/responses', queueScreen, queueScreenDone],
   // m2-12 end
+  // am-3 begin
+  // AI answer-sheet marking (C347, C348): a paper's four steps, one script beside its pages, approving, the exam's
+  // candidates and the exam numbers to print; the screens are in scripts/harness/marking-screens.mjs.
+  ...markingScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, CLASS_5A, base: () => base, secret: () => secret, cookieFor, speak, backToEnglish }),
+  // am-3 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

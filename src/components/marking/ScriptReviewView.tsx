@@ -14,7 +14,7 @@ import type { MessageKey } from '@/lib/i18n';
 import { layoutBadges } from '@/lib/marking/margin';
 import { changesOf, clampMark, countedOf, emptyDraft, finalOf, flagsInOrder, grandTotal, noteOf, parseMark, stepMark, sureness, totalsOf, type SheetDraft } from '@/lib/marking/review-view';
 import { PagesPane, type PagesPaneHandle } from './PagesPane';
-import { ask, childLine, ERROR_TYPE_KEYS, errorWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
+import { ask, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
 
 // One script, beside its pages (docs/35, C347). The scanned pages are on one side, zoomable, with each question's mark
 // in the margin at its answer; the questions are on the other: marks with − and + in half marks and a field (never above
@@ -112,12 +112,17 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
     setNote(null);
     return true;
   }, [sheetId, loadDetail, t]);
+  const flushNow = useRef(flush);
+  flushNow.current = flush;
 
+  // Kept a moment after the last change, once for each set of changes: a save that fails is not tried again until the
+  // teacher changes something more or presses "Try again".
+  const pendingKey = pending ? JSON.stringify(pending) : '';
   useEffect(() => {
-    if (!pending) return;
-    const id = window.setTimeout(() => void flush(), SAVE_AFTER_MS);
+    if (!pendingKey) return;
+    const id = window.setTimeout(() => void flushNow.current(), SAVE_AFTER_MS);
     return () => window.clearTimeout(id);
-  }, [pending, draft, flush]);
+  }, [pendingKey]);
   useEffect(() => {
     if (!pending) return;
     const warn = (e: BeforeUnloadEvent) => e.preventDefault();
@@ -145,7 +150,9 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const allMarked = detail.questions.every((q) => finalOf(q, draft) !== null);
   const flags = flagsInOrder(sheet.flags);
   const taken = new Set((overview?.sheets ?? []).filter((s) => s.student && s.sheetId !== sheetId).map((s) => s.student!.studentId));
-  const mayApprove = detail.mayChange && !!sheet.student && (sheet.state === 'marked' || (sheet.state === 'approved' && sheet.flags.includes('changed'))) && allMarked;
+  // An approved script changed just now is approved again (the flag follows when the change is kept).
+  const changedSince = sheet.flags.includes('changed') || pending !== null;
+  const mayApprove = detail.mayChange && !!sheet.student && (sheet.state === 'marked' || (sheet.state === 'approved' && changedSince)) && allMarked;
   const approveWhy: MessageKey | null = !detail.mayChange ? (paper.published ? 'mk.q.published' : 'mk.q.readOnly') : !sheet.student ? 'mk.sheet.needChild' : !allMarked ? 'mk.sheet.needMarks' : null;
   const hasTeacherChanges = detail.questions.some((q) => q.teacher.marks !== null || q.teacher.note !== null) || pending !== null;
   const mistakeOptions: ErrorType[] = [...ERROR_TYPES];
@@ -185,7 +192,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
     const r = await ask('POST', `/api/app/marking/sheets/${sheetId}/mark-again`);
     if (!r.ok) {
       setBusy(false);
-      return setNote({ ok: false, text: errorWords(t, r) });
+      // A script still being worked on is taken again only after a quarter of an hour.
+      return setNote({ ok: false, text: waiting && r.body?.code === 'state' ? t('mk.err.still_working') : errorWords(t, r) });
     }
     setDraft(emptyDraft());
     await loadDetail();
@@ -248,6 +256,11 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
               <li key={f} className="flex flex-wrap items-center gap-x-2">
                 <Badge variant="warning">{t(FLAG_KEYS[f])}</Badge>
                 <span className="text-slate/70">{t(FLAG_HOW_KEYS[f])}</span>
+                {f === 'check_child' && sheet.student && detail.mayChange && sheet.state !== 'approved' && (
+                  <button type="button" data-confirm-child className={TAP} disabled={busy} onClick={() => void doChoose(sheet.student!.studentId)}>
+                    {t('mk.id.confirm', { name: sheet.student.name })}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -291,7 +304,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
       {sheet.state === 'failed' && (
         <p data-sheet-failed role="alert" className="flex items-start gap-2 rounded-md border border-red-800/30 px-3 py-2 text-red-800">
           <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
-          <span>{t('mk.sheet.couldNot', { why: sheet.failure ? t(`mk.failure.${sheet.failure}` as MessageKey) : '' })}</span>
+          <span>{t('mk.sheet.couldNot', { why: failureWords(t, sheet.failure) })}</span>
         </p>
       )}
       {waiting && (
@@ -304,7 +317,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
       {paper.published && <p className="rounded-md bg-off-white px-3 py-2">{t('mk.q.published')}</p>}
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
-        <div className="min-w-0 lg:sticky lg:top-20 lg:w-[46%] lg:flex-none">
+        <div className="min-w-0 lg:sticky lg:top-20 lg:w-5/12 lg:flex-none">
           <PagesPane ref={pane} pages={detail.pages} badges={badges} active={active} />
         </div>
 
@@ -466,12 +479,12 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
               {sheet.state !== 'set_aside' && (
                 <>
                   <button type="button" data-approve className={PRIMARY} disabled={busy || !mayApprove} onClick={() => void doApprove(false)}>
-                    {sheet.state === 'approved' && !sheet.flags.includes('changed') ? t('mk.actions.approved') : t('mk.actions.approve')}
+                    {sheet.state === 'approved' && !changedSince ? t('mk.actions.approved') : t('mk.actions.approve')}
                   </button>
                   {detail.next && (
                     <button type="button" data-approve-next className={TAP} disabled={busy || !mayApprove} onClick={() => void doApprove(true)}>{t('mk.actions.approveNext')}</button>
                   )}
-                  {detail.mayChange && (sheet.state === 'marked' || sheet.state === 'failed') && (
+                  {detail.mayChange && (sheet.state === 'marked' || sheet.state === 'failed' || waiting) && (
                     <button type="button" data-mark-again className={TAP} disabled={busy} onClick={() => setConfirm('again')}>{t('mk.actions.again')}</button>
                   )}
                   {detail.mayChange && sheet.state !== 'approved' && (

@@ -59,7 +59,7 @@ export function ReviewList({ paperId, overview, mayChange, onChanged }: { paperI
         <>
           <div className="flex flex-col gap-2 rounded-md bg-off-white p-3">
             <div className="flex flex-wrap items-center gap-2">
-              <p data-ready-count className="min-w-0 flex-1">{t(ready.length === 1 ? 'mk.review.readyOne' : 'mk.review.ready', { n: ready.length })}</p>
+              <p data-ready-count className="min-w-0 flex-1 basis-full sm:basis-0">{t(ready.length === 1 ? 'mk.review.readyOne' : 'mk.review.ready', { n: ready.length })}</p>
               <InfoTip>{t('mk.review.readyHow')}</InfoTip>
               {mayChange && (
                 <button type="button" data-approve-all className={PRIMARY} disabled={busy || ready.length === 0 || !overview.ready} onClick={() => setConfirming(true)}>
@@ -113,7 +113,7 @@ export function ReviewList({ paperId, overview, mayChange, onChanged }: { paperI
                   <p data-sheet-total className="min-w-[5rem] font-bold">
                     {s.total === null ? '—' : t('mk.review.total', { score: numberWords(s.total, lang), max: numberWords(s.max, lang) })}
                   </p>
-                  <Badge variant={bucket === 'approved' ? 'success' : bucket === 'needs' ? 'warning' : 'neutral'}>{t(STATE_KEYS[s.state])}</Badge>
+                  <Badge variant={bucket === 'approved' ? 'success' : bucket === 'needs' ? 'warning' : 'neutral'}>{bucket === 'needs' && s.state !== 'failed' ? t('mk.review.needsLook') : t(STATE_KEYS[s.state])}</Badge>
                   <a href={sheetHref(paperId, s.sheetId)} data-review-link className={bucket === 'needs' ? PRIMARY : TAP}>
                     {s.state === 'waiting' || s.state === 'marking' ? t('mk.review.open') : bucket === 'approved' ? t('mk.review.seeIt') : t('mk.review.check')}
                   </a>

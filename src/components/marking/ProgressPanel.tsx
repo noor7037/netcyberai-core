@@ -6,7 +6,7 @@ import { numberWords } from '@/components/exams/exam-format';
 import { TAP } from '@/components/exams/SchemeParts';
 import type { MarkingOverview, SheetState } from '@/lib/contracts/marking';
 import { inProgress } from '@/lib/marking/review-view';
-import { ask, errorWords, failureWords, childLine } from './parts';
+import { ask, errorWords, failureWords, childLine, STATE_KEYS } from './parts';
 
 // Step 3 of a paper's AI marking: how far reading and marking have come (C347). The pages read, blank, unreadable and
 // duplicate; the scripts waiting, being marked, marked and failed (with "Mark again"). The hub asks again every few
@@ -31,7 +31,8 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
     setNote(null);
     const r = await ask('POST', `/api/app/marking/sheets/${sheetId}/mark-again`);
     setBusy(null);
-    if (!r.ok) return setNote({ ok: false, text: errorWords(t, r) });
+    // A script still being worked on is taken again only after a quarter of an hour.
+    if (!r.ok) return setNote({ ok: false, text: r.body?.code === 'state' && !failed.some((f) => f.sheetId === sheetId) ? t('mk.err.still_working') : errorWords(t, r) });
     setNote({ ok: true, text: t('mk.progress.again') });
     onChanged();
   };
@@ -87,6 +88,23 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
             </li>
           ))}
         </ul>
+      )}
+
+      {mayChange && live.some((s) => s.state === 'waiting' || s.state === 'marking') && (
+        <details data-stuck className="rounded-md border border-slate/10 p-3">
+          <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('mk.progress.stuck')}</summary>
+          <p className="mt-1 text-slate/70">{t('mk.progress.stuckHow')}</p>
+          <ul className="mt-2 flex flex-col gap-2">
+            {live.filter((s) => s.state === 'waiting' || s.state === 'marking').map((s) => (
+              <li key={s.sheetId} className="flex flex-wrap items-center justify-between gap-2">
+                <span>{s.student ? childLine(s.student) : t('mk.review.noChild')} · {t(STATE_KEYS[s.state])}</span>
+                <button type="button" data-mark-again={s.sheetId} className={TAP} disabled={busy === s.sheetId} onClick={() => void markAgain(s.sheetId)}>
+                  {t('mk.progress.markAgain')}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </details>
       )}
 
       {note && <p role="status" data-progress-note={note.ok ? 'ok' : 'error'} className={`rounded-md px-3 py-2 font-semibold ${note.ok ? 'bg-off-white text-slate' : 'border border-red-800/30 text-red-800'}`}>{note.text}</p>}

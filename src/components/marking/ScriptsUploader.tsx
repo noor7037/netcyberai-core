@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { InfoTip } from '@/components/app-ui/InfoTip';
-import { numberWords } from '@/components/exams/exam-format';
 import { PRIMARY, TAP } from '@/components/exams/SchemeParts';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { Icon } from '@/components/visual/Icons';
@@ -30,7 +29,7 @@ const PROBLEM_KEYS: Record<FileProblem, MessageKey> = {
 };
 
 export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }: { paperId: string; overview: MarkingOverview; mayUpload: boolean; why: MessageKey | null; onChanged: () => void }) {
-  const { t, lang } = useT();
+  const { t } = useT();
   const [mode, setMode] = useState<UploadMode>('per_file');
   const [picked, setPicked] = useState<File[]>([]);
   const [states, setStates] = useState<FileState[]>([]);
@@ -47,7 +46,6 @@ export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }
   const sent = states.reduce((n, s) => n + s.pagesDone, 0);
   const allDone = states.length > 0 && states.every((s) => s.status === 'done' || s.status === 'failed');
   const waiting = states.filter((s) => s.status === 'waiting');
-  const pagesLeft = overview.ai.limit === null ? null : Math.max(0, overview.ai.limit - overview.ai.pagesThisMonth);
 
   const pick = (list: FileList | null) => {
     if (!list) return;
@@ -132,11 +130,9 @@ export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }
 
   return (
     <div data-scripts-uploader className="flex flex-col gap-3">
-      {pagesLeft !== null && <p className="text-slate/70">{t('mk.up.allowance', { used: numberWords(overview.ai.pagesThisMonth, lang), limit: numberWords(overview.ai.limit ?? 0, lang) })}</p>}
-
       {!states.length && (
         <>
-          <div className="flex flex-wrap items-start gap-x-1">
+          <div className="flex flex-wrap items-end gap-x-1">
             <SegmentedControl
               id="mk-upload-mode"
               label={t('mk.up.mode')}
