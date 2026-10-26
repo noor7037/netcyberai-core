@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { openSealedParams } from './sealed-params';
 import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { missingVariables, placeholderOrder, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
@@ -379,7 +380,8 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   return { ready: true, testSchool: school.is_test_fixture, provider, providerUsed, fallbackReason, category, rate, said };
 }
 
-const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: normalizePhone(params.toPhone) ?? params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId, templateOrder: placeholderOrder(r.said.template.body ?? '') });
+// A sealed value (./sealed-params.ts) is opened here only, as the provider is asked: the log keeps it sealed.
+const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: normalizePhone(params.toPhone) ?? params.toPhone, templateName: params.templateName, templateParams: openSealedParams(params.templateName, r.said.filled), language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId, templateOrder: placeholderOrder(r.said.template.body ?? '') });
 const LOGGED = (r: Ready) => ({ providerUsed: r.providerUsed, fallbackReason: r.fallbackReason, category: r.category, rate: r.rate, provider: r.provider.name, ...r.said });
 
 // The earlier attempt with the same dedupe key, whoever made it (C210): communication_log_dedupe answers with its id

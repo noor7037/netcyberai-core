@@ -1,4 +1,5 @@
-import { createHash, randomBytes } from 'node:crypto';
+import { createHash, createHmac, randomBytes } from 'node:crypto';
+import { appSessionSecret } from '@/lib/auth/env';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { SchoolCheckedPaper } from '@/lib/contracts/school-link';
 import { EXAM_RUNNERS } from '@/lib/exams/exams';
@@ -25,10 +26,23 @@ export const REPORT_DAYS = 30;
 const KEY_FORMAT = /^[A-Za-z0-9_-]{43}$/;
 
 export const reportKeyHash = (key: string): string => createHash('sha256').update(key, 'utf8').digest('hex');
+
+// A link's key is made from a random reference and the server's secret (review of AM-5): the message log keeps only the
+// reference, sealed as `sealed:<ref>:<lang>` in the template's `link` value, and the send-gate opens it into the link
+// at the moment it asks the provider (src/lib/whatsapp/sealed-params.ts). Whoever reads the log cannot open the child's
+// result: that needs the server's secret. A new session secret (docs/18) turns links queued and not yet sent into
+// links that open nothing; links already sent keep working (only their hash is kept).
+export const REF_FORMAT = /^[A-Za-z0-9_-]{43}$/;
+export const reportKeyFor = (ref: string): string => createHmac('sha256', appSessionSecret()).update(`marking-report-link.v1\u0000${ref}`).digest('base64url');
+export const sealedLink = (ref: string, lang: 'en' | 'hi'): string => `sealed:${ref}:${lang}`;
+export function openSealedLink(value: string): string | null {
+  const m = /^sealed:([A-Za-z0-9_-]{43}):(en|hi)$/.exec(value);
+  return m ? reportLinkUrl(reportKeyFor(m[1]), m[2] as 'en' | 'hi') : null;
+}
 export const reportLinkUrl = (key: string, lang: 'en' | 'hi' = 'en'): string => `${siteUrl}${REPORT_PATH}${key}${lang === 'hi' ? '?lang=hi' : ''}`;
 export const pagePictureUrl = (key: string, pageId: string): string => `/api/public/results/${key}/pages/${pageId}`;
 
-export type MakeLinkResult = { ok: true; key: string; version: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' | 'no_consent' | 'exists' };
+export type MakeLinkResult = { ok: true; key: string; ref: string; version: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' | 'no_consent' | 'exists' };
 
 // The school's consent for the child's records, as School Link applies it (the latest decision granted, or a test
 // school's fictional children): without it nothing of the child reaches a family, by the app or by a link.
@@ -46,7 +60,7 @@ export async function recordsConsented(db: Sql, schoolId: string, studentId: str
 // The office makes a child's link for the publication in force of the exam for the class. The key is returned once;
 // a second link for the same child and publication is refused (`exists`), so a family is never sent two. A child on
 // the class's roll only, whose records the school holds consent for.
-export async function makeReportLink(db: Sql, actor: Actor, examId: string, classId: string, studentId: string, newKey: () => string = () => randomBytes(32).toString('base64url')): Promise<MakeLinkResult> {
+export async function makeReportLink(db: Sql, actor: Actor, examId: string, classId: string, studentId: string, newRef: () => string = () => randomBytes(32).toString('base64url')): Promise<MakeLinkResult> {
   if (!EXAM_RUNNERS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   if (![examId, classId, studentId].every(isUuid)) return { ok: false, reason: 'not_found' };
   const child = (
@@ -56,7 +70,9 @@ export async function makeReportLink(db: Sql, actor: Actor, examId: string, clas
   if (!(await recordsConsented(db, actor.schoolId, studentId))) return { ok: false, reason: 'no_consent' };
   const pub = await publicationInForce(db, actor.schoolId, examId, classId);
   if (!pub) return { ok: false, reason: 'not_published' };
-  const key = newKey();
+  const ref = newRef();
+  if (!REF_FORMAT.test(ref)) throw new Error('makeReportLink: a reference is 43 base64url characters');
+  const key = reportKeyFor(ref);
   if (!KEY_FORMAT.test(key)) throw new Error('makeReportLink: a key is 43 base64url characters');
   const made = (
     await db.query(
@@ -70,7 +86,7 @@ export async function makeReportLink(db: Sql, actor: Actor, examId: string, clas
   if (!made) return { ok: false, reason: 'exists' };
   // Ids and the version only: never the key, which opens the child's result.
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.report_link_made', targetType: 'students', targetId: studentId, beforeState: undefined, afterState: { examId, classId, version: pub.version } });
-  return { ok: true, key, version: pub.version };
+  return { ok: true, key, ref, version: pub.version };
 }
 
 // The children of a class who already have a link for the publication in force.

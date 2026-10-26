@@ -9,7 +9,7 @@ import { gateWouldQueue, languageFor, queueWhatsAppMessage, type GateRule, type 
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { templateToSend, type TemplateLanguage } from '@/lib/whatsapp/templates';
 import type { Actor } from './context';
-import { childrenWithLinks, makeReportLink, recordsConsented, reportLinkUrl } from './report-links';
+import { childrenWithLinks, makeReportLink, recordsConsented, reportLinkUrl, sealedLink } from './report-links';
 
 // "Tell parents on WhatsApp" (C351): once a class's result is published, the office sends each family a private link
 // to their own child's result (src/lib/marking/report-links.ts), one message per child and guardian per publication,
@@ -56,7 +56,7 @@ async function guardiansOf(db: Sql, schoolId: string, studentId: string): Promis
   return (
     await db.query(
       `select p.parent_id, p.name, p.relation, p.phone from parent_student_map m join parents p on p.school_id = m.school_id and p.parent_id = m.parent_id
-        where m.school_id = $1 and m.student_id = $2 and p.merged_into is null and m.verification_status::text <> 'tombstoned'
+        where m.school_id = $1 and m.student_id = $2 and p.merged_into is null and m.verification_status::text not in ('tombstoned', 'withdrawn', 'expired')
         order by p.name, p.parent_id`,
       [schoolId, studentId]
     )
@@ -167,7 +167,8 @@ export async function tellParentsSend(db: PoolClient, queue: QueueLike, actor: A
         purpose: RESULT_PURPOSE,
         toPhone: g.phone as string,
         templateName: RESULT_TEMPLATE,
-        templateParams: { child: c.name, exam: p.examName, link: reportLinkUrl(link.key, lang) },
+        // Sealed in the log; the send-gate opens it into the link only as it asks the provider (review of AM-5).
+        templateParams: { child: c.name, exam: p.examName, link: sealedLink(link.ref, lang) },
         dedupeKey: resultDedupeKey(examId, classId, link.version, c.studentId, g.parentId),
         language: lang,
       });

@@ -48,6 +48,7 @@ const preview = (who: Who = office) => as(who, (c, a) => tellParentsPreview(c, a
 const send = (who: Who = office) => as(who, (c, a) => tellParentsSend(c, queue, a, X1, C6A));
 
 beforeAll(async () => {
+  process.env.APP_SESSION_SECRET = 'test-only-secret-for-am-5-send-tests-0123456789abcdef';
   db = await startHarnessDb({ port: 0 });
   const def = TEMPLATE_REGISTRY.find((d) => d.name === RESULT_TEMPLATE)!;
   await db.pg.exec(`
@@ -182,10 +183,19 @@ describe('telling parents on WhatsApp (C351)', () => {
       [P1, 'queued', resultDedupeKey(X1, C6A, 1, S1, P1)],
       [P1B, 'queued', resultDedupeKey(X1, C6A, 1, S1, P1B)],
     ]);
-    const link = rows[0].template_params.link as string;
-    expect(rows[0].template_params).toEqual({ child: 'Aarav Kumar', exam: 'Half-yearly', link });
+    // The log keeps the link sealed (review of AM-5): a reference that opens nothing without the server's secret. The
+    // send-gate opens it into the link only as it asks the provider.
+    const sealed = rows[0].template_params.link as string;
+    expect(sealed).toMatch(/^sealed:[A-Za-z0-9_-]{43}:en$/);
+    expect(rows[0].template_params).toEqual({ child: 'Aarav Kumar', exam: 'Half-yearly', link: sealed });
+    const { openSealedParams } = await import('@/lib/whatsapp/sealed-params');
+    const link = openSealedParams('exam_result_ready', rows[0].template_params).link;
+    expect(link).toMatch(/\/results\/[A-Za-z0-9_-]{43}$/);
     const key = link.split('/results/')[1].split('?')[0];
+    expect(sealed).not.toContain(key);
     expect(await q(`select student_id, publication_version from marking_report_links where key_hash = $1`, [createHash('sha256').update(key).digest('hex')])).toEqual([{ student_id: S1, publication_version: 1 }]);
+    // Nothing anywhere in the message log holds the key itself.
+    expect(JSON.stringify(await q(`select * from communication_log`))).not.toContain(key);
     const queued = await jobs();
     expect(queued).toHaveLength(2);
     expect(JSON.stringify(queued)).not.toContain(key);
