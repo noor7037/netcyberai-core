@@ -267,6 +267,23 @@ describe('ending a phone’s session (C342)', () => {
     await asFamily(parent, (c) => signOutEverywhere(c as never, ACCOUNT));
     expect(await q(`select count(*)::int as n from family.child_devices where revoked_at is null`)).toEqual([{ n: 0 }]);
   });
+
+  it('an approval does not outlive "sign out everywhere": the phone cannot take it afterwards (review of C346)', async () => {
+    const now = async () => Number((await q(`select token_version from family.accounts where account_id = $1`, [ACCOUNT]))[0].token_version);
+    parent.tokenVersion = await now();
+    await q(`delete from family.child_link_tries`);
+    const asked = await ask('198.51.100.26');
+    expect((await approve(KABIR, asked.code)).status).toBe(200);
+    const { signOutEverywhere } = await import('@/lib/family/account');
+    await asFamily(parent, (c) => signOutEverywhere(c as never, ACCOUNT));
+    expect(await check(asked.claim)).toMatchObject({ status: 410, body: { error: 'gone' } });
+    expect(await q(`select count(*)::int as n from family.child_devices where revoked_at is null`)).toEqual([{ n: 0 }]);
+    // Without a sign-out in between, the same steps link the phone.
+    parent.tokenVersion = await now();
+    const again = await ask('198.51.100.27');
+    expect((await approve(KABIR, again.code)).status).toBe(200);
+    expect(await check(again.claim)).toMatchObject({ status: 200, body: { status: 'linked' } });
+  });
 });
 
 describe('a session’s claims are built in one place (C342)', () => {
