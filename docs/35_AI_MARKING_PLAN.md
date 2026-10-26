@@ -137,7 +137,7 @@ Migrations are the lead's: one at a time, to the test database, md5 checked, ren
 | #318 | AM-2 pipeline: the two AI tasks and prompts, page uploads, the read, group and mark jobs, long jobs (C353) | none |
 | #319 | AM-3 teacher screens: questions, upload (PDF in the browser), progress, review in the margin, approval; candidates and exam numbers | none |
 | #320 | AM-6 intelligence: the Learning Genome by topic, a paper's class view, Control's AI marking monitor | none |
-| AM-4 | Families: the checked paper in the Family app (parent and child view), the exam timetable, the private report link | `am_4_guardian_choice_counts` |
+| #321 | AM-4 families: the checked paper in the Family app (parent and child view), the exam timetable, the private report link | `am_4_guardian_choice_counts` 20261026233953 |
 | AM-5 | The office's "Tell parents on WhatsApp", the `exam_result_ready` template (needs #315 and #316 first) | none |
 
 Two security reviews (#317, #318) found a script edited after approval reaching families, AI spending through "Mark
