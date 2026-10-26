@@ -63,7 +63,7 @@ describe('the words', () => {
     const t = TEMPLATE_REGISTRY.find((x) => x.name === 'class_notice')!;
     expect(definitionProblem(t)).toBeNull();
     expect(t.purpose).toBe('operational_communication');
-    expect(renderTemplate(t.body.en, { school: 'School A', class: '5-A', notice: 'The parent meeting is on Saturday at 10 am.' })).toBe('School A: Notice for 5-A. The parent meeting is on Saturday at 10 am.');
+    expect(renderTemplate(t.body.en, { school: 'School A', class: '5-A', notice: 'The parent meeting is on Saturday at 10 am.' })).toBe('From School A: Notice for 5-A. The parent meeting is on Saturday at 10 am. For any question, please contact the school office.');
   });
 });
 

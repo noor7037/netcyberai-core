@@ -63,11 +63,11 @@ beforeAll(async () => {
     insert into students (student_id, school_id, admission_no, name, status) values ('c0000000-0000-4000-8000-000000500002', '${TEST_SCHOOL}', 'A-1', 'Child', 'active');
     insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version)
       select school_id, student_id, 'operational_communication', true, (enum_range(null::consent_method))[1], 'v1' from students where school_id in ('${SCHOOL}', '${TEST_SCHOOL}');
-    insert into whatsapp_templates (school_id, template_name, status, billing_category) values
-      (null, 'absence_alert', 'approved', 'utility'),
-      (null, 'open_day_invite', 'approved', 'marketing'),
-      (null, 'login_code', 'approved', 'authentication'),
-      (null, 'not_approved_yet', 'pending', 'marketing');
+    insert into whatsapp_templates (school_id, template_name, status, billing_category, body, variables) values
+      (null, 'absence_alert', 'approved', 'utility', 'From {{school}}: words for this test only.', '{school}'),
+      (null, 'open_day_invite', 'approved', 'marketing', 'From {{school}}: words for this test only.', '{school}'),
+      (null, 'login_code', 'approved', 'authentication', 'From {{school}}: words for this test only.', '{school}'),
+      (null, 'not_approved_yet', 'pending', 'marketing', 'From {{school}}: words for this test only.', '{school}');
   `);
   await db.pg.exec(`update whatsapp_templates set meta_status = 'approved', meta_template_id = 'made-up' where status = 'approved'`); // the made-up real account sends only what Meta has approved (C184)
   vi.spyOn(console, 'warn').mockImplementation(() => undefined);
@@ -167,11 +167,11 @@ describe('with rates on record: utility and marketing are costed apart, by the r
   });
 
   it('the category belongs to the template, and a school’s own template wins over the platform’s', async () => {
-    await db.pg.query(`insert into whatsapp_templates (school_id, template_name, status, billing_category) values ($1, 'absence_alert', 'approved', 'marketing')`, [SCHOOL]);
+    await db.pg.query(`insert into whatsapp_templates (school_id, template_name, status, billing_category, body, variables) values ($1, 'absence_alert', 'approved', 'marketing', 'From {{school}}: words for this test only.', '{school}')`, [SCHOOL]);
     expect(await asSchool((c) => templateCategory(c, SCHOOL, 'absence_alert'))).toBe('marketing');
     expect(await asSchool((c) => templateCategory(c, TEST_SCHOOL, 'absence_alert'), TEST_SCHOOL)).toBe('utility');
     await db.pg.query(`delete from whatsapp_templates where school_id = $1`, [SCHOOL]);
-    await expect(db.pg.query(`insert into whatsapp_templates (school_id, template_name, status, billing_category) values (null, 'x', 'approved', 'promo')`)).rejects.toThrow(/billing_category_known/);
+    await expect(db.pg.query(`insert into whatsapp_templates (school_id, template_name, status, billing_category, body, variables) values (null, 'x', 'approved', 'promo', 'From {{school}}: words for this test only.', '{school}')`)).rejects.toThrow(/billing_category_known/);
   });
 });
 

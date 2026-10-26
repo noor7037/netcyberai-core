@@ -40,8 +40,10 @@ describe('Meta’s formats, against Meta’s documented examples', () => {
       recipient_type: 'individual',
       to: '+16505551234',
       type: 'template',
-      template: { name: 'order_confirmation', language: { code: 'en' }, components: [{ type: 'body', parameters: [{ type: 'text', parameter_name: 'first_name', text: 'Jessica' }, { type: 'text', parameter_name: 'order_number', text: 'SKBUP2-4CPIG9' }] }] },
+      // Positional (C345): the values in the template's own order, {{1}} first, with no names.
+      template: { name: 'order_confirmation', language: { code: 'en' }, components: [{ type: 'body', parameters: [{ type: 'text', text: 'Jessica' }, { type: 'text', text: 'SKBUP2-4CPIG9' }] }] },
     });
+    expect(templateSendBody({ ...SEND, templateOrder: ['order_number', 'first_name'] })).toMatchObject({ template: { components: [{ parameters: [{ type: 'text', text: 'SKBUP2-4CPIG9' }, { type: 'text', text: 'Jessica' }] }] } });
     const meta = recorded(SENT_OK);
     const out = await new MetaWhatsAppProvider(CONFIG, meta.fetcher).send(SEND);
     expect(out).toEqual({ success: true, providerMessageId: 'wamid.HBgLMTY1MDM4Nzk0MzkVAgARGBI0QUQ2MjA4NEYyRkExNjMyREUA', errorMessage: null, raw: null });
@@ -247,7 +249,7 @@ describe('the platform’s credentials, on the real schema', () => {
     const live = await asSchool(LIVE, (c) => queueWhatsAppMessage(c, queue, params(LIVE, 'meta-live')));
     expect(await deliverQueued({ platform, queue }, live.logId)).toEqual({ status: 'sent' });
     expect(asked).toHaveLength(1);
-    expect(asked[0]).toMatchObject({ url: `https://graph.facebook.com/${GRAPH_VERSION}/${ACCOUNT.phoneNumberId}/messages`, method: 'POST', body: { to: '+910000000011', type: 'template', template: { name: 'absence', language: { code: 'en' }, components: [{ type: 'body', parameters: [{ type: 'text', parameter_name: 'school', text: 'Live School' }, { type: 'text', parameter_name: 'child', text: 'Asha' }, { type: 'text', parameter_name: 'date', text: '01-04-2099' }] }] } } });
+    expect(asked[0]).toMatchObject({ url: `https://graph.facebook.com/${GRAPH_VERSION}/${ACCOUNT.phoneNumberId}/messages`, method: 'POST', body: { to: '+910000000011', type: 'template', template: { name: 'absence', language: { code: 'en' }, components: [{ type: 'body', parameters: [{ type: 'text', text: 'Live School' }, { type: 'text', text: 'Asha' }, { type: 'text', text: '01-04-2099' }] }] } } });
     const row = (await db.pg.query(`select status::text as status, provider, provider_message_id as id, billable, est_cost_paise::int as cost, cost_basis from communication_log where log_id = $1`, [live.logId])).rows[0];
     expect(row).toEqual({ status: 'sent', provider: 'meta', id: 'wamid.made-up-1', billable: false, cost: 1000, cost_basis: 'rate_table' });
     // Meta's delivery notice, signed with the App Secret, makes it delivered and billable.

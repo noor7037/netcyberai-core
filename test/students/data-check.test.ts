@@ -236,7 +236,7 @@ describe('on the real schema, as the app’s own role', () => {
     const before = (await db.pg.query(`select count(*)::int as n from communication_log`)).rows[0].n;
     const draft = ok(await as(admin, (c) => draftRequest(c, actor(admin), ARIF, { parentId: G_ARIF, fields: ['name', 'dob', 'gender'] })));
     expect(draft.hasNumber).toBe(true);
-    expect(draft.text).toBe('School A: For UDISE+ and APAAR, Md Arif Khan’s details in the school record must match Aadhaar. These differ: Name: school record Md Arif Khan, Aadhaar Mohammad Arif Khan; Date of birth: school record 05-03-2015, Aadhaar 03-05-2015; Gender: school record Not recorded, Aadhaar Male. Please reply here with the correct details, or tell the school office. Please do not send the Aadhaar number.');
+    expect(draft.text).toBe('From School A: For UDISE+ and APAAR, Md Arif Khan’s details in the school record must match Aadhaar. These differ: Name: school record Md Arif Khan, Aadhaar Mohammad Arif Khan; Date of birth: school record 05-03-2015, Aadhaar 03-05-2015; Gender: school record Not recorded, Aadhaar Male. Please reply here with the correct details, or tell the school office. Please do not send the Aadhaar number.');
     // A draft sends nothing and keeps nothing.
     expect((await db.pg.query(`select count(*)::int as n from communication_log`)).rows[0].n).toBe(before);
     expect(await requestsOf(ARIF)).toEqual([]);

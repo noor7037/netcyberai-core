@@ -3,7 +3,9 @@ import { withPlatformService } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
-import { decideTemplate, listTemplates, markWordingReviewed, recordMetaDecision, syncTemplates } from '@/lib/whatsapp/templates';
+import { messagingKey, openMetaCredentials } from '@/lib/whatsapp/credentials';
+import { createMetaTemplate, listMetaTemplates } from '@/lib/whatsapp/meta';
+import { decideTemplate, listTemplates, markWordingReviewed, reconcileWithMeta, recordMetaDecision, recordSubmission, submissionFor, syncTemplates } from '@/lib/whatsapp/templates';
 
 // Control → WhatsApp templates (docs/25 slice 7c, C184). NetCyberAI staff only.
 //   GET   every version, with our approval and Meta's
@@ -11,6 +13,10 @@ import { decideTemplate, listTemplates, markWordingReviewed, recordMetaDecision,
 //         { action: 'approve' | 'reject', id }             our own decision on a version's words
 //         { action: 'meta', id, metaStatus, metaTemplateId }  Meta's decision, as read in Business Manager
 //         { action: 'reviewed', id, note }                  a reader of the language has read the words (who, in the note)
+//         { action: 'submit', id }                          send a version to Meta for review, with the saved account (C345)
+//         { action: 'refresh' }                             read every template Meta holds and match it to ours by words
+// Meta is asked outside any transaction; what it answers is then recorded. Its own error is said shortly, never
+// the request, which carries the token.
 export const dynamic = 'force-dynamic';
 const platform = withPlatformService as <T>(fn: (db: Sql) => Promise<T>) => Promise<T>;
 
@@ -25,6 +31,27 @@ export async function POST(req: NextRequest) {
   if ('error' in guard) return guard.error;
   const body = await req.json().catch(() => null);
   if (body?.action === 'sync') return NextResponse.json(await platform((db) => syncTemplates(db)));
+  if (body?.action === 'refresh') {
+    const account = await platform((db) => openMetaCredentials(db, false));
+    if (!account) return messagingKey() ? NextResponse.json({ error: 'no account', code: 'no_account' }, { status: 404 }) : NextResponse.json({ error: 'this server does not hold the key', code: 'no_encryption_key' }, { status: 503 });
+    const listed = await listMetaTemplates(account);
+    if (!listed.ok) return NextResponse.json({ error: 'Meta did not answer', code: 'meta', message: listed.message }, { status: 502 });
+    return NextResponse.json(await platform((db) => reconcileWithMeta(db, listed.templates)));
+  }
+  if (body?.action === 'submit') {
+    if (!isUuid(body.id)) return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
+    const id = body.id as string;
+    const ready = await platform(async (db) => {
+      const draft = await submissionFor(db, id);
+      if (!draft.ok) return draft;
+      const account = await openMetaCredentials(db, false);
+      return account ? { ...draft, account } : ({ ok: false, reason: messagingKey() ? 'no_account' : 'no_encryption_key' } as const);
+    });
+    if (!ready.ok) return NextResponse.json({ error: 'not sent to Meta', code: ready.reason }, { status: ready.reason === 'not_found' || ready.reason === 'no_account' ? 404 : ready.reason === 'no_encryption_key' ? 503 : 400 });
+    const made = await createMetaTemplate(ready.account, ready.draft);
+    if (!made.ok) return NextResponse.json({ error: 'Meta did not take it', code: 'meta', message: made.message }, { status: 502 });
+    return NextResponse.json({ ok: true, metaStatus: await platform((db) => recordSubmission(db, id, made)) });
+  }
   if (!isUuid(body?.id)) return NextResponse.json({ error: 'not sent properly' }, { status: 400 });
   const id = body.id as string;
   const result =

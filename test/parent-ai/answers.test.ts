@@ -50,7 +50,7 @@ describe('the words', () => {
   it('the template names the school first and the child by first name', () => {
     const t = TEMPLATE_REGISTRY.find((x) => x.name === 'home_help')!;
     expect(definitionProblem(t)).toBeNull();
-    expect(renderTemplate(t.body.en, { school: 'School A', child: 'Asha', answer: 'x' })).toBe('School A: What you can do at home for Asha. x');
+    expect(renderTemplate(t.body.en, { school: 'School A', child: 'Asha', answer: 'x' })).toBe('From School A: What you can do at home for Asha. x If you have a question, please ask the school office.');
   });
   it('the answer is fixed sentences over the facts; with nothing taught there is no tip to give', () => {
     const facts = { firstName: 'Asha', classLevel: '5', sources: [{ kind: 'taught' as const, subject: 'Maths', topic: 'Fractions', on: '2026-10-12' }, { kind: 'homework' as const, subject: 'Maths', title: 'Exercise 4', due: '2026-10-14' }, { kind: 'followup' as const }] };

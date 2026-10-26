@@ -5,6 +5,7 @@ import { messageCost, rateOnSendDate, templateCategory } from './gate';
 import { writtenForms } from './phone';
 import type { WhatsAppNotice, WhatsAppProvider } from './provider';
 import { receiveInbound, type InboundJobs } from './replies';
+import { applyTemplateStatus } from './templates';
 
 // Delivery states (docs/25 slice 7b, C183). A provider tells us afterwards
 // where a message got to. Each notice is:
@@ -66,7 +67,8 @@ async function applyStatus(db: Sql, provider: WhatsAppProvider, n: Extract<Whats
 
 // One webhook body, as the platform role, in the caller's transaction.
 // `jobs`: how a confirmation (a parent wrote STOP) or a question (which school?) is handed to the job queue; the send-gate gives it.
-export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody: string, signature: string | null, jobs?: InboundJobs): Promise<NoticeOutcome> {
+// `metaWords`: Meta's words for each template a notice says is approved, read before the transaction (C345, review).
+export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody: string, signature: string | null, jobs?: InboundJobs, metaWords?: ReadonlyMap<string, string | null>): Promise<NoticeOutcome> {
   const hash = createHash('sha256').update(`${provider.name}\n${rawBody}`).digest('hex');
   if ((await db.query(`select 1 from webhook_events where payload_hash = $1`, [hash])).rows[0]) return { status: 200, duplicate: true, applied: 0, stale: 0, unknown: 0, inbound: 0 };
   const read = provider.readNotice(rawBody, signature);
@@ -84,13 +86,22 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
     if (n.kind === 'inbound') {
       // A parent's own words go to their school's thread (replies.ts), never into this table.
       if ((await receiveInbound(db, provider.name, n, jobs)).kind !== 'duplicate') out.inbound += 1;
+    } else if (n.kind === 'template_status') {
+      // Meta's review of one of our templates moved (C345): only Meta's own notices speak of that.
+      if (provider.name === 'meta') out[await applyTemplateStatus(db, n, metaWords)] += 1;
     } else out[await applyStatus(db, provider, n)] += 1;
   }
   const ids = read.notices.filter((n) => n.kind === 'status').map((n) => n.providerMessageId);
   const schools = ids.length === 0 ? [] : (await db.query(`select distinct school_id from communication_log where provider = $1 and provider_message_id = any($2::text[])`, [provider.name, ids])).rows;
   // What is kept here is which message moved where. A parent's reply is counted; its words are in the school's
   // own thread (slice 7f), and this table is not where a family's words belong.
-  const kept = read.notices.map((n) => (n.kind === 'status' ? { kind: n.kind, id: n.providerMessageId, status: n.status, at: n.at, ...(n.failureCode ? { code: n.failureCode } : {}) } : { kind: n.kind, id: n.providerMessageId, at: n.at }));
+  const kept = read.notices.map((n) =>
+    n.kind === 'status'
+      ? { kind: n.kind, id: n.providerMessageId, status: n.status, at: n.at, ...(n.failureCode ? { code: n.failureCode } : {}) }
+      : n.kind === 'template_status'
+        ? { kind: n.kind, id: n.metaTemplateId, event: n.event, category: n.category }
+        : { kind: n.kind, id: n.providerMessageId, at: n.at }
+  );
   await record(true, `applied ${out.applied}, stale ${out.stale}, unknown ${out.unknown}, replies ${out.inbound}`, { provider: provider.name, notices: kept }, schools.length === 1 ? (schools[0].school_id as string) : null);
   return { status: 200, duplicate: false, ...out };
 }
