@@ -71,6 +71,10 @@ describe('whose script it is', () => {
     expect(matchIdentity({ name: 'Dev Patel', rollNo: '03', seatNo: null }, roster)).toMatchObject({ studentId: 's3', by: 'roll' });
     expect(matchIdentity({ name: 'Zoya Khan', rollNo: null, seatNo: null }, roster)).toMatchObject({ studentId: 's2', by: 'name' });
   });
+  it('a number with no name read is matched, but marked for the teacher to check (review of #317)', () => {
+    expect(matchIdentity({ name: null, rollNo: '3', seatNo: null }, roster)).toEqual({ studentId: 's3', by: 'roll', candidates: [], flags: ['check_child'] });
+    expect(matchIdentity({ name: 'Dev Patel', rollNo: '3', seatNo: null }, roster).flags).toEqual([]);
+  });
   it('does not trust a number whose name plainly disagrees, nor a name close to two children', () => {
     expect(matchIdentity({ name: 'Zoya Khan', rollNo: '3', seatNo: null }, roster)).toEqual({ studentId: null, by: 'none', candidates: ['s3'], flags: ['identity'] });
     const close = matchIdentity({ name: 'Dev Pat', rollNo: null, seatNo: null }, [...roster, { studentId: 's5', name: 'Dev Patil', rollNo: '20', seatNo: null }]);
@@ -110,6 +114,25 @@ describe('which pages make a script', () => {
     );
     expect(groups.map((g) => g.pageIds)).toEqual([['a1', 'a2'], ['b1'], ['b2', 'b3']]);
     expect(groups[2].flags).toEqual(['missing_page']);
+  });
+  it('a first page that cannot be compared with the script so far starts a new script; a page number read twice flags it (review of #317)', () => {
+    const groups = groupPages(
+      [
+        page('a1', 1, 1, { firstPage: true, name: 'Meera Sharma', pageNumber: 1 }),
+        page('a2', 1, 2, { firstPage: true, rollNo: '2', pageNumber: 1 }),
+        page('a3', 1, 3, { pageNumber: 2 }),
+      ],
+      'combined'
+    );
+    expect(groups.map((g) => g.pageIds)).toEqual([['a1'], ['a2', 'a3']]);
+    const twice = groupPages([page('b1', 1, 1, { firstPage: true, name: 'Zoya Khan', pageNumber: 1 }), page('b2', 1, 2, { pageNumber: 2 }), page('b3', 1, 3, { pageNumber: 1 }), page('b4', 1, 4, { pageNumber: 2 })], 'per_file');
+    expect(twice).toHaveLength(1);
+    expect(twice[0].flags).toEqual(['identity']);
+  });
+  it('one file per child: a file whose first page shows no name takes the first one shown later', () => {
+    const groups = groupPages([page('c1', 1, 1, { pageNumber: 1 }), page('c2', 1, 2, { firstPage: true, name: 'Dev Patel', rollNo: '3', pageNumber: 2 })], 'per_file');
+    expect(groups.map((g) => g.pageIds)).toEqual([['c1', 'c2']]);
+    expect(groups[0].read).toEqual({ name: 'Dev Patel', rollNo: '3', seatNo: null });
   });
   it('one combined scan: a new script at each first page of another child; a name on every page stays one script; duplicates are left out', () => {
     const groups = groupPages(

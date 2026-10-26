@@ -228,7 +228,7 @@ export async function recognitionForClass(db: Sql, schoolId: string, examId: str
 
 // ---- writes ----------------------------------------------------------------------------------------------------
 
-export type PublishProblem = 'not_allowed' | 'not_found' | 'not_entered' | 'no_scheme' | 'published' | 'not_published' | 'reason' | 'remarks' | 'child' | 'remark';
+export type PublishProblem = 'not_allowed' | 'not_found' | 'not_entered' | 'no_scheme' | 'published' | 'not_published' | 'reason' | 'remarks' | 'child' | 'remark' | 'scripts_changed';
 export type PublishResult = { ok: true; version: number } | { ok: false; reason: PublishProblem; at?: number };
 
 async function classPapers(db: Sql, actor: Actor, examId: string, classId: string): Promise<PaperSummary[] | null> {
@@ -268,6 +268,8 @@ export async function publishClass(db: Sql, actor: Actor, examId: string, classI
     if (e.code === '23505') return { ok: false, reason: 'published' };
     if (e.code === '23514' && /entered/.test(e.message ?? '')) return { ok: false, reason: 'not_entered' };
     if (e.code === '23514' && /grading scheme/.test(e.message ?? '')) return { ok: false, reason: 'no_scheme' };
+    // An answer sheet the AI marked was changed after it was approved (C347): it is approved again first.
+    if (e.code === '23514' && /approve it again/.test(e.message ?? '')) return { ok: false, reason: 'scripts_changed' };
     throw err;
   }
   await writeAuditLog(db, {
