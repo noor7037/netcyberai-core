@@ -19,11 +19,13 @@ export const FAMILY = {
 };
 
 // [account (null: no session), picture name, address, { parent: parent mode open }]
+// `flags`: Control's family switches set for this picture only (saved with the reason "harness screen", removed after);
+// `reset`: SQL run after the picture (so a limit the picture spends does not carry over to the next).
 export const FAMILY_SCREENS = [
   [null, 'family-sign-in', '/family/sign-in', {}],
   [null, 'family-offline', '/family/offline', {}],
-  // m2b-2: a child's own phone enters the parent's code (C342).
-  [null, 'family-link', '/family/link', {}],
+  // m2b-2, reversed: a child's own phone asks for a code and shows it (C342, C346; behind the Focus Lock's switch).
+  [null, 'family-link', '/family/link', { flags: { focus_lock: true }, tap: '[data-link-start]', reset: 'delete from family.child_link_tries; delete from family.child_link_requests' }],
   ['fresh', 'family-welcome', '/family/welcome', {}],
   ['consented', 'family-pin-setup', '/family/welcome/pin', {}],
   ['pinned', 'family-first-child', '/family/welcome/child', { parent: true }],
@@ -57,8 +59,8 @@ export const FAMILY_SCREENS = [
   // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
   ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
   ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
-  // m2b-2: children's own phones in the parent area (C342).
-  ['full', 'family-parent-phones', '/family/parent', { parent: true, settle: '[data-child-phones]' }],
+  // m2b-2, reversed: children's own phones in the parent area, where the parent types the phone's code (C342, C346).
+  ['full', 'family-parent-phones', '/family/parent', { parent: true, flags: { focus_lock: true }, settle: '[data-child-phone-link]' }],
   // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
   ['full', 'family-parent-home-plan', '/family/parent', { parent: true, settle: '[data-home-plan-nights]' }],
   ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
@@ -164,6 +166,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
     for (const motion of FAMILY_MOTIONS) {
       for (const width of FAMILY_WIDTHS) {
         for (const [who, name, route, opts] of screens) {
+          for (const [module, on] of Object.entries(opts.flags ?? {}))
+            await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
           const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
@@ -236,6 +240,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           rows.push({ name, lang, motion, width, route, file, h1: seen.h1, axe, problems });
           console.log(`${width} ${lang} ${motion} ${name}: ${problems.length ? problems.join('; ') : 'ok'}`);
           await context.close();
+          if (opts.flags) await db.pg.query(`delete from control.app_flags where app = 'family' and reason = 'harness screen'`);
+          if (opts.reset) await db.pg.exec(opts.reset);
         }
       }
     }

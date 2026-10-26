@@ -213,8 +213,14 @@ and completion that our server has verified.
 
 - **On a shared phone (most pilot families):** the child does not sign in. The parent signs in once. The app opens in
   child mode, with the child switcher; the parent area needs the parent PIN.
-- **On a child's own phone (M2b):** the parent's app shows a one-time link code. The child's phone enters it and runs
-  in child mode for that one child. Parent settings on that phone still need the PIN.
+- **On a child's own phone (M2b; C230-AF, C346):** the **child's phone** asks for a one-time code and shows it. The
+  parent, signed in on their own phone and in the parent area (PIN), types that code and taps the child it is for. The
+  child's phone then opens in child mode for that one child; it never opens the parent area.
+  - A code alone opens nothing. Only a signed-in parent can approve it, for their own child, at most ten tries an hour.
+    Only the phone that asked (by a claim in its own cookie) can take the session, once, within ten minutes.
+  - Asking is limited to ten an hour from one network and three hundred in all.
+  - The section shows only while Control has the Focus Lock switched on for the family (pilot families); with it off,
+    phones already linked are still listed, so the parent can remove them.
 
 ## 10. Reviewers (founder, 2026-10-21)
 

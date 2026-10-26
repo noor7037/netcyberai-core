@@ -5,19 +5,24 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 
-// A child's own phone (M2b-2, C342; docs/34 §9.4), on the real schema through the real routes and pool.
-//   1. The code: six digits, ten minutes, used once, kept only as a keyed hash, at most five an hour; spending it is
-//      limited per network and in all.
-//   2. The phone's session reaches one child only: by the database's own rules on every family table that names a
+// A child's own phone (M2b-2, C342; reversed by C230-AF, C346; docs/34 §9.4), on the real schema through the real
+// routes and pool.
+//   1. The child's phone asks and shows a code (six digits, ten minutes, kept only as a keyed hash) and keeps a claim in
+//      its own cookie; asking is limited per network and in all, and only while the Focus Lock is open to anyone.
+//   2. The parent, signed in and in parent mode, types the code for one of their own children: only with the family's
+//      Focus Lock switched on, ten tries an hour. A code alone opens nothing; only the phone with the claim takes the
+//      session, once.
+//   3. The phone's session reaches one child only: by the database's own rules on every family table that names a
 //      child, whatever the code asks; it never opens parent mode.
-//   3. Removing the phone, its own sign-out, or "sign out everywhere" ends it at once.
-//   4. Family code builds a session's claims only through familyClaims, so a phone's scope is never dropped.
+//   4. Removing the phone, its own sign-out, or "sign out everywhere" ends it at once.
+//   5. Family code builds a session's claims only through familyClaims, so a phone's scope is never dropped.
 
 process.env.APP_SESSION_SECRET = 'test-only-secret-for-family-child-phone-tests-0123456789ab';
 const ACCOUNT = 'fb000000-0000-4000-8000-0000000000a1';
 const OTHER = 'fb000000-0000-4000-8000-0000000000b1';
 const ASHA = 'fb000000-0000-4000-8000-0000000000c1';
 const KABIR = 'fb000000-0000-4000-8000-0000000000c2';
+const RIYA = 'fb000000-0000-4000-8000-0000000000d1';
 const TOPIC = 'cbse.c6.science.ch01.t01';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -25,6 +30,7 @@ let db: any;
 const q = async (sql: string, p: unknown[] = []) => (await db.pg.query(sql, p)).rows;
 type Session = { accountId: string; tokenVersion: number; sessionId: string; device?: { deviceId: string; childId: string } };
 const parent: Session = { accountId: ACCOUNT, tokenVersion: 0, sessionId: 'parent-session' };
+const other: Session = { accountId: OTHER, tokenVersion: 0, sessionId: 'other-session' };
 let phone: Session;
 const cookie = async (s: Session, withParent = false) => {
   const { signFamilySession, signParentMode } = await import('@/lib/family/session');
@@ -40,10 +46,24 @@ const asFamily = async <R>(s: Session, fn: (c: { query: (q: string, p?: unknown[
   const { familyClaims, withFamilyContext } = await import('@/lib/family/db');
   return withFamilyContext(familyClaims(s), fn as never) as Promise<R>;
 };
-const newCode = async (childId: string) => {
-  const r = await call(await phoneRoute(), '/api/family/child-phone', { action: 'code', childId }, await cookie(parent, true));
-  return r;
+// The child's phone asks: its code, and its claim cookie as the browser would send it back.
+const ask = async (ip = '203.0.113.7') => {
+  const r = await call(await linkRoute(), '/api/family/child-phone/link', { action: 'start' }, '', ip);
+  const claim = /ncf_link=([^;]*)/.exec(r.setCookie)?.[1] ?? '';
+  return { ...r, code: String(r.body.code ?? ''), claim: `ncf_link=${claim}` };
 };
+const check = async (claimCookie: string) => call(await linkRoute(), '/api/family/child-phone/link', { action: 'check' }, claimCookie);
+const approve = async (childId: string, code: string, as: Session = parent) => call(await phoneRoute(), '/api/family/child-phone', { action: 'link', childId, code }, await cookie(as, true));
+// A phone linked for that child, end to end.
+const linkPhone = async (childId: string, ip = '192.0.2.50') => {
+  const asked = await ask(ip);
+  await approve(childId, asked.code);
+  const done = await check(asked.claim);
+  const token = /ncf_session=([^;]+)/.exec(done.setCookie)![1];
+  const { verifyFamilySession } = await import('@/lib/family/session');
+  return (await verifyFamilySession(token)) as Session;
+};
+const focusLock = (on: boolean) => q(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'focus_lock', $1, 'closed pilot') on conflict (app, module) do update set enabled = excluded.enabled`, [on]);
 
 beforeAll(async () => {
   db = await startHarnessDb({ port: 0 });
@@ -53,7 +73,8 @@ beforeAll(async () => {
     insert into family.accounts (account_id, email) values ('${ACCOUNT}', 'phones@example.org'), ('${OTHER}', 'other@example.org');
     insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ('${ACCOUNT}', 'study_core', true, 'parent_tap', 'v1');
     insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values
-      ('${ASHA}', '${ACCOUNT}', 'Asha', 6, 'CBSE', 'en', 'en', 'IN-HR'), ('${KABIR}', '${ACCOUNT}', 'Kabir', 9, 'CBSE', 'en', 'en', 'IN-HR');
+      ('${ASHA}', '${ACCOUNT}', 'Asha', 6, 'CBSE', 'en', 'en', 'IN-HR'), ('${KABIR}', '${ACCOUNT}', 'Kabir', 9, 'CBSE', 'en', 'en', 'IN-HR'),
+      ('${RIYA}', '${OTHER}', 'Riya', 7, 'CBSE', 'en', 'en', 'IN-HR');
     insert into family.attempts (account_id, child_id, subject, topic_key, item_key, kind, answer, correct, answered_on) values
       ('${ACCOUNT}', '${ASHA}', 'science', '${TOPIC}', 'q1', 'check', 'a', true, current_date),
       ('${ACCOUNT}', '${KABIR}', 'science', '${TOPIC}', 'q1', 'check', 'b', false, current_date);
@@ -64,71 +85,109 @@ afterAll(async () => {
   await db?.stop();
 });
 
-describe('the parent’s one-time code (C342)', () => {
-  it('six digits for one of the family’s children, kept only as a keyed hash, for ten minutes', async () => {
-    const r = await newCode(ASHA);
-    expect(r.status).toBe(200);
-    expect(r.body.code).toMatch(/^[0-9]{6}$/);
-    const rows = await q(`select code_hash, extract(epoch from expires_at - created_at)::int as secs from family.child_link_codes`);
-    expect(rows).toHaveLength(1);
-    expect(rows[0].code_hash).toMatch(/^[0-9a-f]{64}$/);
-    expect(rows[0].code_hash).not.toContain(String(r.body.code));
-    expect(rows[0].secs).toBe(600);
-    expect((await newCode('fb000000-0000-4000-8000-0000000000ff')).status).toBe(404);
-  });
-
-  it('a new code replaces the unused one; at most five an hour', async () => {
-    await newCode(ASHA);
-    expect(await q(`select count(*)::int as n from family.child_link_codes where child_id = $1 and used_at is null`, [ASHA])).toEqual([{ n: 1 }]);
-    // Two for Asha (one replaced) and three for Kabir (two replaced): five this hour, so the sixth is refused.
-    await newCode(KABIR);
-    await newCode(KABIR);
-    await newCode(KABIR);
-    expect(await q(`select count(*)::int as n from family.child_link_codes where child_id = $1 and used_at is null`, [KABIR])).toEqual([{ n: 1 }]);
-    expect(await newCode(KABIR)).toMatchObject({ status: 429, body: { error: 'too_many' } });
-    await q(`update family.child_link_codes set created_at = created_at - interval '2 hours', expires_at = expires_at - interval '2 hours'`);
-  });
-
-  it('only the parent, in parent mode, makes a code', async () => {
-    expect((await call(await phoneRoute(), '/api/family/child-phone', { action: 'code', childId: ASHA }, await cookie(parent))).status).toBe(403);
+describe('only behind the Focus Lock’s switch (C230-AF)', () => {
+  it('with no switch saved, or one switched off, a phone cannot ask and a parent cannot link', async () => {
+    expect(await ask()).toMatchObject({ status: 403, body: { error: 'off' } });
+    await focusLock(false);
+    expect(await ask()).toMatchObject({ status: 403, body: { error: 'off' } });
+    expect(await approve(ASHA, '123456')).toMatchObject({ status: 403, body: { error: 'off' } });
+    expect(await q(`select count(*)::int as n from family.child_link_requests`)).toEqual([{ n: 0 }]);
+    await focusLock(true);
   });
 });
 
-describe('a child’s phone spends the code (C342)', () => {
-  it('a wrong code links nothing; the right one links the phone to that one child, once', async () => {
-    const r = await newCode(ASHA);
-    const code = String(r.body.code);
-    const wrong = code === '000000' ? '000001' : '000000';
-    expect(await call(await linkRoute(), '/api/family/child-phone/link', { code: wrong })).toMatchObject({ status: 400, body: { error: 'wrong' } });
-    const linked = await call(await linkRoute(), '/api/family/child-phone/link', { code: `${code.slice(0, 3)} ${code.slice(3)}` });
+describe('the child’s phone asks for a code (C346)', () => {
+  it('six digits to show, ten minutes; the code and the claim are kept only as keyed hashes; the claim is the phone’s own cookie', async () => {
+    const r = await ask();
+    expect(r.status).toBe(200);
+    expect(r.code).toMatch(/^[0-9]{6}$/);
+    expect(r.setCookie).toMatch(/ncf_link=[A-Za-z0-9_-]{43};/);
+    expect(r.setCookie).toMatch(/Path=\/api\/family\/child-phone\/link/i);
+    expect(r.setCookie).toMatch(/HttpOnly/i);
+    expect(r.setCookie).toMatch(/SameSite=strict/i);
+    const rows = await q(`select code_hash, claim_hash, account_id, extract(epoch from expires_at - created_at)::int as secs from family.child_link_requests`);
+    expect(rows).toHaveLength(1);
+    expect(rows[0]).toMatchObject({ code_hash: expect.stringMatching(/^[0-9a-f]{64}$/), claim_hash: expect.stringMatching(/^[0-9a-f]{64}$/), account_id: null, secs: 600 });
+    expect(JSON.stringify(rows)).not.toContain(r.code);
+    expect(JSON.stringify(rows)).not.toContain(r.claim.slice('ncf_link='.length));
+    // Until a parent types it, the phone waits; a made-up claim is gone.
+    expect(await check(r.claim)).toMatchObject({ status: 200, body: { status: 'waiting' } });
+    expect(await check('ncf_link=' + 'A'.repeat(43))).toMatchObject({ status: 410, body: { error: 'gone' } });
+    expect(await check('')).toMatchObject({ status: 410 });
+  });
+
+  it('ten asks an hour from one network (an IPv6 /64 is one), three hundred in all', async () => {
+    for (let i = 0; i < 10; i++) expect((await ask('2001:db8:5:6::' + (i + 1))).status).toBe(200);
+    expect(await ask('2001:db8:5:6:ffff::1')).toMatchObject({ status: 429, body: { error: 'too_many' } });
+    await q(`update family.child_link_tries set n = 300 where scope = '*'`);
+    expect(await ask('192.0.2.200')).toMatchObject({ status: 429, body: { error: 'too_many' } });
+    await q(`delete from family.child_link_tries`);
+  });
+});
+
+describe('the parent types the code (C346)', () => {
+  it('only the parent, in parent mode, for one of their own children; a wrong code links nothing', async () => {
+    const asked = await ask('198.51.100.20');
+    const wrong = asked.code === '000000' ? '000001' : '000000';
+    expect(await call(await phoneRoute(), '/api/family/child-phone', { action: 'link', childId: ASHA, code: asked.code }, await cookie(parent))).toMatchObject({ status: 403, body: { error: 'parent_pin_required' } });
+    expect(await approve(RIYA, asked.code)).toMatchObject({ status: 404, body: { error: 'not_found' } });
+    expect(await approve(ASHA, wrong)).toMatchObject({ status: 400, body: { error: 'wrong' } });
+    expect(await approve(ASHA, 'not a code')).toMatchObject({ status: 400, body: { error: 'wrong' } });
+    expect(await check(asked.claim)).toMatchObject({ body: { status: 'waiting' } });
+    // Another family typing this code gets it for their own child only, never this family's.
+    expect(await approve(ASHA, asked.code, other)).toMatchObject({ status: 404 });
+  });
+
+  it('the right code links the phone that asked, to that one child, once; the code alone opens nothing', async () => {
+    const asked = await ask('198.51.100.21');
+    expect(await approve(ASHA, `${asked.code.slice(0, 3)} ${asked.code.slice(3)}`)).toMatchObject({ status: 200, body: { ok: true } });
+    // The same code again is spent.
+    expect(await approve(KABIR, asked.code)).toMatchObject({ status: 400, body: { error: 'wrong' } });
+    // Nothing is linked until the phone itself takes it; no other phone can.
+    expect(await q(`select count(*)::int as n from family.child_devices`)).toEqual([{ n: 0 }]);
+    expect(await check('ncf_link=' + 'B'.repeat(43))).toMatchObject({ status: 410 });
+    const linked = await check(asked.claim);
     expect(linked).toMatchObject({ status: 200, body: { status: 'linked' } });
     expect(linked.setCookie).toMatch(/ncf_session=/);
+    expect(linked.setCookie).toMatch(/ncf_link=;/);
     const devices = await q(`select device_id, child_id, revoked_at from family.child_devices`);
     expect(devices).toEqual([{ device_id: expect.any(String), child_id: ASHA, revoked_at: null }]);
     phone = { accountId: ACCOUNT, tokenVersion: 0, sessionId: 'phone-session', device: { deviceId: devices[0].device_id, childId: ASHA } };
-    // The token the phone got carries that device and child.
     const token = /ncf_session=([^;]+)/.exec(linked.setCookie)![1];
     const { verifyFamilySession } = await import('@/lib/family/session');
     expect((await verifyFamilySession(token))?.device).toEqual(phone.device);
-    expect(await call(await linkRoute(), '/api/family/child-phone/link', { code })).toMatchObject({ status: 400, body: { error: 'wrong' } });
+    // Taken once.
+    expect(await check(asked.claim)).toMatchObject({ status: 410 });
+    expect(await q(`select count(*)::int as n from family.child_devices`)).toEqual([{ n: 1 }]);
   });
 
-  it('an old code links nothing', async () => {
-    const code = String((await newCode(KABIR)).body.code);
-    await q(`update family.child_link_codes set created_at = now() - interval '11 minutes', expires_at = now() - interval '1 minute' where used_at is null`);
-    expect(await call(await linkRoute(), '/api/family/child-phone/link', { code }, '', '203.0.113.8')).toMatchObject({ status: 400, body: { error: 'wrong' } });
+  it('an old code links nothing; an approval not taken within ten minutes is gone', async () => {
+    const old = await ask('198.51.100.22');
+    await q(`update family.child_link_requests set created_at = now() - interval '11 minutes', expires_at = now() - interval '1 minute' where approved_at is null`);
+    expect(await approve(KABIR, old.code)).toMatchObject({ status: 400, body: { error: 'wrong' } });
+    expect(await check(old.claim)).toMatchObject({ status: 410 });
+    const late = await ask('198.51.100.23');
+    expect((await approve(KABIR, late.code)).status).toBe(200);
+    await q(`update family.child_link_requests set approved_at = now() - interval '11 minutes' where claimed_at is null and approved_at is not null`);
+    expect(await check(late.claim)).toMatchObject({ status: 410 });
   });
 
-  it('ten tries an hour from one network (an IPv6 /64 is one), a hundred in all', async () => {
-    for (let i = 0; i < 8; i++) await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9');
-    // This network has now tried 8 times; the 11th try is refused before any code is looked at.
-    await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9');
-    await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9');
-    expect(await call(await linkRoute(), '/api/family/child-phone/link', { code: '123456' }, '', '198.51.100.9')).toMatchObject({ status: 429, body: { error: 'too_many' } });
-    expect(await q(`select count(*)::int as n from family.child_link_tries where scope ~ '^[0-9a-f]{64}$' and scope <> '*'`)).toEqual([{ n: 3 }]);
-    await q(`update family.child_link_tries set n = 100 where scope = '*'`);
-    expect(await call(await linkRoute(), '/api/family/child-phone/link', { code: '654321' }, '', '192.0.2.1')).toMatchObject({ status: 429, body: { error: 'too_many' } });
-    await q(`update family.child_link_tries set n = 0`);
+  it('ten tries an hour for one family, counted before any code is looked at', async () => {
+    await q(`delete from family.child_link_tries`);
+    for (let i = 0; i < 10; i++) await approve(KABIR, '111111');
+    const asked = await ask('198.51.100.24');
+    expect(await approve(KABIR, asked.code)).toMatchObject({ status: 429, body: { error: 'too_many' } });
+    // Another family is not held back by it.
+    expect((await approve(RIYA, '111111', other)).status).toBe(400);
+    await q(`delete from family.child_link_tries`);
+  });
+
+  it('a phone’s own session cannot approve, even through the database function', async () => {
+    const asked = await ask('198.51.100.25');
+    expect(await asFamily(phone, async (c) => (await c.query(`select family.approve_child_link($1, $2) as o`, ['0'.repeat(64), ASHA])).rows)).toEqual([{ o: 'not_found' }]);
+    expect(await call(await phoneRoute(), '/api/family/child-phone', { action: 'link', childId: ASHA, code: asked.code }, await cookie(phone))).toMatchObject({ status: 403, body: { error: 'child_phone' } });
+    // No family role reads the requests themselves.
+    expect(await asFamily(parent, (c) => c.query(`select * from family.child_link_requests`)).then(() => 'read', (e: Error) => e.message)).toMatch(/permission denied/);
   });
 });
 
@@ -175,7 +234,7 @@ describe('the phone’s session reaches one child only (C342)', () => {
     await expect(signParentMode(phone)).rejects.toThrow(/child/);
     expect(await verifyParentMode('anything', phone)).toBe(false);
     expect(await call(await import('@/app/api/family/pin/unlock/route'), '/api/family/pin/unlock', { pin: '482915' }, await cookie(phone))).toMatchObject({ status: 403, body: { error: 'child_phone' } });
-    expect(await call(await phoneRoute(), '/api/family/child-phone', { action: 'code', childId: ASHA }, await cookie(phone))).toMatchObject({ status: 403 });
+    expect(await call(await phoneRoute(), '/api/family/child-phone', { action: 'link', childId: ASHA, code: '123456' }, await cookie(phone))).toMatchObject({ status: 403 });
     expect(await call(await import('@/app/api/family/notify/route'), '/api/family/notify', { kind: 'homework', on: false }, await cookie(phone))).toMatchObject({ status: 403 });
   });
 
@@ -198,12 +257,7 @@ describe('ending a phone’s session (C342)', () => {
   });
 
   it('its own sign-out unlinks it; "sign out everywhere" unlinks every phone', async () => {
-    const link = async (childId: string) => {
-      const code = String((await newCode(childId)).body.code);
-      await call(await linkRoute(), '/api/family/child-phone/link', { code }, '', '192.0.2.50');
-      const d = (await q(`select device_id from family.child_devices where child_id = $1 and revoked_at is null order by linked_at desc limit 1`, [childId]))[0].device_id as string;
-      return { ...parent, sessionId: `s-${d}`, device: { deviceId: d, childId } } as Session;
-    };
+    const link = (childId: string) => linkPhone(childId);
     const own = await link(ASHA);
     expect((await call(await import('@/app/api/family/auth/sign-out/route'), '/api/family/auth/sign-out', {}, await cookie(own))).status).toBe(200);
     expect(await q(`select revoked_at is not null as gone from family.child_devices where device_id = $1`, [own.device!.deviceId])).toEqual([{ gone: true }]);

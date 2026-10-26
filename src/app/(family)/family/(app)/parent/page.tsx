@@ -43,8 +43,8 @@ const PLAN_KEYS: MessageKey[] = [
   'fam.homePlan.askNoConsent', 'fam.school.saveError', 'fam.common.cancel',
 ];
 const PHONE_KEYS: MessageKey[] = [
-  'fam.phone.title', 'fam.phone.lead', 'fam.phone.link', 'fam.phone.code', 'fam.phone.codeNote', 'fam.phone.linked', 'fam.phone.lastSeen', 'fam.phone.remove',
-  'fam.phone.tooMany', 'fam.school.saveError',
+  'fam.phone.title', 'fam.phone.lead', 'fam.phone.link', 'fam.phone.code', 'fam.phone.how', 'fam.phone.done', 'fam.phone.wrong', 'fam.phone.linked', 'fam.phone.lastSeen',
+  'fam.phone.remove', 'fam.phone.tooMany', 'fam.school.saveError',
 ];
 const NOTIFY_KEYS: MessageKey[] = [
   'fam.notify.title', 'fam.notify.lead', 'fam.notify.homework', 'fam.notify.notices', 'fam.notify.results', 'fam.notify.tonight', 'fam.notify.on', 'fam.notify.off', 'fam.school.saveError',
@@ -132,6 +132,7 @@ export default async function FamilyParentPage() {
   const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
   // Children's own phones (M2b-2, C342).
   const phones = await familyPageRead(page, (db) => listChildPhones(db, page.session.accountId));
+  const phoneLinking = !!switches && switchOn(switches, 'focus_lock');
   // What the app tells the parent about (M3-8a, C338), once a school is connected or the home plan is open to them.
   const off = await familyPageRead(page, (db) => notifyOff(db, page.session.accountId));
   const claims = familyClaims(page.session);
@@ -192,7 +193,10 @@ export default async function FamilyParentPage() {
         afterChildren={
           <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
-            {page.children.length > 0 && <ChildPhoneSection w={familyWords(lang, PHONE_KEYS)} lang={lang} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} phones={phones} />}
+            {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
+            {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
+              <ChildPhoneSection w={familyWords(lang, PHONE_KEYS)} lang={lang} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} phones={phones} canLink={phoneLinking} />
+            )}
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
