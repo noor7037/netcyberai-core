@@ -364,10 +364,15 @@ describe('the private report link (C351)', () => {
 });
 
 describe('the address is never indexed (C351)', () => {
-  it('robots.txt keeps every crawler off /results/, and the sitemap never lists it', async () => {
+  it('the private link is kept out of search by its own answers (noindex, no-store), never by robots.txt; the sitemap never lists it', async () => {
+    // Search engines are never blocked in robots.txt (the SEO audit holds it): a blocked address cannot be fetched, so
+    // its noindex would never be seen. The page and its pictures say noindex and no-store themselves.
+    const config = (await import('../../next.config.js')).default as { headers: () => Promise<{ source: string; headers: { key: string; value: string }[] }[]> };
+    const rule = (await config.headers()).find((h) => h.source === '/results/:path*');
+    expect(rule?.headers).toEqual(expect.arrayContaining([{ key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' }, { key: 'Cache-Control', value: 'private, no-store, max-age=0' }]));
     const robots = (await import('@/app/robots')).default();
     const rules = Array.isArray(robots.rules) ? robots.rules : [robots.rules];
-    for (const r of rules) expect([r.disallow].flat()).toContain('/results/');
+    for (const r of rules) expect([r.disallow].flat()).not.toContain('/results/');
     const sitemap = (await import('@/app/sitemap')).default();
     expect(sitemap.some((e) => e.url.includes('/results'))).toBe(false);
   });
