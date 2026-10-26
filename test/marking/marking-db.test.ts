@@ -326,6 +326,13 @@ describe('review and approval (C347)', () => {
 });
 
 describe('publishing, families and the report link (C351)', () => {
+  it('a guardian reads their own child’s coming papers and exam number, and nothing of another child', async () => {
+    await owner(`update exam_papers set paper_date = (now() at time zone 'Asia/Kolkata')::date + 2 where paper_id = $1`, [paperA]);
+    const seen = (await run(guardian, `select student_id, exam_name, subject_name, seat_no from public.guardian_exam_schedule()`)).rows;
+    expect(seen).toEqual([{ student_id: K1, exam_name: 'Half-yearly', subject_name: 'Mathematics', seat_no: 'HY0001' }]);
+    expect((await run(tMaths, `select count(*)::int as n from public.guardian_exam_schedule()`)).rows[0].n).toBe(0);
+  });
+
   it('a published class refuses every change and approval; a guardian then sees only their own child’s approved script', async () => {
     // Enter the rest so the class can be published: Internal for all three, and Theory for the two still waiting.
     const { saveMarks } = await import('@/lib/exams/marks');
