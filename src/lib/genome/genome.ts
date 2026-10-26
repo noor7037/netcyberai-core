@@ -8,7 +8,9 @@ import { classLabel } from '@/lib/frameworks/class-label';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
 import type { Sql } from '@/lib/jobs/types';
+import { APPROVED_SHEET, scoreSheets } from '@/lib/marking/approved';
 import { indiaDate } from '@/lib/time/india';
+import { chaptersOf, mistakesOf, practiceOf, type CountedAnswer, type GenomeTopics, type ScriptPractice, type UnitInfo } from './topics';
 import { DEFAULT_GENOME_SETTINGS, findings, GENOME_READERS, type ChapterGenome, type ExamOverall, type ExamPoint, type Genome, type GenomeSettings, type SubjectGenome } from './rules';
 import { classOrderSql } from '@/lib/classes/class-order';
 
@@ -24,6 +26,10 @@ import { classOrderSql } from '@/lib/classes/class-order';
 //     (tier 2) and "understood" (tier 1), to the lessons of its taught units: pulse_response_log →
 //     pulse_messages.source_progress_id → syllabus_progress.unit_id → syllabus_units.chapter, for lessons taught in
 //     the days looked back.
+//   - TOPICS (C352): per chapter and topic of the class's syllabus map, the child's marks over the counted questions of
+//     their approved answer-sheet scripts, in the papers that count (the same COUNTED_PAPER), with the kinds of mistake
+//     that keep coming back, progress by chapter and what to practise next (./topics.ts; the scripts are read by
+//     src/lib/marking/approved.ts, the one place that says which scripts and which questions count).
 //   - Strengths and gaps by the rules of ./rules.ts, against the school's own settings. The child is compared only
 //     with themselves.
 //   - EVERY READ IS UNDER THE READER'S OWN ROW LEVEL SECURITY, in their own tenant transaction: a teacher reads the
@@ -63,6 +69,8 @@ export async function genomeSettings(db: Sql, schoolId: string): Promise<GenomeS
     homeworkDoneBelow: num('homework_done_below', d.homeworkDoneBelow, false),
     homeworkMinChecked: num('homework_min_checked', d.homeworkMinChecked, true),
     windowDays: num('window_days', d.windowDays, true),
+    mistakeMinQuestions: num('mistake_min_questions', d.mistakeMinQuestions, true),
+    mistakeMinPapers: num('mistake_min_papers', d.mistakeMinPapers, true),
   };
 }
 
@@ -94,6 +102,54 @@ export async function genomePicker(db: Sql, actor: Actor, classId: string | null
     [actor.schoolId, classId]
   )).rows.map((r) => ({ studentId: r.student_id as string, name: r.name as string, rollNo: (r.roll_no as string | null) ?? null }));
   return { role: actor.role, classes, classId, children };
+}
+
+// The child's approved scripts of the papers that count, oldest first (the paper's date, or the day the exam was made
+// when the paper has none), as counted answers: every question that counts, with the child's final mark on it, and the
+// chapter and topic its question names. Read under the reader's own row level security.
+async function childTopics(db: Sql, schoolId: string, studentId: string, settings: GenomeSettings): Promise<GenomeTopics> {
+  const scripts = (await db.query(
+    `select s.sheet_id, s.paper_id, s.practice, p.exam_id, e.name as exam_name, p.class_id, c.name as class_name, c.section,
+            p.subject_id, sb.name as subject_name, coalesce(p.paper_date, (e.created_at at time zone 'Asia/Kolkata')::date)::text as on_day
+       from marking_sheets s
+       join exam_papers p on p.school_id = s.school_id and p.paper_id = s.paper_id
+       join exams e on e.school_id = p.school_id and e.exam_id = p.exam_id
+       join classes c on c.school_id = p.school_id and c.class_id = p.class_id
+       join subjects sb on sb.school_id = p.school_id and sb.subject_id = p.subject_id
+      where s.school_id = $1 and s.student_id = $2 and ${APPROVED_SHEET} and ${COUNTED_PAPER}
+      order by coalesce(p.paper_date, (e.created_at at time zone 'Asia/Kolkata')::date), e.created_at, e.exam_id, p.paper_id`,
+    [schoolId, studentId]
+  )).rows;
+  if (!scripts.length) return { scripts: 0, answers: 0, unlinked: 0, chapters: [], mistakes: [], practice: [] };
+  const scored = await scoreSheets(db, schoolId, scripts.map((r) => ({ sheetId: r.sheet_id as string, paperId: r.paper_id as string, studentId })));
+
+  const answers: CountedAnswer[] = [];
+  const practice: ScriptPractice[] = [];
+  const unitIds = new Set<string>();
+  for (const [i, r] of scripts.entries()) {
+    const className = classLabel(r.class_name, r.section) ?? '';
+    for (const q of scored[i].questions) {
+      if (!q.counted) continue;
+      if (q.unitId) unitIds.add(q.unitId);
+      answers.push({
+        paperId: r.paper_id, examId: r.exam_id, examName: r.exam_name, date: r.on_day ?? null, subjectId: r.subject_id, subjectName: r.subject_name, classId: r.class_id, className,
+        questionId: q.questionId, label: q.label, position: q.position, unitId: q.unitId, marks: q.marks, max: q.maxMarks, errorType: q.errorType,
+      });
+    }
+    const list = ((r.practice ?? []) as { unitId?: string | null; text?: string }[])
+      .filter((p) => typeof p?.text === 'string' && p.text.trim() !== '')
+      .map((p) => ({ unitId: typeof p.unitId === 'string' ? p.unitId : null, text: (p.text as string).trim() }));
+    for (const p of list) if (p.unitId) unitIds.add(p.unitId);
+    practice.push({ subjectId: r.subject_id, subjectName: r.subject_name, paperId: r.paper_id, examId: r.exam_id, examName: r.exam_name, date: r.on_day ?? null, className, practice: list });
+  }
+  const units = new Map<string, UnitInfo>(
+    (unitIds.size
+      ? (await db.query(`select unit_id, class_id, subject_id, position, chapter, topic from syllabus_units where school_id = $1 and unit_id = any ($2::uuid[])`, [schoolId, [...unitIds]])).rows
+      : []
+    ).map((u) => [u.unit_id as string, { unitId: u.unit_id, classId: u.class_id, subjectId: u.subject_id, position: Number(u.position), chapter: u.chapter, topic: u.topic } satisfies UnitInfo])
+  );
+  const { chapters, unlinked } = chaptersOf(answers, units, settings);
+  return { scripts: scripts.length, answers: answers.length, unlinked, chapters, mistakes: mistakesOf(answers, settings), practice: practiceOf(practice, units) };
 }
 
 // One child's genome. Null: this role does not open it, or the child is not one this person may read (another
@@ -229,5 +285,6 @@ export async function childGenome(db: Sql, actor: Actor, studentId: string, toda
     chapters,
     latestOverall,
     ...findings(list, chapters, latestOverall, settings),
+    topics: await childTopics(db, actor.schoolId, studentId, settings),
   };
 }
