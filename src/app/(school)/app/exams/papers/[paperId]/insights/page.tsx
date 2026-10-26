@@ -18,7 +18,7 @@ export default async function PaperInsightsPage({ params }: { params: { paperId:
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage moduleId="exams" title={t(lang, 'ins.paper.title')} purpose={t(lang, 'ins.paper.purpose')}>
+    <ModulePage moduleId="exams" help="read-a-paper-class-view" tour="paper-insights" title={t(lang, 'ins.paper.title')} purpose={t(lang, 'ins.paper.purpose')}>
       <PaperInsightsView paperId={params.paperId} />
     </ModulePage>
   );

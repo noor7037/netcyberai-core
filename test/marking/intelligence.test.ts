@@ -61,6 +61,8 @@ import { paperInsights, type PaperInsights } from '@/lib/marking/insights';
 import { indiaDate } from '@/lib/time/india';
 
 const SRC = path.resolve(__dirname, '../../src');
+// A rank is never shown (docs/27 section 3 rule 2). "No child is ranked" says so, and is the only use of the word.
+const NO_RANK = /\brank(?!ed\b)|position|topper|percentile|class average|\bbest\b|\bworst\b/i;
 
 // ---- the rules on their own ------------------------------------------------------------------------------------------
 
@@ -462,8 +464,8 @@ describe('the Learning Genome by topic', () => {
     for (const words of [
       'Topics from answer sheets',
       'From 2 approved answer sheets. Answers counted: 7.',
-      'Fractions (7-A)',
-      'Adding fractions: 7 of 16 marks · 44% · 3 answers',
+      'Fractions (class 7-A) 11 of 26 marks · 42%',
+      'Adding fractions: 8 of 17 marks · 47% · 3 answers',
       'Unit test 1, question 4a: 5 of 10',
       'Progress by chapter',
       'The line: 10 points against their own previous exam in the chapter.',
@@ -476,7 +478,7 @@ describe('the Learning Genome by topic', () => {
     // Each answer is a link to its paper.
     expect(html).toContain(`href="/app/exams/papers/${P1}"`);
     expect(html).toContain(`href="/app/exams/papers/${P2}"`);
-    expect(plain).not.toMatch(/\brank|position|topper|percentile|class average|best|worst/i);
+    expect(plain).not.toMatch(NO_RANK);
     // The same in Hindi, with none of the English sentences left.
     const hindi = text(renderToStaticMarkup(h(LangProvider, { lang: 'hi', children: h(GenomeChild, { genome: g }) })));
     for (const words of ['उत्तर पुस्तिकाओं से विषय-बिंदु', 'अध्याय के अनुसार प्रगति', 'बार-बार लौटने वाली ग़लतियाँ', 'आगे अभ्यास', 'रेखाएँ: एक ही तरह की ग़लती से अंक गँवाने वाले उत्तर कम से कम 3; जिन पेपरों से वे आए, कम से कम 2।']) expect(hindi, words).toContain(words);
@@ -623,14 +625,14 @@ describe('a paper’s class view', () => {
     const html = renderToStaticMarkup(h(PaperInsightsBody, { data }));
     const plain = text(html);
     for (const words of [
-      'Unit test 1 · Mathematics · 7-A',
+      'Unit test 1, Mathematics, class 7-A',
       'This paper’s result is published for the class.',
       'From 4 approved answer sheets, of 4 candidates.',
       'Question 1 · 3 marks',
       'Average 1.8 of 3',
       'Attempted in 3 of 4 sheets',
       'Most common mistake: Slips in calculation (1)',
-      'Fractions · Adding fractions',
+      'Chapter Fractions, topic Adding fractions',
       'The class got 22 of 32 marks · 69%',
       'Children who may need support',
       'Below 50 in 100 on this paper: the school’s setting.',
@@ -639,7 +641,7 @@ describe('a paper’s class view', () => {
     expect(plain.indexOf('2. Zoya Khan')).toBeGreaterThan(-1);
     expect(plain.indexOf('2. Zoya Khan')).toBeLessThan(plain.indexOf('3. Dev Patel'));
     expect(plain).toContain('9 of 20 marks');
-    expect(plain).not.toMatch(/\brank|position|topper|percentile|best|worst/i);
+    expect(plain).not.toMatch(NO_RANK);
     // A question card links from its topic.
     expect(html).toContain(`href="#q-${qid(P1, '1')}"`);
     expect(html).toContain(`id="q-${qid(P1, '1')}"`);
@@ -649,34 +651,41 @@ describe('a paper’s class view', () => {
   });
 
   it('a paper with no approved script teaches what to do, instead of showing zeros', async () => {
-    const empty = (await insightsOf(principal, P7B)) ?? null; // principal reads it: Kabir’s script is approved...
-    expect(empty!.scripts.approved).toBe(1);
-    await owner(`update marking_sheets set state = 'set_aside' where paper_id = $1`, [P7B]);
-    const none = (await insightsOf(principal, P7B))!;
+    await owner(`insert into subjects (subject_id, school_id, name) values ($1, $2, 'Science')`, [u(34), A]);
+    await owner(`insert into exams (exam_id, school_id, name, term, created_by) values ($1, $2, 'Unit test 2', 'Term 1', $3)`, [u(63), A, PRINCIPAL]);
+    await owner(`insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, components, created_by) values ($1, $2, $3, $4, $5, $6::jsonb, $7)`, [u(74), A, u(63), C7A, u(34), JSON.stringify(THEORY), PRINCIPAL]);
+    const none = (await insightsOf(principal, u(74)))!;
     expect(none.scripts).toEqual({ approved: 0, notCounted: 0 });
+    expect(none).toMatchObject({ questions: [], topics: [], support: [], candidates: 4 });
     const plain = renderToStaticMarkup(h(PaperInsightsBody, { data: none })).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
     expect(plain).toContain('No answer sheet is approved yet');
+    expect(plain).toContain('Once a teacher approves the marked answer sheets of this paper');
     expect(plain).not.toContain('Question by question');
-    await owner(`update marking_sheets set state = 'approved' where paper_id = $1`, [P7B]);
+    expect(plain).not.toContain('Children who may need support');
   });
 });
+
+const MONITOR_SQL_FILE = path.resolve(__dirname, '../../scripts/harness/am-6-marking-monitor.sql');
+const MONITOR_SQL = readFileSync(MONITOR_SQL_FILE, 'utf8');
 
 describe('Control’s monitor for AI marking: counts and ages only', () => {
   const JOB_ERROR = 'Mailbox meera.sharma@family.example rejected "Meera Sharma"; try +91 98123 45678';
   let seen: MarkingData;
 
   beforeAll(async () => {
+    // The one function the monitor reads through (the platform role has no right on the marking tables): the lead's
+    // migration to be; until it is one, the test applies the proposed file to its own throwaway database.
+    await db.pg.exec(MONITOR_SQL);
     // Sunrise (school A, a live school): scripts waiting two hours, being marked, failed; pages kept this month, and a plan limit.
     const upload = (await owner(`select upload_id from marking_uploads where paper_id = $1`, [P2]))[0].upload_id as string;
-    const waiting = await owner(`select 1`);
-    expect(waiting).toBeTruthy();
-    for (const [n, student, st] of [[1, KABIR, 'waiting'], [2, null, 'marking'], [3, null, 'failed']] as const) {
+    for (const [n, st] of [[1, 'waiting'], [2, 'marking'], [3, 'failed']] as const) {
       await owner(
         `insert into marking_sheets (school_id, sheet_id, paper_id, upload_id, student_id, matched_by, state, failure, created_at, updated_at) values ($1, $2, $3, $4, null, 'none', $5, $6, now() - interval '3 hours', now() - interval '2 hours')`,
         [A, u(3000 + n), P2, upload, st, st === 'failed' ? 'bad_answer' : null]
       );
-      expect(student === KABIR || student === null).toBe(true);
     }
+    // A script's age is the time it last changed; the database stamps that, so the test sets it with triggers off.
+    await db.pg.exec(`set session_replication_role = replica; update marking_sheets set updated_at = now() - interval '2 hours' where school_id = '${A}' and state in ('waiting', 'marking', 'failed'); set session_replication_role = origin;`);
     for (let i = 0; i < 4; i++) {
       await owner(
         `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height, state) values ($1, $2, $3, $4, 1, $5, $6, $7, 1000, 1400, 2000, 'read')`,
@@ -701,8 +710,8 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
     // Jobs: a marking job that gave up (its error names a child and a number), one waiting for another try, and a job of another kind.
     await owner(
       `insert into jobs (school_id, type, idempotency_key, status, attempts, max_attempts, last_error, completed_at, updated_at) values
-         ($1, 'marking.mark_sheet', 'am6-dead', 'dead', 5, 5, $2, now() - interval '3 hours', now() - interval '3 hours'),
-         ($1, 'marking.read_page', 'am6-retry', 'pending', 2, 5, 'timeout', null, now() - interval '5 minutes'),
+         ($1, 'marking.mark', 'am6-dead', 'dead', 5, 5, $2, now() - interval '3 hours', now() - interval '3 hours'),
+         ($1, 'marking.read', 'am6-retry', 'pending', 2, 5, 'timeout', null, now() - interval '5 minutes'),
          ($1, 'email.send', 'am6-other', 'dead', 8, 8, 'not a marking job', now(), now())`,
       [A, JOB_ERROR]
     );
@@ -714,7 +723,7 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
     const [hilltop, sunrise] = seen.schools;
     expect(hilltop).toMatchObject({ pagesThisMonth: 3, limit: 3, waiting: 0, marking: 0, marked: 0, failed: 0, approvedThisMonth: 0, oldestWaitingSeconds: null });
     // Sunrise: its earlier scripts are approved (this month) except Esha’s, still marked and waiting for a teacher.
-    expect(sunrise).toMatchObject({ pagesThisMonth: 4, limit: 50, waiting: 1, marking: 1, marked: 1, failed: 1, approvedThisMonth: 9 });
+    expect(sunrise).toMatchObject({ pagesThisMonth: 4, limit: 50, waiting: 1, marking: 1, marked: 1, failed: 1, approvedThisMonth: 8 });
     expect(sunrise.oldestWaitingSeconds).toBeGreaterThanOrEqual(2 * 3600 - 5);
     expect(sunrise.oldestWaitingSeconds).toBeLessThan(2 * 3600 + 120);
     expect(atLimit(hilltop)).toBe(true);
@@ -726,7 +735,7 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
   it('marking jobs that gave up are counted and listed, with their error cut of a name, an address and a number; other jobs are not', () => {
     expect(seen.jobs).toMatchObject({ dead: 1, retrying: 1 });
     expect(seen.jobs.listed).toHaveLength(1);
-    expect(seen.jobs.listed[0]).toMatchObject({ type: 'marking.mark_sheet', schoolName: 'Sunrise Made-up School', attempts: 5, maxAttempts: 5, error: 'Mailbox <email> rejected "<value>"; try <phone>' });
+    expect(seen.jobs.listed[0]).toMatchObject({ type: 'marking.mark', schoolName: 'Sunrise Made-up School', attempts: 5, maxAttempts: 5, error: 'Mailbox <email> rejected "<value>"; try <phone>' });
     expect(seen.jobs.listed[0].forSeconds).toBeGreaterThanOrEqual(3 * 3600 - 5);
     expect(markingNeedsALook(seen)).toBe(true);
   });
@@ -739,15 +748,24 @@ describe('Control’s monitor for AI marking: counts and ages only', () => {
     // The rows it was read from do hold them: the test would mean nothing otherwise.
     const stored = JSON.stringify(await owner(`select (select jsonb_agg(s) from marking_sheets s) as sheets, (select jsonb_agg(q) from marking_questions q) as questions, (select jsonb_agg(p) from marking_pages p) as pages, (select jsonb_agg(st) from students st) as students`));
     for (const secret of ['Meera Sharma', 'Neat working', 'A made-up question', '/marking/']) expect(stored, secret).toContain(secret);
-    // It reads no marks table: not marking_marks, not a student, not a script’s words.
-    const source = readFileSync(path.join(SRC, 'lib/control/marking-monitor.ts'), 'utf8').replace(/\/\/.*$/gm, '');
-    for (const forbidden of ['marking_marks', 'students', 'marking_questions', 'strengths', 'improve', 'practice', 'storage_key', 'sha256', 'payload']) expect(source, forbidden).not.toContain(forbidden);
+    // It reads no child, page or mark: neither the loader nor the one function it reads through names such a column or table.
+    for (const file of [path.join(SRC, 'lib/control/marking-monitor.ts'), MONITOR_SQL_FILE]) {
+      const source = readFileSync(file, 'utf8').replace(/\/\/.*$/gm, '').replace(/--.*$/gm, '');
+      for (const forbidden of ['marking_marks', 'marking_questions', 'students', 'student_id', 'strengths', 'improve', 'practice', 'storage_key', 'sha256', 'reading', 'match_note', 'payload', 'ai_marks', 'note']) expect(source, `${path.basename(file)}: ${forbidden}`).not.toContain(forbidden);
+    }
+  });
+
+  it('only the platform role runs the function, and the platform role still reads no marking table itself', async () => {
+    await expect(as(principal, (c) => c.query(`select * from public.marking_monitor()`))).rejects.toThrow(/permission denied/);
+    await expect(platform((c) => c.query(`select count(*) from marking_sheets`))).rejects.toThrow(/permission denied/);
+    await expect(platform((c) => c.query(`select count(*) from marking_marks`))).rejects.toThrow(/permission denied/);
+    expect(await platform(async (c) => (await c.query(`select count(*)::int as n from public.marking_monitor()`)).rows[0].n as number)).toBe(2);
   });
 
   it('the section says what it counts, in both languages, with a line on what to do only for what waits on NetCyberAI', () => {
     const html = (lang: 'en' | 'hi') => renderToStaticMarkup(h(LangProvider, { lang, children: h(MarkingMonitor, { data: seen, lang, age: (s: number) => ageWords(lang, s) }) }));
     const en = html('en').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-    for (const words of ['AI marking', 'Needs a look', 'Hilltop Made-up School', 'Sunrise Made-up School', 'Pages this month', '3 of 3', '4 of 50', 'Page limit reached', 'Waiting for the AI', 'Being marked', 'Marked, with a teacher', 'Failed', 'Approved this month', 'Oldest waiting', '2 hours', 'Marking jobs that gave up', 'marking.mark_sheet', 'Gave up: 1. Waiting for another try: 1.']) expect(en, words).toContain(words);
+    for (const words of ['AI marking', 'Needs a look', 'Hilltop Made-up School', 'Sunrise Made-up School', 'Pages this month', '3 of 3', '4 of 50', 'Page limit reached', 'Waiting for the AI', 'Being marked', 'Marked, with a teacher', 'Failed', 'Approved this month', 'Oldest waiting', '2 hours', 'Marking jobs that gave up', 'marking.mark', 'Gave up: 1. Waiting for another try: 1.']) expect(en, words).toContain(words);
     const todo = (s: string) => [...s.matchAll(/data-monitoring-do="([^"]+)"/g)].map((m) => m[1]);
     expect(todo(html('en'))).toEqual(['marking.limit', 'marking.backlog', 'marking.dead']);
     // Retry is the existing button, once for the job that gave up.

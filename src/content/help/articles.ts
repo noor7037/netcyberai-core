@@ -1276,6 +1276,8 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       { en: 'Under “Subjects”, each exam published for the class shows the child’s percent and grade, and the marks it was worked out from. Absent and exempt are not marks and are left out.', hi: '“Subjects” में, कक्षा के लिए प्रकाशित हर परीक्षा बच्चे का प्रतिशत और ग्रेड दिखाती है, और वे अंक जिनसे यह निकला। अनुपस्थित और छूट अंक नहीं हैं, वे बाहर रहते हैं।' },
       { en: 'Each subject also shows its homework: how many were done of those checked, and the days they were due.', hi: 'हर विषय उसका होमवर्क भी दिखाता है: जाँचे गए में से कितने किए गए, और वे किन दिनों देय थे।' },
       { en: 'Under “Chapters”, each chapter shows how often the parents replied “needs help” or “understood” to the Daily Pulse of its taught lessons, and which lessons those were.', hi: '“Chapters” में हर अध्याय दिखाता है कि उसके पढ़ाए गए पाठों के Daily Pulse पर अभिभावकों ने कितनी बार “needs help” या “understood” कहा, और वे कौन-से पाठ थे।' },
+      { en: 'Under “Topics from answer sheets”, each chapter and topic shows the marks the child got out of the marks possible, from their approved answer sheets of published exams. Open a topic to see the answers it comes from; each links to its paper.', hi: '“Topics from answer sheets” में हर अध्याय और विषय-बिंदु दिखाता है कि बच्चे को, प्रकाशित परीक्षाओं की स्वीकार की गई उत्तर पुस्तिकाओं में, कुल अंकों में से कितने मिले। किसी विषय-बिंदु को खोलें तो वे उत्तर दिखते हैं जिनसे यह बना है; हर एक अपने पेपर से जुड़ा है।' },
+      { en: '“Progress by chapter” holds a chapter against the child’s own previous exam. “Mistakes that keep coming back” lists a kind of mistake seen in enough answers across enough papers, by the two lines it shows. “Practise next” is the practice list on the latest approved answer sheet in each subject.', hi: '“Progress by chapter” हर अध्याय को बच्चे की अपनी पिछली परीक्षा से मिलाता है। “Mistakes that keep coming back” वह ग़लती दिखाता है जो पर्याप्त उत्तरों में, पर्याप्त पेपरों में दिखी, उसकी दिखाई दो रेखाओं से। “Practise next” हर विषय की सबसे नई स्वीकार की गई उत्तर पुस्तिका की अभ्यास सूची है।' },
     ],
     tips: [
       { en: 'Nothing is stored and nothing is sent to parents: the genome is worked out each time it is opened, from the marks, homework and replies on record.', hi: 'कुछ सहेजा नहीं जाता और अभिभावकों को कुछ नहीं जाता: जीनोम हर बार खोलने पर दर्ज अंकों, होमवर्क और जवाबों से निकाला जाता है।' },
@@ -1284,7 +1286,7 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     ],
     start: { href: '/app/learning-genome', label: { en: 'Learning Genome', hi: 'लर्निंग जीनोम (Learning Genome)' } },
     related: ['enter-exam-marks', 'early-warning-flags'],
-    keywords: ['learning genome', 'genome', 'strengths', 'gaps', 'weak', 'chapter', 'subject', 'progress', 'child', 'pulse', 'needs help', 'understood', 'homework', 'marks', 'जीनोम', 'मज़बूती', 'कमी', 'अध्याय', 'प्रगति'],
+    keywords: ['learning genome', 'genome', 'strengths', 'gaps', 'weak', 'chapter', 'topic', 'mistakes', 'practise', 'answer sheet', 'subject', 'progress', 'child', 'pulse', 'needs help', 'understood', 'homework', 'marks', 'जीनोम', 'मज़बूती', 'कमी', 'अध्याय', 'विषय-बिंदु', 'प्रगति'],
   },
   // p6-9e end
   // p6-9f begin
@@ -1314,6 +1316,31 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['early warning', 'marks', 'exam', 'percent', 'pass mark', 'fall', 'drop', 'flag', 'ank', 'pariksha', 'अंक', 'परीक्षा', 'चेतावनी', 'संकेत'],
   },
   // p6-9f end
+  // am-6 begin
+  {
+    slug: 'read-a-paper-class-view',
+    category: 'daily',
+    audience: 'office_and_teachers',
+    title: { en: 'Read how the class did on one paper', hi: 'देखें कि एक पेपर पर कक्षा कैसी रही' },
+    summary: {
+      en: 'From the approved answer sheets of one paper: each question’s average marks, how many attempted it and the mistake seen most often; each topic’s marks; and the children who may need support, in roll order. No child is ranked.',
+      hi: 'एक पेपर की स्वीकार की गई उत्तर पुस्तिकाओं से: हर प्रश्न के औसत अंक, कितनों ने उसे हल किया और सबसे ज़्यादा दिखी ग़लती; हर विषय-बिंदु के अंक; और वे बच्चे जिन्हें मदद की ज़रूरत हो सकती है, रोल क्रम में। किसी की रैंक नहीं बनती।',
+    },
+    steps: [
+      { en: 'Approve the marked answer sheets of the paper first. Only approved sheets are counted; a sheet that is not approved yet, or was changed after it was approved, is counted apart and left out.', hi: 'पहले पेपर की जाँची हुई उत्तर पुस्तिकाएँ स्वीकार करें। केवल स्वीकार की गई पुस्तिकाएँ गिनी जाती हैं; जो अभी स्वीकार नहीं हुई, या स्वीकार होने के बाद बदली गई, वह अलग गिनी जाती है और बाहर रहती है।' },
+      { en: 'Open the class view of the paper. Under “Question by question”, each question shows the average marks out of its marks, how many sheets attempted it, and the most common kind of mistake.', hi: 'पेपर का कक्षा व्यू खोलें। “Question by question” में हर प्रश्न अपने अंकों में से औसत अंक, कितनी पुस्तिकाओं ने उसे हल किया, और सबसे आम ग़लती का प्रकार दिखाता है।' },
+      { en: 'Under “Topic by topic”, each topic of the syllabus shows the marks the class got out of the marks possible, with the questions it comes from. Tap a question to jump to it.', hi: '“Topic by topic” में सिलेबस का हर विषय-बिंदु दिखाता है कि कक्षा को कुल अंकों में से कितने मिले, और वे प्रश्न जिनसे यह बना। किसी प्रश्न पर जाने के लिए उस पर दबाएँ।' },
+      { en: 'Under “Children who may need support”, children whose approved total is below the school’s line are listed in roll order. The line is shown there; the principal or the school admin changes it in Settings under Exams.', hi: '“Children who may need support” में वे बच्चे रोल क्रम में दिखते हैं जिनका स्वीकार किया गया कुल स्कूल की रेखा से कम है। रेखा वहीं दिखती है; प्रिंसिपल या स्कूल एडमिन उसे Settings में Exams के अंतर्गत बदलते हैं।' },
+    ],
+    tips: [
+      { en: 'Nothing is stored and no AI model is used: the class view is worked out each time from the approved marks. Questions are in the paper’s order, topics in the syllabus order and children in roll order, never by marks.', hi: 'कुछ सहेजा नहीं जाता और कोई AI मॉडल इस्तेमाल नहीं होता: कक्षा व्यू हर बार स्वीकार किए गए अंकों से निकाला जाता है। प्रश्न पेपर के क्रम में हैं, विषय-बिंदु सिलेबस के क्रम में और बच्चे रोल क्रम में, अंकों के क्रम में कभी नहीं।' },
+      { en: 'A teacher sees the papers of their own classes; the office and the academic coordinator see every class. The accountant sees none.', hi: 'शिक्षक अपनी कक्षाओं के पेपर देखते हैं; कार्यालय और एकेडमिक कोऑर्डिनेटर हर कक्षा के। अकाउंटेंट को कोई नहीं दिखता।' },
+    ],
+    start: { href: '/app/exams', label: { en: 'Exams', hi: 'परीक्षाएँ (Exams)' } },
+    related: ['enter-exam-marks', 'read-a-learning-genome'],
+    keywords: ['class view', 'class result', 'paper', 'question', 'average', 'topic', 'mistake', 'support', 'answer sheet', 'insights', 'कक्षा व्यू', 'प्रश्न', 'औसत', 'विषय-बिंदु', 'मदद'],
+  },
+  // am-6 end
   // c212-pricing begin
   // c212-pricing end
   // p7-10a begin

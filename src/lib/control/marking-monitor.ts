@@ -1,15 +1,16 @@
 import type { PoolClient } from 'pg';
-import { AI_MARKING_PAGES_LIMIT } from '@/lib/contracts/marking';
 import { BACKLOG_AFTER_MINUTES } from '@/lib/observability/health';
 import { cutContacts } from './monitoring';
 
 // Control → Monitoring → AI marking (docs/35, C347): how each school's answer-sheet marking is going, read in one
 // place as the platform role (the founder's session), by the conventions of ./monitoring.ts.
 //
-// COUNTS AND AGES ONLY. The loader reads no child's name, no page (not its picture, its storage key or what the AI
-// read on it) and no mark: not marking_marks, not a script's student, notes or practice list, not a job's payload.
-// What it returns is how many, how long ago, which school (its name, nothing else) and which job type. The one free
-// text it returns, a dead job's last error, goes through cutContacts first.
+// COUNTS AND AGES ONLY. The platform role has no right on the marking tables (AM-1), so the counts are read through
+// one definer function, public.marking_monitor() (the file am-6-marking-monitor.sql, to become a migration),
+// that names no column of a child, a page or a mark. The loader reads no child's name, no page (not its picture, its
+// storage key or what the AI read on it) and no mark, and not a job's payload. What it returns is how many, how long
+// ago, which school (its name, nothing else) and which job type. The one free text it returns, a dead job's last
+// error, goes through cutContacts first.
 //
 // A school here is a LIVE school: a test school's scripts are left out, as everywhere in Control. Jobs belong to the
 // platform, so every dead marking job counts; its school is named only when it is a live one.
@@ -50,44 +51,19 @@ export async function loadMarkingMonitor(db: Sql): Promise<MarkingMonitor> {
   const at = new Date((await db.query(`select now() as at`)).rows[0].at as string).getTime();
   const since = (v: unknown): number | null => (v ? Math.max(0, Math.floor((at - new Date(v as string).getTime()) / 1000)) : null);
 
-  const rows = (await db.query(
-    `with month as (select (date_trunc('month', now() at time zone 'Asia/Kolkata') at time zone 'Asia/Kolkata') as starts),
-          sheets as (
-            select school_id,
-                   count(*) filter (where state = 'waiting')::int as waiting,
-                   count(*) filter (where state = 'marking')::int as marking,
-                   count(*) filter (where state = 'marked')::int as marked,
-                   count(*) filter (where state = 'failed')::int as failed,
-                   count(*) filter (where state = 'approved' and approved_at >= (select starts from month))::int as approved,
-                   min(updated_at) filter (where state = 'waiting') as oldest_waiting
-              from marking_sheets group by school_id),
-          pages as (
-            select school_id, count(*)::int as n from marking_pages
-             where state <> 'duplicate' and created_at >= (select starts from month) group by school_id),
-          ever as (select school_id from marking_pages group by school_id)
-     select s.name, coalesce(p.n, 0) as pages,
-            case when jsonb_typeof(m.limits -> $1::text) = 'number' then (m.limits ->> $1::text)::numeric end as page_limit,
-            coalesce(k.waiting, 0) as waiting, coalesce(k.marking, 0) as marking, coalesce(k.marked, 0) as marked, coalesce(k.failed, 0) as failed, coalesce(k.approved, 0) as approved, k.oldest_waiting
-       from schools s
-       left join sheets k on k.school_id = s.school_id
-       left join pages p on p.school_id = s.school_id
-       left join ever e on e.school_id = s.school_id
-       left join school_module_entitlements m on m.school_id = s.school_id and m.module_id = 'exams'
-      where not s.is_test_fixture
-        and (k.school_id is not null or e.school_id is not null or jsonb_typeof(m.limits -> $1::text) = 'number')
-      order by lower(s.name), s.school_id`,
-    [AI_MARKING_PAGES_LIMIT]
-  )).rows;
+  // The counts come from public.marking_monitor(): the platform role has no right on the marking tables, and that one
+  // function, which names none of a child, a page or a mark, returns counts and times per live school.
+  const rows = (await db.query(`select * from public.marking_monitor()`)).rows;
   const schools: MarkingSchoolRow[] = rows.slice(0, MARKING_SCHOOLS_LISTED).map((r) => ({
-    schoolName: r.name as string,
-    pagesThisMonth: num(r.pages),
+    schoolName: r.school_name as string,
+    pagesThisMonth: num(r.pages_this_month),
     limit: r.page_limit === null || r.page_limit === undefined ? null : Number(r.page_limit),
     waiting: num(r.waiting),
     marking: num(r.marking),
     marked: num(r.marked),
     failed: num(r.failed),
-    approvedThisMonth: num(r.approved),
-    oldestWaitingSeconds: since(r.oldest_waiting),
+    approvedThisMonth: num(r.approved_this_month),
+    oldestWaitingSeconds: since(r.oldest_waiting_at),
   }));
 
   // Dead marking jobs, newest first, with the same Retry the Background jobs section offers. The payload is not read.

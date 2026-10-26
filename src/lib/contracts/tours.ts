@@ -85,6 +85,8 @@ export const TOURS = {
   exams: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   'marks-entry': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   'class-result': { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  // am-6: a paper's class view from approved answer sheets (C352)
+  'paper-insights': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p6-9b end
   // p6-9c begin
   'report-cards': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },

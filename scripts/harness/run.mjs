@@ -26,6 +26,7 @@
 import { spawn, spawnSync } from 'node:child_process';
 import { createHmac, randomBytes, randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import net from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +34,7 @@ import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
 import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
+import { clearMarking, MK, seedMarking } from './marking-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -3193,6 +3195,7 @@ const X_KIDS = [1, 4, 7, 10, 13, 16, 19, 22, 25]; // 5-A in the seed: roll 1 to 
 const xKid = (g) => `00000000-0000-4000-8000-0000005${String(g).padStart(5, '0')}`;
 let xEntitlementBefore;
 const clearExams = async () => {
+  await clearMarking(db, SCHOOL);
   await db.pg.exec(`set session_replication_role = replica;
     delete from marks where school_id = '${SCHOOL}';
     delete from exam_papers where school_id = '${SCHOOL}';
@@ -6379,6 +6382,206 @@ const queueScreenDone = async () => {
   if (seen.asks?.slice(0, 2).join() !== '6,2' || seen.overdue !== 'overdue' || seen.blocks !== 'explanation,check,practice') throw new Error(`the review queue: ${JSON.stringify(seen)}`);
 };
 
+// am-6 begin
+// Learning intelligence from approved answer-sheet marks (docs/35, C352): the Learning Genome by topic for Aarav Example
+// A, a paper's class view, and Control's monitor for AI marking, on the illustrative marking data of marking-seed.mjs
+// (publish: the class's result is published, so the genome counts it). Everything these screens put in is taken away
+// after each: the marking rows, the module switches, the grading scheme, the AI provider and its profiles, the school's
+// "may need support" line and the monitor's job. Run only these with --only am6, and keep their pictures with
+// --keep docs/screenshots/am-6-intelligence --screens am6-genome,am6-genome-hindi,... (390 and 1440 as WebP).
+const AM6_CHILD = '00000000-0000-4000-8000-000000500001'; // Aarav Example A, roll 1 of 5-A
+const AM6_JOB_KEY = 'am6-harness-dead';
+let am6Before = null;
+const am6Seed = async ({ publish, supportBelow = null }) => {
+  if (!am6Before) {
+    const row = async (sql) => (await db.pg.query(sql, [SCHOOL])).rows[0] ?? null;
+    am6Before = {
+      genome: await row(`select enabled, source from school_module_entitlements where school_id = $1 and module_id = 'learning-genome'`),
+      exams: await row(`select enabled, source, limits from school_module_entitlements where school_id = $1 and module_id = 'exams'`),
+      scheme: (await db.pg.query(`select 1 from grading_schemes where school_id = $1`, [SCHOOL])).rows.length > 0,
+      lines: await row(`select setting_values from school_settings where school_id = $1 and module_id = 'exams'`),
+      profiles: (await db.pg.query(`select profile_id, provider_id, model, enabled from control.ai_profiles where profile_id in ('exams.read_pages', 'exams.mark')`)).rows,
+      provider: (await db.pg.query(`select 1 from control.ai_providers where provider_id = 'stand-in'`)).rows.length > 0,
+    };
+  }
+  await seedMarking(db, { school: SCHOOL, principal: PEOPLE.principal.sub, teacher: PEOPLE.teacher.sub, publish });
+  await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'learning-genome', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [SCHOOL]);
+  if (supportBelow !== null) {
+    await db.pg.query(
+      `insert into school_settings (school_id, module_id, schema_version, setting_values) values ($1, 'exams', 1, $2::jsonb)
+       on conflict (school_id, module_id) do update set setting_values = school_settings.setting_values || excluded.setting_values`,
+      [SCHOOL, JSON.stringify({ support_below: supportBelow })]
+    );
+  }
+};
+const am6PutBack = async () => {
+  await clearMarking(db, SCHOOL);
+  await am6ClearEarlier();
+  await db.pg.query(`delete from jobs where idempotency_key = $1`, [AM6_JOB_KEY]);
+  const b = am6Before;
+  if (!b) return;
+  const q = (sql, params) => db.pg.query(sql, params);
+  if (!b.scheme) await db.pg.exec(`set session_replication_role = replica; delete from grading_schemes where school_id = '${SCHOOL}'; set session_replication_role = origin;`);
+  for (const [moduleId, was] of [['learning-genome', b.genome], ['exams', b.exams]]) {
+    if (!was) await q(`delete from school_module_entitlements where school_id = $1 and module_id = $2`, [SCHOOL, moduleId]);
+    else if (moduleId === 'exams') await q(`update school_module_entitlements set enabled = $3, source = $4, limits = $5::jsonb where school_id = $1 and module_id = $2`, [SCHOOL, moduleId, was.enabled, was.source, JSON.stringify(was.limits ?? null)]);
+    else await q(`update school_module_entitlements set enabled = $3, source = $4 where school_id = $1 and module_id = $2`, [SCHOOL, moduleId, was.enabled, was.source]);
+  }
+  if (!b.lines) await q(`delete from school_settings where school_id = $1 and module_id = 'exams'`, [SCHOOL]);
+  else await q(`update school_settings set setting_values = $2::jsonb where school_id = $1 and module_id = 'exams'`, [SCHOOL, JSON.stringify(b.lines.setting_values)]);
+  for (const p of b.profiles) await q(`update control.ai_profiles set provider_id = $2, model = $3, enabled = $4 where profile_id = $1`, [p.profile_id, p.provider_id, p.model, p.enabled]);
+  if (!b.provider) await q(`delete from control.ai_providers where provider_id = 'stand-in'`, []);
+};
+// An earlier exam for Aarav (published, one approved script of his), so that progress by chapter and the mistakes that
+// keep coming back have two exams to show: Fractions up from 4 of 10 to the Half-yearly, Decimals about the same, and
+// "incomplete" in three answers here and in the Half-yearly's own. The harness seed has one exam only.
+const AM6_EARLIER = { exam: '00000000-0000-4000-8000-0000000a9601', paper: '00000000-0000-4000-8000-0000000a9602', upload: '00000000-0000-4000-8000-0000000a9603', sheet: '00000000-0000-4000-8000-0000000a9604' };
+const am6EarlierExam = async () => {
+  const c = (n) => `00000000-0000-4000-8000-0000000a96${String(10 + n)}`;
+  const units = (await db.pg.query(`select unit_id, position from syllabus_units where school_id = $1 and class_id = $2 and subject_id = '00000000-0000-4000-8000-0000000d0001' order by position`, [SCHOOL, CLASS_5A])).rows;
+  const at = (n) => units.find((u) => Number(u.position) === n).unit_id;
+  const E = AM6_EARLIER;
+  await db.pg.query(`insert into exams (exam_id, school_id, name, term, created_by, created_at) values ($1, $2, 'Unit test (AI marking, harness)', 'Term 1', $3, now() - interval '45 days')`, [E.exam, SCHOOL, PEOPLE.principal.sub]);
+  await db.pg.query(
+    `insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, components, created_by) values ($1, $2, $3, $4, '00000000-0000-4000-8000-0000000d0001', (now() at time zone 'Asia/Kolkata')::date - 42, $5::jsonb, $6)`,
+    [E.paper, SCHOOL, E.exam, CLASS_5A, JSON.stringify([{ key: 'written', name: 'Written', max: 40, share: 80 }, { key: 'oral', name: 'Oral', max: 10, share: 20 }]), PEOPLE.principal.sub]
+  );
+  // [label, marks possible, unit place, Aarav's marks, kind of mistake]
+  const rows = [['1', 4, 1, 1, 'incomplete'], ['2', 6, 2, 3, 'incomplete'], ['3', 5, 4, 5, 'none'], ['4', 5, 5, 4, 'incomplete']];
+  const me = PEOPLE.teacher.sub;
+  await db.pg.query(`select set_config('app.current_user_id', $1, false), set_config('app.current_role', 'teacher', false)`, [me]);
+  try {
+    for (const [i, [label, max, place]] of rows.entries()) {
+      await db.pg.query(
+        `insert into marking_questions (school_id, question_id, paper_id, position, label, component, max_marks, unit_id, kind, prompt, answer_key, steps, updated_by) values ($1, $2, $3, $4, $5, 'written', $6, $7, 'short', 'An illustrative question.', 'An illustrative key.', '[]'::jsonb, $8)`,
+        [SCHOOL, c(i), E.paper, i + 1, label, max, at(place), me]
+      );
+    }
+    await db.pg.query(`insert into marking_uploads (school_id, upload_id, paper_id, mode, created_by, closed_at) values ($1, $2, $3, 'per_file', $4, now())`, [SCHOOL, E.upload, E.paper, me]);
+    await db.pg.query(
+      `insert into marking_sheets (school_id, sheet_id, paper_id, upload_id, student_id, matched_by, state, flags, practice, ai_confidence, marked_at) values ($1, $2, $3, $4, $5, 'roll', 'approved', '{}', '[]'::jsonb, 0.9, now())`,
+      [SCHOOL, E.sheet, E.paper, E.upload, AM6_CHILD]
+    );
+    for (const [i, [, , , marks, kind]] of rows.entries()) {
+      await db.pg.query(`insert into marking_marks (school_id, sheet_id, paper_id, question_id, attempted, ai_marks, error_type, confidence) values ($1, $2, $3, $4, true, $5, $6, 0.9)`, [SCHOOL, E.sheet, E.paper, c(i), marks, kind]);
+    }
+  } finally {
+    await db.pg.query(`select set_config('app.current_user_id', '', false), set_config('app.current_role', '', false)`);
+  }
+  // Published for 5-A as the seed publishes its own exam (triggers off for this one row: the paper has no typed marks).
+  await db.pg.exec(`set session_replication_role = replica;
+    update exam_papers set entered_by = '${me}', entered_at = now() where paper_id = '${E.paper}';
+    insert into exam_publications (school_id, exam_id, class_id, version, scheme_version, scheme, recognition, published_by)
+      select '${SCHOOL}', '${E.exam}', '${CLASS_5A}', 1, g.version, g.scheme, '{}'::jsonb, '${PEOPLE.principal.sub}' from grading_schemes g where g.school_id = '${SCHOOL}' order by g.version desc limit 1;
+    set session_replication_role = origin;`);
+};
+const am6ClearEarlier = async () => {
+  const E = AM6_EARLIER;
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from marking_marks where paper_id = '${E.paper}';
+    delete from marking_sheets where paper_id = '${E.paper}';
+    delete from marking_uploads where paper_id = '${E.paper}';
+    delete from marking_questions where paper_id = '${E.paper}';
+    delete from exam_publications where exam_id = '${E.exam}';
+    delete from exam_papers where exam_id = '${E.exam}';
+    delete from exams where exam_id = '${E.exam}';
+    set session_replication_role = origin;`);
+};
+// axe-core finds no serious or critical problem (WCAG 2.1 A and AA) in the part of the screen this slice builds: the
+// whole page is checked, and what lies outside `scope` (the app shell, another section of the page) is only reported.
+const am6Axe = async (page, scope) => {
+  await page.addScriptTag({ path: createRequire(import.meta.url).resolve('axe-core/axe.min.js') });
+  const found = await page.evaluate(async (selector) => {
+    const root = document.querySelector(selector);
+    const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] } });
+    const out = { inside: [], outside: [] };
+    for (const v of r.violations.filter((x) => x.impact === 'serious' || x.impact === 'critical'))
+      for (const n of v.nodes) (root && root.contains(n.element) ? out.inside : out.outside).push(`${v.id} at ${n.target.join(' ')}`);
+    return out;
+  }, scope);
+  if (found.outside.length) console.log(`   axe, outside ${scope} (not this slice): ${[...new Set(found.outside)].join(' | ')}`);
+  if (found.inside.length) throw new Error(`axe found: ${found.inside.join(' | ')}`);
+};
+// The genome of Aarav: his topics with the answers each comes from (the first of each opened), the mistakes that keep
+// coming back, progress by chapter and what to practise.
+const am6Genome = (hindi) => async (page) => {
+  await am6Seed({ publish: true });
+  await am6ClearEarlier();
+  await am6EarlierExam();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator(`[data-genome="${AM6_CHILD}"]`).waitFor({ timeout: 20000 });
+  if (hindi) await speak('हिन्दी')(page);
+  await page.locator('[data-genome-topic-chapter]').first().waitFor({ timeout: 20000 });
+  for (const sel of ['[data-genome-topic] summary', '[data-genome-mistake] summary']) {
+    if (await page.locator(sel).count()) await page.locator(sel).first().click();
+  }
+  const seen = await page.evaluate(() => ({
+    chapters: [...document.querySelectorAll('[data-genome-topic-chapter]')].map((e) => e.getAttribute('data-genome-topic-chapter')),
+    topics: document.querySelectorAll('[data-genome-topic]').length,
+    evidenceLinks: [...document.querySelectorAll('[data-genome-evidence] a')].every((a) => /^\/app\/exams\/papers\/[0-9a-f-]{36}$/.test(a.getAttribute('href') ?? '')),
+    practice: document.querySelectorAll('[data-genome-practice-subject]').length,
+    progress: [...document.querySelectorAll('[data-genome-progress-chapter]')].map((e) => `${e.getAttribute('data-genome-progress-chapter')}:${e.getAttribute('data-genome-progress-change')}`),
+    mistakes: [...document.querySelectorAll('[data-genome-mistake]')].map((e) => e.getAttribute('data-genome-mistake')),
+    ranked: /\b(rank|position|topper|percentile)\b/i.test(document.querySelector('[data-genome]')?.textContent ?? ''),
+  }));
+  if (!seen.chapters.length || !seen.topics || !seen.evidenceLinks || !seen.practice || !seen.progress.length || !seen.mistakes.includes('incomplete') || seen.ranked) throw new Error(`the genome by topic: ${JSON.stringify(seen)}`);
+  await am6Axe(page, '[data-genome]');
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+// The class view of the harness paper: the school's line is 60 in 100 here so that children below it are listed.
+const am6ClassView = (hindi) => async (page) => {
+  await am6Seed({ publish: true, supportBelow: 60 });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-paper-insights]').waitFor({ timeout: 20000 });
+  if (hindi) await speak('हिन्दी')(page);
+  await page.locator('[data-insight-question]').first().waitFor({ timeout: 20000 });
+  const seen = await page.evaluate(() => ({
+    questions: [...document.querySelectorAll('[data-insight-question]')].map((e) => e.getAttribute('data-insight-question')),
+    topics: document.querySelectorAll('[data-insight-topic]').length,
+    line: document.querySelector('[data-insights-support-line]')?.getAttribute('data-insights-support-line'),
+    support: [...document.querySelectorAll('[data-insight-support-child]')].map((e) => e.textContent ?? ''),
+    ranked: /\b(rank|position|topper|percentile)\b/i.test((document.querySelector('[data-paper-insights]')?.textContent ?? '').replace(/ranked/gi, '')),
+  }));
+  // Roll order: the roll numbers in the list only ever rise.
+  const rolls = seen.support.map((t) => Number(/\d+/.exec(t)?.[0] ?? NaN));
+  if (seen.questions.join() !== '1,2,3,4,5,6(a),6(b),7' || !seen.topics || seen.line !== '60' || !seen.support.length || rolls.some((r, i) => !(r > (rolls[i - 1] ?? 0))) || seen.ranked) throw new Error(`the class view: ${JSON.stringify(seen)}`);
+  await am6Axe(page, '[data-paper-insights]');
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+// Control → Monitoring: the harness school's scripts by state (one waiting past the queue's minutes, one being marked),
+// its pages against the plan's limit, and a marking job that gave up, with Retry. Counts and ages only.
+const am6Monitor = (hindi) => async (page) => {
+  await am6Seed({ publish: false });
+  await db.pg.exec(`set session_replication_role = replica;
+    update marking_sheets set state = 'waiting', flags = '{}', updated_at = now() - interval '40 minutes' where sheet_id = '${MK.sheets.anaya}';
+    update marking_sheets set state = 'marking', flags = '{}', updated_at = now() - interval '2 minutes' where sheet_id = '${MK.sheets.neel}';
+    set session_replication_role = origin;`);
+  await db.pg.query(`delete from jobs where idempotency_key = $1`, [AM6_JOB_KEY]);
+  await db.pg.query(
+    `insert into jobs (school_id, type, idempotency_key, status, attempts, max_attempts, last_error, completed_at, updated_at) values ($1, 'marking.mark', $2, 'dead', 3, 3, $3, now() - interval '25 minutes', now() - interval '25 minutes')`,
+    [SCHOOL, AM6_JOB_KEY, 'The AI provider did not accept the request: the key was refused (401)']
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-monitoring-section="marking"]').waitFor({ timeout: 20000 });
+  if (hindi) await speak('हिन्दी')(page);
+  const seen = await page.evaluate(() => {
+    const s = document.querySelector('[data-monitoring-section="marking"]');
+    return {
+      state: s?.getAttribute('data-monitoring-state'),
+      schools: [...s.querySelectorAll('[data-monitoring-marking-school]')].map((e) => e.getAttribute('data-monitoring-marking-school')),
+      facts: Object.fromEntries([...s.querySelectorAll('[data-monitoring-marking-fact]')].map((e) => [e.getAttribute('data-monitoring-marking-fact'), e.querySelector('dd').textContent])),
+      todo: [...s.querySelectorAll('[data-monitoring-do]')].map((e) => e.getAttribute('data-monitoring-do')),
+      jobs: s.querySelectorAll('[data-monitoring-marking-job] [data-job-retry]').length,
+      text: s.textContent ?? '',
+    };
+  });
+  const children = ['Aarav', 'Meera', 'Vihaan', 'Anaya', 'Neel', 'Kabir', 'Sana', 'Ishaan', 'Kiara'].filter((n) => seen.text.includes(n));
+  if (seen.state !== 'look' || !seen.schools.includes('Illustrative Public School') || seen.facts.waiting !== '1' || seen.facts.marking !== '1' || seen.facts.failed !== '1' || seen.facts.approved !== '2' || seen.jobs !== 1 || children.length || JSON.stringify(seen.todo) !== JSON.stringify(['marking.backlog', 'marking.dead']))
+    throw new Error(`the marking monitor: ${JSON.stringify({ ...seen, text: undefined, children })}`);
+  await am6Axe(page, '[data-monitoring-section="marking"]');
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+// am-6 end
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
@@ -6707,6 +6910,16 @@ const SCREENS = [
   ['founder', 'control-content-pdf-import', '/control/content', pdfImportForm],
   ['founder', 'control-content-responses', '/control/content/responses', queueScreen, queueScreenDone],
   // m2-12 end
+  // am-6 begin
+  // Learning intelligence from approved answer-sheet marks (C352): Aarav's genome by topic, a paper's class view, and
+  // Control's monitor for AI marking; each in English and in Hindi.
+  ['principal', 'am6-genome', `/app/learning-genome?class=${CLASS_5A}&child=${AM6_CHILD}`, am6Genome(false), am6PutBack],
+  ['principal', 'am6-genome-hindi', `/app/learning-genome?class=${CLASS_5A}&child=${AM6_CHILD}`, am6Genome(true), async (page) => { await am6PutBack(); await backToEnglish(page); }],
+  ['principal', 'am6-class-view', `/app/exams/papers/${MK.paper}/insights`, am6ClassView(false), am6PutBack],
+  ['principal', 'am6-class-view-hindi', `/app/exams/papers/${MK.paper}/insights`, am6ClassView(true), async (page) => { await am6PutBack(); await backToEnglish(page); }],
+  ['founder', 'am6-control-monitoring', '/control/monitoring', am6Monitor(false), am6PutBack],
+  ['founder', 'am6-control-monitoring-hindi', '/control/monitoring', am6Monitor(true), async (page) => { await am6PutBack(); await backToEnglish(page); }],
+  // am-6 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
@@ -6760,6 +6973,9 @@ if (await portInUse(APP_PORT)) {
   process.exit(2);
 }
 const db = await startHarnessDb({ port: DB_PORT, seedSql: readFileSync(path.join(ROOT, 'src/demo-fixture/harness-seed.sql'), 'utf8') });
+// AM-6: Control → Monitoring reads AI marking's counts through public.marking_monitor(). Until the lead makes it a migration
+// (scripts/harness/am-6-marking-monitor.sql is idempotent), the harness database gets it here, for every Monitoring picture.
+await db.pg.exec(readFileSync(path.join(ROOT, 'scripts/harness/am-6-marking-monitor.sql'), 'utf8'));
 // M2-5: the video finder's picks, for the family player and Control → Content → Videos.
 await seedVideos(db);
 const secret = randomBytes(32).toString('hex');

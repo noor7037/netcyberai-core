@@ -74,6 +74,9 @@ describe('the guides', () => {
       // p6-9f begin
       'early-warning-marks',
       // p6-9f end
+      // am-6 begin
+      'read-a-paper-class-view',
+      // am-6 end
       // c212-pricing begin
       // c212-pricing end
       // p7-10a begin
