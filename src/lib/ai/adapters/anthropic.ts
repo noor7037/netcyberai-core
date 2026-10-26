@@ -1,5 +1,5 @@
 import { sseData } from './sse';
-import { CALL_TIMEOUT_MS, JSON_ONLY, type AdapterResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, type AdapterResult, type TextAdapter } from './types';
 
 // Anthropic's Messages API, streamed over fetch (no SDK): POST /v1/messages with stream: true. Text arrives as
 // content_block_delta events (text_delta); the input token count comes with message_start, the output count with
@@ -33,7 +33,7 @@ export const anthropicAdapter: TextAdapter = {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-api-key': request.apiKey, 'anthropic-version': '2023-06-01' },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(CALL_TIMEOUT_MS),
+        signal: AbortSignal.timeout(callTimeoutMs(request, CALL_TIMEOUT_MS)),
       });
     } catch {
       return { ok: false, failure: 'network' };

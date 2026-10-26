@@ -95,9 +95,9 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
       expect.objectContaining({ profileId: 'content.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', enabled: true }),
       expect.objectContaining({ profileId: 'copilot.draft', carriesChildWords: false, providerId: null, enabled: true }),
-      // AI answer-sheet marking (C349): a child's handwriting, so off with no provider until the founder chooses one cleared for children.
-      expect.objectContaining({ profileId: 'exams.mark', carriesChildWords: true, providerId: null, enabled: false }),
-      expect.objectContaining({ profileId: 'exams.read_pages', carriesChildWords: true, providerId: null, enabled: false }),
+      // AI answer-sheet marking (C349): both read children's answer sheets; off, with no provider, until the founder chooses.
+      expect.objectContaining({ profileId: 'exams.mark', carriesChildWords: true, providerId: null, enabled: false, usesPrompt: true }),
+      expect.objectContaining({ profileId: 'exams.read_pages', carriesChildWords: true, providerId: null, enabled: false, usesPrompt: true }),
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
       // The safety check (C314): chosen by the founder after clearing Workers AI.
       expect.objectContaining({ profileId: 'family.moderation', carriesChildWords: true, providerId: null, enabled: true }),

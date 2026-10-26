@@ -15,6 +15,8 @@ import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
+import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
+import { MARKING_GROUP_JOB, MARKING_MARK_JOB, MARKING_READ_JOB } from '@/lib/marking/queue';
 import { emailSendHandler } from './email-handler';
 import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
@@ -74,6 +76,12 @@ export function productionHandlers(): Record<string, JobHandler> {
     // Every ten minutes: a linked family's browsers hear of new homework, notices and results, and tonight's practice
     // or plan once an evening, each account inside its own family session (M3-8b, C339).
     [PUSH_SCAN_JOB]: pushScanHandler({ platform }),
+    // AM-2 (C347): AI answer-sheet marking, in the school's own session as its office sees it, with no person (the
+    // 'marking.pipeline' school job). Reading a run of pages and marking a script wait for the AI: the runner starts at
+    // most one of those a run (./runner.ts, LONG_JOB_TYPES). Making the scripts is quick.
+    [MARKING_READ_JOB]: markingReadHandler({ asSchool, queue: jobQueue, storage: supabaseFileStorage }),
+    [MARKING_GROUP_JOB]: markingGroupHandler({ asSchool, queue: jobQueue }),
+    [MARKING_MARK_JOB]: markingMarkHandler({ asSchool, queue: jobQueue, storage: supabaseFileStorage }),
   };
 }
 
@@ -87,7 +95,7 @@ export async function runDueJobs(): Promise<RunSummary> {
   } catch (err) {
     console.error('[jobs] could not record the job types this code runs', err instanceof Error ? err.name : 'error');
   }
-  return runJobs({ handlers, limit: RUN_BATCH_CAP });
+  return runJobs({ handlers, limit: RUN_BATCH_CAP, longJobs: true });
 }
 
 // Right after a request commits: run the jobs it just enqueued, within a
