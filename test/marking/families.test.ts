@@ -204,8 +204,8 @@ describe('School Link: a checked paper, read as the guardian (C351)', () => {
     }));
     expect(seen).toEqual({ counts: [{ paper_id: PP1, choice_counts: { A: 1 } }], setups: 0 });
     // A parent with no child of that paper's approved scripts reads none, nor does a member of staff.
-    expect((await asStaff('parent', u(999), A, (c) => c.query(`select count(*)::int as n from public.guardian_choice_counts()`))).rows[0].n).toBe(0);
-    expect((await asStaff('teacher', TEACHER, A, (c) => c.query(`select count(*)::int as n from public.guardian_choice_counts()`))).rows[0].n).toBe(0);
+    expect((await asStaff<{ rows: { n: number }[] }>('parent', u(999), A, (c) => c.query(`select count(*)::int as n from public.guardian_choice_counts()`))).rows[0].n).toBe(0);
+    expect((await asStaff<{ rows: { n: number }[] }>('teacher', TEACHER, A, (c) => c.query(`select count(*)::int as n from public.guardian_choice_counts()`))).rows[0].n).toBe(0);
   });
 
   it('only the guardian’s own child: a classmate’s script, an unmatched child and another family read nothing', async () => {
