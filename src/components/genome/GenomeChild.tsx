@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 import type { Finding, Genome } from '@/lib/genome/rules';
 import { tCount } from '@/lib/i18n';
 import { findingWords } from './genome-words';
+import { GenomeTopics } from './GenomeTopics';
 
 // One child's Learning Genome (C217), as the server worked it out: strengths and gaps first, each with the line it
 // was held against; then each subject's exams (percent and grade, and the marks they come from) and homework; then
@@ -83,6 +84,8 @@ export function GenomeChild({ genome }: { genome: Genome }) {
           ))}
         </ul>
       </section>
+
+      <GenomeTopics genome={g} />
     </div>
   );
 }

@@ -85,6 +85,8 @@ export const TOURS = {
   exams: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   'marks-entry': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   'class-result': { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  // am-6: a paper's class view from approved answer sheets (C352)
+  'paper-insights': { steps: [{ slot: 'body' }, { slot: 'body' }] },
   // p6-9b end
   // p6-9c begin
   'report-cards': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
@@ -135,6 +137,12 @@ export const TOURS = {
   // A member of staff's profile (C235-D): what the record holds, and the papers on it.
   'staff-profile': { steps: [{ slot: 'body' }, { slot: 'primary' }] },
   // c235d end
+  // am-3 begin
+  // AI answer-sheet marking (C347): a paper's four steps, one script beside its pages, a class's exam numbers (C348).
+  marking: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  'marking-review': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  'exam-numbers': { steps: [{ slot: 'body' }] },
+  // am-3 end
 } as const satisfies Record<string, TourDefinition>;
 
 export type TourId = keyof typeof TOURS;

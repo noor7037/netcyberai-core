@@ -437,7 +437,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // Nothing is stored: a change is used the next time a genome is opened, and the screen shows each line in use.
   {
     moduleId: 'learning-genome',
-    version: 1,
+    version: 2,
     fields: [
       {
         key: 'trend_points',
@@ -526,6 +526,35 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         default: 90,
         min: 7,
         max: 366,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // Version 2 (C352): the two lines of "kinds of mistake that keep coming back", worked out from the child's own
+      // approved answer-sheet marks. Topics, chapters and progress add no line of their own: progress uses the trend
+      // line above, against the child's own previous exam.
+      {
+        key: 'mistake_min_questions',
+        label: 'A kind of mistake seen in at least this many answers',
+        help: 'On the Learning Genome, a kind of mistake (a slip in a calculation, an answer left unfinished and the like) is listed as coming back when it cost the child marks in at least this many answers, from 2 to 50.',
+        section: 'Answer sheets',
+        type: 'number',
+        default: 3,
+        min: 2,
+        max: 50,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'mistake_min_papers',
+        label: 'and across at least this many papers',
+        help: 'The answers must come from at least this many different papers, so one hard paper does not look like a habit, from 1 to 20.',
+        section: 'Answer sheets',
+        type: 'number',
+        default: 2,
+        min: 1,
+        max: 20,
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,

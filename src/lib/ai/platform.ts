@@ -29,11 +29,25 @@ import { scrubRequest } from './preprocess';
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
 // never a field), and a prepared call sends once: one daily-cap place, one vendor request.
 
-export type ProfileId = 'family.resolver' | 'family.homework' | 'family.voice_input' | 'family.moderation' | 'family.syllabus_extract' | 'copilot.draft' | 'parent_ai.home_help' | 'content.syllabus_extract' | 'content.prepare';
+export type ProfileId =
+  | 'family.resolver'
+  | 'family.homework'
+  | 'family.voice_input'
+  | 'family.moderation'
+  | 'family.syllabus_extract'
+  | 'copilot.draft'
+  | 'parent_ai.home_help'
+  | 'content.syllabus_extract'
+  | 'content.prepare'
+  | 'exams.read_pages'
+  | 'exams.mark';
 export type Capability = 'text' | 'speech_to_text' | 'moderation';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
-// monthly one, which its caller checks (src/lib/copilot/copilot.ts); a control profile runs only for Control's staff.
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control' };
+// monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
+// control profile runs only for Control's staff.
+// `callMs`: a profile whose answer is long (many page pictures in, a long JSON out) gives its whole chain this long,
+// shared by every provider tried (C349). Without it each provider gets the adapter's own limit.
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number };
 
 // Code-defined: which profiles exist, whether a child's words may pass, and which capability each one uses. Control
 // sets each one's provider, model, prompt version and on switch; never this list. M2 (C275): the homework helper reads a
@@ -57,6 +71,13 @@ export const PROFILES: readonly AiProfile[] = [
   // Responses). No child's words; what it makes reaches a child only once a person has checked it (C300, the
   // responses' read policy).
   { id: 'content.prepare', carriesChildWords: false, capability: 'text', audience: 'control' },
+  // AM-2 (C349): AI answer-sheet marking. Both read photos of children's handwritten answer sheets, so only a provider
+  // cleared for children may serve them. The request carries the paper and the page pictures, never a name or a roster:
+  // the pages are matched to the class in code (src/lib/marking/matching.ts). Their limit is the school's monthly pages
+  // (exams.ai_marking_pages), checked when pages are uploaded. They run in the school's marking jobs, one a run of the
+  // job runner (src/lib/jobs/runner.ts), so their chain may take longer than a person waits.
+  { id: 'exams.read_pages', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000 },
+  { id: 'exams.mark', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 200_000 },
 ];
 
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
@@ -221,6 +242,9 @@ async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link)
   return true;
 }
 
+// A provider is not tried on a profile's own time (callMs) with less than this left.
+const CHAIN_MIN_MS = 15_000;
+
 // 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
 export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
   const env = process.env;
@@ -249,12 +273,18 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     // One cap place, one request: a prepared call never goes out twice.
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
     sent = true;
+    // A profile with its own time (callMs) shares it across the chain: each provider gets what is left, and none is
+    // tried once less than CHAIN_MIN_MS is left.
+    const deadline = profile.callMs ? Date.now() + profile.callMs : null;
     // 6. Down the chain until one answers.
     for (const { link, adapter, apiKey } of ready) {
+      const left = deadline === null ? null : deadline - Date.now();
+      if (left !== null && left < CHAIN_MIN_MS) break;
       let streamed = false;
       let result: AdapterResult;
       try {
-        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat }, (piece) => {
+        const timeout = left === null ? {} : { timeoutMs: left };
+        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat, ...timeout }, (piece) => {
           streamed = true;
           onDelta(piece);
         });

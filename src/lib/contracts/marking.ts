@@ -45,13 +45,17 @@ export const AI_MARKING_PAGES_LIMIT = 'ai_marking_pages';
 export const PAGE_MAX_EDGE = 2000; // the longest side of a page picture, in pixels
 export const PAGE_MIN_EDGE = 200;
 export const PAGE_MAX_BYTES = 1_500_000; // one JPEG
-export const PAGES_PER_REQUEST = 6; // a few pages a request, under the host's 4.5 MB body limit
+export const PAGES_PER_REQUEST = 6; // a few pages a request…
+export const REQUEST_MAX_BYTES = 4_000_000; // …and never more bytes than this together: the host refuses a body over 4.5 MB
 export const MAX_FILES_PER_UPLOAD = 500;
 export const MAX_PAGES_PER_FILE = 200;
 export const MAX_PAGES_PER_UPLOAD = 1500;
 export const MAX_QUESTIONS = 200;
 export const MAX_SHEET_PAGES = 40; // a script longer than this is split by the teacher, not sent to the AI whole
-export const MAX_MARKING_ATTEMPTS = 3; // the AI's tries at one script before a person asks again
+// The AI's tries at one script, ever: a person's "Mark again" starts a new job but never a new count, so the AI's
+// cost of one script is bounded whatever is pressed (review of #318). One job tries at most MARKING_TRIES_PER_JOB.
+export const MAX_MARKING_ATTEMPTS = 6;
+export const MARKING_TRIES_PER_JOB = 3;
 
 export type MarkingStep = { step: string; marks: number };
 

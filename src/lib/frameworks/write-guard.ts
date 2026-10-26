@@ -92,6 +92,11 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   ['exams/**', 'exams'],
   ['exams', 'exams'],
   // p6-9b end
+  // am-3 begin
+  // AI answer-sheet marking (C347) belongs to Exams: switched off, nobody saves the questions, changes, approves or
+  // sets aside a script, or marks a candidate absent.
+  ['marking/**', 'exams'],
+  // am-3 end
   // p6-9c begin
   // p6-9c end
   // p6-9d begin
@@ -264,6 +269,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['exams/**', 'exams'],
   ['exams', 'exams'],
   // p6-9b end
+  // am-3 begin
+  // A paper's AI marking, a script and its pictures (C347). Switched off with Exams, none of them answers.
+  ['marking/**', 'exams'],
+  // am-3 end
   // p6-9c begin
   // p6-9c end
   // p6-9d begin
