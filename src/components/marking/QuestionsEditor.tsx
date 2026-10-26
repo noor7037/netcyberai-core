@@ -101,8 +101,11 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
       {locked && <p data-questions-locked className="rounded-md bg-off-white px-3 py-2">{t('mk.q.locked')}</p>}
       {!mayChange && <p className="rounded-md bg-off-white px-3 py-2">{paper.published ? t('mk.q.published') : t('mk.q.readOnly')}</p>}
 
-      <details className="rounded-md border border-slate/10 p-3">
-        <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('mk.setup.title')}</summary>
+      <details className="group rounded-md border border-slate/10 p-3">
+        <summary className="flex min-h-[44px] cursor-pointer items-center justify-between gap-2 font-semibold">
+          {t('mk.setup.title')}
+          <Icon name="chevronDown" className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+        </summary>
         <div className="mt-2 grid gap-3 sm:grid-cols-2">
           <Select id="mk-language" label={t('mk.setup.language')} value={language} disabled={!mayChange} onChange={(e) => setLanguage(e.target.value as typeof language)}>
             {MARKING_LANGUAGES.map((l) => (

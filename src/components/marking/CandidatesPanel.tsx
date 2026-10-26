@@ -6,6 +6,7 @@ import { InfoTip } from '@/components/app-ui/InfoTip';
 import { momentWords, numberWords } from '@/components/exams/exam-format';
 import { PRIMARY, TAP } from '@/components/exams/SchemeParts';
 import { Input } from '@/components/ui/Input';
+import { Icon } from '@/components/visual/Icons';
 import { Select } from '@/components/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import type { ExamCandidates } from '@/lib/contracts/marking';
@@ -81,8 +82,11 @@ export function CandidatesPanel({ examId }: { examId: string }) {
   const seat = data?.numbering === 'seat';
 
   return (
-    <details data-candidates={examId} className="rounded-md border border-slate/10 p-3" onToggle={(e) => setOpened((e.currentTarget as HTMLDetailsElement).open)}>
-      <summary className="flex min-h-[44px] cursor-pointer items-center font-bold">{t('mk.cand.title')}</summary>
+    <details data-candidates={examId} className="group rounded-md border border-slate/10 p-3" onToggle={(e) => setOpened((e.currentTarget as HTMLDetailsElement).open)}>
+      <summary className="flex min-h-[44px] cursor-pointer items-center justify-between gap-2 font-bold">
+        {t('mk.cand.title')}
+        <Icon name="chevronDown" className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+      </summary>
       {opened && failed && <p role="alert" className="mt-2 text-slate">{t('mk.cand.failed')}</p>}
       {opened && data && (
         <div className="mt-2 flex flex-col gap-4">

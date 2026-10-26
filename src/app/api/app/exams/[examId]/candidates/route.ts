@@ -8,6 +8,7 @@ import { actorOf, mayRead, refusal } from '@/lib/marking/http';
 // the exam numbers (seat numbers) where the exam uses them.
 //   GET   per class: on the roll, withdrawn, candidates, numbered; the withdrawals with their reasons.
 //         The office and the coordinator read every class, a teacher their own.
+//   (Each change is the office's only: the rules in src/lib/marking/candidates.ts check the role, the database the rows.)
 //   POST  { action: 'withdraw', studentId, reason }      the office only
 //   POST  { action: 'undo', studentId }                  the office only: a withdrawal taken back
 //   POST  { action: 'numbering', numbering: 'roll' | 'seat', prefix? }   the office only: exam numbers on or off

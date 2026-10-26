@@ -18,7 +18,7 @@ export async function POST(req: NextRequest, { params }: { params: { paperId: st
     if (!mayRead(claims)) return ruleError(403, 'not_allowed');
     let which: readonly string[] | 'unflagged';
     if (b.all === 'unflagged') which = 'unflagged';
-    else if (Array.isArray(b.sheetIds) && b.sheetIds.every((id) => typeof id === 'string' && isUuid(id))) which = b.sheetIds as string[];
+    else if (Array.isArray(b.sheetIds) && b.sheetIds.every((id) => typeof id === 'string' && isUuid(id))) which = [...new Set(b.sheetIds as string[])]; // one script named twice is approved once
     else return ruleError(400, 'not_sent_properly');
     const r = await approveSheets(db, actorOf(claims), params.paperId, which);
     if (r.ok) return NextResponse.json(r);

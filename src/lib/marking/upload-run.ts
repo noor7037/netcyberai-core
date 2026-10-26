@@ -5,7 +5,7 @@ import { PageBatcher, UploadError, withRetry } from './browser-plan';
 // held with at most a request's worth of others, sent, and let go. Progress is kept per file. A file that cannot be
 // read or sent is marked failed and the next one goes on; the teacher sees which and may try that file again. The
 // drawing and the network are handed in (`deps`), so the order of things, the batches and the retries are tested
-// without a browser (test/marking/upload-run.test.ts).
+// without a browser (test/marking/client-helpers.test.ts).
 
 export type FileLike = { name: string; size: number };
 

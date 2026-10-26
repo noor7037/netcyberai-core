@@ -1,6 +1,8 @@
 // Where a question's mark sits in the margin of the scanned page (C347): at the answer's place on its page, a fraction of
 // the page's height from the top. Pure, so the placement, the colour and the stacking of badges are tested
-// (test/marking/margin.test.ts); src/components/marking/PagesPane.tsx draws what this says.
+// (test/marking/client-helpers.test.ts); src/components/marking/PagesPane.tsx draws what this says.
+
+import { round1 } from './rollup';
 
 export type BadgeKind = 'full' | 'part' | 'none' | 'unmarked' | 'out';
 
@@ -13,7 +15,7 @@ export function badgeKind(final: number | null, max: number, counted: boolean): 
   return 'part';
 }
 
-const one = (n: number) => String(Math.round(n * 10) / 10);
+const one = (n: number) => String(round1(n));
 
 // "3/4", "3.5/4"; "–/4" with no mark yet.
 export function badgeText(final: number | null, max: number): string {

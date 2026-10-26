@@ -3,7 +3,7 @@ import { countedQuestions, partTotals, round1 } from './rollup';
 
 // What the teacher's screens work out from the server's answers (C347): which list a script belongs in, how sure the
 // AI was in words, a mark kept within its question, and what the teacher has changed on a script. Pure and free of
-// the server's code, so it is safe in the browser and tested (test/marking/review-view.test.ts). Nothing here ranks a
+// the server's code, so it is safe in the browser and tested (test/marking/teacher-view.test.ts). Nothing here ranks a
 // child or compares one with another: a list is always in roll order, as the server sends it.
 
 // ---- the review list ----------------------------------------------------------------------------------------------

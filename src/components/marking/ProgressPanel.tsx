@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { numberWords } from '@/components/exams/exam-format';
 import { TAP } from '@/components/exams/SchemeParts';
+import { Icon } from '@/components/visual/Icons';
 import type { MarkingOverview, SheetState } from '@/lib/contracts/marking';
 import { inProgress } from '@/lib/marking/review-view';
 import { ask, errorWords, failureWords, childLine, STATE_KEYS } from './parts';
@@ -95,8 +96,11 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
       )}
 
       {mayChange && live.some((s) => s.state === 'waiting' || s.state === 'marking') && (
-        <details data-stuck className="rounded-md border border-slate/10 p-3">
-          <summary className="flex min-h-[44px] cursor-pointer items-center font-semibold">{t('mk.progress.stuck')}</summary>
+        <details data-stuck className="group rounded-md border border-slate/10 p-3">
+          <summary className="flex min-h-[44px] cursor-pointer items-center justify-between gap-2 font-semibold">
+            {t('mk.progress.stuck')}
+            <Icon name="chevronDown" className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
+          </summary>
           <p className="mt-1 text-slate/70">{t('mk.progress.stuckHow')}</p>
           <ul className="mt-2 flex flex-col gap-2">
             {live.filter((s) => s.state === 'waiting' || s.state === 'marking').map((s) => (

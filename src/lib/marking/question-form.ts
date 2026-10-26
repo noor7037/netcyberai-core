@@ -3,7 +3,7 @@ import { structureProblems } from './rollup';
 
 // The questions editor's side (C347): a question as the teacher types it (every number is text until it is sent), the
 // same checks the server makes so a mistake is named at once, and the structure problems as the totals change. Pure
-// and free of the server's code, so it is safe in the browser and tested (test/marking/question-form.test.ts). The
+// and free of the server's code, so it is safe in the browser and tested (test/marking/teacher-view.test.ts). The
 // server checks everything again.
 
 export type StepForm = { step: string; marks: string };

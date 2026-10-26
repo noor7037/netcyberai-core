@@ -4,7 +4,7 @@ export { REQUEST_MAX_BYTES };
 
 // The pure part of making a class's scripts into pictures in the browser (C350): how big a page picture is, how hard
 // it is squeezed, how pages are grouped into requests and when a failed request is tried again. No browser here, so
-// every rule is tested (test/marking/browser-plan.test.ts); src/components/marking/render-pages.ts does the drawing.
+// every rule is tested (test/marking/client-helpers.test.ts); src/components/marking/render-pages.ts does the drawing.
 
 // A page picture's size: the longest side at most `maxEdge` pixels, the shape kept, never made larger than it is.
 export function fitWithin(width: number, height: number, maxEdge: number = PAGE_MAX_EDGE): { width: number; height: number } {
