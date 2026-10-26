@@ -39,20 +39,38 @@ export function TemplatesPanel() {
     const res = await fetch('/api/control/templates', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
     const answer = (await res?.json().catch(() => null)) ?? {};
     setBusy(false);
-    setNote(res?.ok ? done(answer) : t(answer.code === 'not_in_code' ? 'tpl.bad.notInCode' : answer.code === 'meta_id' ? 'tpl.bad.metaId' : 'tpl.bad'));
+    setNote(res?.ok ? done(answer) : failed(answer));
     setMeta(null);
     setReview(null);
     void load();
   }
+
+  // What went wrong, in words: Meta's own answer when Meta refused.
+  function failed(answer: Record<string, unknown>): string {
+    const code = answer.code;
+    if (code === 'meta' && typeof answer.message === 'string') return t('tpl.bad.meta', { message: answer.message });
+    if (code === 'no_account' || code === 'no_encryption_key') return t('tpl.bad.noAccount');
+    if (code === 'other_version') return t('tpl.bad.otherVersion');
+    if (code === 'not_approved' || code === 'not_reviewed' || code === 'category' || code === 'already' || code === 'no_words' || code === 'no_example') return t('tpl.bad.notReady');
+    return t(code === 'not_in_code' ? 'tpl.bad.notInCode' : code === 'meta_id' ? 'tpl.bad.metaId' : 'tpl.bad');
+  }
+  const refreshed = (a: Record<string, unknown>) => {
+    const other = Array.isArray(a.otherWords) ? (a.otherWords as string[]) : [];
+    const said = t('tpl.refreshed', { found: Number(a.found ?? 0), changed: Number(a.changed ?? 0) });
+    return other.length ? `${said} ${t('tpl.refreshed.other', { names: other.join(', ') })}` : said;
+  };
 
   if (rows === null) return null;
   const names = [...new Set(rows.map((r) => r.name))];
   return (
     <section lang={lang} data-templates className="flex flex-col gap-4">
       <div className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4 text-sm text-slate">
-        <div className="flex flex-wrap items-center gap-x-1">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
           <button type="button" data-templates-sync disabled={busy} className={PRIMARY} onClick={() => void post({ action: 'sync' }, (a) => t('tpl.synced', { added: Number(a.added ?? 0), filled: Number(a.filled ?? 0) }))}>
             {t('tpl.sync')}
+          </button>
+          <button type="button" data-templates-refresh disabled={busy} className={TAP} onClick={() => void post({ action: 'refresh' }, refreshed)}>
+            {t('tpl.refresh')}
           </button>
           <InfoTip>{t('tpl.how')}</InfoTip>
         </div>
@@ -79,6 +97,11 @@ export function TemplatesPanel() {
                 {r.status !== 'approved' && r.inCode && (
                   <button type="button" data-template-approve disabled={busy} className={PRIMARY} onClick={() => void post({ action: 'approve', id: r.id }, () => t('tpl.approved'))}>
                     {t('tpl.approve')}
+                  </button>
+                )}
+                {r.status === 'approved' && r.inCode && r.metaStatus === 'not_submitted' && !r.metaTemplateId && r.category === 'utility' && (r.language === 'en' || r.wordingReviewed) && (
+                  <button type="button" data-template-submit disabled={busy} className={PRIMARY} onClick={() => void post({ action: 'submit', id: r.id }, () => t('tpl.submitted'))}>
+                    {t('tpl.submit')}
                   </button>
                 )}
                 {r.status !== 'rejected' && (

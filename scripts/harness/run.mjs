@@ -738,6 +738,10 @@ const messageTemplates = async (page) => {
   await card.locator('[data-template-approve]').click();
   await page.locator('[data-templates-note]').waitFor({ timeout: 20000 });
   await page.waitForFunction(() => /one sent/.test(document.querySelector('[data-template="fee_receipt"] [data-template-version="en-2"]')?.textContent ?? ''), null, { timeout: 20000 });
+  // Approved here and not yet with Meta: it can be submitted. The harness server holds no messaging key, so the
+  // route refuses in plain words and nothing reaches Meta (C345).
+  await card.locator('[data-template-submit]').click();
+  await page.waitForFunction(() => /No WhatsApp account is saved/.test(document.querySelector('[data-templates-note]')?.textContent ?? ''), null, { timeout: 20000 });
   await card.locator('[data-template-meta]').click();
   await card.locator('select').selectOption('pending');
   await card.locator('input').fill('made-up-meta-id');
@@ -6905,6 +6909,8 @@ try {
       page.on('response', (r) => {
         // The timetable's clash guard answers 409 on purpose (the clash screen shows it).
         if (r.status() === 409 && r.url().includes('/api/app/timetable')) return;
+        // "Submit to Meta" answers 503 on purpose here: the harness server holds no messaging key (C345).
+        if (r.status() === 503 && r.url().includes('/api/control/templates') && /"action":"submit"/.test(r.request().postData() ?? '')) return;
         if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
       });
       for (const [, name, route, prepare, after] of mine) {

@@ -1,6 +1,8 @@
 import type { PoolClient } from 'pg';
 import type { ConsentPurpose } from '@/lib/consent/gate';
 import type { Sql } from '@/lib/jobs/types';
+import type { MetaTemplate, MetaTemplateDraft } from './meta';
+import { templateExample } from './template-examples';
 
 // WhatsApp templates (docs/25 slice 7c, C184).
 //
@@ -481,6 +483,112 @@ export async function recordMetaDecision(db: Sql, id: string, input: { metaStatu
   if (metaId.length > 100 || (input.metaStatus !== 'not_submitted' && metaId === '')) return { ok: false, reason: 'meta_id' };
   const done = await db.query(`update whatsapp_templates set meta_status = $2, meta_template_id = nullif($3, ''), meta_decided_at = now() where id = $1 and school_id is null`, [id, input.metaStatus, metaId]);
   return done.rowCount === 1 ? { ok: true } : { ok: false, reason: 'not_found' };
+}
+
+// --- Meta's review, from Control and from Meta itself (C345) ------------------------------------------------------
+// Meta keeps ONE template per name and language, and sends by name: whichever version we pick, Meta sends the words
+// it holds. So a version is "approved by Meta" only when Meta's words are its words.
+
+export type MetaStatus = (typeof META_STATUSES)[number];
+const META_STATE: Record<string, MetaStatus> = {
+  APPROVED: 'approved',
+  REINSTATED: 'approved',
+  PENDING: 'pending',
+  IN_APPEAL: 'pending',
+  REJECTED: 'rejected',
+  DISABLED: 'rejected',
+  DELETED: 'rejected',
+  PENDING_DELETION: 'rejected',
+  ARCHIVED: 'rejected',
+  PAUSED: 'paused',
+};
+
+// Meta's word for a template's state, as ours; null when there is nothing for us to change (a quality warning, a
+// lock, a limit). A template Meta files in another category than ours never sends: it would be priced, and need
+// consent, as that category.
+export function metaStatusOf(state: string, metaCategory: string | null, ourCategory: string): MetaStatus | null {
+  const ours = META_STATE[state.toUpperCase()] ?? null;
+  return ours === 'approved' && metaCategory && metaCategory.toLowerCase() !== ourCategory ? 'rejected' : ours;
+}
+
+export type SubmitProblem = 'not_found' | 'no_words' | 'not_in_code' | 'not_approved' | 'not_reviewed' | 'category' | 'already' | 'other_version' | 'no_example';
+const inCode = (r: { template_name: string; version: number; language: string; body: string | null }) =>
+  TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body);
+
+// What Control may send to Meta for review: a utility version whose words a person here approved and are still the
+// code's (Hindi read by a reader of Hindi), never sent before, while no other version of its name and language is
+// with Meta (a change of words at Meta is not built). The words are numbered as Meta numbers them, with an example.
+export async function submissionFor(db: Sql, id: string): Promise<{ ok: true; draft: MetaTemplateDraft } | { ok: false; reason: SubmitProblem }> {
+  const row = (await db.query(`select id, template_name, version, language, body, billing_category, status::text as status, meta_status, meta_template_id, wording_reviewed from whatsapp_templates where id = $1 and school_id is null`, [id])).rows[0];
+  if (!row) return { ok: false, reason: 'not_found' };
+  if (row.body === null) return { ok: false, reason: 'no_words' };
+  if (!inCode(row)) return { ok: false, reason: 'not_in_code' };
+  if (row.status !== 'approved') return { ok: false, reason: 'not_approved' };
+  if (row.language !== 'en' && !row.wording_reviewed) return { ok: false, reason: 'not_reviewed' };
+  if (row.billing_category !== 'utility') return { ok: false, reason: 'category' };
+  if (row.meta_status !== 'not_submitted' || row.meta_template_id) return { ok: false, reason: 'already' };
+  const other = await db.query(`select 1 from whatsapp_templates where school_id is null and template_name = $1 and language = $2 and id <> $3 and (meta_template_id is not null or meta_status <> 'not_submitted') limit 1`, [row.template_name, row.language, id]);
+  if (other.rows.length) return { ok: false, reason: 'other_version' };
+  const language = row.language as TemplateLanguage;
+  const example = placeholderOrder(row.body).map((v) => templateExample(row.template_name, v, language));
+  if (example.some((e) => e === null)) return { ok: false, reason: 'no_example' };
+  return { ok: true, draft: { name: row.template_name, language, text: positionalBody(row.body), example: example as string[] } };
+}
+
+// Meta took the template: its id, and its state so far. Recorded only on a version that has no Meta id yet.
+export async function recordSubmission(db: Sql, id: string, made: { id: string; status: string; category: string | null }): Promise<MetaStatus> {
+  const row = (await db.query(`select billing_category from whatsapp_templates where id = $1 and school_id is null`, [id])).rows[0];
+  const status = metaStatusOf(made.status, made.category, row?.billing_category ?? 'utility') ?? 'pending';
+  await db.query(`update whatsapp_templates set meta_status = $2, meta_template_id = $3, meta_decided_at = now() where id = $1 and school_id is null and meta_template_id is null`, [id, status, made.id]);
+  return status;
+}
+
+export type MetaReconciled = { found: number; changed: number; otherWords: string[] };
+
+// "Refresh from Meta": each of Meta's templates in our two languages is matched, by name and language, to the
+// version of ours whose numbered words are Meta's words, which takes Meta's id and state. Every other version of
+// that name and language stops counting as approved by Meta (Meta would send them with the matched words). Where
+// Meta holds words that are none of ours, no version of that name and language counts as approved by Meta.
+export async function reconcileWithMeta(db: Sql, templates: readonly MetaTemplate[]): Promise<MetaReconciled> {
+  const rows = (await db.query(`select id, template_name, version, language, body, billing_category, meta_status, meta_template_id from whatsapp_templates where school_id is null and body is not null`)).rows;
+  const out: MetaReconciled = { found: 0, changed: 0, otherWords: [] };
+  for (const t of templates) {
+    const language = t.language === 'en' || t.language === 'hi' ? t.language : null;
+    const ours = rows.filter((r) => r.template_name === t.name && r.language === language);
+    if (!language || !ours.length) continue;
+    const same = t.body === null ? undefined : ours.find((r) => positionalBody(r.body) === t.body);
+    const others = await db.query(
+      `update whatsapp_templates set meta_status = 'not_submitted', meta_template_id = null, meta_decided_at = now()
+        where school_id is null and template_name = $1 and language = $2 and id is distinct from $3 and (meta_status <> 'not_submitted' or meta_template_id is not null)`,
+      [t.name, language, same?.id ?? null]
+    );
+    out.changed += others.rowCount ?? 0;
+    if (!same) {
+      out.otherWords.push(`${t.name} (${language})`);
+      continue;
+    }
+    out.found += 1;
+    const status = metaStatusOf(t.status, t.category, same.billing_category) ?? (same.meta_template_id === t.id ? same.meta_status : 'pending');
+    if (status === same.meta_status && same.meta_template_id === t.id) continue;
+    await db.query(`update whatsapp_templates set meta_status = $2, meta_template_id = $3, meta_decided_at = now() where id = $1`, [same.id, status, t.id]);
+    out.changed += 1;
+  }
+  return out;
+}
+
+// Meta's webhook says a template's review moved: the version holding that Meta id takes the new state. An id none of
+// ours holds changes nothing ("Refresh from Meta" matches by words, which the notice does not carry).
+export async function applyTemplateStatus(db: Sql, n: { metaTemplateId: string; event: string; category: string | null }): Promise<'applied' | 'stale' | 'unknown'> {
+  const rows = (await db.query(`select id, billing_category, meta_status from whatsapp_templates where school_id is null and meta_template_id = $1 for update`, [n.metaTemplateId])).rows;
+  if (!rows.length) return 'unknown';
+  let applied = false;
+  for (const r of rows) {
+    const status = metaStatusOf(n.event, n.category, r.billing_category);
+    if (status === null || status === r.meta_status) continue;
+    await db.query(`update whatsapp_templates set meta_status = $2, meta_decided_at = now() where id = $1`, [r.id, status]);
+    applied = true;
+  }
+  return applied ? 'applied' : 'stale';
 }
 
 // A reader of the language has read this version's words (C190): who, as the founder writes it down, and when.

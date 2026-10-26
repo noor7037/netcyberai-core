@@ -9,7 +9,8 @@ import type { NoticeRead, WhatsAppChoiceParams, WhatsAppNotice, WhatsAppProvider
 // The formats, and where each is documented:
 //   Send a template   POST https://graph.facebook.com/{version}/{phone-number-id}/messages, bearer token; body
 //                     { messaging_product, recipient_type, to, type: "template", template: { name, language:
-//                     { code }, components: [{ type: "body", parameters: [{ type: "text", parameter_name, text }] }] } }
+//                     { code }, components: [{ type: "body", parameters: [{ type: "text", text }, ...] }] } }
+//                     Our templates are POSITIONAL (C345): the values go in the order the words name them, {{1}} first.
 //                     Answer: { messaging_product, contacts: [{ input, wa_id }], messages: [{ id, message_status }] }
 //     https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
 //     https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/overview
@@ -29,13 +30,25 @@ import type { NoticeRead, WhatsAppChoiceParams, WhatsAppNotice, WhatsAppProvider
 //     https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/reference/messages/text
 //   The number        GET https://graph.facebook.com/{version}/{phone-number-id} → { verified_name, display_phone_number, quality_rating, id }
 //     https://developers.facebook.com/docs/whatsapp/cloud-api/reference/phone-numbers
+//   Make a template   POST https://graph.facebook.com/{version}/{waba-id}/message_templates, bearer token; body { name, language,
+//                     category, parameter_format: "positional", components: [{ type: "body", text, example: { body_text: [[...]] } }] }
+//                     Answer: { id, status, category }
+//   The templates     GET the same address ?fields=id,name,language,status,category,components&limit=100[&after=cursor]
+//                     Answer: { data: [{ id, name, language, status, category, components: [{ type: "BODY", text }] }], paging: { cursors: { after }, next } }
+//     https://developers.facebook.com/docs/graph-api/reference/whats-app-business-account/message_templates/
+//     https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates
+//   A review moved    entry[].id is the business account; entry[].changes[] with field "message_template_status_update",
+//                     value { event, message_template_id (a number), message_template_name, message_template_language,
+//                     reason, message_template_category }
+//     https://developers.facebook.com/documentation/business-messaging/whatsapp/webhooks/reference/message_template_status_update
 //
 // No network call is made in any test: `fetch` is handed in, and the tests hand in recorded answers.
 
 export const GRAPH_VERSION = 'v23.0';
 export const GRAPH_HOST = 'https://graph.facebook.com';
 export const META_SIGNATURE_HEADER = 'x-hub-signature-256';
-export type MetaConfig = { accessToken: string; appSecret: string; verifyToken: string; phoneNumberId: string };
+// `wabaId`: the business account the number is on. Meta's notices about our templates name it, not the number.
+export type MetaConfig = { accessToken: string; appSecret: string; verifyToken: string; phoneNumberId: string; wabaId?: string };
 type Fetch = (url: string, init: { method: string; headers: Record<string, string>; body?: string; signal?: AbortSignal }) => Promise<{ ok: boolean; status: number; json: () => Promise<unknown> }>;
 const TIMEOUT_MS = 10_000;
 
@@ -51,7 +64,10 @@ const errorOf = (body: unknown, status: number): string => {
 };
 
 // The body of a template send, exactly as documented. Exported so the tests can hold it against Meta's example.
+// The values go by position, in the order the template's words name them (C345); a send that does not say the
+// order (only a test's) keeps the order of its values.
 export function templateSendBody(p: WhatsAppSendParams): Record<string, unknown> {
+  const order = p.templateOrder ?? Object.keys(p.templateParams);
   return {
     messaging_product: 'whatsapp',
     recipient_type: 'individual',
@@ -60,7 +76,7 @@ export function templateSendBody(p: WhatsAppSendParams): Record<string, unknown>
     template: {
       name: p.templateName,
       language: { code: LANGUAGE_CODE[p.language ?? 'en'] },
-      components: [{ type: 'body', parameters: Object.entries(p.templateParams).map(([name, text]) => ({ type: 'text', parameter_name: name, text })) }],
+      components: [{ type: 'body', parameters: order.map((name) => ({ type: 'text', text: p.templateParams[name] ?? '' })) }],
     },
   };
 }
@@ -73,6 +89,69 @@ export function textSendBody(p: WhatsAppTextParams): Record<string, unknown> {
 // A question with quick replies, exactly as documented: at most three, each title at most 20 characters.
 export function choiceSendBody(p: WhatsAppChoiceParams): Record<string, unknown> {
   return { messaging_product: 'whatsapp', recipient_type: 'individual', to: p.toPhone, type: 'interactive', interactive: { type: 'button', body: { text: p.text }, action: { buttons: p.choices.map((c) => ({ type: 'reply', reply: { id: c.id, title: c.title } })) } } };
+}
+
+// --- Our templates at Meta (C345): made from Control, and read back --------------------------------------------------
+
+export type MetaTemplateAccount = { accessToken: string; wabaId: string };
+// One template as Meta holds it. `body`: the words of its body, numbered as Meta numbers them.
+export type MetaTemplate = { id: string; name: string; language: string; status: string; category: string | null; body: string | null };
+// What we ask Meta to review: the words numbered by position, and one made-up value for each, in the same order.
+export type MetaTemplateDraft = { name: string; language: 'en' | 'hi'; text: string; example: string[] };
+export type MetaTemplateMade = { ok: true; id: string; status: string; category: string | null } | { ok: false; message: string };
+export const MAX_TEMPLATE_PAGES = 10;
+const WABA_ID = /^[0-9]{5,30}$/;
+const bearer = (token: string) => ({ Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' });
+const unreachable = (err: unknown) => `Meta could not be reached (${err instanceof Error ? err.name : 'error'})`;
+
+// The body of a request to make a template, exactly as documented: always UTILITY, always positional.
+export function templateCreateBody(d: MetaTemplateDraft): Record<string, unknown> {
+  return { name: d.name, language: LANGUAGE_CODE[d.language], category: 'UTILITY', parameter_format: 'positional', components: [{ type: 'body', text: d.text, ...(d.example.length ? { example: { body_text: [d.example] } } : {}) }] };
+}
+
+// Ask Meta to review one template. Its answer: Meta's id for it, and its state and category so far.
+export async function createMetaTemplate(account: MetaTemplateAccount, draft: MetaTemplateDraft, fetcher: Fetch = fetch as unknown as Fetch): Promise<MetaTemplateMade> {
+  if (!WABA_ID.test(account.wabaId)) return { ok: false, message: 'the saved account has no business account id' };
+  try {
+    const res = await fetcher(`${GRAPH_HOST}/${GRAPH_VERSION}/${account.wabaId}/message_templates`, { method: 'POST', headers: bearer(account.accessToken), body: JSON.stringify(templateCreateBody(draft)), signal: AbortSignal.timeout(TIMEOUT_MS) });
+    const answer = await res.json().catch(() => null);
+    const id = str(obj(answer).id, 40);
+    if (!res.ok || !id || !/^[0-9]+$/.test(id)) return { ok: false, message: res.ok ? 'Meta accepted the request and gave no template id' : errorOf(answer, res.status) };
+    return { ok: true, id, status: str(obj(answer).status, 40) ?? 'PENDING', category: str(obj(answer).category, 40) };
+  } catch (err) {
+    return { ok: false, message: unreachable(err) };
+  }
+}
+
+// Every template on the account, page by page (at most MAX_TEMPLATE_PAGES pages of 100). The next page is asked for
+// by Meta's cursor at our own address, never by following an address from the answer.
+export async function listMetaTemplates(account: MetaTemplateAccount, fetcher: Fetch = fetch as unknown as Fetch): Promise<{ ok: true; templates: MetaTemplate[] } | { ok: false; message: string }> {
+  if (!WABA_ID.test(account.wabaId)) return { ok: false, message: 'the saved account has no business account id' };
+  const templates: MetaTemplate[] = [];
+  let after: string | null = null;
+  try {
+    for (let page = 0; page < MAX_TEMPLATE_PAGES; page++) {
+      const q = new URLSearchParams({ fields: 'id,name,language,status,category,components', limit: '100', ...(after ? { after } : {}) });
+      const res = await fetcher(`${GRAPH_HOST}/${GRAPH_VERSION}/${account.wabaId}/message_templates?${q}`, { method: 'GET', headers: bearer(account.accessToken), signal: AbortSignal.timeout(TIMEOUT_MS) });
+      const answer = await res.json().catch(() => null);
+      if (!res.ok) return { ok: false, message: errorOf(answer, res.status) };
+      for (const t of arr(obj(answer).data).map(obj)) {
+        const id = str(t.id, 40);
+        const name = str(t.name, 512);
+        const language = str(t.language, 20);
+        const status = str(t.status, 40);
+        if (!id || !/^[0-9]+$/.test(id) || !name || !language || !status) continue;
+        const body = arr(t.components).map(obj).find((c) => typeof c.type === 'string' && c.type.toUpperCase() === 'BODY');
+        templates.push({ id, name, language, status, category: str(t.category, 40), body: body ? str(body.text, 1024) : null });
+      }
+      const paging = obj(obj(answer).paging);
+      after = paging.next ? str(obj(paging.cursors).after, 500) : null;
+      if (!after) return { ok: true, templates };
+    }
+  } catch (err) {
+    return { ok: false, message: unreachable(err) };
+  }
+  return { ok: false, message: `Meta holds more than ${MAX_TEMPLATE_PAGES * 100} templates; only that many were read` };
 }
 
 // The webhook's first check: Meta asks with the token we chose and expects its challenge back. Null: refuse.
@@ -154,6 +233,14 @@ export class MetaWhatsAppProvider implements WhatsAppProvider {
     for (const entry of arr(obj(body).entry))
       for (const change of arr(obj(entry).changes)) {
         const value = obj(obj(change).value);
+        // A template's review moved (C345). Only for OUR business account: the entry is the account, not the number.
+        if (obj(change).field === 'message_template_status_update') {
+          if (!this.config.wabaId || str(obj(entry).id, 40) !== this.config.wabaId) continue;
+          const tid = typeof value.message_template_id === 'number' || typeof value.message_template_id === 'string' ? String(value.message_template_id) : '';
+          const event = str(value.event, 40);
+          if (/^[0-9]{1,30}$/.test(tid) && event) notices.push({ kind: 'template_status', metaTemplateId: tid, event, category: str(value.message_template_category, 40) });
+          continue;
+        }
         // Only what is about OUR number. Anything else in the same body is left alone.
         if (obj(change).field !== 'messages' || obj(value.metadata).phone_number_id !== this.config.phoneNumberId) continue;
         for (const s of arr(value.statuses).map(obj)) {
