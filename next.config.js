@@ -35,6 +35,21 @@ const nextConfig = {
   // Free tools retired in the Decision Log C78 audit point to the tool
   // that replaced them (kept in step with REMOVED_TOOL_REDIRECTS in
   // src/content/free-tools.ts).
+  // A family's private result link (C351): one child's marks and checked pages. Never kept by a shared cache, never
+  // indexed, and its address (which holds the key) never sent on to another site. The page pictures' route says the
+  // same in its own responses.
+  async headers() {
+    return [
+      {
+        source: '/results/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'private, no-store, max-age=0' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: '/demo', destination: '/product-tour', permanent: true },

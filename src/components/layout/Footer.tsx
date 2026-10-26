@@ -24,7 +24,8 @@ const COMPANY = [
 // /control or /app shells (nor the development-only shell preview, C121), nor the parent's /family app (C230-D).
 export function Footer() {
   const pathname = usePathname();
-  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell')) {
+  // Nor below a family's private result link (C351): one child's page, with nothing else on it.
+  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/results/')) {
     return null;
   }
 

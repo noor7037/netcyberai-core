@@ -248,7 +248,7 @@ describe('4. unlinking', () => {
     const { body } = await post('connect', { code });
     await post('children', { linkId: body.linkId, pairs: [{ studentId: S1, childId: CHILD }] });
     const links = await withFamilyContext(claims, (c) => activeLinks(c, ACCOUNT));
-    expect(await schoolTodayFor(claims, links, CHILD)).toEqual({ schoolName: 'School A', today: 'present', tonight: [] });
+    expect(await schoolTodayFor(claims, links, CHILD)).toEqual({ schoolName: 'School A', today: 'present', tonight: [], myResults: false });
     await q(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values ($1, $2, 'core_records', false, 'school_attested', 'v1')`, [A, S1]);
     expect((await linkedSchool(claims, body.linkId))?.children).toEqual([]);
     expect(await schoolSyllabusFor(claims, body.linkId, S1)).toEqual({ subjects: [], tonight: [] });

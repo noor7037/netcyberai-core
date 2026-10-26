@@ -3,11 +3,12 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
 import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
 import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
 import type { GradingScheme } from '@/lib/exams/scheme';
 import { indiaDate } from '@/lib/time/india';
+import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
 //   1. Issue: the principal or a school admin makes a single-use, 7-day connect code for one guardian. Only its SHA-256
@@ -20,6 +21,7 @@ import { indiaDate } from '@/lib/time/india';
 
 type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
+export { readSchoolPaper, readSchoolPagePicture, PictureUnavailableError, type ReadAs } from './marking';
 
 // ---- the code ----------------------------------------------------------------------------------------------------------
 
@@ -104,14 +106,14 @@ type Claims = { accountId: string; tokenVersion: number };
 
 // The guardian's children at the school, as the school shows them to that guardian today. `matched`: the students this
 // app has matched to one of its children; only they get their class's homework (C329), notices and events (C331),
-// timetable (C332), published results (C333) and the Daily Pulse (C336).
+// timetable (C332), published results (C333), the Daily Pulse (C336) and the exam timetable (C351).
 export async function readLinkedSchool(claims: Claims, linkId: string, opts: { matched?: readonly string[]; today?: string } = {}): Promise<LinkedSchool> {
   const today = opts.today ?? indiaDate();
   return withGuardianContext(claims, linkId, async (db, link) => {
     const home = await loadFamilyHome(db, link, today);
     const sent = new Map<
       string,
-      { homework: SchoolHomework[]; notices: SchoolNotice[]; events: SchoolEvent[]; timetable: SchoolPeriod[]; results: SchoolResult[]; pulse: { items: SchoolPulse[]; canAnswer: boolean } }
+      { homework: SchoolHomework[]; notices: SchoolNotice[]; events: SchoolEvent[]; timetable: SchoolPeriod[]; results: SchoolResult[]; pulse: { items: SchoolPulse[]; canAnswer: boolean }; examSchedule: SchoolExamPaper[] }
     >();
     for (const c of home.children)
       if (opts.matched?.includes(c.studentId))
@@ -122,6 +124,7 @@ export async function readLinkedSchool(claims: Claims, linkId: string, opts: { m
           timetable: await classTimetable(db, c.studentId),
           results: await publishedResults(db, c.studentId),
           pulse: await classPulse(db, c.studentId, link.parentId),
+          examSchedule: await examSchedule(db, c.studentId),
         });
     return {
       schoolName: home.schoolName,
@@ -142,6 +145,7 @@ export async function readLinkedSchool(claims: Claims, linkId: string, opts: { m
         timetable: sent.get(c.studentId)?.timetable ?? null,
         results: sent.get(c.studentId)?.results ?? null,
         pulse: sent.get(c.studentId)?.pulse ?? null,
+        examSchedule: sent.get(c.studentId)?.examSchedule ?? null,
       })),
     };
   });
@@ -350,6 +354,8 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
       Object.fromEntries(marks.filter((m) => m.paper_id === p.paperId).map((m) => [m.component, { kind: m.kind, score: m.score === null ? null : Number(m.score) } satisfies Mark]))
     );
     const result = childResult(papers, perPaper, pub.scheme);
+    // A subject whose approved script the family may open (C351): the row rules decide, the school's switch included.
+    const checked = await checkedPaperIds(db, studentId, papers.map((p) => p.paperId));
     const remark = (await db.query(`select remark from report_remarks where exam_id = $1 and class_id = $2 and student_id = $3 limit 1`, [pub.exam_id, pub.class_id, studentId])).rows[0] as
       | { remark: string }
       | undefined;
@@ -359,13 +365,25 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
       exam: pub.name,
       term: pub.term,
       publishedOn: pub.published_on,
-      subjects: papers.map((p, i) => ({ name: p.subjectName, percent: result.papers[i].rounded, grade: grade(result.papers[i]) })),
+      subjects: papers.map((p, i) => ({ name: p.subjectName, percent: result.papers[i].rounded, grade: grade(result.papers[i]), paperId: p.paperId, checked: checked.has(p.paperId) })),
       overall: { percent: result.overall.rounded, grade: grade(result.overall) },
       remark: remark?.remark ?? null,
       coScholastic: co,
     });
   }
   return results;
+}
+
+// The child's own view of their results (C351, child mode): the published results and the coming exam papers of one
+// matched student, only while the school lets children see their own results and holds the consent for the child's
+// records; null otherwise. Calm by design: nothing here compares the child with anyone.
+export async function readChildSchoolResults(claims: Claims, linkId: string, studentId: string): Promise<{ results: SchoolResult[]; examSchedule: SchoolExamPaper[] } | null> {
+  const read = await withGuardianContext(claims, linkId, async (db, link) => {
+    if (!(await consented(db, link.schoolId, studentId))) return null;
+    return { schoolId: link.schoolId, results: await publishedResults(db, studentId), examSchedule: await examSchedule(db, studentId) };
+  });
+  if (!read || !(await childrenSeeResults(read.schoolId))) return null;
+  return { results: read.results, examSchedule: read.examSchedule };
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a
@@ -384,17 +402,39 @@ export async function readSchoolToday(
   claims: Claims,
   linkId: string,
   studentId: string,
-  today = indiaDate()
-): Promise<{ schoolName: string; today: SchoolDayMark | null; tonight: SchoolTaught[] } | null> {
-  return withGuardianContext(claims, linkId, async (db, link) => {
+  today = indiaDate(),
+  opts: { withResults?: boolean } = {}
+): Promise<{ schoolName: string; today: SchoolDayMark | null; tonight: SchoolTaught[]; myResults: boolean } | null> {
+  const read = await withGuardianContext(claims, linkId, async (db, link) => {
     if (!(await consented(db, link.schoolId, studentId))) return null;
     const student = (await db.query(`select 1 from students where student_id = $1 and status = 'active'`, [studentId])).rows[0];
     if (!student) return null;
     const school = (await db.query(`select name from schools where school_id = $1`, [link.schoolId])).rows[0] as { name: string } | undefined;
     const mark = (await db.query(`select status::text as status from attendance where student_id = $1 and date = $2::date limit 1`, [studentId, today])).rows[0] as { status: string } | undefined;
     const m = mark?.status === 'on_leave' ? 'leave' : mark?.status;
-    return { schoolName: school?.name ?? '', today: m === 'present' || m === 'absent' || m === 'late' || m === 'leave' ? m : null, tonight: await taughtToday(db, studentId, today) };
+    return {
+      schoolName: school?.name ?? '',
+      today: (m === 'present' || m === 'absent' || m === 'late' || m === 'leave' ? m : null) as SchoolDayMark | null,
+      tonight: await taughtToday(db, studentId, today),
+      schoolId: link.schoolId,
+      hasResults: opts.withResults ? await hasOwnResults(db, studentId) : false,
+    };
   });
+  if (!read) return null;
+  const { schoolId, hasResults, ...rest } = read;
+  // "My results" shows only while the school lets children see their own results (read after the guardian's part, and
+  // only for the child's home, which asks: the push job's loop over every child does not).
+  return { ...rest, myResults: hasResults && (await childrenSeeResults(schoolId)) };
+}
+
+// Whether the child's own view has results or coming papers to show (C351): a result is published for the child's
+// class, or a paper is coming. Two small reads, as the guardian.
+async function hasOwnResults(db: Sql, studentId: string): Promise<boolean> {
+  const published = (
+    await db.query(`select 1 from public.guardian_publications() g join students s on s.student_id = $1 and s.class_id = g.class_id limit 1`, [studentId])
+  ).rows[0];
+  if (published) return true;
+  return Boolean((await db.query(`select 1 from public.guardian_exam_schedule() where student_id = $1 limit 1`, [studentId])).rows[0]);
 }
 
 // What one student's class covered today (C335, L10): the teacher's record, taught or in part, never delayed or not

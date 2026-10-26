@@ -1,6 +1,24 @@
 import type { PoolClient } from 'pg';
-import type { LinkedSchool, PulseAnswer, SchoolDayMark, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
-import { answerPulse, readLinkedSchool, readSchoolNews, readSchoolSyllabus, readSchoolToday, redeemConnectCode, requestFollowup, SchoolLinkGoneError, type FollowupRequestResult, type PulseAnswerResult, type SchoolNews, type SchoolNewsKind } from '@/lib/school-link';
+import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
+import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
+import {
+  answerPulse,
+  PictureUnavailableError,
+  readChildSchoolResults,
+  readLinkedSchool,
+  readSchoolNews,
+  readSchoolPagePicture,
+  readSchoolPaper,
+  readSchoolSyllabus,
+  readSchoolToday,
+  redeemConnectCode,
+  requestFollowup,
+  SchoolLinkGoneError,
+  type FollowupRequestResult,
+  type PulseAnswerResult,
+  type SchoolNews,
+  type SchoolNewsKind,
+} from '@/lib/school-link';
 
 // The family's side of School Link (C230-AA; docs/family-app/03 §4): the links an account holds and which family child
 // is which student. The school's records are read only through src/lib/school-link (as the guardian), never copied
@@ -134,12 +152,13 @@ export async function askSchoolFollowup(claims: Claims, links: readonly FamilySc
 export async function schoolTodayFor(
   claims: Claims,
   links: readonly FamilySchoolLink[],
-  childId: string
-): Promise<{ schoolName: string; today: SchoolDayMark | null; tonight: SchoolTaught[] } | null> {
+  childId: string,
+  opts: { withResults?: boolean } = {}
+): Promise<{ schoolName: string; today: SchoolDayMark | null; tonight: SchoolTaught[]; myResults: boolean } | null> {
   const m = links.flatMap((l) => l.children.filter((c) => c.childId === childId).map((c) => ({ linkId: l.linkId, studentId: c.studentId })))[0];
   if (!m) return null;
   try {
-    return await readSchoolToday(claims, m.linkId, m.studentId);
+    return await readSchoolToday(claims, m.linkId, m.studentId, undefined, opts);
   } catch (e) {
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;
@@ -162,6 +181,12 @@ const letters = (v: string) => v.toLowerCase().replace(/[^a-z]/g, '');
 export function schoolSubjectIs(schoolName: string, subjectId: string): boolean {
   const n = letters(schoolName);
   return n === letters(subjectId) || SUBJECT_ALIASES[n] === subjectId;
+}
+
+// The app's own subject for a school subject's name, when they match (for its colour and its name in the family's
+// language); null otherwise, never guessed.
+export function appSubjectFor(schoolName: string): Subject | null {
+  return SUBJECT_IDS.find((id) => schoolSubjectIs(schoolName, id)) ?? null;
 }
 
 // The school syllabus a child matched to a school student reads in Study, for one of the app's subjects; null when the
@@ -252,4 +277,51 @@ export async function readSchoolNewsFor(claims: Claims, link: FamilySchoolLink, 
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;
   }
+}
+
+// ---- Checked papers and the exam timetable (AI answer-sheet marking, C351) --------------------------------------------
+
+export { PictureUnavailableError };
+
+// One checked paper of a family child matched to a school student: as the guardian, in the parent area (parentView) or
+// the child's own view, which also needs the school to let children see their results. null when the child is not
+// matched, the link is gone, or the paper is not one the family may open.
+export async function schoolPaperFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, paperId: string, as: { childView: boolean }): Promise<SchoolCheckedPaper | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readSchoolPaper(claims, m.linkId, m.studentId, paperId, as);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// The child's own results and coming papers (child mode): null when not matched, gone, or not allowed by the school.
+export async function childResultsFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<{ results: SchoolResult[]; examSchedule: SchoolExamPaper[] } | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readChildSchoolResults(claims, m.linkId, m.studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// A page picture of a checked script (the page route). The family's own links are tried in turn, each for its matched
+// students only; in the child's own view (`childId`), only that child's student, and only while the school lets
+// children see their results. null when no link of this family may see the page.
+export async function schoolPagePicture(claims: Claims, links: readonly FamilySchoolLink[], pageId: string, as: { childId: string | null }): Promise<Uint8Array | null> {
+  for (const l of links) {
+    const students = l.children.filter((c) => as.childId === null || c.childId === as.childId).map((c) => c.studentId);
+    if (!students.length) continue;
+    try {
+      const bytes = await readSchoolPagePicture(claims, l.linkId, students, pageId, { childView: as.childId !== null });
+      if (bytes) return bytes;
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return null;
 }

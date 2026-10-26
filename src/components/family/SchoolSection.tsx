@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
@@ -7,6 +8,8 @@ import { Input } from '@/components/ui/Input';
 import type { LinkedSchool, PulseAnswer, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolPulse, SchoolResult } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
+import { ExamTimetable } from './ExamTimetable';
+import { SchoolText } from './SchoolText';
 
 // The parent area's "Your school" (C230-AA; docs/family-app/03 §4). A family uses the app on its own; when its school
 // is on NetCyberAI, the school's office gives the parent a Family app code and the parent connects here. Then each of
@@ -32,10 +35,13 @@ function HomeworkList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: 
           {items.map((h, i) => (
             <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
               <p className="font-semibold">
-                {h.subject ? `${h.subject}: ` : ''}
-                {h.title}
+                <SchoolText text={h.subject ? `${h.subject}: ${h.title}` : h.title} />
               </p>
-              {h.details && <p className="whitespace-pre-line">{h.details}</p>}
+              {h.details && (
+                <p className="whitespace-pre-line">
+                  <SchoolText text={h.details} />
+                </p>
+              )}
               <p>
                 {h.due ? fill(w['fam.school.homeworkDue'], { date: day(h.due, lang) }) : ''}
                 {h.done ? `${h.due ? ' · ' : ''}${w['fam.school.homeworkDone']}` : ''}
@@ -151,7 +157,9 @@ function NoticeList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: Sc
         <ul className="flex flex-col gap-2">
           {items.map((n, i) => (
             <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
-              <p className="whitespace-pre-line">{n.body}</p>
+              <p className="whitespace-pre-line">
+                <SchoolText text={n.body} />
+              </p>
               <p>{fill(w['fam.school.noticeSent'], { date: day(n.sentOn, lang) })}</p>
             </li>
           ))}
@@ -173,11 +181,13 @@ function EventList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: Sch
           {items.map((e, i) => (
             <li key={i} className="rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
               <p className="font-semibold">
-                {e.title}
+                <SchoolText text={e.title} />
                 {e.cancelled ? ` · ${w['fam.school.eventCancelled']}` : ''}
               </p>
               <p>{e.startsAt ? `${day(e.heldOn, lang)}, ${e.startsAt}` : day(e.heldOn, lang)}</p>
-              <p className="whitespace-pre-line">{e.details}</p>
+              <p className="whitespace-pre-line">
+                <SchoolText text={e.details} />
+              </p>
             </li>
           ))}
         </ul>
@@ -204,8 +214,12 @@ function Timetable({ w, lang, periods }: { w: Words; lang: 'en' | 'hi'; periods:
               <span className="font-semibold">{weekdayName(d, lang)}: </span>
               {periods
                 .filter((p) => p.weekday === d)
-                .map((p) => `${p.period}. ${p.subject ?? '—'}`)
-                .join(' · ')}
+                .map((p, i) => (
+                  <span key={p.period}>
+                    {i > 0 ? ' · ' : ''}
+                    {p.period}. <SchoolText text={p.subject ?? '—'} />
+                  </span>
+                ))}
             </li>
           ))}
         </ul>
@@ -218,8 +232,9 @@ function Timetable({ w, lang, periods }: { w: Words; lang: 'en' | 'hi'; periods:
 // missing.
 const scored = (w: Words, percent: number | null, grade: string | null) => (percent === null ? w['fam.school.resultNotComplete'] : grade ? `${percent}% · ${grade}` : `${percent}%`);
 
-// The results the school published for a matched child's class (C333), newest first, read only.
-function Results({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolResult[] }) {
+// The results the school published for a matched child's class (C333), newest first, read only. A subject whose
+// script the teacher checked and approved opens its checked paper (C351).
+function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; items: SchoolResult[]; childId: string | null }) {
   return (
     <div className="flex flex-col gap-1" data-school-results>
       <p className="text-sm font-semibold text-slate">{w['fam.school.results']}</p>
@@ -230,14 +245,25 @@ function Results({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: Schoo
           {items.map((r, i) => (
             <li key={i} className="flex flex-col gap-1 rounded-lg bg-slate/5 px-3 py-2 text-sm text-slate">
               <p className="font-semibold">
-                {r.exam}
-                {r.term ? ` · ${r.term}` : ''}
+                <SchoolText text={r.term ? `${r.exam} · ${r.term}` : r.exam} />
               </p>
               <p>{fill(w['fam.school.resultPublished'], { date: day(r.publishedOn, lang) })}</p>
               <ul className="flex flex-col">
                 {r.subjects.map((s, j) => (
-                  <li key={j}>
-                    {s.name}: {scored(w, s.percent, s.grade)}
+                  <li key={j} className="flex flex-wrap items-center gap-x-3">
+                    <span>
+                      <SchoolText text={s.name} />: {scored(w, s.percent, s.grade)}
+                    </span>
+                    {s.checked && childId && (
+                      <Link
+                        href={`/family/parent/results/${childId}/${s.paperId}`}
+                        aria-label={fill(w['fam.marks.openSubject'], { subject: s.name })}
+                        data-checked-paper-link={s.paperId}
+                        className="fam-press inline-flex min-h-[44px] items-center font-semibold text-royal underline underline-offset-2"
+                      >
+                        {w['fam.marks.open']}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -285,7 +311,15 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
   const usedElsewhere = (studentId: string) => new Set(Object.entries(choice).filter(([s, c]) => s !== studentId && c).map(([, c]) => c));
   return (
     <div data-school-link={link.linkId} className="flex flex-col gap-3 rounded-2xl bg-off-white p-3">
-      <p className="text-base font-bold text-slate">{fill(w['fam.school.connected'], { school: link.school.schoolName })}</p>
+      <p className="text-base font-bold text-slate">
+        {/* The school's name in its own words, inside the app's sentence. */}
+        {(w['fam.school.connected'] ?? '').split('{school}').map((part, i) => (
+          <span key={i}>
+            {i > 0 && <SchoolText text={link.school.schoolName} />}
+            {part}
+          </span>
+        ))}
+      </p>
       {link.school.children.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.school.noChildren']}</p>
       ) : (
@@ -293,7 +327,7 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
           {link.school.children.map((c) => (
             <li key={c.studentId} data-school-child={c.studentId} className="flex flex-col gap-2 rounded-xl bg-white p-3 ring-1 ring-slate/10">
               <p className="text-base font-semibold text-slate">
-                {c.name}
+                <SchoolText text={c.name} />
                 {c.className ? ` · ${c.className}` : ''}
               </p>
               <p className="text-sm text-slate">
@@ -306,7 +340,8 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
               {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
               {c.events && <EventList w={w} lang={lang} items={c.events} />}
               {c.timetable && <Timetable w={w} lang={lang} periods={c.timetable} />}
-              {c.results && <Results w={w} lang={lang} items={c.results} />}
+              {c.examSchedule && <ExamTimetable w={w} lang={lang} papers={c.examSchedule} />}
+              {c.results && <Results w={w} lang={lang} items={c.results} childId={link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? null} />}
               <label className="flex flex-col gap-1 text-sm font-semibold text-slate" htmlFor={`fam-school-pair-${c.studentId}`}>
                 {w['fam.school.whichChild']}
                 <select

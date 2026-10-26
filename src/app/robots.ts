@@ -23,12 +23,17 @@ const aiCrawlers = [
   'CCBot',
 ];
 
+// A family's private result link (/results/<key>, C351) is never fetched by any crawler: one child's marks and checked
+// pages live there. Its page and pictures also say noindex and no-store themselves (next.config.js headers), for a
+// crawler that does not read this file.
+const PRIVATE = ['/results/'];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: '*', allow: '/' },
-      ...searchCrawlers.map((userAgent) => ({ userAgent, allow: '/' })),
-      ...aiCrawlers.map((userAgent) => ({ userAgent, allow: '/', disallow: '/demo' })),
+      { userAgent: '*', allow: '/', disallow: PRIVATE },
+      ...searchCrawlers.map((userAgent) => ({ userAgent, allow: '/', disallow: PRIVATE })),
+      ...aiCrawlers.map((userAgent) => ({ userAgent, allow: '/', disallow: ['/demo', ...PRIVATE] })),
     ],
     sitemap: absoluteUrl('/sitemap.xml'),
   };
