@@ -276,6 +276,8 @@ values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000
 -- m2-3 end
 -- m3-7 begin: Family Plus open for the pictures, and Kabir's home plan after a parent-teacher meeting (C337).
 update control.settings set value = 'true'::jsonb where key = 'family.plus_open';
+-- Plus for the pilot families only (C230-AE): Kabir's family is on the pilot list.
+insert into control.preview_accounts (account_id, added_by) values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000f0004') on conflict do nothing;
 insert into family.home_plans (account_id, child_id, starts_on, topics, note)
 values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', (now() at time zone 'Asia/Kolkata')::date,
         '[{"topicKey": "cbse.c9.mathematics.u1.ch01.t02", "subject": "mathematics"}, {"topicKey": "cbse.c9.mathematics.u1.ch01.t01", "subject": "mathematics"}]'::jsonb,

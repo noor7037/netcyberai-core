@@ -102,6 +102,28 @@ Today `APP_SESSION_SECRET` is one value shared by Production, Preview and
 Development, so a preview deployment can sign tokens the live site accepts.
 Production gets its own at "go" (everyone signs in again then anyway).
 
+**What a new session secret changes (at "go", and at any later rotation).**
+Several keys are derived from `APP_SESSION_SECRET`, each for one purpose
+(`src/lib/family/secret.ts`, HKDF; and three plain HMACs). They are never
+stored, so a new secret makes new keys and whatever was made with the old
+ones stops matching. At "go" this costs nothing: no family's account or
+phone moves to production (C302: content only). At a later rotation of a
+live secret, plan for each line below and tell families first:
+
+| Made with the secret | What stops | What to do |
+|---|---|---|
+| Session tokens, staff and family (`jwt.ts`) | Every session | Everyone signs in again (expected) |
+| Family sign-in codes (`sign-in-codes.v1`) | Codes already sent | Ask for a new code |
+| **Parent PINs** (`parent-pin.v1`, the PIN's pepper) | **Every parent PIN** | Each parent sets a new PIN with "Forgot PIN" (an email code); say so in a banner before |
+| Check items in flight (`check-items.v1`), homework hint ladders (`homework.v1`) | Questions open at that moment | Reload; nothing kept is lost |
+| **Focus Lock phones** (`focus-device.v1`, the phone id's keyed hash, C305) | **Every phone set up** | The parent sets each phone up again; delete `family.focus_devices` rows first so no "stopped" notice is sent for them |
+| **Web Push keys** (`push-vapid.v1`, the VAPID key pair, C339) | **Every browser's notifications** | Delete `family.push_subscriptions`; parents turn notifications on again in the parent area |
+| Upload tickets (`upload-ticket.ts`, 10 minutes) | Uploads in progress | Send the file again |
+| Intake rate-limit keys (`intake.ts`) | Counts start again | Nothing |
+
+The secret is never rotated by a code change: only a new value in Vercel,
+with this table done in the same hour.
+
 ## 3. "Go" — in this order
 
 Noor writes "go" in chat. Claude runs the steps marked **Claude** and says in

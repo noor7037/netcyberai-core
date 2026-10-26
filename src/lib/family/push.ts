@@ -86,7 +86,7 @@ export async function pushForAccount(claims: { accountId: string; tokenVersion: 
       upto: new Date(r.upto as string).toISOString(),
     })) as Mark[];
     let planTonight = false;
-    if (!off.includes('tonight') && (await familyModuleOn(db, 'home_plan', accountId)) && (await plusOpen(db))) {
+    if (!off.includes('tonight') && (await familyModuleOn(db, 'home_plan', accountId)) && (await plusOpen(db, accountId))) {
       for (const c of await listChildren(db, accountId)) if ((await homePlan(db, accountId, c, today, c.language))?.tonight) planTonight = true;
     }
     return { subs, off, links, marks, planTonight };

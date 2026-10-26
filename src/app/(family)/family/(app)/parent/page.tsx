@@ -122,7 +122,7 @@ export default async function FamilyParentPage() {
   // The home plan after a parent-teacher meeting (M3-7, C337; Plus): with the module on and Control's Family Plus open
   // for the pilot. Each child's open plan; with none, the catalog of each subject the child can open, to choose from.
   const plans = await familyPageRead(page, async (db) => {
-    if (!switches || !switchOn(switches, 'home_plan') || !(await plusOpen(db))) return null;
+    if (!switches || !switchOn(switches, 'home_plan') || !(await plusOpen(db, page.session.accountId))) return null;
     const openToAll = await openSubjects(db);
     return Promise.all(
       page.children

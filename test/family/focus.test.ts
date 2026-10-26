@@ -420,6 +420,60 @@ describe('the Focus Lock’s server (M2b-1, C305)', () => {
     expect(await notices(devB)).toEqual([{ kind: 'stopped', emailed: true, seen: false }]);
   });
 
+  it('the sweep and the app give one answer for whom the switch is on, audience included (C4, C341)', async () => {
+    const { rolloutBucket } = await import('@/lib/contracts/app-flags');
+    const { readFamilySwitches, switchOn } = await import('@/lib/family/flags');
+    for (const id of [A, B, CA1, CB, VERSION, 'ffffffff-ffff-4fff-bfff-ffffffffffff', '00000000-0000-4000-8000-000000000000'])
+      expect((await q(`select family.rollout_bucket($1) as b`, [id]))[0].b, id).toBe(rolloutBucket(id));
+    const both = async (account: string) => {
+      const s = await readFamilySwitches(db.pg, account);
+      const sql = (await q(`select family.module_on($1, 'focus_lock', false) as f, family.module_on($1, 'plan', true) as p`, [account]))[0];
+      return { app: [switchOn(s, 'focus_lock'), switchOn(s, 'plan')], sweep: [sql.f, sql.p] };
+    };
+    const configs: [string, string][] = [
+      ['everyone', `update control.app_flags set audience = 'everyone', audience_percent = null where app = 'family' and module = 'focus_lock'`],
+      ['preview', `update control.app_flags set audience = 'staff_preview', audience_percent = null where app = 'family' and module = 'focus_lock'`],
+      ['percent of A', `update control.app_flags set audience = 'percent', audience_percent = ${rolloutBucket(A) + 1} where app = 'family' and module = 'focus_lock'`],
+      ['percent below A', `update control.app_flags set audience = 'percent', audience_percent = ${rolloutBucket(A)} where app = 'family' and module = 'focus_lock'`],
+      ['ended', `update control.app_flags set audience = 'everyone', audience_percent = null, ends_at = now() - interval '1 minute' where app = 'family' and module = 'focus_lock'`],
+      ['plan off for B', `update control.app_flags set ends_at = null where app = 'family' and module = 'focus_lock'; insert into control.app_flags (app, module, enabled, audience, audience_percent) values ('family', 'plan', true, 'percent', ${rolloutBucket(B)})`],
+    ];
+    await q(`insert into control.preview_accounts (account_id, added_by) values ($1, $1)`, [A]);
+    for (const [name, sql] of configs) {
+      await db.pg.exec(sql);
+      for (const account of [A, B]) {
+        const r = await both(account);
+        expect(r.sweep, `${name}, ${account === A ? 'A' : 'B'}`).toEqual(r.app);
+      }
+    }
+    await q(`delete from control.app_flags where app = 'family' and module = 'plan'`);
+    await q(`delete from control.preview_accounts where account_id = $1`, [A]);
+    await q(`update control.app_flags set audience = 'everyone', audience_percent = null, ends_at = null where app = 'family' and module = 'focus_lock'`);
+  });
+
+  it('the sweep’s two defaults are the module list’s: the Focus Lock off until saved, the plan on (C341)', async () => {
+    const { FAMILY_MODULES } = await import('@/lib/contracts/family-modules');
+    const mod = (flag: string) => FAMILY_MODULES.find((m) => m.flag === flag)!;
+    // family.focus_sweep() calls module_on(account, 'focus_lock', false) and module_on(account, 'plan', true).
+    expect([mod('focus_lock').built, mod('focus_lock').offByDefault === true]).toEqual([true, true]);
+    expect([mod('plan').built, mod('plan').offByDefault === true]).toEqual([true, false]);
+  });
+
+  it('a family outside the switch’s audience whose phone never reports again is not told it stopped (C4, C341)', async () => {
+    const stoppedUnseen = async () => (await q(`select count(*)::int as n from family.focus_notices where device_id = $1 and kind = 'stopped' and seen_at is null`, [devB]))[0].n;
+    // Staff preview only, and family B is not a preview account: its silent phone is never reported.
+    await db.pg.exec(`update control.app_flags set audience = 'staff_preview' where app = 'family' and module = 'focus_lock'`);
+    await db.pg.exec(`update family.focus_notices set seen_at = now() where device_id = '${devB}' and seen_at is null; update family.focus_devices set lock_on = true, stop_noticed_at = null, last_heartbeat_at = now() - interval '10 hours' where device_id = '${devB}'`);
+    await sweep();
+    expect(await stoppedUnseen()).toBe(0);
+    // Family B joins the preview: now it is told, once.
+    await q(`insert into control.preview_accounts (account_id, added_by) values ($1, $1)`, [B]);
+    await sweep();
+    expect(await stoppedUnseen()).toBe(1);
+    await q(`delete from control.preview_accounts where account_id = $1`, [B]);
+    await db.pg.exec(`update control.app_flags set audience = 'everyone' where app = 'family' and module = 'focus_lock'`);
+  });
+
   it('the email says what happened and when, in the parent’s language, and nothing more', async () => {
     const { renderEmail } = await import('@/lib/email/templates');
     const en = renderEmail('focus_notice', { kind: 'stopped', at: '2026-10-24T11:00:00Z', lang: 'en' });
