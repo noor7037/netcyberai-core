@@ -53,7 +53,10 @@ FAMILY_DOORS = {
     "@/lib/auth/env": {"src/lib/family/secret.ts"},
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
     # The homework helper screens a photo with the upload screen every stored file uses (M2-6, C280).
-    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts"},
+    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts", "src/lib/family/tutor.ts"},
+    # The shared tutor window's files (S2, C375): the private family-tutor bucket, through this one family file, which
+    # also screens every kept file with the upload check above.
+    "@/lib/storage/supabase-file-storage": {"src/lib/family/tutor.ts"},
     # Voice input applies the 12-digit rule to the words it hears before they are shown (M2-7, C281).
     "@/lib/privacy/aadhaar": {"src/lib/family/voice.ts"},
     # Staff prepare the explanations of a syllabus version before children ask (C300): the content staff guard (the

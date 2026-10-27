@@ -1,7 +1,8 @@
 import { familyClaims } from '@/lib/family/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { StudyQuestion } from '@/components/family/StudyQuestion';
+import { TutorWindow } from '@/components/family/tutor/TutorWindow';
+import { TUTOR_KEYS } from '@/lib/family/tutor-words';
 import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
 import { PackButton } from '@/components/family/offline/PackButton';
 import { SaverLink } from '@/components/family/offline/SaverLink';
@@ -35,7 +36,7 @@ import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
-// child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
+// child's class, each opening Understand; and a typed question, in the shared tutor window (S2, C375). Without a catalog for the class (classes 6–8 for
 // 2026-27, C250) only the question is offered. Nursery, LKG and UKG (C263) see a plain note: their module comes later.
 // A title is marked with the language it is written in (a Hindi title from NCERT's Hindi edition, or a Hindi
 // textbook's own Devanagari title, is Hindi; an English-only title stays English on a Hindi page), for screen readers.
@@ -96,7 +97,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
   const tone = subject;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
@@ -139,7 +140,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           <>
-            <StudyQuestion w={w} subject={subject} tone={tone} voice={voice} />
+            {/* S2 (C375): the shared tutor window replaces the stacked ask form; the homework helper keeps its own link. */}
+            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={page.consents.photo_input} homework={homeworkOn} />
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
             {homeworkOn && (

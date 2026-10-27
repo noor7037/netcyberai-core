@@ -1,4 +1,5 @@
 import { familyClaims } from '@/lib/family/db';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { FocusSection } from '@/components/family/FocusSection';
@@ -193,6 +194,21 @@ export default async function FamilyParentPage() {
         studyCore={page.consents.study_core}
         afterChildren={
           <>
+            {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
+            {page.children.length > 0 && (
+              <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
+                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="15" rx="2" />
+                    <path d="M3 10h18M10 14h4" />
+                  </svg>
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-base font-bold text-slate">{t(lang, 'fam.vault.open')}</span>
+                  <span className="text-sm text-slate/80">{t(lang, 'fam.vault.openLead')}</span>
+                </span>
+              </Link>
+            )}
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
             {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
             {page.children.length > 0 && (phoneLinking || phones.length > 0) && (

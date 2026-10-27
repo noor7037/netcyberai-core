@@ -509,6 +509,10 @@ ALLOWED_PERMISSIVE = (
         ("family.push_sent", "push_sent_own"),
         # S1 (C374): where a child stopped listening to a chapter; own account only (restrictive twin below).
         ("family.chapter_reading", "chapter_reading_own"),
+        # S2 (C375): the tutor's conversations, turns and files; own account only (restrictive twins below).
+        ("family.tutor_conversations", "tutor_conversations_own"),
+        ("family.tutor_messages", "tutor_messages_own"),
+        ("family.tutor_attachments", "tutor_attachments_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -1055,6 +1059,10 @@ REQUIRED_RESTRICTIVE = {
     ("family.push_sent", "push_sent_own_only"),
     # S1 (C374): own account only.
     ("family.chapter_reading", "chapter_reading_own_only"),
+    # S2 (C375): own account only.
+    ("family.tutor_conversations", "tutor_conversations_own_only"),
+    ("family.tutor_messages", "tutor_messages_own_only"),
+    ("family.tutor_attachments", "tutor_attachments_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

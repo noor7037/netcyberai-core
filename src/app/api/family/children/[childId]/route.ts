@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { boardIsOffered, checkChild, removeChild, updateChild } from '@/lib/family/children';
 import { familyRun, jsonBody, requireParent } from '@/lib/family/request';
+import { TutorStorageError, removeTutorFilesOf, tutorStorage } from '@/lib/family/tutor';
 
 // Change or remove a child: the parent's, in parent mode. Removing a child removes its answers and progress.
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -23,7 +24,15 @@ export async function DELETE(req: NextRequest, { params }: { params: { childId: 
   if (!UUID.test(params.childId)) return NextResponse.json({ error: 'not_found' }, { status: 404 });
   const g = await requireParent(req);
   if (g.error) return g.error;
-  return familyRun(g.session, async (db) =>
-    (await removeChild(db, g.session.accountId, params.childId)) ? NextResponse.json({ status: 'removed' }) : NextResponse.json({ error: 'not_found' }, { status: 404 })
-  );
+  // The child's tutor files (S2, C375) leave the private bucket in the same transaction; if it cannot be reached,
+  // nothing is removed (503).
+  try {
+    return await familyRun(g.session, async (db) => {
+      await removeTutorFilesOf(db, tutorStorage, g.session.accountId, params.childId);
+      return (await removeChild(db, g.session.accountId, params.childId)) ? NextResponse.json({ status: 'removed' }) : NextResponse.json({ error: 'not_found' }, { status: 404 });
+    });
+  } catch (err) {
+    if (err instanceof TutorStorageError) return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 });
+    throw err;
+  }
 }
