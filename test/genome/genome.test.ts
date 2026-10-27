@@ -6,6 +6,7 @@ import { NextRequest } from 'next/server';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
+import { LangProvider } from '@/components/app-shell/LangContext';
 import { GenomeChild } from '@/components/genome/GenomeChild';
 import { helpArticle } from '@/content/help/articles';
 import { moduleById } from '@/lib/contracts/modules';
@@ -487,6 +488,35 @@ describe('on the whole schema, as the app’s own database role', () => {
     // A teacher of the child's class sees the same chapters as the office (C217: genome_chapter_replies).
     const teacherHtml = renderToStaticMarkup(h(GenomeChild, { genome: (await genomeOf(tara))! }));
     expect(teacherHtml).toContain('Grammar');
+  });
+
+  it('each exam is labelled with its type and session (C230-AJ part 2): labels only, in the reader’s language, the percents and findings unchanged', async () => {
+    const before = (await genomeOf(principal))!;
+    const SESSION = 'a2000000-0000-4000-8000-000000000001';
+    await owner(`insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ($1, $2, '2026-27', '2026-04-01', '2027-03-31', true)`, [SESSION, A]);
+    await owner(`update exams set exam_type = 'unit', session_id = $2 where exam_id = $1`, [E1, SESSION]);
+    await owner(`update exams set exam_type = 'half_yearly', session_id = $2 where exam_id = $1`, [E2, SESSION]);
+    const g = (await genomeOf(principal))!;
+    const labels = Object.fromEntries(g.subjects.map((s) => [s.subjectName, s.exams.map((e) => [e.examName, e.kind?.en, e.session])]));
+    expect(labels).toEqual({
+      English: [['Unit test 1', 'Unit test', '2026-27'], ['Half-yearly', 'Half-yearly', '2026-27']],
+      Mathematics: [['Unit test 1', 'Unit test', '2026-27'], ['Half-yearly', 'Half-yearly', '2026-27']],
+      Science: [['Half-yearly', 'Half-yearly', '2026-27']],
+    });
+    expect(g.subjects[0].exams[1].kind).toEqual({ key: 'half_yearly', en: 'Half-yearly', hi: 'अर्धवार्षिक परीक्षा' });
+    // The numbers and findings are what they were.
+    const strip = (x: typeof g) => JSON.stringify({ ...x, subjects: x.subjects.map((s) => ({ ...s, exams: s.exams.map(({ kind: _k, session: _s, ...e }) => e) })) });
+    expect(strip(g)).toBe(strip(before));
+    const html = (lang: 'en' | 'hi') => renderToStaticMarkup(h(LangProvider, { lang, children: h(GenomeChild, { genome: g }) })).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+    expect(html('en')).toContain('Exam type: Half-yearly · 2026-27');
+    expect(html('hi')).toContain('परीक्षा का प्रकार: अर्धवार्षिक परीक्षा · 2026-27');
+    // An exam with no session reads its type alone.
+    await owner(`update exams set session_id = null where exam_id = $1`, [E1]);
+    const alone = (await genomeOf(principal))!;
+    expect(alone.subjects.find((s) => s.subjectName === 'English')!.exams[0]).toMatchObject({ examName: 'Unit test 1', session: null, kind: { key: 'unit' } });
+    // Put back as it was.
+    await owner(`update exams set exam_type = 'other', session_id = null where exam_id in ($1, $2)`, [E1, E2]);
+    await owner(`delete from academic_sessions where session_id = $1`, [SESSION]);
   });
 });
 

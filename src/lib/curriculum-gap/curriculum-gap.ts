@@ -5,6 +5,7 @@ import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
 import { gapStates, type GapCounts, type GapPaper, type UnitFacts, type UnitGap } from './rules';
 import { classOrderSql } from '@/lib/classes/class-order';
+import { examTypeLabel, examTypesOf } from '@/lib/exams/exam-types';
 
 // The Curriculum Gap Detector's screen (docs/27 row 9d, C216): for one class and one subject, every unit of the
 // syllabus map once, in the map's order, with its state and the days it rests on, and a count of each state. The
@@ -83,6 +84,17 @@ export async function classGap(db: Sql, classId: string, subjectId: string, sess
   return { setUp: true, units, counts, total: units.length };
 }
 
+// Each paper of the units labelled with its exam's type (C230-AJ part 2). A label only: the states and counts are
+// worked out before this and never read it.
+async function labelPapers(db: Sql, schoolId: string, units: readonly UnitGap[]): Promise<void> {
+  const papers = units.flatMap((u) => [...u.papers, ...u.papersBefore]);
+  const ids = [...new Set(papers.map((p) => p.examId))];
+  if (!ids.length) return;
+  const types = await examTypesOf(db, schoolId);
+  const typeOf = new Map((await db.query(`select exam_id, exam_type from exams where school_id = $1 and exam_id = any ($2::uuid[])`, [schoolId, ids])).rows.map((r) => [r.exam_id as string, (r.exam_type as string | null) ?? 'other']));
+  for (const p of papers) p.kind = examTypeLabel(types, typeOf.get(p.examId) ?? 'other');
+}
+
 // The school's sessions, newest first, and the one shown by default: the one marked current, else the one India's
 // today falls in, else the newest.
 export async function gapSessions(db: Sql, schoolId: string, today: string = indiaDate()): Promise<{ sessions: GapSession[]; current: string | null }> {
@@ -134,5 +146,6 @@ export async function gapScreen(db: Sql, actor: Actor, ask: { classId?: unknown;
   const sessionId = given(ask.sessionId) ? (ask.sessionId as string) : current;
 
   const gap: GapView | null = classId && subjectId ? (sessionId ? await classGap(db, classId, subjectId, sessionId) : { setUp: false, why: 'no_session' }) : null;
+  if (gap?.setUp) await labelPapers(db, actor.schoolId, gap.units);
   return { ok: true, screen: { wholeSchool, classes, subjects, classId, subjectId, sessions, sessionId, gap } };
 }

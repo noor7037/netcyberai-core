@@ -226,6 +226,27 @@ describe('a class and subject with a map: every unit once, in the right state, w
     expect(got.body.gap.units[1].laterTaught).toMatchObject({ unitId: U3, day: '2026-07-08' });
   });
 
+  it('each paper is labelled with its exam’s type (C230-AJ part 2): a label only, the states and counts unchanged', async () => {
+    const before = (await call(principal, maths5A)).body.gap;
+    await owner(`update exams set exam_type = 'unit' where name = 'Unit test 1' and school_id = $1`, [A]);
+    await owner(`update exams set exam_type = 'periodic' where name = 'Unit test 2' and school_id = $1`, [A]);
+    const got = (await call(principal, maths5A)).body.gap;
+    const u3 = got.units.find((x: { unitId: string }) => x.unitId === U3);
+    expect(u3.papers.map((p: { examName: string; kind: { key: string; en: string; hi: string } }) => [p.examName, p.kind])).toEqual([
+      ['Unit test 1', { key: 'unit', en: 'Unit test', hi: 'इकाई परीक्षा' }],
+      ['Unit test 2', { key: 'periodic', en: 'Periodic test', hi: 'आवधिक परीक्षा' }],
+    ]);
+    // The paper before the first lesson carries it too.
+    expect(got.units.find((x: { unitId: string }) => x.unitId === U4).papersBefore[0].kind).toMatchObject({ key: 'unit' });
+    type Papers = Record<string, unknown>[];
+    const bare = (g: { units: { papers: Papers; papersBefore: Papers }[] }) =>
+      JSON.stringify({ ...g, units: g.units.map((x) => ({ ...x, papers: x.papers.map(({ kind: _k, ...p }) => p), papersBefore: x.papersBefore.map(({ kind: _k, ...p }) => p) })) });
+    expect(bare(got)).toBe(bare(before));
+    // An exam made before types reads Other.
+    await owner(`update exams set exam_type = 'other' where school_id = $1`, [A]);
+    expect((await call(principal, maths5A)).body.gap.units.find((x: { unitId: string }) => x.unitId === U3).papers[0].kind).toMatchObject({ key: 'other', en: 'Other' });
+  });
+
   it('the office, the coordinator and the teachers of the class see the same states: lessons recorded by any teacher of the class count', async () => {
     const office = statesOf((await call(principal, maths5A)).body);
     for (const who of [admin, coordinator, tMaths, tSub, tClass]) {

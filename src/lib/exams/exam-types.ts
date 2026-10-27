@@ -30,8 +30,5 @@ export async function examTypesOf(db: Sql, schoolId: string): Promise<ExamTypeRo
   return cleanExamTypes((await readSettings(db, schoolId, schema)).effective.exam_types);
 }
 
-// A type's name in the reader's language; a key the list no longer has reads as "other".
-export function examTypeName(types: readonly ExamTypeRow[], key: string, lang: 'en' | 'hi'): string {
-  const t = types.find((x) => x.key === key) ?? types.find((x) => x.key === OTHER_EXAM_TYPE) ?? DEFAULT_EXAM_TYPES[DEFAULT_EXAM_TYPES.length - 1];
-  return lang === 'hi' ? t.hi : t.en;
-}
+// The pure parts (names, what is offered) live with the contract, so a screen can use them without the server's code.
+export { examTypeLabel, examTypeName, offeredExamTypes } from '@/lib/contracts/exam-types';

@@ -1,6 +1,6 @@
 import type { ModuleId } from '@/lib/contracts/modules';
 import type { ModuleSettingsSchema } from '@/lib/contracts/settings';
-import { DEFAULT_EXAM_TYPES } from '@/lib/contracts/exam-types';
+import { DEFAULT_EXAM_TYPES, EXAM_TYPE_KEY, OTHER_EXAM_TYPE } from '@/lib/contracts/exam-types';
 
 // Every module's settings schema, in one registry (17 §1a, C112). A module
 // adds its schema here when it is built (part of the module definition of
@@ -629,11 +629,12 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         min: 1,
         max: 30,
         columns: [
-          { key: 'key', label: 'Short code', type: 'text' },
+          { key: 'key', label: 'Short code', type: 'text', pattern: EXAM_TYPE_KEY.source, unique: true, codeFrom: 'en' },
           { key: 'en', label: 'Name in English', type: 'text' },
           { key: 'hi', label: 'Name in Hindi', type: 'text' },
           { key: 'hidden', label: 'Hidden', type: 'boolean' },
         ],
+        pinnedRows: [OTHER_EXAM_TYPE],
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,

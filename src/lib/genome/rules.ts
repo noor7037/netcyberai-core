@@ -41,6 +41,10 @@ export type ExamPoint = {
   examId: string;
   examName: string;
   term: string | null;
+  // The exam's type (in both languages, as the school names it) and its session's label: what kind of exam this was,
+  // and when. Labels only (C230-AJ part 2); set when the genome is read.
+  kind?: { key: string; en: string; hi: string };
+  session?: string | null;
   date: string | null; // the paper's date, or null when it has none
   className: string;
   components: PaperComponent[];

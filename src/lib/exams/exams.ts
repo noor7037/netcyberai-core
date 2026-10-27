@@ -7,6 +7,8 @@ import { indiaDate, isIsoDate } from '@/lib/time/india';
 import { paperComponents, schemeParts, TO_ENTER_SQL, type PaperComponent } from './papers';
 import { schemeInForce } from './schemes';
 import { classOrderSql } from '@/lib/classes/class-order';
+import { OTHER_EXAM_TYPE, type ExamTypeRow } from '@/lib/contracts/exam-types';
+import { examTypesOf, offeredExamTypes } from './exam-types';
 
 // Exams of a session and their papers (docs/27 row 9b, C214). The principal, the school admin and the academic
 // coordinator make an exam for a term, with a paper for each class and subject (its date, the chapters it assesses,
@@ -39,7 +41,8 @@ export type PaperSummary = {
   hasMarks: boolean;
   published: boolean; // the exam is published for this paper's class: its marks are frozen (C215)
 };
-export type ExamSummary = { examId: string; name: string; term: string | null; status: 'open' | 'published'; sessionId: string | null; madeBy: string | null; madeAt: string; papers: PaperSummary[] };
+// `examType`: the key of the exam's type in the school's list (C230-AJ part 2); an exam made before types is "other".
+export type ExamSummary = { examId: string; name: string; term: string | null; examType: string; status: 'open' | 'published'; sessionId: string | null; madeBy: string | null; madeAt: string; papers: PaperSummary[] };
 export type ExamsScreen = {
   role: SchoolRole;
   mayRun: boolean;
@@ -53,6 +56,9 @@ export type ExamsScreen = {
   classes: { classId: string; name: string }[];
   subjects: { subjectId: string; name: string }[];
   scheme: { version: number; parts: { key: string; name: string; share: number | null }[]; terms: string[] } | null;
+  // The school's exam types, hidden ones included (an exam keeps a type that was hidden afterwards); the screen offers
+  // the shown ones and an exam's own.
+  examTypes: ExamTypeRow[];
 };
 
 const iso = (v: unknown): string | null => (v === null || v === undefined ? null : v instanceof Date ? v.toISOString() : String(v));
@@ -125,7 +131,7 @@ export async function examsScreen(db: Sql, actor: Actor, sessionParam: string | 
     : sessionParam && sessions.some((s) => s.sessionId === sessionParam) ? sessionParam
     : (sessions.find((s) => s.isCurrent) ?? sessions[0])?.sessionId ?? null;
   const exams = (await db.query(
-    `select e.exam_id, e.name, e.term, e.status, e.session_id, e.created_at, u.display_name as made_by
+    `select e.exam_id, e.name, e.term, e.exam_type, e.status, e.session_id, e.created_at, u.display_name as made_by
        from exams e left join users u on u.school_id = e.school_id and u.user_id = e.created_by
       where e.school_id = $1 and e.session_id is not distinct from $2::uuid
       order by e.created_at desc, e.exam_id`,
@@ -137,6 +143,7 @@ export async function examsScreen(db: Sql, actor: Actor, sessionParam: string | 
     examId: e.exam_id,
     name: e.name,
     term: e.term ?? null,
+    examType: e.exam_type ?? OTHER_EXAM_TYPE,
     status: e.status,
     sessionId: e.session_id ?? null,
     madeBy: e.made_by ?? null,
@@ -158,10 +165,11 @@ export async function examsScreen(db: Sql, actor: Actor, sessionParam: string | 
     classes: mayRun ? (await db.query(`select class_id, name, grade, section from classes where school_id = $1 order by ${classOrderSql('')}, class_id`, [actor.schoolId])).rows.map((r) => ({ classId: r.class_id as string, name: classLabel(r.name, r.section) ?? '' })) : [],
     subjects: mayRun ? (await db.query(`select subject_id, name from subjects where school_id = $1 order by name, subject_id`, [actor.schoolId])).rows.map((r) => ({ subjectId: r.subject_id as string, name: r.name as string })) : [],
     scheme: current ? { version: current.version, parts: schemeParts(current.scheme), terms: current.scheme.terms.map((x) => x.name) } : null,
+    examTypes: await examTypesOf(db, actor.schoolId),
   };
 }
 
-export type ExamProblem = 'not_allowed' | 'not_found' | 'name' | 'name_taken' | 'session' | 'term' | 'papers' | 'class' | 'subject' | 'date' | 'maxima' | 'units' | 'paper_twice' | 'has_marks' | 'published';
+export type ExamProblem = 'not_allowed' | 'not_found' | 'name' | 'name_taken' | 'session' | 'term' | 'exam_type' | 'papers' | 'class' | 'subject' | 'date' | 'maxima' | 'units' | 'paper_twice' | 'has_marks' | 'published';
 export type ExamResult = { ok: true; examId: string; paperId?: string } | { ok: false; reason: ExamProblem; at?: number };
 
 type PaperInput = { classId: string; subjectId: string; date: string | null; unitIds: string[]; components: PaperComponent[] };
@@ -211,6 +219,9 @@ export async function makeExam(db: Sql, actor: Actor, input: Record<string, unkn
   // The term is one of the scheme's terms, as named there, or none.
   const term = input.term === null || input.term === undefined || input.term === '' ? null : input.term;
   if (term !== null && !(typeof term === 'string' && (scheme?.scheme.terms ?? []).some((x) => x.name === term))) return { ok: false, reason: 'term' };
+  // The type is one the school shows (C230-AJ part 2); none given is "other".
+  const examType = input.examType === null || input.examType === undefined || input.examType === '' ? OTHER_EXAM_TYPE : input.examType;
+  if (typeof examType !== 'string' || !offeredExamTypes(await examTypesOf(db, actor.schoolId)).some((x) => x.key === examType)) return { ok: false, reason: 'exam_type' };
   if (!Array.isArray(input.papers) || input.papers.length < 1 || input.papers.length > 120) return { ok: false, reason: 'papers' };
   const papers: PaperInput[] = [];
   for (let i = 0; i < input.papers.length; i++) {
@@ -223,7 +234,7 @@ export async function makeExam(db: Sql, actor: Actor, input: Record<string, unkn
   await db.query('savepoint exam_make');
   let examId: string;
   try {
-    examId = (await db.query(`insert into exams (school_id, name, session_id, term, created_by) values ($1, $2, $3, $4, $5) returning exam_id`, [actor.schoolId, name, sessionId, term, actor.userId])).rows[0].exam_id;
+    examId = (await db.query(`insert into exams (school_id, name, session_id, term, exam_type, created_by) values ($1, $2, $3, $4, $5, $6) returning exam_id`, [actor.schoolId, name, sessionId, term, examType, actor.userId])).rows[0].exam_id;
     await db.query('release savepoint exam_make');
   } catch (err) {
     await db.query('rollback to savepoint exam_make');
@@ -231,15 +242,16 @@ export async function makeExam(db: Sql, actor: Actor, input: Record<string, unkn
     throw err;
   }
   for (const p of papers) await insertPaper(db, actor, examId, p);
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'exam.made', targetType: 'exams', targetId: examId, afterState: { name, term, session_id: sessionId, papers: papers.length, scheme_version: scheme?.version ?? null } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'exam.made', targetType: 'exams', targetId: examId, afterState: { name, term, exam_type: examType, session_id: sessionId, papers: papers.length, scheme_version: scheme?.version ?? null } });
   return { ok: true, examId };
 }
 
-// A change to an exam: add a paper, change a paper's date and chapters, remove a paper, or remove the exam. A paper
-// or an exam with marks is not removed: the marks would go with it.
+// A change to an exam: change its type, add a paper, change a paper's date and chapters, remove a paper, or remove the
+// exam. A paper or an exam with marks is not removed: the marks would go with it. An exam's type is not changed once
+// a class's result of it is published (its marks are frozen, C215): it may count in a report card by its type.
 export async function changeExam(db: Sql, actor: Actor, examId: string, input: Record<string, unknown>): Promise<ExamResult> {
   if (!EXAM_RUNNERS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
-  const exam = (await db.query(`select exam_id, name from exams where school_id = $1 and exam_id = $2`, [actor.schoolId, examId])).rows[0];
+  const exam = (await db.query(`select exam_id, name, exam_type from exams where school_id = $1 and exam_id = $2`, [actor.schoolId, examId])).rows[0];
   if (!exam) return { ok: false, reason: 'not_found' };
   const audit = (eventAction: string, targetType: string, targetId: string, afterState: Record<string, unknown>) =>
     writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction, targetType, targetId, afterState: { exam_id: examId, ...afterState } });
@@ -255,6 +267,18 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
         )).rows[0] ?? null)
       : null;
 
+  if (input.action === 'type') {
+    // One of the types the school shows, or the exam's own (a type hidden since stays with the exams that have it).
+    const types = await examTypesOf(db, actor.schoolId);
+    if (typeof input.examType !== 'string' || !offeredExamTypes(types, exam.exam_type).some((x) => x.key === input.examType)) return { ok: false, reason: 'exam_type' };
+    const anyPublished = (await db.query(`select coalesce(bool_or(public.exam_class_published(p.exam_id, p.class_id)), false) as yes from exam_papers p where p.school_id = $1 and p.exam_id = $2`, [actor.schoolId, examId])).rows[0]?.yes === true;
+    if (anyPublished) return { ok: false, reason: 'published' };
+    if (input.examType !== exam.exam_type) {
+      await db.query(`update exams set exam_type = $3 where school_id = $1 and exam_id = $2`, [actor.schoolId, examId, input.examType]);
+      await audit('exam.type_changed', 'exams', examId, { from_type: exam.exam_type, to_type: input.examType });
+    }
+    return { ok: true, examId };
+  }
   if (input.action === 'add_paper') {
     const checked = await checkPaper(db, actor.schoolId, input.paper, await schemeInForce(db, actor.schoolId));
     if (!checked.ok) return { ok: false, reason: checked.reason };

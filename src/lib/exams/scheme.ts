@@ -1,3 +1,5 @@
+import { EXAM_TYPE_KEY } from '@/lib/contracts/exam-types';
+
 // A school's grading scheme and a board's preset (docs/27 section 3 rule 1, C213): their shapes, the rules a scheme
 // must keep to be saved, and how a scheme starts from a preset or from nothing.
 //
@@ -24,6 +26,11 @@ export type Layout = Record<LayoutPart, boolean>;
 
 export type Term = { name: string };
 
+// Which of the school's exam types count toward a report card, and how much each counts (C230-AJ part 2, C357): the
+// type's key in the school's exam types, and its weight out of 100; the weights add up to 100. No `examTypes` on a
+// scheme (or none listed) means no type is weighed: every exam stands alone, as before.
+export type ExamTypeWeight = { type: string; weight: number };
+
 // `decimals`: a percent is rounded half up to a whole number (0) or one decimal place (1) before its grade and pass
 // are found. `passMark`: percent of the subject's total; empty when the school has not set one.
 export type GradingScheme = {
@@ -34,6 +41,7 @@ export type GradingScheme = {
   terms: Term[];
   layout: Layout;
   coScholastic: CoScholastic | null;
+  examTypes?: ExamTypeWeight[];
 };
 
 export const NOTE_TOPICS = ['general', 'bands', 'pass_mark', 'components', 'grades'] as const;
@@ -57,7 +65,7 @@ export type BoardPreset = {
   addedAt: string;
 };
 
-export const LIMITS = { bands: 30, components: 12, parts: 8, terms: 12, areas: 12, coGrades: 12, notes: 12, grade: 20, meaning: 120, name: 60, note: 600 } as const;
+export const LIMITS = { bands: 30, components: 12, parts: 8, terms: 12, examTypes: 30, areas: 12, coGrades: 12, notes: 12, grade: 20, meaning: 120, name: 60, note: 600 } as const;
 
 // What the report card shows when a scheme starts: everything it has words for.
 export function defaultLayout(coScholastic: boolean): Layout {
@@ -116,6 +124,10 @@ export type SchemeProblem =
   | 'term_duplicate'
   | 'co_area'
   | 'co_grade'
+  | 'exam_type_key'
+  | 'exam_type_duplicate'
+  | 'exam_type_weight'
+  | 'exam_type_total'
   | 'too_many';
 export type Problem = { code: SchemeProblem; at?: number };
 
@@ -248,7 +260,24 @@ export function validateScheme(raw: unknown): { ok: true; scheme: GradingScheme 
     }
   }
 
-  return { ok: true, scheme: { bands, decimals, passMark: passMark as number | null, components, terms, layout, coScholastic } };
+  // The exam types that count toward a report card, with their weights out of 100. None listed: none is weighed.
+  const examTypes: ExamTypeWeight[] = [];
+  if (s.examTypes !== null && s.examTypes !== undefined) {
+    if (!Array.isArray(s.examTypes)) return fail('shape');
+    if (s.examTypes.length > LIMITS.examTypes) return fail('too_many');
+    for (let i = 0; i < s.examTypes.length; i++) {
+      const w = s.examTypes[i] as Record<string, unknown> | null;
+      if (typeof w !== 'object' || w === null) return fail('shape', i);
+      if (typeof w.type !== 'string' || !EXAM_TYPE_KEY.test(w.type)) return fail('exam_type_key', i);
+      if (!(isNum(w.weight) && w.weight > 0 && w.weight <= 100 && placesOk(w.weight, 1))) return fail('exam_type_weight', i);
+      examTypes.push({ type: w.type, weight: w.weight });
+    }
+    const dupType = dup(examTypes.map((x) => x.type));
+    if (dupType >= 0) return fail('exam_type_duplicate', dupType);
+    if (examTypes.length && sum(examTypes.map((x) => x.weight)) !== 100) return fail('exam_type_total');
+  }
+
+  return { ok: true, scheme: { bands, decimals, passMark: passMark as number | null, components, terms, layout, coScholastic, ...(examTypes.length ? { examTypes } : {}) } };
 }
 
 // ---- a preset typed in Control --------------------------------------------------------------------------------

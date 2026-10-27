@@ -167,6 +167,7 @@ export function CurriculumGapView() {
                       {u.papers.map((p) => (
                         <li key={p.paperId} data-gap-paper={p.paperId}>
                           {p.date ? t('cg.paper', { exam: p.examName, day: day(p.date) }) : t('cg.paperNoDate', { exam: p.examName })}
+                          {p.kind ? <span data-gap-paper-kind={p.kind.key}>{` · ${lang === 'hi' ? p.kind.hi : p.kind.en}`}</span> : null}
                           {u.taughtFirst !== null && u.papersBefore.some((b) => b.paperId === p.paperId) ? ` · ${t('cg.paperBefore')}` : ''}
                         </li>
                       ))}

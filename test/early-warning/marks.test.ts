@@ -573,6 +573,27 @@ describe('on the real schema', () => {
       // The accountant: refused.
       expect((await call(accountant, () => getScreen(req('GET', '/api/app/early-warning')))).status).toBe(403);
     });
+
+    it('the exams a marks reason names are labelled with their type and session when read (C230-AJ part 2); the kept evidence is untouched and a check finds it unchanged', async () => {
+      const marksOf = async (who: Who) => (await as(who, (c) => listFlags(c, actor(who), at(46)))).open.filter((f) => f.evidence.marks);
+      const kept = JSON.stringify((await stored()).map((f) => f.evidence));
+      await db.pg.query(`update exams set exam_type = 'half_yearly' where school_id = $1 and name = 'Half-yearly'`, [A]);
+      await db.pg.query(`update exams set exam_type = 'unit' where school_id = $1 and name = 'Unit test 1'`, [A]);
+      const flags = await marksOf(principal);
+      expect(flags.length).toBeGreaterThan(0);
+      const chirag = flags.find((f) => f.student_name === 'Chirag')!.evidence.marks!;
+      expect(chirag.exam).toMatchObject({ name: 'Half-yearly', kind: { key: 'half_yearly', en: 'Half-yearly', hi: 'अर्धवार्षिक परीक्षा' }, session: '2026-27' });
+      expect(chirag.previous).toMatchObject({ kind: { key: 'unit', en: 'Unit test' }, session: '2026-27' });
+      // A teacher reads the same labels for her own classes.
+      expect((await marksOf(tara)).map((f) => f.evidence.marks!.exam.kind?.key)).toEqual(expect.arrayContaining(['half_yearly']));
+      // Nothing was written into the evidence, and the next check finds every flag as it was.
+      expect(JSON.stringify((await stored()).map((f) => f.evidence))).toBe(kept);
+      expect(await check(principal, 47)).toMatchObject({ changed: 0, closed: 0 });
+      // The screen says it in the reader's language.
+      expect(t('en', 'ew.why.marks.kindSession', { type: chirag.exam.kind!.en, session: chirag.exam.session! })).toBe('Type of exam: Half-yearly · 2026-27');
+      expect(t('hi', 'ew.why.marks.kindSession', { type: chirag.exam.kind!.hi, session: chirag.exam.session! })).toBe('परीक्षा का प्रकार: अर्धवार्षिक परीक्षा · 2026-27');
+      await db.pg.query(`update exams set exam_type = 'other' where school_id = $1`, [A]);
+    });
   });
 
   describe('which exam is a child’s latest', () => {
