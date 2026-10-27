@@ -406,6 +406,7 @@ describe('Control → AI keeps the YouTube key', () => {
     expect(yt.seen.at(-1)?.url.searchParams.get('chart')).toBe('mostPopular');
     await R.ai.recordKeyTest(h.db.pg as never, 'youtube', outcome);
     expect((await q(`select test_ok, test_message from control.ai_credentials where provider_id = 'youtube'`))[0]).toEqual({ test_ok: true, test_message: 'ok' });
-    expect(await R.ai.prepareKeyTest(h.db.pg as never, 'anthropic')).toEqual({ ok: false, code: 'not_testable' });
+    // G5 (C373): every text adapter has a free key check now; with no key saved it says so.
+    expect(await R.ai.prepareKeyTest(h.db.pg as never, 'anthropic')).toEqual({ ok: false, code: 'no_key' });
   });
 });
