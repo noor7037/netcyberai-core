@@ -6655,7 +6655,7 @@ const aj2ClearSettings = async () => {
 const AJ2_TYPES = [
   ['weekly', 'Weekly test', 'साप्ताहिक परीक्षा', true], ['monthly', 'Monthly test', 'मासिक परीक्षा', false], ['unit', 'Class test', 'कक्षा परीक्षा', false],
   ['periodic', 'Periodic test', 'आवधिक परीक्षा', false], ['sessional', 'Sessional', 'सत्रीय परीक्षा', false], ['half_yearly', 'Half-yearly', 'अर्धवार्षिक परीक्षा', false],
-  ['annual', 'Annual', 'वार्षिक परीक्षा', false], ['practical', 'Practical', 'प्रायोगिक परीक्षा', false], ['mock', 'Mock or pre-board', 'मॉक या प्री-बोर्ड', false],
+  ['annual', 'Annual', 'वार्षिक परीक्षा', false], ['practical', 'Practical', 'प्रायोगिक परीक्षा', false], ['pre_board', 'Mock or pre-board', 'मॉक या प्री-बोर्ड', false],
   ['olympiad', 'Olympiad', 'ओलंपियाड', false], ['other', 'Other', 'अन्य', false],
 ].map(([key, en, hi, hidden]) => ({ key, en, hi, hidden }));
 const aj2SeedTypes = async () => {

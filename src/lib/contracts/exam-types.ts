@@ -17,7 +17,7 @@ export const DEFAULT_EXAM_TYPES: readonly ExamTypeRow[] = [
   { key: 'half_yearly', en: 'Half-yearly', hi: 'अर्धवार्षिक परीक्षा', hidden: false },
   { key: 'annual', en: 'Annual', hi: 'वार्षिक परीक्षा', hidden: false },
   { key: 'practical', en: 'Practical', hi: 'प्रायोगिक परीक्षा', hidden: false },
-  { key: 'mock', en: 'Mock or pre-board', hi: 'मॉक या प्री-बोर्ड', hidden: false },
+  { key: 'pre_board', en: 'Mock or pre-board', hi: 'मॉक या प्री-बोर्ड', hidden: false },
   { key: 'other', en: 'Other', hi: 'अन्य', hidden: false },
 ];
 
