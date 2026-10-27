@@ -40,7 +40,8 @@ export type ProfileId =
   | 'content.syllabus_extract'
   | 'content.prepare'
   | 'exams.read_pages'
-  | 'exams.mark';
+  | 'exams.mark'
+  | 'exams.write_questions';
 export type Capability = 'text' | 'speech_to_text' | 'moderation';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
@@ -78,6 +79,10 @@ export const PROFILES: readonly AiProfile[] = [
   // job runner (src/lib/jobs/runner.ts), so their chain may take longer than a person waits.
   { id: 'exams.read_pages', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000 },
   { id: 'exams.mark', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 200_000 },
+  // AQ-2 (C363): writes a question paper's questions for the chapters and topics, class level, subject, language, kinds,
+  // marks and difficulty a plan names (src/lib/papers/scope.ts), with the paper's other questions to avoid; never a
+  // child's name or words. It runs in the school's papers.make job (a long job), at most two rounds of this time.
+  { id: 'exams.write_questions', carriesChildWords: false, capability: 'text', audience: 'school', callMs: 90_000 },
 ];
 
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
