@@ -168,8 +168,9 @@ describe('the OpenAI-compatible adapter, at the founder’s address', () => {
 
   it('the key test lists the models (GET <base>/models); a refusal or a wrong key says only its kind', async () => {
     resolvesTo('8.8.4.4');
-    const send = vi.spyOn(endpointNet, 'send').mockResolvedValue(new Response('{"data":[]}', { status: 200 }));
-    expect(await openaiCompatibleAdapter.testConnection!(COMPAT_KEY, BASE)).toEqual({ ok: true });
+    const send = vi.spyOn(endpointNet, 'send').mockResolvedValue(new Response('{"data":[{"id":"llama-3.1-8b"},{"id":"Llama 3.1 8B"}]}', { status: 200 }));
+    // G6 (C379): its ids fill the model picker; a display name is dropped.
+    expect(await openaiCompatibleAdapter.testConnection!(COMPAT_KEY, BASE)).toEqual({ ok: true, models: ['llama-3.1-8b'] });
     expect(send.mock.calls[0][0].href).toBe(`${BASE}/models`);
     expect(send.mock.calls[0][2]).toMatchObject({ method: 'GET', headers: { authorization: `Bearer ${COMPAT_KEY}` } });
     send.mockResolvedValue(new Response(JSON.stringify({ error: `bad key ${COMPAT_KEY}` }), { status: 401 }));

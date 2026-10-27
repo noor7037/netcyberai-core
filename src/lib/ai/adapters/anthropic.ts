@@ -1,4 +1,4 @@
-import { freeCheck } from './connection';
+import { dataIds, freeCheck } from './connection';
 import { sseData } from './sse';
 import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
@@ -80,8 +80,8 @@ export const anthropicAdapter: TextAdapter = {
     if (!finished) return { ok: false, failure: 'cut_short' };
     return { ok: true, text, tokensIn, tokensOut };
   },
-  // GET /v1/models: free, and answers only for a working key (G5).
+  // GET /v1/models: free, and answers only for a working key (G5); its ids fill Control's model picker (G6).
   testConnection(apiKey): Promise<ConnectionTest> {
-    return freeCheck('https://api.anthropic.com/v1/models?limit=1', { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' });
+    return freeCheck('https://api.anthropic.com/v1/models?limit=1000', { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }, dataIds);
   },
 };

@@ -6968,6 +6968,13 @@ const g3Seed = async () => {
     `insert into control.ai_provider_health (provider_id, model, state, consecutive_failures, opened_at, last_outcome, last_at) values ('openai', 'gpt-4o-mini', 'open', 5, now() - interval '20 seconds', 'upstream_timeout', now() - interval '20 seconds')
      on conflict do nothing`
   );
+  // G6 (C379): the model pickers' lists.
+  await q(
+    `insert into control.ai_model_lists (provider_id, models, ok, fetched_at) values
+         ('anthropic', array['claude-haiku-4-5', 'claude-lab-a', 'claude-opus-4-1', 'claude-sonnet-4-5'], true, now() - interval '2 hours'),
+         ('openai', '{}', false, now() - interval '2 hours')
+       on conflict (provider_id) do update set models = excluded.models, ok = excluded.ok, fetched_at = excluded.fetched_at`
+  );
   const rev = G3.seeded.revision_id;
   const day = `(now() at time zone 'Asia/Kolkata')::date`;
   G3.attempts = (
@@ -6986,6 +6993,7 @@ const g3Seed = async () => {
 const g3PutBack = async () => {
   if (G3.attempts.length) await db.pg.exec(`set session_replication_role = replica; delete from control.ai_usage_ledger where attempt_id in (${G3.attempts.map(Number).join(',')}); set session_replication_role = origin;`);
   await db.pg.query(`delete from control.ai_provider_health where provider_id = 'openai' and model = 'gpt-4o-mini'`);
+  await db.pg.query(`delete from control.ai_model_lists`);
   if (G3.keys.length) await db.pg.query(`delete from control.ai_credentials where provider_id = any($1::text[])`, [G3.keys]);
   if (G3.saved) await db.pg.exec(`set session_replication_role = replica; ${g3Route(G3.saved)} set session_replication_role = origin;`);
   G3.attempts = [];
@@ -6997,6 +7005,8 @@ const controlAi = (hindi) => async (page) => {
   await page.locator('[data-ai-ledger]').waitFor({ timeout: 20000 });
   if (hindi) await speak('हिन्दी')(page);
   await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-revisions] summary`).click();
+  // G6 (C379): the route editor open, so the model pickers (a listed service and one whose list is unavailable) show.
+  await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-route-edit] summary`).click();
   const seen = await page.evaluate((profile) => ({
     route: [...document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-slot]`)].length,
     promote: document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-promote]`).length,

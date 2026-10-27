@@ -5,10 +5,12 @@ import { StatusPill } from "@/components/app-ui/StatusPill";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
+import type { ModelList } from "@/lib/ai/control";
 import { promote, type Slot } from "@/lib/ai/ledger-view";
 import type { ProviderStateResult } from "@/lib/ai/provider-state";
 import type { RouteRevision } from "@/lib/contracts/ai-gateway";
 import { isMessageKey, type MessageKey } from "@/lib/i18n";
+import { ModelPicker } from "./ModelPicker";
 import {
   CAPABILITY_WORDS,
   INNER,
@@ -66,6 +68,8 @@ type Props = {
   profile: Profile;
   revisions: RouteRevision[];
   providerChoices: string[];
+  // G6 (C379): each provider's model ids for the picker.
+  modelLists: Record<string, ModelList>;
   states: Record<string, ProviderStateResult>;
   busy: boolean;
   send: Send;
@@ -78,6 +82,7 @@ export function WorkloadCard({
   profile: p,
   revisions,
   providerChoices,
+  modelLists,
   states,
   busy,
   send,
@@ -279,17 +284,18 @@ export function WorkloadCard({
                 >
                   {options}
                 </Select>
-                <Input
+                <ModelPicker
                   id={`slot-model-${p.profileId}-${i}`}
-                  maxLength={80}
-                  spellCheck={false}
                   label={t("control.ai.slot.model", { slot: t(SLOT_WORDS[i]) })}
+                  provider={s.provider}
+                  list={modelLists[s.provider]}
                   value={s.model}
-                  onChange={(e) =>
+                  t={t}
+                  onChange={(model) =>
                     setDraft({
                       ...d,
                       slots: d.slots.map((x, k) =>
-                        k === i ? { ...x, model: e.target.value } : x,
+                        k === i ? { ...x, model } : x,
                       ),
                     })
                   }

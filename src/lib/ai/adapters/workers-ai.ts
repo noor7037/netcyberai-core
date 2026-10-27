@@ -45,11 +45,15 @@ export const workersAiAdapter: TextAdapter = {
     if (!k) return { ok: false, failure: 'http', status: 401 };
     return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE, instructions: 'first_user', stream: false });
   },
-  // The account's model list: free, and answers only for a working token with Workers AI rights (G5).
+  // The account's model list: free, and answers only for a working token with Workers AI rights (G5). Its names give
+  // the ids for Control's model picker (G6); if the service will not give a longer page, one model checks the key.
   async testConnection(apiKey): Promise<ConnectionTest> {
     const k = splitWorkersKey(apiKey);
     if (!k) return { ok: false, failure: 'http', status: 401 };
-    return freeCheck(`${base(k.account)}/models/search?per_page=1`, { authorization: `Bearer ${k.token}` });
+    const headers = { authorization: `Bearer ${k.token}` };
+    const names = (b: unknown) => ((b as { result?: { name?: unknown }[] }).result ?? []).map((m) => m?.name);
+    const listed = await freeCheck(`${base(k.account)}/models/search?per_page=100`, headers, names);
+    return !listed.ok && listed.status === 400 ? freeCheck(`${base(k.account)}/models/search?per_page=1`, headers) : listed;
   },
 };
 

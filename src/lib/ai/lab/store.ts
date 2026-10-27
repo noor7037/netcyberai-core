@@ -2,6 +2,7 @@ import type { Sql } from '@/lib/jobs/types';
 import { adapterFor, textAdapters, type TextAdapter } from '../adapters';
 import { workersModelLooksRight } from '../adapters/workers-ai';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from '../credentials';
+import { loadModelLists, type ModelList } from '../control';
 import { costOf } from '../prices';
 import { labCase, labDataset } from './cases';
 import { runLabCall, type LabErrorClass, type LabOutcome } from './runner';
@@ -50,6 +51,8 @@ export type LabSetup = {
   providers: string[];
   // Provider and model pairs Control's features already name, offered as a starting choice.
   suggestions: LabLink[];
+  // G6 (C379): each keyed provider's model ids for the picker, from its latest key test or health probe.
+  modelLists: Record<string, ModelList>;
 };
 
 export async function loadLabSetup(db: Sql, env: Record<string, string | undefined> = process.env): Promise<LabSetup> {
@@ -69,7 +72,9 @@ export async function loadLabSetup(db: Sql, env: Record<string, string | undefin
     add(r.provider_id, r.model);
     for (const f of Array.isArray(r.fallback) ? r.fallback : []) add(f?.provider, f?.model);
   }
-  return { keyReady: aiEncryptionKey(env) !== null, datasetVersion: labDataset().version, providers, suggestions };
+  const lists = await loadModelLists(db);
+  const modelLists = Object.fromEntries(Object.entries(lists).filter(([p]) => keys.has(p)));
+  return { keyReady: aiEncryptionKey(env) !== null, datasetVersion: labDataset().version, providers, suggestions, modelLists };
 }
 
 function linkLooksRight(l: LabLink): boolean {

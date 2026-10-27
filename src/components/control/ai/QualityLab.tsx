@@ -6,6 +6,7 @@ import { useT } from '@/components/app-shell/LangContext';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { ModelPicker } from './ModelPicker';
 import type { LabArea, LabCaseSummary } from '@/lib/ai/lab/cases';
 import type { LabErrorClass } from '@/lib/ai/lab/runner';
 import type { LabLink, LabResult, LabRun, LabRunSummary, LabSetup } from '@/lib/ai/lab/store';
@@ -202,23 +203,16 @@ export function QualityLab({ initial }: { initial: LabData }) {
                 </option>
               ))}
             </Select>
-            <Input
+            <ModelPicker
               id={`lab-model-${i}`}
-              maxLength={80}
-              spellCheck={false}
-              list={`lab-models-${i}`}
               label={t('control.ai.lab.models.model', { n: i + 1 })}
+              provider={m.provider}
+              list={data.modelLists[m.provider]}
               value={m.model}
               disabled={busy}
-              onChange={(e) => setModels(models.map((x, j) => (j === i ? { ...x, model: e.target.value } : x)))}
+              t={t}
+              onChange={(model) => setModels(models.map((x, j) => (j === i ? { ...x, model } : x)))}
             />
-            <datalist id={`lab-models-${i}`}>
-              {data.suggestions
-                .filter((s) => s.provider === m.provider)
-                .map((s) => (
-                  <option key={s.model} value={s.model} />
-                ))}
-            </datalist>
             {models.length > 2 && (
               <button type="button" className={TAP} disabled={busy} onClick={() => setModels(models.filter((_, j) => j !== i))}>
                 {t('control.ai.lab.models.remove')}

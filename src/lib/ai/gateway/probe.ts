@@ -1,5 +1,5 @@
 import type { JobHandler, Sql } from '@/lib/jobs/types';
-import { prepareKeyTest } from '../control';
+import { prepareKeyTest, recordModelList } from '../control';
 import { chainOf } from '../platform';
 
 // The health probe (G5, C373): every 15 minutes (pg_cron → public.ai_health_probe_enqueue → this job), each provider
@@ -40,14 +40,18 @@ export function aiHealthProbeHandler(deps: { platform: Platform }): JobHandler {
       Array.from(targets, async ([provider, models]) => {
         const prepared = await deps.platform((db) => prepareKeyTest(db, provider)).catch(() => null);
         if (!prepared?.ok) return null;
-        const outcome = await prepared.run().catch(() => ({ ok: false }));
-        return { provider, models, ok: outcome.ok };
+        const outcome = await prepared.run().catch(() => ({ ok: false, models: null }));
+        return { provider, models, ok: outcome.ok, list: outcome.models };
       })
     );
-    const done = results.filter((r): r is { provider: string; models: string[]; ok: boolean } => r !== null);
+    const done = results.filter((r): r is { provider: string; models: string[]; ok: boolean; list: string[] | null | undefined } => r !== null);
     if (!done.length) return;
     await deps.platform(async (db) => {
-      for (const r of done) for (const model of r.models) await db.query(`select control.record_ai_probe($1, $2, $3, 'health_endpoint')`, [r.provider, model, r.ok]);
+      for (const r of done) {
+        for (const model of r.models) await db.query(`select control.record_ai_probe($1, $2, $3, 'health_endpoint')`, [r.provider, model, r.ok]);
+        // The model ids the same answer gave, for Control's pickers (G6, C379).
+        await recordModelList(db, r.provider, r.list);
+      }
     });
   };
 }

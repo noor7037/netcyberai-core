@@ -7,7 +7,8 @@ import { geminiAdapter } from '@/lib/ai/adapters/gemini';
 import { openaiAdapter } from '@/lib/ai/adapters/openai';
 import { workersAiAdapter } from '@/lib/ai/adapters/workers-ai';
 import { aiEncryptionKey, sealAiKey } from '@/lib/ai/credentials';
-import { loadAiOverview, setPrice, undoChange } from '@/lib/ai/control';
+import { loadAiOverview, prepareKeyTest, recordKeyTest, setPrice, undoChange } from '@/lib/ai/control';
+import { loadLabSetup } from '@/lib/ai/lab/store';
 import { aiHealthProbeHandler, probeTargets } from '@/lib/ai/gateway/probe';
 import { loadLabRun } from '@/lib/ai/lab/store';
 import { costOf, priceRows } from '@/lib/ai/prices';
@@ -60,6 +61,8 @@ async function sealInto(provider: string, key: string) {
 type Call = { url: string; method: string; headers: Record<string, string> };
 let calls: Call[] = [];
 let status: Record<string, number> = {};
+// G6 (C379): a vendor's list answer, per host; '{}' (no list) when not set.
+let bodies: Record<string, string> = {};
 
 beforeAll(async () => {
   process.env.AI_CREDENTIALS_KEY = randomBytes(32).toString('base64');
@@ -77,11 +80,13 @@ afterAll(async () => {
 beforeEach(async () => {
   calls = [];
   status = {};
+  bodies = {};
   vi.stubGlobal(
     'fetch',
     vi.fn(async (url: string, init: RequestInit = {}) => {
       calls.push({ url: String(url), method: String(init.method ?? 'GET'), headers: (init.headers ?? {}) as Record<string, string> });
-      return new Response('{}', { status: status[new URL(String(url)).hostname] ?? 200 });
+      const host = new URL(String(url)).hostname;
+      return new Response(bodies[host] ?? '{}', { status: status[host] ?? 200 });
     })
   );
   await db.pg.exec(`delete from control.ai_usage_ledger; delete from control.ai_provider_health; delete from control.ai_model_prices;`);
@@ -212,7 +217,7 @@ describe('the free key checks', () => {
     ] as const;
     for (const [adapter, key, host] of cases) {
       calls = [];
-      expect(await adapter.testConnection!(key)).toEqual({ ok: true });
+      expect(await adapter.testConnection!(key)).toEqual({ ok: true, models: [] });
       expect(calls).toHaveLength(1);
       expect(new URL(calls[0].url).hostname).toBe(host);
       expect(calls[0].method).toBe('GET');
@@ -220,5 +225,64 @@ describe('the free key checks', () => {
     }
     status['api.openai.com'] = 401;
     expect(await openaiAdapter.testConnection!(`sk-${'o'.repeat(30)}`)).toEqual({ ok: false, failure: 'http', status: 401 });
+  });
+});
+
+describe('the model pickers’ lists (G6, C379)', () => {
+  it('each vendor’s list answer gives its model ids; display names and other junk are dropped', async () => {
+    bodies['api.anthropic.com'] = JSON.stringify({ data: [{ id: 'claude-sonnet-4-5', display_name: 'Claude Sonnet 4.5' }, { id: 'claude-haiku-4-5' }, { id: 'Claude Sonnet 4.5' }] });
+    bodies['api.openai.com'] = JSON.stringify({ data: [{ id: 'gpt-4o-mini' }, { id: 'gpt-4o-mini' }, { id: 42 }] });
+    bodies['generativelanguage.googleapis.com'] = JSON.stringify({
+      models: [
+        { name: 'models/gemini-2.5-flash', supportedGenerationMethods: ['generateContent'] },
+        { name: 'models/text-embedding-004', supportedGenerationMethods: ['embedContent'] },
+      ],
+    });
+    bodies['api.cloudflare.com'] = JSON.stringify({ result: [{ name: '@cf/meta/llama-4-scout-17b-16e-instruct' }, { name: '@cf/openai/whisper-large-v3-turbo' }] });
+    expect(await anthropicAdapter.testConnection!(ANTHROPIC_KEY)).toEqual({ ok: true, models: ['claude-haiku-4-5', 'claude-sonnet-4-5'] });
+    expect(await openaiAdapter.testConnection!(`sk-${'o'.repeat(30)}`)).toEqual({ ok: true, models: ['gpt-4o-mini'] });
+    expect(await geminiAdapter.testConnection!(`AIza${'g'.repeat(35)}`)).toEqual({ ok: true, models: ['gemini-2.5-flash'] });
+    expect(await workersAiAdapter.testConnection!(WORKERS_KEY)).toEqual({ ok: true, models: ['@cf/meta/llama-4-scout-17b-16e-instruct', '@cf/openai/whisper-large-v3-turbo'] });
+    // A list answer that cannot be read still means the key works; the list is then unavailable.
+    bodies['api.openai.com'] = 'not json';
+    expect(await openaiAdapter.testConnection!(`sk-${'o'.repeat(30)}`)).toEqual({ ok: true });
+  });
+
+  it('Workers AI: if the longer page is refused, one model still checks the key', async () => {
+    let n = 0;
+    vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+      n++;
+      return new Response('{}', { status: String(url).includes('per_page=100') ? 400 : 200 });
+    }));
+    expect(await workersAiAdapter.testConnection!(WORKERS_KEY)).toEqual({ ok: true });
+    expect(n).toBe(2);
+  });
+
+  it('a key test keeps the list for Control and the Lab; a failed one marks it unavailable; the probe refreshes it', async () => {
+    await q(`delete from control.ai_model_lists`);
+    bodies['api.anthropic.com'] = JSON.stringify({ data: [{ id: 'claude-sonnet-4-5' }] });
+    const test = async () => {
+      const prepared = await platform((tx) => prepareKeyTest(tx, 'anthropic'));
+      if (!prepared.ok) throw new Error(prepared.code);
+      const outcome = await prepared.run();
+      await platform((tx) => recordKeyTest(tx, 'anthropic', outcome));
+    };
+    await test();
+    let lists = (await platform((tx) => loadAiOverview(tx))).modelLists;
+    expect(lists.anthropic).toMatchObject({ ok: true, models: ['claude-sonnet-4-5'] });
+    expect((await platform((tx) => loadLabSetup(tx))).modelLists.anthropic).toMatchObject({ ok: true, models: ['claude-sonnet-4-5'] });
+    status['api.anthropic.com'] = 500;
+    await test();
+    lists = (await platform((tx) => loadAiOverview(tx))).modelLists;
+    expect(lists.anthropic).toMatchObject({ ok: false, models: [] });
+    // The probe's answer refreshes it.
+    status = {};
+    bodies['api.anthropic.com'] = JSON.stringify({ data: [{ id: 'claude-opus-4-1' }] });
+    await q(`update control.ai_profiles set enabled = false`);
+    await q(`update control.ai_profiles set provider_id = 'anthropic', model = 'claude-opus-4-1', fallback = '[]'::jsonb, enabled = true where profile_id = 'family.resolver'`);
+    await aiHealthProbeHandler({ platform })({} as ClaimedJob);
+    expect((await platform((tx) => loadAiOverview(tx))).modelLists.anthropic).toMatchObject({ ok: true, models: ['claude-opus-4-1'] });
+    // Only the platform role reads it.
+    expect(await refused(() => asRole('family_app', (tx) => tx.query(`select * from control.ai_model_lists`)))).toMatch(/permission denied/);
   });
 });

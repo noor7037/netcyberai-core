@@ -102,6 +102,8 @@ export type AiOverview = {
   changes: { auditId: string; action: string; at: string; byName: string | null; target: string | null; canUndo: boolean }[];
   // G5 (C373): the founder's prices, US dollars per million tokens in and out, per provider and model.
   prices: ModelPrice[];
+  // G6 (C379): each provider's model ids for the pickers, from its latest key test or health probe.
+  modelLists: Record<string, ModelList>;
 };
 export type ModelPrice = { providerId: string; model: string; inUsd: number; outUsd: number; setAt: string; setByName: string | null };
 export type PriceEntry = { inUsd: number; outUsd: number };
@@ -229,6 +231,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       target: r.target_id ?? null,
       canUndo: r.before_state !== null && !(r.event_action === 'ai.credential_set' && r.before_state?.had === true),
     })),
+    modelLists: await loadModelLists(db),
     prices: prices.rows.map((r) => ({
       providerId: r.provider_id,
       model: r.model,
@@ -284,7 +287,9 @@ export async function setWorkersCredential(db: Sql, by: By, accountRaw: string, 
 // database connection held, and the outcome (true or false and a code, never the key) is written in a second one.
 // Text providers are tested by running their profile; only the video finder's provider has a test call here.
 // `of` names the sealed row that was tested, so a key saved again during the call does not take this key's outcome.
-export type KeyTestOutcome = { ok: boolean; code: string; of: string };
+// `models` (G6, C379): a text provider's model ids from the same request, or null when it gave none that could be read
+// (the picker then says the list is unavailable); absent for the video finder's key, which has no model list.
+export type KeyTestOutcome = { ok: boolean; code: string; of: string; models?: string[] | null };
 export type KeyTest = { ok: true; run: () => Promise<KeyTestOutcome> } | { ok: false; code: ChangeError };
 
 export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTest> {
@@ -312,7 +317,9 @@ export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTe
     run: async () => {
       // The outcome is its kind and status only: neither the key nor anything the vendor said is kept or returned.
       const r = connect ? await connect(apiKey, baseUrl).catch(() => ({ ok: false as const, failure: 'network' as const, status: undefined })) : await testYoutubeKey(apiKey);
-      return r.ok ? { ok: true, code: 'ok', of: row.ciphertext } : { ok: false, code: r.status ? `${r.failure}_${r.status}` : r.failure, of: row.ciphertext };
+      const listed = r.ok && 'models' in r && Array.isArray(r.models) ? (r.models as string[]) : null;
+      const models = connect ? listed : undefined;
+      return r.ok ? { ok: true, code: 'ok', of: row.ciphertext, models } : { ok: false, code: r.status ? `${r.failure}_${r.status}` : r.failure, of: row.ciphertext, models };
     },
   };
 }
@@ -324,6 +331,24 @@ export async function recordKeyTest(db: Sql, providerId: string, outcome: KeyTes
     outcome.code.slice(0, 40),
     outcome.of,
   ]);
+  await recordModelList(db, providerId, outcome.models);
+}
+
+// The provider's model ids for the pickers (G6, C379), kept from the latest key test or health probe. null: the fetch
+// failed or gave nothing readable (the list is emptied and marked unavailable); undefined: nothing to record.
+export async function recordModelList(db: Sql, providerId: string, models: string[] | null | undefined): Promise<void> {
+  if (models === undefined) return;
+  await db.query(
+    `insert into control.ai_model_lists (provider_id, models, ok) values ($1, $2::text[], $3)
+     on conflict (provider_id) do update set models = excluded.models, ok = excluded.ok, fetched_at = now()`,
+    [providerId, models ?? [], models !== null]
+  );
+}
+
+export type ModelList = { models: string[]; ok: boolean; fetchedAt: string };
+export async function loadModelLists(db: Sql): Promise<Record<string, ModelList>> {
+  const { rows } = await db.query(`select provider_id, models, ok, fetched_at from control.ai_model_lists`);
+  return Object.fromEntries(rows.map((r) => [String(r.provider_id), { models: (r.models as string[]) ?? [], ok: r.ok === true, fetchedAt: iso(r.fetched_at) as string }]));
 }
 
 // ---- the founder's address for the OpenAI-compatible adapter (G1, C369) ---------------------------------------------
