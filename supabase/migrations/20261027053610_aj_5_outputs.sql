@@ -65,7 +65,7 @@ language sql stable security definer set search_path = '' as $$
      and x.reopened_at is null
      and x.class_id = any (public.guardian_class_ids())
 $$;
-revoke all on function public.guardian_exam_outputs() from public;
+revoke all on function public.guardian_exam_outputs() from public, anon, authenticated, service_role, nca_super;
 grant execute on function public.guardian_exam_outputs() to app_user;
 
 -- ---- 2. the register learns merit and participation ----------------------------------------------------------------------
