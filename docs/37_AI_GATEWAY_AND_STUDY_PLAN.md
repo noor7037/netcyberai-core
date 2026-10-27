@@ -61,8 +61,8 @@ live spoken-English tutor. All of it polished, measured, with no fake success an
 7. **One block schema.** The content-layer directive's separate `LessonContent` type is not built; chapters use the
    existing typed blocks (`src/lib/family/blocks.ts`) extended with `tts_read_aloud` and a stable block id. One schema,
    one renderer, one cache.
-8. **The child-mode header's Parent button** (C230-Y, put there for the founder's phone) is not removed until the
-   founder answers (directive assumption A1). The notifications centre and hub entries are added beside it.
+8. **The child-mode header's Parent button moves** under Profile as "Parent space", still behind the PIN (founder,
+   C230-AO); the notifications centre and the hub entries take its place, and C230-Y's safe-area strip stays. Slice H1.
 9. **No scraping, no textbook prose.** Showcase chapters are NetCyber-authored; school and parent syllabi arrive through
    the content studio with a human review before publication.
 
@@ -117,4 +117,6 @@ and 1440 for UI; one Opus security review per wave for the slices marked (S). Mo
 - **Cost.** No per-child cost is known until the ledger (G2) and the Lab (G4) measure it. Nothing is promised before.
 - **Weight.** The reader, narration and visuals must stay under the family app's first-load budget; everything heavy is
   lazy-loaded or it does not ship.
-- **Lost work.** Whatever was built in the other workspace is rebuilt here unless that workspace pushes a branch first.
+- **Lost work.** The other workspace is gone (C230-AO); Wave 1 rebuilds the gateway code here.
+- **Gemini first.** The founder will try Gemini for children's words. Under its terms as read on 2026-10-22 that is a
+  paid-tier key, synthetic personas only, until Google confirms in writing or another provider is chosen (C230-AO).
