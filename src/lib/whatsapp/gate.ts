@@ -2,7 +2,9 @@ import { randomUUID } from 'crypto';
 import { openSealedParams } from './sealed-params';
 import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
-import { missingVariables, placeholderOrder, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
+import { hasDocumentHeader, missingVariables, placeholderOrder, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
+import { BUSY_WAIT_MS, DOCUMENT_PARAM, documentIdOf, documentSent, documentsGone, documentUploaded, readDocument, releaseDocument, takeDocument, type DocumentTake } from '@/lib/whatsapp/documents';
+import type { DirectUploadStorage } from '@/lib/storage/file-storage';
 import { resolveProvider } from '@/lib/whatsapp/config';
 import { COUNTED_AGAINST_LIMIT, RATE_NOT_VERIFIED } from '@/lib/whatsapp/cost';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
@@ -405,6 +407,12 @@ export async function sendWhatsAppMessage(client: PoolClient, params: SendWhatsA
   const r = await prepare(client, params, options);
   if ('wait' in r || 'passed' in r) throw new Error('unreachable: only a queued message waits');
   if (!('ready' in r)) return r;
+  // A message that carries a document (C366) goes through the outbox only, where its file is given to the provider.
+  if (hasDocumentHeader(params.templateName)) {
+    const reason = 'a message with a document is sent through the outbox only';
+    const logId = await logAttempt(client, params, comm_status_failed, reason, LOGGED(r));
+    return { logId, status: comm_status_failed, reason, idempotent: false, providerUsed: r.providerUsed };
+  }
   // 7. Send, then log the real outcome -- sent or failed, never silent.
   try {
     const result = await r.provider.send(SEND_ARGS(params, r));
@@ -525,16 +533,43 @@ export async function whatsappIsLive(db: Pick<PoolClient, 'query'>, schoolId: st
 
 type Platform = <T>(fn: (db: PoolClient) => Promise<T>) => Promise<T>;
 export type DeliverOutcome = { status: CommStatus | 'gone'; retryAt?: Date; reason?: string | null };
+// Where a message's document is kept until it is sent (C366): the one storage module. Without it no document goes.
+type DocumentStore = Pick<DirectUploadStorage, 'get' | 'remove'>;
+type DeliverDeps = { platform: Platform; queue: QueueLike; now?: () => Date; provider?: WhatsAppProviderSPI; storage?: DocumentStore };
+// The log keeps which copy a message carried (its id), with the values that were sent.
+const loggedWith = (r: Ready, doc: DocumentTake | null) => (doc?.pdfId ? { ...LOGGED(r), filled: { ...r.said.filled, [DOCUMENT_PARAM]: doc.pdfId } } : LOGGED(r));
+
+// The message's document, given to the provider now if it was not before (C366). Called after every rule passed and
+// the message was marked as being sent, outside any transaction. The media id is recorded at once, so a retry, or the
+// child's other guardian, never gives the same file twice. Not given: the claim ends, and the send counts as failed
+// (tried again later, as any failed send).
+async function giveDocument(deps: DeliverDeps, schoolId: string, provider: WhatsAppProviderSPI, testSchool: boolean, doc: Extract<DocumentTake, { state: 'ready' | 'upload' }>): Promise<{ mediaId: string; filename: string } | { error: string }> {
+  if (doc.state === 'ready') return { mediaId: doc.mediaId, filename: doc.filename };
+  const release = (error: string) => deps.platform((db) => releaseDocument(db, schoolId, doc.pdfId)).then(() => ({ error }));
+  const bytes = deps.storage ? await readDocument(deps.storage, doc.storageKey, doc.sha256) : null;
+  if (!bytes) return release('the PDF could not be read from the store');
+  if (!provider.uploadMedia) return release('this provider cannot send a document');
+  let up: Awaited<ReturnType<NonNullable<WhatsAppProviderSPI['uploadMedia']>>>;
+  try {
+    up = await provider.uploadMedia({ bytes, mimeType: 'application/pdf', filename: doc.filename, testSchool });
+  } catch (err) {
+    up = { ok: false, message: err instanceof Error ? err.message : 'unknown provider error' };
+  }
+  if (!up.ok) return release(up.message);
+  const mediaId = up.mediaId;
+  await deps.platform((db) => documentUploaded(db, schoolId, doc.pdfId, mediaId));
+  return { mediaId, filename: doc.filename };
+}
 
 // One queued message, by the job runner, as the platform role.
-export async function deliverQueued(deps: { platform: Platform; queue: QueueLike; now?: () => Date; provider?: WhatsAppProviderSPI }, logId: string): Promise<DeliverOutcome> {
+export async function deliverQueued(deps: DeliverDeps, logId: string): Promise<DeliverOutcome> {
   const now = (deps.now ?? (() => new Date()))();
   const later = async (db: PoolClient, schoolId: string, at: Date, attempts: number) => {
     await db.query(`update communication_log set not_before = $2, sending_at = null where log_id = $1 and status = 'queued'`, [logId, at.toISOString()]);
     await deps.queue.enqueue(db, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, at.getTime()), schoolId, maxAttempts: 3, payload: { logId, attempt: attempts }, runAt: at });
   };
   // 1. Decide, and mark it as being sent. Committed before the provider is asked.
-  const first = await deps.platform(async (db): Promise<{ done: DeliverOutcome } | { params: SendWhatsAppMessageParams; ready: Ready; attempts: number; schoolId: string; text?: string }> => {
+  const first = await deps.platform(async (db): Promise<{ done: DeliverOutcome } | { params: SendWhatsAppMessageParams; ready: Ready; attempts: number; schoolId: string; text?: string; doc?: DocumentTake | null }> => {
     const row = (await db.query(`select school_id, student_id, parent_id, purpose, to_phone, template_name, language, template_params, dedupe_key, status::text as status, created_at, attempts, sending_at, not_before, thread_id, body from communication_log where log_id = $1 for update`, [logId])).rows[0];
     if (!row || row.status !== 'queued') return { done: { status: (row?.status ?? 'gone') as CommStatus | 'gone' } };
     if (row.not_before && new Date(row.not_before).getTime() > now.getTime()) return { done: { status: 'queued' as const, retryAt: new Date(row.not_before) } }; // an earlier job for a message since put off
@@ -576,23 +611,47 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
       await logAttempt(db, params, comm_status_failed, reason, LOGGED(r));
       return { done: { status: comm_status_failed, reason } };
     }
+    // A message that carries a document (C366): every rule has passed, so its copy is taken now: given before (sent
+    // again by its media id), claimed to be given by this send, being given by another send (this one waits a
+    // little), or not to go at all (nothing is given, and the message fails, saying so).
+    let doc: DocumentTake | null = null;
+    if (hasDocumentHeader(params.templateName)) {
+      doc = await takeDocument(db, row.school_id, row.student_id, documentIdOf(params.templateParams));
+      if (doc.state === 'busy') {
+        const at = new Date(now.getTime() + BUSY_WAIT_MS);
+        await later(db, row.school_id, at, row.attempts);
+        return { done: { status: 'queued' as const, retryAt: at } };
+      }
+      if (doc.state === 'gone') {
+        const reason = 'the checked papers’ PDF is not kept any more, or its result is no longer one the family may see; nothing was sent';
+        await logAttempt(db, params, comm_status_failed, reason, loggedWith(r, doc));
+        return { done: { status: comm_status_failed, reason } };
+      }
+    }
     // Which provider is about to be asked is written with "sending": if the send is interrupted, a later notice
     // from that provider can still find the message.
     await db.query(`update communication_log set sending_at = $2, attempts = attempts + 1, provider = $3 where log_id = $1`, [logId, now.toISOString(), r.provider.name]);
-    return { params, ready: r, attempts: row.attempts + 1, schoolId: row.school_id as string };
+    return { params, ready: r, attempts: row.attempts + 1, schoolId: row.school_id as string, doc };
   });
   if ('done' in first) return first.done;
 
-  // 2. Ask the provider. No transaction is open.
+  // 2. Ask the provider. No transaction is open. A message with a document gives its file first (C366).
   let result: { success: boolean; providerMessageId: string | null; errorMessage: string | null };
+  const doc = first.doc && first.doc.state !== 'busy' && first.doc.state !== 'gone' ? first.doc : null;
   try {
-    result = first.text !== undefined ? await first.ready.provider.sendText({ toPhone: first.params.toPhone, text: first.text, testSchool: first.ready.testSchool }) : await first.ready.provider.send(SEND_ARGS(first.params, first.ready));
+    if (first.text !== undefined) result = await first.ready.provider.sendText({ toPhone: first.params.toPhone, text: first.text, testSchool: first.ready.testSchool });
+    else if (doc) {
+      const given = await giveDocument(deps, first.schoolId, first.ready.provider, first.ready.testSchool, doc);
+      result = 'error' in given ? { success: false, providerMessageId: null, errorMessage: given.error } : await first.ready.provider.send({ ...SEND_ARGS(first.params, first.ready), document: given });
+    } else result = await first.ready.provider.send(SEND_ARGS(first.params, first.ready));
   } catch (err) {
     result = { success: false, providerMessageId: null, errorMessage: err instanceof Error ? err.message : 'unknown provider error' };
   }
 
-  // 3. Record what happened; on a failure, try again later, a few times.
-  return deps.platform(async (db): Promise<DeliverOutcome> => {
+  // 3. Record what happened; on a failure, try again later, a few times. A sent message's document is recorded sent,
+  // and its file deleted right after (the hourly sweep deletes it if that does not work now).
+  let sentFile: string | null = null;
+  const outcome = await deps.platform(async (db): Promise<DeliverOutcome> => {
     if (first.text !== undefined) {
       // A reply inside the parent's own conversation costs nothing; it is sent once, or said to have failed.
       await db.query(`update communication_log set status = $2::comm_status, provider_message_id = $3, provider = $4, provider_used = 'platform_default', reason = $5, sending_at = null where log_id = $1 and status = 'queued'`, [logId, result.success ? 'sent' : 'failed', result.providerMessageId, first.ready.provider.name, result.success ? null : result.errorMessage]);
@@ -600,7 +659,8 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
       return { status: result.success ? comm_status_sent : comm_status_failed, reason: result.success ? null : result.errorMessage };
     }
     if (result.success) {
-      await logAttempt(db, first.params, comm_status_sent, null, { ...LOGGED(first.ready), providerMessageId: result.providerMessageId });
+      await logAttempt(db, first.params, comm_status_sent, null, { ...loggedWith(first.ready, doc), providerMessageId: result.providerMessageId });
+      if (doc) sentFile = await documentSent(db, first.schoolId, doc.pdfId);
       return { status: comm_status_sent };
     }
     if (first.attempts < MAX_SEND_ATTEMPTS) {
@@ -608,9 +668,15 @@ export async function deliverQueued(deps: { platform: Platform; queue: QueueLike
       await later(db, first.schoolId, at, first.attempts);
       return { status: 'queued' as const, retryAt: at, reason: result.errorMessage };
     }
-    await logAttempt(db, first.params, comm_status_failed, result.errorMessage, LOGGED(first.ready));
+    await logAttempt(db, first.params, comm_status_failed, result.errorMessage, loggedWith(first.ready, doc));
     return { status: comm_status_failed, reason: result.errorMessage };
   });
+  if (sentFile && doc && deps.storage) {
+    const key = sentFile;
+    const deleted = await deps.storage.remove(key).then(() => true, () => false);
+    if (deleted) await deps.platform((db) => documentsGone(db, [doc.pdfId])).catch(() => undefined);
+  }
+  return outcome;
 }
 
 // "Which school is this about?" (C190): asked once, by the platform, of a parent whose number several schools
@@ -653,7 +719,7 @@ export async function dropHeld(deps: { platform: Platform; now?: () => Date }, h
 
 // The job: one queued message, or one held message to ask about or to drop. Whatever the rules decide is an
 // outcome, not an error; the job itself only fails (and is retried by the queue) when the database or the code does.
-export function whatsappSendHandler(deps: { platform: Platform; queue: QueueLike; now?: () => Date; provider?: WhatsAppProviderSPI }) {
+export function whatsappSendHandler(deps: DeliverDeps) {
   const uuid = (v: unknown): v is string => typeof v === 'string' && /^[0-9a-f-]{36}$/.test(v);
   return async (job: { payload: Record<string, unknown> }): Promise<void> => {
     if (uuid(job.payload.askHeld)) return void (await askWhichSchool(deps, job.payload.askHeld));

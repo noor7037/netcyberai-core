@@ -265,6 +265,22 @@ const APP_USER: Record<string, string> = {
   exam_outputs: 'INSERT,SELECT', // "publish and notify" made for a publication: one row, never changed or removed (C230-AJ part 5)
   exam_certificates: 'INSERT,SELECT', // a merit or participation certificate linked to its publication and child; never changed or removed
   // aj-5 end
+  // aq-3 begin
+  bubble_sheets: 'INSERT,SELECT,UPDATE', // printed by whoever may mark the paper; never deleted (a number is never reused)
+  bubble_reads: 'INSERT,SELECT,UPDATE', // what a sheet read, kept as read; whose it is changed by a person
+  // aq-3 end
+  // aq-5 begin
+  result_pdfs: 'INSERT,SELECT', // a child's checked papers as a PDF, kept until sent (C366): made by the office, never changed or removed
+  // aq-5 end
+  // aq-4 begin
+  online_tests: 'DELETE,INSERT,SELECT,UPDATE', // an online test (C365): set, opened and closed by whoever may mark the paper
+  online_attempts: 'SELECT', // written by the guardian's functions and the sweep only; UPDATE of state, voided_*, sheet_id is a column grant
+  online_answers: 'SELECT', // a child's answers: written by the guardian's functions only
+  // aq-4 end
+  // aq-2 begin
+  question_bank: 'DELETE,INSERT,SELECT,UPDATE', // the school's questions (C363): only a draft is removed (row level security)
+  paper_generations: 'INSERT,SELECT,UPDATE', // one making of a paper's questions (C362): asked, moved on by its job, never removed
+  // aq-2 end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -442,6 +458,22 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   exam_outputs: '', // a school's own record: a guardian reads it only through guardian_exam_outputs()
   exam_certificates: '',
   // aj-5 end
+  // aq-3 begin
+  bubble_sheets: '', // bubble sheets (C364): a school's own record, the platform role reads nothing here
+  bubble_reads: '',
+  // aq-3 end
+  // aq-5 begin
+  result_pdfs: '', // the send-gate and the sweep reach it only through its definer functions (C366)
+  // aq-5 end
+  // aq-4 begin
+  online_tests: '', // a school's online tests and a child's answers are its own: the sweep reads through its definer function
+  online_attempts: '',
+  online_answers: '',
+  // aq-4 end
+  // aq-2 begin
+  question_bank: '', // a school's own questions and papers: the platform role reads nothing here (C362, C363)
+  paper_generations: '',
+  // aq-2 end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

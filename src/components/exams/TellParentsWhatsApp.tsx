@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
-import type { MessageKey } from '@/lib/i18n';
+import { t as tIn, type MessageKey } from '@/lib/i18n';
+import { makeFittedCheckedPdf, pageFrom, type CheckedPdfInput } from '@/lib/marking/checked-pdf';
 import type { TellParents } from '@/lib/marking/result-send';
 import { momentWords } from './exam-format';
 import { SECTION, TAP } from './SchemeParts';
@@ -18,6 +19,14 @@ import { SECTION, TAP } from './SchemeParts';
 // mode "outputs" (C230-AJ part 5, "publish and notify"): the same previewed send, as one action that also makes the class's
 // report cards and progress reports and shows the progress report in the Family app (src/lib/exams/publish-outputs.ts). The
 // messages, the preview and the guardians' rules are exactly these. Nothing here changes who approves or publishes.
+//
+// The checked answer sheets as a PDF (C366): at Send, before the messages are queued, this browser makes the PDF of
+// each child the preview marks 'make' (src/lib/marking/checked-pdf.ts, from the child's checked papers and page pictures
+// read through the app's own routes, in the family's language) and hands it in to be kept until it is sent. The
+// progress is said as it goes. A child whose PDF could not be made gets the link only, and the note says how many.
+
+// The pictures of the checked pages, through the office's own route, which checks who asks every time.
+const officePage = pageFrom((pageId) => `/api/app/marking/pages/${pageId}`);
 
 const END_REASONS = ['lost', 'forwarded', 'other'] as const;
 type EndReason = (typeof END_REASONS)[number];
@@ -36,7 +45,21 @@ export function TellParentsWhatsApp({ examId, classId, mode = 'tell' }: { examId
   const [note, setNote] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null);
   // The child whose link is being ended, and why.
   const [ending, setEnding] = useState<{ studentId: string; why: EndReason | null } | null>(null);
+  // The PDFs being made at Send (C366), and how many could not be made.
+  const [making, setMaking] = useState<{ done: number; total: number } | null>(null);
+  const [pdfFailed, setPdfFailed] = useState(0);
   const url = `/api/app/exams/${examId}/classes/${classId}/tell-parents`;
+
+  // One child's PDF: read, drawn here, handed in. False when any step did not work (the child gets the link only).
+  const keepPdf = async (studentId: string): Promise<boolean> => {
+    const res = await fetch(`${url}/pdf?studentId=${encodeURIComponent(studentId)}`, { cache: 'no-store' }).catch(() => null);
+    const input = res?.ok ? ((await res.json().catch(() => null)) as CheckedPdfInput | null) : null;
+    if (!input) return false;
+    const made = await makeFittedCheckedPdf(input, (key, params) => tIn(input.lang, key, params), officePage).catch(() => null);
+    if (!made) return false;
+    const kept = await fetch(`${url}/pdf?studentId=${encodeURIComponent(studentId)}`, { method: 'POST', headers: { 'content-type': 'application/pdf' }, body: made.blob }).catch(() => null);
+    return Boolean(kept?.ok);
+  };
 
   const load = useCallback(async () => {
     setState('loading');
@@ -64,6 +87,16 @@ export function TellParentsWhatsApp({ examId, classId, mode = 'tell' }: { examId
   const send = async () => {
     setBusy(true);
     setNote(null);
+    setPdfFailed(0);
+    // First the PDFs of the children who will get one, one child at a time.
+    const toMake = data?.pdf.on ? data.children.filter((c) => !c.sent && c.pdf === 'make' && c.guardians.some((g) => g.will)) : [];
+    let failed = 0;
+    for (let i = 0; i < toMake.length; i++) {
+      setMaking({ done: i, total: toMake.length });
+      if (!(await keepPdf(toMake[i].studentId))) failed += 1;
+    }
+    setMaking(null);
+    setPdfFailed(failed);
     const res = await fetch(outputs ? outputsUrl : url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }).catch(() => null);
     const body = res?.ok ? ((await res.json().catch(() => null)) as { queued: number; first?: boolean } | null) : null;
     setBusy(false);
@@ -101,6 +134,11 @@ export function TellParentsWhatsApp({ examId, classId, mode = 'tell' }: { examId
           {t('ex.tell.summary', { will: data.will, wont: data.wont, sent: data.sent })}
         </p>
       )}
+      {open && data && (
+        <p data-tell-pdf={data.pdf.on ? 'on' : (data.pdf.why ?? 'off')} className="text-sm">
+          {data.pdf.on ? t('ex.pdf.lead') : data.pdf.why ? t(`ex.pdf.why.${data.pdf.why}` as MessageKey) : null}
+        </p>
+      )}
       <div className="flex flex-wrap gap-2">
         <button type="button" className={TAP} aria-expanded={open} aria-controls="tell-parents-list" disabled={state === 'loading'} onClick={() => void toggle()} data-tell-preview>
           {open ? t('ex.tell.hide') : t('ex.tell.preview')}
@@ -117,6 +155,19 @@ export function TellParentsWhatsApp({ examId, classId, mode = 'tell' }: { examId
         </p>
       )}
       {open && data && data.will === 0 && <p>{data.sent > 0 ? t('ex.tell.nothing') : t('ex.tell.none')}</p>}
+      {making && (
+        <div role="status" aria-live="polite" data-pdf-making className="flex flex-col gap-1 rounded-md bg-off-white px-3 py-2">
+          <p className="font-semibold">{t('ex.pdf.making', { done: making.done, total: making.total })}</p>
+          <div className="h-2 w-full overflow-hidden rounded-full bg-white" aria-hidden="true">
+            <div className="h-full bg-royal" style={{ width: `${Math.round((making.done / Math.max(1, making.total)) * 100)}%` }} />
+          </div>
+        </div>
+      )}
+      {pdfFailed > 0 && !making && (
+        <p role="alert" data-pdf-failed className="rounded-md bg-off-white px-3 py-2 font-semibold">
+          {t('ex.pdf.failed', { n: pdfFailed })}
+        </p>
+      )}
       {note && (
         <p role={note.kind === 'error' ? 'alert' : 'status'} className="rounded-md bg-off-white px-3 py-2 font-semibold">
           {note.text}
@@ -131,6 +182,11 @@ export function TellParentsWhatsApp({ examId, classId, mode = 'tell' }: { examId
                 {c.sent ? ` · ${t('ex.tell.alreadySent')}` : ''}
               </p>
               {c.ended > 0 && <p data-tell-ended className="text-sm">{t('ex.tell.endedBefore', { n: c.ended })}</p>}
+              {c.pdf && (
+                <p data-tell-child-pdf={c.pdf} className="text-sm">
+                  {t(`ex.pdf.child.${c.pdf}` as MessageKey)}
+                </p>
+              )}
               {c.guardians.length === 0 ? (
                 <p>{t('ex.tell.noGuardian')}</p>
               ) : (

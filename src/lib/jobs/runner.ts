@@ -27,7 +27,10 @@ export const KICK_BUDGET_MS = 8_000;
 // by 45 + 240 = 285 s. The lease (LEASE_SECONDS, 300 s from its claim) outlives them. Runs overlap (the sweeper is called
 // every minute), so a class of forty is marked in about ten minutes. A request's kick never starts one: the request
 // would wait minutes for it.
-export const LONG_JOB_TYPES: readonly string[] = ['marking.read', 'marking.mark'];
+// An online test's script (online.mark, AQ-4) waits for the same marking AI on the child's typed answers.
+// papers.make (AQ-2, C362) is one too: it waits for the AI writing a paper's questions, in at most two rounds of its
+// profile's time, and ends within LONG_JOB_MAX_MS (src/lib/papers/make.ts).
+export const LONG_JOB_TYPES: readonly string[] = ['marking.read', 'marking.mark', 'papers.make', 'online.mark'];
 export const LONG_JOB_START_MS = 45_000;
 export const LONG_JOB_MAX_MS = 240_000;
 export const LONG_JOBS_AT_ONCE = 4;

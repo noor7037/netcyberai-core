@@ -1,7 +1,9 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { BubbleScanScreen } from '@/components/bubbles/BubbleScanScreen';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { numberWords } from '@/components/exams/exam-format';
 import { PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
@@ -61,7 +63,14 @@ async function encodeGray(gray: ArrayBuffer, width: number, height: number): Pro
   return blob;
 }
 
+// The scan screen's two modes: answer books child by child (C230-AJ), or bubble sheets one after another (C364), chosen
+// by the address (`?sheets=bubble`, the bubble panel's link).
 export function ScanScreen({ paperId, owner }: { paperId: string; owner: string }) {
+  const bubble = useSearchParams()?.get('sheets') === 'bubble';
+  return bubble ? <BubbleScanScreen paperId={paperId} /> : <BookScanScreen paperId={paperId} owner={owner} />;
+}
+
+function BookScanScreen({ paperId, owner }: { paperId: string; owner: string }) {
   const { t, lang } = useT();
   const [overview, setOverview] = useState<MarkingOverview | null>(null);
   const [failed, setFailed] = useState(false);

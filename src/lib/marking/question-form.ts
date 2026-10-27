@@ -1,4 +1,5 @@
-import { MAX_QUESTIONS, QUESTION_KINDS, type MarkingQuestion, type QuestionKind, type SaveSetupInput, type StructureProblem } from '@/lib/contracts/marking';
+import { MAX_QUESTIONS, QUESTION_KINDS, SECTION_PATTERN, type CorrectAnswer, type Difficulty, type MarkingQuestion, type QuestionKind, type QuestionOption, type SaveSetupInput, type StructureProblem } from '@/lib/contracts/marking';
+import { cleanCorrect, cleanOptions } from './answers';
 import { structureProblems } from './rollup';
 
 // The questions editor's side (C347): a question as the teacher types it (every number is text until it is sent), the
@@ -18,6 +19,12 @@ export type QuestionForm = {
   prompt: string;
   answerKey: string;
   steps: StepForm[];
+  // A choice question's options and the correct answer rules mark by (docs/36, C361), its difficulty and printed
+  // section: kept as they are by a screen that does not edit them.
+  options: QuestionOption[];
+  correct: CorrectAnswer | null;
+  difficulty: Difficulty | null;
+  section: string;
 };
 
 export const LABEL_PATTERN = /^[0-9A-Za-z][0-9A-Za-z().-]{0,11}$/;
@@ -46,6 +53,10 @@ export function formFromQuestion(q: MarkingQuestion): QuestionForm {
     prompt: q.prompt,
     answerKey: q.answerKey,
     steps: q.steps.map((s) => ({ step: s.step, marks: text(s.marks) })),
+    options: q.options.map((o) => ({ ...o })),
+    correct: q.correct,
+    difficulty: q.difficulty,
+    section: q.section ?? '',
   };
 }
 
@@ -71,6 +82,10 @@ export function newQuestion(forms: readonly QuestionForm[], parts: readonly stri
     prompt: '',
     answerKey: '',
     steps: [],
+    options: [],
+    correct: null,
+    difficulty: null,
+    section: prev?.section ?? '',
   };
 }
 
@@ -87,7 +102,7 @@ export function groupsOf(forms: readonly QuestionForm[]): string[] {
 }
 
 // Which field of which question is wrong (the first one), as the server would say it.
-export type FormProblem = { at: number; field: 'label' | 'component' | 'maxMarks' | 'choiceGroup' | 'kind' | 'prompt' | 'answerKey' | 'steps' | 'twice' } | { at: -1; field: 'too_many' | 'group_count' };
+export type FormProblem = { at: number; field: 'label' | 'component' | 'maxMarks' | 'choiceGroup' | 'kind' | 'prompt' | 'answerKey' | 'steps' | 'twice' | 'options' | 'correct' | 'section' } | { at: -1; field: 'too_many' | 'group_count' };
 
 export function firstProblem(forms: readonly QuestionForm[], parts: readonly string[], counts: Readonly<Record<string, string>>): FormProblem | null {
   if (forms.length > MAX_QUESTIONS) return { at: -1, field: 'too_many' };
@@ -114,6 +129,10 @@ export function firstProblem(forms: readonly QuestionForm[], parts: readonly str
       given += marks;
     }
     if (given > max + 1e-9) return { at: i, field: 'steps' };
+    const options = cleanOptions(f.options, f.kind);
+    if (!options.ok) return { at: i, field: 'options' };
+    if (!cleanCorrect(f.correct, f.kind, options.options).ok) return { at: i, field: 'correct' };
+    if (f.section.trim() && !SECTION_PATTERN.test(f.section.trim().toUpperCase())) return { at: i, field: 'section' };
   }
   for (const g of groupsOf(forms)) {
     const n = toNumber(counts[g] ?? '');
@@ -139,10 +158,10 @@ export function partsWithoutQuestions(forms: readonly QuestionForm[], components
   return components.filter((c) => !forms.some((f) => f.component === c.key));
 }
 
-export function toSaveBody(forms: readonly QuestionForm[], counts: Readonly<Record<string, string>>, setup: { language: SaveSetupInput['setup']['language']; guidance: string }): SaveSetupInput {
+export function toSaveBody(forms: readonly QuestionForm[], counts: Readonly<Record<string, string>>, setup: { language: SaveSetupInput['setup']['language']; guidance: string; wrongMarks?: number }): SaveSetupInput {
   const groups = groupsOf(forms);
   return {
-    setup: { language: setup.language, guidance: setup.guidance, choiceCounts: Object.fromEntries(groups.map((g) => [g, toNumber(counts[g] ?? '')])) },
+    setup: { language: setup.language, guidance: setup.guidance, choiceCounts: Object.fromEntries(groups.map((g) => [g, toNumber(counts[g] ?? '')])), ...(setup.wrongMarks === undefined ? {} : { wrongMarks: setup.wrongMarks }) },
     questions: forms.map((f, i) => ({
       position: i + 1,
       label: f.label.trim(),
@@ -154,6 +173,10 @@ export function toSaveBody(forms: readonly QuestionForm[], counts: Readonly<Reco
       prompt: f.prompt.trim(),
       answerKey: f.answerKey.trim(),
       steps: f.steps.map((s) => ({ step: s.step.trim(), marks: toNumber(s.marks) })),
+      options: f.options.map((o) => ({ key: o.key, text: o.text.trim() })),
+      correct: f.correct,
+      difficulty: f.difficulty,
+      section: f.section.trim().toUpperCase() || null,
     })),
   };
 }
@@ -162,7 +185,7 @@ export function toSaveBody(forms: readonly QuestionForm[], counts: Readonly<Reco
 export function sameAsSaved(forms: readonly QuestionForm[], counts: Readonly<Record<string, string>>, saved: { questions: readonly MarkingQuestion[]; choiceCounts: Readonly<Record<string, number>> }, setup: { language: string; guidance: string }, savedSetup: { language: string; guidance: string }): boolean {
   if (setup.language !== savedSetup.language || setup.guidance.trim() !== savedSetup.guidance.trim()) return false;
   if (forms.length !== saved.questions.length) return false;
-  const a = JSON.stringify(forms.map(({ key: _key, ...rest }) => ({ ...rest, label: rest.label.trim(), prompt: rest.prompt.trim(), answerKey: rest.answerKey.trim(), choiceGroup: rest.choiceGroup.trim().toUpperCase() })));
+  const a = JSON.stringify(forms.map(({ key: _key, ...rest }) => ({ ...rest, label: rest.label.trim(), prompt: rest.prompt.trim(), answerKey: rest.answerKey.trim(), choiceGroup: rest.choiceGroup.trim().toUpperCase(), section: rest.section.trim().toUpperCase(), options: rest.options.map((o) => ({ key: o.key, text: o.text.trim() })) })));
   const b = JSON.stringify(saved.questions.map((q) => {
     const { key: _key, ...rest } = formFromQuestion(q);
     return rest;

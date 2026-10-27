@@ -7,16 +7,19 @@ import { dayWords, numberWords } from '@/components/exams/exam-format';
 import { SECTION, TAP } from '@/components/exams/SchemeParts';
 import { Badge } from '@/components/ui/Badge';
 import { Icon } from '@/components/visual/Icons';
-import type { MarkingOverview, SetupScreen } from '@/lib/contracts/marking';
+import { BubblePanel } from '@/components/bubbles/BubblePanel';
+import type { BubbleScreen, MarkingOverview, SetupScreen } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
 import { inProgress, picturesNote } from '@/lib/marking/review-view';
 import { indiaDate } from '@/lib/time/india';
+import { OnlineTestPanel } from '@/components/online/OnlineTestPanel';
 import { ExceptionsList } from './ExceptionsList';
 import { ProgressPanel } from './ProgressPanel';
 import { problemWords, QuestionsEditor } from './QuestionsEditor';
 import { ReviewList } from './ReviewList';
 import { ScriptsUploader } from './ScriptsUploader';
 import { ask } from './parts';
+import { PaperMaker } from '@/components/papers/PaperMaker';
 
 // A paper's AI marking, in four steps on one screen (docs/35, C347): 1 the questions, 2 the class's scripts, 3 how far
 // marking has come, 4 the review list. It says in plain words when AI marking is off and why. While anything is being
@@ -52,6 +55,10 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
   const [failed, setFailed] = useState(false);
   const [denied, setDenied] = useState(false);
   const [editing, setEditing] = useState<boolean | null>(null);
+  // The paper's bubble sheets (C364), as the bubble panel last read them; it reads them again when the questions change.
+  const [bubbles, setBubbles] = useState<BubbleScreen | null>(null);
+  // The questions changed on the server while the editor is open (a question replaced, questions picked from the bank).
+  const [stamp, setStamp] = useState(0);
   const seen = useRef(false);
 
   const loadOverview = useCallback(async () => {
@@ -145,9 +152,11 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
         tip={<InfoTip>{t('mk.step.questionsHow')}</InfoTip>}
         status={noQuestions ? <Badge variant="warning">{t('mk.step.todo')}</Badge> : overview.ready ? <Badge variant="success">{t('mk.step.ready')}</Badge> : <Badge variant="warning">{t('mk.step.fix')}</Badge>}
       >
+        {/* AQ-2 (C362, C363): make the paper from what was taught, keep it, print it. */}
+        <PaperMaker paperId={paperId} refresh={setup} onChanged={reload} />
         {showEditor ? (
           <QuestionsEditor
-            key={questions.map((q) => q.questionId).join(',') + String(setup.locked)}
+            key={questions.map((q) => q.questionId).join(',') + String(setup.locked) + `:${stamp}`}
             paperId={paperId}
             screen={setup}
             onSaved={(next) => {
@@ -156,6 +165,12 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
               void loadOverview();
             }}
             onClose={() => setEditing(false)}
+            onReplaced={(next) => {
+              setSetup(next);
+              setStamp((n) => n + 1);
+              void loadOverview();
+            }}
+            onAsked={() => void reload()}
           />
         ) : (
           <div className="flex flex-col gap-2">
@@ -187,7 +202,10 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
       </Step>
 
       <Step n={2} id="scripts" title={t('mk.step.scripts')} tip={<InfoTip>{t('mk.step.scriptsHow')}</InfoTip>}>
-        <ScriptsUploader paperId={paperId} overview={overview} mayUpload={mayUpload} why={whyNot} onChanged={() => void loadOverview()} />
+        <BubblePanel key={questions.map((q) => `${q.questionId}:${q.options.length}`).join(',')} paperId={paperId} onScreen={setBubbles} onChanged={() => void loadOverview()} />
+        {/* AQ-4 (C365): the paper sat online in the Family app; scripts of children who sat on paper are uploaded below. */}
+        <OnlineTestPanel paperId={paperId} onChanged={() => void loadOverview()} />
+        <ScriptsUploader paperId={paperId} overview={overview} mayUpload={mayUpload} why={whyNot} bubbles={bubbles} onChanged={() => void loadOverview()} />
       </Step>
 
       <Step

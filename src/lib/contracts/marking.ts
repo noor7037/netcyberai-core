@@ -5,6 +5,30 @@
 export const QUESTION_KINDS = ['objective', 'short', 'long', 'numerical', 'diagram'] as const;
 export type QuestionKind = (typeof QUESTION_KINDS)[number];
 
+// One question list for four ways of sitting (docs/36, C361). A choice question (objective, with options) and a
+// number question (numerical, with a value) whose correct answer is given are marked by rules on a bubble sheet and
+// online (src/lib/marking/answers.ts); every other question by the AI or the teacher.
+export const PAPER_SITTINGS = ['written', 'bubble', 'online'] as const; // an answer book; a bubble sheet for the choice questions and the book for the rest; the Family app
+export type PaperSitting = (typeof PAPER_SITTINGS)[number];
+export const SHEET_SOURCES = ['scan', 'bubble', 'online'] as const;
+export type SheetSource = (typeof SHEET_SOURCES)[number];
+export const UPLOAD_KINDS = ['scripts', 'bubble'] as const;
+export type UploadKind = (typeof UPLOAD_KINDS)[number];
+export const DIFFICULTIES = ['easy', 'medium', 'hard'] as const;
+export type Difficulty = (typeof DIFFICULTIES)[number];
+export const OPTION_KEYS = ['A', 'B', 'C', 'D', 'E', 'F'] as const;
+export type OptionKey = (typeof OPTION_KEYS)[number];
+export type QuestionOption = { key: OptionKey; text: string };
+// A choice question: the option keys that are right (one, or more when the question says "choose all"). A number
+// question: the value, and how far from it an answer may be and still be right.
+export type CorrectAnswer = { keys: OptionKey[] } | { value: number; tolerance: number };
+export const OPTIONS_MIN = 2;
+export const OPTIONS_MAX = 6;
+export const OPTION_TEXT_MAX = 500;
+export const SECTION_PATTERN = /^[A-H]$/;
+// The most a school may take off for a wrong choice answer (marking_setups.wrong_marks), one decimal place.
+export const WRONG_MARKS_MAX = 10;
+
 export const MARKING_LANGUAGES = ['en', 'hi', 'mixed'] as const;
 export type MarkingLanguage = (typeof MARKING_LANGUAGES)[number];
 
@@ -44,7 +68,8 @@ export type SheetState = (typeof SHEET_STATES)[number];
 export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child', 'not_answer_page', 'mismatch'] as const;
 export type SheetFlag = (typeof SHEET_FLAGS)[number];
 
-export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'none'] as const;
+// bubble: the bubble sheet's printed number named the child (C364); online: the child sat the test signed in (C365).
+export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'bubble', 'online', 'none'] as const;
 export type MatchedBy = (typeof MATCHED_BY)[number];
 
 // The plan's monthly limit of pages AI may read and mark for a school (C347), set in Control → Billing plans and held
@@ -88,9 +113,14 @@ export type MarkingQuestion = {
   prompt: string;
   answerKey: string;
   steps: MarkingStep[];
+  options: QuestionOption[]; // a choice question's options, A to F; none on any other kind
+  correct: CorrectAnswer | null; // given only where rules can mark it
+  difficulty: Difficulty | null;
+  section: string | null; // the printed paper's section, A to H
 };
 
-export type MarkingSetup = { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number> };
+// wrongMarks: taken off for a wrong choice or number answer that rules mark (C361); 0 for most school papers.
+export type MarkingSetup = { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number>; wrongMarks: number };
 
 // A paper's questions against its parts: each part's counted marks must equal its maximum before marking starts.
 export type StructureProblem =
@@ -250,8 +280,8 @@ export type SheetDetail = {
 
 // The API's request bodies (src/app/api/app/marking/**).
 export type SaveSetupInput = {
-  setup: { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number> };
-  questions: Omit<MarkingQuestion, 'questionId'>[];
+  setup: { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number>; wrongMarks?: number };
+  questions: (Omit<MarkingQuestion, 'questionId' | 'options' | 'correct' | 'difficulty' | 'section'> & Partial<Pick<MarkingQuestion, 'options' | 'correct' | 'difficulty' | 'section'>>)[];
 };
 export type SheetChangeInput = {
   questions?: { questionId: string; marks?: number | null; note?: string | null; errorType?: ErrorType | null }[];
@@ -278,3 +308,217 @@ export type ExamCandidates = {
   withdrawals: Withdrawal[];
   mayChange: boolean;
 };
+
+// ---- Bubble (OMR) sheets (docs/36 §1.2, C364; AQ-3) --------------------------------------------------------------------
+// A paper sat with a bubble sheet has its choice questions (objective, with options) on a printed sheet, one per
+// candidate, read in the teacher's browser by rules (src/lib/bubbles); the rest in the answer book. Rule marks fill the
+// AI's columns of marking_marks and are provisional: a person's approval writes marks.
+
+// What the browser read on one sheet, sent with its page (checked strictly on the server, src/lib/bubbles/reading.ts).
+export type BubbleReading = {
+  layout: string; // the answer grid's fingerprint the sheet was read against (src/lib/bubbles/layout.ts)
+  sheetNo: number | null; // the pre-shaded sheet number; null: not read (the check digit disagreed, or a smudge)
+  roll: string | null; // the roll number shaded on a blank sheet (digits); null: none
+  rollUnclear: boolean;
+  answers: Record<string, OptionKey[]>; // per question number: the options clearly filled (none: blank)
+  unclear: string[]; // questions with a bubble between empty and filled: no answer is read
+  multiple: string[]; // questions with two or more filled
+  confidence: number; // 0 to 1
+};
+
+// How a read sheet found its child: its printed number (bubble), the roll number shaded on a blank sheet (roll), a
+// person (teacher), or not yet (none).
+export type BubbleMatch = 'bubble' | 'roll' | 'teacher' | 'none';
+
+export type BubbleWaiting = {
+  readId: string;
+  pageId: string;
+  url: string | null; // null: the picture was deleted after the school's days
+  sheetNo: number | null;
+  rollNo: string | null;
+  offered: string[]; // children the sheet may be (its printed child, the roll shaded), student ids
+  why: 'identity' | 'two_scripts';
+  readAt: string;
+};
+
+export type BubbleScreen = {
+  paperId: string;
+  sitting: PaperSitting;
+  mayChange: boolean;
+  questions: { label: string; options: number }[]; // the questions on the sheet, in order
+  layoutKey: string | null;
+  onlyChoice: boolean; // every question is on the sheet: each read sheet is the child's script
+  problem: 'no_choice' | 'sheet_full' | 'questions' | null; // why sheets cannot be printed or read yet
+  wrongMarks: number;
+  printed: { candidates: number; blanks: number; replaced: number; lastAt: string | null };
+  sheets: { sheetNo: number; studentId: string | null }[]; // the sheets in use, for the scan screen to name the child
+  reads: { total: number; matched: number; flagged: number };
+  waiting: BubbleWaiting[]; // a mixed paper's read sheets that name no child yet, for a person to settle
+  candidates: RosterChild[]; // in roll order
+};
+
+// What printing gives the browser to draw (one page per sheet, the candidates in roll order, then the blank sheets).
+export type BubblePrint = {
+  school: string;
+  examName: string;
+  className: string;
+  subjectName: string;
+  date: string | null;
+  layoutKey: string;
+  questions: { label: string; options: number }[];
+  sheets: { sheetNo: number; child: { name: string; rollNo: string | null; seatNo: string | null } | null }[];
+};
+
+// One page of a bubble upload, as the server kept it.
+//   script     a paper of only choice questions: the read made the child's script (or one for the teacher to settle)
+//   filled     a mixed paper: the read filled the child's answer-book script's choice questions
+//   kept       a mixed paper: the child's answer-book script is not in yet; the read waits for it
+//   waiting    the sheet names no child yet (or is a second sheet of one child): a person settles it on the hub
+//   duplicate  the same picture was already on the paper
+export type BubblePageResult = {
+  fileNo: number;
+  pageNo: number;
+  pageId: string;
+  outcome: 'script' | 'filled' | 'kept' | 'waiting' | 'duplicate';
+  sheetNo: number | null;
+  child: { studentId: string; name: string; rollNo: string | null } | null;
+  flagged: boolean; // an unclear bubble, two marks, or a child to check
+};
+export type BubblePagesResult = { pages: BubblePageResult[] };
+
+// One question of a read sheet on the review screen, with its bubbles placed on the kept picture (percent of the page).
+export type BubbleQuestionView = {
+  questionId: string;
+  label: string;
+  keys: OptionKey[];
+  read: OptionKey[]; // filled
+  state: 'answer' | 'blank' | 'unclear' | 'multiple';
+  correct: OptionKey[] | null;
+  right: boolean | null; // null: not marked by rules (unclear, two marks, or no correct answer given)
+  row: { left: number; top: number; width: number; height: number } | null; // null: the questions changed since
+  bubbles: { key: OptionKey; left: number; top: number; size: number }[];
+};
+export type BubbleSheetView = {
+  readId: string;
+  pageId: string;
+  url: string | null;
+  width: number;
+  height: number;
+  sheetNo: number | null;
+  rollNo: string | null;
+  matchedBy: BubbleMatch;
+  confidence: number;
+  sameQuestions: boolean; // the sheet was read against today's questions (else the picture shows no bubble places)
+  applied: boolean; // its rule marks are on this script
+  questions: BubbleQuestionView[];
+  mayChange: boolean;
+};
+export type BubbleSheetDetail = { source: SheetSource; view: BubbleSheetView | null; pending: boolean };
+// ---- online tests (AQ-4, docs/36 §1.3, C365) ------------------------------------------------------------------------
+// A paper sat online is sat in the Family app's child mode: one attempt per child, every answer saved as it is given,
+// the time kept by the database, leaving the screen counted. The tables: migration ..._aq_4_online.sql. The rules:
+// src/lib/online. What was saved becomes a script of the paper (source 'online'), marked and approved as any script.
+
+export const ONLINE_MINUTES_MIN = 5;
+export const ONLINE_MINUTES_MAX = 300;
+export const ONLINE_TEXT_MAX = 4000; // a written answer, in characters
+export const ONLINE_WINDOW_DAYS_MAX = 31; // from opening to closing, at most
+
+export type OnlineAttemptState = 'open' | 'submitted' | 'timed_out' | 'voided';
+// A child's answer as saved: the option keys chosen, a number, or words. None: not answered.
+export type OnlineAnswer = { keys: OptionKey[] } | { value: number } | { text: string };
+// How a question is answered online: a choice of its options, a number (a number question rules can mark), or words.
+export type OnlineInput = 'choice' | 'number' | 'text';
+
+// The teacher's side. Times are ISO instants; the screen shows and takes them as India's date and time.
+export type OnlineTest = {
+  testId: string;
+  opensAt: string;
+  closesAt: string;
+  minutes: number;
+  shuffle: boolean;
+  openedAt: string | null;
+  openedBy: string | null; // the person's name
+  closedAt: string | null;
+  closedBy: string | null;
+};
+// One candidate's attempt, in roll order. No score, no rank: marks are seen only in the review, and by families at
+// publication.
+export type OnlineAttemptRow = {
+  student: RosterChild;
+  state: 'not_started' | OnlineAttemptState;
+  startedAt: string | null;
+  endedAt: string | null;
+  leftCount: number;
+  marked: boolean; // its script is made
+};
+export type OnlineTestScreen = {
+  paper: MarkingPaper;
+  sitting: PaperSitting;
+  test: OnlineTest | null;
+  ready: boolean; // the questions make up the paper
+  scripts: number; // live scripts of the paper of any kind (how it is sat is fixed once there is one)
+  attempts: OnlineAttemptRow[];
+  mayChange: boolean;
+  now: string; // the server's time
+};
+// The test's settings as the teacher sends them: India's date and time ("2026-10-28T10:00"), minutes, shuffle.
+export type OnlineTestInput = { opensAt: string; closesAt: string; minutes: number; shuffle: boolean };
+export type OnlineTestAction =
+  | { action: 'sitting'; sitting: 'online' | 'written' }
+  | ({ action: 'save' } & OnlineTestInput)
+  | { action: 'open' }
+  | { action: 'close' }
+  | { action: 'void'; studentId: string };
+
+// An online script's typed answers, for the review screen (in place of page pictures).
+export type OnlineScriptAnswers = {
+  sheetId: string;
+  startedAt: string;
+  endedAt: string | null;
+  state: OnlineAttemptState;
+  leftCount: number;
+  answers: { questionId: string; answer: OnlineAnswer | null; flagged: boolean; savedAt: string | null }[];
+};
+
+// The family's side (child mode). Never a correct answer, an answer key or a marking step.
+export type FamilyOnlineTestState = 'upcoming' | 'open' | 'in_progress' | 'done';
+export type FamilyOnlineTest = {
+  testId: string;
+  exam: string;
+  subject: string;
+  opensAt: string;
+  closesAt: string;
+  minutes: number;
+  questions: number;
+  state: FamilyOnlineTestState;
+  deadlineAt: string | null; // of the child's attempt being sat
+  serverNow: string;
+};
+export type FamilyOnlineQuestion = {
+  questionId: string;
+  n: number; // its place in this attempt's order, from 1
+  label: string;
+  section: string | null;
+  kind: QuestionKind;
+  input: OnlineInput;
+  prompt: string;
+  options: QuestionOption[]; // in this attempt's order
+  multi: boolean; // more than one option is to be chosen
+  maxMarks: number;
+  choiceGroup: string | null;
+  groupCount: number | null; // "answer any n" of the group
+  answer: OnlineAnswer | null;
+  flagged: boolean;
+  seq: number; // the save count kept with the answer
+};
+export type FamilyOnlineStartOutcome = 'started' | 'open' | 'done' | 'not_yet' | 'closed' | 'not_found';
+export type FamilyOnlineSitting = {
+  outcome: FamilyOnlineStartOutcome;
+  attemptId: string | null;
+  deadlineAt: string | null;
+  serverNow: string;
+  questions: FamilyOnlineQuestion[]; // empty unless the attempt is being sat
+};
+export type FamilyOnlineSaveResult = 'saved' | 'closed' | 'bad_answer' | 'not_found';
+export type FamilyOnlineSubmitResult = 'submitted' | 'timed_out' | 'done' | 'not_found';

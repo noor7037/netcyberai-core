@@ -4,7 +4,8 @@ import type { MarkingQuestion, StructureProblem } from '@/lib/contracts/marking'
 // the report link, so they never disagree.
 //   - A question's mark is the teacher's when they changed it, else the AI's.
 //   - Internal choice: of a group's questions, the best `count` count (choiceCounts), the rest are left out.
-//   - A part's score is the sum of its counted questions, to one decimal place, never above the part's maximum.
+//   - A part's score is the sum of its counted questions, to one decimal place, never above the part's maximum and
+//     never below 0 (a wrong choice answer may take marks off its question when the school says so, C361).
 // Rules only: nothing here calls a model.
 
 type Q = Pick<MarkingQuestion, 'questionId' | 'component' | 'maxMarks' | 'choiceGroup'>;
@@ -35,7 +36,7 @@ export function partTotals(parts: readonly Part[], questions: readonly Q[], mark
   return parts.map((p) => {
     let sum = 0;
     for (const q of questions) if (q.component === p.key && counted.has(q.questionId)) sum += marks.get(q.questionId) ?? 0;
-    return { component: p.key, score: Math.min(round1(sum), p.max), max: p.max };
+    return { component: p.key, score: Math.max(0, Math.min(round1(sum), p.max)), max: p.max };
   });
 }
 

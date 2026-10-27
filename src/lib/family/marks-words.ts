@@ -20,6 +20,10 @@ export const CHECKED_PAPER_KEYS: MessageKey[] = [
   'fam.marks.markOf', 'fam.marks.noMark', 'fam.marks.notCounted', 'fam.marks.strengths', 'fam.marks.improve', 'fam.marks.practice',
   'fam.marks.childStrengths', 'fam.marks.childImprove', 'fam.marks.childLead', 'fam.marks.backParent', 'fam.marks.backResults',
   ...Object.values(MISTAKE_KEYS),
+  // AQ-5 (C366): "Download as PDF" and the PDF's own words (CHECKED_PDF_WORD_KEYS of src/lib/marking/checked-pdf-shape.ts,
+  // which the family's code may not import; a test holds the two the same).
+  'fam.marks.pdf', 'fam.marks.pdfMaking', 'fam.marks.pdfFailed',
+  'mk.pdf.title', 'mk.pdf.child', 'mk.pdf.childNoRoll', 'mk.pdf.published', 'mk.pdf.colQuestion', 'mk.pdf.colMarks', 'mk.pdf.colTopic', 'mk.pdf.pagesFollow', 'mk.pdf.page', 'mk.pdf.footer',
 ];
 
 export const MY_RESULTS_KEYS: MessageKey[] = [
