@@ -168,11 +168,12 @@ export type SheetRow = {
   approvedAt: string | null;
 };
 
-// When a paper's answer-sheet pictures go (C230-AG, C230-AH; the database's marking_picture_deadline): `until` (an
-// India date, yyyy-mm-dd) is the school's days after the publication in force ('published'), or 180 days after the
-// paper's last upload while no result of the class was ever published ('unpublished'); null while a published result
-// is reopened ('reopened') or nothing was uploaded. `kept`: some picture of the paper is still stored.
-export const UNPUBLISHED_PICTURE_DAYS = 180;
+// When a paper's answer-sheet pictures go (C230-AJ; the database's marking_picture_deadline): `until` (an India date,
+// yyyy-mm-dd) is the school's days (SCRIPT_DAYS_DEFAULT unless it chose 30 to 365) after the publication in force
+// ('published'), or, while no result is in force, after the later of the last upload and the last reopening
+// ('unpublished' or 'reopened'). `kept`: some picture of the paper is still stored. The screen warns WARN_DAYS before.
+export const SCRIPT_DAYS_DEFAULT = 45;
+export const PICTURES_WARN_DAYS = 7;
 export type PicturesUntil = { until: string | null; basis: 'published' | 'unpublished' | 'reopened'; kept: boolean };
 
 export type MarkingOverview = {

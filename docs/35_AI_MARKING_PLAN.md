@@ -156,6 +156,7 @@ nothing written on it, is never marked, and holds its script from approval until
 The principal or school admin ends a family's link from "Tell parents on WhatsApp"; a new one goes by the same Send.
 Migration `am_7_followups`.
 
-**Built (AM-8, C230-AH, C356):** pictures of a paper whose class's result was never published go 180 days after its last
-upload; the AI marking screen shows the date (one database rule for the sweep and the screen). Migration
-`am_8_unpublished_pictures`.
+**Built (AM-8, C230-AJ, C356):** answer-sheet pictures are kept the school's days (default 45) after the publication in
+force, or, while no result is in force, after the later of the last upload and the reopening; the AI marking screen
+shows the date and warns seven days before (one database rule for the sweep and the screen). Migration
+`am_8_pictures_45_days`.

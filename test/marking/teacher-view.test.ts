@@ -232,16 +232,18 @@ describe('what the teacher changes on a script', () => {
   });
 });
 
-describe('what the paper’s screen says of its pictures (C230-AH)', () => {
+describe('what the paper’s screen says of its pictures (C230-AJ)', () => {
   const today = '2026-10-27';
-  it('a date to come, by why; due today or before; gone; and no date while reopened', () => {
-    expect(picturesNote({ until: '2027-01-25', basis: 'published', kept: true }, today)).toEqual({ key: 'mk.pictures.published', date: '2027-01-25' });
-    expect(picturesNote({ until: '2027-04-25', basis: 'unpublished', kept: true }, today)).toEqual({ key: 'mk.pictures.unpublished', date: '2027-04-25' });
-    expect(picturesNote({ until: today, basis: 'unpublished', kept: true }, today)).toEqual({ key: 'mk.pictures.dueNow', date: today });
-    expect(picturesNote({ until: '2026-10-01', basis: 'published', kept: false }, today)).toEqual({ key: 'mk.pictures.gone', date: '2026-10-01' });
-    expect(picturesNote({ until: null, basis: 'reopened', kept: true }, today)).toEqual({ key: 'mk.pictures.reopened', date: null });
-    expect(picturesNote({ until: null, basis: 'reopened', kept: false }, today)).toBeNull();
-    // Nothing kept before the date: no picture was ever stored, or every page was taken out.
-    expect(picturesNote({ until: '2027-04-25', basis: 'unpublished', kept: false }, today)).toBeNull();
+  it('a date to come, by what it counts from; a warning in the last seven days; due; gone', () => {
+    expect(picturesNote({ until: '2026-12-11', basis: 'published', kept: true }, today)).toEqual({ key: 'mk.pictures.published', date: '2026-12-11', days: 45, warn: false });
+    expect(picturesNote({ until: '2026-12-11', basis: 'unpublished', kept: true }, today)).toMatchObject({ key: 'mk.pictures.unpublished', warn: false });
+    expect(picturesNote({ until: '2026-12-11', basis: 'reopened', kept: true }, today)).toMatchObject({ key: 'mk.pictures.reopened', warn: false });
+    expect(picturesNote({ until: '2026-11-03', basis: 'published', kept: true }, today)).toEqual({ key: 'mk.pictures.soon', date: '2026-11-03', days: 7, warn: true });
+    expect(picturesNote({ until: '2026-11-04', basis: 'published', kept: true }, today)).toMatchObject({ key: 'mk.pictures.published', days: 8 });
+    expect(picturesNote({ until: today, basis: 'unpublished', kept: true }, today)).toMatchObject({ key: 'mk.pictures.dueNow', warn: true });
+    expect(picturesNote({ until: '2026-10-01', basis: 'published', kept: false }, today)).toMatchObject({ key: 'mk.pictures.gone', date: '2026-10-01' });
+    // Nothing kept before the date (no picture ever stored, or every page taken out), or no date at all: nothing to say.
+    expect(picturesNote({ until: '2026-12-11', basis: 'unpublished', kept: false }, today)).toBeNull();
+    expect(picturesNote({ until: null, basis: 'unpublished', kept: true }, today)).toBeNull();
   });
 });

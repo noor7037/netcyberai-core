@@ -12,7 +12,7 @@ import { approveSheets, changeSheet, chooseChild, markAbsent, markingOverview, s
 import { picturesSweepHandler, PICTURES_SWEEP_JOB } from '@/lib/marking/retention';
 import { checkedPaperOf } from '@/lib/school-link/marking';
 import { MemoryFileStorage } from '@/lib/storage/file-storage';
-import { UNPUBLISHED_PICTURE_DAYS } from '@/lib/contracts/marking';
+import { SCRIPT_DAYS_DEFAULT } from '@/lib/contracts/marking';
 import { readSetup, saveSetup } from '@/lib/marking/setup';
 import { formSheets, recordPageReading, recordSheetResult, takeSheetForMarking } from '@/lib/marking/store';
 
@@ -536,9 +536,18 @@ describe('page pictures kept for the school’s days after publication (C230-AG)
     // Below 30 counts as 30: 91 days are past it.
     expect((await due()).length).toBeGreaterThan(6);
     await owner(`delete from school_settings where school_id = $1 and module_id = 'exams'`, [A]);
-    // Reopened: nothing of the paper goes; published again, the count starts afresh.
+    // Reopened just now: nothing of the paper goes yet; published again, the count starts afresh.
     expect((await as(principal, (c) => reopenClass(c, actor(principal), examId, C7A, 'One more correction'))).ok).toBe(true);
     expect(await due()).toEqual([odd.card]);
+    // Reopened and not published again: the school's days from the later of the last upload and the reopening (C230-AJ).
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await db.pg.transaction(async (tx: any) => {
+      await tx.query(`set local session_replication_role = replica`);
+      await tx.query(`update exam_publications set reopened_at = now() - interval '46 days' where exam_id = $1 and class_id = $2 and reopened_at is not null`, [examId, C7A]);
+    });
+    expect(await due()).toEqual([odd.card]);
+    await owner(`update marking_uploads set created_at = now() - interval '46 days' where paper_id = $1`, [paperA]);
+    expect((await due()).length).toBeGreaterThan(6);
     expect((await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).ok).toBe(true);
     expect(await due()).toEqual([odd.card]);
     await age('91 days');
@@ -597,9 +606,9 @@ describe('page pictures kept for the school’s days after publication (C230-AG)
   });
 });
 
-describe('pictures of a paper never published (C230-AH)', () => {
+describe('pictures of a paper with no result in force (C230-AJ)', () => {
   const due = () => asPlatform((c) => c.query(`select page_id from public.marking_pictures_due(1000)`)).then((r: { rows: { page_id: string }[] }) => r.rows.map((x) => x.page_id));
-  it(`go ${UNPUBLISHED_PICTURE_DAYS} days after the paper's last upload, and its screen shows the date`, async () => {
+  it(`go ${SCRIPT_DAYS_DEFAULT} days after the paper's last upload, and its screen shows the date`, async () => {
     // 7-B's paper: never published. One upload, one page.
     const up = (await run(tOther, `insert into marking_uploads (school_id, paper_id, mode, created_by) values ($1, $2, 'per_file', $3) returning upload_id`, [A, paperB, T_OTHER])).rows[0].upload_id as string;
     const page = (await owner(`select gen_random_uuid() as id`))[0].id as string;
@@ -608,11 +617,11 @@ describe('pictures of a paper never published (C230-AH)', () => {
     ]);
     const screen = () => as(tOther, (c) => markingOverview(c, actor(tOther), paperB)).then((o) => o?.pictures);
     const upload = (age: string) => owner(`update marking_uploads set created_at = now() - $2::interval where upload_id = $1`, [up, age]);
-    await upload('179 days');
+    await upload(`${SCRIPT_DAYS_DEFAULT - 1} days`);
     expect(await due()).not.toContain(page);
-    const day = (await owner(`select ((now() - interval '179 days' + interval '${UNPUBLISHED_PICTURE_DAYS} days') at time zone 'Asia/Kolkata')::date::text as d`))[0].d;
+    const day = (await owner(`select ((now() - interval '${SCRIPT_DAYS_DEFAULT - 1} days' + interval '${SCRIPT_DAYS_DEFAULT} days') at time zone 'Asia/Kolkata')::date::text as d`))[0].d;
     expect(await screen()).toEqual({ until: day, basis: 'unpublished', kept: true });
-    await upload('181 days');
+    await upload(`${SCRIPT_DAYS_DEFAULT + 1} days`);
     expect(await due()).toContain(page);
     // The office reads it too; another class's teacher reads nothing of it.
     expect((await run(principal, `select basis from public.marking_pictures_until($1)`, [paperB])).rows).toEqual([{ basis: 'unpublished' }]);

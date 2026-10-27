@@ -89,7 +89,7 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
   if (!overview || !setup) return null;
 
   const { paper, ai } = overview;
-  // When the answer-sheet pictures go (C230-AH), as the sweep works it out.
+  // When the answer-sheet pictures go (C230-AJ), as the sweep works it out; a warning in the last seven days.
   const pictures = overview.pictures ? picturesNote(overview.pictures, indiaDate()) : null;
   const mayChange = paper.mayMark && !paper.published;
   const questions = setup.questions;
@@ -123,7 +123,16 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
         {ai.on && ai.limit !== null && (
           <p data-ai-allowance className="text-slate/70">{t('mk.ai.allowance', { used: numberWords(ai.pagesThisMonth, lang), limit: numberWords(ai.limit, lang) })}</p>
         )}
-        {pictures && <p data-pictures-until={pictures.key} className="text-slate/70">{t(pictures.key, { date: pictures.date ? dayWords(pictures.date, lang) : '' })}</p>}
+        {pictures && (
+          <p
+            data-pictures-until={pictures.key}
+            role={pictures.warn ? 'status' : undefined}
+            className={pictures.warn ? 'flex items-start gap-2 rounded-md border border-amber/40 bg-amber/10 px-3 py-2 font-semibold text-amber-text' : 'text-slate/70'}
+          >
+            {pictures.warn && <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />}
+            <span>{t(pictures.key, { date: pictures.date ? dayWords(pictures.date, lang) : '', n: numberWords(pictures.days, lang) })}</span>
+          </p>
+        )}
         {paper.published && <p data-hub-published className="rounded-md bg-off-white px-3 py-2">{t('mk.q.published')}</p>}
         {!paper.published && !paper.mayMark && <p className="rounded-md bg-off-white px-3 py-2">{t('mk.q.readOnly')}</p>}
       </section>
