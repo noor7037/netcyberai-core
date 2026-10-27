@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { DEFAULT_ADJUST, decodeImage, processImage, validateImageFile } from '@/lib/certificates/image';
 import type { IssuedForPrint, Marks } from '@/lib/documents/cert-doc';
+import { RESULT_CERT_TYPES } from '@/lib/documents/result-certificate-rules';
 import { BATCH_PDF_NAME, CERT_TYPES, TYPED_FIELDS, certDef, certificateFileName, fieldOptions, type CertificateType } from '@/lib/documents/certificate-rules';
 import type { CertificateHome, IssueOutcome, RegisterRow, RosterChild } from '@/lib/documents/certificates';
 import { certificatesPdf } from '@/lib/documents/pdf';
@@ -387,7 +388,7 @@ export function CertificatesView() {
         <div className="grid gap-3 sm:grid-cols-2">
           <Select id="crt-reg-type" label={t('crt.type.label')} value={regType} onChange={(e) => { setRegType(e.target.value); void loadRegister(e.target.value, regClass); }}>
             <option value="">{t('crt.register.allTypes')}</option>
-            {CERT_TYPES.map((ty) => (
+            {[...CERT_TYPES, ...RESULT_CERT_TYPES].map((ty) => (
               <option key={ty} value={ty}>{typeName(ty)}</option>
             ))}
           </Select>

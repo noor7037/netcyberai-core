@@ -7,6 +7,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { SignJWT } from 'jose';
 import { MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
+import { seedOutputs } from './outputs-seed.mjs';
 
 // axe-core checks every picture against WCAG 2.1 A and AA; a serious or critical finding fails the run (07 §3).
 const AXE = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
@@ -91,6 +92,9 @@ export const FAMILY_SCREENS = [
   ['linked', 'family-parent-school-results', '/family/parent', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
   ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
   ['linked', 'family-my-checked-paper', `/family/results/${MK.paper}`, { child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
+  // AJ-5 (C230-AJ part 5): a child's progress report by exam type, in the parent area and the child's own view.
+  ['linked', 'family-parent-progress', `/family/parent/progress/${LINKED_CHILD}`, { parent: true, child: LINKED_CHILD, settle: '[data-parent-progress] [data-progress-group]' }],
+  ['linked', 'family-my-progress', '/family/results/progress', { child: LINKED_CHILD, settle: '[data-my-progress] [data-progress-group]' }],
   [null, 'report-link', `/results/${REPORT_KEY}`, { settle: '[data-report-state="open"]', pictures: true, langQuery: true }],
   [null, 'report-link-expired', `/results/${'x'.repeat(43)}`, { settle: '[data-report-state="expired"]', langQuery: true }],
   ...[['graph', 't01', 'graph'], ['number-line', 't02', 'number_line'], ['fraction', 't03', 'fraction_model'], ['geometry', 't04', 'geometry'], ['pendulum', 't05', 'simulation'], ['refraction', 't06', 'simulation']].map(
@@ -169,6 +173,9 @@ async function seedLinkedFamily(db) {
   const school = 'a0000000-0000-4000-8000-000000000001';
   const principal = '00000000-0000-4000-8000-00000000a001';
   await seedMarking(db, { school, principal, teacher: '00000000-0000-4000-8000-00000000a003', publish: true });
+  // AJ-5: the published Half-yearly gets its exam type, an earlier published Unit test is added, and the office has made both
+  // classes' report cards and progress reports, so the Family app shows the progress report.
+  await seedOutputs(db, { school, principal, teacher: '00000000-0000-4000-8000-00000000a003', made: true });
   await db.pg.query(
     `insert into family.accounts (account_id, email, ui_language, pin_hash, pin_set_at) values ($1, 'linked.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAwNA==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now()) on conflict do nothing`,
     [FAMILY.linked]

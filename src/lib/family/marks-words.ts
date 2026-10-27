@@ -24,5 +24,11 @@ export const CHECKED_PAPER_KEYS: MessageKey[] = [
 
 export const MY_RESULTS_KEYS: MessageKey[] = [
   'fam.marks.myResults', 'fam.marks.myResultsLead', 'fam.marks.none', 'fam.marks.open', 'fam.marks.openSubject', 'fam.tab.home',
-  'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', ...TIMETABLE_KEYS,
+  'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.schoolProgress.open', ...TIMETABLE_KEYS,
+];
+
+// The progress report (AJ-5): the child's own view and the parent's.
+export const PROGRESS_KEYS: MessageKey[] = [
+  'fam.schoolProgress.title', 'fam.schoolProgress.lead', 'fam.schoolProgress.leadParent', 'fam.schoolProgress.none', 'fam.schoolProgress.session',
+  'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.marks.backParent', 'fam.marks.myResults', 'fam.tab.home',
 ];

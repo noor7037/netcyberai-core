@@ -36,6 +36,7 @@ import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
 import { clearMarking, MK, seedMarking } from './marking-seed.mjs';
 import { markingScreens } from './marking-screens.mjs';
+import { clearOutputs, seedOutputs } from './outputs-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -3094,6 +3095,94 @@ const tellParentsDone = async () => {
   await examsPutBackOnly();
   if (queued !== 0) throw new Error(`the preview queued ${queued} messages`);
 };
+// aj-5 begin
+// AJ-5 (C230-AJ part 5): "publish and notify" and the merit and participation certificates on a published class's result, and
+// a child's progress report. The AI-marked 5-A Half-yearly is published (as for "Tell parents"), given its exam type, with an
+// earlier published Unit test beside it; the school's Documents settings hold a grade-A merit rule and participation for
+// everyone. The result's two lists are only opened (nothing is queued or made); the progress report is Aarav's. Everything is
+// put back after.
+let aj5Settings = null;
+const aj5Rules = async () => {
+  aj5Settings = (await db.pg.query(`select setting_values, revision from school_settings where school_id = $1 and module_id = 'documents'`, [SCHOOL])).rows[0] ?? null;
+  const values = JSON.stringify({ ...(aj5Settings?.setting_values ?? {}), merit_basis: 'grade', merit_grade: 'A', participation_for: 'everyone' });
+  await db.pg.query(
+    `insert into school_settings (school_id, module_id, schema_version, setting_values, revision, updated_by) values ($1, 'documents', 2, $2::jsonb, 1, $3)
+     on conflict (school_id, module_id) do update set setting_values = excluded.setting_values`,
+    [SCHOOL, values, PEOPLE.principal.sub]
+  );
+};
+const aj5Seed = async () => {
+  await examsOn();
+  await seedMarking(db, { school: SCHOOL, principal: PEOPLE.principal.sub, teacher: PEOPLE.teacher.sub, publish: true });
+  await seedOutputs(db, { school: SCHOOL, principal: PEOPLE.principal.sub, teacher: PEOPLE.teacher.sub });
+};
+const aj5Put = async () => {
+  await clearOutputs(db, SCHOOL);
+  if (aj5Settings) await db.pg.query(`update school_settings set setting_values = $2::jsonb where school_id = $1 and module_id = 'documents'`, [SCHOOL, JSON.stringify(aj5Settings.setting_values)]);
+  else await db.pg.query(`delete from school_settings where school_id = $1 and module_id = 'documents'`, [SCHOOL]);
+  aj5Settings = null;
+};
+let aj5Seen = null;
+const outputsScreen = (hindi) => async (page) => {
+  await tellParents(page, async () => {
+    await aj5Seed();
+    await aj5Rules();
+  });
+  await page.locator('[data-cert-preview]').click();
+  await page.locator('[data-cert-list]').waitFor({ timeout: 20000 });
+  aj5Seen = {
+    outputs: await page.locator('[data-publish-outputs]').getAttribute('data-publish-outputs'),
+    state: ((await page.locator('[data-outputs-state]').innerText()) || '').trim(),
+    send: await page.locator('[data-tell-send]').count(),
+    rules: await page.locator('[data-cert-rules] li').evaluateAll((els) => els.map((e) => e.textContent.trim())),
+    summary: ((await page.locator('[data-cert-summary]').innerText()) || '').replace(/\s+/g, ' '),
+    certRows: await page.locator('[data-cert-child]').count(),
+    ranked: /\brank(ed)?\b|\btopper\b|\bposition\b/i.test(((await page.locator('main').first().innerText()) ?? '').replace(/No child is ranked or compared with another\./g, '')),
+  };
+  if (hindi) {
+    await speak('हिन्दी')(page);
+    await page.waitForTimeout(500);
+  }
+};
+const outputsDone = (hindi) => async (page) => {
+  if (hindi) await backToEnglish(page);
+  const made = (await db.pg.query(`select (select count(*)::int from exam_outputs) as outputs, (select count(*)::int from certificates_issued where cert_type in ('merit', 'participation')) as certs`)).rows[0];
+  const seen = aj5Seen;
+  aj5Seen = null;
+  await tellParentsDone();
+  await aj5Put();
+  if (made.outputs !== 0 || made.certs !== 0) throw new Error(`the two lists made things: ${JSON.stringify(made)}`);
+  if (seen?.outputs !== 'not-made' || seen?.state !== 'Not made yet.' || seen?.send !== 1) throw new Error(`the publish and notify section: ${JSON.stringify(seen)}`);
+  if (JSON.stringify(seen.rules) !== JSON.stringify(['Merit: overall grade A or better.', 'Participation: every child who sat the exam.'])) throw new Error(`the certificate rules: ${JSON.stringify(seen.rules)}`);
+  if (!/^To make: \d+ merit, \d+ participation\./.test(seen.summary)) throw new Error(`the certificate summary: ${seen.summary}`);
+  if (seen.ranked) throw new Error('the result screen says rank, position or topper');
+};
+const progressScreen = (hindi) => async (page) => {
+  await aj5Seed();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-progress-report] [data-rc-table]').first().waitFor({ timeout: 20000 });
+  aj5Seen = {
+    tables: await page.locator('[data-progress-report] [data-rc-table]').count(),
+    headings: await page.locator('[data-progress-report] [data-rc-card] > p.mt-2').evaluateAll((els) => els.map((e) => e.textContent.trim())),
+    text: ((await page.locator('[data-progress-report]').innerText()) || '').replace(/\s+/g, ' '),
+  };
+  if (hindi) {
+    await speak('हिन्दी')(page);
+    await page.waitForTimeout(500);
+  }
+};
+const progressDone = (hindi) => async (page) => {
+  if (hindi) await backToEnglish(page);
+  const seen = aj5Seen;
+  aj5Seen = null;
+  await clearOutputs(db, SCHOOL);
+  await clearMarking(db, SCHOOL);
+  await examsPutBackOnly();
+  if (seen?.tables !== 2 || JSON.stringify(seen.headings) !== JSON.stringify(['Unit test', 'Half-yearly'])) throw new Error(`the progress report's exam types: ${JSON.stringify(seen)}`);
+  if (/\brank(ed)?\b|\btopper\b|\bposition\b/i.test((seen.text ?? '').replace(/no rank, no position\./gi, ''))) throw new Error('the progress report says rank, position or topper');
+  if (!/Unit test 2 \(outputs, harness\)/.test(seen.text ?? '') || !/Half-yearly \(AI marking, harness\)/.test(seen.text ?? '')) throw new Error(`the progress report's exams: ${seen.text}`);
+};
+// aj-5 end
 const clearGrading = async () => {
   await db.pg.exec(`set session_replication_role = replica;
     delete from grading_schemes where school_id = '${SCHOOL}';
@@ -6839,6 +6928,12 @@ const SCREENS = [
   // AM-5 (C351): who will get the private result link on WhatsApp, and why the others will not.
   ['principal', 'app-exams-tell-parents', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParents, tellParentsDone],
   ['principal', 'app-exams-tell-parents-end', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParentsEnd, tellParentsEndDone],
+  // aj-5 begin
+  ['principal', 'app-exams-outputs', `/app/exams/${MK.exam}/classes/${CLASS_5A}`, outputsScreen(false), outputsDone(false)],
+  ['principal', 'app-exams-outputs-hindi', `/app/exams/${MK.exam}/classes/${CLASS_5A}`, outputsScreen(true), outputsDone(true)],
+  ['principal', 'app-exams-progress', `/app/exams/progress/${xKid(1)}`, progressScreen(false), progressDone(false)],
+  ['principal', 'app-exams-progress-hindi', `/app/exams/progress/${xKid(1)}`, progressScreen(true), progressDone(true)],
+  // aj-5 end
   ['teacher', 'app-exams-teacher', '/app/exams', examsTeacher, examsTeacherDone],
   ['teacher', 'app-exams-entry', `/app/exams/papers/${X_MATHS}`, examsEntry, examsEntryDone],
   // p6-9b end

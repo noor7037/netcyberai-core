@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { ResultCertificates } from '@/components/documents/ResultCertificates';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import type { ClassResult } from '@/lib/exams/results';
 import { gradeWords, markWords, percentWords as percentOf } from './exam-format';
@@ -53,7 +54,8 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         </div>
       </section>
 
-      {data.publication && <TellParentsWhatsApp examId={examId} classId={classId} />}
+      {data.publication && <TellParentsWhatsApp examId={examId} classId={classId} mode="outputs" />}
+      {data.publication && <ResultCertificates examId={examId} classId={classId} />}
       {!data.children.length && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.noChildren')}</p>}
 
       {/* A phone: one card a child, in roll order. */}
@@ -61,6 +63,7 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         {data.children.map((c) => (
           <li key={c.studentId} data-result-child={c.studentId} className="rounded-lg border border-slate/10 bg-white p-3">
             <p className="font-bold">{who(c)}</p>
+            {data.publication && <ProgressLink studentId={c.studentId} name={c.name} />}
             <ul className="mt-2 flex flex-col gap-2">
               {data.papers.map((p, i) => (
                 <li key={p.paperId}>
@@ -91,7 +94,10 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
           <tbody>
             {data.children.map((c) => (
               <tr key={c.studentId} data-result-row={c.studentId} className="border-b border-slate/10 align-top">
-                <th scope="row" className="p-3 font-semibold">{who(c)}</th>
+                <th scope="row" className="p-3 font-semibold">
+                  {who(c)}
+                  {data.publication && <ProgressLink studentId={c.studentId} name={c.name} />}
+                </th>
                 {data.papers.map((p, i) => (
                   <td key={p.paperId} className="p-3">
                     <p className="text-slate/70">{p.components.map((comp) => markWords(t, lang, comp, c.papers[i].marks[comp.key])).join(' · ')}</p>
@@ -105,5 +111,15 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         </table>
       </div>
     </div>
+  );
+}
+
+// The way into a child's progress report (C230-AJ part 5), once the class is published.
+function ProgressLink({ studentId, name }: { studentId: string; name: string }) {
+  const { t } = useT();
+  return (
+    <a href={`/app/exams/progress/${studentId}`} data-result-progress aria-label={t('pr.open.child', { name })} className="flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+      {t('pr.open')}
+    </a>
   );
 }
