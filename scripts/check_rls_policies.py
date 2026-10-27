@@ -549,6 +549,12 @@ ALLOWED_PERMISSIVE = (
         ("online_attempts", "online_attempts_tenant_isolation"),
         ("online_answers", "online_answers_tenant_isolation"),
         # aq-4 end
+        # aq-2 begin
+        # AQ-2 (question papers and the school's question bank, C362, C363): tenant isolation only; narrowed by the
+        # RESTRICTIVE policies required below.
+        ("question_bank", "question_bank_tenant_isolation"),
+        ("paper_generations", "paper_generations_tenant_isolation"),
+        # aq-2 end
     }
 )
 
@@ -1126,6 +1132,19 @@ REQUIRED_RESTRICTIVE = {
     ("online_answers", "online_answers_readers"),
     ("online_answers", "online_answers_no_parent"),
     # aq-4 end
+    # aq-2 begin
+    # The bank: staff who run or teach exams read it, add to it in their own name (a school job adds AI drafts in the
+    # asker's), change or retire their own (the office any); only drafts are removed. A paper's makings follow the paper.
+    ("question_bank", "question_bank_readers"),
+    ("question_bank", "question_bank_writers"),
+    ("question_bank", "question_bank_changers"),
+    ("question_bank", "question_bank_removers"),
+    ("question_bank", "question_bank_no_parent"),
+    ("paper_generations", "paper_generations_readers"),
+    ("paper_generations", "paper_generations_writers"),
+    ("paper_generations", "paper_generations_changers"),
+    ("paper_generations", "paper_generations_no_parent"),
+    # aq-2 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

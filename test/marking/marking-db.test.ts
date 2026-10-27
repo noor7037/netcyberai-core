@@ -409,6 +409,8 @@ describe('publishing, families and the report link (C351)', () => {
     expect((await run(principal, `select profile_id, carries_child_words, enabled from control.ai_profiles where profile_id like 'exams.%' order by profile_id`)).rows).toEqual([
       { profile_id: 'exams.mark', carries_child_words: true, enabled: false },
       { profile_id: 'exams.read_pages', carries_child_words: true, enabled: false },
+      // AQ-2 (C363): writing a paper's questions carries no child's words, and is not one of marking's two tasks.
+      { profile_id: 'exams.write_questions', carries_child_words: false, enabled: true },
     ]);
   });
 });
