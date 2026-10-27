@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { AiControls } from '@/components/control/ai/AiControls';
-import { loadAiOverview, providerChoices } from '@/lib/ai/control';
+import { loadAiOverview, loadAiRouting, providerChoices } from '@/lib/ai/control';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { t } from '@/lib/i18n';
@@ -10,7 +10,8 @@ import { getLang } from '@/lib/i18n/server';
 // Control → AI (docs/family-app/10 §3, C249): the AI services and their clearance for children's words, each
 // service's key (write-only: its last four characters, who saved it and when), the features with their service,
 // model, prompt version and on switch, today's and this month's counts, the daily limit per family, and the recent
-// changes with one-step undo. The founder only (the layout), and only after the authenticator's step (aal2).
+// changes with one-step undo; and (G3, C371) each feature's route as Primary, Backup 1 and Backup 2 with promote and
+// rollback, each service's state, and the recent attempts from the usage ledger. The founder only (the layout), and only after the authenticator's step (aal2).
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +20,7 @@ export default async function AiControlPage() {
   const { lang } = getLang(session?.sub ?? '');
   const strong = session?.aal === 'aal2';
   // The layout has already refused anyone but the founder; this runs as nca_super.
-  const data = session && strong ? await withTenantContext(session, (db) => loadAiOverview(db)) : null;
+  const data = session && strong ? await withTenantContext(session, async (db) => ({ ...(await loadAiOverview(db)), routing: await loadAiRouting(db) })) : null;
   return (
     <ModulePage
       title={t(lang, 'control.ai.title')}
