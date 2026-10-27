@@ -543,6 +543,11 @@ ALLOWED_PERMISSIVE = (
         ("exam_outputs", "exam_outputs_tenant_isolation"),
         ("exam_certificates", "exam_certificates_tenant_isolation"),
         # aj-5 end
+        # aq-5 begin
+        # AQ-5 (C366, the checked paper as a PDF on WhatsApp): tenant isolation only; narrowed by the RESTRICTIVE
+        # policies required below.
+        ("result_pdfs", "result_pdfs_tenant_isolation"),
+        # aq-5 end
     }
 )
 
@@ -1108,6 +1113,13 @@ REQUIRED_RESTRICTIVE = {
     ("exam_certificates", "exam_certificates_never_removed"),
     ("exam_certificates", "exam_certificates_no_parent"),
     # aj-5 end
+    # aq-5 begin
+    ("result_pdfs", "result_pdfs_office"),
+    ("result_pdfs", "result_pdfs_made_by_office"),
+    ("result_pdfs", "result_pdfs_never_changed"),
+    ("result_pdfs", "result_pdfs_never_removed"),
+    ("result_pdfs", "result_pdfs_no_parent"),
+    # aq-5 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

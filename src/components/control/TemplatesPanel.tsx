@@ -11,7 +11,7 @@ import type { MessageKey } from '@/lib/i18n';
 // Control → WhatsApp templates (docs/25 slice 7c, C184): every version's exact words, our approval, and Meta's.
 // The words come from the code; this screen never edits them. New words are a new version, written in code.
 
-type Row = { id: string; name: string; version: number; language: 'en' | 'hi'; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed?: boolean; wordingReviewedNote?: string | null };
+type Row = { id: string; name: string; version: number; language: 'en' | 'hi'; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed?: boolean; wordingReviewedNote?: string | null; header?: 'document' | null };
 const META = ['not_submitted', 'pending', 'approved', 'rejected', 'paused'] as const;
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
@@ -91,6 +91,7 @@ export function TemplatesPanel() {
                 {r.sendsNow && <Badge variant="success">{t('tpl.sendsNow')}</Badge>}
                 {!r.inCode && r.body !== null && <Badge variant="danger">{t('tpl.notInCode')}</Badge>}
               </div>
+              {r.header === 'document' && <p data-template-header="document" className="font-semibold">{t('tpl.header.document')}</p>}
               <p lang={r.language} data-template-no-words={r.body === null ? '' : undefined} className="whitespace-pre-wrap rounded-md bg-off-white px-3 py-2">{r.body ?? t('tpl.noWords')}</p>
               <p className="text-xs text-slate/70">{t('tpl.detail', { category: r.category, minutes: r.staleAfterMinutes ?? 0, by: r.approvedByName ?? '—', metaId: r.metaTemplateId ?? '—' })}</p>
               <div className="flex flex-wrap gap-2">
