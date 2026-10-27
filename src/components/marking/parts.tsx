@@ -31,6 +31,7 @@ export const FLAG_KEYS: Record<SheetFlag, MessageKey> = {
   identity: 'mk.flag.identity',
   check_child: 'mk.flag.check_child',
   not_answer_page: 'mk.flag.not_answer_page',
+  mismatch: 'mk.flag.mismatch',
   two_scripts: 'mk.flag.two_scripts',
   missing_page: 'mk.flag.missing_page',
   unreadable: 'mk.flag.unreadable',
@@ -42,6 +43,7 @@ export const FLAG_HOW_KEYS: Record<SheetFlag, MessageKey> = {
   identity: 'mk.flag.identity.how',
   check_child: 'mk.flag.check_child.how',
   not_answer_page: 'mk.flag.not_answer_page.how',
+  mismatch: 'mk.flag.mismatch.how',
   two_scripts: 'mk.flag.two_scripts.how',
   missing_page: 'mk.flag.missing_page.how',
   unreadable: 'mk.flag.unreadable.how',
@@ -76,6 +78,7 @@ export function failureWords(t: T, code: string | null): string {
 
 export const scriptsHref = (paperId: string) => `/app/exams/papers/${paperId}/marking`;
 export const sheetHref = (paperId: string, sheetId: string) => `/app/exams/papers/${paperId}/marking/${sheetId}`;
+export const scanHref = (paperId: string) => `/app/exams/papers/${paperId}/marking/scan`;
 
 // How a child is shown in a list: "2. Meera Example A", else the name.
 export const childLine = (c: { name: string; rollNo: string | null }) => (c.rollNo ? `${c.rollNo}. ${c.name}` : c.name);

@@ -10,7 +10,7 @@ import { MAX_FILES_PER_UPLOAD, type MarkingOverview, type PageUploadResult, type
 import type { MessageKey } from '@/lib/i18n';
 import { UploadError, fileKind, inReadingOrder } from '@/lib/marking/browser-plan';
 import { initialStates, sendFiles, type FileProblem, type FileState, type PageJob } from '@/lib/marking/upload-run';
-import { ask, errorWords } from './parts';
+import { ask, errorWords, scanHref } from './parts';
 import { openFile } from './render-pages';
 
 // Step 2 of a paper's AI marking: the class's scripts (C350). The teacher says whether each file is one child's
@@ -48,7 +48,8 @@ export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }
   const files = useRef<Map<number, File>>(new Map());
   const input = useRef<HTMLInputElement>(null);
 
-  const openUpload = overview.uploads.find((u) => !u.closed) ?? null;
+  // The phone scanner's uploads (by_child) are its own to close, once their pages are in: never offered here.
+  const openUpload = overview.uploads.find((u) => !u.closed && u.mode !== 'by_child') ?? null;
   const resumable = uploadId ?? openUpload?.uploadId ?? null;
   const sent = states.reduce((n, s) => n + s.pagesDone, 0);
   const allDone = states.length > 0 && states.every((s) => s.status === 'done' || s.status === 'failed');
@@ -139,6 +140,13 @@ export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }
     <div data-scripts-uploader className="flex flex-col gap-3">
       {!states.length && (
         <>
+          <div data-scan-offer className="flex flex-col gap-2 rounded-md bg-off-white p-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <a href={scanHref(paperId)} data-scan-open className={PRIMARY}>{t('mk.scan.open')}</a>
+              <InfoTip>{t('mk.scan.openHow')}</InfoTip>
+            </div>
+            <p className="text-slate/80">{t('mk.scan.orFiles')}</p>
+          </div>
           <div className="flex flex-wrap items-end gap-x-1">
             <SegmentedControl
               id="mk-upload-mode"

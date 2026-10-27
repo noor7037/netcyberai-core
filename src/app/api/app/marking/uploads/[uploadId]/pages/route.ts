@@ -8,7 +8,8 @@ import { addPages, checkPage, isFileNo, isPageNo, type CheckedPage } from '@/lib
 import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
 
 // AI marking (C350): page pictures of an open upload, a few at a time.
-//   POST multipart: for each page, in order, the fields fileNo, pageNo and page (the JPEG the browser made); at most
+//   POST multipart: for each page, in order, the fields fileNo, pageNo and page (the JPEG the browser made), and for a
+//        by_child upload childId (the child chosen for the page's file while scanning, C230-AJ); at most
 //        PAGES_PER_REQUEST pages a request → { pages: [{ fileNo, pageNo, pageId, duplicate }] }
 // The form is read and every picture checked (a JPEG by its own bytes, its size, its width and height) before a
 // connection is taken; the upload, the person, the class and the month's pages are checked in the transaction
@@ -31,7 +32,10 @@ export async function POST(req: NextRequest, { params }: { params: { uploadId: s
     const files = form.getAll('page');
     const fileNos = form.getAll('fileNo');
     const pageNos = form.getAll('pageNo');
+    // The children are named for every page or for none; which the upload needs is checked with it (src/lib/marking/upload.ts).
+    const childIds = form.getAll('childId');
     if (files.length < 1 || files.length > PAGES_PER_REQUEST || fileNos.length !== files.length || pageNos.length !== files.length) return markingRefusal('not_sent_properly');
+    if (childIds.length !== 0 && (childIds.length !== files.length || !childIds.every((c) => typeof c === 'string' && isUuid(c)))) return markingRefusal('not_sent_properly');
     const pages: CheckedPage[] = [];
     const seen = new Set<string>();
     if (files.reduce((n, f) => n + (typeof f === 'string' ? 0 : f.size), 0) > REQUEST_MAX_BYTES) return markingRefusal('too_large');
@@ -42,7 +46,7 @@ export async function POST(req: NextRequest, { params }: { params: { uploadId: s
       if (typeof file === 'string' || !isFileNo(fileNo) || !isPageNo(pageNo) || seen.has(`${fileNo}:${pageNo}`)) return markingRefusal('not_sent_properly', { at });
       seen.add(`${fileNo}:${pageNo}`);
       if (file.size > PAGE_MAX_BYTES) return markingRefusal('too_large', { at });
-      const checked = checkPage({ fileNo, pageNo, bytes: new Uint8Array(await file.arrayBuffer()) });
+      const checked = checkPage({ fileNo, pageNo, bytes: new Uint8Array(await file.arrayBuffer()), childId: childIds.length ? (childIds[at] as string) : null });
       if (!checked.ok) return markingRefusal(checked.reason, { at });
       pages.push(checked.page);
     }

@@ -39,7 +39,8 @@ export type MarkingRefusal =
   | 'storage' // the file store did not answer: try again
   | 'not_a_page' // not a JPEG picture we can read
   | 'too_large'
-  | 'too_small';
+  | 'too_small'
+  | 'child'; // a page names no child, or one who is not a candidate, or another than its file's (C230-AJ)
 
 const STATUS: Record<Exclude<MarkingRefusal, 'not_sent_properly' | 'not_allowed' | 'not_found'>, number> = {
   closed: 409,
@@ -54,6 +55,7 @@ const STATUS: Record<Exclude<MarkingRefusal, 'not_sent_properly' | 'not_allowed'
   not_a_page: 400,
   too_large: 413,
   too_small: 400,
+  child: 409,
 };
 
 export function markingRefusal(reason: MarkingRefusal, extra: Record<string, unknown> = {}): NextResponse {

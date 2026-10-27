@@ -197,3 +197,61 @@ export function assignScripts(groups: readonly PageGroup[], roster: readonly Ros
     return m;
   });
 }
+
+// ---- scanned child by child (C230-AJ) ------------------------------------------------------------------------------
+
+// A by_child upload: the teacher chose the child while scanning (the claim), so each file is one script and is never
+// split or matched to anyone else. The AI's reading checks the claim: a name, roll number or exam number read on any
+// page of the file that does not agree with the chosen child flags the script 'mismatch'. The script stays the chosen
+// child's; a person confirms the child or chooses another. Nothing read at all leaves the claim as it is (a person
+// chose it). A child already holding a live script of the paper (scanned twice) gets no second one: that script waits,
+// unmatched, with the child offered, as two scripts read as one child do. The page flags are groupPages' own.
+
+export type Identity = NonNullable<PageGroup['read']>;
+
+// Whether what one page reads agrees with the chosen child: 'nothing' when it reads no name or number. A number the
+// child has (their roll number, their exam number when the exam uses them) must be the same; a name must not plainly
+// disagree (the same line a number's child is trusted by).
+export function claimAgrees(read: Identity | null, child: RosterChild): 'agrees' | 'mismatch' | 'nothing' {
+  if (!read || (!read.name && !read.rollNo && !read.seatNo)) return 'nothing';
+  const seat = seatKey(read.seatNo);
+  if (seat && seatKey(child.seatNo) && seat !== seatKey(child.seatNo)) return 'mismatch';
+  const roll = rollKey(read.rollNo);
+  if (roll && rollKey(child.rollNo) && roll !== rollKey(child.rollNo)) return 'mismatch';
+  if (read.name && nameSimilarity(read.name, child.name) < NAME_DISAGREES) return 'mismatch';
+  return 'agrees';
+}
+
+export type ClaimedPage = GroupPage & { claimed: string | null };
+export type ClaimedFile = { fileNo: number; claimed: string; pages: GroupPage[] };
+
+// The files of a by_child upload, each one script, in file order (duplicates left out, as groupPages does).
+export function claimedGroups(all: readonly ClaimedPage[]): ClaimedFile[] {
+  const files = new Map<number, ClaimedFile>();
+  for (const p of [...all].filter((x) => x.state !== 'duplicate' && x.claimed).sort((a, b) => a.fileNo - b.fileNo || a.pageNo - b.pageNo)) {
+    const f = files.get(p.fileNo) ?? { fileNo: p.fileNo, claimed: p.claimed as string, pages: [] };
+    f.pages.push(p);
+    files.set(p.fileNo, f);
+  }
+  return [...files.values()];
+}
+
+// Each claimed file's script and its child: the claim, checked against every page's reading. `taken`: children who
+// already hold a live script of the paper.
+export function assignClaimed(files: readonly ClaimedFile[], roster: readonly RosterChild[], taken: ReadonlySet<string>): { group: PageGroup; match: Match }[] {
+  const byId = new Map(roster.map((c) => [c.studentId, c]));
+  const claims = new Map<string, number>();
+  for (const f of files) claims.set(f.claimed, (claims.get(f.claimed) ?? 0) + 1);
+  return files.map((f) => {
+    const read = f.pages.map((p) => identityOf(p.reading)).find((x) => x !== null) ?? null;
+    const group: PageGroup = { pageIds: f.pages.map((p) => p.pageId), read, flags: flagsOf(f.pages) };
+    const child = byId.get(f.claimed);
+    // Withdrawn from the exam, or off the roll, since the pages were taken: a person chooses.
+    if (!child) return { group, match: { studentId: null, by: 'none', candidates: [], flags: [...new Set<SheetFlag>([...group.flags, 'identity'])] } };
+    if (taken.has(child.studentId) || (claims.get(child.studentId) ?? 0) > 1) {
+      return { group, match: { studentId: null, by: 'none', candidates: [child.studentId], flags: [...new Set<SheetFlag>([...group.flags, 'two_scripts'])] } };
+    }
+    const mismatch = f.pages.some((p) => claimAgrees(identityOf(p.reading), child) === 'mismatch');
+    return { group, match: { studentId: child.studentId, by: 'teacher', candidates: [], flags: mismatch ? [...group.flags, 'mismatch'] : group.flags } };
+  });
+}

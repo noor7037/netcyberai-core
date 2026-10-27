@@ -10,6 +10,7 @@ import type { ColorToken } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
 import type { QuickAddItem } from '@/lib/contracts/quick-add';
 import { t as translate, type Lang, type MessageKey } from '@/lib/i18n';
+import { clearScanOutbox, scanPagesOnPhone } from '@/lib/marking/outbox-clear';
 import { brandInitials } from '@/lib/school/logo-file';
 import { GlobalSearch } from './GlobalSearch';
 import { QuickAdd } from './QuickAdd';
@@ -198,8 +199,12 @@ function Footer({ accountHref }: { accountHref: string }) {
           await sendNow().catch(() => undefined);
           const left = (await operations().catch(() => [])).length;
           if (left > 0 && !window.confirm(tCount('sync.signOut.waiting', left))) return;
+          // Scanned answer-sheet pages not sent yet are children's work: the person is told, and they go with the sign-out (C230-AJ).
+          const pages = await scanPagesOnPhone();
+          if (pages > 0 && !window.confirm(t('mk.scan.signOutWaiting', { n: pages }))) return;
           await fetch('/api/auth/logout', { method: 'POST' }).catch(() => undefined);
           await clear();
+          await clearScanOutbox();
           router.push('/login');
           router.refresh();
         }}

@@ -1,5 +1,5 @@
 import { writeAuditLog } from '@/lib/audit/log';
-import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, PAGE_STATES, type ErrorType, type MarkingOverview, type MarkingPaper, type MarkingQuestion, type PageState, type PicturesUntil, type QuestionResult, type RosterChild, type SheetChangeInput, type SheetDetail, type SheetFlag, type SheetRow, type SheetState } from '@/lib/contracts/marking';
+import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, PAGE_STATES, type ErrorType, type MarkingException, type MarkingOverview, type MarkingPaper, type MarkingQuestion, type PageState, type PicturesUntil, type QuestionResult, type RosterChild, type SheetChangeInput, type SheetDetail, type SheetFlag, type SheetRow, type SheetState } from '@/lib/contracts/marking';
 import { saveMarks, type SaveProblem } from '@/lib/exams/marks';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
@@ -67,7 +67,7 @@ export async function markingOverview(db: Sql, actor: Actor, paperId: string): P
   for (const r of (await db.query(`select state, count(*)::int as n from marking_pages where school_id = $1 and paper_id = $2 group by state`, [actor.schoolId, paperId])).rows) pages[r.state as PageState] = Number(r.n);
   const sheetRows = (
     await db.query(
-      `select s.sheet_id, s.student_id, s.matched_by, s.state, s.flags, s.failure, s.ai_confidence, s.approved_at,
+      `select s.sheet_id, s.student_id, s.matched_by, s.state, s.flags, s.failure, s.ai_confidence, s.approved_at, s.match_note -> 'read' as read,
               (select count(*)::int from marking_pages g where g.school_id = s.school_id and g.sheet_id = s.sheet_id) as pages
          from marking_sheets s where s.school_id = $1 and s.paper_id = $2 and s.state <> 'set_aside' order by s.created_at, s.sheet_id`,
       [actor.schoolId, paperId]
@@ -109,6 +109,14 @@ export async function markingOverview(db: Sql, actor: Actor, paperId: string): P
       ).rows.map((r) => r.student_id as string).filter((id) => withoutScript.some((c) => c.studentId === id))
     : [];
   const settings = await markingSettings(db, actor.schoolId);
+  const oddPages = (
+    await db.query(
+      `select g.sheet_id, g.page_id, g.sheet_position, coalesce((g.reading ->> 'idDocument')::boolean, false) as id_document
+         from marking_pages g where g.school_id = $1 and g.paper_id = $2 and g.state = 'not_answer' and g.sheet_id is not null order by g.sheet_position`,
+      [actor.schoolId, paperId]
+    )
+  ).rows;
+  const readOf = new Map(sheetRows.map((s) => [s.sheet_id as string, (s.read ?? null) as MarkingException['read']]));
   return {
     paper,
     ready: problems.length === 0,
@@ -116,12 +124,35 @@ export async function markingOverview(db: Sql, actor: Actor, paperId: string): P
     uploads,
     pages,
     sheets,
+    candidates: roster,
     withoutScript,
     absent,
     reviewBelow: settings.reviewBelow,
     pictures: uploads.length ? await picturesUntil(db, paperId) : null,
+    exceptions: exceptionsOf(sheets, readOf, oddPages.map((g) => ({ sheetId: g.sheet_id as string, pageId: g.page_id as string, position: Number(g.sheet_position), idDocument: g.id_document === true }))),
     ai: await aiMarkingState(db, actor.schoolId),
   };
+}
+
+// The hub's one list of things to settle (C230-AJ), in the review list's order: a sheet that reads another child, each
+// page that may not be an answer page, a page that could not be read or may be missing, and a script of no one. Only
+// scripts a person can still change: an approved or set-aside script is not on it.
+export function exceptionsOf(
+  sheets: readonly SheetRow[],
+  readOf: ReadonlyMap<string, MarkingException['read']>,
+  oddPages: readonly { sheetId: string; pageId: string; position: number; idDocument: boolean }[]
+): MarkingException[] {
+  const out: MarkingException[] = [];
+  for (const s of sheets) {
+    if (s.state === 'approved' || s.state === 'set_aside') continue;
+    const base = { sheetId: s.sheetId, student: s.student, read: null, page: null };
+    if (s.flags.includes('mismatch')) out.push({ ...base, kind: 'mismatch', read: readOf.get(s.sheetId) ?? null });
+    for (const g of oddPages.filter((p) => p.sheetId === s.sheetId)) out.push({ ...base, kind: 'not_answer_page', page: { pageId: g.pageId, position: g.position, odd: g.idDocument ? 'id_document' : 'not_answer' } });
+    if (!s.student) out.push({ ...base, kind: 'no_child' });
+    if (s.flags.includes('unreadable')) out.push({ ...base, kind: 'unreadable' });
+    if (s.flags.includes('missing_page')) out.push({ ...base, kind: 'missing_page' });
+  }
+  return out;
 }
 
 // ---- one script ------------------------------------------------------------------------------------------------------
@@ -314,7 +345,8 @@ export async function chooseChild(db: Sql, actor: Actor, sheetId: string, studen
     const other = (await db.query(`select 1 from marking_sheets where school_id = $1 and paper_id = $2 and student_id = $3 and sheet_id <> $4 and state <> 'set_aside'`, [actor.schoolId, paper.paperId, studentId, sheetId])).rows[0];
     if (other) return { ok: false, reason: 'taken' };
   }
-  const flags = ((s.flags ?? []) as SheetFlag[]).filter((f) => f !== 'identity' && f !== 'two_scripts' && f !== 'check_child');
+  // A person says whose it is: the flags about who it is go, the sheet reading another child (C230-AJ) among them.
+  const flags = ((s.flags ?? []) as SheetFlag[]).filter((f) => f !== 'identity' && f !== 'two_scripts' && f !== 'check_child' && f !== 'mismatch');
   await db.query(`update marking_sheets set student_id = $3, matched_by = $4, flags = $5 where school_id = $1 and sheet_id = $2`, [
     actor.schoolId,
     sheetId,
@@ -448,7 +480,7 @@ export async function approveSheets(db: Sql, actor: Actor, paperId: string, whic
       if (!r) return { ok: false, reason: 'not_found', sheetId: id };
       if (r.state === 'approved' && !((r.flags ?? []) as string[]).includes('changed')) continue;
       // Who it is must be settled, and every question must have a mark, before a script is approved.
-      if (!r.student_id || ((r.flags ?? []) as string[]).some((f) => f === 'identity' || f === 'two_scripts' || f === 'not_all_read' || f === 'not_answer_page')) return { ok: false, reason: 'flagged', sheetId: id };
+      if (!r.student_id || ((r.flags ?? []) as string[]).some((f) => f === 'identity' || f === 'two_scripts' || f === 'not_all_read' || f === 'not_answer_page' || f === 'mismatch')) return { ok: false, reason: 'flagged', sheetId: id };
       if (!candidates.has(r.student_id)) return { ok: false, reason: 'child', sheetId: id };
       chosen.push(r);
     }

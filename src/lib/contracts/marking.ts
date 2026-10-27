@@ -12,7 +12,9 @@ export type MarkingLanguage = (typeof MARKING_LANGUAGES)[number];
 export const ERROR_TYPES = ['none', 'concept', 'calculation', 'incomplete', 'presentation', 'language', 'misread', 'not_attempted'] as const;
 export type ErrorType = (typeof ERROR_TYPES)[number];
 
-export const UPLOAD_MODES = ['per_file', 'combined'] as const;
+// by_child (C230-AJ): the phone's scan screen, child after child in roll order: each file is one child's script, and
+// every page names the child the teacher chose (the claim). The AI's reading checks it and never moves the script.
+export const UPLOAD_MODES = ['per_file', 'combined', 'by_child'] as const;
 export type UploadMode = (typeof UPLOAD_MODES)[number];
 
 // not_answer: the AI's reading says the page is not a page of an answer sheet, or looks like an identity document
@@ -36,7 +38,10 @@ export type SheetState = (typeof SHEET_STATES)[number];
 //   check_child   matched by a roll or exam number alone (no name was read): check it is this child
 //   not_answer_page  a page may not be an answer page (an identity document, a form): not marked, and the script is
 //                 not approved (the database holds it) until a person keeps the page as an answer page or takes it out
-export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child', 'not_answer_page'] as const;
+//   mismatch      scanned child by child: the name, roll number or exam number read on the sheet is not the child the
+//                 teacher chose. The script stays that child's and is not approved (the database holds it) until a
+//                 person confirms the child or chooses another
+export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child', 'not_answer_page', 'mismatch'] as const;
 export type SheetFlag = (typeof SHEET_FLAGS)[number];
 
 export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'none'] as const;
@@ -49,7 +54,14 @@ export const AI_MARKING_PAGES_LIMIT = 'ai_marking_pages';
 // Limits, shared by the browser (which makes the pictures) and the server (which checks them).
 export const PAGE_MAX_EDGE = 2000; // the longest side of a page picture, in pixels
 export const PAGE_MIN_EDGE = 200;
-export const PAGE_MAX_BYTES = 1_500_000; // one JPEG
+export const PAGE_MAX_BYTES = 1_500_000; // one JPEG, the hard cap for every way a page comes in
+// The phone's scan screen (C230-AJ): a page is cropped, straightened and evened in a worker, then sent as a grey JPEG
+// of this long edge and quality. Chosen by scripts/measure_scan_sizes.mjs (2026-10-27, Chromium's encoder): the smallest
+// median size whose pages keep SSIM and edges at 0.95 or more and 0.98 of the pencil pixels against the same page at 2000 px,
+// on eight made-up sheets in English and Hindi: median 131 KB, largest 157 KB (today's 2000 px photo: median 302 KB).
+// PDFs and photos chosen as files keep PAGE_MAX_EDGE; PAGE_MAX_BYTES is the hard cap for both.
+export const SCAN_MAX_EDGE = 1600;
+export const SCAN_QUALITY = 0.5;
 export const PAGES_PER_REQUEST = 6; // a few pages a request…
 export const REQUEST_MAX_BYTES = 4_000_000; // …and never more bytes than this together: the host refuses a body over 4.5 MB
 export const MAX_FILES_PER_UPLOAD = 500;
@@ -176,6 +188,22 @@ export const SCRIPT_DAYS_DEFAULT = 45;
 export const PICTURES_WARN_DAYS = 7;
 export type PicturesUntil = { until: string | null; basis: 'published' | 'unpublished' | 'reopened'; kept: boolean };
 
+// One thing a person settles before a script goes on (C230-AJ), for the hub's one list, each with a one-tap fix:
+//   mismatch         the sheet reads another child than the one chosen while scanning: confirm the child, or open it
+//                    to choose another (chooseChild)
+//   not_answer_page  a page may not be an answer page (C230-AG): keep it, or take it out (settlePage)
+//   unreadable       a page could not be read; missing_page: the printed page numbers skip one. Open the script to look
+//   no_child         a script matched to no child (two scripts for one child, or nothing read): open it to choose
+export const EXCEPTION_KINDS = ['mismatch', 'not_answer_page', 'unreadable', 'missing_page', 'no_child'] as const;
+export type ExceptionKind = (typeof EXCEPTION_KINDS)[number];
+export type MarkingException = {
+  sheetId: string;
+  kind: ExceptionKind;
+  student: RosterChild | null; // whose script it is now (the child chosen while scanning, or matched); null: no one
+  read: { name: string | null; rollNo: string | null; seatNo: string | null } | null; // what the sheet reads (mismatch)
+  page: { pageId: string; position: number; odd: 'id_document' | 'not_answer' } | null; // the page to settle
+};
+
 export type MarkingOverview = {
   paper: MarkingPaper;
   ready: boolean; // the questions add up and marking may start
@@ -183,10 +211,12 @@ export type MarkingOverview = {
   uploads: MarkingUploadRow[];
   pages: Record<PageState, number>;
   sheets: SheetRow[]; // in roll order, then the scripts matched to no one
+  candidates: RosterChild[]; // the paper's candidates, in roll order (the scan screen offers them one by one)
   withoutScript: RosterChild[]; // candidates on the roll with no live script, in roll order
   absent: string[]; // of them, already marked absent for every part
   reviewBelow: number; // the school's line, 0 to 1: a question the AI was less sure of flags its script
   pictures: PicturesUntil | null; // null: nothing uploaded yet
+  exceptions: MarkingException[]; // in the order of the review list (roll order, then the scripts of no one)
   ai: { on: boolean; why: 'no_limit' | 'switched_off' | 'no_provider' | null; pagesThisMonth: number; limit: number | null };
 };
 
@@ -233,7 +263,8 @@ export type SheetChangeInput = {
 export type SettlePageInput = { action: 'keep' | 'take_out' };
 export type StartUploadInput = { mode: UploadMode; files: number };
 export type StartUploadResult = { uploadId: string };
-// One page picture, as multipart form fields: uploadId, fileNo, pageNo, and the JPEG as `page`.
+// One page picture, as multipart form fields: uploadId, fileNo, pageNo, and the JPEG as `page`; for a by_child upload
+// also `childId`, the child the teacher chose for that file (one per page, the same for every page of a file).
 export type PageUploadResult = { pages: { fileNo: number; pageNo: number; pageId: string; duplicate: boolean }[] };
 
 // Candidates and exam numbers (C348).

@@ -1,7 +1,7 @@
 import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, MAX_SHEET_PAGES, type ErrorType, type MarkingLanguage, type MarkingPaper, type MarkingQuestion, type PageReading, type PageState, type SheetFlag, type SheetResult, type UploadMode } from '@/lib/contracts/marking';
 import type { Sql } from '@/lib/jobs/types';
 import { markingPaper, markingSettings, paperRoster } from './context';
-import { assignScripts, groupPages, type GroupPage } from './matching';
+import { assignClaimed, assignScripts, claimedGroups, groupPages, type ClaimedPage } from './matching';
 import { markedParts, partTotals } from './rollup';
 import { questionsOf } from './setup';
 
@@ -65,8 +65,8 @@ export async function formSheets(db: Sql, schoolId: string, uploadId: string): P
 
   const paper = await markingPaper(db, JOB_ACTOR(schoolId), up.paper_id as string);
   if (!paper) return { formed: 0, toMark: [], waiting: false };
-  const pages: GroupPage[] = (
-    await db.query(`select page_id, file_no, page_no, state, reading from marking_pages where school_id = $1 and upload_id = $2 order by file_no, page_no`, [schoolId, uploadId])
+  const pages: ClaimedPage[] = (
+    await db.query(`select page_id, file_no, page_no, state, reading, claimed_student_id from marking_pages where school_id = $1 and upload_id = $2 order by file_no, page_no`, [schoolId, uploadId])
   ).rows.map((r) => ({
     pageId: r.page_id,
     fileNo: Number(r.file_no),
@@ -74,6 +74,7 @@ export async function formSheets(db: Sql, schoolId: string, uploadId: string): P
     // A page that could not be read counts as unreadable for its script.
     state: (r.state === 'failed' ? 'unreadable' : r.state) as PageState,
     reading: (r.reading ?? null) as PageReading | null,
+    claimed: (r.claimed_student_id ?? null) as string | null,
   }));
   const roster = await paperRoster(db, schoolId, paper);
   const taken = new Set(
@@ -81,8 +82,12 @@ export async function formSheets(db: Sql, schoolId: string, uploadId: string): P
       (r) => r.student_id as string
     )
   );
-  const groups = groupPages(pages, up.mode as UploadMode);
-  const matches = assignScripts(groups, roster, taken);
+  // Scanned child by child (C230-AJ): each file is the chosen child's script, the reading only checks it; otherwise the
+  // pages are grouped and matched from what was read.
+  const mode = up.mode as UploadMode;
+  const claimed = mode === 'by_child' ? assignClaimed(claimedGroups(pages), roster, taken) : null;
+  const groups = claimed ? claimed.map((c) => c.group) : groupPages(pages, mode);
+  const matches = claimed ? claimed.map((c) => c.match) : assignScripts(groups, roster, taken);
   const blank = new Set(pages.filter((p) => p.state === 'blank').map((p) => p.pageId));
   const odd = new Set(pages.filter((p) => p.state === 'not_answer').map((p) => p.pageId));
   const toMark: string[] = [];
@@ -203,7 +208,7 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
   const totals = partTotals(markedParts(paper.components, questions), questions, finals, (setup?.choice_counts ?? {}) as Record<string, number>);
   const max = totals.reduce((n, t) => n + t.max, 0);
   if (max > 0 && totals.reduce((n, t) => n + t.score, 0) >= NEARLY_FULL * max) unsure = true;
-  const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable' || f === 'check_child' || f === 'not_answer_page');
+  const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable' || f === 'check_child' || f === 'not_answer_page' || f === 'mismatch');
   const flags: SheetFlag[] = [...kept, ...(notAll ? (['not_all_read'] as const) : []), ...(unsure ? (['unsure'] as const) : [])];
   const practice = result.practice
     .filter((p) => short(p.text, 300))
