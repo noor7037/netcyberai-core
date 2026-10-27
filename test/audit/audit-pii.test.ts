@@ -35,6 +35,7 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/bank/match.ts': { 'key:outcome': 'a code: credited, seen_not_credited or needs_person' },
   'src/lib/payments/upi.ts': { 'key:outcome': 'a code: credited or seen_not_credited' },
   'src/lib/payments/apply.ts': { 'opaque:e.audit': 'the provider and its payment id, or nothing', 'key:reason': 'a code the provider check returns (fetch_status_404, status_failed)' },
+  'src/lib/marking/report-links.ts': { 'key:why': 'one of END_REASONS (lost, forwarded, other), checked before the update; never typed text' },
   'src/lib/control/billing.ts': {
     'opaque:planState(plan)': 'a plan: its id, name (Growth), prices and modules',
     'opaque:planState(before)': 'a plan: its id, name (Growth), prices and modules',
