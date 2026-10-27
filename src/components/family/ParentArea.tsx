@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { Lang } from '@/lib/i18n';
 import { classText, fill, type Words } from '@/lib/family/fill';
+import type { BoardOption } from '@/lib/family/children';
 import { ChildForm, type ChildFormValue } from './ChildForm';
 import { errorWords, familyApi } from './client';
 import { HabitParent } from './HabitParent';
@@ -61,7 +62,7 @@ function ConsentRow({ w, consent, granted, onToggle, data, note }: { w: Words; c
   );
 }
 
-function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code: string; name: string }[] }) {
+function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states: { code: string; name: string }[]; boards?: BoardOption[] }) {
   const router = useRouter();
   const [mode, setMode] = useState<'view' | 'edit' | 'remove' | 'answers'>('view');
   const [answers, setAnswers] = useState<Answer[] | null>(null);
@@ -113,8 +114,9 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
         <ChildForm
           w={w}
           states={states}
+          boards={boards}
           childId={child.childId}
-          initial={{ firstName: child.firstName, classLevel: child.classLevel, board: child.board, language: child.language, style: child.style, stateCode: child.stateCode }}
+          initial={{ firstName: child.firstName, classLevel: child.classLevel, board: child.board, language: child.language, style: child.style, stateCode: child.stateCode, stream: child.stream }}
           submitLabel={w['fam.child.save']}
           onDone={() => {
             setMode('view');
@@ -198,7 +200,7 @@ function ChildRow({ w, child, states }: { w: Words; child: Child; states: { code
 // `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
 // `offers` (C230-V): whether the parent agreed to hear about offers; always shown, optional, off until turned on.
 // `afterChildren`: the sections about the children's school and syllabus (C230-AA, C230-AB), placed after the children.
-export function ParentArea({ w, lang, children, states, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, afterChildren = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; afterChildren?: ReactNode }) {
+export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, afterChildren = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; afterChildren?: ReactNode }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -252,13 +254,14 @@ export function ParentArea({ w, lang, children, states, studyCore, calm, english
       <Section title={w['fam.parent.children']}>
         <ul className="flex flex-col gap-2">
           {children.map((c) => (
-            <ChildRow key={c.childId} w={w} child={c} states={states} />
+            <ChildRow key={c.childId} w={w} child={c} states={states} boards={boards} />
           ))}
         </ul>
         {adding ? (
           <ChildForm
             w={w}
             states={states}
+            boards={boards}
             initial={{ firstName: '', classLevel: null, board: '', language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
             submitLabel={w['fam.child.add']}
             onDone={() => {

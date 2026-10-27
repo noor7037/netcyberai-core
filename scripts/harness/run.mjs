@@ -41,6 +41,7 @@ import { onlineScreens } from './online-screens.mjs';
 import { paperScreens } from './paper-screens.mjs';
 import { clearOutputs, seedOutputs } from './outputs-seed.mjs';
 import { clearLab, seedLab } from './lab-seed.mjs';
+import { clearStudio, seedStudio, STUDIO_KEY } from './studio-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -5954,6 +5955,18 @@ const labDone = async () => {
   if (labSeen?.cells !== 4 || labSeen.models !== 2) throw new Error(`the Quality Lab on the screen: ${JSON.stringify(labSeen)}`);
 };
 // g4 end
+// s3 begin
+// Control → Content → Studio (C376): a Received and a Digitizing request, and the Digitizing one's reviewed draft, opened
+// with the family reader's preview below it.
+const studioSeed = async (page) => {
+  await seedStudio(db, PEOPLE.founder.sub);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-studio-preview] [data-chapter-reader]').waitFor({ timeout: 20000 });
+};
+const studioDone = async () => {
+  await clearStudio(db);
+};
+// s3 end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -7366,6 +7379,9 @@ const SCREENS = [
   // m1-4 begin
   // Control → Content (C250): import a catalog file, review by a second person, staff preview, release, diff, rollback.
   ['founder', 'control-content', '/control/content'],
+  // s3 begin
+  ['founder', 'control-content-studio', `/control/content/studio?key=${encodeURIComponent(STUDIO_KEY)}&version=1`, studioSeed, studioDone],
+  // s3 end
   // m1-4 end
   // m1-7 begin
   // Control → Apps v1 (C253): versions, flags with audiences, kill switches, banners, preview, recent changes with Undo;
@@ -7572,6 +7588,7 @@ try {
     mkdirSync(OUT, { recursive: true });
     // A fake microphone (M2-7): voice input's recording state is pictured without a real one.
     const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
+    await seedStudio(db, PEOPLE.founder.sub);
     const rows = await runFamilyMatrix({ browser, base, db, secret, out: OUT, only: ONLY ? ONLY.split(',').filter(Boolean) : [] });
     await browser.close();
     writeFileSync(path.join(OUT, 'app.log'), appLog);

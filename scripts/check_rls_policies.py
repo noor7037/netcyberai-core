@@ -507,6 +507,21 @@ ALLOWED_PERMISSIVE = (
         # M3-8b (C339): a family's browsers for notifications, and up to when each kind was pushed; own account only.
         ("family.push_subscriptions", "push_subscriptions_own"),
         ("family.push_sent", "push_sent_own"),
+        # S1 (C374): where a child stopped listening to a chapter; own account only (restrictive twin below).
+        ("family.chapter_reading", "chapter_reading_own"),
+        # S3 (C376): published chapters (or the family's own upload), the family's own requests, and its subject sources.
+        ("content.chapter_contents", "chapter_contents_family_read"),
+        ("content.chapter_requests", "chapter_requests_family_read"),
+        ("content.chapter_requests", "chapter_requests_family_add"),
+        ("content.chapter_requests", "chapter_requests_family_cancel"),
+        ("family.child_subject_source", "child_subject_source_own"),
+        # S2 (C375): the tutor's conversations, turns and files; own account only (restrictive twins below).
+        ("family.tutor_conversations", "tutor_conversations_own"),
+        ("family.tutor_messages", "tutor_messages_own"),
+        ("family.tutor_attachments", "tutor_attachments_own"),
+        # S5 (C378): a child's chapter-test attempts and answers; own account only (restrictive twins below).
+        ("family.chapter_test_attempts", "chapter_test_attempts_own"),
+        ("family.chapter_test_answers", "chapter_test_answers_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -1051,6 +1066,18 @@ REQUIRED_RESTRICTIVE = {
     # M3-8b (C339): own account only.
     ("family.push_subscriptions", "push_subscriptions_own_only"),
     ("family.push_sent", "push_sent_own_only"),
+    # S1 (C374): own account only.
+    ("family.chapter_reading", "chapter_reading_own_only"),
+    # S3 (C376): the chapters, the requests and the subject sources are held to the family's own account.
+    ("content.chapter_contents", "chapter_contents_family_only"),
+    ("content.chapter_requests", "chapter_requests_family_only"),
+    ("family.child_subject_source", "child_subject_source_own_only"),
+    # S2 (C375): own account only.
+    ("family.tutor_conversations", "tutor_conversations_own_only"),
+    ("family.tutor_messages", "tutor_messages_own_only"),
+    ("family.tutor_attachments", "tutor_attachments_own_only"),
+    ("family.chapter_test_attempts", "chapter_test_attempts_own_only"),
+    ("family.chapter_test_answers", "chapter_test_answers_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

@@ -1,5 +1,5 @@
 import { indiaDate } from '@/lib/time/india';
-import { subjectsOfClass, type Subject } from './subjects';
+import { subjectsOfClass, type Stream, type Subject } from './subjects';
 
 // The family's read of NetCyberAI's syllabus catalog (M1-4, docs/family-app/10 §4.3): for a standalone family, the
 // version of a board, class and subject that is released to everyone for the current academic year, as plain data.
@@ -65,14 +65,22 @@ export async function readFamilyCatalog(
   };
 }
 
-// The subjects a child of this board and class studies (C264): the stage's school subjects, then any other subject the
-// catalog released to everyone holds for this class this year.
-export async function classSubjects(db: FamilyDb, q: { board: string; classLevel: number; today?: string }): Promise<Subject[]> {
+// The subjects with a version released to everyone for this board and class this year: the ones whose chapters are
+// really in the app, which the Study page marks Published (S4, C377).
+export async function publishedSubjects(db: FamilyDb, q: { board: string; classLevel: number; today?: string }): Promise<string[]> {
   if (q.classLevel <= 0) return [];
   const { rows } = await db.query(
     `select distinct subject from content.syllabus_versions
       where board_id = $1 and class_level = $2 and academic_year = $3 and status = 'published' and audience = 'everyone'`,
     [q.board, q.classLevel, academicYearOf(q.today ?? indiaDate())]
   );
-  return subjectsOfClass(q.classLevel, (rows as { subject: string }[]).map((r) => r.subject), q.board);
+  return (rows as { subject: string }[]).map((r) => r.subject);
+}
+
+// The subjects a child of this board and class studies (C264): the stage's school subjects, then any other subject the
+// catalog released to everyone holds for this class this year. A Class 11 or 12 child with a stream (S4) gets that
+// stream's subjects.
+export async function classSubjects(db: FamilyDb, q: { board: string; classLevel: number; stream?: Stream | null; today?: string }): Promise<Subject[]> {
+  if (q.classLevel <= 0) return [];
+  return subjectsOfClass(q.classLevel, await publishedSubjects(db, q), q.board, q.stream);
 }

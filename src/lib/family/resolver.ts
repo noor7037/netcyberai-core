@@ -40,7 +40,10 @@ export type FollowUp = NonNullable<ResolverAsk['followUp']>;
 export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'differently', 'practise_more'];
 // A typed question's subject is null: the model names it and the server checks it. A retry of a typed question carries
 // the subject sealed in its item by this server.
-export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null };
+// `about`: where a question was asked from (the chapter reader's chapter and section, S2, C375), decided on the server
+// from NetCyber's own chapter, never the child's words: the tutor is told it beside the question; the safety check and
+// the history see the question alone.
+export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null; about?: string };
 
 export type PublicBlock = Exclude<Block, { type: 'check' } | { type: 'practice' }> | { type: 'check' | 'practice'; items: PublicItem[] };
 export type ResolverEvent =
@@ -324,7 +327,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     classSubjects: ofClass,
     chapter: line?.chapterEn ?? null,
     topic: line?.topicEn ?? null,
-    question: input.kind === 'question' ? input.text : null,
+    question: input.kind === 'question' ? (input.about ? `${input.text} (asked while reading: ${input.about})` : input.text) : null,
     language: child.language,
     style: child.style,
     followUp,

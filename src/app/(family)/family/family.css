@@ -303,3 +303,16 @@
 @media (prefers-reduced-motion: reduce) {
   .fam-skeleton { animation: none; }
 }
+
+/* ---- the chapter reader's highlight (S1, C374) -------------------------------------------------------------------- */
+/* The sentence being read aloud (sunshine under slate text, 10.13:1) and, only when the speech engine reports word
+   boundaries, its word (tangerine under slate, 5.61:1). Set by ChapterReader through the CSS Custom Highlight API;
+   nothing moves. */
+::highlight(nc-sentence) {
+  background-color: #ffd23f;
+  color: #1e293b;
+}
+::highlight(nc-word) {
+  background-color: #ff7a1a;
+  color: #1e293b;
+}

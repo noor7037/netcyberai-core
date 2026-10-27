@@ -42,10 +42,27 @@ export const FAMILY_SCREENS = [
   ['full', 'family-home', '/family', {}],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
+  // S3 (C376): asking for a chapter and the source choice, in the parent area; Study lists the requests with their badges.
+  ['full', 'family-parent-chapter-request', '/family/parent', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
+  ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-study', '/family/study', {}],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
+  // S1 (C374): the chapter reader, its blocks and the sticky read-aloud controls.
+  ['full', 'family-chapter-reader', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-controls]' }],
+  // S5 (C378): the slider, the 3D model (drawn in 2D until asked for) and the chapter test, in the same chapter.
+  ['full', 'family-chapter-slider', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="slider"]' }],
+  ['full', 'family-chapter-model', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="model_3d"] [data-model-2d]' }],
+  ['full', 'family-chapter-test', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="chapter_test"]' }],
+  ['full', 'family-parent-tests', '/family/parent/tests', { parent: true, settle: '[data-parent-tests]' }],
+  ['full', 'family-chapter-science', '/family/study/chapter/nc.showcase.water-cycle', { settle: '[data-reader-controls]' }],
+  // S2 (C375): the shared tutor window on Study (its input rail, then its Conversation tab), the reader's doubt drawer,
+  // and the parent's Learning Vault.
+  ['full', 'family-tutor-window', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]' }],
+  ['full', 'family-tutor-conversation', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ tap: '[data-tutor-tab="conversation"]', wait: '[data-tutor-turns]' }] }],
+  ['full', 'family-tutor-doubt', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-doubt]', steps: [{ tap: '[data-reader-doubt]', wait: '[data-tutor-drawer] [data-tutor-rail]' }] }],
+  ['full', 'family-tutor-vault', '/family/parent/vault', { parent: true, settle: '[data-vault-conversation]' }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
   ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],

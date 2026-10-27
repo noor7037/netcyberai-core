@@ -34,7 +34,6 @@ export function embedUrl(p: Pick<VideoPick, 'videoId' | 'startS'>): string {
 
 export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
   const [videos, setVideos] = useState<VideoPick[]>([]);
-  const [playing, setPlaying] = useState<string | null>(null);
 
   useEffect(() => {
     const ask = new AbortController();
@@ -45,6 +44,14 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
     return () => ask.abort();
   }, [topicKey]);
 
+  return <VideoList w={w} videos={videos} />;
+}
+
+// The list itself, from picks already in hand (S5, C378: a chapter's reviewer-chosen picks are read on the server and
+// passed in). `saver`: the data-saver is on; the card is drawn here and nothing of the video loads until the tap, so
+// the note only says so. `title`: a heading other than the topic's.
+export function VideoList({ w, videos, saver = false, title }: { w: Words; videos: VideoPick[]; saver?: boolean; title?: string }) {
+  const [playing, setPlaying] = useState<string | null>(null);
   if (!videos.length) return null;
   return (
     <section data-videos className="fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-slate" aria-labelledby="videos-title">
@@ -52,11 +59,16 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
         <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-coral-deep bg-gradient-to-br from-coral-deep to-grape-deep text-white shadow-md">
           <FamIcon name="video" className="h-5 w-5" />
         </span>
-        {w['fam.video.title']}
+        {title ?? w['fam.video.title']}
       </h2>
       <p data-video-note className="text-sm">
         {w['fam.video.note']}
       </p>
+      {saver && (
+        <p data-video-saver className="text-sm font-semibold">
+          {w['fam.video.saver']}
+        </p>
+      )}
       <ul className="flex flex-col gap-4">
         {videos.map((v) => (
           <li key={v.videoId} data-video={v.videoId} className="flex flex-col gap-2">

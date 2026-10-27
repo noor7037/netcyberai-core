@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ContentView } from '@/components/control/content/ContentView';
 import { EnglishVersionsView } from '@/components/control/content/EnglishVersionsView';
@@ -26,7 +27,13 @@ export default async function ContentPage() {
   // The video finder's picks and channels (M2-5, C279).
   const videos = session ? await withTenantContext(session, (db) => listVideoReview(db, { today: indiaDate() })) : null;
   return (
-    <ModulePage title={t(lang, 'control.content.title')} purpose={t(lang, 'control.content.purpose')} about={t(lang, 'control.content.about')} icon="academics" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+    <ModulePage title={t(lang, 'control.content.title')} purpose={t(lang, 'control.content.purpose')} about={t(lang, 'control.content.about')} icon="academics" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}
+      more={
+        <Link href="/control/content/studio" data-studio-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+          {t(lang, 'control.content.studioLink')}
+        </Link>
+      }
+    >
       {versions && <ContentView initial={versions} />}
       {english && <EnglishVersionsView initial={english} />}
       {videos && <VideoPicksView initial={videos} />}

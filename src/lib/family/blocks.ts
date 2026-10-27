@@ -8,9 +8,20 @@
 // - an interactive block (graph, number line, fraction model, geometry, simulation; M2-8, C282) carries only a choice
 //   from a fixed set and bounded numbers; a value out of its range drops the block, and every number shown is computed
 //   by our code (./interactive.ts). At most one interactive block is kept per response.
+// - every block may carry a stable `id` and a `tts_read_aloud` flag (S1, C374). Narration reads only the teaching text
+//   of an explanation, a worked example or key points (READ_ALOUD_TYPES); a diagram, table, interactive, check, source
+//   list or any future picture-like type is never read, whatever its flag says (narrationScript). Content without ids
+//   stays valid: an id is derived from the block's own content (blockIds).
+// - a table (S1) is chapter content only: the model's stream (parseBlockLine) never accepts one.
+// - a parameter slider, a 3D model and a chapter test (S5, C378) are chapter content only too, and silent: narration
+//   never reads them. A slider's readouts are expressions in x, recomputed here (they must give a number across the whole
+//   slider); a 3D model is a solid from a fixed set with bounded sizes (./solids.ts), with a text description for the 2D
+//   view; a chapter test carries its answer and reason in the authored block, which the server seals before the phone
+//   gets it (chapter-tests.ts), and its written and photo items carry a rubric for the parent or teacher.
 // Pure: no database, no network. Safe for the phone (no message file imported).
 
 import { FRACTION_MAX_DENOMINATOR, GRAPH_FNS, GRAPH_PARAMS, PARAM_LIMIT, SIM_INPUTS, SIM_KINDS, X_LIMIT, isTriangle, type Fraction, type GraphFn, type SimKind } from './interactive';
+import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -34,12 +45,32 @@ export type GeometryShape = { kind: 'angle'; degrees: number } | { kind: 'triang
 export type Geometry = { type: 'geometry'; title: string; shape: GeometryShape; labels: string[] };
 export type Simulation = { type: 'simulation'; title: string; sim: SimKind; values: Record<string, number> };
 export type Interactive = Graph | NumberLine | FractionModel | Geometry | Simulation;
+// A small table of plain-text cells (S1): chapter content, drawn as a table and never read aloud.
+export type Table = { type: 'table'; title: string; columns: string[]; rows: string[][] };
 
-export type Block = Explanation | WorkedExample | KeyPoints | Diagram | Check | Practice | EnglishMoment | Sources | Interactive;
+// S5 (C378). A slider: one value from min to max; each readout is an expression in x. `fraction`: the slider is the
+// numerator of n/d (0 to d, whole steps) and is drawn as a bar or a circle.
+export type SliderReadout = { label: string; expression: string; unit?: string; places: number };
+export type Slider = { type: 'slider'; title: string; label: string; unit?: string; min: number; max: number; step: number; start: number; readouts: SliderReadout[]; fraction?: { d: number; shape: 'bar' | 'circle' } };
+export type Model3D = { type: 'model_3d'; title: string; solid: SolidKind; dims: Record<string, number>; alt: string; unit?: string };
+export type TestMcq = { kind: 'mcq'; id: string; question: string; options: string[]; answer: number; why: string };
+export type TestWritten = { kind: 'written'; id: string; question: string; rubric: string[] };
+export type TestPhoto = { kind: 'photo'; id: string; question: string; rubric: string[] };
+export type TestItem = TestMcq | TestWritten | TestPhoto;
+export type ChapterTest = { type: 'chapter_test'; title: string; items: TestItem[] };
+
+// What any block may carry (S1, C374): a stable id (narration and the saved reading position point at it) and
+// `tts_read_aloud: false` to keep a readable block silent. The flag can only silence: it never makes a diagram, table
+// or interactive readable.
+export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
+
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'check', 'practice', 'english_moment', 'sources', ...INTERACTIVE_TYPES];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test'];
+// Types only authored chapters carry; the model's answer never does.
+export const CHAPTER_ONLY_TYPES: readonly BlockType[] = ['table', 'slider', 'model_3d', 'chapter_test'];
 
 // Every response must teach, check and give practice (08 §7); the others come when they fit.
 export const REQUIRED_BLOCKS: readonly BlockType[] = ['explanation', 'check', 'practice'];
@@ -175,8 +206,20 @@ function quizItem(v: unknown): QuizItem | null {
   return item;
 }
 
+export const BLOCK_ID = /^[a-z0-9][a-z0-9_-]{0,39}$/;
+
+// A block that passed its shape, with its id and narration flag when given (anything else in them is dropped).
 export function checkBlock(raw: unknown): Block | null {
   const o = (raw ?? {}) as Record<string, unknown>;
+  const b = blockBody(o);
+  if (!b) return null;
+  const meta: BlockMeta = {};
+  if (typeof o.id === 'string' && BLOCK_ID.test(o.id)) meta.id = o.id;
+  if (typeof o.tts_read_aloud === 'boolean') meta.tts_read_aloud = o.tts_read_aloud;
+  return Object.keys(meta).length ? { ...b, ...meta } : b;
+}
+
+function blockBody(o: Record<string, unknown>): Block | null {
   switch (o.type) {
     case 'explanation': {
       const title = plain(o.title, 120);
@@ -262,15 +305,123 @@ export function checkBlock(raw: unknown): Block | null {
       });
       return links ? { type: 'sources', links } : null;
     }
+    case 'table': {
+      const title = plain(o.title, 120);
+      const columns = list(o.columns, 1, 5, (x) => plain(x, 40));
+      if (!title || !columns || !Array.isArray(o.columns) || columns.length !== Math.min(o.columns.length, 5) || !Array.isArray(o.rows) || o.rows.length < 1 || o.rows.length > 12) return null;
+      const rows: string[][] = [];
+      for (const r of o.rows) {
+        if (!Array.isArray(r) || r.length !== columns.length) return null;
+        const cells = r.map((c) => plain(c, 80));
+        if (cells.some((c) => c === null)) return null;
+        rows.push(cells as string[]);
+      }
+      return { type: 'table', title, columns, rows };
+    }
     case 'graph':
     case 'number_line':
     case 'fraction_model':
     case 'geometry':
     case 'simulation':
       return interactiveBlock(o);
+    case 'slider':
+      return sliderBlock(o);
+    case 'model_3d':
+      return model3dBlock(o);
+    case 'chapter_test':
+      return chapterTestBlock(o);
     default:
       return null;
   }
+}
+
+// ---- slider, 3D model and chapter test (S5, C378) ----
+
+// A readout's value at x: the expression with x in brackets, through the safe calculator; null when it is not a number.
+export function sliderValue(expression: string, x: number): number | null {
+  if (!SLIDER_EXPRESSION.test(expression) || !Number.isFinite(x)) return null;
+  const out = calc(expression.replace(/x/g, `(${x})`));
+  return out !== null && Number.isFinite(out) && Math.abs(out) <= 1e9 ? out : null;
+}
+const SLIDER_EXPRESSION = /^[0-9x.+\-*/^()%×÷−\s]{1,80}$/;
+
+function sliderBlock(o: Record<string, unknown>): Slider | null {
+  const title = plain(o.title, 120);
+  const label = plain(o.label, 60);
+  const min = within(o.min, -1000, 1000);
+  const max = within(o.max, -1000, 1000);
+  const step = within(o.step, 0.001, 1000);
+  if (!title || !label || min === null || max === null || step === null || min >= max || (max - min) / step > 2000) return null;
+  const start = within(o.start, min, max);
+  if (start === null) return null;
+  const unit = o.unit === undefined ? undefined : (plain(o.unit, 12) ?? undefined);
+  let fraction: Slider['fraction'];
+  if (o.fraction !== undefined) {
+    const f = record(o.fraction);
+    const d = wholeWithin(f.d, 2, FRACTION_MAX_DENOMINATOR);
+    const shape = f.shape === 'bar' || f.shape === 'circle' ? f.shape : null;
+    // The slider is the numerator: whole steps from 0 to d.
+    if (d === null || !shape || min !== 0 || max !== d || step !== 1 || !Number.isInteger(start)) return null;
+    fraction = { d, shape };
+  }
+  const given = Array.isArray(o.readouts) ? o.readouts.slice(0, 3) : [];
+  const readouts: SliderReadout[] = [];
+  for (const r of given) {
+    const x = record(r);
+    const rl = plain(x.label, 60);
+    const expression = typeof x.expression === 'string' ? x.expression.trim() : '';
+    const places = x.places === undefined ? 2 : wholeWithin(x.places, 0, 4);
+    const ru = x.unit === undefined ? undefined : (plain(x.unit, 12) ?? undefined);
+    if (!rl || places === null) return null;
+    // Every value the slider can reach must give a number (a division by zero anywhere drops the block).
+    for (let k = 0; k <= 20; k++) if (sliderValue(expression, min + ((max - min) * k) / 20) === null) return null;
+    readouts.push({ label: rl, expression, ...(ru ? { unit: ru } : {}), places });
+  }
+  if (readouts.length === 0 && !fraction) return null;
+  return { type: 'slider', title, label, ...(unit ? { unit } : {}), min, max, step, start, readouts, ...(fraction ? { fraction } : {}) };
+}
+
+function model3dBlock(o: Record<string, unknown>): Model3D | null {
+  const title = plain(o.title, 120);
+  const alt = plain(o.alt, 300);
+  const solid = SOLID_KINDS.find((k) => k === o.solid);
+  if (!title || !alt || !solid) return null;
+  const given = record(o.dims);
+  const dims: Record<string, number> = {};
+  for (const [name, r] of Object.entries(SOLID_INPUTS[solid])) {
+    const v = within(given[name], r.min, r.max);
+    if (v === null) return null;
+    dims[name] = v;
+  }
+  const unit = o.unit === undefined ? undefined : (plain(o.unit, 12) ?? undefined);
+  return { type: 'model_3d', title, solid, dims, alt, ...(unit ? { unit } : {}) };
+}
+
+function chapterTestBlock(o: Record<string, unknown>): ChapterTest | null {
+  const title = plain(o.title, 120);
+  if (!title || !Array.isArray(o.items) || o.items.length < 1 || o.items.length > 8) return null;
+  const items: TestItem[] = [];
+  const seen = new Set<string>();
+  for (const raw of o.items) {
+    const x = record(raw);
+    const id = typeof x.id === 'string' && /^[a-z0-9_-]{1,20}$/i.test(x.id) && !seen.has(x.id) ? x.id : null;
+    const question = plain(x.question, 400);
+    if (!id || !question) return null;
+    seen.add(id);
+    if (x.kind === 'mcq') {
+      const options = list(x.options, 2, 5, (v) => plain(v, 160));
+      const answer = Number(x.answer);
+      const why = plain(x.why, 400);
+      if (!options || !Array.isArray(x.options) || options.length !== Math.min(x.options.length, 5) || !Number.isInteger(answer) || answer < 0 || answer >= options.length || !why) return null;
+      items.push({ kind: 'mcq', id, question, options, answer, why });
+    } else if (x.kind === 'written' || x.kind === 'photo') {
+      // The rubric is what the parent or teacher marks against and what the child sees: never turned into a score here.
+      const rubric = list(x.rubric, 1, 6, (v) => plain(v, 200));
+      if (!rubric || !Array.isArray(x.rubric) || rubric.length !== Math.min(x.rubric.length, 6)) return null;
+      items.push({ kind: x.kind, id, question, rubric });
+    } else return null;
+  }
+  return { type: 'chapter_test', title, items };
 }
 
 // ---- the interactive blocks (M2-8) ----
@@ -489,7 +640,8 @@ export function parseBlockLine(line: string): Block | null {
   const end = line.lastIndexOf('}');
   if (start < 0 || end <= start) return null;
   try {
-    return checkBlock(JSON.parse(line.slice(start, end + 1)));
+    const b = checkBlock(JSON.parse(line.slice(start, end + 1)));
+    return b && !CHAPTER_ONLY_TYPES.includes(b.type) ? b : null;
   } catch {
     return null;
   }
@@ -509,4 +661,75 @@ export function completeResponse(blocks: Block[]): Block[] | null {
   }
   if (!REQUIRED_BLOCKS.every((t) => first.has(t))) return null;
   return ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!);
+}
+
+// ---- narration (S1, C374) ------------------------------------------------------------------------------------------
+
+// The only block types narration reads: teaching text. Everything else (a diagram, a table, an interactive, a check or
+// practice, an English moment with its own speaker button, sources, and any type added later, such as a picture or a
+// formula drawn as one) is silent: an allow-list, so a new type cannot become readable by being forgotten here.
+export const READ_ALOUD_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points'];
+export const readsAloud = (b: Block): boolean => READ_ALOUD_TYPES.includes(b.type) && b.tts_read_aloud !== false;
+
+// FNV-1a over the block's content (its id and flag left out), as 8 hex digits: the same block gives the same id on
+// every phone and every load.
+function contentHash(b: Block): string {
+  const { id: _id, tts_read_aloud: _tts, ...body } = b;
+  const text = JSON.stringify(body);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(16).padStart(8, '0');
+}
+
+// Each block's stable id: its own when it has a valid one, else `<type>-<content hash>`; a repeat gets `-2`, `-3`.
+export function blockIds(blocks: readonly Block[]): string[] {
+  const used = new Set<string>();
+  return blocks.map((b) => {
+    const base = b.id && BLOCK_ID.test(b.id) ? b.id : `${b.type.replace(/_/g, '-')}-${contentHash(b)}`;
+    let id = base;
+    for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
+    used.add(id);
+    return id;
+  });
+}
+
+// Sentences of a plain text: cut after . ! ? or the Devanagari danda (।) when a space follows, so "3.5" and "e.g.x"
+// stay whole. Empty pieces are dropped.
+export function sentences(text: string): string[] {
+  return text
+    .split(/(?<=[.!?\u0964])\s+/)
+    .map((s) => s.trim())
+    .filter((s) => /[\p{L}\p{N}]/u.test(s));
+}
+
+// The texts a readable block says, in the order it shows them. A worked step's expression is a formula: never read.
+function spokenTexts(b: Block): string[] {
+  switch (b.type) {
+    case 'explanation':
+      return [b.title, b.idea, b.example, ...b.steps];
+    case 'worked_example':
+      return [b.problem, ...b.steps.map((s) => s.text), b.answer];
+    case 'key_points':
+      return [...b.points];
+    default:
+      return [];
+  }
+}
+
+// One line of narration: the block it belongs to (by stable id), its place among that block's sentences, the text.
+export type NarrationLine = { blockId: string; sentence: number; text: string };
+
+// The chapter's narration, in reading order: every sentence of every readable block, nothing else.
+export function narrationScript(blocks: readonly Block[]): NarrationLine[] {
+  const ids = blockIds(blocks);
+  const out: NarrationLine[] = [];
+  blocks.forEach((b, i) => {
+    if (!readsAloud(b)) return;
+    let n = 0;
+    for (const t of spokenTexts(b)) for (const s of sentences(t)) out.push({ blockId: ids[i], sentence: n++, text: s });
+  });
+  return out;
 }

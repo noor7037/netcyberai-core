@@ -1,0 +1,177 @@
+{
+  "key": "nc.showcase.water-cycle",
+  "subject": "science",
+  "title": { "en": "The water cycle: where rain comes from", "hi": "जल चक्र: बारिश कहाँ से आती है" },
+  "blocks": {
+    "en": [
+      {
+        "id": "wc-intro",
+        "type": "explanation",
+        "title": "Water is always on the move",
+        "idea": "The water on Earth keeps going round and round. It rises into the air, turns into clouds, falls as rain and flows back to the sea.",
+        "example": "Think of a puddle after the rain. On a sunny afternoon it slowly gets smaller and then it is gone. The water did not vanish. It went up into the air as water vapour.",
+        "steps": [
+          "The Sun warms water in seas, rivers, ponds and even wet clothes.",
+          "Warm water turns into an invisible gas called water vapour. This is evaporation.",
+          "Plants also give out water vapour from their leaves.",
+          "The water vapour rises with warm air, high above the ground."
+        ],
+        "terms": []
+      },
+      {
+        "id": "wc-cycle",
+        "type": "diagram",
+        "title": "The water cycle",
+        "kind": "cycle",
+        "nodes": [
+          { "id": "sea", "label": "Seas and rivers" },
+          { "id": "vapour", "label": "Water vapour rises" },
+          { "id": "clouds", "label": "Clouds form" },
+          { "id": "rain", "label": "Rain or snow falls" },
+          { "id": "flow", "label": "Water flows back" }
+        ],
+        "edges": [
+          { "from": "sea", "to": "vapour", "label": "evaporation" },
+          { "from": "vapour", "to": "clouds", "label": "condensation" },
+          { "from": "clouds", "to": "rain", "label": "precipitation" },
+          { "from": "rain", "to": "flow" },
+          { "from": "flow", "to": "sea" }
+        ]
+      },
+      {
+        "id": "wc-clouds",
+        "type": "explanation",
+        "title": "How a cloud is made",
+        "idea": "High up, the air is cold. Cold air turns water vapour back into tiny drops of water. Millions of these drops together make a cloud.",
+        "example": "Breathe on a cold mirror. It turns misty because the water vapour in your breath cools and becomes tiny drops. A cloud forms in the same way.",
+        "steps": [
+          "Water vapour cools as it rises.",
+          "It changes back into tiny water drops. This is condensation.",
+          "The drops join and grow heavier.",
+          "When they are too heavy to float, they fall as rain, or as snow where it is very cold."
+        ],
+        "terms": []
+      },
+      {
+        "id": "wc-states",
+        "type": "table",
+        "title": "The three forms of water",
+        "columns": ["Form", "Where you see it", "What changes it"],
+        "rows": [
+          ["Solid: ice", "Ice cubes, snow on mountains", "Warming melts it into liquid water"],
+          ["Liquid: water", "Rivers, rain, a glass of water", "Heating turns it into vapour; freezing turns it into ice"],
+          ["Gas: water vapour", "Invisible, in the air around us", "Cooling turns it back into water drops"]
+        ]
+      },
+      {
+        "id": "wc-shirt",
+        "type": "worked_example",
+        "problem": "A wet shirt hangs on a line in the sun. By evening it is dry. Where did the water go, and which part of the water cycle is this?",
+        "steps": [
+          { "text": "The Sun and the moving air warmed the water in the shirt." },
+          { "text": "The warm water turned into water vapour and went into the air." },
+          { "text": "Water turning into vapour is called evaporation." }
+        ],
+        "answer": "The water went into the air as water vapour. This is evaporation."
+      },
+      {
+        "id": "wc-points",
+        "type": "key_points",
+        "points": [
+          "Evaporation: the Sun's heat turns water into water vapour.",
+          "Condensation: cool air turns water vapour into tiny drops that make clouds.",
+          "Precipitation: heavy drops fall as rain, hail or snow.",
+          "Rivers and streams carry the water back to the sea, and the cycle starts again."
+        ]
+      }
+    ],
+    "hi": [
+      {
+        "id": "wc-intro",
+        "type": "explanation",
+        "title": "पानी हमेशा घूमता रहता है",
+        "idea": "धरती का पानी लगातार एक चक्कर में घूमता है। वह हवा में ऊपर उठता है, बादल बनता है, बारिश बनकर गिरता है और बहकर फिर समुद्र में पहुँच जाता है।",
+        "example": "बारिश के बाद बने किसी गड्ढे के पानी के बारे में सोचो। धूप वाली दोपहर में वह धीरे-धीरे छोटा होता है और फिर गायब हो जाता है। पानी खत्म नहीं हुआ। वह जलवाष्प बनकर हवा में चला गया।",
+        "steps": [
+          "सूरज समुद्र, नदी, तालाब और गीले कपड़ों के पानी को गर्म करता है।",
+          "गर्म पानी एक न दिखने वाली गैस बन जाता है, जिसे जलवाष्प कहते हैं। इसे वाष्पीकरण कहते हैं।",
+          "पौधे भी अपनी पत्तियों से जलवाष्प छोड़ते हैं।",
+          "जलवाष्प गर्म हवा के साथ ज़मीन से बहुत ऊपर उठ जाती है।"
+        ],
+        "terms": [
+          { "en": "evaporation", "local": "वाष्पीकरण" },
+          { "en": "water vapour", "local": "जलवाष्प" }
+        ]
+      },
+      {
+        "id": "wc-cycle",
+        "type": "diagram",
+        "title": "जल चक्र",
+        "kind": "cycle",
+        "nodes": [
+          { "id": "sea", "label": "समुद्र, नदियाँ" },
+          { "id": "vapour", "label": "जलवाष्प उठती है" },
+          { "id": "clouds", "label": "बादल बनते हैं" },
+          { "id": "rain", "label": "बारिश, बर्फ़" },
+          { "id": "flow", "label": "पानी लौटता है" }
+        ],
+        "edges": [
+          { "from": "sea", "to": "vapour", "label": "वाष्पीकरण" },
+          { "from": "vapour", "to": "clouds", "label": "संघनन" },
+          { "from": "clouds", "to": "rain", "label": "वर्षण" },
+          { "from": "rain", "to": "flow" },
+          { "from": "flow", "to": "sea" }
+        ]
+      },
+      {
+        "id": "wc-clouds",
+        "type": "explanation",
+        "title": "बादल कैसे बनता है",
+        "idea": "ऊपर आसमान में हवा ठंडी होती है। ठंडी हवा जलवाष्प को फिर से पानी की बहुत छोटी बूँदों में बदल देती है। ऐसी लाखों बूँदें मिलकर बादल बनाती हैं।",
+        "example": "किसी ठंडे शीशे पर फूँक मारो। शीशा धुँधला हो जाता है, क्योंकि तुम्हारी साँस की जलवाष्प ठंडी होकर छोटी बूँदें बन जाती है। बादल भी इसी तरह बनता है।",
+        "steps": [
+          "ऊपर उठते हुए जलवाष्प ठंडी होती जाती है।",
+          "वह फिर से पानी की छोटी बूँदें बन जाती है। इसे संघनन कहते हैं।",
+          "बूँदें आपस में मिलकर भारी हो जाती हैं।",
+          "जब वे हवा में तैर नहीं पातीं, तो बारिश बनकर गिरती हैं, और बहुत ठंडी जगह पर बर्फ़ बनकर।"
+        ],
+        "terms": [
+          { "en": "condensation", "local": "संघनन" },
+          { "en": "cloud", "local": "बादल" }
+        ]
+      },
+      {
+        "id": "wc-states",
+        "type": "table",
+        "title": "पानी के तीन रूप",
+        "columns": ["रूप", "कहाँ दिखता है", "कैसे बदलता है"],
+        "rows": [
+          ["ठोस: बर्फ़", "बर्फ़ के टुकड़े, पहाड़ों पर बर्फ़", "गर्म करने पर पिघलकर पानी बनती है"],
+          ["द्रव: पानी", "नदी, बारिश, गिलास का पानी", "गर्म करने पर भाप, जमाने पर बर्फ़ बनता है"],
+          ["गैस: जलवाष्प", "दिखती नहीं, हमारे आसपास की हवा में", "ठंडी होने पर फिर पानी की बूँदें बनती है"]
+        ]
+      },
+      {
+        "id": "wc-shirt",
+        "type": "worked_example",
+        "problem": "एक गीली कमीज़ धूप में रस्सी पर टँगी है। शाम तक वह सूख जाती है। पानी कहाँ गया, और यह जल चक्र का कौन-सा हिस्सा है?",
+        "steps": [
+          { "text": "सूरज और चलती हवा ने कमीज़ के पानी को गर्म किया।" },
+          { "text": "गर्म पानी जलवाष्प बनकर हवा में चला गया।" },
+          { "text": "पानी का जलवाष्प बनना वाष्पीकरण कहलाता है।" }
+        ],
+        "answer": "पानी जलवाष्प बनकर हवा में चला गया। यह वाष्पीकरण है।"
+      },
+      {
+        "id": "wc-points",
+        "type": "key_points",
+        "points": [
+          "वाष्पीकरण: सूरज की गर्मी पानी को जलवाष्प में बदलती है।",
+          "संघनन: ठंडी हवा जलवाष्प को छोटी बूँदों में बदलती है, जिनसे बादल बनते हैं।",
+          "वर्षण: भारी बूँदें बारिश, ओले या बर्फ़ बनकर गिरती हैं।",
+          "नदियाँ और नाले पानी को वापस समुद्र तक ले जाते हैं, और चक्र फिर शुरू होता है।"
+        ]
+      }
+    ]
+  }
+}
