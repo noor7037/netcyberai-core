@@ -1,6 +1,7 @@
 import type { FamilyClaims } from './db';
 import type { PoolClient } from 'pg';
 import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
+import type { SchoolProgress } from '@/lib/contracts/progress-report';
 import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
 import {
   answerPulse,
@@ -10,6 +11,7 @@ import {
   readSchoolNews,
   readSchoolPagePicture,
   readSchoolPaper,
+  readSchoolProgress,
   readSchoolSyllabus,
   readSchoolToday,
   redeemConnectCode,
@@ -304,6 +306,20 @@ export async function childResultsFor(claims: Claims, links: readonly FamilyScho
   if (!m) return null;
   try {
     return await readChildSchoolResults(claims, m.linkId, m.studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// A family child's progress report (AJ-5) in the parent area (parentView) or the child's own view, which also needs the
+// school to let children see their results: the child's published exams of the current session whose report cards and
+// progress reports the office made, by exam type. null when the child is not matched, the link is gone, or not allowed.
+export async function schoolProgressFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, as: { childView: boolean }): Promise<SchoolProgress | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readSchoolProgress(claims, m.linkId, m.studentId, as);
   } catch (e) {
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;

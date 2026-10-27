@@ -261,6 +261,10 @@ const APP_USER: Record<string, string> = {
   marking_marks: 'DELETE,INSERT,SELECT,UPDATE',
   marking_report_links: 'INSERT,SELECT', // made by the office (C351); UPDATE of the three ended_* columns only, a column grant (C230-AG)
   // c347 end
+  // aj-5 begin
+  exam_outputs: 'INSERT,SELECT', // "publish and notify" made for a publication: one row, never changed or removed (C230-AJ part 5)
+  exam_certificates: 'INSERT,SELECT', // a merit or participation certificate linked to its publication and child; never changed or removed
+  // aj-5 end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -434,6 +438,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   marking_marks: '',
   marking_report_links: '',
   // c347 end
+  // aj-5 begin
+  exam_outputs: '', // a school's own record: a guardian reads it only through guardian_exam_outputs()
+  exam_certificates: '',
+  // aj-5 end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

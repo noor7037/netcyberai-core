@@ -1,9 +1,10 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import type { MessageKey } from '@/lib/i18n';
 import type { TellParents } from '@/lib/marking/result-send';
+import { momentWords } from './exam-format';
 import { SECTION, TAP } from './SchemeParts';
 
 // "Tell parents on WhatsApp" on the class result (C351): once the class is published, the office sees who will get a
@@ -14,13 +15,20 @@ import { SECTION, TAP } from './SchemeParts';
 // A child already sent may have their link ended (a lost phone, a forwarded link; C230-AG): it stops opening at once,
 // and the child is sent a new one only by Send, after this same preview.
 
+// mode "outputs" (C230-AJ part 5, "publish and notify"): the same previewed send, as one action that also makes the class's
+// report cards and progress reports and shows the progress report in the Family app (src/lib/exams/publish-outputs.ts). The
+// messages, the preview and the guardians' rules are exactly these. Nothing here changes who approves or publishes.
+
 const END_REASONS = ['lost', 'forwarded', 'other'] as const;
 type EndReason = (typeof END_REASONS)[number];
 
 const PRIMARY = 'inline-flex min-h-[44px] items-center justify-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white disabled:opacity-60';
 
-export function TellParentsWhatsApp({ examId, classId }: { examId: string; classId: string }) {
-  const { t } = useT();
+export function TellParentsWhatsApp({ examId, classId, mode = 'tell' }: { examId: string; classId: string; mode?: 'tell' | 'outputs' }) {
+  const { t, lang } = useT();
+  const outputs = mode === 'outputs';
+  const outputsUrl = `/api/app/exams/${examId}/classes/${classId}/outputs`;
+  const [made, setMade] = useState<{ made: boolean; madeAt: string | null } | null>(null);
   const [data, setData] = useState<TellParents | null>(null);
   const [open, setOpen] = useState(false);
   const [state, setState] = useState<'idle' | 'loading' | 'refused' | 'failed'>('idle');
@@ -37,6 +45,15 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
     setData(got);
     setState(got ? 'idle' : res && (res.status === 403 || res.status === 404 || res.status === 409) ? 'refused' : 'failed');
   }, [url]);
+  // In outputs mode the state of the action is read at once; for anyone the server does not answer the section says nothing.
+  const loadMade = useCallback(async () => {
+    const res = await fetch(outputsUrl, { cache: 'no-store' }).catch(() => null);
+    if (res?.ok) setMade((await res.json().catch(() => null)) as { made: boolean; madeAt: string | null } | null);
+    else if (res && (res.status === 403 || res.status === 404 || res.status === 409)) setState('refused');
+  }, [outputsUrl]);
+  useEffect(() => {
+    if (outputs) void loadMade();
+  }, [outputs, loadMade]);
   const toggle = async () => {
     if (!open && !data) await load();
     setOpen(!open);
@@ -47,10 +64,12 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
   const send = async () => {
     setBusy(true);
     setNote(null);
-    const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }).catch(() => null);
-    const body = res?.ok ? ((await res.json().catch(() => null)) as { queued: number } | null) : null;
+    const res = await fetch(outputs ? outputsUrl : url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }).catch(() => null);
+    const body = res?.ok ? ((await res.json().catch(() => null)) as { queued: number; first?: boolean } | null) : null;
     setBusy(false);
-    setNote(body ? { kind: 'ok', text: t('ex.tell.sent', { n: body.queued }) } : { kind: 'error', text: t('ex.tell.failed') });
+    if (outputs) setNote(body ? { kind: 'ok', text: t(body.first ? 'ex.out.done' : 'ex.out.again', { n: body.queued }) } : { kind: 'error', text: t('ex.out.failed') });
+    else setNote(body ? { kind: 'ok', text: t('ex.tell.sent', { n: body.queued }) } : { kind: 'error', text: t('ex.tell.failed') });
+    if (outputs) await loadMade();
     await load();
   };
   const end = async () => {
@@ -66,11 +85,17 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
   const who = (c: TellParents['children'][number]) => (c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name);
 
   return (
-    <section className={SECTION} data-tell-parents aria-labelledby="tell-parents-title">
+    <section className={SECTION} data-tell-parents data-publish-outputs={outputs ? (made?.made ? 'made' : 'not-made') : undefined} aria-labelledby="tell-parents-title">
       <h2 id="tell-parents-title" className="text-base font-bold">
-        {t('ex.tell.title')}
+        {outputs ? t('ex.out.title') : t('ex.tell.title')}
       </h2>
-      <p>{t('ex.tell.lead')}</p>
+      <p>{outputs ? t('ex.out.lead') : t('ex.tell.lead')}</p>
+      {outputs && <p>{t('ex.out.family')}</p>}
+      {outputs && made && (
+        <p data-outputs-state className="font-semibold">
+          {made.made && made.madeAt ? t('ex.out.made', { when: momentWords(made.madeAt, lang) }) : t('ex.out.notMade')}
+        </p>
+      )}
       {open && data && (
         <p data-tell-summary className="font-semibold">
           {t('ex.tell.summary', { will: data.will, wont: data.wont, sent: data.sent })}
@@ -80,9 +105,9 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
         <button type="button" className={TAP} aria-expanded={open} aria-controls="tell-parents-list" disabled={state === 'loading'} onClick={() => void toggle()} data-tell-preview>
           {open ? t('ex.tell.hide') : t('ex.tell.preview')}
         </button>
-        {open && data && data.will > 0 && (
+        {open && data && (outputs ? data.will > 0 || !made?.made : data.will > 0) && (
           <button type="button" className={PRIMARY} disabled={busy} onClick={() => void send()} data-tell-send>
-            {busy ? t('ex.tell.sending') : t('ex.tell.send', { n: data.will })}
+            {outputs ? (busy ? t('ex.out.sending') : data.will > 0 ? t('ex.out.send', { n: data.will }) : t('ex.out.sendNone')) : busy ? t('ex.tell.sending') : t('ex.tell.send', { n: data.will })}
           </button>
         )}
       </div>

@@ -96,7 +96,9 @@ export type NeedsHelpEvidence = { open: { kind: NeedsHelpKind; since: string; so
 // last: its papers' latest date, or the day it was made) and their own exam before it; the percents are the class result's own (percent() and the grading scheme's rounding), never
 // worked out a second way. A child is compared only with themselves.
 export type MarksPaper = { paperId: string; subject: string; percent: number | null };
-export type MarksExam = { examId: string; name: string; className: string; percent: number; papers: MarksPaper[] };
+// `kind` and `session` label the exam (its type in both languages as the school names it, and its session) when the flags
+// are read (C230-AJ part 2); they are not kept in the evidence, and no rule reads them.
+export type MarksExam = { examId: string; name: string; className: string; percent: number; papers: MarksPaper[]; kind?: { key: string; en: string; hi: string }; session?: string | null };
 export type BelowPass = { paperId: string; subject: string; part: string | null; percent: number; passMark: number };
 export type MarksEvidence = {
   exam: MarksExam;

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { classResult } from '@/lib/exams/results';
+import { weightedNamesOf } from '@/lib/exams/weighted-view';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, ruleError } from '@/lib/frameworks/route';
 
@@ -14,6 +15,8 @@ export async function GET(req: NextRequest, { params }: { params: { examId: stri
     if (claims.role === 'accountant') return ruleError(403, 'not_allowed');
     const data = await classResult(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, params.examId, params.classId);
     if (!data) return ruleError(404, 'not_found');
-    return NextResponse.json(data, { headers: { 'Cache-Control': 'no-store' } });
+    // The counted exam types' names (C230-AJ part 2), only when the scheme counts exam types; otherwise the answer is as it was.
+    const body = data.weighted ? { ...data, weightedNames: await weightedNamesOf(db, claims.schoolId, data.weighted.weights) } : data;
+    return NextResponse.json(body, { headers: { 'Cache-Control': 'no-store' } });
   });
 }

@@ -1,13 +1,14 @@
 import type { Band, GradingScheme } from './scheme';
 
 // One rule in one place (docs/27 section 3 rule 3, C213). Every percent, grade and pass in the app comes from these
-// three functions and the scheme in force: no screen, report or PDF works one out on its own.
+// functions and the scheme in force: no screen, report or PDF works one out on its own.
 //
 //   percent(parts)          the percent of a set of marks. Absent and exempt are not marks: they are left out of
 //                           both the marks and the maximum, never counted as zero. No marks at all: null.
 //   grade(percent, scheme)  the band the percent falls in, after rounding it as the scheme says. A percent in no
 //                           band gets "no grade" and the reason, never the nearest band.
 //   passed(input, scheme)   the subject's pass mark, and each component's when the scheme sets one.
+//   weightedPercent(...)    the percent of exam types that count together, by the scheme's weights (C230-AJ).
 //
 // Rules only: no model is called.
 
@@ -24,6 +25,29 @@ export function percent(parts: readonly MarkPart[]): number | null {
     return (marked.reduce((s, p) => s + (p.share as number) * ((p.score as number) / p.max), 0) / shares) * 100;
   }
   return (marked.reduce((s, p) => s + (p.score as number), 0) / marked.reduce((s, p) => s + p.max, 0)) * 100;
+}
+
+// Exam types that count together toward one result (C230-AJ part 2, C357). `percents` are a child's percent in each
+// counted type (one each: percent() over that type's marks); `weights` are the scheme's (its weights add up to 100).
+// The result is the weighted mean of the percents. A counted type with no percent yet leaves the result unknown (null):
+// a mean of some of the weights would read as the result, as a percent of half the marks would. A type that is not
+// counted has no say.
+export type TypeWeight = { type: string; weight: number };
+export type TypePercent = { type: string; percent: number | null };
+export function weightedPercent(percents: readonly TypePercent[], weights: readonly TypeWeight[]): number | null {
+  if (!weights.length) return null;
+  let top = 0;
+  let total = 0;
+  for (const w of weights) {
+    if (!(typeof w.weight === 'number' && Number.isFinite(w.weight) && w.weight > 0)) throw new RangeError('every weight is above zero');
+    const p = percents.find((x) => x.type === w.type)?.percent ?? null;
+    if (p === null) return null;
+    if (!Number.isFinite(p) || p < 0 || p > 100) throw new RangeError('a percent lies within 0 to 100');
+    top += w.weight * p;
+    total += w.weight;
+  }
+  // The division can land a hair over 100 or under 0; the mean of percents within 0 to 100 lies within it.
+  return Math.min(100, Math.max(0, top / total));
 }
 
 // Half up, to a whole number or one decimal place. The tiny allowance keeps 32.45 (stored as 32.4499…) a half.

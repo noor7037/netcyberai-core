@@ -5,8 +5,9 @@ import { coAreasOf, coScholasticOf } from './co-scholastic';
 import { papersOf, type Actor } from './exams';
 import { ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } from './papers';
 import { publicationInForce, REPORT_CARD_OFFICE } from './publish';
-import { childResult, type ResultPaper, type Shown } from './results';
+import { childResult, weightedForClass, type ResultPaper, type Shown, type WeightedChild, type WeightedMeta } from './results';
 import type { Layout } from './scheme';
+import { weightedNamesOf, type WeightedNames } from './weighted-view';
 
 // A report card (docs/27 row 9c, C215): one child's marks in an exam as published for their class, laid out as the
 // grading scheme kept with the publication says (its layout: components, total, percent, grade, attendance,
@@ -34,6 +35,10 @@ export type ReportCard = {
   remark: string | null;
   coScholastic: { area: string; grade: string | null; meaning: string | null }[]; // each area of the kept scheme, in its order
   recognition: CardRecognition | null; // null: the plan does not have the feature, or nothing was kept for this child
+  // The result across the exam types the kept scheme counts, by its weights (C230-AJ part 2); there only when the scheme
+  // counts exam types and this exam is of one. Worked out from the marks of the class's exams of those types that are
+  // published, so a type with none published yet leaves it "not entered".
+  weighted?: WeightedChild;
 };
 export type ReportCardSet = {
   schoolName: string;
@@ -46,6 +51,8 @@ export type ReportCardSet = {
   columns: { key: string; name: string }[]; // every component of the class's papers, in the order they first appear
   recognitionOn: boolean;
   cards: ReportCard[];
+  weighted?: WeightedMeta; // the weights and the exams they were worked out from; with each card's `weighted`
+  weightedNames?: WeightedNames; // the counted exam types' names in both languages (there with `weighted`)
 };
 export type CardsResult = { ok: true; set: ReportCardSet } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' };
 
@@ -64,7 +71,7 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
   const classTeacher = !office && (await db.query(`select public.is_class_teacher_of($1) as yes`, [classId])).rows[0]?.yes === true;
   if (!office && !classTeacher) return { ok: false, reason: 'not_allowed' };
   const exam = (await db.query(
-    `select e.name, e.term, a.label as session, a.start_date::text as session_start, a.end_date::text as session_end
+    `select e.name, e.term, e.session_id, e.exam_type, a.label as session, a.start_date::text as session_start, a.end_date::text as session_end
        from exams e left join academic_sessions a on a.school_id = e.school_id and a.session_id = e.session_id
       where e.school_id = $1 and e.exam_id = $2`,
     [actor.schoolId, examId]
@@ -112,6 +119,8 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
   const columns: { key: string; name: string }[] = [];
   for (const p of papers) for (const c of p.components) if (!columns.some((x) => x.key === c.key)) columns.push({ key: c.key, name: c.name });
 
+  const weighted = await weightedForClass(db, actor.schoolId, { classId, sessionId: exam.session_id ?? null, ownType: exam.exam_type ?? null, scheme, studentIds: ids, publishedOnly: true });
+
   const cards: ReportCard[] = roll.map((s) => {
     const own = papers.map((p) => found.get(`${p.paperId}|${s.student_id}`) ?? {});
     const result = childResult(resultPapers, own, scheme);
@@ -149,6 +158,7 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
           })
         : [],
       recognition,
+      ...(weighted ? { weighted: weighted.byStudent.get(s.student_id) } : {}),
     };
   });
   const school = (await db.query(`select name from schools where school_id = $1`, [actor.schoolId])).rows[0];
@@ -165,6 +175,7 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
       columns,
       recognitionOn,
       cards,
+      ...(weighted ? { weighted: weighted.meta, weightedNames: await weightedNamesOf(db, actor.schoolId, weighted.meta.weights) } : {}),
     },
   };
 }

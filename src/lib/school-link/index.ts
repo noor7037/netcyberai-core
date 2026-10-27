@@ -1,6 +1,6 @@
 import { createHash, randomInt } from 'crypto';
 import type { PoolClient } from 'pg';
-import { withGuardianContext, SchoolLinkGoneError, type FamilyClaims } from '@/lib/auth/db';
+import { withGuardianContext, withPlatformService, SchoolLinkGoneError, type FamilyClaims } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
 import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
@@ -8,6 +8,9 @@ import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
 import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
 import type { GradingScheme } from '@/lib/exams/scheme';
 import { indiaDate } from '@/lib/time/india';
+import type { SchoolProgress } from '@/lib/contracts/progress-report';
+import { examTypesOf } from '@/lib/exams/exam-types';
+import { groupByType, progressExams, progressWeighted, sessionFor } from '@/lib/exams/progress-report';
 import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
@@ -22,6 +25,7 @@ import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
 type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
 export { readSchoolPaper, readSchoolPagePicture, PictureUnavailableError, type ReadAs } from './marking';
+import type { ReadAs } from './marking';
 
 // ---- the code ----------------------------------------------------------------------------------------------------------
 
@@ -251,9 +255,12 @@ export async function readSchoolNews(claims: Claims, linkId: string, studentIds:
           where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > $2::timestamptz`,
         since.notices
       ),
+      // A result is new when it was published, or when the office made its report cards and progress reports and told the
+      // families (exam_outputs, AJ-5): whichever came last.
       results: await one(
         `select count(distinct (g.exam_id, g.class_id)) as n from public.guardian_publications() g join students s on s.class_id = g.class_id
-          where s.student_id = any($1::uuid[]) and g.published_at > $2::timestamptz`,
+          left join public.guardian_exam_outputs() o on o.exam_id = g.exam_id and o.class_id = g.class_id and o.version = g.version
+          where s.student_id = any($1::uuid[]) and greatest(g.published_at, coalesce(o.made_at, g.published_at)) > $2::timestamptz`,
         since.results
       ),
     };
@@ -384,6 +391,25 @@ export async function readChildSchoolResults(claims: Claims, linkId: string, stu
   });
   if (!read || !(await childrenSeeResults(read.schoolId))) return null;
   return { results: read.results, examSchedule: read.examSchedule };
+}
+
+// A matched student's progress report (AJ-5): the exams of the current session whose class the school published AND whose
+// report cards and progress reports the office made, grouped by the school's exam types, each graded by the scheme kept
+// with its publication; read as the guardian, so the school's row rules decide every row. In the child's own view,
+// nothing unless the school lets children see their results. The school's exam types are read by the platform role for
+// the family's own verified school only, after the guardian's transaction (one connection at a time), as the setting
+// for children's results is.
+export async function readSchoolProgress(claims: Claims, linkId: string, studentId: string, as: ReadAs): Promise<SchoolProgress | null> {
+  const read = await withGuardianContext(claims, linkId, async (db, link) => {
+    if (!(await consented(db, link.schoolId, studentId))) return null;
+    const session = await sessionFor(db, link.schoolId, null);
+    return { schoolId: link.schoolId, session, data: await progressExams(db, { schoolId: link.schoolId, studentId, sessionId: session.sessionId, source: 'guardian' }) };
+  });
+  if (!read) return null;
+  if (as.childView && !(await childrenSeeResults(read.schoolId))) return null;
+  const types = await withPlatformService((db) => examTypesOf(db, read.schoolId));
+  const weighted = progressWeighted(read.data.material, types);
+  return { session: read.session.label, groups: groupByType(read.data.exams, types), ...(weighted ? { weighted } : {}) };
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a

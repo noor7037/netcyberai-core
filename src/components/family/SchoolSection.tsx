@@ -238,6 +238,11 @@ function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; ite
   return (
     <div className="flex flex-col gap-1" data-school-results>
       <p className="text-sm font-semibold text-slate">{w['fam.school.results']}</p>
+      {items.length > 0 && childId && (
+        <Link href={`/family/parent/progress/${childId}`} data-progress-link className="fam-press inline-flex min-h-[44px] items-center self-start font-semibold text-royal underline underline-offset-2">
+          {w['fam.schoolProgress.open']}
+        </Link>
+      )}
       {items.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.school.resultsNone']}</p>
       ) : (

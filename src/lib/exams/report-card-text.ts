@@ -34,6 +34,31 @@ function gradeCell(lang: Lang, s: Shown): string {
   return t(lang, `ex.noGrade.${s.grade.reason}` as MessageKey);
 }
 
+// The counted result across the exam types the kept scheme weighs (C230-AJ part 2): a table with a row for each subject
+// and the overall, a column for each counted type (as its percent) and the counted result. A counted type with nothing to
+// count reads "not entered", and so does the result. Only when the scheme weighs exam types; with none, a card is as it was.
+const typeCell = (lang: Lang, percent: number | null) => (percent === null ? t(lang, 'rc.cell.notEntered') : t(lang, 'ex.result.percent', { percent: num(percent, lang) }));
+const resultCell = (lang: Lang, s: Shown) => (s.rounded === null ? t(lang, 'rc.cell.notEntered') : `${percentCell(lang, s)} · ${gradeCell(lang, s)}`);
+export function weightedBlocks(set: ReportCardSet, card: ReportCard, lang: Lang): CardBlock[] {
+  const w = set.weighted;
+  const own = card.weighted;
+  if (!w || !own) return [];
+  const name = (type: string) => (lang === 'hi' ? set.weightedNames?.[type]?.hi : set.weightedNames?.[type]?.en) ?? type;
+  const label = (x: { type: string; weight: number }) => t(lang, 'wt.type', { name: name(x.type), weight: num(x.weight, lang) });
+  const at = (types: readonly { type: string; percent: number | null }[]) => w.weights.map((x) => typeCell(lang, types.find((y) => y.type === x.type)?.percent ?? null));
+  return [
+    { kind: 'heading', text: t(lang, 'wt.title') },
+    {
+      kind: 'table',
+      columns: [t(lang, 'rc.col.subject'), ...w.weights.map(label), t(lang, 'wt.col.result')],
+      numeric: [false, ...w.weights.map(() => true), false],
+      rows: [...own.subjects.map((s) => [s.subjectName, ...at(s.types), resultCell(lang, s.result)]), [t(lang, 'ex.result.overall'), ...at(own.types), resultCell(lang, own.overall)]],
+      totalRow: true,
+    },
+    { kind: 'note', text: t(lang, 'wt.how', { types: w.weights.map(label).join(', ') }) },
+  ];
+}
+
 export function reportCardBlocks(set: ReportCardSet, card: ReportCard, lang: Lang): CardBlock[] {
   const l = set.layout;
   const blocks: CardBlock[] = [];
@@ -70,6 +95,7 @@ export function reportCardBlocks(set: ReportCardSet, card: ReportCard, lang: Lan
   if (l.grade) overall.push(gradeCell(lang, card.overall));
   const showOverall = l.total || l.percent || l.grade;
   blocks.push({ kind: 'table', columns, numeric, rows: showOverall ? [...rows, overall] : rows, totalRow: showOverall });
+  blocks.push(...weightedBlocks(set, card, lang));
 
   if (l.attendance) {
     if (!set.hasSession) blocks.push({ kind: 'line', text: t(lang, 'rc.card.noSession') });

@@ -24,7 +24,11 @@ export type SettingValue = string | number | boolean | readonly string[] | reado
 export type SettingOption = { value: string; label: string };
 
 // A row of a 'list' setting: its columns.
-export type ListColumn = { key: string; label: string; type: 'text' | 'number' | 'time' | 'boolean' };
+//   pattern    text: a regular expression every row's cell must match
+//   unique     every row has a different cell here
+//   codeFrom   the row's code (C230-AJ): made once from the text of this other column when the row is added, then
+//              never changed. A row with a code is kept (renamed, hidden), not removed: records refer to it by its code.
+export type ListColumn = { key: string; label: string; type: 'text' | 'number' | 'time' | 'boolean'; pattern?: string; unique?: boolean; codeFrom?: string };
 
 export type SettingDefinition = {
   key: string; // unique within the module, 'snake_case'
@@ -42,6 +46,8 @@ export type SettingDefinition = {
   max?: number;
   pattern?: string; // text: a regular expression the value must match
   columns?: readonly ListColumn[]; // list
+  // list: the codes of rows that always stay, and whose yes/no cells are fixed off (the exam type "other").
+  pinnedRows?: readonly string[];
   // Who may change it. Everyone who can open the module may read it.
   editableBy: readonly SchoolRole[];
   // Changing it affects records already created (shown as a warning).

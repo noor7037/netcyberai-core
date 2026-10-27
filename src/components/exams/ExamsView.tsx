@@ -7,6 +7,7 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { examTypeName, offeredExamTypes, OTHER_EXAM_TYPE } from '@/lib/contracts/exam-types';
 import type { ExamsScreen, ExamSummary, PaperSummary } from '@/lib/exams/exams';
 import type { MessageKey } from '@/lib/i18n';
 import { CandidatesPanel } from '@/components/marking/CandidatesPanel';
@@ -20,7 +21,7 @@ import { dayWords } from './exam-format';
 // class result of each class is one tap away. The server and the database decide who may do what.
 
 type PaperForm = { classId: string; subjectId: string; date: string; maxima: Record<string, string> };
-const ERRORS = ['name', 'name_taken', 'session', 'term', 'papers', 'class', 'subject', 'date', 'maxima', 'units', 'paper_twice', 'has_marks', 'published'];
+const ERRORS = ['name', 'name_taken', 'session', 'term', 'exam_type', 'papers', 'class', 'subject', 'date', 'maxima', 'units', 'paper_twice', 'has_marks', 'published'];
 const emptyPaper = (): PaperForm => ({ classId: '', subjectId: '', date: '', maxima: {} });
 const toNumber = (text: string): number | null => (text.trim() === '' ? null : Number(text.trim().replace(',', '.')));
 
@@ -32,6 +33,7 @@ export function ExamsView() {
   const [session, setSession] = useState<string | null>(null);
   const [name, setName] = useState('');
   const [term, setTerm] = useState('');
+  const [examType, setExamType] = useState(OTHER_EXAM_TYPE);
   const [papers, setPapers] = useState<PaperForm[]>([emptyPaper()]);
   const [adding, setAdding] = useState<{ examId: string; paper: PaperForm } | null>(null);
   const [busy, setBusy] = useState(false);
@@ -71,11 +73,12 @@ export function ExamsView() {
 
   const make = async () => {
     if (!data) return;
-    const r = await post('/api/app/exams', { name, sessionId: data.session, term: term || null, papers: papers.map(paperPayload) });
+    const r = await post('/api/app/exams', { name, sessionId: data.session, term: term || null, examType, papers: papers.map(paperPayload) });
     if (!r.ok) return setNote({ ok: false, text: errorWords(r.body) });
     setNote({ ok: true, text: t('ex.make.done', { name: name.trim() }) });
     setName('');
     setTerm('');
+    setExamType(OTHER_EXAM_TYPE);
     setPapers([emptyPaper()]);
     await load(session);
   };
@@ -160,6 +163,11 @@ export function ExamsView() {
                 <option key={x} value={x}>{x}</option>
               ))}
             </Select>
+            <Select id="exam-type" label={t('ex.make.type')} value={examType} onChange={(e) => setExamType(e.target.value)}>
+              {offeredExamTypes(data.examTypes).map((x) => (
+                <option key={x.key} value={x.key}>{lang === 'hi' ? x.hi : x.en}</option>
+              ))}
+            </Select>
           </div>
           <div className="flex flex-wrap items-center gap-x-1">
             <h3 className="font-bold">{t('ex.make.papers')}</h3>
@@ -198,6 +206,7 @@ export function ExamsView() {
             onAdd={(paper) => void change(exam.examId, { action: 'add_paper', paper: paperPayload(paper) }, 'ex.exam.paperAdded')}
             onRemovePaper={(paperId) => void change(exam.examId, { action: 'remove_paper', paperId }, 'ex.exam.paperRemoved')}
             onRemove={() => void change(exam.examId, { action: 'remove' }, 'ex.exam.removed')}
+            onType={(examType) => void change(exam.examId, { action: 'type', examType }, 'ex.exam.typeChanged')}
           />
         ))}
       </section>
@@ -215,6 +224,7 @@ function ExamCard({
   onAdd,
   onRemovePaper,
   onRemove,
+  onType,
 }: {
   exam: ExamSummary;
   data: ExamsScreen;
@@ -225,6 +235,7 @@ function ExamCard({
   onAdd: (paper: PaperForm) => void;
   onRemovePaper: (paperId: string) => void;
   onRemove: () => void;
+  onType: (examType: string) => void;
 }) {
   const { t, lang } = useT();
   const classes = [...new Map(exam.papers.map((p) => [p.classId, p.className])).entries()];
@@ -241,6 +252,8 @@ function ExamCard({
             <InfoTip>{t('ex.exam.noRank')}</InfoTip>
           </div>
           <p className="text-slate/70">
+            <span data-exam-type={exam.examType}>{examTypeName(data.examTypes, exam.examType, lang)}</span>
+            {' · '}
             {exam.term ? t('ex.exam.term', { term: exam.term }) : t('ex.exam.noTerm')}
             {exam.madeBy ? ` · ${t('ex.exam.madeBy', { name: exam.madeBy })}` : ''}
           </p>
@@ -265,6 +278,15 @@ function ExamCard({
               {publishedClass(classId) ? t('rc.exam.published', { className }) : t('rc.exam.reportCards', { className })}
             </a>
           ))}
+        </div>
+      )}
+      {data.mayRun && !allPublished && !classes.some(([classId]) => publishedClass(classId)) && (
+        <div className="max-w-xs">
+          <Select id={`exam-${exam.examId.slice(0, 8)}-type`} label={t('ex.make.type')} value={data.examTypes.some((x) => x.key === exam.examType) ? exam.examType : OTHER_EXAM_TYPE} disabled={busy} onChange={(e) => onType(e.target.value)}>
+            {offeredExamTypes(data.examTypes, exam.examType).map((x) => (
+              <option key={x.key} value={x.key}>{lang === 'hi' ? x.hi : x.en}</option>
+            ))}
+          </Select>
         </div>
       )}
       {data.mayRun && (

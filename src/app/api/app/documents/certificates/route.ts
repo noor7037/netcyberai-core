@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, readJson, ruleError } from '@/lib/frameworks/route';
 import { BATCH_MAX, isCertificateType } from '@/lib/documents/certificate-rules';
+import { isResultCertType } from '@/lib/documents/result-certificate-rules';
 import { certificateRefusal } from '@/lib/documents/refusal';
 import { certificateHome, certificateRegister, certificateRoster, certificatesToPrint, issueCertificates, markImages, storedReader } from '@/lib/documents/certificates';
 import { supabaseFileStorage } from '@/lib/storage/supabase-file-storage';
@@ -35,7 +36,7 @@ export async function GET(req: NextRequest) {
     if (view === 'register') {
       const type = q.get('type');
       const classId = q.get('classId');
-      if ((type !== null && !isCertificateType(type)) || (classId !== null && !isUuid(classId))) return ruleError(400, 'not_sent_properly');
+      if ((type !== null && !isCertificateType(type) && !isResultCertType(type)) || (classId !== null && !isUuid(classId))) return ruleError(400, 'not_sent_properly');
       const rows = await certificateRegister(db, actor, { type: type as never, classId });
       return rows ? NextResponse.json({ rows }, { headers }) : ruleError(403, 'not_allowed');
     }

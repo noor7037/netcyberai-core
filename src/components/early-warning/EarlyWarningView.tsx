@@ -100,13 +100,20 @@ export function EarlyWarningView() {
   const belowCount = (f: Flag) => new Set(f.evidence.marks?.belowPass?.subjects.map((b) => b.paperId) ?? []).size;
   // One exam's papers and their percents, as the class result shows them.
   const papers = (exam: MarksExam) => (
-    <ul className="flex flex-col gap-1 text-slate/70">
-      {exam.papers.map((p) => (
-        <li key={p.paperId} data-ew-marks-paper={exam.examId} className="break-words">
-          {p.percent === null ? t('ew.why.marks.paper.none', { subject: p.subject }) : t('ew.why.marks.paper', { subject: p.subject, percent: p.percent })}
-        </li>
-      ))}
-    </ul>
+    <>
+      {exam.kind && (
+        <p data-ew-marks-kind={exam.kind.key} className="break-words text-slate/70">
+          {exam.session ? t('ew.why.marks.kindSession', { type: lang === 'hi' ? exam.kind.hi : exam.kind.en, session: exam.session }) : t('ew.why.marks.kind', { type: lang === 'hi' ? exam.kind.hi : exam.kind.en })}
+        </p>
+      )}
+      <ul className="flex flex-col gap-1 text-slate/70">
+        {exam.papers.map((p) => (
+          <li key={p.paperId} data-ew-marks-paper={exam.examId} className="break-words">
+            {p.percent === null ? t('ew.why.marks.paper.none', { subject: p.subject }) : t('ew.why.marks.paper', { subject: p.subject, percent: p.percent })}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 
   // One line a reason, in plain words: what was counted, never a judgement of the child.

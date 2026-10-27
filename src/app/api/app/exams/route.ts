@@ -6,8 +6,9 @@ import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route
 // Exams (docs/27 row 9b, C214).
 //   GET   ?session=<id>|none  the exams of a session with their papers and entry progress, the papers this person
 //         may enter, and (the office, the coordinator) the classes, subjects and scheme to make one
-//   POST  { name, sessionId | null, term | null, papers: [{ classId, subjectId, date | null, unitIds, maxima }] }
-//         make an exam with its papers (principal, school admin, academic coordinator)
+//   POST  { name, sessionId | null, term | null, examType?, papers: [{ classId, subjectId, date | null, unitIds, maxima }] }
+//         make an exam with its papers (principal, school admin, academic coordinator); examType is a key of the
+//         school's exam types that is shown (none: "other", C230-AJ part 2)
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
