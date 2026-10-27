@@ -1,4 +1,4 @@
-import type { ErrorType, SheetChangeInput, SheetDetail, SheetFlag, SheetQuestion, SheetRow } from '@/lib/contracts/marking';
+import type { ErrorType, PicturesUntil, SheetChangeInput, SheetDetail, SheetFlag, SheetQuestion, SheetRow } from '@/lib/contracts/marking';
 import { countedQuestions, partTotals, round1 } from './rollup';
 
 // What the teacher's screens work out from the server's answers (C347): which list a script belongs in, how sure the
@@ -138,3 +138,13 @@ export function changesOf(detail: SheetDetail, draft: SheetDraft): SheetChangeIn
 // The flags in the order a person should meet them: a page that may not be an answer page, then who it is.
 export const FLAG_ORDER: readonly SheetFlag[] = ['not_answer_page', 'identity', 'check_child', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed'];
 export const flagsInOrder = (flags: readonly SheetFlag[]): SheetFlag[] => FLAG_ORDER.filter((f) => flags.includes(f));
+
+// What the paper's screen says of its answer-sheet pictures (C230-AH), on `today` (an India date, yyyy-mm-dd): the
+// message and its date. Kept until a date to come; due today or before, deleted within the hour; gone once none is kept.
+export type PicturesNote = { key: 'mk.pictures.published' | 'mk.pictures.unpublished' | 'mk.pictures.reopened' | 'mk.pictures.dueNow' | 'mk.pictures.gone'; date: string | null };
+export function picturesNote(p: PicturesUntil, today: string): PicturesNote | null {
+  if (!p.kept) return p.until ? { key: 'mk.pictures.gone', date: p.until } : null;
+  if (p.basis === 'reopened' || !p.until) return { key: 'mk.pictures.reopened', date: null };
+  if (p.until <= today) return { key: 'mk.pictures.dueNow', date: p.until };
+  return { key: p.basis === 'published' ? 'mk.pictures.published' : 'mk.pictures.unpublished', date: p.until };
+}

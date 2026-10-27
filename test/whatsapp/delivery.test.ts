@@ -122,6 +122,11 @@ describe('delivery states, on the real schema', () => {
     expect(kept).toHaveLength(1);
     expect(kept[0]).toMatchObject({ signature_ok: false, outcome: 'refused: bad_signature', school_id: null });
     expect(JSON.stringify(kept[0].payload)).not.toContain(m.id);
+    // One log line says why (C230-AH): never the body, the signature or the secret.
+    const line = (vi.mocked(console.warn).mock.calls.map((c) => String(c[0])).filter((l) => l.includes('whatsapp.webhook.refused')).pop() ?? '') as string;
+    expect(JSON.parse(line)).toMatchObject({ level: 'warn', event: 'whatsapp.webhook.refused', provider: 'stand-in', why: 'bad_signature', signed: true });
+    expect(line).not.toContain(m.id);
+    expect(line).not.toContain(SECRET);
   });
 
   it('a notice touches only its own provider’s message, and an id nobody sent is not found', async () => {

@@ -155,3 +155,7 @@ nothing written on it, is never marked, and holds its script from approval until
 `script_days` (Exams settings); families, the report link and the review screen then show the marks without pictures.
 The principal or school admin ends a family's link from "Tell parents on WhatsApp"; a new one goes by the same Send.
 Migration `am_7_followups`.
+
+**Built (AM-8, C230-AH, C356):** pictures of a paper whose class's result was never published go 180 days after its last
+upload; the AI marking screen shows the date (one database rule for the sweep and the screen). Migration
+`am_8_unpublished_pictures`.

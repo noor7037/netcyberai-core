@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { MarkingQuestion, SheetDetail, SheetQuestion, SheetRow } from '@/lib/contracts/marking';
 import { firstProblem, formFromQuestion, groupsOf, move, nextLabel, newQuestion, partsWithoutQuestions, problemsOf, sameAsSaved, toSaveBody, type QuestionForm } from '@/lib/marking/question-form';
-import { bucketCounts, bucketOf, changesOf, clampMark, countedOf, emptyDraft, filterSheets, finalOf, flagsInOrder, grandTotal, inProgress, noteOf, parseMark, readyIds, stepMark, sureness, totalsOf } from '@/lib/marking/review-view';
+import { bucketCounts, bucketOf, changesOf, clampMark, countedOf, emptyDraft, filterSheets, finalOf, flagsInOrder, grandTotal, inProgress, noteOf, parseMark, picturesNote, readyIds, stepMark, sureness, totalsOf } from '@/lib/marking/review-view';
 
 // What the teacher's screens work out for themselves, with no server: the questions as they are typed and the mistakes
 // named at once, which list a script belongs in, marks kept within their question, how sure the AI was in words, and what
@@ -229,5 +229,17 @@ describe('what the teacher changes on a script', () => {
   });
   it('puts the flags in the order a person meets them: who it is first', () => {
     expect(flagsInOrder(['unsure', 'identity', 'changed', 'missing_page'])).toEqual(['identity', 'missing_page', 'unsure', 'changed']);
+  });
+});
+
+describe('what the paper’s screen says of its pictures (C230-AH)', () => {
+  const today = '2026-10-27';
+  it('a date to come, by why; due today or before; gone; and no date while reopened', () => {
+    expect(picturesNote({ until: '2027-01-25', basis: 'published', kept: true }, today)).toEqual({ key: 'mk.pictures.published', date: '2027-01-25' });
+    expect(picturesNote({ until: '2027-04-25', basis: 'unpublished', kept: true }, today)).toEqual({ key: 'mk.pictures.unpublished', date: '2027-04-25' });
+    expect(picturesNote({ until: today, basis: 'unpublished', kept: true }, today)).toEqual({ key: 'mk.pictures.dueNow', date: today });
+    expect(picturesNote({ until: '2026-10-01', basis: 'published', kept: false }, today)).toEqual({ key: 'mk.pictures.gone', date: '2026-10-01' });
+    expect(picturesNote({ until: null, basis: 'reopened', kept: true }, today)).toEqual({ key: 'mk.pictures.reopened', date: null });
+    expect(picturesNote({ until: null, basis: 'reopened', kept: false }, today)).toBeNull();
   });
 });

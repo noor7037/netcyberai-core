@@ -168,6 +168,13 @@ export type SheetRow = {
   approvedAt: string | null;
 };
 
+// When a paper's answer-sheet pictures go (C230-AG, C230-AH; the database's marking_picture_deadline): `until` (an
+// India date, yyyy-mm-dd) is the school's days after the publication in force ('published'), or 180 days after the
+// paper's last upload while no result of the class was ever published ('unpublished'); null while a published result
+// is reopened ('reopened') or nothing was uploaded. `kept`: some picture of the paper is still stored.
+export const UNPUBLISHED_PICTURE_DAYS = 180;
+export type PicturesUntil = { until: string | null; basis: 'published' | 'unpublished' | 'reopened'; kept: boolean };
+
 export type MarkingOverview = {
   paper: MarkingPaper;
   ready: boolean; // the questions add up and marking may start
@@ -178,6 +185,7 @@ export type MarkingOverview = {
   withoutScript: RosterChild[]; // candidates on the roll with no live script, in roll order
   absent: string[]; // of them, already marked absent for every part
   reviewBelow: number; // the school's line, 0 to 1: a question the AI was less sure of flags its script
+  pictures: PicturesUntil | null; // null: nothing uploaded yet
   ai: { on: boolean; why: 'no_limit' | 'switched_off' | 'no_provider' | null; pagesThisMonth: number; limit: number | null };
 };
 
