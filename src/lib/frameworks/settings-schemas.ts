@@ -569,7 +569,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // limit (Control) and Control's AI tasks decide whether the school may use it at all; these only narrow it.
   {
     moduleId: 'exams',
-    version: 1,
+    version: 2, // 2: script_days (C230-AG)
     fields: [
       {
         key: 'ai_marking_on',
@@ -616,6 +616,20 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,
+      },
+      {
+        // C230-AG: how long a script's page pictures are kept after the result is published (retention.ts).
+        key: 'script_days',
+        label: 'Keep the answer-sheet pictures for this many days after the result is published',
+        help: 'From 30 to 365. Then the pictures of the checked pages are deleted, for families and the school alike; the marks, each question’s marks and the teacher’s notes stay as the school’s record. Reopening a result starts the count again.',
+        section: 'Families',
+        type: 'number',
+        default: 90,
+        min: 30,
+        max: 365,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: true,
       },
       {
         key: 'support_below',

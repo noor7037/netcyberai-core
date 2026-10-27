@@ -15,7 +15,10 @@ export type ErrorType = (typeof ERROR_TYPES)[number];
 export const UPLOAD_MODES = ['per_file', 'combined'] as const;
 export type UploadMode = (typeof UPLOAD_MODES)[number];
 
-export const PAGE_STATES = ['new', 'read', 'blank', 'unreadable', 'duplicate', 'failed'] as const;
+// not_answer: the AI's reading says the page is not a page of an answer sheet, or looks like an identity document
+// (C230-AG): never marked, and its script is not approved until a person settles it. removed: a person took it out of
+// its script; its picture is deleted by the next sweep (src/lib/marking/retention.ts).
+export const PAGE_STATES = ['new', 'read', 'blank', 'unreadable', 'duplicate', 'failed', 'not_answer', 'removed'] as const;
 export type PageState = (typeof PAGE_STATES)[number];
 
 export const SHEET_STATES = ['waiting', 'marking', 'marked', 'failed', 'approved', 'set_aside'] as const;
@@ -31,7 +34,9 @@ export type SheetState = (typeof SHEET_STATES)[number];
 //   changed       changed after it was approved: approve it again (families do not see it, and the class is not
 //                 published, until then)
 //   check_child   matched by a roll or exam number alone (no name was read): check it is this child
-export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child'] as const;
+//   not_answer_page  a page may not be an answer page (an identity document, a form): not marked, and the script is
+//                 not approved (the database holds it) until a person keeps the page as an answer page or takes it out
+export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child', 'not_answer_page'] as const;
 export type SheetFlag = (typeof SHEET_FLAGS)[number];
 
 export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'none'] as const;
@@ -118,6 +123,10 @@ export type PageReading = {
   pageNumber: number | null; // as printed on the page
   blank: boolean;
   legible: boolean;
+  // v2 (C230-AG): a page of a handwritten answer sheet, and whether it looks like an identity document. A page that is
+  // not an answer page, or looks like one, keeps no name or number (they are dropped as it is read).
+  answerPage: boolean;
+  idDocument: boolean;
 };
 
 // What the AI gave one script (exams.mark), checked against the paper's questions before it is kept.
@@ -172,7 +181,8 @@ export type MarkingOverview = {
   ai: { on: boolean; why: 'no_limit' | 'switched_off' | 'no_provider' | null; pagesThisMonth: number; limit: number | null };
 };
 
-export type SheetPage = { pageId: string; position: number; url: string; width: number; height: number; state: PageState };
+// `odd`: why a 'not_answer' page waits for the teacher (it looks like an identity document, or is not an answer page).
+export type SheetPage = { pageId: string; position: number; url: string; width: number; height: number; state: PageState; odd: 'id_document' | 'not_answer' | null };
 
 export type SheetQuestion = MarkingQuestion & {
   ai: { attempted: boolean | null; marks: number | null; steps: QuestionResult['steps']; note: string | null; reason: string | null; confidence: number | null };
@@ -188,7 +198,8 @@ export type SheetDetail = {
   sheet: SheetRow;
   match: { read: { name: string | null; rollNo: string | null; seatNo: string | null } | null; candidates: RosterChild[] };
   roster: RosterChild[]; // to choose the child by hand
-  pages: SheetPage[];
+  pages: SheetPage[]; // the pages whose pictures are kept
+  picturesGone: number; // pages whose pictures were deleted after the school's days (the marks stay)
   questions: SheetQuestion[];
   totals: { component: string; name: string; score: number; max: number }[];
   strengths: string | null;
@@ -209,6 +220,8 @@ export type SheetChangeInput = {
   improve?: string | null;
   practice?: { unitId: string | null; text: string }[];
 };
+// A page that may not be an answer page, settled by the teacher: an answer page after all, or taken out of the script.
+export type SettlePageInput = { action: 'keep' | 'take_out' };
 export type StartUploadInput = { mode: UploadMode; files: number };
 export type StartUploadResult = { uploadId: string };
 // One page picture, as multipart form fields: uploadId, fileNo, pageNo, and the JPEG as `page`.

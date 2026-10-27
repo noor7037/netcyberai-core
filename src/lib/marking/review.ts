@@ -133,14 +133,21 @@ export async function sheetDetail(db: Sql, actor: Actor, sheetId: string): Promi
   const byQ = new Map(markRows.map((m) => [m.question_id as string, m]));
   const final = finals(markRows as MarkRow[]);
   const counted = countedQuestions(questions, final, counts);
-  const pages = (await db.query(`select page_id, sheet_position, width, height, state from marking_pages where school_id = $1 and sheet_id = $2 order by sheet_position`, [actor.schoolId, sheetId])).rows.map((g) => ({
-    pageId: g.page_id as string,
-    position: Number(g.sheet_position),
-    url: pageUrl(g.page_id as string),
-    width: Number(g.width),
-    height: Number(g.height),
-    state: g.state as PageState,
-  }));
+  const pageRows = (
+    await db.query(`select page_id, sheet_position, width, height, state, reading, picture_gone_at from marking_pages where school_id = $1 and sheet_id = $2 order by sheet_position`, [actor.schoolId, sheetId])
+  ).rows;
+  // A deleted picture (the school's days after publication) is not shown; the marks stay.
+  const pages = pageRows
+    .filter((g) => g.picture_gone_at === null)
+    .map((g) => ({
+      pageId: g.page_id as string,
+      position: Number(g.sheet_position),
+      url: pageUrl(g.page_id as string),
+      width: Number(g.width),
+      height: Number(g.height),
+      state: g.state as PageState,
+      odd: g.state === 'not_answer' ? (g.reading?.idDocument === true ? ('id_document' as const) : ('not_answer' as const)) : null,
+    }));
   const parts = markedParts(paper.components, questions);
   const note = (s.match_note ?? {}) as { read?: { name: string | null; rollNo: string | null; seatNo: string | null } | null; candidates?: string[] };
   const rosterById = new Map(roster.map((c) => [c.studentId, c]));
@@ -166,6 +173,7 @@ export async function sheetDetail(db: Sql, actor: Actor, sheetId: string): Promi
     match: { read: note.read ?? null, candidates: (note.candidates ?? []).map((id) => rosterById.get(id)).filter((c): c is RosterChild => !!c) },
     roster,
     pages,
+    picturesGone: pageRows.length - pages.length,
     questions: questions.map((q) => {
       const m = byQ.get(q.questionId);
       return {
@@ -355,6 +363,47 @@ export async function askToMarkAgain(db: Sql, actor: Actor, sheetId: string): Pr
   return { ok: true };
 }
 
+// ---- a page that may not be an answer page (C230-AG) -----------------------------------------------------------------------
+
+export type SettleResult = { ok: true; sheetId: string; markAgain: boolean } | { ok: false; reason: ChangeProblem };
+
+// The teacher settles a page the AI's reading said may not be an answer page (an identity document, a form): 'keep'
+// makes it an answer page of its script (the AI did not mark it: the teacher marks its answers, or asks the AI to
+// mark the script again); 'take_out' takes it out of the script for good, and the next sweep deletes its picture
+// (src/lib/marking/retention.ts); it is never shown again from now on. Once no such page is left, the script's flag goes
+// and it may be approved (the database refuses it before then). Who settled which page goes to the audit log.
+export async function settlePage(db: Sql, actor: Actor, pageId: string, action: unknown): Promise<SettleResult> {
+  if (!isUuid(pageId) || (action !== 'keep' && action !== 'take_out')) return { ok: false, reason: 'not_found' };
+  const page = (await db.query(`select sheet_id, state, reading from marking_pages where school_id = $1 and page_id = $2`, [actor.schoolId, pageId])).rows[0];
+  if (!page?.sheet_id) return { ok: false, reason: 'not_found' };
+  const loaded = await loadForChange(db, actor, page.sheet_id as string);
+  if (!loaded) return { ok: false, reason: 'not_found' };
+  const { s, paper } = loaded;
+  if (paper.published) return { ok: false, reason: 'closed' };
+  if (!paper.mayMark) return { ok: false, reason: 'not_allowed' };
+  if (page.state !== 'not_answer' || s.state === 'set_aside') return { ok: false, reason: 'state' };
+  const sheetId = s.sheet_id as string;
+  if (action === 'keep') {
+    const legible = (page.reading as { legible?: unknown } | null)?.legible !== false;
+    await db.query(`update marking_pages set state = $3 where school_id = $1 and page_id = $2 and state = 'not_answer'`, [actor.schoolId, pageId, legible ? 'read' : 'unreadable']);
+  } else {
+    await db.query(`update marking_pages set state = 'removed', sheet_id = null, sheet_position = null, reading = null where school_id = $1 and page_id = $2 and state = 'not_answer'`, [actor.schoolId, pageId]);
+  }
+  const left = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and sheet_id = $2 and state = 'not_answer'`, [actor.schoolId, sheetId])).rows[0]?.n ?? 0);
+  if (left === 0) await db.query(`update marking_sheets set flags = array_remove(flags, 'not_answer_page') where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
+  await writeAuditLog(db, {
+    schoolId: actor.schoolId,
+    actorUserId: actor.userId,
+    actorRole: actor.role,
+    eventAction: action === 'keep' ? 'marking.page_kept' : 'marking.page_taken_out',
+    targetType: 'marking_pages',
+    targetId: pageId,
+    afterState: { paper_id: paper.paperId, sheet_id: sheetId },
+  });
+  // A page kept after its script was marked was not marked with it.
+  return { ok: true, sheetId, markAgain: action === 'keep' && (s.state === 'marked' || s.state === 'failed') };
+}
+
 // ---- approval ----------------------------------------------------------------------------------------------------------
 
 export type ApproveProblem = 'not_allowed' | 'not_found' | 'closed' | 'not_ready' | 'flagged' | 'none' | SaveProblem;
@@ -389,7 +438,7 @@ export async function approveSheets(db: Sql, actor: Actor, paperId: string, whic
       if (!r) return { ok: false, reason: 'not_found', sheetId: id };
       if (r.state === 'approved' && !((r.flags ?? []) as string[]).includes('changed')) continue;
       // Who it is must be settled, and every question must have a mark, before a script is approved.
-      if (!r.student_id || ((r.flags ?? []) as string[]).some((f) => f === 'identity' || f === 'two_scripts' || f === 'not_all_read')) return { ok: false, reason: 'flagged', sheetId: id };
+      if (!r.student_id || ((r.flags ?? []) as string[]).some((f) => f === 'identity' || f === 'two_scripts' || f === 'not_all_read' || f === 'not_answer_page')) return { ok: false, reason: 'flagged', sheetId: id };
       if (!candidates.has(r.student_id)) return { ok: false, reason: 'child', sheetId: id };
       chosen.push(r);
     }

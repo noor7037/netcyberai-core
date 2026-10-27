@@ -259,7 +259,7 @@ const APP_USER: Record<string, string> = {
   marking_sheets: 'DELETE,INSERT,SELECT,UPDATE',
   marking_pages: 'DELETE,INSERT,SELECT,UPDATE',
   marking_marks: 'DELETE,INSERT,SELECT,UPDATE',
-  marking_report_links: 'INSERT,SELECT', // a report link is made by the office and never changed (C351)
+  marking_report_links: 'INSERT,SELECT', // made by the office (C351); UPDATE of the three ended_* columns only, a column grant (C230-AG)
   // c347 end
 };
 

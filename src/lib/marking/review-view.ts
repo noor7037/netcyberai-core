@@ -135,6 +135,6 @@ export function changesOf(detail: SheetDetail, draft: SheetDraft): SheetChangeIn
   return Object.keys(out).length ? out : null;
 }
 
-// The flags in the order a person should meet them: who it is first.
-export const FLAG_ORDER: readonly SheetFlag[] = ['identity', 'check_child', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed'];
+// The flags in the order a person should meet them: a page that may not be an answer page, then who it is.
+export const FLAG_ORDER: readonly SheetFlag[] = ['not_answer_page', 'identity', 'check_child', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed'];
 export const flagsInOrder = (flags: readonly SheetFlag[]): SheetFlag[] => FLAG_ORDER.filter((f) => flags.includes(f));

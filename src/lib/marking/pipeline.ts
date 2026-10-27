@@ -210,7 +210,7 @@ async function notTaken(db: Sql, schoolId: string, sheetId: string): Promise<voi
   if (!s || !['waiting', 'marking'].includes(s.state)) return;
   // The AI's tries are used up: it gave no answer it could keep.
   if (Number(s.attempts) >= MAX_MARKING_ATTEMPTS) return recordSheetFailure(db, schoolId, sheetId, 'no_answer');
-  const pages = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and sheet_id = $2 and state <> 'blank'`, [schoolId, sheetId])).rows[0]?.n ?? 0);
+  const pages = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and sheet_id = $2 and state not in ('blank', 'not_answer')`, [schoolId, sheetId])).rows[0]?.n ?? 0);
   await recordSheetFailure(db, schoolId, sheetId, pages === 0 ? 'pages_missing' : pages > MAX_SHEET_PAGES ? 'too_long' : 'not_ready');
 }
 

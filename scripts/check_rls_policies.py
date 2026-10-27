@@ -1076,6 +1076,7 @@ REQUIRED_RESTRICTIVE = {
     ("exam_seat_numbers", "exam_seat_numbers_readers"),
     ("marking_report_links", "marking_report_links_office"),
     ("marking_report_links", "marking_report_links_made_by_office"),
+    ("marking_report_links", "marking_report_links_ended_by_office"),  # C230-AG: the principal and school admin end a link
     ("marks", "marks_by_a_person_insert"),
     ("marks", "marks_by_a_person_update"),
     ("marks", "marks_by_a_person_delete"),

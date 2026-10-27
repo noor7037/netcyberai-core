@@ -8,7 +8,9 @@ import type { MatchedBy, PageReading, PageState, RosterChild, SheetFlag, UploadM
 //              "one combined scan": a new script starts at every first page of another child; pages before the
 //              first one are a script of their own, matched to no one.
 //              Duplicate pages are left out; blank and unreadable pages stay in their script (so nothing is lost),
-//              and an unreadable page flags it. Printed page numbers that skip one flag a missing page.
+//              and an unreadable page flags it. Printed page numbers that skip one flag a missing page. A page that
+//              may not be an answer page (C230-AG) stays where it was scanned, starts no script and names no child
+//              (nothing written on it was kept), and flags its script for the teacher.
 //   Matching:  the exam number (when the exam uses them), then the roll number on the paper's class roll, then the
 //              name; a number whose name plainly disagrees is not trusted. Two scripts read as one child both wait.
 
@@ -142,8 +144,10 @@ function startsAnother(page: PageReading | null, current: PageGroup['read']): bo
   return true;
 }
 
-function flagsOf(pages: readonly GroupPage[]): SheetFlag[] {
+function flagsOf(all: readonly GroupPage[]): SheetFlag[] {
   const flags: SheetFlag[] = [];
+  if (all.some((p) => p.state === 'not_answer')) flags.push('not_answer_page');
+  const pages = all.filter((p) => p.state !== 'not_answer');
   if (pages.some((p) => p.state === 'unreadable' || (p.reading && !p.reading.legible && !p.reading.blank))) flags.push('unreadable');
   const printed = pages.map((p) => p.reading?.pageNumber).filter((n): n is number => typeof n === 'number' && Number.isInteger(n) && n > 0);
   const numbers = [...new Set(printed)].sort((a, b) => a - b);

@@ -21,6 +21,8 @@ import { ask, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEY
 // the question's marks), what the AI gave and why, the note for the child, the kind of mistake, and how sure the AI
 // was in words. Totals per part follow the marks as they are typed. The teacher can change who the script is, approve it
 // (alone, or and go to the next), ask the AI to mark it again, or set it aside. Changes are kept as they are made.
+// A page the AI's reading said may not be an answer page (an identity document, a form; C230-AG) is shown first, to be
+// kept as an answer page or taken out: the script is approved only once each is settled.
 // On a phone the pages sit above the questions and the actions stay at the bottom. Nothing ranks or compares children.
 
 const SAVE_AFTER_MS = 1200;
@@ -42,6 +44,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const [active, setActive] = useState<string | null>(null);
   const [picking, setPicking] = useState(false);
   const [confirm, setConfirm] = useState<'again' | 'aside' | null>(null);
+  // The page whose "take it out" is being confirmed.
+  const [takingOut, setTakingOut] = useState<string | null>(null);
   // The AI has tried this script as many times as it may: asking again is refused for good.
   const [noTries, setNoTries] = useState(false);
   const [barBottom, setBarBottom] = useState(0);
@@ -154,8 +158,19 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const taken = new Set((overview?.sheets ?? []).filter((s) => s.student && s.sheetId !== sheetId).map((s) => s.student!.studentId));
   // An approved script changed just now is approved again (the flag follows when the change is kept).
   const changedSince = sheet.flags.includes('changed') || pending !== null;
-  const mayApprove = detail.mayChange && !!sheet.student && (sheet.state === 'marked' || (sheet.state === 'approved' && changedSince)) && allMarked;
-  const approveWhy: MessageKey | null = !detail.mayChange ? (paper.published ? 'mk.q.published' : 'mk.q.readOnly') : !sheet.student ? 'mk.sheet.needChild' : !allMarked ? 'mk.sheet.needMarks' : null;
+  const oddPages = detail.pages.filter((g) => g.state === 'not_answer');
+  const mayApprove = detail.mayChange && !!sheet.student && (sheet.state === 'marked' || (sheet.state === 'approved' && changedSince)) && allMarked && oddPages.length === 0;
+  const approveWhy: MessageKey | null = !detail.mayChange
+    ? paper.published
+      ? 'mk.q.published'
+      : 'mk.q.readOnly'
+    : oddPages.length > 0
+      ? 'mk.sheet.needPages'
+      : !sheet.student
+        ? 'mk.sheet.needChild'
+        : !allMarked
+          ? 'mk.sheet.needMarks'
+          : null;
   const hasTeacherChanges = detail.questions.some((q) => q.teacher.marks !== null || q.teacher.note !== null) || pending !== null;
   const mistakeOptions: ErrorType[] = [...ERROR_TYPES];
 
@@ -202,6 +217,19 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
     await loadDetail();
     setBusy(false);
     setNote({ ok: true, text: t('mk.sheet.againDone') });
+  };
+  const doSettle = async (pageId: string, action: 'keep' | 'take_out') => {
+    setBusy(true);
+    setNote(null);
+    setTakingOut(null);
+    const r = await ask('POST', `/api/app/marking/pages/${pageId}`, { action });
+    if (!r.ok) {
+      setBusy(false);
+      return setNote({ ok: false, text: errorWords(t, r) });
+    }
+    await Promise.all([loadDetail(), loadSide()]);
+    setBusy(false);
+    setNote({ ok: true, text: action === 'take_out' ? t('mk.page.takenOut') : r.body?.markAgain === true ? t('mk.page.keptMarkAgain') : t('mk.page.kept') });
   };
   const doAside = async (aside: boolean) => {
     setBusy(true);
@@ -268,6 +296,38 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
             ))}
           </ul>
         )}
+        {oddPages.length > 0 && (
+          <ul data-odd-pages className="flex flex-col gap-2">
+            {oddPages.map((g) => (
+              <li key={g.pageId} data-odd-page={g.pageId} className="flex flex-col gap-2 rounded-md border border-amber p-3">
+                <p className="flex items-start gap-2 font-semibold">
+                  <Icon name="alert" className="mt-0.5 h-5 w-5 shrink-0" aria-hidden="true" />
+                  <span>{t(g.odd === 'id_document' ? 'mk.page.idDocument' : 'mk.page.notAnswer', { n: numberWords(g.position, lang) })}</span>
+                </p>
+                <p className="text-slate/70">{t('mk.page.how')}</p>
+                <div className="flex flex-wrap gap-2">
+                  <button type="button" data-show-page className={TAP} onClick={() => pane.current?.scrollToPlace(g.pageId, 0)}>{t('mk.page.show')}</button>
+                  {detail.mayChange && sheet.state !== 'set_aside' && (
+                    <>
+                      <button type="button" data-keep-page className={TAP} disabled={busy} onClick={() => void doSettle(g.pageId, 'keep')}>{t('mk.page.keep')}</button>
+                      <button type="button" data-take-out-page className={TAP} disabled={busy} onClick={() => setTakingOut(g.pageId)}>{t('mk.page.takeOut')}</button>
+                    </>
+                  )}
+                </div>
+                {takingOut === g.pageId && (
+                  <div role="group" aria-label={t('mk.page.takeOut')} data-confirm="take-out" className="flex flex-col gap-2 rounded-md bg-off-white p-3">
+                    <p className="font-semibold">{t('mk.page.takeOutSure')}</p>
+                    <div className="flex flex-wrap gap-2">
+                      <button type="button" className={PRIMARY} disabled={busy} onClick={() => void doSettle(g.pageId, 'take_out')}>{t('mk.page.takeOutYes')}</button>
+                      <button type="button" className={TAP} onClick={() => setTakingOut(null)}>{t('mk.review.confirmNo')}</button>
+                    </div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+        {detail.picturesGone > 0 && <p data-pictures-gone className="text-slate/70">{t('mk.page.picturesGone', { n: numberWords(detail.picturesGone, lang) })}</p>}
         {detail.mayChange && sheet.state !== 'approved' && sheet.state !== 'set_aside' && (
           <div className="flex flex-col gap-2">
             <button type="button" data-identity-change className={`${TAP} self-start`} aria-expanded={picking} onClick={() => setPicking(!picking)}>

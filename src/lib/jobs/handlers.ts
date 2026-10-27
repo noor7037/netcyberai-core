@@ -17,6 +17,7 @@ import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
 import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
 import { MARKING_GROUP_JOB, MARKING_MARK_JOB, MARKING_READ_JOB } from '@/lib/marking/queue';
+import { PICTURES_SWEEP_JOB, picturesSweepHandler } from '@/lib/marking/retention';
 import { emailSendHandler } from './email-handler';
 import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
@@ -82,6 +83,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     [MARKING_READ_JOB]: markingReadHandler({ asSchool, queue: jobQueue, storage: supabaseFileStorage }),
     [MARKING_GROUP_JOB]: markingGroupHandler({ asSchool, queue: jobQueue }),
     [MARKING_MARK_JOB]: markingMarkHandler({ asSchool, queue: jobQueue, storage: supabaseFileStorage }),
+    // C230-AG: answer-sheet pictures deleted after the school's days (and pages taken out), hourly, as the platform.
+    [PICTURES_SWEEP_JOB]: picturesSweepHandler({ platform, storage: supabaseFileStorage, storageWorks: async () => (await storageHealth()) === 'ok' }),
   };
 }
 

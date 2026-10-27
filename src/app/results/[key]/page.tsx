@@ -61,6 +61,7 @@ function Paper({ lang, paper, reportKey }: { lang: Lang; paper: SchoolCheckedPap
         ))}
       </ul>
       <p className="text-sm text-slate">{t(lang, 'fam.marks.approved')}</p>
+      {paper.pages.length === 0 && <p data-no-pages className="text-sm text-slate">{t(lang, 'fam.marks.noPages')}</p>}
       {paper.pages.length > 0 && (
         <div className="flex flex-col gap-2">
           <h3 className="text-base font-bold text-slate">{t(lang, 'fam.marks.pagesTitle')}</h3>

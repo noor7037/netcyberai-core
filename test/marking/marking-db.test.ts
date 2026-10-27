@@ -8,7 +8,10 @@ import { makeExam } from '@/lib/exams/exams';
 import { publishClass, reopenClass } from '@/lib/exams/publish';
 import { examCandidates, setNumbering, undoWithdrawal, withdrawCandidate } from '@/lib/marking/candidates';
 import { aiMarkingState } from '@/lib/marking/context';
-import { approveSheets, changeSheet, chooseChild, markAbsent, markingOverview, setAside, sheetDetail } from '@/lib/marking/review';
+import { approveSheets, changeSheet, chooseChild, markAbsent, markingOverview, setAside, settlePage, sheetDetail } from '@/lib/marking/review';
+import { picturesSweepHandler, PICTURES_SWEEP_JOB } from '@/lib/marking/retention';
+import { checkedPaperOf } from '@/lib/school-link/marking';
+import { MemoryFileStorage } from '@/lib/storage/file-storage';
 import { readSetup, saveSetup } from '@/lib/marking/setup';
 import { formSheets, recordPageReading, recordSheetResult, takeSheetForMarking } from '@/lib/marking/store';
 
@@ -191,7 +194,7 @@ describe('the questions (C347)', () => {
 
 let upload = '';
 const pages: Record<string, string> = {};
-const read = (over: Partial<PageReading>): PageReading => ({ firstPage: false, name: null, rollNo: null, seatNo: null, classSection: '7-A', pageNumber: null, blank: false, legible: true, ...over });
+const read = (over: Partial<PageReading>): PageReading => ({ firstPage: false, name: null, rollNo: null, seatNo: null, classSection: '7-A', pageNumber: null, blank: false, legible: true, answerPage: true, idDocument: false, ...over });
 
 describe('scripts: read, made, matched and marked by the school’s job (C347)', () => {
   it('a teacher uploads a combined scan; the job reads it and makes one script per child, matched to the roll', async () => {
@@ -420,5 +423,175 @@ describe('the AI’s cost and its words (review of #318)', () => {
     await owner(`update marking_sheets set attempts = 6 where sheet_id = $1`, [dev]);
     const { askToMarkAgain } = await import('@/lib/marking/review');
     expect(await as(tMaths, (c) => askToMarkAgain(c, actor(tMaths), dev))).toEqual({ ok: false, reason: 'tries' });
+  });
+});
+
+// The pages of the upload below, by what each shows.
+const odd: Record<string, string> = {};
+describe('a page that may not be an answer page (C230-AG)', () => {
+  let dev = '';
+  it('is read with nothing written kept, starts no script, is never marked, and flags its script', async () => {
+    // Dev's earlier script is set aside, so this upload's script can be his.
+    const earlier = (await owner(`select sheet_id from marking_sheets where student_id = $1 and state <> 'set_aside'`, [K3]))[0].sheet_id as string;
+    expect(await as(tMaths, (c) => setAside(c, actor(tMaths), earlier, true))).toEqual({ ok: true });
+    const up = (await run(tMaths, `insert into marking_uploads (school_id, paper_id, mode, created_by) values ($1, $2, 'combined', $3) returning upload_id`, [A, paperA, T_MATHS])).rows[0].upload_id as string;
+    for (const [i, n] of ['d1', 'card', 'd2', 'form'].entries()) {
+      const id = (await owner(`select gen_random_uuid() as id`))[0].id as string;
+      odd[n] = id;
+      await run(tMaths, `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height) values ($1, $2, $3, $4, 1, $5, $6, $7, 1000, 1400, 2000)`, [
+        A, id, up, paperA, i + 1, `${A}/marking/${paperA}/${id}.jpg`, createHash('sha256').update(`odd-${n}`).digest('hex'),
+      ]);
+    }
+    await run(tMaths, `update marking_uploads set closed_at = now() where upload_id = $1`, [up]);
+    const { parseReading } = await import('@/lib/marking/parse');
+    // An identity card scanned between Dev's pages, carrying a name and a twelve-digit number, and a form at the end.
+    const answer = JSON.stringify({
+      pages: [
+        { page: 1, answer_page: true, id_document: false, first_page: true, name: 'Dev Patel', roll_no: '3', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true },
+        { page: 2, answer_page: false, id_document: true, first_page: true, name: 'Meera Sharma', roll_no: '1', exam_no: '123456789012', class_section: null, page_number: null, blank: false, legible: true },
+        { page: 3, answer_page: true, id_document: false, first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true },
+        { page: 4, answer_page: false, id_document: false, first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: null, blank: false, legible: true },
+      ],
+    });
+    const readings = parseReading(answer, 4);
+    await asJob(async (c) => {
+      for (const [i, n] of ['d1', 'card', 'd2', 'form'].entries()) await recordPageReading(c, A, odd[n], readings[i]);
+    });
+    const kept = await owner(`select page_id, state, reading from marking_pages where upload_id = $1 order by page_no`, [up]);
+    expect(kept.map((r: { state: string }) => r.state)).toEqual(['read', 'not_answer', 'read', 'not_answer']);
+    // Nothing written on the card is kept: no name, no number.
+    expect(kept[1].reading).toMatchObject({ firstPage: false, name: null, rollNo: null, seatNo: null, idDocument: true });
+    expect(JSON.stringify(kept)).not.toContain('123456789012');
+    await asJob((c) => formSheets(c, A, up));
+    const made = await owner(`select sheet_id, student_id, state, flags from marking_sheets where upload_id = $1`, [up]);
+    // One script, Dev's: the card's name did not start Meera's.
+    expect(made).toHaveLength(1);
+    expect(made[0]).toMatchObject({ student_id: K3, state: 'waiting', flags: ['not_answer_page'] });
+    dev = made[0].sheet_id;
+    // Never sent to be marked.
+    const taken = await asJob((c) => takeSheetForMarking(c, A, dev));
+    expect(taken?.pages.map((p) => p.pageId)).toEqual([odd.d1, odd.d2]);
+    const qs = await owner(`select question_id, max_marks::float8 as max from marking_questions where paper_id = $1`, [paperA]);
+    const result = { questions: qs.map((q: { question_id: string }) => ({ questionId: q.question_id, attempted: true, marks: 1, steps: [], note: null, reason: null, errorType: 'none' as const, confidence: 0.9, pageId: null, yFrom: null, yTo: null })), strengths: null, improve: null, practice: [] };
+    expect((await asJob((c) => recordSheetResult(c, A, dev, result, { provider: 'stand-in', model: 'test', promptVersion: 'v1' })))?.flags).toContain('not_answer_page');
+    const detail = await as(tMaths, (c) => sheetDetail(c, actor(tMaths), dev));
+    expect(detail?.pages.map((g) => [g.state, g.odd])).toEqual([['read', null], ['not_answer', 'id_document'], ['read', null], ['not_answer', 'not_answer']]);
+  });
+
+  it('the script is not approved until a person settles each page, and a job never settles one', async () => {
+    expect(await as(tMaths, (c) => approveSheets(c, actor(tMaths), paperA, [dev]))).toEqual({ ok: false, reason: 'flagged', sheetId: dev });
+    // The database refuses it even with the flag gone.
+    await owner(`update marking_sheets set flags = '{}' where sheet_id = $1`, [dev]);
+    await expect(run(tMaths, `update marking_sheets set state = 'approved' where sheet_id = $1`, [dev])).rejects.toThrow(/settled before its script is approved/);
+    await owner(`update marking_sheets set flags = '{not_answer_page}' where sheet_id = $1`, [dev]);
+    await expect(asJob((c) => c.query(`update marking_pages set state = 'read' where page_id = $1`, [odd.card]))).rejects.toThrow(/settled by a person/);
+    await expect(asJob((c) => c.query(`update marking_pages set state = 'removed', sheet_id = null, sheet_position = null, reading = null where page_id = $1`, [odd.card]))).rejects.toThrow(/settled by a person/);
+    // Another class's teacher reaches nothing; a page that is an answer page is not "settled".
+    expect(await as(tOther, (c) => settlePage(c, actor(tOther), odd.card, 'take_out'))).toEqual({ ok: false, reason: 'not_found' });
+    expect(await as(tMaths, (c) => settlePage(c, actor(tMaths), odd.d1, 'take_out'))).toEqual({ ok: false, reason: 'state' });
+    expect(await as(tMaths, (c) => settlePage(c, actor(tMaths), odd.card, 'shred'))).toEqual({ ok: false, reason: 'not_found' });
+  });
+
+  it('kept as an answer page, or taken out for good; then the script is approved', async () => {
+    expect(await as(tMaths, (c) => settlePage(c, actor(tMaths), odd.form, 'keep'))).toEqual({ ok: true, sheetId: dev, markAgain: true });
+    expect((await owner(`select state from marking_pages where page_id = $1`, [odd.form]))[0].state).toBe('read');
+    // One page is still to settle: the flag stays.
+    expect((await owner(`select flags from marking_sheets where sheet_id = $1`, [dev]))[0].flags).toContain('not_answer_page');
+    expect(await as(tMaths, (c) => settlePage(c, actor(tMaths), odd.card, 'take_out'))).toEqual({ ok: true, sheetId: dev, markAgain: false });
+    expect((await owner(`select state, sheet_id, reading, picture_gone_at from marking_pages where page_id = $1`, [odd.card]))[0]).toEqual({ state: 'removed', sheet_id: null, reading: null, picture_gone_at: null });
+    expect((await owner(`select flags from marking_sheets where sheet_id = $1`, [dev]))[0].flags).not.toContain('not_answer_page');
+    // Only the sweep records a picture deleted (the teacher may change the page, but not that).
+    await expect(run(tMaths, `update marking_pages set picture_gone_at = now() where page_id = $1`, [odd.d1])).rejects.toThrow(/recorded by the sweep/);
+    // A page taken out stays out, and the app's own page route finds it no more.
+    await expect(run(tMaths, `update marking_pages set state = 'read' where page_id = $1`, [odd.card])).rejects.toThrow(/stays out/);
+    expect((await run(tMaths, `select 1 from marking_pages where page_id = $1 and state <> 'removed' and picture_gone_at is null`, [odd.card])).rows).toEqual([]);
+    expect((await owner(`select event_action, target_id from audit_log where event_action in ('marking.page_kept', 'marking.page_taken_out') order by occurred_at`))).toEqual([
+      { event_action: 'marking.page_kept', target_id: odd.form },
+      { event_action: 'marking.page_taken_out', target_id: odd.card },
+    ]);
+    expect(await as(tMaths, (c) => approveSheets(c, actor(tMaths), paperA, [dev]))).toMatchObject({ ok: true, approved: 1 });
+  });
+});
+
+describe('page pictures kept for the school’s days after publication (C230-AG)', () => {
+  const due = () => asPlatform((c) => c.query(`select page_id from public.marking_pictures_due(1000)`)).then((r: { rows: { page_id: string }[] }) => r.rows.map((x) => x.page_id));
+  // The test's clock: the publication in force made older, past its own rule that nothing published changes.
+  const age = (by: string) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    db.pg.transaction(async (tx: any) => {
+      await tx.query(`set local session_replication_role = replica`);
+      await tx.query(`update exam_publications set published_at = now() - $2::interval where exam_id = $1 and class_id = $3 and reopened_at is null`, [examId, by, C7A]);
+    });
+  it('nothing is due until the days have passed since the publication in force; a reopen restarts the count', async () => {
+    expect((await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).ok).toBe(true);
+    // Only the page taken out is due at once.
+    expect(await due()).toEqual([odd.card]);
+    await age('91 days');
+    expect((await due()).length).toBeGreaterThan(6);
+    // The school keeps them longer.
+    await owner(`insert into school_settings (school_id, module_id, schema_version, setting_values) values ($1, 'exams', 2, '{"script_days": 120}')`, [A]);
+    expect(await due()).toEqual([odd.card]);
+    await owner(`update school_settings set setting_values = '{"script_days": 10}' where school_id = $1 and module_id = 'exams'`, [A]);
+    // Below 30 counts as 30: 91 days are past it.
+    expect((await due()).length).toBeGreaterThan(6);
+    await owner(`delete from school_settings where school_id = $1 and module_id = 'exams'`, [A]);
+    // Reopened: nothing of the paper goes; published again, the count starts afresh.
+    expect((await as(principal, (c) => reopenClass(c, actor(principal), examId, C7A, 'One more correction'))).ok).toBe(true);
+    expect(await due()).toEqual([odd.card]);
+    expect((await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).ok).toBe(true);
+    expect(await due()).toEqual([odd.card]);
+    await age('91 days');
+  });
+
+  it('only the platform reads what is due and records a picture deleted', async () => {
+    await expect(run(principal, `select * from public.marking_pictures_due(10)`)).rejects.toThrow(/permission denied/);
+    await expect(run(principal, `select public.marking_pictures_gone(array[$1]::uuid[])`, [pages.m1])).rejects.toThrow(/permission denied/);
+  });
+
+  it('the sweep deletes the pictures, then marks them; families, the report link and the teacher see none; the marks stay', async () => {
+    const store = new MemoryFileStorage();
+    const keys = (await owner(`select storage_key from marking_pages where paper_id = $1`, [paperA])).map((r: { storage_key: string }) => r.storage_key as string);
+    for (const k of keys) await store.put(k, new Uint8Array([1, 2, 3]), 'image/jpeg');
+    await store.put(`${A}/record-documents/kept.pdf`, new Uint8Array([1]), 'application/pdf');
+    const job = { jobId: u(990), type: PICTURES_SWEEP_JOB, payload: {}, attempts: 1, maxAttempts: 3, schoolId: null, idempotencyKey: 'by-hand' };
+    await picturesSweepHandler({ platform: asPlatform, storage: store })(job);
+    expect([...store.files.keys()]).toEqual([`${A}/record-documents/kept.pdf`]);
+    expect((await owner(`select count(*)::int as n from marking_pages where paper_id = $1 and picture_gone_at is null`, [paperA]))[0].n).toBe(0);
+    expect(await due()).toEqual([]);
+    const audit = await owner(`select actor_user_id, after_state from audit_log where event_action = 'marking.pictures_deleted'`);
+    expect(audit).toEqual([{ actor_user_id: null, after_state: { deleted: keys.length, by: PICTURES_SWEEP_JOB } }]);
+    // A second run finds nothing and writes nothing; a gone picture is never marked again.
+    await picturesSweepHandler({ platform: asPlatform, storage: store })(job);
+    expect((await owner(`select count(*)::int as n from audit_log where event_action = 'marking.pictures_deleted'`))[0].n).toBe(1);
+    await expect(asPlatform((c) => c.query(`select public.marking_pictures_gone(array[$1]::uuid[]) as n`, [pages.m1]))).resolves.toMatchObject({ rows: [{ n: 0 }] });
+
+    // The guardian's checked paper has its question marks and no pictures.
+    const paper = await as(guardian, (c) => checkedPaperOf(c, A, K1, paperA));
+    expect(paper?.pages).toEqual([]);
+    expect(paper?.questions).toHaveLength(4);
+    // The report link opens the marks, and no page.
+    const version = (await owner(`select version from exam_publications where exam_id = $1 and class_id = $2 and reopened_at is null`, [examId, C7A]))[0].version;
+    const hash = createHash('sha256').update('r'.repeat(43)).digest('hex');
+    await run(principal, `insert into marking_report_links (school_id, key_hash, exam_id, class_id, student_id, publication_version, made_by) values ($1, $2, $3, $4, $5, $6, $7)`, [A, hash, examId, C7A, K1, version, PRINCIPAL]);
+    expect((await asPlatform((c) => c.query(`select count(*)::int as n from public.marking_report_marks($1)`, [hash]))).rows[0].n).toBe(4);
+    expect((await asPlatform((c) => c.query(`select count(*)::int as n from public.marking_report_pages($1)`, [hash]))).rows[0].n).toBe(0);
+    // The teacher's view says how many went.
+    const meera = (await owner(`select sheet_id from marking_sheets where student_id = $1 and state = 'approved'`, [K1]))[0].sheet_id as string;
+    const detail = await as(tMaths, (c) => sheetDetail(c, actor(tMaths), meera));
+    expect(detail).toMatchObject({ pages: [], picturesGone: 2 });
+  });
+
+  it('a store that refuses a picture leaves it to the next run, and the job fails so it is tried again', async () => {
+    const id = (await owner(`select gen_random_uuid() as id`))[0].id as string;
+    const up = (await owner(`select upload_id from marking_uploads where paper_id = $1 limit 1`, [paperA]))[0].upload_id as string;
+    await owner(`insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height) values ($1, $2, $3, $4, 9, 1, $5, $6, 1000, 1400, 2000)`, [
+      A, id, up, paperA, `${A}/marking/${paperA}/${id}.jpg`, createHash('sha256').update('late page').digest('hex'),
+    ]);
+    const refusing = { remove: async () => { throw new Error('store down'); } };
+    const job = { jobId: u(991), type: PICTURES_SWEEP_JOB, payload: {}, attempts: 1, maxAttempts: 3, schoolId: null, idempotencyKey: 'by-hand-2' };
+    await expect(picturesSweepHandler({ platform: asPlatform, storage: refusing })(job)).rejects.toThrow(/1 picture\(s\) not deleted/);
+    expect(await due()).toEqual([id]);
+    // While the store does not work at all, the sweep does nothing and succeeds.
+    await expect(picturesSweepHandler({ platform: asPlatform, storage: refusing, storageWorks: async () => false })(job)).resolves.toBeUndefined();
   });
 });

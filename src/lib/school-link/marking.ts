@@ -99,7 +99,7 @@ export async function checkedPaperOf(db: Sql, schoolId: string, studentId: strin
     })
   );
   const pages = (
-    await db.query(`select page_id, width, height from marking_pages where sheet_id = $1 order by sheet_position`, [sheet.sheet_id])
+    await db.query(`select page_id, width, height from marking_pages where sheet_id = $1 and picture_gone_at is null order by sheet_position`, [sheet.sheet_id])
   ).rows.map((g) => ({ pageId: g.page_id as string, width: Number(g.width), height: Number(g.height) }));
   const units = (sheet.practice ?? []).map((p) => p.unitId).filter((u): u is string => !!u && isUuid(u));
   const unitRows = units.length
@@ -165,7 +165,7 @@ export async function readSchoolPagePicture(
     const row = (
       await db.query(
         `select g.storage_key from marking_pages g join marking_sheets s on s.school_id = g.school_id and s.sheet_id = g.sheet_id
-          where g.page_id = $1 and s.student_id = any ($2::uuid[]) and s.state = 'approved' and not ('changed' = any (s.flags))`,
+          where g.page_id = $1 and s.student_id = any ($2::uuid[]) and s.state = 'approved' and not ('changed' = any (s.flags)) and g.picture_gone_at is null`,
         [pageId, studentIds]
       )
     ).rows[0] as { storage_key: string } | undefined;

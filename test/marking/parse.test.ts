@@ -5,7 +5,8 @@ import { anthropicAdapter } from '@/lib/ai/adapters/anthropic';
 import { profileById } from '@/lib/ai/platform';
 import { markPrompt } from '@/lib/ai/prompts/exams.mark';
 import { readPagesPrompt } from '@/lib/ai/prompts/exams.read_pages';
-import { jsonObjectIn, labelKey, parseMarking, parseReading } from '@/lib/marking/parse';
+import { jsonObjectIn, labelKey, notAnAnswerPage, parseMarking, parseReading } from '@/lib/marking/parse';
+import { pageStateOf } from '@/lib/marking/store';
 import { checkPage, jpegSize, stripMetadata } from '@/lib/marking/upload';
 import { anthropicOk } from '../ai/streams';
 import { fakeJpeg } from './fake-jpeg';
@@ -108,28 +109,48 @@ describe('parseMarking', () => {
 describe('parseReading', () => {
   const pages = {
     pages: [
-      { page: 1, first_page: true, name: ' Meera Sharma ', roll_no: '1', exam_no: 'HY0001', class_section: '7-A', page_number: 1, blank: false, legible: true },
-      { page: 2, first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true },
-      { page: 3, first_page: null, name: 12345, roll_no: ['1'], exam_no: '', class_section: null, page_number: 2.5, blank: true, legible: true },
+      { page: 1, answer_page: true, id_document: false, first_page: true, name: ' Meera Sharma ', roll_no: '1', exam_no: 'HY0001', class_section: '7-A', page_number: 1, blank: false, legible: true },
+      { page: 2, answer_page: true, id_document: false, first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true },
+      { page: 3, answer_page: true, id_document: false, first_page: null, name: 12345, roll_no: ['1'], exam_no: '', class_section: null, page_number: 2.5, blank: true, legible: true },
     ],
   };
 
   it('a good answer, page by page; a name or number that is not words is left out, never guessed', () => {
     expect(parseReading('```json\n' + JSON.stringify(pages) + '\n```', 3)).toEqual([
-      { firstPage: true, name: 'Meera Sharma', rollNo: '1', seatNo: 'HY0001', classSection: '7-A', pageNumber: 1, blank: false, legible: true },
-      { firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: 2, blank: false, legible: true },
-      { firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: true, legible: true },
+      { firstPage: true, name: 'Meera Sharma', rollNo: '1', seatNo: 'HY0001', classSection: '7-A', pageNumber: 1, blank: false, legible: true, answerPage: true, idDocument: false },
+      { firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: 2, blank: false, legible: true, answerPage: true, idDocument: false },
+      { firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: true, legible: true, answerPage: true, idDocument: false },
     ]);
+  });
+
+  it('a page like an identity document, or not an answer page, keeps nothing written on it, whatever was sent (C230-AG)', () => {
+    const card = { page: 1, answer_page: true, id_document: true, first_page: true, name: 'Meera Sharma', roll_no: '1234 5678 9012', exam_no: '123456789012', class_section: '7-A', page_number: 1, blank: false, legible: true };
+    const form = { ...card, page: 2, answer_page: false, id_document: false };
+    const nothing = { firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: false, legible: true };
+    expect(parseReading(JSON.stringify({ pages: [card, form] }), 2)).toEqual([
+      { ...nothing, answerPage: true, idDocument: true },
+      { ...nothing, answerPage: false, idDocument: false },
+    ]);
+    expect(notAnAnswerPage({ answerPage: true, idDocument: true })).toBe(true);
+    expect(notAnAnswerPage({ answerPage: false, idDocument: false })).toBe(true);
+    expect(notAnAnswerPage({ answerPage: true, idDocument: false })).toBe(false);
+    // The two answers are required, as blank and legible are: an entry without them is not kept.
+    expect(parseReading(JSON.stringify({ pages: [{ page: 1, blank: false, legible: true, name: 'Meera' }] }), 1)).toEqual([null]);
+    expect(pageStateOf({ ...nothing, answerPage: true, idDocument: true, blank: true })).toBe('not_answer');
+    expect(pageStateOf({ ...nothing, answerPage: false, idDocument: false })).toBe('not_answer');
+    expect(pageStateOf({ ...nothing, answerPage: false, idDocument: false, blank: true })).toBe('blank');
+    expect(pageStateOf({ ...nothing, answerPage: true, idDocument: false, legible: false })).toBe('unreadable');
+    expect(pageStateOf(null)).toBe('failed');
   });
 
   it('a page with no valid entry is null; pages out of range, twice, or without blank and legible are dropped', () => {
     const answer = {
       pages: [
-        { page: 2, blank: false, legible: true, name: 'First' },
-        { page: 2, blank: false, legible: true, name: 'Second' },
-        { page: 3, blank: 'no', legible: true },
-        { page: 7, blank: false, legible: true },
-        { blank: false, legible: true },
+        { page: 2, blank: false, legible: true, answer_page: true, id_document: false, name: 'First' },
+        { page: 2, blank: false, legible: true, answer_page: true, id_document: false, name: 'Second' },
+        { page: 3, blank: 'no', legible: true, answer_page: true, id_document: false },
+        { page: 7, blank: false, legible: true, answer_page: true, id_document: false },
+        { blank: false, legible: true, answer_page: true, id_document: false },
       ],
     };
     const r = parseReading(JSON.stringify(answer), 3);
@@ -187,9 +208,12 @@ describe('the two AI tasks and their prompts (C349)', () => {
   });
 
   it('the prompts are JSON only, with the schema, and name no child, roster or school', () => {
+    // v1 is gone (C230-AG): a Control row still naming it gets v2, which asks about identity documents.
     const read = readPagesPrompt('v1');
-    expect(read.version).toBe('v1');
+    expect(read.version).toBe('v2');
     expect(read.system({ pages: 8 })).toContain('"first_page"');
+    expect(read.system({ pages: 8 })).toContain('"id_document"');
+    expect(read.system({ pages: 8 })).toContain('"answer_page"');
     expect(read.user({ pages: 8 })).toContain('page 8');
     const mark = markPrompt(null);
     expect(mark.version).toBe('v1');

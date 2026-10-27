@@ -30,6 +30,7 @@ export function errorWords(t: T, reply: Pick<Reply, 'body' | 'status'>, fallback
 export const FLAG_KEYS: Record<SheetFlag, MessageKey> = {
   identity: 'mk.flag.identity',
   check_child: 'mk.flag.check_child',
+  not_answer_page: 'mk.flag.not_answer_page',
   two_scripts: 'mk.flag.two_scripts',
   missing_page: 'mk.flag.missing_page',
   unreadable: 'mk.flag.unreadable',
@@ -40,6 +41,7 @@ export const FLAG_KEYS: Record<SheetFlag, MessageKey> = {
 export const FLAG_HOW_KEYS: Record<SheetFlag, MessageKey> = {
   identity: 'mk.flag.identity.how',
   check_child: 'mk.flag.check_child.how',
+  not_answer_page: 'mk.flag.not_answer_page.how',
   two_scripts: 'mk.flag.two_scripts.how',
   missing_page: 'mk.flag.missing_page.how',
   unreadable: 'mk.flag.unreadable.how',

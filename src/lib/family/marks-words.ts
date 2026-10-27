@@ -15,7 +15,7 @@ export const MISTAKE_KEYS: Record<Exclude<SchoolMistake, 'none'>, MessageKey> = 
 export const TIMETABLE_KEYS: MessageKey[] = ['fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat'];
 
 export const CHECKED_PAPER_KEYS: MessageKey[] = [
-  'fam.school.resultPublished', 'fam.marks.title', 'fam.marks.paperTitle', 'fam.marks.gone', 'fam.marks.partScore', 'fam.marks.approved', 'fam.marks.pagesTitle', 'fam.marks.pagesLead', 'fam.marks.page',
+  'fam.school.resultPublished', 'fam.marks.title', 'fam.marks.paperTitle', 'fam.marks.gone', 'fam.marks.partScore', 'fam.marks.approved', 'fam.marks.pagesTitle', 'fam.marks.pagesLead', 'fam.marks.noPages', 'fam.marks.page',
   'fam.marks.badge', 'fam.marks.badgeNotCounted', 'fam.marks.showPages', 'fam.marks.saverNote', 'fam.marks.questionsTitle', 'fam.marks.question',
   'fam.marks.markOf', 'fam.marks.noMark', 'fam.marks.notCounted', 'fam.marks.strengths', 'fam.marks.improve', 'fam.marks.practice',
   'fam.marks.childStrengths', 'fam.marks.childImprove', 'fam.marks.childLead', 'fam.marks.backParent', 'fam.marks.backResults',
