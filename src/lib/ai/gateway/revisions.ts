@@ -1,3 +1,4 @@
+import { aiRouteActivationStatement } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { RouteRevision } from '@/lib/contracts/ai-gateway';
 
@@ -11,10 +12,12 @@ export type Activation = 'set' | 'undo' | 'rollback';
 // Before Control's update of a profile: why this activation, and for a rollback the revision it restores. Local to
 // the transaction; cleared again by activated().
 export async function activating(db: Sql, activation: Activation, rollbackOf: string | null = null): Promise<void> {
-  await db.query(`select set_config('nca.ai_route_activation', $1, true), set_config('nca.ai_route_rollback_of', $2, true)`, [activation, rollbackOf ?? '']);
+  const s = aiRouteActivationStatement(activation, rollbackOf ?? '');
+  await db.query(s.sql, s.params);
 }
 export async function activated(db: Sql): Promise<void> {
-  await db.query(`select set_config('nca.ai_route_activation', '', true), set_config('nca.ai_route_rollback_of', '', true)`);
+  const s = aiRouteActivationStatement('', '');
+  await db.query(s.sql, s.params);
 }
 
 export type RevisionRow = { revisionId: string; providerId: string | null; model: string | null; fallback: unknown; promptVersion: string; enabled: boolean };
