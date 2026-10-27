@@ -20,6 +20,7 @@ const KEY_MAX = 8000;
 const STEP_MAX = 300;
 const STEPS_MAX = 12;
 const CHOICE_KEYS: readonly OptionKey[] = ['A', 'B', 'C', 'D'];
+const OPTIONS_BYTES = 3900;
 
 type Obj = Record<string, unknown>;
 const isObj = (v: unknown): v is Obj => typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -70,6 +71,8 @@ function one(raw: Obj, ask: SlotAsk): WrittenQuestion | null {
       options.push({ key: CHOICE_KEYS[i], text });
     }
     if (new Set(options.map((o) => sameWords(o.text))).size !== options.length) return null;
+    // The database keeps a question's options in at most 4000 bytes (long Hindi options can pass the characters' limit).
+    if (new TextEncoder().encode(JSON.stringify(options)).length > OPTIONS_BYTES) return null;
     const c = own(raw, 'correct');
     const key = typeof c === 'string' ? c.trim().toUpperCase() : Array.isArray(c) && c.length === 1 && typeof c[0] === 'string' ? c[0].trim().toUpperCase() : null;
     if (!key || !(CHOICE_KEYS as readonly string[]).includes(key)) return null;

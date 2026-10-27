@@ -76,7 +76,7 @@ const termPaper = (type: string): SectionRow[] => [
 // Defaults the school edits (see the note at the top): one for each default exam type that is a written paper, the
 // practical left out, and "other" so an exam of no particular type can be made too.
 export const DEFAULT_BLUEPRINT_ROWS: readonly BlueprintRow[] = [
-  { ...shape('weekly', 20, 40, [40, 40, 20], 'since_last_of_type') },
+  shape('weekly', 20, 40, [40, 40, 20], 'since_last_of_type'),
   shape('monthly', 25, 60, [40, 40, 20], 'since_last_of_type'),
   shape('unit', 25, 60, [40, 40, 20], 'since_last_of_type'),
   shape('periodic', 40, 90, [30, 50, 20], 'since_last_of_type'),

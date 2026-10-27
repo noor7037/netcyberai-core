@@ -7,7 +7,7 @@ import { nextLabel } from '@/lib/marking/question-form';
 import { structureProblems } from '@/lib/marking/rollup';
 import { questionsOf, readSetup } from '@/lib/marking/setup';
 import type { SetupScreen } from '@/lib/contracts/marking';
-import { aiWritingOn, closeStale, examTypeOf, latestGeneration, makeRefusal, paperContext, planFor, printRefusal, running } from './context';
+import { aiWritingOn, examTypeOf, latestGeneration, makeRefusal, paperContext, planFor, printRefusal, running } from './context';
 import type { BankList, BankQuestion, MakeScreen, PrintData, PrintRefusal } from './types';
 
 // The paper maker's screen, keeping a paper, printing it, and the question bank (docs/36 §1.1, C362, C363), each in
@@ -19,7 +19,6 @@ import type { BankList, BankQuestion, MakeScreen, PrintData, PrintRefusal } from
 export async function makeScreen(db: Sql, actor: Actor, paperId: string, opts: { sections?: unknown; chapterMarks?: unknown } = {}): Promise<MakeScreen | null> {
   const ctx = await paperContext(db, actor, paperId);
   if (!ctx) return null;
-  await closeStale(db, actor.schoolId, paperId).catch(() => undefined);
   const generation = await latestGeneration(db, actor.schoolId, paperId);
   const questions = Number((await db.query(`select count(*)::int as n from marking_questions where school_id = $1 and paper_id = $2`, [actor.schoolId, paperId])).rows[0]?.n ?? 0);
   const { blueprint, issues, plan } = await planFor(db, actor.schoolId, ctx, opts);
@@ -132,7 +131,7 @@ const bankQuestion = (r: Record<string, unknown>): BankQuestion => ({
 // The kept bank questions a paper may use: its class's grade and subject, in its language, by chapter (and kind and
 // marks when asked); never one already on it. One the class had in its last two papers of the subject is left out, and
 // counted (`skipped`), so the teacher sees why.
-export async function bankFor(db: Sql, actor: Actor, paperId: string, filter: { chapter?: string | null; kind?: string | null; marks?: number | null }): Promise<BankList | null> {
+export async function bankFor(db: Sql, actor: Actor, paperId: string, filter: { chapter?: string | null; kind?: string | null; marks?: number | null; ids?: readonly string[] }): Promise<BankList | null> {
   const ctx = await paperContext(db, actor, paperId);
   if (!ctx) return null;
   const chapters = [...new Set(ctx.paper.units.map((u) => u.chapter.trim()))];
@@ -149,9 +148,10 @@ export async function bankFor(db: Sql, actor: Actor, paperId: string, filter: { 
       where b.school_id = $1 and b.subject_id = $2 and b.grade = $3 and b.language = $4 and b.state = 'kept'
         and not exists (select 1 from marking_questions q where q.school_id = b.school_id and q.paper_id = $6 and q.bank_id = b.bank_id)
         and ($7::text is null or b.chapter = $7) and ($8::text is null or b.kind = $8) and ($9::numeric is null or b.max_marks = $9)
+        and ($10::uuid[] is null or b.bank_id = any($10::uuid[]))
       order by b.chapter, b.topic, b.used_count, b.created_at, b.bank_id
       limit 200`,
-    [actor.schoolId, ctx.paper.subjectId, ctx.grade, ctx.language, ctx.paper.classId, paperId, filter.chapter ?? null, filter.kind ?? null, filter.marks ?? null]
+    [actor.schoolId, ctx.paper.subjectId, ctx.grade, ctx.language, ctx.paper.classId, paperId, filter.chapter ?? null, filter.kind ?? null, filter.marks ?? null, filter.ids ? [...filter.ids] : null]
   );
   return { questions: rows.filter((r) => !r.recent).map(bankQuestion), skipped: rows.filter((r) => r.recent).length, chapters };
 }
@@ -165,7 +165,7 @@ async function mayChangeByHand(db: Sql, actor: Actor, paperId: string): Promise<
 }
 
 async function usableBank(db: Sql, actor: Actor, paperId: string, bankIds: readonly string[]) {
-  const list = await bankFor(db, actor, paperId, {});
+  const list = await bankFor(db, actor, paperId, { ids: bankIds });
   const byId = new Map((list?.questions ?? []).map((q) => [q.bankId, q]));
   return bankIds.map((id) => byId.get(id) ?? null);
 }

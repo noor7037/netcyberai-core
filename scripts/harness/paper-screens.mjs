@@ -13,7 +13,7 @@ const id = (n) => `00000000-0000-4000-8000-0000000a${String(n).padStart(4, '0')}
 const C5A = '00000000-0000-4000-8000-0000000c0051';
 const MATHS = '00000000-0000-4000-8000-0000000d0001';
 const TEACHER_ROW = '00000000-0000-4000-8000-0000000a2003';
-export const PP = { half: id(7001), halfPaper: id(7002), unit: id(7003), unitPaper: id(7004), generation: id(7005) };
+export const PP = { half: id(7001), halfPaper: id(7002), unit: id(7003), unitPaper: id(7004), generation: id(7005), quiz: id(7006), quizPaper: id(7007) };
 
 // The unit test as the job would have made it: ten choice questions of a mark and five short ones of three.
 const CHOICE = [
@@ -46,16 +46,28 @@ export function paperScreens({ db, SCHOOL, PEOPLE, base, speak, backToEnglish })
   const units = async () =>
     (await db.pg.query(`select unit_id, chapter, topic, position from syllabus_units where school_id = $1 and class_id = $2 and subject_id = $3 order by position`, [SCHOOL, C5A, MATHS])).rows;
 
+  // The throwaway database has one connection, shared with the app: a page's last request may still hold it (in the
+  // app's own role) for a moment, so clearing is tried again shortly when it is refused.
   const clear = async () => {
+    for (let i = 0; ; i++) {
+      try {
+        return await clearOnce();
+      } catch (e) {
+        if (i >= 4) throw e;
+        await new Promise((r) => setTimeout(r, 400));
+      }
+    }
+  };
+  const clearOnce = async () => {
     await db.pg.exec(`set session_replication_role = replica;
       delete from jobs where type = 'papers.make' and school_id = '${SCHOOL}';
-      delete from paper_generations where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}');
-      delete from marking_questions where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}');
-      delete from marking_setups where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}');
+      delete from paper_generations where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}', '${PP.quizPaper}');
+      delete from marking_questions where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}', '${PP.quizPaper}');
+      delete from marking_setups where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}', '${PP.quizPaper}');
       delete from question_bank where school_id = '${SCHOOL}';
       delete from syllabus_progress where school_id = '${SCHOOL}' and note = 'paper-screens';
-      delete from exam_papers where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}');
-      delete from exams where school_id = '${SCHOOL}' and exam_id in ('${PP.half}', '${PP.unit}');
+      delete from exam_papers where school_id = '${SCHOOL}' and paper_id in ('${PP.halfPaper}', '${PP.unitPaper}', '${PP.quizPaper}');
+      delete from exams where school_id = '${SCHOOL}' and exam_id in ('${PP.half}', '${PP.unit}', '${PP.quiz}');
       delete from audit_log where school_id = '${SCHOOL}' and event_action like 'marking.paper%';
       set session_replication_role = origin;`);
   };
@@ -116,10 +128,13 @@ export function paperScreens({ db, SCHOOL, PEOPLE, base, speak, backToEnglish })
     await paper(PP.halfPaper, PP.half, [{ key: 'written', name: 'Written', max: 80, share: 80 }, { key: 'oral', name: 'Oral', max: 20, share: 20 }]);
     await exam(PP.unit, 'Unit test 2 (question paper, harness)', 'unit');
     await paper(PP.unitPaper, PP.unit, [{ key: 'written', name: 'Written', max: 25, share: null }]);
+    // A short class test, so the questions screen with every field open fits one picture on a phone.
+    await exam(PP.quiz, 'Class test (question paper, harness)', 'weekly');
+    await paper(PP.quizPaper, PP.quiz, [{ key: 'written', name: 'Written', max: 6, share: null }]);
   };
   // The unit test as papers.make leaves it: AI drafts in the bank in the teacher's name, the paper's questions, a done
   // making. The paper is not kept yet.
-  const seedMade = async () => {
+  const seedMade = async ({ paperId = PP.unitPaper, choice = CHOICE.length, short = SHORT.length } = {}) => {
     const map = await units();
     const unitOf = (chapter, topic) => map.find((u) => u.chapter === chapter && u.topic === topic) ?? map.find((u) => u.chapter === chapter);
     const levels = ['easy', 'medium', 'easy', 'medium', 'hard'];
@@ -138,21 +153,21 @@ export function paperScreens({ db, SCHOOL, PEOPLE, base, speak, backToEnglish })
         await db.pg.query(
           `insert into marking_questions (school_id, paper_id, position, label, component, max_marks, unit_id, kind, prompt, answer_key, steps, options, correct, difficulty, section, bank_id, updated_by)
            values ($1, $2, $3, $4, 'written', $5, $6, $7, $8, $9, $10::jsonb, $11::jsonb, $12::jsonb, $13, $14, $15, $16)`,
-          [SCHOOL, PP.unitPaper, n, String(n), q.marks, q.unit.unit_id, q.kind, q.prompt, q.key, JSON.stringify(q.steps), JSON.stringify(q.options), q.correct ? JSON.stringify(q.correct) : null, q.level, q.section, bank, teacher]
+          [SCHOOL, paperId, n, String(n), q.marks, q.unit.unit_id, q.kind, q.prompt, q.key, JSON.stringify(q.steps), JSON.stringify(q.options), q.correct ? JSON.stringify(q.correct) : null, q.level, q.section, bank, teacher]
         );
       };
-      for (const [i, [prompt, opts, key]] of CHOICE.entries()) {
+      for (const [i, [prompt, opts, key]] of CHOICE.slice(0, choice).entries()) {
         const unit = i < 5 ? unitOf('Fractions', ['Halves and quarters', 'Comparing two fractions', 'Fractions on the number line'][i % 3]) : unitOf('Decimals', i % 2 ? 'Tenths' : 'Hundredths');
         await put({ unit, kind: 'objective', marks: 1, prompt, options: opts.map((text, k) => ({ key: 'ABCD'[k], text })), correct: { keys: [key] }, key: `${key}: ${opts['ABCD'.indexOf(key)]}`, steps: [{ step: 'Right option', marks: 1 }], level: levels[i % 5], section: 'A' });
       }
-      for (const [i, [prompt, key, chapter, topic]] of SHORT.entries()) {
+      for (const [i, [prompt, key, chapter, topic]] of SHORT.slice(0, short).entries()) {
         await put({ unit: unitOf(chapter, topic), kind: 'short', marks: 3, prompt, options: [], correct: null, key, steps: [{ step: 'Method', marks: 2 }, { step: 'Answer', marks: 1 }], level: levels[(i + 2) % 5], section: 'B' });
       }
-      await db.pg.query(`insert into marking_setups (school_id, paper_id, language, choice_counts, updated_by) values ($1, $2, 'en', '{}', $3)`, [SCHOOL, PP.unitPaper, teacher]);
+      await db.pg.query(`insert into marking_setups (school_id, paper_id, language, choice_counts, updated_by) values ($1, $2, 'en', '{}', $3)`, [SCHOOL, paperId, teacher]);
       await db.pg.query(
         `insert into paper_generations (school_id, generation_id, paper_id, kind, state, blueprint, plan, result, attempts, ai_provider, ai_model, prompt_version, requested_by, started_at, finished_at)
-         values ($1, $2, $3, 'paper', 'done', '{"minutes": 60}', '{}', '{"bank": 0, "ai": 15, "empty": 0, "aiOff": false}', 1, 'stand-in', 'harness', 'v1', $4, now() - interval '3 minutes', now() - interval '1 minute')`,
-        [SCHOOL, PP.generation, PP.unitPaper, teacher]
+         values ($1, $2, $3, 'paper', 'done', '{"minutes": 60}', '{}', $5::jsonb, 1, 'stand-in', 'harness', 'v1', $4, now() - interval '3 minutes', now() - interval '1 minute')`,
+        [SCHOOL, PP.generation, paperId, teacher, JSON.stringify({ bank: 0, ai: n, empty: 0, aiOff: false })]
       );
     } finally {
       await db.pg.query(`select set_config('app.current_user_id', '', false), set_config('app.current_role', '', false)`);
@@ -219,9 +234,10 @@ export function paperScreens({ db, SCHOOL, PEOPLE, base, speak, backToEnglish })
 
   // ---- a unit test just made: the questions with their answer fields, and keeping it ----------------------------------
   const madeRoute = `/app/exams/papers/${PP.unitPaper}/marking`;
+  const quizRoute = `/app/exams/papers/${PP.quizPaper}/marking`;
   const openMade = async (page) => {
     await seed();
-    await seedMade();
+    await seedMade({ paperId: PP.quizPaper, choice: 3, short: 1 });
     await page.reload({ waitUntil: 'networkidle' });
     await page.locator('[data-keep-print]').waitFor({ timeout: 30000 });
     await page.locator('[data-questions-open]').click();
@@ -234,8 +250,8 @@ export function paperScreens({ db, SCHOOL, PEOPLE, base, speak, backToEnglish })
     await axe(page, 'made');
   };
   const madeChecks = async () => {
-    if (!/0 from the bank, 15 written by the AI, 0 left for you/.test(seen.made)) throw new Error(`the making: ${seen.made}`);
-    if (seen.options !== 10) throw new Error(`choice questions with options: ${seen.options}`);
+    if (!/0 from the bank, 4 written by the AI, 0 left for you/.test(seen.made)) throw new Error(`the making: ${seen.made}`);
+    if (seen.options !== 3) throw new Error(`choice questions with options: ${seen.options}`);
     if (!seen.printDisabled || seen.keep !== 1) throw new Error('an unkept paper offers printing');
   };
   const keepIt = async (page) => {
@@ -277,7 +293,7 @@ export function paperScreens({ db, SCHOOL, PEOPLE, base, speak, backToEnglish })
   return [
     ['teacher', 'app-papers-make', makeRoute, openMake('en'), finish(makeChecks('en'))],
     ['teacher', 'app-papers-make-hindi', makeRoute, openMake('hi'), finish(makeChecks('hi'), { hindi: true })],
-    ['teacher', 'app-papers-made', madeRoute, openMade, finish(madeChecks)],
+    ['teacher', 'app-papers-made', quizRoute, openMade, finish(madeChecks)],
     ['teacher', 'app-papers-kept', madeRoute, keepIt, finish(keepChecks)],
     ['principal', 'app-papers-make-every', '/app/exams', makeAll, finish(makeAllChecks)],
   ];

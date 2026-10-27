@@ -118,33 +118,36 @@ export async function planFor(
 
 // ---- the paper's state ---------------------------------------------------------------------------------------------------
 
-// A making waiting or working longer than this stopped (its job ended before it did): it is closed as failed, so the
-// paper can be made again.
-export const STALE_MINUTES = 20;
+// A making stopped when its job ended without finishing it: working for longer than WORKING_MINUTES (a job's tries end
+// well within it: three tries of at most four minutes and their waits), or waiting in the queue longer than
+// WAITING_HOURS (the queue starts one long job a school a minute, so a whole exam's papers start within the hour). It
+// is then closed as failed, so the paper can be made again.
+export const WORKING_MINUTES = 30;
+export const WAITING_HOURS = 12;
+const STALE_SQL = `((state = 'working' and coalesce(started_at, created_at) < now() - make_interval(mins => ${WORKING_MINUTES}))
+                   or (state = 'waiting' and created_at < now() - make_interval(hours => ${WAITING_HOURS})))`;
 
 export async function closeStale(db: Sql, schoolId: string, paperId: string): Promise<void> {
-  await db.query(
-    `update paper_generations set state = 'failed', failure = 'stopped', finished_at = now()
-      where school_id = $1 and paper_id = $2 and state in ('waiting', 'working') and created_at < now() - make_interval(mins => $3)`,
-    [schoolId, paperId, STALE_MINUTES]
-  );
+  await db.query(`update paper_generations set state = 'failed', failure = 'stopped', finished_at = now() where school_id = $1 and paper_id = $2 and ${STALE_SQL}`, [schoolId, paperId]);
 }
 
 export async function latestGeneration(db: Sql, schoolId: string, paperId: string): Promise<GenerationView | null> {
   const r = (
     await db.query(
-      `select generation_id, kind, state, failure, question_id, result, created_at, finished_at
+      `select generation_id, kind, state, failure, question_id, result, created_at, finished_at, ${STALE_SQL} as stale
          from paper_generations where school_id = $1 and paper_id = $2 order by created_at desc, generation_id limit 1`,
       [schoolId, paperId]
     )
   ).rows[0];
   if (!r) return null;
   const res = r.result as { bank?: number; ai?: number; empty?: number; aiOff?: boolean } | null;
+  // A making that stopped reads as failed (the next "Make" closes it for good).
+  const stale = r.stale === true;
   return {
     generationId: r.generation_id,
     kind: r.kind as GenerationKind,
-    state: r.state as GenerationState,
-    failure: (r.failure as GenerationFailure | null) ?? null,
+    state: stale ? 'failed' : (r.state as GenerationState),
+    failure: stale ? 'stopped' : ((r.failure as GenerationFailure | null) ?? null),
     questionId: r.question_id ?? null,
     result: res ? { bank: Number(res.bank ?? 0), ai: Number(res.ai ?? 0), empty: Number(res.empty ?? 0), aiOff: res.aiOff === true } : null,
     createdAt: new Date(r.created_at).toISOString(),

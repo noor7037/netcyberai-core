@@ -210,7 +210,7 @@ export function PaperMaker({ paperId, refresh, onChanged }: { paperId: string; r
           </summary>
           <div className="mt-2 flex flex-col gap-3">
             <p data-scope={`${plan.scope.rule}:${plan.scope.used}`}>{scopeWords()}</p>
-            {plan.scope.unlinked > 0 && <p className="text-slate/70">{t('pp.scope.unlinked', { n: plan.scope.unlinked })}</p>}
+            {plan.scope.unlinked > 0 && <p className="text-slate/70">{plan.scope.unlinked === 1 ? t('pp.scope.unlinkedOne') : t('pp.scope.unlinked', { n: plan.scope.unlinked })}</p>}
 
             <div className="flex flex-col gap-2">
               <h4 className="flex flex-wrap items-center gap-x-1 font-semibold">
