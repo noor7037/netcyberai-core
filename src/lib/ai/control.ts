@@ -9,10 +9,18 @@ import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
 import { capableAdapter, chainOf, missingCapabilities, PROFILES, profileById, profileNeeds } from './platform';
-import { activated, activating, revisionToRestore } from './gateway/revisions';
-export { loadRouteRevisions } from './gateway/revisions';
-export { loadProviderHealth } from './gateway/circuit';
-export { loadUsageLedger } from './gateway/ledger';
+import { activated, activating, loadRouteRevisions, revisionToRestore } from './gateway/revisions';
+import { loadProviderHealth } from './gateway/circuit';
+import { loadUsageLedger } from './gateway/ledger';
+import type { LedgerAttempt, ProviderHealth, RouteRevision } from '@/lib/contracts/ai-gateway';
+export { loadRouteRevisions, loadProviderHealth, loadUsageLedger };
+
+// The routing records Control → AI shows (G2, C370; G3, C371): the latest route revisions (enough for every profile's
+// history), every circuit, and the latest attempts in the ledger.
+export type AiRouting = { revisions: RouteRevision[]; health: ProviderHealth[]; ledger: LedgerAttempt[] };
+export async function loadAiRouting(db: Sql): Promise<AiRouting> {
+  return { revisions: await loadRouteRevisions(db, { limit: 200 }), health: await loadProviderHealth(db), ledger: await loadUsageLedger(db, { limit: 200 }) };
+}
 
 // Control → AI (docs/family-app/10 §3, §7; C249). NetCyberAI's founder only (super_admin with the authenticator,
 // checked by the route). Every statement runs as the platform role (nca_super), from a fixed, parameterised list.
@@ -64,6 +72,9 @@ export type AiOverview = {
   providers: {
     providerId: string;
     hasAdapter: boolean;
+    // The provider's switch (control.ai_providers.enabled) and whether its adapter needs a key (G3: its state).
+    enabled: boolean;
+    needsKey: boolean;
     // 'video': a content provider (the video finder's YouTube, M2-5): a key and a test, never a profile's choice.
     capability: 'text' | 'video' | null;
     // What the provider's adapters declare (G1, C369), shown beside it; null for a content provider or none.
@@ -114,7 +125,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
   const today = indiaDate();
   const month = today.slice(0, 7);
   const providers = await db.query(
-    `select p.provider_id, p.base_url, p.cleared_for_minors, p.cleared_terms_url, p.cleared_at, cu.display_name as cleared_by_name,
+    `select p.provider_id, p.enabled, p.base_url, p.cleared_for_minors, p.cleared_terms_url, p.cleared_at, cu.display_name as cleared_by_name,
             c.key_last4, c.set_at, su.display_name as set_by_name, c.tested_at, c.test_ok
        from control.ai_providers p
        left join control.ai_credentials c on c.provider_id = p.provider_id
@@ -166,6 +177,8 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       return {
         providerId: r.provider_id,
         hasAdapter: keyed !== null,
+        enabled: r.enabled !== false,
+        needsKey: keyed?.needsKey !== false,
         capability: keyed?.capability ?? null,
         capabilities: keyed?.capability === 'video' ? null : providerCapabilities(r.provider_id),
         needsBaseUrl: text?.needsBaseUrl === true,
