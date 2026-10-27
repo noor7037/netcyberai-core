@@ -19,6 +19,7 @@ const CSV_COLUMNS = [
   'first_token_ms',
   'tokens_in',
   'tokens_out',
+  'cost_usd_today',
   'json_valid',
   'check_passed',
   'error_class',
@@ -42,7 +43,7 @@ export function labRunCsv(run: LabRun): string {
     for (const cell of row.cells) {
       if (!cell) continue;
       lines.push(
-        [run.runId, run.datasetVersion, cell.caseId, c?.area, c?.language, c?.expect, cell.provider, cell.model, cell.latencyMs, cell.firstTokenMs, cell.tokensIn, cell.tokensOut, cell.jsonValid, cell.checkPassed, cell.errorClass, cell.score, cell.notes, cell.outputText]
+        [run.runId, run.datasetVersion, cell.caseId, c?.area, c?.language, c?.expect, cell.provider, cell.model, cell.latencyMs, cell.firstTokenMs, cell.tokensIn, cell.tokensOut, cell.costUsd, cell.jsonValid, cell.checkPassed, cell.errorClass, cell.score, cell.notes, cell.outputText]
           .map(csvCell)
           .join(',')
       );

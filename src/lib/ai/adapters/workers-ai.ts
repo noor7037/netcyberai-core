@@ -1,6 +1,7 @@
 import { streamChatCompletions } from './chat-completions';
+import { freeCheck } from './connection';
 import { workersAccountLooksRight, workersTokenLooksRight } from './workers-key';
-import { CALL_TIMEOUT_MS, MODERATION_TIMEOUT_MS, capabilities, SPEECH_TIMEOUT_MS, type AdapterResult, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, MODERATION_TIMEOUT_MS, capabilities, SPEECH_TIMEOUT_MS, type AdapterResult, type ConnectionTest, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // Cloudflare Workers AI (C230-U): open-weight models (Llama, Gemma, Mistral, Whisper) run by Cloudflare, chosen for the
 // children's paths because nothing in Cloudflare's terms or the models' licences bars a product used by children,
@@ -43,6 +44,12 @@ export const workersAiAdapter: TextAdapter = {
     const k = splitWorkersKey(request.apiKey);
     if (!k) return { ok: false, failure: 'http', status: 401 };
     return streamChatCompletions(`${base(k.account)}/v1/chat/completions`, k.token, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: false, includeUsage: false, temperature: WORKERS_TEMPERATURE, instructions: 'first_user', stream: false });
+  },
+  // The account's model list: free, and answers only for a working token with Workers AI rights (G5).
+  async testConnection(apiKey): Promise<ConnectionTest> {
+    const k = splitWorkersKey(apiKey);
+    if (!k) return { ok: false, failure: 'http', status: 401 };
+    return freeCheck(`${base(k.account)}/models/search?per_page=1`, { authorization: `Bearer ${k.token}` });
   },
 };
 

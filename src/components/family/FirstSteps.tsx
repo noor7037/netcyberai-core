@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
 import type { Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
+import type { BoardOption } from '@/lib/family/children';
 import { ChildForm } from './ChildForm';
 import { PinFields } from './PinFields';
 
@@ -98,7 +99,7 @@ export function PinSetup({ w }: { w: Words }) {
   );
 }
 
-export function FirstChildStep({ w, states, lang }: { w: Words; states: { code: string; name: string }[]; lang: 'en' | 'hi' }) {
+export function FirstChildStep({ w, states, boards, lang }: { w: Words; states: { code: string; name: string }[]; boards?: BoardOption[]; lang: 'en' | 'hi' }) {
   const router = useRouter();
   return (
     <div className="flex flex-col gap-5">
@@ -109,6 +110,7 @@ export function FirstChildStep({ w, states, lang }: { w: Words; states: { code: 
       <ChildForm
         w={w}
         states={states}
+        boards={boards}
         initial={{ firstName: '', classLevel: null, board: '', language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
         submitLabel={w['fam.child.add']}
         onDone={() => {

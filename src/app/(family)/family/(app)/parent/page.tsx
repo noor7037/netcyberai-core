@@ -16,7 +16,7 @@ import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { subjectAccess } from '@/lib/family/modules';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
 import { listSyllabi } from '@/lib/family/child-syllabus';
-import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
+import { isPrePrimary, listFamilyBoards, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import type { Subject } from '@/lib/contracts/subjects';
 import { calmCard, openSubjects } from '@/lib/family/learning';
@@ -116,7 +116,7 @@ export default async function FamilyParentPage() {
   // already, so it is not offered.
   const subjects = await familyPageRead(page, async (db) => {
     const openToAll = await openSubjects(db);
-    return (await Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel })))).map((list) => list.filter((s) => !openToAll.includes(s)));
+    return (await Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream })))).map((list) => list.filter((s) => !openToAll.includes(s)));
   });
   // The English course (C274): its consent and reports show when Control has the course switched on.
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
@@ -149,7 +149,7 @@ export default async function FamilyParentPage() {
           const plan = await homePlan(db, page.session.accountId, c, indiaDate(), lang);
           const subjects: PlanSubject[] = [];
           if (!plan) {
-            for (const s of await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel })) {
+            for (const s of await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream })) {
               if (!subjectAccess(c, s as Subject, openToAll).open) continue;
               const cat = await readFamilyCatalog(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, subject: s, lang });
               if (cat) subjects.push({ subject: s, name: familyWords(lang, [`fam.subject.${s}` as MessageKey])[`fam.subject.${s}`], chapters: cat.chapters.map((ch) => ({ title: ch.title, topics: ch.topics })) });
@@ -163,7 +163,7 @@ export default async function FamilyParentPage() {
   // waiting to be checked. Nursery, LKG and UKG have no subjects yet, so they are not offered.
   const own = await familyPageRead(page, async (db) => ({
     childList: await Promise.all(
-      page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ childId: c.childId, firstName: c.firstName, subjects: await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel }) }))
+      page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ childId: c.childId, firstName: c.firstName, subjects: await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream }) }))
     ),
     syllabi: await listSyllabi(db, page.session.accountId),
   }));
@@ -187,8 +187,9 @@ export default async function FamilyParentPage() {
         calm={calm}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}
-        children={page.children.map((c, i) => ({ subjects: subjects[i], childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, freeSubject: c.freeSubject }))}
+        children={page.children.map((c, i) => ({ subjects: subjects[i], childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, stream: c.stream ?? undefined, freeSubject: c.freeSubject }))}
         states={familyStates(lang)}
+        boards={await familyPageRead(page, (db) => listFamilyBoards(db, lang))}
         studyCore={page.consents.study_core}
         afterChildren={
           <>
