@@ -1,0 +1,67 @@
+{
+  "area": "science",
+  "cases": [
+    {
+      "id": "science-photosynthesis",
+      "language": "en",
+      "system": "You are a science tutor for a Class 7 student. Explain in at most 120 words, then give one check question.",
+      "messages": [{ "role": "user", "content": "Why do plants need sunlight to make their food?" }],
+      "expect": "text",
+      "mustContain": ["carbon dioxide"],
+      "rubric": ["Mentions light energy, chlorophyll, carbon dioxide and water.", "Correct: glucose and oxygen are made.", "Within the length asked, with one check question."]
+    },
+    {
+      "id": "science-states-of-matter-json",
+      "language": "en",
+      "system": "Sort each item into solid, liquid or gas at room temperature. Reply with one JSON object only: {\"solid\": [...], \"liquid\": [...], \"gas\": [...]}.",
+      "messages": [{ "role": "user", "content": "Items: ice cube, milk, steam from a kettle, a steel spoon, cooking oil, the air in a balloon." }],
+      "expect": "json",
+      "jsonKeys": ["solid", "liquid", "gas"],
+      "rubric": ["Ice cube and steel spoon are solid; milk and cooking oil liquid; steam and balloon air gas.", "Every item placed exactly once.", "Nothing outside the JSON object."]
+    },
+    {
+      "id": "science-electric-circuit",
+      "language": "en",
+      "system": "You are a science tutor for a Class 6 student. Answer in short points a child can try at home safely with a torch cell and a bulb.",
+      "messages": [{ "role": "user", "content": "My bulb does not glow when I connect it to the cell with one wire. What is wrong?" }],
+      "expect": "text",
+      "mustContain": ["closed"],
+      "rubric": ["Explains a circuit must be closed: two connections, out and back.", "Safe: only a torch cell, never a wall socket.", "Steps a child can follow."]
+    },
+    {
+      "id": "science-food-chain",
+      "language": "en",
+      "system": "You are a science tutor for a Class 6 student. Build one food chain from the living things given and explain what the arrows mean.",
+      "messages": [{ "role": "user", "content": "Grass, a frog, a grasshopper, a snake." }],
+      "expect": "text",
+      "mustContain": ["grasshopper"],
+      "rubric": ["Grass → grasshopper → frog → snake.", "The arrow means 'is eaten by' or energy flows that way.", "Names the producer."]
+    },
+    {
+      "id": "science-misconception-falling",
+      "language": "en",
+      "system": "A Class 8 student holds a common wrong idea. Correct it gently, with one thought experiment, in under 150 words.",
+      "messages": [{ "role": "user", "content": "A heavy stone always falls much faster than a light stone, so it reaches the ground first." }],
+      "expect": "text",
+      "rubric": ["Without air resistance both fall together; air resistance explains everyday differences.", "One clear thought experiment.", "Respectful tone, no ridicule."]
+    },
+    {
+      "id": "science-acid-base-hinglish",
+      "language": "hinglish",
+      "system": "You are a friendly science tutor for a Class 7 student who likes Hinglish (Hindi words in Roman letters mixed with English). Keep science terms in English.",
+      "messages": [{ "role": "user", "content": "Bhaiya, lemon khatta kyun hota hai aur soap slippery kyun lagta hai?" }],
+      "expect": "text",
+      "mustContain": ["acid"],
+      "rubric": ["Lemon has citric acid; soap is a base.", "Hinglish that reads naturally, science terms in English.", "Short and friendly."]
+    },
+    {
+      "id": "science-water-cycle-json",
+      "language": "en",
+      "system": "Reply with one JSON object only: {\"steps\": [\"...\", \"...\"]} listing the water cycle's stages in order, each under 12 words.",
+      "messages": [{ "role": "user", "content": "List the stages of the water cycle starting from a pond on a hot day." }],
+      "expect": "json",
+      "jsonKeys": ["steps"],
+      "rubric": ["Evaporation, condensation, precipitation, collection, in order.", "Each step under 12 words.", "Nothing outside the JSON object."]
+    }
+  ]
+}

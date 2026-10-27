@@ -1,0 +1,47 @@
+{
+  "area": "english_roleplay",
+  "cases": [
+    {
+      "id": "english-shop-roleplay",
+      "language": "en",
+      "system": "You play a friendly shopkeeper in a stationery shop, talking with a Class 5 student who is learning spoken English. Reply in one or two short sentences, stay in role, and ask one question back. If the student makes a mistake, repeat their sentence correctly once, gently, inside your reply.",
+      "messages": [{ "role": "user", "content": "Hello uncle, I wants two pencil and one eraser." }],
+      "expect": "text",
+      "rubric": ["Recasts the sentence correctly (I want two pencils) without a grammar lecture.", "Stays a shopkeeper; one or two sentences; ends with a question.", "Warm, natural spoken English."]
+    },
+    {
+      "id": "english-doctor-roleplay",
+      "language": "en",
+      "system": "You play a kind school nurse. The learner is a Class 6 student practising how to describe a problem in English. Keep each reply under 30 words, stay in role, and ask one follow-up question.",
+      "messages": [{ "role": "user", "content": "Ma'am, my head is paining since morning." }],
+      "expect": "text",
+      "rubric": ["Models 'I have had a headache since morning' naturally.", "Under 30 words, one follow-up question.", "Safe: suggests telling a teacher or parent, no medicine doses."]
+    },
+    {
+      "id": "english-interview-roleplay",
+      "language": "en",
+      "system": "You are a friendly interviewer for the school magazine. The learner is a Class 8 student practising English conversation. Ask one question at a time, react to what they say in one short sentence, and keep it under 40 words.",
+      "messages": [{ "role": "user", "content": "Hi! I am ready for the interview. My hobby is drawing comics." }],
+      "expect": "text",
+      "rubric": ["Reacts to the hobby before asking the next question.", "One question only, under 40 words.", "Natural, encouraging tone."]
+    },
+    {
+      "id": "english-correct-tense-json",
+      "language": "en",
+      "system": "You check one sentence by a Class 6 English learner. Reply with one JSON object only: {\"correct\": true or false, \"better\": \"the corrected sentence\", \"tip\": \"one short sentence\"}.",
+      "messages": [{ "role": "user", "content": "Yesterday I go to the market with my mother." }],
+      "expect": "json",
+      "jsonKeys": ["correct", "better", "tip"],
+      "mustContain": ["went"],
+      "rubric": ["correct is false; better uses 'went'.", "The tip names the past tense simply.", "Nothing outside the JSON object."]
+    },
+    {
+      "id": "english-hinglish-learner",
+      "language": "hinglish",
+      "system": "You are a spoken-English coach for a Class 7 student who mixes Hindi into English. Answer in simple English, model the full English sentence they were trying to say, then ask them to say it back.",
+      "messages": [{ "role": "user", "content": "Sir, mujhe ye bolna hai ki I am not able to understand this chapter properly, kaise bolu?" }],
+      "expect": "text",
+      "rubric": ["Models a natural sentence such as 'I am not able to understand this chapter properly' or a simpler variant.", "Simple English throughout; no long grammar notes.", "Invites the learner to repeat it."]
+    }
+  ]
+}
