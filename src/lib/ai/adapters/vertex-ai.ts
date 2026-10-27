@@ -1,3 +1,4 @@
+import { googleKeyLooksRight } from './gemini';
 import { sseData } from './sse';
 import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
@@ -21,7 +22,7 @@ export const vertexModelLooksRight = (model: string) => MODEL.test(model) && !mo
 const TEST_MODEL = 'gemini-2.5-flash';
 
 // Express mode keys: a Google API key ("AIza…") or the newer bound key ("AQ.…").
-const KEY = /^(AIza[0-9A-Za-z_-]{35}|AQ\.[0-9A-Za-z_.-]{20,300})$/;
+const KEY = { test: googleKeyLooksRight };
 
 type Part = { text?: string; inlineData?: { mimeType: string; data: string } };
 type Chunk = {

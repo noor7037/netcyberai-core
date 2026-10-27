@@ -217,6 +217,10 @@ describe('Gemini (adult tools only, parked)', () => {
     expect([body.max_tokens, body.response_format, body.stream_options]).toEqual([900, { type: 'json_object' }, { include_usage: true }]);
     expect(geminiAdapter.keyLooksRight(GEMINI_KEY)).toBe(true);
     expect(geminiAdapter.keyLooksRight('sk-not-google')).toBe(false);
+    // Google has issued longer "AIza" keys and "AQ." bound keys; a paste slip is still refused.
+    expect(geminiAdapter.keyLooksRight(`AIza${'G'.repeat(50)}`)).toBe(true);
+    expect(geminiAdapter.keyLooksRight(`AQ.${'k'.repeat(40)}`)).toBe(true);
+    for (const bad of ['AIzaTOOSHORT', `AIza${'G'.repeat(35)} extra`, 'ya29.access-token', '']) expect(geminiAdapter.keyLooksRight(bad)).toBe(false);
   });
 });
 
