@@ -3,7 +3,7 @@ import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
-import { accountProblem, messagingKey, metaAccountMeta, openMetaCredentials, recordMetaTest, saveMetaAccount, sealMeta, setMetaEnabled, unsealMeta } from '@/lib/whatsapp/credentials';
+import { accountProblem, messagingKey, metaAccountMeta, openMetaCredentials, recordMetaTest, replaceMetaAppSecret, saveMetaAccount, sealMeta, setMetaEnabled, unsealMeta } from '@/lib/whatsapp/credentials';
 import { applyNotices } from '@/lib/whatsapp/delivery';
 import { deliverQueued, queueWhatsAppMessage, sendWhatsAppMessage } from '@/lib/whatsapp/gate';
 import { GRAPH_VERSION, MetaWhatsAppProvider, answerChallenge, choiceSendBody, templateSendBody } from '@/lib/whatsapp/meta';
@@ -14,6 +14,7 @@ import { GRAPH_VERSION, MetaWhatsAppProvider, answerChallenge, choiceSendBody, t
 
 const CONFIG = { accessToken: 'MADEUPTOKEN_0123456789abcdefghijklmnopqrstuvwxyz_LAST', appSecret: 'madeupappsecret0123456789abcdef', verifyToken: 'made-up-verify-token-0123456789', phoneNumberId: '106540352242922' };
 const ACCOUNT = { ...CONFIG, wabaId: '102290129340398' };
+const NEW_APP_SECRET = 'madeupreplacedsecret0123456789ab';
 type Call = { url: string; method: string; headers: Record<string, string>; body: unknown };
 const recorded = (answer: { ok: boolean; status: number; body: unknown } | Error) => {
   const calls: Call[] = [];
@@ -232,6 +233,19 @@ describe('the platform’s credentials, on the real schema', () => {
     expect(await platform((c) => setMetaEnabled(c, by, true, ENV))).toEqual({ ok: true });
   });
 
+  it('the App Secret alone is replaced: the number, the token, the test and the switch stay; a wrong shape is refused', async () => {
+    const by = { userId: FOUNDER };
+    const before = await platform((c) => openMetaCredentials(c, true, ENV));
+    expect(before).not.toBeNull();
+    expect(await platform((c) => replaceMetaAppSecret(c, by, 'short', ENV))).toEqual({ ok: false, reason: 'app_secret' });
+    expect(await platform((c) => replaceMetaAppSecret(c, by, NEW_APP_SECRET, {}))).toEqual({ ok: false, reason: 'no_encryption_key' });
+    expect(await platform((c) => replaceMetaAppSecret(c, by, NEW_APP_SECRET, ENV))).toEqual({ ok: true });
+    expect(await platform((c) => openMetaCredentials(c, true, ENV))).toEqual({ ...before, appSecret: NEW_APP_SECRET });
+    expect(await platform((c) => metaAccountMeta(c, ENV))).toMatchObject({ enabled: true, testOk: true });
+    // Back to the secret the later tests sign with.
+    expect(await platform((c) => replaceMetaAppSecret(c, by, CONFIG.appSecret, ENV))).toEqual({ ok: true });
+  });
+
   it('no school role can read or write the table', async () => {
     await expect(asSchool(LIVE, (c) => c.query(`select 1 from whatsapp_credentials`))).rejects.toThrow(/permission denied/);
     await expect(asSchool(LIVE, (c) => c.query(`update whatsapp_credentials set enabled = false`))).rejects.toThrow(/permission denied/);
@@ -276,10 +290,10 @@ describe('the platform’s credentials, on the real schema', () => {
 
   it('write-only: no secret, nor any part of one, is in the table, the audit trail, a job, the message log or a kept notice', async () => {
     const kept = await everythingKept();
-    for (const secret of [CONFIG.accessToken, CONFIG.appSecret, CONFIG.verifyToken, CONFIG.accessToken.slice(0, 24), CONFIG.appSecret.slice(0, 16)]) expect(kept).not.toContain(secret);
+    for (const secret of [CONFIG.accessToken, CONFIG.appSecret, CONFIG.verifyToken, CONFIG.accessToken.slice(0, 24), CONFIG.appSecret.slice(0, 16), NEW_APP_SECRET]) expect(kept).not.toContain(secret);
     expect(JSON.stringify(await platform((c) => metaAccountMeta(c, ENV)))).not.toMatch(/MADEUPTOKEN|madeupappsecret|made-up-verify/);
     const audit = (await db.pg.query(`select event_action, after_state from audit_log where event_action like 'whatsapp.%' order by audit_id`)).rows;
-    expect(audit.map((a: { event_action: string }) => a.event_action)).toEqual(expect.arrayContaining(['whatsapp.account_saved', 'whatsapp.account_switched_on', 'whatsapp.account_switched_off']));
+    expect(audit.map((a: { event_action: string }) => a.event_action)).toEqual(expect.arrayContaining(['whatsapp.account_saved', 'whatsapp.account_switched_on', 'whatsapp.account_switched_off', 'whatsapp.app_secret_replaced']));
     expect(Object.keys(audit[0].after_state).sort()).toEqual(['enabled', 'keyVersion', 'phoneNumberId', 'wabaId']);
   });
 });
