@@ -4395,6 +4395,8 @@ export const en = {
   'set.exams.families_see_scripts.help': 'On: once a class’s result is published, its linked families and the private result link show each paper’s checked pages, the marks of every question and the teacher’s notes, for their own child only. Off: families see the published marks only.',
   'set.exams.children_see_results.label': 'Children see their own published results in the Family app',
   'set.exams.children_see_results.help': 'On: a linked child’s own view shows their published results, checked answer sheets (when families see them) and what to practise. Off: only the parent sees them.',
+  'set.exams.exam_types.label': 'Exam types',
+  'set.exams.exam_types.help': 'The kinds of exam this school holds, in English and Hindi. Rename, hide or add one; each exam names one type. “Other” is always kept.',
   'set.exams.script_days.label': 'Keep the answer-sheet pictures for this many days',
   'set.exams.script_days.help': 'From 30 to 365, counted from the result’s publication, or, while no result is in force, from the last upload or the result’s reopening, whichever is later. Then the pictures of the checked pages are deleted, for families and the school alike; the marks, each question’s marks and the teacher’s notes stay as the school’s record. The marking screen says so seven days before.',
   'set.exams.support_below.label': 'A child may need support below this percent on a paper',
