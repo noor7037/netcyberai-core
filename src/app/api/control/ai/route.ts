@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { checkBaseUrl, loadAiOverview, loadProviderHealth, loadRouteRevisions, loadUsageLedger, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
   if ('error' in guard) return guard.error;
   const { overview, routing } = await withPlatformService(async (db) => ({
     overview: await loadAiOverview(db),
-    routing: { revisions: await loadRouteRevisions(db, { limit: 50 }), health: await loadProviderHealth(db), ledger: await loadUsageLedger(db, { limit: 100 }) },
+    routing: await loadAiRouting(db),
   }));
   return NextResponse.json({ ...overview, routing, providerChoices: providerChoices() }, { headers: NO_STORE });
 }

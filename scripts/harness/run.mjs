@@ -6920,6 +6920,84 @@ const aj2Hindi = (prepare, done) => [
   },
 ];
 // aj-2 end
+// g3 begin
+// Control → AI (G3, C371): so the screen is not only empty states, one feature (content.prepare, used by no other
+// harness screen) gets a route of two revisions (Anthropic Primary, OpenAI Backup 1), two saved keys (locked text of
+// no use: the screen shows only their last four characters), an open circuit for OpenAI's model, and a few attempts
+// in the ledger, one of which fell back. Everything is removed again afterwards, and the profile is put back without
+// a new revision (session_replication_role = replica), so the screens after this one see the harness as it was.
+const G3 = { profile: 'content.prepare', saved: null, seeded: null, keys: [], attempts: [] };
+const g3Route = (r) => `update control.ai_profiles set provider_id = ${r.provider_id ? `'${r.provider_id}'` : 'null'}, model = ${r.model ? `'${r.model}'` : 'null'}, fallback = '${JSON.stringify(r.fallback ?? [])}'::jsonb, enabled = ${r.enabled === true}, revision_id = ${r.revision_id ?? 'null'} where profile_id = '${G3.profile}';`;
+const g3Seed = async () => {
+  const q = (sql, params) => db.pg.query(sql, params);
+  const read = async () => (await q(`select provider_id, model, fallback, enabled, revision_id from control.ai_profiles where profile_id = $1`, [G3.profile])).rows[0];
+  if (!G3.seeded) {
+    G3.saved = await read();
+    await q(`update control.ai_profiles set provider_id = 'openai', model = 'gpt-4o-mini', fallback = '[]'::jsonb, enabled = true, updated_by = $2 where profile_id = $1`, [G3.profile, PEOPLE.founder.sub]);
+    await q(`update control.ai_profiles set provider_id = 'anthropic', model = 'claude-sonnet-4-5', fallback = '[{"provider":"openai","model":"gpt-4o-mini"}]'::jsonb, updated_by = $2 where profile_id = $1`, [G3.profile, PEOPLE.founder.sub]);
+    G3.seeded = await read();
+  } else {
+    await db.pg.exec(`set session_replication_role = replica; ${g3Route(G3.seeded)} set session_replication_role = origin;`);
+  }
+  G3.keys = (
+    await q(
+      `insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by, set_at, tested_at, test_ok) values
+         ('anthropic', 'harness', 'harness', 'harness', 1, '7Q2k', $1, now() - interval '3 days', now() - interval '3 days', true),
+         ('openai', 'harness', 'harness', 'harness', 1, 'm9Xa', $1, now() - interval '3 days', null, null)
+       on conflict (provider_id) do nothing returning provider_id`,
+      [PEOPLE.founder.sub]
+    )
+  ).rows.map((r) => r.provider_id);
+  await q(
+    `insert into control.ai_provider_health (provider_id, model, state, consecutive_failures, opened_at, last_outcome, last_at) values ('openai', 'gpt-4o-mini', 'open', 5, now() - interval '20 seconds', 'upstream_timeout', now() - interval '20 seconds')
+     on conflict do nothing`
+  );
+  const rev = G3.seeded.revision_id;
+  const day = `(now() at time zone 'Asia/Kolkata')::date`;
+  G3.attempts = (
+    await q(
+      `insert into control.ai_usage_ledger (at, day, profile_id, provider_id, model, revision_id, route_position, outcome, latency_ms, tokens_in, tokens_out, streamed) values
+         (now() - interval '40 minutes', ${day}, $1, 'anthropic', 'claude-sonnet-4-5', $2, 0, 'ok', 1840, 1210, 640, true),
+         (now() - interval '25 minutes', ${day}, $1, 'anthropic', 'claude-sonnet-4-5', $2, 0, 'upstream_unavailable', 3020, 0, 0, false),
+         (now() - interval '25 minutes', ${day}, $1, 'openai', 'gpt-4o-mini', $2, 1, 'ok', 2210, 1180, 602, true),
+         (now() - interval '10 minutes', ${day}, $1, 'anthropic', 'claude-sonnet-4-5', $2, 0, 'ok', 1630, 1102, 581, true),
+         (now() - interval '2 minutes', ${day}, $1, 'openai', 'gpt-4o-mini', $2, 1, 'skipped_open_circuit', null, 0, 0, false)
+       returning attempt_id`,
+      [G3.profile, rev]
+    )
+  ).rows.map((r) => String(r.attempt_id));
+};
+const g3PutBack = async () => {
+  if (G3.attempts.length) await db.pg.exec(`set session_replication_role = replica; delete from control.ai_usage_ledger where attempt_id in (${G3.attempts.map(Number).join(',')}); set session_replication_role = origin;`);
+  await db.pg.query(`delete from control.ai_provider_health where provider_id = 'openai' and model = 'gpt-4o-mini'`);
+  if (G3.keys.length) await db.pg.query(`delete from control.ai_credentials where provider_id = any($1::text[])`, [G3.keys]);
+  if (G3.saved) await db.pg.exec(`set session_replication_role = replica; ${g3Route(G3.saved)} set session_replication_role = origin;`);
+  G3.attempts = [];
+  G3.keys = [];
+};
+const controlAi = (hindi) => async (page) => {
+  await g3Seed();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-ai-ledger]').waitFor({ timeout: 20000 });
+  if (hindi) await speak('हिन्दी')(page);
+  await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-revisions] summary`).click();
+  const seen = await page.evaluate((profile) => ({
+    route: [...document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-slot]`)].length,
+    promote: document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-promote]`).length,
+    revisions: document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-revision]`).length,
+    openai: document.querySelector('[data-ai-provider="openai"] [data-ai-provider-state]')?.getAttribute('data-ai-provider-state'),
+    anthropic: document.querySelector('[data-ai-provider="anthropic"] [data-ai-provider-state]')?.getAttribute('data-ai-provider-state'),
+    fellBack: document.querySelectorAll('[data-ai-request-fellback="yes"]').length,
+    requests: document.querySelectorAll('[data-ai-request]').length,
+    cost: document.querySelectorAll('[data-ai-ledger-cost="unknown"]').length,
+    keys: [...document.querySelectorAll('[data-ai-key-meta]')].map((e) => e.textContent ?? ''),
+  }), G3.profile);
+  // Two attempts written together are one request; the skipped one stands alone (no Primary attempt beside it).
+  if (seen.route !== 2 || seen.promote !== 1 || seen.revisions < 3 || seen.openai !== 'circuit_open' || seen.anthropic !== 'degraded' || seen.fellBack !== 1 || seen.requests !== 4 || seen.cost !== 2 || seen.keys.some((k) => k.includes('harness')))
+    throw new Error(`Control → AI: ${JSON.stringify(seen)}`);
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+// g3 end
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
@@ -7249,7 +7327,10 @@ const SCREENS = [
   // m1-3 begin
   // Control → AI (C249): providers and their clearance for children, the write-only key form, the resolver's profile,
   // usage and the daily limit.
-  ['founder', 'control-ai', '/control/ai'],
+  // G3 (C371): each feature's route as Primary/Backup 1/Backup 2 with Make Primary and its versions, each service's state,
+  // and the recent requests from the ledger, in English and Hindi.
+  ['founder', 'control-ai', '/control/ai', controlAi(false), g3PutBack],
+  ['founder', 'control-ai-hindi', '/control/ai', controlAi(true), async (page) => { await g3PutBack(); await backToEnglish(page); }],
   // m1-3 end
   // m1-4 begin
   // Control → Content (C250): import a catalog file, review by a second person, staff preview, release, diff, rollback.
