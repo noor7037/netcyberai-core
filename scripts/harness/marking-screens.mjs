@@ -270,6 +270,37 @@ export function markingScreens({ db, SCHOOL, PEOPLE, CLASS_5A, base, secret, coo
     if (lang === 'hi') await hindi(page);
     await axe(page, `review ${who} ${lang}`);
   };
+  // C230-AG: an identity-like card scanned between Sana's pages, flagged for the teacher, never marked.
+  const CARD = '00000000-0000-4000-8000-0000000c9901';
+  const openOddPage = async (page) => {
+    await seed(page, { reload: false });
+    const sana = (await db.pg.query(`select upload_id, paper_id from marking_sheets where sheet_id = $1`, [SHEET.sana])).rows[0];
+    await db.pg.query(
+      `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height, state, reading, sheet_id, sheet_position)
+       values ($1, $2, $3, $4, 99, 1, $5, $6, 200000, 1414, 2000, 'not_answer', $7::jsonb, $8, 3)`,
+      [SCHOOL, CARD, sana.upload_id, sana.paper_id, `${SCHOOL}/marking/${sana.paper_id}/${CARD}.jpg`, 'c'.repeat(64),
+        JSON.stringify({ firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: false, legible: true, answerPage: false, idDocument: true }), SHEET.sana]
+    );
+    await db.pg.query(`update marking_sheets set flags = '{not_answer_page}' where sheet_id = $1`, [SHEET.sana]);
+    MK.pages[CARD] = { card: true };
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.locator('[data-odd-page]').first().waitFor({ timeout: 30000 });
+    await imagesLoaded(page);
+    seen.odd = await text(page, '[data-odd-pages]');
+    seen.flags = await text(page, '[data-sheet-flags]');
+    seen.approveOff = await page.locator('[data-approve]').isDisabled();
+    seen.keep = await page.locator('[data-keep-page]').count();
+    seen.takeOut = await page.locator('[data-take-out-page]').count();
+    await axe(page, 'review sana odd page');
+  };
+  const oddChecks = async () => {
+    delete MK.pages[CARD];
+    if (!/Page 3 looks like an identity document/.test(seen.odd) || !/may not be an answer page/.test(seen.flags)) throw new Error(`Sana's odd page: ${JSON.stringify(seen)}`);
+    if (seen.approveOff !== true || seen.keep !== 1 || seen.takeOut !== 1) throw new Error(`Sana's odd page actions: ${JSON.stringify(seen)}`);
+    // Nothing was settled by opening the screen.
+    const state = (await db.pg.query(`select state from marking_pages where page_id = $1`, [CARD])).rows[0]?.state;
+    if (state !== 'not_answer') throw new Error(`the card page is ${state}`);
+  };
   const vihaanChecks = async () => {
     if (seen.state !== 'marked' || !/Matched to Vihaan Example A, roll 3/.test(seen.identity)) throw new Error(`Vihaan's script: ${JSON.stringify(seen)}`);
     if (!/The AI was not sure/.test(seen.flags) || !seen.sureness.includes('check')) throw new Error(`Vihaan's flag: ${JSON.stringify(seen)}`);
@@ -495,6 +526,7 @@ export function markingScreens({ db, SCHOOL, PEOPLE, CLASS_5A, base, secret, coo
     ['teacher', 'app-marking-review-vihaan', review('vihaan'), openReview('vihaan', 'en'), finish(vihaanChecks)],
     ['teacher', 'app-marking-review-hindi', review('vihaan'), openReview('vihaan', 'hi'), finish(vihaanChecks, { hindi: true })],
     ['teacher', 'app-marking-review-aarav', review('aarav'), openReview('aarav', 'en'), finish(aaravChecks)],
+    ['teacher', 'app-marking-review-odd-page', review('sana'), openOddPage, finish(oddChecks)],
     ['teacher', 'app-marking-approve', review('anaya'), approveOne, finish(approveOneChecks)],
     ['teacher', 'app-marking-approve-all', hub, approveAll, finish(approveAllChecks)],
     ['principal', 'app-exams-candidates', examsRoute, openCandidates('en'), finish(candidatesChecks('en'))],

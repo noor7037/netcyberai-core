@@ -75,6 +75,8 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
           <ScriptPages pages={paper.pages} marks={paper.questions.map((q) => ({ label: q.label, marks: q.marks, max: q.max, counted: q.counted, place: q.place }))} w={w} />
         </section>
       )}
+      {/* The school's days for keeping the pictures have passed (C230-AG): the marks stay. */}
+      {paper.pages.length === 0 && <p data-no-pages className="text-sm text-slate">{w['fam.marks.noPages']}</p>}
 
       <section aria-labelledby="fam-marks-questions" className="fam-card flex flex-col gap-3 bg-white p-4 sm:p-5">
         <h2 id="fam-marks-questions" className="text-lg font-extrabold text-slate">

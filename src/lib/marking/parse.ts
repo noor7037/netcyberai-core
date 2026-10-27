@@ -7,6 +7,9 @@ import { ERROR_TYPES, type ErrorType, type MarkingQuestion, type MarkingUnit, ty
 // question's marks. What is kept is checked again when it is written (src/lib/marking/store.ts), so a mistake here
 // cannot reach the database either.
 
+// Whether a page read may not be an answer page: not one, or like an identity document (C230-AG).
+export const notAnAnswerPage = (r: Pick<PageReading, 'answerPage' | 'idDocument'> | null | undefined): boolean => !!r && (r.answerPage === false || r.idDocument === true);
+
 // The longest words kept, as the tables allow them.
 const NAME_MAX = 120;
 const NUMBER_MAX = 24;
@@ -80,8 +83,10 @@ export function jsonObjectIn(text: string, want: string): Obj | null {
 // ---- exams.read_pages ------------------------------------------------------------------------------------------------
 
 // What the AI read on each of the `pageCount` pages sent, in order; null for a page it gave no valid entry for. A page's
-// entry needs its place ("page", 1 to pageCount) and true or false for blank and legible; a name or number that is not
-// words is left out (null), never guessed.
+// entry needs its place ("page", 1 to pageCount) and true or false for answer_page, id_document, blank and legible; a
+// name or number that is not words is left out (null), never guessed. On a page that is not an answer page, or looks
+// like an identity document (C230-AG), nothing written is kept, whatever was sent: no name, no number, never a first
+// page, so a card's name or number is never stored or matched to a child.
 export function parseReading(text: string, pageCount: number): (PageReading | null)[] {
   const out: (PageReading | null)[] = Array.from({ length: Math.max(0, Math.floor(pageCount)) }, () => null);
   const root = jsonObjectIn(text, 'pages');
@@ -93,16 +98,21 @@ export function parseReading(text: string, pageCount: number): (PageReading | nu
     if (at === null || out[at - 1] !== null) continue;
     const blank = own(raw, 'blank');
     const legible = own(raw, 'legible');
-    if (typeof blank !== 'boolean' || typeof legible !== 'boolean') continue;
+    const answerPage = own(raw, 'answer_page');
+    const idDocument = own(raw, 'id_document');
+    if (typeof blank !== 'boolean' || typeof legible !== 'boolean' || typeof answerPage !== 'boolean' || typeof idDocument !== 'boolean') continue;
+    const odd = notAnAnswerPage({ answerPage, idDocument });
     out[at - 1] = {
-      firstPage: own(raw, 'first_page') === true,
-      name: words(own(raw, 'name'), NAME_MAX),
-      rollNo: words(own(raw, 'roll_no'), NUMBER_MAX),
-      seatNo: words(own(raw, 'exam_no'), NUMBER_MAX),
-      classSection: words(own(raw, 'class_section'), NUMBER_MAX),
-      pageNumber: wholeIn(own(raw, 'page_number'), 1, 999),
+      firstPage: !odd && own(raw, 'first_page') === true,
+      name: odd ? null : words(own(raw, 'name'), NAME_MAX),
+      rollNo: odd ? null : words(own(raw, 'roll_no'), NUMBER_MAX),
+      seatNo: odd ? null : words(own(raw, 'exam_no'), NUMBER_MAX),
+      classSection: odd ? null : words(own(raw, 'class_section'), NUMBER_MAX),
+      pageNumber: odd ? null : wholeIn(own(raw, 'page_number'), 1, 999),
       blank,
       legible,
+      answerPage,
+      idDocument,
     };
   }
   return out;

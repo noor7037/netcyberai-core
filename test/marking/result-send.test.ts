@@ -4,6 +4,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { RESULT_TEMPLATE, resultDedupeKey, tellParentsPreview, tellParentsSend } from '@/lib/marking/result-send';
+import { endReportLink, makeReportLink, MAX_LINKS, readReport } from '@/lib/marking/report-links';
 import { definitionProblem, metaShapeProblem, placeholderOrder, TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY } from '@/lib/whatsapp/templates';
 import { templateExample } from '@/lib/whatsapp/template-examples';
 
@@ -231,5 +232,85 @@ describe('telling parents on WhatsApp (C351)', () => {
     expect(await send()).toEqual({ ok: true, queued: 1, children: 1 });
     expect(await send()).toEqual({ ok: true, queued: 0, children: 0 });
     expect(await jobs()).toHaveLength(3);
+  });
+});
+
+describe('ending a family’s link and sending a new one (C230-AG)', () => {
+  const end = (who: Who, why: unknown = 'lost', studentId = S1) => as(who, (c, a) => endReportLink(c, a, X1, C6A, studentId, why));
+  // The key a guardian's message carries, opened as the send-gate opens it.
+  const keyFor = async (parentId: string, linkNo: number) => {
+    const row = (await q(`select template_params from communication_log where dedupe_key = $1`, [resultDedupeKey(X1, C6A, 1, S1, parentId, linkNo)]))[0];
+    const { openSealedParams } = await import('@/lib/whatsapp/sealed-params');
+    return openSealedParams('exam_result_ready', row.template_params).link.split('/results/')[1].split('?')[0];
+  };
+  const opens = (key: string) => platform((c) => readReport(c, key)).then((r) => r !== null);
+
+  it('only the principal and the school admin end a link, for one of the reasons; the database holds it too', async () => {
+    expect(await end({ role: 'academic_coordinator', user: COORDINATOR, school: A })).toEqual({ ok: false, reason: 'not_allowed' });
+    expect(await end({ role: 'teacher', user: TEACHER, school: A })).toEqual({ ok: false, reason: 'not_allowed' });
+    expect(await end({ role: 'principal', user: B_PRINCIPAL, school: B })).toEqual({ ok: false, reason: 'not_published' });
+    expect(await end(office, 'because')).toEqual({ ok: false, reason: 'why' });
+    expect(await end(office, 'lost', S3)).toEqual({ ok: false, reason: 'no_link' });
+    // The coordinator's own session changes no row (the rule for ending), and no session changes anything else on it.
+    const coordinator: Who = { role: 'academic_coordinator', user: COORDINATOR, school: A };
+    expect(await as(coordinator, (c) => c.query(`update marking_report_links set ended_why = 'lost' where student_id = $1`, [S1]).then((r: { rowCount: number }) => r.rowCount))).toBe(0);
+    await expect(as(office, (c) => c.query(`update marking_report_links set made_at = now() where student_id = $1`, [S1]))).rejects.toThrow(/permission denied/);
+    await expect(as(office, (c) => c.query(`update marking_report_links set ended_why = 'oops' where student_id = $1`, [S1]))).rejects.toThrow(/marking_report_links_ended|marking_report_links_why/);
+    // A job's session never ends one.
+    const { schoolJobContextStatements } = await import('@/lib/auth/db');
+    await expect(
+      db.pg.transaction(async (tx: { query: (s: string, p?: unknown[]) => Promise<unknown> }) => {
+        for (const st of schoolJobContextStatements(A, 'marking.pipeline')) await tx.query(st.sql, st.params);
+        await tx.query(`update marking_report_links set ended_why = 'lost' where student_id = $1`, [S1]);
+      })
+    ).rejects.toThrow(/ended by a person/);
+    expect(await q(`select count(*)::int as n from marking_report_links where ended_at is not null`)).toEqual([{ n: 0 }]);
+  });
+
+  it('an ended link opens nothing at once; the child waits for Send, which sends a new link as a message of its own', async () => {
+    const first = await keyFor(P1, 1);
+    expect(await opens(first)).toBe(true);
+    expect(await end({ role: 'school_admin', user: ADMIN, school: A }, 'forwarded')).toEqual({ ok: true, linkNo: 1 });
+    expect(await opens(first)).toBe(false);
+    // Who and when are the database's; the audit row has the reason and ids, never the key.
+    expect(await q(`select ended_by, ended_why from marking_report_links where student_id = $1 and link_no = 1`, [S1])).toEqual([{ ended_by: ADMIN, ended_why: 'forwarded' }]);
+    const audit = await q(`select actor_user_id, after_state from audit_log where event_action = 'marking.report_link_ended'`);
+    expect(audit).toEqual([{ actor_user_id: ADMIN, after_state: { examId: X1, classId: C6A, version: 1, linkNo: 1, why: 'forwarded' } }]);
+    expect(JSON.stringify(audit)).not.toContain(first);
+    // An ended link stays ended, and is not ended twice.
+    await expect(as(office, (c) => c.query(`update marking_report_links set ended_why = 'lost' where student_id = $1 and link_no = 1`, [S1]))).rejects.toThrow(/stays ended/);
+    expect(await end(office)).toEqual({ ok: false, reason: 'no_link' });
+
+    const p = await preview();
+    if (typeof p === 'string') throw new Error(p);
+    expect(p.children[0]).toMatchObject({ sent: false, ended: 1, mayEnd: false });
+    expect(p.children[0].guardians.map((g) => [g.will, g.state])).toEqual([[true, null], [true, null]]);
+    // Nothing is sent until a person presses Send after the preview; then one message per guardian, with keys of their own.
+    expect(await send()).toEqual({ ok: true, queued: 2, children: 1 });
+    expect(await send()).toEqual({ ok: true, queued: 0, children: 0 });
+    expect(await q(`select dedupe_key from communication_log where student_id = $1 order by dedupe_key`, [S1])).toEqual(
+      [resultDedupeKey(X1, C6A, 1, S1, P1), resultDedupeKey(X1, C6A, 1, S1, P1, 2), resultDedupeKey(X1, C6A, 1, S1, P1B), resultDedupeKey(X1, C6A, 1, S1, P1B, 2)].sort().map((k) => ({ dedupe_key: k }))
+    );
+    const second = await keyFor(P1, 2);
+    expect(second).not.toBe(first);
+    expect(await opens(second)).toBe(true);
+    expect(await opens(first)).toBe(false);
+    expect(await q(`select link_no, ended_at is null as live from marking_report_links where student_id = $1 order by link_no`, [S1])).toEqual([
+      { link_no: 1, live: false },
+      { link_no: 2, live: true },
+    ]);
+  });
+
+  it(`at most ${MAX_LINKS} links per child and publication`, async () => {
+    for (let n = 2; n < MAX_LINKS; n++) {
+      expect(await end(office, 'other')).toEqual({ ok: true, linkNo: n });
+      expect(await send()).toMatchObject({ ok: true, children: 1 });
+    }
+    expect(await end(office, 'lost')).toEqual({ ok: true, linkNo: MAX_LINKS });
+    const p = await preview();
+    if (typeof p === 'string') throw new Error(p);
+    expect(p.children[0].guardians.map((g) => [g.will, g.why])).toEqual([[false, 'link_limit'], [false, 'link_limit']]);
+    expect(await send()).toEqual({ ok: true, queued: 0, children: 0 });
+    expect(await as(office, (c, a) => makeReportLink(c, a, X1, C6A, S1))).toEqual({ ok: false, reason: 'limit' });
   });
 });

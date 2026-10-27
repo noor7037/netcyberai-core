@@ -11,6 +11,11 @@ import { SECTION, TAP } from './SchemeParts';
 // message's state follows from the message records (queued, sent, delivered, read, failed). Mounted for a published
 // class; the list is read only when the office opens it (it asks the send-gate about every guardian), and the server
 // answers it only to the principal and the school admin, so for anyone else the section says nothing more.
+// A child already sent may have their link ended (a lost phone, a forwarded link; C230-AG): it stops opening at once,
+// and the child is sent a new one only by Send, after this same preview.
+
+const END_REASONS = ['lost', 'forwarded', 'other'] as const;
+type EndReason = (typeof END_REASONS)[number];
 
 const PRIMARY = 'inline-flex min-h-[44px] items-center justify-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white disabled:opacity-60';
 
@@ -21,6 +26,8 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
   const [state, setState] = useState<'idle' | 'loading' | 'refused' | 'failed'>('idle');
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null);
+  // The child whose link is being ended, and why.
+  const [ending, setEnding] = useState<{ studentId: string; why: EndReason | null } | null>(null);
   const url = `/api/app/exams/${examId}/classes/${classId}/tell-parents`;
 
   const load = useCallback(async () => {
@@ -44,6 +51,16 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
     const body = res?.ok ? ((await res.json().catch(() => null)) as { queued: number } | null) : null;
     setBusy(false);
     setNote(body ? { kind: 'ok', text: t('ex.tell.sent', { n: body.queued }) } : { kind: 'error', text: t('ex.tell.failed') });
+    await load();
+  };
+  const end = async () => {
+    if (!ending?.why) return;
+    setBusy(true);
+    setNote(null);
+    const res = await fetch(`${url}/end`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ studentId: ending.studentId, why: ending.why }) }).catch(() => null);
+    setBusy(false);
+    setNote(res?.ok ? { kind: 'ok', text: t('ex.tell.ended') } : { kind: 'error', text: t('ex.tell.endFailed') });
+    setEnding(null);
     await load();
   };
   const who = (c: TellParents['children'][number]) => (c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name);
@@ -88,6 +105,7 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
                 {who(c)}
                 {c.sent ? ` · ${t('ex.tell.alreadySent')}` : ''}
               </p>
+              {c.ended > 0 && <p data-tell-ended className="text-sm">{t('ex.tell.endedBefore', { n: c.ended })}</p>}
               {c.guardians.length === 0 ? (
                 <p>{t('ex.tell.noGuardian')}</p>
               ) : (
@@ -110,6 +128,30 @@ export function TellParentsWhatsApp({ examId, classId }: { examId: string; class
                     </li>
                   ))}
                 </ul>
+              )}
+              {c.mayEnd && ending?.studentId !== c.studentId && (
+                <button type="button" className={`${TAP} mt-2`} data-tell-end={c.studentId} disabled={busy} onClick={() => setEnding({ studentId: c.studentId, why: null })}>
+                  {t('ex.tell.end')}
+                </button>
+              )}
+              {ending?.studentId === c.studentId && (
+                <fieldset data-tell-ending className="mt-2 flex flex-col gap-2 rounded-md bg-off-white p-3">
+                  <legend className="font-semibold">{t('ex.tell.endLead')}</legend>
+                  {END_REASONS.map((r) => (
+                    <label key={r} className="flex min-h-[44px] items-center gap-2">
+                      <input type="radio" name={`end-why-${c.studentId}`} value={r} checked={ending.why === r} onChange={() => setEnding({ studentId: c.studentId, why: r })} className="h-5 w-5" />
+                      <span>{t(`ex.tell.endWhy.${r}` as MessageKey)}</span>
+                    </label>
+                  ))}
+                  <div className="flex flex-wrap gap-2">
+                    <button type="button" className={PRIMARY} disabled={busy || !ending.why} onClick={() => void end()} data-tell-end-yes>
+                      {t('ex.tell.endYes')}
+                    </button>
+                    <button type="button" className={TAP} onClick={() => setEnding(null)}>
+                      {t('ex.tell.endNo')}
+                    </button>
+                  </div>
+                </fieldset>
               )}
             </li>
           ))}

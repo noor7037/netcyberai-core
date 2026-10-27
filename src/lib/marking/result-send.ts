@@ -9,7 +9,7 @@ import { gateWouldQueue, languageFor, queueWhatsAppMessage, type GateRule, type 
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { templateToSend, type TemplateLanguage } from '@/lib/whatsapp/templates';
 import type { Actor } from './context';
-import { childrenWithLinks, makeReportLink, recordsConsented, reportLinkUrl, sealedLink } from './report-links';
+import { linksOf, makeReportLink, MAX_LINKS, recordsConsented, reportLinkUrl, sealedLink } from './report-links';
 
 // "Tell parents on WhatsApp" (C351): once a class's result is published, the office sends each family a private link
 // to their own child's result (src/lib/marking/report-links.ts), one message per child and guardian per publication,
@@ -26,17 +26,23 @@ export const RESULT_PURPOSE: ConsentPurpose = 'operational_communication';
 // academic coordinator the gate's STOP check would pass unseen when queueing (it is read again, as the platform, when
 // the message goes), so its preview would promise a message the gate then refuses.
 export const TELL_ROLES: readonly Actor['role'][] = ['principal', 'school_admin'];
-// One message per child and guardian per publication: a second press, or a retry, finds it and sends nothing.
-export const resultDedupeKey = (examId: string, classId: string, version: number, studentId: string, parentId: string) => `exam-result:${examId}:${classId}:${version}:${studentId}:${parentId}`;
+// One message per child, guardian and link per publication: a second press, or a retry, finds it and sends nothing. A
+// link made again after the office ended one (C230-AG) is a message of its own: its number ends the key (the first
+// link's key has none, as before).
+export const resultDedupeKey = (examId: string, classId: string, version: number, studentId: string, parentId: string, linkNo = 1) =>
+  `exam-result:${examId}:${classId}:${version}:${studentId}:${parentId}${linkNo > 1 ? `:${linkNo}` : ''}`;
 
 // Why a guardian will not get it: the school holds no consent for the child's records (School Link's rule) or for
 // messages; no mobile number; the number asked to stop; another guardian of the child has the same number (one message
 // reaches it); or, by the gate, the school's WhatsApp is not switched on, its budget is used up or not set, the
-// message's words are not approved yet, or quiet hours would hold it past the time it is worth sending.
-export type NotSentWhy = 'no_records' | 'no_consent' | 'no_number' | 'opted_out' | 'same_number' | 'whatsapp_off' | 'budget' | 'not_approved' | 'quiet_hours';
+// message's words are not approved yet, or quiet hours would hold it past the time it is worth sending; or the child
+// has had every link a publication allows (MAX_LINKS).
+export type NotSentWhy = 'no_records' | 'no_consent' | 'no_number' | 'opted_out' | 'same_number' | 'whatsapp_off' | 'budget' | 'not_approved' | 'quiet_hours' | 'link_limit';
 export type ResultMessageState = 'queued' | 'sent' | 'delivered' | 'read' | 'failed' | 'held' | 'uncertain';
 export type GuardianLine = { parentId: string; name: string; relation: string | null; last4: string | null; will: boolean; why: NotSentWhy | null; state: ResultMessageState | null };
-export type ChildLine = { studentId: string; name: string; rollNo: string | null; sent: boolean; guardians: GuardianLine[] };
+// `sent`: the child has a live link for this publication. `ended`: links of theirs the office ended (each made again
+// only by Send). `mayEnd`: the live link may be ended (the principal or the school admin, who alone see this list).
+export type ChildLine = { studentId: string; name: string; rollNo: string | null; sent: boolean; ended: number; mayEnd: boolean; guardians: GuardianLine[] };
 export type TellParents = { examId: string; classId: string; version: number; children: ChildLine[]; will: number; wont: number; sent: number };
 export type TellProblem = 'not_allowed' | 'not_found' | 'not_published';
 
@@ -83,18 +89,23 @@ async function publishedExam(db: Sql, actor: Actor, examId: string, classId: str
 async function plan(db: PoolClient, actor: Actor, examId: string, classId: string): Promise<Plan | TellProblem> {
   const p = await publishedExam(db, actor, examId, classId);
   if (typeof p === 'string') return p;
-  const linked = await childrenWithLinks(db, actor.schoolId, examId, classId, p.version);
+  const links = await linksOf(db, actor.schoolId, examId, classId, p.version);
   const children: Plan['children'] = [];
   for (const c of await classRoll(db, actor.schoolId, classId)) {
     const consented = await recordsConsented(db, actor.schoolId, c.student_id);
+    const l = links.get(c.student_id) ?? { live: null, made: 0 };
+    // The messages of the live link, or of the link Send would make next.
+    const linkNo = l.live ?? l.made + 1;
+    const used = l.live === null && l.made >= MAX_LINKS;
     const guardians: Line[] = [];
     const numbers = new Set<string>();
     for (const g of await guardiansOf(db, actor.schoolId, c.student_id)) {
-      const key = resultDedupeKey(examId, classId, p.version, c.student_id, g.parent_id);
+      const key = resultDedupeKey(examId, classId, p.version, c.student_id, g.parent_id, linkNo);
       const phone = g.phone ? normalizePhone(String(g.phone)) : null;
       const language = await languageFor(db, actor.schoolId, g.parent_id);
       const line = { parentId: g.parent_id, name: g.name, relation: g.relation ?? null, last4: phone ? phone.slice(-4) : null, state: await messageState(db, actor.schoolId, key), phone, language };
-      if (!consented) guardians.push({ ...line, will: false, why: 'no_records' });
+      if (used) guardians.push({ ...line, will: false, why: 'link_limit' });
+      else if (!consented) guardians.push({ ...line, will: false, why: 'no_records' });
       else if (!phone) guardians.push({ ...line, will: false, why: 'no_number' });
       else if (numbers.has(phone)) guardians.push({ ...line, will: false, why: 'same_number' });
       else {
@@ -114,13 +125,14 @@ async function plan(db: PoolClient, actor: Actor, examId: string, classId: strin
         guardians.push(gate.ok ? { ...line, will: true, why: null } : { ...line, will: false, why: RULE_WHY[gate.rule] });
       }
     }
-    children.push({ studentId: c.student_id, name: c.name, rollNo: c.roll_no ?? null, sent: linked.has(c.student_id), guardians });
+    children.push({ studentId: c.student_id, name: c.name, rollNo: c.roll_no ?? null, sent: l.live !== null, ended: l.made - (l.live === null ? 0 : 1), mayEnd: l.live !== null, guardians });
   }
   return { examName: p.examName, version: p.version, children };
 }
 
 // Who will get it, child by child in roll order, and the state of every message already queued for this publication.
-// A child is "sent" once their link for this publication exists: only Send makes one, and never without queueing.
+// A child is "sent" while their live link for this publication exists: only Send makes one, and never without
+// queueing; once the office ends it, the child waits for Send again.
 export async function tellParentsPreview(db: PoolClient, actor: Actor, examId: string, classId: string): Promise<TellParents | TellProblem> {
   const p = await plan(db, actor, examId, classId);
   if (typeof p === 'string') return p;
@@ -169,7 +181,7 @@ export async function tellParentsSend(db: PoolClient, queue: QueueLike, actor: A
         templateName: RESULT_TEMPLATE,
         // Sealed in the log; the send-gate opens it into the link only as it asks the provider (review of AM-5).
         templateParams: { child: c.name, exam: p.examName, link: sealedLink(link.ref, lang) },
-        dedupeKey: resultDedupeKey(examId, classId, link.version, c.studentId, g.parentId),
+        dedupeKey: resultDedupeKey(examId, classId, link.version, c.studentId, g.parentId, link.linkNo),
         language: lang,
       });
       if (r.status === 'queued' && !r.idempotent) mine += 1;

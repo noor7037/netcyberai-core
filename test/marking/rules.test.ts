@@ -99,7 +99,7 @@ describe('whose script it is', () => {
 });
 
 describe('which pages make a script', () => {
-  const reading = (over: Partial<PageReading>): PageReading => ({ firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: false, legible: true, ...over });
+  const reading = (over: Partial<PageReading>): PageReading => ({ firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: false, legible: true, answerPage: true, idDocument: false, ...over });
   const page = (id: string, fileNo: number, pageNo: number, r: Partial<PageReading> | null, state: GroupPage['state'] = 'read'): GroupPage => ({ pageId: id, fileNo, pageNo, state, reading: r ? reading(r) : null });
   it('one file per child: each file is a script, unless a page plainly starts another child’s', () => {
     const groups = groupPages(

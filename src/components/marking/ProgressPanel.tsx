@@ -55,6 +55,7 @@ export function ProgressPanel({ overview, mayChange, onChanged }: { overview: Ma
           <li className={`${tile} border-slate/40`} data-pages="blank"><span className="text-2xl font-bold">{numberWords(pages.blank, lang)}</span><span>{t('mk.pages.blank')}</span></li>
           <li className={`${tile} border-amber`} data-pages="unreadable"><span className="text-2xl font-bold">{numberWords(pages.unreadable + pages.failed, lang)}</span><span>{t('mk.pages.unreadable')}</span></li>
           <li className={`${tile} border-slate/40`} data-pages="duplicate"><span className="text-2xl font-bold">{numberWords(pages.duplicate, lang)}</span><span>{t('mk.pages.duplicate')}</span></li>
+          {pages.not_answer > 0 && <li className={`${tile} border-amber`} data-pages="not_answer"><span className="text-2xl font-bold">{numberWords(pages.not_answer, lang)}</span><span>{t('mk.pages.notAnswer')}</span></li>}
         </ul>
       </div>
 

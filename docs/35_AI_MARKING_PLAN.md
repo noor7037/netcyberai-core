@@ -148,3 +148,10 @@ end and remake a family's report link before the next publication.
 **Answered by the supervisor (2026-10-27, C230-AG):** C354 accepted, with the AI's reading flagging a page that looks like an
 identity document or is not an answer page; page pictures deleted 90 days after publication (a school may choose 30 to
 365); the office may end and remake a family's report link, audited. The build lead builds the three in one PR.
+
+**Built (AM-7, C355):** the reading prompt v2 asks about answer pages and identity documents, and a `not_answer` page keeps
+nothing written on it, is never marked, and holds its script from approval until a teacher keeps it or takes it out
+(the database refuses the approval). Page pictures are deleted by the hourly `marking.pictures_sweep` after the school's
+`script_days` (Exams settings); families, the report link and the review screen then show the marks without pictures.
+The principal or school admin ends a family's link from "Tell parents on WhatsApp"; a new one goes by the same Send.
+Migration `am_7_followups`.

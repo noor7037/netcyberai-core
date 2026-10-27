@@ -176,7 +176,7 @@ export async function seedMarking(db, { school, principal, teacher, publish = fa
         `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height, state, reading, sheet_id, sheet_position)
          values ($1, $2, $3, $4, $5, $6, $7, $10, 380000, 1414, 2000, 'read', $8::jsonb, $9, $6)`,
         [school, page, MK.upload, MK.paper, f + 1, p, `${school}/marking/${MK.paper}/${page}.jpg`,
-          JSON.stringify({ firstPage: p === 1, name: p === 1 ? (k.unmatched ? 'Kabir' : k.name) : null, rollNo: p === 1 ? k.roll : null, seatNo: null, classSection: '5-A', pageNumber: printed[p - 1], blank: false, legible: true }), sheet,
+          JSON.stringify({ firstPage: p === 1, name: p === 1 ? (k.unmatched ? 'Kabir' : k.name) : null, rollNo: p === 1 ? k.roll : null, seatNo: null, classSection: '5-A', pageNumber: printed[p - 1], blank: false, legible: true, answerPage: true, idDocument: false }), sheet,
           createHash('sha256').update(page).digest('hex')]
       );
     }
@@ -239,6 +239,9 @@ export async function seedMarking(db, { school, principal, teacher, publish = fa
 export async function routeScriptPictures(target) {
   const draw = (pageId) => {
     const p = MK.pages[pageId] ?? { name: 'Illustrative child', roll: '1', page: 1, sheetPage: 1 };
+    // A card scanned with the answer sheets (C230-AG): drawn as a plain made-up card, with no number on it.
+    if (p.card)
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="1414" height="2000" viewBox="0 0 1414 2000"><rect width="1414" height="2000" fill="#f4f4f4"/><rect x="257" y="700" width="900" height="560" rx="40" fill="#fff" stroke="#8a8a8a" stroke-width="6"/><rect x="317" y="790" width="240" height="300" fill="#d9d9d9"/><text x="610" y="850" font-family="Arial" font-size="40" fill="#333">ILLUSTRATIVE CARD</text><text x="610" y="920" font-family="Arial" font-size="32" fill="#555">Not a real document</text><text x="610" y="990" font-family="Arial" font-size="32" fill="#555">Name: Illustrative</text></svg>`;
     const lines = [];
     for (let y = 120; y < 1980; y += 46) lines.push(`<line x1="70" x2="1360" y1="${y}" y2="${y}" stroke="#c9d6e8" stroke-width="2"/>`);
     // The drawn writing is XML: a "<" in it (Q7 compares fractions) must be written &lt; or the picture does not draw.

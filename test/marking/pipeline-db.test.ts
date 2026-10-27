@@ -128,15 +128,15 @@ const picture = async (who: Who, pageId: string) => {
 
 // What each page shows, by the label in its picture (the reading prompt's own schema). A label not here gets no entry.
 const READINGS: Record<string, Record<string, unknown>> = {
-  m1: { first_page: true, name: 'Meera Sharma', roll_no: '1', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true },
-  m2: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true },
-  m3: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 3, blank: false, legible: true },
-  z1: { first_page: true, name: 'Zoya Khan', roll_no: '2', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true },
-  z2: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true },
-  z3: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: null, blank: true, legible: true },
-  d1: { first_page: true, name: 'Dev Patel', roll_no: '3', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true },
-  d2: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true },
-  d3: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 3, blank: false, legible: true },
+  m1: { first_page: true, name: 'Meera Sharma', roll_no: '1', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true, answer_page: true, id_document: false },
+  m2: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true, answer_page: true, id_document: false },
+  m3: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 3, blank: false, legible: true, answer_page: true, id_document: false },
+  z1: { first_page: true, name: 'Zoya Khan', roll_no: '2', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true, answer_page: true, id_document: false },
+  z2: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true, answer_page: true, id_document: false },
+  z3: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: null, blank: true, legible: true, answer_page: true, id_document: false },
+  d1: { first_page: true, name: 'Dev Patel', roll_no: '3', exam_no: null, class_section: '7-A', page_number: 1, blank: false, legible: true, answer_page: true, id_document: false },
+  d2: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 2, blank: false, legible: true, answer_page: true, id_document: false },
+  d3: { first_page: false, name: null, roll_no: null, exam_no: null, class_section: null, page_number: 3, blank: false, legible: true, answer_page: true, id_document: false },
 };
 const marked = (q1: number) =>
   '```json\n' +

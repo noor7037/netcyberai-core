@@ -19,10 +19,20 @@ import { checkedPaper, type ViewQuestion } from './family-view';
 // (/results/<key>) and its page pictures read it through the platform role and the database's own definer functions
 // (marking_report, marking_report_marks, marking_report_pages), which answer only while the publication is in force and
 // for 30 days from when the link was made, and show the checked scripts only while the school lets families see them.
-// A wrong key, an expired one and a reopened publication all read the same: nothing.
+// A wrong key, an expired one, an ended one and a reopened publication all read the same: nothing.
+//
+// The principal or the school admin may end a family's link (a lost phone, a forwarded link; C230-AG): it opens
+// nothing from that moment. The child then shows as not sent, and a new link (the next number, at most MAX_LINKS) is
+// made only by the same Send, after the same preview (./result-send.ts). One live link per child and publication.
 
 export const REPORT_PATH = '/results/';
 export const REPORT_DAYS = 30;
+// Links per child and publication, ended ones counted (the database holds it).
+export const MAX_LINKS = 5;
+export const END_REASONS = ['lost', 'forwarded', 'other'] as const;
+export type EndReason = (typeof END_REASONS)[number];
+// Who may end a link: the people who send them (TELL_ROLES of ./result-send.ts; the database's rule says the same).
+export const END_ROLES: readonly Actor['role'][] = ['principal', 'school_admin'];
 const KEY_FORMAT = /^[A-Za-z0-9_-]{43}$/;
 
 export const reportKeyHash = (key: string): string => createHash('sha256').update(key, 'utf8').digest('hex');
@@ -42,7 +52,7 @@ export function openSealedLink(value: string): string | null {
 export const reportLinkUrl = (key: string, lang: 'en' | 'hi' = 'en'): string => `${siteUrl}${REPORT_PATH}${key}${lang === 'hi' ? '?lang=hi' : ''}`;
 export const pagePictureUrl = (key: string, pageId: string): string => `/api/public/results/${key}/pages/${pageId}`;
 
-export type MakeLinkResult = { ok: true; key: string; ref: string; version: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' | 'no_consent' | 'exists' };
+export type MakeLinkResult = { ok: true; key: string; ref: string; version: number; linkNo: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' | 'no_consent' | 'exists' | 'limit' };
 
 // The school's consent for the child's records, as School Link applies it (the latest decision granted, or a test
 // school's fictional children): without it nothing of the child reaches a family, by the app or by a link.
@@ -58,8 +68,9 @@ export async function recordsConsented(db: Sql, schoolId: string, studentId: str
 }
 
 // The office makes a child's link for the publication in force of the exam for the class. The key is returned once;
-// a second link for the same child and publication is refused (`exists`), so a family is never sent two. A child on
-// the class's roll only, whose records the school holds consent for.
+// a second live link for the same child and publication is refused (`exists`), so a family never holds two that open;
+// after MAX_LINKS (ended ones counted) no more is made (`limit`). A child on the class's roll only, whose records the
+// school holds consent for. The database numbers the link.
 export async function makeReportLink(db: Sql, actor: Actor, examId: string, classId: string, studentId: string, newRef: () => string = () => randomBytes(32).toString('base64url')): Promise<MakeLinkResult> {
   if (!EXAM_RUNNERS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   if (![examId, classId, studentId].every(isUuid)) return { ok: false, reason: 'not_found' };
@@ -70,29 +81,70 @@ export async function makeReportLink(db: Sql, actor: Actor, examId: string, clas
   if (!(await recordsConsented(db, actor.schoolId, studentId))) return { ok: false, reason: 'no_consent' };
   const pub = await publicationInForce(db, actor.schoolId, examId, classId);
   if (!pub) return { ok: false, reason: 'not_published' };
+  const had = (
+    await db.query(
+      `select count(*)::int as made, count(*) filter (where ended_at is null)::int as live from marking_report_links
+        where school_id = $1 and exam_id = $2 and class_id = $3 and student_id = $4 and publication_version = $5`,
+      [actor.schoolId, examId, classId, studentId, pub.version]
+    )
+  ).rows[0] as { made: number; live: number };
+  if (Number(had.live) > 0) return { ok: false, reason: 'exists' };
+  if (Number(had.made) >= MAX_LINKS) return { ok: false, reason: 'limit' };
   const ref = newRef();
   if (!REF_FORMAT.test(ref)) throw new Error('makeReportLink: a reference is 43 base64url characters');
   const key = reportKeyFor(ref);
   if (!KEY_FORMAT.test(key)) throw new Error('makeReportLink: a key is 43 base64url characters');
-  const made = (
+  const row = (
     await db.query(
       `insert into marking_report_links (school_id, key_hash, exam_id, class_id, student_id, publication_version, made_by)
        values ($1, $2, $3, $4, $5, $6, $7)
-       on conflict (school_id, exam_id, class_id, student_id, publication_version) do nothing
-       returning made_at`,
+       on conflict (school_id, exam_id, class_id, student_id, publication_version) where ended_at is null do nothing
+       returning link_no`,
       [actor.schoolId, reportKeyHash(key), examId, classId, studentId, pub.version, actor.userId]
     )
-  ).rows[0];
-  if (!made) return { ok: false, reason: 'exists' };
-  // Ids and the version only: never the key, which opens the child's result.
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.report_link_made', targetType: 'students', targetId: studentId, beforeState: undefined, afterState: { examId, classId, version: pub.version } });
-  return { ok: true, key, ref, version: pub.version };
+  ).rows[0] as { link_no: number } | undefined;
+  if (!row) return { ok: false, reason: 'exists' };
+  const linkNo = Number(row.link_no);
+  // Ids, the version and the link's number only: never the key, which opens the child's result.
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.report_link_made', targetType: 'students', targetId: studentId, beforeState: undefined, afterState: { examId, classId, version: pub.version, linkNo } });
+  return { ok: true, key, ref, version: pub.version, linkNo };
 }
 
-// The children of a class who already have a link for the publication in force.
-export async function childrenWithLinks(db: Sql, schoolId: string, examId: string, classId: string, version: number): Promise<Set<string>> {
-  const { rows } = await db.query(`select student_id from marking_report_links where school_id = $1 and exam_id = $2 and class_id = $3 and publication_version = $4`, [schoolId, examId, classId, version]);
-  return new Set((rows as { student_id: string }[]).map((r) => r.student_id));
+// Each child of a class with a link for the publication: the live link's number (null when every one was ended) and
+// how many were made in all.
+export type ChildLinks = { live: number | null; made: number };
+export async function linksOf(db: Sql, schoolId: string, examId: string, classId: string, version: number): Promise<Map<string, ChildLinks>> {
+  const { rows } = await db.query(
+    `select student_id, max(link_no) filter (where ended_at is null) as live, count(*)::int as made
+       from marking_report_links where school_id = $1 and exam_id = $2 and class_id = $3 and publication_version = $4 group by student_id`,
+    [schoolId, examId, classId, version]
+  );
+  return new Map((rows as { student_id: string; live: unknown; made: unknown }[]).map((r) => [r.student_id, { live: r.live === null ? null : Number(r.live), made: Number(r.made) }]));
+}
+
+export type EndLinkResult = { ok: true; linkNo: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' | 'no_link' | 'why' };
+
+// The office ends a child's live link for the publication in force: it opens nothing from now on. Who and when are
+// the database's (the session's person, now); the reason is one of END_REASONS. The audit row has the ids, the link's
+// number and the reason, never the key.
+export async function endReportLink(db: Sql, actor: Actor, examId: string, classId: string, studentId: string, why: unknown): Promise<EndLinkResult> {
+  if (!END_ROLES.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  if (![examId, classId, studentId].every(isUuid)) return { ok: false, reason: 'not_found' };
+  if (typeof why !== 'string' || !(END_REASONS as readonly string[]).includes(why)) return { ok: false, reason: 'why' };
+  const pub = await publicationInForce(db, actor.schoolId, examId, classId);
+  if (!pub) return { ok: false, reason: 'not_published' };
+  const row = (
+    await db.query(
+      `update marking_report_links set ended_why = $6, ended_at = now(), ended_by = $7
+        where school_id = $1 and exam_id = $2 and class_id = $3 and student_id = $4 and publication_version = $5 and ended_at is null
+        returning link_no`,
+      [actor.schoolId, examId, classId, studentId, pub.version, why, actor.userId]
+    )
+  ).rows[0] as { link_no: number } | undefined;
+  if (!row) return { ok: false, reason: 'no_link' };
+  const linkNo = Number(row.link_no);
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.report_link_ended', targetType: 'students', targetId: studentId, beforeState: undefined, afterState: { examId, classId, version: pub.version, linkNo, why } });
+  return { ok: true, linkNo };
 }
 
 // ---- The public side (the platform role, through the three definer functions only) --------------------------------

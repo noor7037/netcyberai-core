@@ -3046,7 +3046,7 @@ const settingsExams = async (page) => {
 // will get the private link and why the others will not. Nothing is sent (the list is only opened), and all of it is
 // put back after.
 let tellBefore = null;
-const tellParents = async (page) => {
+const tellParents = async (page, more) => {
   await examsOn();
   await seedMarking(db, { school: SCHOOL, principal: PEOPLE.principal.sub, teacher: PEOPLE.teacher.sub, publish: true });
   tellBefore = (await db.pg.query(`select is_pilot, pilot_allow_outbound, monthly_budget_paise from schools where school_id = $1`, [SCHOOL])).rows[0];
@@ -3056,9 +3056,32 @@ const tellParents = async (page) => {
      values (null, 'exam_result_ready', 1, 'en', 'From {{school}}: {{child}}’s result for {{exam}} is ready. See it here: {{link}} The link is private to your family and works for 30 days.', '{school,child,exam,link}', 'utility', 2880, 'approved', 'harness-am5')`
   );
   await db.pg.query(`insert into consent_ledger (school_id, student_id, purpose, granted, verification_method, notice_version) values ($1, '00000000-0000-4000-8000-000000500001', 'operational_communication', true, 'school_attested', 'harness-am5')`, [SCHOOL]);
+  if (more) await more();
   await page.goto(`${page.url().split('/app/')[0]}/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, { waitUntil: 'networkidle' });
   await page.locator('[data-tell-preview]').click();
   await page.locator('[data-tell-list]').waitFor({ timeout: 20000 });
+};
+// C230-AG: the first child's link was sent, ended once (a lost phone) and sent again; the office opens "End this link".
+const TELL_CHILD = '00000000-0000-4000-8000-000000500001';
+const tellParentsEnd = async (page) => {
+  await tellParents(page, async () => {
+    const pub = (await db.pg.query(`select class_id, version from exam_publications where exam_id = $1 and reopened_at is null`, [MK.exam])).rows[0];
+    const link = (n) => [SCHOOL, createHmac('sha256', 'harness').update(`link-${n}`).digest('hex'), MK.exam, pub.class_id, TELL_CHILD, pub.version, PEOPLE.principal.sub];
+    const insert = `insert into marking_report_links (school_id, key_hash, exam_id, class_id, student_id, publication_version, made_by) values ($1, $2, $3, $4, $5, $6, $7)`;
+    await db.pg.query(insert, link(1));
+    await db.pg.query(`update marking_report_links set ended_at = now() - interval '1 day', ended_by = $2, ended_why = 'lost' where student_id = $1 and link_no = 1`, [TELL_CHILD, PEOPLE.principal.sub]);
+    await db.pg.query(insert, link(2));
+  });
+  await page.locator(`[data-tell-end="${TELL_CHILD}"]`).click();
+  await page.locator('[data-tell-ending] input[value="lost"]').check();
+  tellEndSeen = { ended: (await page.locator(`[data-tell-child="${TELL_CHILD}"] [data-tell-ended]`).innerText()).trim(), yes: await page.locator('[data-tell-end-yes]').isEnabled() };
+};
+let tellEndSeen = null;
+const tellParentsEndDone = async () => {
+  const live = (await db.pg.query(`select count(*)::int as n from marking_report_links where student_id = $1 and ended_at is null`, [TELL_CHILD])).rows[0].n;
+  await tellParentsDone();
+  if (live !== 1 || !tellEndSeen || tellEndSeen.ended !== 'Links ended before: 1' || tellEndSeen.yes !== true) throw new Error(`End this link: ${JSON.stringify({ live, tellEndSeen })}`);
+  tellEndSeen = null;
 };
 const tellParentsDone = async () => {
   const queued = (await db.pg.query(`select count(*)::int as n from communication_log where dedupe_key like 'exam-result:%'`)).rows[0].n;
@@ -6815,6 +6838,7 @@ const SCREENS = [
   ['principal', 'app-exams-result', `/app/exams/${X_EXAM}/classes/${X_5A}`, examsResult, examsResultDone],
   // AM-5 (C351): who will get the private result link on WhatsApp, and why the others will not.
   ['principal', 'app-exams-tell-parents', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParents, tellParentsDone],
+  ['principal', 'app-exams-tell-parents-end', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParentsEnd, tellParentsEndDone],
   ['teacher', 'app-exams-teacher', '/app/exams', examsTeacher, examsTeacherDone],
   ['teacher', 'app-exams-entry', `/app/exams/papers/${X_MATHS}`, examsEntry, examsEntryDone],
   // p6-9b end

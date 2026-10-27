@@ -29,8 +29,17 @@ export async function pagesToRead(db: Sql, schoolId: string, uploadId: string, l
 }
 
 // What the AI read on a page; null: it could not be read after the job's tries (kept as failed, and its script flagged).
+// A page that looks like an identity document, or is not an answer page but not blank either, is kept as 'not_answer'
+// (C230-AG): never marked, and its script waits for a person.
+export function pageStateOf(reading: PageReading | null): PageState {
+  if (reading === null) return 'failed';
+  if (reading.idDocument) return 'not_answer';
+  if (reading.blank) return 'blank';
+  if (!reading.answerPage) return 'not_answer';
+  return reading.legible ? 'read' : 'unreadable';
+}
 export async function recordPageReading(db: Sql, schoolId: string, pageId: string, reading: PageReading | null): Promise<void> {
-  const state: PageState = reading === null ? 'failed' : reading.blank ? 'blank' : !reading.legible ? 'unreadable' : 'read';
+  const state = pageStateOf(reading);
   await db.query(`update marking_pages set state = $3, reading = $4 where school_id = $1 and page_id = $2 and state in ('new', 'failed')`, [
     schoolId,
     pageId,
@@ -75,12 +84,14 @@ export async function formSheets(db: Sql, schoolId: string, uploadId: string): P
   const groups = groupPages(pages, up.mode as UploadMode);
   const matches = assignScripts(groups, roster, taken);
   const blank = new Set(pages.filter((p) => p.state === 'blank').map((p) => p.pageId));
+  const odd = new Set(pages.filter((p) => p.state === 'not_answer').map((p) => p.pageId));
   const toMark: string[] = [];
   for (let i = 0; i < groups.length; i++) {
     const g = groups[i];
     const m = matches[i];
-    const content = g.pageIds.filter((id) => !blank.has(id));
-    const failure = content.length === 0 ? 'blank' : content.length > MAX_SHEET_PAGES ? 'too_long' : null;
+    // What the AI marks: never a blank page, nor one that may not be an answer page.
+    const content = g.pageIds.filter((id) => !blank.has(id) && !odd.has(id));
+    const failure = content.length === 0 ? (g.pageIds.some((id) => odd.has(id)) ? 'not_answer' : 'blank') : content.length > MAX_SHEET_PAGES ? 'too_long' : null;
     const sheet = (
       await db.query(
         `insert into marking_sheets (school_id, paper_id, upload_id, student_id, matched_by, match_note, state, flags, failure)
@@ -108,7 +119,7 @@ export type SheetToMark = {
   guidance: string;
   choiceCounts: Record<string, number>;
   questions: MarkingQuestion[];
-  pages: { pageId: string; storageKey: string; width: number; height: number }[]; // in order, blank pages left out
+  pages: { pageId: string; storageKey: string; width: number; height: number }[]; // in order, blank and not-answer pages left out
 };
 
 // Takes a script for marking: one waiting, failed (a retry) or left marking by a run that stopped. Null when it is not
@@ -125,7 +136,7 @@ export async function takeSheetForMarking(db: Sql, schoolId: string, sheetId: st
   if (!questions.length) return null;
   const pages = (
     await db.query(
-      `select page_id, storage_key, width, height from marking_pages where school_id = $1 and sheet_id = $2 and state <> 'blank' order by sheet_position`,
+      `select page_id, storage_key, width, height from marking_pages where school_id = $1 and sheet_id = $2 and state not in ('blank', 'not_answer') order by sheet_position`,
       [schoolId, sheetId]
     )
   ).rows.map((r) => ({ pageId: r.page_id as string, storageKey: r.storage_key as string, width: Number(r.width), height: Number(r.height) }));
@@ -192,7 +203,7 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
   const totals = partTotals(markedParts(paper.components, questions), questions, finals, (setup?.choice_counts ?? {}) as Record<string, number>);
   const max = totals.reduce((n, t) => n + t.max, 0);
   if (max > 0 && totals.reduce((n, t) => n + t.score, 0) >= NEARLY_FULL * max) unsure = true;
-  const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable' || f === 'check_child');
+  const kept = ((row.flags ?? []) as SheetFlag[]).filter((f) => f === 'identity' || f === 'two_scripts' || f === 'missing_page' || f === 'unreadable' || f === 'check_child' || f === 'not_answer_page');
   const flags: SheetFlag[] = [...kept, ...(notAll ? (['not_all_read'] as const) : []), ...(unsure ? (['unsure'] as const) : [])];
   const practice = result.practice
     .filter((p) => short(p.text, 300))

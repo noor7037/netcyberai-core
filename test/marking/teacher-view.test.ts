@@ -193,7 +193,7 @@ function question(id: string, label: string, over: Partial<SheetQuestion> = {}):
   };
 }
 const detail = (questions: SheetQuestion[], totals = [{ component: 'written', name: 'Written', score: 16, max: 20 }]): SheetDetail =>
-  ({ questions, totals, strengths: 'Neat.', improve: null, practice: [{ unitId: null, text: 'Fractions' }], sheet: sheet(), pages: [], roster: [], match: { read: null, candidates: [] }, mayChange: true, next: null, paper: {} as never }) as SheetDetail;
+  ({ questions, totals, strengths: 'Neat.', improve: null, practice: [{ unitId: null, text: 'Fractions' }], sheet: sheet(), pages: [], picturesGone: 0, roster: [], match: { read: null, candidates: [] }, mayChange: true, next: null, paper: {} as never }) as SheetDetail;
 
 describe('what the teacher changes on a script', () => {
   const d = detail([question('a', '1', { final: 6 }), question('b', '2', { final: 10, ai: { attempted: true, marks: 10, steps: [], note: null, reason: null, confidence: 0.5 } })]);
