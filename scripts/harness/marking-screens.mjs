@@ -515,11 +515,149 @@ export function markingScreens({ db, SCHOOL, PEOPLE, CLASS_5A, base, secret, coo
     if (!seen.progress.every((p) => /Pages sent: \d+/.test(p))) throw new Error(`the progress shown: ${JSON.stringify(seen.progress)}`);
   };
 
+  // ---- the phone scanner (C230-AJ) ----------------------------------------------------------------------------------------
+  // Chromium here has no camera: the page is given a stand-in, a canvas drawing a made-up ruled sheet in perspective on a
+  // dark table, as the camera's stream. The scan screen finds its edges, takes it, and keeps it on the phone (the child
+  // being scanned keeps their pages until Next child, so nothing is sent in the picture). Its outbox is deleted after.
+  const cameraStandIn = () => {
+    const c = document.createElement('canvas');
+    c.width = 720;
+    c.height = 960;
+    const ctx = c.getContext('2d');
+    const draw = () => {
+      ctx.fillStyle = '#4a3a2c';
+      ctx.fillRect(0, 0, 720, 960);
+      ctx.fillStyle = '#f5f3ec';
+      ctx.beginPath();
+      ctx.moveTo(120, 90);
+      ctx.lineTo(615, 115);
+      ctx.lineTo(650, 875);
+      ctx.lineTo(75, 850);
+      ctx.closePath();
+      ctx.fill();
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(120, 90);
+      ctx.lineTo(615, 115);
+      ctx.lineTo(650, 875);
+      ctx.lineTo(75, 850);
+      ctx.closePath();
+      ctx.clip();
+      ctx.strokeStyle = '#a9c4e6';
+      ctx.lineWidth = 1.5;
+      for (let y = 160; y < 860; y += 34) {
+        ctx.beginPath();
+        ctx.moveTo(60, y);
+        ctx.lineTo(680, y + 18);
+        ctx.stroke();
+      }
+      ctx.fillStyle = '#1d2f86';
+      ctx.font = '22px cursive';
+      const lines = ['Unit test: Mathematics, 5-A', 'Q1. 1/2 is bigger than 1/4', 'Q2. 3/5 > 2/5, more parts', 'Q3. 0 - 1/4 - 2/4 - 3/4 - 1', 'Q4. 0.7 = 7/10', 'Q5. 45/100'];
+      lines.forEach((t, i) => ctx.fillText(t, 150, 152 + i * 68 + i * 2));
+      ctx.restore();
+    };
+    draw();
+    setInterval(draw, 100);
+    // A new stream each time, as a camera gives: the screen stops the one it lets go of.
+    const devices = navigator.mediaDevices ?? {};
+    devices.getUserMedia = async () => c.captureStream(10);
+    if (!navigator.mediaDevices) Object.defineProperty(navigator, 'mediaDevices', { value: devices });
+  };
+  const scanRoute = `${hub}/scan`;
+  const forgetScans = (page) => page.evaluate(() => new Promise((r) => {
+    const d = indexedDB.deleteDatabase('nca-scan-outbox');
+    d.onsuccess = d.onerror = d.onblocked = () => r(null);
+  })).catch(() => undefined);
+  const openScan = (lang) => async (page) => {
+    await seed(page, { reload: false });
+    await page.addInitScript(cameraStandIn);
+    await forgetScans(page);
+    const said = [];
+    const listen = (m) => said.push(String(m.text?.() ?? m.message ?? m).slice(0, 200));
+    page.on('console', listen);
+    page.on('pageerror', listen);
+    // The screen asks the server every few seconds while it is open, so the page is never "network idle".
+    await page.reload({ waitUntil: 'load' });
+    if (lang === 'hi') await hindi(page);
+    await page.locator('[data-scan-current]').waitFor({ timeout: 30000 });
+    await page.locator('[data-scan-edges]').waitFor({ timeout: 30000 }).catch(async () => {
+      const video = await page.evaluate(() => {
+        const v = document.querySelector('[data-scan-video]');
+        return v ? { w: v.videoWidth, h: v.videoHeight, ready: v.readyState, cam: document.querySelector('[data-scan-found]')?.textContent } : null;
+      });
+      throw new Error(`no page edges seen: ${JSON.stringify(video)} ${said.slice(-6).join(' | ')}`);
+    });
+    page.off('console', listen);
+    page.off('pageerror', listen);
+    seen.current = await page.locator('[data-scan-current]').getAttribute('data-scan-current');
+    seen.uploadedBefore = Number((await db.pg.query(`select count(*)::int as n from marking_uploads where paper_id = $1`, [MK.paper])).rows[0].n);
+    await page.locator('[data-scan-take]').click();
+    await page.waitForFunction(() => document.querySelector('[data-strip="on-phone"] span')?.textContent?.trim() === '1', null, { timeout: 30000 });
+    await page.locator('[data-scan-take]').waitFor({ state: 'visible' });
+    await page.waitForFunction(() => !document.querySelector('[data-scan-take]')?.hasAttribute('disabled'), null, { timeout: 20000 });
+    seen.strip = await page.locator('[data-strip]').evaluateAll((els) => Object.fromEntries(els.map((e) => [e.getAttribute('data-strip'), e.querySelector('span')?.textContent])));
+    seen.pages = await text(page, '[data-scan-pages]');
+    seen.thumb = await page.locator('[data-scan-child] img').count();
+    seen.noRank = await notRanked(page);
+    await axe(page, `scan ${lang}`);
+  };
+  const scanChecks = async (page) => {
+    await forgetScans(page);
+    // Kabir (roll 6) is the first in roll order with no script of his own (his scan matched no one): offered first.
+    if (seen.current !== KID.kabir) throw new Error(`the child offered first: ${seen.current}`);
+    if (seen.strip['on-phone'] !== '1' || seen.strip.uploaded !== '16' || seen.strip.read !== '16') throw new Error(`the progress strip: ${JSON.stringify(seen.strip)}`);
+    if (seen.thumb !== 1 || !/1/.test(seen.pages)) throw new Error(`the page taken: ${seen.pages} ${seen.thumb}`);
+    // The page waits on the phone while Kiara is being scanned: no upload was started.
+    const after = Number((await db.pg.query(`select count(*)::int as n from marking_uploads where paper_id = $1`, [MK.paper])).rows[0].n);
+    if (after !== seen.uploadedBefore) throw new Error('a page left the phone while its child was still being scanned');
+    if (seen.noRank !== true) throw new Error('the scan screen says rank, position or topper');
+  };
+
+  // ---- the hub's one list of things to settle (C230-AJ) -----------------------------------------------------------------------
+  // Anaya was chosen while scanning but her sheet reads roll number 7 (a mismatch); a card was scanned between Sana's
+  // pages; Neel's printed page numbers skip one; Kabir's script matches no one. One tap settles Anaya's.
+  const openExceptions = (lang) => async (page) => {
+    await seed(page, { reload: false });
+    await db.pg.query(`update marking_sheets set flags = '{mismatch}', matched_by = 'teacher', match_note = $2::jsonb where sheet_id = $1`, [SHEET.anaya, JSON.stringify({ read: { name: null, rollNo: '7', seatNo: null }, candidates: [] })]);
+    const sana = (await db.pg.query(`select upload_id, paper_id from marking_sheets where sheet_id = $1`, [SHEET.sana])).rows[0];
+    await db.pg.query(
+      `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height, state, reading, sheet_id, sheet_position)
+       values ($1, $2, $3, $4, 99, 1, $5, $6, 200000, 1414, 2000, 'not_answer', $7::jsonb, $8, 3)`,
+      [SCHOOL, CARD, sana.upload_id, sana.paper_id, `${SCHOOL}/marking/${sana.paper_id}/${CARD}.jpg`, 'c'.repeat(64),
+        JSON.stringify({ firstPage: false, name: null, rollNo: null, seatNo: null, classSection: null, pageNumber: null, blank: false, legible: true, answerPage: false, idDocument: true }), SHEET.sana]
+    );
+    await db.pg.query(`update marking_sheets set flags = '{not_answer_page}' where sheet_id = $1`, [SHEET.sana]);
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.locator('[data-exceptions]').waitFor({ timeout: 30000 });
+    if (lang === 'hi') await hindi(page);
+    seen.kinds = await page.locator('[data-exception]').evaluateAll((els) => els.map((e) => `${e.getAttribute('data-exception')}:${e.getAttribute('data-exception-sheet')}`));
+    seen.mismatch = await text(page, `[data-exception="mismatch"]`);
+    seen.scanOffer = await page.locator('[data-scan-open]').getAttribute('href');
+    await axe(page, `hub exceptions ${lang}`);
+  };
+  const exceptionChecks = (lang) => async (page) => {
+    const want = [`mismatch:${SHEET.anaya}`, `missing_page:${SHEET.neel}`, `not_answer_page:${SHEET.sana}`, `no_child:${SHEET.kabir}`];
+    if (JSON.stringify(seen.kinds) !== JSON.stringify(want)) throw new Error(`the list to settle: ${JSON.stringify(seen.kinds)}`);
+    if (seen.scanOffer !== scanRoute) throw new Error(`the scan link: ${seen.scanOffer}`);
+    if (lang !== 'en') return;
+    if (!/Anaya Example A: the sheet says roll no\. 7/.test(seen.mismatch)) throw new Error(`the mismatch: ${seen.mismatch}`);
+    // One tap: "It is Anaya's". The flag goes, and the script is still hers.
+    await page.locator('[data-exception-confirm]').click();
+    await page.waitForFunction(() => !document.querySelector('[data-exception="mismatch"]'), null, { timeout: 20000 });
+    const row = (await db.pg.query(`select student_id, flags from marking_sheets where sheet_id = $1`, [SHEET.anaya])).rows[0];
+    if (row.student_id !== KID.anaya || row.flags.includes('mismatch')) throw new Error(`Anaya's script after the tap: ${JSON.stringify(row)}`);
+  };
+
   const examsRoute = '/app/exams';
   const numbersRoute = `/app/exams/${MK.exam}/classes/${CLASS_5A}/numbers`;
   return [
     ['teacher', 'app-marking-hub', hub, openHub('en'), finish(hubChecks)],
     ['teacher', 'app-marking-hub-hindi', hub, openHub('hi'), finish(hubChecks, { hindi: true })],
+    ['teacher', 'app-marking-hub-exceptions', hub, openExceptions('en'), finish(exceptionChecks('en'))],
+    ['teacher', 'app-marking-hub-exceptions-hindi', hub, openExceptions('hi'), finish(exceptionChecks('hi'), { hindi: true })],
+    ['teacher', 'app-marking-scan', scanRoute, openScan('en'), finish(scanChecks)],
+    ['teacher', 'app-marking-scan-hindi', scanRoute, openScan('hi'), finish(scanChecks, { hindi: true })],
     ['teacher', 'app-marking-questions', hub, openQuestions, finish(questionsChecks)],
     ['teacher', 'app-marking-questions-edit', hub, editQuestions, finish(editChecks)],
     ['teacher', 'app-marking-upload', hub, openUpload, finish(uploadChecks)],

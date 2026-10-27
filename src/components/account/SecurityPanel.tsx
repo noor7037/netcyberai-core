@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
 import type { DeviceWords } from './device-words';
+import { clearScanOutbox } from '@/lib/marking/outbox-clear';
 
 // Account security (C90): the mobile number used to sign in, the browsers
 // trusted to skip the sign-in codes (F1-1, C257: each with "Forget"), and
@@ -91,6 +92,8 @@ export function SecurityPanel({ w }: { w: DeviceWords }) {
     setBusy(true);
     const r = await post('/api/auth/logout-all').catch(() => null);
     if (r?.ok) {
+      // Children's answer pages waiting on this phone go too, as at an ordinary sign-out (C230-AJ, review of AJ-3).
+      await clearScanOutbox().catch(() => undefined);
       window.location.href = '/login';
       return;
     }

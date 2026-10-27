@@ -25,6 +25,13 @@
 //   - { type: 'family-shell' } keeps the shell and the static files it loads,
 //     so it opens with no network; { type: 'family-clear' } deletes it.
 //
+// Scanned answer sheets (C230-AJ): the scan screen keeps each page in its own IndexedDB outbox (nca-scan-outbox,
+// src/lib/marking/outbox-idb.ts) and asks for a Background Sync ('nca-scan-outbox') where the browser offers one. Then,
+// even with the screen closed, this worker sends the pages that already have their upload and file: one page a
+// request, only the signed-in person's (the outbox's `meta` says whose), each removed from the phone the moment the
+// school confirms it. It never starts or closes an upload (the screen does, next time it opens), never reads a page's
+// picture for anything but sending it, and logs nothing. A failure leaves the page for the next try.
+//
 // Notifications (M3-8b, C339): a parent who turned them on in the parent area
 // gets the push messages here. A message names only a kind of news and the
 // app's page it opens ({ k, u, l }); the words are these, fixed: never a
@@ -103,6 +110,60 @@ const FAMILY_OFFLINE_PAGE = `<!doctype html><html lang="en"><head><meta charset=
 <body><main><h1>No internet</h1><p>This needs a connection. Check it and try again.</p>
 <p lang="hi">इंटरनेट नहीं है। इसके लिए कनेक्शन चाहिए। जाँचें और फिर कोशिश करें।</p><a href="/family">Try again · फिर कोशिश करें</a></main></body></html>`;
 
+// ---- scanned pages (C230-AJ) ------------------------------------------------------------------------------------------
+const SCAN_DB = 'nca-scan-outbox';
+const SCAN_DB_VERSION = 1; // as src/lib/marking/outbox-idb.ts: change both together
+const SCAN_STORES = ['pages', 'batches', 'uploads', 'meta'];
+const SCAN_SYNC = 'nca-scan-outbox';
+
+// Which pages may go now, in the order they were taken: the owner's, not refused, due, whose file has its upload.
+function scanPagesToSend(pages, batches, owner, now) {
+  if (!owner) return [];
+  const files = new Map(batches.filter((b) => b.owner === owner && b.uploadId && b.fileNo).map((b) => [b.id, b]));
+  return pages
+    .filter((p) => p.owner === owner && !p.refused && p.nextAt <= now && files.has(p.batchId))
+    .sort((a, b) => a.takenAt - b.takenAt || a.seq - b.seq)
+    .map((p) => ({ page: p, batch: files.get(p.batchId) }));
+}
+
+function scanRequest(r) {
+  return new Promise((resolve, reject) => {
+    r.onsuccess = () => resolve(r.result);
+    r.onerror = () => reject(r.error);
+  });
+}
+
+async function sendScanPages() {
+  const open = indexedDB.open(SCAN_DB, SCAN_DB_VERSION);
+  open.onupgradeneeded = () => {
+    for (const name of SCAN_STORES) if (!open.result.objectStoreNames.contains(name)) open.result.createObjectStore(name, { keyPath: 'id' });
+  };
+  const db = await scanRequest(open);
+  db.onversionchange = () => db.close();
+  try {
+    const read = (name) => scanRequest(db.transaction(name, 'readonly').objectStore(name).getAll());
+    const meta = await scanRequest(db.transaction('meta', 'readonly').objectStore('meta').get('owner'));
+    const due = scanPagesToSend(await read('pages'), await read('batches'), meta && meta.owner, Date.now());
+    for (const { page, batch } of due) {
+      const form = new FormData();
+      form.append('fileNo', String(batch.fileNo));
+      form.append('pageNo', String(page.seq));
+      form.append('childId', page.childId);
+      form.append('page', new Blob([page.bytes], { type: 'image/jpeg' }), 'page.jpg');
+      const res = await fetch(`/api/app/marking/uploads/${batch.uploadId}/pages`, { method: 'POST', body: form, credentials: 'same-origin' }).catch(() => null);
+      // The network or the server: the browser tries the sync again later. A refusal: left for the screen to show.
+      if (!res) throw new Error('offline');
+      if (res.status >= 500 || res.status === 408 || res.status === 429) throw new Error('later');
+      if (!res.ok) return;
+      await scanRequest(db.transaction('pages', 'readwrite').objectStore('pages').delete(page.id));
+      const now = await scanRequest(db.transaction('batches', 'readonly').objectStore('batches').get(batch.id));
+      if (now) await scanRequest(db.transaction('batches', 'readwrite').objectStore('batches').put({ ...now, sent: (now.sent || 0) + 1 }));
+    }
+  } finally {
+    db.close();
+  }
+}
+
 // The static files a page loads (its scripts, styles and fonts), from its HTML.
 function staticFiles(html) {
   const out = new Set();
@@ -139,6 +200,10 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
     if (event.data && event.data.type === 'clear') event.waitUntil(caches.delete(PAGE_CACHE));
     if (event.data && event.data.type === 'family-shell') event.waitUntil(keepFamilyShell().catch(() => undefined));
     if (event.data && event.data.type === 'family-clear') event.waitUntil(caches.delete(FAMILY_CACHE));
+  });
+
+  self.addEventListener('sync', (event) => {
+    if (event.tag === SCAN_SYNC) event.waitUntil(sendScanPages());
   });
 
   self.addEventListener('push', (event) => {
@@ -215,4 +280,4 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
 }
 
 // For the tests (test/offline/service-worker.test.ts).
-if (typeof module !== 'undefined') module.exports = { route, keepable, staticFiles, pushNotice, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };
+if (typeof module !== 'undefined') module.exports = { route, keepable, staticFiles, pushNotice, scanPagesToSend, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };

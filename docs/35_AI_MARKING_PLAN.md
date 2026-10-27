@@ -160,3 +160,8 @@ Migration `am_7_followups`.
 force, or, while no result is in force, after the later of the last upload and the reopening; the AI marking screen
 shows the date and warns seven days before (one database rule for the sweep and the screen). Migration
 `am_8_pictures_45_days`.
+
+**Built (AJ-2 to AJ-5, C357–C359):** exam types (the school's list; schemes may weigh them); the phone scanner and the
+no-wait capture flow (roll order, on-device outbox, `by_child` uploads with a `mismatch` flag, one exceptions list;
+1600 px at JPEG 0.5, median 131 KB a page); one step to outputs (publish and notify, progress reports, merit and
+participation certificates).

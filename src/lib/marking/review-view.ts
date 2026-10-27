@@ -136,7 +136,7 @@ export function changesOf(detail: SheetDetail, draft: SheetDraft): SheetChangeIn
 }
 
 // The flags in the order a person should meet them: a page that may not be an answer page, then who it is.
-export const FLAG_ORDER: readonly SheetFlag[] = ['not_answer_page', 'identity', 'check_child', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed'];
+export const FLAG_ORDER: readonly SheetFlag[] = ['not_answer_page', 'mismatch', 'identity', 'check_child', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed'];
 export const flagsInOrder = (flags: readonly SheetFlag[]): SheetFlag[] => FLAG_ORDER.filter((f) => flags.includes(f));
 
 // What the paper's screen says of its answer-sheet pictures (C230-AJ), on `today` (an India date, yyyy-mm-dd): the

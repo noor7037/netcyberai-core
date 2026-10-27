@@ -287,7 +287,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
               <li key={f} className="flex flex-wrap items-center gap-x-2">
                 <Badge variant="warning">{t(FLAG_KEYS[f])}</Badge>
                 <span className="text-slate/70">{t(FLAG_HOW_KEYS[f])}</span>
-                {f === 'check_child' && sheet.student && detail.mayChange && sheet.state !== 'approved' && (
+                {(f === 'check_child' || f === 'mismatch') && sheet.student && detail.mayChange && sheet.state !== 'approved' && (
                   <button type="button" data-confirm-child className={TAP} disabled={busy} onClick={() => void doChoose(sheet.student!.studentId)}>
                     {t('mk.id.confirm', { name: sheet.student.name })}
                   </button>

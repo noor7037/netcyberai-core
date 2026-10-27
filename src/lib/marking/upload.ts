@@ -4,7 +4,7 @@ import { MAX_FILES_PER_UPLOAD, MAX_PAGES_PER_FILE, MAX_PAGES_PER_UPLOAD, PAGE_MA
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { JobQueue, Sql } from '@/lib/jobs/types';
 import type { FileStorage } from '@/lib/storage/file-storage';
-import { aiMarkingState, markingPaper, type Actor } from './context';
+import { aiMarkingState, markingPaper, paperRoster, type Actor } from './context';
 import { queueReading } from './queue';
 import { structureProblems } from './rollup';
 import { questionsOf } from './setup';
@@ -23,7 +23,9 @@ import { questionsOf } from './setup';
 // C347) count every page but duplicates, and a request that would pass the limit keeps nothing.
 
 export type StartProblem = 'not_allowed' | 'not_found' | 'closed' | 'not_sent_properly' | 'questions' | 'ai_off' | 'limit';
-export type PagesProblem = 'not_allowed' | 'not_found' | 'closed' | 'upload_closed' | 'ai_off' | 'limit' | 'too_many' | 'storage';
+// child: a page of a by_child upload names no child, a child who is not a candidate of the paper, or another child than
+// its file's other pages (or a page of another upload names one).
+export type PagesProblem = 'not_allowed' | 'not_found' | 'closed' | 'upload_closed' | 'ai_off' | 'limit' | 'too_many' | 'storage' | 'child';
 export type AiOff = { why: 'no_limit' | 'switched_off' | 'no_provider' | null };
 
 // ---- one page picture ----------------------------------------------------------------------------------------------------
@@ -98,7 +100,8 @@ export function stripMetadata(b: Uint8Array): Uint8Array | null {
   return null;
 }
 
-export type PagePart = { fileNo: number; pageNo: number; bytes: Uint8Array };
+// childId: the child the teacher chose for the page's file while scanning (a by_child upload only).
+export type PagePart = { fileNo: number; pageNo: number; bytes: Uint8Array; childId?: string | null };
 export type CheckedPage = PagePart & { width: number; height: number; sha256: string };
 export type PageProblem = 'not_a_page' | 'too_large' | 'too_small';
 
@@ -143,14 +146,14 @@ export async function startUpload(db: Sql, actor: Actor, paperId: string, raw: u
 
 // ---- an upload as the person may change it -------------------------------------------------------------------------------
 
-type OpenUpload = { uploadId: string; paperId: string; closed: boolean };
+type OpenUpload = { uploadId: string; paperId: string; closed: boolean; mode: UploadMode; createdBy: string };
 
 // The upload read under the person's own row rules, then its paper: not found, published or not theirs to mark says
 // why; locked only once it is theirs to change (a row the update rules refuse cannot be locked).
 async function loadUpload(db: Sql, actor: Actor, uploadId: string): Promise<{ ok: true; upload: OpenUpload } | { ok: false; reason: 'not_found' | 'closed' | 'not_allowed' }> {
   if (!isUuid(uploadId)) return { ok: false, reason: 'not_found' };
   const read = async (lock: boolean) =>
-    (await db.query(`select upload_id, paper_id, closed_at from marking_uploads where school_id = $1 and upload_id = $2${lock ? ' for update' : ''}`, [actor.schoolId, uploadId])).rows[0];
+    (await db.query(`select upload_id, paper_id, mode, created_by, closed_at from marking_uploads where school_id = $1 and upload_id = $2${lock ? ' for update' : ''}`, [actor.schoolId, uploadId])).rows[0];
   const row = await read(false);
   if (!row) return { ok: false, reason: 'not_found' };
   const paper = await markingPaper(db, actor, row.paper_id as string);
@@ -159,16 +162,47 @@ async function loadUpload(db: Sql, actor: Actor, uploadId: string): Promise<{ ok
   if (!paper.mayMark) return { ok: false, reason: 'not_allowed' };
   const locked = await read(true);
   if (!locked) return { ok: false, reason: 'closed' };
-  return { ok: true, upload: { uploadId, paperId: locked.paper_id as string, closed: locked.closed_at !== null } };
+  return { ok: true, upload: { uploadId, paperId: locked.paper_id as string, closed: locked.closed_at !== null, mode: locked.mode as UploadMode, createdBy: locked.created_by as string } };
 }
 
 // ---- pages ------------------------------------------------------------------------------------------------------------------
+
+// The children the pages name (C230-AJ), before anything is kept: on a by_child upload every page names a candidate of
+// the paper, and every page of one file the same child as the file's pages already kept; on any other upload none
+// names one. The database holds the same (marking_pages_claim), so a page sent any other way cannot pass either.
+async function claimsHold(db: Sql, actor: Actor, upload: OpenUpload, pages: readonly CheckedPage[]): Promise<boolean> {
+  if (upload.mode !== 'by_child') return pages.every((p) => !p.childId);
+  if (!pages.every((p) => typeof p.childId === 'string' && isUuid(p.childId))) return false;
+  const paper = await markingPaper(db, actor, upload.paperId);
+  if (!paper) return false;
+  const candidates = new Set((await paperRoster(db, actor.schoolId, paper)).map((c) => c.studentId));
+  if (!pages.every((p) => candidates.has(p.childId as string))) return false;
+  const fileChild = new Map<number, string>(
+    (
+      await db.query(`select distinct file_no, claimed_student_id from marking_pages where school_id = $1 and upload_id = $2 and file_no = any($3::int[])`, [
+        actor.schoolId,
+        upload.uploadId,
+        [...new Set(pages.map((p) => p.fileNo))],
+      ])
+    ).rows.map((r) => [Number(r.file_no), r.claimed_student_id as string])
+  );
+  for (const p of pages) {
+    const was = fileChild.get(p.fileNo);
+    if (was !== undefined && was !== p.childId) return false;
+    fileChild.set(p.fileNo, p.childId as string);
+  }
+  return true;
+}
 
 export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage, 'put' | 'remove'>, uploadId: string, pages: readonly CheckedPage[]): Promise<{ ok: true; pages: PageUploadResult['pages'] } | ({ ok: false; reason: PagesProblem } & Partial<AiOff>)> {
   const loaded = await loadUpload(db, actor, uploadId);
   if (!loaded.ok) return loaded;
   const { upload } = loaded;
   if (upload.closed) return { ok: false, reason: 'upload_closed' };
+  // A phone scan's pages come from the person who started it, and no one else (its outbox is theirs: a page left on a
+  // shared phone is never sent under another person's session).
+  if (upload.mode === 'by_child' && upload.createdBy !== actor.userId) return { ok: false, reason: 'not_allowed' };
+  if (!(await claimsHold(db, actor, upload, pages))) return { ok: false, reason: 'child' };
 
   // The same page sent again (a retried request): the page already there answers, and nothing new is kept.
   const there = new Map(
@@ -221,9 +255,9 @@ export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage,
     try {
       for (const p of planned) {
         await db.query(
-          `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height, state)
-           values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-          [actor.schoolId, p.pageId, uploadId, upload.paperId, p.page.fileNo, p.page.pageNo, pageKey(actor.schoolId, upload.paperId, p.pageId), p.page.sha256, p.page.bytes.length, p.page.width, p.page.height, p.duplicate ? 'duplicate' : 'new']
+          `insert into marking_pages (school_id, page_id, upload_id, paper_id, file_no, page_no, storage_key, sha256, bytes, width, height, state, claimed_student_id)
+           values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+          [actor.schoolId, p.pageId, uploadId, upload.paperId, p.page.fileNo, p.page.pageNo, pageKey(actor.schoolId, upload.paperId, p.pageId), p.page.sha256, p.page.bytes.length, p.page.width, p.page.height, p.duplicate ? 'duplicate' : 'new', upload.mode === 'by_child' ? p.page.childId : null]
         );
         made.set(`${p.page.fileNo}:${p.page.pageNo}`, { pageId: p.pageId, duplicate: p.duplicate });
       }

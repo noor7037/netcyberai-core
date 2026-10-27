@@ -11,6 +11,7 @@ import type { MarkingOverview, SetupScreen } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
 import { inProgress, picturesNote } from '@/lib/marking/review-view';
 import { indiaDate } from '@/lib/time/india';
+import { ExceptionsList } from './ExceptionsList';
 import { ProgressPanel } from './ProgressPanel';
 import { problemWords, QuestionsEditor } from './QuestionsEditor';
 import { ReviewList } from './ReviewList';
@@ -199,6 +200,7 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
       </Step>
 
       <Step n={4} id="review" title={t('mk.step.review')} tip={<InfoTip>{t('mk.step.reviewHow')}</InfoTip>}>
+        <ExceptionsList paperId={paperId} overview={overview} mayChange={mayChange} onChanged={() => void loadOverview()} />
         <ReviewList paperId={paperId} overview={overview} mayChange={mayChange} onChanged={() => void loadOverview()} />
       </Step>
 
