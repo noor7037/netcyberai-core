@@ -3,7 +3,7 @@
 **Written by** the build lead, for the supervisor and Noor. **Asked by** Noor directly (2026-10-27): the four parts of
 Acadine's pictures that `docs/35` §7 left out, "built all": question papers made from what was taught, by the exam's
 type and the chapters' weight, in one click or by hand, for every subject; bubble (OMR) sheets; online tests; the checked
-sheet as a PDF on WhatsApp. **Status:** the plan and the build record (Decision Log C361–C366), built as PRs AQ-1 to AQ-5
+sheet as a PDF on WhatsApp. **Status:** the plan and the build record (Decision Log C361–C367), built as PRs #335 to #339
 (§8). **Binding rules:** `CLAUDE.md`, `16` §3, `17` §1a/§4/§5, `19` §5, `21`, P6's rules in `27` §3 and every rule of
 `docs/35` §2, which all hold here unchanged.
 
@@ -148,6 +148,22 @@ handlers) take each slice's lines in its own block. Migrations, Decision Log row
 - Two or more sets (A, B) of a paper with the questions in another order.
 - Admit cards as PDFs (exam numbers exist since C348).
 
-## 8. What was built
+## 8. What was built (2026-10-27)
 
-Filled in as the PRs open.
+Merge in this order (each branch contains the ones before it; every PR has base `main`):
+
+| PR | Slice | Migration on the test project |
+|---|---|---|
+| #335 | AQ-1 shared: options, correct answers, sections, wrong marks; sitting and source; the rules (`answers.ts`) | `aq_1_shared` 20261027125939, `aq_1_function_rights` 20261027131521 |
+| #336 | AQ-2 papers: blueprints by exam type, scope and weight from the taught log, the bank, `papers.make`, "Make the paper" and "Make every paper", editing, keeping, printing | `aq_2_papers` 20261027140145 |
+| #337 | AQ-4 online: the test's times and opening, the Family app's test screen, autosave, server time, submit, marking, the teacher's attempts | `aq_4_online` 20261027140926 |
+| #338 | AQ-5 PDF: the checked paper as a PDF made in the browser, `exam_result_pdf` with a document header, media given to Meta only past the gate, our copy deleted once sent, the family's download | `aq_5_pdf` 20261027141053 |
+| #339 | AQ-3 bubbles: the sheet layout and printing, the reader in the scan worker, bubble uploads, marks by rules, mixed papers | `aq_3_bubbles` 20261027141234 |
+
+Each migration was read by the lead, applied to the test project one at a time, md5 matched and renamed to its recorded
+version; `/api/health` stayed ok. Production is untouched (C103). The builders' own choices are C367.
+
+**Open for the supervisor:** a monthly limit on AI-written questions (today only one making per paper at a time); a
+school-lab sitting for online tests (§7); an instant score for practice tests (§7); a dedicated blueprint editor (the
+settings list holds the 30 default rows); the PR sizes, above the ~1,500-line guide for database slices because each
+slice was asked for as one PR.

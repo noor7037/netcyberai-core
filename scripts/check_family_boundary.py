@@ -65,6 +65,9 @@ FAMILY_DOORS = {
     "@capacitor/core": {"src/components/family/english/speech.ts"},
     # School Link (C230-AA): the school's records, read as the guardian, only through this one family file.
     "@/lib/school-link": {"src/lib/family/school.ts"},
+    # Online tests (AQ-4, C365): School Link's guardian functions for sitting a test in child mode, as the guardian, only
+    # through this one family file.
+    "@/lib/online/guardian": {"src/lib/family/online-tests.ts"},
     # A parent's own syllabus from a PDF (C230-AB): the PDF reader and its "title on its page" check, as Control's import.
     "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts"},
     # The checked paper as a PDF (C366): the same drawing the school's office makes it with, in the parent's browser,

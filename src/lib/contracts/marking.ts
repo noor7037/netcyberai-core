@@ -308,3 +308,112 @@ export type ExamCandidates = {
   withdrawals: Withdrawal[];
   mayChange: boolean;
 };
+
+// ---- online tests (AQ-4, docs/36 §1.3, C365) ------------------------------------------------------------------------
+// A paper sat online is sat in the Family app's child mode: one attempt per child, every answer saved as it is given,
+// the time kept by the database, leaving the screen counted. The tables: migration ..._aq_4_online.sql. The rules:
+// src/lib/online. What was saved becomes a script of the paper (source 'online'), marked and approved as any script.
+
+export const ONLINE_MINUTES_MIN = 5;
+export const ONLINE_MINUTES_MAX = 300;
+export const ONLINE_TEXT_MAX = 4000; // a written answer, in characters
+export const ONLINE_WINDOW_DAYS_MAX = 31; // from opening to closing, at most
+
+export type OnlineAttemptState = 'open' | 'submitted' | 'timed_out' | 'voided';
+// A child's answer as saved: the option keys chosen, a number, or words. None: not answered.
+export type OnlineAnswer = { keys: OptionKey[] } | { value: number } | { text: string };
+// How a question is answered online: a choice of its options, a number (a number question rules can mark), or words.
+export type OnlineInput = 'choice' | 'number' | 'text';
+
+// The teacher's side. Times are ISO instants; the screen shows and takes them as India's date and time.
+export type OnlineTest = {
+  testId: string;
+  opensAt: string;
+  closesAt: string;
+  minutes: number;
+  shuffle: boolean;
+  openedAt: string | null;
+  openedBy: string | null; // the person's name
+  closedAt: string | null;
+  closedBy: string | null;
+};
+// One candidate's attempt, in roll order. No score, no rank: marks are seen only in the review, and by families at
+// publication.
+export type OnlineAttemptRow = {
+  student: RosterChild;
+  state: 'not_started' | OnlineAttemptState;
+  startedAt: string | null;
+  endedAt: string | null;
+  leftCount: number;
+  marked: boolean; // its script is made
+};
+export type OnlineTestScreen = {
+  paper: MarkingPaper;
+  sitting: PaperSitting;
+  test: OnlineTest | null;
+  ready: boolean; // the questions make up the paper
+  scripts: number; // live scripts of the paper of any kind (how it is sat is fixed once there is one)
+  attempts: OnlineAttemptRow[];
+  mayChange: boolean;
+  now: string; // the server's time
+};
+// The test's settings as the teacher sends them: India's date and time ("2026-10-28T10:00"), minutes, shuffle.
+export type OnlineTestInput = { opensAt: string; closesAt: string; minutes: number; shuffle: boolean };
+export type OnlineTestAction =
+  | { action: 'sitting'; sitting: 'online' | 'written' }
+  | ({ action: 'save' } & OnlineTestInput)
+  | { action: 'open' }
+  | { action: 'close' }
+  | { action: 'void'; studentId: string };
+
+// An online script's typed answers, for the review screen (in place of page pictures).
+export type OnlineScriptAnswers = {
+  sheetId: string;
+  startedAt: string;
+  endedAt: string | null;
+  state: OnlineAttemptState;
+  leftCount: number;
+  answers: { questionId: string; answer: OnlineAnswer | null; flagged: boolean; savedAt: string | null }[];
+};
+
+// The family's side (child mode). Never a correct answer, an answer key or a marking step.
+export type FamilyOnlineTestState = 'upcoming' | 'open' | 'in_progress' | 'done';
+export type FamilyOnlineTest = {
+  testId: string;
+  exam: string;
+  subject: string;
+  opensAt: string;
+  closesAt: string;
+  minutes: number;
+  questions: number;
+  state: FamilyOnlineTestState;
+  deadlineAt: string | null; // of the child's attempt being sat
+  serverNow: string;
+};
+export type FamilyOnlineQuestion = {
+  questionId: string;
+  n: number; // its place in this attempt's order, from 1
+  label: string;
+  section: string | null;
+  kind: QuestionKind;
+  input: OnlineInput;
+  prompt: string;
+  options: QuestionOption[]; // in this attempt's order
+  multi: boolean; // more than one option is to be chosen
+  maxMarks: number;
+  choiceGroup: string | null;
+  groupCount: number | null; // "answer any n" of the group
+  answer: OnlineAnswer | null;
+  flagged: boolean;
+  seq: number; // the save count kept with the answer
+};
+export type FamilyOnlineStartOutcome = 'started' | 'open' | 'done' | 'not_yet' | 'closed' | 'not_found';
+export type FamilyOnlineSitting = {
+  outcome: FamilyOnlineStartOutcome;
+  attemptId: string | null;
+  deadlineAt: string | null;
+  serverNow: string;
+  questions: FamilyOnlineQuestion[]; // empty unless the attempt is being sat
+};
+export type FamilyOnlineSaveResult = 'saved' | 'closed' | 'bad_answer' | 'not_found';
+export type FamilyOnlineSubmitResult = 'submitted' | 'timed_out' | 'done' | 'not_found';

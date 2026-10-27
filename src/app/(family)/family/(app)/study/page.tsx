@@ -23,6 +23,8 @@ import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
 import { TonightPractice } from '@/components/family/TonightPractice';
+import { TEST_LIST_KEYS, TestList } from '@/components/family/school-test/TestList';
+import { childOnlineTests } from '@/lib/family/online-tests';
 import { activeLinks, schoolStudyFor } from '@/lib/family/school';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
@@ -73,6 +75,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // The school's own syllabus for this subject (C230-AA), for a child matched to a connected school's student.
   const [switches, links] = await familyPageRead(page, (db) => Promise.all([readFamilySwitches(db, page.session.accountId), access.open ? activeLinks(db, page.session.accountId) : Promise.resolve([])]));
   const school = links.length ? await schoolStudyFor(familyClaims(page.session), links, child.childId, subject) : { chapters: null, tonight: [] };
+  // AQ-4 (C365): the school's online tests for the child's class, coming up or open now, whatever the subject chosen.
+  const testLinks = access.open ? links : await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
+  const tests = testLinks.length ? await childOnlineTests(familyClaims(page.session), testLinks, child.childId) : [];
   const schoolChapters = school.chapters;
   // M2-6 (C280): the homework helper's link, while its module is on.
   const homeworkOn = switchOn(switches, 'homework');
@@ -121,6 +126,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         </nav>
         {!child.freeSubject && <p className="fam-rise flex items-center gap-2 rounded-2xl bg-sunshine/30 px-4 py-3 text-sm font-semibold text-slate"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-gold-deep" fill="currentColor"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" /></svg>{t(lang, 'fam.subject.firstIsFree')}</p>}
         {offline && <DataSaverSwitch w={ow} />}
+        <TestList w={familyWords(lang, TEST_LIST_KEYS)} lang={lang} tests={tests} />
         {!access.open ? (
           <p data-family-locked className="fam-card bg-white p-5 text-base text-slate">
             {t(lang, 'fam.subject.notOpen')}

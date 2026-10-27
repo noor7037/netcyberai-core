@@ -19,6 +19,8 @@ import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/l
 import { MARKING_GROUP_JOB, MARKING_MARK_JOB, MARKING_READ_JOB } from '@/lib/marking/queue';
 import { PICTURES_SWEEP_JOB, picturesSweepHandler } from '@/lib/marking/retention';
 import { RESULT_PDFS_SWEEP_JOB, resultPdfsSweepHandler } from '@/lib/marking/checked-pdf-store';
+import { ONLINE_MARK_JOB, ONLINE_SWEEP_JOB, onlineMarkHandler, onlineSweepHandler } from '@/lib/online/mark';
+import { PAPERS_MAKE_JOB, papersMakeHandler } from '@/lib/papers/make';
 import { emailSendHandler } from './email-handler';
 import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
@@ -91,6 +93,16 @@ export function productionHandlers(): Record<string, JobHandler> {
     // C366: the checked papers' PDFs kept for WhatsApp, deleted once sent and at the latest after seven days, hourly.
     [RESULT_PDFS_SWEEP_JOB]: resultPdfsSweepHandler({ platform, storage: supabaseFileStorage, storageWorks: async () => (await storageHealth()) === 'ok' }),
     // aq-5 end
+    // AQ-4 (C365): an online test's script, made and marked in the school's marking session (its written answers wait
+    // for the AI, so it is a long job: ./runner.ts); and every two minutes, as the platform, attempts past their
+    // deadline are timed out and ended attempts without a script are queued.
+    [ONLINE_MARK_JOB]: onlineMarkHandler({ asSchool }),
+    [ONLINE_SWEEP_JOB]: onlineSweepHandler({ platform }),
+    // aq-2 begin
+    // AQ-2 (C362, C363): a question paper's questions made from what was taught, from the school's bank first and the
+    // AI for the rest, in the school's own session as its office sees it, with no person. A long job (./runner.ts).
+    [PAPERS_MAKE_JOB]: papersMakeHandler({ asSchool }),
+    // aq-2 end
   };
 }
 

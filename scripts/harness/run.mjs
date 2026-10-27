@@ -36,6 +36,8 @@ import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
 import { clearMarking, MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
 import { markingScreens } from './marking-screens.mjs';
+import { onlineScreens } from './online-screens.mjs';
+import { paperScreens } from './paper-screens.mjs';
 import { clearOutputs, seedOutputs } from './outputs-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -7271,6 +7273,11 @@ const SCREENS = [
   // candidates and the exam numbers to print; the screens are in scripts/harness/marking-screens.mjs.
   ...markingScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, CLASS_5A, base: () => base, secret: () => secret, cookieFor, speak, backToEnglish }),
   // am-3 end
+  // aq-2 begin
+  // Question papers from what was taught (C362, C363): the plan, a paper just made, keeping it, and "Make every paper";
+  // the screens are in scripts/harness/paper-screens.mjs.
+  ...paperScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, base: () => base, speak, backToEnglish }),
+  // aq-2 end
   // am-6 begin
   // Learning intelligence from approved answer-sheet marks (C352): Aarav's genome by topic, a paper's class view, and
   // Control's monitor for AI marking; each in English and in Hindi.
@@ -7281,6 +7288,11 @@ const SCREENS = [
   ['founder', 'am6-control-monitoring', '/control/monitoring', am6Monitor(false), am6PutBack],
   ['founder', 'am6-control-monitoring-hindi', '/control/monitoring', am6Monitor(true), async (page) => { await am6PutBack(); await backToEnglish(page); }],
   // am-6 end
+  // aq-4 begin
+  // Online tests (C365): a paper sat online on its marking hub, in English and Hindi, and an online script's typed
+  // answers in the review; the screens are in scripts/harness/online-screens.mjs.
+  ...onlineScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, speak, backToEnglish }),
+  // aq-4 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

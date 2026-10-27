@@ -11,6 +11,7 @@ import { examTypeName, offeredExamTypes, OTHER_EXAM_TYPE } from '@/lib/contracts
 import type { ExamsScreen, ExamSummary, PaperSummary } from '@/lib/exams/exams';
 import type { MessageKey } from '@/lib/i18n';
 import { CandidatesPanel } from '@/components/marking/CandidatesPanel';
+import { MakeEveryPaper } from '@/components/papers/MakeEveryPaper';
 import { PRIMARY, SECTION, TAP } from './SchemeParts';
 import { dayWords } from './exam-format';
 
@@ -266,6 +267,8 @@ function ExamCard({
         ))}
       </ul>
       <CandidatesPanel examId={exam.examId} />
+      {/* AQ-2 (C362): every paper's questions from what was taught, one job a paper. */}
+      {exam.status === 'open' && !allPublished && (data.mayRun || exam.papers.some((p) => p.mayEnter)) && <MakeEveryPaper examId={exam.examId} papers={exam.papers} />}
       {classes.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
           {classes.map(([classId, className]) => (
