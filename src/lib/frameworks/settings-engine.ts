@@ -118,7 +118,12 @@ export function validateValue(def: SettingDefinition, value: unknown): string | 
             (c.type === 'time' && (typeof cell !== 'string' || !TIME_RE.test(cell))) ||
             (c.type === 'boolean' && typeof cell !== 'boolean');
           if (bad) return `row ${i + 1}: ${c.label} is not valid`;
+          if (c.pattern && typeof cell === 'string' && !new RegExp(c.pattern).test(cell)) return `row ${i + 1}: ${c.label} is not valid`;
         }
+      }
+      for (const c of columns.filter((x) => x.unique)) {
+        const cells = value.map((row) => (row as Record<string, unknown>)[c.key]);
+        if (new Set(cells).size !== cells.length) return `${c.label} is used twice`;
       }
       return null;
     }

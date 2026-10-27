@@ -1,5 +1,6 @@
 import type { ModuleId } from '@/lib/contracts/modules';
 import type { ModuleSettingsSchema } from '@/lib/contracts/settings';
+import { DEFAULT_EXAM_TYPES, EXAM_TYPE_KEY, OTHER_EXAM_TYPE } from '@/lib/contracts/exam-types';
 
 // Every module's settings schema, in one registry (17 §1a, C112). A module
 // adds its schema here when it is built (part of the module definition of
@@ -569,7 +570,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // limit (Control) and Control's AI tasks decide whether the school may use it at all; these only narrow it.
   {
     moduleId: 'exams',
-    version: 2, // 2: script_days (C230-AG)
+    version: 3, // 2: script_days (C230-AG); 3: exam_types (C230-AJ)
     fields: [
       {
         key: 'ai_marking_on',
@@ -613,6 +614,27 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         section: 'Families',
         type: 'boolean',
         default: true,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        // C230-AJ part 2 (C357): the school's own exam types; each exam names one (src/lib/exams/exam-types.ts).
+        key: 'exam_types',
+        label: 'Exam types',
+        help: 'The kinds of exam this school holds, in English and Hindi. Rename, hide or add one; each exam names one type. “Other” is always kept.',
+        section: 'Exams',
+        type: 'list',
+        default: DEFAULT_EXAM_TYPES.map((t) => ({ ...t })),
+        min: 1,
+        max: 30,
+        columns: [
+          { key: 'key', label: 'Short code', type: 'text', pattern: EXAM_TYPE_KEY.source, unique: true, codeFrom: 'en' },
+          { key: 'en', label: 'Name in English', type: 'text' },
+          { key: 'hi', label: 'Name in Hindi', type: 'text' },
+          { key: 'hidden', label: 'Hidden', type: 'boolean' },
+        ],
+        pinnedRows: [OTHER_EXAM_TYPE],
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: false,

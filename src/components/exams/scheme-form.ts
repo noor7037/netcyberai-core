@@ -7,7 +7,9 @@ export type BandForm = { from: string; to: string; grade: string; meaning: strin
 export type PartForm = { name: string; share: string };
 export type ComponentForm = { key: string; kind: ComponentKind; name: string; share: string; passMark: string; parts: PartForm[] };
 export type CoGradeForm = { grade: string; meaning: string; pass: boolean };
-export type SchemeForm = { bands: BandForm[]; decimals: 0 | 1; passMark: string; components: ComponentForm[]; terms: string[]; layout: Layout; areas: string[]; coGrades: CoGradeForm[] };
+export type TypeWeightForm = { type: string; weight: string };
+// `examTypes`: the exam types that count toward a report card, with their weights (C230-AJ part 2); none: none is weighed.
+export type SchemeForm = { bands: BandForm[]; decimals: 0 | 1; passMark: string; components: ComponentForm[]; terms: string[]; layout: Layout; areas: string[]; coGrades: CoGradeForm[]; examTypes?: TypeWeightForm[] };
 
 const str = (n: number | null) => (n === null ? '' : String(n));
 // Empty is none; anything else must be a number (a comma is read as a decimal point).
@@ -24,6 +26,7 @@ export function schemeToForm(s: GradingScheme): SchemeForm {
     layout: { ...s.layout },
     areas: s.coScholastic?.areas.slice() ?? [],
     coGrades: s.coScholastic?.grades.map((g) => ({ grade: g.grade, meaning: g.meaning ?? '', pass: g.pass })) ?? [],
+    examTypes: (s.examTypes ?? []).map((w) => ({ type: w.type, weight: String(w.weight) })),
   };
 }
 
@@ -36,5 +39,6 @@ export function formToScheme(f: SchemeForm): GradingScheme {
     terms: f.terms.map((name) => ({ name })),
     layout: { ...f.layout },
     coScholastic: f.areas.length || f.coGrades.length ? { areas: f.areas.slice(), grades: f.coGrades.map((g) => ({ grade: g.grade, meaning: g.meaning.trim() ? g.meaning : null, pass: g.pass })) } : null,
+    ...(f.examTypes?.length ? { examTypes: f.examTypes.map((w) => ({ type: w.type, weight: numOrNaN(w.weight) })) } : {}),
   };
 }

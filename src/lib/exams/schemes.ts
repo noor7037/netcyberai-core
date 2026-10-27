@@ -2,7 +2,9 @@ import { writeAuditLog } from '@/lib/audit/log';
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
+import type { ExamTypeRow } from '@/lib/contracts/exam-types';
 import { listBoards, loadPreset, schoolBoard, type Board } from './boards';
+import { examTypesOf } from './exam-types';
 import { validateScheme, type BoardPreset, type GradingScheme, type Problem } from './scheme';
 
 // The school's grading scheme (docs/27 row 9a, C213). Saving makes a new version; the latest version is in force;
@@ -37,6 +39,8 @@ export type SchemeScreen = {
   current: (SchemeVersion & { fromPreset: (BoardPreset & { boardName: string | null; replaced: boolean }) | null }) | null;
   versions: { version: number; madeBy: string | null; madeAt: string; fromPresetId: string | null }[];
   mayEdit: boolean;
+  // The school's exam types, hidden ones too (a hidden type can still be weighed), for choosing which count (C230-AJ).
+  examTypes: ExamTypeRow[];
 };
 
 export async function schemeScreen(db: Sql, actor: Actor): Promise<SchemeScreen | null> {
@@ -62,6 +66,7 @@ export async function schemeScreen(db: Sql, actor: Actor): Promise<SchemeScreen 
     current: current ? { ...current, fromPreset } : null,
     versions: history.rows.map((r) => ({ version: Number(r.version), madeBy: r.made_by_name ?? null, madeAt: r.made_at instanceof Date ? r.made_at.toISOString() : String(r.made_at), fromPresetId: r.from_preset_id ?? null })),
     mayEdit: SCHEME_EDITORS.includes(actor.role),
+    examTypes: await examTypesOf(db, actor.schoolId),
   };
 }
 
@@ -75,6 +80,12 @@ export async function saveScheme(db: Sql, actor: Actor, input: { scheme: unknown
   if (typeof input.basedOn !== 'number' || !Number.isInteger(input.basedOn) || input.basedOn < 0) return { ok: false, reason: 'based_on' };
   const checked = validateScheme(input.scheme);
   if (!checked.ok) return { ok: false, reason: checked.problem.code, ...(checked.problem.at === undefined ? {} : { at: checked.problem.at }) };
+  // Every type that counts is one of the school's own (hidden or shown).
+  if (checked.scheme.examTypes?.length) {
+    const known = new Set((await examTypesOf(db, actor.schoolId)).map((t) => t.key));
+    const unknown = checked.scheme.examTypes.findIndex((w) => !known.has(w.type));
+    if (unknown >= 0) return { ok: false, reason: 'exam_type_key', at: unknown };
+  }
   const fromPresetId = input.fromPresetId === null || input.fromPresetId === undefined ? null : input.fromPresetId;
   if (fromPresetId !== null && (!isUuid(fromPresetId) || !(await db.query(`select 1 from board_presets where preset_id = $1`, [fromPresetId])).rows[0])) return { ok: false, reason: 'preset' };
   const latest = Number((await db.query(`select coalesce(max(version), 0) as v from grading_schemes where school_id = $1`, [actor.schoolId])).rows[0].v);
@@ -95,7 +106,7 @@ export async function saveScheme(db: Sql, actor: Actor, input: { scheme: unknown
       eventAction: 'grading_scheme.saved',
       targetType: 'grading_schemes',
       targetId: rows[0].scheme_id,
-      afterState: { version, from_preset_id: fromPresetId, bands: checked.scheme.bands.length, pass_mark: checked.scheme.passMark, decimals: checked.scheme.decimals },
+      afterState: { version, from_preset_id: fromPresetId, bands: checked.scheme.bands.length, pass_mark: checked.scheme.passMark, decimals: checked.scheme.decimals, exam_types: checked.scheme.examTypes?.length ?? 0 },
     });
     return { ok: true, version };
   } catch (err) {

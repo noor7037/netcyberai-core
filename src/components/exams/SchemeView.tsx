@@ -7,11 +7,12 @@ import { Badge } from '@/components/ui/Badge';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
+import { examTypeName, type ExamTypeRow } from '@/lib/contracts/exam-types';
 import { bandProblems, gapsAsInPreset, grade, passed } from '@/lib/exams/grading';
 import { emptyScheme, LAYOUT_PARTS, schemeFromPreset, validateScheme, type BoardPreset, type GradingScheme } from '@/lib/exams/scheme';
 import type { SchemeScreen } from '@/lib/exams/schemes';
 import type { MessageKey } from '@/lib/i18n';
-import { AddButton, BandsEditor, ComponentsEditor, PRIMARY, SECTION, TAP } from './SchemeParts';
+import { AddButton, BandsEditor, ComponentsEditor, ExamTypesEditor, PRIMARY, SECTION, TAP } from './SchemeParts';
 import { formToScheme, schemeToForm, type SchemeForm } from './scheme-form';
 
 // The school's grading scheme (docs/27 row 9a, C213). The board first; then the scheme in force, where it came from
@@ -21,7 +22,7 @@ import { formToScheme, schemeToForm, type SchemeForm } from './scheme-form';
 
 type Draft = { form: SchemeForm; fromPresetId: string | null; basedOn: number };
 type Preset = BoardPreset & { boardName?: string | null; replaced?: boolean };
-const PROBLEMS = ['shape', 'decimals', 'band_grade', 'band_meaning', 'band_partial', 'band_mixed', 'band_range', 'band_decimals', 'band_duplicate', 'band_overlap', 'pass_mark', 'component_name', 'component_duplicate', 'component_share', 'component_shares_total', 'component_pass_mark', 'component_parts', 'term_name', 'term_duplicate', 'co_area', 'co_grade', 'too_many'];
+const PROBLEMS = ['shape', 'decimals', 'band_grade', 'band_meaning', 'band_partial', 'band_mixed', 'band_range', 'band_decimals', 'band_duplicate', 'band_overlap', 'pass_mark', 'component_name', 'component_duplicate', 'component_share', 'component_shares_total', 'component_pass_mark', 'component_parts', 'term_name', 'term_duplicate', 'co_area', 'co_grade', 'exam_type_key', 'exam_type_duplicate', 'exam_type_weight', 'exam_type_total', 'too_many'];
 const set = <T,>(list: readonly T[], i: number, v: T) => list.map((x, j) => (j === i ? v : x));
 const without = <T,>(list: readonly T[], i: number) => list.filter((_, j) => j !== i);
 
@@ -158,7 +159,7 @@ export function SchemeView() {
           </div>
           <p className="text-slate/70">{data.current.madeBy ? t('gs.current.by', { name: data.current.madeBy, date: when(data.current.madeAt) }) : t('gs.current.on', { date: when(data.current.madeAt) })}</p>
           <Source preset={shownPreset} day={day} />
-          <Summary scheme={data.current.scheme} num={num} />
+          <Summary scheme={data.current.scheme} num={num} types={data.examTypes} />
           <Checks scheme={data.current.scheme} preset={shownPreset} num={num} />
           {data.mayEdit && (
             <div className="flex flex-col gap-3 border-t border-slate/10 pt-3">
@@ -175,7 +176,7 @@ export function SchemeView() {
         <section data-scheme-editor className={SECTION}>
           <h2 className="text-base font-bold">{t('gs.editing.title', { version: draft.basedOn + 1 })}</h2>
           <Source preset={shownPreset} day={day} />
-          <Editor form={draft.form} onChange={(form) => setDraft({ ...draft, form })} preset={shownPreset} num={num} />
+          <Editor form={draft.form} onChange={(form) => setDraft({ ...draft, form })} preset={shownPreset} num={num} types={data.examTypes} />
           <div className="flex flex-col gap-2 border-t border-slate/10 pt-3">
             {!checked.ok && (
               <p role="alert" data-scheme-problem={checked.problem.code} className="rounded-md border border-red-800/30 px-3 py-2 font-semibold text-red-800">
@@ -282,8 +283,8 @@ function Checks({ scheme, preset, num }: { scheme: GradingScheme; preset: Preset
 }
 
 // The scheme in force, read: what the coordinator sees, and the office before it changes anything.
-function Summary({ scheme, num }: { scheme: GradingScheme; num: (n: number) => string }) {
-  const { t } = useT();
+function Summary({ scheme, num, types }: { scheme: GradingScheme; num: (n: number) => string; types: readonly ExamTypeRow[] }) {
+  const { t, lang } = useT();
   const kind = (k: string) => t(`gs.comp.kind.${k}` as MessageKey);
   return (
     <div data-scheme-summary className="grid gap-4 md:grid-cols-2">
@@ -330,15 +331,17 @@ function Summary({ scheme, num }: { scheme: GradingScheme; num: (n: number) => s
             : t('gs.co.none')}
         </p>
       </div>
-      <div className="flex flex-col gap-1">
-        <h3 className="font-bold">{t('gs.layout.title')}</h3>
+      <div data-scheme-exam-types className="flex flex-col gap-1">
+        <h3 className="font-bold">{t('gs.types.title')}</h3>
+        <p>{scheme.examTypes?.length ? t('gs.types.line', { types: scheme.examTypes.map((w) => `${examTypeName(types, w.type, lang)} ${num(w.weight)}`).join(', ') }) : t('gs.types.none')}</p>
+        <h3 className="mt-2 font-bold">{t('gs.layout.title')}</h3>
         <p>{t('gs.layout.shows', { parts: LAYOUT_PARTS.filter((k) => scheme.layout[k]).map((k) => t(`gs.layout.${k}` as MessageKey)).join(', ') })}</p>
       </div>
     </div>
   );
 }
 
-function Editor({ form, onChange, preset, num }: { form: SchemeForm; onChange: (f: SchemeForm) => void; preset: Preset | null; num: (n: number) => string }) {
+function Editor({ form, onChange, preset, num, types }: { form: SchemeForm; onChange: (f: SchemeForm) => void; preset: Preset | null; num: (n: number) => string; types: readonly ExamTypeRow[] }) {
   const { t } = useT();
   const put = (v: Partial<SchemeForm>) => onChange({ ...form, ...v });
   const sub = 'flex flex-col gap-3 border-t border-slate/10 pt-3';
@@ -389,6 +392,14 @@ function Editor({ form, onChange, preset, num }: { form: SchemeForm; onChange: (
           </div>
         ))}
         <AddButton data="term" label={t('gs.terms.add')} onClick={() => put({ terms: [...form.terms, ''] })} />
+      </div>
+
+      <div data-scheme-types className={sub}>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h3 className="font-bold">{t('gs.types.title')}</h3>
+          <InfoTip>{t('gs.types.how')}</InfoTip>
+        </div>
+        <ExamTypesEditor idPrefix="scheme" types={types} weights={form.examTypes ?? []} onChange={(examTypes) => put({ examTypes })} />
       </div>
 
       <fieldset className={sub}>
