@@ -13,6 +13,8 @@ import { MARKING_LANGUAGES, MAX_QUESTIONS, QUESTION_KINDS, type SetupScreen, typ
 import type { MessageKey } from '@/lib/i18n';
 import { firstProblem, formFromQuestion, groupsOf, move, newQuestion, partsWithoutQuestions, problemsOf, sameAsSaved, toNumber, toSaveBody, type QuestionForm, type StepForm } from '@/lib/marking/question-form';
 import { ask, errorWords } from './parts';
+import { AnswerFields, kindChange } from '@/components/papers/AnswerFields';
+import { BankPicker, ReplaceQuestion } from '@/components/papers/BankTools';
 
 // Step 1 of a paper's AI marking: its questions (C347). The teacher lists them once, each with its number, the part of
 // the paper it counts to, its marks, its kind, its chapter and topic, the question, the answer key and the steps
@@ -48,9 +50,31 @@ const FIELD_KEYS: Record<string, MessageKey> = {
   steps: 'mk.field.steps',
   twice: 'mk.field.twice',
   question: 'mk.field.question',
+  options: 'pp.field.options',
+  correct: 'pp.field.correct',
+  section: 'pp.field.section',
+  difficulty: 'pp.field.difficulty',
 };
 
-export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId: string; screen: SetupScreen; onSaved: (screen: SetupScreen) => void; onClose: () => void }) {
+// AQ-2 (C362, C363): each question's answer fields (options and right keys, a number's value, difficulty, section),
+// "Replace" one saved question from the bank or anew by the AI, and "Pick from the bank" (src/components/papers).
+// `onReplaced`: the questions changed on the server while the editor stays open; `onAsked`: a question is being written
+// anew (the paper maker above shows its progress).
+export function QuestionsEditor({
+  paperId,
+  screen,
+  onSaved,
+  onClose,
+  onReplaced,
+  onAsked,
+}: {
+  paperId: string;
+  screen: SetupScreen;
+  onSaved: (screen: SetupScreen) => void;
+  onClose: () => void;
+  onReplaced?: (screen: SetupScreen) => void;
+  onAsked?: () => void;
+}) {
   const { t, lang } = useT();
   const { paper } = screen;
   const mayChange = paper.mayMark && !paper.published;
@@ -151,7 +175,7 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
                   ))}
                 </Select>
                 <Input id={id('marks')} label={t('mk.q.marks')} inputMode="decimal" value={f.maxMarks} error={f.maxMarks.trim() !== '' && !maxOk ? t('mk.q.marksBad') : undefined} disabled={!mayChange || locked} onChange={(e) => set(i, { maxMarks: e.target.value })} />
-                <Select id={id('kind')} label={t('mk.q.kind')} value={f.kind} disabled={!mayChange} onChange={(e) => set(i, { kind: e.target.value as QuestionForm['kind'] })}>
+                <Select id={id('kind')} label={t('mk.q.kind')} value={f.kind} disabled={!mayChange || (locked && f.options.length > 0)} onChange={(e) => set(i, kindChange(f, e.target.value as QuestionForm['kind']))}>
                   {QUESTION_KINDS.map((k) => (
                     <option key={k} value={k}>{t(KIND_KEYS[k])}</option>
                   ))}
@@ -168,6 +192,7 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
               </div>
               <Textarea id={id('prompt')} label={t('mk.q.prompt')} rows={3} maxLength={4000} value={f.prompt} disabled={!mayChange} onChange={(e) => set(i, { prompt: e.target.value })} />
               <Textarea id={id('key')} label={t('mk.q.key')} rows={3} maxLength={8000} value={f.answerKey} disabled={!mayChange} onChange={(e) => set(i, { answerKey: e.target.value })} />
+              <AnswerFields form={f} idPrefix={id('ans')} disabled={!mayChange} locked={locked} onChange={(patch) => set(i, patch)} />
               <fieldset className="flex flex-col gap-2">
                 <legend className="flex flex-wrap items-center gap-x-1 text-sm font-semibold">
                   {t('mk.q.steps')}
@@ -192,6 +217,20 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
                   </button>
                 )}
               </fieldset>
+              {mayChange && !locked && onReplaced && screen.questions.some((q) => q.questionId === f.key) && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <ReplaceQuestion
+                    paperId={paperId}
+                    question={screen.questions.find((q) => q.questionId === f.key)!}
+                    units={paper.units}
+                    ai
+                    disabled={dirty || busy}
+                    onScreen={onReplaced}
+                    onAsked={() => onAsked?.()}
+                  />
+                  {dirty && <span className="text-slate/70">{t('pp.saveFirst')}</span>}
+                </div>
+              )}
             </li>
           );
         })}
@@ -248,6 +287,7 @@ export function QuestionsEditor({ paperId, screen, onSaved, onClose }: { paperId
             {t('mk.q.add')}
           </button>
         )}
+        {mayChange && !locked && onReplaced && <BankPicker paperId={paperId} disabled={dirty || busy} onScreen={onReplaced} />}
         {mayChange && (
           <button type="button" data-questions-save className={PRIMARY} disabled={busy || !dirty} onClick={() => void save()}>
             {t('mk.q.save')}
