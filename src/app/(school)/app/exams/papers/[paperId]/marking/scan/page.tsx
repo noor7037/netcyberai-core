@@ -20,7 +20,7 @@ export default async function PaperScanPage({ params }: { params: { paperId: str
   if (!session) notFound();
   const { lang } = getLang(session.sub);
   return (
-    <ModulePage moduleId="exams" help="enter-exam-marks" title={t(lang, 'mk.scan.title')} purpose={t(lang, 'mk.scan.purpose')}>
+    <ModulePage moduleId="exams" help="enter-exam-marks" tour="marking-scan" title={t(lang, 'mk.scan.title')} purpose={t(lang, 'mk.scan.purpose')}>
       <ScanScreen paperId={params.paperId} owner={`${session.schoolId}:${session.sub}`} />
     </ModulePage>
   );
