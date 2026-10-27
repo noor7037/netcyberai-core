@@ -72,6 +72,8 @@ begin
   if current_user in ('app_user', 'nca_super') then
     new.printed_by := me;
     new.printed_at := now();
+  else
+    new.printed_by := coalesce(new.printed_by, me);
   end if;
   new.replaced_at := null;
   return new;
@@ -221,6 +223,8 @@ begin
     if current_user in ('app_user', 'nca_super') then
       new.read_by := me;
       new.read_at := now();
+    else
+      new.read_by := coalesce(new.read_by, me);
     end if;
   else
     if (new.read_id, new.school_id, new.paper_id, new.page_id, new.layout, new.sheet_no, new.roll_no, new.answers, new.unclear, new.multiple, new.confidence, new.read_by, new.read_at)

@@ -137,10 +137,11 @@ export function BubblePanel({ paperId, onScreen, onChanged }: { paperId: string;
           )}
 
           <div className="flex flex-wrap items-end gap-2">
-            <div className="w-40">
+            <div className="w-full max-w-[16rem]">
               <Input
                 id={`bub-wrong-${paperId}`}
                 label={t('bub.wrong')}
+                floating={false}
                 inputMode="decimal"
                 autoComplete="off"
                 value={wrong}
@@ -163,8 +164,8 @@ export function BubblePanel({ paperId, onScreen, onChanged }: { paperId: string;
             </p>
             {screen.printed.replaced > 0 && <p className="text-amber-text">{t('bub.replaced', { n: numberWords(screen.printed.replaced, lang) })}</p>}
             <div className="flex flex-wrap items-end gap-2">
-              <div className="w-56">
-                <Input id={`bub-blanks-${paperId}`} label={t('bub.blanks')} inputMode="numeric" autoComplete="off" value={blanks} disabled={!may || busy} onChange={(e) => setBlanks(e.target.value)} />
+              <div className="w-full max-w-[16rem]">
+                <Input id={`bub-blanks-${paperId}`} label={t('bub.blanks')} floating={false} inputMode="numeric" autoComplete="off" value={blanks} disabled={!may || busy} onChange={(e) => setBlanks(e.target.value)} />
               </div>
               <InfoTip>{t('bub.blanksHow')}</InfoTip>
             </div>

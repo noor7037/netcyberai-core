@@ -314,8 +314,9 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
           <ul data-sheet-flags className="flex flex-col gap-1">
             {flags.map((f) => (
               <li key={f} className="flex flex-wrap items-center gap-x-2">
-                <Badge variant="warning">{t(FLAG_KEYS[f])}</Badge>
-                <span className="text-slate/70">{t(FLAG_HOW_KEYS[f])}</span>
+                {/* A bubble script's doubt is a bubble's, not the AI's (C364). */}
+                <Badge variant="warning">{t(f === 'unsure' && sheetIsScript ? 'bub.flag.unsure' : FLAG_KEYS[f])}</Badge>
+                <span className="text-slate/70">{t(f === 'unsure' && sheetIsScript ? 'bub.flag.unsure.how' : FLAG_HOW_KEYS[f])}</span>
                 {(f === 'check_child' || f === 'mismatch') && sheet.student && detail.mayChange && sheet.state !== 'approved' && (
                   <button type="button" data-confirm-child className={TAP} disabled={busy} onClick={() => void doChoose(sheet.student!.studentId)}>
                     {t('mk.id.confirm', { name: sheet.student.name })}
@@ -466,7 +467,12 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
                               onChange={(v) => setQuestion(q.questionId, { marks: v })}
                             />
                             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-slate/70">
-                              <span data-ai-gave>{q.ai.marks === null ? t('mk.q.aiNone') : t('mk.q.aiGave', { marks: numberWords(q.ai.marks, lang), max: numberWords(q.maxMarks, lang) })}</span>
+                              {bubbleQ.get(q.questionId) && bubble?.view?.applied ? (
+                                // Marked from the bubble sheet by the answer key, not by the AI (C364).
+                                <span data-rule-gave>{q.ai.marks === null ? t('bub.review.ruleNone') : t('bub.review.ruleGave', { marks: numberWords(q.ai.marks, lang), max: numberWords(q.maxMarks, lang) })}</span>
+                              ) : (
+                                <span data-ai-gave>{q.ai.marks === null ? t('mk.q.aiNone') : t('mk.q.aiGave', { marks: numberWords(q.ai.marks, lang), max: numberWords(q.maxMarks, lang) })}</span>
+                              )}
                               {overridden && editable && (
                                 <button type="button" data-back-to-ai className={TAP} onClick={() => setQuestion(q.questionId, { marks: null })}>{t('mk.q.backToAi')}</button>
                               )}
