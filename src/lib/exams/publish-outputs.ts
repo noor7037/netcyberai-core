@@ -51,13 +51,15 @@ export type OutputsResult = { ok: true; version: number; first: boolean; queued:
 export async function publishAndNotify(db: PoolClient, queue: QueueLike, actor: Actor, examId: string, classId: string): Promise<OutputsResult> {
   const pub = await inForce(db, actor, examId, classId);
   if (typeof pub === 'string') return { ok: false, reason: pub };
+  // The send first: a send the office may not make leaves no outputs behind, so families never see the progress
+  // report of a class whose parents were not told (security review of AJ-5).
+  const sent = await tellParentsSend(db, queue, actor, examId, classId);
+  if (!sent.ok) return { ok: false, reason: sent.reason };
   const made = await db.query(
     `insert into exam_outputs (school_id, publication_id, made_by) values ($1, $2, $3) on conflict (school_id, publication_id) do nothing returning output_id`,
     [actor.schoolId, pub.publicationId, actor.userId]
   );
   const first = (made.rowCount ?? 0) > 0;
-  const sent = await tellParentsSend(db, queue, actor, examId, classId);
-  if (!sent.ok) return { ok: false, reason: sent.reason };
   if (first) {
     await writeAuditLog(db, {
       schoolId: actor.schoolId,
