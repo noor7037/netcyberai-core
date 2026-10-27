@@ -9,6 +9,7 @@ import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { SyllabusList } from '@/components/family/SyllabusList';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { showcaseFor } from '@/lib/family/chapters';
 import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
@@ -147,6 +148,20 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                 <span className="flex flex-col">
                   <span className="text-base font-bold text-slate">{t(lang, 'fam.homework.studyLink')}</span>
                   <span className="text-sm text-slate/80">{t(lang, 'fam.homework.studyLead')}</span>
+                </span>
+              </Link>
+            )}
+            {/* S1 (C374): the chapter reader, for a subject with a NetCyber-authored chapter. */}
+            {showcaseFor(subject) && (
+              <Link href={`/family/study/chapter/${encodeURIComponent(showcaseFor(subject)!.key)}`} data-reader-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
+                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 5a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2V5zM20 5a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 1 2 2V5z" />
+                  </svg>
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-base font-bold text-slate">{t(lang, 'fam.reader.studyLink')}</span>
+                  <span className="text-sm text-slate/80">{t(lang, 'fam.reader.studyLead')}</span>
                 </span>
               </Link>
             )}
