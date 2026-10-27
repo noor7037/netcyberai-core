@@ -6730,6 +6730,125 @@ const am6Monitor = (hindi) => async (page) => {
   await page.evaluate(() => window.scrollTo(0, 0));
 };
 // am-6 end
+// aj-2 begin (C230-AJ part 2, C357): the school's own exam types. On the settings screen the principal renames "Unit
+// test", hides "Weekly test" and adds "Olympiad", and saves (the list is read back from the database); an exam is
+// made as Olympiad; the grading scheme chooses Half-yearly at 40 and Annual at 60 to count toward a report card.
+// Everything is put back after each screen.
+const aj2ClearSettings = async () => {
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from school_setting_changes where school_id = '${SCHOOL}' and module_id = 'exams';
+    delete from school_settings where school_id = '${SCHOOL}' and module_id = 'exams';
+    delete from audit_log where school_id = '${SCHOOL}' and event_action = 'settings.changed' and target_id = 'exams';
+    set session_replication_role = origin;`);
+};
+const AJ2_TYPES = [
+  ['weekly', 'Weekly test', 'साप्ताहिक परीक्षा', true], ['monthly', 'Monthly test', 'मासिक परीक्षा', false], ['unit', 'Class test', 'कक्षा परीक्षा', false],
+  ['periodic', 'Periodic test', 'आवधिक परीक्षा', false], ['sessional', 'Sessional', 'सत्रीय परीक्षा', false], ['half_yearly', 'Half-yearly', 'अर्धवार्षिक परीक्षा', false],
+  ['annual', 'Annual', 'वार्षिक परीक्षा', false], ['practical', 'Practical', 'प्रायोगिक परीक्षा', false], ['mock', 'Mock or pre-board', 'मॉक या प्री-बोर्ड', false],
+  ['olympiad', 'Olympiad', 'ओलंपियाड', false], ['other', 'Other', 'अन्य', false],
+].map(([key, en, hi, hidden]) => ({ key, en, hi, hidden }));
+const aj2SeedTypes = async () => {
+  await aj2ClearSettings();
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'exams', 3, $2::jsonb, 1)`, [SCHOOL, JSON.stringify({ exam_types: AJ2_TYPES })]);
+};
+const aj2Settings = async (page) => {
+  await aj2ClearSettings();
+  await examsOn();
+  await page.reload({ waitUntil: 'networkidle' });
+  const card = page.locator('[data-settings-module="exams"]');
+  const list = card.locator('[data-list-setting="exam_types"]');
+  await list.waitFor({ timeout: 20000 });
+  await page.locator('#set-exams-exam_types-2-en').fill('Class test');
+  await page.locator('#set-exams-exam_types-0-hidden').check();
+  await list.locator('[data-list-add]').click();
+  const fresh = list.locator('[data-list-row]:not([data-list-row-code])');
+  await fresh.locator('input[type="text"]').nth(0).fill('Olympiad');
+  await fresh.locator('input[type="text"]').nth(1).fill('ओलंपियाड');
+  await card.locator('[data-save-settings]').click();
+  await list.locator('[data-list-row-code="olympiad"]').waitFor({ timeout: 20000 });
+  await list.scrollIntoViewIfNeeded();
+};
+const aj2SettingsDone = async () => {
+  const saved = (await db.pg.query(`select setting_values -> 'exam_types' as t from school_settings where school_id = $1 and module_id = 'exams'`, [SCHOOL])).rows[0]?.t ?? [];
+  const audited = (await db.pg.query(`select count(*)::int as n from audit_log where school_id = $1 and event_action = 'settings.changed' and target_id = 'exams'`, [SCHOOL])).rows[0].n;
+  await aj2ClearSettings();
+  await examsPutBackOnly();
+  const by = (k) => saved.find((r) => r.key === k);
+  // The list as the person left it: "Unit test" renamed (same code), "Weekly test" hidden, "Olympiad" new with a code made
+  // for it, before "Other", which stays last and shown.
+  const order = saved.map((r) => r.key).join();
+  if (order !== 'weekly,monthly,unit,periodic,sessional,half_yearly,annual,practical,mock,olympiad,other' || by('unit')?.en !== 'Class test' || by('weekly')?.hidden !== true || by('olympiad')?.hi !== 'ओलंपियाड' || by('other')?.hidden !== false || audited !== 1) {
+    throw new Error(`the exam types in the database: ${JSON.stringify({ order, audited, unit: by('unit'), weekly: by('weekly'), olympiad: by('olympiad') })}`);
+  }
+};
+let aj2Made = null;
+const aj2ExamMake = async (page) => {
+  await examsFixture();
+  await aj2SeedTypes();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-exam-make]').waitFor({ timeout: 20000 });
+  const offered = await page.locator('#exam-type option').allTextContents();
+  await page.locator('#exam-name').fill('Olympiad (harness)');
+  await page.locator('#exam-term').selectOption('Term 1');
+  await page.locator('#exam-type').selectOption({ label: 'Olympiad' });
+  await page.locator('#exam-paper-0-class').selectOption({ label: '5-B' });
+  await page.locator('#exam-paper-0-subject').selectOption({ label: 'Mathematics' });
+  await page.locator('#exam-paper-0-date').fill(indiaDay(0));
+  await page.locator('#exam-paper-0-max-written').fill('80');
+  await page.locator('#exam-paper-0-max-oral').fill('20');
+  await page.locator('[data-exam-make-save]').click();
+  await page.locator('[data-exams-note="ok"]').waitFor({ timeout: 20000 });
+  const card = page.locator('[data-exam]', { has: page.locator('h3', { hasText: 'Olympiad (harness)' }) });
+  await card.waitFor({ timeout: 20000 });
+  aj2Made = { offered, shown: await card.locator('[data-exam-type]').first().getAttribute('data-exam-type'), old: await page.locator(`[data-exam="${X_EXAM}"] [data-exam-type]`).first().getAttribute('data-exam-type') };
+  await page.evaluate(() => window.scrollTo(0, 0));
+};
+const aj2ExamMakeDone = async () => {
+  const { rows } = await db.pg.query(`select exam_type, (select count(*)::int from audit_log a where a.school_id = e.school_id and a.event_action = 'exam.made' and a.target_id = e.exam_id::text and a.after_state ->> 'exam_type' = 'olympiad') as audits from exams e where e.school_id = $1 and e.name = 'Olympiad (harness)'`, [SCHOOL]);
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from exam_papers where exam_id in (select exam_id from exams where school_id = '${SCHOOL}' and name = 'Olympiad (harness)');
+    delete from exams where school_id = '${SCHOOL}' and name = 'Olympiad (harness)';
+    delete from audit_log where school_id = '${SCHOOL}' and event_action = 'exam.made';
+    set session_replication_role = origin;`);
+  await aj2ClearSettings();
+  await examsPutBack();
+  const seen = aj2Made;
+  aj2Made = null;
+  if (JSON.stringify(rows) !== JSON.stringify([{ exam_type: 'olympiad', audits: 1 }])) throw new Error(`the exam made in the database: ${JSON.stringify(rows)}`);
+  // The hidden "Weekly test" is not offered; the renamed "Class test" and "Olympiad" are; an exam made before types reads "other".
+  if (!seen || seen.offered.includes('Weekly test') || !seen.offered.includes('Class test') || !seen.offered.includes('Olympiad') || seen.shown !== 'olympiad' || seen.old !== 'other') throw new Error(`the exam types on the screen: ${JSON.stringify(seen)}`);
+};
+const aj2Scheme = async (page) => {
+  await examsFixture();
+  await aj2SeedTypes();
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-scheme-change]').click();
+  await page.locator('[data-scheme-types]').waitFor({ timeout: 20000 });
+  const rowsShown = await page.locator('[data-scheme-types] [data-exam-type]').evaluateAll((els) => els.map((e) => e.getAttribute('data-exam-type')));
+  await page.locator('#scheme-type-half_yearly-counts').check();
+  await page.locator('#scheme-type-half_yearly-weight').fill('40');
+  await page.locator('#scheme-type-annual-counts').check();
+  await page.locator('#scheme-type-annual-weight').fill('60');
+  const total = await page.locator('[data-scheme-types]').textContent();
+  const problem = await page.locator('[data-scheme-problem]').count();
+  if (rowsShown.includes('weekly') || !rowsShown.includes('olympiad') || problem !== 0 || !/100 of 100|100 में से 100/.test(total ?? '')) throw new Error(`the exam types of the scheme: ${JSON.stringify({ rowsShown, problem, total })}`);
+  await page.locator('[data-scheme-types]').scrollIntoViewIfNeeded();
+};
+const aj2SchemeDone = async () => {
+  await aj2ClearSettings();
+  await examsPutBack();
+};
+const aj2Hindi = (prepare, done) => [
+  async (page) => {
+    await prepare(page);
+    await speak('हिन्दी')(page);
+  },
+  async (page) => {
+    await backToEnglish(page);
+    await done();
+  },
+];
+// aj-2 end
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
@@ -6922,6 +7041,14 @@ const SCREENS = [
   ['founder', 'control-boards', '/control/boards', controlBoards, controlBoardsDone],
   ['founder', 'control-school-board', `/control/schools/${SCHOOL}`, controlSchoolBoard, controlSchoolBoardDone],
   // p6-9a end
+  // aj-2 begin
+  ['principal', 'aj2-settings-exam-types', '/app/settings', aj2Settings, aj2SettingsDone],
+  ['principal', 'aj2-settings-exam-types-hindi', '/app/settings', ...aj2Hindi(aj2Settings, aj2SettingsDone)],
+  ['principal', 'aj2-exams-make-type', '/app/exams', aj2ExamMake, aj2ExamMakeDone],
+  ['principal', 'aj2-exams-make-type-hindi', '/app/exams', ...aj2Hindi(aj2ExamMake, aj2ExamMakeDone)],
+  ['principal', 'aj2-scheme-types', '/app/exams/scheme', aj2Scheme, aj2SchemeDone],
+  ['principal', 'aj2-scheme-types-hindi', '/app/exams/scheme', ...aj2Hindi(aj2Scheme, aj2SchemeDone)],
+  // aj-2 end
   // p6-9b begin
   ['principal', 'app-exams-list', '/app/exams', examsMake, examsMakeDone],
   ['principal', 'app-exams-result', `/app/exams/${X_EXAM}/classes/${X_5A}`, examsResult, examsResultDone],

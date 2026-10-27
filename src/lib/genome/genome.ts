@@ -1,5 +1,6 @@
 import type { SchoolRole } from '@/lib/contracts/modules';
 import { windowFrom } from '@/lib/early-warning/early-warning';
+import { examTypeLabel, examTypesOf } from '@/lib/exams/exam-types';
 import { markParts, ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } from '@/lib/exams/papers';
 import { shown } from '@/lib/exams/results';
 import { schemeInForce } from '@/lib/exams/schemes';
@@ -171,17 +172,20 @@ export async function childGenome(db: Sql, actor: Actor, studentId: string, toda
   // Exams: the child's own marks in the papers that count, oldest first (the paper's date, or the day the exam was
   // made when the paper has none).
   const markRows = (await db.query(
-    `select p.paper_id, p.exam_id, e.name as exam_name, e.term, p.paper_date::text as paper_date, p.class_id, c.name as class_name, c.section,
+    `select p.paper_id, p.exam_id, e.name as exam_name, e.term, e.exam_type, a.label as session_label, p.paper_date::text as paper_date, p.class_id, c.name as class_name, c.section,
             p.subject_id, sb.name as subject_name, p.components, m.component, m.kind, m.score
        from marks m
        join exam_papers p on p.school_id = m.school_id and p.paper_id = m.paper_id
        join exams e on e.school_id = p.school_id and e.exam_id = p.exam_id
+       left join academic_sessions a on a.school_id = e.school_id and a.session_id = e.session_id
        join classes c on c.school_id = p.school_id and c.class_id = p.class_id
        join subjects sb on sb.school_id = p.school_id and sb.subject_id = p.subject_id
       where m.school_id = $1 and m.student_id = $2 and ${COUNTED_PAPER}
       order by coalesce(p.paper_date, (e.created_at at time zone 'Asia/Kolkata')::date), e.created_at, e.exam_id, p.paper_id, m.component`,
     [actor.schoolId, studentId]
   )).rows;
+  // Each exam is labelled with its type and session (C230-AJ part 2): labels only, never a ranking or a comparison.
+  const examTypes = await examTypesOf(db, actor.schoolId);
   const points = new Map<string, ExamPoint & { subjectId: string; subjectName: string }>();
   for (const r of markRows) {
     let p = points.get(r.paper_id);
@@ -191,6 +195,8 @@ export async function childGenome(db: Sql, actor: Actor, studentId: string, toda
         examId: r.exam_id,
         examName: r.exam_name,
         term: r.term ?? null,
+        kind: examTypeLabel(examTypes, r.exam_type ?? 'other'),
+        session: r.session_label ?? null,
         date: r.paper_date ?? null,
         className: classLabel(r.class_name, r.section) ?? '',
         components: r.components as PaperComponent[],

@@ -2,6 +2,7 @@ import type { PoolClient } from 'pg';
 import { inSchoolRate } from '@/lib/attendance/day';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
+import { examTypeLabel, examTypesOf } from '@/lib/exams/exam-types';
 import { classLabel } from '@/lib/frameworks/class-label';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
@@ -338,7 +339,30 @@ export async function listFlags(db: PoolClient, actor: Actor, now: Date = new Da
     closed_reason: r.closed_reason ?? null,
     actions: (r.actions as Flag['actions']).map((a) => ({ ...a, at: new Date(a.at).toISOString() })),
   }));
+  await labelMarksExams(db, actor.schoolId, flags);
   return { open: flags.filter((f) => !f.resolved_at), closed: flags.filter((f) => f.resolved_at), truncated: rows.length > FLAG_ROWS_MAX };
+}
+
+// The exams a marks reason names, labelled with their type and session (C230-AJ part 2). Read now and never kept in the
+// evidence, so a check finds the evidence as it was; a label only. An exam this reader may not read stays unlabelled.
+async function labelMarksExams(db: PoolClient, schoolId: string, flags: readonly Flag[]): Promise<void> {
+  const exams = flags.flatMap((f) => (f.evidence.marks ? [f.evidence.marks.exam, ...(f.evidence.marks.previous ? [f.evidence.marks.previous] : [])] : []));
+  const ids = [...new Set(exams.map((e) => e.examId))];
+  if (!ids.length) return;
+  const types = await examTypesOf(db, schoolId);
+  const rows = (await db.query(
+    `select e.exam_id, e.exam_type, a.label as session
+       from exams e left join academic_sessions a on a.school_id = e.school_id and a.session_id = e.session_id
+      where e.school_id = $1 and e.exam_id = any ($2::uuid[])`,
+    [schoolId, ids]
+  )).rows;
+  const byId = new Map(rows.map((r) => [r.exam_id as string, r]));
+  for (const e of exams) {
+    const r = byId.get(e.examId);
+    if (!r) continue;
+    e.kind = examTypeLabel(types, (r.exam_type as string | null) ?? 'other');
+    e.session = (r.session as string | null) ?? null;
+  }
 }
 
 // How many flags are open in each class, for the classes that have one. In the order of the class's name: a

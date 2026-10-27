@@ -56,6 +56,11 @@ export function GenomeChild({ genome }: { genome: Genome }) {
                 {s.exams.map((e) => (
                   <li key={e.paperId} data-genome-exam={e.paperId}>
                     <p className="font-semibold">{e.date ? t('gn.exam.headDate', { exam: e.examName, date: day(e.date), class: e.className }) : t('gn.exam.head', { exam: e.examName, class: e.className })}</p>
+                    {e.kind && (
+                      <p data-genome-exam-kind={e.kind.key} className="text-slate/70">
+                        {e.session ? t('gn.exam.kindSession', { type: lang === 'hi' ? e.kind.hi : e.kind.en, session: e.session }) : t('gn.exam.kind', { type: lang === 'hi' ? e.kind.hi : e.kind.en })}
+                      </p>
+                    )}
                     <p data-genome-percent>{percentWords(t, lang, e.shown)} · {gradeWords(t, e.shown)}</p>
                     <p className="text-slate/70">{t('gn.exam.from', { marks: e.components.map((c) => markWords(t, lang, c, e.marks[c.key])).join(' · ') })}</p>
                   </li>

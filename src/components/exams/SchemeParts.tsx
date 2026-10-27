@@ -2,12 +2,14 @@
 
 import type { ReactNode } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Icon } from '@/components/visual/Icons';
+import { examTypeName, type ExamTypeRow } from '@/lib/contracts/exam-types';
 import { COMPONENT_KINDS, componentKey, type ComponentKind } from '@/lib/exams/scheme';
 import type { MessageKey } from '@/lib/i18n';
-import type { BandForm, ComponentForm } from './scheme-form';
+import type { BandForm, ComponentForm, TypeWeightForm } from './scheme-form';
 
 // The parts of a grading scheme a person types, shared by the school's scheme builder and Control's preset form
 // (C213): the bands, and the components with their parts. Numbers are typed as text and checked by the scheme's own
@@ -119,6 +121,44 @@ export function ComponentsEditor({ components, onChange, idPrefix }: { component
         label={t('gs.comp.add')}
         onClick={() => onChange([...components, { key: componentKey('component', components.map((c) => c.key)), kind: 'theory', name: '', share: '', passMark: '', parts: [] }])}
       />
+    </div>
+  );
+}
+
+// The exam types that count toward a report card, and how much each counts (C230-AJ part 2): a tick and a weight for
+// each of the school's exam types (the shown ones, and a hidden one that already counts). Nothing ticked: no type is
+// weighed and every exam stands alone. The weights are checked by the scheme's own rules (validateScheme).
+export function ExamTypesEditor({ types, weights, onChange, idPrefix }: { types: readonly ExamTypeRow[]; weights: TypeWeightForm[]; onChange: (w: TypeWeightForm[]) => void; idPrefix: string }) {
+  const { t, lang } = useT();
+  const total = weights.reduce((s, w) => s + (Number(w.weight.replace(',', '.')) || 0), 0);
+  const rows = types.filter((x) => !x.hidden || weights.some((w) => w.type === x.key));
+  // A weighed type the school's list no longer has still shows, by its code, so it can be taken off.
+  const strays = weights.filter((w) => !types.some((x) => x.key === w.type));
+  const named = (key: string, hidden: boolean) => (hidden ? t('gs.types.hiddenName', { name: examTypeName(types, key, lang) }) : examTypeName(types, key, lang));
+  const line = (key: string, name: string) => {
+    const at = weights.findIndex((w) => w.type === key);
+    const id = `${idPrefix}-type-${key}`;
+    return (
+      <li key={key} data-exam-type={key} className="grid grid-cols-1 items-center gap-x-4 gap-y-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,11rem)]">
+        <Checkbox
+          id={`${id}-counts`}
+          label={name}
+          checked={at >= 0}
+          onChange={(e) => onChange(e.target.checked ? [...weights, { type: key, weight: '' }] : weights.filter((w) => w.type !== key))}
+        />
+        {at >= 0 && (
+          <Input id={`${id}-weight`} inputMode="decimal" label={t('gs.types.weight')} value={weights[at].weight} onChange={(e) => onChange(weights.map((w, j) => (j === at ? { ...w, weight: e.target.value } : w)))} />
+        )}
+      </li>
+    );
+  };
+  return (
+    <div className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-1">
+        {rows.map((x) => line(x.key, named(x.key, x.hidden)))}
+        {strays.map((w) => line(w.type, w.type))}
+      </ul>
+      {weights.length > 0 ? <p className="text-sm text-slate/70">{t('gs.types.total', { total: Math.round(total * 10) / 10 })}</p> : <p className="text-sm text-slate/70">{t('gs.types.none')}</p>}
     </div>
   );
 }

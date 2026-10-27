@@ -4,13 +4,14 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
 // One exam (docs/27 row 9b, C214), changed by the principal, the school admin or the academic coordinator:
+//   POST { action: 'type', examType }                          the exam's type (C230-AJ part 2), until a class is published
 //   POST { action: 'add_paper', paper: { classId, subjectId, date | null, unitIds, maxima } }
 //   POST { action: 'paper', paperId, date | null, unitIds }   a paper's date and chapters
 //   POST { action: 'remove_paper', paperId }                   only while it has no marks
 //   POST { action: 'remove' }                                  the exam, only while it has no marks
 export const dynamic = 'force-dynamic';
 
-const ACTIONS = ['add_paper', 'paper', 'remove_paper', 'remove'];
+const ACTIONS = ['type', 'add_paper', 'paper', 'remove_paper', 'remove'];
 
 export async function POST(req: NextRequest, { params }: { params: { examId: string } }) {
   return appRoute(req, async ({ claims, db }) => {

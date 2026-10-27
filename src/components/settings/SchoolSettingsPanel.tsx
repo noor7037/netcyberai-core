@@ -11,7 +11,9 @@ import { useToast } from '@/components/ui/Toast';
 import type { ModuleId } from '@/lib/contracts/modules';
 import type { SettingDefinition, SettingValue } from '@/lib/contracts/settings';
 import { colors } from '@/lib/design-tokens';
+import { asRows, blankKeptRow, finishListRows, listSummary } from '@/lib/frameworks/list-rows';
 import type { MessageKey } from '@/lib/i18n';
+import { ListSettingEditor } from './ListSettingEditor';
 
 // The school's settings, generated from every module's schema (17 §1a,
 // C166): one card per module, each field with its plain sentence, its
@@ -41,7 +43,11 @@ function ModuleCard({ module }: { module: SettingsModule }) {
   const key = (f: SettingDefinition, part: 'label' | 'help') => `set.${module.moduleId}.${f.key}.${part}` as MessageKey;
   const mayEditAny = module.fields.some((f) => f.mayEdit);
   const legal = (f: SettingDefinition) => module.moduleId === 'documents' && f.key === 'clearance_transfer';
-  const changed = module.fields.filter((f) => f.mayEdit && !same(values[f.def.key], f.value ?? ''));
+  // A list is sent as the engine can take it: words trimmed, empty rows left out, a new row given its code.
+  const toSend = (f: SettingDefinition, v: SettingValue): SettingValue => (f.type === 'list' ? (finishListRows(f, asRows(v)) as unknown as SettingValue) : v);
+  const changed = module.fields.filter((f) => f.mayEdit && !same(toSend(f.def, values[f.def.key]), toSend(f.def, f.value ?? '')));
+  // A list row that was saved keeps its code, and must still be named.
+  const unnamed = module.fields.map((f) => (f.def.type === 'list' ? blankKeptRow(f.def, asRows(values[f.def.key])) : null)).find((n) => n !== null) ?? null;
 
   async function send(body: Record<string, unknown>, done: MessageKey) {
     setBusy(true);
@@ -68,6 +74,7 @@ function ModuleCard({ module }: { module: SettingsModule }) {
     if (typeof v === 'boolean') return t(v ? 'set.on' : 'set.off');
     if (f.type === 'weekdays' && Array.isArray(v)) return (v as string[]).map((d) => t(`tt.day.${d}` as MessageKey)).join(', ');
     if (f.type === 'select') return t(`set.${module.moduleId}.${f.key}.option.${String(v)}` as MessageKey);
+    if (f.type === 'list') return listSummary(f, asRows(v));
     return String(v);
   };
 
@@ -122,7 +129,8 @@ function ModuleCard({ module }: { module: SettingsModule }) {
     if (f.type === 'number') return <Input id={id} label={label} type="number" inputMode="numeric" min={f.min} max={f.max} value={String(v)} disabled={!mayEdit || busy} onChange={(e) => set(e.target.value === '' ? '' : Number(e.target.value))} />;
     if (f.type === 'text' || f.type === 'numbering' || f.type === 'time' || f.type === 'date')
       return <Input id={id} label={label} type={f.type === 'time' ? 'time' : f.type === 'date' ? 'date' : 'text'} value={String(v)} disabled={!mayEdit || busy} onChange={(e) => set(e.target.value)} />;
-    // A list or a many-choice setting has no editor on this screen yet: it is shown, not changed.
+    if (f.type === 'list') return <ListSettingEditor moduleId={module.moduleId} def={f} rows={asRows(v)} disabled={!mayEdit || busy} onChange={(rows) => set(rows as unknown as SettingValue)} />;
+    // A many-choice setting has no editor on this screen yet: it is shown, not changed.
     return (
       <p className="text-sm text-slate">
         <span className="font-semibold">{label}:</span> {show(f, v)}
@@ -170,9 +178,16 @@ function ModuleCard({ module }: { module: SettingsModule }) {
         </div>
       ))}
       {mayEditAny ? (
-        <button type="button" data-save-settings disabled={busy || changed.length === 0} className={`${PRIMARY} self-start`} onClick={() => void send({ set: Object.fromEntries(changed.map((f) => [f.def.key, values[f.def.key]])) }, 'set.saved')}>
-          {t('set.save')}
-        </button>
+        <>
+          {unnamed !== null && (
+            <p role="alert" data-list-unnamed className="rounded-md border border-red-800/30 px-3 py-2 text-sm font-semibold text-red-800">
+              {t('set.list.unnamed', { n: unnamed })}
+            </p>
+          )}
+          <button type="button" data-save-settings disabled={busy || changed.length === 0 || unnamed !== null} className={`${PRIMARY} self-start`} onClick={() => void send({ set: Object.fromEntries(changed.map((f) => [f.def.key, toSend(f.def, values[f.def.key])])) }, 'set.saved')}>
+            {t('set.save')}
+          </button>
+        </>
       ) : (
         <p className="text-sm text-slate/70">{t('set.readOnly')}</p>
       )}

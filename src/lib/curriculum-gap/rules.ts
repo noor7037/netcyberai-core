@@ -29,7 +29,9 @@
 export const GAP_STATES = ['assessed-before-taught', 'taught-assessed', 'taught-not-assessed', 'skipped', 'not-yet-taught'] as const;
 export type GapState = (typeof GAP_STATES)[number];
 
-export type GapPaper = { paperId: string; examId: string; examName: string; date: string | null };
+// `kind`: the exam's type in both languages as the school names it (C230-AJ part 2), added when the screen is read; a label
+// only, it changes no state and no count.
+export type GapPaper = { paperId: string; examId: string; examName: string; date: string | null; kind?: { key: string; en: string; hi: string } };
 
 // What the database says about one unit (public.curriculum_gap_units): days are 'YYYY-MM-DD'.
 export type UnitFacts = {
