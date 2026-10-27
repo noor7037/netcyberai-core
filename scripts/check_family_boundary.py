@@ -53,7 +53,17 @@ FAMILY_DOORS = {
     "@/lib/auth/env": {"src/lib/family/secret.ts"},
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
     # The homework helper screens a photo with the upload screen every stored file uses (M2-6, C280).
-    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts"},
+    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts", "src/lib/family/tutor.ts"},
+    # The shared tutor window's files (S2, C375): the private family-tutor bucket, through this one family file, which
+    # also screens every kept file with the upload check above.
+    # A parent asks for a chapter, with the book's chapter as a PDF (S3, C376): kept in the private store from the request
+    # route; removing a child or the account takes those PDFs out of the store first (DPDP erasure).
+    "@/lib/storage/supabase-file-storage": {
+        "src/lib/family/tutor.ts",
+        "src/app/api/family/chapter-request/route.ts",
+        "src/app/api/family/account/route.ts",
+        "src/app/api/family/children/[childId]/route.ts",
+    },
     # Voice input applies the 12-digit rule to the words it hears before they are shown (M2-7, C281).
     "@/lib/privacy/aadhaar": {"src/lib/family/voice.ts"},
     # Staff prepare the explanations of a syllabus version before children ask (C300): the content staff guard (the
@@ -74,9 +84,6 @@ FAMILY_DOORS = {
     # from the paper the family is already shown. It draws only; it reads nothing but the page pictures the caller
     # fetches through the family's own route.
     "@/lib/marking/checked-pdf": {"src/components/family/CheckedPaperPdf.tsx"},
-    # A parent asks for a chapter, with the book's chapter as a PDF (S3, C376): the PDF is screened as the syllabus read
-    # does, and kept in the private store, from this one route.
-    "@/lib/storage/supabase-file-storage": {"src/app/api/family/chapter-request/route.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")

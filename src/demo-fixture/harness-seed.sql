@@ -283,3 +283,21 @@ values ('f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000
         '[{"topicKey": "cbse.c9.mathematics.u1.ch01.t02", "subject": "mathematics"}, {"topicKey": "cbse.c9.mathematics.u1.ch01.t01", "subject": "mathematics"}]'::jsonb,
         'The teacher said irrational numbers need more practice.');
 -- m3-7 end
+-- s2 begin
+-- The shared tutor window (S2, C375): Kabir asked one Mathematics question with a photo, and the tutor's answer is kept,
+-- so the Conversation tab and the parent's Learning Vault have something to show. The photo's row only: the harness has
+-- no file store, and the picture is never opened. Illustrative only.
+insert into family.tutor_conversations (conversation_id, account_id, child_id, subject, updated_at)
+values ('f0000000-0000-4000-8000-0000000fa201', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'mathematics', now() - interval '1 hour');
+insert into family.tutor_messages (message_id, conversation_id, account_id, child_id, role, body, created_at)
+values ('f0000000-0000-4000-8000-0000000fa202', 'f0000000-0000-4000-8000-0000000fa201', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'child',
+        'Why can q not be zero in p/q?', now() - interval '1 hour');
+insert into family.tutor_messages (message_id, conversation_id, account_id, child_id, role, blocks, created_at)
+values ('f0000000-0000-4000-8000-0000000fa203', 'f0000000-0000-4000-8000-0000000fa201', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'tutor',
+        '[{"type":"explanation","title":"Why q is never zero","idea":"A fraction p/q means p shared into q equal parts, and nothing can be shared into zero parts.","example":"6/3 = 2 because 3 groups of 2 make 6. For 6/0, no number of groups of zero makes 6.","steps":["Write the division as a multiplication: 6/0 = x means 0 × x = 6.","Zero times any number is zero, never 6, so there is no answer."],"terms":[]},{"type":"key_points","points":["p/q is rational only when q is not zero.","Division by zero has no answer."]}]'::jsonb,
+        now() - interval '1 hour' + interval '1 second');
+insert into family.tutor_attachments (attachment_id, conversation_id, account_id, child_id, message_id, status, mime, size_bytes, storage_key, created_at)
+values ('f0000000-0000-4000-8000-0000000fa204', 'f0000000-0000-4000-8000-0000000fa201', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002',
+        'f0000000-0000-4000-8000-0000000fa202', 'ready', 'image/jpeg', 182000,
+        'f0000000-0000-4000-8000-0000000f0004/f0000000-0000-4000-8000-0000000fc002/f0000000-0000-4000-8000-0000000fa204.jpg', now() - interval '1 hour');
+-- s2 end

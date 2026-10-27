@@ -2,7 +2,7 @@ import { type ChapterRequest, type RequestStatus, type SourceMode } from './chap
 import { guarded } from './chapter-store';
 import { cleanTitle } from './child-syllabus';
 import { syllabusBoardOf } from './children';
-import type { FileStorage } from '@/lib/storage/file-storage';
+import type { DirectUploadStorage, FileStorage } from '@/lib/storage/file-storage';
 
 // The missing-chapter queue, the family's side (S3, C376): a parent asks for a chapter the catalog does not have, with
 // the book's chapter as a PDF (kept private, seen only by the NetCyberAI reviewer, removed when the request is ready or
@@ -69,7 +69,7 @@ export async function createRequest(
       const same = await db.query(`select 1 from content.chapter_requests where child_id = $1 and subject = $2 and lower(title) = lower($3) and status in ('received', 'digitizing')`, [a.childId, a.subject, title]);
       if (same.rows.length) return { ok: false, reason: 'duplicate' };
       const requestId = globalThis.crypto.randomUUID();
-      const key = a.pdf ? `family/${accountId}/chapter-requests/${requestId}.pdf` : null;
+      const key = a.pdf ? `${requestFolder(accountId)}/${requestId}.pdf` : null;
       if (key && a.pdf) {
         try {
           await storage.put(key, a.pdf, 'application/pdf');
@@ -107,9 +107,45 @@ export async function cancelRequest(db: Db, storage: FileStorage, accountId: str
     null
   );
   if (!gone) return false;
-  if (gone.upload_key) await storage.remove(gone.upload_key).catch(() => undefined);
+  // The file goes before the row's removal is kept: if the store refuses, this throws and the transaction rolls back,
+  // so no stored PDF is left that no row names (lead's fix, S3).
+  if (gone.upload_key) await removeRequestFile(storage, gone.upload_key);
   return true;
 }
+
+// Thrown when the store cannot remove a parent's PDF: the caller's transaction rolls back (503).
+export class RequestFileError extends Error {
+  constructor() {
+    super('a chapter request file could not be removed');
+    this.name = 'RequestFileError';
+  }
+}
+async function removeRequestFile(storage: FileStorage, key: string): Promise<void> {
+  try {
+    await storage.remove(key);
+  } catch {
+    throw new RequestFileError();
+  }
+}
+
+// DPDP erasure (lead's fix, S3): a child's or the whole account's request PDFs leave the private bucket before their
+// rows go with the child (the foreign key cascades) or the account. For the whole account, anything left under its
+// folder (a file whose removal failed after a review step) goes too.
+export async function removeRequestFilesOf(db: Db, storage: DirectUploadStorage, accountId: string, childId: string | null): Promise<number> {
+  const rows = (
+    await db.query(`select upload_key from content.chapter_requests where account_id = $1 and ($2::uuid is null or child_id = $2::uuid) and upload_key is not null`, [accountId, childId])
+  ).rows as { upload_key: string }[];
+  for (const r of rows) await removeRequestFile(storage, r.upload_key);
+  if (childId === null) {
+    try {
+      await storage.removeOlderThan(`${requestFolder(accountId)}/`, new Date(Date.now() + 60_000));
+    } catch {
+      throw new RequestFileError();
+    }
+  }
+  return rows.length;
+}
+export const requestFolder = (accountId: string) => `family/${accountId}/chapter-requests`;
 
 // ---- the per-student assignment mode ----------------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { cancelRequest, createRequest, isPdf, listRequests, REQUEST_PDF_MAX_BYTES } from '@/lib/family/chapter-requests';
+import { cancelRequest, createRequest, isPdf, listRequests, REQUEST_PDF_MAX_BYTES, RequestFileError } from '@/lib/family/chapter-requests';
 import { checkSyllabusRequest, isUuid, PROBLEM_STATUS } from '@/lib/family/child-syllabus';
 import { hasPersonalInfo } from '@/lib/family/homework';
 import { familyRun, jsonBody, requireParent } from '@/lib/family/request';
@@ -62,5 +62,10 @@ export async function DELETE(req: NextRequest) {
   if (p.error) return p.error;
   if (!isUuid(body.requestId)) return refuse('bad_request');
   const requestId = body.requestId;
-  return familyRun(p.session, async (db) => ((await cancelRequest(db, supabaseFileStorage, p.session.accountId, requestId)) ? NextResponse.json({ ok: true }) : refuse('not_found')));
+  try {
+    return await familyRun(p.session, async (db) => ((await cancelRequest(db, supabaseFileStorage, p.session.accountId, requestId)) ? NextResponse.json({ ok: true }) : refuse('not_found')));
+  } catch (e) {
+    if (e instanceof RequestFileError) return refuse('storage_unavailable');
+    throw e;
+  }
 }

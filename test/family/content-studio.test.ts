@@ -259,6 +259,24 @@ describe('the decline path and the source mode', () => {
     expect((await call('chapter-request', 'DELETE', { requestId: id }, OTHER)).status).toBe(404);
   });
 
+  it('a store that cannot remove the PDF keeps the request; removing the child or the account removes its PDFs', async () => {
+    const { removeRequestFilesOf } = await import('@/lib/family/chapter-requests');
+    const made = await call('chapter-request', 'POST', { childId: CHILD, subject: 'science', title: 'Kept while the store is down', pdf: PDF });
+    const id = (made.body.request as { requestId: string }).requestId;
+    const remove = storage.remove.bind(storage);
+    storage.remove = async () => {
+      throw new Error('store down');
+    };
+    expect((await call('chapter-request', 'DELETE', { requestId: id })).status).toBe(503);
+    storage.remove = remove;
+    expect((await call('chapter-request', 'GET')).body.requests).toEqual(expect.arrayContaining([expect.objectContaining({ requestId: id })]));
+    expect(storage.files.size).toBe(1);
+    // The child's removal (and the account's) takes the request's PDF out of the bucket first.
+    expect(await fam((c) => removeRequestFilesOf(c, storage, ACCOUNT, CHILD))).toBe(1);
+    expect(storage.files.size).toBe(0);
+    expect((await call('chapter-request', 'DELETE', { requestId: id })).status).toBe(200);
+  });
+
   it('a subject’s source is the parent’s choice, own account only', async () => {
     const { readSourceModes, sourceShown } = await import('@/lib/family/chapter-requests');
     expect((await call('subject-source', 'POST', { childId: CHILD, subject: 'science', mode: 'parent' })).status).toBe(200);

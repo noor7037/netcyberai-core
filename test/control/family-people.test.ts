@@ -101,7 +101,8 @@ describe('the door: family.control_accounts()', () => {
   it('returns what Control needs and nothing else: never a PIN, a token version or an answer', async () => {
     const asha = (await people('asha')).rows[0];
     expect(Object.keys(asha).sort()).toEqual(['account_id', 'answers_7d', 'children', 'consents', 'created_at', 'email', 'has_pin', 'last_answered_on', 'last_sign_in_at', 'preview', 'ui_language']);
-    expect(asha.children).toEqual([
+    // Both children are added in one statement, so they share created_at: compared in name order.
+    expect([...asha.children].sort((a: { first_name: string }, b: { first_name: string }) => a.first_name.localeCompare(b.first_name))).toEqual([
       { first_name: 'Alsifa', class_level: 6, board_id: 'CBSE', language: 'en', free_subject: null },
       { first_name: 'Kabir', class_level: -1, board_id: 'CBSE', language: 'hi', free_subject: null },
     ]);

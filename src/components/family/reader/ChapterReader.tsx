@@ -8,6 +8,9 @@ import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, Sources
 import { NO_VOICE_EVENT, speak, stopSpeaking } from '../english/speech';
 import { SPEEDS, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
 import { TableView } from './TableView';
+import { TutorDrawer } from '../tutor/TutorDrawer';
+import type { TutorReaderContext } from '../tutor/TutorWindow';
+import type { Subject } from '@/lib/family/subjects';
 
 // The chapter reader (S1, C374; docs/37 §4 Wave 2): the chapter's blocks in order through the block renderer, and
 // sticky narration controls (play and pause, a sentence back or forward, a slider over every sentence, speed 0.75–1.5×),
@@ -19,7 +22,22 @@ import { TableView } from './TableView';
 
 const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then((m) => m.InteractiveView));
 
-type Props = { chapterKey: string; lang: 'en' | 'hi'; blocks: Block[]; ids: string[]; script: NarrationLine[]; start: number; resumed: boolean; w: Words; tone: string; preview?: boolean };
+// `tutor` (S2, C375): the doubt drawer, the shared tutor window over the chapter, for the chapter's subject; null hides it.
+type Props = {
+  chapterKey: string;
+  lang: 'en' | 'hi';
+  blocks: Block[];
+  ids: string[];
+  script: NarrationLine[];
+  start: number;
+  resumed: boolean;
+  w: Words;
+  tone: string;
+  chapterTitle?: string;
+  tutor?: { subject: Subject; voice: { secondsLeft: number } | null; files: boolean; homework: boolean } | null;
+  // S3 (C376): the studio's preview: the same reader, the child's place never saved.
+  preview?: boolean;
+};
 
 // The CSS Custom Highlight API, where the browser has it (a phone without it still gets the block's ring and the
 // sentence shown in the controls).
@@ -47,7 +65,8 @@ function findSentence(root: HTMLElement, text: string, nth: number): { node: Tex
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, preview = false }: Props) {
+export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, chapterTitle = '', tutor = null, preview = false }: Props) {
+  const [doubt, setDoubt] = useState<TutorReaderContext | null>(null);
   const [index, setIndex] = useState(Math.min(Math.max(start, 0), Math.max(script.length - 1, 0)));
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
@@ -188,6 +207,20 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   };
 
   const activeBlock = started ? line?.blockId : undefined;
+
+  // The doubt drawer asks about the block being read aloud, or else the first block still on screen.
+  const openDoubt = () => {
+    // Reading aloud pauses while the child asks (the microphone must not hear the phone's own voice).
+    if (playing) pause();
+    let at = activeBlock ? ids.indexOf(activeBlock) : -1;
+    if (at < 0) {
+      at = ids.findIndex((id) => (blockEls.current.get(id)?.getBoundingClientRect().bottom ?? -1) > 96);
+      if (at < 0) at = 0;
+    }
+    const b = blocks[at];
+    const section = b && 'title' in b && typeof b.title === 'string' && b.title ? b.title : chapterTitle;
+    if (ids[at]) setDoubt({ chapterKey, blockId: ids[at], section });
+  };
   const pct = started || resumed ? progressPercent(index, total) : 0;
   const playLabel = playing ? w['fam.reader.pause'] : done ? w['fam.reader.again'] : resumed && !started ? w['fam.reader.resume'] : started ? w['fam.reader.continue'] : w['fam.reader.listen'];
 
@@ -283,12 +316,29 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
               ))}
             </div>
           </div>
+          {tutor && (
+            <button
+              type="button"
+              onClick={openDoubt}
+              data-reader-doubt
+              className="fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-white px-4 text-base font-bold text-royal-deep ring-1 ring-royal/20 hover:bg-off-white"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
+                <path d="M9.5 9.5a2.5 2.5 0 0 1 4.6 1.3c0 1.7-2.1 2-2.1 3.4M12 17h.01" />
+              </svg>
+              {w['fam.tutor.doubt']}
+            </button>
+          )}
           <label className="flex flex-col gap-1 text-xs font-semibold text-slate">
             <span>{fill(w['fam.reader.position'], { n: index + 1, total })}</span>
             <input type="range" min={0} max={Math.max(total - 1, 0)} step={1} value={index} onChange={(e) => seek(Number(e.target.value))} aria-label={w['fam.reader.seek']} className="h-11 w-full accent-royal" />
           </label>
           <p className="text-xs text-slate/80">{w['fam.block.deviceVoice']}</p>
         </section>
+      )}
+      {tutor && doubt && (
+        <TutorDrawer open onClose={() => setDoubt(null)} w={w} subject={tutor.subject} tone={tone} reader={doubt} voice={tutor.voice} files={tutor.files} homework={tutor.homework} />
       )}
     </div>
   );

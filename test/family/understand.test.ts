@@ -356,3 +356,41 @@ describe('a typed question’s subject, decided on the server', () => {
     expect(await freeSubject(OTHER_CHILD)).toBe('science');
   });
 });
+
+// S2 (C375): the shared tutor window asks through this same route, and an answered question is kept in the child's
+// conversation: always the child this phone chose, never one the body names; a follow-up is not kept again.
+describe('the tutor window’s questions (C375)', () => {
+  const SIBLING = 'f5000000-0000-4000-8000-0000000000a4';
+  const turns = async (child: string) => (await db.pg.query(`select role, body, chapter_key, block_id from family.tutor_messages where child_id = $1 order by created_at, role`, [child])).rows;
+  it('keeps the answered question for the chosen child, with the reader’s chapter and block, and tells the tutor where it was asked', async () => {
+    await db.pg.query(`insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values ($1, $2, 'Isha', 9, 'CBSE', 'en', 'en', 'IN-UP')`, [SIBLING, ACCOUNT]);
+    const { chapterView, showcaseChapter } = await import('@/lib/family/chapters');
+    const v = chapterView(showcaseChapter('nc.showcase.equal-fractions')!, 'en');
+    ai.lines = [named('mathematics'), ...GOOD.map((g) => JSON.stringify(g))];
+    const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', childId: SIBLING, tutor: { subject: 'mathematics', chapterKey: v.key, blockId: v.ids[0], childId: SIBLING } }, jar)));
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(ai.calls.at(-1)!.user).toContain(`asked while reading: ${v.title}`);
+    const kept = await turns(CHILD);
+    expect(kept).toEqual([
+      { role: 'child', body: 'Why are these equal?', chapter_key: v.key, block_id: v.ids[0] },
+      { role: 'tutor', body: null, chapter_key: null, block_id: null },
+    ]);
+    expect(JSON.stringify((await db.pg.query(`select blocks from family.tutor_messages where child_id = $1 and role = 'tutor'`, [CHILD])).rows)).not.toMatch(/"type":"(check|practice)"|"options"/);
+    expect(await turns(SIBLING)).toEqual([]);
+    // A follow-up is answered but not kept again.
+    await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', followUp: 'simpler', tutor: { subject: 'mathematics' } }, jar)));
+    expect((await turns(CHILD)).length).toBe(2);
+  });
+  it('a reader context that is not ours, or a file that is not this child’s, is refused before the tutor is asked', async () => {
+    const before = ai.calls.length;
+    const bad = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', tutor: { subject: 'mathematics', chapterKey: 'nc.showcase.equal-fractions', blockId: 'no-such-block' } }, jar)));
+    expect(bad).toMatchObject([{ t: 'refused', reason: 'not_found' }]);
+    const file = 'f5000000-0000-4000-8000-0000000000e1';
+    const conv = (await db.pg.query(`insert into family.tutor_conversations (account_id, child_id, subject) values ($1, $2, 'mathematics') returning conversation_id`, [ACCOUNT, SIBLING])).rows[0].conversation_id;
+    await db.pg.query(`insert into family.tutor_attachments (attachment_id, conversation_id, account_id, child_id, status, mime, size_bytes, storage_key) values ($1, $2, $3, $4, 'ready', 'image/png', 10, $5)`, [file, conv, ACCOUNT, SIBLING, `${ACCOUNT}/${SIBLING}/${file}.png`]);
+    const sib = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is this?', tutor: { subject: 'mathematics', files: [file] } }, jar)));
+    expect(sib).toMatchObject([{ t: 'refused', reason: 'not_found' }]);
+    expect(ai.calls.length).toBe(before);
+    expect((await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'What is this?', tutor: { subject: 'cooking' } }, jar))).status).toBe(400);
+  });
+});
