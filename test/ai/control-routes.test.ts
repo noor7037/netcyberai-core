@@ -331,6 +331,24 @@ describe('the founder’s address for the OpenAI-compatible adapter (G1)', () =>
     expect(row.after_state).toEqual({ providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1', keyRemoved: true });
   });
 
+  it('a clearance for children’s words does not move to another host: refused while a child-words profile uses it, else withdrawn with the change', async () => {
+    resolvesTo('8.8.4.4');
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v1' });
+    expect(await post({ action: 'clearance', providerId: 'openai_compatible', cleared: true, termsUrl: 'https://llm.example.com/terms' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await post({ action: 'profile', profileId: 'family.resolver', providerId: 'openai_compatible', model: 'open-model-1', promptVersion: 'v1', enabled: false })).toEqual({ status: 200, body: { ok: true } });
+    // The same host keeps the clearance; another host is refused while a child-words profile uses the provider.
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v2' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'in_use' }) });
+    expect(await q(`select base_url, cleared_for_minors from control.ai_providers where provider_id = 'openai_compatible'`)).toEqual([{ base_url: 'https://llm.example.com/v2', cleared_for_minors: true }]);
+    // With the profile moved off, the change goes through and takes the clearance with it.
+    await post({ action: 'profile', profileId: 'family.resolver', providerId: null, model: null, promptVersion: 'v1', enabled: false });
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select base_url, cleared_for_minors, cleared_terms_url, cleared_by from control.ai_providers where provider_id = 'openai_compatible'`)).toEqual([{ base_url: 'https://other.example.net/v1', cleared_for_minors: false, cleared_terms_url: null, cleared_by: null }]);
+    const [row] = await q(`select after_state from audit_log where event_action = 'ai.endpoint_changed' order by audit_id desc limit 1`);
+    expect(row.after_state).toMatchObject({ baseUrl: 'https://other.example.net/v1', clearanceWithdrawn: true });
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: null });
+  });
+
   it('a feature that needs photos cannot be put on an adapter that does not declare them (code "capability")', async () => {
     const r = await post({ action: 'profile', profileId: 'family.syllabus_extract', providerId: 'openai_compatible', model: 'open-model-1', promptVersion: 'v1', enabled: true });
     expect(r).toEqual({ status: 400, body: expect.objectContaining({ code: 'capability' }) });
