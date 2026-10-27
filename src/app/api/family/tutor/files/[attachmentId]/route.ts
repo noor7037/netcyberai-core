@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { familyRead, familyRun, requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE, FAMILY_PARENT_COOKIE, verifyParentMode } from '@/lib/family/session';
-import { finishTutorUpload, isUuid, pendingUpload, readTutorArrival, removeUnsentFile, signedTutorFile, tutorChild, tutorStorage } from '@/lib/family/tutor';
+import { finishTutorUpload, isUuid, pendingUpload, readTutorArrival, removeUnsentFile, signedTutorFile, TutorStorageError, tutorChild, tutorStorage } from '@/lib/family/tutor';
 
 // One tutor file (S2, C375).
 //   POST    confirm it once sent: the server reads what arrived (size, first bytes, the Aadhaar check) and keeps it, or
@@ -34,11 +34,16 @@ export async function POST(req: NextRequest, { params }: Params) {
   // 2. What arrived, read and checked with no transaction held.
   const arrival = await readTutorArrival(tutorStorage, found.row);
   // 3. Kept or taken away, in a second one.
-  return familyRun(g.session, async (db) => {
-    const done = await finishTutorUpload(db, tutorStorage, { accountId: g.session.accountId, childId }, params.attachmentId, arrival);
-    if (done.ok) return NextResponse.json({ ok: true });
-    return NextResponse.json({ error: done.reason }, { status: done.reason === 'storage_unavailable' ? 503 : done.reason === 'not_found' ? 404 : 400 });
-  });
+  try {
+    return await familyRun(g.session, async (db) => {
+      const done = await finishTutorUpload(db, tutorStorage, { accountId: g.session.accountId, childId }, params.attachmentId, arrival);
+      if (done.ok) return NextResponse.json({ ok: true });
+      return NextResponse.json({ error: done.reason }, { status: done.reason === 'storage_unavailable' ? 503 : done.reason === 'not_found' ? 404 : 400 });
+    });
+  } catch (e) {
+    if (e instanceof TutorStorageError) return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 });
+    throw e;
+  }
 }
 
 export async function GET(req: NextRequest, { params }: Params) {
@@ -75,13 +80,16 @@ export async function DELETE(req: NextRequest, { params }: Params) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
-  return familyRun(g.session, async (db) => {
-    const who = await tutorChild(db, g.session.accountId, chosen);
-    if (!who.ok) return NextResponse.json({ error: who.error }, { status: who.status });
-    try {
+  // A store that fails throws out of the transaction, so the row's removal rolls back with it: the row stays and
+  // the file is still found by a later take-back, the Vault's clear or the account's removal (security review, S2).
+  try {
+    return await familyRun(g.session, async (db) => {
+      const who = await tutorChild(db, g.session.accountId, chosen);
+      if (!who.ok) return NextResponse.json({ error: who.error }, { status: who.status });
       return (await removeUnsentFile(db, tutorStorage, { accountId: g.session.accountId, childId: who.child.childId }, params.attachmentId)) ? NextResponse.json({ ok: true }) : notFound();
-    } catch {
-      return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 });
-    }
-  });
+    });
+  } catch (e) {
+    if (e instanceof TutorStorageError) return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 });
+    throw e;
+  }
 }

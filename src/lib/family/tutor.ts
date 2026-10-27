@@ -309,7 +309,13 @@ export async function finishTutorUpload(db: Db, storage: DirectUploadStorage, wh
     kept = null;
   }
   if (!kept || !sameBytes(kept, arrival.bytes)) {
-    await storage.remove(row.storage_key).catch(() => undefined);
+    // The moved file must go before its row does: if the store refuses, the transaction rolls back and the row (with
+    // both keys) still leads to it, so nothing is left in the bucket that no row names (security review, S2).
+    try {
+      await storage.remove(row.storage_key);
+    } catch {
+      throw new TutorStorageError();
+    }
     await db.query(`delete from family.tutor_attachments where attachment_id = $1`, [attachmentId]);
     return { ok: false, reason: 'upload_changed' };
   }

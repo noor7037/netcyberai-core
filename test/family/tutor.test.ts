@@ -232,6 +232,17 @@ describe('files (C375)', () => {
     expect(await fam((c) => removeUnsentFile(c, s, { accountId: ACCOUNT, childId: SIBLING }, ids[0]))).toBe(false);
     expect(await fam((c) => removeUnsentFile(c, s, who, ids[0]))).toBe(true);
     expect(s.files.size).toBe(2);
+    // Security review (S2): a store that fails on take-back rolls the row's removal back, so no file is left that no
+    // row names (the Vault's clear and the account's removal find files through their rows).
+    const remove = s.remove.bind(s);
+    s.remove = async () => {
+      throw new Error('store down');
+    };
+    await expect(fam((c) => removeUnsentFile(c, s, who, ids[1]))).rejects.toThrow();
+    s.remove = remove;
+    const kept = await fam((c) => c.query(`select 1 from family.tutor_attachments where attachment_id = $1`, [ids[1]]));
+    expect(kept.rows).toHaveLength(1);
+    expect(s.files.size).toBe(2);
   });
 });
 
