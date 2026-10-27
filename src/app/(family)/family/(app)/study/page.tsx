@@ -7,8 +7,9 @@ import { PackButton } from '@/components/family/offline/PackButton';
 import { SaverLink } from '@/components/family/offline/SaverLink';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { SyllabusList } from '@/components/family/SyllabusList';
+import { StatusBadge } from '@/components/family/StatusBadge';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
-import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { classSubjects, publishedSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
@@ -21,6 +22,7 @@ import { indiaDate } from '@/lib/time/india';
 import { OFFLINE_KEYS } from '@/lib/family/offline-words';
 import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
+import { subjectStatus } from '@/lib/family/study-status';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
 import { TonightPractice } from '@/components/family/TonightPractice';
 import { TEST_LIST_KEYS, TestList } from '@/components/family/school-test/TestList';
@@ -63,7 +65,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   }
   const board = syllabusBoardOf(child);
   // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
-  const [subjects, openToAll] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel }), openSubjects(db)]));
+  const [subjects, openToAll, published] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel, stream: child.stream }), openSubjects(db), publishedSubjects(db, { board, classLevel: child.classLevel })]));
   const requested = subjects.find((s) => s === searchParams.subject);
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject, openToAll);
@@ -102,6 +104,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           {subjects.map((s) => {
             const on = s === subject;
             const locked = !subjectAccess(child, s, openToAll).open;
+            // S4 (C377): Published only where a version is really released; nothing is shown otherwise.
+            const status = subjectStatus(s, published);
             return (
               <Link
                 key={s}
@@ -113,6 +117,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                   <SubjectGlyph subject={s} className="h-5 w-5" />
                 </span>
                 {t(lang, `fam.subject.${s}`)}
+                {status && <StatusBadge status={status} lang={lang} />}
                 {locked && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
                 {locked && (
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -167,6 +172,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                     <span className="min-w-0 flex-1" lang={titleLang(c.title)}>
                       {c.title}
                     </span>
+                    {/* Every chapter listed here comes from the version released to everyone: it is Published. */}
+                    <StatusBadge status="published" lang={lang} />
                     <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${subjectTheme(subject).ink}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                       <path d="M9 6l6 6-6 6" />
                     </svg>
