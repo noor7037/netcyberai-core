@@ -1,6 +1,8 @@
 import { familyClaims } from '@/lib/family/db';
 import { redirect } from 'next/navigation';
+import { ChapterRequestPanel } from '@/components/family/ChapterRequestPanel';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
+import { listRequests, readSourceModes } from '@/lib/family/chapter-requests';
 import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea } from '@/components/family/ParentArea';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
@@ -92,6 +94,23 @@ const SYLLABUS_KEYS: MessageKey[] = [
   'fam.err.not_found', 'fam.err.consent_required', 'fam.err.bad_request',
 ];
 
+// S3 (C376): asking for a chapter and choosing the source (src/components/family/ChapterRequestPanel.tsx).
+const REQUEST_KEYS: MessageKey[] = [
+  'fam.request.title', 'fam.request.lead', 'fam.request.child', 'fam.request.subject', 'fam.request.chapterName', 'fam.request.pdf', 'fam.request.privacy',
+  'fam.request.send', 'fam.request.sent', 'fam.request.yours', 'fam.request.none', 'fam.request.declined', 'fam.request.withdraw', 'fam.request.sourceTitle',
+  'fam.request.sourceLead', 'fam.request.source.all', 'fam.request.source.catalog', 'fam.request.source.school', 'fam.request.source.parent',
+  'fam.request.err.duplicate', 'fam.request.err.too_many', 'fam.request.err.not_a_pdf', 'fam.request.err.too_big', 'fam.request.err.encrypted', 'fam.request.err.too_long',
+  'fam.request.err.personal_info', 'fam.request.err.storage_unavailable', 'fam.request.err.not_ready', 'fam.request.err.bad_request',
+  'fam.status.received', 'fam.status.digitizing', 'fam.status.published', 'fam.err.network', 'fam.err.parent_pin_required', 'fam.err.not_found', 'fam.err.consent_required',
+];
+
+// One child after the other: each read holds a savepoint on the family's single connection.
+async function modesOf(db: Parameters<typeof readSourceModes>[0], accountId: string, children: { childId: string }[]) {
+  const out: Record<string, Awaited<ReturnType<typeof readSourceModes>>> = {};
+  for (const c of children) out[c.childId] = await readSourceModes(db, accountId, c.childId);
+  return out;
+}
+
 export default async function FamilyParentPage() {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
@@ -166,6 +185,9 @@ export default async function FamilyParentPage() {
       page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ childId: c.childId, firstName: c.firstName, subjects: await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream }) }))
     ),
     syllabi: await listSyllabi(db, page.session.accountId),
+    // S3 (C376): the chapters the parent asked for, and the source each child's subject reads.
+    requests: await listRequests(db, page.session.accountId),
+    modes: await modesOf(db, page.session.accountId, page.children),
   }));
   // The Focus Lock (M2b-1, C305): shown when Control has it switched on for this family, or a phone is still set up.
   const focusRead = await familyPageRead(page, (db) => parentFocus(db, page.session.accountId));
@@ -201,6 +223,9 @@ export default async function FamilyParentPage() {
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            {own.childList.length > 0 && page.consents.study_core && (
+              <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} lang={lang} childList={own.childList} requests={own.requests} modes={own.modes} />
+            )}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>
         }

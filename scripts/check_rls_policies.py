@@ -509,6 +509,12 @@ ALLOWED_PERMISSIVE = (
         ("family.push_sent", "push_sent_own"),
         # S1 (C374): where a child stopped listening to a chapter; own account only (restrictive twin below).
         ("family.chapter_reading", "chapter_reading_own"),
+        # S3 (C376): published chapters (or the family's own upload), the family's own requests, and its subject sources.
+        ("content.chapter_contents", "chapter_contents_family_read"),
+        ("content.chapter_requests", "chapter_requests_family_read"),
+        ("content.chapter_requests", "chapter_requests_family_add"),
+        ("content.chapter_requests", "chapter_requests_family_cancel"),
+        ("family.child_subject_source", "child_subject_source_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -1055,6 +1061,10 @@ REQUIRED_RESTRICTIVE = {
     ("family.push_sent", "push_sent_own_only"),
     # S1 (C374): own account only.
     ("family.chapter_reading", "chapter_reading_own_only"),
+    # S3 (C376): the chapters, the requests and the subject sources are held to the family's own account.
+    ("content.chapter_contents", "chapter_contents_family_only"),
+    ("content.chapter_requests", "chapter_requests_family_only"),
+    ("family.child_subject_source", "child_subject_source_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

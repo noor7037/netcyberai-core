@@ -10,7 +10,8 @@ import { SyllabusList } from '@/components/family/SyllabusList';
 import { StatusBadge } from '@/components/family/StatusBadge';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, publishedSubjects, readFamilyCatalog } from '@/lib/family/catalog';
-import { showcaseFor } from '@/lib/family/chapters';
+import { readableChapters } from '@/lib/family/chapter-store';
+import { listRequests, queueStatusOf, readSourceModes, requestStudyStatus, sourceShown } from '@/lib/family/chapter-requests';
 import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
@@ -70,14 +71,24 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const requested = subjects.find((s) => s === searchParams.subject);
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject, openToAll);
-  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  // S3 (C376): the parent's choice of source for this subject (none: every source shown), the child's chapter requests
+  // (the missing-chapter queue behind the Received and Digitizing badges), and the chapters that can be opened.
+  // One after the other: each read holds a savepoint on the family's single connection.
+  const [modes, requests] = await familyPageRead(page, async (db) => {
+    const m = await readSourceModes(db, page.session.accountId, child.childId);
+    return [m, await listRequests(db, page.session.accountId, child.childId)] as const;
+  });
+  const mode = modes[subject];
+  const readable = access.open ? await familyPageRead(page, (db) => readableChapters(db, { board, classLevel: child.classLevel, subject, childId: child.childId })) : [];
+  const subjectRequests = requests.filter((r) => r.subject === subject);
+  const catalog = access.open && sourceShown(mode, 'catalog') ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
   // C230-AB: the syllabus the parent saved for this child and subject, below the board's catalog when there is one.
   // Each line opens Understand as a typed question about it.
-  const own = access.open ? await familyPageRead(page, (db) => readOwnSyllabus(db, page.session.accountId, child.childId, subject)) : null;
+  const own = access.open && sourceShown(mode, 'parent') ? await familyPageRead(page, (db) => readOwnSyllabus(db, page.session.accountId, child.childId, subject)) : null;
   const ownHref = (itemId: string) => `/family/understand?kind=own&key=${encodeURIComponent(itemId)}`;
   // The school's own syllabus for this subject (C230-AA), for a child matched to a connected school's student.
   const [switches, links] = await familyPageRead(page, (db) => Promise.all([readFamilySwitches(db, page.session.accountId), access.open ? activeLinks(db, page.session.accountId) : Promise.resolve([])]));
-  const school = links.length ? await schoolStudyFor(familyClaims(page.session), links, child.childId, subject) : { chapters: null, tonight: [] };
+  const school = links.length && sourceShown(mode, 'school') ? await schoolStudyFor(familyClaims(page.session), links, child.childId, subject) : { chapters: null, tonight: [] };
   // AQ-4 (C365): the school's online tests for the child's class, coming up or open now, whatever the subject chosen.
   const testLinks = access.open ? links : await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
   const tests = testLinks.length ? await childOnlineTests(familyClaims(page.session), testLinks, child.childId) : [];
@@ -106,7 +117,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             const on = s === subject;
             const locked = !subjectAccess(child, s, openToAll).open;
             // S4 (C377): Published only where a version is really released; nothing is shown otherwise.
-            const status = subjectStatus(s, published);
+            const status = subjectStatus(s, published, queueStatusOf(requests, s));
             return (
               <Link
                 key={s}
@@ -156,19 +167,37 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                 </span>
               </Link>
             )}
-            {/* S1 (C374): the chapter reader, for a subject with a NetCyber-authored chapter. */}
-            {showcaseFor(subject) && (
-              <Link href={`/family/study/chapter/${encodeURIComponent(showcaseFor(subject)!.key)}`} data-reader-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
+            {/* S1 (C374), S3 (C376): the chapter reader, for each chapter of the subject that can be opened. */}
+            {readable.map((c) => (
+              <Link key={c.key} href={`/family/study/chapter/${encodeURIComponent(c.key)}`} data-reader-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
                 <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
                   <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 5a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2V5zM20 5a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 1 2 2V5z" />
                   </svg>
                 </span>
-                <span className="flex flex-col">
-                  <span className="text-base font-bold text-slate">{t(lang, 'fam.reader.studyLink')}</span>
+                <span className="flex min-w-0 flex-col">
+                  <span className="text-base font-bold text-slate" lang={lang}>{c.title[lang === 'hi' ? 'hi' : 'en']}</span>
                   <span className="text-sm text-slate/80">{t(lang, 'fam.reader.studyLead')}</span>
                 </span>
               </Link>
+            ))}
+            {subjectRequests.length > 0 && (
+              <section aria-labelledby="fam-requests" data-chapter-requests className="flex flex-col gap-2">
+                <h2 id="fam-requests" className="px-1 text-lg font-extrabold text-slate">
+                  {t(lang, 'fam.request.studyTitle')}
+                </h2>
+                <ul className="flex flex-col gap-2">
+                  {subjectRequests.map((r) => {
+                    const st = requestStudyStatus(r.status);
+                    return (
+                      <li key={r.requestId} className="fam-card flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 py-2 text-base font-bold text-slate">
+                        <span className="min-w-0" lang={titleLang(r.title)}>{r.title}</span>
+                        {st ? <StatusBadge status={st} lang={lang} /> : <span className="text-sm font-semibold text-slate/80">{t(lang, 'fam.request.declined')}</span>}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
             )}
           </>
         )}

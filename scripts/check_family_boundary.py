@@ -69,11 +69,14 @@ FAMILY_DOORS = {
     # through this one family file.
     "@/lib/online/guardian": {"src/lib/family/online-tests.ts"},
     # A parent's own syllabus from a PDF (C230-AB): the PDF reader and its "title on its page" check, as Control's import.
-    "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts"},
+    "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts", "src/app/api/family/chapter-request/route.ts"},
     # The checked paper as a PDF (C366): the same drawing the school's office makes it with, in the parent's browser,
     # from the paper the family is already shown. It draws only; it reads nothing but the page pictures the caller
     # fetches through the family's own route.
     "@/lib/marking/checked-pdf": {"src/components/family/CheckedPaperPdf.tsx"},
+    # A parent asks for a chapter, with the book's chapter as a PDF (S3, C376): the PDF is screened as the syllabus read
+    # does, and kept in the private store, from this one route.
+    "@/lib/storage/supabase-file-storage": {"src/app/api/family/chapter-request/route.ts"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
@@ -85,6 +88,16 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
     "src/lib/jobs/handlers.ts": {"@/lib/family/push"},
+    # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
+    # the reviewer's preview is the family's own reader (the same component, with its place-keeping off).
+    "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},
+    "src/app/(admin)/control/content/studio/page.tsx": {
+        "@/components/family/reader/ChapterReader",
+        "@/lib/family/chapters",
+        "@/lib/family/reader-words",
+        "@/lib/family/understand-words",
+        "@/lib/family/words",
+    },
 }
 
 # Outside the family area, these files may name these family tables: the choke point's live session check (the one

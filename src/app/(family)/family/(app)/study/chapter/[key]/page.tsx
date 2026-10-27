@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { ChapterReader } from '@/components/family/reader/ChapterReader';
-import { chapterView, resumeIndex, showcaseChapter, showcaseChapters } from '@/lib/family/chapters';
-import { isPrePrimary } from '@/lib/family/children';
+import { loadChapter, readableChapters } from '@/lib/family/chapter-store';
+import { chapterView, resumeIndex } from '@/lib/family/chapters';
+import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { READER_KEYS } from '@/lib/family/reader-words';
 import { readPlace } from '@/lib/family/reading';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
@@ -22,16 +23,18 @@ export default async function ChapterPage({ params }: { params: { key: string } 
   if (!page) redirect('/family/sign-in');
   const next = firstStepsNext(page);
   if (next) redirect(next);
-  const chapter = showcaseChapter(decodeURIComponent(params.key));
-  if (!chapter) notFound();
   const child = page.child!;
   if (isPrePrimary(child.classLevel)) redirect('/family/study');
+  // S3 (C376): the published version in the database (the family's row level security shows only what this account may
+  // read), else the showcase file.
+  const chapter = await familyPageRead(page, (db) => loadChapter(db, decodeURIComponent(params.key)));
+  if (!chapter) notFound();
   const lang = page.childLang;
   const view = chapterView(chapter, lang);
   const saved = await familyPageRead(page, (db) => readPlace(db, page.session.accountId, child.childId, chapter.key));
   const start = resumeIndex(view.script, saved);
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...READER_KEYS]);
-  const others = showcaseChapters().filter((c) => c.key !== chapter.key);
+  const others = (await familyPageRead(page, (db) => readableChapters(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, subject: chapter.subject, childId: child.childId }))).filter((c) => c.key !== chapter.key);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back={`/family/study?subject=${chapter.subject}`} backLabel={t(lang, 'fam.study.title')} kicker={t(lang, 'fam.reader.kicker')} title={view.title} subject={chapter.subject} />
@@ -46,7 +49,7 @@ export default async function ChapterPage({ params }: { params: { key: string } 
               {others.map((c) => (
                 <li key={c.key}>
                   <Link href={`/family/study/chapter/${encodeURIComponent(c.key)}`} className="fam-card fam-press flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 text-base font-bold text-slate">
-                    <span>{chapterView(c, lang).title}</span>
+                    <span lang={lang}>{c.title[lang === 'hi' ? 'hi' : 'en']}</span>
                     <span aria-hidden="true">→</span>
                   </Link>
                 </li>

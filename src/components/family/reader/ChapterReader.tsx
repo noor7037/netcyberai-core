@@ -19,7 +19,7 @@ import { TableView } from './TableView';
 
 const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then((m) => m.InteractiveView));
 
-type Props = { chapterKey: string; lang: 'en' | 'hi'; blocks: Block[]; ids: string[]; script: NarrationLine[]; start: number; resumed: boolean; w: Words; tone: string };
+type Props = { chapterKey: string; lang: 'en' | 'hi'; blocks: Block[]; ids: string[]; script: NarrationLine[]; start: number; resumed: boolean; w: Words; tone: string; preview?: boolean };
 
 // The CSS Custom Highlight API, where the browser has it (a phone without it still gets the block's ring and the
 // sentence shown in the controls).
@@ -47,7 +47,7 @@ function findSentence(root: HTMLElement, text: string, nth: number): { node: Tex
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone }: Props) {
+export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, preview = false }: Props) {
   const [index, setIndex] = useState(Math.min(Math.max(start, 0), Math.max(script.length - 1, 0)));
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
@@ -150,7 +150,8 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   const save = useCallback(
     (i: number) => {
       const at = script[i];
-      if (!at) return;
+      // The studio's preview (S3, C376) renders this same reader but keeps no one's place.
+      if (!at || preview) return;
       void fetch('/api/family/reading', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -159,7 +160,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
         keepalive: true,
       }).catch(() => undefined);
     },
-    [chapterKey, script]
+    [chapterKey, script, preview]
   );
   useEffect(() => {
     if (!started) return;

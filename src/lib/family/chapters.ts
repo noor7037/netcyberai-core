@@ -15,30 +15,62 @@ export type ChapterView = { key: string; subject: string; lang: ChapterLang; tit
 export const CHAPTER_KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 const DEVANAGARI = /[ऀ-ॿ]/;
 
-export function checkChapter(raw: unknown): Chapter | null {
+// Why a chapter was refused, as a short code the studio shows next to the field: bad_key, bad_subject, title_en,
+// title_hi (missing, too long, or without Devanagari), blocks_en / blocks_hi (not 1-40 blocks), block_en:N / block_hi:N
+// (the Nth block, from 1, fails its shape), ids_en / ids_hi (a missing or repeated id), no_devanagari_hi.
+export function chapterProblem(raw: unknown): { ok: true; chapter: Chapter } | { ok: false; problem: string } {
   const o = (raw ?? {}) as Record<string, unknown>;
-  if (typeof o.key !== 'string' || !CHAPTER_KEY.test(o.key) || typeof o.subject !== 'string' || !/^[a-z][a-z_]{1,39}$/.test(o.subject)) return null;
+  if (typeof o.key !== 'string' || !CHAPTER_KEY.test(o.key)) return { ok: false, problem: 'bad_key' };
+  if (typeof o.subject !== 'string' || !/^[a-z][a-z_]{1,39}$/.test(o.subject)) return { ok: false, problem: 'bad_subject' };
   const title = (o.title ?? {}) as Record<string, unknown>;
   const blocks = (o.blocks ?? {}) as Record<string, unknown>;
   const out: Chapter = { key: o.key, subject: o.subject, title: { en: '', hi: '' }, blocks: { en: [], hi: [] } };
   for (const lang of ['en', 'hi'] as const) {
     const t = title[lang];
-    if (typeof t !== 'string' || t.length < 1 || t.length > 120) return null;
-    if (lang === 'hi' && !DEVANAGARI.test(t)) return null;
+    if (typeof t !== 'string' || t.length < 1 || t.length > 120 || (lang === 'hi' && !DEVANAGARI.test(t))) return { ok: false, problem: `title_${lang}` };
     const list = blocks[lang];
-    if (!Array.isArray(list) || list.length < 1 || list.length > 40) return null;
+    if (!Array.isArray(list) || list.length < 1 || list.length > 40) return { ok: false, problem: `blocks_${lang}` };
     const checked = list.map(checkBlock);
-    if (checked.some((b) => b === null)) return null;
+    const bad = checked.findIndex((b) => b === null);
+    if (bad >= 0) return { ok: false, problem: `block_${lang}:${bad + 1}` };
     const bs = checked as Block[];
     // Authored content names every block, once: the saved reading position points at these ids.
     const ids = bs.map((b) => b.id);
-    if (ids.some((id) => !id) || new Set(ids).size !== ids.length) return null;
-    if (lang === 'hi' && !bs.some((b) => DEVANAGARI.test(JSON.stringify(b)))) return null;
+    if (ids.some((id) => !id) || new Set(ids).size !== ids.length) return { ok: false, problem: `ids_${lang}` };
+    if (lang === 'hi' && !bs.some((b) => DEVANAGARI.test(JSON.stringify(b)))) return { ok: false, problem: 'no_devanagari_hi' };
     out.title[lang] = t;
     out.blocks[lang] = bs;
   }
-  return out;
+  return { ok: true, chapter: out };
 }
+
+export function checkChapter(raw: unknown): Chapter | null {
+  const r = chapterProblem(raw);
+  return r.ok ? r.chapter : null;
+}
+
+// Block ids across versions (S3, C376): a saved reading place points at a block id, so a new version keeps the ids of
+// the blocks it keeps. A block without an id takes the id of the block at the same position and of the same type in
+// the version it was made from, else the id derived from its own content; ids already used are never repeated.
+export function stabilizeIds(previous: readonly Block[], next: readonly Block[]): Block[] {
+  const taken = new Set(next.map((b) => b.id).filter((id): id is string => !!id));
+  const out = next.map((b, i) => {
+    if (b.id) return b;
+    const before = previous[i];
+    const inherited = before && before.type === b.type && before.id && !taken.has(before.id) ? before.id : null;
+    if (inherited) taken.add(inherited);
+    return inherited ? { ...b, id: inherited } : b;
+  });
+  const derived = blockIds(out);
+  return out.map((b, i) => (b.id ? b : { ...b, id: derived[i] }));
+}
+
+// The ids of the old version that the new one no longer has: a reader who stopped in one of them resumes at the start
+// of the chapter (resumeIndex). Shown to the reviewer before publication.
+export const droppedIds = (previous: readonly Block[], next: readonly Block[]): string[] => {
+  const keep = new Set(blockIds(next));
+  return blockIds(previous).filter((id) => !keep.has(id));
+};
 
 const SHOWCASE: Chapter[] = [waterCycle, equalFractions].map(checkChapter).filter((c): c is Chapter => c !== null);
 

@@ -42,6 +42,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-home', '/family', {}],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
+  // S3 (C376): asking for a chapter and the source choice, in the parent area; Study lists the requests with their badges.
+  ['full', 'family-parent-chapter-request', '/family/parent', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
+  ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-study', '/family/study', {}],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
