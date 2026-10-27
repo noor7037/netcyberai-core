@@ -1,5 +1,5 @@
 import { streamChatCompletions } from './chat-completions';
-import { capabilities, type AdapterResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
 // Google's Gemini API (AI Studio) through its OpenAI-compatible route (C230-U). Its terms, as read on 2026-10-22, are
 // for users of 18 or older and not for an app likely to be used by under-18s, and its free tier may use what is sent
@@ -7,6 +7,24 @@ import { capabilities, type AdapterResult, type TextAdapter } from './types';
 // testing it may be cleared for children's words only on a paid-tier key and with made-up personas; before a real
 // child's words go to it, Google's written confirmation or another provider.
 const URL = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
+// Control's "Test the key": countTokens is free and proves the key. The key goes in a header, never in the URL.
+const TEST_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:countTokens';
+export async function testGeminiKey(apiKey: string): Promise<ConnectionTest> {
+  let res: Response;
+  try {
+    res = await fetch(TEST_URL, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
+      body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Hello' }] }] }),
+      redirect: 'error',
+      signal: AbortSignal.timeout(CALL_TIMEOUT_MS),
+    });
+  } catch {
+    return { ok: false, failure: 'network' };
+  }
+  await res.body?.cancel().catch(() => {});
+  return res.ok ? { ok: true } : { ok: false, failure: 'http', status: res.status };
+}
 
 // A Google API key ("AIza" and about 35 more characters; Google has issued longer ones) or the newer bound key
 // ("AQ." and more). Only a paste slip is refused here: whether the key works is the connection test's job.
@@ -19,6 +37,7 @@ export const geminiAdapter: TextAdapter = {
   needsKey: true,
   capabilities: capabilities(['text', 'vision', 'stream', 'json']),
   keyLooksRight: googleKeyLooksRight,
+  testConnection: testGeminiKey,
   streamText(request, onDelta): Promise<AdapterResult> {
     return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: true, includeUsage: true });
   },

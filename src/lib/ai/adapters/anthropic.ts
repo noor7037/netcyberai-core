@@ -1,10 +1,21 @@
 import { sseData } from './sse';
-import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
 // Anthropic's Messages API, streamed over fetch (no SDK): POST /v1/messages with stream: true. Text arrives as
 // content_block_delta events (text_delta); the input token count comes with message_start, the output count with
 // message_delta. A stop_reason of "refusal" is a decline: the platform tries the next provider in the chain.
 const URL = 'https://api.anthropic.com/v1/messages';
+// Control's "Test the key": listing models is free and proves the key.
+export async function testAnthropicKey(apiKey: string): Promise<ConnectionTest> {
+  let res: Response;
+  try {
+    res = await fetch('https://api.anthropic.com/v1/models', { headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }, redirect: 'error', signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
+  } catch {
+    return { ok: false, failure: 'network' };
+  }
+  await res.body?.cancel().catch(() => {});
+  return res.ok ? { ok: true } : { ok: false, failure: 'http', status: res.status };
+}
 
 export const anthropicAdapter: TextAdapter = {
   providerId: 'anthropic',
@@ -14,6 +25,7 @@ export const anthropicAdapter: TextAdapter = {
   // No json: Anthropic has no JSON mode here; the instructions ask for it (JSON_ONLY).
   capabilities: capabilities(['text', 'vision', 'stream']),
   keyLooksRight: (key) => /^sk-ant-[\x21-\x7e]{20,300}$/.test(key),
+  testConnection: testAnthropicKey,
   async streamText(request, onDelta): Promise<AdapterResult> {
     const body = {
       model: request.model,

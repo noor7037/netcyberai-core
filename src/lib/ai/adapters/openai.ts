@@ -1,8 +1,19 @@
 import { streamChatCompletions } from './chat-completions';
-import { SPEECH_TIMEOUT_MS, capabilities, type AdapterResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, capabilities, type AdapterResult, type ConnectionTest, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // OpenAI's Chat Completions API, streamed over fetch (no SDK; the wire format is shared, ./chat-completions.ts).
 const URL = 'https://api.openai.com/v1/chat/completions';
+// Control's "Test the key": listing models is free and proves the key.
+export async function testOpenAiKey(apiKey: string): Promise<ConnectionTest> {
+  let res: Response;
+  try {
+    res = await fetch('https://api.openai.com/v1/models', { headers: { authorization: `Bearer ${apiKey}` }, redirect: 'error', signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
+  } catch {
+    return { ok: false, failure: 'network' };
+  }
+  await res.body?.cancel().catch(() => {});
+  return res.ok ? { ok: true } : { ok: false, failure: 'http', status: res.status };
+}
 
 // Not for children (C230-U): OpenAI's Business Terms forbid letting anyone under 13 use the services and sending
 // personal information of a child under 13, and the Family app serves children from Class 1. Control shows that note
@@ -14,6 +25,7 @@ export const openaiAdapter: TextAdapter = {
   needsKey: true,
   capabilities: capabilities(['text', 'vision', 'stream', 'json']),
   keyLooksRight: (key) => /^sk-[\x21-\x7e]{20,300}$/.test(key),
+  testConnection: testOpenAiKey,
   streamText(request, onDelta): Promise<AdapterResult> {
     return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_completion_tokens', jsonMode: true, includeUsage: true });
   },
