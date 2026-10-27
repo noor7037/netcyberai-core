@@ -5,18 +5,20 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { Select } from '@/components/ui/Select';
-import { CHILD_BOARDS, CHILD_CLASSES } from '@/lib/family/children';
+import { CHILD_BOARDS, CHILD_CLASSES, type BoardOption } from '@/lib/family/children';
+import { STREAMS, STREAM_FROM_CLASS } from '@/lib/family/subjects';
 import { classText, type Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
 
 // Add or change a child (M1-2, C248; C263): first name only, the class (Nursery to Class 12), the board, the app's
 // language, the explanation style and the state. Class, board and state start empty: the parent chooses them (there
 // is no default).
-export type ChildFormValue = { firstName: string; classLevel: number | null; board: string; language: 'en' | 'hi'; style: 'en' | 'hi' | 'hinglish'; stateCode: string };
+export type ChildFormValue = { firstName: string; classLevel: number | null; board: string; language: 'en' | 'hi'; style: 'en' | 'hi' | 'hinglish'; stateCode: string; stream?: string };
 
 export function ChildForm({
   w,
   states,
+  boards,
   initial,
   childId,
   submitLabel,
@@ -24,6 +26,8 @@ export function ChildForm({
 }: {
   w: Words;
   states: { code: string; name: string }[];
+  // The boards Control keeps (content.boards), by id and name; the built-in list only if the page could not read them.
+  boards?: BoardOption[];
   initial?: ChildFormValue;
   childId?: string;
   submitLabel: string;
@@ -84,13 +88,30 @@ export function ChildForm({
         <option value="" disabled>
           {w['fam.child.boardPick']}
         </option>
-        {CHILD_BOARDS.map((b) => (
-          // Board abbreviations are names, the same in every language.
-          <option key={b} value={b} lang={b === 'STATE' || b === 'CAIE' ? undefined : 'en'}>
-            {w[`fam.board.${b}`]}
+        {(boards && boards.length ? boards : CHILD_BOARDS.map((b) => ({ boardId: b, name: '' }))).map((b) => (
+          // Board abbreviations are names, the same in every language; a board added in Control has its stored name.
+          <option key={b.boardId} value={b.boardId} lang={b.boardId === 'STATE' || b.boardId === 'CAIE' ? undefined : 'en'}>
+            {w[`fam.board.${b.boardId}`] || b.name || b.boardId}
           </option>
         ))}
       </Select>
+      {v.classLevel !== null && v.classLevel >= STREAM_FROM_CLASS && (
+        <Select
+          id={`${prefix}-stream`}
+          label={w['fam.child.stream']}
+          helperText={w['fam.child.streamHelp']}
+          value={v.stream ?? ''}
+          onChange={(e) => setV({ ...v, stream: e.target.value })}
+          error={has('stream') ? w['fam.err.stream'] : undefined}
+        >
+          <option value="">{w['fam.child.streamPick']}</option>
+          {STREAMS.map((x) => (
+            <option key={x} value={x}>
+              {w[`fam.stream.${x}`]}
+            </option>
+          ))}
+        </Select>
+      )}
       <SegmentedControl
         id={`${prefix}-language`}
         label={w['fam.child.language']}

@@ -24,15 +24,18 @@ const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((
 // Offline packs (M2-9, C283), when Control has them on (`offline`): with the data-saver on, only text and questions are
 // drawn, text first; with no connection, live AI says "Needs internet" and an answer is kept to be checked later.
 
-// A typed question carries no subject: the server decides it (F1-3).
-export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string };
+// A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
+// window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
+// answered turn in the child's conversation.
+export type TutorAsk = { subject: string; chapterKey?: string; blockId?: string; files?: string[] };
+export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
 type Ask = { input: UnderstandInput; followUp?: string; retry?: { token: string; choice: number } };
 
 const FOLLOW_UPS = ['simpler', 'another_example', 'differently', 'practise_more'] as const;
 
-export function UnderstandView({ w, input, tone, initial = null, offline = false }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean }) {
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: () => void }) {
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -45,6 +48,10 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
   const current = useRef<AbortController | null>(null);
+  // Told when an answer is complete (the tutor window refreshes its conversation); a ref, so a new callback never asks
+  // again.
+  const answered = useRef(onDone);
+  answered.current = onDone;
 
   const run = useCallback(async (ask: Ask) => {
     current.current?.abort();
@@ -88,7 +95,10 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             setMeta(e);
             setState('streaming');
           } else if (e.t === 'block') setBlocks((b) => [...b, e.block]);
-          else if (e.t === 'done') setState(e.complete ? 'done' : 'incomplete');
+          else if (e.t === 'done') {
+            setState(e.complete ? 'done' : 'incomplete');
+            answered.current?.();
+          }
           else if (e.t === 'refused') {
             setRefusal(e.message);
             setGoTo(e.goTo && (SUBJECTS as readonly string[]).includes(e.goTo.subject) ? e.goTo : null);

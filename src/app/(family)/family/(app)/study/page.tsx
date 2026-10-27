@@ -1,14 +1,18 @@
 import { familyClaims } from '@/lib/family/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { StudyQuestion } from '@/components/family/StudyQuestion';
+import { TutorWindow } from '@/components/family/tutor/TutorWindow';
+import { TUTOR_KEYS } from '@/lib/family/tutor-words';
 import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
 import { PackButton } from '@/components/family/offline/PackButton';
 import { SaverLink } from '@/components/family/offline/SaverLink';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { SyllabusList } from '@/components/family/SyllabusList';
+import { StatusBadge } from '@/components/family/StatusBadge';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
-import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { classSubjects, publishedSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { readableChapters } from '@/lib/family/chapter-store';
+import { listRequests, queueStatusOf, readSourceModes, requestStudyStatus, sourceShown } from '@/lib/family/chapter-requests';
 import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
@@ -21,6 +25,7 @@ import { indiaDate } from '@/lib/time/india';
 import { OFFLINE_KEYS } from '@/lib/family/offline-words';
 import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
+import { subjectStatus } from '@/lib/family/study-status';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
 import { TonightPractice } from '@/components/family/TonightPractice';
 import { TEST_LIST_KEYS, TestList } from '@/components/family/school-test/TestList';
@@ -32,7 +37,7 @@ import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
-// child's class, each opening Understand; and a typed question. Without a catalog for the class (classes 6–8 for
+// child's class, each opening Understand; and a typed question, in the shared tutor window (S2, C375). Without a catalog for the class (classes 6–8 for
 // 2026-27, C250) only the question is offered. Nursery, LKG and UKG (C263) see a plain note: their module comes later.
 // A title is marked with the language it is written in (a Hindi title from NCERT's Hindi edition, or a Hindi
 // textbook's own Devanagari title, is Hindi; an English-only title stays English on a Hindi page), for screen readers.
@@ -63,18 +68,28 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   }
   const board = syllabusBoardOf(child);
   // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
-  const [subjects, openToAll] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel }), openSubjects(db)]));
+  const [subjects, openToAll, published] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel, stream: child.stream }), openSubjects(db), publishedSubjects(db, { board, classLevel: child.classLevel })]));
   const requested = subjects.find((s) => s === searchParams.subject);
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject, openToAll);
-  const catalog = access.open ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
+  // S3 (C376): the parent's choice of source for this subject (none: every source shown), the child's chapter requests
+  // (the missing-chapter queue behind the Received and Digitizing badges), and the chapters that can be opened.
+  // One after the other: each read holds a savepoint on the family's single connection.
+  const [modes, requests] = await familyPageRead(page, async (db) => {
+    const m = await readSourceModes(db, page.session.accountId, child.childId);
+    return [m, await listRequests(db, page.session.accountId, child.childId)] as const;
+  });
+  const mode = modes[subject];
+  const readable = access.open ? await familyPageRead(page, (db) => readableChapters(db, { board, classLevel: child.classLevel, subject, childId: child.childId })) : [];
+  const subjectRequests = requests.filter((r) => r.subject === subject);
+  const catalog = access.open && sourceShown(mode, 'catalog') ? await familyPageRead(page, (db) => readFamilyCatalog(db, { board, classLevel: child.classLevel, subject, lang })) : null;
   // C230-AB: the syllabus the parent saved for this child and subject, below the board's catalog when there is one.
   // Each line opens Understand as a typed question about it.
-  const own = access.open ? await familyPageRead(page, (db) => readOwnSyllabus(db, page.session.accountId, child.childId, subject)) : null;
+  const own = access.open && sourceShown(mode, 'parent') ? await familyPageRead(page, (db) => readOwnSyllabus(db, page.session.accountId, child.childId, subject)) : null;
   const ownHref = (itemId: string) => `/family/understand?kind=own&key=${encodeURIComponent(itemId)}`;
   // The school's own syllabus for this subject (C230-AA), for a child matched to a connected school's student.
   const [switches, links] = await familyPageRead(page, (db) => Promise.all([readFamilySwitches(db, page.session.accountId), access.open ? activeLinks(db, page.session.accountId) : Promise.resolve([])]));
-  const school = links.length ? await schoolStudyFor(familyClaims(page.session), links, child.childId, subject) : { chapters: null, tonight: [] };
+  const school = links.length && sourceShown(mode, 'school') ? await schoolStudyFor(familyClaims(page.session), links, child.childId, subject) : { chapters: null, tonight: [] };
   // AQ-4 (C365): the school's online tests for the child's class, coming up or open now, whatever the subject chosen.
   const testLinks = access.open ? links : await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
   const tests = testLinks.length ? await childOnlineTests(familyClaims(page.session), testLinks, child.childId) : [];
@@ -93,7 +108,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
   const tone = subject;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, 'fam.study.ask', 'fam.study.askHelp', 'fam.study.askButton', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
@@ -102,6 +117,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           {subjects.map((s) => {
             const on = s === subject;
             const locked = !subjectAccess(child, s, openToAll).open;
+            // S4 (C377): Published only where a version is really released; nothing is shown otherwise.
+            const status = subjectStatus(s, published, queueStatusOf(requests, s));
             return (
               <Link
                 key={s}
@@ -113,6 +130,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                   <SubjectGlyph subject={s} className="h-5 w-5" />
                 </span>
                 {t(lang, `fam.subject.${s}`)}
+                {status && <StatusBadge status={status} lang={lang} />}
                 {locked && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
                 {locked && (
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -133,7 +151,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           <>
-            <StudyQuestion w={w} subject={subject} tone={tone} voice={voice} />
+            {/* S2 (C375): the shared tutor window replaces the stacked ask form; the homework helper keeps its own link. */}
+            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={page.consents.photo_input} homework={homeworkOn} />
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
             {homeworkOn && (
@@ -149,6 +168,38 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                   <span className="text-sm text-slate/80">{t(lang, 'fam.homework.studyLead')}</span>
                 </span>
               </Link>
+            )}
+            {/* S1 (C374), S3 (C376): the chapter reader, for each chapter of the subject that can be opened. */}
+            {readable.map((c) => (
+              <Link key={c.key} href={`/family/study/chapter/${encodeURIComponent(c.key)}`} data-reader-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
+                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 5a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2V5zM20 5a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 1 2 2V5z" />
+                  </svg>
+                </span>
+                <span className="flex min-w-0 flex-col">
+                  <span className="text-base font-bold text-slate" lang={lang}>{c.title[lang === 'hi' ? 'hi' : 'en']}</span>
+                  <span className="text-sm text-slate/80">{t(lang, 'fam.reader.studyLead')}</span>
+                </span>
+              </Link>
+            ))}
+            {subjectRequests.length > 0 && (
+              <section aria-labelledby="fam-requests" data-chapter-requests className="flex flex-col gap-2">
+                <h2 id="fam-requests" className="px-1 text-lg font-extrabold text-slate">
+                  {t(lang, 'fam.request.studyTitle')}
+                </h2>
+                <ul className="flex flex-col gap-2">
+                  {subjectRequests.map((r) => {
+                    const st = requestStudyStatus(r.status);
+                    return (
+                      <li key={r.requestId} className="fam-card flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 py-2 text-base font-bold text-slate">
+                        <span className="min-w-0" lang={titleLang(r.title)}>{r.title}</span>
+                        {st ? <StatusBadge status={st} lang={lang} /> : <span className="text-sm font-semibold text-slate/80">{t(lang, 'fam.request.declined')}</span>}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
             )}
           </>
         )}
@@ -167,6 +218,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                     <span className="min-w-0 flex-1" lang={titleLang(c.title)}>
                       {c.title}
                     </span>
+                    {/* Every chapter listed here comes from the version released to everyone: it is Published. */}
+                    <StatusBadge status="published" lang={lang} />
                     <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${subjectTheme(subject).ink}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                       <path d="M9 6l6 6-6 6" />
                     </svg>

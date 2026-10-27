@@ -46,6 +46,9 @@ export async function POST(req: NextRequest) {
       }
     }
     if (!item || !child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+    // A chapter test's item (S5, C378) is checked only when the whole test is sent (/api/family/chapter-test): here it would
+    // tell a child which option is right before the test is sent.
+    if (item.kind === 'test') return NextResponse.json({ error: 'not_found' }, { status: 404 });
     if (body.hint === true) return NextResponse.json({ hint: item.h });
     const choice = Number(body.choice);
     if (!Number.isInteger(choice) || choice < 0 || choice >= item.w.length) return NextResponse.json({ error: 'bad_request' }, { status: 400 });

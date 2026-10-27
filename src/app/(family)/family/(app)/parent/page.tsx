@@ -1,6 +1,9 @@
 import { familyClaims } from '@/lib/family/db';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { ChapterRequestPanel } from '@/components/family/ChapterRequestPanel';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
+import { listRequests, readSourceModes } from '@/lib/family/chapter-requests';
 import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea } from '@/components/family/ParentArea';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
@@ -16,7 +19,7 @@ import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { subjectAccess } from '@/lib/family/modules';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
 import { listSyllabi } from '@/lib/family/child-syllabus';
-import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
+import { isPrePrimary, listFamilyBoards, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
 import type { Subject } from '@/lib/contracts/subjects';
 import { calmCard, openSubjects } from '@/lib/family/learning';
@@ -92,6 +95,23 @@ const SYLLABUS_KEYS: MessageKey[] = [
   'fam.err.not_found', 'fam.err.consent_required', 'fam.err.bad_request',
 ];
 
+// S3 (C376): asking for a chapter and choosing the source (src/components/family/ChapterRequestPanel.tsx).
+const REQUEST_KEYS: MessageKey[] = [
+  'fam.request.title', 'fam.request.lead', 'fam.request.child', 'fam.request.subject', 'fam.request.chapterName', 'fam.request.pdf', 'fam.request.privacy',
+  'fam.request.send', 'fam.request.sent', 'fam.request.yours', 'fam.request.none', 'fam.request.declined', 'fam.request.withdraw', 'fam.request.sourceTitle',
+  'fam.request.sourceLead', 'fam.request.source.all', 'fam.request.source.catalog', 'fam.request.source.school', 'fam.request.source.parent',
+  'fam.request.err.duplicate', 'fam.request.err.too_many', 'fam.request.err.not_a_pdf', 'fam.request.err.too_big', 'fam.request.err.encrypted', 'fam.request.err.too_long',
+  'fam.request.err.personal_info', 'fam.request.err.storage_unavailable', 'fam.request.err.not_ready', 'fam.request.err.bad_request',
+  'fam.status.received', 'fam.status.digitizing', 'fam.status.published', 'fam.err.network', 'fam.err.parent_pin_required', 'fam.err.not_found', 'fam.err.consent_required',
+];
+
+// One child after the other: each read holds a savepoint on the family's single connection.
+async function modesOf(db: Parameters<typeof readSourceModes>[0], accountId: string, children: { childId: string }[]) {
+  const out: Record<string, Awaited<ReturnType<typeof readSourceModes>>> = {};
+  for (const c of children) out[c.childId] = await readSourceModes(db, accountId, c.childId);
+  return out;
+}
+
 export default async function FamilyParentPage() {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
@@ -116,7 +136,7 @@ export default async function FamilyParentPage() {
   // already, so it is not offered.
   const subjects = await familyPageRead(page, async (db) => {
     const openToAll = await openSubjects(db);
-    return (await Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel })))).map((list) => list.filter((s) => !openToAll.includes(s)));
+    return (await Promise.all(page.children.map((c) => classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream })))).map((list) => list.filter((s) => !openToAll.includes(s)));
   });
   // The English course (C274): its consent and reports show when Control has the course switched on.
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
@@ -149,7 +169,7 @@ export default async function FamilyParentPage() {
           const plan = await homePlan(db, page.session.accountId, c, indiaDate(), lang);
           const subjects: PlanSubject[] = [];
           if (!plan) {
-            for (const s of await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel })) {
+            for (const s of await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream })) {
               if (!subjectAccess(c, s as Subject, openToAll).open) continue;
               const cat = await readFamilyCatalog(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, subject: s, lang });
               if (cat) subjects.push({ subject: s, name: familyWords(lang, [`fam.subject.${s}` as MessageKey])[`fam.subject.${s}`], chapters: cat.chapters.map((ch) => ({ title: ch.title, topics: ch.topics })) });
@@ -163,9 +183,12 @@ export default async function FamilyParentPage() {
   // waiting to be checked. Nursery, LKG and UKG have no subjects yet, so they are not offered.
   const own = await familyPageRead(page, async (db) => ({
     childList: await Promise.all(
-      page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ childId: c.childId, firstName: c.firstName, subjects: await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel }) }))
+      page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ childId: c.childId, firstName: c.firstName, subjects: await classSubjects(db, { board: syllabusBoardOf(c), classLevel: c.classLevel, stream: c.stream }) }))
     ),
     syllabi: await listSyllabi(db, page.session.accountId),
+    // S3 (C376): the chapters the parent asked for, and the source each child's subject reads.
+    requests: await listRequests(db, page.session.accountId),
+    modes: await modesOf(db, page.session.accountId, page.children),
   }));
   // The Focus Lock (M2b-1, C305): shown when Control has it switched on for this family, or a phone is still set up.
   const focusRead = await familyPageRead(page, (db) => parentFocus(db, page.session.accountId));
@@ -187,11 +210,27 @@ export default async function FamilyParentPage() {
         calm={calm}
         w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])}
         lang={lang}
-        children={page.children.map((c, i) => ({ subjects: subjects[i], childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, freeSubject: c.freeSubject }))}
+        children={page.children.map((c, i) => ({ subjects: subjects[i], childId: c.childId, firstName: c.firstName, classLevel: c.classLevel, board: c.board, language: c.language, style: c.style, stateCode: c.stateCode, stream: c.stream ?? undefined, freeSubject: c.freeSubject }))}
         states={familyStates(lang)}
+        boards={await familyPageRead(page, (db) => listFamilyBoards(db, lang))}
         studyCore={page.consents.study_core}
         afterChildren={
           <>
+            {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
+            {page.children.length > 0 && (
+              <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
+                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
+                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="5" width="18" height="15" rx="2" />
+                    <path d="M3 10h18M10 14h4" />
+                  </svg>
+                </span>
+                <span className="flex flex-col">
+                  <span className="text-base font-bold text-slate">{t(lang, 'fam.vault.open')}</span>
+                  <span className="text-sm text-slate/80">{t(lang, 'fam.vault.openLead')}</span>
+                </span>
+              </Link>
+            )}
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
             {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
             {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
@@ -200,6 +239,9 @@ export default async function FamilyParentPage() {
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            {own.childList.length > 0 && page.consents.study_core && (
+              <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} lang={lang} childList={own.childList} requests={own.requests} modes={own.modes} />
+            )}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>
         }

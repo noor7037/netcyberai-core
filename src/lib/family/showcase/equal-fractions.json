@@ -1,0 +1,438 @@
+{
+  "key": "nc.showcase.equal-fractions",
+  "subject": "mathematics",
+  "title": {
+    "en": "Equal fractions: same amount, different names",
+    "hi": "तुल्य भिन्न: मात्रा एक, नाम अलग"
+  },
+  "blocks": {
+    "en": [
+      {
+        "id": "ef-intro",
+        "type": "explanation",
+        "title": "One amount can have many names",
+        "idea": "Two fractions are equal when they show the same amount of a whole. One half and two quarters look different on paper, but they are the same share.",
+        "example": "Cut a roti into 2 equal pieces and take 1. Now cut another roti of the same size into 4 equal pieces and take 2. You get exactly the same amount of roti both times.",
+        "steps": [
+          "The bottom number tells how many equal parts the whole is cut into.",
+          "The top number tells how many of those parts you take.",
+          "Cutting every part into 2 gives twice as many parts, and you take twice as many.",
+          "So 1 out of 2 and 2 out of 4 are the same amount."
+        ],
+        "terms": []
+      },
+      {
+        "id": "ef-bars",
+        "type": "fraction_model",
+        "title": "One half and two quarters",
+        "shape": "bar",
+        "fractions": [
+          {
+            "n": 1,
+            "d": 2
+          },
+          {
+            "n": 2,
+            "d": 4
+          }
+        ]
+      },
+      {
+        "id": "ef-slide",
+        "type": "slider",
+        "title": "Slide to shade the parts",
+        "label": "Parts shaded out of 8",
+        "min": 0,
+        "max": 8,
+        "step": 1,
+        "start": 4,
+        "readouts": [],
+        "fraction": {
+          "d": 8,
+          "shape": "bar"
+        }
+      },
+      {
+        "id": "ef-rule",
+        "type": "explanation",
+        "title": "The rule: do the same to the top and the bottom",
+        "idea": "Multiply the top and the bottom of a fraction by the same number, and you get an equal fraction. Dividing both by the same number works too.",
+        "example": "Two thirds: multiply the top and the bottom by 4. The top becomes 8 and the bottom becomes 12. So two thirds equals eight twelfths.",
+        "steps": [
+          "Pick any number except zero.",
+          "Multiply the top number by it.",
+          "Multiply the bottom number by the same number.",
+          "The new fraction shows the same amount."
+        ],
+        "terms": []
+      },
+      {
+        "id": "ef-table",
+        "type": "table",
+        "title": "Making equal fractions",
+        "columns": [
+          "Fraction",
+          "Multiply top and bottom by",
+          "Equal fraction"
+        ],
+        "rows": [
+          [
+            "1/2",
+            "2",
+            "2/4"
+          ],
+          [
+            "1/2",
+            "3",
+            "3/6"
+          ],
+          [
+            "2/3",
+            "4",
+            "8/12"
+          ],
+          [
+            "3/5",
+            "2",
+            "6/10"
+          ]
+        ]
+      },
+      {
+        "id": "ef-worked",
+        "type": "worked_example",
+        "problem": "Write three quarters as a fraction with 12 at the bottom.",
+        "steps": [
+          {
+            "text": "Find what turns the bottom 4 into 12. Divide 12 by 4.",
+            "expression": "12/4",
+            "result": "3"
+          },
+          {
+            "text": "Multiply the top by the same number, 3.",
+            "expression": "3*3",
+            "result": "9"
+          },
+          {
+            "text": "Keep the bottom as 12. The new top is 9."
+          }
+        ],
+        "answer": "Three quarters equals nine twelfths."
+      },
+      {
+        "id": "ef-line",
+        "type": "number_line",
+        "title": "Equal fractions sit at the same point",
+        "from": 0,
+        "to": 1,
+        "step": 0.25,
+        "marks": [
+          {
+            "value": 0.5,
+            "label": "1/2 = 2/4"
+          },
+          {
+            "value": 0.75,
+            "label": "3/4 = 9/12"
+          }
+        ]
+      },
+      {
+        "id": "ef-cake",
+        "type": "model_3d",
+        "title": "A round cake cut into equal slices",
+        "solid": "cylinder",
+        "dims": {
+          "r": 10,
+          "h": 6
+        },
+        "unit": "cm",
+        "alt": "A round cake shaped like a cylinder. Cut it into eight equal slices: each slice is 1/8 of the cake, two slices are 2/8, and 2/8 is the same amount as 1/4."
+      },
+      {
+        "id": "ef-points",
+        "type": "key_points",
+        "points": [
+          "Equal fractions show the same amount of the same whole.",
+          "Multiply or divide the top and the bottom by the same number to make one.",
+          "Equal fractions sit at the same point on a number line.",
+          "Never add the same number to the top and the bottom: that changes the amount."
+        ]
+      },
+      {
+        "id": "ef-test",
+        "type": "chapter_test",
+        "title": "Check yourself: equal fractions",
+        "items": [
+          {
+            "kind": "mcq",
+            "id": "q1",
+            "question": "Which fraction is equal to 1/2?",
+            "options": [
+              "2/4",
+              "1/3",
+              "2/3"
+            ],
+            "answer": 0,
+            "why": "Multiply the top and the bottom of 1/2 by 2 and you get 2/4: the same amount with a new name."
+          },
+          {
+            "kind": "mcq",
+            "id": "q2",
+            "question": "What is 2/8 in its simplest name?",
+            "options": [
+              "1/4",
+              "1/2",
+              "2/4"
+            ],
+            "answer": 0,
+            "why": "Divide the top and the bottom of 2/8 by 2 and you get 1/4."
+          },
+          {
+            "kind": "written",
+            "id": "q3",
+            "question": "In your own words, why does the fraction stay equal when you multiply the top and the bottom by the same number?",
+            "rubric": [
+              "Says the whole is cut into smaller parts but there are more of them",
+              "Says the amount shaded does not change",
+              "Uses an example such as 1/2 and 2/4"
+            ]
+          },
+          {
+            "kind": "photo",
+            "id": "q4",
+            "question": "Draw two bars of the same length. Shade 1/2 of one bar and 2/4 of the other, then take a photo of your drawing.",
+            "rubric": [
+              "Both bars are the same length",
+              "One bar has 1 of 2 equal parts shaded",
+              "The other bar has 2 of 4 equal parts shaded, covering the same length"
+            ]
+          }
+        ]
+      }
+    ],
+    "hi": [
+      {
+        "id": "ef-intro",
+        "type": "explanation",
+        "title": "एक मात्रा के कई नाम हो सकते हैं",
+        "idea": "दो भिन्न तब बराबर होती हैं जब वे पूरे का एक जितना हिस्सा दिखाती हैं। एक बटा दो और दो बटा चार कागज़ पर अलग दिखती हैं, पर हिस्सा एक ही है।",
+        "example": "एक रोटी के 2 बराबर टुकड़े करो और 1 टुकड़ा लो। अब उतनी ही बड़ी दूसरी रोटी के 4 बराबर टुकड़े करो और 2 टुकड़े लो। दोनों बार तुम्हें बिलकुल बराबर रोटी मिलती है।",
+        "steps": [
+          "नीचे की संख्या बताती है कि पूरे को कितने बराबर हिस्सों में काटा गया।",
+          "ऊपर की संख्या बताती है कि उनमें से कितने हिस्से लिए गए।",
+          "हर हिस्से को 2 में काटने पर हिस्से दुगने हो जाते हैं, और लिए गए हिस्से भी दुगने।",
+          "इसलिए 2 में से 1 और 4 में से 2 बराबर मात्रा है।"
+        ],
+        "terms": [
+          {
+            "en": "fraction",
+            "local": "भिन्न"
+          },
+          {
+            "en": "equivalent fractions",
+            "local": "तुल्य भिन्न"
+          }
+        ]
+      },
+      {
+        "id": "ef-bars",
+        "type": "fraction_model",
+        "title": "एक बटा दो और दो बटा चार",
+        "shape": "bar",
+        "fractions": [
+          {
+            "n": 1,
+            "d": 2
+          },
+          {
+            "n": 2,
+            "d": 4
+          }
+        ]
+      },
+      {
+        "id": "ef-slide",
+        "type": "slider",
+        "title": "खिसकाकर भाग रंगो",
+        "label": "8 में से रंगे हुए भाग",
+        "min": 0,
+        "max": 8,
+        "step": 1,
+        "start": 4,
+        "readouts": [],
+        "fraction": {
+          "d": 8,
+          "shape": "bar"
+        }
+      },
+      {
+        "id": "ef-rule",
+        "type": "explanation",
+        "title": "नियम: ऊपर और नीचे एक जैसा करो",
+        "idea": "भिन्न के ऊपर और नीचे की संख्या को एक ही संख्या से गुणा करो, तो बराबर भिन्न मिलती है। दोनों को एक ही संख्या से भाग देना भी काम करता है।",
+        "example": "दो बटा तीन लो: ऊपर और नीचे दोनों को 4 से गुणा करो। ऊपर 8 और नीचे 12 हो जाता है। यानी दो बटा तीन, आठ बटा बारह के बराबर है।",
+        "steps": [
+          "शून्य के अलावा कोई भी संख्या चुनो।",
+          "ऊपर की संख्या को उससे गुणा करो।",
+          "नीचे की संख्या को भी उसी संख्या से गुणा करो।",
+          "नई भिन्न वही मात्रा दिखाती है।"
+        ],
+        "terms": [
+          {
+            "en": "numerator",
+            "local": "अंश"
+          },
+          {
+            "en": "denominator",
+            "local": "हर"
+          }
+        ]
+      },
+      {
+        "id": "ef-table",
+        "type": "table",
+        "title": "बराबर भिन्न बनाना",
+        "columns": [
+          "भिन्न",
+          "ऊपर और नीचे को गुणा करो",
+          "बराबर भिन्न"
+        ],
+        "rows": [
+          [
+            "1/2",
+            "2",
+            "2/4"
+          ],
+          [
+            "1/2",
+            "3",
+            "3/6"
+          ],
+          [
+            "2/3",
+            "4",
+            "8/12"
+          ],
+          [
+            "3/5",
+            "2",
+            "6/10"
+          ]
+        ]
+      },
+      {
+        "id": "ef-worked",
+        "type": "worked_example",
+        "problem": "तीन बटा चार को ऐसी भिन्न में लिखो जिसके नीचे 12 हो।",
+        "steps": [
+          {
+            "text": "पता करो कि नीचे के 4 को 12 बनाने के लिए किससे गुणा करें। 12 को 4 से भाग दो।",
+            "expression": "12/4",
+            "result": "3"
+          },
+          {
+            "text": "ऊपर की संख्या को भी उसी संख्या 3 से गुणा करो।",
+            "expression": "3*3",
+            "result": "9"
+          },
+          {
+            "text": "नीचे 12 रखो। ऊपर की नई संख्या 9 है।"
+          }
+        ],
+        "answer": "तीन बटा चार, नौ बटा बारह के बराबर है।"
+      },
+      {
+        "id": "ef-line",
+        "type": "number_line",
+        "title": "बराबर भिन्न एक ही जगह पर होती हैं",
+        "from": 0,
+        "to": 1,
+        "step": 0.25,
+        "marks": [
+          {
+            "value": 0.5,
+            "label": "1/2 = 2/4"
+          },
+          {
+            "value": 0.75,
+            "label": "3/4 = 9/12"
+          }
+        ]
+      },
+      {
+        "id": "ef-cake",
+        "type": "model_3d",
+        "title": "बराबर टुकड़ों में कटा गोल केक",
+        "solid": "cylinder",
+        "dims": {
+          "r": 10,
+          "h": 6
+        },
+        "unit": "सेमी",
+        "alt": "बेलन के आकार का एक गोल केक। इसे आठ बराबर टुकड़ों में काटो: हर टुकड़ा केक का 1/8 है, दो टुकड़े 2/8 हैं, और 2/8 उतनी ही मात्रा है जितना 1/4।"
+      },
+      {
+        "id": "ef-points",
+        "type": "key_points",
+        "points": [
+          "बराबर भिन्न एक ही पूरे का एक जितना हिस्सा दिखाती हैं।",
+          "ऊपर और नीचे को एक ही संख्या से गुणा या भाग करके बराबर भिन्न बनती है।",
+          "बराबर भिन्न संख्या रेखा पर एक ही बिंदु पर होती हैं।",
+          "ऊपर और नीचे में एक ही संख्या कभी न जोड़ो: इससे मात्रा बदल जाती है।"
+        ]
+      },
+      {
+        "id": "ef-test",
+        "type": "chapter_test",
+        "title": "खुद को जाँचो: तुल्य भिन्न",
+        "items": [
+          {
+            "kind": "mcq",
+            "id": "q1",
+            "question": "इनमें से कौन सी भिन्न 1/2 के बराबर है?",
+            "options": [
+              "2/4",
+              "1/3",
+              "2/3"
+            ],
+            "answer": 0,
+            "why": "1/2 के ऊपर और नीचे को 2 से गुणा करो तो 2/4 मिलता है: मात्रा वही, नाम नया।"
+          },
+          {
+            "kind": "mcq",
+            "id": "q2",
+            "question": "2/8 का सबसे सरल नाम क्या है?",
+            "options": [
+              "1/4",
+              "1/2",
+              "2/4"
+            ],
+            "answer": 0,
+            "why": "2/8 के ऊपर और नीचे को 2 से भाग दो तो 1/4 मिलता है।"
+          },
+          {
+            "kind": "written",
+            "id": "q3",
+            "question": "अपने शब्दों में लिखो: ऊपर और नीचे को एक ही संख्या से गुणा करने पर भिन्न बराबर क्यों रहती है?",
+            "rubric": [
+              "बताया कि पूरा छोटे टुकड़ों में बँटता है पर टुकड़े ज़्यादा हो जाते हैं",
+              "बताया कि रंगी हुई मात्रा नहीं बदलती",
+              "1/2 और 2/4 जैसा कोई उदाहरण दिया"
+            ]
+          },
+          {
+            "kind": "photo",
+            "id": "q4",
+            "question": "एक ही लंबाई की दो पट्टियाँ बनाओ। एक पट्टी का 1/2 और दूसरी का 2/4 रंगो, फिर अपने चित्र की फ़ोटो लो।",
+            "rubric": [
+              "दोनों पट्टियाँ एक ही लंबाई की हैं",
+              "एक पट्टी के 2 बराबर भागों में से 1 रंगा है",
+              "दूसरी पट्टी के 4 बराबर भागों में से 2 रंगे हैं और उतनी ही लंबाई घेरते हैं"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

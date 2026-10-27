@@ -15,7 +15,7 @@ export async function POST(req: NextRequest, { params }: { params: { childId: st
   return familyRun(g.session, async (db) => {
     const child = (await listChildren(db, g.session.accountId)).find((c) => c.childId === params.childId);
     if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-    if (!(await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel })).includes(subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+    if (!(await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream })).includes(subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
     const r = await changeFreeSubject(db, g.session.accountId, params.childId, subject);
     return r === 'changed' ? NextResponse.json({ status: r }) : NextResponse.json({ error: r }, { status: r === 'not_found' ? 404 : 409 });
   });

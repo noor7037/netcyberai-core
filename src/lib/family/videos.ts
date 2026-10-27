@@ -165,3 +165,22 @@ export function forgetSearches(): void {
   recentlyEmpty.clear();
   failedAt = null;
 }
+
+// The videos a reviewer chose for one chapter (S5, C378): only a pinned pick of the chapter's own key, which Control's
+// Videos page adds (content/video-picks.ts). The finder's automatic picks are for syllabus topics and are not shown here.
+// A rejected pick is hidden by the table's own rule. A table not created yet reads as none.
+export async function readChapterVideos(db: Db, chapterKey: string, language: VideoLanguage): Promise<VideoPick[]> {
+  await db.query('savepoint chapter_videos');
+  try {
+    const { rows } = await db.query(
+      `select video_id, title, channel_title, duration_s, start_s from content.video_picks where topic_key = $1 and language = $2 and status = 'pinned' order by score desc, video_id limit $3`,
+      [chapterKey, language, KEEP]
+    );
+    await db.query('release savepoint chapter_videos');
+    return rows.map((r) => ({ videoId: String(r.video_id), title: String(r.title), channelTitle: String(r.channel_title), durationS: Number(r.duration_s), startS: Number(r.start_s) }));
+  } catch (err) {
+    if ((err as { code?: string }).code !== '42P01') throw err;
+    await db.query('rollback to savepoint chapter_videos');
+    return [];
+  }
+}

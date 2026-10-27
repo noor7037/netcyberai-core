@@ -53,7 +53,17 @@ FAMILY_DOORS = {
     "@/lib/auth/env": {"src/lib/family/secret.ts"},
     "@/lib/email/sender": {"src/lib/family/sign-in.ts"},
     # The homework helper screens a photo with the upload screen every stored file uses (M2-6, C280).
-    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts"},
+    "@/lib/privacy/upload-check": {"src/lib/family/homework.ts", "src/lib/family/tutor.ts"},
+    # The shared tutor window's files (S2, C375): the private family-tutor bucket, through this one family file, which
+    # also screens every kept file with the upload check above.
+    # A parent asks for a chapter, with the book's chapter as a PDF (S3, C376): kept in the private store from the request
+    # route; removing a child or the account takes those PDFs out of the store first (DPDP erasure).
+    "@/lib/storage/supabase-file-storage": {
+        "src/lib/family/tutor.ts",
+        "src/app/api/family/chapter-request/route.ts",
+        "src/app/api/family/account/route.ts",
+        "src/app/api/family/children/[childId]/route.ts",
+    },
     # Voice input applies the 12-digit rule to the words it hears before they are shown (M2-7, C281).
     "@/lib/privacy/aadhaar": {"src/lib/family/voice.ts"},
     # Staff prepare the explanations of a syllabus version before children ask (C300): the content staff guard (the
@@ -69,7 +79,7 @@ FAMILY_DOORS = {
     # through this one family file.
     "@/lib/online/guardian": {"src/lib/family/online-tests.ts"},
     # A parent's own syllabus from a PDF (C230-AB): the PDF reader and its "title on its page" check, as Control's import.
-    "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts"},
+    "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts", "src/app/api/family/chapter-request/route.ts"},
     # The checked paper as a PDF (C366): the same drawing the school's office makes it with, in the parent's browser,
     # from the paper the family is already shown. It draws only; it reads nothing but the page pictures the caller
     # fetches through the family's own route.
@@ -85,6 +95,17 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
     "src/lib/jobs/handlers.ts": {"@/lib/family/push"},
+    # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
+    # the reviewer's preview is the family's own reader (the same component, with its place-keeping off).
+    "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},
+    "src/app/(admin)/control/content/studio/page.tsx": {
+        "@/components/family/reader/ChapterReader",
+        "@/lib/family/chapter-test-shape",
+        "@/lib/family/chapters",
+        "@/lib/family/reader-words",
+        "@/lib/family/understand-words",
+        "@/lib/family/words",
+    },
 }
 
 # Outside the family area, these files may name these family tables: the choke point's live session check (the one

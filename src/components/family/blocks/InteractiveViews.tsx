@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { colors, deepColors } from '@/lib/design-tokens';
-import type { FractionModel, Geometry, Graph, Interactive, NumberLine, Simulation } from '@/lib/family/blocks';
+import { sliderValue, type FractionModel, type Geometry, type Graph, type Interactive, type NumberLine, type Simulation, type Slider as SliderBlock } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import {
   G,
@@ -135,8 +135,10 @@ function PlayButton({ playing, onToggle, w, tone }: { playing: boolean; onToggle
   );
 }
 
-export function InteractiveView({ b, w, tone }: { b: Interactive; w: Words; tone: string }) {
+export function InteractiveView({ b, w, tone }: { b: Interactive | SliderBlock; w: Words; tone: string }) {
   switch (b.type) {
+    case 'slider':
+      return <SliderView b={b} w={w} tone={tone} />;
     case 'graph':
       return <GraphView b={b} w={w} tone={tone} />;
     case 'number_line':
@@ -577,6 +579,44 @@ export function SimulationView({ b, w, tone }: { b: Simulation; w: Words; tone: 
       ))}
       <Values lines={lines} />
       <p className="font-mono text-sm text-slate/80">{formula}</p>
+    </Card>
+  );
+}
+
+// ---- parameter slider (S5, C378) ----
+
+// One value from min to max (a native range input: arrow keys, Home and End, a 44 px target); the readouts under it are
+// computed by our code from the checked expressions, and a bar shows where the first one sits in the range it can take.
+// In fraction mode the slider is the numerator and the bar or circle is shaded to match. Nothing moves by itself, so
+// prefers-reduced-motion has nothing to switch off: a change is a redraw, not an animation.
+export function SliderView({ b, w, tone }: { b: SliderBlock; w: Words; tone: string }) {
+  const [x, setX] = useState(b.start);
+  const color = toneColor(tone);
+  const lines: string[] = b.readouts.map((r) => `${r.label}: ${num(sliderValue(r.expression, x) ?? 0, r.places)}${r.unit ? ` ${r.unit}` : ''}`);
+  if (b.fraction) {
+    const d = b.fraction.d;
+    lines.push(fill(w['fam.block.slider.fraction'], { n: x, d, dec: num(x / d, 3), pct: num((100 * x) / d, 1) }));
+  }
+  // Where the first readout sits between the lowest and highest value it takes over the slider.
+  const first = b.readouts[0];
+  const range = useMemo(() => {
+    if (!first) return null;
+    const vs = Array.from({ length: 21 }, (_, k) => sliderValue(first.expression, b.min + ((b.max - b.min) * k) / 20) ?? 0);
+    return { lo: Math.min(...vs), hi: Math.max(...vs) };
+  }, [b, first]);
+  const now = first ? (sliderValue(first.expression, x) ?? 0) : 0;
+  const share = range && range.hi > range.lo ? Math.min(1, Math.max(0, (now - range.lo) / (range.hi - range.lo))) : 0;
+  return (
+    <Card title={b.title} tone={tone} tag="slider">
+      {b.fraction && <FractionPicture f={{ n: x, d: b.fraction.d }} shape={b.fraction.shape} color={color} label={fill(w['fam.block.fraction.picture'], { n: x, d: b.fraction.d })} />}
+      {!b.fraction && range && (
+        <svg viewBox="0 0 300 28" className="w-full max-w-md" role="img" aria-label={lines[0]} data-slider-bar>
+          <rect x="6" y="8" width="288" height="12" rx="6" fill={colors.slate} fillOpacity="0.12" />
+          <rect x="6" y="8" width={Math.max(2, 288 * share)} height="12" rx="6" fill={color} />
+        </svg>
+      )}
+      <Slider label={b.label} value={x} min={b.min} max={b.max} step={b.step} onChange={setX} unit={b.unit ? ` ${b.unit}` : ''} />
+      <Values lines={lines} />
     </Card>
   );
 }

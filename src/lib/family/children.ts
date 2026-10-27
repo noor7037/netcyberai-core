@@ -1,5 +1,5 @@
 import { INDIAN_STATES, isIndianState } from '@/lib/contracts/indian-states';
-import { stageSubjects, type Subject } from './subjects';
+import { isStream, STREAM_FROM_CLASS, stageSubjects, type Stream, type Subject } from './subjects';
 
 // A family's children (docs/family-app/03 §5; M1-2, C248). A child is a first name, the class, the board, the app's
 // language (English or Hindi), the explanation style (English, Hindi or Hinglish) and the state, which the parent
@@ -43,15 +43,29 @@ export type FamilyChild = {
   style: ChildStyle;
   stateCode: string;
   freeSubject: Subject | null;
+  // Classes 11 and 12 only (S4, C377); null while none is chosen.
+  stream?: Stream | null;
 };
 export type ChildInput = Omit<FamilyChild, 'childId' | 'freeSubject'>;
-export type ChildProblem = 'first_name' | 'class' | 'board' | 'language' | 'style' | 'state';
+export type ChildProblem = 'first_name' | 'class' | 'board' | 'language' | 'style' | 'state' | 'stream';
+
+// A board the parent can pick: a row of content.boards (the table a child's board points at), never a state board's own
+// syllabus row ('ST-…': that one is reached through "our state's board"). The list is read, not written here (S4).
+export type BoardOption = { boardId: string; name: string };
+export async function listFamilyBoards(db: Db, lang: 'en' | 'hi'): Promise<BoardOption[]> {
+  const { rows } = await db.query(`select board_id, name_en, name_hi from content.boards where board_id !~ '^ST-' order by board_id`);
+  return rows.map((r) => ({ boardId: String(r.board_id), name: lang === 'hi' && r.name_hi ? String(r.name_hi) : String(r.name_en) }));
+}
 
 // One word of letters (any script, with its marks): no spaces, digits or symbols, so a surname, a phone number or an
 // email cannot be typed into it.
 const FIRST_NAME = /^[\p{L}\p{M}]{1,30}$/u;
 
-export function checkChild(raw: unknown): { ok: true; child: ChildInput } | { ok: false; problems: ChildProblem[] } {
+export async function boardIsOffered(db: Db, boardId: string): Promise<boolean> {
+  return (await db.query(`select 1 from content.boards where board_id = $1 and board_id !~ '^ST-'`, [boardId])).rows.length > 0;
+}
+
+export function checkChild(raw: unknown, boards: readonly string[] | 'shape' = CHILD_BOARDS): { ok: true; child: ChildInput } | { ok: false; problems: ChildProblem[] } {
   const b = (raw ?? {}) as Record<string, unknown>;
   const problems: ChildProblem[] = [];
   const firstName = typeof b.firstName === 'string' ? b.firstName.trim().normalize('NFC') : '';
@@ -59,12 +73,17 @@ export function checkChild(raw: unknown): { ok: true; child: ChildInput } | { ok
   // A class must be sent: an empty or missing value is not UKG (Number(null) and Number('') are both 0).
   const classLevel = typeof b.classLevel === 'number' || (typeof b.classLevel === 'string' && b.classLevel.trim() !== '') ? Number(b.classLevel) : NaN;
   if (!(CHILD_CLASSES as readonly number[]).includes(classLevel)) problems.push('class');
-  if (!(CHILD_BOARDS as readonly unknown[]).includes(b.board)) problems.push('board');
+  // 'shape': the board is checked against the database's list by the caller (boardIsOffered), here only that it is an id.
+  if (boards === 'shape' ? typeof b.board !== 'string' || !/^[A-Z][A-Z0-9-]{1,15}$/.test(b.board) : !(boards as readonly unknown[]).includes(b.board)) problems.push('board');
   if (!(CHILD_LANGUAGES as readonly unknown[]).includes(b.language)) problems.push('language');
   if (!(CHILD_STYLES as readonly unknown[]).includes(b.style)) problems.push('style');
   if (!isIndianState(b.stateCode)) problems.push('state');
+  // A stream is for Classes 11 and 12 and optional there; below Class 11 any value sent is dropped.
+  const hasStream = b.stream !== undefined && b.stream !== null && b.stream !== '';
+  if (hasStream && classLevel >= STREAM_FROM_CLASS && !isStream(b.stream)) problems.push('stream');
   if (problems.length) return { ok: false, problems };
-  return { ok: true, child: { firstName, classLevel, board: String(b.board), language: b.language as ChildLanguage, style: b.style as ChildStyle, stateCode: String(b.stateCode) } };
+  const stream = hasStream && classLevel >= STREAM_FROM_CLASS ? (b.stream as Stream) : null;
+  return { ok: true, child: { firstName, classLevel, board: String(b.board), language: b.language as ChildLanguage, style: b.style as ChildStyle, stateCode: String(b.stateCode), stream } };
 }
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[]; rowCount?: number | null }> };
@@ -78,11 +97,12 @@ const toChild = (r: Record<string, unknown>): FamilyChild => ({
   style: r.style as ChildStyle,
   stateCode: String(r.state_code),
   freeSubject: (r.free_subject as FamilyChild['freeSubject']) ?? null,
+  stream: isStream(r.stream) ? r.stream : null,
 });
 
 export async function listChildren(db: Db, accountId: string): Promise<FamilyChild[]> {
   const { rows } = await db.query(
-    `select child_id, first_name, class_level, board_id, language, style, state_code, free_subject from family.children where account_id = $1 order by created_at, child_id`,
+    `select child_id, first_name, class_level, board_id, language, style, state_code, free_subject, stream from family.children where account_id = $1 order by created_at, child_id`,
     [accountId]
   );
   return rows.map(toChild);
@@ -92,10 +112,10 @@ export async function addChild(db: Db, accountId: string, c: ChildInput): Promis
   const { rows: n } = await db.query(`select count(*)::int as n from family.children where account_id = $1`, [accountId]);
   if (Number(n[0]?.n) >= MAX_CHILDREN) return 'too_many';
   const { rows } = await db.query(
-    `insert into family.children (account_id, first_name, class_level, board_id, language, style, state_code)
-     values ($1, $2, $3, $4, $5, $6, $7)
-     returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject`,
-    [accountId, c.firstName, c.classLevel, c.board, c.language, c.style, c.stateCode]
+    `insert into family.children (account_id, first_name, class_level, board_id, language, style, state_code, stream)
+     values ($1, $2, $3, $4, $5, $6, $7, $8)
+     returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject, stream`,
+    [accountId, c.firstName, c.classLevel, c.board, c.language, c.style, c.stateCode, c.stream ?? null]
   );
   return toChild(rows[0]);
 }
@@ -103,11 +123,11 @@ export async function addChild(db: Db, accountId: string, c: ChildInput): Promis
 export async function updateChild(db: Db, accountId: string, childId: string, c: ChildInput): Promise<FamilyChild | null> {
   const { rows } = await db.query(
     // A free subject the new class does not teach is let go (C264), so the child can claim one of their new subjects.
-    `update family.children set first_name = $3, class_level = $4, language = $5, style = $6, state_code = $7, board_id = $8,
+    `update family.children set first_name = $3, class_level = $4, language = $5, style = $6, state_code = $7, board_id = $8, stream = $10,
             free_subject = case when free_subject = any ($9::text[]) then free_subject end
       where account_id = $1 and child_id = $2
-      returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject`,
-    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board, stageSubjects(c.classLevel, c.board)]
+      returning child_id, first_name, class_level, board_id, language, style, state_code, free_subject, stream`,
+    [accountId, childId, c.firstName, c.classLevel, c.language, c.style, c.stateCode, c.board, stageSubjects(c.classLevel, c.board, c.stream), c.stream ?? null]
   );
   return rows[0] ? toChild(rows[0]) : null;
 }
