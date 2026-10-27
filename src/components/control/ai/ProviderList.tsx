@@ -112,6 +112,17 @@ export function ProviderList({
                   })}
                 </p>
               )}
+              {(() => {
+                // The newest health probe of any of its models (G5, C373): the free key check every 15 minutes.
+                const probe = data.routing.health
+                  .filter((h) => h.providerId === p.providerId && h.lastProbeAt)
+                  .sort((a, b) => Date.parse(b.lastProbeAt as string) - Date.parse(a.lastProbeAt as string))[0];
+                return probe && p.capability !== "video" ? (
+                  <p data-ai-provider-probe={probe.lastProbeOk ? "ok" : "failed"} className="text-slate/80">
+                    {t(probe.lastProbeOk ? "control.ai.provider.probeOk" : "control.ai.provider.probeFailed", { date: when(probe.lastProbeAt) })}
+                  </p>
+                ) : null;
+              })()}
               {!p.hasAdapter && <p>{t("control.ai.provider.noAdapter")}</p>}
               {p.capability === "video" && (
                 <p data-ai-video-provider>{t("control.video.ai.provider")}</p>

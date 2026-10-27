@@ -1,5 +1,6 @@
+import { freeCheck } from './connection';
 import { sseData } from './sse';
-import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
 // Anthropic's Messages API, streamed over fetch (no SDK): POST /v1/messages with stream: true. Text arrives as
 // content_block_delta events (text_delta); the input token count comes with message_start, the output count with
@@ -78,5 +79,9 @@ export const anthropicAdapter: TextAdapter = {
     if (stop === 'refusal') return { ok: false, failure: 'refused' };
     if (!finished) return { ok: false, failure: 'cut_short' };
     return { ok: true, text, tokensIn, tokensOut };
+  },
+  // GET /v1/models: free, and answers only for a working key (G5).
+  testConnection(apiKey): Promise<ConnectionTest> {
+    return freeCheck('https://api.anthropic.com/v1/models?limit=1', { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' });
   },
 };

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setPrice, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
@@ -17,6 +17,7 @@ import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerCh
 //         { action: 'cap', value }                                            requests per family per day
 //         { action: 'undo', auditId }                                         restore the state before that change
 //         { action: 'rollback', profileId, revisionId? }                       activate the route's previous revision (or the one named) again
+//         { action: 'price', providerId, model, inUsd, outUsd } | { ..., price: null }   US dollars per million tokens (G5)
 //         { action: 'test', providerId }                                      test a provider's key (YouTube, M2-5; Vertex AI and
 //                                                                             the OpenAI-compatible adapter, G1)
 // No response carries a key, and nothing here logs the request body.
@@ -78,6 +79,11 @@ export async function POST(req: NextRequest) {
     }
   } else if (b?.action === 'cap') {
     if (typeof b.value === 'number') result = await withPlatformService((db) => setCap(db, by, b.value));
+  } else if (b?.action === 'price') {
+    const providerId = str(b.providerId, 40);
+    const model = str(b.model, 80);
+    const price = b.price === null ? null : typeof b.inUsd === 'number' && typeof b.outUsd === 'number' ? { inUsd: b.inUsd, outUsd: b.outUsd } : undefined;
+    if (providerId && model && price !== undefined) result = await withPlatformService((db) => setPrice(db, by, providerId, model, price));
   } else if (b?.action === 'test') {
     // The key is opened in one short transaction, the provider asked with none held, the outcome kept in a second.
     const providerId = str(b.providerId, 40);
