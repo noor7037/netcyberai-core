@@ -78,7 +78,7 @@ export function checkPassedFor(text: string, mustContain: readonly string[] | un
   return mustContain.every((w) => answer.includes(norm(w)));
 }
 
-export async function runLabCall(adapter: TextAdapter, apiKey: string, model: string, c: LabCase, now: () => number = Date.now): Promise<LabOutcome> {
+export async function runLabCall(adapter: TextAdapter, apiKey: string, model: string, c: LabCase, now: () => number = Date.now, baseUrl?: string): Promise<LabOutcome> {
   const began = now();
   let first: number | null = null;
   const limitMs = c.timeoutMs ?? CALL_TIMEOUT_MS;
@@ -93,6 +93,7 @@ export async function runLabCall(adapter: TextAdapter, apiKey: string, model: st
         maxTokens: c.maxTokens ?? LAB_DEFAULT_MAX_TOKENS,
         ...(c.expect === 'json' ? { responseFormat: 'json' as const } : {}),
         ...(c.timeoutMs ? { timeoutMs: c.timeoutMs } : {}),
+        ...(baseUrl ? { baseUrl } : {}),
       },
       () => {
         if (first === null) first = now() - began;

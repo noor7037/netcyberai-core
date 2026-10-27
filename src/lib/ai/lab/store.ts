@@ -22,16 +22,19 @@ const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
 const PROVIDER = /^[a-z][a-z0-9_-]{1,39}$/;
 
 // The providers the lab may call: a real text adapter that needs a key, whose saved key opens with the server's key.
-async function openKeys(db: Sql, env: Record<string, string | undefined>): Promise<Map<string, { adapter: TextAdapter; apiKey: string }>> {
-  const open = new Map<string, { adapter: TextAdapter; apiKey: string }>();
+// `baseUrl`: the founder's address for the OpenAI-compatible adapter (G1); its adapter checks it again at the call.
+type Opened = { adapter: TextAdapter; apiKey: string; baseUrl?: string };
+async function openKeys(db: Sql, env: Record<string, string | undefined>): Promise<Map<string, Opened>> {
+  const open = new Map<string, Opened>();
   const k = aiEncryptionKey(env);
   if (!k) return open;
   for (const adapter of textAdapters()) {
     if (!adapter.needsKey) continue;
     const { rows } = await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [adapter.providerId]);
     if (!rows[0]) continue;
+    const at = (await db.query(`select base_url from control.ai_providers where provider_id = $1`, [adapter.providerId])).rows[0]?.base_url;
     try {
-      open.set(adapter.providerId, { adapter, apiKey: unsealAiKey(k, adapter.providerId, rows[0] as SealedRow) });
+      open.set(adapter.providerId, { adapter, apiKey: unsealAiKey(k, adapter.providerId, rows[0] as SealedRow), ...(at ? { baseUrl: at as string } : {}) });
     } catch {
       // Sealed with another key version, or changed: not usable until the key is saved again.
     }
@@ -114,7 +117,7 @@ export async function prepareLabCase(db: Sql, runId: string, caseId: string, lin
       // One prepared cell, one vendor request.
       if (sent) throw new Error('a prepared lab call sends once');
       sent = true;
-      return runLabCall(ready.adapter, ready.apiKey, link.model, c);
+      return runLabCall(ready.adapter, ready.apiKey, link.model, c, Date.now, ready.baseUrl);
     },
   };
 }
