@@ -40,6 +40,7 @@ import { bubbleScreens } from './bubble-screens.mjs';
 import { onlineScreens } from './online-screens.mjs';
 import { paperScreens } from './paper-screens.mjs';
 import { clearOutputs, seedOutputs } from './outputs-seed.mjs';
+import { clearLab, seedLab } from './lab-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const arg = (name) => (process.argv.includes(name) ? process.argv[process.argv.indexOf(name) + 1] : undefined);
@@ -5938,6 +5939,21 @@ const c238Done = async () => {
   if (!c238Seen?.ok || c238Seen.code !== 'T-0007') throw new Error(`the staff profile on the screen: ${JSON.stringify(c238Seen)}`);
 };
 // c238 end
+// g4 begin
+// Control → AI → Quality Lab (C372) with two services configured and one finished run, opened from Recent runs.
+let labSeen = null;
+const labRunOpen = async (page) => {
+  await seedLab(db, childEnv.AI_CREDENTIALS_KEY, PEOPLE.founder.sub);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-lab-run-line] button').first().click();
+  await page.locator('[data-lab-results]').waitFor({ timeout: 20000 });
+  labSeen = { cells: await page.locator('[data-lab-cell]').count(), models: await page.locator('[data-lab-model]').count() };
+};
+const labDone = async () => {
+  await clearLab(db);
+  if (labSeen?.cells !== 4 || labSeen.models !== 2) throw new Error(`the Quality Lab on the screen: ${JSON.stringify(labSeen)}`);
+};
+// g4 end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -7332,6 +7348,11 @@ const SCREENS = [
   ['founder', 'control-ai', '/control/ai', controlAi(false), g3PutBack],
   ['founder', 'control-ai-hindi', '/control/ai', controlAi(true), async (page) => { await g3PutBack(); await backToEnglish(page); }],
   // m1-3 end
+  // g4 begin
+  // Control → AI → Quality Lab (C372): the same made-up questions to two to four models side by side, scored and exported.
+  ['founder', 'control-ai-lab', '/control/ai/lab'],
+  ['founder', 'control-ai-lab-run', '/control/ai/lab', labRunOpen, labDone],
+  // g4 end
   // m1-4 begin
   // Control → Content (C250): import a catalog file, review by a second person, staff preview, release, diff, rollback.
   ['founder', 'control-content', '/control/content'],

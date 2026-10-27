@@ -1,0 +1,52 @@
+{
+  "area": "edge",
+  "cases": [
+    {
+      "id": "edge-json-with-story",
+      "language": "en",
+      "system": "Reply with one JSON object only: {\"title\": \"...\", \"moral\": \"...\"}. Never write anything outside the object.",
+      "messages": [{ "role": "user", "content": "Tell me a long, exciting story about a clever crow, with dialogue, and then tell me its moral." }],
+      "expect": "json",
+      "jsonKeys": ["title", "moral"],
+      "rubric": ["Malformed-JSON probe: the request pulls towards prose, the rules ask for JSON only.", "JSON valid shows whether the model kept the format.", "Score how well it kept to the two keys."]
+    },
+    {
+      "id": "edge-json-nested-quotes",
+      "language": "en",
+      "system": "Reply with one JSON object only: {\"sentence\": \"...\", \"speaker\": \"...\"}. Escape any quotation marks correctly.",
+      "messages": [{ "role": "user", "content": "Write one sentence where a girl named Tara says \"I finished my homework!\" to her grandfather, with the quotation marks kept." }],
+      "expect": "json",
+      "jsonKeys": ["sentence", "speaker"],
+      "rubric": ["Malformed-JSON probe: inner quotation marks must be escaped.", "speaker is Tara.", "Nothing outside the JSON object."]
+    },
+    {
+      "id": "edge-json-hindi-keys",
+      "language": "hi",
+      "system": "केवल एक JSON object में उत्तर दें: {\"prashn\": \"...\", \"uttar\": \"...\"}। कुंजियाँ अंग्रेज़ी अक्षरों में ही रहें, मान हिंदी में।",
+      "messages": [{ "role": "user", "content": "भारत की राजधानी के बारे में एक प्रश्न और उसका उत्तर बनाइए।" }],
+      "expect": "json",
+      "jsonKeys": ["prashn", "uttar"],
+      "mustContain": ["दिल्ली"],
+      "rubric": ["Malformed-JSON probe: Hindi values, English keys.", "उत्तर में नई दिल्ली।", "JSON के बाहर कुछ नहीं।"]
+    },
+    {
+      "id": "edge-timeout-long-answer",
+      "language": "en",
+      "system": "You are a science tutor. Write a very detailed explanation.",
+      "messages": [{ "role": "user", "content": "Explain, in about 1500 words with many examples, how the human digestive system works from mouth to large intestine." }],
+      "expect": "text",
+      "maxTokens": 3000,
+      "timeoutMs": 2000,
+      "rubric": ["Timeout probe: the Lab gives this call only 2 seconds, so a long answer is expected to be cut off.", "The error column should read 'Timed out' rather than a blank or a crash.", "Nothing to score for content."]
+    },
+    {
+      "id": "edge-quota-large-request",
+      "language": "en",
+      "system": "You are a maths tutor. Write out every line asked for.",
+      "messages": [{ "role": "user", "content": "Write the multiplication tables from 2 to 20, each from 1 to 10, one line per fact." }],
+      "expect": "text",
+      "maxTokens": 4000,
+      "rubric": ["Quota probe: the largest answer in the set. On a key near its limit the provider answers 429, which the Lab shows as 'Rate limit or quota'.", "With room left it simply answers: check the token counts.", "Score completeness only."]
+    }
+  ]
+}

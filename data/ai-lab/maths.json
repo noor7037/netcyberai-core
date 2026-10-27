@@ -1,0 +1,78 @@
+{
+  "area": "maths",
+  "cases": [
+    {
+      "id": "maths-fractions-add",
+      "language": "en",
+      "system": "You are a patient maths tutor for a Class 5 student in India. Explain in short steps, then give the final answer on its own line starting with 'Answer:'.",
+      "messages": [{ "role": "user", "content": "Meera ate 1/4 of a pizza and her brother ate 2/4 of the same pizza. How much of the pizza did they eat together?" }],
+      "expect": "text",
+      "mustContain": ["3/4"],
+      "rubric": ["The answer is 3/4.", "Adds numerators only, keeps the denominator, and says why.", "Words a ten-year-old can follow."]
+    },
+    {
+      "id": "maths-percent-discount",
+      "language": "en",
+      "system": "You are a maths tutor for a Class 7 student. Show the working step by step and end with 'Answer:' and the number in rupees.",
+      "messages": [{ "role": "user", "content": "A school bag costs 800 rupees. The shop gives a 15% discount. What is the price after the discount?" }],
+      "expect": "text",
+      "mustContain": ["680"],
+      "rubric": ["The answer is 680 rupees.", "Finds 15% of 800 as 120 before subtracting.", "No extra assumptions such as tax."]
+    },
+    {
+      "id": "maths-linear-equation",
+      "language": "en",
+      "system": "You are a maths tutor for a Class 8 student. Solve the equation, showing each step on a new line, then check the answer by substituting it back.",
+      "messages": [{ "role": "user", "content": "Solve 3x + 7 = 31." }],
+      "expect": "text",
+      "mustContain": ["8"],
+      "rubric": ["x = 8.", "Each step keeps both sides balanced.", "Includes the check 3 × 8 + 7 = 31."]
+    },
+    {
+      "id": "maths-area-rectangle-json",
+      "language": "en",
+      "system": "You check a Class 6 student's working. Reply with one JSON object only: {\"correct\": true or false, \"right_answer\": number, \"hint\": \"one short sentence\"}.",
+      "messages": [{ "role": "user", "content": "Question: a garden is 12 m long and 9 m wide. What is its area? My answer: 42 square metres." }],
+      "expect": "json",
+      "jsonKeys": ["correct", "right_answer", "hint"],
+      "mustContain": ["108"],
+      "rubric": ["correct is false and right_answer is 108.", "The hint points at area = length × width without giving away the whole working.", "Nothing outside the JSON object."]
+    },
+    {
+      "id": "maths-ratio-share",
+      "language": "en",
+      "system": "You are a maths tutor for a Class 7 student. Use a short table or list to show the working, then 'Answer:'.",
+      "messages": [{ "role": "user", "content": "Arjun and Kabir share 450 marbles in the ratio 4 : 5. How many marbles does each get?" }],
+      "expect": "text",
+      "mustContain": ["200", "250"],
+      "rubric": ["Arjun 200, Kabir 250.", "Finds one part as 450 ÷ 9 = 50.", "Checks that 200 + 250 = 450."]
+    },
+    {
+      "id": "maths-hcf-lcm",
+      "language": "en",
+      "system": "You are a maths tutor for a Class 6 student. Use prime factors. End with two lines: 'HCF:' and 'LCM:'.",
+      "messages": [{ "role": "user", "content": "Find the HCF and LCM of 18 and 24." }],
+      "expect": "text",
+      "mustContain": ["6", "72"],
+      "rubric": ["HCF 6, LCM 72.", "Prime factors 2 × 3 × 3 and 2 × 2 × 2 × 3 shown.", "Explains which powers are taken for each."]
+    },
+    {
+      "id": "maths-speed-distance",
+      "language": "en",
+      "system": "You are a maths tutor for a Class 7 student. Give a short explanation and the final answer with its unit.",
+      "messages": [{ "role": "user", "content": "A cyclist rides 36 km in 2 hours at a steady speed. How far will she ride in 5 hours at the same speed?" }],
+      "expect": "text",
+      "mustContain": ["90"],
+      "rubric": ["90 km.", "Finds the speed of 18 km per hour first, or uses a ratio.", "Keeps units on every line."]
+    },
+    {
+      "id": "maths-misconception-decimal",
+      "language": "en",
+      "system": "A Class 5 student believes something wrong. Do not just give the answer: find the wrong idea, explain it kindly in three or four sentences, and give one quick question to test the new idea.",
+      "messages": [{ "role": "user", "content": "0.25 is bigger than 0.5 because 25 is bigger than 5, right?" }],
+      "expect": "text",
+      "mustContain": ["0.5"],
+      "rubric": ["Says 0.5 is bigger, kindly.", "Names the wrong idea (comparing digits as whole numbers) and uses place value or 0.50.", "Ends with one short practice question."]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "area": "humanities",
+  "cases": [
+    {
+      "id": "humanities-directions",
+      "language": "en",
+      "system": "You are a geography tutor for a Class 6 student. Explain clearly in under 120 words.",
+      "messages": [{ "role": "user", "content": "If I face the rising sun in the morning, which direction is behind me, and which is on my left?" }],
+      "expect": "text",
+      "mustContain": ["west", "north"],
+      "rubric": ["Facing east: west behind, north on the left.", "Says in a sentence why the sun appears in the east.", "A tip to remember."]
+    },
+    {
+      "id": "humanities-gram-panchayat",
+      "language": "en",
+      "system": "You are a civics tutor for a Class 6 student in India. Use a village example with made-up names.",
+      "messages": [{ "role": "user", "content": "What does a Gram Panchayat do?" }],
+      "expect": "text",
+      "mustContain": ["Gram Sabha"],
+      "rubric": ["Local self-government of a village; work such as water, roads and records.", "Mentions the Gram Sabha and elections.", "Made-up names only, no real person."]
+    },
+    {
+      "id": "humanities-history-sources",
+      "language": "en",
+      "system": "You are a history tutor for a Class 6 student. Answer in short points.",
+      "messages": [{ "role": "user", "content": "How do we know about people who lived thousands of years ago when they left no books?" }],
+      "expect": "text",
+      "rubric": ["Material remains: tools, pots, bones, buildings, coins, inscriptions.", "Says simply how each is studied.", "No invented dates or claims."]
+    },
+    {
+      "id": "humanities-needs-wants-json",
+      "language": "en",
+      "system": "Sort each item into needs or wants for a family. Reply with one JSON object only: {\"needs\": [...], \"wants\": [...], \"why\": \"one sentence\"}.",
+      "messages": [{ "role": "user", "content": "Rice, a new video game, clean drinking water, a school uniform, a second television, medicine." }],
+      "expect": "json",
+      "jsonKeys": ["needs", "wants", "why"],
+      "rubric": ["Needs: rice, water, uniform, medicine; wants: video game, second television.", "The reason is one sentence.", "Nothing outside the JSON object."]
+    },
+    {
+      "id": "humanities-weather-climate",
+      "language": "en",
+      "system": "You are a geography tutor for a Class 7 student. Use one example from an Indian city, without giving any number you are not sure of.",
+      "messages": [{ "role": "user", "content": "What is the difference between weather and climate?" }],
+      "expect": "text",
+      "rubric": ["Weather is day to day; climate is the pattern over many years.", "An example without invented figures.", "Clear and short."]
+    },
+    {
+      "id": "humanities-essay-outline",
+      "language": "en",
+      "system": "Help a Class 8 student plan, not write, a short essay. Give an outline with an introduction, three points and a conclusion, each one line.",
+      "messages": [{ "role": "user", "content": "My essay topic is 'Why we should save water in our school'." }],
+      "expect": "text",
+      "rubric": ["An outline only, not a finished essay.", "Three distinct, relevant points.", "Each part one line."]
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { AiControls } from '@/components/control/ai/AiControls';
 import { loadAiOverview, loadAiRouting, providerChoices } from '@/lib/ai/control';
@@ -29,6 +30,11 @@ export default async function AiControlPage() {
       tone="grape"
       eyebrow={t(lang, 'group.control')}
       headerLang={lang}
+      more={
+        <Link href="/control/ai/lab" data-ai-lab-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+          {t(lang, 'control.ai.lab.link')}
+        </Link>
+      }
       notice={
         !strong ? (
           <p data-ai-need-aal2 className="rounded-md border border-slate/20 bg-off-white px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'control.ai.needAal2')}</p>

@@ -1,0 +1,54 @@
+{
+  "area": "multi_turn",
+  "cases": [
+    {
+      "id": "multi-fraction-followup",
+      "language": "en",
+      "system": "You are a maths tutor for a Class 5 student. Keep each reply under 80 words and build on what was said before.",
+      "messages": [
+        { "role": "user", "content": "What is 1/2 + 1/4?" },
+        { "role": "assistant", "content": "Make the bottoms the same first: 1/2 is the same as 2/4. Then 2/4 + 1/4 = 3/4." },
+        { "role": "user", "content": "Why can't I just add the bottoms too and say 2/6?" }
+      ],
+      "expect": "text",
+      "rubric": ["Explains with a picture or pieces why the denominators are not added.", "Refers back to the earlier answer of 3/4.", "Under 80 words, kind tone."]
+    },
+    {
+      "id": "multi-science-clarify",
+      "language": "en",
+      "system": "You are a science tutor for a Class 7 student. Answer the latest question using the conversation so far, in under 100 words.",
+      "messages": [
+        { "role": "user", "content": "What is a conductor?" },
+        { "role": "assistant", "content": "A conductor is a material that lets electricity pass through it easily, like copper or iron." },
+        { "role": "user", "content": "So is my wooden ruler a conductor?" }
+      ],
+      "expect": "text",
+      "mustContain": ["insulator"],
+      "rubric": ["No: dry wood is an insulator.", "Uses the word from the earlier turn to contrast.", "Under 100 words."]
+    },
+    {
+      "id": "multi-english-roleplay-continue",
+      "language": "en",
+      "system": "You play a railway ticket clerk. The learner is a Class 6 student practising English. Stay in role, reply in one or two sentences, and move the conversation one step forward.",
+      "messages": [
+        { "role": "user", "content": "Good morning. I want one ticket to Jaipur please." },
+        { "role": "assistant", "content": "Good morning! Would you like a sleeper ticket or a seat in the chair car?" },
+        { "role": "user", "content": "Chair car. How much it costs?" }
+      ],
+      "expect": "text",
+      "rubric": ["Models 'How much does it cost?' naturally once.", "Stays in role and moves forward (for example asks the date).", "Does not state a real fare as fact."]
+    },
+    {
+      "id": "multi-hindi-followup",
+      "language": "hi",
+      "system": "आप कक्षा 6 के छात्र के हिंदी शिक्षक हैं। पिछली बातचीत को ध्यान में रखकर, सरल हिंदी में 80 शब्दों से कम में उत्तर दें।",
+      "messages": [
+        { "role": "user", "content": "सर्वनाम क्या होता है?" },
+        { "role": "assistant", "content": "संज्ञा के स्थान पर आने वाले शब्द को सर्वनाम कहते हैं, जैसे — वह, मैं, तुम।" },
+        { "role": "user", "content": "तो 'राधा स्कूल गई' में सर्वनाम कहाँ है?" }
+      ],
+      "expect": "text",
+      "rubric": ["इस वाक्य में कोई सर्वनाम नहीं है; 'राधा' संज्ञा है।", "सर्वनाम वाला वाक्य बनाकर दिखाता है (वह स्कूल गई)।", "पिछली बात से जुड़ा, 80 शब्दों से कम।"]
+    }
+  ]
+}

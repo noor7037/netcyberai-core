@@ -81,6 +81,8 @@ and 1440 for UI; one Opus security review per wave for the slices marked (S). Mo
 | G3 | `/control/ai` UX: workload cards with named Primary/Backup 1/Backup 2, promote and rollback as one transaction, provider states (Not configured, Saved, Tested, Healthy, Degraded, Circuit open, Quota, Disabled), honest empty states, the ledger and fallback timeline | Sonnet | `AiControls.tsx`, `src/app/api/control/ai/route.ts`, i18n | Screenshots en/hi 390/1440; no number on screen that was not measured |
 | G4 | Quality Lab: `control.ai_eval_*` tables, ≥40 NetCyber-authored synthetic cases (maths, science, humanities, Hindi, English role-play, multi-turn, malformed JSON, timeout, quota), side-by-side runs, 1–5 rubric, export; results never enter learner history or the shared cache | Sonnet (UI), Opus (isolation) | new `src/lib/ai/lab/*`, `data/ai-lab/*`, Control screen | A run against two configured models produces a comparable table; with no key the screen says Not configured |
 
+**Wave 1 as built (2026-10-28):** G0 #343 (C368), G1 #344 (C369, migration `20261027183036_g1_adapters`), G2 #345 (C370, `20261027183400_g2_routing`), G3 #347 (C371), G4 #346 (C372, `20261027183632_g4_quality_lab`); the three migrations are on the test database. Open: no health-probe runner (probe columns stay null), no ledger retention, no prices (cost unknown), no live vendor call yet (no keys).
+
 ### Wave 2: Study (chapter reader, tutor window, content studio, standalone path)
 
 | # | Slice | Model | Acceptance |
