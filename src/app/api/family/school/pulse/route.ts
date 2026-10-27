@@ -1,3 +1,4 @@
+import { familyClaims } from '@/lib/family/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { familyRead, jsonBody, requireParent } from '@/lib/family/request';
 import { activeLinks, answerSchoolPulse } from '@/lib/family/school';
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
   const pulseId = uuid(body.pulseId);
   const answer = body.answer === 'understood' || body.answer === 'needs_help' ? body.answer : null;
   if (!linkId || !studentId || !pulseId || !answer) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
-  const claims = { accountId: g.session.accountId, tokenVersion: g.session.tokenVersion };
+  const claims = familyClaims(g.session);
   const links = await familyRead(g.session, (db) => activeLinks(db, g.session.accountId));
   if (!links) return NextResponse.json({ error: 'not_signed_in' }, { status: 401 });
   const result = await answerSchoolPulse(claims, links, { linkId, studentId, pulseId, answer });

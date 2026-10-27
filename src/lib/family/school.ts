@@ -1,3 +1,4 @@
+import type { FamilyClaims } from './db';
 import type { PoolClient } from 'pg';
 import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
 import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
@@ -26,7 +27,7 @@ import {
 // away in the same request, while the child's own learning stays.
 
 type Sql = Pick<PoolClient, 'query'>;
-type Claims = { accountId: string; tokenVersion: number };
+type Claims = FamilyClaims;
 
 export type FamilySchoolLink = { linkId: string; schoolId: string; linkedAt: string; children: { childId: string; studentId: string }[] };
 // At most this many code tries a day per account, so a code cannot be guessed (8 characters of 32, single use).

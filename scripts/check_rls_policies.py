@@ -496,6 +496,9 @@ ALLOWED_PERMISSIVE = (
         ("family.school_links", "school_links_own"),
         ("family.child_links", "child_links_own"),
         ("family.connect_attempts", "connect_attempts_own"),
+        # M2b-2 (C342): a child's own phone, its one-time codes and its link; own account only (restrictive twins below).
+        ("family.child_link_codes", "child_link_codes_own"),
+        ("family.child_devices", "child_devices_own"),
         # M3-7 (C337): the home plan after a parent-teacher meeting, own account only (restrictive twin below).
         ("family.home_plans", "home_plans_own"),
         # M3-8a (C338): when the parent last looked at the school's news, and the kinds turned off; own account only.
@@ -1009,6 +1012,9 @@ REQUIRED_RESTRICTIVE = {
     ("family.school_links", "school_links_own_only"),
     ("family.child_links", "child_links_own_only"),
     ("family.connect_attempts", "connect_attempts_own_only"),
+    # M2b-2 (C342): own account only.
+    ("family.child_link_codes", "child_link_codes_own_only"),
+    ("family.child_devices", "child_devices_own_only"),
     # M3-7 (C337): own account only on the home plan.
     ("family.home_plans", "home_plans_own_only"),
     # M3-8a (C338): own account only.

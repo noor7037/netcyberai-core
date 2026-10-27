@@ -481,22 +481,46 @@ export function familyContextStatements(accountIdOrNull: string | null) {
     setAccount: `select set_config('app.current_account_id', $1, true)`,
     setAccountArg: accountIdOrNull ?? '',
     checkLive: `select token_version from family.accounts where account_id = $1`,
+    // A child's own phone (M2b-2, C342): every family table shows that one child only, and the phone must still be linked.
+    setChild: `select set_config('app.current_child_id', $1, true)`,
+    checkDevice: `select 1 from family.child_devices where device_id = $1 and account_id = $2 and child_id = $3 and revoked_at is null`,
+    touchDevice: `update family.child_devices set last_seen_at = now() where device_id = $1 and (last_seen_at is null or last_seen_at < now() - interval '1 hour')`,
   };
 }
 
-async function familyTransaction<T>(accountIdOrNull: string | null, tokenVersion: number | null, fn: (client: PoolClient) => Promise<T>): Promise<T> {
-  const stmts = familyContextStatements(accountIdOrNull);
+// A family session's claims. `device`: the session is a child's own phone (M2b-2, C342), for that one child. Family
+// code builds claims only through familyClaims (src/lib/family/db.ts), so the phone's scope is never dropped
+// (test/family/child-phone.test.ts checks every call site).
+export type FamilyDevice = { deviceId: string; childId: string };
+export type FamilyClaims = { accountId: string; tokenVersion: number; device?: FamilyDevice | null };
+
+// The account live, and a child's phone still linked to that child: on every request, so removing the phone ends it now.
+async function checkFamilyLive(client: PoolClient, stmts: ReturnType<typeof familyContextStatements>, claims: FamilyClaims): Promise<void> {
+  const device = claims.device ?? null;
+  if (device) {
+    if (!ACCOUNT_ID.test(device.deviceId) || !ACCOUNT_ID.test(device.childId)) throw new FamilySessionRevokedError('not a device');
+    await client.query(stmts.setChild, [device.childId]);
+  }
+  const { rows } = await client.query(stmts.checkLive, [claims.accountId]);
+  if (!rows[0]) throw new FamilySessionRevokedError('account not found');
+  if (Number(rows[0].token_version) !== claims.tokenVersion) throw new FamilySessionRevokedError('token_version mismatch');
+  if (device) {
+    const linked = (await client.query(stmts.checkDevice, [device.deviceId, claims.accountId, device.childId])).rows[0];
+    if (!linked) throw new FamilySessionRevokedError('device removed');
+    await client.query(stmts.touchDevice, [device.deviceId]);
+  }
+}
+
+async function familyTransaction<T>(claims: FamilyClaims | null, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  const stmts = familyContextStatements(claims?.accountId ?? null);
   const client = await getPool().connect();
   try {
     await client.query('begin');
     await client.query(stmts.setRole); // LOCAL, as in withTenantContext
     await client.query(stmts.setAccount, [stmts.setAccountArg]);
-    if (accountIdOrNull !== null) {
-      // Live on every request: a deleted account, or "sign out everywhere" (token_version bumped), ends the session now.
-      const { rows } = await client.query(stmts.checkLive, [accountIdOrNull]);
-      if (!rows[0]) throw new FamilySessionRevokedError('account not found');
-      if (Number(rows[0].token_version) !== tokenVersion) throw new FamilySessionRevokedError('token_version mismatch');
-    }
+    // Live on every request: a deleted account, "sign out everywhere" (token_version bumped), or a child's phone the
+    // parent removed ends the session now.
+    if (claims) await checkFamilyLive(client, stmts, claims);
     const result = await fn(client);
     await client.query('commit');
     return result;
@@ -509,9 +533,10 @@ async function familyTransaction<T>(accountIdOrNull: string | null, tokenVersion
   }
 }
 
-// Every request of a signed-in family: own account only, by the database's own rules.
-export async function withFamilyContext<T>(claims: { accountId: string; tokenVersion: number }, fn: (client: PoolClient) => Promise<T>): Promise<T> {
-  return familyTransaction(claims.accountId, claims.tokenVersion, fn);
+// Every request of a signed-in family: own account only (and, on a child's own phone, that one child), by the database's
+// own rules.
+export async function withFamilyContext<T>(claims: FamilyClaims, fn: (client: PoolClient) => Promise<T>): Promise<T> {
+  return familyTransaction(claims, fn);
 }
 
 // School Link (C230-AA; docs/family-app/03 §4): a linked school read AS the guardian its office made the connect code
@@ -521,7 +546,7 @@ export async function withFamilyContext<T>(claims: { accountId: string; tokenVer
 export class SchoolLinkGoneError extends Error {}
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export async function withGuardianContext<T>(
-  claims: { accountId: string; tokenVersion: number },
+  claims: FamilyClaims,
   linkId: string,
   fn: (client: PoolClient, link: { schoolId: string; parentId: string }) => Promise<T>
 ): Promise<T> {
@@ -532,13 +557,15 @@ export async function withGuardianContext<T>(
     await client.query('begin');
     await client.query(fam.setRole);
     await client.query(fam.setAccount, [fam.setAccountArg]);
-    const live = (await client.query(fam.checkLive, [claims.accountId])).rows[0];
-    if (!live) throw new FamilySessionRevokedError('account not found');
-    if (Number(live.token_version) !== claims.tokenVersion) throw new FamilySessionRevokedError('token_version mismatch');
+    await checkFamilyLive(client, fam, claims);
     const link = (
       await client.query(`select school_id, parent_id from family.school_links where link_id = $1 and account_id = $2 and revoked_at is null`, [linkId, claims.accountId])
     ).rows[0] as { school_id: string; parent_id: string } | undefined;
     if (!link) throw new SchoolLinkGoneError('link not active');
+    // A child's own phone reads a school only through its own child's match (the family's child links show that child only).
+    if (claims.device && !(await client.query(`select 1 from family.child_links where link_id = $1 and child_id = $2`, [linkId, claims.device.childId])).rows[0]) {
+      throw new SchoolLinkGoneError('not this child');
+    }
     const stmts = tenantContextStatements(link.school_id, 'parent');
     await client.query(stmts.setRole);
     await client.query(stmts.setTenant, [link.school_id]);
@@ -561,5 +588,5 @@ export async function withGuardianContext<T>(
 // Before any account (sign-in, the code step) and for screens with no session: the same role with no account, so no
 // family row is visible. Only the sign-in functions, the switches Control sets and published content are reachable.
 export async function withFamilyGate<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
-  return familyTransaction(null, null, fn);
+  return familyTransaction(null, fn);
 }

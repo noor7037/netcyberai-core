@@ -1,6 +1,6 @@
 import { createHash, randomInt } from 'crypto';
 import type { PoolClient } from 'pg';
-import { withGuardianContext, SchoolLinkGoneError } from '@/lib/auth/db';
+import { withGuardianContext, SchoolLinkGoneError, type FamilyClaims } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
 import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
@@ -102,7 +102,7 @@ export async function redeemConnectCode(db: Sql, accountId: string, typed: unkno
   return row ? { linkId: row.link_id, schoolName: row.school_name } : null;
 }
 
-type Claims = { accountId: string; tokenVersion: number };
+type Claims = FamilyClaims;
 
 // The guardian's children at the school, as the school shows them to that guardian today. `matched`: the students this
 // app has matched to one of its children; only they get their class's homework (C329), notices and events (C331),

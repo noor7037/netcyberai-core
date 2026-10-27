@@ -5,7 +5,7 @@ import { isLang, type Lang } from '@/lib/i18n';
 import { accountSummary, type AccountSummary } from './account';
 import { activeChild, listChildren, type FamilyChild } from './children';
 import { consentState, type FamilyPurpose } from './consent';
-import { FamilySessionRevokedError, withFamilyContext } from './db';
+import { FamilySessionRevokedError, withFamilyContext, familyClaims } from './db';
 import { FAMILY_CHILD_COOKIE, FAMILY_LANG_COOKIE, FAMILY_PARENT_COOKIE, FAMILY_SESSION_COOKIE, verifyFamilySession, verifyParentMode, type FamilySession } from './session';
 
 // What every Family app page starts from (M1-2, C248), read in the account's own transaction: the account, its
@@ -43,7 +43,7 @@ async function readFamilyPage(): Promise<FamilyPage | null> {
   if (!session) return null;
   let read: Omit<FamilyPage, 'session' | 'parentMode' | 'child' | 'childLang' | 'parentLang'> | null;
   try {
-    read = await withFamilyContext({ accountId: session.accountId, tokenVersion: session.tokenVersion }, async (db) => {
+    read = await withFamilyContext(familyClaims(session), async (db) => {
       const account = await accountSummary(db, session.accountId);
       if (!account) return null;
       return { account, consents: await consentState(db, session.accountId), children: await listChildren(db, session.accountId) };
@@ -69,5 +69,5 @@ export function firstStepsNext(p: FamilyPage): string | null {
 
 // A read for a page, in the account's own transaction (after requireFamilyPage).
 export async function familyPageRead<T>(page: FamilyPage, fn: (db: import('pg').PoolClient) => Promise<T>): Promise<T> {
-  return withFamilyContext({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, fn);
+  return withFamilyContext(familyClaims(page.session), fn);
 }

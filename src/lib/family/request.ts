@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { PoolClient } from 'pg';
-import { FamilySessionRevokedError, withFamilyContext } from './db';
+import { FamilySessionRevokedError, withFamilyContext, familyClaims } from './db';
 import {
   FAMILY_CHILD_COOKIE,
   FAMILY_CODE_COOKIE,
@@ -28,6 +28,8 @@ export async function requireFamily(req: NextRequest): Promise<FamilyGuard> {
 export async function requireParent(req: NextRequest): Promise<FamilyGuard> {
   const g = await requireFamily(req);
   if (g.error) return g;
+  // A child's own phone never opens the parent's things (C342): they are on the parent's phone.
+  if (g.session.device) return { error: NextResponse.json({ error: 'child_phone' }, { status: 403 }) };
   if (!(await verifyParentMode(req.cookies.get(FAMILY_PARENT_COOKIE)?.value, g.session))) {
     return { error: NextResponse.json({ error: 'parent_pin_required' }, { status: 403 }) };
   }
@@ -43,7 +45,7 @@ export function clearFamilyCookies(res: NextResponse): NextResponse {
 // loses its cookies.
 export async function familyRun(session: FamilySession, fn: (db: PoolClient) => Promise<NextResponse>): Promise<NextResponse> {
   try {
-    return await withFamilyContext({ accountId: session.accountId, tokenVersion: session.tokenVersion }, fn);
+    return await withFamilyContext(familyClaims(session), fn);
   } catch (err) {
     if (err instanceof FamilySessionRevokedError) return clearFamilyCookies(NextResponse.json({ error: 'not_signed_in' }, { status: 401 }));
     throw err;
@@ -59,7 +61,7 @@ export async function jsonBody(req: NextRequest): Promise<Record<string, unknown
 // a time). null when the session was revoked.
 export async function familyRead<T>(session: FamilySession, fn: (db: PoolClient) => Promise<T>): Promise<T | null> {
   try {
-    return await withFamilyContext({ accountId: session.accountId, tokenVersion: session.tokenVersion }, fn);
+    return await withFamilyContext(familyClaims(session), fn);
   } catch (err) {
     if (err instanceof FamilySessionRevokedError) return null;
     throw err;
