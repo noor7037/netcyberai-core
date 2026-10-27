@@ -1,5 +1,5 @@
 import { sseData } from './sse';
-import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, type AdapterResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type TextAdapter } from './types';
 
 // Anthropic's Messages API, streamed over fetch (no SDK): POST /v1/messages with stream: true. Text arrives as
 // content_block_delta events (text_delta); the input token count comes with message_start, the output count with
@@ -11,7 +11,8 @@ export const anthropicAdapter: TextAdapter = {
   capability: 'text',
   termsNote: 'minors_with_safeguards',
   needsKey: true,
-  vision: true,
+  // No json: Anthropic has no JSON mode here; the instructions ask for it (JSON_ONLY).
+  capabilities: capabilities(['text', 'vision', 'stream']),
   keyLooksRight: (key) => /^sk-ant-[\x21-\x7e]{20,300}$/.test(key),
   async streamText(request, onDelta): Promise<AdapterResult> {
     const body = {

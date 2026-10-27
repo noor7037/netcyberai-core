@@ -1,5 +1,5 @@
 import { streamChatCompletions } from './chat-completions';
-import { SPEECH_TIMEOUT_MS, type AdapterResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { SPEECH_TIMEOUT_MS, capabilities, type AdapterResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // OpenAI's Chat Completions API, streamed over fetch (no SDK; the wire format is shared, ./chat-completions.ts).
 const URL = 'https://api.openai.com/v1/chat/completions';
@@ -12,7 +12,7 @@ export const openaiAdapter: TextAdapter = {
   capability: 'text',
   termsNote: 'no_under_13',
   needsKey: true,
-  vision: true,
+  capabilities: capabilities(['text', 'vision', 'stream', 'json']),
   keyLooksRight: (key) => /^sk-[\x21-\x7e]{20,300}$/.test(key),
   streamText(request, onDelta): Promise<AdapterResult> {
     return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_completion_tokens', jsonMode: true, includeUsage: true });
@@ -31,6 +31,7 @@ export const openaiSpeechAdapter: SpeechAdapter = {
   capability: 'speech_to_text',
   termsNote: 'no_under_13',
   needsKey: true,
+  capabilities: capabilities(['stt']),
   async transcribe(request): Promise<SpeechResult> {
     const form = new FormData();
     // A copy into a fresh ArrayBuffer: a Blob takes a plain buffer, never a view of a shared one.

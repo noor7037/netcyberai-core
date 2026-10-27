@@ -1,7 +1,8 @@
 import { randomBytes, randomUUID } from 'crypto';
-import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 import { aiEncryptionKey, unsealAiKey } from '@/lib/ai/credentials';
+import { endpointNet, type Resolved } from '@/lib/ai/adapters/endpoint-guard';
 
 // M1-3 (C249): Control → AI's route on the real migrations (PGlite). Only the connection is replaced: the route's own
 // platform helper runs on the test database as nca_super, as in production. Who is let in (the founder with the
@@ -89,7 +90,7 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'openai', 'workers-ai', 'youtube']);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'openai', 'openai_compatible', 'vertex_ai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
       // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
       expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
@@ -247,5 +248,135 @@ describe('every change is audited and undone in one step', () => {
     expect(page.changes.length).toBeGreaterThan(5);
     expect(JSON.stringify(await q(`select before_state, after_state from audit_log where event_action like 'ai.%'`))).not.toMatch(/sk-ant/);
     expect(await post({ action: 'undo', auditId: '999999' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_found' }) });
+  });
+});
+
+// ---- G1 (C369): the OpenAI-compatible adapter's address, capabilities, and the new adapters' key tests -------------
+
+describe('the founder’s address for the OpenAI-compatible adapter (G1)', () => {
+  const COMPAT_KEY = `ck-${'C'.repeat(30)}KEYC`;
+  const resolvesTo = (...addresses: string[]) => vi.spyOn(endpointNet, 'lookup').mockImplementation(async () => addresses.map((a): Resolved => ({ address: a, family: a.includes(':') ? 6 : 4 })));
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+
+  it('asks for the authenticator again, like a key', async () => {
+    resolvesTo('8.8.4.4');
+    const r = await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v1' }, founderNoStepUp);
+    expect(r).toEqual({ status: 403, body: { error: 'step_up_required', method: 'authenticator' } });
+  });
+
+  it('refuses http, a name or password, a private or metadata address, and a name that resolves inside; nothing is saved', async () => {
+    const save = (baseUrl: string) => post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl });
+    expect(await save('http://llm.example.com/v1')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url' }) });
+    expect(await save('https://u:p@llm.example.com/v1')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url' }) });
+    expect(await save('https://metadata.google.internal/computeMetadata/v1')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url' }) });
+    expect(await save('https://169.254.169.254/latest')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url_private' }) });
+    expect(await save('https://[::ffff:10.0.0.1]/v1')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url_private' }) });
+    resolvesTo('fd12::7');
+    expect(await save('https://llm.example.com/v1')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url_private' }) });
+    vi.spyOn(endpointNet, 'lookup').mockRejectedValue(new Error('ENOTFOUND'));
+    expect(await save('https://nowhere.example.com/v1')).toEqual({ status: 400, body: expect.objectContaining({ code: 'base_url_dns' }) });
+    // Only the adapter whose address is the founder's takes one.
+    resolvesTo('8.8.4.4');
+    expect(await post({ action: 'endpoint', providerId: 'openai', baseUrl: 'https://llm.example.com/v1' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'provider' }) });
+    expect(await q(`select base_url from control.ai_providers where base_url is not null`)).toEqual([]);
+  });
+
+  it('saves a public address, shown on the page with what the adapter can do; audited before and after; undone in one step', async () => {
+    resolvesTo('8.8.4.4', '2606:4700:4700::1111');
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: ' https://LLM.example.com/v1/ ' })).toEqual({ status: 200, body: { ok: true } });
+    const page = await (await GET(req(undefined, founder))).json();
+    const compat = page.providers.find((p: { providerId: string }) => p.providerId === 'openai_compatible');
+    expect(compat).toMatchObject({ hasAdapter: true, needsBaseUrl: true, baseUrl: 'https://llm.example.com/v1', testable: true, termsNote: null, capabilities: { text: true, vision: false, stream: true, json: false, stt: false, tts: false } });
+    expect(page.providers.find((p: { providerId: string }) => p.providerId === 'vertex_ai')).toMatchObject({ needsBaseUrl: false, baseUrl: null, testable: true, termsNote: 'adults_only', capabilities: { vision: true, json: true } });
+    expect(page.profiles.find((p: { profileId: string }) => p.profileId === 'exams.mark').needs).toEqual(['text', 'vision']);
+    const [row] = await q(`select audit_id, before_state, after_state from audit_log where event_action = 'ai.endpoint_changed' order by audit_id desc limit 1`);
+    expect(row.before_state).toEqual({ providerId: 'openai_compatible', baseUrl: null });
+    expect(row.after_state).toEqual({ providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v1' });
+    expect(page.changes[0]).toMatchObject({ action: 'ai.endpoint_changed', target: 'openai_compatible', canUndo: true });
+    expect(await post({ action: 'undo', auditId: String(row.audit_id) })).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select base_url from control.ai_providers where provider_id = 'openai_compatible'`)).toEqual([{ base_url: null }]);
+  });
+
+  it('a key goes only to the host it was saved for: moving the address to another host removes it', async () => {
+    resolvesTo('8.8.4.4');
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v1' });
+    expect(await post({ action: 'credential', providerId: 'openai_compatible', apiKey: COMPAT_KEY })).toEqual({ status: 200, body: { ok: true } });
+    // The same host, another path: the key stays.
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v2' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select key_last4 from control.ai_credentials where provider_id = 'openai_compatible'`)).toEqual([{ key_last4: 'KEYC' }]);
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select key_last4 from control.ai_credentials where provider_id = 'openai_compatible'`)).toEqual([]);
+    const [row] = await q(`select after_state from audit_log where event_action = 'ai.endpoint_changed' order by audit_id desc limit 1`);
+    expect(row.after_state).toEqual({ providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1', keyRemoved: true });
+  });
+
+  it('a clearance for children’s words does not move to another host: refused while a child-words profile uses it, else withdrawn with the change', async () => {
+    resolvesTo('8.8.4.4');
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v1' });
+    expect(await post({ action: 'clearance', providerId: 'openai_compatible', cleared: true, termsUrl: 'https://llm.example.com/terms' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await post({ action: 'profile', profileId: 'family.resolver', providerId: 'openai_compatible', model: 'open-model-1', promptVersion: 'v1', enabled: false })).toEqual({ status: 200, body: { ok: true } });
+    // The same host keeps the clearance; another host is refused while a child-words profile uses the provider.
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v2' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'in_use' }) });
+    expect(await q(`select base_url, cleared_for_minors from control.ai_providers where provider_id = 'openai_compatible'`)).toEqual([{ base_url: 'https://llm.example.com/v2', cleared_for_minors: true }]);
+    // With the profile moved off, the change goes through and takes the clearance with it.
+    await post({ action: 'profile', profileId: 'family.resolver', providerId: null, model: null, promptVersion: 'v1', enabled: false });
+    expect(await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://other.example.net/v1' })).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select base_url, cleared_for_minors, cleared_terms_url, cleared_by from control.ai_providers where provider_id = 'openai_compatible'`)).toEqual([{ base_url: 'https://other.example.net/v1', cleared_for_minors: false, cleared_terms_url: null, cleared_by: null }]);
+    const [row] = await q(`select after_state from audit_log where event_action = 'ai.endpoint_changed' order by audit_id desc limit 1`);
+    expect(row.after_state).toMatchObject({ baseUrl: 'https://other.example.net/v1', clearanceWithdrawn: true });
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: null });
+  });
+
+  it('a feature that needs photos cannot be put on an adapter that does not declare them (code "capability")', async () => {
+    const r = await post({ action: 'profile', profileId: 'family.syllabus_extract', providerId: 'openai_compatible', model: 'open-model-1', promptVersion: 'v1', enabled: true });
+    expect(r).toEqual({ status: 400, body: expect.objectContaining({ code: 'capability' }) });
+    // As a backup too.
+    const fallback = await post({ action: 'profile', profileId: 'family.syllabus_extract', providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', promptVersion: 'v1', enabled: true, fallback: [{ provider: 'openai_compatible', model: 'open-model-1' }] });
+    expect(fallback).toEqual({ status: 400, body: expect.objectContaining({ code: 'capability' }) });
+    // A text-only feature takes it.
+    expect(await post({ action: 'profile', profileId: 'copilot.draft', providerId: 'openai_compatible', model: 'open-model-1', promptVersion: 'v1', enabled: false })).toEqual({ status: 200, body: { ok: true } });
+    // A Vertex model id that could leave its path is refused where the founder sees it.
+    expect(await post({ action: 'profile', profileId: 'copilot.draft', providerId: 'vertex_ai', model: '../x', promptVersion: 'v1', enabled: false })).toEqual({ status: 400, body: expect.objectContaining({ code: 'model' }) });
+    await post({ action: 'profile', profileId: 'copilot.draft', providerId: null, model: null, promptVersion: 'v1', enabled: true });
+  });
+
+  it('“Test the key” for both new adapters: no key in a response, an audit row, the stored outcome or the log', async () => {
+    const logged: string[] = [];
+    for (const level of ['log', 'info', 'warn', 'error', 'debug'] as const) vi.spyOn(console, level).mockImplementation((...a: unknown[]) => void logged.push(a.map(String).join(' ')));
+    resolvesTo('8.8.4.4');
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: 'https://llm.example.com/v1' });
+    await post({ action: 'credential', providerId: 'openai_compatible', apiKey: COMPAT_KEY });
+    const send = vi.spyOn(endpointNet, 'send').mockResolvedValue(new Response(JSON.stringify({ error: `wrong key ${COMPAT_KEY}` }), { status: 401 }));
+    const compat = await post({ action: 'test', providerId: 'openai_compatible' });
+    expect(compat).toEqual({ status: 200, body: { ok: true, works: false, code: 'http_401' } });
+    expect(send.mock.calls[0][0].href).toBe('https://llm.example.com/v1/models');
+    send.mockResolvedValue(new Response('{"data":[]}', { status: 200 }));
+    expect(await post({ action: 'test', providerId: 'openai_compatible' })).toEqual({ status: 200, body: { ok: true, works: true, code: 'ok' } });
+
+    const VERTEX_KEY = `AQ.${'V'.repeat(40)}KEYV`;
+    await post({ action: 'credential', providerId: 'vertex_ai', apiKey: VERTEX_KEY });
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ error: { message: `API key not valid ${VERTEX_KEY}` } }), { status: 400 })));
+    const vertex = await post({ action: 'test', providerId: 'vertex_ai' });
+    expect(vertex).toEqual({ status: 200, body: { ok: true, works: false, code: 'http_400' } });
+    // Text providers without a connection test still say so plainly.
+    expect(await post({ action: 'test', providerId: 'openai' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_testable' }) });
+
+    const page = await (await GET(req(undefined, founder))).text();
+    const stored = JSON.stringify(await q(`select provider_id, key_last4, test_ok, test_message from control.ai_credentials`));
+    const audits = JSON.stringify(await q(`select before_state, after_state from audit_log where event_action like 'ai.%'`));
+    for (const text of [JSON.stringify([compat, vertex]), page, stored, audits, logged.join(' ')]) {
+      expect(text).not.toContain(COMPAT_KEY);
+      expect(text).not.toContain(VERTEX_KEY);
+    }
+    expect(JSON.parse(page).providers.find((p: { providerId: string }) => p.providerId === 'vertex_ai').credential).toMatchObject({ keyLast4: 'KEYV', testOk: false });
+  });
+
+  it('with no address set, the test says so', async () => {
+    await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: null });
+    expect(await post({ action: 'test', providerId: 'openai_compatible' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'no_base_url' }) });
   });
 });

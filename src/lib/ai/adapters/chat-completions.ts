@@ -23,6 +23,9 @@ export type ChatCompletionsOptions = {
   // Scout's streamed answer losing the quotation marks at each '":"' and '","' join, on both of its streamed routes,
   // while the same answer in one piece came whole. Streamed by default.
   stream?: boolean;
+  // How the request leaves, for an address the founder set (G1, C369: ./endpoint-guard.ts checks it again and refuses a
+  // redirect); null when the address was refused. Elsewhere the platform's fetch to the vendor's fixed address.
+  send?: (init: { headers: Record<string, string>; body: string; signal: AbortSignal }) => Promise<Response | null>;
 };
 
 export async function streamChatCompletions(url: string, token: string, request: AdapterRequest, onDelta: (text: string) => void, opts: ChatCompletionsOptions): Promise<AdapterResult> {
@@ -48,12 +51,14 @@ export async function streamChatCompletions(url: string, token: string, request:
   };
   let res: Response;
   try {
-    res = await fetch(url, {
-      method: 'POST',
+    const init = {
       headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
       body: JSON.stringify(body),
       signal: AbortSignal.timeout(callTimeoutMs(request, stream ? CALL_TIMEOUT_MS : WHOLE_ANSWER_TIMEOUT_MS)),
-    });
+    };
+    const sent = opts.send ? await opts.send(init) : await fetch(url, { method: 'POST', ...init });
+    if (!sent) return { ok: false, failure: 'endpoint' };
+    res = sent;
   } catch {
     return { ok: false, failure: 'network' };
   }

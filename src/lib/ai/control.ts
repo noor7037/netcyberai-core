@@ -1,18 +1,20 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
-import { adapterFor, keyedProviderFor, speechAdapterFor, moderationAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type TermsNote } from './adapters';
+import { adapterFor, keyedProviderFor, providerCapabilities, speechAdapterFor, moderationAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type Capabilities, type Capability, type TermsNote } from './adapters';
+import { checkEndpoint, checkEndpointShape, type EndpointError } from './adapters/endpoint-guard';
+import { vertexModelLooksRight } from './adapters/vertex-ai';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersModelLooksRight, workersTokenLooksRight } from './adapters/workers-ai';
 import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
-import { capableAdapter, chainOf, PROFILES, profileById } from './platform';
+import { capableAdapter, chainOf, missingCapabilities, PROFILES, profileById, profileNeeds } from './platform';
 
 // Control → AI (docs/family-app/10 §3, §7; C249). NetCyberAI's founder only (super_admin with the authenticator,
 // checked by the route). Every statement runs as the platform role (nca_super), from a fixed, parameterised list.
 //
-// Each change — a provider's key, a provider's clearance for minors, a profile's provider/model/prompt version/on-off,
-// the daily cap — writes one platform audit row (school null) with the before and after: ids, flags and numbers,
+// Each change — a provider's key, a provider's clearance for minors, a provider's address (G1: the OpenAI-compatible
+// adapter's base URL), a profile's provider/model/prompt version/on-off, the daily cap — writes one platform audit row (school null) with the before and after: ids, flags and numbers,
 // never a key. Each can be undone in one step from that row's before state. A key itself is never kept anywhere but
 // sealed in control.ai_credentials, so undoing a key change can remove a key that was added, but cannot bring back an
 // earlier key: that one is entered again.
@@ -37,7 +39,14 @@ export type ChangeError =
   | 'not_found'
   | 'cannot_restore_key'
   | 'no_key'
-  | 'not_testable';
+  | 'not_testable'
+  // G1 (C369): a profile on a provider whose adapter lacks what the profile needs (for example photos).
+  | 'capability'
+  // G1: the founder's address for the OpenAI-compatible adapter, refused (shape, a private address, or not found).
+  | 'base_url'
+  | 'base_url_private'
+  | 'base_url_dns'
+  | 'no_base_url';
 
 export type AiOverview = {
   keyReady: boolean;
@@ -48,6 +57,13 @@ export type AiOverview = {
     hasAdapter: boolean;
     // 'video': a content provider (the video finder's YouTube, M2-5): a key and a test, never a profile's choice.
     capability: 'text' | 'video' | null;
+    // What the provider's adapters declare (G1, C369), shown beside it; null for a content provider or none.
+    capabilities: Capabilities | null;
+    // The founder's address, for the adapter whose address is his (G1); needsBaseUrl says the box is shown.
+    needsBaseUrl: boolean;
+    baseUrl: string | null;
+    // Whether "Test the key" works for it: the video finder's provider and the adapters with a connection test.
+    testable: boolean;
     // What the vendor's terms say for a product children use, shown beside the switch as advice (C368).
     termsNote: TermsNote | null;
     clearedForMinors: boolean;
@@ -57,14 +73,15 @@ export type AiOverview = {
     credential: { keyLast4: string; setAt: string; setByName: string | null; testedAt: string | null; testOk: boolean | null } | null;
   }[];
   // usesPrompt: only a text profile reads a prompt version; speech and the safety check have none to choose (C314).
-  profiles: { profileId: string; carriesChildWords: boolean; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; usesPrompt: boolean; enabled: boolean }[];
+  // needs: what the profile's provider must declare (G1).
+  profiles: { profileId: string; carriesChildWords: boolean; needs: Capability[]; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; usesPrompt: boolean; enabled: boolean }[];
   usage: { profileId: string; today: Counts; month: Counts }[];
   cap: number | null;
   changes: { auditId: string; action: string; at: string; byName: string | null; target: string | null; canUndo: boolean }[];
 };
 export type Counts = { requests: number; failures: number; capRefusals: number; tokensIn: number; tokensOut: number };
 
-const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.profile_changed', 'ai.cap_changed'] as const;
+const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed'] as const;
 type Action = (typeof ACTIONS)[number];
 // A model id as the vendor names it; Workers AI ids start with "@" (C230-U). The database holds the same rule.
 const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
@@ -88,7 +105,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
   const today = indiaDate();
   const month = today.slice(0, 7);
   const providers = await db.query(
-    `select p.provider_id, p.cleared_for_minors, p.cleared_terms_url, p.cleared_at, cu.display_name as cleared_by_name,
+    `select p.provider_id, p.base_url, p.cleared_for_minors, p.cleared_terms_url, p.cleared_at, cu.display_name as cleared_by_name,
             c.key_last4, c.set_at, su.display_name as set_by_name, c.tested_at, c.test_ok
        from control.ai_providers p
        left join control.ai_credentials c on c.provider_id = p.provider_id
@@ -136,10 +153,15 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     providers: providers.rows.map((r) => {
       const adapter = adapterFor(r.provider_id) ?? speechAdapterFor(r.provider_id) ?? moderationAdapterFor(r.provider_id);
       const keyed = keyedProviderFor(r.provider_id);
+      const text = adapterFor(r.provider_id);
       return {
         providerId: r.provider_id,
         hasAdapter: keyed !== null,
         capability: keyed?.capability ?? null,
+        capabilities: keyed?.capability === 'video' ? null : providerCapabilities(r.provider_id),
+        needsBaseUrl: text?.needsBaseUrl === true,
+        baseUrl: r.base_url ?? null,
+        testable: keyed?.capability === 'video' || typeof text?.testConnection === 'function',
         termsNote: adapter?.termsNote ?? null,
         clearedForMinors: r.cleared_for_minors === true,
         termsUrl: r.cleared_terms_url ?? null,
@@ -152,6 +174,10 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     }),
     profiles: profiles.rows.map((r) => ({
       profileId: r.profile_id,
+      needs: (() => {
+        const p = profileById(r.profile_id);
+        return p ? profileNeeds(p) : [];
+      })(),
       carriesChildWords: r.carries_child_words === true || profileById(r.profile_id)?.carriesChildWords === true,
       providerId: r.provider_id ?? null,
       model: r.model ?? null,
@@ -221,7 +247,15 @@ export type KeyTestOutcome = { ok: boolean; code: string; of: string };
 export type KeyTest = { ok: true; run: () => Promise<KeyTestOutcome> } | { ok: false; code: ChangeError };
 
 export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTest> {
-  if (keyedProviderFor(providerId)?.capability !== 'video') return { ok: false, code: 'not_testable' };
+  // G1 (C369): a text adapter with its own connection test (Vertex AI, the OpenAI-compatible adapter) as well.
+  const text = adapterFor(providerId);
+  const connect = text?.testConnection?.bind(text);
+  if (keyedProviderFor(providerId)?.capability !== 'video' && !connect) return { ok: false, code: 'not_testable' };
+  let baseUrl: string | undefined;
+  if (text?.needsBaseUrl) {
+    baseUrl = (await db.query(`select base_url from control.ai_providers where provider_id = $1`, [providerId])).rows[0]?.base_url ?? undefined;
+    if (!baseUrl) return { ok: false, code: 'no_base_url' };
+  }
   const k = aiEncryptionKey();
   if (!k) return { ok: false, code: 'no_encryption_key' };
   const row = (await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [providerId])).rows[0] as SealedRow | undefined;
@@ -235,7 +269,8 @@ export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTe
   return {
     ok: true,
     run: async () => {
-      const r = await testYoutubeKey(apiKey);
+      // The outcome is its kind and status only: neither the key nor anything the vendor said is kept or returned.
+      const r = connect ? await connect(apiKey, baseUrl).catch(() => ({ ok: false as const, failure: 'network' as const, status: undefined })) : await testYoutubeKey(apiKey);
       return r.ok ? { ok: true, code: 'ok', of: row.ciphertext } : { ok: false, code: r.status ? `${r.failure}_${r.status}` : r.failure, of: row.ciphertext };
     },
   };
@@ -248,6 +283,77 @@ export async function recordKeyTest(db: Sql, providerId: string, outcome: KeyTes
     outcome.code.slice(0, 40),
     outcome.of,
   ]);
+}
+
+// ---- the founder's address for the OpenAI-compatible adapter (G1, C369) ---------------------------------------------
+
+const ENDPOINT_CODE: Record<EndpointError, ChangeError> = {
+  not_https: 'base_url',
+  credentials: 'base_url',
+  query: 'base_url',
+  port: 'base_url',
+  host: 'base_url',
+  too_long: 'base_url',
+  redirect: 'base_url',
+  private_address: 'base_url_private',
+  dns: 'base_url_dns',
+};
+
+// The whole check (its name resolved, every address public), run by the route before any transaction is opened, so
+// no database connection waits on DNS. Returns the address as it is stored.
+export async function checkBaseUrl(raw: string): Promise<{ ok: true; normal: string } | { ok: false; code: ChangeError }> {
+  const r = await checkEndpoint(raw);
+  return r.ok ? r : { ok: false, code: ENDPOINT_CODE[r.code] };
+}
+
+type Endpoint = { providerId: string; baseUrl: string | null };
+
+async function writeEndpoint(db: Sql, by: By, next: Endpoint, undoOf?: string): Promise<ChangeResult> {
+  if (adapterFor(next.providerId)?.needsBaseUrl !== true) return { ok: false, code: 'provider' };
+  // The shape again here (no network): every caller passes an address already checked, an undo the one stored before.
+  // The adapter checks the address in full again at every call.
+  if (next.baseUrl !== null) {
+    const shape = checkEndpointShape(next.baseUrl);
+    if (!shape.ok) return { ok: false, code: ENDPOINT_CODE[shape.code] };
+    next = { ...next, baseUrl: shape.normal };
+  }
+  const row = (await db.query(`select base_url, cleared_for_minors from control.ai_providers where provider_id = $1`, [next.providerId])).rows[0];
+  if (!row) return { ok: false, code: 'provider' };
+  const before: Endpoint = { providerId: next.providerId, baseUrl: row.base_url ?? null };
+  const host = (u: string | null) => (u ? new URL(u).host : null);
+  const hostChanged = host(before.baseUrl) !== host(next.baseUrl);
+  // A clearance for children's words was given for the service the founder read the terms of: a new host is another
+  // service, so the clearance is withdrawn with the change, and he clears the new one after reading its terms. While a
+  // profile that carries children's words still uses this provider the database refuses that, and so the change.
+  let clearanceWithdrawn = false;
+  if (hostChanged && row.cleared_for_minors === true) {
+    try {
+      await db.query(`update control.ai_providers set cleared_for_minors = false, cleared_terms_url = null, cleared_at = null, cleared_by = null where provider_id = $1`, [next.providerId]);
+    } catch (err) {
+      if (isCheckViolation(err)) return { ok: false, code: 'in_use' };
+      throw err;
+    }
+    clearanceWithdrawn = true;
+  }
+  try {
+    await db.query(`update control.ai_providers set base_url = $2 where provider_id = $1`, [next.providerId, next.baseUrl]);
+  } catch (err) {
+    if (isCheckViolation(err)) return { ok: false, code: 'base_url' };
+    throw err;
+  }
+  // A key goes only to the host it was saved for: when the host changes (or the address is cleared), the key is
+  // removed, so a key entered for one service is never sent to another. The founder enters the new service's key.
+  let keyRemoved = false;
+  if (hostChanged) {
+    keyRemoved = (await db.query(`delete from control.ai_credentials where provider_id = $1 returning provider_id`, [next.providerId])).rows.length > 0;
+  }
+  await audit(db, by, 'ai.endpoint_changed', next.providerId, before, { ...next, ...(keyRemoved ? { keyRemoved } : {}), ...(clearanceWithdrawn ? { clearanceWithdrawn } : {}), ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
+// Set or clear the address. `checked` comes from checkBaseUrl (or null to clear it).
+export async function setEndpoint(db: Sql, by: By, providerId: string, checked: string | null): Promise<ChangeResult> {
+  return writeEndpoint(db, by, { providerId, baseUrl: checked });
 }
 
 type Clearance = { providerId: string; cleared: boolean; termsUrl: string | null; clearedAt: string | null; clearedBy: string | null };
@@ -305,6 +411,10 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   // refused here, where the founder sees it.
   const links = [{ provider: next.providerId, model: next.model }, ...next.fallback];
   if (links.some((l) => l.provider === 'workers-ai' && (l.model === null || !workersModelLooksRight(l.model)))) return { ok: false, code: 'model' };
+  // A Vertex AI model id becomes part of its address (adapters/vertex-ai.ts): any other shape is refused here too.
+  if (links.some((l) => l.provider === 'vertex_ai' && (l.model === null || !vertexModelLooksRight(l.model)))) return { ok: false, code: 'model' };
+  // G1 (C369): every provider in the chain must declare what the profile needs (photos for AI marking, for example).
+  if (providers.some((p) => missingCapabilities(profile.id, p).length > 0)) return { ok: false, code: 'capability' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
   if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
   const before = await profileSettings(db, profileId);
@@ -359,6 +469,8 @@ export async function undoChange(db: Sql, by: By, auditId: string): Promise<Chan
     }
     case 'ai.provider_clearance':
       return writeClearance(db, by, { providerId: String(before.providerId), cleared: before.cleared === true, termsUrl: (before.termsUrl as string) ?? null, clearedAt: (before.clearedAt as string) ?? null, clearedBy: (before.clearedBy as string) ?? null }, auditId);
+    case 'ai.endpoint_changed':
+      return writeEndpoint(db, by, { providerId: String(before.providerId), baseUrl: typeof before.baseUrl === 'string' ? before.baseUrl : null }, auditId);
     case 'ai.profile_changed':
       return writeProfile(
         db,
