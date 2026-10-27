@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import type { AiOverview, Counts } from '@/lib/ai/control';
-import type { TermsNote } from '@/lib/ai/adapters/types';
+import { CAPABILITIES, type Capabilities, type Capability, type TermsNote } from '@/lib/ai/adapters/types';
 import { isMessageKey, type MessageKey } from '@/lib/i18n';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersTokenLooksRight } from '@/lib/ai/adapters/workers-key';
 
@@ -26,12 +26,21 @@ const TERMS_NOTE: Record<TermsNote, MessageKey> = {
   adults_only: 'control.ai.provider.termsNote.adults_only',
   no_bar_found: 'control.ai.provider.termsNote.no_bar_found',
 };
-const ERRORS = ['account_id_format', 'token_format', 'no_encryption_key', 'provider', 'key_format', 'terms_url', 'in_use', 'profile', 'model', 'prompt_version', 'incomplete', 'not_cleared_for_minors', 'cap', 'not_found', 'cannot_restore_key', 'request', 'aal2'];
+const ERRORS = ['account_id_format', 'token_format', 'no_encryption_key', 'provider', 'key_format', 'terms_url', 'in_use', 'profile', 'model', 'prompt_version', 'incomplete', 'not_cleared_for_minors', 'cap', 'not_found', 'cannot_restore_key', 'request', 'aal2', 'capability', 'base_url', 'base_url_private', 'base_url_dns', 'no_base_url'];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ['no_key', 'not_testable'];
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
 const CARD = 'flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4';
+// What an adapter declares it can do (G1, C369), in the founder's words.
+const CAPABILITY_WORDS: Record<Capability, MessageKey> = {
+  text: 'control.ai.capability.text',
+  vision: 'control.ai.capability.vision',
+  stream: 'control.ai.capability.stream',
+  json: 'control.ai.capability.json',
+  stt: 'control.ai.capability.stt',
+  tts: 'control.ai.capability.tts',
+};
 const day = (v: string | null) => (v ? new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }) : '');
 
 const draftOf = (p: Data['profiles'][number]): Draft => ({
@@ -53,6 +62,8 @@ export function AiControls({ initial }: { initial: Data }) {
   // A box says what is wrong only once the founder has left it, never while it is still being filled in.
   const [cfLeft, setCfLeft] = useState({ account: false, token: false });
   const [terms, setTerms] = useState<Record<string, string>>({});
+  // The OpenAI-compatible adapter's address (G1), per provider, as typed.
+  const [urls, setUrls] = useState<Record<string, string>>({});
   const [drafts, setDrafts] = useState<Record<string, Draft>>(() => Object.fromEntries(initial.profiles.map((p) => [p.profileId, draftOf(p)])));
   const [cap, setCap] = useState(initial.cap === null ? '' : String(initial.cap));
   const [busy, setBusy] = useState(false);
@@ -84,7 +95,7 @@ export function AiControls({ initial }: { initial: Data }) {
   };
 
   // A content provider's key test (M2-5): the answer says whether the provider took the key, never the key.
-  const test = async (providerId: string) => {
+  const test = async (providerId: string, video: boolean) => {
     setBusy(true);
     setNote(null);
     const res = await stepUpFetch('/api/control/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'test', providerId }) }).catch(() => null);
@@ -95,10 +106,14 @@ export function AiControls({ initial }: { initial: Data }) {
       const code = got?.code;
       return setNote({ ok: false, text: TEST_ERRORS.includes(code) ? t(`control.video.ai.err.${code}` as MessageKey) : ERRORS.includes(code) ? t(`control.ai.err.${code}` as MessageKey) : t('control.ai.err.other') });
     }
-    setNote(got?.works ? { ok: true, text: t('control.video.ai.works') } : { ok: false, text: t('control.video.ai.fails', { code: String(got?.code ?? '') }) });
+    setNote(got?.works ? { ok: true, text: t('control.video.ai.works') } : { ok: false, text: t(video ? 'control.video.ai.fails' : 'control.ai.test.fails', { code: String(got?.code ?? '') }) });
   };
 
   const name = (n: string | null) => n ?? t('control.ai.someone');
+  const canDo = (c: Capabilities | null) => {
+    const list = c ? CAPABILITIES.filter((k) => c[k]).map((k) => t(CAPABILITY_WORDS[k])) : [];
+    return list.length ? t('control.ai.capabilities', { list: list.join(', ') }) : t('control.ai.capabilities.none');
+  };
   const usageLine = (c: Counts) => t('control.ai.usage.line', { requests: c.requests, failures: c.failures, capRefusals: c.capRefusals, tokensIn: c.tokensIn, tokensOut: c.tokensOut });
 
   return (
@@ -129,6 +144,40 @@ export function AiControls({ initial }: { initial: Data }) {
               <p className="font-bold">{p.providerId}</p>
               {!p.hasAdapter && <p>{t('control.ai.provider.noAdapter')}</p>}
               {p.capability === 'video' && <p data-ai-video-provider>{t('control.video.ai.provider')}</p>}
+              {p.capability === 'text' && <p data-ai-capabilities={p.capabilities ? CAPABILITIES.filter((k) => p.capabilities?.[k]).join(' ') : ''}>{canDo(p.capabilities)}</p>}
+              {p.needsBaseUrl && (
+                <div data-ai-endpoint className="flex flex-col gap-2">
+                  <p data-ai-endpoint-current className="break-all">{p.baseUrl ? t('control.ai.endpoint.current', { url: p.baseUrl }) : t('control.ai.endpoint.none')}</p>
+                  <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-end">
+                    <Input
+                      id={`endpoint-${p.providerId}`}
+                      type="url"
+                      inputMode="url"
+                      autoComplete="off"
+                      spellCheck={false}
+                      maxLength={500}
+                      label={t('control.ai.endpoint.label')}
+                      helperText={t('control.ai.endpoint.help')}
+                      value={urls[p.providerId] ?? ''}
+                      onChange={(e) => setUrls({ ...urls, [p.providerId]: e.target.value })}
+                    />
+                    <button
+                      type="button"
+                      data-ai-endpoint-save
+                      disabled={busy || !(urls[p.providerId] ?? '').trim()}
+                      className={TAP}
+                      onClick={() => void send({ action: 'endpoint', providerId: p.providerId, baseUrl: (urls[p.providerId] ?? '').trim() }, 'control.ai.saved', () => setUrls((u) => ({ ...u, [p.providerId]: '' })))}
+                    >
+                      {t('control.ai.endpoint.save')}
+                    </button>
+                    {p.baseUrl && (
+                      <button type="button" data-ai-endpoint-clear disabled={busy} className={TAP} onClick={() => void send({ action: 'endpoint', providerId: p.providerId, baseUrl: null }, 'control.ai.saved')}>
+                        {t('control.ai.endpoint.clear')}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
               {p.capability !== 'video' && p.termsNote && (
                 <p data-ai-terms-note={p.termsNote} className="rounded-md border border-slate/15 bg-slate/5 p-2">
                   {t(TERMS_NOTE[p.termsNote])}
@@ -223,9 +272,9 @@ export function AiControls({ initial }: { initial: Data }) {
                       </button>
                     </div>
                   )}
-                  {p.capability === 'video' && p.credential && (
+                  {p.testable && p.credential && (
                     <div className="flex flex-wrap items-center gap-2">
-                      <button type="button" data-ai-key-test disabled={busy} className={TAP} onClick={() => void test(p.providerId)}>
+                      <button type="button" data-ai-key-test disabled={busy} className={TAP} onClick={() => void test(p.providerId, p.capability === 'video')}>
                         {t('control.video.ai.test')}
                       </button>
                       {p.credential.testedAt && (
@@ -265,6 +314,9 @@ export function AiControls({ initial }: { initial: Data }) {
               <p className="font-bold">{t(`control.ai.profile.name.${p.profileId}` as MessageKey)}</p>
               {isMessageKey(about) && <p data-ai-profile-about>{t(about)}</p>}
               {p.carriesChildWords && <p className="text-slate/70">{t('control.ai.profile.childWords')}</p>}
+              <p data-ai-profile-needs className="text-slate/70">
+                {t('control.ai.profile.needs', { list: p.needs.map((k) => t(CAPABILITY_WORDS[k])).join(', ') })}
+              </p>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <Select id={`provider-${p.profileId}`} label={t('control.ai.profile.provider')} value={d.providerId} onChange={(e) => set({ providerId: e.target.value })}>
                   {options}
