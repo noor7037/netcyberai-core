@@ -136,13 +136,8 @@ export async function removeRequestFilesOf(db: Db, storage: DirectUploadStorage,
     await db.query(`select upload_key from content.chapter_requests where account_id = $1 and ($2::uuid is null or child_id = $2::uuid) and upload_key is not null`, [accountId, childId])
   ).rows as { upload_key: string }[];
   for (const r of rows) await removeRequestFile(storage, r.upload_key);
-  if (childId === null) {
-    try {
-      await storage.removeOlderThan(`${requestFolder(accountId)}/`, new Date(Date.now() + 60_000));
-    } catch {
-      throw new RequestFileError();
-    }
-  }
+  // Best effort, as the tutor's: the rows' files above are the ones that must go; this only sweeps leftovers.
+  if (childId === null) await storage.removeOlderThan(`${requestFolder(accountId)}/`, new Date(Date.now() + 60_000)).catch(() => 0);
   return rows.length;
 }
 export const requestFolder = (accountId: string) => `family/${accountId}/chapter-requests`;

@@ -269,7 +269,7 @@ describe('the decline path and the source mode', () => {
     };
     expect((await call('chapter-request', 'DELETE', { requestId: id })).status).toBe(503);
     storage.remove = remove;
-    expect((await call('chapter-request', 'GET')).body.requests).toEqual(expect.arrayContaining([expect.objectContaining({ requestId: id })]));
+    expect((await call('chapter-request', 'GET', undefined)).body.requests).toEqual(expect.arrayContaining([expect.objectContaining({ requestId: id })]));
     expect(storage.files.size).toBe(1);
     // The child's removal (and the account's) takes the request's PDF out of the bucket first.
     expect(await fam((c) => removeRequestFilesOf(c, storage, ACCOUNT, CHILD))).toBe(1);

@@ -24,6 +24,18 @@ const PERSONAL = new Set(['name', 'names', 'phone', 'phones', 'mobile', 'email',
 
 // file -> problem -> why it is not personal data. Problems are "key:<key>", "value:<key>" or "opaque:<expression>".
 const ALLOWED: Record<string, Record<string, string>> = {
+  // S3 (C376): the content studio's steps: a chapter key and version, codes and counts; never a title, a block's words
+  // or the parent's file.
+  'src/lib/content/chapter-studio.ts': {
+    "opaque:audit(actor, 'content.chapter.created', `${a.key}@1`, { subject: a.subject, source: 'studio' })": 'a chapter key, its subject code and the source code',
+    "opaque:audit(actor, 'content.request.claimed', requestId, { chapterKey: key, source: r.source })": 'a request id, the chapter key made for it and the source code',
+    "opaque:audit(actor, 'content.request.declined', requestId, { from: r.status })": 'a request id and the status code it left; never the reason’s words',
+    "opaque:audit(actor, 'content.chapter.saved', `${a.key}@${a.version}`, { blocksEn: kept.en.length, blocksHi: kept.hi.length })": 'a chapter key and version with block counts',
+    "opaque:audit(actor, 'content.chapter.new_version', `${key}@${next}`, { from: Number(last.version_no) })": 'a chapter key and version numbers',
+    "opaque:audit(actor, 'content.chapter.reviewed', `${key}@${version}`, {})": 'a chapter key and version',
+    "opaque:audit(actor, 'content.chapter.published', `${key}@${version}`, { source: v.source, droppedIds: v.droppedIds.length })": 'a chapter key and version, the source code and a count',
+    "opaque:audit(actor, 'content.chapter.retired', `${key}@${(res.rows[0] as { version_no: number }).version_no}`, {})": 'a chapter key and version',
+  },
   'src/lib/audit/log.ts': {
     'opaque:entry': 'writeAttendanceAudit passes its entry on to writeAuditLog when no words were given; that entry is checked at each call of writeAttendanceAudit, which is in WRITERS (review of C224)',
   },
