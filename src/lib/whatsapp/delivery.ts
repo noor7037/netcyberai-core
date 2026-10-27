@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import type { PoolClient } from 'pg';
 import type { Sql } from '@/lib/jobs/types';
+import { log } from '@/lib/observability/log';
 import { messageCost, rateOnSendDate, templateCategory } from './gate';
 import { writtenForms } from './phone';
 import type { WhatsAppNotice, WhatsAppProvider } from './provider';
@@ -75,6 +76,9 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
   const record = (ok: boolean, outcome: string, payload: unknown, schoolId: string | null) =>
     db.query(`insert into webhook_events (school_id, provider, payload_hash, payload, signature_ok, outcome, processed_at) values ($1, 'whatsapp', $2, $3, $4, $5, now())`, [schoolId, hash, JSON.stringify(payload), ok, outcome.slice(0, 200)]);
   if (!read.ok) {
+    // One log line for every refusal (C230-AH), so a wrong App Secret in Control shows in the logs at once: the
+    // provider, why, the body's length and whether a signature came at all. Never the body, the signature or a secret.
+    log('warn', 'whatsapp.webhook.refused', { provider: provider.name, why: read.reason, bytes: rawBody.length, signed: !!signature });
     // Not trusted: only that it came, from which provider and how long it was. Nothing in it is kept or used.
     // And only so many an hour: the address is public, and strangers must not be able to fill the table.
     const lately = Number((await db.query(`select count(*) as n from webhook_events where provider = 'whatsapp' and signature_ok = false and created_at > now() - interval '1 hour'`)).rows[0].n);

@@ -1,5 +1,5 @@
 import { writeAuditLog } from '@/lib/audit/log';
-import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, PAGE_STATES, type ErrorType, type MarkingOverview, type MarkingPaper, type MarkingQuestion, type PageState, type QuestionResult, type RosterChild, type SheetChangeInput, type SheetDetail, type SheetFlag, type SheetRow, type SheetState } from '@/lib/contracts/marking';
+import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, PAGE_STATES, type ErrorType, type MarkingOverview, type MarkingPaper, type MarkingQuestion, type PageState, type PicturesUntil, type QuestionResult, type RosterChild, type SheetChangeInput, type SheetDetail, type SheetFlag, type SheetRow, type SheetState } from '@/lib/contracts/marking';
 import { saveMarks, type SaveProblem } from '@/lib/exams/marks';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
@@ -38,6 +38,14 @@ async function choiceCountsOf(db: Sql, schoolId: string, paperId: string): Promi
 }
 
 // ---- the paper's overview ----------------------------------------------------------------------------------------------
+
+// When the paper's pictures go, as the sweep works it out (the database's marking_picture_deadline, C230-AH).
+async function picturesUntil(db: Sql, paperId: string): Promise<PicturesUntil | null> {
+  const r = (await db.query(`select (until at time zone 'Asia/Kolkata')::date::text as until, basis, kept from public.marking_pictures_until($1)`, [paperId])).rows[0] as
+    | { until: string | null; basis: PicturesUntil['basis']; kept: boolean }
+    | undefined;
+  return r ? { until: r.until ?? null, basis: r.basis, kept: r.kept === true } : null;
+}
 
 export async function markingOverview(db: Sql, actor: Actor, paperId: string): Promise<MarkingOverview | null> {
   const paper = await markingPaper(db, actor, paperId);
@@ -111,6 +119,7 @@ export async function markingOverview(db: Sql, actor: Actor, paperId: string): P
     withoutScript,
     absent,
     reviewBelow: settings.reviewBelow,
+    pictures: uploads.length ? await picturesUntil(db, paperId) : null,
     ai: await aiMarkingState(db, actor.schoolId),
   };
 }
