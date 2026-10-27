@@ -186,6 +186,17 @@ describe('a chapter test records real attempts only (C378)', () => {
     const res = await POST(new NextRequest('http://localhost/api/family/check', { method: 'POST', headers: { 'content-type': 'application/json', cookie: await cookies(ACCOUNT, CHILD) }, body: JSON.stringify({ token: tokens[0], choice: 0 }) }));
     expect(res.status).toBe(404);
     expect(await attempts()).toBe(0);
+    // The understand route's retry must not open a test token either: every choice, right or wrong, gets the same
+    // refusal, so nothing tells the right answer from a wrong one.
+    const { POST: understand } = await import('@/app/api/family/understand/route');
+    const answers = await Promise.all(
+      [0, 1, 2, 3].map(async (choice) => {
+        const r = await understand(new NextRequest('http://localhost/api/family/understand', { method: 'POST', headers: { 'content-type': 'application/json', cookie: await cookies(ACCOUNT, CHILD) }, body: JSON.stringify({ retry: { token: tokens[0], choice } }) }));
+        return `${r.status} ${await r.text()}`;
+      })
+    );
+    expect(new Set(answers).size).toBe(1);
+    expect(answers[0]).toContain('not_found');
   });
 
   it('a refused send leaves no row: incomplete, forged, another child’s token, empty, unknown test', async () => {

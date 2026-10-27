@@ -88,7 +88,9 @@ export async function POST(req: NextRequest) {
             const item = openItem(retry.token, { accountId: session.accountId, childId: child.childId });
             const choice = Number(retry.choice);
             const notFound = { t: 'refused', reason: 'not_found', message: words('fam.understand.notFound') } as const;
-            if (!item || !Number.isInteger(choice) || choice < 0 || choice >= item.w.length || choice === item.a) return stop(notFound);
+            // A chapter test's item is sealed for the test route alone (S5): a retry here would tell a wrong choice from
+            // the right one, so it is refused before anything is read from it.
+            if (!item || item.kind === 'test' || !Number.isInteger(choice) || choice < 0 || choice >= item.w.length || choice === item.a) return stop(notFound);
             misconception = item.w[choice] || item.y;
             if (item.k.endsWith('.question')) {
               // The sealed item's subject was decided by this server when the question was answered.
