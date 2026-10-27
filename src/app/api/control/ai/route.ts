@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { loadAiOverview, loadProviderHealth, loadRouteRevisions, loadUsageLedger, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { checkBaseUrl, loadAiOverview, loadProviderHealth, loadRouteRevisions, loadUsageLedger, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
@@ -12,11 +12,13 @@ import { loadAiOverview, loadProviderHealth, loadRouteRevisions, loadUsageLedger
 //   POST  { action: 'credential', providerId, apiKey }                         set or replace a provider's key (write-only)
 //         { action: 'credential', providerId: 'workers-ai', accountId, token }  Cloudflare's key in its two parts (C317)
 //         { action: 'clearance', providerId, cleared, termsUrl }               clear a provider for children's words, or withdraw it
+//         { action: 'endpoint', providerId, baseUrl }                         the OpenAI-compatible adapter's address, or null (G1)
 //         { action: 'profile', profileId, providerId, model, promptVersion, enabled, fallback }
 //         { action: 'cap', value }                                            requests per family per day
 //         { action: 'undo', auditId }                                         restore the state before that change
 //         { action: 'rollback', profileId, revisionId? }                       activate the route's previous revision (or the one named) again
-//         { action: 'test', providerId }                                      test a content provider's key (YouTube, M2-5)
+//         { action: 'test', providerId }                                      test a provider's key (YouTube, M2-5; Vertex AI and
+//                                                                             the OpenAI-compatible adapter, G1)
 // No response carries a key, and nothing here logs the request body.
 export const dynamic = 'force-dynamic';
 const NO_STORE = { 'Cache-Control': 'no-store' };
@@ -56,6 +58,17 @@ export async function POST(req: NextRequest) {
   } else if (b?.action === 'clearance') {
     const providerId = str(b.providerId, 40);
     if (providerId && typeof b.cleared === 'boolean') result = await withPlatformService((db) => setClearance(db, by, providerId, b.cleared, str(b.termsUrl, 500) ?? ''));
+  } else if (b?.action === 'endpoint') {
+    // Where a key is sent is as sensitive as the key: the authenticator again (F1-1b), and the address is checked in
+    // full (its name resolved, every address public) before any transaction is opened.
+    const stepUp = await requireStepUp(req, guard.claims);
+    if (stepUp) return stepUp;
+    const providerId = str(b.providerId, 40);
+    const raw = b.baseUrl === null ? null : str(b.baseUrl, 500);
+    if (providerId && (raw !== null || b.baseUrl === null)) {
+      const checked = raw === null || raw.trim() === '' ? { ok: true as const, normal: null } : await checkBaseUrl(raw);
+      result = checked.ok ? await withPlatformService((db) => setEndpoint(db, by, providerId, checked.normal)) : checked;
+    }
   } else if (b?.action === 'profile') {
     const profileId = str(b.profileId, 60);
     const fallback: Link[] | null = Array.isArray(b.fallback) && b.fallback.length <= 3 ? b.fallback.map((f: unknown) => ({ provider: str((f as Link)?.provider, 40) ?? '', model: str((f as Link)?.model, 80) ?? '' })) : b.fallback === undefined ? [] : null;

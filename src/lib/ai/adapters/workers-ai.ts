@@ -1,6 +1,6 @@
 import { streamChatCompletions } from './chat-completions';
 import { workersAccountLooksRight, workersTokenLooksRight } from './workers-key';
-import { CALL_TIMEOUT_MS, MODERATION_TIMEOUT_MS, SPEECH_TIMEOUT_MS, type AdapterResult, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { CALL_TIMEOUT_MS, MODERATION_TIMEOUT_MS, capabilities, SPEECH_TIMEOUT_MS, type AdapterResult, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // Cloudflare Workers AI (C230-U): open-weight models (Llama, Gemma, Mistral, Whisper) run by Cloudflare, chosen for the
 // children's paths because nothing in Cloudflare's terms or the models' licences bars a product used by children,
@@ -36,7 +36,8 @@ export const workersAiAdapter: TextAdapter = {
   capability: 'text',
   termsNote: 'no_bar_found',
   needsKey: true,
-  vision: true,
+  // Not streamed (C322) and no JSON mode (JSON_ONLY in the instructions).
+  capabilities: capabilities(['text', 'vision']),
   keyLooksRight: (key) => splitWorkersKey(key) !== null,
   async streamText(request, onDelta): Promise<AdapterResult> {
     const k = splitWorkersKey(request.apiKey);
@@ -58,6 +59,7 @@ export const workersAiSpeechAdapter: SpeechAdapter = {
   capability: 'speech_to_text',
   termsNote: 'no_bar_found',
   needsKey: true,
+  capabilities: capabilities(['stt']),
   async transcribe(request): Promise<SpeechResult> {
     const k = splitWorkersKey(request.apiKey);
     if (!k || !workersModelLooksRight(request.model)) return { ok: false, failure: 'http', status: 400 };
@@ -107,6 +109,7 @@ export const workersAiModerationAdapter: ModerationAdapter = {
   capability: 'moderation',
   termsNote: 'no_bar_found',
   needsKey: true,
+  capabilities: capabilities(['text']),
   async moderate(request): Promise<ModerationResult> {
     const k = splitWorkersKey(request.apiKey);
     if (!k || !workersModelLooksRight(request.model)) return { ok: false, failure: 'http', status: 400 };

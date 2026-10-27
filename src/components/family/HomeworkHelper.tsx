@@ -45,6 +45,7 @@ const ERROR_KEY: Record<string, string> = {
   ai_not_switched_on: 'ai.not_switched_on',
   ai_cap_reached: 'ai.cap_reached',
   ai_not_cleared_for_minors: 'ai.not_cleared_for_minors',
+  ai_not_capable: 'ai.not_capable',
   ai_failed: 'ai.failed',
 };
 
