@@ -590,3 +590,11 @@ export async function withGuardianContext<T>(
 export async function withFamilyGate<T>(fn: (client: PoolClient) => Promise<T>): Promise<T> {
   return familyTransaction(null, fn);
 }
+
+// Control → AI's route revisions (G2, C370): why the transaction changes a profile's route (a save, an undo or a
+// rollback, and the revision a rollback restores), for the trigger that writes the revision. Not a tenant or role
+// setting: the two nca.ai_route_* names only, local to the transaction; kept here so every set_config stays in this
+// module (scripts/check_choke_point.py). Empty strings clear them.
+export function aiRouteActivationStatement(activation: 'set' | 'undo' | 'rollback' | '', rollbackOf: string): { sql: string; params: string[] } {
+  return { sql: `select set_config('nca.ai_route_activation', $1, true), set_config('nca.ai_route_rollback_of', $2, true)`, params: [activation, rollbackOf] };
+}
