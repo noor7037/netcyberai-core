@@ -7,7 +7,7 @@ import { QUESTION_KINDS, type QuestionKind } from '@/lib/contracts/marking';
 // file turns them into blueprints and holds the rules between rows. Pure: safe in the browser.
 //
 // The defaults below are starting points the school edits, not a board's rules: a short test covers what was taught
-// since the last test of its type, a sessional or half-yearly the session so far, an annual or mock the whole
+// since the last test of its type, a sessional or half-yearly the session so far, an annual or pre-board the whole
 // syllabus map. Their marks and sections are only sensible first shapes.
 
 export const SCOPE_RULES = ['since_last_of_type', 'session', 'whole_map'] as const;
