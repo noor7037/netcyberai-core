@@ -288,6 +288,7 @@ export function QualityLab({ initial }: { initial: LabData }) {
                     ['control.ai.lab.summary.checks', (s) => (s.checks ? t('control.ai.lab.summary.ofTotal', { n: s.checksPassed, total: s.checks }) : '–')],
                     ['control.ai.lab.summary.median', (s) => (s.medianMs === null ? '–' : t('control.ai.lab.summary.ms', { ms: s.medianMs }))],
                     ['control.ai.lab.summary.score', (s) => (s.meanScore === null ? '–' : t('control.ai.lab.summary.meanScore', { score: s.meanScore, n: s.scored }))],
+                    ['control.ai.lab.summary.cost', (s) => (s.costUsd === null ? t('control.ai.lab.summary.costUnknown') : t('control.ai.lab.summary.usd', { value: s.costUsd.toFixed(6) }))],
                   ] as [MessageKey, (s: (typeof summaries)[number]) => string][]
                 ).map(([label, value]) => (
                   <tr key={label}>
@@ -397,6 +398,9 @@ function Cell({ cell, draft, busy, onDraft, onSave, onAgain }: { cell: LabResult
       <ul className="text-sm text-slate/80">
         <li>{cell.firstTokenMs === null ? t('control.ai.lab.table.timeNoFirst', { ms: cell.latencyMs }) : t('control.ai.lab.table.time', { ms: cell.latencyMs, first: cell.firstTokenMs })}</li>
         {!cell.errorClass || cell.errorClass === 'output_schema_invalid' ? <li>{t('control.ai.lab.table.tokens', { sent: cell.tokensIn, received: cell.tokensOut })}</li> : null}
+        <li data-lab-cell-cost={cell.costUsd === null ? 'unknown' : 'known'}>
+          {cell.costUsd === null ? t('control.ai.lab.table.costUnknown') : t('control.ai.lab.table.cost', { value: cell.costUsd.toFixed(6) })}
+        </li>
         {cell.jsonValid !== null && <li data-lab-json={String(cell.jsonValid)}>{t(cell.jsonValid ? 'control.ai.lab.table.jsonYes' : 'control.ai.lab.table.jsonNo')}</li>}
         {cell.checkPassed !== null && <li data-lab-check={String(cell.checkPassed)}>{t(cell.checkPassed ? 'control.ai.lab.table.checkYes' : 'control.ai.lab.table.checkNo')}</li>}
       </ul>

@@ -18,7 +18,9 @@ export function labTable(run: Pick<LabRun, 'caseIds' | 'models' | 'results'>): L
 
 // Per column: answered, failed, JSON valid of those that expected it, checks passed of those with a check, the
 // middle time, and the average score of those scored. Only what was measured; nothing is estimated.
-export type LabColumnSummary = { answered: number; failed: number; jsonValid: number; jsonExpected: number; checksPassed: number; checks: number; medianMs: number | null; meanScore: number | null; scored: number };
+export type LabColumnSummary = { answered: number; failed: number; jsonValid: number; jsonExpected: number; checksPassed: number; checks: number; medianMs: number | null; meanScore: number | null; scored: number;
+  // G5 (C373): the column's answers' cost at today's price, or null while any answer has none.
+  costUsd: number | null };
 
 export function columnSummaries(table: LabTable): LabColumnSummary[] {
   return table.columns.map((_, i) => {
@@ -37,6 +39,7 @@ export function columnSummaries(table: LabTable): LabColumnSummary[] {
       medianMs: mid,
       meanScore: scored.length ? Math.round((scored.reduce((n, c) => n + (c.score as number), 0) / scored.length) * 100) / 100 : null,
       scored: scored.length,
+      costUsd: cells.length && cells.every((c) => c.costUsd !== null) ? Math.round(cells.reduce((n, c) => n + (c.costUsd as number), 0) * 1_000_000) / 1_000_000 : null,
     };
   });
 }

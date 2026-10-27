@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { StatusPill } from "@/components/app-ui/StatusPill";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
@@ -89,6 +89,17 @@ export function WorkloadCard({
   const [confirm, setConfirm] = useState<{ revisionId: string | null } | null>(
     null,
   );
+  // Keyboard focus (G5, C373): the question takes focus when it opens, so a keyboard or screen-reader user lands on
+  // it; "No" gives focus back to the button that asked.
+  const confirmRef = useRef<HTMLDivElement>(null);
+  const askedFrom = useRef<HTMLElement | null>(null);
+  useEffect(() => {
+    if (confirm) confirmRef.current?.focus();
+  }, [confirm]);
+  const ask = (revisionId: string | null, from: HTMLElement) => {
+    askedFrom.current = from;
+    setConfirm({ revisionId });
+  };
   const route = routeOf(p);
   const active = revisions.find((r) => r.active) ?? null;
   // The revision "Go back one step" restores: the newest one before the active one.
@@ -337,7 +348,7 @@ export function WorkloadCard({
                   data-ai-rollback-previous
                   disabled={busy}
                   className={`${TAP} self-start`}
-                  onClick={() => setConfirm({ revisionId: null })}
+                  onClick={(e) => ask(null, e.currentTarget)}
                 >
                   {t("control.ai.revision.backOne")}
                 </button>
@@ -383,7 +394,7 @@ export function WorkloadCard({
                         data-ai-rollback={r.revisionId}
                         disabled={busy}
                         className={`${TAP} self-start`}
-                        onClick={() => setConfirm({ revisionId: r.revisionId })}
+                        onClick={(e) => ask(r.revisionId, e.currentTarget)}
                       >
                         {t("control.ai.revision.backTo", { id: r.revisionId })}
                       </button>
@@ -399,9 +410,11 @@ export function WorkloadCard({
       {confirm && (
         <div
           data-ai-rollback-confirm
+          ref={confirmRef}
+          tabIndex={-1}
           role="group"
           aria-labelledby={`confirm-${p.profileId}`}
-          className="flex flex-col gap-2 rounded-md border border-tangerine/40 bg-tangerine/10 p-3"
+          className="flex flex-col gap-2 rounded-md border border-tangerine/40 bg-tangerine/10 p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
         >
           <p id={`confirm-${p.profileId}`} className="font-semibold">
             {(() => {
@@ -439,7 +452,10 @@ export function WorkloadCard({
               type="button"
               data-ai-rollback-no
               className={TAP}
-              onClick={() => setConfirm(null)}
+              onClick={() => {
+                setConfirm(null);
+                askedFrom.current?.focus();
+              }}
             >
               {t("control.ai.revision.confirmNo")}
             </button>

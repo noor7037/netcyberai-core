@@ -63,7 +63,9 @@ export type ChangeError =
   | 'base_url'
   | 'base_url_private'
   | 'base_url_dns'
-  | 'no_base_url';
+  | 'no_base_url'
+  // G5 (C373): a price outside 0 to 1000 US dollars per million tokens, or not a number.
+  | 'price';
 
 export type AiOverview = {
   keyReady: boolean;
@@ -98,10 +100,14 @@ export type AiOverview = {
   usage: { profileId: string; today: Counts; month: Counts }[];
   cap: number | null;
   changes: { auditId: string; action: string; at: string; byName: string | null; target: string | null; canUndo: boolean }[];
+  // G5 (C373): the founder's prices, US dollars per million tokens in and out, per provider and model.
+  prices: ModelPrice[];
 };
+export type ModelPrice = { providerId: string; model: string; inUsd: number; outUsd: number; setAt: string; setByName: string | null };
+export type PriceEntry = { inUsd: number; outUsd: number };
 export type Counts = { requests: number; failures: number; capRefusals: number; tokensIn: number; tokensOut: number };
 
-const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed'] as const;
+const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set'] as const;
 type Action = (typeof ACTIONS)[number];
 // A model id as the vendor names it; Workers AI ids start with "@" (C230-U). The database holds the same rule.
 const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
@@ -147,6 +153,11 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       where a.school_id is null and a.event_action = any($1::text[])
       order by a.audit_id desc limit 15`,
     [ACTIONS as unknown as string[]]
+  );
+
+  const prices = await db.query(
+    `select pr.provider_id, pr.model, pr.usd_per_mtok_in, pr.usd_per_mtok_out, pr.set_at, u.display_name
+       from control.ai_model_prices pr left join users u on u.user_id = pr.set_by order by pr.provider_id, pr.model`
   );
 
   const zero = (): Counts => ({ requests: 0, failures: 0, capRefusals: 0, tokensIn: 0, tokensOut: 0 });
@@ -217,6 +228,14 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       byName: r.display_name ?? null,
       target: r.target_id ?? null,
       canUndo: r.before_state !== null && !(r.event_action === 'ai.credential_set' && r.before_state?.had === true),
+    })),
+    prices: prices.rows.map((r) => ({
+      providerId: r.provider_id,
+      model: r.model,
+      inUsd: Number(r.usd_per_mtok_in),
+      outUsd: Number(r.usd_per_mtok_out),
+      setAt: iso(r.set_at) as string,
+      setByName: r.display_name ?? null,
     })),
   };
 }
@@ -488,6 +507,36 @@ async function writeCap(db: Sql, by: By, value: number, undoOf?: string): Promis
   return { ok: true };
 }
 
+// ---- prices (G5, C373) ----------------------------------------------------------------------------------------------
+
+// What a provider and model cost, as the founder reads it on the vendor's price page: US dollars per million tokens in
+// and out, each from 0 to 1000. Null removes the price (the cost is unknown again). From then on each attempt's cost
+// is written with the price in force (control.record_ai_attempt); costs already written stay as they were.
+const priceOk = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= 1000;
+
+export async function setPrice(db: Sql, by: By, providerId: string, model: string, price: PriceEntry | null): Promise<ChangeResult> {
+  if (!MODEL.test(model)) return { ok: false, code: 'model' };
+  if (price && (!priceOk(price.inUsd) || !priceOk(price.outUsd))) return { ok: false, code: 'price' };
+  if (!(await db.query(`select 1 from control.ai_providers where provider_id = $1`, [providerId])).rows[0]) return { ok: false, code: 'provider' };
+  return writePrice(db, by, providerId, model, price);
+}
+
+async function writePrice(db: Sql, by: By, providerId: string, model: string, price: PriceEntry | null, undoOf?: string): Promise<ChangeResult> {
+  const prior = (await db.query(`select usd_per_mtok_in, usd_per_mtok_out from control.ai_model_prices where provider_id = $1 and model = $2`, [providerId, model])).rows[0];
+  if (price) {
+    await db.query(
+      `insert into control.ai_model_prices (provider_id, model, usd_per_mtok_in, usd_per_mtok_out, set_by) values ($1, $2, $3, $4, $5)
+       on conflict (provider_id, model) do update set usd_per_mtok_in = excluded.usd_per_mtok_in, usd_per_mtok_out = excluded.usd_per_mtok_out, set_by = excluded.set_by, set_at = now()`,
+      [providerId, model, price.inUsd, price.outUsd, by.userId]
+    );
+  } else {
+    await db.query(`delete from control.ai_model_prices where provider_id = $1 and model = $2`, [providerId, model]);
+  }
+  const before = { providerId, model, price: prior ? { inUsd: Number(prior.usd_per_mtok_in), outUsd: Number(prior.usd_per_mtok_out) } : null };
+  await audit(db, by, 'ai.price_set', providerId, before, { providerId, model, price, ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
 export async function setCap(db: Sql, by: By, value: number): Promise<ChangeResult> {
   return writeCap(db, by, value);
 }
@@ -520,6 +569,12 @@ export async function undoChange(db: Sql, by: By, auditId: string): Promise<Chan
       );
     case 'ai.cap_changed':
       return typeof before.value === 'number' ? writeCap(db, by, before.value, auditId) : { ok: false, code: 'not_found' };
+    case 'ai.price_set': {
+      const p = before.price as PriceEntry | null;
+      return typeof before.providerId === 'string' && typeof before.model === 'string'
+        ? writePrice(db, by, before.providerId, before.model, p && priceOk(p.inUsd) && priceOk(p.outUsd) ? { inUsd: p.inUsd, outUsd: p.outUsd } : null, auditId)
+        : { ok: false, code: 'not_found' };
+    }
   }
   return { ok: false, code: 'not_found' };
 }
