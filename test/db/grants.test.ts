@@ -265,6 +265,10 @@ const APP_USER: Record<string, string> = {
   exam_outputs: 'INSERT,SELECT', // "publish and notify" made for a publication: one row, never changed or removed (C230-AJ part 5)
   exam_certificates: 'INSERT,SELECT', // a merit or participation certificate linked to its publication and child; never changed or removed
   // aj-5 end
+  // aq-3 begin
+  bubble_sheets: 'INSERT,SELECT,UPDATE', // printed by whoever may mark the paper; never deleted (a number is never reused)
+  bubble_reads: 'INSERT,SELECT,UPDATE', // what a sheet read, kept as read; whose it is changed by a person
+  // aq-3 end
 };
 
 // The platform role (nca_super) holds what the app's role holds, except here.
@@ -442,6 +446,10 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   exam_outputs: '', // a school's own record: a guardian reads it only through guardian_exam_outputs()
   exam_certificates: '',
   // aj-5 end
+  // aq-3 begin
+  bubble_sheets: '', // bubble sheets (C364): a school's own record, the platform role reads nothing here
+  bubble_reads: '',
+  // aq-3 end
 };
 // Every other role that holds anything on a table.
 const OTHER_ROLES: Record<string, Record<string, string>> = {

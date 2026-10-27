@@ -97,12 +97,14 @@ export async function markingSettings(db: Sql, schoolId: string): Promise<Markin
 
 export type AiMarkingState = { on: boolean; why: 'no_limit' | 'switched_off' | 'no_provider' | null; pagesThisMonth: number; limit: number | null };
 
-// Pages kept for marking since the first of this month in India (a duplicate is not counted: it is never read).
+// Pages kept for AI marking since the first of this month in India (a duplicate is not counted: it is never read; nor is
+// a bubble sheet's page, read by rules in the browser and never by the AI, C364).
 export async function pagesThisMonth(db: Sql, schoolId: string): Promise<number> {
   const { rows } = await db.query(
-    `select count(*)::int as n from marking_pages
-      where school_id = $1 and state <> 'duplicate'
-        and created_at >= (date_trunc('month', now() at time zone 'Asia/Kolkata') at time zone 'Asia/Kolkata')`,
+    `select count(*)::int as n from marking_pages g
+      where g.school_id = $1 and g.state <> 'duplicate'
+        and g.created_at >= (date_trunc('month', now() at time zone 'Asia/Kolkata') at time zone 'Asia/Kolkata')
+        and not exists (select 1 from marking_uploads u where u.school_id = g.school_id and u.upload_id = g.upload_id and u.kind = 'bubble')`,
     [schoolId]
   );
   return Number(rows[0]?.n ?? 0);

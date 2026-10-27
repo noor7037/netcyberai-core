@@ -543,6 +543,11 @@ ALLOWED_PERMISSIVE = (
         ("exam_outputs", "exam_outputs_tenant_isolation"),
         ("exam_certificates", "exam_certificates_tenant_isolation"),
         # aj-5 end
+        # aq-3 begin
+        # AQ-3 (bubble sheets, C364): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("bubble_sheets", "bubble_sheets_tenant_isolation"),
+        ("bubble_reads", "bubble_reads_tenant_isolation"),
+        # aq-3 end
     }
 )
 
@@ -1108,6 +1113,16 @@ REQUIRED_RESTRICTIVE = {
     ("exam_certificates", "exam_certificates_never_removed"),
     ("exam_certificates", "exam_certificates_no_parent"),
     # aj-5 end
+    # aq-3 begin
+    ("bubble_sheets", "bubble_sheets_readers"),
+    ("bubble_sheets", "bubble_sheets_writers"),
+    ("bubble_sheets", "bubble_sheets_changers"),
+    ("bubble_sheets", "bubble_sheets_no_parent"),
+    ("bubble_reads", "bubble_reads_readers"),
+    ("bubble_reads", "bubble_reads_writers"),
+    ("bubble_reads", "bubble_reads_changers"),
+    ("bubble_reads", "bubble_reads_no_parent"),
+    # aq-3 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

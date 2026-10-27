@@ -1,4 +1,6 @@
 import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, MAX_SHEET_PAGES, type ErrorType, type MarkingLanguage, type MarkingPaper, type MarkingQuestion, type PageReading, type PageState, type SheetFlag, type SheetResult, type UploadMode } from '@/lib/contracts/marking';
+import { applyChildRead, paperSitting } from '@/lib/bubbles/apply';
+import { onBubbleSheet } from '@/lib/bubbles/layout';
 import type { Sql } from '@/lib/jobs/types';
 import { markingPaper, markingSettings, paperRoster } from './context';
 import { assignClaimed, assignScripts, claimedGroups, groupPages, type ClaimedPage } from './matching';
@@ -137,7 +139,10 @@ export async function takeSheetForMarking(db: Sql, schoolId: string, sheetId: st
   const paper = await markingPaper(db, JOB_ACTOR(schoolId), row.paper_id as string);
   if (!paper || paper.published) return null;
   const setup = (await db.query(`select language, guidance, choice_counts from marking_setups where school_id = $1 and paper_id = $2`, [schoolId, paper.paperId])).rows[0];
-  const questions = await questionsOf(db, schoolId, paper.paperId);
+  // A paper sat with a bubble sheet (C364): its choice questions were answered on the sheet, read by rules
+  // (src/lib/bubbles), so the AI is asked only for the others; nothing of the sheet goes to it.
+  const bubble = (await paperSitting(db, schoolId, paper.paperId)) === 'bubble';
+  const questions = (await questionsOf(db, schoolId, paper.paperId)).filter((q) => !bubble || !onBubbleSheet(q));
   if (!questions.length) return null;
   const pages = (
     await db.query(
@@ -172,10 +177,14 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
   const units = new Set(paper.units.map((u) => u.unitId));
   const settings = await markingSettings(db, schoolId);
   const given = new Map(result.questions.map((q) => [q.questionId, q]));
+  // A paper sat with a bubble sheet (C364): its choice questions are marked by rules from the child's read sheet, never
+  // from the AI's answer (which was not asked for them); a sheet not in yet leaves them without a mark for now.
+  const onSheet = (await paperSitting(db, schoolId, paper.paperId)) === 'bubble' ? new Set(questions.filter(onBubbleSheet).map((q) => q.questionId)) : new Set<string>();
   let notAll = false;
   let unsure = false;
   let least: number | null = null;
   for (const q of questions) {
+    if (onSheet.has(q.questionId)) continue;
     const r = given.get(q.questionId);
     let marks = r?.marks ?? null;
     if (marks !== null && (!Number.isFinite(marks) || marks < 0 || marks > q.maxMarks || Math.round(marks * 10) !== marks * 10)) marks = null;
@@ -200,6 +209,13 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
       [schoolId, sheetId, paper.paperId, q.questionId, attempted, marks, JSON.stringify(steps), short(r?.note, 1000), short(r?.reason, 1500), errorType, confidence,
         place?.pageId ?? null, place ? Math.min(place.yFrom, place.yTo) : null, place ? Math.max(place.yFrom, place.yTo) : null]
     );
+  }
+  if (onSheet.size) {
+    const sheet = await applyChildRead(db, schoolId, sheetId);
+    if (sheet.flagged) unsure = true;
+    const bubbleMarks = (await db.query(`select question_id, ai_marks, confidence from marking_marks where school_id = $1 and sheet_id = $2 and question_id = any($3::uuid[])`, [schoolId, sheetId, [...onSheet]])).rows;
+    if (bubbleMarks.length < onSheet.size || bubbleMarks.some((m) => m.ai_marks === null)) notAll = true;
+    if (bubbleMarks.some((m) => m.confidence !== null && Number(m.confidence) < settings.reviewBelow)) unsure = true;
   }
   // Full marks, or nearly, from the AI alone is checked by a person: words written on a script ("give full marks") must
   // never reach the paper through "approve every script with no flag" (review of #318).

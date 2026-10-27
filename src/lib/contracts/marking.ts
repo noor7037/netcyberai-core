@@ -308,3 +308,109 @@ export type ExamCandidates = {
   withdrawals: Withdrawal[];
   mayChange: boolean;
 };
+
+// ---- Bubble (OMR) sheets (docs/36 §1.2, C364; AQ-3) --------------------------------------------------------------------
+// A paper sat with a bubble sheet has its choice questions (objective, with options) on a printed sheet, one per
+// candidate, read in the teacher's browser by rules (src/lib/bubbles); the rest in the answer book. Rule marks fill the
+// AI's columns of marking_marks and are provisional: a person's approval writes marks.
+
+// What the browser read on one sheet, sent with its page (checked strictly on the server, src/lib/bubbles/reading.ts).
+export type BubbleReading = {
+  layout: string; // the answer grid's fingerprint the sheet was read against (src/lib/bubbles/layout.ts)
+  sheetNo: number | null; // the pre-shaded sheet number; null: not read (the check digit disagreed, or a smudge)
+  roll: string | null; // the roll number shaded on a blank sheet (digits); null: none
+  rollUnclear: boolean;
+  answers: Record<string, OptionKey[]>; // per question number: the options clearly filled (none: blank)
+  unclear: string[]; // questions with a bubble between empty and filled: no answer is read
+  multiple: string[]; // questions with two or more filled
+  confidence: number; // 0 to 1
+};
+
+// How a read sheet found its child: its printed number (bubble), the roll number shaded on a blank sheet (roll), a
+// person (teacher), or not yet (none).
+export type BubbleMatch = 'bubble' | 'roll' | 'teacher' | 'none';
+
+export type BubbleWaiting = {
+  readId: string;
+  pageId: string;
+  url: string | null; // null: the picture was deleted after the school's days
+  sheetNo: number | null;
+  rollNo: string | null;
+  offered: string[]; // children the sheet may be (its printed child, the roll shaded), student ids
+  why: 'identity' | 'two_scripts';
+  readAt: string;
+};
+
+export type BubbleScreen = {
+  paperId: string;
+  sitting: PaperSitting;
+  mayChange: boolean;
+  questions: { label: string; options: number }[]; // the questions on the sheet, in order
+  layoutKey: string | null;
+  onlyChoice: boolean; // every question is on the sheet: each read sheet is the child's script
+  problem: 'no_choice' | 'too_many' | 'questions' | null; // why sheets cannot be printed or read yet
+  wrongMarks: number;
+  printed: { candidates: number; blanks: number; replaced: number; lastAt: string | null };
+  sheets: { sheetNo: number; studentId: string | null }[]; // the sheets in use, for the scan screen to name the child
+  reads: { total: number; matched: number; flagged: number };
+  waiting: BubbleWaiting[]; // a mixed paper's read sheets that name no child yet, for a person to settle
+  candidates: RosterChild[]; // in roll order
+};
+
+// What printing gives the browser to draw (one page per sheet, the candidates in roll order, then the blank sheets).
+export type BubblePrint = {
+  school: string;
+  examName: string;
+  className: string;
+  subjectName: string;
+  date: string | null;
+  layoutKey: string;
+  questions: { label: string; options: number }[];
+  sheets: { sheetNo: number; child: { name: string; rollNo: string | null; seatNo: string | null } | null }[];
+};
+
+// One page of a bubble upload, as the server kept it.
+//   script     a paper of only choice questions: the read made the child's script (or one for the teacher to settle)
+//   filled     a mixed paper: the read filled the child's answer-book script's choice questions
+//   kept       a mixed paper: the child's answer-book script is not in yet; the read waits for it
+//   waiting    the sheet names no child yet (or is a second sheet of one child): a person settles it on the hub
+//   duplicate  the same picture was already on the paper
+export type BubblePageResult = {
+  fileNo: number;
+  pageNo: number;
+  pageId: string;
+  outcome: 'script' | 'filled' | 'kept' | 'waiting' | 'duplicate';
+  sheetNo: number | null;
+  child: { studentId: string; name: string; rollNo: string | null } | null;
+  flagged: boolean; // an unclear bubble, two marks, or a child to check
+};
+export type BubblePagesResult = { pages: BubblePageResult[] };
+
+// One question of a read sheet on the review screen, with its bubbles placed on the kept picture (percent of the page).
+export type BubbleQuestionView = {
+  questionId: string;
+  label: string;
+  keys: OptionKey[];
+  read: OptionKey[]; // filled
+  state: 'answer' | 'blank' | 'unclear' | 'multiple';
+  correct: OptionKey[] | null;
+  right: boolean | null; // null: not marked by rules (unclear, two marks, or no correct answer given)
+  row: { left: number; top: number; width: number; height: number } | null; // null: the questions changed since
+  bubbles: { key: OptionKey; left: number; top: number; size: number }[];
+};
+export type BubbleSheetView = {
+  readId: string;
+  pageId: string;
+  url: string | null;
+  width: number;
+  height: number;
+  sheetNo: number | null;
+  rollNo: string | null;
+  matchedBy: BubbleMatch;
+  confidence: number;
+  sameQuestions: boolean; // the sheet was read against today's questions (else the picture shows no bubble places)
+  applied: boolean; // its rule marks are on this script
+  questions: BubbleQuestionView[];
+  mayChange: boolean;
+};
+export type BubbleSheetDetail = { source: SheetSource; view: BubbleSheetView | null; pending: boolean };

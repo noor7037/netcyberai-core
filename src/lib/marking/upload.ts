@@ -1,6 +1,7 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { writeAuditLog } from '@/lib/audit/log';
-import { MAX_FILES_PER_UPLOAD, MAX_PAGES_PER_FILE, MAX_PAGES_PER_UPLOAD, PAGE_MAX_BYTES, PAGE_MAX_EDGE, PAGE_MIN_EDGE, UPLOAD_MODES, type PageUploadResult, type UploadMode } from '@/lib/contracts/marking';
+import { onBubbleSheet } from '@/lib/bubbles/layout';
+import { MAX_FILES_PER_UPLOAD, MAX_PAGES_PER_FILE, MAX_PAGES_PER_UPLOAD, PAGE_MAX_BYTES, PAGE_MAX_EDGE, PAGE_MIN_EDGE, UPLOAD_MODES, type PageUploadResult, type UploadKind, type UploadMode } from '@/lib/contracts/marking';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { JobQueue, Sql } from '@/lib/jobs/types';
 import type { FileStorage } from '@/lib/storage/file-storage';
@@ -21,6 +22,11 @@ import { questionsOf } from './setup';
 // already on the paper (the same SHA-256) is kept as a duplicate and never read; the same page sent twice (a retried
 // request) answers with the page already there and keeps nothing new. The school's monthly pages (the plan's limit,
 // C347) count every page but duplicates, and a request that would pass the limit keeps nothing.
+//
+// Bubble sheets (C364) come in the same way, as an upload of kind 'bubble' of a paper sat with a bubble sheet: they are
+// read in the teacher's browser by rules, so they need no AI marking and none of their pages counts against its pages
+// (./context.ts). Their pages come with their readings through their own route (src/lib/bubbles/server.ts), and closing
+// such an upload starts no reading job.
 
 export type StartProblem = 'not_allowed' | 'not_found' | 'closed' | 'not_sent_properly' | 'questions' | 'ai_off' | 'limit';
 // child: a page of a by_child upload names no child, a child who is not a candidate of the paper, or another child than
@@ -126,34 +132,57 @@ export const pageKey = (schoolId: string, paperId: string, pageId: string) => `$
 // ---- starting an upload ----------------------------------------------------------------------------------------------------
 
 export async function startUpload(db: Sql, actor: Actor, paperId: string, raw: unknown): Promise<{ ok: true; uploadId: string } | ({ ok: false; reason: StartProblem } & Partial<AiOff>)> {
-  const body = (typeof raw === 'object' && raw !== null ? raw : {}) as { mode?: unknown; files?: unknown };
-  if (!(UPLOAD_MODES as readonly unknown[]).includes(body.mode) || !isFileNo(body.files)) return { ok: false, reason: 'not_sent_properly' };
+  const r = await begin(db, actor, paperId, raw, 'scripts');
+  // Answer books for a paper whose every question is on its bubble sheet (C364): there is nothing in them to mark. The
+  // screens never offer it; a request that tries is not this person's to make.
+  if (r.ok) return r;
+  return r.reason === 'not_bubble' ? { ok: false, reason: 'not_allowed' } : { ...r, reason: r.reason };
+}
+
+// An upload of bubble sheets (C364), for a paper sat with a bubble sheet: no AI marking is needed for it, and its pages
+// count against no AI pages. Its pages come with their readings (src/lib/bubbles/server.ts).
+export async function startBubbleUpload(db: Sql, actor: Actor, paperId: string, raw: unknown): Promise<{ ok: true; uploadId: string } | ({ ok: false; reason: StartProblem | 'not_bubble' } & Partial<AiOff>)> {
+  return begin(db, actor, paperId, raw, 'bubble');
+}
+
+async function begin(db: Sql, actor: Actor, paperId: string, raw: unknown, kind: UploadKind): Promise<{ ok: true; uploadId: string } | ({ ok: false; reason: StartProblem | 'not_bubble' } & Partial<AiOff>)> {
+  const body = (typeof raw === 'object' && raw !== null ? raw : {}) as { mode?: unknown; files?: unknown; kind?: unknown };
+  if (!(UPLOAD_MODES as readonly unknown[]).includes(body.mode) || !isFileNo(body.files) || (body.kind !== undefined && body.kind !== kind)) return { ok: false, reason: 'not_sent_properly' };
+  // Bubble sheets name their child by their own printed number: never scanned child by child.
+  if (kind === 'bubble' && body.mode === 'by_child') return { ok: false, reason: 'not_sent_properly' };
   const paper = await markingPaper(db, actor, paperId);
   if (!paper) return { ok: false, reason: 'not_found' };
   if (paper.published) return { ok: false, reason: 'closed' };
   if (!paper.mayMark) return { ok: false, reason: 'not_allowed' };
   const counts = ((await db.query(`select choice_counts from marking_setups where school_id = $1 and paper_id = $2`, [actor.schoolId, paperId])).rows[0]?.choice_counts ?? {}) as Record<string, number>;
-  if (structureProblems(paper.components, await questionsOf(db, actor.schoolId, paperId), counts).length) return { ok: false, reason: 'questions' };
-  const ai = await aiMarkingState(db, actor.schoolId);
-  if (!ai.on) return { ok: false, reason: 'ai_off', why: ai.why };
-  if (ai.limit !== null && ai.pagesThisMonth >= ai.limit) return { ok: false, reason: 'limit' };
+  const questions = await questionsOf(db, actor.schoolId, paperId);
+  if (structureProblems(paper.components, questions, counts).length) return { ok: false, reason: 'questions' };
+  const sitting = (await db.query(`select sitting from exam_papers where school_id = $1 and paper_id = $2`, [actor.schoolId, paperId])).rows[0]?.sitting;
+  if (kind === 'bubble') {
+    if (sitting !== 'bubble') return { ok: false, reason: 'not_bubble' };
+  } else {
+    if (sitting === 'bubble' && questions.every(onBubbleSheet)) return { ok: false, reason: 'not_bubble' };
+    const ai = await aiMarkingState(db, actor.schoolId);
+    if (!ai.on) return { ok: false, reason: 'ai_off', why: ai.why };
+    if (ai.limit !== null && ai.pagesThisMonth >= ai.limit) return { ok: false, reason: 'limit' };
+  }
   const uploadId = (
-    await db.query(`insert into marking_uploads (school_id, paper_id, mode, created_by) values ($1, $2, $3, $4) returning upload_id`, [actor.schoolId, paperId, body.mode as UploadMode, actor.userId])
+    await db.query(`insert into marking_uploads (school_id, paper_id, mode, kind, created_by) values ($1, $2, $3, $4, $5) returning upload_id`, [actor.schoolId, paperId, body.mode as UploadMode, kind, actor.userId])
   ).rows[0].upload_id as string;
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.upload_started', targetType: 'marking_uploads', targetId: uploadId, afterState: { paper_id: paperId, mode: body.mode, files: body.files } });
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.upload_started', targetType: 'marking_uploads', targetId: uploadId, afterState: { paper_id: paperId, mode: body.mode, kind, files: body.files } });
   return { ok: true, uploadId };
 }
 
 // ---- an upload as the person may change it -------------------------------------------------------------------------------
 
-type OpenUpload = { uploadId: string; paperId: string; closed: boolean; mode: UploadMode; createdBy: string };
+type OpenUpload = { uploadId: string; paperId: string; closed: boolean; mode: UploadMode; kind: UploadKind; createdBy: string };
 
 // The upload read under the person's own row rules, then its paper: not found, published or not theirs to mark says
 // why; locked only once it is theirs to change (a row the update rules refuse cannot be locked).
 async function loadUpload(db: Sql, actor: Actor, uploadId: string): Promise<{ ok: true; upload: OpenUpload } | { ok: false; reason: 'not_found' | 'closed' | 'not_allowed' }> {
   if (!isUuid(uploadId)) return { ok: false, reason: 'not_found' };
   const read = async (lock: boolean) =>
-    (await db.query(`select upload_id, paper_id, mode, created_by, closed_at from marking_uploads where school_id = $1 and upload_id = $2${lock ? ' for update' : ''}`, [actor.schoolId, uploadId])).rows[0];
+    (await db.query(`select upload_id, paper_id, mode, kind, created_by, closed_at from marking_uploads where school_id = $1 and upload_id = $2${lock ? ' for update' : ''}`, [actor.schoolId, uploadId])).rows[0];
   const row = await read(false);
   if (!row) return { ok: false, reason: 'not_found' };
   const paper = await markingPaper(db, actor, row.paper_id as string);
@@ -162,7 +191,7 @@ async function loadUpload(db: Sql, actor: Actor, uploadId: string): Promise<{ ok
   if (!paper.mayMark) return { ok: false, reason: 'not_allowed' };
   const locked = await read(true);
   if (!locked) return { ok: false, reason: 'closed' };
-  return { ok: true, upload: { uploadId, paperId: locked.paper_id as string, closed: locked.closed_at !== null, mode: locked.mode as UploadMode, createdBy: locked.created_by as string } };
+  return { ok: true, upload: { uploadId, paperId: locked.paper_id as string, closed: locked.closed_at !== null, mode: locked.mode as UploadMode, kind: (locked.kind ?? 'scripts') as UploadKind, createdBy: locked.created_by as string } };
 }
 
 // ---- pages ------------------------------------------------------------------------------------------------------------------
@@ -194,10 +223,13 @@ async function claimsHold(db: Sql, actor: Actor, upload: OpenUpload, pages: read
   return true;
 }
 
-export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage, 'put' | 'remove'>, uploadId: string, pages: readonly CheckedPage[]): Promise<{ ok: true; pages: PageUploadResult['pages'] } | ({ ok: false; reason: PagesProblem } & Partial<AiOff>)> {
+// `bubble`: the pages come with their readings through the bubble sheets' own route (src/lib/bubbles/server.ts). A bubble
+// upload takes pages only that way, and a scripts upload never: an unread bubble page would wait for a reading forever.
+export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage, 'put' | 'remove'>, uploadId: string, pages: readonly CheckedPage[], opts: { bubble?: boolean } = {}): Promise<{ ok: true; pages: PageUploadResult['pages'] } | ({ ok: false; reason: PagesProblem } & Partial<AiOff>)> {
   const loaded = await loadUpload(db, actor, uploadId);
   if (!loaded.ok) return loaded;
   const { upload } = loaded;
+  if ((upload.kind === 'bubble') !== (opts.bubble === true)) return { ok: false, reason: 'not_found' };
   if (upload.closed) return { ok: false, reason: 'upload_closed' };
   // A phone scan's pages come from the person who started it, and no one else (its outbox is theirs: a page left on a
   // shared phone is never sent under another person's session).
@@ -220,7 +252,8 @@ export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage,
     // One school's pages are counted and compared one request at a time, so two at once can neither pass the month's
     // limit together nor keep the same picture twice (review of #318).
     await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`marking-pages:${actor.schoolId}`]);
-    const ai = await aiMarkingState(db, actor.schoolId);
+    // Bubble pages are read by rules: no AI marking is needed, and none counts against its month's pages (C364).
+    const ai = upload.kind === 'bubble' ? { on: true, why: null, pagesThisMonth: 0, limit: null } : await aiMarkingState(db, actor.schoolId);
     if (!ai.on) return { ok: false, reason: 'ai_off', why: ai.why };
     const inUpload = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and upload_id = $2`, [actor.schoolId, uploadId])).rows[0]?.n ?? 0);
     if (inUpload + fresh.length > MAX_PAGES_PER_UPLOAD) return { ok: false, reason: 'too_many' };
@@ -284,13 +317,18 @@ export async function addPages(db: Sql, actor: Actor, storage: Pick<FileStorage,
 export async function closeUpload(db: Sql, actor: Actor, queue: JobQueue, uploadId: string): Promise<{ ok: true; runs: number } | ({ ok: false; reason: 'not_allowed' | 'not_found' | 'closed' | 'ai_off' } & Partial<AiOff>)> {
   const loaded = await loadUpload(db, actor, uploadId);
   if (!loaded.ok) return loaded;
-  const ai = await aiMarkingState(db, actor.schoolId);
-  if (!ai.on) return { ok: false, reason: 'ai_off', why: ai.why };
+  // A bubble upload's pages were read as they came (C364): closing it says only that no more are coming. No AI, no job.
+  const bubble = loaded.upload.kind === 'bubble';
+  if (!bubble) {
+    const ai = await aiMarkingState(db, actor.schoolId);
+    if (!ai.on) return { ok: false, reason: 'ai_off', why: ai.why };
+  }
   if (!loaded.upload.closed) {
     await db.query(`update marking_uploads set closed_at = now() where school_id = $1 and upload_id = $2 and closed_at is null`, [actor.schoolId, uploadId]);
     const pages = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and upload_id = $2`, [actor.schoolId, uploadId])).rows[0]?.n ?? 0);
-    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.upload_closed', targetType: 'marking_uploads', targetId: uploadId, afterState: { paper_id: loaded.upload.paperId, pages } });
+    await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.upload_closed', targetType: 'marking_uploads', targetId: uploadId, afterState: { paper_id: loaded.upload.paperId, pages, ...(bubble ? { kind: 'bubble' } : {}) } });
   }
+  if (bubble) return { ok: true, runs: 0 };
   // Closed more than ten minutes ago with pages still unread: their reading stopped (for example while AI marking was
   // off), so only those go again. A second press soon after closing queues nothing more.
   const stuck = loaded.upload.closed && (await db.query(`select closed_at < now() - interval '10 minutes' as old from marking_uploads where school_id = $1 and upload_id = $2`, [actor.schoolId, uploadId])).rows[0]?.old === true;
