@@ -143,6 +143,9 @@ export const TOURS = {
   'marking-review': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   'exam-numbers': { steps: [{ slot: 'body' }] },
   // am-3 end
+  // aj-5 begin
+  'progress-report': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  // aj-5 end
 } as const satisfies Record<string, TourDefinition>;
 
 export type TourId = keyof typeof TOURS;

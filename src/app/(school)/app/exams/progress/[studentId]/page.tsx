@@ -17,7 +17,7 @@ export default async function ProgressReportPage({ params }: { params: { student
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
   return (
-    <ModulePage moduleId="exams" help="publish-report-cards" title={t(lang, 'pr.page.title')} purpose={t(lang, 'pr.page.purpose')}>
+    <ModulePage moduleId="exams" help="publish-report-cards" tour="progress-report" title={t(lang, 'pr.page.title')} purpose={t(lang, 'pr.page.purpose')}>
       <ProgressReportView studentId={params.studentId} />
     </ModulePage>
   );
