@@ -8639,7 +8639,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.overview.title': 'एक नज़र में',
   'control.ai.overview.how': 'सर्वर में अभी जो दर्ज है, उसकी गिनती। किसी सेवा की स्थिति उसकी key, key की जाँच और हाल के प्रयासों से तय होती है; जो दर्ज नहीं है, उसका दावा नहीं किया जाता।',
   'control.ai.overview.features': '{total} में से {on} सुविधाएँ चालू; {primary} में मुख्य सेवा है, {backup} में बैकअप है।',
-  'control.ai.overview.stateCount': '{state}: {count}',
+  'control.ai.overview.stateCount': '{state}: {count} सेवाएँ',
   'control.ai.state.disabled': 'बंद',
   'control.ai.state.not_configured': 'सेट नहीं',
   'control.ai.state.circuit_open': 'विफलताओं के बाद रुकी',
@@ -8682,7 +8682,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.route.now': 'अभी का क्रम',
   'control.ai.route.empty': 'सेट नहीं: इस सुविधा के लिए अभी कोई सेवा नहीं चुनी गई। “क्रम बदलें” में चुनें।',
   'control.ai.route.slotEmpty': 'सेट नहीं',
-  'control.ai.route.link': '{slot}: {provider} · {model}',
+  'control.ai.route.link': '{slot}: सेवा {provider} · मॉडल {model}',
   'control.ai.route.none': 'कोई सेवा नहीं',
   'control.ai.route.promote': 'मुख्य बनाएँ',
   'control.ai.route.change': 'क्रम बदलें',
@@ -8722,7 +8722,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.timeline.fellBack': 'बैकअप लगा',
   'control.ai.timeline.tokens': '{tokensIn} भेजे, {tokensOut} मिले',
   'control.ai.timeline.more': '{total} में से नवीनतम {shown} अनुरोध दिखाए गए।',
-  'control.ai.time.ms': '{value} ms',
-  'control.ai.time.seconds': '{value} s',
+  'control.ai.time.ms': '{value} मिलीसेकंड',
+  'control.ai.time.seconds': '{value} सेकंड',
   // g3 end
 };
