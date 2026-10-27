@@ -56,26 +56,27 @@ export function sureness(confidence: number | null, line: number): Sureness {
 
 // ---- marks --------------------------------------------------------------------------------------------------------
 
-// A mark kept within its question, to a tenth.
-export const clampMark = (n: number, max: number): number => Math.min(max, Math.max(0, Math.round(n * 10) / 10));
+// A mark kept within its question, to a tenth. `min`: below nothing only for a question marked by rules where the paper
+// takes marks off a wrong answer (src/lib/marking/answers.ts, markRange); 0 otherwise.
+export const clampMark = (n: number, max: number, min = 0): number => Math.min(max, Math.max(min, Math.round(n * 10) / 10));
 
 // The mark after a tap on − or +: half a mark at a time (from no mark, as from 0), landing on the half marks (3.2
-// becomes 3.5 or 3), never below 0 or above the question's marks.
-export function stepMark(current: number | null, delta: 0.5 | -0.5, max: number): number {
+// becomes 3.5 or 3), never below `min` (0 unless marks are taken off) or above the question's marks.
+export function stepMark(current: number | null, delta: 0.5 | -0.5, max: number, min = 0): number {
   const base = current ?? 0;
   const next = delta > 0 ? Math.floor(base * 2 + 1e-9) / 2 + 0.5 : Math.ceil(base * 2 - 1e-9) / 2 - 0.5;
-  return clampMark(next, max);
+  return clampMark(next, max, min);
 }
 
 // What a typed mark means: nothing typed (empty), a number within the question (ok), more than the question's marks
-// (over), or not a number with at most one decimal place (bad).
+// (over), or not a number with at most one decimal place, or below what the question may get (bad).
 export type TypedMark = { kind: 'empty' } | { kind: 'ok'; value: number } | { kind: 'over' } | { kind: 'bad' };
-export function parseMark(text: string, max: number): TypedMark {
-  const t = text.trim().replace(',', '.');
+export function parseMark(text: string, max: number, min = 0): TypedMark {
+  const t = text.trim().replace(',', '.').replace('−', '-');
   if (t === '') return { kind: 'empty' };
-  if (!/^(\d+\.?\d?|\.\d)$/.test(t)) return { kind: 'bad' };
+  if (!/^-?(\d+\.?\d?|\.\d)$/.test(t)) return { kind: 'bad' };
   const n = Number(t);
-  if (!Number.isFinite(n)) return { kind: 'bad' };
+  if (!Number.isFinite(n) || n < min - 1e-9) return { kind: 'bad' };
   return n > max ? { kind: 'over' } : { kind: 'ok', value: Math.round(n * 10) / 10 };
 }
 

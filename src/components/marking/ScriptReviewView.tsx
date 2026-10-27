@@ -9,8 +9,10 @@ import { Badge } from '@/components/ui/Badge';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { Icon } from '@/components/visual/Icons';
-import { ERROR_TYPES, type ErrorType, type MarkingOverview, type SetupScreen, type SheetDetail, type SheetQuestion } from '@/lib/contracts/marking';
+import { BubbleReadLine, BubbleSheetPane, type BubbleSheetPaneHandle } from '@/components/bubbles/BubbleSheetPane';
+import { ERROR_TYPES, type BubbleSheetDetail, type ErrorType, type MarkingOverview, type SetupScreen, type SheetDetail, type SheetQuestion } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
+import { markRange } from '@/lib/marking/answers';
 import { layoutBadges } from '@/lib/marking/margin';
 import { changesOf, clampMark, countedOf, emptyDraft, finalOf, flagsInOrder, grandTotal, noteOf, parseMark, stepMark, sureness, totalsOf, type SheetDraft } from '@/lib/marking/review-view';
 import { OnlineAnswers } from '@/components/online/OnlineAnswers';
@@ -50,14 +52,19 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   // The AI has tried this script as many times as it may: asking again is refused for good.
   const [noTries, setNoTries] = useState(false);
   const [barBottom, setBarBottom] = useState(0);
+  // The script's bubble sheet (C364): on a paper of only choice questions the sheet is the script; on a mixed paper it
+  // is read beside the answer book. None for a script without one.
+  const [bubble, setBubble] = useState<BubbleSheetDetail | null>(null);
   // An online test's script (AQ-4): its typed answers in place of pages, and its own "Mark again".
   const [online, setOnline] = useState(false);
   const pane = useRef<PagesPaneHandle>(null);
+  const sheetPane = useRef<BubbleSheetPaneHandle>(null);
   const live = useRef<{ detail: SheetDetail | null; draft: SheetDraft }>({ detail: null, draft: emptyDraft() });
   live.current = { detail, draft };
 
   const loadDetail = useCallback(async () => {
-    const r = await ask('GET', `/api/app/marking/sheets/${sheetId}`);
+    const [r, b] = await Promise.all([ask('GET', `/api/app/marking/sheets/${sheetId}`), ask('GET', `/api/app/marking/sheets/${sheetId}/bubbles`)]);
+    if (b.ok) setBubble(b.body as unknown as BubbleSheetDetail);
     if (!r.ok) return false;
     setDetail(r.body as unknown as SheetDetail);
     return true;
@@ -252,7 +259,29 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const showQuestion = (q: SheetQuestion) => {
     setActive(q.questionId);
     if (q.place) pane.current?.scrollToPlace(q.place.pageId, q.place.yFrom);
+    else sheetPane.current?.show(q.questionId);
   };
+  // The bubble sheet's own actions (C364): put a read sheet's answers on this answer-book script, or take a sheet that is
+  // not this child's off it.
+  const doBubble = async (what: 'put_on' | 'not_this') => {
+    if (!bubble?.view) return;
+    setBusy(true);
+    setNote(null);
+    const r =
+      what === 'put_on'
+        ? await ask('POST', `/api/app/marking/sheets/${sheetId}/bubbles`, { action: 'put_on' })
+        : await ask('POST', `/api/app/marking/papers/${paperId}/bubbles`, { action: 'read', readId: bubble.view.readId, do: 'unmatch' });
+    if (!r.ok) {
+      setBusy(false);
+      return setNote({ ok: false, text: errorWords(t, r) });
+    }
+    await Promise.all([loadDetail(), loadSide()]);
+    setBusy(false);
+    setNote({ ok: true, text: t(what === 'put_on' ? 'bub.review.putOnDone' : 'bub.review.notThisDone') });
+  };
+  const bubbleQ = new Map((bubble?.view?.questions ?? []).map((q) => [q.questionId, q]));
+  const sheetIsScript = bubble?.source === 'bubble' && !!bubble.view;
+  const wrongMarks = setup?.setup.wrongMarks ?? 0;
 
   const idLine = sheet.student
     ? t('mk.id.matched', { name: sheet.student.name, roll: sheet.student.rollNo ?? '—', by: sheet.matchedBy in BY_KEYS ? t(BY_KEYS[sheet.matchedBy]) : '' }).replace(/\s+,/g, ',').replace(/,\s*$/, '')
@@ -288,8 +317,9 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
           <ul data-sheet-flags className="flex flex-col gap-1">
             {flags.map((f) => (
               <li key={f} className="flex flex-wrap items-center gap-x-2">
-                <Badge variant="warning">{t(FLAG_KEYS[f])}</Badge>
-                <span className="text-slate/70">{t(FLAG_HOW_KEYS[f])}</span>
+                {/* A bubble script's doubt is a bubble's, not the AI's (C364). */}
+                <Badge variant="warning">{t(f === 'unsure' && sheetIsScript ? 'bub.flag.unsure' : FLAG_KEYS[f])}</Badge>
+                <span className="text-slate/70">{t(f === 'unsure' && sheetIsScript ? 'bub.flag.unsure.how' : FLAG_HOW_KEYS[f])}</span>
                 {(f === 'check_child' || f === 'mismatch') && sheet.student && detail.mayChange && sheet.state !== 'approved' && (
                   <button type="button" data-confirm-child className={TAP} disabled={busy} onClick={() => void doChoose(sheet.student!.studentId)}>
                     {t('mk.id.confirm', { name: sheet.student.name })}
@@ -383,9 +413,10 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
       {paper.published && <p className="rounded-md bg-off-white px-3 py-2">{t('mk.q.published')}</p>}
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
-        <div className="min-w-0 lg:sticky lg:top-20 lg:w-5/12 lg:flex-none">
+        <div className="flex min-w-0 flex-col gap-4 lg:sticky lg:top-20 lg:w-5/12 lg:flex-none">
           {detail.pages.length === 0 && detail.picturesGone === 0 && <OnlineAnswers sheetId={sheetId} questions={detail.questions} active={active} onFound={setOnline} />}
-          {!online && <PagesPane ref={pane} pages={detail.pages} badges={badges} active={active} />}
+          {!sheetIsScript && !online && <PagesPane ref={pane} pages={detail.pages} badges={badges} active={active} />}
+          {bubble?.view && <BubbleSheetPane ref={sheetPane} detail={bubble} active={active} busy={busy} onPutOn={() => void doBubble('put_on')} onNotThis={() => void doBubble('not_this')} />}
         </div>
 
         <div className="flex min-w-0 flex-1 flex-col gap-4">
@@ -421,22 +452,31 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
                                 <Badge variant={how === 'check' ? 'warning' : how === 'sure' ? 'success' : 'neutral'} data-sureness={how}>{t(SURE_KEYS[how])}</Badge>
                                 {q.place ? (
                                   <button type="button" data-show-on-page className={TAP} onClick={() => showQuestion(q)}>{t('mk.q.show')}</button>
+                                ) : bubbleQ.get(q.questionId)?.row ? (
+                                  <button type="button" data-show-on-sheet className={TAP} onClick={() => showQuestion(q)}>{t('bub.review.show')}</button>
                                 ) : (
                                   <span className="text-slate/70">{t('mk.q.noPlace')}</span>
                                 )}
                               </div>
                             </div>
+                            {bubbleQ.get(q.questionId) && <BubbleReadLine q={bubbleQ.get(q.questionId)!} />}
 
                             <MarkField
                               id={`mk-marks-${q.questionId}`}
                               value={final}
                               max={q.maxMarks}
+                              min={markRange(q, wrongMarks).min}
                               disabled={!editable}
                               onFocus={() => setActive(q.questionId)}
                               onChange={(v) => setQuestion(q.questionId, { marks: v })}
                             />
                             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-slate/70">
-                              <span data-ai-gave>{q.ai.marks === null ? t('mk.q.aiNone') : t('mk.q.aiGave', { marks: numberWords(q.ai.marks, lang), max: numberWords(q.maxMarks, lang) })}</span>
+                              {bubbleQ.get(q.questionId) && bubble?.view?.applied ? (
+                                // Marked from the bubble sheet by the answer key, not by the AI (C364).
+                                <span data-rule-gave>{q.ai.marks === null ? t('bub.review.ruleNone') : t('bub.review.ruleGave', { marks: numberWords(q.ai.marks, lang), max: numberWords(q.maxMarks, lang) })}</span>
+                              ) : (
+                                <span data-ai-gave>{q.ai.marks === null ? t('mk.q.aiNone') : t('mk.q.aiGave', { marks: numberWords(q.ai.marks, lang), max: numberWords(q.maxMarks, lang) })}</span>
+                              )}
                               {overridden && editable && (
                                 <button type="button" data-back-to-ai className={TAP} onClick={() => setQuestion(q.questionId, { marks: null })}>{t('mk.q.backToAi')}</button>
                               )}
@@ -579,14 +619,15 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   );
 }
 
-// A mark: − and + in half marks, and a field to type it; never above the question's marks.
-function MarkField({ id, value, max, disabled, onChange, onFocus }: { id: string; value: number | null; max: number; disabled: boolean; onChange: (v: number | null) => void; onFocus: () => void }) {
+// A mark: − and + in half marks, and a field to type it; never above the question's marks, and below nothing only by the
+// marks the paper takes off a wrong choice answer (`min`, C361).
+function MarkField({ id, value, max, min = 0, disabled, onChange, onFocus }: { id: string; value: number | null; max: number; min?: number; disabled: boolean; onChange: (v: number | null) => void; onFocus: () => void }) {
   const { t, lang } = useT();
   const [text, setText] = useState(value === null ? '' : String(value));
   const [problem, setProblem] = useState<'bad' | 'over' | null>(null);
   // The field follows the mark when it changes elsewhere (the − and + buttons, "back to the AI's mark").
   useEffect(() => {
-    const typed = parseMark(text, max);
+    const typed = parseMark(text, max, min);
     if ((typed.kind === 'ok' && typed.value !== value) || (typed.kind === 'empty' && value !== null) || typed.kind === 'bad' || typed.kind === 'over') {
       if (!(problem && typed.kind === 'bad') && !(problem && typed.kind === 'over')) setText(value === null ? '' : String(value));
     }
@@ -594,7 +635,7 @@ function MarkField({ id, value, max, disabled, onChange, onFocus }: { id: string
   }, [value]);
   const type = (raw: string) => {
     setText(raw);
-    const m = parseMark(raw, max);
+    const m = parseMark(raw, max, min);
     if (m.kind === 'ok') {
       setProblem(null);
       onChange(m.value);
@@ -605,14 +646,14 @@ function MarkField({ id, value, max, disabled, onChange, onFocus }: { id: string
   };
   const step = (delta: 0.5 | -0.5) => {
     setProblem(null);
-    const next = stepMark(value, delta, max);
+    const next = stepMark(value, delta, max, min);
     setText(String(next));
     onChange(next);
   };
   return (
     <div className="flex flex-col gap-1">
       <div className="flex flex-wrap items-center gap-2">
-        <button type="button" data-marks-minus className={TAP} disabled={disabled || (value ?? 0) <= 0} aria-label={t('mk.q.less')} onClick={() => step(-0.5)}>
+        <button type="button" data-marks-minus className={TAP} disabled={disabled || (value ?? 0) <= min} aria-label={t('mk.q.less')} onClick={() => step(-0.5)}>
           <span aria-hidden="true">−</span>
           <span className="sr-only">{t('mk.q.less')}</span>
         </button>
@@ -630,7 +671,7 @@ function MarkField({ id, value, max, disabled, onChange, onFocus }: { id: string
           onChange={(e) => type(e.target.value)}
           onBlur={() => {
             setProblem(null);
-            setText(value === null ? '' : String(clampMark(value, max)));
+            setText(value === null ? '' : String(clampMark(value, max, min)));
           }}
           className="h-12 min-h-[48px] w-20 rounded-md border border-slate/50 bg-white px-3 text-center text-base font-bold text-slate disabled:opacity-60"
         />

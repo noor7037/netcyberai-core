@@ -6,7 +6,8 @@ import { InfoTip } from '@/components/app-ui/InfoTip';
 import { PRIMARY, TAP } from '@/components/exams/SchemeParts';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
 import { Icon } from '@/components/visual/Icons';
-import { MAX_FILES_PER_UPLOAD, type MarkingOverview, type PageUploadResult, type StartUploadResult, type UploadMode } from '@/lib/contracts/marking';
+import { BubbleFilesUploader } from '@/components/bubbles/BubbleFilesUploader';
+import { MAX_FILES_PER_UPLOAD, type BubbleScreen, type MarkingOverview, type PageUploadResult, type StartUploadResult, type UploadMode } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
 import { UploadError, fileKind, inReadingOrder } from '@/lib/marking/browser-plan';
 import { initialStates, sendFiles, type FileProblem, type FileState, type PageJob } from '@/lib/marking/upload-run';
@@ -35,7 +36,46 @@ const PROBLEM_KEYS: Record<FileProblem, MessageKey> = {
 // Trying the same file again changes nothing for these.
 const NOT_AGAIN: readonly FileProblem[] = ['too_many_pages', 'unreadable', 'page_too_small', 'limit', 'ai_off', 'upload_closed', 'closed', 'upload_total'];
 
-export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged }: { paperId: string; overview: MarkingOverview; mayUpload: boolean; why: MessageKey | null; onChanged: () => void }) {
+// A paper sat with a bubble sheet (C364) takes bubble sheets as files too: the teacher says which the files are. A paper
+// whose every question is on the sheet has no answer books; bubble sheets need no AI marking, so they may be sent while
+// it is off.
+export function ScriptsUploader({ paperId, overview, mayUpload, why, onChanged, bubbles = null }: { paperId: string; overview: MarkingOverview; mayUpload: boolean; why: MessageKey | null; onChanged: () => void; bubbles?: BubbleScreen | null }) {
+  const { t } = useT();
+  const sheetOn = !!bubbles && bubbles.sitting === 'bubble' && bubbles.mayChange && !bubbles.problem;
+  const booksOff = !!bubbles && bubbles.sitting === 'bubble' && bubbles.onlyChoice;
+  const [kind, setKind] = useState<'scripts' | 'bubble'>(booksOff ? 'bubble' : 'scripts');
+  const chosen = booksOff ? 'bubble' : kind;
+  if (!sheetOn) {
+    if (booksOff) return <p data-uploads-off className="rounded-md bg-off-white px-3 py-2">{t('bub.files.only')}</p>;
+    return <BooksUploader paperId={paperId} overview={overview} mayUpload={mayUpload} why={why} onChanged={onChanged} />;
+  }
+  return (
+    <div className="flex flex-col gap-3">
+      {!booksOff && (
+        <SegmentedControl
+          id={`mk-upload-kind-${paperId}`}
+          label={t('bub.files.what')}
+          value={chosen}
+          onChange={setKind}
+          options={[
+            { value: 'scripts', label: t('bub.files.books') },
+            { value: 'bubble', label: t('bub.files.sheets') },
+          ]}
+        />
+      )}
+      {chosen === 'bubble' ? (
+        <>
+          {booksOff && <p className="text-slate/80">{t('bub.files.only')}</p>}
+          <BubbleFilesUploader paperId={paperId} bubbles={bubbles as BubbleScreen} onChanged={onChanged} />
+        </>
+      ) : (
+        <BooksUploader paperId={paperId} overview={overview} mayUpload={mayUpload} why={why} onChanged={onChanged} />
+      )}
+    </div>
+  );
+}
+
+function BooksUploader({ paperId, overview, mayUpload, why, onChanged }: { paperId: string; overview: MarkingOverview; mayUpload: boolean; why: MessageKey | null; onChanged: () => void }) {
   const { t } = useT();
   const [mode, setMode] = useState<UploadMode>('per_file');
   const [picked, setPicked] = useState<File[]>([]);

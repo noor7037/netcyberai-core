@@ -36,6 +36,7 @@ import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
 import { clearMarking, MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
 import { markingScreens } from './marking-screens.mjs';
+import { bubbleScreens } from './bubble-screens.mjs';
 import { onlineScreens } from './online-screens.mjs';
 import { paperScreens } from './paper-screens.mjs';
 import { clearOutputs, seedOutputs } from './outputs-seed.mjs';
@@ -7272,6 +7273,8 @@ const SCREENS = [
   // AI answer-sheet marking (C347, C348): a paper's four steps, one script beside its pages, approving, the exam's
   // candidates and the exam numbers to print; the screens are in scripts/harness/marking-screens.mjs.
   ...markingScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, CLASS_5A, base: () => base, secret: () => secret, cookieFor, speak, backToEnglish }),
+  // AQ-3 (C364): bubble sheets: the panel, printing, a printed sheet read back from a file and from the camera, the review.
+  ...bubbleScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, base: () => base, secret: () => secret, cookieFor, speak, backToEnglish }),
   // am-3 end
   // aq-2 begin
   // Question papers from what was taught (C362, C363): the plan, a paper just made, keeping it, and "Make every paper";
