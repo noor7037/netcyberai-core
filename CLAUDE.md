@@ -142,8 +142,13 @@ quality bar does not change.
 
 - **The lead session plans, splits and integrates.** It hands independent
   slices to sub-agents (the Agent tool, each in its own git worktree), at most
-  3 at a time, each with a short brief: the slice, the docs section, the
-  acceptance test, and the files it may touch.
+  5 at a time (founder, 2026-10-27, C230-AI), each with a short brief: the slice,
+  the docs section, the acceptance test, and the files it may touch.
+- **Model by the task (C230-AI):** set the Agent tool's `model` for each
+  sub-agent. `haiku` for mechanical work: copy, i18n keys, docs, screenshots,
+  renames. `sonnet` for an ordinary slice: a screen, a route, a test suite.
+  `opus` for auth, RLS, money, messaging, children's data on a device, AI
+  safety, or a design that spans modules. The one review agent for those is `opus`.
 - **Run in parallel only what does not collide:** separate modules, screens
   or files. Work on the same tables, the same shared component or the same
   route stays in one agent.
