@@ -70,6 +70,10 @@ FAMILY_DOORS = {
     "@/lib/online/guardian": {"src/lib/family/online-tests.ts"},
     # A parent's own syllabus from a PDF (C230-AB): the PDF reader and its "title on its page" check, as Control's import.
     "@/lib/content/pdf-import": {"src/app/api/family/syllabus/read/route.ts"},
+    # The checked paper as a PDF (C366): the same drawing the school's office makes it with, in the parent's browser,
+    # from the paper the family is already shown. It draws only; it reads nothing but the page pictures the caller
+    # fetches through the family's own route.
+    "@/lib/marking/checked-pdf": {"src/components/family/CheckedPaperPdf.tsx"},
 }
 # Packages and the framework, allowed everywhere.
 EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")

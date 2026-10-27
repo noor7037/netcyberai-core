@@ -34,7 +34,7 @@ import { SignJWT } from 'jose';
 import { HARNESS_MARKER, startHarnessDb } from './db.mjs';
 import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
-import { clearMarking, MK, seedMarking } from './marking-seed.mjs';
+import { clearMarking, MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
 import { markingScreens } from './marking-screens.mjs';
 import { onlineScreens } from './online-screens.mjs';
 import { paperScreens } from './paper-screens.mjs';
@@ -3097,6 +3097,71 @@ const tellParentsDone = async () => {
   await examsPutBackOnly();
   if (queued !== 0) throw new Error(`the preview queued ${queued} messages`);
 };
+// aq-5 begin
+// AQ-5 (C366): "Tell parents on WhatsApp" with the checked answer sheets as a PDF. The PDF message's words are approved
+// here, by us and as if by Meta (the harness school is not a test school, so the PDF message waits for Meta's approval);
+// the preview says which child gets the PDF and which the link only. After the picture (English), Send is pressed with
+// the PDFs' hand-in and the queueing answered in the browser: the real screen reads each child's papers, draws the PDF
+// from the drawn pages and hands it in; what it handed in is checked to be a PDF and its size printed. Nothing is kept
+// or queued, and everything is put back.
+const AQ5_PDF_BODY = 'From {{school}}: {{child}}’s checked answer sheets for {{exam}} are in this PDF. See the result online here: {{link}} The link is private to your family and works for 30 days.';
+let aq5Seen = null;
+const aq5Tell = (hindi) => async (page) => {
+  // The class result's first opening compiles its parts; a cold development server needs longer than 30 s for it.
+  page.setDefaultNavigationTimeout(120000);
+  await routeScriptPictures(page);
+  await tellParents(page, async () => {
+    await db.pg.query(
+      `insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status, meta_status, meta_template_id)
+       values (null, 'exam_result_pdf', 1, 'en', $1, '{school,child,exam,link}', 'utility', 2880, 'approved', 'approved', 'harness-am5')`,
+      [AQ5_PDF_BODY]
+    );
+  });
+  aq5Seen = {
+    pdf: await page.locator('[data-tell-pdf]').getAttribute('data-tell-pdf'),
+    children: await page.locator('[data-tell-child-pdf]').evaluateAll((els) => els.map((e) => e.getAttribute('data-tell-child-pdf'))),
+  };
+  if (hindi) {
+    await speak('हिन्दी')(page);
+    await page.waitForTimeout(500);
+  }
+};
+const aq5TellDone = (hindi) => async (page) => {
+  const seen = aq5Seen;
+  aq5Seen = null;
+  const handedIn = [];
+  try {
+    if (!hindi && seen) {
+      await page.route('**/tell-parents/pdf?studentId=*', async (route) => {
+        if (route.request().method() !== 'POST') return route.continue();
+        const body = route.request().postDataBuffer() ?? Buffer.alloc(0);
+        handedIn.push({ bytes: body.length, pdf: body.subarray(0, 5).toString('latin1') === '%PDF-' && body.subarray(-1024).toString('latin1').includes('%%EOF') });
+        return route.fulfill({ status: 201, contentType: 'application/json', body: JSON.stringify({ ok: true, pdfId: randomUUID(), existing: false }) });
+      });
+      // The class result sends through "publish and notify" (C230-AJ); either way the queueing is answered here.
+      const answered = (route) => (route.request().method() === 'POST' ? route.fulfill({ status: 201, contentType: 'application/json', body: '{"ok":true,"version":1,"first":true,"queued":0,"children":0}' }) : route.continue());
+      await page.route('**/tell-parents', answered);
+      await page.route('**/outputs', answered);
+      await page.locator('[data-tell-send]').click();
+      // The note after the queueing (not the note about PDFs that could not be made, which comes before it).
+      await page.locator('[data-tell-parents] p[role="status"]:not([data-pdf-failed]), [data-tell-parents] p[role="alert"]:not([data-pdf-failed])').first().waitFor({ timeout: 120000 });
+      // The screen reads the list again after sending: the throwaway database answers one query at a time, so the
+      // putting back waits until those reads are done.
+      await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(800);
+    } else if (hindi) await backToEnglish(page);
+  } finally {
+    await page.unrouteAll({ behavior: 'ignoreErrors' });
+    page.setDefaultNavigationTimeout(30000);
+    await tellParentsDone();
+  }
+  if (seen?.pdf !== 'on' || !seen.children.includes('make') || !seen.children.includes('no_pages')) throw new Error(`the PDF in the preview: ${JSON.stringify(seen)}`);
+  if (!hindi) {
+    if (!handedIn.length || handedIn.some((h) => !h.pdf || h.bytes < 1000 || h.bytes > 4_000_000)) throw new Error(`the PDFs handed in: ${JSON.stringify(handedIn)}`);
+    console.log(`harness: AQ-5 PDFs made by the screen: ${handedIn.map((h) => `${(h.bytes / 1024).toFixed(0)} KB`).join(', ')}`);
+  }
+};
+// aq-5 end
 // aj-5 begin
 // AJ-5 (C230-AJ part 5): "publish and notify" and the merit and participation certificates on a published class's result, and
 // a child's progress report. The AI-marked 5-A Half-yearly is published (as for "Tell parents"), given its exam type, with an
@@ -7060,6 +7125,10 @@ const SCREENS = [
   // AM-5 (C351): who will get the private result link on WhatsApp, and why the others will not.
   ['principal', 'app-exams-tell-parents', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParents, tellParentsDone],
   ['principal', 'app-exams-tell-parents-end', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, tellParentsEnd, tellParentsEndDone],
+  // aq-5 begin
+  ['principal', 'aq5-tell-parents-pdf', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, aq5Tell(false), aq5TellDone(false)],
+  ['principal', 'aq5-tell-parents-pdf-hindi', `/app/exams/${MK.exam}/classes/00000000-0000-4000-8000-0000000c0051`, aq5Tell(true), aq5TellDone(true)],
+  // aq-5 end
   // aj-5 begin
   ['principal', 'app-exams-outputs', `/app/exams/${MK.exam}/classes/${CLASS_5A}`, outputsScreen(false), outputsDone(false)],
   ['principal', 'app-exams-outputs-hindi', `/app/exams/${MK.exam}/classes/${CLASS_5A}`, outputsScreen(true), outputsDone(true)],

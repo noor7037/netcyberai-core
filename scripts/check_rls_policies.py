@@ -543,6 +543,11 @@ ALLOWED_PERMISSIVE = (
         ("exam_outputs", "exam_outputs_tenant_isolation"),
         ("exam_certificates", "exam_certificates_tenant_isolation"),
         # aj-5 end
+        # aq-5 begin
+        # AQ-5 (C366, the checked paper as a PDF on WhatsApp): tenant isolation only; narrowed by the RESTRICTIVE
+        # policies required below.
+        ("result_pdfs", "result_pdfs_tenant_isolation"),
+        # aq-5 end
         # aq-4 begin
         # AQ-4 (C365, online tests): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("online_tests", "online_tests_tenant_isolation"),
@@ -1120,6 +1125,13 @@ REQUIRED_RESTRICTIVE = {
     ("exam_certificates", "exam_certificates_never_removed"),
     ("exam_certificates", "exam_certificates_no_parent"),
     # aj-5 end
+    # aq-5 begin
+    ("result_pdfs", "result_pdfs_office"),
+    ("result_pdfs", "result_pdfs_made_by_office"),
+    ("result_pdfs", "result_pdfs_never_changed"),
+    ("result_pdfs", "result_pdfs_never_removed"),
+    ("result_pdfs", "result_pdfs_no_parent"),
+    # aq-5 end
     # aq-4 begin
     ("online_tests", "online_tests_readers"),
     ("online_tests", "online_tests_writers"),

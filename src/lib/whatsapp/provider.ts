@@ -27,7 +27,20 @@ export interface WhatsAppSendParams {
   templateOrder?: readonly string[];
   // Whether the school is a test school. A real provider refuses unless this is exactly false (docs/25 rule 2).
   testSchool?: boolean;
+  // A template with a document header (C366): the file the provider already holds (uploadMedia), and the name the
+  // family sees it under.
+  document?: { mediaId: string; filename: string };
 }
+
+// A file handed to the provider to send as a message's document (C366): only by the send-gate, only after every rule
+// passed. Its answer: the provider's id for it.
+export interface WhatsAppMediaParams {
+  bytes: Uint8Array;
+  mimeType: 'application/pdf';
+  filename: string;
+  testSchool?: boolean;
+}
+export type WhatsAppMediaResult = { ok: true; mediaId: string } | { ok: false; message: string };
 
 export interface WhatsAppTextParams {
   toPhone: string;
@@ -63,6 +76,8 @@ export interface WhatsAppProvider {
   sendText(params: WhatsAppTextParams): Promise<WhatsAppSendResult>;
   // A question with up to three quick replies (C190), inside the same 24 hours.
   sendChoice(params: WhatsAppChoiceParams): Promise<WhatsAppSendResult>;
+  // A file to send as a template's document (C366). Called by the send-gate only; a provider without it sends none.
+  uploadMedia?(params: WhatsAppMediaParams): Promise<WhatsAppMediaResult>;
   // Whether the account behind this provider can be reached, said plainly. Makes no send.
   testConnection(): Promise<{ ok: boolean; message: string }>;
   // A webhook body and its signature header, checked and read. A body that cannot be trusted reads as nothing.
@@ -97,6 +112,15 @@ export class StandInWhatsAppProvider implements WhatsAppProvider {
     this.calls.push({ ...params, providerMessageId, at: new Date() });
     if (this.forceFailure) return { success: false, providerMessageId: null, errorMessage: 'the stand-in was told to fail', raw: { standIn: true } };
     return { success: true, providerMessageId, errorMessage: null, raw: { standIn: true } };
+  }
+
+  // The files it was handed (C366), for tests: their names and sizes only. Nothing leaves the process.
+  public readonly uploads: { filename: string; bytes: number; mediaId: string | null; testSchool: boolean | undefined }[] = [];
+
+  async uploadMedia(params: WhatsAppMediaParams): Promise<WhatsAppMediaResult> {
+    const mediaId = this.forceFailure ? null : `standin-media-${randomUUID()}`;
+    this.uploads.push({ filename: params.filename, bytes: params.bytes.length, mediaId, testSchool: params.testSchool });
+    return mediaId ? { ok: true, mediaId } : { ok: false, message: 'the stand-in was told to fail' };
   }
 
   async sendText(params: WhatsAppTextParams): Promise<WhatsAppSendResult> {

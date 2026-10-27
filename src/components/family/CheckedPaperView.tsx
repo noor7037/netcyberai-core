@@ -1,6 +1,7 @@
 import type { SchoolCheckedPaper, SchoolMarkedQuestion } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { MISTAKE_KEYS } from '@/lib/family/marks-words';
+import { CheckedPaperPdf } from './CheckedPaperPdf';
 import { ScriptPages } from './ScriptPages';
 import { SchoolText } from './SchoolText';
 
@@ -64,6 +65,8 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
           ))}
         </ul>
         <p className="text-sm text-slate">{w['fam.marks.approved']}</p>
+        {/* The same PDF the school sends on WhatsApp (C366), made on this phone from this paper. */}
+        <CheckedPaperPdf paper={paper} w={w} />
       </section>
 
       {paper.pages.length > 0 && (
