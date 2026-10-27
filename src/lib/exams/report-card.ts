@@ -7,6 +7,7 @@ import { ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } fr
 import { publicationInForce, REPORT_CARD_OFFICE } from './publish';
 import { childResult, weightedForClass, type ResultPaper, type Shown, type WeightedChild, type WeightedMeta } from './results';
 import type { Layout } from './scheme';
+import { weightedNamesOf, type WeightedNames } from './weighted-view';
 
 // A report card (docs/27 row 9c, C215): one child's marks in an exam as published for their class, laid out as the
 // grading scheme kept with the publication says (its layout: components, total, percent, grade, attendance,
@@ -51,6 +52,7 @@ export type ReportCardSet = {
   recognitionOn: boolean;
   cards: ReportCard[];
   weighted?: WeightedMeta; // the weights and the exams they were worked out from; with each card's `weighted`
+  weightedNames?: WeightedNames; // the counted exam types' names in both languages (there with `weighted`)
 };
 export type CardsResult = { ok: true; set: ReportCardSet } | { ok: false; reason: 'not_allowed' | 'not_found' | 'not_published' };
 
@@ -173,7 +175,7 @@ export async function reportCards(db: Sql, actor: Actor, examId: string, classId
       columns,
       recognitionOn,
       cards,
-      ...(weighted ? { weighted: weighted.meta } : {}),
+      ...(weighted ? { weighted: weighted.meta, weightedNames: await weightedNamesOf(db, actor.schoolId, weighted.meta.weights) } : {}),
     },
   };
 }

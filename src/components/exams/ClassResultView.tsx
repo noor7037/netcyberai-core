@@ -4,8 +4,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { ResultCertificates } from '@/components/documents/ResultCertificates';
 import { InfoTip } from '@/components/app-ui/InfoTip';
-import type { ClassResult } from '@/lib/exams/results';
-import { gradeWords, markWords, percentWords as percentOf } from './exam-format';
+import type { ClassResult, Shown } from '@/lib/exams/results';
+import type { WeightedNames } from '@/lib/exams/weighted-view';
+import { gradeWords, markWords, numberWords, percentWords as percentOf } from './exam-format';
 import { SECTION, TAP } from './SchemeParts';
 import { TellParentsWhatsApp } from './TellParentsWhatsApp';
 
@@ -16,12 +17,12 @@ import { TellParentsWhatsApp } from './TellParentsWhatsApp';
 
 export function ClassResultView({ examId, classId }: { examId: string; classId: string }) {
   const { t, lang } = useT();
-  const [data, setData] = useState<ClassResult | null>(null);
+  const [data, setData] = useState<(ClassResult & { weightedNames?: WeightedNames }) | null>(null);
   const [failed, setFailed] = useState(false);
 
   const load = useCallback(async () => {
     const res = await fetch(`/api/app/exams/${examId}/classes/${classId}`, { cache: 'no-store' }).catch(() => null);
-    const got = res?.ok ? ((await res.json().catch(() => null)) as ClassResult | null) : null;
+    const got = res?.ok ? ((await res.json().catch(() => null)) as (ClassResult & { weightedNames?: WeightedNames }) | null) : null;
     setFailed(!got);
     if (got) setData(got);
   }, [examId, classId]);
@@ -33,6 +34,11 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
   if (!data) return null;
   const percentWords: typeof percentOf = (tt, lg, s) => (s.rounded === null ? '—' : percentOf(tt, lg, s));
   const who = (c: ClassResult['children'][number]) => (c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name);
+  // The counted result across the exam types the scheme weighs (C230-AJ part 2): only when it weighs some; with none, nothing is added.
+  const typeName = (type: string) => (lang === 'hi' ? data.weightedNames?.[type]?.hi : data.weightedNames?.[type]?.en) ?? type;
+  const weightWords = data.weighted ? data.weighted.weights.map((w) => t('wt.type', { name: typeName(w.type), weight: numberWords(w.weight, lang) })).join(', ') : '';
+  const counted = (s: Shown) => `${percentWords(t, lang, s)} · ${gradeWords(t, s)}`;
+  const countedOf = (c: ClassResult['children'][number], subjectName: string) => c.weighted?.subjects.find((x) => x.subjectName === subjectName)?.result;
 
   return (
     <div lang={lang} data-class-result-view className="flex flex-col gap-4 text-sm text-slate">
@@ -54,6 +60,11 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         </div>
       </section>
 
+      {data.weighted && (
+        <p data-result-weighted-how className="rounded-md bg-off-white px-3 py-2">
+          {t('wt.how', { types: weightWords })}
+        </p>
+      )}
       {data.publication && <TellParentsWhatsApp examId={examId} classId={classId} mode="outputs" />}
       {data.publication && <ResultCertificates examId={examId} classId={classId} />}
       {!data.children.length && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.noChildren')}</p>}
@@ -70,10 +81,12 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
                   <p className="font-semibold">{p.subjectName}</p>
                   <p className="text-slate/70">{p.components.map((comp) => markWords(t, lang, comp, c.papers[i].marks[comp.key])).join(' · ')}</p>
                   <p>{percentWords(t, lang, c.papers[i])} · {gradeWords(t, c.papers[i])}</p>
+                  {countedOf(c, p.subjectName) && <p data-result-counted className="text-slate/70">{t('wt.subject', { value: counted(countedOf(c, p.subjectName) as Shown) })}</p>}
                 </li>
               ))}
             </ul>
             <p className="mt-2 border-t border-slate/10 pt-2 font-semibold">{t('ex.result.overall')}: {percentWords(t, lang, c.overall)} · {gradeWords(t, c.overall)}</p>
+            {c.weighted && <p data-result-counted-overall className="font-semibold">{t('wt.result', { value: counted(c.weighted.overall) })}</p>}
           </li>
         ))}
       </ol>
@@ -102,9 +115,13 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
                   <td key={p.paperId} className="p-3">
                     <p className="text-slate/70">{p.components.map((comp) => markWords(t, lang, comp, c.papers[i].marks[comp.key])).join(' · ')}</p>
                     <p data-result-cell>{percentWords(t, lang, c.papers[i])} · {gradeWords(t, c.papers[i])}</p>
+                    {countedOf(c, p.subjectName) && <p data-result-counted className="text-slate/70">{t('wt.subject', { value: counted(countedOf(c, p.subjectName) as Shown) })}</p>}
                   </td>
                 ))}
-                <td className="p-3 font-semibold">{percentWords(t, lang, c.overall)} · {gradeWords(t, c.overall)}</td>
+                <td className="p-3 font-semibold">
+                  {percentWords(t, lang, c.overall)} · {gradeWords(t, c.overall)}
+                  {c.weighted && <span data-result-counted-overall className="block">{t('wt.result', { value: counted(c.weighted.overall) })}</span>}
+                </td>
               </tr>
             ))}
           </tbody>

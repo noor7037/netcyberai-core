@@ -1,4 +1,4 @@
-import type { ProgressExam, ProgressGroup } from '@/lib/contracts/progress-report';
+import type { ProgressExam, ProgressGroup, ProgressWeighted } from '@/lib/contracts/progress-report';
 import { t, type Lang } from '@/lib/i18n';
 import type { ProgressReport } from './progress-report';
 import type { CardBlock } from './report-card-text';
@@ -59,6 +59,22 @@ export function progressBlocks(report: ProgressReport, lang: Lang): CardBlock[] 
   for (const g of report.groups) {
     blocks.push({ kind: 'heading', text: lang === 'hi' ? g.name.hi : g.name.en });
     blocks.push(...groupTables(g, lang));
+  }
+  // The counted result across the exam types the scheme weighs, only when it weighs some (as a report card shows it).
+  const w = report.weighted;
+  if (w && report.groups.length) {
+    const name = (x: ProgressWeighted['weights'][number]) => t(lang, 'wt.type', { name: lang === 'hi' ? x.name.hi : x.name.en, weight: num(x.weight, lang) });
+    const cell = (percent: number | null) => (percent === null ? t(lang, 'rc.cell.notEntered') : t(lang, 'ex.result.percent', { percent: num(percent, lang) }));
+    const result = (r: { percent: number | null; grade: string | null }) => (r.percent === null ? t(lang, 'rc.cell.notEntered') : progressCell(lang, r));
+    blocks.push({ kind: 'heading', text: t(lang, 'wt.title') });
+    blocks.push({
+      kind: 'table',
+      columns: [t(lang, 'rc.col.subject'), ...w.weights.map(name), t(lang, 'wt.col.result')],
+      numeric: [false, ...w.weights.map(() => true), false],
+      rows: [...w.subjects.map((s) => [s.name, ...s.types.map(cell), result(s)]), [t(lang, 'ex.result.overall'), ...w.overall.types.map(cell), result(w.overall)]],
+      totalRow: true,
+    });
+    blocks.push({ kind: 'note', text: t(lang, 'wt.how', { types: w.weights.map(name).join(', ') }) });
   }
   blocks.push({ kind: 'note', text: t(lang, 'pr.noRank') });
   return blocks;

@@ -10,7 +10,7 @@ import type { GradingScheme } from '@/lib/exams/scheme';
 import { indiaDate } from '@/lib/time/india';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
 import { examTypesOf } from '@/lib/exams/exam-types';
-import { groupByType, progressExams, sessionFor } from '@/lib/exams/progress-report';
+import { groupByType, progressExams, progressWeighted, sessionFor } from '@/lib/exams/progress-report';
 import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
@@ -403,12 +403,13 @@ export async function readSchoolProgress(claims: Claims, linkId: string, student
   const read = await withGuardianContext(claims, linkId, async (db, link) => {
     if (!(await consented(db, link.schoolId, studentId))) return null;
     const session = await sessionFor(db, link.schoolId, null);
-    return { schoolId: link.schoolId, session, exams: await progressExams(db, { schoolId: link.schoolId, studentId, sessionId: session.sessionId, source: 'guardian' }) };
+    return { schoolId: link.schoolId, session, data: await progressExams(db, { schoolId: link.schoolId, studentId, sessionId: session.sessionId, source: 'guardian' }) };
   });
   if (!read) return null;
   if (as.childView && !(await childrenSeeResults(read.schoolId))) return null;
   const types = await withPlatformService((db) => examTypesOf(db, read.schoolId));
-  return { session: read.session.label, groups: groupByType(read.exams, types) };
+  const weighted = progressWeighted(read.data.material, types);
+  return { session: read.session.label, groups: groupByType(read.data.exams, types), ...(weighted ? { weighted } : {}) };
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a

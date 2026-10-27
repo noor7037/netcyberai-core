@@ -1,12 +1,12 @@
-import { DEFAULT_EXAM_TYPES, OTHER_EXAM_TYPE, type ExamTypeRow } from '@/lib/contracts/exam-types';
-import type { ProgressExam, ProgressGroup, ProgressSession } from '@/lib/contracts/progress-report';
+import { DEFAULT_EXAM_TYPES, examTypeLabel, OTHER_EXAM_TYPE, type ExamTypeRow } from '@/lib/contracts/exam-types';
+import type { ProgressExam, ProgressGroup, ProgressSession, ProgressWeighted } from '@/lib/contracts/progress-report';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
 import { examTypesOf } from './exam-types';
 import type { Actor } from './exams';
 import type { Mark, MarkKind, PaperComponent } from './papers';
 import { REPORT_CARD_OFFICE } from './publish';
-import { childResult, type ResultPaper, type Shown } from './results';
+import { childResult, weightedChildResult, type ResultPaper, type Shown, type WeightedPaper } from './results';
 import type { GradingScheme } from './scheme';
 
 // A child's progress report (C230-AJ part 5, slice E): one child across a session's assessments, grouped by the
@@ -21,7 +21,7 @@ import type { GradingScheme } from './scheme';
 // parent rules decide every row and only classes whose outputs the office made (exam_outputs) are shown.
 
 export type ProgressSource = 'staff' | 'guardian';
-type Row = { exam_id: string; class_id: string; scheme: GradingScheme; published_at: Date | string; name: string; term: string | null; exam_type: string; exam_date: string | null; created_day: string; paper_id: string; subject: string | null; paper_date: string | null; components: PaperComponent[] };
+type Row = { exam_id: string; class_id: string; subject_id: string; scheme: GradingScheme; published_at: Date | string; name: string; term: string | null; exam_type: string; exam_date: string | null; created_day: string; paper_id: string; subject: string | null; paper_date: string | null; components: PaperComponent[] };
 
 // The publications to read. Staff: every publication in force of the school (row level security narrows it to what the
 // role may read). Guardian: the guardian's own children's classes whose outputs were made (guardian_exam_outputs).
@@ -34,12 +34,18 @@ const PUBLICATIONS: Record<ProgressSource, string> = {
 const gradeOf = (s: Shown) => (s.grade.kind === 'grade' ? s.grade.grade : null);
 const indiaDay = (v: Date | string) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date(v));
 
+// What the counted result is worked out from (C230-AJ part 2): the child's published papers in the session with their marks
+// and each paper's exam type as the exam holds it, and the grading scheme kept with the newest of those exams (whose
+// `examTypes` are the weights). Read with the exams, so a guardian's session reads nothing more than it already does.
+export type WeightedMaterial = { papers: (WeightedPaper & { rawType: string })[]; marks: Record<string, Mark>[]; scheme: GradingScheme };
+export type ProgressData = { exams: (ProgressExam & { type: string })[]; material: WeightedMaterial | null };
+
 // One child's published exams in a session (or of every session when `sessionId` is null), each with its type key.
-export async function progressExams(db: Sql, p: { schoolId: string; studentId: string; sessionId: string | null; source: ProgressSource }): Promise<(ProgressExam & { type: string })[]> {
+export async function progressExams(db: Sql, p: { schoolId: string; studentId: string; sessionId: string | null; source: ProgressSource }): Promise<ProgressData> {
   const rows = (
     await db.query(
       `with pubs as (${PUBLICATIONS[p.source]})
-       select pub.exam_id, pub.class_id, pub.scheme, pub.published_at, e.name, e.term, e.exam_type, e.date::text as exam_date,
+       select pub.exam_id, pub.class_id, q.subject_id, pub.scheme, pub.published_at, e.name, e.term, e.exam_type, e.date::text as exam_date,
               (e.created_at at time zone 'Asia/Kolkata')::date::text as created_day,
               q.paper_id, sub.name as subject, q.paper_date::text as paper_date, q.components
          from pubs pub
@@ -52,7 +58,7 @@ export async function progressExams(db: Sql, p: { schoolId: string; studentId: s
       [p.schoolId, p.studentId, p.sessionId]
     )
   ).rows as Row[];
-  if (!rows.length) return [];
+  if (!rows.length) return { exams: [], material: null };
   const marks = (
     await db.query(`select paper_id, component, kind, score from marks where school_id = $1 and student_id = $2 and paper_id = any ($3::uuid[])`, [p.schoolId, p.studentId, rows.map((r) => r.paper_id)])
   ).rows as { paper_id: string; component: string; kind: MarkKind; score: string | null }[];
@@ -81,7 +87,37 @@ export async function progressExams(db: Sql, p: { schoolId: string; studentId: s
   }
   // In time order: the day it was held, then the day it was made.
   out.sort((a, b) => (a.day ?? '').localeCompare(b.day ?? '') || a.created.localeCompare(b.created) || a.examId.localeCompare(b.examId));
-  return out.map(({ created: _created, ...exam }) => exam);
+  const newest = out.length ? byExam.get(out[out.length - 1].examId)![0].scheme : null;
+  const material: WeightedMaterial | null =
+    newest && (newest.examTypes ?? []).length
+      ? {
+          papers: rows.map((r) => ({ paperId: r.paper_id, subjectId: r.subject_id, subjectName: r.subject ?? '', date: r.paper_date, components: r.components, examType: '', rawType: r.exam_type })),
+          marks: rows.map((r) => marksOf(r.paper_id)),
+          scheme: newest,
+        }
+      : null;
+  return { exams: out.map(({ created: _created, ...exam }) => exam), material };
+}
+
+// The counted result across the exam types the scheme weighs (C230-AJ part 2), from the child's published papers, or null
+// when the newest scheme weighs none (then nothing is added anywhere). An exam's type is its own while the school still
+// lists it, else "other". Each counted type's percent is over the marks of all its published papers together; a counted
+// type with none reads "not entered" and so does the result. Pure.
+export function progressWeighted(material: WeightedMaterial | null, types: readonly ExamTypeRow[]): ProgressWeighted | null {
+  const weights = material?.scheme.examTypes ?? [];
+  if (!material || !weights.length) return null;
+  const known = new Set(types.map((t) => t.key));
+  const papers = material.papers.map(({ rawType, ...p }) => ({ ...p, examType: known.has(rawType) ? rawType : OTHER_EXAM_TYPE }));
+  const r = weightedChildResult(papers, material.marks, weights, material.scheme);
+  const at = (list: readonly { type: string; percent: number | null }[]) => weights.map((w) => list.find((x) => x.type === w.type)?.percent ?? null);
+  return {
+    weights: weights.map((w) => {
+      const l = examTypeLabel(types, w.type);
+      return { type: w.type, name: { en: l.en, hi: l.hi }, weight: w.weight };
+    }),
+    subjects: r.subjects.map((s) => ({ name: s.subjectName, types: at(s.types), percent: s.result.rounded, grade: gradeOf(s.result) })),
+    overall: { types: at(r.types), percent: r.overall.rounded, grade: gradeOf(r.overall) },
+  };
 }
 
 // Groups the child's exams by the school's exam types, in the order of the school's list; a type the list no longer has
@@ -119,6 +155,7 @@ export type ProgressReport = {
   session: ProgressSession;
   sessions: { sessionId: string; label: string; current: boolean }[]; // to choose another session
   groups: ProgressGroup[];
+  weighted?: ProgressWeighted; // only when the scheme weighs exam types (C230-AJ part 2)
 };
 export type ProgressResult = { ok: true; report: ProgressReport } | { ok: false; reason: 'not_allowed' | 'not_found' };
 
@@ -137,8 +174,9 @@ export async function progressReport(db: Sql, actor: Actor, studentId: string, a
   // The class teacher of the child's class, like the report card; any other teacher reads nothing here.
   if (!office && !(child.class_id && (await db.query(`select public.is_class_teacher_of($1) as yes`, [child.class_id])).rows[0]?.yes === true)) return { ok: false, reason: 'not_allowed' };
   const session = await sessionFor(db, actor.schoolId, askedSession);
-  const exams = await progressExams(db, { schoolId: actor.schoolId, studentId, sessionId: session.sessionId, source: 'staff' });
+  const { exams, material } = await progressExams(db, { schoolId: actor.schoolId, studentId, sessionId: session.sessionId, source: 'staff' });
   const types = await examTypesOf(db, actor.schoolId);
+  const weighted = progressWeighted(material, types);
   const sessions = (await db.query(`select session_id, label, is_current from academic_sessions where school_id = $1 order by start_date desc`, [actor.schoolId])).rows.map((r) => ({
     sessionId: r.session_id as string,
     label: r.label as string,
@@ -153,6 +191,7 @@ export async function progressReport(db: Sql, actor: Actor, studentId: string, a
       session,
       sessions,
       groups: groupByType(exams, types),
+      ...(weighted ? { weighted } : {}),
     },
   };
 }
