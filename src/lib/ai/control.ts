@@ -317,9 +317,24 @@ async function writeEndpoint(db: Sql, by: By, next: Endpoint, undoOf?: string): 
     if (!shape.ok) return { ok: false, code: ENDPOINT_CODE[shape.code] };
     next = { ...next, baseUrl: shape.normal };
   }
-  const row = (await db.query(`select base_url from control.ai_providers where provider_id = $1`, [next.providerId])).rows[0];
+  const row = (await db.query(`select base_url, cleared_for_minors from control.ai_providers where provider_id = $1`, [next.providerId])).rows[0];
   if (!row) return { ok: false, code: 'provider' };
   const before: Endpoint = { providerId: next.providerId, baseUrl: row.base_url ?? null };
+  const host = (u: string | null) => (u ? new URL(u).host : null);
+  const hostChanged = host(before.baseUrl) !== host(next.baseUrl);
+  // A clearance for children's words was given for the service the founder read the terms of: a new host is another
+  // service, so the clearance is withdrawn with the change, and he clears the new one after reading its terms. While a
+  // profile that carries children's words still uses this provider the database refuses that, and so the change.
+  let clearanceWithdrawn = false;
+  if (hostChanged && row.cleared_for_minors === true) {
+    try {
+      await db.query(`update control.ai_providers set cleared_for_minors = false, cleared_terms_url = null, cleared_at = null, cleared_by = null where provider_id = $1`, [next.providerId]);
+    } catch (err) {
+      if (isCheckViolation(err)) return { ok: false, code: 'in_use' };
+      throw err;
+    }
+    clearanceWithdrawn = true;
+  }
   try {
     await db.query(`update control.ai_providers set base_url = $2 where provider_id = $1`, [next.providerId, next.baseUrl]);
   } catch (err) {
@@ -328,12 +343,11 @@ async function writeEndpoint(db: Sql, by: By, next: Endpoint, undoOf?: string): 
   }
   // A key goes only to the host it was saved for: when the host changes (or the address is cleared), the key is
   // removed, so a key entered for one service is never sent to another. The founder enters the new service's key.
-  const host = (u: string | null) => (u ? new URL(u).host : null);
   let keyRemoved = false;
-  if (host(before.baseUrl) !== host(next.baseUrl)) {
+  if (hostChanged) {
     keyRemoved = (await db.query(`delete from control.ai_credentials where provider_id = $1 returning provider_id`, [next.providerId])).rows.length > 0;
   }
-  await audit(db, by, 'ai.endpoint_changed', next.providerId, before, { ...next, ...(keyRemoved ? { keyRemoved } : {}), ...(undoOf ? { undoOf } : {}) });
+  await audit(db, by, 'ai.endpoint_changed', next.providerId, before, { ...next, ...(keyRemoved ? { keyRemoved } : {}), ...(clearanceWithdrawn ? { clearanceWithdrawn } : {}), ...(undoOf ? { undoOf } : {}) });
   return { ok: true };
 }
 
