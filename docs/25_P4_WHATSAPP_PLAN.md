@@ -179,6 +179,33 @@ is skipped by a flag: the send-gate refuses a real send until each is true.
 What the checklist cannot prove in advance, and the first real send will:
 Meta's formats are built from its public documentation, not from an observed
 message; Meta's invoice is the only proof of a rate; a utility template
-delivered inside an open customer-service window is free at Meta but is
-counted here at the utility rate, so the app's spend can be higher than the
-invoice and never lower.
+delivered inside an open customer-service window was free at Meta until
+30 September 2026 and is charged from 1 October 2026; it is counted here at
+the utility rate either way, so the app's spend is never lower than the
+invoice.
+
+## 9. The first real messages (2026-10-27, C360)
+
+Step 9 above, run on the test site (the supervisor's WhatsApp brief of 2026-10-26, task 3). Times are India time.
+
+**Set up for it (founder's yes, 2026-10-27).** The demo school is a test school on a plan for test schools only, so
+it never sends through the real account (rule 2, C182); the database refuses to make it a real school while it is on
+that plan. The proof therefore ran from a new real school, **NetCyberAI Proof School**: one class, one child, the
+founder's own number (ending 7037) as its only guardian, both consents recorded, sending allowed there only, a limit of
+₹50 a month. Also recorded: Meta's India utility rate (₹0.115 from 1 October 2026, on Meta's INR rate card; the app
+keeps whole paise, so 12 paise), and `attendance_absence_notification` v2 (English), whose words are Meta's approved
+template word for word, marked approved by Meta (template 2274559680068398) and approved by the founder in Control.
+Every other school, the demo school included, is unchanged.
+
+| Leg | What happened | Result |
+|---|---|---|
+| Signature | The App Secret saved alone in Control (C230-AL), 13:19 | Every webhook since passes the signature check (before: 4 of 4 refused). |
+| Inbound, unknown number | The founder's "Hi", 13:19, before his number was on any record | Recorded as arrived, without its words or the number (C187, as designed). |
+| Inbound, a guardian | The founder's "Hi", 14:37 | In the proof school's conversation, words kept, one unread. |
+| A reply within 24 hours | Queued 14:43 in the conversation, as the inbox does; sent by the job runner 14:44 | Meta: sent, then delivered (14:44:04), then read (14:44:09), each by signed webhook. Free (service). |
+| One approved template | The absence notice v2 (English), queued 14:44, sent by the job runner 14:45 | Every gate rule passed (consent, limit, rate, our approval and Meta's); Meta accepted it, then reported **failed, code 131042** (no payment method on the WhatsApp account) at 14:45:07. Recorded as failed at no cost. |
+
+**What is left:** a payment method on Meta's WhatsApp account (the founder's step); then the absence notice is sent
+again and must come back delivered and read. The reply was queued in the database exactly as the inbox's Send button
+queues it (no one has a login in the proof school); everything after the queue, from the gate to Meta and back, is
+the deployed code. No secret and no full phone number is in this record.
