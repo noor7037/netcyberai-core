@@ -228,6 +228,24 @@ describe('every change is audited and undone in one step', () => {
     expect(await q(`select provider_id, model, prompt_version, enabled from control.ai_profiles where profile_id = 'family.resolver'`)).toEqual([{ provider_id: 'anthropic', model: 'test-model-a', prompt_version: 'v1', enabled: true }]);
   });
 
+  it('G2 (C370): every save and undo is a route revision; rollback activates the previous one again, as a new revision, audited; the page reads them', async () => {
+    const revisions = async () => q(`select revision_id, model, activation, rollback_of, activated_by from control.ai_route_revisions where profile_id = 'family.resolver' order by revision_id desc limit 3`);
+    expect(await post({ action: 'profile', profileId: 'family.resolver', providerId: 'anthropic', model: 'test-model-d', promptVersion: 'v1', enabled: true })).toEqual({ status: 200, body: { ok: true } });
+    const [saved, before] = await revisions();
+    expect(saved).toMatchObject({ model: 'test-model-d', activation: 'set', rollback_of: null, activated_by: FOUNDER });
+    expect(await post({ action: 'rollback', profileId: 'family.resolver' })).toEqual({ status: 200, body: { ok: true } });
+    const [rolled] = await revisions();
+    expect(rolled).toMatchObject({ model: before.model, activation: 'rollback', rollback_of: before.revision_id, activated_by: FOUNDER });
+    expect(await q(`select model, revision_id from control.ai_profiles where profile_id = 'family.resolver'`)).toEqual([{ model: before.model, revision_id: rolled.revision_id }]);
+    const [audit] = await q(`select after_state from audit_log where event_action = 'ai.profile_changed' order by audit_id desc limit 1`);
+    expect(audit.after_state).toMatchObject({ model: before.model, rollbackOf: String(before.revision_id) });
+    expect(await post({ action: 'rollback', profileId: 'family.resolver', revisionId: '999999' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'no_revision' }) });
+    expect(await post({ action: 'rollback', profileId: 'no.such_profile' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'profile' }) });
+    const page = await (await GET(req(undefined, founder))).json();
+    expect(page.routing.revisions[0]).toMatchObject({ profileId: 'family.resolver', activation: 'rollback', active: true, activatedByName: 'Farid Founder' });
+    expect(Array.isArray(page.routing.health) && Array.isArray(page.routing.ledger)).toBe(true);
+  });
+
   it('the daily cap, and its undo', async () => {
     expect(await post({ action: 'cap', value: 5 })).toEqual({ status: 200, body: { ok: true } });
     expect(await post({ action: 'cap', value: -1 })).toEqual({ status: 400, body: expect.objectContaining({ code: 'cap' }) });

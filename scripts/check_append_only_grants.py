@@ -79,6 +79,8 @@ APPEND_ONLY_TABLES.add("admission_events")  # C221: an enquiry's steps; only a d
 APPEND_ONLY_TABLES.add("timetable_versions")  # C229: every publish of a timetable, kept
 APPEND_ONLY_TABLES.add("disclosure_entries")  # C227: every version of a disclosure item; a change is a new entry
 APPEND_ONLY_TABLES.add("family.consents")  # C247: a family's consent ledger; a withdrawal is a new row (erased only with the account)
+APPEND_ONLY_TABLES.add("control.ai_route_revisions")  # C370: every activation of an AI route; a rollback is a new revision
+APPEND_ONLY_TABLES.add("control.ai_usage_ledger")  # C370: one row per AI attempt, written only through control.record_ai_attempt()
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role

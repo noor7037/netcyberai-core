@@ -2,17 +2,20 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { loadAiOverview, prepareKeyTest, providerChoices, recordKeyTest, setCap, setClearance, setCredential, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { loadAiOverview, loadProviderHealth, loadRouteRevisions, loadUsageLedger, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setProfile, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
-//         counts for today and this month, the daily cap and the recent changes
+//         counts for today and this month, the daily cap and the recent changes; and the routing records (G2, C370):
+//         the latest route revisions, each provider's circuit and the latest attempts in the ledger (ids, outcome
+//         classes, times and token counts only)
 //   POST  { action: 'credential', providerId, apiKey }                         set or replace a provider's key (write-only)
 //         { action: 'credential', providerId: 'workers-ai', accountId, token }  Cloudflare's key in its two parts (C317)
 //         { action: 'clearance', providerId, cleared, termsUrl }               clear a provider for children's words, or withdraw it
 //         { action: 'profile', profileId, providerId, model, promptVersion, enabled, fallback }
 //         { action: 'cap', value }                                            requests per family per day
 //         { action: 'undo', auditId }                                         restore the state before that change
+//         { action: 'rollback', profileId, revisionId? }                       activate the route's previous revision (or the one named) again
 //         { action: 'test', providerId }                                      test a content provider's key (YouTube, M2-5)
 // No response carries a key, and nothing here logs the request body.
 export const dynamic = 'force-dynamic';
@@ -27,8 +30,11 @@ const optional = (v: unknown, max: number): string | null => {
 export async function GET(req: NextRequest) {
   const guard = await requireAiControl(req);
   if ('error' in guard) return guard.error;
-  const overview = await withPlatformService((db) => loadAiOverview(db));
-  return NextResponse.json({ ...overview, providerChoices: providerChoices() }, { headers: NO_STORE });
+  const { overview, routing } = await withPlatformService(async (db) => ({
+    overview: await loadAiOverview(db),
+    routing: { revisions: await loadRouteRevisions(db, { limit: 50 }), health: await loadProviderHealth(db), ledger: await loadUsageLedger(db, { limit: 100 }) },
+  }));
+  return NextResponse.json({ ...overview, routing, providerChoices: providerChoices() }, { headers: NO_STORE });
 }
 
 export async function POST(req: NextRequest) {
@@ -71,6 +77,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ ok: true, works: outcome.ok, code: outcome.code }, { headers: NO_STORE });
       }
     }
+  } else if (b?.action === 'rollback') {
+    const profileId = str(b.profileId, 60);
+    const revisionId = b.revisionId === undefined ? null : str(b.revisionId, 20);
+    if (profileId && (b.revisionId === undefined || revisionId)) result = await withPlatformService((db) => rollbackRoute(db, by, profileId, revisionId));
   } else if (b?.action === 'undo') {
     const auditId = str(b.auditId, 20);
     if (auditId) result = await withPlatformService((db) => undoChange(db, by, auditId));

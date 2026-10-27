@@ -7,6 +7,10 @@ import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
 import { capableAdapter, chainOf, PROFILES, profileById } from './platform';
+import { activated, activating, revisionToRestore } from './gateway/revisions';
+export { loadRouteRevisions } from './gateway/revisions';
+export { loadProviderHealth } from './gateway/circuit';
+export { loadUsageLedger } from './gateway/ledger';
 
 // Control → AI (docs/family-app/10 §3, §7; C249). NetCyberAI's founder only (super_admin with the authenticator,
 // checked by the route). Every statement runs as the platform role (nca_super), from a fixed, parameterised list.
@@ -16,6 +20,10 @@ import { capableAdapter, chainOf, PROFILES, profileById } from './platform';
 // never a key. Each can be undone in one step from that row's before state. A key itself is never kept anywhere but
 // sealed in control.ai_credentials, so undoing a key change can remove a key that was added, but cannot bring back an
 // earlier key: that one is entered again.
+//
+// G2 (C370): every change of a profile's route (a save, an undo, a rollback) is also an immutable route revision
+// (control.ai_route_revisions, written by the database in the same statement). rollbackRoute() activates the revision
+// before the active one again, as a new revision, with its own audit row (an ordinary profile change, so it can be undone).
 
 export type By = { userId: string };
 export type Link = { provider: string; model: string };
@@ -37,7 +45,8 @@ export type ChangeError =
   | 'not_found'
   | 'cannot_restore_key'
   | 'no_key'
-  | 'not_testable';
+  | 'not_testable'
+  | 'no_revision';
 
 export type AiOverview = {
   keyReady: boolean;
@@ -293,7 +302,8 @@ async function profileSettings(db: Sql, profileId: string): Promise<ProfileSetti
   return { providerId: r.provider_id ?? null, model: r.model ?? null, promptVersion: r.prompt_version, enabled: r.enabled === true, fallback: (chainOf({ provider_id: 'x', model: 'x', fallback: r.fallback }) ?? []).slice(1) };
 }
 
-async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSettings, undoOf?: string): Promise<ChangeResult> {
+// `how`: an undo names the audit row it undoes; a rollback names the revision it restores.
+async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSettings, how: { undoOf?: string; rollbackOf?: string } = {}): Promise<ChangeResult> {
   const profile = profileById(profileId);
   if (!profile) return { ok: false, code: 'profile' };
   const providers = [next.providerId, ...next.fallback.map((f) => f.provider)].filter((p): p is string => p !== null);
@@ -310,22 +320,37 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   const before = await profileSettings(db, profileId);
   if (!before) return { ok: false, code: 'profile' };
   try {
+    // The database writes the route revision in the same statement, with why it was activated.
+    await activating(db, how.rollbackOf ? 'rollback' : how.undoOf ? 'undo' : 'set', how.rollbackOf ?? null);
     await db.query(
       `update control.ai_profiles set provider_id = $2, model = $3, fallback = $4::jsonb, prompt_version = $5, enabled = $6, updated_at = now(), updated_by = $7 where profile_id = $1`,
       [profileId, next.providerId, next.model, JSON.stringify(next.fallback), next.promptVersion, next.enabled, by.userId]
     );
+    await activated(db);
   } catch (err) {
     // The minors check (C368: the one gate): the database refuses a child-words profile on a provider the founder has
     // not cleared in Control.
     if (isCheckViolation(err)) return { ok: false, code: 'not_cleared_for_minors' };
     throw err;
   }
-  await audit(db, by, 'ai.profile_changed', profileId, before, { ...next, ...(undoOf ? { undoOf } : {}) });
+  await audit(db, by, 'ai.profile_changed', profileId, before, { ...next, ...(how.undoOf ? { undoOf: how.undoOf } : {}), ...(how.rollbackOf ? { rollbackOf: how.rollbackOf } : {}) });
   return { ok: true };
 }
 
 export async function setProfile(db: Sql, by: By, profileId: string, next: ProfileSettings): Promise<ChangeResult> {
   return writeProfile(db, by, profileId, next);
+}
+
+// Rollback (the brief's §5.4): the profile's route as it was at the revision before the active one (or at the revision
+// named), activated again as a new revision, checked as any save is (the minors check included), and audited. One
+// transaction: the caller's.
+export async function rollbackRoute(db: Sql, by: By, profileId: string, revisionId: string | null = null): Promise<ChangeResult> {
+  if (!profileById(profileId)) return { ok: false, code: 'profile' };
+  if (revisionId !== null && !/^\d{1,18}$/.test(revisionId)) return { ok: false, code: 'no_revision' };
+  const target = await revisionToRestore(db, profileId, revisionId);
+  if (!target) return { ok: false, code: 'no_revision' };
+  const fallback = (chainOf({ provider_id: 'x', model: 'x', fallback: target.fallback }) ?? []).slice(1);
+  return writeProfile(db, by, profileId, { providerId: target.providerId, model: target.model, promptVersion: target.promptVersion, enabled: target.enabled, fallback }, { rollbackOf: target.revisionId });
 }
 
 async function writeCap(db: Sql, by: By, value: number, undoOf?: string): Promise<ChangeResult> {
@@ -365,7 +390,7 @@ export async function undoChange(db: Sql, by: By, auditId: string): Promise<Chan
         by,
         String(row.target_id),
         { providerId: (before.providerId as string) ?? null, model: (before.model as string) ?? null, promptVersion: String(before.promptVersion), enabled: before.enabled === true, fallback: Array.isArray(before.fallback) ? (before.fallback as Link[]) : [] },
-        auditId
+        { undoOf: auditId }
       );
     case 'ai.cap_changed':
       return typeof before.value === 'number' ? writeCap(db, by, before.value, auditId) : { ok: false, code: 'not_found' };
