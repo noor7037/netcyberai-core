@@ -8,13 +8,14 @@ import type { Actor } from './exams';
 import { publicationInForce } from './publish';
 
 // "Publish and notify" (C230-AJ part 5, slice E): after the class's marks are approved and the principal (or the office)
-// has published the class, ONE action on the class result makes its report cards and progress reports, shows the
-// progress reports in the Family app, queues one WhatsApp message per guardian and lets the Family app's push job tell
-// the families. Nothing here changes who approves or publishes: it needs a publication in force and does not touch it.
+// has published the class, ONE action on the class result queues one WhatsApp message per guardian, lets the Family
+// app's push job tell the families, and records that it was done, once per publication. The progress reports reach
+// families at publication without it (C230-AK). Nothing here changes who approves or publishes: it needs a publication
+// in force and does not touch it.
 //
 //   - Report cards and progress reports are drawn from the publication when they are asked for (report-card.ts,
-//     progress-report.ts); making them records the action (exam_outputs, one row a publication, never changed), which is
-//     what lets the Family app show the progress report and the push job count the class as news.
+//     progress-report.ts); the action is recorded (exam_outputs, one row a publication, never changed), which is what
+//     the push job counts the class as news by, and what keeps the messages to once a publication.
 //   - The WhatsApp messages are the previewed send of AM-5 (result-send.ts, unchanged): the same preview (who will get
 //     it and why the others will not, by the send-gate's own rules), the same approved template (exam_result_ready, no
 //     mark in the words), one message per guardian and publication, only through the send-gate's outbox. A second press

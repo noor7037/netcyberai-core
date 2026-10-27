@@ -17,18 +17,18 @@ import type { GradingScheme } from './scheme';
 // child against nobody: no rank, no position, no other child's mark anywhere (C76).
 //
 // The staff view is for the office (the principal, the school admin, the academic coordinator) and the child's class
-// teacher. The Family app reads the same rows as the guardian (src/lib/school-link/progress.ts), where the school's
-// parent rules decide every row and only classes whose outputs the office made (exam_outputs) are shown.
+// teacher. The Family app reads the same rows as the guardian, where the school's parent rules decide every row: a
+// family sees a class's results in it as soon as the class's result is in force, as every published result (C230-AK).
 
 export type ProgressSource = 'staff' | 'guardian';
 type Row = { exam_id: string; class_id: string; subject_id: string; scheme: GradingScheme; published_at: Date | string; name: string; term: string | null; exam_type: string; exam_date: string | null; created_day: string; paper_id: string; subject: string | null; paper_date: string | null; components: PaperComponent[] };
 
 // The publications to read. Staff: every publication in force of the school (row level security narrows it to what the
-// role may read). Guardian: the guardian's own children's classes whose outputs were made (guardian_exam_outputs).
+// role may read). Guardian: the publications in force of the guardian's own children's classes, at publication: never
+// waiting for "Publish and notify", which sends the messages and makes the certificates only (C230-AK).
 const PUBLICATIONS: Record<ProgressSource, string> = {
   staff: `select x.exam_id, x.class_id, x.scheme, x.published_at from exam_publications x where x.school_id = $1 and x.reopened_at is null`,
-  guardian: `select g.exam_id, g.class_id, g.scheme, g.published_at from public.guardian_publications() g
-              join public.guardian_exam_outputs() o on o.exam_id = g.exam_id and o.class_id = g.class_id and o.version = g.version`,
+  guardian: `select g.exam_id, g.class_id, g.scheme, g.published_at from public.guardian_publications() g`,
 };
 
 const gradeOf = (s: Shown) => (s.grade.kind === 'grade' ? s.grade.grade : null);

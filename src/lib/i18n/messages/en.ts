@@ -4209,7 +4209,7 @@ export const en = {
   'tour.progress-report.2.title': 'From published marks only',
   'tour.progress-report.2.text': 'Only classes whose result is published count. A class reopened for a correction leaves the report until it is published again.',
   'tour.progress-report.3.title': 'Print or share',
-  'tour.progress-report.3.text': 'Download the PDF for the file. Families see it in the Family app once the office publishes and notifies.',
+  'tour.progress-report.3.text': 'Download the PDF for the file. Families see it in the Family app as soon as the result is published.',
   'mk.setup.guidanceName': 'Write how to mark, never a child’s name.',
   'mk.err.tries': 'The AI has tried this answer sheet as many times as it may. Please mark it yourself.',
   'mk.err.questions': 'The questions do not add up to the paper’s marks yet. Finish them first.',

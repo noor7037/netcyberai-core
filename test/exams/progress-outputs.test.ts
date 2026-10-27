@@ -19,7 +19,7 @@ import { TEMPLATE_LANGUAGES, TEMPLATE_REGISTRY } from '@/lib/whatsapp/templates'
 
 // AJ-5 (C230-AJ part 5, slice E): one step from approved marks to every output.
 //   1. A progress report: one child across the session's assessments, grouped by exam type, from published classes only.
-//      The staff view; the Family app's (read as the guardian) shows it only for classes whose outputs the office made.
+//      The staff view; the Family app's (read as the guardian) shows it at publication, with no wait for the outputs (C230-AK).
 //   2. Merit and participation certificates from a published result, by the rules the school sets in its Documents
 //      settings, into the school's register.
 //   3. Publish and notify: one message per guardian through the outbox, a second press queues none, and a teacher
@@ -262,9 +262,11 @@ describe('the progress report: one child across the session, by exam type, from 
   });
 });
 
-describe('the Family app shows it for published classes whose outputs the office made, and only the child’s own', () => {
-  it('published but not yet made: the family sees no progress report', async () => {
-    expect(await family()).toEqual({ session: '2026-27', groups: [] });
+describe('the Family app shows it at publication (C230-AK), and only the child’s own', () => {
+  it('a published class with no outputs made shows the progress report to the family', async () => {
+    expect(await q(`select count(*)::int as n from exam_outputs`)).toEqual([{ n: 0 }]);
+    const got = await family();
+    expect(got?.groups.map((g) => [g.type, g.exams.map((e) => e.name)])).toEqual([['unit', ['Unit test 1']], ['half_yearly', ['Half-yearly']]]);
   });
 
   it('publish and notify: nothing before the class is published, and a teacher, the coordinator and the accountant cannot', async () => {
@@ -325,9 +327,9 @@ describe('the Family app shows it for published classes whose outputs the office
     expect((await readSchoolNews(claims, link, [S1], { ...since, results: later })).results).toBe(0);
   });
 
-  it('now the family sees the Unit test, not the Half-yearly (published, not yet made), the weekly test or the reopened annual', async () => {
+  it('after the outputs are made the family still sees every published class: not the weekly test or the reopened annual', async () => {
     const got = await family();
-    expect(got?.groups.map((g) => [g.type, g.name.en, g.exams.map((e) => e.name)])).toEqual([['unit', 'Unit test', ['Unit test 1']]]);
+    expect(got?.groups.map((g) => [g.type, g.name.en, g.exams.map((e) => e.name)])).toEqual([['unit', 'Unit test', ['Unit test 1']], ['half_yearly', 'Half-yearly', ['Half-yearly']]]);
     expect(got?.groups[0].exams[0]).toMatchObject({ overall: { percent: 85, grade: 'A' }, subjects: [{ name: 'Mathematics', percent: 90, grade: 'A' }, { name: 'Science', percent: 80, grade: 'A' }] });
     expect(JSON.stringify(got)).not.toMatch(/Bela|Chirag|Diya|Weekly|Annual|rank/);
     // Making the Half-yearly's too: both, grouped by type.
@@ -563,10 +565,9 @@ describe('the counted result across exam types, where the scheme weighs them (C2
     expect((await cardText('hi')).text).toMatch(/परीक्षा के प्रकारों में गिना गया परिणाम/);
   });
 
-  it('the family sees it once the outputs of the republished class are made, and only for the child’s own marks', async () => {
-    expect((await family())?.weighted).toBeUndefined(); // the Half-yearly was published again: its outputs are not made yet
+  it('the family sees it as soon as the class is published again, before its outputs, and only for the child’s own marks', async () => {
+    const got = await family(); // the Half-yearly was published again: its outputs are not made yet (C230-AK)
     expect(await notify(HALF)).toMatchObject({ ok: true, first: true });
-    const got = await family();
     expect(got?.weighted?.overall).toEqual({ types: [85, 95], percent: 92, grade: 'A' });
     expect(got?.weighted?.weights.map((w) => w.name.en)).toEqual(['Unit test', 'Half-yearly']);
     expect(JSON.stringify(got)).not.toMatch(/Bela|Chirag|Diya/);
