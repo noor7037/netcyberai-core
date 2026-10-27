@@ -14,7 +14,9 @@ import {
 } from "@/lib/ai/provider-state";
 import type { LedgerAttempt } from "@/lib/contracts/ai-gateway";
 import type { MessageKey } from "@/lib/i18n";
+import Link from "next/link";
 import { LedgerView } from "./LedgerView";
+import { PriceList } from "./PriceList";
 import { ProviderList } from "./ProviderList";
 import {
   CARD,
@@ -56,6 +58,7 @@ const ERRORS = [
   "base_url_dns",
   "no_base_url",
   "no_revision",
+  "price",
 ];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ["no_key", "not_testable"];
@@ -235,6 +238,14 @@ export function AiControls({ initial }: { initial: Data }) {
         <p data-ai-overview-features>
           {t("control.ai.overview.features", features)}
         </p>
+        {/* G5 (C373): the Quality Lab, from the screen itself (the header's link is easy to miss). */}
+        <Link
+          href="/control/ai/lab"
+          data-ai-overview-lab
+          className="inline-flex min-h-[44px] items-center self-start rounded-md border border-slate/20 px-4 font-semibold text-sapphire underline"
+        >
+          {t("control.ai.overview.lab")}
+        </Link>
         <ul data-ai-overview-states className="flex flex-wrap gap-2">
           {stateCounts.map(({ s, n }) => (
             <li key={s} data-ai-overview-state={s}>
@@ -287,6 +298,8 @@ export function AiControls({ initial }: { initial: Data }) {
       />
 
       <LedgerView ledger={data.routing.ledger} t={t} />
+
+      <PriceList data={data} busy={busy} send={send} t={t} />
 
       <section data-ai-usage className={CARD}>
         <div className="flex flex-wrap items-center gap-x-1">

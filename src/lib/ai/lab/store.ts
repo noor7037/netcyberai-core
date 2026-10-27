@@ -2,6 +2,7 @@ import type { Sql } from '@/lib/jobs/types';
 import { adapterFor, textAdapters, type TextAdapter } from '../adapters';
 import { workersModelLooksRight } from '../adapters/workers-ai';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from '../credentials';
+import { costOf } from '../prices';
 import { labCase, labDataset } from './cases';
 import { runLabCall, type LabErrorClass, type LabOutcome } from './runner';
 
@@ -138,6 +139,9 @@ export type LabResult = {
   score: number | null;
   notes: string | null;
   createdAt: string;
+  // G5 (C373): what the answer cost at today's price for its provider and model (control.ai_model_prices); null when no
+  // price is set. Worked out when read, never stored with the answer.
+  costUsd: number | null;
 };
 
 const RESULT_COLUMNS = `result_id, case_id, provider_id, model, output_text, latency_ms, first_token_ms, tokens_in, tokens_out, json_valid, check_passed, error_class, score, notes, created_at`;
@@ -157,7 +161,15 @@ const resultOf = (r: Record<string, unknown>): LabResult => ({
   score: r.score === null || r.score === undefined ? null : Number(r.score),
   notes: (r.notes as string | null) ?? null,
   createdAt: new Date(r.created_at as string).toISOString(),
+  costUsd: null,
 });
+
+type Prices = Map<string, { inUsd: number; outUsd: number }>;
+async function pricesOf(db: Sql): Promise<Prices> {
+  const { rows } = await db.query(`select provider_id, model, usd_per_mtok_in, usd_per_mtok_out from control.ai_model_prices`);
+  return new Map(rows.map((r) => [`${r.provider_id} ${r.model}`, { inUsd: Number(r.usd_per_mtok_in), outUsd: Number(r.usd_per_mtok_out) }]));
+}
+const priced = (r: LabResult, prices: Prices): LabResult => ({ ...r, costUsd: costOf(r.tokensIn, r.tokensOut, prices.get(`${r.provider} ${r.model}`)) });
 
 // Step 3, in the caller's second transaction. Running a cell again replaces its answer and clears its score.
 export async function saveLabResult(db: Sql, runId: string, caseId: string, link: LabLink, o: LabOutcome): Promise<LabResult> {
@@ -170,7 +182,7 @@ export async function saveLabResult(db: Sql, runId: string, caseId: string, link
      returning ${RESULT_COLUMNS}`,
     [runId, caseId, link.provider, link.model, o.outputText, o.latencyMs, o.firstTokenMs, o.tokensIn, o.tokensOut, o.jsonValid, o.checkPassed, o.errorClass]
   );
-  return resultOf(rows[0]);
+  return priced(resultOf(rows[0]), await pricesOf(db));
 }
 
 // The founder's 1–5 score (or none) and a short note on one answer.
@@ -189,13 +201,14 @@ export async function loadLabRun(db: Sql, runId: string): Promise<LabRun | null>
   const run = (await db.query(`select run_id, dataset_version, case_ids, models, started_at from control.ai_eval_runs where run_id = $1`, [runId])).rows[0];
   if (!run) return null;
   const { rows } = await db.query(`select ${RESULT_COLUMNS} from control.ai_eval_results where run_id = $1 order by case_id, provider_id, model`, [runId]);
+  const prices = await pricesOf(db);
   return {
     runId: String(run.run_id),
     datasetVersion: String(run.dataset_version),
     caseIds: run.case_ids as string[],
     models: (run.models as LabLink[]).map((m) => ({ provider: m.provider, model: m.model })),
     startedAt: new Date(run.started_at as string).toISOString(),
-    results: rows.map(resultOf),
+    results: rows.map((r) => priced(resultOf(r), prices)),
   };
 }
 

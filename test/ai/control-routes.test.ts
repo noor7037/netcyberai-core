@@ -380,8 +380,8 @@ describe('the founder’s address for the OpenAI-compatible adapter (G1)', () =>
     vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ error: { message: `API key not valid ${VERTEX_KEY}` } }), { status: 400 })));
     const vertex = await post({ action: 'test', providerId: 'vertex_ai' });
     expect(vertex).toEqual({ status: 200, body: { ok: true, works: false, code: 'http_400' } });
-    // Text providers without a connection test still say so plainly.
-    expect(await post({ action: 'test', providerId: 'openai' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_testable' }) });
+    // G5 (C373): every text adapter now has a free check; with no key saved it says so plainly.
+    expect(await post({ action: 'test', providerId: 'openai' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'no_key' }) });
 
     const page = await (await GET(req(undefined, founder))).text();
     const stored = JSON.stringify(await q(`select provider_id, key_last4, test_ok, test_message from control.ai_credentials`));
