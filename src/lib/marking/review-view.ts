@@ -143,7 +143,8 @@ export const flagsInOrder = (flags: readonly SheetFlag[]): SheetFlag[] => FLAG_O
 // message and its date. Kept until a date to come; due today or before, deleted within the hour; gone once none is kept.
 export type PicturesNote = { key: 'mk.pictures.published' | 'mk.pictures.unpublished' | 'mk.pictures.reopened' | 'mk.pictures.dueNow' | 'mk.pictures.gone'; date: string | null };
 export function picturesNote(p: PicturesUntil, today: string): PicturesNote | null {
-  if (!p.kept) return p.until ? { key: 'mk.pictures.gone', date: p.until } : null;
+  // None kept: deleted once the date has passed; before it (an upload with no page yet, every page taken out) nothing to say.
+  if (!p.kept) return p.until && p.until <= today ? { key: 'mk.pictures.gone', date: p.until } : null;
   if (p.basis === 'reopened' || !p.until) return { key: 'mk.pictures.reopened', date: null };
   if (p.until <= today) return { key: 'mk.pictures.dueNow', date: p.until };
   return { key: p.basis === 'published' ? 'mk.pictures.published' : 'mk.pictures.unpublished', date: p.until };

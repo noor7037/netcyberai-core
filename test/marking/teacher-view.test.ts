@@ -241,5 +241,7 @@ describe('what the paper’s screen says of its pictures (C230-AH)', () => {
     expect(picturesNote({ until: '2026-10-01', basis: 'published', kept: false }, today)).toEqual({ key: 'mk.pictures.gone', date: '2026-10-01' });
     expect(picturesNote({ until: null, basis: 'reopened', kept: true }, today)).toEqual({ key: 'mk.pictures.reopened', date: null });
     expect(picturesNote({ until: null, basis: 'reopened', kept: false }, today)).toBeNull();
+    // Nothing kept before the date: no picture was ever stored, or every page was taken out.
+    expect(picturesNote({ until: '2027-04-25', basis: 'unpublished', kept: false }, today)).toBeNull();
   });
 });
