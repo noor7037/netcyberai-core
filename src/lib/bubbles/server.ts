@@ -28,13 +28,13 @@ export type BubbleProblem =
   | 'not_bubble' // the paper is not sat with a bubble sheet
   | 'sitting_fixed' // a script exists, or sheets are printed: how the paper is sat stays
   | 'no_choice' // no choice question with options to put on a sheet
-  | 'too_many' // more choice questions than a sheet holds
+  | 'sheet_full' // more choice questions than a sheet holds
   | 'questions' // the questions do not make up the paper yet
   | 'layout' // the sheet was read against other questions than today's: open the screen again
   | 'old_sheet' // the sheet was printed for other questions: print the child's sheet again
   | 'reading' // the reading sent is not one
   | 'upload_closed'
-  | 'taken' // the child already has a bubble sheet read
+  | 'sheet_taken' // the child already has a bubble sheet read
   | 'state'
   | 'storage' // the file store did not answer: try again
   | 'too_many_pages'; // more pages than one upload takes
@@ -57,7 +57,7 @@ async function sheetState(db: Sql, actor: Actor, paperId: string) {
   const problem: BubbleScreen['problem'] = !onSheet.length
     ? 'no_choice'
     : onSheet.length > MAX_SHEET_QUESTIONS
-      ? 'too_many'
+      ? 'sheet_full'
       : structureProblems(paper.components, questions, await choiceCounts(db, actor.schoolId, paperId)).length
         ? 'questions'
         : null;
@@ -441,7 +441,7 @@ export async function settleRead(db: Sql, actor: Actor, readId: unknown, action:
     if (r.student_id) return { ok: false, reason: 'state' };
     if (typeof studentId !== 'string' || !(await paperRoster(db, actor.schoolId, st.paper)).some((c) => c.studentId === studentId)) return { ok: false, reason: 'not_found' };
     const other = (await db.query(`select 1 from bubble_reads where school_id = $1 and paper_id = $2 and student_id = $3 and state = 'live'`, [actor.schoolId, paperId, studentId])).rows[0];
-    if (other) return { ok: false, reason: 'taken' };
+    if (other) return { ok: false, reason: 'sheet_taken' };
     await db.query(`update bubble_reads set student_id = $3, matched_by = 'teacher' where school_id = $1 and read_id = $2`, [actor.schoolId, r.read_id, studentId]);
     const script = await liveScriptOf(db, actor.schoolId, paperId, studentId);
     if (script) {
@@ -464,8 +464,9 @@ function questionViews(questions: readonly MarkingQuestion[], layout: SheetLayou
     const place = layout?.questions.find((p) => p.label === q.label) ?? null;
     const filled = read.answers[q.label] ?? [];
     const o = marks.get(q.questionId);
-    const state: BubbleQuestionView['state'] = read.unclear.includes(q.label) ? 'unclear' : read.multiple.includes(q.label) ? 'multiple' : filled.length ? 'answer' : 'blank';
     const correct = q.correct && 'keys' in q.correct ? q.correct.keys : null;
+    // Several shaded is an answer where the correct answer names several options ("choose all that apply").
+    const state: BubbleQuestionView['state'] = read.unclear.includes(q.label) ? 'unclear' : read.multiple.includes(q.label) && !(correct && correct.length > 1) ? 'multiple' : filled.length ? 'answer' : 'blank';
     return {
       questionId: q.questionId,
       label: q.label,

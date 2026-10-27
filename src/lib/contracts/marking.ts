@@ -348,7 +348,7 @@ export type BubbleScreen = {
   questions: { label: string; options: number }[]; // the questions on the sheet, in order
   layoutKey: string | null;
   onlyChoice: boolean; // every question is on the sheet: each read sheet is the child's script
-  problem: 'no_choice' | 'too_many' | 'questions' | null; // why sheets cannot be printed or read yet
+  problem: 'no_choice' | 'sheet_full' | 'questions' | null; // why sheets cannot be printed or read yet
   wrongMarks: number;
   printed: { candidates: number; blanks: number; replaced: number; lastAt: string | null };
   sheets: { sheetNo: number; studentId: string | null }[]; // the sheets in use, for the scan screen to name the child

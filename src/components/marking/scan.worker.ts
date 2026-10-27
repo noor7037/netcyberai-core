@@ -8,12 +8,19 @@
 //   { type: 'process', id, bitmap | rgba, width, height, hint, maxEdge, quality }
 //                                                     the full photo → { type: 'page', id, jpeg } (or { gray } for the
 //                                                     screen to encode where a worker cannot), or { type: 'failed', id }
+//   { type: 'bubble', id, bitmap | rgba, width, height, layout, quality }
+//                                                     a bubble sheet (C364): read by rules (src/lib/bubbles/read.ts) →
+//                                                     { type: 'bubble', id, ok: true, reading, jpeg | gray } (the sheet
+//                                                     straightened, as kept), or { type: 'bubble', id, ok: false, why }
+import { keptPicture, readSheet } from '@/lib/bubbles/read';
+import type { SheetLayout } from '@/lib/bubbles/layout';
 import { PAGE_MAX_BYTES } from '@/lib/contracts/marking';
 import { detectPage, grayToRgba, processPage, rgbaToGray, scaleQuad, shrinkTo, type Gray, type Quad } from '@/lib/marking/scan-image';
 
 type In =
   | { type: 'detect'; id: number; width: number; height: number; rgba: ArrayBuffer }
-  | { type: 'process'; id: number; bitmap?: ImageBitmap; rgba?: ArrayBuffer; width: number; height: number; hint: Quad | null; maxEdge: number; quality: number };
+  | { type: 'process'; id: number; bitmap?: ImageBitmap; rgba?: ArrayBuffer; width: number; height: number; hint: Quad | null; maxEdge: number; quality: number }
+  | { type: 'bubble'; id: number; bitmap?: ImageBitmap; rgba?: ArrayBuffer; width: number; height: number; layout: SheetLayout; quality: number };
 
 const port = self as unknown as { postMessage: (m: unknown, transfer?: Transferable[]) => void; onmessage: ((e: MessageEvent<In>) => void) | null };
 
@@ -21,7 +28,7 @@ const port = self as unknown as { postMessage: (m: unknown, transfer?: Transfera
 const unit = (q: Quad, w: number, h: number): Quad => scaleQuad(q, 1 / w, 1 / h);
 
 // The photo's grey pixels: from the bitmap through an OffscreenCanvas, or as sent.
-function photoGray(msg: Extract<In, { type: 'process' }>): Gray | null {
+function photoGray(msg: Extract<In, { type: 'process' | 'bubble' }>): Gray | null {
   if (msg.bitmap && typeof OffscreenCanvas !== 'undefined') {
     const c = new OffscreenCanvas(msg.bitmap.width, msg.bitmap.height);
     const ctx = c.getContext('2d');
@@ -54,6 +61,17 @@ port.onmessage = async (e) => {
     if (msg.type === 'detect') {
       const found = detectPage(rgbaToGray(new Uint8ClampedArray(msg.rgba), msg.width, msg.height));
       port.postMessage({ type: 'detected', id: msg.id, quad: found ? unit(found.quad, msg.width, msg.height) : null, score: found?.score ?? 0 });
+      return;
+    }
+    if (msg.type === 'bubble') {
+      const sheet = photoGray(msg);
+      if (!sheet) return port.postMessage({ type: 'bubble', id: msg.id, ok: false, why: 'no_corners' });
+      const out = readSheet(sheet, msg.layout);
+      if (!out.ok) return port.postMessage({ type: 'bubble', id: msg.id, ok: false, why: out.why });
+      const kept = keptPicture(out.page);
+      const jpeg = await encode(kept, msg.quality);
+      if (jpeg) port.postMessage({ type: 'bubble', id: msg.id, ok: true, reading: out.reading, jpeg, width: kept.width, height: kept.height });
+      else port.postMessage({ type: 'bubble', id: msg.id, ok: true, reading: out.reading, gray: kept.data.buffer, width: kept.width, height: kept.height }, [kept.data.buffer]);
       return;
     }
     const photo = photoGray(msg);
