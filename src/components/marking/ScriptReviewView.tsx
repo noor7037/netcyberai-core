@@ -15,6 +15,7 @@ import type { MessageKey } from '@/lib/i18n';
 import { markRange } from '@/lib/marking/answers';
 import { layoutBadges } from '@/lib/marking/margin';
 import { changesOf, clampMark, countedOf, emptyDraft, finalOf, flagsInOrder, grandTotal, noteOf, parseMark, stepMark, sureness, totalsOf, type SheetDraft } from '@/lib/marking/review-view';
+import { OnlineAnswers } from '@/components/online/OnlineAnswers';
 import { PagesPane, type PagesPaneHandle } from './PagesPane';
 import { ask, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
 
@@ -31,7 +32,7 @@ const SAVE_AFTER_MS = 1200;
 const REFRESH_MS = 4000;
 
 const SURE_KEYS = { check: 'mk.sure.check', fair: 'mk.sure.fair', sure: 'mk.sure.sure', none: 'mk.sure.none' } as const;
-const BY_KEYS: Record<string, MessageKey> = { seat: 'mk.id.by.seat', roll: 'mk.id.by.roll', name: 'mk.id.by.name', teacher: 'mk.id.by.teacher' };
+const BY_KEYS: Record<string, MessageKey> = { seat: 'mk.id.by.seat', roll: 'mk.id.by.roll', name: 'mk.id.by.name', teacher: 'mk.id.by.teacher', online: 'mk.id.by.online' };
 
 export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetId: string }) {
   const { t, lang } = useT();
@@ -54,6 +55,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   // The script's bubble sheet (C364): on a paper of only choice questions the sheet is the script; on a mixed paper it
   // is read beside the answer book. None for a script without one.
   const [bubble, setBubble] = useState<BubbleSheetDetail | null>(null);
+  // An online test's script (AQ-4): its typed answers in place of pages, and its own "Mark again".
+  const [online, setOnline] = useState(false);
   const pane = useRef<PagesPaneHandle>(null);
   const sheetPane = useRef<BubbleSheetPaneHandle>(null);
   const live = useRef<{ detail: SheetDetail | null; draft: SheetDraft }>({ detail: null, draft: emptyDraft() });
@@ -213,7 +216,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
     setBusy(true);
     setNote(null);
     setConfirm(null);
-    const r = await ask('POST', `/api/app/marking/sheets/${sheetId}/mark-again`);
+    const r = await ask('POST', online ? `/api/app/marking/sheets/${sheetId}/online` : `/api/app/marking/sheets/${sheetId}/mark-again`);
     if (!r.ok) {
       setBusy(false);
       if (r.body?.code === 'tries') setNoTries(true);
@@ -411,7 +414,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
 
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
         <div className="flex min-w-0 flex-col gap-4 lg:sticky lg:top-20 lg:w-5/12 lg:flex-none">
-          {!sheetIsScript && <PagesPane ref={pane} pages={detail.pages} badges={badges} active={active} />}
+          {detail.pages.length === 0 && detail.picturesGone === 0 && <OnlineAnswers sheetId={sheetId} questions={detail.questions} active={active} onFound={setOnline} />}
+          {!sheetIsScript && !online && <PagesPane ref={pane} pages={detail.pages} badges={badges} active={active} />}
           {bubble?.view && <BubbleSheetPane ref={sheetPane} detail={bubble} active={active} busy={busy} onPutOn={() => void doBubble('put_on')} onNotThis={() => void doBubble('not_this')} />}
         </div>
 

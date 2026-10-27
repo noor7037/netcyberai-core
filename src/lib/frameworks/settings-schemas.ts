@@ -1,6 +1,7 @@
 import type { ModuleId } from '@/lib/contracts/modules';
 import type { ModuleSettingsSchema } from '@/lib/contracts/settings';
 import { DEFAULT_EXAM_TYPES, EXAM_TYPE_KEY, OTHER_EXAM_TYPE } from '@/lib/contracts/exam-types';
+import { blueprintProblems, DEFAULT_BLUEPRINT_ROWS, DEFAULT_SECTION_ROWS } from '@/lib/papers/blueprint';
 
 // Every module's settings schema, in one registry (17 §1a, C112). A module
 // adds its schema here when it is built (part of the module definition of
@@ -570,7 +571,9 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // limit (Control) and Control's AI tasks decide whether the school may use it at all; these only narrow it.
   {
     moduleId: 'exams',
-    version: 3, // 2: script_days (C230-AG); 3: exam_types (C230-AJ)
+    version: 4, // 2: script_days (C230-AG); 3: exam_types (C230-AJ); 4: paper_blueprints, paper_sections (C362)
+    // AQ-2 (C362): a question paper blueprint's sections add up to its total, and each names a type with a blueprint.
+    check: (v) => blueprintProblems(v.paper_blueprints, v.paper_sections),
     fields: [
       {
         key: 'ai_marking_on',
@@ -666,6 +669,54 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         editableBy: OFFICE,
         affectsExistingRecords: false,
       },
+      // aq-2 begin
+      {
+        // AQ-2 (C362): a question paper's shape by exam type (src/lib/papers/blueprint.ts). The defaults are starting
+        // points the school edits, not a board's rules. A paper already made keeps the shape it was made with.
+        key: 'paper_blueprints',
+        label: 'Question paper blueprints',
+        help: 'One row for each exam type whose papers are made from what was taught: its total marks, its time in minutes, how many questions in every 100 are easy, medium and hard (adding up to 100), which chapters it covers (since_last_of_type: taught since the last paper of the same type; session: taught this session; whole_map: the whole syllabus map) and how the chapters share the marks (periods: by the periods taught; equal: the same for each).',
+        section: 'Question papers',
+        type: 'list',
+        default: DEFAULT_BLUEPRINT_ROWS.map((r) => ({ ...r })),
+        min: 0,
+        max: 30,
+        columns: [
+          { key: 'exam_type', label: 'Exam type (short code)', type: 'text', pattern: EXAM_TYPE_KEY.source, unique: true },
+          { key: 'total_marks', label: 'Total marks', type: 'number' },
+          { key: 'minutes', label: 'Time in minutes', type: 'number' },
+          { key: 'easy', label: 'Easy, in every 100', type: 'number' },
+          { key: 'medium', label: 'Medium, in every 100', type: 'number' },
+          { key: 'hard', label: 'Hard, in every 100', type: 'number' },
+          { key: 'scope', label: 'Chapters covered', type: 'text', pattern: '^(since_last_of_type|session|whole_map)$' },
+          { key: 'weight', label: 'Marks shared by', type: 'text', pattern: '^(periods|equal)$' },
+        ],
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'paper_sections',
+        label: 'Question paper sections',
+        help: 'The sections of each blueprint, A to H: the kind of question (objective, short, long, numerical or diagram), how many questions, the marks of each, and "answer any" for an internal choice (0: every question is answered). A blueprint’s sections add up to its total marks.',
+        section: 'Question papers',
+        type: 'list',
+        default: DEFAULT_SECTION_ROWS.map((r) => ({ ...r })),
+        min: 0,
+        max: 100,
+        columns: [
+          { key: 'exam_type', label: 'Exam type (short code)', type: 'text', pattern: EXAM_TYPE_KEY.source },
+          { key: 'section', label: 'Section', type: 'text', pattern: '^[A-H]$' },
+          { key: 'kind', label: 'Kind of question', type: 'text', pattern: '^(objective|short|long|numerical|diagram)$' },
+          { key: 'count', label: 'Questions', type: 'number' },
+          { key: 'marks_each', label: 'Marks each', type: 'number' },
+          { key: 'answer_any', label: 'Answer any (0: all)', type: 'number' },
+        ],
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      // aq-2 end
     ],
   },
   // c347 end

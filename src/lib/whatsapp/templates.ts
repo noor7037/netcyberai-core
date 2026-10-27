@@ -44,6 +44,9 @@ export type TemplateDefinition = {
   staleAfterMinutes: number;
   variables: readonly string[];
   body: Record<TemplateLanguage, string>;
+  // A template that carries a file above its words (C366): a PDF, given to the provider by the send-gate only after
+  // every rule has passed (src/lib/whatsapp/documents.ts). Its words are the body, as for every template.
+  header?: 'document';
 };
 // How every body begins: the school's name, after words of its own (Meta refuses a body that begins with a placeholder).
 export const SCHOOL_PREFIX: Record<TemplateLanguage, string> = { en: 'From {{school}}: ', hi: 'स्कूल {{school}} की ओर से: ' };
@@ -354,7 +357,27 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
       hi: 'स्कूल {{school}} की ओर से: {{child}} के {{exam}} का परिणाम तैयार है। यहाँ देखें: {{link}} यह लिंक सिर्फ़ आपके परिवार के लिए है और 30 दिन तक चलेगा।',
     },
   },
+  {
+    // The checked paper as a PDF (C366): the same message as exam_result_ready, with the child's checked papers of the
+    // publication as one PDF above the words (a document header). The PDF is made in the office's browser at Send and
+    // given to the provider only once the send-gate has passed the message. The child's first name only; no mark,
+    // grade or remark in the words. For a child whose pictures are gone, exam_result_ready goes instead.
+    name: 'exam_result_pdf',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 2880,
+    variables: ['school', 'child', 'exam', 'link'],
+    header: 'document',
+    body: {
+      en: 'From {{school}}: {{child}}’s checked answer sheets for {{exam}} are in this PDF. See the result online here: {{link}} The link is private to your family and works for 30 days.',
+      hi: 'स्कूल {{school}} की ओर से: {{child}} की {{exam}} की जाँची हुई उत्तर पुस्तिकाएँ इस PDF में हैं। परिणाम ऑनलाइन यहाँ देखें: {{link}} यह लिंक सिर्फ़ आपके परिवार के लिए है और 30 दिन तक चलेगा।',
+    },
+  },
 ];
+
+// Whether a template carries a document above its words (C366), by the code's own definition of it.
+export const hasDocumentHeader = (templateName: string): boolean => TEMPLATE_REGISTRY.some((d) => d.name === templateName && d.header === 'document');
 
 const VARIABLE = /\{\{([a-z0-9_]+)\}\}/g;
 export const variablesIn = (body: string): string[] => [...new Set([...body.matchAll(VARIABLE)].map((m) => m[1]))];
@@ -441,7 +464,8 @@ export function missingVariables(template: Pick<TemplateToSend, 'variables'>, pa
 
 // --- Control: the founder's side ---------------------------------------------------------------------------
 
-export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed: boolean; wordingReviewedNote: string | null };
+// `header`: the template carries a PDF above its words (C366).
+export type TemplateRow = { id: string; name: string; version: number; language: TemplateLanguage; body: string | null; variables: string[]; category: string; staleAfterMinutes: number | null; status: 'approved' | 'pending' | 'rejected'; approvedByName: string | null; approvedAt: string | null; metaStatus: string; metaTemplateId: string | null; metaDecidedAt: string | null; inCode: boolean; sendsNow: boolean; wordingReviewed: boolean; wordingReviewedNote: string | null; header: 'document' | null };
 export const META_STATUSES = ['not_submitted', 'pending', 'approved', 'rejected', 'paused'] as const;
 
 // Every version in the code that the database does not yet hold is written, waiting for approval. A row of a code
@@ -476,7 +500,7 @@ export async function listTemplates(db: Sql): Promise<TemplateRow[]> {
       where t.school_id is null order by t.template_name, t.language, t.version desc`
   );
   const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
-  return rows.map((r) => ({ id: r.id, name: r.template_name, version: r.version, language: r.language, body: r.body, variables: r.variables ?? [], category: r.billing_category, staleAfterMinutes: r.stale_after_minutes, status: r.status, approvedByName: r.approved_by_name ?? null, approvedAt: iso(r.approved_at), metaStatus: r.meta_status, metaTemplateId: r.meta_template_id, metaDecidedAt: iso(r.meta_decided_at), inCode: TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body), sendsNow: r.sends_now === true, wordingReviewed: r.wording_reviewed === true, wordingReviewedNote: r.wording_reviewed_note ?? null }));
+  return rows.map((r) => ({ id: r.id, name: r.template_name, version: r.version, language: r.language, body: r.body, variables: r.variables ?? [], category: r.billing_category, staleAfterMinutes: r.stale_after_minutes, status: r.status, approvedByName: r.approved_by_name ?? null, approvedAt: iso(r.approved_at), metaStatus: r.meta_status, metaTemplateId: r.meta_template_id, metaDecidedAt: iso(r.meta_decided_at), inCode: TEMPLATE_REGISTRY.some((d) => d.name === r.template_name && d.version === r.version && d.body[r.language as TemplateLanguage] === r.body), sendsNow: r.sends_now === true, wordingReviewed: r.wording_reviewed === true, wordingReviewedNote: r.wording_reviewed_note ?? null, header: hasDocumentHeader(r.template_name) ? 'document' : null }));
 }
 
 export type TemplateActionResult = { ok: true } | { ok: false; reason: 'not_found' | 'no_words' | 'not_in_code' | 'meta_status' | 'meta_id' | 'note' | 'english' };
@@ -551,7 +575,7 @@ export async function submissionFor(db: Sql, id: string): Promise<{ ok: true; dr
   const language = row.language as TemplateLanguage;
   const example = placeholderOrder(row.body).map((v) => templateExample(row.template_name, v, language));
   if (example.some((e) => e === null)) return { ok: false, reason: 'no_example' };
-  return { ok: true, draft: { name: row.template_name, language, text: positionalBody(row.body), example: example as string[] } };
+  return { ok: true, draft: { name: row.template_name, language, text: positionalBody(row.body), example: example as string[], ...(hasDocumentHeader(row.template_name) ? { header: { format: 'DOCUMENT' as const } } : {}) } };
 }
 
 // Meta took the template: its id, and its state so far. Recorded only on a version that has no Meta id yet.

@@ -8,6 +8,8 @@ import type { Sql } from '@/lib/jobs/types';
 import { gateWouldQueue, languageFor, queueWhatsAppMessage, type GateRule, type QueueLike } from '@/lib/whatsapp/gate';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { templateToSend, type TemplateLanguage } from '@/lib/whatsapp/templates';
+import { DOCUMENT_PARAM } from '@/lib/whatsapp/documents';
+import { childrenWithPages, keptPdfs, PDF_TEMPLATE, pdfSchoolState, type PdfSchoolState } from './checked-pdf-store';
 import type { Actor } from './context';
 import { linksOf, makeReportLink, MAX_LINKS, recordsConsented, reportLinkUrl, sealedLink } from './report-links';
 
@@ -18,6 +20,9 @@ import { linksOf, makeReportLink, MAX_LINKS, recordsConsented, reportLinkUrl, se
 // here calls a provider (scripts/check_whatsapp_send_gate.py). The preview asks the gate itself, recording nothing
 // (gateWouldQueue), so it never promises what the gate would refuse at that moment. No marks are in the message (the
 // template), no rank anywhere (C76).
+// With the checked paper as a PDF (C366): at Send the office's browser first makes each child's PDF and hands it in
+// (./checked-pdf-store.ts); a child whose PDF is kept is sent exam_result_pdf, carrying it, and any other child
+// exam_result_ready, as before. Who, the preview, the keys and "never twice" are the same for both.
 
 export const RESULT_TEMPLATE = 'exam_result_ready';
 export const RESULT_PURPOSE: ConsentPurpose = 'operational_communication';
@@ -42,8 +47,12 @@ export type ResultMessageState = 'queued' | 'sent' | 'delivered' | 'read' | 'fai
 export type GuardianLine = { parentId: string; name: string; relation: string | null; last4: string | null; will: boolean; why: NotSentWhy | null; state: ResultMessageState | null };
 // `sent`: the child has a live link for this publication. `ended`: links of theirs the office ended (each made again
 // only by Send). `mayEnd`: the live link may be ended (the principal or the school admin, who alone see this list).
-export type ChildLine = { studentId: string; name: string; rollNo: string | null; sent: boolean; ended: number; mayEnd: boolean; guardians: GuardianLine[] };
-export type TellParents = { examId: string; classId: string; version: number; children: ChildLine[]; will: number; wont: number; sent: number };
+// `pdf` (C366), for a child not sent yet while the school's PDF message may go: 'make', the browser makes the child's
+// PDF at Send; 'kept', it is made and waits for Send; 'no_pages', no checked page of the child is kept, so the
+// message is the link only. Null otherwise (the school's `pdf` says why).
+export type ChildPdf = 'make' | 'kept' | 'no_pages';
+export type ChildLine = { studentId: string; name: string; rollNo: string | null; sent: boolean; ended: number; mayEnd: boolean; pdf: ChildPdf | null; guardians: GuardianLine[] };
+export type TellParents = { examId: string; classId: string; version: number; pdf: PdfSchoolState; children: ChildLine[]; will: number; wont: number; sent: number };
 export type TellProblem = 'not_allowed' | 'not_found' | 'not_published';
 
 const RULE_WHY: Record<GateRule, NotSentWhy> = { pilot: 'whatsapp_off', consent: 'no_consent', opted_out: 'opted_out', quiet_hours: 'quiet_hours', budget: 'budget', template: 'not_approved' };
@@ -53,7 +62,10 @@ type Guardian = { parent_id: string; name: string; relation: string | null; phon
 type Child = { student_id: string; name: string; roll_no: string | null };
 // What the server keeps of a guardian between the preview and Send, never sent to the screen: the number and language.
 type Line = GuardianLine & { phone: string | null; language: TemplateLanguage };
-type Plan = { examName: string; version: number; children: (Omit<ChildLine, 'guardians'> & { guardians: Line[] })[] };
+// `pdfId`: the child's kept PDF, which Send sends with the PDF message (C366); null: the link-only message.
+type Plan = { examName: string; version: number; pdf: PdfSchoolState; children: (Omit<ChildLine, 'guardians'> & { guardians: Line[]; pdfId: string | null })[] };
+// The first word of the child's name, as the PDF message names the child.
+const firstName = (name: string) => name.trim().split(/\s+/)[0] ?? name;
 
 async function classRoll(db: Sql, schoolId: string, classId: string): Promise<Child[]> {
   return (await db.query(`select s.student_id, s.name, s.roll_no from students s where s.school_id = $1 and s.class_id = $2 and ${ON_ROLL} order by ${ROLL_ORDER}`, [schoolId, classId])).rows as Child[];
@@ -75,21 +87,26 @@ async function messageState(db: Sql, schoolId: string, key: string): Promise<Res
   return r ? stateOf(r.status) : null;
 }
 
-async function publishedExam(db: Sql, actor: Actor, examId: string, classId: string): Promise<{ version: number; examName: string } | TellProblem> {
+async function publishedExam(db: Sql, actor: Actor, examId: string, classId: string): Promise<{ version: number; publicationId: string; examName: string } | TellProblem> {
   if (!TELL_ROLES.includes(actor.role)) return 'not_allowed';
   if (!isUuid(examId) || !isUuid(classId)) return 'not_found';
   const exam = (await db.query(`select name from exams where school_id = $1 and exam_id = $2`, [actor.schoolId, examId])).rows[0] as { name: string } | undefined;
   if (!exam) return 'not_found';
   const pub = await publicationInForce(db, actor.schoolId, examId, classId);
   if (!pub) return 'not_published';
-  return { version: pub.version, examName: exam.name };
+  return { version: pub.version, publicationId: pub.publicationId, examName: exam.name };
 }
 
-// Every child of the class in roll order, each guardian as the gate would take them now.
+// Every child of the class in roll order, each guardian as the gate would take them now. A child with checked pages
+// still kept is asked about with the PDF message (C366) while the school's PDF message may go; any other child with
+// the link-only one, as before.
 async function plan(db: PoolClient, actor: Actor, examId: string, classId: string): Promise<Plan | TellProblem> {
   const p = await publishedExam(db, actor, examId, classId);
   if (typeof p === 'string') return p;
   const links = await linksOf(db, actor.schoolId, examId, classId, p.version);
+  const pdf = await pdfSchoolState(db, actor.schoolId);
+  const withPages = pdf.on ? await childrenWithPages(db, actor.schoolId, examId, classId) : new Set<string>();
+  const kept = pdf.on ? await keptPdfs(db, actor.schoolId, p.publicationId) : new Map<string, string>();
   const children: Plan['children'] = [];
   for (const c of await classRoll(db, actor.schoolId, classId)) {
     const consented = await recordsConsented(db, actor.schoolId, c.student_id);
@@ -97,6 +114,8 @@ async function plan(db: PoolClient, actor: Actor, examId: string, classId: strin
     // The messages of the live link, or of the link Send would make next.
     const linkNo = l.live ?? l.made + 1;
     const used = l.live === null && l.made >= MAX_LINKS;
+    const childPdf: ChildPdf | null = !pdf.on || l.live !== null ? null : kept.has(c.student_id) ? 'kept' : withPages.has(c.student_id) ? 'make' : 'no_pages';
+    const template = childPdf === 'make' || childPdf === 'kept' ? PDF_TEMPLATE : RESULT_TEMPLATE;
     const guardians: Line[] = [];
     const numbers = new Set<string>();
     for (const g of await guardiansOf(db, actor.schoolId, c.student_id)) {
@@ -115,9 +134,9 @@ async function plan(db: PoolClient, actor: Actor, examId: string, classId: strin
           parentId: g.parent_id,
           purpose: RESULT_PURPOSE,
           toPhone: phone,
-          templateName: RESULT_TEMPLATE,
+          templateName: template,
           // The link is made only when the office presses Send; for the gate's check any value stands in for it.
-          templateParams: { child: c.name, exam: p.examName, link: reportLinkUrl('preview') },
+          templateParams: { child: template === PDF_TEMPLATE ? firstName(c.name) : c.name, exam: p.examName, link: reportLinkUrl('preview') },
           dedupeKey: key,
           language,
         });
@@ -125,9 +144,9 @@ async function plan(db: PoolClient, actor: Actor, examId: string, classId: strin
         guardians.push(gate.ok ? { ...line, will: true, why: null } : { ...line, will: false, why: RULE_WHY[gate.rule] });
       }
     }
-    children.push({ studentId: c.student_id, name: c.name, rollNo: c.roll_no ?? null, sent: l.live !== null, ended: l.made - (l.live === null ? 0 : 1), mayEnd: l.live !== null, guardians });
+    children.push({ studentId: c.student_id, name: c.name, rollNo: c.roll_no ?? null, sent: l.live !== null, ended: l.made - (l.live === null ? 0 : 1), mayEnd: l.live !== null, pdf: childPdf, guardians, pdfId: childPdf === 'kept' ? (kept.get(c.student_id) ?? null) : null });
   }
-  return { examName: p.examName, version: p.version, children };
+  return { examName: p.examName, version: p.version, pdf, children };
 }
 
 // Who will get it, child by child in roll order, and the state of every message already queued for this publication.
@@ -136,12 +155,13 @@ async function plan(db: PoolClient, actor: Actor, examId: string, classId: strin
 export async function tellParentsPreview(db: PoolClient, actor: Actor, examId: string, classId: string): Promise<TellParents | TellProblem> {
   const p = await plan(db, actor, examId, classId);
   if (typeof p === 'string') return p;
-  const children: ChildLine[] = p.children.map((c) => ({ ...c, guardians: c.guardians.map(({ phone: _phone, language: _language, ...shown }) => shown) }));
+  const children: ChildLine[] = p.children.map(({ pdfId: _pdfId, ...c }) => ({ ...c, guardians: c.guardians.map(({ phone: _phone, language: _language, ...shown }) => shown) }));
   const open = children.filter((c) => !c.sent);
   return {
     examId,
     classId,
     version: p.version,
+    pdf: p.pdf,
     children,
     will: open.reduce((n, c) => n + c.guardians.filter((g) => g.will).length, 0),
     wont: open.reduce((n, c) => n + c.guardians.filter((g) => !g.will).length, 0),
@@ -160,6 +180,7 @@ export async function tellParentsSend(db: PoolClient, queue: QueueLike, actor: A
   if (typeof p === 'string') return { ok: false, reason: p };
   let queued = 0;
   let children = 0;
+  let pdfs = 0;
   for (const c of p.children) {
     const takers = c.guardians.filter((g) => g.will && g.state === null && g.phone);
     if (c.sent || takers.length === 0) continue;
@@ -170,17 +191,20 @@ export async function tellParentsSend(db: PoolClient, queue: QueueLike, actor: A
       continue; // made by another press a moment ago, or no longer allowed: never a second link
     }
     let mine = 0;
+    // The child's kept PDF goes with the PDF message (C366); the gate gives it to the provider only when the message
+    // passes every rule. A child without one (no pages kept, or it could not be made) gets the link-only message.
+    const template = c.pdfId ? PDF_TEMPLATE : RESULT_TEMPLATE;
     for (const g of takers) {
-      const lang = (await templateToSend(db, actor.schoolId, RESULT_TEMPLATE, g.language, false))?.language ?? g.language;
+      const lang = (await templateToSend(db, actor.schoolId, template, g.language, false))?.language ?? g.language;
       const r = await queueWhatsAppMessage(db, queue, {
         schoolId: actor.schoolId,
         studentId: c.studentId,
         parentId: g.parentId,
         purpose: RESULT_PURPOSE,
         toPhone: g.phone as string,
-        templateName: RESULT_TEMPLATE,
+        templateName: template,
         // Sealed in the log; the send-gate opens it into the link only as it asks the provider (review of AM-5).
-        templateParams: { child: c.name, exam: p.examName, link: sealedLink(link.ref, lang) },
+        templateParams: c.pdfId ? { child: firstName(c.name), exam: p.examName, link: sealedLink(link.ref, lang), [DOCUMENT_PARAM]: c.pdfId } : { child: c.name, exam: p.examName, link: sealedLink(link.ref, lang) },
         dedupeKey: resultDedupeKey(examId, classId, link.version, c.studentId, g.parentId, link.linkNo),
         language: lang,
       });
@@ -193,8 +217,9 @@ export async function tellParentsSend(db: PoolClient, queue: QueueLike, actor: A
     await db.query('release savepoint tell_parents_child');
     queued += mine;
     children += 1;
+    if (c.pdfId) pdfs += 1;
   }
-  // Counts and ids only: never a link, a number or a child's name.
-  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.results_sent', targetType: 'exams', targetId: examId, beforeState: undefined, afterState: { classId, version: p.version, children, queued } });
+  // Counts and ids only: never a link, a number or a child's name. `pdfs`: children whose messages carry their PDF.
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'marking.results_sent', targetType: 'exams', targetId: examId, beforeState: undefined, afterState: { classId, version: p.version, children, queued, pdfs } });
   return { ok: true, queued, children };
 }
