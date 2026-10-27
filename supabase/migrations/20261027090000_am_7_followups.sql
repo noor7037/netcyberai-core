@@ -103,7 +103,7 @@ update control.ai_profiles set prompt_version = 'v2' where profile_id = 'exams.r
 -- ---- 2. How long page pictures are kept ------------------------------------------------------------------------------------
 
 -- Whether a page's picture is due to go: a page taken out, or a page of a paper whose class's publication in force is
--- older than the school's days. Called by the two definer functions below only.
+-- older than the school's days. Called by marking_pictures_due only.
 create function public.marking_picture_due(p_school_id uuid, p_paper_id uuid, p_state text) returns boolean
 language sql stable set search_path = public, pg_temp as $$
   select p_state = 'removed' or exists (
@@ -131,14 +131,14 @@ $$;
 revoke all on function public.marking_pictures_due(integer) from public, anon, authenticated, service_role, app_user;
 grant execute on function public.marking_pictures_due(integer) to nca_super;
 
--- Records that these pictures were deleted (each still due, and not recorded before); how many it recorded. Called by
--- the sweep after the store has deleted them.
+-- Records that these pictures were deleted (not recorded before); how many it recorded. Called by the sweep only
+-- after the store has deleted them, so it does not ask again whether they are due: a class reopened in between keeps
+-- its marks, and its deleted pictures are not left looking stored.
 create function public.marking_pictures_gone(p_page_ids uuid[]) returns integer
 language sql security definer set search_path = public, pg_temp as $$
   with done as (
     update marking_pages g set picture_gone_at = now()
      where g.page_id = any (coalesce(p_page_ids, '{}'::uuid[])) and g.picture_gone_at is null
-       and public.marking_picture_due(g.school_id, g.paper_id, g.state)
     returning 1
   )
   select count(*)::int from done

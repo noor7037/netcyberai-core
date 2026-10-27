@@ -7,8 +7,8 @@ import type { JobHandler, Sql } from '@/lib/jobs/types';
 //
 // A paper's page pictures go the school's "script_days" (Exams settings, 30 to 365, else 90) after its class's
 // publication in force; a page a teacher took out of its script goes at the next run. The database says which are due
-// (marking_pictures_due, for the platform role only) and records each one deleted (marking_pictures_gone, which checks
-// again that it is due). The store deletes first, then the row is marked: a picture is never marked gone while it is
+// (marking_pictures_due, for the platform role only) and records each one deleted (marking_pictures_gone, also the
+// platform's only). The store deletes first, then the row is marked: a picture is never marked gone while it is
 // still stored, and one deleted but not yet marked is deleted again (nothing) and marked by the next run. The marks,
 // each question's marks and the teacher's notes stay. Where pictures went, one audit row in that school with the
 // count only: no page, no child, no key.

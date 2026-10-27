@@ -101,7 +101,7 @@ export function parseReading(text: string, pageCount: number): (PageReading | nu
     const answerPage = own(raw, 'answer_page');
     const idDocument = own(raw, 'id_document');
     if (typeof blank !== 'boolean' || typeof legible !== 'boolean' || typeof answerPage !== 'boolean' || typeof idDocument !== 'boolean') continue;
-    const odd = !answerPage || idDocument;
+    const odd = notAnAnswerPage({ answerPage, idDocument });
     out[at - 1] = {
       firstPage: !odd && own(raw, 'first_page') === true,
       name: odd ? null : words(own(raw, 'name'), NAME_MAX),

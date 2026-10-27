@@ -383,12 +383,13 @@ export async function settlePage(db: Sql, actor: Actor, pageId: string, action: 
   if (!paper.mayMark) return { ok: false, reason: 'not_allowed' };
   if (page.state !== 'not_answer' || s.state === 'set_aside') return { ok: false, reason: 'state' };
   const sheetId = s.sheet_id as string;
-  if (action === 'keep') {
-    const legible = (page.reading as { legible?: unknown } | null)?.legible !== false;
-    await db.query(`update marking_pages set state = $3 where school_id = $1 and page_id = $2 and state = 'not_answer'`, [actor.schoolId, pageId, legible ? 'read' : 'unreadable']);
-  } else {
-    await db.query(`update marking_pages set state = 'removed', sheet_id = null, sheet_position = null, reading = null where school_id = $1 and page_id = $2 and state = 'not_answer'`, [actor.schoolId, pageId]);
-  }
+  const legible = (page.reading as { legible?: unknown } | null)?.legible !== false;
+  const done =
+    action === 'keep'
+      ? await db.query(`update marking_pages set state = $3 where school_id = $1 and page_id = $2 and state = 'not_answer'`, [actor.schoolId, pageId, legible ? 'read' : 'unreadable'])
+      : await db.query(`update marking_pages set state = 'removed', sheet_id = null, sheet_position = null, reading = null where school_id = $1 and page_id = $2 and state = 'not_answer'`, [actor.schoolId, pageId]);
+  // Settled a moment ago by another press: nothing changed here, so nothing is recorded.
+  if (!done.rowCount) return { ok: false, reason: 'state' };
   const left = Number((await db.query(`select count(*)::int as n from marking_pages where school_id = $1 and sheet_id = $2 and state = 'not_answer'`, [actor.schoolId, sheetId])).rows[0]?.n ?? 0);
   if (left === 0) await db.query(`update marking_sheets set flags = array_remove(flags, 'not_answer_page') where school_id = $1 and sheet_id = $2`, [actor.schoolId, sheetId]);
   await writeAuditLog(db, {

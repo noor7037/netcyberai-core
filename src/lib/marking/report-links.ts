@@ -81,12 +81,15 @@ export async function makeReportLink(db: Sql, actor: Actor, examId: string, clas
   if (!(await recordsConsented(db, actor.schoolId, studentId))) return { ok: false, reason: 'no_consent' };
   const pub = await publicationInForce(db, actor.schoolId, examId, classId);
   if (!pub) return { ok: false, reason: 'not_published' };
-  const made = Number(
-    (await db.query(`select count(*)::int as n from marking_report_links where school_id = $1 and exam_id = $2 and class_id = $3 and student_id = $4 and publication_version = $5`, [actor.schoolId, examId, classId, studentId, pub.version])).rows[0]?.n ?? 0
-  );
-  const live = (await db.query(`select 1 from marking_report_links where school_id = $1 and exam_id = $2 and class_id = $3 and student_id = $4 and publication_version = $5 and ended_at is null`, [actor.schoolId, examId, classId, studentId, pub.version])).rows[0];
-  if (live) return { ok: false, reason: 'exists' };
-  if (made >= MAX_LINKS) return { ok: false, reason: 'limit' };
+  const had = (
+    await db.query(
+      `select count(*)::int as made, count(*) filter (where ended_at is null)::int as live from marking_report_links
+        where school_id = $1 and exam_id = $2 and class_id = $3 and student_id = $4 and publication_version = $5`,
+      [actor.schoolId, examId, classId, studentId, pub.version]
+    )
+  ).rows[0] as { made: number; live: number };
+  if (Number(had.live) > 0) return { ok: false, reason: 'exists' };
+  if (Number(had.made) >= MAX_LINKS) return { ok: false, reason: 'limit' };
   const ref = newRef();
   if (!REF_FORMAT.test(ref)) throw new Error('makeReportLink: a reference is 43 base64url characters');
   const key = reportKeyFor(ref);
