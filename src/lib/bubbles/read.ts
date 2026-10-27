@@ -226,7 +226,7 @@ export function fitGroup(page: Gray, bubbles: readonly Bubble[]): Bubble[] {
 }
 
 // A bubble's darkness, 0 (paper) to 1 (black): the mean of its inside (well within the printed ring) against the paper
-// just around it (the brighter part of a ring of samples, so a neighbour's ink or a printed letter does not lower it).
+// just around it (the brighter part of a ring of points, so a neighbour's ink or a printed letter does not lower it).
 export function bubbleDarkness(page: Gray, b: Bubble): number {
   const cx = b.x * READ_PX;
   const cy = b.y * READ_PX;
