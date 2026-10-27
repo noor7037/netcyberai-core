@@ -34,6 +34,7 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/school/branding.ts': { 'key:nameChanged': 'true or false: whether the school’s name changed, never the name' },
   'src/lib/bank/match.ts': { 'key:outcome': 'a code: credited, seen_not_credited or needs_person' },
   'src/lib/payments/upi.ts': { 'key:outcome': 'a code: credited or seen_not_credited' },
+  'src/lib/marking/report-links.ts': { 'key:why': 'a code: lost, forwarded or other (END_REASONS, checked before the write); never words a person typed (C230-AG)' },
   'src/lib/payments/apply.ts': { 'opaque:e.audit': 'the provider and its payment id, or nothing', 'key:reason': 'a code the provider check returns (fetch_status_404, status_failed)' },
   'src/lib/control/billing.ts': {
     'opaque:planState(plan)': 'a plan: its id, name (Growth), prices and modules',
