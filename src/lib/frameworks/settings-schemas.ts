@@ -762,27 +762,89 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
     // (src/lib/documents/certificate-rules.ts) and public.certificate_needs_clearance(), which the issuing trigger
     // reads; test/documents/closeout.test.ts holds the three together.
     moduleId: 'documents',
-    version: 1,
-    fields: (
-      [
-        ['transfer', 'Transfer certificate', false],
-        ['bonafide', 'Bonafide certificate', true],
-        ['character', 'Character certificate', true],
-        ['study', 'Study certificate', true],
-      ] as const
-    ).map(([type, name, on]) => ({
-      key: `clearance_${type}`,
-      label: `${name}: fee clearance`,
-      help:
-        type === 'transfer'
-          ? 'When on, a transfer certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. The rule for holding a TC for fees differs from state to state: switch this on only if your state’s rules allow it, and knowingly.'
-          : 'When on, this certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. When off, it is issued whatever is owed, and the register says the clearance was not asked.',
-      section: 'Fee clearance',
-      type: 'boolean' as const,
-      default: on,
-      editableBy: OFFICE,
-      affectsExistingRecords: false,
-    })),
+    version: 2, // 2: merit and participation certificates from a published result (C230-AJ part 5)
+    fields: [
+      ...(
+        [
+          ['transfer', 'Transfer certificate', false],
+          ['bonafide', 'Bonafide certificate', true],
+          ['character', 'Character certificate', true],
+          ['study', 'Study certificate', true],
+        ] as const
+      ).map(([type, name, on]) => ({
+        key: `clearance_${type}`,
+        label: `${name}: fee clearance`,
+        help:
+          type === 'transfer'
+            ? 'When on, a transfer certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. The rule for holding a TC for fees differs from state to state: switch this on only if your state’s rules allow it, and knowingly.'
+            : 'When on, this certificate waits until nothing is owed, the fee counter clears it, or the principal waives it with a reason. When off, it is issued whatever is owed, and the register says the clearance was not asked.',
+        section: 'Fee clearance',
+        type: 'boolean' as const,
+        default: on,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      })),
+      // C230-AJ part 5: the rules for merit and participation certificates made from a published result (the class result's
+      // "Certificates" section; src/lib/documents/result-certificate-rules.ts reads them with these defaults). Never in the
+      // Exams block. A merit or participation certificate never waits for the fee clearance.
+      {
+        key: 'merit_basis',
+        label: 'Merit certificates are for',
+        help: 'Which children get a merit certificate when the office makes certificates from a published result: nobody, children whose overall grade reaches the grade below, or children whose overall percent reaches the percent below. Each child is judged by their own result, never against another child.',
+        section: 'Merit and participation certificates',
+        type: 'select' as const,
+        default: 'off',
+        options: [
+          { value: 'off', label: 'Nobody' },
+          { value: 'grade', label: 'An overall grade or better' },
+          { value: 'percent', label: 'An overall percent or more' },
+        ],
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'merit_grade',
+        label: 'Merit: the grade, or better',
+        help: 'The grade name as the grading scheme writes it, for example A. Read when merit is for an overall grade. A grade the scheme kept with the publication does not have gives nobody a certificate, and the screen says so.',
+        section: 'Merit and participation certificates',
+        type: 'text' as const,
+        default: 'A',
+        pattern: '^[^\\s].{0,19}$',
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'merit_percent',
+        label: 'Merit: the overall percent, or more',
+        help: 'From 1 to 100, as the report card prints the overall percent. Read when merit is for an overall percent.',
+        section: 'Merit and participation certificates',
+        type: 'number' as const,
+        default: 90,
+        min: 1,
+        max: 100,
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+      {
+        key: 'participation_for',
+        label: 'Participation certificates are for',
+        help: 'Nobody; every child who sat the exam (a child who was absent or exempt in every paper did not); or only the children who did not earn a merit certificate.',
+        section: 'Merit and participation certificates',
+        type: 'select' as const,
+        default: 'off',
+        options: [
+          { value: 'off', label: 'Nobody' },
+          { value: 'everyone', label: 'Every child who sat the exam' },
+          { value: 'others', label: 'Only children without a merit certificate' },
+        ],
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
+      },
+    ],
   },
   // p7-10e end
   // p7-10f begin

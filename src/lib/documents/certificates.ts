@@ -31,6 +31,7 @@ import {
   type Signer,
   type TypedProblem,
 } from './certificate-rules';
+import type { ResultCertType } from './result-certificate-rules';
 import { copyLinkUrl } from './copy-link';
 import { classOrderSql } from '@/lib/classes/class-order';
 
@@ -355,7 +356,7 @@ export async function issueCertificates(db: PoolClient, actor: CertActor, input:
 export type RegisterRow = {
   certificate_id: string;
   number: string;
-  cert_type: CertificateType;
+  cert_type: CertificateType | ResultCertType; // merit and participation come from a published result (AJ-5)
   student_id: string;
   child: string | null; // as printed; null once erased
   admission_no: string | null;
@@ -375,7 +376,7 @@ export type RegisterRow = {
   sent: string | null; // the send-gate's state of the latest message to the family
 };
 
-export async function certificateRegister(db: Sql, actor: CertActor, filter: { type?: CertificateType | null; classId?: string | null }): Promise<RegisterRow[] | null> {
+export async function certificateRegister(db: Sql, actor: CertActor, filter: { type?: CertificateType | ResultCertType | null; classId?: string | null }): Promise<RegisterRow[] | null> {
   if (!isOffice(actor.role)) return null;
   const { rows } = await db.query(
     `select c.certificate_id, c.number, c.cert_type, c.student_id, c.printed ->> 'studentName' as child, c.printed ->> 'admissionNo' as admission_no, k.name as class_name,

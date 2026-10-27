@@ -537,6 +537,12 @@ ALLOWED_PERMISSIVE = (
         ("marking_marks", "marking_marks_tenant_isolation"),
         ("marking_report_links", "marking_report_links_tenant_isolation"),
         # c347 end
+        # aj-5 begin
+        # AJ-5 (publish and notify, merit and participation certificates): tenant isolation only; narrowed by the
+        # RESTRICTIVE policies required below.
+        ("exam_outputs", "exam_outputs_tenant_isolation"),
+        ("exam_certificates", "exam_certificates_tenant_isolation"),
+        # aj-5 end
     }
 )
 
@@ -1090,6 +1096,18 @@ REQUIRED_RESTRICTIVE = {
     ("marking_pages", "marking_pages_no_parent"),
     ("marking_marks", "marking_marks_no_parent"),
     # c347 end
+    # aj-5 begin
+    ("exam_outputs", "exam_outputs_readers"),
+    ("exam_outputs", "exam_outputs_made_by_office"),
+    ("exam_outputs", "exam_outputs_never_changed"),
+    ("exam_outputs", "exam_outputs_never_removed"),
+    ("exam_outputs", "exam_outputs_no_parent"),
+    ("exam_certificates", "exam_certificates_office"),
+    ("exam_certificates", "exam_certificates_made_by_office"),
+    ("exam_certificates", "exam_certificates_never_changed"),
+    ("exam_certificates", "exam_certificates_never_removed"),
+    ("exam_certificates", "exam_certificates_no_parent"),
+    # aj-5 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

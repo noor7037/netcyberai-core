@@ -3,13 +3,14 @@ import type { CertDoc, CertImage } from '@/lib/certificates/definitions';
 import { approxMeasure, renderCertificateSvg, type Measure } from '@/lib/certificates/render';
 import { siteUrl } from '@/lib/site-config';
 import { certDef, type CertificateType } from './certificate-rules';
+import { isResultCertType, resultCertDef, type ResultCertType } from './result-certificate-rules';
 
 // A certificate of the register drawn as the studio draws it (render.ts, imported), with the school's seal and the
 // signature of the person who signed it (C232 part A: the database chooses it per certificate; none means a line for
 // the principal's hand), and a QR code of the public verification page in the corner the studio keeps for its own QR.
 // Pure: the browser turns the SVG into the PDF (pdf.ts); the tests read the SVG.
 
-export type IssuedForPrint = { certificateId: string; type: CertificateType; number: string; issuedOn: string; token: string; printed: Record<string, string> };
+export type IssuedForPrint = { certificateId: string; type: CertificateType | ResultCertType; number: string; issuedOn: string; token: string; printed: Record<string, string> };
 // signatures: by certificate id, as public.certificate_signature_for() answered.
 export type Marks = { seal?: CertImage; signatures?: Record<string, CertImage> };
 
@@ -17,7 +18,8 @@ export type Marks = { seal?: CertImage; signatures?: Record<string, CertImage> }
 export const verifyUrl = (token: string): string => `${siteUrl}/verify/${encodeURIComponent(token)}`;
 
 export function certDocFor(c: IssuedForPrint, marks: Marks): CertDoc {
-  const def = certDef(c.type);
+  // A merit or participation certificate (AJ-5) is drawn with the studio's achievement certificate; its `kind` is in what it printed.
+  const def = isResultCertType(c.type) ? resultCertDef() : certDef(c.type);
   return {
     def,
     template: def.templates[0],

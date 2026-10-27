@@ -35,6 +35,9 @@ export default async function FamilyMyResultsPage() {
       <SubPageHeader back="/family" backLabel={w['fam.tab.home']} title={w['fam.marks.myResults']} tone="emerald" />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-my-results>
         <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.marks.myResultsLead']}</p>
+        <Link href="/family/results/progress" data-my-progress-link className="fam-card fam-press flex min-h-[44px] items-center bg-white p-4 text-base font-bold text-royal">
+          {w['fam.schoolProgress.open']}
+        </Link>
         <section className="fam-card fam-rise bg-white p-4 sm:p-5">
           <ExamTimetable w={w} lang={lang} papers={mine.examSchedule} heading="h2" />
         </section>
