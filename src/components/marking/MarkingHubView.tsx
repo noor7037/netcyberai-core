@@ -11,6 +11,7 @@ import type { MarkingOverview, SetupScreen } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
 import { inProgress, picturesNote } from '@/lib/marking/review-view';
 import { indiaDate } from '@/lib/time/india';
+import { OnlineTestPanel } from '@/components/online/OnlineTestPanel';
 import { ExceptionsList } from './ExceptionsList';
 import { ProgressPanel } from './ProgressPanel';
 import { problemWords, QuestionsEditor } from './QuestionsEditor';
@@ -187,6 +188,8 @@ export function MarkingHubView({ paperId }: { paperId: string }) {
       </Step>
 
       <Step n={2} id="scripts" title={t('mk.step.scripts')} tip={<InfoTip>{t('mk.step.scriptsHow')}</InfoTip>}>
+        {/* AQ-4 (C365): the paper sat online in the Family app; scripts of children who sat on paper are uploaded below. */}
+        <OnlineTestPanel paperId={paperId} onChanged={() => void loadOverview()} />
         <ScriptsUploader paperId={paperId} overview={overview} mayUpload={mayUpload} why={whyNot} onChanged={() => void loadOverview()} />
       </Step>
 

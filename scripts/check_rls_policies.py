@@ -543,6 +543,12 @@ ALLOWED_PERMISSIVE = (
         ("exam_outputs", "exam_outputs_tenant_isolation"),
         ("exam_certificates", "exam_certificates_tenant_isolation"),
         # aj-5 end
+        # aq-4 begin
+        # AQ-4 (C365, online tests): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("online_tests", "online_tests_tenant_isolation"),
+        ("online_attempts", "online_attempts_tenant_isolation"),
+        ("online_answers", "online_answers_tenant_isolation"),
+        # aq-4 end
     }
 )
 
@@ -1108,6 +1114,18 @@ REQUIRED_RESTRICTIVE = {
     ("exam_certificates", "exam_certificates_never_removed"),
     ("exam_certificates", "exam_certificates_no_parent"),
     # aj-5 end
+    # aq-4 begin
+    ("online_tests", "online_tests_readers"),
+    ("online_tests", "online_tests_writers"),
+    ("online_tests", "online_tests_changers"),
+    ("online_tests", "online_tests_removers"),
+    ("online_tests", "online_tests_no_parent"),
+    ("online_attempts", "online_attempts_readers"),
+    ("online_attempts", "online_attempts_changers"),
+    ("online_attempts", "online_attempts_no_parent"),
+    ("online_answers", "online_answers_readers"),
+    ("online_answers", "online_answers_no_parent"),
+    # aq-4 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

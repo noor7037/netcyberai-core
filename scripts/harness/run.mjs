@@ -36,6 +36,7 @@ import { visibleWords } from './visible-words.mjs';
 import { runFamilyMatrix, seedVideos } from './family.mjs';
 import { clearMarking, MK, seedMarking } from './marking-seed.mjs';
 import { markingScreens } from './marking-screens.mjs';
+import { onlineScreens } from './online-screens.mjs';
 import { clearOutputs, seedOutputs } from './outputs-seed.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -7212,6 +7213,11 @@ const SCREENS = [
   ['founder', 'am6-control-monitoring', '/control/monitoring', am6Monitor(false), am6PutBack],
   ['founder', 'am6-control-monitoring-hindi', '/control/monitoring', am6Monitor(true), async (page) => { await am6PutBack(); await backToEnglish(page); }],
   // am-6 end
+  // aq-4 begin
+  // Online tests (C365): a paper sat online on its marking hub, in English and Hindi, and an online script's typed
+  // answers in the review; the screens are in scripts/harness/online-screens.mjs.
+  ...onlineScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, speak, backToEnglish }),
+  // aq-4 end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
