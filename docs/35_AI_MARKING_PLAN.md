@@ -144,3 +144,7 @@ Two security reviews (#317, #318) found a script edited after approval reaching 
 again", and words on a script asking for full marks; each is closed (the PRs list them). Open decisions for the
 supervisor: C354 (no Aadhaar check on answer-sheet pages), how long scanned scripts are kept, and whether the office may
 end and remake a family's report link before the next publication.
+
+**Answered by the supervisor (2026-10-27, C230-AG):** C354 accepted, with the AI's reading flagging a page that looks like an
+identity document or is not an answer page; page pictures deleted 90 days after publication (a school may choose 30 to
+365); the office may end and remake a family's report link, audited. The build lead builds the three in one PR.

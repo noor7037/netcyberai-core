@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { familyClaims } from '@/lib/family/db';
 import { CheckedPaperView } from '@/components/family/CheckedPaperView';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { fill } from '@/lib/family/fill';
@@ -26,7 +27,7 @@ export default async function FamilyParentCheckedPaperPage({ params }: { params:
   const w = familyWords(lang, CHECKED_PAPER_KEYS);
   const child = page.children.find((c) => c.childId === params.childId);
   const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
-  const paper = child ? await schoolPaperFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId, params.paperId, { childView: false }) : null;
+  const paper = child ? await schoolPaperFor(familyClaims(page.session), links, child.childId, params.paperId, { childView: false }) : null;
   const subject = paper ? appSubjectFor(paper.subject) : null;
   const subjectName = paper ? (subject ? t(lang, `fam.subject.${subject}` as MessageKey) : paper.subject) : '';
   return (

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { familyClaims } from '@/lib/family/db';
 import { redirect } from 'next/navigation';
 import { ExamTimetable } from '@/components/family/ExamTimetable';
 import { SchoolText } from '@/components/family/SchoolText';
@@ -26,7 +27,7 @@ export default async function FamilyMyResultsPage() {
   const lang = page.childLang;
   const w = familyWords(lang, MY_RESULTS_KEYS);
   const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
-  const mine = await childResultsFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
+  const mine = await childResultsFor(familyClaims(page.session), links, child.childId);
   if (!mine) redirect('/family');
   const scored = (percent: number | null, grade: string | null) => (percent === null ? w['fam.school.resultNotComplete'] : grade ? `${percent}% · ${grade}` : `${percent}%`);
   return (

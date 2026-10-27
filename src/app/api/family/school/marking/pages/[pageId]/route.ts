@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { familyClaims } from '@/lib/family/db';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { familyRead, requireFamily } from '@/lib/family/request';
 import { activeLinks, PictureUnavailableError, schoolPagePicture } from '@/lib/family/school';
@@ -29,7 +30,7 @@ export async function GET(req: NextRequest, { params }: { params: { pageId: stri
   if (!parent && !read.child) return NOT_FOUND();
   let bytes: Uint8Array | null;
   try {
-    bytes = await schoolPagePicture({ accountId: g.session.accountId, tokenVersion: g.session.tokenVersion }, read.links, params.pageId, { childId: parent ? null : read.child!.childId });
+    bytes = await schoolPagePicture(familyClaims(g.session), read.links, params.pageId, { childId: parent ? null : read.child!.childId });
   } catch (e) {
     if (e instanceof PictureUnavailableError) return NextResponse.json({ error: 'unavailable' }, { status: 503, headers: { 'Cache-Control': 'no-store', 'Retry-After': '60', ...PRIVATE } });
     throw e;
