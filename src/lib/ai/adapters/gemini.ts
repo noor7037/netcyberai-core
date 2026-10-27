@@ -9,13 +9,17 @@ import { capabilities, type AdapterResult, type ConnectionTest, type TextAdapter
 // child's words go to it, Google's written confirmation or another provider.
 const URL = 'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions';
 
+// A Google API key ("AIza" and about 35 more characters; Google has issued longer ones) or the newer bound key
+// ("AQ." and more). Only a paste slip is refused here: whether the key works is the connection test's job.
+export const googleKeyLooksRight = (key: string): boolean => /^(AIza[0-9A-Za-z_-]{30,80}|AQ\.[0-9A-Za-z_.-]{20,300})$/.test(key);
+
 export const geminiAdapter: TextAdapter = {
   providerId: 'gemini',
   capability: 'text',
   termsNote: 'adults_only',
   needsKey: true,
   capabilities: capabilities(['text', 'vision', 'stream', 'json']),
-  keyLooksRight: (key) => /^AIza[0-9A-Za-z_-]{35}$/.test(key),
+  keyLooksRight: googleKeyLooksRight,
   streamText(request, onDelta): Promise<AdapterResult> {
     return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: true, includeUsage: true });
   },
