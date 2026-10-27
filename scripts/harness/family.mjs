@@ -8,6 +8,7 @@ import { createRequire } from 'node:module';
 import { SignJWT } from 'jose';
 import { MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
 import { seedOutputs } from './outputs-seed.mjs';
+import { clearAaravAttempt, ON, seedOnline } from './online-seed.mjs';
 
 // axe-core checks every picture against WCAG 2.1 A and AA; a serious or critical finding fails the run (07 §3).
 const AXE = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
@@ -95,6 +96,12 @@ export const FAMILY_SCREENS = [
   // AJ-5 (C230-AJ part 5): a child's progress report by exam type, in the parent area and the child's own view.
   ['linked', 'family-parent-progress', `/family/parent/progress/${LINKED_CHILD}`, { parent: true, child: LINKED_CHILD, settle: '[data-parent-progress] [data-progress-group]' }],
   ['linked', 'family-my-progress', '/family/results/progress', { child: LINKED_CHILD, settle: '[data-my-progress] [data-progress-group]' }],
+  // AQ-4 (C365): the school's online test in Study, its start screen, the test being sat (one answer given, so the
+  // palette shows both marks), and the done screen; each picture starts afresh (`reset`), since a child sits it once.
+  ['linked', 'family-school-tests', '/family/study', { child: LINKED_CHILD, settle: '[data-school-tests]' }],
+  ['linked', 'family-school-test-start', `/family/study/tests/${ON.test}`, { child: LINKED_CHILD, settle: '[data-test-start]' }],
+  ['linked', 'family-school-test-sitting', `/family/study/tests/${ON.test}`, { child: LINKED_CHILD, settle: '[data-test-start]', steps: [{ tap: '[data-test-start]', wait: '[data-test-question]' }, { tap: '[data-test-question] label' }, { wait: '[data-palette="answered"]' }, { wait: '[data-test-save="idle"]' }], reset: 'online' }],
+  ['linked', 'family-school-test-done', `/family/study/tests/${ON.test}`, { child: LINKED_CHILD, settle: '[data-test-start]', steps: [{ tap: '[data-test-start]', wait: '[data-test-question]' }, { tap: '[data-test-submit-open]', wait: '[data-test-confirm]' }, { tap: '[data-test-submit-yes]', wait: '[data-test-phase="done"]' }], reset: 'online' }],
   [null, 'report-link', `/results/${REPORT_KEY}`, { settle: '[data-report-state="open"]', pictures: true, langQuery: true }],
   [null, 'report-link-expired', `/results/${'x'.repeat(43)}`, { settle: '[data-report-state="expired"]', langQuery: true }],
   ...[['graph', 't01', 'graph'], ['number-line', 't02', 'number_line'], ['fraction', 't03', 'fraction_model'], ['geometry', 't04', 'geometry'], ['pendulum', 't05', 'simulation'], ['refraction', 't06', 'simulation']].map(
@@ -202,6 +209,8 @@ async function seedLinkedFamily(db) {
     `insert into marking_report_links (school_id, key_hash, exam_id, class_id, student_id, publication_version, made_by) values ($1, $2, $3, '00000000-0000-4000-8000-0000000c0051', '00000000-0000-4000-8000-000000500001', 1, $4)`,
     [school, createHash('sha256').update(REPORT_KEY).digest('hex'), MK.exam, principal]
   );
+  // AQ-4: an online test of 5-A open now (online-seed.mjs); Aarav has not started it.
+  await seedOnline(db, { school, principal, teacher: '00000000-0000-4000-8000-00000000a003' });
 }
 
 export async function runFamilyMatrix({ browser, base, db, secret, out, only }) {
@@ -249,6 +258,11 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
             await page.waitForTimeout(1600);
           }
           if (opts.tap) await page.locator(opts.tap).first().click().catch(() => errors.push(`${opts.tap} could not be tapped`));
+          // `steps`: taps in turn, each waiting for what it brings (AQ-4's test screens).
+          for (const step of opts.steps ?? []) {
+            if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
+            if (step.wait) await page.locator(step.wait).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${step.wait} never appeared`));
+          }
           // A full-page picture does not scroll, so a lazy picture below the fold would never load: load them all first.
           if (opts.pictures) {
             await page.evaluate(() => document.querySelectorAll('img[loading="lazy"]').forEach((img) => (img.loading = 'eager')));
@@ -305,7 +319,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           console.log(`${width} ${lang} ${motion} ${name}: ${problems.length ? problems.join('; ') : 'ok'}`);
           await context.close();
           if (opts.flags) await db.pg.query(`delete from control.app_flags where app = 'family' and reason = 'harness screen'`);
-          if (opts.reset) await db.pg.exec(opts.reset);
+          if (opts.reset === 'online') await clearAaravAttempt(db, 'a0000000-0000-4000-8000-000000000001');
+          else if (opts.reset) await db.pg.exec(opts.reset);
         }
       }
     }
