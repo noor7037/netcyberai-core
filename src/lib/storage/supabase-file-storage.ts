@@ -33,7 +33,7 @@ export async function probeFileStorage(): Promise<void> {
 }
 
 // One private bucket's store. S2 (C375): the Family app's tutor files live in their own private bucket, `family-tutor`
-// (supabase/migrations/20261028100000_s2_tutor.sql), reached only through src/lib/family/tutor-files.ts.
+// (supabase/migrations/20261027210308_s2_tutor.sql), reached only through src/lib/family/tutor-files.ts.
 function bucketStorage(BUCKET: 'documents' | 'family-tutor'): DirectUploadStorage {
   return {
     async put(key, bytes, contentType) {

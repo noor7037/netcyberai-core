@@ -5,7 +5,7 @@
 import type { Block } from './blocks';
 
 // A file the child attaches: a photo (PNG, JPEG, WebP) or a PDF, at most 10 MB, at most three to one question. The
-// private bucket refuses anything else too (supabase/migrations/20261028100000_s2_tutor.sql).
+// private bucket refuses anything else too (supabase/migrations/20261027210308_s2_tutor.sql).
 export const TUTOR_FILE_TYPES = ['image/png', 'image/jpeg', 'image/webp', 'application/pdf'] as const;
 export type TutorFileType = (typeof TUTOR_FILE_TYPES)[number];
 export const TUTOR_FILE_MAX_BYTES = 10 * 1024 * 1024;
