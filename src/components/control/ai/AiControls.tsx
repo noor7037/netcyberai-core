@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import type { AiOverview, Counts } from '@/lib/ai/control';
+import type { TermsNote } from '@/lib/ai/adapters/types';
 import { isMessageKey, type MessageKey } from '@/lib/i18n';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersTokenLooksRight } from '@/lib/ai/adapters/workers-key';
 
@@ -18,6 +19,13 @@ import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, worke
 type Data = AiOverview & { providerChoices: string[] };
 type Draft = { providerId: string; model: string; promptVersion: string; enabled: boolean; fallbackProvider: string; fallbackModel: string };
 
+// What the vendor's terms say for a product children use (C368): advice beside the switch, never a block.
+const TERMS_NOTE: Record<TermsNote, MessageKey> = {
+  minors_with_safeguards: 'control.ai.provider.termsNote.minors_with_safeguards',
+  no_under_13: 'control.ai.provider.termsNote.no_under_13',
+  adults_only: 'control.ai.provider.termsNote.adults_only',
+  no_bar_found: 'control.ai.provider.termsNote.no_bar_found',
+};
 const ERRORS = ['account_id_format', 'token_format', 'no_encryption_key', 'provider', 'key_format', 'terms_url', 'in_use', 'profile', 'model', 'prompt_version', 'incomplete', 'not_cleared_for_minors', 'cap', 'not_found', 'cannot_restore_key', 'request', 'aal2'];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ['no_key', 'not_testable'];
@@ -121,7 +129,11 @@ export function AiControls({ initial }: { initial: Data }) {
               <p className="font-bold">{p.providerId}</p>
               {!p.hasAdapter && <p>{t('control.ai.provider.noAdapter')}</p>}
               {p.capability === 'video' && <p data-ai-video-provider>{t('control.video.ai.provider')}</p>}
-              {p.capability !== 'video' && p.hasAdapter && !p.minorsEligible && <p>{t('control.ai.provider.notEligible')}</p>}
+              {p.capability !== 'video' && p.termsNote && (
+                <p data-ai-terms-note={p.termsNote} className="rounded-md border border-slate/15 bg-slate/5 p-2">
+                  {t(TERMS_NOTE[p.termsNote])}
+                </p>
+              )}
               {p.capability === 'video' ? null : p.clearedForMinors ? (
                 <>
                   <p>{t('control.ai.provider.cleared', { date: day(p.clearedAt), name: name(p.clearedByName) })}</p>

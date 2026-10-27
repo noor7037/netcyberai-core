@@ -1,19 +1,20 @@
 import { anthropicAdapter } from './anthropic';
+import { geminiAdapter } from './gemini';
 import { openaiAdapter, openaiSpeechAdapter } from './openai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
 import type { AdapterResult, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechResult, TextAdapter } from './types';
 
-export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TextAdapter } from './types';
+export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter } from './types';
 
-// The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, minors check,
+// The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, clearance,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
 // it does not exist in a production build: adapterFor() never returns it there, whatever the database says.
 export const STAND_IN_PROVIDER = 'stand-in';
 export const standInAdapter: TextAdapter = {
   providerId: STAND_IN_PROVIDER,
   capability: 'text',
-  minorsEligible: true,
+  termsNote: null,
   needsKey: false,
   vision: true,
   keyLooksRight: () => false,
@@ -26,9 +27,9 @@ export const standInAdapter: TextAdapter = {
   },
 };
 
-// Cloudflare Workers AI joined in C230-U and serves every profile for now. Gemini's adapter (./gemini.ts) is written but
-// not registered until Google answers whether an adult tool on a site children use is allowed under its terms.
-const REAL: readonly TextAdapter[] = [anthropicAdapter, openaiAdapter, workersAiAdapter];
+// Every text adapter the code has. Which one serves a profile, and whether it may carry a child's words, is Control's
+// choice (C368); Gemini joined the list for the founder's testing (C230-AO).
+const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, openaiAdapter, workersAiAdapter];
 
 // The build's own NODE_ENV is checked as well as the one passed, so no caller can switch the stand-in on in production.
 export function standInAllowed(env: Record<string, string | undefined> = process.env): boolean {
@@ -52,7 +53,7 @@ export function textAdapters(): readonly TextAdapter[] {
 export const standInSpeechAdapter: SpeechAdapter = {
   providerId: STAND_IN_PROVIDER,
   capability: 'speech_to_text',
-  minorsEligible: true,
+  termsNote: null,
   needsKey: false,
   async transcribe(request): Promise<SpeechResult> {
     return { ok: true, text: request.language === 'hi' ? 'प्रकाश संश्लेषण क्या है?' : 'What is photosynthesis?', tokensIn: 0, tokensOut: 0 };
@@ -75,7 +76,7 @@ export function speechAdapterFor(providerId: string, env: Record<string, string 
 export const standInModerationAdapter: ModerationAdapter = {
   providerId: STAND_IN_PROVIDER,
   capability: 'moderation',
-  minorsEligible: true,
+  termsNote: null,
   needsKey: false,
   async moderate(): Promise<ModerationResult> {
     return { ok: true, safe: true, categories: [], tokensIn: 0, tokensOut: 0 };

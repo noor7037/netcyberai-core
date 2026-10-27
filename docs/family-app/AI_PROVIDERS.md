@@ -27,9 +27,7 @@ Written by the supervisor on 2026-10-22 for Noor and the build lead. This page r
 | **Google Custom Search API** | Closed to new customers; ends 2027-01-01 ([summary](https://brave.com/learn/google-api-shutdown/)) | — | — | — | Not available |
 
 ## The chosen architecture
-The existing AI platform (`src/lib/ai/platform.ts`) stays as it is. Each feature names a **profile**, and Control chooses its provider, model and fallbacks. A provider serves a profile that carries a child's words only when two things are both true:
-- **In code:** its adapter is marked `minorsEligible`, set after reading the vendor's terms.
-- **In Control:** the founder has cleared it, with the terms link.
+The existing AI platform (`src/lib/ai/platform.ts`) stays as it is. Each feature names a **profile**, and Control chooses its provider, model and fallbacks. A provider serves a profile that carries a child's words only when **the founder has cleared it in Control**, with the terms link (C368, replacing the earlier code-side flag). Each adapter carries a `termsNote` from the table above, which Control shows beside the switch as advice; the person who clears a provider carries that decision, and the audit row records who.
 
 | Profile | Who uses it | Now (free) | Later (founder approves the spend) |
 |---|---|---|---|
@@ -40,7 +38,7 @@ The existing AI platform (`src/lib/ai/platform.ts`) stays as it is. Each feature
 | `copilot.draft`, `content.syllabus_extract` | Teachers, staff | Workers AI | Anthropic, or Gemini if Google confirms |
 | `parent_ai.home_help` | Parents, inside a school app | Workers AI | Same |
 
-**Gemini** has an adapter (never eligible for children), but it is **not configured** anywhere until Google confirms in writing that an adult-only, signed-in tool on a site children also use is allowed. One free provider for every profile also keeps setup to one account.
+**Gemini** is registered (C230-AO, C368). The founder's direction: during testing it may be cleared for children's words only on a **paid-tier key** and only with **synthetic personas**; before a real child's words go to it, Google's written confirmation or another provider. Control's note beside its switch says so.
 
 **Changed in code (C230-U):**
 - New adapters `workers-ai` (text, photos, speech) and `gemini` (text), on one shared Chat Completions core (`src/lib/ai/adapters/chat-completions.ts`).

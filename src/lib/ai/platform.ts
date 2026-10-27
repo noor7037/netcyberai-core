@@ -17,7 +17,7 @@ import { scrubRequest } from './preprocess';
 //
 //   1. the profile as Control set it (control.ai_profiles): off, or no provider or model → 'not_switched_on';
 //   2. the minors check: a profile that may carry a child's words runs only when its provider AND every fallback is
-//      cleared for minors in Control AND its adapter is eligible in code → otherwise 'not_cleared_for_minors';
+//      cleared for minors in Control (the one gate, C368) → otherwise 'not_cleared_for_minors';
 //   3. a usable provider: an adapter exists, and its key is set and opens with the server's key → else 'not_switched_on';
 //   4. the family's daily cap (Control's setting, read live), counted in the caller's transaction → 'cap_reached';
 //   5. the pre-processor removes every child identifier from the whole request;
@@ -224,13 +224,10 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
   const { rows: providerRows } = await db.query(`select provider_id, cleared_for_minors, enabled from control.ai_providers where provider_id = any($1::text[])`, [chain.map((l) => l.provider)]);
   const providers = new Map((providerRows as ProviderRow[]).map((p) => [p.provider_id, p]));
   if (profile.carriesChildWords || row.carries_child_words) {
-    // Every provider in the chain must be cleared in Control, and its adapter eligible in code. A text provider needs
-    // its adapter (as before); a provider with no speech adapter is not refused for that alone: it is skipped at step 3.
-    const cleared = chain.every((l) => {
-      const adapter = capableAdapter(profile.id, l.provider, env);
-      const eligible = adapter ? adapter.minorsEligible === true : capability !== 'text';
-      return providers.get(l.provider)?.cleared_for_minors === true && eligible;
-    });
+    // Every provider in the chain must be cleared in Control (C368: the founder's switch is the one gate). A text
+    // provider needs its adapter (as before); a provider with no speech adapter is not refused for that alone: it is
+    // skipped at step 3.
+    const cleared = chain.every((l) => providers.get(l.provider)?.cleared_for_minors === true && (capability !== 'text' || capableAdapter(profile.id, l.provider, env) !== null));
     if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
   }
   return { ok: true, profile, row, chain, providers };

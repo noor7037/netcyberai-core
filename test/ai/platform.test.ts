@@ -233,14 +233,17 @@ describe('deny: the minors check', () => {
     expect(await q(`select * from family.ai_daily`)).toHaveLength(0);
   });
 
-  it('a provider cleared in Control whose adapter is not eligible in code is refused (OpenAI, Gemini: C230-U)', async () => {
+  it('a provider the founder cleared in Control is used, whatever its terms note says (C368: the one gate)', async () => {
     for (const [provider, key] of [['openai', OPENAI_KEY], ['gemini', `AIza${'G'.repeat(35)}`]] as const) {
+      calls = [];
       await clear(provider);
       await useProfile(provider, 'test-model-b');
       await sealInto(provider, key);
-      expect(await run(), provider).toEqual({ ok: false, reason: 'not_cleared_for_minors' });
+      replies.push(() => openaiOk(['Plants make food from light.']));
+      expect(await run(), provider).toMatchObject({ ok: true, text: 'Plants make food from light.' });
+      expect(calls, provider).toHaveLength(1);
+      expect(calls[0].url, provider).toContain(provider === 'gemini' ? 'generativelanguage.googleapis.com' : 'api.openai.com');
     }
-    expect(calls).toHaveLength(0);
   });
 });
 

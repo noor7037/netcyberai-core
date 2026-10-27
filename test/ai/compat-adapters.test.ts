@@ -9,9 +9,9 @@ import { capableAdapter } from '@/lib/ai/platform';
 import { streamChatCompletions } from '@/lib/ai/adapters/chat-completions';
 import { httpError, openaiOk } from './streams';
 
-// C230-U: the providers added after reading each vendor's terms for a product used by children. Workers AI (open-weight
-// models, Cloudflare) may carry a child's words; Gemini (18+ only) and OpenAI (no one under 13) may not. Vendors are
-// replaced at fetch, so what each adapter sends is captured byte for byte. Made-up keys and text only.
+// C230-U: the providers added after reading each vendor's terms for a product used by children; since C368 what those
+// terms say is a note beside Control's switch, and the founder's clearance there is the one gate. Vendors are replaced
+// at fetch, so what each adapter sends is captured byte for byte. Made-up keys and text only.
 
 const ACCOUNT = 'a'.repeat(32);
 const TOKEN = `cfat_${'T'.repeat(36)}`;
@@ -42,20 +42,22 @@ const whole = (content: string, tokensIn = 13, tokensOut = 9, finish = 'stop') =
   new Response(JSON.stringify({ choices: [{ message: { content }, finish_reason: finish }], usage: { prompt_tokens: tokensIn, completion_tokens: tokensOut } }), { status: 200 });
 const sse = (lines: unknown[]) => new Response(lines.map((d) => `data: ${typeof d === 'string' ? d : JSON.stringify(d)}\n\n`).join(''), { status: 200, headers: { 'content-type': 'text/event-stream' } });
 
-describe('who may carry a child’s words (the code’s half of the minors check)', () => {
-  it('Workers AI and Anthropic may; OpenAI (under 13 forbidden) and Gemini (18+ only) may not', () => {
-    expect([workersAiAdapter, workersAiSpeechAdapter, anthropicAdapter].map((a) => a.minorsEligible)).toEqual([true, true, true]);
-    expect([openaiAdapter, openaiSpeechAdapter, geminiAdapter].map((a) => a.minorsEligible)).toEqual([false, false, false]);
+describe('what each vendor’s terms say (C368: a note beside Control’s switch, never a block in code)', () => {
+  it('each adapter carries the note read from its vendor’s terms', () => {
+    expect([workersAiAdapter, workersAiSpeechAdapter, anthropicAdapter].map((a) => a.termsNote)).toEqual(['no_bar_found', 'no_bar_found', 'minors_with_safeguards']);
+    expect([openaiAdapter, openaiSpeechAdapter, geminiAdapter].map((a) => a.termsNote)).toEqual(['no_under_13', 'no_under_13', 'adults_only']);
   });
 
-  it('the platform finds Workers AI by id, with the right capability per profile; Gemini is not registered yet', () => {
+  it('the platform finds each adapter by id, with the right capability per profile; Gemini is registered (C230-AO)', () => {
     expect(adapterFor('workers-ai')).toBe(workersAiAdapter);
     expect(speechAdapterFor('workers-ai')).toBe(workersAiSpeechAdapter);
     expect(capableAdapter('family.voice_input', 'workers-ai')?.capability).toBe('speech_to_text');
     expect(capableAdapter('family.resolver', 'workers-ai')?.capability).toBe('text');
     expect(capableAdapter('copilot.draft', 'workers-ai')?.capability).toBe('text');
-    // Parked until Google answers (AI_PROVIDERS.md): no profile can choose it, adult or child.
-    expect([adapterFor('gemini'), speechAdapterFor('gemini'), capableAdapter('copilot.draft', 'gemini')]).toEqual([null, null, null]);
+    expect(adapterFor('gemini')).toBe(geminiAdapter);
+    expect(capableAdapter('exams.read_pages', 'gemini')).toBe(geminiAdapter);
+    // Gemini has no speech to text here: it cannot be chosen for voice input.
+    expect([speechAdapterFor('gemini'), capableAdapter('family.voice_input', 'gemini')]).toEqual([null, null]);
   });
 });
 

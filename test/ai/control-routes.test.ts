@@ -196,6 +196,28 @@ describe('the minors check when choosing a provider', () => {
   });
 });
 
+describe('Control’s switch is the one gate for children’s words (C368)', () => {
+  it('Gemini: refused until cleared; once the founder clears it, AI marking’s reading accepts it; the audit row names him', async () => {
+    const readPages = { action: 'profile', profileId: 'exams.read_pages', providerId: 'gemini', model: 'gemini-2.5-flash', promptVersion: 'v2', enabled: false };
+    expect(await post(readPages)).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_cleared_for_minors' }) });
+    const page = await (await GET(req(undefined, founder))).json();
+    expect(page.providers.find((p: { providerId: string }) => p.providerId === 'gemini')).toMatchObject({ hasAdapter: true, termsNote: 'adults_only', clearedForMinors: false });
+    expect(await post({ action: 'clearance', providerId: 'gemini', cleared: true, termsUrl: 'https://ai.google.dev/gemini-api/terms' })).toEqual({ status: 200, body: { ok: true } });
+    const [audit] = await q(`select actor_user_id, after_state from audit_log where event_action = 'ai.provider_clearance' and target_id = 'gemini' order by audit_id desc limit 1`);
+    expect(audit.actor_user_id).toBe(FOUNDER);
+    expect(audit.after_state).toMatchObject({ providerId: 'gemini', cleared: true, clearedBy: FOUNDER, termsUrl: 'https://ai.google.dev/gemini-api/terms' });
+    expect(await post(readPages)).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select provider_id, model from control.ai_profiles where profile_id = 'exams.read_pages'`)).toEqual([{ provider_id: 'gemini', model: 'gemini-2.5-flash' }]);
+    const after = await (await GET(req(undefined, founder))).json();
+    expect(after.providers.find((p: { providerId: string }) => p.providerId === 'gemini')).toMatchObject({ clearedForMinors: true, clearedByName: 'Farid Founder' });
+    // An uncleared provider is still refused for a child-words profile (OpenAI is not cleared here).
+    expect(await post({ ...readPages, providerId: 'openai', model: 'test-model-b' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_cleared_for_minors' }) });
+    // Put back as the other tests expect it.
+    await post({ ...readPages, providerId: null, model: null });
+    expect(await post({ action: 'clearance', providerId: 'gemini', cleared: false })).toEqual({ status: 200, body: { ok: true } });
+  });
+});
+
 describe('every change is audited and undone in one step', () => {
   it('a profile change: before and after with ids only, and undo restores it', async () => {
     expect(await post({ action: 'profile', profileId: 'family.resolver', providerId: 'anthropic', model: 'test-model-c', promptVersion: 'v2', enabled: false })).toEqual({ status: 200, body: { ok: true } });

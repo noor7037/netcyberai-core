@@ -29,15 +29,20 @@ export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOu
 export interface TextAdapter {
   readonly providerId: string;
   readonly capability: 'text';
-  // Set here, in code, after reading the vendor's terms for a product used by children. Control's clearance
-  // (control.ai_providers.cleared_for_minors) is needed as well: both, or a child's words never go to this vendor.
-  readonly minorsEligible: boolean;
+  readonly termsNote: TermsNote | null;
   readonly needsKey: boolean;
   // Whether a message may carry photos (ChatMessage.images). A call with photos skips a provider that cannot.
   readonly vision: boolean;
   keyLooksRight(key: string): boolean;
   streamText(request: AdapterRequest, onDelta: (text: string) => void): Promise<AdapterResult>;
 }
+
+// What the supervisor found in a vendor's terms for a product children use (docs/family-app/AI_PROVIDERS.md,
+// 2026-10-22), shown in Control beside the provider's switch as advice (C368). It never blocks: the one gate for a
+// child's words is the founder's clearance in Control (control.ai_providers.cleared_for_minors, with the terms page,
+// who and when), and the person who clears a provider carries that decision. Null: nothing to say (the stand-in).
+export const TERMS_NOTES = ['minors_with_safeguards', 'no_under_13', 'adults_only', 'no_bar_found'] as const;
+export type TermsNote = (typeof TERMS_NOTES)[number];
 
 export const JSON_ONLY = 'Answer with one JSON object only, and nothing outside it.';
 
@@ -72,8 +77,7 @@ export type SpeechResult = { ok: true; text: string; tokensIn: number; tokensOut
 export interface SpeechAdapter {
   readonly providerId: string;
   readonly capability: 'speech_to_text';
-  // The code's half of the minors check, as for a text adapter; Control's clearance is needed as well.
-  readonly minorsEligible: boolean;
+  readonly termsNote: TermsNote | null;
   readonly needsKey: boolean;
   transcribe(request: SpeechRequest): Promise<SpeechResult>;
 }
@@ -97,8 +101,7 @@ export type ModerationResult = { ok: true; safe: boolean; categories: string[]; 
 export interface ModerationAdapter {
   readonly providerId: string;
   readonly capability: 'moderation';
-  // The code's half of the minors check, as for the others; Control's clearance is needed as well.
-  readonly minorsEligible: boolean;
+  readonly termsNote: TermsNote | null;
   readonly needsKey: boolean;
   moderate(request: ModerationRequest): Promise<ModerationResult>;
 }

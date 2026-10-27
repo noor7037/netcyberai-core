@@ -34,7 +34,7 @@ const WORKERS_TEMPERATURE = 0.3;
 export const workersAiAdapter: TextAdapter = {
   providerId: 'workers-ai',
   capability: 'text',
-  minorsEligible: true,
+  termsNote: 'no_bar_found',
   needsKey: true,
   vision: true,
   keyLooksRight: (key) => splitWorkersKey(key) !== null,
@@ -56,7 +56,7 @@ export const workersModelLooksRight = (model: string) => MODEL.test(model);
 export const workersAiSpeechAdapter: SpeechAdapter = {
   providerId: 'workers-ai',
   capability: 'speech_to_text',
-  minorsEligible: true,
+  termsNote: 'no_bar_found',
   needsKey: true,
   async transcribe(request): Promise<SpeechResult> {
     const k = splitWorkersKey(request.apiKey);
@@ -105,7 +105,7 @@ export function guardVerdict(response: unknown): { safe: boolean; categories: st
 export const workersAiModerationAdapter: ModerationAdapter = {
   providerId: 'workers-ai',
   capability: 'moderation',
-  minorsEligible: true,
+  termsNote: 'no_bar_found',
   needsKey: true,
   async moderate(request): Promise<ModerationResult> {
     const k = splitWorkersKey(request.apiKey);

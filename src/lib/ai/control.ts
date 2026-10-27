@@ -1,7 +1,7 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
-import { adapterFor, keyedProviderFor, standInAllowed, textAdapters, STAND_IN_PROVIDER } from './adapters';
+import { adapterFor, keyedProviderFor, speechAdapterFor, moderationAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type TermsNote } from './adapters';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersModelLooksRight, workersTokenLooksRight } from './adapters/workers-ai';
 import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
@@ -48,7 +48,8 @@ export type AiOverview = {
     hasAdapter: boolean;
     // 'video': a content provider (the video finder's YouTube, M2-5): a key and a test, never a profile's choice.
     capability: 'text' | 'video' | null;
-    minorsEligible: boolean;
+    // What the vendor's terms say for a product children use, shown beside the switch as advice (C368).
+    termsNote: TermsNote | null;
     clearedForMinors: boolean;
     termsUrl: string | null;
     clearedAt: string | null;
@@ -133,13 +134,13 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     today,
     month,
     providers: providers.rows.map((r) => {
-      const adapter = adapterFor(r.provider_id);
+      const adapter = adapterFor(r.provider_id) ?? speechAdapterFor(r.provider_id) ?? moderationAdapterFor(r.provider_id);
       const keyed = keyedProviderFor(r.provider_id);
       return {
         providerId: r.provider_id,
         hasAdapter: keyed !== null,
         capability: keyed?.capability ?? null,
-        minorsEligible: adapter?.minorsEligible === true,
+        termsNote: adapter?.termsNote ?? null,
         clearedForMinors: r.cleared_for_minors === true,
         termsUrl: r.cleared_terms_url ?? null,
         clearedAt: iso(r.cleared_at),
@@ -306,8 +307,6 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   if (links.some((l) => l.provider === 'workers-ai' && (l.model === null || !workersModelLooksRight(l.model)))) return { ok: false, code: 'model' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
   if ((next.providerId === null) !== (next.model === null) || (next.enabled && next.providerId === null)) return { ok: false, code: 'incomplete' };
-  // The code's half of the minors check; the database adds Control's clearance (its trigger) below.
-  if (profile.carriesChildWords && providers.some((p) => capableAdapter(profile.id, p)?.minorsEligible !== true)) return { ok: false, code: 'not_cleared_for_minors' };
   const before = await profileSettings(db, profileId);
   if (!before) return { ok: false, code: 'profile' };
   try {
@@ -316,6 +315,8 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
       [profileId, next.providerId, next.model, JSON.stringify(next.fallback), next.promptVersion, next.enabled, by.userId]
     );
   } catch (err) {
+    // The minors check (C368: the one gate): the database refuses a child-words profile on a provider the founder has
+    // not cleared in Control.
     if (isCheckViolation(err)) return { ok: false, code: 'not_cleared_for_minors' };
     throw err;
   }

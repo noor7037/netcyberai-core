@@ -5,12 +5,12 @@ import { SPEECH_TIMEOUT_MS, type AdapterResult, type SpeechAdapter, type SpeechR
 const URL = 'https://api.openai.com/v1/chat/completions';
 
 // Not for children (C230-U): OpenAI's Business Terms forbid letting anyone under 13 use the services and sending
-// personal information of a child under 13, and the Family app serves children from Class 1. So no profile that
-// carries a child's words may run on OpenAI, whatever Control says; it stays available for adult tools.
+// personal information of a child under 13, and the Family app serves children from Class 1. Control shows that note
+// beside its switch (C368); whether a child's words may go to it is the founder's clearance there.
 export const openaiAdapter: TextAdapter = {
   providerId: 'openai',
   capability: 'text',
-  minorsEligible: false,
+  termsNote: 'no_under_13',
   needsKey: true,
   vision: true,
   keyLooksRight: (key) => /^sk-[\x21-\x7e]{20,300}$/.test(key),
@@ -25,11 +25,11 @@ export const openaiAdapter: TextAdapter = {
 const TRANSCRIBE_URL = 'https://api.openai.com/v1/audio/transcriptions';
 const EXTENSION: Record<string, string> = { 'audio/webm': 'webm', 'audio/ogg': 'ogg', 'audio/mp4': 'mp4', 'audio/wav': 'wav' };
 
-// Not for children either (C230-U, as above): voice input from a child goes to a provider whose terms allow it.
+// The same terms and note as the text adapter above.
 export const openaiSpeechAdapter: SpeechAdapter = {
   providerId: 'openai',
   capability: 'speech_to_text',
-  minorsEligible: false,
+  termsNote: 'no_under_13',
   needsKey: true,
   async transcribe(request): Promise<SpeechResult> {
     const form = new FormData();
