@@ -9,9 +9,7 @@ const URL = 'https://api.anthropic.com/v1/messages';
 export const anthropicAdapter: TextAdapter = {
   providerId: 'anthropic',
   capability: 'text',
-  // The vendor's commercial terms allow a product used by minors with the operator's own safeguards (the
-  // pre-processor, caps, checked output). Control's clearance by the founder, with the terms page read, is still needed.
-  minorsEligible: true,
+  termsNote: 'minors_with_safeguards',
   needsKey: true,
   vision: true,
   keyLooksRight: (key) => /^sk-ant-[\x21-\x7e]{20,300}$/.test(key),
