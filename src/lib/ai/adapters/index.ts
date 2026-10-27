@@ -1,11 +1,13 @@
 import { anthropicAdapter } from './anthropic';
 import { geminiAdapter } from './gemini';
 import { openaiAdapter, openaiSpeechAdapter } from './openai';
+import { openaiCompatibleAdapter } from './openai-compatible';
+import { vertexAiAdapter } from './vertex-ai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
-import type { AdapterResult, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechResult, TextAdapter } from './types';
+import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
-export type { AdapterRequest, AdapterResult, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter } from './types';
+export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, clearance,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -16,7 +18,7 @@ export const standInAdapter: TextAdapter = {
   capability: 'text',
   termsNote: null,
   needsKey: false,
-  vision: true,
+  capabilities: capabilities(['text', 'vision', 'stream', 'json']),
   keyLooksRight: () => false,
   async streamText(request, onDelta): Promise<AdapterResult> {
     const asked = request.messages.filter((m) => m.role === 'user').length;
@@ -28,8 +30,9 @@ export const standInAdapter: TextAdapter = {
 };
 
 // Every text adapter the code has. Which one serves a profile, and whether it may carry a child's words, is Control's
-// choice (C368); Gemini joined the list for the founder's testing (C230-AO).
-const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, openaiAdapter, workersAiAdapter];
+// choice (C368); Gemini joined the list for the founder's testing (C230-AO); Vertex AI and the OpenAI-compatible adapter
+// at the founder's own address in G1 (C369).
+const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, openaiAdapter, openaiCompatibleAdapter, vertexAiAdapter, workersAiAdapter];
 
 // The build's own NODE_ENV is checked as well as the one passed, so no caller can switch the stand-in on in production.
 export function standInAllowed(env: Record<string, string | undefined> = process.env): boolean {
@@ -55,6 +58,7 @@ export const standInSpeechAdapter: SpeechAdapter = {
   capability: 'speech_to_text',
   termsNote: null,
   needsKey: false,
+  capabilities: capabilities(['stt']),
   async transcribe(request): Promise<SpeechResult> {
     return { ok: true, text: request.language === 'hi' ? 'प्रकाश संश्लेषण क्या है?' : 'What is photosynthesis?', tokensIn: 0, tokensOut: 0 };
   },
@@ -78,6 +82,7 @@ export const standInModerationAdapter: ModerationAdapter = {
   capability: 'moderation',
   termsNote: null,
   needsKey: false,
+  capabilities: capabilities(['text']),
   async moderate(): Promise<ModerationResult> {
     return { ok: true, safe: true, categories: [], tokensIn: 0, tokensOut: 0 };
   },
@@ -98,4 +103,14 @@ const CONTENT: readonly KeyedProvider[] = [youtubeAdapter];
 
 export function keyedProviderFor(providerId: string, env: Record<string, string | undefined> = process.env): KeyedProvider | null {
   return adapterFor(providerId, env) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
+}
+
+// ---- capabilities (G1, C369) -----------------------------------------------------------------------------------------
+
+// Everything a provider's adapters declare between them (its text, speech and safety-check adapters), for Control to
+// show beside the provider. A feature is checked against the one adapter of its own capability (platform.ts), not this.
+export function providerCapabilities(providerId: string, env: Record<string, string | undefined> = process.env): Capabilities | null {
+  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env)].filter((a) => a !== null);
+  if (found.length === 0) return null;
+  return capabilities(CAPABILITIES.filter((c: Capability) => found.some((a) => a.capabilities[c])));
 }

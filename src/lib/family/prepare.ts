@@ -177,7 +177,7 @@ export async function prepareNext(run: Run, by: { userId: string }, versionId: s
 export type PrepareJobPayload = { versionId: string; chapterKeys: string[]; by: string; runId?: string; outcomes: { key: string; language: string; outcome: PrepareOutcome; detail?: PrepareDetail }[] };
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const LINE_KEY = /^[a-z0-9][a-z0-9._-]{2,119}$/;
-const STOP: readonly PrepareOutcome[] = ['not_switched_on', 'not_cleared_for_minors'];
+const STOP: readonly PrepareOutcome[] = ['not_switched_on', 'not_cleared_for_minors', 'not_capable'];
 
 export function preparePayload(raw: unknown): PrepareJobPayload | null {
   const p = raw as Partial<PrepareJobPayload> | null;

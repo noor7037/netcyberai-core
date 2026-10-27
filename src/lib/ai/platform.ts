@@ -1,13 +1,17 @@
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
+import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type Capability as AdapterCapability, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
 import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { dailyLimit, takeDailyRequest } from './daily-cap';
 import { scrubRequest } from './preprocess';
+import { admit, type Admission } from './gateway/circuit';
+import { recordAttempts, type Attempt } from './gateway/ledger';
+import { classifyFailure, ranItsTime } from './gateway/taxonomy';
+import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, MODERATION_TIMEOUT_MS } from './adapters/types';
 
 // The AI platform's public interface (docs/family-app/03 §7, C249). The ONLY AI module family code may import
 // (scripts/check_family_boundary.py). A feature profile runs in three steps, so no database connection is held while a
@@ -21,9 +25,13 @@ import { scrubRequest } from './preprocess';
 //   3. a usable provider: an adapter exists, and its key is set and opens with the server's key → else 'not_switched_on';
 //   4. the family's daily cap (Control's setting, read live), counted in the caller's transaction → 'cap_reached';
 //   5. the pre-processor removes every child identifier from the whole request;
-//   6. the chain is tried in order until one answers; a provider that fails before any text is streamed hands over
-//      to the next → 'failed' when none answers;
-//   7. the call is metered with counts and tokens only (control.count_ai_usage). No prompt or answer is stored or logged.
+//   6. the chain (the route: Primary, Backup 1, Backup 2) is tried in order until one answers. A provider whose circuit
+//      is open is skipped (src/lib/ai/gateway/circuit.ts). A retryable failure before any text is streamed hands over
+//      to the next; a refusal, a wrong key or request, or any failure once text has streamed ends it there
+//      (src/lib/ai/gateway/taxonomy.ts) → 'failed' when none answers;
+//   7. the call is metered with counts and tokens only (control.count_ai_usage), and each attempt is one ledger row
+//      (control.ai_usage_ledger, src/lib/ai/gateway/ledger.ts) that also moves the provider's circuit. No prompt or
+//      answer is stored or logged.
 //
 // `db` is the caller's family_app client, inside withFamilyContext. The answer is data, never code: callers parse it
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
@@ -48,21 +56,23 @@ export type Capability = 'text' | 'speech_to_text' | 'moderation';
 // control profile runs only for Control's staff.
 // `callMs`: a profile whose answer is long (many page pictures in, a long JSON out) gives its whole chain this long,
 // shared by every provider tried (C349). Without it each provider gets the adapter's own limit.
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number };
+// `needs`: what the chosen adapter must declare beyond its capability's own (G1, C369), for example `vision` for a
+// profile that reads photos. Refused when saved in Control (control.ts) and at run time (checkProfile), never a no-op.
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; needs?: readonly AdapterCapability[] };
 
 // Code-defined: which profiles exist, whether a child's words may pass, and which capability each one uses. Control
 // sets each one's provider, model, prompt version and on switch; never this list. M2 (C275): the homework helper reads a
 // photo, voice input hears a child (speech_to_text, M2-7, C281: prepareTranscription below).
 export const PROFILES: readonly AiProfile[] = [
   { id: 'family.resolver', carriesChildWords: true, capability: 'text', audience: 'family' },
-  { id: 'family.homework', carriesChildWords: true, capability: 'text', audience: 'family' },
+  { id: 'family.homework', carriesChildWords: true, capability: 'text', audience: 'family', needs: ['vision'] },
   { id: 'family.voice_input', carriesChildWords: true, capability: 'speech_to_text', audience: 'family' },
   // W2 (C314): the safety check (Llama Guard) on a child's typed words and on every live answer before it is shown.
   // It takes no daily-cap place of its own: it runs only beside a call that already took one.
   { id: 'family.moderation', carriesChildWords: true, capability: 'moderation', audience: 'family' },
   // C230-AB: a parent's photos of a book's contents pages, read for the chapter and topic names of their child's own
   // syllabus (parent mode). A printed book's titles, never a child's words; the parent checks every line before use.
-  { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family' },
+  { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family', needs: ['vision'] },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -77,8 +87,8 @@ export const PROFILES: readonly AiProfile[] = [
   // the pages are matched to the class in code (src/lib/marking/matching.ts). Their limit is the school's monthly pages
   // (exams.ai_marking_pages), checked when pages are uploaded. They run in the school's marking jobs, one a run of the
   // job runner (src/lib/jobs/runner.ts), so their chain may take longer than a person waits.
-  { id: 'exams.read_pages', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000 },
-  { id: 'exams.mark', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 200_000 },
+  { id: 'exams.read_pages', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000, needs: ['vision'] },
+  { id: 'exams.mark', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 200_000, needs: ['vision'] },
   // AQ-2 (C363): writes a question paper's questions for the chapters and topics, class level, subject, language, kinds,
   // marks and difficulty a plan names (src/lib/papers/scope.ts), with the paper's other questions to avoid; never a
   // child's name or words. It runs in the school's papers.make job (a long job), at most two rounds of this time.
@@ -95,6 +105,21 @@ export function capableAdapter(profileId: string, providerId: string, env: Recor
   return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
 }
 
+// Everything a profile needs its adapter to declare (G1, C369): its capability's own (text; stt for voice input; text
+// for the safety check) and the profile's `needs`.
+export function profileNeeds(profile: AiProfile): AdapterCapability[] {
+  return [profile.capability === 'speech_to_text' ? 'stt' : 'text', ...(profile.needs ?? [])];
+}
+
+// What the chosen provider's adapter lacks of what the profile needs: [] when it has everything, or when the code has
+// no adapter of the profile's capability for it (that is a different refusal: the provider cannot be chosen at all).
+export function missingCapabilities(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): AdapterCapability[] {
+  const profile = profileById(profileId);
+  const adapter = profile ? capableAdapter(profile.id, providerId, env) : null;
+  if (!profile || !adapter) return [];
+  return profileNeeds(profile).filter((c) => !adapter.capabilities[c]);
+}
+
 export type AiContext = {
   accountId: string;
   childFirstNames: string[];
@@ -107,7 +132,9 @@ export type AiRequest = {
   maxTokens?: number;
   responseFormat?: 'json';
 };
-export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'failed';
+// 'not_capable' (G1, C369): a provider in the chain lacks something the profile needs (Control refuses saving that;
+// this holds if the code's declarations change after it was saved).
+export type AiRefusal = 'not_switched_on' | 'cap_reached' | 'not_cleared_for_minors' | 'not_capable' | 'failed';
 export type AiResult = { ok: true; text: string; tokensIn: number; tokensOut: number; provider: string; model: string; finish?: string } | { ok: false; reason: AiRefusal };
 export type { ChatMessage, ChatImage };
 
@@ -116,11 +143,12 @@ export const REFUSAL_MESSAGE: Record<AiRefusal, MessageKey> = {
   not_switched_on: 'ai.not_switched_on',
   cap_reached: 'ai.cap_reached',
   not_cleared_for_minors: 'ai.not_cleared_for_minors',
+  not_capable: 'ai.not_capable',
   failed: 'ai.failed',
 };
 
-type ProfileRow = { provider_id: string | null; model: string | null; fallback: unknown; prompt_version: string; max_output_tokens: number; enabled: boolean; carries_child_words: boolean };
-type ProviderRow = { provider_id: string; cleared_for_minors: boolean; enabled: boolean };
+type ProfileRow = { provider_id: string | null; model: string | null; fallback: unknown; prompt_version: string; max_output_tokens: number; enabled: boolean; carries_child_words: boolean; revision_id: string | number | null };
+type ProviderRow = { provider_id: string; cleared_for_minors: boolean; enabled: boolean; base_url: string | null };
 type Link = { provider: string; model: string };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -132,7 +160,7 @@ export function profileById(id: string): AiProfile | null {
 
 async function profileRow(db: Sql, id: ProfileId): Promise<ProfileRow | null> {
   const { rows } = await db.query(
-    `select provider_id, model, fallback, prompt_version, max_output_tokens, enabled, carries_child_words from control.ai_profiles where profile_id = $1`,
+    `select provider_id, model, fallback, prompt_version, max_output_tokens, enabled, carries_child_words, revision_id from control.ai_profiles where profile_id = $1`,
     [id]
   );
   return (rows[0] as ProfileRow | undefined) ?? null;
@@ -170,31 +198,61 @@ async function count(db: Sql, day: string, profile: string, link: Link, c: { req
   ]);
 }
 
-type Ready<A> = { link: Link; adapter: A; apiKey: string };
+// `position`: the link's place in the route (0 Primary, 1 Backup 1, 2 Backup 2), for the ledger. `baseUrl`: the address
+// the founder set for the provider, for the adapter whose address is his (G1); else absent.
+type Ready<A> = { link: Link; adapter: A; apiKey: string; position: number; baseUrl?: string };
 
 // Opens each provider's key inside this call only. A provider without an adapter (of the capability `find` looks up),
 // a key, or a key that opens is left out of the chain.
 async function usableLinks<A extends { needsKey: boolean }>(db: Sql, chain: Link[], providers: Map<string, ProviderRow>, env: Record<string, string | undefined>, find: (providerId: string) => A | null): Promise<Ready<A>[]> {
   const ready: Ready<A>[] = [];
   const k = aiEncryptionKey(env);
-  for (const link of chain) {
+  for (const [position, link] of chain.entries()) {
     const adapter = find(link.provider);
     const provider = providers.get(link.provider);
     if (!adapter || !provider?.enabled) continue;
+    const at = provider.base_url ? { baseUrl: provider.base_url } : {};
     if (!adapter.needsKey) {
-      ready.push({ link, adapter, apiKey: '' });
+      ready.push({ link, adapter, apiKey: '', position, ...at });
       continue;
     }
     if (!k) continue;
     const { rows } = await db.query(`select ciphertext, iv, tag, key_version from control.ai_sealed_credential($1)`, [link.provider]);
     if (!rows[0]) continue;
     try {
-      ready.push({ link, adapter, apiKey: unsealAiKey(k, link.provider, rows[0] as SealedRow) });
+      ready.push({ link, adapter, apiKey: unsealAiKey(k, link.provider, rows[0] as SealedRow), position, ...at });
     } catch {
       // Sealed with another key version, or the row was changed: this provider cannot be used until its key is set again.
     }
   }
   return ready;
+}
+
+// The circuits, in the caller's prepare transaction: a provider whose circuit is open is left out, as a skipped
+// attempt for the ledger; one past its cool-down goes as the half-open trial.
+type Gated<A> = { admitted: (Ready<A> & { gate: Admission })[]; skipped: Attempt[] };
+async function gateLinks<A>(db: Sql, ready: Ready<A>[]): Promise<Gated<A>> {
+  const admitted: (Ready<A> & { gate: Admission })[] = [];
+  const skipped: Attempt[] = [];
+  for (const r of ready) {
+    const gate = await admit(db, r.link.provider, r.link.model);
+    if (gate === 'open') skipped.push(skippedAttempt(r, 'skipped_open_circuit'));
+    else admitted.push({ ...r, gate });
+  }
+  return { admitted, skipped };
+}
+function skippedAttempt(r: { link: Link; position: number }, outcome: 'skipped_open_circuit' | 'skipped_deadline'): Attempt {
+  return { provider: r.link.provider, model: r.link.model, position: r.position, outcome, circuit: 'none', latencyMs: null, tokensIn: 0, tokensOut: 0, streamed: false };
+}
+// The ledger's ids for a call: the day, the profile and the route revision it ran on.
+type LedgerOf = { day: string; profileId: string; revisionId: string | null };
+const ledgerOf = (ctx: AiContext, profile: AiProfile, row: ProfileRow): LedgerOf => ({ day: ctx.day, profileId: profile.id, revisionId: row.revision_id === null || row.revision_id === undefined ? null : String(row.revision_id) });
+// One attempt that came back: an answer, or a failure in its class.
+function attemptOf(r: { link: Link; position: number }, result: { ok: true; tokensIn: number; tokensOut: number } | { ok: false; failure: string; status?: number }, at: { streamed: boolean; elapsedMs: number; limitMs: number }): { attempt: Attempt; retryable: boolean } {
+  const base = { provider: r.link.provider, model: r.link.model, position: r.position, latencyMs: at.elapsedMs, streamed: at.streamed };
+  if (result.ok) return { attempt: { ...base, outcome: 'ok', circuit: 'success', tokensIn: result.tokensIn, tokensOut: result.tokensOut }, retryable: false };
+  const c = classifyFailure(result, { streamed: at.streamed, timedOut: ranItsTime(at.elapsedMs, at.limitMs) });
+  return { attempt: { ...base, outcome: c.outcome, circuit: c.circuit, tokensIn: 0, tokensOut: 0 }, retryable: c.retryable };
 }
 
 // Usage to add to Control's counts once the call is over (counts and tokens only).
@@ -221,7 +279,7 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
   if (!row || !row.enabled || !chain) return { ok: false, reason: 'not_switched_on' };
 
   // 2. The minors check, on the whole chain, before anything else is looked at.
-  const { rows: providerRows } = await db.query(`select provider_id, cleared_for_minors, enabled from control.ai_providers where provider_id = any($1::text[])`, [chain.map((l) => l.provider)]);
+  const { rows: providerRows } = await db.query(`select provider_id, cleared_for_minors, enabled, base_url from control.ai_providers where provider_id = any($1::text[])`, [chain.map((l) => l.provider)]);
   const providers = new Map((providerRows as ProviderRow[]).map((p) => [p.provider_id, p]));
   if (profile.carriesChildWords || row.carries_child_words) {
     // Every provider in the chain must be cleared in Control (C368: the founder's switch is the one gate). A text
@@ -230,6 +288,9 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
     const cleared = chain.every((l) => providers.get(l.provider)?.cleared_for_minors === true && (capability !== 'text' || capableAdapter(profile.id, l.provider, env) !== null));
     if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
   }
+  // The capability check (G1, C369), on the whole chain: a provider whose adapter lacks what the profile needs is a
+  // refusal with its own reason, never a call sent to fail or a provider quietly skipped.
+  if (chain.some((l) => missingCapabilities(profile.id, l.provider, env).length > 0)) return { ok: false, reason: 'not_capable' };
   return { ok: true, profile, row, chain, providers };
 }
 
@@ -256,8 +317,15 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
 
   // 3. A provider that can answer (and, for a request with photos, that can see them).
   const withPhotos = request.messages.some((m) => (m.images?.length ?? 0) > 0);
-  const ready = (await usableLinks(db, chain, providers, env, (p) => adapterFor(p, env))).filter((r) => !withPhotos || r.adapter.vision);
-  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const usable = (await usableLinks(db, chain, providers, env, (p) => adapterFor(p, env))).filter((r) => !withPhotos || r.adapter.capabilities.vision);
+  if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const ledger = ledgerOf(ctx, profile, row);
+  // Every provider of the route has its circuit open: nothing is sent and no cap place is taken.
+  const { admitted: ready, skipped } = await gateLinks(db, usable);
+  if (ready.length === 0) {
+    await recordAttempts(db, ledger, skipped);
+    return { ok: false, reason: 'failed' };
+  }
 
   // 4. The family's daily cap (a school or Control profile's limit is checked by its caller).
   if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
@@ -269,24 +337,34 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
   let sent = false;
   const send = async (onDelta: (text: string) => void = () => {}): Promise<SentText> => {
     const usage: { link: Link; counts: Counts }[] = [];
+    const attempts: Attempt[] = [];
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
+      await recordAttempts(tx, ledger, attempts);
     };
     // One cap place, one request: a prepared call never goes out twice.
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
     sent = true;
-    // A profile with its own time (callMs) shares it across the chain: each provider gets what is left, and none is
-    // tried once less than CHAIN_MIN_MS is left.
+    attempts.push(...skipped);
+    // A profile with its own time (callMs) is the route's deadline, shared across the chain: each provider gets what is
+    // left less CHAIN_MIN_MS for each provider still behind it, so a Primary that times out leaves its backups their
+    // turn inside the deadline; none is tried once less than CHAIN_MIN_MS is left.
     const deadline = profile.callMs ? Date.now() + profile.callMs : null;
-    // 6. Down the chain until one answers.
-    for (const { link, adapter, apiKey } of ready) {
+    // 6. Down the chain until one answers, or a failure that may not go on to the next.
+    for (const [i, r] of ready.entries()) {
+      const { link, adapter, apiKey, baseUrl } = r;
       const left = deadline === null ? null : deadline - Date.now();
-      if (left !== null && left < CHAIN_MIN_MS) break;
+      if (left !== null && left < CHAIN_MIN_MS) {
+        attempts.push(...ready.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
+        break;
+      }
+      const limitMs = left === null ? null : Math.max(CHAIN_MIN_MS, left - (ready.length - 1 - i) * CHAIN_MIN_MS);
       let streamed = false;
       let result: AdapterResult;
+      const began = Date.now();
       try {
-        const timeout = left === null ? {} : { timeoutMs: left };
-        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat, ...timeout }, (piece) => {
+        const timeout = limitMs === null ? {} : { timeoutMs: limitMs };
+        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat, ...timeout, ...(baseUrl ? { baseUrl } : {}) }, (piece) => {
           streamed = true;
           onDelta(piece);
         });
@@ -294,13 +372,16 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
         // An adapter never throws by design; if one did (or the caller's onDelta did), the call is still counted.
         result = { ok: false, failure: 'network' };
       }
+      const tried = attemptOf(r, result, { streamed, elapsedMs: Date.now() - began, limitMs: limitMs ?? CALL_TIMEOUT_MS });
+      attempts.push(tried.attempt);
       if (result.ok) {
         usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
         return { result: { ok: true, text: result.text, tokensIn: result.tokensIn, tokensOut: result.tokensOut, provider: link.provider, model: link.model, ...(result.finish ? { finish: result.finish } : {}) }, record };
       }
       usage.push({ link, counts: { requests: 1, failures: 1 } });
-      // Text already shown cannot be taken back: a second provider's answer would be stitched onto it.
-      if (streamed) break;
+      // A refusal, a wrong key or request, or text already shown (a second provider's answer would be stitched onto
+      // it): the answer ends here.
+      if (!tried.retryable) break;
     }
     return { result: { ok: false, reason: 'failed' }, record };
   };
@@ -326,11 +407,17 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
   const env = process.env;
   const checked = await checkProfile(db, ctx, profileId, 'speech_to_text', env);
   if (!checked.ok) return checked;
-  const { profile, chain, providers } = checked;
+  const { profile, row, chain, providers } = checked;
 
-  // 3. A provider that can hear: one without a speech adapter is skipped.
-  const ready = await usableLinks(db, chain, providers, env, (p) => speechAdapterFor(p, env));
-  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+  // 3. A provider that can hear: one without a speech adapter is skipped, and so is one whose circuit is open.
+  const usable = await usableLinks(db, chain, providers, env, (p) => speechAdapterFor(p, env));
+  if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const ledger = ledgerOf(ctx, profile, row);
+  const { admitted: ready, skipped } = await gateLinks(db, usable);
+  if (ready.length === 0) {
+    await recordAttempts(db, ledger, skipped);
+    return { ok: false, reason: 'failed' };
+  }
 
   // 4. The family's daily cap.
   if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
@@ -338,26 +425,37 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
   let sent = false;
   const send = async (): Promise<SentTranscript> => {
     const usage: { link: Link; counts: Counts }[] = [];
+    const attempts: Attempt[] = [];
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
+      await recordAttempts(tx, ledger, attempts);
     };
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
     sent = true;
+    attempts.push(...skipped);
     // 6. Down the chain until one hears it, within the route's minute: no next provider once 30 seconds have gone.
     const began = Date.now();
-    for (const { link, adapter, apiKey } of ready) {
-      if (Date.now() - began > SPEECH_CHAIN_BUDGET_MS) break;
+    for (const [i, r] of ready.entries()) {
+      const { link, adapter, apiKey } = r;
+      if (Date.now() - began > SPEECH_CHAIN_BUDGET_MS) {
+        attempts.push(...ready.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
+        break;
+      }
       let result: SpeechResult;
+      const start = Date.now();
       try {
         result = await adapter.transcribe({ apiKey, model: link.model, audio: input.audio, mediaType: input.mediaType, language: input.language });
       } catch {
         result = { ok: false, failure: 'network' };
       }
+      const tried = attemptOf(r, result, { streamed: false, elapsedMs: Date.now() - start, limitMs: SPEECH_TIMEOUT_MS });
+      attempts.push(tried.attempt);
       if (result.ok) {
         usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
         return { result: { ok: true, text: result.text, provider: link.provider, model: link.model }, record };
       }
       usage.push({ link, counts: { requests: 1, failures: 1 } });
+      if (!tried.retryable) break;
     }
     return { result: { ok: false, reason: 'failed' }, record };
   };
@@ -381,11 +479,18 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
   const env = process.env;
   const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
   if (!checked.ok) return checked;
-  const { profile, chain, providers } = checked;
-  const ready = await usableLinks(db, chain, providers, env, (p) => moderationAdapterFor(p, env));
-  if (ready.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const { profile, row, chain, providers } = checked;
+  const usable = await usableLinks(db, chain, providers, env, (p) => moderationAdapterFor(p, env));
+  if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const ledger = ledgerOf(ctx, profile, row);
+  const { admitted: ready, skipped } = await gateLinks(db, usable);
+  if (ready.length === 0) {
+    await recordAttempts(db, ledger, skipped);
+    return { ok: false, reason: 'failed' };
+  }
 
   const usage: { link: Link; counts: Counts }[] = [];
+  const attempts: Attempt[] = [...skipped];
   const check = async (turns: { user: string; assistant?: string }): Promise<ModerationVerdict | null> => {
     const clean = scrubRequest(
       { system: '', messages: [{ role: 'user', content: turns.user }, ...(turns.assistant === undefined ? [] : [{ role: 'assistant' as const, content: turns.assistant }])] },
@@ -393,23 +498,29 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
     );
     const user = clean.messages[0].content;
     const assistant = turns.assistant === undefined ? undefined : clean.messages[1].content;
-    for (const { link, adapter, apiKey } of ready) {
+    for (const r of ready) {
+      const { link, adapter, apiKey } = r;
       let result: ModerationResult;
+      const start = Date.now();
       try {
         result = await adapter.moderate({ apiKey, model: link.model, user, assistant });
       } catch {
         result = { ok: false, failure: 'network' };
       }
+      const tried = attemptOf(r, result, { streamed: false, elapsedMs: Date.now() - start, limitMs: MODERATION_TIMEOUT_MS });
+      attempts.push(tried.attempt);
       if (result.ok) {
         usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });
         return { safe: result.safe, categories: result.categories };
       }
       usage.push({ link, counts: { requests: 1, failures: 1 } });
+      if (!tried.retryable) break;
     }
     return null;
   };
   const record = async (tx: Sql) => {
     for (const u of usage.splice(0)) await count(tx, ctx.day, profile.id, u.link, u.counts);
+    await recordAttempts(tx, ledger, attempts.splice(0));
   };
   return { ok: true, moderation: { check, record } };
 }
@@ -440,15 +551,15 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
     const c = await checkProfile(db, ctx, profile, 'text', env);
     if (!c.ok) return steps.push(refused(check, profile, c.reason));
     const usable = await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env));
-    const ready = usable.filter((r) => !request.images || r.adapter.vision);
+    const ready = usable.filter((r) => !request.images || r.adapter.capabilities.vision);
     if (!ready.length) return steps.push(refused(check, profile, usable.length ? 'no_provider_reads_photos' : 'not_switched_on'));
-    const { link, adapter, apiKey } = ready[0];
+    const { link, adapter, apiKey, baseUrl } = ready[0];
     steps.push(async () => {
       const began = Date.now();
       let r: AdapterResult;
       try {
         const maxTokens = request.fullLength ? Number(c.row.max_output_tokens) : 300;
-        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens, ...(request.instructionsAs ? { instructionsAs: request.instructionsAs } : {}) }, () => {});
+        r = await adapter.streamText({ apiKey, model: link.model, system: request.system, messages: [{ role: 'user', content: request.user, images: request.images }], maxTokens, ...(request.instructionsAs ? { instructionsAs: request.instructionsAs } : {}), ...(baseUrl ? { baseUrl } : {}) }, () => {});
       } catch {
         r = { ok: false, failure: 'network' };
       }

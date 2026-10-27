@@ -20,21 +20,42 @@ export type AdapterRequest = {
   // The longest this call may take, set by the platform only for a profile with a long answer of its own (AI marking's
   // two tasks, C349: up to 40 page pictures in, a long JSON answer out). Never above MAX_CALL_TIMEOUT_MS.
   timeoutMs?: number;
+  // The address the founder set in Control for a provider whose address is his choice (the OpenAI-compatible adapter,
+  // G1, C369). Checked again by the adapter at every call (./endpoint-guard.ts); ignored by every other adapter.
+  baseUrl?: string;
 };
 
-export type AdapterFailure = 'http' | 'refused' | 'network' | 'bad_stream' | 'cut_short';
+// 'endpoint': the founder's address was refused at call time (not https, a private or reserved address, a redirect),
+// or none is set (G1, C369).
+export type AdapterFailure = 'http' | 'refused' | 'network' | 'bad_stream' | 'cut_short' | 'endpoint';
 // `finish`: why the vendor stopped ("stop", or "length" when its token limit cut the answer), when it says (C318).
 export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOut: number; finish?: string } | { ok: false; failure: AdapterFailure; status?: number };
+
+// What an adapter can do (G1, C369), declared by the adapter and never guessed: a feature that needs something the
+// chosen adapter does not declare is refused when it is saved in Control and again at run time, never sent and left to
+// fail. text: words in, words out. vision: a message may carry photos (ChatMessage.images); a call with photos skips a
+// provider that cannot. stream: the answer arrives piece by piece. json: the vendor itself holds the answer to one JSON
+// object (elsewhere only the instructions ask for it). stt: speech to text. tts: text to speech (no adapter yet).
+export const CAPABILITIES = ['text', 'vision', 'stream', 'json', 'stt', 'tts'] as const;
+export type Capability = (typeof CAPABILITIES)[number];
+export type Capabilities = Readonly<Record<Capability, boolean>>;
+export const capabilities = (has: readonly Capability[]): Capabilities => Object.freeze(Object.fromEntries(CAPABILITIES.map((c) => [c, has.includes(c)])) as Record<Capability, boolean>);
+
+// A key test's outcome (G1): whether the vendor took the key, and the kind of failure. Never the key or the answer.
+export type ConnectionTest = { ok: true } | { ok: false; failure: AdapterFailure; status?: number };
 
 export interface TextAdapter {
   readonly providerId: string;
   readonly capability: 'text';
   readonly termsNote: TermsNote | null;
   readonly needsKey: boolean;
-  // Whether a message may carry photos (ChatMessage.images). A call with photos skips a provider that cannot.
-  readonly vision: boolean;
+  readonly capabilities: Capabilities;
+  // true: the founder sets the address in Control (the OpenAI-compatible adapter, G1); every call is refused without it.
+  readonly needsBaseUrl?: boolean;
   keyLooksRight(key: string): boolean;
   streamText(request: AdapterRequest, onDelta: (text: string) => void): Promise<AdapterResult>;
+  // A cheap call that proves the key (and the address, where the founder sets one) works, for Control's "Test the key".
+  testConnection?(apiKey: string, baseUrl?: string): Promise<ConnectionTest>;
 }
 
 // What the supervisor found in a vendor's terms for a product children use (docs/family-app/AI_PROVIDERS.md,
@@ -79,6 +100,7 @@ export interface SpeechAdapter {
   readonly capability: 'speech_to_text';
   readonly termsNote: TermsNote | null;
   readonly needsKey: boolean;
+  readonly capabilities: Capabilities;
   transcribe(request: SpeechRequest): Promise<SpeechResult>;
 }
 
@@ -103,5 +125,6 @@ export interface ModerationAdapter {
   readonly capability: 'moderation';
   readonly termsNote: TermsNote | null;
   readonly needsKey: boolean;
+  readonly capabilities: Capabilities;
   moderate(request: ModerationRequest): Promise<ModerationResult>;
 }

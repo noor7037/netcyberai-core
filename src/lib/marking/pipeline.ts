@@ -49,7 +49,7 @@ const PICTURES_AT_ONCE = 8;
 // A script's pictures together, at most: what a vendor takes in one request, with room for the words.
 export const MARK_MAX_BYTES = 20_000_000;
 const JOB_ACTOR = (schoolId: string) => ({ schoolId, userId: '00000000-0000-0000-0000-000000000000', role: 'principal' as const });
-const OFF: readonly AiRefusal[] = ['not_switched_on', 'not_cleared_for_minors'];
+const OFF: readonly AiRefusal[] = ['not_switched_on', 'not_cleared_for_minors', 'not_capable'];
 
 function schoolOf(job: ClaimedJob): string {
   if (!job.schoolId || !isUuid(job.schoolId)) throw new PermanentJobError(`${job.type}: no school`);

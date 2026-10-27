@@ -88,6 +88,7 @@ beforeEach(async () => {
   await q(`delete from control.ai_credentials`);
   await q(`update control.ai_providers set cleared_for_minors = false, cleared_terms_url = null, cleared_at = null, cleared_by = null`);
   await q(`delete from control.ai_usage`);
+  await q(`delete from control.ai_provider_health`);
   await q(`delete from family.ai_daily`);
   await q(`update control.settings set value = '20'::jsonb where key = 'family.ai.daily_requests'`);
 });
@@ -271,9 +272,14 @@ describe('fallback', () => {
     expect(await q(`select requests from family.ai_daily`)).toEqual([{ requests: 1 }]);
   });
 
-  it('a decline is a failure too; when every provider fails the answer is "failed"', async () => {
+  it('a decline ends the answer there (G2, C370: a refusal is not passed to the backup); when every provider fails the answer is "failed"', async () => {
     replies.push(() => anthropicRefusal(), () => httpError(500));
     expect(await run()).toEqual({ ok: false, reason: 'failed' });
+    expect(calls).toHaveLength(1);
+    replies = [];
+    replies.push(() => httpError(503), () => httpError(500));
+    expect(await run()).toEqual({ ok: false, reason: 'failed' });
+    expect(calls).toHaveLength(3);
     expect(en[REFUSAL_MESSAGE.failed]).toBeTruthy();
   });
 
