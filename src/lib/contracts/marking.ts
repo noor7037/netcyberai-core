@@ -5,6 +5,30 @@
 export const QUESTION_KINDS = ['objective', 'short', 'long', 'numerical', 'diagram'] as const;
 export type QuestionKind = (typeof QUESTION_KINDS)[number];
 
+// One question list for four ways of sitting (docs/36, C361). A choice question (objective, with options) and a
+// number question (numerical, with a value) whose correct answer is given are marked by rules on a bubble sheet and
+// online (src/lib/marking/answers.ts); every other question by the AI or the teacher.
+export const PAPER_SITTINGS = ['written', 'bubble', 'online'] as const; // an answer book; a bubble sheet for the choice questions and the book for the rest; the Family app
+export type PaperSitting = (typeof PAPER_SITTINGS)[number];
+export const SHEET_SOURCES = ['scan', 'bubble', 'online'] as const;
+export type SheetSource = (typeof SHEET_SOURCES)[number];
+export const UPLOAD_KINDS = ['scripts', 'bubble'] as const;
+export type UploadKind = (typeof UPLOAD_KINDS)[number];
+export const DIFFICULTIES = ['easy', 'medium', 'hard'] as const;
+export type Difficulty = (typeof DIFFICULTIES)[number];
+export const OPTION_KEYS = ['A', 'B', 'C', 'D', 'E', 'F'] as const;
+export type OptionKey = (typeof OPTION_KEYS)[number];
+export type QuestionOption = { key: OptionKey; text: string };
+// A choice question: the option keys that are right (one, or more when the question says "choose all"). A number
+// question: the value, and how far from it an answer may be and still be right.
+export type CorrectAnswer = { keys: OptionKey[] } | { value: number; tolerance: number };
+export const OPTIONS_MIN = 2;
+export const OPTIONS_MAX = 6;
+export const OPTION_TEXT_MAX = 500;
+export const SECTION_PATTERN = /^[A-H]$/;
+// The most a school may take off for a wrong choice answer (marking_setups.wrong_marks), one decimal place.
+export const WRONG_MARKS_MAX = 10;
+
 export const MARKING_LANGUAGES = ['en', 'hi', 'mixed'] as const;
 export type MarkingLanguage = (typeof MARKING_LANGUAGES)[number];
 
@@ -44,7 +68,8 @@ export type SheetState = (typeof SHEET_STATES)[number];
 export const SHEET_FLAGS = ['identity', 'two_scripts', 'missing_page', 'unreadable', 'not_all_read', 'unsure', 'changed', 'check_child', 'not_answer_page', 'mismatch'] as const;
 export type SheetFlag = (typeof SHEET_FLAGS)[number];
 
-export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'none'] as const;
+// bubble: the bubble sheet's printed number named the child (C364); online: the child sat the test signed in (C365).
+export const MATCHED_BY = ['seat', 'roll', 'name', 'teacher', 'bubble', 'online', 'none'] as const;
 export type MatchedBy = (typeof MATCHED_BY)[number];
 
 // The plan's monthly limit of pages AI may read and mark for a school (C347), set in Control → Billing plans and held
@@ -88,9 +113,14 @@ export type MarkingQuestion = {
   prompt: string;
   answerKey: string;
   steps: MarkingStep[];
+  options: QuestionOption[]; // a choice question's options, A to F; none on any other kind
+  correct: CorrectAnswer | null; // given only where rules can mark it
+  difficulty: Difficulty | null;
+  section: string | null; // the printed paper's section, A to H
 };
 
-export type MarkingSetup = { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number> };
+// wrongMarks: taken off for a wrong choice or number answer that rules mark (C361); 0 for most school papers.
+export type MarkingSetup = { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number>; wrongMarks: number };
 
 // A paper's questions against its parts: each part's counted marks must equal its maximum before marking starts.
 export type StructureProblem =
@@ -250,8 +280,8 @@ export type SheetDetail = {
 
 // The API's request bodies (src/app/api/app/marking/**).
 export type SaveSetupInput = {
-  setup: { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number> };
-  questions: Omit<MarkingQuestion, 'questionId'>[];
+  setup: { language: MarkingLanguage; guidance: string; choiceCounts: Record<string, number>; wrongMarks?: number };
+  questions: (Omit<MarkingQuestion, 'questionId' | 'options' | 'correct' | 'difficulty' | 'section'> & Partial<Pick<MarkingQuestion, 'options' | 'correct' | 'difficulty' | 'section'>>)[];
 };
 export type SheetChangeInput = {
   questions?: { questionId: string; marks?: number | null; note?: string | null; errorType?: ErrorType | null }[];

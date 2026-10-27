@@ -11,7 +11,7 @@ const PARTS = [
   { key: 'written', name: 'Written', max: 20 },
   { key: 'oral', name: 'Oral', max: 10 },
 ];
-const q = (over: Partial<QuestionForm> = {}): QuestionForm => ({ key: 'k', label: '1', component: 'written', maxMarks: '4', choiceGroup: '', unitId: '', kind: 'short', prompt: '', answerKey: '', steps: [], ...over });
+const q = (over: Partial<QuestionForm> = {}): QuestionForm => ({ key: 'k', label: '1', component: 'written', maxMarks: '4', choiceGroup: '', unitId: '', kind: 'short', prompt: '', answerKey: '', steps: [], options: [], correct: null, difficulty: null, section: '', ...over });
 
 describe('the questions as the teacher types them', () => {
   it('counts the next number on: "6(b)" is followed by "7", "Q3" by "Q4", nothing by "1"', () => {
@@ -73,11 +73,11 @@ describe('the questions as the teacher types them', () => {
     const forms = [q({ label: ' 1 ', maxMarks: '2,5', choiceGroup: ' a ', unitId: '', steps: [{ step: ' Method ', marks: '1.5' }] }), q({ label: '2', maxMarks: '3', choiceGroup: 'a' })];
     const body = toSaveBody(forms, { A: '1' }, { language: 'hi', guidance: 'Be kind' });
     expect(body.setup).toEqual({ language: 'hi', guidance: 'Be kind', choiceCounts: { A: 1 } });
-    expect(body.questions[0]).toEqual({ position: 1, label: '1', component: 'written', maxMarks: 2.5, choiceGroup: 'A', unitId: null, kind: 'short', prompt: '', answerKey: '', steps: [{ step: 'Method', marks: 1.5 }] });
+    expect(body.questions[0]).toEqual({ position: 1, label: '1', component: 'written', maxMarks: 2.5, choiceGroup: 'A', unitId: null, kind: 'short', prompt: '', answerKey: '', steps: [{ step: 'Method', marks: 1.5 }], options: [], correct: null, difficulty: null, section: null });
     expect(body.questions.map((x) => x.position)).toEqual([1, 2]);
   });
   it('knows when nothing has changed from what is saved', () => {
-    const saved: MarkingQuestion[] = [{ questionId: 'a', position: 1, label: '1', component: 'written', maxMarks: 4, choiceGroup: null, unitId: null, kind: 'short', prompt: 'Add.', answerKey: '3', steps: [{ step: 'Sum', marks: 4 }] }];
+    const saved: MarkingQuestion[] = [{ questionId: 'a', position: 1, label: '1', component: 'written', maxMarks: 4, choiceGroup: null, unitId: null, kind: 'short', prompt: 'Add.', answerKey: '3', steps: [{ step: 'Sum', marks: 4 }], options: [], correct: null, difficulty: null, section: null }];
     const forms = saved.map(formFromQuestion);
     const same = { language: 'en', guidance: 'x' };
     expect(sameAsSaved(forms, {}, { questions: saved, choiceCounts: {} }, same, same)).toBe(true);
@@ -183,6 +183,10 @@ function question(id: string, label: string, over: Partial<SheetQuestion> = {}):
     prompt: '',
     answerKey: '',
     steps: [],
+    options: [],
+    correct: null,
+    difficulty: null,
+    section: null,
     ai: { attempted: true, marks: 6, steps: [], note: 'Good.', reason: null, confidence: 0.9 },
     teacher: { marks: null, note: null, changedAt: null },
     errorType: null,

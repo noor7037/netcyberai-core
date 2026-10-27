@@ -3,6 +3,7 @@ import { ERROR_TYPES, MAX_MARKING_ATTEMPTS, PAGE_STATES, type ErrorType, type Ma
 import { saveMarks, type SaveProblem } from '@/lib/exams/marks';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
+import { markRange } from './answers';
 import { aiMarkingState, markingPaper, markingSettings, paperRoster, type Actor } from './context';
 import { markedParts, partTotals, countedQuestions, round1, structureProblems } from './rollup';
 import { questionsOf } from './setup';
@@ -280,10 +281,13 @@ export async function changeSheet(db: Sql, actor: Actor, sheetId: string, raw: u
   const input = (typeof raw === 'object' && raw !== null ? raw : {}) as SheetChangeInput;
   const questions = await questionsOf(db, actor.schoolId, paper.paperId);
   const byId = new Map(questions.map((q) => [q.questionId, q]));
+  // A rule-marked question may be given less than nothing only when the school takes marks off for a wrong answer.
+  const wrongMarks = Number((await db.query(`select wrong_marks from marking_setups where school_id = $1 and paper_id = $2`, [actor.schoolId, paper.paperId])).rows[0]?.wrong_marks ?? 0);
   for (const c of Array.isArray(input.questions) ? input.questions : []) {
     const q = typeof c?.questionId === 'string' ? byId.get(c.questionId) : undefined;
     if (!q) return { ok: false, reason: 'marks' };
-    if (c.marks !== undefined && c.marks !== null && (typeof c.marks !== 'number' || !Number.isFinite(c.marks) || c.marks < 0 || c.marks > q.maxMarks || Math.round(c.marks * 10) !== c.marks * 10)) return { ok: false, reason: 'marks', questionId: q.questionId };
+    const range = markRange(q, wrongMarks);
+    if (c.marks !== undefined && c.marks !== null && (typeof c.marks !== 'number' || !Number.isFinite(c.marks) || c.marks < range.min || c.marks > range.max || Math.round(c.marks * 10) !== c.marks * 10)) return { ok: false, reason: 'marks', questionId: q.questionId };
     const note = words(c.note, 1000);
     if (note === 'bad') return { ok: false, reason: 'words', questionId: q.questionId };
     if (c.errorType !== undefined && c.errorType !== null && !(ERROR_TYPES as readonly string[]).includes(c.errorType)) return { ok: false, reason: 'marks', questionId: q.questionId };
