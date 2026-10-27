@@ -1,7 +1,9 @@
+import { familyClaims } from '@/lib/family/db';
 import { redirect } from 'next/navigation';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea } from '@/components/family/ParentArea';
+import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { NotifySection } from '@/components/family/NotifySection';
 import { vapidPublicKey } from '@/lib/family/web-push';
@@ -9,6 +11,7 @@ import { SchoolSection } from '@/components/family/SchoolSection';
 import { activeLinks, linkedSchool, notifyOff } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { listChildPhones } from '@/lib/family/child-phone';
 import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { subjectAccess } from '@/lib/family/modules';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
@@ -24,7 +27,7 @@ import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
 import { indiaDate } from '@/lib/time/india';
 import { familyStates } from '@/lib/family/states';
 import { familyWords } from '@/lib/family/words';
-import type { MessageKey } from '@/lib/i18n';
+import { t, type MessageKey } from '@/lib/i18n';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248): behind the parent PIN, always.
 const GATE_KEYS: MessageKey[] = [
@@ -39,6 +42,10 @@ const PLAN_KEYS: MessageKey[] = [
   'fam.homePlan.yourNotes', 'fam.homePlan.stop', 'fam.homePlan.stopNote', 'fam.homePlan.stopYes', 'fam.homePlan.ask', 'fam.homePlan.asked',
   'fam.homePlan.askNoConsent', 'fam.school.saveError', 'fam.common.cancel',
 ];
+const PHONE_KEYS: MessageKey[] = [
+  'fam.phone.title', 'fam.phone.lead', 'fam.phone.link', 'fam.phone.code', 'fam.phone.how', 'fam.phone.done', 'fam.phone.wrong', 'fam.phone.linked', 'fam.phone.lastSeen',
+  'fam.phone.remove', 'fam.phone.tooMany', 'fam.school.saveError',
+];
 const NOTIFY_KEYS: MessageKey[] = [
   'fam.notify.title', 'fam.notify.lead', 'fam.notify.homework', 'fam.notify.notices', 'fam.notify.results', 'fam.notify.tonight', 'fam.notify.on', 'fam.notify.off', 'fam.school.saveError',
   'fam.push.title', 'fam.push.unsupported', 'fam.push.blocked', 'fam.push.isOn', 'fam.push.turnOn', 'fam.push.turnOff',
@@ -47,7 +54,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
   'fam.parent.privacy', 'fam.parent.privacyIntro',
-  'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
+  'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.marks.open', 'fam.marks.openSubject', 'fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
@@ -89,6 +96,14 @@ export default async function FamilyParentPage() {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
   const lang = page.parentLang;
+  // A child's own phone (C342): the parent area is on the parent's phone.
+  if (page.session.device) {
+    return (
+      <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8" data-parent-on-parent-phone>
+        <p className="rounded-2xl bg-white p-5 text-base text-slate">{t(lang, 'fam.phone.parentHere')}</p>
+      </main>
+    );
+  }
   if (!page.parentMode) {
     return (
       <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8">
@@ -115,9 +130,12 @@ export default async function FamilyParentPage() {
   const habit = switches && switchOn(switches, 'habit') ? await familyPageRead(page, (db) => Promise.all(page.children.map((c) => parentHabit(db, page.session.accountId, c.childId, indiaDate(), lang)))) : null;
   // Your school (C230-AA): each active link read as the guardian; a link the school has closed meanwhile is not shown.
   const links = await familyPageRead(page, (db) => activeLinks(db, page.session.accountId));
+  // Children's own phones (M2b-2, C342).
+  const phones = await familyPageRead(page, (db) => listChildPhones(db, page.session.accountId));
+  const phoneLinking = !!switches && switchOn(switches, 'focus_lock');
   // What the app tells the parent about (M3-8a, C338), once a school is connected or the home plan is open to them.
   const off = await familyPageRead(page, (db) => notifyOff(db, page.session.accountId));
-  const claims = { accountId: page.session.accountId, tokenVersion: page.session.tokenVersion };
+  const claims = familyClaims(page.session);
   const schools = (await Promise.all(links.map(async (l) => ({ l, school: await linkedSchool(claims, l.linkId, l.children.map((c) => c.studentId)) })))).flatMap(({ l, school }) => (school ? [{ linkId: l.linkId, school, pairs: l.children }] : []));
   // The home plan after a parent-teacher meeting (M3-7, C337; Plus): with the module on and Control's Family Plus open
   // for the pilot. Each child's open plan; with none, the catalog of each subject the child can open, to choose from.
@@ -175,6 +193,10 @@ export default async function FamilyParentPage() {
         afterChildren={
           <>
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
+            {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
+              <ChildPhoneSection w={familyWords(lang, PHONE_KEYS)} lang={lang} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} phones={phones} canLink={phoneLinking} />
+            )}
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}

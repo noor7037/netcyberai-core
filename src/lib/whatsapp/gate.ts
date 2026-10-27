@@ -1,7 +1,8 @@
 import { randomUUID } from 'crypto';
+import { openSealedParams } from './sealed-params';
 import type { PoolClient } from 'pg';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
-import { missingVariables, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
+import { missingVariables, placeholderOrder, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { resolveProvider } from '@/lib/whatsapp/config';
 import { COUNTED_AGAINST_LIMIT, RATE_NOT_VERIFIED } from '@/lib/whatsapp/cost';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
@@ -197,6 +198,10 @@ export async function languageFor(db: Pick<PoolClient, 'query'>, schoolId: strin
   return school === 'hi' ? 'hi' : 'en';
 }
 
+// Which of the gate's rules stopped a message (C351): the preview of a send says why a parent will not get it, in the
+// gate's own words, without recording anything.
+export type GateRule = 'pilot' | 'consent' | 'opted_out' | 'quiet_hours' | 'budget' | 'template';
+type Stopped = SendWhatsAppMessageResult & { rule?: GateRule };
 type Ready = { ready: true; testSchool: boolean; provider: WhatsAppProviderSPI; providerUsed: 'school_specific' | 'platform_default'; fallbackReason: string | null; category: BillingCategory; rate: MessageRate | null; said: { template: TemplateToSend; filled: Record<string, string> } };
 type Wait = { wait: true; until: Date };
 type Passed = { passed: true };
@@ -207,7 +212,16 @@ export const DEFAULT_STALE_MINUTES = 720;
 // if a rule stopped the message (already written to the log), or what to
 // send and through whom. For a queued message (`outbox`) quiet hours do not
 // stop it: it waits until they end, unless by then it would be too old.
-async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, options: GateOptions, outbox?: { createdAt: Date; now: Date; queueing?: boolean }): Promise<SendWhatsAppMessageResult | Ready | Wait | Passed> {
+async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, options: GateOptions, outbox?: { createdAt: Date; now: Date; queueing?: boolean; dryRun?: boolean }): Promise<Stopped | Ready | Wait | Passed> {
+  // A rule stopped the message: written to the log, except in a dry run (the preview), which records nothing.
+  const stop = async (rule: GateRule, status: CommStatus, reason: string, extra?: Parameters<typeof logAttempt>[4]): Promise<Stopped> => ({
+    logId: outbox?.dryRun ? '' : await logAttempt(client, params, status, reason, extra),
+    status,
+    reason,
+    idempotent: false,
+    providerUsed: null,
+    rule,
+  });
   const { rows: schoolRows } = await client.query<SchoolGateContext>(
     `select is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end, timezone, is_test_fixture, name
      from schools where school_id = $1`,
@@ -222,23 +236,20 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   // send gate those docs describe; skipping it would silently reopen
   // a gap Prompt A already closed once).
   if (school.is_pilot && !school.pilot_allow_outbound) {
-    const reason = 'school is in pilot mode; outbound sending has not been approved yet';
-    return { logId: await logAttempt(client, params, 'blocked_pilot', reason), status: 'blocked_pilot', reason, idempotent: false, providerUsed: null };
+    return stop('pilot', 'blocked_pilot', 'school is in pilot mode; outbound sending has not been approved yet');
   }
 
   // 2. Consent -- live, not cached.
   const granted = await isPurposeGranted(client, params.schoolId, params.studentId, params.purpose);
   if (!granted) {
-    const reason = `consent for purpose "${params.purpose}" is not currently granted`;
-    return { logId: await logAttempt(client, params, 'blocked_consent', reason), status: 'blocked_consent', reason, idempotent: false, providerUsed: null };
+    return stop('consent', 'blocked_consent', `consent for purpose "${params.purpose}" is not currently granted`);
   }
 
   // 2b. The parent wrote STOP (C187): no WhatsApp message from this school to that number until the office
   // lifts it at the parent's asking. WhatsApp only; the consent ledger is as the parent left it.
   const toNumber = normalizePhone(params.toPhone);
   if (toNumber && (await client.query(`select 1 from whatsapp_opt_outs where school_id = $1 and phone = $2 and lifted_at is null`, [params.schoolId, toNumber])).rows[0]) {
-    const reason = 'this number asked to stop WhatsApp messages from the school';
-    return { logId: await logAttempt(client, params, 'blocked_consent', reason), status: 'blocked_consent', reason, idempotent: false, providerUsed: null };
+    return stop('opted_out', 'blocked_consent', 'this number asked to stop WhatsApp messages from the school');
   }
 
   // 3. Quiet hours -- config-driven (schools.quiet_hours_start/end,
@@ -256,24 +267,23 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
     [at.toISOString(), school.quiet_hours_start, school.quiet_hours_end, school.timezone]
   );
   if (quietRows[0].in_quiet_hours) {
-    if (outbox) {
-      // Held, not dropped (docs/25 rule 4): it goes when quiet hours end, unless it would be stale by then.
-      const until = new Date(quietRows[0].ends_at as string);
-      const staleMinutes = (await templateToSend(client, params.schoolId, params.templateName, params.language ?? 'en', false))?.staleAfterMinutes ?? DEFAULT_STALE_MINUTES;
-      if (until.getTime() <= outbox.createdAt.getTime() + staleMinutes * 60_000) return { wait: true, until };
-      const reason = `held for the school's quiet hours (${school.quiet_hours_start}-${school.quiet_hours_end} ${school.timezone}); by the time they end it would be too old to be worth sending`;
-      return { logId: await logAttempt(client, params, 'blocked_quiet_hours', reason), status: 'blocked_quiet_hours', reason, idempotent: false, providerUsed: null };
+    if (!outbox) return stop('quiet_hours', 'blocked_quiet_hours', `current time falls within this school's quiet hours (${school.quiet_hours_start}-${school.quiet_hours_end} ${school.timezone})`);
+    // Held, not dropped (docs/25 rule 4): it goes when quiet hours end, unless it would be stale by then.
+    const until = new Date(quietRows[0].ends_at as string);
+    const staleMinutes = (await templateToSend(client, params.schoolId, params.templateName, params.language ?? 'en', false))?.staleAfterMinutes ?? DEFAULT_STALE_MINUTES;
+    if (until.getTime() > outbox.createdAt.getTime() + staleMinutes * 60_000) {
+      return stop('quiet_hours', 'blocked_quiet_hours', `held for the school's quiet hours (${school.quiet_hours_start}-${school.quiet_hours_end} ${school.timezone}); by the time they end it would be too old to be worth sending`);
     }
-    const reason = `current time falls within this school's quiet hours (${school.quiet_hours_start}-${school.quiet_hours_end} ${school.timezone})`;
-    return { logId: await logAttempt(client, params, 'blocked_quiet_hours', reason), status: 'blocked_quiet_hours', reason, idempotent: false, providerUsed: null };
+    // A dry run (the preview) goes on to the rules after this one: the message will wait, and when it goes the budget
+    // and the words decide too, so the preview reads them now rather than promise it.
+    if (!outbox.dryRun) return { wait: true, until };
   }
 
   // 4. Budget -- monthly_budget_paise is nullable; NULL means "not
   // configured", never treated as unlimited (docs/08_EXECUTION_BIBLE.md,
   // Decision Log C15 -- a real-money footgun otherwise).
   if (school.monthly_budget_paise === null) {
-    const reason = 'monthly WhatsApp budget is not configured for this school';
-    return { logId: await logAttempt(client, params, 'blocked_budget', reason), status: 'blocked_budget', reason, idempotent: false, providerUsed: null };
+    return stop('budget', 'blocked_budget', 'monthly WhatsApp budget is not configured for this school');
   }
   // What counts against the limit is written once, in cost.ts (COUNTED_AGAINST_LIMIT): a priced message counts from
   // the moment it is sent. The cost screens add up the same rows, so they judge a limit on this very sum.
@@ -294,8 +304,7 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   const rate = await rateOnSendDate(client, category, school.timezone);
   const next = messageCost(category, true, rate);
   if (monthSpend + next.estCostPaise + next.gstPaise > budget || monthSpend >= budget) {
-    const reason = `this month's WhatsApp spend (${monthSpend} paise) has reached, or with this message would pass, the configured budget (${budget} paise)`;
-    return { logId: await logAttempt(client, params, 'blocked_budget', reason), status: 'blocked_budget', reason, idempotent: false, providerUsed: null };
+    return stop('budget', 'blocked_budget', `this month's WhatsApp spend (${monthSpend} paise) has reached, or with this message would pass, the configured budget (${budget} paise)`);
   }
 
   // 5. The template (C184): the newest version WE approved, in the language
@@ -306,14 +315,12 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   const language = params.language ?? (await languageFor(client, params.schoolId, params.parentId ?? null));
   let template = await templateToSend(client, params.schoolId, params.templateName, language, false);
   if (!template) {
-    const reason = `template "${params.templateName}" is not an approved template for this school`;
-    return { logId: await logAttempt(client, params, 'blocked_no_template', reason), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
+    return stop('template', 'blocked_no_template', `template "${params.templateName}" is not an approved template for this school`);
   }
   const filled = { ...params.templateParams, school: school.name };
   const missing = missingVariables(template, filled);
   if (missing.length > 0) {
-    const reason = `template "${params.templateName}" needs a value for: ${missing.join(', ')}`;
-    return { logId: await logAttempt(client, params, 'blocked_no_template', reason, { template }), status: 'blocked_no_template', reason, idempotent: false, providerUsed: null };
+    return stop('template', 'blocked_no_template', `template "${params.templateName}" needs a value for: ${missing.join(', ')}`, { template });
   }
 
   // Queueing stops here: the rules a person would want to hear about at once have passed. The provider is
@@ -373,7 +380,8 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   return { ready: true, testSchool: school.is_test_fixture, provider, providerUsed, fallbackReason, category, rate, said };
 }
 
-const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: normalizePhone(params.toPhone) ?? params.toPhone, templateName: params.templateName, templateParams: r.said.filled, language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId });
+// A sealed value (./sealed-params.ts) is opened here only, as the provider is asked: the log keeps it sealed.
+const SEND_ARGS = (params: SendWhatsAppMessageParams, r: Ready) => ({ testSchool: r.testSchool, toPhone: normalizePhone(params.toPhone) ?? params.toPhone, templateName: params.templateName, templateParams: openSealedParams(params.templateName, r.said.filled), language: r.said.template.language, templateVersion: r.said.template.version, metaTemplateId: r.said.template.metaTemplateId, templateOrder: placeholderOrder(r.said.template.body ?? '') });
 const LOGGED = (r: Ready) => ({ providerUsed: r.providerUsed, fallbackReason: r.fallbackReason, category: r.category, rate: r.rate, provider: r.provider.name, ...r.said });
 
 // The earlier attempt with the same dedupe key, whoever made it (C210): communication_log_dedupe answers with its id
@@ -428,8 +436,23 @@ export async function sendWhatsAppMessage(client: PoolClient, params: SendWhatsA
 export const WHATSAPP_SEND_JOB = 'whatsapp.send';
 export const MAX_SEND_ATTEMPTS = 3;
 const RETRY_AFTER_MINUTES = [2, 10];
-type QueueLike = { enqueue: (db: Pick<PoolClient, 'query'>, spec: { type: string; payload: Record<string, unknown>; idempotencyKey: string; schoolId?: string | null; maxAttempts?: number; runAt?: Date }) => Promise<unknown> };
+export type QueueLike = { enqueue: (db: Pick<PoolClient, 'query'>, spec: { type: string; payload: Record<string, unknown>; idempotencyKey: string; schoolId?: string | null; maxAttempts?: number; runAt?: Date }) => Promise<unknown> };
 const jobKey = (logId: string, n: number) => `${WHATSAPP_SEND_JOB}:${logId}:${n}`;
+
+// What the outbox would do with this message if it were queued now, recording nothing (C351): taken, or stopped by
+// which rule. The same rules in the same order as queueWhatsAppMessage, read now, and where the outbox would hold the
+// message for quiet hours, the rules after them too (they decide when it goes); when it is sent every rule is read
+// again. A preview of a send asks this, so it never promises what the gate would refuse.
+export async function gateWouldQueue(client: PoolClient, params: SendWhatsAppMessageParams, at: () => Date = () => new Date()): Promise<{ ok: true } | { ok: false; rule: GateRule; reason: string }> {
+  const now = at();
+  const r = await prepare(client, params, {}, { createdAt: now, now, queueing: true, dryRun: true });
+  if ('logId' in r) {
+    // Every rule before queueing stops through stop(), which names itself and writes nothing in a dry run.
+    if (!r.rule || r.logId !== '') throw new Error('gateWouldQueue: a rule stopped the message without naming itself, or wrote it down');
+    return { ok: false, rule: r.rule, reason: r.reason ?? '' };
+  }
+  return { ok: true };
+}
 
 export async function queueWhatsAppMessage(client: PoolClient, queue: QueueLike, params: SendWhatsAppMessageParams, at: () => Date = () => new Date()): Promise<SendWhatsAppMessageResult & { jobKey: string | null }> {
   const existing = await earlierAttempt(client, params);

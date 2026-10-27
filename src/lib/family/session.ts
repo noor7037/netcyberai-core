@@ -32,7 +32,9 @@ export const FAMILY_PARENT_TTL_SECONDS = 10 * 60;
 export const FAMILY_CODE_TTL_SECONDS = 10 * 60;
 
 // `keep`: "Keep me signed in" (absent on tokens from before F1-1: kept). `issuedAt`: when this token was signed (seconds).
-export type FamilySession = { accountId: string; tokenVersion: number; sessionId: string; keep?: boolean; issuedAt?: number };
+// `device`: a child's own phone (M2b-2, C342; docs/34 §9.4), linked by the parent's one-time code: the session reaches that
+// one child only (the database's own rules, src/lib/auth/db.ts), never parent mode, and ends when the parent removes it.
+export type FamilySession = { accountId: string; tokenVersion: number; sessionId: string; keep?: boolean; issuedAt?: number; device?: { deviceId: string; childId: string } };
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -42,7 +44,9 @@ export function familyCookieOptions(maxAgeSeconds: number) {
 
 export async function signFamilySession(s: FamilySession): Promise<string> {
   const keep = s.keep !== false;
-  return signFamilyToken('family', s.accountId, { tv: s.tokenVersion, sid: s.sessionId, kp: keep ? 1 : 0 }, keep ? FAMILY_SESSION_TTL_SECONDS : FAMILY_SESSION_SHORT_TTL_SECONDS);
+  const claims: Record<string, string | number> = { tv: s.tokenVersion, sid: s.sessionId, kp: keep ? 1 : 0 };
+  if (s.device) Object.assign(claims, { dv: s.device.deviceId, ch: s.device.childId });
+  return signFamilyToken('family', s.accountId, claims, keep ? FAMILY_SESSION_TTL_SECONDS : FAMILY_SESSION_SHORT_TTL_SECONDS);
 }
 
 // The session cookie: kept, it lasts as long as its token; not kept, it has no max-age and ends with the browser.
@@ -62,16 +66,30 @@ export async function verifyFamilySession(token: string | undefined): Promise<Fa
   if (!token) return null;
   const v = await verifyFamilyToken(token, 'family');
   if (!v || !UUID.test(v.sub) || typeof v.claims.sid !== 'string' || !Number.isInteger(v.claims.tv)) return null;
-  return { accountId: v.sub, tokenVersion: Number(v.claims.tv), sessionId: v.claims.sid, keep: v.claims.kp !== 0, issuedAt: Number(v.claims.iat) || undefined };
+  // A child's phone carries both its device and its child; a token with only one of them is no session.
+  const dv = v.claims.dv;
+  const ch = v.claims.ch;
+  if ((dv === undefined) !== (ch === undefined)) return null;
+  if (dv !== undefined && (typeof dv !== 'string' || typeof ch !== 'string' || !UUID.test(dv) || !UUID.test(ch))) return null;
+  return {
+    accountId: v.sub,
+    tokenVersion: Number(v.claims.tv),
+    sessionId: v.claims.sid,
+    keep: v.claims.kp !== 0,
+    issuedAt: Number(v.claims.iat) || undefined,
+    ...(typeof dv === 'string' && typeof ch === 'string' ? { device: { deviceId: dv, childId: ch } } : {}),
+  };
 }
 
-// Parent mode: only for the session that entered the PIN.
+// Parent mode: only for the session that entered the PIN, and never on a child's own phone (the parent's things are on
+// the parent's phone, C342).
 export async function signParentMode(s: FamilySession): Promise<string> {
+  if (s.device) throw new Error('no parent mode on a child’s phone');
   return signFamilyToken('family_parent', s.accountId, { sid: s.sessionId }, FAMILY_PARENT_TTL_SECONDS);
 }
 
 export async function verifyParentMode(token: string | undefined, s: FamilySession): Promise<boolean> {
-  if (!token) return false;
+  if (!token || s.device) return false;
   const v = await verifyFamilyToken(token, 'family_parent');
   return !!v && v.sub === s.accountId && v.claims.sid === s.sessionId;
 }

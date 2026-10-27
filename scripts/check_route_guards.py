@@ -58,7 +58,8 @@ FAMILY_GROUP = "(parent)/parent"
 # The Family app (M1-2, C248): its own session. Every page lives under (family)/family/(app), whose layout calls
 # requireFamilyPage() (a redirect to sign-in without a session), except the pages that need none.
 FAMILY_APP_GROUP = "(family)/family/(app)"
-FAMILY_APP_OPEN = {"/family/sign-in", "/family/offline", "/family/about-ai"}
+# /family/link (M2b-2, C342): a child's own phone enters the parent's code there, before it has a session.
+FAMILY_APP_OPEN = {"/family/sign-in", "/family/link", "/family/offline", "/family/about-ai"}
 
 GROUP_SEGMENT_RE = re.compile(r"^\([^)]*\)$")
 

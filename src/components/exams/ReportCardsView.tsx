@@ -23,7 +23,7 @@ import { PRIMARY, SECTION, TAP } from './SchemeParts';
 // report cards, one child or the whole class, drawn as a PDF on this device. Children are listed in roll order; each
 // card holds one child's own marks. The server and the database decide who may do what.
 
-const ERRORS = ['not_found', 'not_entered', 'no_scheme', 'published', 'not_published', 'reason', 'remarks', 'child', 'remark', 'not_allowed', 'no_co_scholastic', 'co_entries', 'co_grade'];
+const ERRORS = ['not_found', 'not_entered', 'scripts_changed', 'no_scheme', 'published', 'not_published', 'reason', 'remarks', 'child', 'remark', 'not_allowed', 'no_co_scholastic', 'co_entries', 'co_grade'];
 const coKey = (studentId: string, area: string) => `${studentId}|${area}`;
 
 export function ReportCardsView({ examId, classId }: { examId: string; classId: string }) {

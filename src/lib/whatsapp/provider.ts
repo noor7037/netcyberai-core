@@ -23,6 +23,8 @@ export interface WhatsAppSendParams {
   language?: 'en' | 'hi';
   templateVersion?: number;
   metaTemplateId?: string | null;
+  // The order the template's own words name its values in: Meta numbers them {{1}}, {{2}}, ... in this order (C345).
+  templateOrder?: readonly string[];
   // Whether the school is a test school. A real provider refuses unless this is exactly false (docs/25 rule 2).
   testSchool?: boolean;
 }
@@ -49,7 +51,9 @@ export type WhatsAppNotice =
   // `recipient`: the number the message went to, when the provider says it (C190: an uncertain send is found by it).
   | { kind: 'status'; providerMessageId: string; status: 'sent' | 'delivered' | 'read' | 'failed'; at: string; failureCode?: string; recipient?: string }
   // `choiceId`: the id of the quick reply the parent tapped, when the message is an answer to one.
-  | { kind: 'inbound'; providerMessageId: string; fromPhone: string; text: string; at: string; choiceId?: string };
+  | { kind: 'inbound'; providerMessageId: string; fromPhone: string; text: string; at: string; choiceId?: string }
+  // Meta's review of one of our templates moved (C345): its own id, its word for the state, and the category it filed it in.
+  | { kind: 'template_status'; metaTemplateId: string; event: string; category: string | null };
 export type NoticeRead = { ok: true; notices: WhatsAppNotice[] } | { ok: false; reason: 'no_secret' | 'bad_signature' | 'not_understood' };
 
 export interface WhatsAppProvider {

@@ -144,8 +144,9 @@ describe('a linked family reads its matched child’s published results (C333)',
         term: 'Term 1',
         publishedOn: expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/),
         subjects: [
-          { name: 'Mathematics', percent: 60, grade: 'B' },
-          { name: 'Science', percent: 80, grade: 'A' },
+          // No script was checked by AI marking for either paper (C351), so neither opens a checked paper.
+          { name: 'Mathematics', percent: 60, grade: 'B', paperId: PP(2), checked: false },
+          { name: 'Science', percent: 80, grade: 'A', paperId: PP(1), checked: false },
         ],
         overall: { percent: 70, grade: 'B' },
         remark: 'Asks good questions.',

@@ -6,6 +6,7 @@ import { InfoTip } from '@/components/app-ui/InfoTip';
 import type { ClassResult } from '@/lib/exams/results';
 import { gradeWords, markWords, percentWords as percentOf } from './exam-format';
 import { SECTION, TAP } from './SchemeParts';
+import { TellParentsWhatsApp } from './TellParentsWhatsApp';
 
 // The class result of an exam (docs/27 row 9b, C214): each child of the class in roll order, with their marks in
 // every paper, and each subject's percent and grade and their overall, by the grading scheme in force. Worked out on
@@ -52,6 +53,7 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         </div>
       </section>
 
+      {data.publication && <TellParentsWhatsApp examId={examId} classId={classId} />}
       {!data.children.length && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.noChildren')}</p>}
 
       {/* A phone: one card a child, in roll order. */}

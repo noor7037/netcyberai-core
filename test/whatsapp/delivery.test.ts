@@ -61,7 +61,7 @@ describe('delivery states, on the real schema', () => {
     await db.pg.exec(`
       insert into schools (school_id, name, jurisdiction, is_test_fixture, is_pilot, pilot_allow_outbound, monthly_budget_paise, quiet_hours_start, quiet_hours_end) values
         ('${A}', 'School A', 'IN-HR', false, false, true, 100000, '00:00', '00:00'), ('${B}', 'School B', 'IN-HR', false, false, true, 100000, '00:00', '00:00');
-      insert into whatsapp_templates (school_id, template_name, status, billing_category) values (null, 'absence_alert', 'approved', 'utility'), (null, 'not_approved_yet', 'pending', 'utility');
+      insert into whatsapp_templates (school_id, template_name, status, billing_category, body, variables) values (null, 'absence_alert', 'approved', 'utility', 'From {{school}}: words for this test only.', '{school}'), (null, 'not_approved_yet', 'pending', 'utility', 'From {{school}}: words for this test only.', '{school}');
       insert into message_rate_table (channel, billing_category, rate_paise, gst_percent, verified_source, verified_at, effective_from) values ('whatsapp', 'utility', 1000, 18, 'TEST VALUE, not a real rate', now(), current_date - 30);
     `);
     for (const s of [A, B]) {

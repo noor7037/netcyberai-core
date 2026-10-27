@@ -223,7 +223,7 @@ describe('on the real schema', () => {
     expect((await as(principal, (c) => listThreads(c, A))).find((t) => t.thread_id === thread)).toMatchObject({ stopped: true });
     // Told once, in the words written in the code, naming the school first.
     expect(await runQueued(p.provider)).toEqual([{ status: 'sent', reason: null }]);
-    expect(p.said).toEqual([{ to: '+919000000001', text: 'School A: You will not get WhatsApp messages from the school any more. To start them again, please tell the school office.' }]);
+    expect(p.said).toEqual([{ to: '+919000000001', text: 'From School A: You will not get WhatsApp messages from the school any more. To start them again, please tell the school office.' }]);
     await writes('+919000000001', 'stop');
     expect(await runQueued(p.provider)).toEqual([]);
     expect(p.said).toHaveLength(1);

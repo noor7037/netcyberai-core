@@ -1,3 +1,4 @@
+import { familyClaims } from '@/lib/family/db';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
@@ -51,13 +52,13 @@ export default async function FamilyHomePage() {
     meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
-  const atSchool = await schoolTodayFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, links, child.childId);
+  const atSchool = await schoolTodayFor(familyClaims(page.session), links, child.childId, { withResults: true });
   // Tonight's practice (C335, L10): the app's subjects in which the class covered something today, each opening Study.
   const tonight = atSchool ? subjects.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
   // What is new from the connected schools since the parent last looked (M3-8a, C338), without the kinds turned off:
   // this child's own school news only, so on a shared phone one child never sees a brother's or sister's.
   const mine = links.map((l) => ({ ...l, children: l.children.filter((c) => c.childId === child.childId) })).filter((l) => l.children.length > 0);
-  const news = mine.length ? await schoolNewsFor({ accountId: page.session.accountId, tokenVersion: page.session.tokenVersion }, mine, seen, off) : null;
+  const news = mine.length ? await schoolNewsFor(familyClaims(page.session), mine, seen, off) : null;
   const mastered = progress.filter((p) => p.mastered).length;
   const tiles = subjects.map((s) => {
     const mine = progress.filter((p) => p.subject === s);
@@ -86,6 +87,15 @@ export default async function FamilyHomePage() {
                 </div>
               </div>
             )}
+          </section>
+        )}
+        {/* C351: the child's own results, when the school lets children see them. */}
+        {atSchool?.myResults && (
+          <section data-my-results-home className="fam-card flex flex-col gap-2 bg-white p-4">
+            <p className="text-base font-bold text-slate">{t(lang, 'fam.marks.homeCard')}</p>
+            <Link href="/family/results" className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+              {t(lang, 'fam.marks.homeOpen')}
+            </Link>
           </section>
         )}
         {news && news.total > 0 && (

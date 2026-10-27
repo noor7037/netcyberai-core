@@ -1,3 +1,4 @@
+import { familyClaims } from '@/lib/family/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
   if (!ready) return NextResponse.json({ error: 'not_signed_in' }, { status: 401 });
   if (ready === 'off') return NextResponse.json({ error: 'off' }, { status: 403 });
   if (ready === 'not_found') return NextResponse.json({ error: 'not_found' }, { status: 404 });
-  const result = await askSchoolFollowup({ accountId, tokenVersion: g.session.tokenVersion }, ready.links, childId);
+  const result = await askSchoolFollowup(familyClaims(g.session), ready.links, childId);
   if (result === 'recorded' || result === 'already') {
     await familyRead(g.session, (db) => noteFollowupAsked(db, accountId, childId));
     return NextResponse.json({ ok: true, already: result === 'already' });

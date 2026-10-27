@@ -32,7 +32,14 @@ export type LinkedSchoolChild = {
   // child only, otherwise null. canAnswer: the school holds the child's consent for messages (C230-AD); without it the
   // Pulse is read only.
   pulse: { items: SchoolPulse[]; canAnswer: boolean } | null;
+  // The child's coming exam papers (C351): the open exams' dated papers of the child's class from yesterday on, with
+  // the child's own exam number when the exam uses them. For a matched child only, otherwise null.
+  examSchedule: SchoolExamPaper[] | null;
 };
+
+// One coming paper of the child's exam timetable: the exam and subject in the school's words, the day (yyyy-mm-dd),
+// and the child's own exam number (seat number) when the exam uses them.
+export type SchoolExamPaper = { exam: string; subject: string; date: string; seatNo: string | null };
 
 // A Daily Pulse as the school sent it (its words never change): the lesson's day (yyyy-mm-dd), the school's English and
 // Hindi words, this guardian's answer however it was given (WhatsApp or the app), and whether it can still be answered
@@ -42,15 +49,58 @@ export type SchoolPulse = { pulseId: string; sentOn: string; body: { en: string;
 
 // A published result, as the report card shows it: each subject's percent and grade by the grading scheme kept with
 // the publication (null while a subject's marks are not complete), the overall, the class teacher's remark and the
-// co-scholastic grades.
+// co-scholastic grades. A subject whose script the teacher checked and approved (C351) has `checked`: its paper opens
+// question by question (SchoolCheckedPaper), while the school lets families see the checked answer sheets.
 export type SchoolResult = {
   exam: string;
   term: string | null;
   publishedOn: string;
-  subjects: { name: string; percent: number | null; grade: string | null }[];
+  subjects: { name: string; percent: number | null; grade: string | null; paperId: string; checked: boolean }[];
   overall: { percent: number | null; grade: string | null };
   remark: string | null;
   coScholastic: { area: string; grade: string }[];
+};
+
+// ---- A checked paper (AI answer-sheet marking, C351) -------------------------------------------------------------------
+// The child's own approved script of a published paper, as the school published it and only while the publication is
+// in force and the school lets families see the checked answer sheets. Only what a family needs: never another child's,
+// never a rank, never the answer key, the marking steps, the AI's reasons for the teacher, its confidence, what it read
+// on a page, or which provider or model marked it.
+
+// The kind of mistake an answer shows (the teacher's choice when changed, else the AI's), as the marking contract
+// names them.
+export type SchoolMistake = 'none' | 'concept' | 'calculation' | 'incomplete' | 'presentation' | 'language' | 'misread' | 'not_attempted';
+
+export type SchoolMarkedQuestion = {
+  label: string; // as printed: "1", "6(a)"
+  question: string | null; // the question as the teacher typed it
+  marks: number | null; // the teacher's mark when changed, else the AI's
+  max: number;
+  counted: boolean; // false: left out by internal choice ("attempt either (a) or (b)")
+  note: string | null; // for the child: the teacher's words when changed, else the AI's
+  mistake: SchoolMistake | null;
+  chapter: string | null;
+  topic: string | null;
+  // Where the answer is: a page of the script and the band of it (0 top, 1 bottom), for the mark in the margin.
+  place: { pageId: string; yFrom: number; yTo: number } | null;
+};
+
+// A page picture of the script: its id (fetched through the family's own page route) and its size in pixels.
+export type SchoolScriptPage = { pageId: string; width: number; height: number };
+
+export type SchoolCheckedPaper = {
+  paperId: string;
+  exam: string;
+  term: string | null;
+  subject: string;
+  publishedOn: string;
+  // Each part the questions count to (Written, Theory…): the score by the paper's own roll-up, internal choice counted.
+  parts: { component: string; name: string; score: number; max: number }[];
+  questions: SchoolMarkedQuestion[];
+  strengths: string | null;
+  improve: string | null;
+  practice: { text: string; chapter: string | null; topic: string | null }[];
+  pages: SchoolScriptPage[];
 };
 
 // One period of the published timetable: ISO weekday (1 is Monday), the period's number, and its subject in the

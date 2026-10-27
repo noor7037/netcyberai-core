@@ -246,7 +246,9 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
   const paperOf = async (paperId: unknown) =>
     isUuid(paperId)
       ? ((await db.query(
-          `select p.paper_id, p.class_id, p.subject_id, exists (select 1 from marks m where m.school_id = p.school_id and m.paper_id = p.paper_id) as has_marks,
+          `select p.paper_id, p.class_id, p.subject_id,
+                  exists (select 1 from marks m where m.school_id = p.school_id and m.paper_id = p.paper_id)
+                  or exists (select 1 from marking_uploads u where u.school_id = p.school_id and u.paper_id = p.paper_id) as has_marks,
                   public.exam_class_published(p.exam_id, p.class_id) as published
              from exam_papers p where p.school_id = $1 and p.exam_id = $2 and p.paper_id = $3`,
           [actor.schoolId, examId, paperId]
@@ -293,7 +295,14 @@ export async function changeExam(db: Sql, actor: Actor, examId: string, input: R
     return { ok: true, examId };
   }
   if (input.action === 'remove') {
-    if ((await db.query(`select 1 from marks where school_id = $1 and exam_id = $2 limit 1`, [actor.schoolId, examId])).rows[0]) return { ok: false, reason: 'has_marks' };
+    // Marks, or answer sheets uploaded for AI marking (C347): either keeps the exam.
+    const kept = await db.query(
+      `select 1 from marks where school_id = $1 and exam_id = $2
+       union all select 1 from marking_uploads u join exam_papers p on p.school_id = u.school_id and p.paper_id = u.paper_id where u.school_id = $1 and p.exam_id = $2
+       limit 1`,
+      [actor.schoolId, examId]
+    );
+    if (kept.rows[0]) return { ok: false, reason: 'has_marks' };
     const gone = await db.query(`delete from exam_papers where school_id = $1 and exam_id = $2`, [actor.schoolId, examId]);
     await db.query(`delete from exams where school_id = $1 and exam_id = $2`, [actor.schoolId, examId]);
     await audit('exam.removed', 'exams', examId, { name: exam.name, papers: gone.rowCount ?? 0 });

@@ -21,6 +21,11 @@ export default function FamilySignInPage() {
       </header>
       <main className="-mt-6 flex-1 rounded-t-3xl bg-off-white px-4 pb-10 pt-6">
         <FamilySignIn w={familyWords(lang, KEYS)} lang={lang} />
+        <p className="mt-8 text-center text-sm">
+          <a href="/family/link" data-link-child-phone className="inline-flex min-h-[44px] items-center font-semibold text-royal underline">
+            {t(lang, 'fam.link.signInLink')}
+          </a>
+        </p>
       </main>
     </div>
   );

@@ -10,6 +10,8 @@ export async function POST(req: NextRequest) {
   if (typeof pin !== 'string' || !/^[0-9]{6}$/.test(pin)) return NextResponse.json({ error: 'wrong' }, { status: 400 });
   const g = await requireFamily(req);
   if (g.error) return g.error;
+  // The parent's PIN is never used on a child's own phone (C342): the parent area is on the parent's phone.
+  if (g.session.device) return NextResponse.json({ error: 'child_phone' }, { status: 403 });
   return familyRun(g.session, async (db) => {
     const r = await checkPin(db, g.session.accountId, pin);
     if (r.status === 'no_pin') return NextResponse.json({ error: 'no_pin' }, { status: 409 });

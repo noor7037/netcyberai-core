@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
-import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
+import { FamilySessionRevokedError, withFamilyContext, familyClaims } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
 import { requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
   const session = g.session;
-  const claims = { accountId: session.accountId, tokenVersion: session.tokenVersion };
+  const claims = familyClaims(session);
   if (Number(req.headers.get('content-length') ?? 0) > MAX_BODY) return NextResponse.json({ error: 'too_big' }, { status: 413 });
   const raw = await req.text().catch(() => '');
   if (raw.length > MAX_BODY) return NextResponse.json({ error: 'too_big' }, { status: 413 });

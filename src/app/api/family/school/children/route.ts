@@ -1,3 +1,4 @@
+import { familyClaims } from '@/lib/family/db';
 import { NextRequest, NextResponse } from 'next/server';
 import { familyRun, jsonBody, requireParent } from '@/lib/family/request';
 import { linkedSchool, setChildLinks } from '@/lib/family/school';
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
     if (x.childId !== null && (typeof x.childId !== 'string' || !UUID.test(x.childId))) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
     pairs.push({ studentId: x.studentId, childId: (x.childId as string | null) ?? null });
   }
-  const school = await linkedSchool({ accountId: g.session.accountId, tokenVersion: g.session.tokenVersion }, linkId);
+  const school = await linkedSchool(familyClaims(g.session), linkId);
   if (!school) return NextResponse.json({ error: 'not_found' }, { status: 404 });
   return familyRun(g.session, async (db) => {
     const r = await setChildLinks(db, g.session.accountId, linkId, school.children.map((c) => c.studentId), pairs);

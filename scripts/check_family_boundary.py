@@ -85,7 +85,9 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
 OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     # The session check, and School Link's guardian context, which checks the family's own link in the same
     # transaction before reading the school as the guardian (C230-AA).
-    "src/lib/auth/db.ts": {"accounts", "school_links"},
+    # A child's own phone (M2b-2, C342): the session check reads the phone's link, and School Link checks the phone's
+    # child is the one matched to that school.
+    "src/lib/auth/db.ts": {"accounts", "school_links", "child_devices", "child_links"},
     # The school's office disconnects a guardian's Family app through this one definer function (C230-AA).
     "src/lib/school-link/index.ts": {"revoke_school_links_for_guardian"},
     # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).

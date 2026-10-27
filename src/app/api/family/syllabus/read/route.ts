@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
 import { checkSyllabusRequest, draftFromCatalogLines, draftFromReply, isUuid, keepDraft, PROBLEM_STATUS, type RequestProblem } from '@/lib/family/child-syllabus';
 import { extractedCatalog, pdfPages, PDF_MAX_BYTES } from '@/lib/content/pdf-import';
-import { FamilySessionRevokedError, withFamilyContext } from '@/lib/family/db';
+import { FamilySessionRevokedError, withFamilyContext, familyClaims } from '@/lib/family/db';
 import { hasPersonalInfo, PHOTO_MAX_BYTES, screenPhoto } from '@/lib/family/homework';
 import { jsonBody, requireParent } from '@/lib/family/request';
 import { activePromptVersion, prepareText, type PreparedText } from '@/lib/ai/platform';
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
   if (p.error) return p.error;
   const session = p.session;
   const accountId = session.accountId;
-  const claims = { accountId, tokenVersion: session.tokenVersion };
+  const claims = familyClaims(session);
   const draftId = body.syllabusId ?? null;
   if (!isUuid(body.childId) || typeof body.subject !== 'string' || (draftId !== null && !isUuid(draftId))) return refuse('bad_request');
   const childId = body.childId;

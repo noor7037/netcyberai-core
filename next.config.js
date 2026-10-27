@@ -30,11 +30,45 @@ const nextConfig = {
       ],
     },
   },
+  // PDF.js's worker (AI marking's upload screen, C350) is a file the build copies into /_next/static/media. It is
+  // already minified, and as a stand-alone .mjs the build's own minifier cannot read it as a module (it stops with
+  // "'import.meta' cannot be used outside of module code"). It is told the file needs no more minifying, as the build
+  // does for its own polyfills; nothing else is changed.
+  webpack(config) {
+    config.plugins.push({
+      apply(compiler) {
+        const { Compilation } = compiler.webpack;
+        compiler.hooks.thisCompilation.tap('PdfWorkerAlreadyMinified', (compilation) => {
+          compilation.hooks.processAssets.tap({ name: 'PdfWorkerAlreadyMinified', stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONS }, (assets) => {
+            for (const name of Object.keys(assets)) {
+              if (/(^|\/)pdf\.worker\.min\.[^/]*\.mjs$/.test(name)) compilation.updateAsset(name, (source) => source, { minimized: true });
+            }
+          });
+        });
+      },
+    });
+    return config;
+  },
   // The old /demo concept demo was folded into the one demo system on the
   // homepage and /product-tour (Decision Log C74); keep inbound links alive.
   // Free tools retired in the Decision Log C78 audit point to the tool
   // that replaced them (kept in step with REMOVED_TOOL_REDIRECTS in
   // src/content/free-tools.ts).
+  // A family's private result link (C351): one child's marks and checked pages. Never kept by a shared cache, never
+  // indexed, and its address (which holds the key) never sent on to another site. The page pictures' route says the
+  // same in its own responses.
+  async headers() {
+    return [
+      {
+        source: '/results/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'private, no-store, max-age=0' },
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow, noarchive' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: '/demo', destination: '/product-tour', permanent: true },

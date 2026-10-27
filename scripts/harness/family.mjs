@@ -1,11 +1,12 @@
 // The Family app's pictures (M1-2, C248; the M1 gate, docs/family-app/07 §3): every family screen at 360, 390 and
 // 1440 px, in English and Hindi, with reduced motion on and off. Same isolation as run.mjs: nothing under src/ imports
 // this, and the cookies are signed with the run's own secret, worthless anywhere else.
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import path from 'node:path';
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { SignJWT } from 'jose';
+import { MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
 
 // axe-core checks every picture against WCAG 2.1 A and AA; a serious or critical finding fails the run (07 §3).
 const AXE = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
@@ -16,12 +17,23 @@ export const FAMILY = {
   pinned: 'f0000000-0000-4000-8000-0000000f0003',
   full: 'f0000000-0000-4000-8000-0000000f0004',
   english: 'f0000000-0000-4000-8000-0000000f0005',
+  linked: 'f0000000-0000-4000-8000-0000000f0006',
 };
 
+// AM-4 (C351): a family linked to the illustrative school, whose child is matched to Aarav Example A of 5-A, with the
+// class's published AI-marked Mathematics paper (marking-seed.mjs), a coming exam paper, and a private report link
+// whose made-up key is fixed here (the harness's throwaway database only; it opens nothing anywhere else).
+const LINKED_CHILD = 'f0000000-0000-4000-8000-0000000fc006';
+export const REPORT_KEY = 'HarnessReportLinkKeyMadeUp00000000000000000';
+
 // [account (null: no session), picture name, address, { parent: parent mode open }]
+// `flags`: Control's family switches set for this picture only (saved with the reason "harness screen", removed after);
+// `reset`: SQL run after the picture (so a limit the picture spends does not carry over to the next).
 export const FAMILY_SCREENS = [
   [null, 'family-sign-in', '/family/sign-in', {}],
   [null, 'family-offline', '/family/offline', {}],
+  // m2b-2, reversed: a child's own phone asks for a code and shows it (C342, C346; behind the Focus Lock's switch).
+  [null, 'family-link', '/family/link', { flags: { focus_lock: true }, tap: '[data-link-start]', reset: 'delete from family.child_link_tries; delete from family.child_link_requests' }],
   ['fresh', 'family-welcome', '/family/welcome', {}],
   ['consented', 'family-pin-setup', '/family/welcome/pin', {}],
   ['pinned', 'family-first-child', '/family/welcome/child', { parent: true }],
@@ -55,6 +67,8 @@ export const FAMILY_SCREENS = [
   // m2-3: the week, the badges and the reward jar on the home; the parent's habit section (C277).
   ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
   ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
+  // m2b-2, reversed: children's own phones in the parent area, where the parent types the phone's code (C342, C346).
+  ['full', 'family-parent-phones', '/family/parent', { parent: true, flags: { focus_lock: true }, settle: '[data-child-phone-link]' }],
   // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
   ['full', 'family-parent-home-plan', '/family/parent', { parent: true, settle: '[data-home-plan-nights]' }],
   ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
@@ -72,6 +86,13 @@ export const FAMILY_SCREENS = [
   // m2b-1 (C305): the parent area's Focus Lock section, two phones of the English family, one with notices to look at.
   ['english', 'family-parent-focus', '/family/parent', { parent: true, settle: '[data-focus-section]' }],
   // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
+  // AM-4 (C351): the checked paper in the parent area, the child's own results and paper, and the private report link.
+  ['linked', 'family-parent-checked-paper', `/family/parent/results/${LINKED_CHILD}/${MK.paper}`, { parent: true, child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
+  ['linked', 'family-parent-school-results', '/family/parent', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
+  ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
+  ['linked', 'family-my-checked-paper', `/family/results/${MK.paper}`, { child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
+  [null, 'report-link', `/results/${REPORT_KEY}`, { settle: '[data-report-state="open"]', pictures: true, langQuery: true }],
+  [null, 'report-link-expired', `/results/${'x'.repeat(43)}`, { settle: '[data-report-state="expired"]', langQuery: true }],
   ...[['graph', 't01', 'graph'], ['number-line', 't02', 'number_line'], ['fraction', 't03', 'fraction_model'], ['geometry', 't04', 'geometry'], ['pendulum', 't05', 'simulation'], ['refraction', 't06', 'simulation']].map(
     ([name, t, block]) => ['full', `family-interactive-${name}`, `/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.${t}`, { child: 'f0000000-0000-4000-8000-0000000fc002', settle: `[data-block="${block}"]` }]
   ),
@@ -144,9 +165,42 @@ async function seedFocus(db) {
   );
 }
 
+async function seedLinkedFamily(db) {
+  const school = 'a0000000-0000-4000-8000-000000000001';
+  const principal = '00000000-0000-4000-8000-00000000a001';
+  await seedMarking(db, { school, principal, teacher: '00000000-0000-4000-8000-00000000a003', publish: true });
+  await db.pg.query(
+    `insert into family.accounts (account_id, email, ui_language, pin_hash, pin_set_at) values ($1, 'linked.family@example.org', 'en', 'scrypt$16384$8$1$aGFybmVzcy1zYWx0LTAwNA==$aGFybmVzcy1zdGFuZC1pbi1oYXNoLTAwMDAwMDAwMDA=', now()) on conflict do nothing`,
+    [FAMILY.linked]
+  );
+  await db.pg.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'study_core', true, 'parent_tap', 'fam-notice-1') on conflict do nothing`, [FAMILY.linked]);
+  await db.pg.query(`insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values ($1, $2, 'Aarav', 5, 'CBSE', 'en', 'en', 'IN-HR') on conflict do nothing`, [LINKED_CHILD, FAMILY.linked]);
+  const link = 'f0000000-0000-4000-8000-0000000fd101';
+  await db.pg.query(`insert into family.school_links (link_id, account_id, school_id, parent_id) values ($1, $2, $3, '00000000-0000-4000-8000-0000000e0001') on conflict do nothing`, [link, FAMILY.linked, school]);
+  await db.pg.query(`insert into family.child_links (child_id, link_id, account_id, student_id) values ($1, $2, $3, '00000000-0000-4000-8000-000000500001') on conflict do nothing`, [LINKED_CHILD, link, FAMILY.linked]);
+  // A coming exam with exam numbers, so the timetable has a paper and Aarav his number.
+  const coming = '00000000-0000-4000-8000-0000000a9901';
+  await db.pg.query(`delete from exam_seat_numbers where exam_id = $1`, [coming]);
+  await db.pg.query(`delete from exam_papers where exam_id = $1`, [coming]);
+  await db.pg.query(`delete from exams where exam_id = $1`, [coming]);
+  await db.pg.query(`insert into exams (exam_id, school_id, name, term, created_by, numbering, seat_prefix) values ($1, $2, 'Unit test 3', 'Term 1', $3, 'seat', 'UT')`, [coming, school, principal]);
+  for (const [n, subject, days] of [[1, '00000000-0000-4000-8000-0000000d0001', 5], [2, '00000000-0000-4000-8000-0000000d0002', 6]]) {
+    await db.pg.query(
+      `insert into exam_papers (paper_id, school_id, exam_id, class_id, subject_id, paper_date, unit_ids, components, created_by)
+       values ($1, $2, $3, '00000000-0000-4000-8000-0000000c0051', $4, (now() at time zone 'Asia/Kolkata')::date + $5::int, '{}', '[{"key":"written","name":"Written","max":25,"share":null}]', $6)`,
+      [`00000000-0000-4000-8000-0000000a99${String(10 + n)}`, school, coming, subject, days, principal]
+    );
+  }
+  await db.pg.query(
+    `insert into marking_report_links (school_id, key_hash, exam_id, class_id, student_id, publication_version, made_by) values ($1, $2, $3, '00000000-0000-4000-8000-0000000c0051', '00000000-0000-4000-8000-000000500001', 1, $4)`,
+    [school, createHash('sha256').update(REPORT_KEY).digest('hex'), MK.exam, principal]
+  );
+}
+
 export async function runFamilyMatrix({ browser, base, db, secret, out, only }) {
   await seedEnglish(db);
   await seedFocus(db);
+  await seedLinkedFamily(db);
   // The English child has done the first three lessons of unit 1, so the map shows progress and lesson 4 is open.
   await db.pg.query(`insert into family.english_enrolments (account_id, child_id, track, started_on) values ($1, $2, 'b', (now() at time zone 'Asia/Kolkata')::date - 3) on conflict do nothing`, [FAMILY.english, 'f0000000-0000-4000-8000-0000000fc005']);
   for (const [k, s] of [['b.u01.l1', 3], ['b.u01.l2', 2], ['b.u01.l3', 3]]) {
@@ -160,19 +214,25 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
     for (const motion of FAMILY_MOTIONS) {
       for (const width of FAMILY_WIDTHS) {
         for (const [who, name, route, opts] of screens) {
+          for (const [module, on] of Object.entries(opts.flags ?? {}))
+            await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
           const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
           // A device setting the screen reads from the phone's storage (the data-saver, M2-9).
           if (opts.storage) await context.addInitScript((s) => Object.entries(s).forEach(([k, v]) => window.localStorage.setItem(k, v)), opts.storage);
+          // The checked pages' pictures are drawn in the browser (marking-seed.mjs): the harness has no file store.
+          if (opts.pictures) await routeScriptPictures(context);
           const page = await context.newPage();
           const errors = [];
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
           page.on('response', (r) => {
             if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
           });
-          const response = await page.goto(base + route, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
+          // The report link's language is in its address (the WhatsApp message carries the guardian's).
+          const address = opts.langQuery && lang === 'hi' ? `${route}?lang=hi` : route;
+          const response = await page.goto(base + address, { waitUntil: 'networkidle', timeout: 90000 }).catch((e) => ({ status: () => 0, error: e.message }));
           if (opts.settle) await page.locator(opts.settle).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${opts.settle} never appeared`));
           // `mic`: start a recording on Chromium's fake microphone (the browser is launched with it), so the recording
           // state can be pictured. Nothing is sent: the context closes while it records.
@@ -182,6 +242,11 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
             await page.waitForTimeout(1600);
           }
           if (opts.tap) await page.locator(opts.tap).first().click().catch(() => errors.push(`${opts.tap} could not be tapped`));
+          // A full-page picture does not scroll, so a lazy picture below the fold would never load: load them all first.
+          if (opts.pictures) {
+            await page.evaluate(() => document.querySelectorAll('img[loading="lazy"]').forEach((img) => (img.loading = 'eager')));
+            await page.waitForFunction(() => [...document.querySelectorAll('[data-script-page] img')].every((img) => img.complete && img.naturalWidth > 0), null, { timeout: 15000 }).catch(() => errors.push('a page picture never loaded'));
+          }
           await page.waitForTimeout(400);
           const seen = await page.evaluate(() => {
             const main = document.querySelector('main') ?? document.body;
@@ -210,7 +275,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               devanagari: /[ऀ-ॿ]/.test(text),
               // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names and the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'family', 'plus'].includes(w.toLowerCase())),
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });
@@ -232,6 +297,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           rows.push({ name, lang, motion, width, route, file, h1: seen.h1, axe, problems });
           console.log(`${width} ${lang} ${motion} ${name}: ${problems.length ? problems.join('; ') : 'ok'}`);
           await context.close();
+          if (opts.flags) await db.pg.query(`delete from control.app_flags where app = 'family' and reason = 'harness screen'`);
+          if (opts.reset) await db.pg.exec(opts.reset);
         }
       }
     }

@@ -1,4 +1,5 @@
 import { writeAuditLog, writeEntitlementAudit } from '@/lib/audit/log';
+import { AI_MARKING_PAGES_LIMIT } from '@/lib/contracts/marking';
 import type { AccessMode } from '@/lib/contracts/entitlements';
 import { isModuleId, MODULE_IDS, type ModuleId } from '@/lib/contracts/modules';
 import { LIMIT_KEY } from '@/lib/copilot/copilot';
@@ -22,7 +23,11 @@ import { listTrials, MAX_TRIAL_DAYS, TRIAL_DAYS, TRIAL_NOTICE_DAYS, type Trial }
 type By = { userId: string };
 
 // The limits a module actually reads today, so Control offers only those.
-export const PLAN_LIMIT_CHOICES: readonly { moduleId: ModuleId; key: string }[] = [{ moduleId: 'teacher-copilot', key: LIMIT_KEY }];
+export const PLAN_LIMIT_CHOICES: readonly { moduleId: ModuleId; key: string }[] = [
+  { moduleId: 'teacher-copilot', key: LIMIT_KEY },
+  // AI answer-sheet marking (C347): pages a school's scripts may have read and marked in a month.
+  { moduleId: 'exams', key: AI_MARKING_PAGES_LIMIT },
+];
 export const MAX_GRACE_DAYS = 90;
 const PLAN_ID_RE = /^[a-z0-9_-]{1,40}$/;
 const LIMIT_KEY_RE = /^[a-z][a-z0-9_]{0,39}$/;

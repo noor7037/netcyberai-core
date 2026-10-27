@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const age = Math.floor(Date.now() / 1000) - (session.issuedAt ?? 0);
     if (age < familyRenewAfterSeconds(session.keep)) return NextResponse.json({ status: 'fresh' });
     const res = NextResponse.json({ status: 'renewed' });
-    await setFamilySessionCookie(res, { accountId: session.accountId, tokenVersion: session.tokenVersion, sessionId: session.sessionId, keep: session.keep });
+    await setFamilySessionCookie(res, { accountId: session.accountId, tokenVersion: session.tokenVersion, sessionId: session.sessionId, keep: session.keep, device: session.device });
     return res;
   });
 }

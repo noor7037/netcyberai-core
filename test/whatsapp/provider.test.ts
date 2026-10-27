@@ -117,7 +117,7 @@ describe('the gate, on the real schema', () => {
         ${school(PILOT, 'Pilot School', `false, true, false, 100000, '00:00', '00:00'`)},
         ${school(QUIET, 'Quiet School', `false, false, true, 100000, '00:00', '23:59:59'`)},
         ${school(NO_BUDGET, 'No Budget School', `false, false, true, null, '00:00', '00:00'`)};
-      insert into whatsapp_templates (school_id, template_name, status, billing_category) values (null, 'absence_alert', 'approved', 'utility'), (null, 'not_approved_yet', 'pending', 'utility');
+      insert into whatsapp_templates (school_id, template_name, status, billing_category, body, variables) values (null, 'absence_alert', 'approved', 'utility', 'From {{school}}: words for this test only.', '{school}'), (null, 'not_approved_yet', 'pending', 'utility', 'From {{school}}: words for this test only.', '{school}');
     `);
     for (const s of [LIVE, TEST, PILOT, QUIET, NO_BUDGET]) {
       await db.pg.query(`insert into students (student_id, school_id, admission_no, name, status) values ($1, $2, 'A-1', 'Child', 'active')`, [student(s), s]);
