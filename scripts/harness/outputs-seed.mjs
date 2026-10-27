@@ -40,7 +40,10 @@ export async function seedOutputs(db, { school, principal, teacher, made = false
     }
   }
   await db.pg.query(`update exam_papers set entered_by = $2 where paper_id = $1`, [OUT.paper, teacher]);
-  const s = (await db.pg.query(`select version, scheme from grading_schemes where school_id = $1 order by version desc limit 1`, [school])).rows[0];
+  // The scheme kept with both published classes counts the Unit test 30 and the Half-yearly 70 (C230-AJ part 2), so the counted
+  // result shows beside each. A saved scheme is never changed, so only what the publications keep carries the weights.
+  const latest = (await db.pg.query(`select version, scheme from grading_schemes where school_id = $1 order by version desc limit 1`, [school])).rows[0];
+  const s = { version: latest.version, scheme: { ...latest.scheme, examTypes: [{ type: 'unit', weight: 30 }, { type: 'half_yearly', weight: 70 }] } };
   await db.pg.query(`insert into exam_publications (school_id, exam_id, class_id, version, scheme_version, scheme, recognition, published_by) values ($1, $2, $3, 1, $4, $5::jsonb, '{}'::jsonb, $6)`, [
     school,
     OUT.exam,
@@ -49,6 +52,12 @@ export async function seedOutputs(db, { school, principal, teacher, made = false
     JSON.stringify(s.scheme),
     principal,
   ]);
+  // A publication is never changed (a trigger): the harness's own seed sets the weights on the published Half-yearly with the
+  // triggers off, as its other fixtures delete rows.
+  const kept = JSON.stringify(s.scheme).replace(/'/g, "''");
+  await db.pg.exec(`set session_replication_role = replica;
+    update exam_publications set scheme = '${kept}'::jsonb where school_id = '${school}' and exam_id = '${MK.exam}';
+    set session_replication_role = origin;`);
   if (made) {
     await db.pg.query(
       `insert into exam_outputs (school_id, publication_id, made_by) select school_id, publication_id, published_by from exam_publications where school_id = $1 and exam_id = any ($2::uuid[]) and reopened_at is null`,

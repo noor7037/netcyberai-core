@@ -7009,6 +7009,7 @@ export const en = {
   'fam.schoolProgress.counted': 'Counted across exam types',
   'fam.schoolProgress.countedHow': 'Your school counts {types}.',
   'fam.schoolProgress.countedResult': 'Counted: {value}',
+  'fam.schoolProgress.countedType': '{name} {weight}%',
   'ex.tell.title': 'Tell parents on WhatsApp',
   'ex.tell.lead': 'Each family gets a private link to their own child’s result, which works for 30 days. No marks are written in the message. See who will get it before you send.',
   'ex.tell.summary': '{will} parents will get it · {wont} will not · {sent} children already sent',

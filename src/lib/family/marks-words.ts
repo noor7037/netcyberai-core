@@ -31,4 +31,5 @@ export const MY_RESULTS_KEYS: MessageKey[] = [
 export const PROGRESS_KEYS: MessageKey[] = [
   'fam.schoolProgress.title', 'fam.schoolProgress.lead', 'fam.schoolProgress.leadParent', 'fam.schoolProgress.none', 'fam.schoolProgress.session',
   'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.marks.backParent', 'fam.marks.myResults', 'fam.tab.home',
+  'fam.schoolProgress.counted', 'fam.schoolProgress.countedHow', 'fam.schoolProgress.countedType', 'fam.schoolProgress.countedResult',
 ];

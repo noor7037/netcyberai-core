@@ -3137,6 +3137,8 @@ const outputsScreen = (hindi) => async (page) => {
     rules: await page.locator('[data-cert-rules] li').evaluateAll((els) => els.map((e) => e.textContent.trim())),
     summary: ((await page.locator('[data-cert-summary]').innerText()) || '').replace(/\s+/g, ' '),
     certRows: await page.locator('[data-cert-child]').count(),
+    counted: await page.locator('[data-result-counted-overall]').count(),
+    how: ((await page.locator('[data-result-weighted-how]').first().innerText().catch(() => '')) || '').replace(/\s+/g, ' '),
     ranked: /\brank(ed)?\b|\btopper\b|\bposition\b/i.test(((await page.locator('main').first().innerText()) ?? '').replace(/No child is ranked or compared with another\./g, '')),
   };
   if (hindi) {
@@ -3156,6 +3158,7 @@ const outputsDone = (hindi) => async (page) => {
   if (JSON.stringify(seen.rules) !== JSON.stringify(['Merit: overall grade A or better.', 'Participation: every child who sat the exam.'])) throw new Error(`the certificate rules: ${JSON.stringify(seen.rules)}`);
   if (!/^To make: \d+ merit, \d+ participation\./.test(seen.summary)) throw new Error(`the certificate summary: ${seen.summary}`);
   if (seen.ranked) throw new Error('the result screen says rank, position or topper');
+  if (!seen.counted || !/Unit test 30%, Half-yearly 70%/.test(seen.how)) throw new Error(`the counted result on the class result: ${JSON.stringify({ counted: seen.counted, how: seen.how })}`);
 };
 const progressScreen = (hindi) => async (page) => {
   await aj5Seed();
@@ -3178,7 +3181,7 @@ const progressDone = (hindi) => async (page) => {
   await clearOutputs(db, SCHOOL);
   await clearMarking(db, SCHOOL);
   await examsPutBackOnly();
-  if (seen?.tables !== 2 || JSON.stringify(seen.headings) !== JSON.stringify(['Unit test', 'Half-yearly'])) throw new Error(`the progress report's exam types: ${JSON.stringify(seen)}`);
+  if (seen?.tables !== 3 || JSON.stringify(seen.headings) !== JSON.stringify(['Unit test', 'Half-yearly', 'Counted across exam types'])) throw new Error(`the progress report's exam types: ${JSON.stringify(seen)}`);
   if (/\brank(ed)?\b|\btopper\b|\bposition\b/i.test((seen.text ?? '').replace(/no rank, no position\./gi, ''))) throw new Error('the progress report says rank, position or topper');
   if (!/Unit test 2 \(outputs, harness\)/.test(seen.text ?? '') || !/Half-yearly \(AI marking, harness\)/.test(seen.text ?? '')) throw new Error(`the progress report's exams: ${seen.text}`);
 };

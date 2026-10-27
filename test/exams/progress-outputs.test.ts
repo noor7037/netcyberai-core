@@ -5,7 +5,12 @@ import { certificateSvg } from '@/lib/documents/cert-doc';
 import { certificatesToPrint, certificateRegister, verifyCertificate } from '@/lib/documents/certificates';
 import { makeResultCertificates, resultCertificatesPreview } from '@/lib/documents/result-certificates';
 import { composeResultCertificate, gradeFloor, readRules, recipientsOf } from '@/lib/documents/result-certificate-rules';
-import { groupByType, progressReport } from '@/lib/exams/progress-report';
+import { groupByType, progressReport, progressWeighted } from '@/lib/exams/progress-report';
+import { progressBlocks } from '@/lib/exams/progress-report-text';
+import { reportCards } from '@/lib/exams/report-card';
+import { blocksText, reportCardBlocks } from '@/lib/exams/report-card-text';
+import { classResult } from '@/lib/exams/results';
+import { weightedNamesOf } from '@/lib/exams/weighted-view';
 import { outputsState, publishAndNotify } from '@/lib/exams/publish-outputs';
 import { publishClass, reopenClass } from '@/lib/exams/publish';
 import { DEFAULT_EXAM_TYPES } from '@/lib/contracts/exam-types';
@@ -498,5 +503,93 @@ describe('the certificates, into the school’s register', () => {
     expect(docs).toEqual(expect.arrayContaining(['merit_basis', 'merit_grade', 'merit_percent', 'participation_for']));
     const exams = settingsSchemaFor('exams')!.fields.map((f) => f.key);
     for (const k of ['merit_basis', 'merit_grade', 'merit_percent', 'participation_for']) expect(exams).not.toContain(k);
+  });
+});
+
+describe('the counted result across exam types, where the scheme weighs them (C230-AJ part 2 and 5)', () => {
+  const schemeWith = (examTypes: { type: string; weight: number }[]) => ({ ...SCHEME, examTypes });
+  const addScheme = (version: number, scheme: unknown) => q(`insert into grading_schemes (school_id, version, scheme, made_by) values ($1, $2, $3::jsonb, $4)`, [A, version, JSON.stringify(scheme), PRINCIPAL]);
+  const republishHalf = async () => {
+    expect(await as(principal, (c) => reopenClass(c, actor(principal), HALF, C6A, 'The weights changed; counted again.'))).toMatchObject({ ok: true });
+    expect(await publish(HALF)).toMatchObject({ ok: true });
+  };
+  const cardText = async (lang: 'en' | 'hi' = 'en') => {
+    const r = await as(principal, (c) => reportCards(c, actor(principal), HALF, C6A, S1));
+    if (!r.ok) throw new Error(r.reason);
+    return { set: r.set, text: blocksText(reportCardBlocks(r.set, r.set.cards[0], lang)) };
+  };
+
+  it('with no weights nothing is added: the progress report, the class result and the report card are as they were', async () => {
+    const r = await progress(S1);
+    if (!r.ok) throw new Error(r.reason);
+    expect(r.report.weighted).toBeUndefined();
+    expect(await family()).not.toHaveProperty('weighted');
+    const c = await as(principal, (cl) => classResult(cl, actor(principal), HALF, C6A));
+    expect(c).not.toHaveProperty('weighted');
+    expect(c!.children[0]).not.toHaveProperty('weighted');
+    const { set, text } = await cardText();
+    expect(set.weighted).toBeUndefined();
+    expect(text).not.toMatch(/Counted across exam types/);
+  });
+
+  it('the Unit test counts 30 and the Half-yearly 70: the child’s counted result, in the progress report, the class result and the report card', async () => {
+    await addScheme(2, schemeWith([{ type: 'unit', weight: 30 }, { type: 'half_yearly', weight: 70 }]));
+    await republishHalf();
+    const r = await progress(S1);
+    if (!r.ok) throw new Error(r.reason);
+    // Unit 85 and Half-yearly 95 over both subjects; Mathematics 90 and 96, Science 80 and 94.
+    expect(r.report.weighted).toEqual({
+      weights: [{ type: 'unit', name: { en: 'Unit test', hi: 'इकाई परीक्षा' }, weight: 30 }, { type: 'half_yearly', name: { en: 'Half-yearly', hi: 'अर्धवार्षिक परीक्षा' }, weight: 70 }],
+      subjects: [
+        { name: 'Mathematics', types: [90, 96], percent: 94, grade: 'A' },
+        { name: 'Science', types: [80, 94], percent: 90, grade: 'A' },
+      ],
+      overall: { types: [85, 95], percent: 92, grade: 'A' },
+    });
+    const text = blocksText(progressBlocks(r.report, 'en'));
+    expect(text).toMatch(/Counted across exam types/);
+    expect(text).toMatch(/Unit test 30% \| Half-yearly 70% \| Counted result/);
+    expect(text).toMatch(/Overall \| 85% \| 95% \| 92% · A/);
+    expect(blocksText(progressBlocks(r.report, 'hi'))).toMatch(/परीक्षा के प्रकारों में गिना गया परिणाम/);
+    // The class result and the report card carry it too, with the types' names.
+    const cl = await as(principal, (c) => classResult(c, actor(principal), HALF, C6A));
+    expect(cl!.weighted!.weights).toEqual([{ type: 'unit', weight: 30 }, { type: 'half_yearly', weight: 70 }]);
+    expect(cl!.children[0].weighted!.overall).toMatchObject({ rounded: 92 });
+    expect(await as(principal, (c) => weightedNamesOf(c, A, cl!.weighted!.weights))).toEqual({ unit: { en: 'Unit test', hi: 'इकाई परीक्षा' }, half_yearly: { en: 'Half-yearly', hi: 'अर्धवार्षिक परीक्षा' } });
+    const card = await cardText();
+    expect(card.set.weightedNames).toEqual({ unit: { en: 'Unit test', hi: 'इकाई परीक्षा' }, half_yearly: { en: 'Half-yearly', hi: 'अर्धवार्षिक परीक्षा' } });
+    expect(card.text).toMatch(/Counted across exam types/);
+    expect(card.text).toMatch(/Overall \| 85% \| 95% \| 92% · A/);
+    expect((await cardText('hi')).text).toMatch(/परीक्षा के प्रकारों में गिना गया परिणाम/);
+  });
+
+  it('the family sees it once the outputs of the republished class are made, and only for the child’s own marks', async () => {
+    expect((await family())?.weighted).toBeUndefined(); // the Half-yearly was published again: its outputs are not made yet
+    expect(await notify(HALF)).toMatchObject({ ok: true, first: true });
+    const got = await family();
+    expect(got?.weighted?.overall).toEqual({ types: [85, 95], percent: 92, grade: 'A' });
+    expect(got?.weighted?.weights.map((w) => w.name.en)).toEqual(['Unit test', 'Half-yearly']);
+    expect(JSON.stringify(got)).not.toMatch(/Bela|Chirag|Diya/);
+  });
+
+  it('a counted type with nothing published yet reads “not entered”, and so does the result', async () => {
+    await addScheme(3, schemeWith([{ type: 'unit', weight: 30 }, { type: 'half_yearly', weight: 50 }, { type: 'annual', weight: 20 }]));
+    await republishHalf();
+    const r = await progress(S1);
+    if (!r.ok) throw new Error(r.reason);
+    // The Annual was reopened and is not in force: it counts for nothing, so the result is unknown, never a mean of some weights.
+    expect(r.report.weighted!.overall).toEqual({ types: [85, 95, null], percent: null, grade: null });
+    expect(r.report.weighted!.subjects.every((s) => s.types[2] === null && s.percent === null)).toBe(true);
+    const text = blocksText(progressBlocks(r.report, 'en'));
+    expect(text).toMatch(/Overall \| 85% \| 95% \| Not entered \| Not entered/);
+    const card = await cardText();
+    expect(card.text).toMatch(/Overall \| 85% \| 95% \| Not entered \| Not entered/);
+    expect(card.set.cards[0].weighted!.overall.grade).toMatchObject({ kind: 'no_grade', reason: 'not_entered' });
+  });
+
+  it('a school that weighs no exam type keeps every screen exactly as before (pure)', () => {
+    expect(progressWeighted(null, DEFAULT_EXAM_TYPES)).toBeNull();
+    const none = { papers: [], marks: [], scheme: SCHEME as never };
+    expect(progressWeighted(none, DEFAULT_EXAM_TYPES)).toBeNull();
   });
 });
