@@ -5,6 +5,7 @@ import { ChapterReader } from '@/components/family/reader/ChapterReader';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { previewOf, readVersion, studioOverview } from '@/lib/content/chapter-studio';
+import { previewBlocks } from '@/lib/family/chapter-test-shape';
 import { chapterView } from '@/lib/family/chapters';
 import { READER_KEYS } from '@/lib/family/reader-words';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
@@ -71,7 +72,7 @@ export default async function StudioPage({ searchParams }: { searchParams: { key
             <div className="fam-canvas rounded-md bg-off-white p-3 text-slate">
               <div lang={view.lang} data-chapter-reader={view.key} className="mx-auto flex w-full max-w-xl flex-col gap-4">
                 <h3 className="text-xl font-extrabold">{view.title}</h3>
-                <ChapterReader chapterKey={view.key} lang={view.lang} blocks={view.blocks} ids={view.ids} script={view.script} start={0} resumed={false} w={w} tone={view.subject} preview />
+                <ChapterReader chapterKey={view.key} lang={view.lang} blocks={previewBlocks(view.blocks)} ids={view.ids} script={view.script} start={0} resumed={false} w={w} tone={view.subject} preview />
               </div>
             </div>
           ) : (

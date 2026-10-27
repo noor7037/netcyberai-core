@@ -3,6 +3,7 @@ import { notFound, redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { ChapterReader } from '@/components/family/reader/ChapterReader';
 import { loadChapter, readableChapters } from '@/lib/family/chapter-store';
+import { readerBlocks } from '@/lib/family/chapter-tests';
 import { chapterView, resumeIndex } from '@/lib/family/chapters';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { READER_KEYS } from '@/lib/family/reader-words';
@@ -15,6 +16,7 @@ import { voiceDay } from '@/lib/family/voice';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { indiaDate } from '@/lib/time/india';
 import { readPlace } from '@/lib/family/reading';
+import { readChapterVideos } from '@/lib/family/videos';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 import { familyWords } from '@/lib/family/words';
@@ -39,6 +41,9 @@ export default async function ChapterPage({ params }: { params: { key: string } 
   if (!chapter) notFound();
   const lang = page.childLang;
   const view = chapterView(chapter, lang);
+  // S5 (C378): a chapter test reaches the phone without its answers (sealed tokens), and the reviewer's chosen videos.
+  const blocks = readerBlocks(view.blocks, { accountId: page.session.accountId, childId: child.childId, chapterKey: chapter.key, subject: chapter.subject });
+  const videos = await familyPageRead(page, (db) => readChapterVideos(db, chapter.key, view.lang));
   const saved = await familyPageRead(page, (db) => readPlace(db, page.session.accountId, child.childId, chapter.key));
   const start = resumeIndex(view.script, saved);
   // S2 (C375): the doubt drawer, while the chapter's subject is open to this child and Understand is switched on; the
@@ -55,7 +60,7 @@ export default async function ChapterPage({ params }: { params: { key: string } 
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back={`/family/study?subject=${chapter.subject}`} backLabel={t(lang, 'fam.study.title')} kicker={t(lang, 'fam.reader.kicker')} title={view.title} subject={chapter.subject} />
       <main data-chapter-reader={chapter.key} lang={view.lang} className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-28">
-        <ChapterReader chapterKey={chapter.key} lang={view.lang} blocks={view.blocks} ids={view.ids} script={view.script} start={start} resumed={saved !== null && start > 0} w={w} tone={chapter.subject} chapterTitle={view.title} tutor={tutor} />
+        <ChapterReader chapterKey={chapter.key} lang={view.lang} blocks={blocks} ids={view.ids} script={view.script} start={start} resumed={saved !== null && start > 0} w={w} tone={chapter.subject} chapterTitle={view.title} tutor={tutor} videos={videos} />
         {others.length > 0 && (
           <nav aria-labelledby="fam-reader-more" className="flex flex-col gap-2">
             <h2 id="fam-reader-more" className="px-1 text-lg font-extrabold text-slate">

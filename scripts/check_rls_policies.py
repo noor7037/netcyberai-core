@@ -519,6 +519,9 @@ ALLOWED_PERMISSIVE = (
         ("family.tutor_conversations", "tutor_conversations_own"),
         ("family.tutor_messages", "tutor_messages_own"),
         ("family.tutor_attachments", "tutor_attachments_own"),
+        # S5 (C378): a child's chapter-test attempts and answers; own account only (restrictive twins below).
+        ("family.chapter_test_attempts", "chapter_test_attempts_own"),
+        ("family.chapter_test_answers", "chapter_test_answers_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -1073,6 +1076,8 @@ REQUIRED_RESTRICTIVE = {
     ("family.tutor_conversations", "tutor_conversations_own_only"),
     ("family.tutor_messages", "tutor_messages_own_only"),
     ("family.tutor_attachments", "tutor_attachments_own_only"),
+    ("family.chapter_test_attempts", "chapter_test_attempts_own_only"),
+    ("family.chapter_test_answers", "chapter_test_answers_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

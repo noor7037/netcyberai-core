@@ -2,12 +2,16 @@
 
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Block, NarrationLine } from '@/lib/family/blocks';
+import type { NarrationLine } from '@/lib/family/blocks';
+import type { PublicChapterTest, ReaderBlock } from '@/lib/family/chapter-test-shape';
+import type { VideoPick } from '@/lib/family/videos';
 import { fill, type Words } from '@/lib/family/fill';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
 import { NO_VOICE_EVENT, speak, stopSpeaking } from '../english/speech';
 import { SPEEDS, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
 import { TableView } from './TableView';
+import { VideoList } from '../VideoPicks';
+import { useDataSaver } from '../useDataSaver';
 import { TutorDrawer } from '../tutor/TutorDrawer';
 import type { TutorReaderContext } from '../tutor/TutorWindow';
 import type { Subject } from '@/lib/family/subjects';
@@ -21,12 +25,16 @@ import type { Subject } from '@/lib/family/subjects';
 // read, without smooth motion under prefers-reduced-motion. The interactive blocks load only when the chapter has one.
 
 const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then((m) => m.InteractiveView));
+// S5 (C378): the 3D model (whose WebGL is a further chunk, fetched only on the child's tap) and the chapter test load only
+// when the chapter has one; neither is part of the reader's first load.
+const Model3DView = dynamic(() => import('../blocks/Model3DView').then((m) => m.Model3DView));
+const ChapterTestView = dynamic(() => import('../blocks/ChapterTestView').then((m) => m.ChapterTestView));
 
 // `tutor` (S2, C375): the doubt drawer, the shared tutor window over the chapter, for the chapter's subject; null hides it.
 type Props = {
   chapterKey: string;
   lang: 'en' | 'hi';
-  blocks: Block[];
+  blocks: ReaderBlock[];
   ids: string[];
   script: NarrationLine[];
   start: number;
@@ -35,6 +43,8 @@ type Props = {
   tone: string;
   chapterTitle?: string;
   tutor?: { subject: Subject; voice: { secondsLeft: number } | null; files: boolean; homework: boolean } | null;
+  // S5 (C378): the videos a reviewer chose for this chapter, read on the server.
+  videos?: VideoPick[];
   // S3 (C376): the studio's preview: the same reader, the child's place never saved.
   preview?: boolean;
 };
@@ -65,7 +75,8 @@ function findSentence(root: HTMLElement, text: string, nth: number): { node: Tex
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, chapterTitle = '', tutor = null, preview = false }: Props) {
+export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, chapterTitle = '', tutor = null, videos = [], preview = false }: Props) {
+  const saver = useDataSaver();
   const [doubt, setDoubt] = useState<TutorReaderContext | null>(null);
   const [index, setIndex] = useState(Math.min(Math.max(start, 0), Math.max(script.length - 1, 0)));
   const [playing, setPlaying] = useState(false);
@@ -233,7 +244,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
       )}
       {blocks.map((b, i) => {
         const id = ids[i];
-        const view = renderBlock(b, w, tone);
+        const view = renderBlock(b, w, tone, { id, chapterKey });
         if (!view) return null;
         return (
           <div
@@ -249,6 +260,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
           </div>
         );
       })}
+      {videos.length > 0 && <VideoList w={w} videos={videos} saver={saver.ready && saver.state.on} title={w['fam.video.picks']} />}
       {done && (
         <p role="status" data-reader-done className="fam-card bg-white p-4 text-base font-bold text-slate">
           {w['fam.reader.done']}
@@ -345,7 +357,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
 }
 
 // The block renderer's own views; a check or practice needs the server's sealed items and is not part of a chapter.
-function renderBlock(b: Block, w: Words, tone: string): React.ReactNode {
+function renderBlock(b: ReaderBlock, w: Words, tone: string, at: { id: string; chapterKey: string }): React.ReactNode {
   switch (b.type) {
     case 'explanation':
       return <ExplanationView b={b} w={w} tone={tone} />;
@@ -362,7 +374,12 @@ function renderBlock(b: Block, w: Words, tone: string): React.ReactNode {
     case 'fraction_model':
     case 'geometry':
     case 'simulation':
+    case 'slider':
       return <InteractiveView b={b} w={w} tone={tone} />;
+    case 'model_3d':
+      return <Model3DView b={b} w={w} tone={tone} />;
+    case 'chapter_test':
+      return <ChapterTestView b={b as PublicChapterTest} blockId={at.id} chapterKey={at.chapterKey} subject={tone} w={w} tone={tone} />;
     case 'english_moment':
       return <EnglishMomentView b={b} w={w} tone={tone} />;
     case 'sources':

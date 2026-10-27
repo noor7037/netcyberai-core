@@ -98,6 +98,38 @@ export async function reviewVideoPick(db: Sql, actor: ContentActor, p: { topicKe
   return { ok: true };
 }
 
+// A reviewer's own pick for one chapter (S5, C378): a video chosen by a person, pinned at once, shown in the family's
+// chapter reader and nowhere else. The reviewer types what the page shows (the video id, its title, its channel and
+// length); the family sees no automatic pick for a chapter. A blocked channel cannot be pinned. A repeat of the same
+// video updates it. The chapter key is any key a chapter can have; the reader looks the picks up by it.
+export type ChapterVideo = { chapterKey: string; language: string; videoId: string; channelId: string; channelTitle: string; title: string; durationS: number; startS: number };
+export async function pinChapterVideo(db: Sql, actor: ContentActor, p: ChapterVideo): Promise<VideoChange> {
+  const channelTitle = typeof p.channelTitle === 'string' ? p.channelTitle.replace(/\s+/g, ' ').trim() : '';
+  const title = typeof p.title === 'string' ? p.title.replace(/\s+/g, ' ').trim() : '';
+  if (!TOPIC_KEY.test(p.chapterKey) || (p.language !== 'en' && p.language !== 'hi') || !VIDEO_ID.test(p.videoId) || !CHANNEL_ID.test(p.channelId)) return { ok: false, reason: 'bad_request' };
+  if (channelTitle.length < 1 || channelTitle.length > 120 || title.length < 1 || title.length > 200) return { ok: false, reason: 'bad_request' };
+  if (!Number.isInteger(p.durationS) || p.durationS < 1 || p.durationS > 36000 || !Number.isInteger(p.startS) || p.startS < 0 || p.startS >= p.durationS) return { ok: false, reason: 'bad_request' };
+  if ((await db.query(`select 1 from content.video_channels where channel_id = $1 and kind = 'blocked'`, [p.channelId])).rows.length) return { ok: false, reason: 'blocked_channel' };
+  await db.query(
+    `insert into content.video_picks (topic_key, language, video_id, channel_id, channel_title, title, duration_s, start_s, captions, score, status, reviewed_by, reviewed_at)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, false, 100, 'pinned', $9, now())
+     on conflict (topic_key, language, video_id) do update set channel_id = excluded.channel_id, channel_title = excluded.channel_title, title = excluded.title, duration_s = excluded.duration_s,
+       start_s = excluded.start_s, status = 'pinned', reviewed_by = excluded.reviewed_by, reviewed_at = now()`,
+    [p.chapterKey, p.language, p.videoId, p.channelId, channelTitle, title, p.durationS, p.startS, actor.userId]
+  );
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: actor.userId,
+    actorRole: 'super_admin',
+    eventAction: 'content.video.chapter_pinned',
+    targetType: 'content_video_pick',
+    targetId: `${p.chapterKey}:${p.language}:${p.videoId}`,
+    beforeState: null,
+    afterState: { status: 'pinned' },
+  });
+  return { ok: true };
+}
+
 // Add a channel to a list, or move it to another. Blocking a channel rejects every pick of it at once.
 export async function setVideoChannel(db: Sql, actor: ContentActor, c: { channelId: string; title: string; kind: string }): Promise<VideoChange> {
   const title = typeof c.title === 'string' ? c.title.replace(/\s+/g, ' ').trim() : '';

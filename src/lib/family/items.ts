@@ -13,11 +13,11 @@ import { familyHashKey } from './secret';
 // where packs are meant to be answered.
 
 export type PublicItem = { id: string; question: string; options: string[]; token: string };
-export type ItemSecret = { a: number; h: string; y: string; w: string[]; k: string; s: string; c: string; acct: string; kind: 'check' | 'practice'; exp: number; iat?: number; i: string; q: string; o: string[] };
+export type ItemSecret = { a: number; h: string; y: string; w: string[]; k: string; s: string; c: string; acct: string; kind: 'check' | 'practice' | 'test'; exp: number; iat?: number; i: string; q: string; o: string[] };
 
 export const DAY_MS = 24 * 60 * 60 * 1000;
 
-export function sealItem(item: QuizItem, ctx: { accountId: string; childId: string; topicKey: string; subject: string; kind: 'check' | 'practice' }, now = Date.now(), lifeMs = DAY_MS): PublicItem {
+export function sealItem(item: QuizItem, ctx: { accountId: string; childId: string; topicKey: string; subject: string; kind: 'check' | 'practice' | 'test' }, now = Date.now(), lifeMs = DAY_MS): PublicItem {
   const secret: ItemSecret = { a: item.answer, h: item.hint, y: item.why, w: item.wrong, k: ctx.topicKey, s: ctx.subject, c: ctx.childId, acct: ctx.accountId, kind: ctx.kind, exp: now + lifeMs, iat: now, i: item.id, q: item.question, o: item.options };
   const iv = randomBytes(12);
   const cipher = createCipheriv('aes-256-gcm', familyHashKey('check-items.v1'), iv);

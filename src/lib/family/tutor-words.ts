@@ -13,5 +13,5 @@ export const TUTOR_KEYS: MessageKey[] = [
 export const VAULT_KEYS: MessageKey[] = [
   'fam.vault.title', 'fam.vault.lead', 'fam.vault.none', 'fam.vault.counts', 'fam.vault.clear', 'fam.vault.clearConfirm', 'fam.vault.clearYes',
   'fam.vault.cleared', 'fam.vault.files', 'fam.tutor.openFile', 'fam.marks.backParent', 'fam.common.cancel', 'fam.err.network', 'fam.err.parent_pin_required',
-  'fam.err.not_found', 'fam.tutor.err.storage_unavailable',
+  'fam.err.not_found', 'fam.tutor.err.storage_unavailable', 'fam.tests.link',
 ];

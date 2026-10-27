@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { VaultList, type VaultChild } from '@/components/family/tutor/VaultList';
@@ -35,6 +36,10 @@ export default async function FamilyVaultPage() {
       <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.vault.title']} tone="royal" />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-parent-vault>
         <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.vault.lead']}</p>
+        <Link href="/family/parent/tests" data-parent-tests-link className="fam-card fam-press flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 text-base font-bold text-slate">
+          <span>{w['fam.tests.link']}</span>
+          <span aria-hidden="true">→</span>
+        </Link>
         <VaultList w={w} lang={lang} list={list} />
       </main>
     </div>

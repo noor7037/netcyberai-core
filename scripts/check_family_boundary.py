@@ -100,6 +100,7 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},
     "src/app/(admin)/control/content/studio/page.tsx": {
         "@/components/family/reader/ChapterReader",
+        "@/lib/family/chapter-test-shape",
         "@/lib/family/chapters",
         "@/lib/family/reader-words",
         "@/lib/family/understand-words",

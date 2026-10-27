@@ -129,7 +129,7 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
   if (ids.length === 0) return [];
   const { rows } = await db.query(
     `select a.attachment_id from family.tutor_attachments a join family.tutor_conversations c on c.conversation_id = a.conversation_id
-      where a.attachment_id = any($1::uuid[]) and a.account_id = $2 and a.child_id = $3 and c.subject = $4 and a.status = 'ready' and a.message_id is null`,
+      where a.attachment_id = any($1::uuid[]) and a.account_id = $2 and a.child_id = $3 and c.subject = $4 and a.status = 'ready' and a.message_id is null and a.kept_for is null`,
     [ids, accountId, childId, subject]
   );
   return rows.length === ids.length ? (ids as string[]) : null;
@@ -154,7 +154,7 @@ export async function saveTurn(
   if (t.files.length) {
     await db.query(
       `update family.tutor_attachments set message_id = $1
-        where attachment_id = any($2::uuid[]) and conversation_id = $3 and account_id = $4 and child_id = $5 and status = 'ready' and message_id is null`,
+        where attachment_id = any($2::uuid[]) and conversation_id = $3 and account_id = $4 and child_id = $5 and status = 'ready' and message_id is null and kept_for is null`,
       [messageId, t.files, conversationId, t.accountId, t.childId]
     );
   }
@@ -182,6 +182,10 @@ export type FileRefusal =
   | 'storage_unavailable'
   | 'not_found'
   | 'not_ready';
+
+// A chapter test's written answer (S5, C378) goes through the same screen as a file's name: no Aadhaar number or card
+// words. null when it is fine.
+export const testTextProblem = (text: string): string | null => textProblem(text);
 
 const FILE_NAME_MAX = 255;
 // The file's own name: one line, only read for the Aadhaar check; never kept.
@@ -215,7 +219,7 @@ export async function askTutorUpload(
   await storage.removeOlderThan(tutorPendingFolder(who.accountId), stale).catch(() => 0);
   const conversationId = await conversationFor(db, who.accountId, who.childId, input.subject);
   const { rows: counts } = await db.query(
-    `select count(*) filter (where message_id is null and conversation_id = $3)::int as unsent, count(*) filter (where created_at > $4)::int as today
+    `select count(*) filter (where message_id is null and kept_for is null and conversation_id = $3)::int as unsent, count(*) filter (where created_at > $4)::int as today
        from family.tutor_attachments where account_id = $1 and child_id = $2`,
     [who.accountId, who.childId, conversationId, new Date(now() - 24 * 3600_000)]
   );
@@ -343,7 +347,7 @@ export async function signedTutorFile(db: Db, storage: DirectUploadStorage, acco
 export async function removeUnsentFile(db: Db, storage: DirectUploadStorage, who: { accountId: string; childId: string }, attachmentId: unknown): Promise<boolean> {
   if (!isUuid(attachmentId)) return false;
   const { rows } = await db.query(
-    `delete from family.tutor_attachments where attachment_id = $1 and account_id = $2 and child_id = $3 and message_id is null returning account_id, attachment_id, mime, storage_key`,
+    `delete from family.tutor_attachments where attachment_id = $1 and account_id = $2 and child_id = $3 and message_id is null and kept_for is null returning account_id, attachment_id, mime, storage_key`,
     [attachmentId, who.accountId, who.childId]
   );
   if (!rows[0]) return false;

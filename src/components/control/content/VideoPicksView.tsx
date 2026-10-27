@@ -30,6 +30,7 @@ export function VideoPicksView({ initial }: { initial: VideoReview }) {
   const [data, setData] = useState(initial);
   const [topic, setTopic] = useState('');
   const [channel, setChannel] = useState({ channelId: '', title: '', kind: 'official' as VideoChannelKind });
+  const [chapter, setChapter] = useState({ chapterKey: '', language: 'en', videoId: '', channelId: '', channelTitle: '', title: '', durationS: '' });
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
 
@@ -39,7 +40,7 @@ export function VideoPicksView({ initial }: { initial: VideoReview }) {
     if (got) setData(got);
   }, []);
 
-  async function act(body: Record<string, string>, done: MessageKey) {
+  async function act(body: Record<string, string | number>, done: MessageKey) {
     setBusy(true);
     setNote(null);
     const res = await fetch('/api/control/content/videos', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
@@ -111,6 +112,36 @@ export function VideoPicksView({ initial }: { initial: VideoReview }) {
           </li>
         ))}
       </ul>
+
+      <h3 className="text-base font-bold text-slate">{t('control.video.chapter.title')}</h3>
+      <p className="text-sm text-slate">{t('control.video.chapter.how')}</p>
+      <form
+        data-video-chapter-form
+        className="grid gap-2 md:grid-cols-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          void act({ action: 'chapter', ...chapter, durationS: Number(chapter.durationS) }, 'control.video.done.chapter');
+        }}
+      >
+        <Input id="video-chapter-key" label={t('control.video.chapter.key')} value={chapter.chapterKey} maxLength={120} spellCheck={false} onChange={(e) => setChapter({ ...chapter, chapterKey: e.target.value.trim() })} />
+        <Select id="video-chapter-lang" label={t('control.video.chapter.language')} value={chapter.language} onChange={(e) => setChapter({ ...chapter, language: e.target.value })}>
+          <option value="en">{t('control.video.lang.en')}</option>
+          <option value="hi">{t('control.video.lang.hi')}</option>
+        </Select>
+        <Input id="video-chapter-id" label={t('control.video.chapter.videoId')} value={chapter.videoId} maxLength={11} spellCheck={false} onChange={(e) => setChapter({ ...chapter, videoId: e.target.value.trim() })} />
+        <Input id="video-chapter-title" label={t('control.video.chapter.videoTitle')} value={chapter.title} maxLength={200} onChange={(e) => setChapter({ ...chapter, title: e.target.value })} />
+        <Input id="video-chapter-channel-id" label={t('control.video.channelId')} value={chapter.channelId} maxLength={40} spellCheck={false} onChange={(e) => setChapter({ ...chapter, channelId: e.target.value.trim() })} />
+        <Input id="video-chapter-channel-title" label={t('control.video.channelTitle')} value={chapter.channelTitle} maxLength={120} onChange={(e) => setChapter({ ...chapter, channelTitle: e.target.value })} />
+        <Input id="video-chapter-seconds" label={t('control.video.chapter.seconds')} inputMode="numeric" value={chapter.durationS} maxLength={5} onChange={(e) => setChapter({ ...chapter, durationS: e.target.value.replace(/\D/g, '') })} />
+        <button
+          type="submit"
+          data-video-chapter-add
+          disabled={busy || !chapter.chapterKey || !chapter.videoId || !chapter.channelId || !chapter.channelTitle.trim() || !chapter.title.trim() || !chapter.durationS}
+          className={`${PRIMARY_ACTION} md:self-end`}
+        >
+          {t('control.video.chapter.add')}
+        </button>
+      </form>
 
       <h3 className="text-base font-bold text-slate">{t('control.video.channels')}</h3>
       <p className="text-sm text-slate">{t('control.video.channelsHow')}</p>

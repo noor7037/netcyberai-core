@@ -31,6 +31,18 @@ const EVERY: Record<string, unknown> = {
   fraction_model: { type: 'fraction_model', title: MARK('fraction_model'), shape: 'bar', fractions: [{ n: 1, d: 2 }] },
   geometry: { type: 'geometry', title: MARK('geometry'), shape: { kind: 'angle', degrees: 40 } },
   simulation: { type: 'simulation', title: MARK('simulation'), sim: 'pendulum', values: { length: 1 } },
+  // S5 (C378): a slider, a 3D model and a chapter test are silent too, whatever text they carry.
+  slider: { type: 'slider', title: MARK('slider'), label: MARK('slider'), min: 0, max: 10, step: 1, start: 2, readouts: [{ label: MARK('slider'), expression: 'x*2', places: 1 }] },
+  model_3d: { type: 'model_3d', title: MARK('model_3d'), solid: 'cube', dims: { a: 2 }, alt: MARK('model_3d') },
+  chapter_test: {
+    type: 'chapter_test',
+    title: MARK('chapter_test'),
+    items: [
+      { kind: 'mcq', id: 'q1', question: MARK('chapter_test'), options: ['A', 'B'], answer: 0, why: MARK('chapter_test') },
+      { kind: 'written', id: 'q2', question: MARK('chapter_test'), rubric: [MARK('chapter_test')] },
+      { kind: 'photo', id: 'q3', question: MARK('chapter_test'), rubric: [MARK('chapter_test')] },
+    ],
+  },
 };
 
 describe('narration reads only teaching text (C374)', () => {
@@ -46,13 +58,13 @@ describe('narration reads only teaching text (C374)', () => {
       if (READ_ALOUD_TYPES.includes(t)) expect(text, t).toContain(MARK(t));
       else expect(text, t).not.toContain(MARK(t));
     }
-    for (const t of ['diagram', 'table', 'simulation', 'graph', 'number_line', 'fraction_model', 'geometry']) expect(text).not.toContain(MARK(t));
+    for (const t of ['diagram', 'table', 'simulation', 'graph', 'number_line', 'fraction_model', 'geometry', 'slider', 'model_3d', 'chapter_test']) expect(text).not.toContain(MARK(t));
   });
 
   it('a flag cannot make a silent block readable, and silences a readable one', () => {
     const loud = BLOCK_TYPES.map((t) => checkBlock({ ...(EVERY[t] as object), tts_read_aloud: true })) as Block[];
     const text = narrationScript(loud).map((l) => l.text).join('\n');
-    for (const t of ['diagram', 'table', 'simulation', 'english_moment', 'check']) expect(text).not.toContain(MARK(t));
+    for (const t of ['diagram', 'table', 'simulation', 'english_moment', 'check', 'slider', 'model_3d', 'chapter_test']) expect(text).not.toContain(MARK(t));
     const quiet = checkBlock({ ...(EVERY.explanation as object), tts_read_aloud: false }) as Block;
     expect(narrationScript([quiet])).toEqual([]);
   });
