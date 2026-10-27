@@ -67,7 +67,7 @@ export function WhatsAppAccountPanel() {
     if (res?.ok) {
       // A connection test answers 200 with ok:false when Meta refused: that is a red banner, not a green one.
       setNote({ tone: answer.ok === false ? 'bad' : 'ok', text: done(answer) });
-      if (body.action === 'save') {
+      if (body.action === 'save' || body.action === 'secret') {
         setForm(EMPTY);
         setRefused(null);
       }
@@ -90,6 +90,16 @@ export function WhatsAppAccountPanel() {
       }
     }
     void post({ action: 'save', ...form }, () => t('wa.savedNow'));
+  }
+
+  // A saved account whose App Secret alone is typed again: only that is replaced.
+  function saveSecret() {
+    if (fieldFault('appSecret', form.appSecret) !== null) {
+      setRefused('appSecret');
+      setNote({ tone: 'bad', text: `${t('wa.bad.app_secret')} ${t('wa.refused')}` });
+      return;
+    }
+    void post({ action: 'secret', appSecret: form.appSecret }, () => t('wa.secretSavedNow'));
   }
 
   function makeToken() {
@@ -115,6 +125,7 @@ export function WhatsAppAccountPanel() {
     );
   }
   const a = state.account;
+  const secretOnly = a !== null && form.appSecret.trim() !== '' && ACCOUNT_FIELDS.every((f) => f === 'appSecret' || !form[f].trim());
   const webhookUrl = `${window.location.origin}${state.webhookPath}`;
 
   const field = (key: AccountField) => {
@@ -203,6 +214,7 @@ export function WhatsAppAccountPanel() {
           <h2 className="text-base font-bold">{t(a ? 'wa.replace' : 'wa.enter')}</h2>
           <InfoTip>{t('wa.enter.how')}</InfoTip>
         </div>
+        {a && <p data-wa-secret-only>{t('wa.secretOnly')}</p>}
         <div className="grid gap-3 sm:grid-cols-2">
           {field('phoneNumberId')}
           {field('wabaId')}
@@ -217,8 +229,8 @@ export function WhatsAppAccountPanel() {
           <input type="checkbox" data-wa-show className="h-5 w-5" checked={show} onChange={(e) => setShow(e.target.checked)} />
           {t('wa.show')}
         </label>
-        <button type="button" data-wa-save disabled={busy || !state.keyAvailable || ACCOUNT_FIELDS.some((f) => !form[f].trim())} className={`${PRIMARY} self-start`} onClick={save}>
-          {t('wa.save')}
+        <button type="button" data-wa-save disabled={busy || !state.keyAvailable || (!secretOnly && ACCOUNT_FIELDS.some((f) => !form[f].trim()))} className={`${PRIMARY} self-start`} onClick={secretOnly ? saveSecret : save}>
+          {t(secretOnly ? 'wa.saveSecret' : 'wa.save')}
         </button>
       </div>
     </section>

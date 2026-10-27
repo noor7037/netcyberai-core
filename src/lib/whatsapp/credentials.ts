@@ -1,7 +1,7 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
-import { accountProblem, type AccountProblem } from './account-shape';
+import { accountProblem, fieldFault, type AccountProblem } from './account-shape';
 
 // The platform's WhatsApp credentials (docs/25 slice 7e, §3 rule 8, C186).
 // The payment_credentials pattern, with its own key:
@@ -75,6 +75,27 @@ export async function saveMetaAccount(db: Sql, by: { userId: string }, account: 
   );
   // The audit row says that it was saved, for which number, by whom. Never a secret, nor any part of one.
   await writeAuditLog(db, { schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'whatsapp.account_saved', targetType: 'whatsapp_credentials', targetId: 'meta', beforeState: undefined, afterState: { phoneNumberId: account.phoneNumberId, wabaId: account.wabaId, keyVersion: sealed.keyVersion, enabled: false } });
+  return { ok: true };
+}
+
+export type ReplaceSecretResult = { ok: true } | { ok: false; reason: 'no_encryption_key' | 'no_account' | 'app_secret' };
+// Only the App Secret, when a wrong one was saved or Meta's was reset: the number, the token, the verify token, the
+// test and the switch stay as they were, since the App Secret only checks the signature of what Meta sends us.
+export async function replaceMetaAppSecret(db: Sql, by: { userId: string }, appSecret: string, env: Env = process.env): Promise<ReplaceSecretResult> {
+  const key = messagingKey(env);
+  if (!key) return { ok: false, reason: 'no_encryption_key' };
+  if (fieldFault('appSecret', appSecret) !== null) return { ok: false, reason: 'app_secret' };
+  const r = (await db.query(`select phone_number_id, ciphertext, iv, tag, key_version from whatsapp_credentials where provider = 'meta' for update`)).rows[0];
+  if (!r) return { ok: false, reason: 'no_account' };
+  let secrets: MetaSecrets;
+  try {
+    secrets = unsealMeta(key, r.phone_number_id, r);
+  } catch {
+    return { ok: false, reason: 'no_account' }; // sealed with another key: the whole account must be entered again
+  }
+  const sealed = sealMeta(key, r.phone_number_id, { ...secrets, appSecret });
+  await db.query(`update whatsapp_credentials set ciphertext = $1, iv = $2, tag = $3, key_version = $4, saved_by = $5, saved_at = now() where provider = 'meta'`, [sealed.ciphertext, sealed.iv, sealed.tag, sealed.keyVersion, by.userId]);
+  await writeAuditLog(db, { schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: 'whatsapp.app_secret_replaced', targetType: 'whatsapp_credentials', targetId: 'meta', beforeState: undefined, afterState: { phoneNumberId: r.phone_number_id, keyVersion: sealed.keyVersion } });
   return { ok: true };
 }
 
