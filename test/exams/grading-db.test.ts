@@ -31,6 +31,7 @@ vi.mock('@/lib/auth/db', async (original) => ({
 import { GET as getScheme, POST as postScheme } from '@/app/api/app/exams/scheme/route';
 import { GET as getBoards, POST as postBoards } from '@/app/api/control/boards/route';
 import { GET as getSchoolBoard, POST as postSchoolBoard } from '@/app/api/control/boards/schools/[schoolId]/route';
+import { GET as getFamilyBoards, POST as postFamilyBoards } from '@/app/api/control/boards/family/route';
 
 const ROOT = path.resolve(__dirname, '../..');
 const u = (n: number) => `9a000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
@@ -449,6 +450,32 @@ describe('the routes', () => {
     expect(await call(staff, () => postSchoolBoard(req('POST', `/api/control/boards/schools/${C}`, { boardId: 5 }), { params: { schoolId: C } }))).toMatchObject({ status: 400 });
     const audit = (await db.pg.query(`select actor_role::text as role, after_state ->> 'board_id' as board from audit_log where event_action = 'school.board_set' and school_id = $1 order by audit_id desc limit 1`, [C])).rows[0];
     expect(audit).toEqual({ role: 'super_admin', board: 'example-state' });
+  });
+
+  it('Control: the family app’s boards (content.boards, C230-AP), apart from the exam boards; staff only, audited', async () => {
+    const F = '/api/control/boards/family';
+    expect((await call(claims(principal), () => getFamilyBoards(req('GET', F)))).status).toBe(403);
+    expect((await call(claims(principal), () => postFamilyBoards(req('POST', F, { action: 'add', boardId: 'ST-ZZ', nameEn: 'ZZ' })))).status).toBe(403);
+    const list = await call(staff, () => getFamilyBoards(req('GET', F)));
+    expect(list.status).toBe(200);
+    expect(list.body.boards.map((b: { boardId: string }) => b.boardId)).toEqual(expect.arrayContaining(['CBSE', 'CISCE', 'NIOS', 'STATE']));
+    // Two lists: the exam boards are not in it, and a family board is not an exam board.
+    expect(list.body.boards.map((b: { boardId: string }) => b.boardId)).not.toContain('cbse');
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'add', boardId: 'st zz', nameEn: 'X' })))).toMatchObject({ status: 400, body: { code: 'board_id' } });
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'add', boardId: 'ST-ZZ', nameEn: 'Example State Board', nameHi: 'Example' })))).toMatchObject({ status: 400, body: { code: 'name_hi' } });
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'add', boardId: 'st-zz', nameEn: ' Example  State Board ', nameHi: '' })))).toEqual({ status: 201, body: { ok: true } });
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'add', boardId: 'ST-ZZ', nameEn: 'Again' })))).toMatchObject({ status: 409, body: { code: 'id_taken' } });
+    expect((await db.pg.query(`select name_en, name_hi from content.boards where board_id = 'ST-ZZ'`)).rows).toEqual([{ name_en: 'Example State Board', name_hi: null }]);
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'rename', boardId: 'ST-ZZ', nameEn: 'Example State Board', nameHi: 'उदाहरण राज्य बोर्ड' })))).toEqual({ status: 200, body: { ok: true } });
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'rename', boardId: 'ST-QQ', nameEn: 'Nobody' })))).toMatchObject({ status: 404, body: { code: 'not_found' } });
+    expect(await call(staff, () => postFamilyBoards(req('POST', F, { action: 'delete', boardId: 'ST-ZZ' })))).toMatchObject({ status: 400 });
+    const audits = (await db.pg.query(`select event_action, actor_user_id, before_state, after_state from audit_log where target_id = 'ST-ZZ' order by created_at, event_action`)).rows;
+    expect(audits).toEqual([
+      { event_action: 'content.board_added', actor_user_id: FOUNDER, before_state: null, after_state: { board_id: 'ST-ZZ', name_en: 'Example State Board', name_hi: null } },
+      { event_action: 'content.board_renamed', actor_user_id: FOUNDER, before_state: { name_en: 'Example State Board', name_hi: null }, after_state: { name_en: 'Example State Board', name_hi: 'उदाहरण राज्य बोर्ड' } },
+    ]);
+    // A school role cannot write content.boards directly either.
+    await expect(run(principal, `insert into content.boards (board_id, name_en) values ('ST-YY', 'Y')`)).rejects.toThrow(/permission denied/);
   });
 });
 
