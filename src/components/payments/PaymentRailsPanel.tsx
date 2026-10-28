@@ -2,7 +2,7 @@
 
 import { useStepUp } from '@/components/auth/StepUp';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -27,7 +27,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 
 export function PaymentRailsPanel({ scope, schoolId }: { scope: 'school' | 'control'; schoolId?: string }) {
   const { stepUpFetch } = useStepUp();
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   // What just happened, said in the panel itself: Control's shell has no toasts.
   const [note, setNote] = useState<{ text: string; bad: boolean } | null>(null);
   const toast = { show: (text: string, tone: 'success' | 'danger') => setNote({ text, bad: tone === 'danger' }) };

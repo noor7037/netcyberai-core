@@ -198,7 +198,7 @@ python3 scripts/check_harness_isolation.py --self-test
 python3 scripts/check_harness_isolation.py --build .next
 STEP
 
-run_step "Every family page stays under its First Load JS budget" <<'STEP'
+run_step "Every Family and Control page stays under its First Load JS budget" <<'STEP'
 python3 scripts/check_family_budget.py --self-test
 python3 scripts/check_family_budget.py --build .next
 STEP

@@ -13,6 +13,8 @@ import { familyWords } from '@/lib/family/words';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import '@/app/(family)/family/family.css';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → Content → Studio (S3, C376): the missing-chapter queue and the chapter editor. NetCyberAI staff with the
 // authenticator (the layout refuses anyone else; the aal2 step is checked here, as the studio routes check it). The
@@ -53,6 +55,7 @@ export default async function StudioPage({ searchParams }: { searchParams: { key
       }
       notice={!strong ? <p data-studio-need-aal2 className="rounded-md border border-slate/20 bg-off-white px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'control.studio.needAal2')}</p> : undefined}
     >
+      <WordsProvider words={pageWords(lang, '/control/content/studio')}>
       {data && <ChapterStudioView key={data.selected ? `${data.selected.chapterKey}@${data.selected.versionNo}:${data.selected.updatedAt}` : 'none'} initial={data.overview} selected={data.selected} />}
       {data?.selected && (
         <section aria-labelledby="studio-preview" data-studio-preview className="mt-4 flex flex-col gap-3 rounded-md border border-slate/10 bg-white p-4">
@@ -82,6 +85,7 @@ export default async function StudioPage({ searchParams }: { searchParams: { key
           )}
         </section>
       )}
+      </WordsProvider>
     </ModulePage>
   );
 }

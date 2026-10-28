@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { AddButton, BandsEditor, ComponentsEditor, PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
 import { formToScheme, schemeToForm, type BandForm, type ComponentForm } from '@/components/exams/scheme-form';
@@ -36,7 +36,7 @@ const SCHEME_PROBLEMS = ['shape', 'decimals', 'band_grade', 'band_meaning', 'ban
 const BOARD_PROBLEMS = ['board_id', 'name', 'id_taken', 'name_taken', 'board', 'no_board', 'level', 'source_title', 'source_url', 'source_read_on', 'notes', 'replaces', 'replaced_already', 'replaces_other_board'];
 
 export function BoardsView({ initial }: { initial: ControlBoard[] }) {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const [boards, setBoards] = useState<ControlBoard[]>(initial);
   const [newBoard, setNewBoard] = useState({ boardId: '', name: '' });
   const [draft, setDraft] = useState<Draft | null>(null);

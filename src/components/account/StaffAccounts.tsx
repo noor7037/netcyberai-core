@@ -1,7 +1,7 @@
 'use client';
 
 import { Checkbox } from '@/components/ui/Checkbox';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -57,7 +57,7 @@ export function StaffAccounts({
   // (a parent's login, listed here for its reset code, has no staff profile).
   profileBase?: string;
 }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [accounts, setAccounts] = useState<Account[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [query, setQuery] = useState('');

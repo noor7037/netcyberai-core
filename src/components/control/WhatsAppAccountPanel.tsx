@@ -3,7 +3,7 @@
 import { useStepUp } from '@/components/auth/StepUp';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
@@ -35,7 +35,7 @@ const CHARS_KEY: Record<AccountField, MessageKey> = { phoneNumberId: 'wa.fault.d
 
 export function WhatsAppAccountPanel() {
   const { stepUpFetch } = useStepUp();
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   // undefined while loading; null when the server did not answer.
   const [state, setState] = useState<State | null | undefined>(undefined);
   const [form, setForm] = useState(EMPTY);

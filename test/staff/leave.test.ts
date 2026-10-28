@@ -43,6 +43,7 @@ import { LangProvider } from '@/components/app-shell/LangContext';
 import { LeaveSummary, myLeaveHow, ownRequestLine } from '@/components/staff/leave-parts';
 import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
 import type { LeaveRow } from '@/lib/staff/leave-rules';
+import { pageContent } from '../i18n/with-words';
 
 const A = 'ce000000-0000-4000-8000-000000000001';
 const B = 'ce000000-0000-4000-8000-000000000002';
@@ -905,7 +906,7 @@ describe('on the real schema', () => {
     const step = (who: Who, id: string, body: unknown) => call(who, () => stepLeave(req('POST', `/api/app/staff/leave/${id}`, body), { params: { leaveId: id } }));
     const staffModule = (enabled: boolean, school = A) => db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'staff', $2, 'plan') on conflict (school_id, module_id) do update set enabled = excluded.enabled`, [school, enabled]);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const parts = (page: any) => Children.toArray(page.props.children).map((k: any) => k.type);
+    const parts = (page: any) => Children.toArray(pageContent(page)).map((k: any) => k.type);
 
     it('the migration switches Staff on for every school there is', async () => {
       // The file is found by its name's end: its first part is the version the database recorded.

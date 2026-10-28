@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
 import type { QueueResponse, QueueResponseFull, QueueStatus } from '@/lib/content/response-queue';
@@ -25,7 +25,7 @@ const str = (v: unknown) => (typeof v === 'string' ? v : '');
 const arr = (v: unknown): Any[] => (Array.isArray(v) ? v : []);
 
 function BlockText({ b }: { b: Any }) {
-  const { t } = useT();
+  const { t } = useWords();
   const type = str(b?.type);
   const heading = (
     <p className="font-bold" data-queue-block={type}>
@@ -149,7 +149,7 @@ function BlockText({ b }: { b: Any }) {
 }
 
 export function ResponseQueueView({ initial, age: initialAge }: { initial: QueueResponse[]; age: Age }) {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const [status, setStatus] = useState<QueueStatus>('ai_made');
   const [rows, setRows] = useState<QueueResponse[]>(initial);
   const [age, setAge] = useState<Age>(initialAge);

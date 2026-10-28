@@ -9,7 +9,7 @@ import { promote, type Slot } from "@/lib/ai/ledger-view";
 import { hasDuplicate, validModel } from "@/lib/ai/model-options";
 import type { ProviderStateResult } from "@/lib/ai/provider-state";
 import type { RouteRevision } from "@/lib/contracts/ai-gateway";
-import { isMessageKey, type MessageKey } from "@/lib/i18n";
+import type { MessageKey } from "@/lib/i18n";
 import { ModelSelect } from "./ModelSelect";
 import {
   CAPABILITY_WORDS,
@@ -189,9 +189,9 @@ export function WorkloadCard({
           </span>
         </div>
       </div>
-      {isMessageKey(about) && (
+      {t(about as MessageKey) && (
         <p data-ai-profile-about className="text-xs text-slate/80">
-          {t(about)}
+          {t(about as MessageKey)}
         </p>
       )}
       {p.carriesChildWords && (

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""First Load JS budgets (C393, C401): every Family app page under 200 kB, Control → Family pages under 250 kB.
+"""First Load JS budgets (C393, C401, C402): every Family app page under 200 kB, every Control page under 250 kB.
 
 The Family app runs on low-end phones on slow data, so each of its pages has a budget for the JavaScript a first visit
 downloads: the "First Load JS" `next build` prints. This check reads the build's app-build-manifest.json and, for each
@@ -24,7 +24,7 @@ import tempfile
 from pathlib import Path
 
 # (manifest key prefix, budget in kB, name).
-BUDGETS = [("/(family)/", 200.0, "the family budget"), ("/(admin)/control/family", 250.0, "the Control → Family budget")]
+BUDGETS = [("/(family)/", 200.0, "the family budget"), ("/(admin)/control", 250.0, "the Control budget")]
 
 
 def layouts_above(manifest: dict, page: str) -> list[str]:
@@ -91,19 +91,19 @@ def self_test() -> int:
         if len(problems) != 1 or "parent/page" not in problems[0]:
             print(f"self-test FAILED: the heavy parent page was not caught alone: {problems}", file=sys.stderr)
             return 1
-        # A heavy layout counts for every page under it (C401): here, the Control layout under Control → Family.
+        # A heavy layout counts for every page under it (C401): here, the Control layout above every Control page.
         manifest["pages"]["/(family)/family/(app)/parent/page"] = ["static/small.js"]
         manifest["pages"]["/(admin)/control/layout"] = ["static/big.js"]
         (build / "app-build-manifest.json").write_text(json.dumps(manifest))
         problems = check(build)
         if len(problems) != 1 or "control/family/page" not in problems[0]:
-            print(f"self-test FAILED: a heavy layout above Control → Family was not caught: {problems}", file=sys.stderr)
+            print(f"self-test FAILED: a heavy layout above the Control pages was not caught: {problems}", file=sys.stderr)
             return 1
         manifest["pages"]["/(admin)/control/layout"] = ["static/small.js"]
         # A budget that finds no page fails, so a renamed route cannot pass by being missed.
         del manifest["pages"]["/(admin)/control/family/page"]
         (build / "app-build-manifest.json").write_text(json.dumps(manifest))
-        if not any("no page under /(admin)/control/family" in p for p in check(build)):
+        if not any("no page under /(admin)/control " in p for p in check(build)):
             print("self-test FAILED: a budget with no page passed", file=sys.stderr)
             return 1
         manifest["pages"]["/(admin)/control/family/page"] = ["static/small.js"]

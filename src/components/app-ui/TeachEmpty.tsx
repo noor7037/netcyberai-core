@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react';
 import Link from 'next/link';
-import { useT } from '@/components/app-shell/LangContext';
-import { isMessageKey, type MessageKey } from '@/lib/i18n';
+import { useWords } from '@/components/app-shell/Words';
+import type { MessageKey } from '@/lib/i18n';
 
 // An empty list that teaches (docs/19 rule 8, C139): what is missing, one
 // plain sentence on what to do next, and the button that does it. The words
@@ -22,9 +22,9 @@ export type EmptyId = (typeof EMPTY_IDS)[number];
 const BUTTON = 'inline-flex min-h-[44px] items-center justify-center rounded-md bg-sapphire px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal';
 
 export function TeachEmpty({ id, onAction, href, compact = false }: { id: EmptyId; onAction?: () => void; href?: string; compact?: boolean }) {
-  const { lang, t } = useT();
+  const { lang, t, has } = useWords();
   const actionKey = `empty.${id}.action`;
-  const label = isMessageKey(actionKey) ? t(actionKey) : null;
+  const label = has(actionKey) ? t(actionKey) : null;
   let action: ReactNode = null;
   if (label && href) {
     action = (

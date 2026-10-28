@@ -3,7 +3,7 @@
 import { useStepUp } from '@/components/auth/StepUp';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
@@ -35,7 +35,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 
 export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   const { stepUpFetch } = useStepUp();
-  const { t } = useT();
+  const { t } = useWords();
   const [people, setPeople] = useState<Person[] | null>(null);
   const [failed, setFailed] = useState(false);
   const [target, setTarget] = useState<Person | null>(null);

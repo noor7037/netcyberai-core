@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -52,7 +52,7 @@ function suggestCoversUntil(school: SchoolBilling, paidOn: string): string {
 }
 
 export function BillingSchools({ data, busy, send }: { data: BillingOverview; busy: boolean; send: Send }) {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const [open, setOpen] = useState<{ schoolId: string; panel: Panel } | null>(null);
   const [pay, setPay] = useState<PayDraft | null>(null);
   const [plan, setPlan] = useState({ planId: '', reason: '' });

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
 import { Textarea } from '@/components/ui/Textarea';
@@ -33,7 +33,7 @@ function lines(node: unknown, out: { en?: string; hi?: string }[] = []): { en?: 
 }
 
 export function EnglishVersionsView({ initial }: { initial: EnglishControlVersion[] }) {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const [versions, setVersions] = useState(initial);
   const [shown, setShown] = useState<{ versionId: string; units: Unit[] } | null>(null);
   const [confirm, setConfirm] = useState<{ versionId: string; action: 'release' | 'rollback' } | null>(null);

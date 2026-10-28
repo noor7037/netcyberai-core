@@ -2,7 +2,7 @@
 
 import { useStepUp } from "@/components/auth/StepUp";
 import { useCallback, useMemo, useState } from "react";
-import { useT } from "@/components/app-shell/LangContext";
+import { useWords } from "@/components/app-shell/Words";
 import { InfoTip } from "@/components/app-ui/InfoTip";
 import { StatusPill } from "@/components/app-ui/StatusPill";
 import { Input } from "@/components/ui/Input";
@@ -71,7 +71,7 @@ const n = (v: number) => v.toLocaleString("en-IN");
 
 export function AiControls({ initial }: { initial: Data }) {
   const { stepUpFetch } = useStepUp();
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const [data, setData] = useState<Data>(initial);
   const [spend, setSpend] = useState(initial.spendAlert === null ? "" : String(initial.spendAlert));
   const [drafts, setDrafts] = useState(() =>

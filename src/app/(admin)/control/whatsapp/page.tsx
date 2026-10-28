@@ -3,6 +3,8 @@ import { WhatsAppAccountPanel } from '@/components/control/WhatsAppAccountPanel'
 import { getServerSession } from '@/lib/auth/server-session';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // The platform's WhatsApp account (docs/25 slice 7e, C186). The layout has already refused anyone but the founder.
 export const dynamic = 'force-dynamic';
@@ -12,7 +14,9 @@ export default async function WhatsAppAccountPage() {
   const { lang } = getLang(session?.sub ?? '');
   return (
     <ModulePage title={t(lang, 'wa.title')} purpose={t(lang, 'wa.purpose')} about={t(lang, 'wa.how')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+      <WordsProvider words={pageWords(lang, '/control/whatsapp')}>
       <WhatsAppAccountPanel />
+      </WordsProvider>
     </ModulePage>
   );
 }

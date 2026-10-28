@@ -25,5 +25,7 @@ export function useWords() {
     words,
     t: (key: MessageKey, params?: Record<string, string | number>) => fillWord(words, key, params),
     tCount: (base: string, count: number) => countWord(words, base, count),
+    // Whether a key built at run time was picked, in place of isMessageKey (which needs the whole table).
+    has: (key: string): key is MessageKey => Object.prototype.hasOwnProperty.call(words, key),
   };
 }

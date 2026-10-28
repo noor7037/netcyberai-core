@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
@@ -32,7 +32,7 @@ const toLocalInput = (iso: string | null): string => {
 // --- The oldest accepted version -------------------------------------------------------------------------------
 
 export function VersionForm({ app, current }: { app: AppId; current: number }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [value, setValue] = useState(String(current));
   const [reason, setReason] = useState('');
   const { busy, error, run } = useChange(() => setReason(''));
@@ -57,7 +57,7 @@ export function VersionForm({ app, current }: { app: AppId; current: number }) {
 // --- The whole app's switch ------------------------------------------------------------------------------------
 
 export function KillSwitch({ app, flag, live }: { app: AppId; flag: FlagRow | null; live: boolean }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [confirming, setConfirming] = useState(false);
   const [reason, setReason] = useState('');
   const { busy, error, run } = useChange(() => {
@@ -114,7 +114,7 @@ export function KillSwitch({ app, flag, live }: { app: AppId; flag: FlagRow | nu
 
 // `label`: the module's name in words (C230-V), when Control has one; otherwise its id is shown.
 export function FlagEditor({ flag, label, live, schools, summary }: { flag: FlagRow; label?: string; live: boolean; schools: { id: string; name: string }[]; summary: ReactNode }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [open, setOpen] = useState(false);
   const [enabled, setEnabled] = useState(flag.enabled ? 'on' : 'off');
   const [audience, setAudience] = useState<FlagAudience>(flag.audience);
@@ -202,7 +202,7 @@ export function FlagEditor({ flag, label, live, schools, summary }: { flag: Flag
 // --- Banner ----------------------------------------------------------------------------------------------------
 
 export function BannerForm({ app }: { app: AppId }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [textEn, setTextEn] = useState('');
   const [textHi, setTextHi] = useState('');
   const [tone, setTone] = useState('info');
@@ -247,7 +247,7 @@ export function BannerForm({ app }: { app: AppId }) {
 // --- Undo ------------------------------------------------------------------------------------------------------
 
 export function UndoButton({ auditId }: { auditId: string }) {
-  const { t } = useT();
+  const { t } = useWords();
   const { busy, error, run } = useChange();
   return (
     <span className="flex flex-col items-start gap-1">

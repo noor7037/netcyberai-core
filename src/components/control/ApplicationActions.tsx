@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Textarea';
 
@@ -13,7 +13,7 @@ type Action = 'start_review' | 'approve' | 'reject' | 'resend_invite';
 
 export function ApplicationActions({ applicationId, actions, canResend }: { applicationId: string; actions: Action[]; canResend: boolean }) {
   const router = useRouter();
-  const { t } = useT();
+  const { t } = useWords();
   const [busy, setBusy] = useState(false);
   const [rejecting, setRejecting] = useState(false);
   const [reason, setReason] = useState('');

@@ -5,7 +5,7 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { loadFamilyPeople, parsePeopleQuery } from '@/lib/control/family-people';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
-import { pickWords } from '@/lib/i18n/pick';
+import { pageWords } from '@/components/app-shell/page-words';
 import { WordsProvider } from '@/components/app-shell/Words';
 
 // Control → Family → People (C230-V): the people who use the Family app, so NetCyberAI can serve them and, where a
@@ -23,7 +23,7 @@ export default async function ControlFamilyPeoplePage({ searchParams }: { search
   return (
     <ModulePage title={t(lang, 'control.people.title')} purpose={t(lang, 'control.people.purpose')} about={t(lang, 'control.people.about')} icon="users" tone="turquoise" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       {people ? (
-        <WordsProvider words={pickWords(lang, [], ['control.apps.'])}>
+        <WordsProvider words={pageWords(lang, '/control/family/people')}>
           <FamilyPeopleView lang={lang} people={people} q={q} />
         </WordsProvider>
       ) : (

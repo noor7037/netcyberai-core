@@ -11,6 +11,8 @@ import { listVideoReview } from '@/lib/content/video-picks';
 import { indiaDate } from '@/lib/time/india';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → Content (M1-4, docs/family-app/10 §4): the syllabus library. Import a catalog CSV, review and approve it
 // (two people), look at it as a family will in staff preview, release it to everyone, compare versions and roll back.
@@ -39,9 +41,11 @@ export default async function ContentPage() {
         </div>
       }
     >
+      <WordsProvider words={pageWords(lang, '/control/content')}>
       {versions && <ContentView initial={versions} />}
       {english && <EnglishVersionsView initial={english} />}
       {videos && <VideoPicksView initial={videos} />}
+      </WordsProvider>
     </ModulePage>
   );
 }

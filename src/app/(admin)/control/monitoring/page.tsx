@@ -8,6 +8,8 @@ import { storageHealth } from '@/lib/observability/storage-health';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { applicationCounts } from '@/lib/onboarding/applications';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → Monitoring (docs/26 slice 8g, C206; the job Pipeline of C97 is its second section). One page for what
 // can stop without anyone noticing: the health check, dead and stuck jobs with a Retry button, refused delivery
@@ -29,7 +31,9 @@ export default async function MonitoringPage() {
     : null;
   return (
     <ModulePage title={t(lang, 'monitoring.title')} purpose={t(lang, 'monitoring.purpose')} about={t(lang, 'monitoring.about')} icon="pulse" tone="emerald" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+      <WordsProvider words={pageWords(lang, '/control/monitoring')}>
       {read && <MonitoringView data={read.data} invitations={read.invitations} applications={read.applications} marking={read.marking} lang={lang} />}
+      </WordsProvider>
     </ModulePage>
   );
 }

@@ -3,7 +3,6 @@ import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { LangProvider } from '@/components/app-shell/LangContext';
 import { EMPTY_IDS, TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { ModuleSwitchList } from '@/components/settings/ModuleSwitchList';
 import { ALWAYS_ON_MODULES, type SchoolEntitlements } from '@/lib/contracts/entitlements';
@@ -12,6 +11,7 @@ import { buildNavigation } from '@/lib/contracts/navigation';
 import { schoolShellMenu } from '@/components/app-shell/shell-nav';
 import { isMessageKey, t } from '@/lib/i18n';
 import { moduleOffSentence, needsOwnSentence } from '@/lib/i18n/module-off';
+import { withWords } from '../i18n/with-words';
 
 vi.mock('next/navigation', () => ({ usePathname: () => '/app/students', useRouter: () => ({ push: () => undefined, refresh: () => undefined }) }));
 
@@ -20,7 +20,7 @@ vi.mock('next/navigation', () => ({ usePathname: () => '/app/students', useRoute
 
 const DEVANAGARI = /[ऀ-ॿ]/;
 const src = (rel: string) => readFileSync(path.join(__dirname, '../../src', rel), 'utf8');
-const render = (lang: 'en' | 'hi', props: Record<string, unknown>) => renderToStaticMarkup(h(LangProvider, { lang, children: h(TeachEmpty, props as any) }));
+const render = (lang: 'en' | 'hi', props: Record<string, unknown>) => renderToStaticMarkup(withWords(lang, null, h(TeachEmpty, props as any)));
 
 describe('an empty list says what to do next, and carries the button', () => {
   it('every empty state has what is missing and one plain sentence on what to do, in English and Hindi', () => {

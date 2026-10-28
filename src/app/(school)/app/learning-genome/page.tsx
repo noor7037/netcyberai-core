@@ -6,6 +6,8 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Learning Genome v1 (docs/27 row 9e, C217): pick a class, then a child, and see that child's own percent in each
 // exam, homework done and the Daily Pulse replies to each chapter, with strengths and gaps by the school's settings.
@@ -20,7 +22,9 @@ export default async function LearningGenomePage({ searchParams = {} }: { search
   const childId = classId && isUuid(searchParams.child) ? searchParams.child : null;
   return (
     <ModulePage moduleId="learning-genome" help="read-a-learning-genome" tour="learning-genome" title={t(lang, 'gn.page.title')} purpose={t(lang, 'gn.page.purpose')}>
+      <WordsProvider words={pageWords(lang, '/app/learning-genome')}>
       <GenomeView initialClass={classId} initialChild={childId} />
+      </WordsProvider>
     </ModulePage>
   );
 }

@@ -6,6 +6,8 @@ import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → AI (docs/family-app/10 §3, C249): the AI services and their clearance for children's words, each
 // service's key (write-only: its last four characters, who saved it and when), the features with their service,
@@ -43,7 +45,9 @@ export default async function AiControlPage() {
         ) : undefined
       }
     >
+      <WordsProvider words={pageWords(lang, '/control/ai')}>
       {data && <AiControls initial={{ ...data, providerChoices: providerChoices() }} />}
+      </WordsProvider>
     </ModulePage>
   );
 }
