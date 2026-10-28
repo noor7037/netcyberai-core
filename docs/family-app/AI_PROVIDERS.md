@@ -42,7 +42,7 @@ The existing AI platform (`src/lib/ai/platform.ts`) stays as it is. Each feature
 
 **Changed in code (C230-U):**
 - New adapters `workers-ai` (text, photos, speech) and `gemini` (text), on one shared Chat Completions core (`src/lib/ai/adapters/chat-completions.ts`).
-- OpenAI is now **not eligible** for children's profiles (its under-13 rule). Gemini is never eligible either.
+- OpenAI's under-13 rule and Gemini's terms are now notes beside Control's switch, not code refusals (C368): the founder's clearance is the one gate. Operating steps and failure cases: `AI_GATEWAY_RUNBOOK.md` (Z1).
 - Control accepts Workers AI model ids (`@cf/...`).
 
 **Budget and quota:**

@@ -1071,10 +1071,12 @@ REQUIRED_RESTRICTIVE = {
     ("family.push_sent", "push_sent_own_only"),
     # S1 (C374): own account only.
     ("family.chapter_reading", "chapter_reading_own_only"),
+    ("family.chapter_reading", "chapter_reading_one_child"),
     # S3 (C376): the chapters, the requests and the subject sources are held to the family's own account.
     ("content.chapter_contents", "chapter_contents_family_only"),
     ("content.chapter_requests", "chapter_requests_family_only"),
     ("family.child_subject_source", "child_subject_source_own_only"),
+    ("family.child_subject_source", "child_subject_source_one_child"),
     # S2 (C375): own account only.
     ("family.tutor_conversations", "tutor_conversations_own_only"),
     ("family.tutor_messages", "tutor_messages_own_only"),
