@@ -40,6 +40,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
   const [refusal, setRefusal] = useState('');
+  // W4-1 (C385): what became of the files sent with a tutor question.
+  const [filesNote, setFilesNote] = useState('');
   const [goTo, setGoTo] = useState<GoTo | null>(null);
   const [noInternet, setNoInternet] = useState(false);
   const saver = useDataSaver();
@@ -59,6 +61,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     current.current = mine;
     setState('loading');
     setBlocks([]);
+    setFilesNote('');
     setRefusal('');
     setGoTo(null);
     setNoInternet(false);
@@ -95,6 +98,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             setMeta(e);
             setState('streaming');
           } else if (e.t === 'block') setBlocks((b) => [...b, e.block]);
+          else if (e.t === 'files') setFilesNote(e.message);
           else if (e.t === 'done') {
             setState(e.complete ? 'done' : 'incomplete');
             answered.current?.();
@@ -126,6 +130,11 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
 
   return (
     <div ref={top} className="flex flex-col gap-3" aria-busy={state === 'loading' || state === 'streaming'}>
+      {filesNote && (
+        <p role="status" data-files-note className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
+          {filesNote}
+        </p>
+      )}
       {meta && (
         <div className="flex flex-wrap items-center gap-2">
           <span data-label={meta.label} className={`rounded-full px-3 py-1 text-xs font-bold ${meta.label === 'checked' ? 'bg-white text-emerald-text ring-1 ring-emerald-text/40' : 'bg-white text-slate ring-1 ring-slate/20'}`}>
