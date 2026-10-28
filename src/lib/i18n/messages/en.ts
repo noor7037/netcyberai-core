@@ -8569,6 +8569,14 @@ export const en = {
   'control.family.plus.turnOff': 'Turn off',
   'control.family.plus.saved': 'Saved.',
   'control.family.plus.failed': 'Not saved. Sign in with your authenticator and try again.',
+  'control.family.voice.title': 'Server voice: daily allowance per family',
+  'control.family.voice.lead': 'How many characters the NetCyberAI voice may read aloud for one family in a day (the chapter reader and live English). Spoken lines count here, not against the family’s AI requests. When it is used up, the phone’s own voice reads and the screen says so. 0 keeps the server voice off for families.',
+  'control.family.voice.now': 'Now: {n} characters a day.',
+  'control.family.voice.unset': 'Not set: the server voice reads nothing for families.',
+  'control.family.voice.label': 'Characters a day',
+  'control.family.voice.save': 'Save',
+  'control.family.voice.saved': 'Saved.',
+  'control.family.voice.failed': 'Not saved. Enter a whole number from 0 to 1,000,000, sign in with your authenticator and try again.',
   'control.apps.module.label.home_plan': 'Home plan after a parent-teacher meeting (Plus)',
   'control.prepare.title': 'Prepare explanations before children ask',
   'control.prepare.lead': 'Makes the explanation of every chapter and topic of one syllabus version, in English and in Hindi, through the AI. Each one lands in the list below as made by AI, for you to check or withdraw. It needs the AI key and a provider cleared for children.',
@@ -9271,6 +9279,6 @@ export const en = {
   'fam.voiceOut.server': 'Voice: NetCyberAI voice',
   'fam.voiceOut.phone': 'Voice: this phone’s voice',
   'control.ai.profile.name.family.text_to_speech': 'Reading aloud (text to speech)',
-  'control.ai.profile.about.family.text_to_speech': 'Reads the chapter reader’s sentences and the English partner’s replies aloud. Without it, the phone’s own voice reads them. Each sentence spoken uses one of the family’s AI requests for the day.',
+  'control.ai.profile.about.family.text_to_speech': 'Reads the chapter reader’s sentences and the English partner’s replies aloud. Without it, the phone’s own voice reads them. Spoken lines count against the family’s daily voice allowance in characters (Control → Family), not its AI requests.',
   // w4-2 end
 } as const;

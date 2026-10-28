@@ -42,7 +42,7 @@ async function playServer(source: LineSource, rate: number, mine: number): Promi
   if (generation !== mine) return 'cancelled';
   if (!res.ok || !/^audio\//.test(res.headers.get('content-type') ?? '')) {
     const error = (await res.json().catch(() => ({})))?.error;
-    return error === 'not_set_up' || error === 'ai_cap_reached' ? 'off' : 'failed';
+    return error === 'not_set_up' || error === 'voice_allowance_reached' ? 'off' : 'failed';
   }
   const blob = await res.blob().catch(() => null);
   if (generation !== mine) return 'cancelled';

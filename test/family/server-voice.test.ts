@@ -67,6 +67,7 @@ const liveGet = async (account = ACCOUNT, child = CHILD) => {
 
 const line0 = () => chapterView(showcaseChapter(CHAPTER)!, 'en').script[0];
 const daily = async (account = ACCOUNT) => Number((await q(`select coalesce(sum(requests), 0)::int as n from family.ai_daily where account_id = $1`, [account]))[0].n);
+const voiceChars = async (account = ACCOUNT) => Number((await q(`select coalesce(sum(voice_chars), 0)::int as n from family.ai_daily where account_id = $1`, [account]))[0].n);
 const ledger = async () => q(`select profile_id, provider_id, outcome, tokens_in from control.ai_usage_ledger where profile_id = 'family.text_to_speech' order by attempt_id`);
 const spoken: string[] = [];
 const voiceOn = () => q(`update control.ai_profiles set provider_id = 'stand-in', model = 'voice', fallback = '[]', enabled = true where profile_id = 'family.text_to_speech'`);
@@ -153,8 +154,9 @@ describe('not set up', () => {
 describe('set up (the stand-in voice)', () => {
   beforeAll(voiceOn);
 
-  it('reads a chapter’s narration line: audio, never cached, one daily place and one ledger row', async () => {
+  it('reads a chapter’s narration line: audio, never cached, its characters from the voice allowance, one ledger row', async () => {
     const before = await daily();
+    const charsBefore = await voiceChars();
     const rows = (await ledger()).length;
     const r = await speak({ kind: 'chapter', chapterKey: CHAPTER, blockId: line0().blockId, sentence: line0().sentence });
     expect(r.status).toBe(200);
@@ -162,7 +164,9 @@ describe('set up (the stand-in voice)', () => {
     expect(r.cache).toBe('no-store, private');
     expect(Array.from(r.body as Uint8Array)).toEqual(Array.from(STAND_IN_AUDIO));
     expect(spoken[spoken.length - 1]).toBe(line0().text);
-    expect(await daily()).toBe(before + 1);
+    // C388: the line meters against the family's voice allowance in characters, not the AI requests.
+    expect(await daily()).toBe(before);
+    expect(await voiceChars()).toBe(charsBefore + line0().text.length);
     const after = await ledger();
     expect(after.length).toBe(rows + 1);
     expect(after[after.length - 1]).toEqual({ profile_id: 'family.text_to_speech', provider_id: 'stand-in', outcome: 'ok', tokens_in: line0().text.length });
@@ -190,10 +194,40 @@ describe('set up (the stand-in voice)', () => {
     expect(await speak({ kind: 'chapter', chapterKey: CHAPTER, blockId: line0().blockId, sentence: line0().sentence }, NO_STUDY, NO_STUDY_CHILD)).toEqual(expect.objectContaining({ status: 403, body: { error: 'consent_needed' } }));
   });
 
-  it('the daily cap reached is a refusal the phone turns into its own voice', async () => {
+  it('the voice allowance used up is a refusal the phone turns into its own voice; the AI requests do not stop it', async () => {
+    const ask = { kind: 'chapter', chapterKey: CHAPTER, blockId: line0().blockId, sentence: line0().sentence };
+    // The AI requests used up: the voice still reads (C388).
     await q(`update control.settings set value = '0'::jsonb where key = 'family.ai.daily_requests'`);
-    expect(await speak({ kind: 'chapter', chapterKey: CHAPTER, blockId: line0().blockId, sentence: line0().sentence })).toEqual(expect.objectContaining({ status: 429, body: { error: 'ai_cap_reached' } }));
+    expect((await speak(ask)).status).toBe(200);
     await q(`update control.settings set value = '200'::jsonb where key = 'family.ai.daily_requests'`);
+    // Fewer characters left than the line has: refused, nothing taken, and the screens say the phone's voice reads.
+    const used = await voiceChars();
+    await q(`update control.settings set value = $1::jsonb where key = 'family.voice.daily_characters'`, [JSON.stringify(used + line0().text.length - 1)]);
+    const n = spoken.length;
+    expect(await speak(ask)).toEqual(expect.objectContaining({ status: 429, body: { error: 'voice_allowance_reached' } }));
+    expect(spoken.length).toBe(n);
+    expect(await voiceChars()).toBe(used);
+    await q(`update control.settings set value = $1::jsonb where key = 'family.voice.daily_characters'`, [JSON.stringify(used)]);
+    expect((await liveGet()).body.status.tts).not.toBe('ready');
+    await q(`update control.settings set value = '20000'::jsonb where key = 'family.voice.daily_characters'`);
+    expect((await liveGet()).body.status.tts).toBe('ready');
+  });
+
+  it('Control sets the allowance: a whole number from 0 to 1,000,000, audited', async () => {
+    const { setVoiceAllowance, readVoiceAllowance } = await import('@/lib/control/family-settings');
+    await q(`insert into users (user_id, school_id, email, role, display_name, is_active) values ($1, null, 'founder@voice.invalid', 'super_admin', 'Founder', true) on conflict do nothing`, [FOUNDER]);
+    for (const bad of [-1, 1.5, '500', 1_000_001, null]) expect(await db.pg.transaction(async (c: never) => setVoiceAllowance(c, { userId: FOUNDER }, bad))).toEqual({ ok: false, code: 'bad_value' });
+    expect(await db.pg.transaction(async (c: never) => setVoiceAllowance(c, { userId: FOUNDER }, 15000))).toEqual({ ok: true, chars: 15000 });
+    expect(await db.pg.transaction(async (c: never) => readVoiceAllowance(c))).toBe(15000);
+    expect(await q(`select before_state, after_state from audit_log where event_action = 'family.voice_allowance_set'`)).toEqual([{ before_state: { chars: 20000 }, after_state: { chars: 15000 } }]);
+    await q(`update control.settings set value = '20000'::jsonb where key = 'family.voice.daily_characters'`);
+  });
+
+  it('a line the voice could not speak gives its characters back', async () => {
+    const used = await voiceChars();
+    vi.mocked(standInVoiceAdapter.synthesize).mockResolvedValueOnce({ ok: false, failure: 'server' } as never);
+    expect((await speak({ kind: 'chapter', chapterKey: CHAPTER, blockId: line0().blockId, sentence: line0().sentence })).status).toBe(503);
+    expect(await voiceChars()).toBe(used);
   });
 
   it('a seal opens only for its own account and child, and only whole', async () => {
