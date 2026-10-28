@@ -20,13 +20,16 @@ const nextConfig = {
     // its own worker script in the first place. outputFileTracingIncludes
     // alone (below) controls which files get COPIED into the deployed
     // function; this controls whether the module is bundled at all.
-    serverComponentsExternalPackages: ['tesseract.js', 'tesseract.js-core'],
+    // pdfjs-dist too: the tutor reads a PDF's text on the server (W4-1, C385), and PDF.js loads its own worker module
+    // beside itself at run time, which bundling would break the same way.
+    serverComponentsExternalPackages: ['tesseract.js', 'tesseract.js-core', 'pdfjs-dist'],
     outputFileTracingIncludes: {
       '/api/**/*': [
         './node_modules/tesseract.js/src/worker-script/**',
         './node_modules/tesseract.js/src/worker/**',
         './node_modules/tesseract.js-core/**',
         './node_modules/node-fetch/**',
+        './node_modules/pdfjs-dist/legacy/build/**',
       ],
     },
   },
