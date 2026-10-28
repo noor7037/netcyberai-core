@@ -59,6 +59,7 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/frameworks/entitlements.ts': { 'opaque:before[0]': 'an entitlement row: enabled, source, limits or plan, access mode, grace end', 'opaque:rows[0]': 'an entitlement row: enabled, source, limits or plan, access mode, grace end' },
   'src/lib/exams/exams.ts': { 'key:name': 'an exam’s name (Half-yearly), set by the school' },
   'src/lib/exams/boards.ts': { 'key:name': 'a board’s name (CBSE)', 'key:source_title': 'the title of the public document a grading preset cites' },
+  'src/lib/content/family-boards.ts': { 'key:name_en': 'a family board’s English name (Central Board of Secondary Education)', 'key:name_hi': 'the same board’s name in Hindi' },
   'src/lib/fees/structures.ts': { 'key:name': 'a fee head’s name (Tuition)' },
   'src/lib/fees/concessions.ts': { 'opaque:before': 'the RTE tag: a boolean, the entry class (a class code) and the day of admission under RTE' },
   'src/lib/timetable/timetable.ts': { 'opaque:before': 'the period’s subject and teacher ids before it changed', 'opaque:at': 'the period: class id, weekday and period number' },
