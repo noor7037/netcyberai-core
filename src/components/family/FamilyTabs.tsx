@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { DockTab } from '@/lib/family/modules';
 
-// The four tabs (Home, Study, English, Future; C391 removed Family, its slot stays for Explore), each shown only when its first module is
-// live (M1-6, C252). Hidden during the parent's first steps. Fixed at the bottom, 44 px and more, above the phone's
-// home bar.
+// The four tabs (Home, Study, English, Future; C391 removed Family, its slot stays for Explore), each shown only when
+// its first module is live (M1-6, C252). Hidden during the parent's first steps. Fixed at the bottom, 44 px and more,
+// above the phone's home bar.
 const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', future: '/family/future' };
 const ICON: Record<DockTab, string> = {
   home: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
