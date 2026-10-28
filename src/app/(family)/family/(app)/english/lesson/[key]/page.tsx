@@ -13,8 +13,8 @@ export default async function FamilyEnglishLessonPage({ params, searchParams }: 
   if (next) redirect(next);
   const lang = page.childLang;
   return (
-    <main lang={lang} className="mx-auto flex min-h-screen w-full max-w-xl flex-col gap-4 px-4 pb-24 pt-4">
+    <div lang={lang} className="flex min-h-screen flex-col">
       <LessonPlayer lessonKey={params.key} w={familyWords(lang, ENGLISH_KEYS)} lang={lang} startAt={Math.max(0, Math.min(20, Number(searchParams.at) || 0))} />
-    </main>
+    </div>
   );
 }

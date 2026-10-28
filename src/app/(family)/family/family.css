@@ -19,6 +19,8 @@
   --fam-top: env(safe-area-inset-top, 0px);
   --fam-bottom: env(safe-area-inset-bottom, 0px);
   padding-top: var(--fam-top);
+  /* Numbers in a tabular figure face (docs/38 §5): marks, counts and times line up and do not jump as they change. */
+  font-variant-numeric: tabular-nums;
 }
 .fam-canvas[data-edge] {
   --fam-top: max(env(safe-area-inset-top, 0px), 44px);
@@ -89,7 +91,7 @@
 /* ---- cards ------------------------------------------------------------------------------------------------------- */
 
 .fam-card {
-  border-radius: 1.75rem;
+  border-radius: 1rem;
   background-color: #ffffff;
   box-shadow:
     0 1px 2px rgb(30 41 59 / 0.06),
@@ -121,7 +123,7 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   box-shadow:
     0 12px 28px -14px rgb(6 18 51 / 0.55),
     inset 0 1px 0 rgb(255 255 255 / 0.25);
@@ -173,6 +175,157 @@
 }
 .fam-cta:disabled::after {
   display: none; /* a button that cannot be pressed yet does not shine */
+}
+
+
+/* ---- the shared page system (W6-B, docs/38 §5) ------------------------------------------------------------------ */
+/* Every screen outside Study is built from these, not from one-off class strings: one band (SubPageHeader), a page
+   pulled up under it, cards at 12-16 px with elevation, one section-title scale, rows that lift on hover and press
+   on tap (150-200 ms, stopped under reduced motion), and an empty state of one sentence and one action. Text colours
+   and backgrounds stay as Tailwind classes in the markup (scripts/check_contrast.py reads those); these classes only
+   carry size, weight, spacing, radius and motion. */
+
+/* The page under the band: pulled up over its edge, one column, room for the dock. */
+.fam-page {
+  position: relative;
+  margin: -2rem auto 0;
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 36rem;
+  padding: 0 1rem 6rem;
+}
+
+/* A card section: title row, then content. */
+.fam-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+@media (min-width: 640px) {
+  .fam-section {
+    padding: 1.25rem;
+  }
+}
+
+/* The type scale of a screen: section title, small label, one muted line, and a number. */
+.fam-h2 {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+}
+.fam-eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.fam-note {
+  font-size: 0.875rem;
+  line-height: 1.35rem;
+}
+.fam-num {
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* A row inside a card (a topic, a setting, a link): 48 px, 12 px radius, a light lift on hover and a press on tap. */
+.fam-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 48px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+}
+.fam-row.fam-card {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+}
+.fam-lift {
+  transition:
+    transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.fam-lift:active {
+  transform: scale(0.98);
+}
+@media (hover: hover) and (pointer: fine) {
+  .fam-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -14px rgb(29 78 216 / 0.45);
+  }
+}
+
+/* A round or rounded icon chip on a card or row. */
+:where(.fam-chip-icon) {
+  width: 2.5rem; /* a size class (h-12 w-12) beats this default */
+  height: 2.5rem;
+}
+.fam-chip-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  box-shadow: 0 6px 14px -8px rgb(29 78 216 / 0.6);
+}
+
+/* A small status word in a pill (a state, a count, "Made by AI"). */
+.fam-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 1.5rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+}
+/* The pill's touch area is 44 px high without making the pill taller. */
+.fam-hit {
+  position: relative;
+}
+.fam-hit::before {
+  content: '';
+  position: absolute;
+  inset: -0.75rem -0.25rem;
+}
+
+/* The empty state: a mark, one sentence, one action. */
+.fam-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+.fam-empty-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 22px -12px rgb(29 78 216 / 0.7);
+}
+
+/* The door pages (welcome, the parent PIN): the band is short and the card holds the form. */
+.fam-gate {
+  position: relative;
+  margin: -2rem auto 0;
+  width: 100%;
+  max-width: 28rem;
+  padding: 0 1rem 3rem;
 }
 
 /* ---- entrance ---------------------------------------------------------------------------------------------------- */
@@ -284,7 +437,10 @@
   }
   .fam-press,
   .fam-press:hover,
-  .fam-press:active {
+  .fam-press:active,
+  .fam-lift,
+  .fam-lift:hover,
+  .fam-lift:active {
     transition: none !important;
     transform: none !important;
   }

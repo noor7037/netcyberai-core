@@ -24,7 +24,7 @@ type Session = { sessionId: string; topic: string; turns: Turn[] };
 type State = { status: Status; session: Session | null; topics: readonly string[]; maxTurns: number };
 type Recap = { topic: string; turns: number; practised: string | null; newWords: string[] } | null;
 
-const BUBBLE = 'max-w-md rounded-3xl px-4 py-3 text-base';
+const BUBBLE = 'max-w-md rounded-2xl px-4 py-3 text-base';
 
 // `initial`: the first draw, read by the page on the server (the same view the API answers).
 export function LivePractice({ w, initial }: { w: Words; initial?: { state: State } | { error: string } }) {
@@ -78,7 +78,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
   if (error) {
     const text = error === 'consent_needed' ? w['fam.english.live.consent'] : error === 'off' ? w['fam.english.live.off'] : error === 'not_for_class' ? w['fam.english.live.notForClass'] : w['fam.english.live.error'];
     return (
-      <div data-live-refused={error} className="flex flex-col items-start gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10">
+      <div data-live-refused={error} className="flex flex-col items-start gap-3 fam-card bg-white p-5 text-slate">
         <p className="text-lg font-bold text-slate">{text}</p>
         {error === 'consent_needed' && (
           <Link href="/family/parent" className="flex min-h-[44px] items-center rounded-full bg-royal px-5 font-bold text-white">
@@ -88,14 +88,14 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
       </div>
     );
   }
-  if (!state) return <div aria-busy="true" className="h-40 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />;
+  if (!state) return <div aria-busy="true" className="h-40 animate-pulse rounded-2xl bg-slate/10 motion-reduce:animate-none" />;
 
   const { status, session } = state;
   // What is not set up, said before the child speaks (the acceptance test: no speech service → the screen says so).
   const missing = status.speech !== 'ready' ? 'noSpeech' : status.text !== 'ready' ? 'noText' : status.safety !== 'ready' ? 'noSafety' : null;
   if (missing) {
     return (
-      <div role="status" data-live-not-set-up={missing} className="flex flex-col gap-2 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10">
+      <div role="status" data-live-not-set-up={missing} className="flex flex-col gap-2 fam-card bg-white p-5 text-slate">
         <p className="text-lg font-bold text-slate">
           <Picture e="🌱" /> {w[`fam.english.live.${missing}`]}
         </p>
@@ -192,8 +192,8 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
   // The recap: what was practised and the words that were new; never a mark.
   if (recap !== undefined) {
     return (
-      <section data-live-recap className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10">
-        <h2 className="text-xl font-extrabold text-slate">
+      <section data-live-recap className="flex flex-col gap-3 fam-card bg-white p-5 text-slate">
+        <h2 className="fam-h2 text-slate">
           <Picture e="🌟" /> {w['fam.english.live.recapTitle']}
         </h2>
         {recap && <p className="text-base text-slate">{fill(w['fam.english.live.recapTurns'], { n: recap.turns, topic: w[`fam.english.live.topic.${recap.topic}`] ?? '' })}</p>}
@@ -229,8 +229,8 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
   const capped = status.requestsLeft < 1;
   if (!session) {
     return (
-      <section data-live-ready className="flex flex-col gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10">
-        <h2 className="text-lg font-extrabold text-slate">{w['fam.english.live.pickTopic']}</h2>
+      <section data-live-ready className="flex flex-col gap-3 fam-card bg-white p-5 text-slate">
+        <h2 className="fam-h2 text-slate">{w['fam.english.live.pickTopic']}</h2>
         <div role="radiogroup" aria-label={w['fam.english.live.pickTopic']} className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {state.topics.map((k) => (
             <button
@@ -294,7 +294,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
         )}
       </ol>
       {busy && !streaming?.length && <p role="status" className="text-base font-semibold text-royal">{w['fam.english.live.thinking']}</p>}
-      <div className="flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
+      <div className="flex flex-col gap-3 fam-card bg-white p-4 text-slate">
         {left > 0 ? (
           <>
             <VoiceInput w={voiceWords} endpoint="/api/family/english/live/hear" secondsLeft={status.voice.left} onText={(text) => setDraft(text)} />

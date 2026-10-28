@@ -26,8 +26,7 @@ export default async function FamilyParentProgressPage({ params }: { params: { c
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} kicker={child?.firstName} title={w['fam.schoolProgress.title']} tone="royal" />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-parent-progress>
-        <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.schoolProgress.leadParent']}</p>
+      <main className="fam-page" data-parent-progress>
         <SchoolProgressView progress={progress ?? { session: null, groups: [] }} w={w} lang={lang} />
       </main>
     </div>

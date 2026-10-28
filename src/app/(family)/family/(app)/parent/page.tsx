@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import { ChapterRequestPanel } from '@/components/family/ChapterRequestPanel';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { listRequests, readSourceModes } from '@/lib/family/chapter-requests';
+import { FamIcon } from '@/components/family/FamIcon';
+import { GateFrame } from '@/components/family/GateFrame';
 import { FocusSection } from '@/components/family/FocusSection';
 import { ParentArea } from '@/components/family/ParentArea';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
@@ -35,6 +37,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248): behind the parent PIN, always.
 const GATE_KEYS: MessageKey[] = [
+  'fam.app.name',
   'fam.pin.enterTitle', 'fam.pin.enterLead', 'fam.pin.enter', 'fam.pin.open', 'fam.pin.forgot', 'fam.pin.resetLead', 'fam.pin.resetSend', 'fam.pin.resetSent',
   'fam.pin.resetSave', 'fam.pin.new', 'fam.pin.again', 'fam.pin.mismatch', 'fam.signIn.code', 'fam.common.cancel', 'fam.err.pinWrong', 'fam.err.wait',
   'fam.err.format', 'fam.err.too_simple', 'fam.err.wrong', 'fam.err.locked', 'fam.err.expired', 'fam.err.none', 'fam.err.rate_limited',
@@ -63,7 +66,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
-  'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.calm.note',
+  'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.profile.title',
   'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.changed.photo_input', 'fam.consent.purpose.voice_practice', 'fam.consent.purpose.offers',
   // m2-3: the habit section.
   'fam.habit.parent.title', 'fam.habit.parent.goal', 'fam.habit.parent.goalHelp', 'fam.habit.parent.goalOption', 'fam.habit.parent.jarTitle', 'fam.habit.parent.jarNone',
@@ -120,16 +123,18 @@ export default async function FamilyParentPage() {
   // A child's own phone (C342): the parent area is on the parent's phone.
   if (page.session.device) {
     return (
-      <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8" data-parent-on-parent-phone>
-        <p className="rounded-2xl bg-white p-5 text-base text-slate">{t(lang, 'fam.phone.parentHere')}</p>
-      </main>
+      <div lang={lang} data-parent-on-parent-phone>
+        <GateFrame app={t(lang, 'fam.app.name')} title={t(lang, 'fam.parent.title')}>
+          <p className="text-base text-slate">{t(lang, 'fam.phone.parentHere')}</p>
+        </GateFrame>
+      </div>
     );
   }
   if (!page.parentMode) {
     return (
-      <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8">
+      <div lang={lang}>
         <PinGate w={familyWords(lang, GATE_KEYS)} />
-      </main>
+      </div>
     );
   }
   const calm = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => calmCard(db, page.session.accountId, c.childId, indiaDate(), lang))));
@@ -203,7 +208,7 @@ export default async function FamilyParentPage() {
         }
       : null;
   return (
-    <main lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
+    <div lang={lang} className="flex min-h-screen flex-col">
       <ParentArea
         english={english}
         photo={photo}
@@ -222,16 +227,17 @@ export default async function FamilyParentPage() {
             {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
             {page.children.length > 0 && (
               <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
-                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="5" width="18" height="15" rx="2" />
                     <path d="M3 10h18M10 14h4" />
                   </svg>
                 </span>
-                <span className="flex flex-col">
+                <span className="flex min-w-0 flex-1 flex-col">
                   <span className="text-base font-bold text-slate">{t(lang, 'fam.vault.open')}</span>
                   <span className="text-sm text-slate/80">{t(lang, 'fam.vault.openLead')}</span>
                 </span>
+                <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
               </Link>
             )}
             <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
@@ -249,6 +255,6 @@ export default async function FamilyParentPage() {
           </>
         }
       />
-    </main>
+    </div>
   );
 }

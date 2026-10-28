@@ -14,7 +14,8 @@ import { errorWords, familyApi } from './client';
 import { HabitParent } from './HabitParent';
 import { LanguageSwitch } from './LanguageSwitch';
 import { clearOffline } from './offline/store';
-import { FamIcon } from './FamIcon';
+import { FamIcon, type IconName } from './FamIcon';
+import { SubPageHeader } from './SubPageHeader';
 import type { ParentHabit } from '@/lib/family/habit';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248), open only in parent mode: the children, what the
@@ -28,10 +29,18 @@ type Child = ChildFormValue & { childId: string; classLevel: number; freeSubject
 export type Calm = { childId: string; answers: number; right: number; topics: number; mastered: number; practisedTitles: string[] };
 type Answer = { attemptId: string; subject: string; kind: string; answer: string; correct: boolean; answeredOn: string };
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+// W6-B (docs/38 §5): one section card for the whole area: the title row with its mark, then the content.
+function Section({ title, icon, children }: { title: string; icon?: IconName; children: React.ReactNode }) {
   return (
-    <section className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{title}</h2>
+    <section className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 flex items-center gap-3 text-slate">
+        {icon && (
+          <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+            <FamIcon name={icon} className="h-5 w-5" />
+          </span>
+        )}
+        {title}
+      </h2>
       {children}
     </section>
   );
@@ -45,7 +54,7 @@ const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold
 function ConsentRow({ w, consent, granted, onToggle, data, note, changed }: { w: Words; consent: string; granted: boolean; onToggle: () => void; data?: Record<string, string | boolean>; note?: string; changed?: string }) {
   const name = w[`fam.consent.short.${consent}`];
   return (
-    <div {...data} className="flex flex-col rounded-2xl bg-off-white px-3 py-1">
+    <div {...data} className="flex flex-col rounded-xl bg-off-white px-3 py-1">
       <div className="flex items-center justify-between gap-3">
         <p className="text-base font-semibold text-slate">{name}</p>
         <button type="button" role="switch" aria-checked={granted} aria-label={name} onClick={onToggle} className="fam-press flex min-h-[44px] min-w-[56px] items-center justify-end">
@@ -80,10 +89,10 @@ function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states
     setMode('answers');
   };
   return (
-    <li className="flex flex-col gap-3 rounded-2xl bg-off-white p-3">
+    <li className="flex flex-col gap-3 rounded-xl bg-off-white p-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-base font-bold text-slate">
-          {child.firstName} <span className="font-normal text-slate/70">· {classText((k) => w[k], child.classLevel)}</span>
+          {child.firstName} <span className="font-normal text-slate/80">· {classText((k) => w[k], child.classLevel)}</span>
         </p>
         <div className="flex flex-wrap gap-1">
           <button type="button" className={linkButton} onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}>
@@ -221,141 +230,151 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-3xl font-extrabold text-slate">{w['fam.parent.title']}</h1>
-        <Button variant="outline" onClick={() => void post('/api/family/pin/lock', {}, '/family')}>
-          {w['fam.parent.back']}
-        </Button>
-      </div>
-
-      <Section title={w['fam.calm.title']}>
-        <ul className="flex flex-col gap-2">
-          {children.map((c) => {
-            const card = calm.find((x) => x.childId === c.childId);
-            return (
-              <li key={c.childId} data-calm-card className="flex flex-col gap-1 rounded-2xl bg-off-white p-3 text-sm text-slate">
-                <p className="text-base font-bold text-slate">{c.firstName}</p>
-                {!card || card.answers === 0 ? (
-                  <p>{w['fam.calm.nothingYet']}</p>
-                ) : (
-                  <>
-                    <p>{fill(w['fam.calm.week'], { answers: card.answers, right: card.right, topics: card.topics })}</p>
-                    {card.mastered > 0 && <p>{fill(w['fam.calm.mastered'], { n: card.mastered })}</p>}
-                    {card.practisedTitles.length > 0 && <p className="text-slate/80">{fill(w['fam.calm.recent'], { topics: card.practisedTitles.join(', ') })}</p>}
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-        <p className="text-xs text-slate/80">{w['fam.calm.note']}</p>
-      </Section>
-
-      {habit && habit.length > 0 && (
-        <Section title={w['fam.habit.parent.title']}>
-          <HabitParent w={w} habit={habit} names={Object.fromEntries(children.map((c) => [c.childId, c.firstName]))} />
-        </Section>
-      )}
-
-      <Section title={w['fam.parent.children']}>
-        <ul className="flex flex-col gap-2">
-          {children.map((c) => (
-            <ChildRow key={c.childId} w={w} child={c} states={states} boards={boards} />
-          ))}
-        </ul>
-        {adding ? (
-          <ChildForm
-            w={w}
-            states={states}
-            boards={boards}
-            initial={{ firstName: '', classLevel: null, board: '', language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
-            submitLabel={w['fam.child.add']}
-            onDone={() => {
-              setAdding(false);
-              router.refresh();
-            }}
-          />
-        ) : (
-          <Button variant="outline" onClick={() => setAdding(true)}>
-            {w['fam.child.add']}
-          </Button>
-        )}
-      </Section>
-
-      {afterChildren}
-
-      <Section title={w['fam.parent.privacy']}>
-        <p className="text-sm text-slate">{w['fam.parent.privacyIntro']}</p>
-        {/* The withdraw note belongs to study_core alone: switching off an optional purpose stops only that. */}
-        <ConsentRow w={w} consent="study_core" granted={studyCore} note={w['fam.parent.withdrawNote']} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
-        {english && <ConsentRow w={w} consent="english_programme" granted={english.granted} onToggle={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)} />}
-        {photo && (
-          <ConsentRow w={w} consent="photo_input" granted={photo.granted} changed={photo.renew ? w['fam.consent.changed.photo_input'] : undefined} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />
-        )}
-        {voice && (
-          <ConsentRow w={w} consent="voice_practice" granted={voice.granted} data={{ 'data-consent-voice': true }} onToggle={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)} />
-        )}
-        {offers && (
-          <ConsentRow w={w} consent="offers" granted={offers.granted} data={{ 'data-consent': 'offers' }} onToggle={() => void post('/api/family/consent', { purpose: 'offers', granted: !offers.granted, tap: true }, null)} />
-        )}
-      </Section>
-
-      {english?.granted && children.length > 0 && (
-        <Section title={w['fam.english.parent.section']}>
+    <>
+      <SubPageHeader
+        back="/family/profile"
+        backLabel={w['fam.profile.title']}
+        title={w['fam.parent.title']}
+        tone="royal"
+        aside={
+          <button
+            type="button"
+            onClick={() => void post('/api/family/pin/lock', {}, '/family')}
+            className="fam-press inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-royal-deep px-4 text-sm font-bold text-white ring-1 ring-white/40"
+          >
+            <FamIcon name="lock" className="h-4 w-4" />
+            {w['fam.parent.back']}
+          </button>
+        }
+      />
+      <main className="fam-page">
+        <Section title={w['fam.calm.title']} icon="chart">
           <ul className="flex flex-col gap-2">
-            {children.map((c) => (
-              <li key={c.childId}>
-                <a href={`/family/parent/english/${c.childId}`} className="fam-press flex min-h-[44px] items-center justify-between rounded-2xl bg-off-white p-3 text-base font-semibold text-slate">
-                  <span>
-                    {c.firstName} · {w['fam.english.parent.open']}
-                  </span>
-                  <FamIcon name="next" className="h-5 w-5 shrink-0" />
-                </a>
-              </li>
-            ))}
+            {children.map((c) => {
+              const card = calm.find((x) => x.childId === c.childId);
+              return (
+                <li key={c.childId} data-calm-card className="flex flex-col gap-1 rounded-xl bg-off-white p-3 text-sm text-slate">
+                  <p className="text-base font-bold text-slate">{c.firstName}</p>
+                  {!card || card.answers === 0 ? (
+                    <p>{w['fam.calm.nothingYet']}</p>
+                  ) : (
+                    <>
+                      <p>{fill(w['fam.calm.week'], { answers: card.answers, right: card.right, topics: card.topics })}</p>
+                      {card.mastered > 0 && <p>{fill(w['fam.calm.mastered'], { n: card.mastered })}</p>}
+                      {card.practisedTitles.length > 0 && <p className="text-slate/80">{fill(w['fam.calm.recent'], { topics: card.practisedTitles.join(', ') })}</p>}
+                    </>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </Section>
-      )}
 
-      <Section title={w['fam.parent.language']}>
-        <LanguageSwitch lang={lang} w={w} />
-      </Section>
+        {habit && habit.length > 0 && (
+          <Section title={w['fam.habit.parent.title']} icon="star">
+            <HabitParent w={w} habit={habit} names={Object.fromEntries(children.map((c) => [c.childId, c.firstName]))} />
+          </Section>
+        )}
 
-      <Section title={w['fam.parent.signOutTitle']}>
-        <div className="flex flex-col gap-2 sm:flex-row">
-          {/* M2-9: signing out also clears the chapters and answers kept on this phone; M3-8b: and its notifications. */}
-          <Button variant="outline" onClick={() => void forgetThisBrowser().then(clearOffline).then(() => post('/api/family/auth/sign-out', {}, '/family/sign-in'))}>
-            {w['fam.parent.signOut']}
+        <Section title={w['fam.parent.children']} icon="user">
+          <ul className="flex flex-col gap-2">
+            {children.map((c) => (
+              <ChildRow key={c.childId} w={w} child={c} states={states} boards={boards} />
+            ))}
+          </ul>
+          {adding ? (
+            <ChildForm
+              w={w}
+              states={states}
+              boards={boards}
+              initial={{ firstName: '', classLevel: null, board: '', language: lang, style: lang === 'hi' ? 'hinglish' : 'en', stateCode: '' }}
+              submitLabel={w['fam.child.add']}
+              onDone={() => {
+                setAdding(false);
+                router.refresh();
+              }}
+            />
+          ) : (
+            <Button variant="outline" onClick={() => setAdding(true)}>
+              {w['fam.child.add']}
+            </Button>
+          )}
+        </Section>
+
+        {afterChildren}
+
+        <Section title={w['fam.parent.privacy']} icon="shield">
+          <p className="text-sm text-slate">{w['fam.parent.privacyIntro']}</p>
+          {/* The withdraw note belongs to study_core alone: switching off an optional purpose stops only that. */}
+          <ConsentRow w={w} consent="study_core" granted={studyCore} note={w['fam.parent.withdrawNote']} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
+          {english && <ConsentRow w={w} consent="english_programme" granted={english.granted} onToggle={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)} />}
+          {photo && (
+            <ConsentRow w={w} consent="photo_input" granted={photo.granted} changed={photo.renew ? w['fam.consent.changed.photo_input'] : undefined} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />
+          )}
+          {voice && (
+            <ConsentRow w={w} consent="voice_practice" granted={voice.granted} data={{ 'data-consent-voice': true }} onToggle={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)} />
+          )}
+          {offers && (
+            <ConsentRow w={w} consent="offers" granted={offers.granted} data={{ 'data-consent': 'offers' }} onToggle={() => void post('/api/family/consent', { purpose: 'offers', granted: !offers.granted, tap: true }, null)} />
+          )}
+        </Section>
+
+        {english?.granted && children.length > 0 && (
+          <Section title={w['fam.english.parent.section']} icon="steps">
+            <ul className="flex flex-col gap-2">
+              {children.map((c) => (
+                <li key={c.childId}>
+                  <a href={`/family/parent/english/${c.childId}`} className="fam-row fam-lift justify-between bg-off-white text-base font-semibold text-slate">
+                    <span>
+                      {c.firstName} · {w['fam.english.parent.open']}
+                    </span>
+                    <FamIcon name="next" className="h-5 w-5 shrink-0" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Section>
+        )}
+
+        <Section title={w['fam.parent.language']}>
+          <LanguageSwitch lang={lang} w={w} />
+        </Section>
+
+        <Section title={w['fam.parent.signOutTitle']} icon="lock">
+          <div className="flex flex-col gap-2 sm:flex-row">
+            {/* M2-9: signing out also clears the chapters and answers kept on this phone; M3-8b: and its notifications. */}
+            <Button variant="outline" onClick={() => void forgetThisBrowser().then(clearOffline).then(() => post('/api/family/auth/sign-out', {}, '/family/sign-in'))}>
+              {w['fam.parent.signOut']}
+            </Button>
+            <Button variant="outline" onClick={() => void forgetThisBrowser().then(clearOffline).then(() => post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in'))}>
+              {w['fam.parent.signOutAll']}
+            </Button>
+          </div>
+        </Section>
+
+        <Section title={w['fam.parent.deleteAccount']}>
+          <p className="text-sm text-slate">{w['fam.parent.deleteAccountLead']}</p>
+          <Input id="fam-delete-word" label={w['fam.parent.deleteAccountWord']} autoComplete="off" value={deleteWord} onChange={(e) => setDeleteWord(e.target.value)} />
+          <Button
+            variant="secondary"
+            disabled={deleteWord.trim().toUpperCase() !== 'DELETE'}
+            onClick={async () => {
+              const r = await familyApi('/api/family/account', 'DELETE', { confirm: 'DELETE' });
+              if (!r.ok) return setError(errorWords(w, r.error));
+              router.replace('/family/sign-in');
+              router.refresh();
+            }}
+          >
+            {w['fam.parent.deleteAccountYes']}
           </Button>
-          <Button variant="outline" onClick={() => void forgetThisBrowser().then(clearOffline).then(() => post('/api/family/auth/sign-out', { everywhere: true }, '/family/sign-in'))}>
-            {w['fam.parent.signOutAll']}
-          </Button>
-        </div>
-      </Section>
+        </Section>
 
-      <Section title={w['fam.parent.deleteAccount']}>
-        <p className="text-sm text-slate">{w['fam.parent.deleteAccountLead']}</p>
-        <Input id="fam-delete-word" label={w['fam.parent.deleteAccountWord']} autoComplete="off" value={deleteWord} onChange={(e) => setDeleteWord(e.target.value)} />
-        <Button
-          variant="secondary"
-          disabled={deleteWord.trim().toUpperCase() !== 'DELETE'}
-          onClick={async () => {
-            const r = await familyApi('/api/family/account', 'DELETE', { confirm: 'DELETE' });
-            if (!r.ok) return setError(errorWords(w, r.error));
-            router.replace('/family/sign-in');
-            router.refresh();
-          }}
-        >
-          {w['fam.parent.deleteAccountYes']}
-        </Button>
-      </Section>
-
-      {error && (
-        <p role="alert" className="text-sm font-semibold text-red-800">
-          {error}
-        </p>
-      )}
-    </div>
+        {error && (
+          <p role="alert" className="text-sm font-semibold text-red-800">
+            {error}
+          </p>
+        )}
+      </main>
+    </>
   );
 }

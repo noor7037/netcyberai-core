@@ -158,8 +158,8 @@ function NewPlan({ w, child }: { w: Words; child: HomePlanChild }) {
 
 export function HomePlanSection({ w, lang, children }: { w: Words; lang: 'en' | 'hi'; children: HomePlanChild[] }) {
   return (
-    <section data-home-plan className="fam-card fam-rise flex flex-col gap-4 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.homePlan.title']}</h2>
+    <section data-home-plan className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.homePlan.title']}</h2>
       {children.map((c) => (
         <div key={c.childId} data-home-plan-child={c.childId} className="flex flex-col gap-2 rounded-2xl bg-off-white/60 p-3 ring-1 ring-slate/10">
           <p className="text-base font-bold text-slate">{c.firstName}</p>

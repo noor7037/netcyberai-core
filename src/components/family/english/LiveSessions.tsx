@@ -26,8 +26,8 @@ export function LiveSessions({ childId, w, lang }: { childId: string; w: Words; 
 
   const day = (iso: string) => new Date(iso).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' });
   return (
-    <section data-live-parent className="flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.english.live.parent.title']}</h2>
+    <section data-live-parent className="flex flex-col gap-3 fam-card bg-white p-4 text-slate">
+      <h2 className="fam-h2 text-slate">{w['fam.english.live.parent.title']}</h2>
       <p className="text-sm text-slate/80">{w['fam.english.live.parent.note']}</p>
       {sessions !== null && sessions.length === 0 && <p className="text-base text-slate">{w['fam.english.live.parent.empty']}</p>}
       {note && <p role="alert" className="rounded-2xl bg-coral/10 px-3 py-2 text-sm font-semibold text-slate">{note}</p>}

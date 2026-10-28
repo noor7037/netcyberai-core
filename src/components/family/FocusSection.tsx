@@ -78,8 +78,8 @@ function Device({ w, d, notices }: { w: Words; d: FocusDeviceView; notices: Focu
 
 export function FocusSection({ w, devices, notices }: { w: Words; devices: FocusDeviceView[]; notices: FocusNoticeView[] }) {
   return (
-    <section data-focus-section className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.focus.title']}</h2>
+    <section data-focus-section className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.focus.title']}</h2>
       <p className="text-sm text-slate">{w['fam.focus.lead']}</p>
       {devices.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.focus.none']}</p>

@@ -10,7 +10,7 @@ import { ProgressRing } from './ui/ProgressRing';
 // F2 on D1 (C230-Q): D1 cards that come in one after another, the week's days against the goal as a ring with the
 // sentence beside it, and drawn ticks and stars (never a device emoji).
 const titleLang = (title: string) => (/[ऀ-ॿ]/.test(title) ? 'hi' : 'en');
-const card = 'fam-card fam-rise bg-white p-5';
+const card = 'fam-card fam-section fam-rise bg-white';
 
 export function HabitCard({ habit, lang, delay = 80 }: { habit: ChildHabit; lang: Lang; delay?: number }) {
   const met = habit.doneDays >= habit.goal;
@@ -21,18 +21,18 @@ export function HabitCard({ habit, lang, delay = 80 }: { habit: ChildHabit; lang
       <section data-family-week aria-labelledby="fam-week" className={card} style={rise(delay)}>
         <div className="flex items-center gap-4">
           <ProgressRing value={habit.doneDays} max={habit.goal} size={60} stroke={7} track="text-leaf/20" arc="text-emerald">
-            <span aria-hidden="true" className="text-lg font-black text-slate">
+            <span aria-hidden="true" className="fam-num text-lg text-slate">
               {habit.doneDays}
             </span>
           </ProgressRing>
           <div className="min-w-0">
-            <h2 id="fam-week" className="text-lg font-extrabold text-slate">
+            <h2 id="fam-week" className="fam-h2 text-slate">
               {t(lang, 'fam.habit.weekTitle')}
             </h2>
             <p className="text-base font-semibold text-slate">{t(lang, 'fam.habit.weekSummary', { done: habit.doneDays, goal: habit.goal })}</p>
           </div>
         </div>
-        <ol role="img" aria-label={t(lang, 'fam.habit.circles', { done: habit.doneDays })} className="mt-4 grid grid-cols-7 gap-1.5">
+        <ol role="img" aria-label={t(lang, 'fam.habit.circles', { done: habit.doneDays })} className="grid grid-cols-7 gap-1.5">
           {habit.week.map((done, i) => (
             <li
               key={i}
@@ -45,26 +45,24 @@ export function HabitCard({ habit, lang, delay = 80 }: { habit: ChildHabit; lang
           ))}
         </ol>
         {met ? (
-          <p role="status" className="fam-pop mt-4 flex items-center gap-2 rounded-2xl bg-emerald/10 px-3 py-2 text-base font-bold text-emerald-text">
+          <p role="status" className="fam-pop flex items-center gap-2 rounded-xl bg-emerald/10 px-3 py-2 text-base font-bold text-emerald-text">
             <FamIcon name="sparkle" className="h-5 w-5 shrink-0" />
             {t(lang, 'fam.habit.goalMet')}
           </p>
-        ) : (
-          <p className="mt-3 text-xs text-slate/80">{t(lang, 'fam.habit.goalHelp', { goal: habit.goal })}</p>
-        )}
+        ) : null}
       </section>
 
       <section data-family-badges aria-labelledby="fam-badges" className={card} style={rise(delay + 40)}>
-        <h2 id="fam-badges" className="flex items-center gap-2 text-lg font-extrabold text-slate">
-          <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sunshine text-slate">
+        <h2 id="fam-badges" className="fam-h2 flex items-center gap-3 text-slate">
+          <span aria-hidden="true" className="fam-chip-icon bg-sunshine text-slate">
             <FamIcon name="star" className="h-5 w-5" />
           </span>
           {t(lang, 'fam.habit.badgesTitle')}
         </h2>
         {habit.badges.length === 0 ? (
-          <p className="mt-2 text-sm text-slate/80">{t(lang, 'fam.habit.badgesNone')}</p>
+          <p className="text-sm text-slate/80">{t(lang, 'fam.habit.badgesNone')}</p>
         ) : (
-          <ul className="mt-3 flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {habit.badges.map((b) => (
               <li key={b.topicKey} className="fam-pop flex min-h-[44px] items-center gap-2 rounded-full bg-sunshine py-1.5 pl-1.5 pr-4 text-sm font-bold text-slate">
                 <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-slate">
@@ -79,10 +77,10 @@ export function HabitCard({ habit, lang, delay = 80 }: { habit: ChildHabit; lang
 
       {jar && (
         <section data-family-jar aria-labelledby="fam-jar" className={card} style={rise(delay + 80)}>
-          <h2 id="fam-jar" className="text-lg font-extrabold text-slate">
+          <h2 id="fam-jar" className="fam-h2 text-slate">
             {t(lang, 'fam.habit.jarTitle')}
           </h2>
-          <div className="mt-3 flex items-center gap-4">
+          <div className="flex items-center gap-4">
             <div
               role="img"
               aria-label={t(lang, 'fam.habit.jarLabel', { days: jar.days, target: jar.targetDays })}
@@ -98,7 +96,7 @@ export function HabitCard({ habit, lang, delay = 80 }: { habit: ChildHabit; lang
             </div>
           </div>
           {jar.filled && (
-            <p role="status" className="fam-pop mt-3 flex items-center gap-2 rounded-2xl bg-emerald/10 px-3 py-2 text-base font-bold text-emerald-text">
+            <p role="status" className="fam-pop flex items-center gap-2 rounded-xl bg-emerald/10 px-3 py-2 text-base font-bold text-emerald-text">
               <FamIcon name="sparkle" className="h-5 w-5 shrink-0" />
               {t(lang, 'fam.habit.jarFull')}
             </p>

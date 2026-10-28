@@ -14,8 +14,8 @@ export default async function FamilyEnglishCheckPage({ params }: { params: { kin
   if (next) redirect(next);
   const lang = page.childLang;
   return (
-    <main lang={lang} className="mx-auto flex min-h-screen w-full max-w-xl flex-col gap-4 px-4 pb-24 pt-4">
+    <div lang={lang} className="flex min-h-screen flex-col">
       <AssessmentPlayer kind={params.kind as AssessmentKind} w={familyWords(lang, ENGLISH_KEYS)} lang={lang} />
-    </main>
+    </div>
   );
 }

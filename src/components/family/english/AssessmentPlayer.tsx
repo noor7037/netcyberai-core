@@ -8,6 +8,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '@/components/family/client';
 import { Burst, CheckItemView, answerOf } from './LessonPlayer';
 import { Pic } from './Pictures';
+import { PlayerShell } from './PlayerShell';
 import { speak } from './speech';
 import { TRACK_THEME } from './theme';
 
@@ -30,8 +31,19 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
     void familyApi<Loaded>(`/api/family/english/assessments/${kind}`, 'GET').then((r) => (r.ok ? setData(r.data) : setError(r.error)));
   }, [kind]);
 
-  if (error) return <p className="rounded-3xl bg-white p-5 text-lg font-bold text-slate shadow-sm ring-1 ring-slate/10">{error === 'locked' || error === 'already_taken' ? w['fam.english.locked'] : w['fam.english.error']}</p>;
-  if (!data) return <div aria-busy="true" className="h-40 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />;
+  const close = '/family/english';
+  if (error)
+    return (
+      <PlayerShell close={close} closeLabel={w['fam.english.close']} title={w[`fam.english.check.${kind}`]}>
+        <p className="fam-card bg-white p-5 text-lg font-bold text-slate">{error === 'locked' || error === 'already_taken' ? w['fam.english.locked'] : w['fam.english.error']}</p>
+      </PlayerShell>
+    );
+  if (!data)
+    return (
+      <PlayerShell close={close} closeLabel={w['fam.english.close']} title={w[`fam.english.check.${kind}`]}>
+        <div aria-busy="true" className="h-40 animate-pulse rounded-2xl bg-slate/10 motion-reduce:animate-none" />
+      </PlayerShell>
+    );
 
   const theme = TRACK_THEME[data.track];
   const hindi = lang === 'hi' || data.track === 'a' || data.track === 'b';
@@ -42,10 +54,10 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
   if (result) {
     const skills = (['listening', 'words', 'grammar', 'reading', 'speaking'] as const).filter((s) => result.scores[s] !== null && result.scores[s] !== undefined);
     return (
-      <section className="relative flex flex-col gap-4 rounded-3xl bg-white p-6 text-slate shadow-md ring-1 ring-slate/10">
+      <PlayerShell track={data.track} close={close} closeLabel={w['fam.english.close']} title={w[`fam.english.check.${kind}`]}>
+      <section className="fam-card relative flex flex-col gap-4 bg-white p-6 text-slate">
         <Burst />
-        <h2 className="text-2xl font-extrabold text-slate"><Picture e="📈" /> {w[`fam.english.check.${kind}`]}</h2>
-        <p className="text-lg font-bold text-slate">{w['fam.english.check.score'].replace('{n}', String(result.total))}</p>
+        <p className="fam-num text-lg font-bold text-slate">{w['fam.english.check.score'].replace('{n}', String(result.total))}</p>
         <ul className="flex flex-col gap-3">
           {skills.map((s, i) => (
             <li key={s} className="flex flex-col gap-1">
@@ -64,6 +76,7 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
           {w['fam.english.results.map']}
         </Link>
       </section>
+      </PlayerShell>
     );
   }
 
@@ -80,14 +93,11 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
   };
 
   return (
-    <section className="flex flex-col gap-4">
-      <div className="h-4 overflow-hidden rounded-full bg-slate/10" role="progressbar" aria-valuemin={0} aria-valuemax={pages} aria-valuenow={at + 1} aria-label={w[`fam.english.check.${kind}`]}>
-        <div className="h-full rounded-full transition-all duration-300 motion-reduce:transition-none" style={{ width: `${((at + 1) / pages) * 100}%`, background: theme.hex }} />
-      </div>
+    <PlayerShell track={data.track} close={close} closeLabel={w['fam.english.close']} title={w[`fam.english.check.${kind}`]} progress={{ now: at + 1, max: pages, label: w[`fam.english.check.${kind}`] }}>
       <div key={at} className="flex flex-col gap-4 animate-rise-in motion-reduce:animate-none">
         {section && (
           <>
-            <h2 className="text-xl font-extrabold text-slate">{w[`fam.english.skill.${section.skill}`]}</h2>
+            <h2 className="fam-h2 text-slate">{w[`fam.english.skill.${section.skill}`]}</h2>
             {section.items.map((c) => (
               <CheckItemView key={c.key} item={c} value={answers[c.key]} onChange={(v) => setAnswers({ ...answers, [c.key]: v })} w={w} track={data.track} hindi={hindi} />
             ))}
@@ -95,10 +105,10 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
         )}
         {onSpeaking && (
           <>
-            <h2 className="text-xl font-extrabold text-slate"><Picture e="🗣️" /> {w['fam.english.skill.speaking']}</h2>
+            <h2 className="fam-h2 text-slate"><Picture e="🗣️" /> {w['fam.english.skill.speaking']}</h2>
             {data.track === 'a' && <p className="text-base text-slate">{w['fam.english.rate.grownup']}</p>}
             {data.speaking.map((sp) => (
-              <div key={sp.key} className="flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
+              <div key={sp.key} className="fam-card flex flex-col gap-3 bg-white p-4 text-slate">
                 <p className="text-lg font-bold text-slate"><span lang="en">{sp.prompt.en}</span></p>
                 {hindi && sp.prompt.hi && (
                   <p lang="hi" className="text-base text-slate/80">
@@ -154,6 +164,6 @@ export function AssessmentPlayer({ kind, w, lang }: { kind: AssessmentKind; w: W
           </button>
         )}
       </div>
-    </section>
+    </PlayerShell>
   );
 }

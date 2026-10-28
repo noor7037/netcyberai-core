@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { EnglishReport } from '@/components/family/english/EnglishReport';
 import { LiveSessions } from '@/components/family/english/LiveSessions';
 import { tracksAllowed } from '@/lib/family/english/progress';
@@ -21,13 +21,12 @@ export default async function FamilyParentEnglishPage({ params }: { params: { ch
   const lang = page.parentLang;
   const w = familyWords(lang, ENGLISH_PARENT_KEYS);
   return (
-    <main lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6 pb-24">
-      <Link href="/family/parent" className="flex min-h-[44px] items-center self-start text-sm font-bold text-royal">
-        ← {t(lang, 'fam.parent.back')}
-      </Link>
-      <h1 className="text-2xl font-extrabold text-slate">{fill(w['fam.english.parent.title'], { name: child.firstName })}</h1>
-      <EnglishReport childId={child.childId} w={w} lang={lang} tracks={tracksAllowed(child.classLevel)} />
-      <LiveSessions childId={child.childId} w={familyWords(lang, LIVE_PARENT_KEYS)} lang={lang} />
-    </main>
+    <div lang={lang} className="flex min-h-screen flex-col">
+      <SubPageHeader back="/family/parent" backLabel={t(lang, 'fam.parent.title')} title={fill(w['fam.english.parent.title'], { name: child.firstName })} tone="royal" />
+      <main className="fam-page">
+        <EnglishReport childId={child.childId} w={w} lang={lang} tracks={tracksAllowed(child.classLevel)} />
+        <LiveSessions childId={child.childId} w={familyWords(lang, LIVE_PARENT_KEYS)} lang={lang} />
+      </main>
+    </div>
   );
 }
