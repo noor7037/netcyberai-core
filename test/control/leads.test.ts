@@ -40,7 +40,7 @@ const LEADS_MIGRATIONS = [
   '20260927100000_leads_quote_source_preferred_contact.sql',
   '20260927200000_leads_free_tools_source.sql',
 ];
-const W7L = '20261028150000_leads_contact_notes_import.sql';
+const W7L = '20261028134900_leads_contact_notes_import.sql';
 const FOUNDER = randomUUID();
 const PRINCIPAL = randomUUID();
 const SCHOOL = randomUUID();
