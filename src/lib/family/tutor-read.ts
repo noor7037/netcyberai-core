@@ -121,7 +121,10 @@ export async function pdfText(bytes: Uint8Array, maxPages = TUTOR_PDF_PAGES): Pr
     // the server (the browser has its own).
     const g = globalThis as { DOMMatrix?: unknown };
     if (!g.DOMMatrix) g.DOMMatrix = class { a = 1; b = 0; c = 0; d = 1; e = 0; f = 0 };
-    const { getDocument } = await import('pdfjs-dist/legacy/build/pdf.mjs');
+    // Loaded by Node at run time, not bundled: PDF.js starts its own worker module beside itself, which a server bundle
+    // would break (next.config.js traces the files into the deployed function).
+    const spec = 'pdfjs-dist/legacy/build/pdf.mjs';
+    const { getDocument } = (await import(/* webpackIgnore: true */ spec)) as typeof import('pdfjs-dist/legacy/build/pdf.mjs');
     const doc = await getDocument({ data: bytes.slice(), isEvalSupported: false, disableFontFace: true, useSystemFonts: false, stopAtErrors: false, verbosity: 0 }).promise;
     const parts: string[] = [];
     for (let n = 1; n <= Math.min(doc.numPages, maxPages); n++) {
