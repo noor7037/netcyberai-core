@@ -21,8 +21,11 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'progress', tab: 'home', flag: 'progress', entitlement: 'public', built: true, milestone: 'M1' },
   { id: 'parent_card', tab: 'family', flag: 'parent_card', entitlement: 'public', built: true, milestone: 'M1' },
   { id: 'english_programme', tab: 'english', flag: 'english_programme', entitlement: 'plus', built: true, milestone: 'C274' },
-  { id: 'careers', tab: 'future', flag: 'careers', entitlement: 'public', built: false, milestone: 'M4' },
-  { id: 'opportunities', tab: 'future', flag: 'opportunities', entitlement: 'public', built: false, milestone: 'M4' },
+  // H1: the three public hubs are shells (their sections, no entries yet): Career Hub, Schemes & Scholarships (the
+  // `opportunities` module) and the Exam Portal. Verified entries are added later from official sources.
+  { id: 'careers', tab: 'future', flag: 'careers', entitlement: 'public', built: true, milestone: 'H1' },
+  { id: 'opportunities', tab: 'future', flag: 'opportunities', entitlement: 'public', built: true, milestone: 'H1' },
+  { id: 'exams_portal', tab: 'future', flag: 'exams_portal', entitlement: 'public', built: true, milestone: 'H1' },
   { id: 'school_today', tab: 'home', flag: 'school_today', entitlement: 'school_info', built: false, milestone: 'M3' },
   // M2 (C275): each slice sets its module's `built` when it ships.
   { id: 'plan', tab: 'home', flag: 'plan', entitlement: 'learning', built: true, milestone: 'M2' },
