@@ -9280,6 +9280,6 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.voiceOut.server': 'आवाज़: NetCyberAI की आवाज़',
   'fam.voiceOut.phone': 'आवाज़: इस फ़ोन की आवाज़',
   'control.ai.profile.name.family.text_to_speech': 'पढ़कर सुनाना (लिखाई से बोली)',
-  'control.ai.profile.about.family.text_to_speech': 'अध्याय के वाक्य और अंग्रेज़ी साथी के उत्तर पढ़कर सुनाता है। इसके बिना फ़ोन की अपनी आवाज़ उन्हें पढ़ती है। हर बोला गया वाक्य परिवार के आज के AI अनुरोधों में से एक लेता है।',
+  'control.ai.profile.about.family.text_to_speech': 'अध्याय के वाक्य और अंग्रेज़ी साथी के उत्तर पढ़कर सुनाता है। इसके बिना फ़ोन की अपनी आवाज़ उन्हें पढ़ती है। बोली गई पंक्तियाँ परिवार की रोज़ की आवाज़ सीमा (अक्षरों में, Control → Family) में गिनी जाती हैं, उसके AI अनुरोधों में नहीं।',
   // w4-2 end
 };
