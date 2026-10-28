@@ -1,7 +1,7 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
-import { adapterFor, keyedProviderFor, providerCapabilities, speechAdapterFor, moderationAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type Capabilities, type Capability, type TermsNote } from './adapters';
+import { adapterFor, keyedProviderFor, providerCapabilities, speechAdapterFor, moderationAdapterFor, voiceAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type Capabilities, type Capability, type TermsNote } from './adapters';
 import { checkEndpoint, checkEndpointShape, type EndpointError } from './adapters/endpoint-guard';
 import { vertexModelLooksRight } from './adapters/vertex-ai';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersModelLooksRight, workersTokenLooksRight } from './adapters/workers-ai';
@@ -78,7 +78,8 @@ export type AiOverview = {
     enabled: boolean;
     needsKey: boolean;
     // 'video': a content provider (the video finder's YouTube, M2-5): a key and a test, never a profile's choice.
-    capability: 'text' | 'video' | null;
+    // 'text_to_speech': a voice-only provider (Google Cloud Text-to-Speech, C386).
+    capability: 'text' | 'video' | 'text_to_speech' | null;
     // What the provider's adapters declare (G1, C369), shown beside it; null for a content provider or none.
     capabilities: Capabilities | null;
     // The founder's address, for the adapter whose address is his (G1); needsBaseUrl says the box is shown.
@@ -124,7 +125,7 @@ async function audit(db: Sql, by: By, action: Action, targetId: string, before: 
 }
 
 function knownProvider(providerId: string): boolean {
-  return providerId === STAND_IN_PROVIDER ? standInAllowed() : adapterFor(providerId) !== null;
+  return providerId === STAND_IN_PROVIDER ? standInAllowed() : adapterFor(providerId) !== null || voiceAdapterFor(providerId) !== null;
 }
 
 // ---- reading -------------------------------------------------------------------------------------------------------
@@ -184,9 +185,10 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     today,
     month,
     providers: providers.rows.map((r) => {
-      const adapter = adapterFor(r.provider_id) ?? speechAdapterFor(r.provider_id) ?? moderationAdapterFor(r.provider_id);
+      const adapter = adapterFor(r.provider_id) ?? speechAdapterFor(r.provider_id) ?? moderationAdapterFor(r.provider_id) ?? voiceAdapterFor(r.provider_id);
       const keyed = keyedProviderFor(r.provider_id);
       const text = adapterFor(r.provider_id);
+      const voice = voiceAdapterFor(r.provider_id);
       return {
         providerId: r.provider_id,
         hasAdapter: keyed !== null,
@@ -196,7 +198,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
         capabilities: keyed?.capability === 'video' ? null : providerCapabilities(r.provider_id),
         needsBaseUrl: text?.needsBaseUrl === true,
         baseUrl: r.base_url ?? null,
-        testable: keyed?.capability === 'video' || typeof text?.testConnection === 'function',
+        testable: keyed?.capability === 'video' || typeof text?.testConnection === 'function' || typeof voice?.testConnection === 'function',
         termsNote: adapter?.termsNote ?? null,
         clearedForMinors: r.cleared_for_minors === true,
         termsUrl: r.cleared_terms_url ?? null,
@@ -243,9 +245,11 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
   };
 }
 
-// The adapters the code has, for the screen's choices (the stand-in only where it may run).
+// The adapters the code has, for the screen's choices (the stand-in only where it may run): every text provider and a
+// voice-only one (C386). Each feature's card offers only the providers whose adapters declare what it needs.
 export function providerChoices(): string[] {
-  return [...textAdapters().map((a) => a.providerId), ...(standInAllowed() ? [STAND_IN_PROVIDER] : [])];
+  const voiceOnly = ['google_tts'].filter((p) => voiceAdapterFor(p) !== null && adapterFor(p) === null);
+  return [...textAdapters().map((a) => a.providerId), ...voiceOnly, ...(standInAllowed() ? [STAND_IN_PROVIDER] : [])];
 }
 
 // ---- changes -------------------------------------------------------------------------------------------------------
@@ -295,7 +299,9 @@ export type KeyTest = { ok: true; run: () => Promise<KeyTestOutcome> } | { ok: f
 export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTest> {
   // G1 (C369): a text adapter with its own connection test (Vertex AI, the OpenAI-compatible adapter) as well.
   const text = adapterFor(providerId);
-  const connect = text?.testConnection?.bind(text);
+  // C386: a voice-only provider (Google Cloud Text-to-Speech) is tested by its own free check.
+  const voice = voiceAdapterFor(providerId);
+  const connect = text?.testConnection?.bind(text) ?? voice?.testConnection?.bind(voice);
   if (keyedProviderFor(providerId)?.capability !== 'video' && !connect) return { ok: false, code: 'not_testable' };
   let baseUrl: string | undefined;
   if (text?.needsBaseUrl) {
@@ -481,6 +487,8 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   if (links.some((l) => l.provider === 'workers-ai' && (l.model === null || !workersModelLooksRight(l.model)))) return { ok: false, code: 'model' };
   // A Vertex AI model id becomes part of its address (adapters/vertex-ai.ts): any other shape is refused here too.
   if (links.some((l) => l.provider === 'vertex_ai' && (l.model === null || !vertexModelLooksRight(l.model)))) return { ok: false, code: 'model' };
+  // The server voice (C386): a voice's model id may become part of the vendor's voice name (Google: "Neural2-A").
+  if (profile.capability === 'text_to_speech' && links.some((l) => l.provider !== null && l.model !== null && voiceAdapterFor(l.provider)?.modelLooksRight(l.model) === false)) return { ok: false, code: 'model' };
   // G1 (C369): every provider in the chain must declare what the profile needs (photos for AI marking, for example).
   if (providers.some((p) => missingCapabilities(profile.id, p).length > 0)) return { ok: false, code: 'capability' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };

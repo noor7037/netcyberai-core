@@ -1,5 +1,6 @@
 import { familyClaims } from '@/lib/family/db';
 import Link from 'next/link';
+import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { redirect } from 'next/navigation';
 import { TutorWindow } from '@/components/family/tutor/TutorWindow';
 import { TUTOR_KEYS } from '@/lib/family/tutor-words';
@@ -152,7 +153,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         ) : (
           <>
             {/* S2 (C375): the shared tutor window replaces the stacked ask form; the homework helper keeps its own link. */}
-            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={page.consents.photo_input} homework={homeworkOn} />
+            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={TUTOR_READS_FILES && page.consents.photo_input} homework={homeworkOn} />
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
             {homeworkOn && (

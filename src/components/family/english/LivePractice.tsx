@@ -1,21 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '@/components/family/client';
 import { VoiceInput } from '@/components/family/VoiceInput';
 import { Picture } from '../Picture';
-import { speak, stopSpeaking } from './speech';
+import { speak } from './speech';
+import { speakLine, stopLine, type LineSource, type VoiceMode } from '../voice/lineVoice';
 
 // The live English tutor (E1, C382; src/lib/family/english/live.ts). Push-to-talk only: tap to talk, tap to stop; the
-// words come back into the box, where the child reads and corrects them, then sends. The reply is read aloud by the
-// phone's own voice (speech.ts, as the chapter reader does): there is no server voice. Each state the server reports is
+// words come back into the box, where the child reads and corrects them, then sends. The reply streams in sentence by
+// sentence, each one already through the safety check, and each is read aloud as it arrives (C386): by the server voice
+// when Control has set one up, else by the phone's own voice (speech.ts), and the screen says which. A reply the safety
+// check stops part-way is taken off the screen and nothing of it is kept. Each state the server reports is
 // said plainly: no speech service, no reply partner, no safety check, the family's turns used up, the child's speaking
 // time used up (then the child may type). No marks, no score.
 
 type Ready = 'ready' | string;
-type Status = { speech: Ready; text: Ready; safety: Ready; requestsLeft: number; voice: { left: number; limit: number } };
+type Status = { speech: Ready; text: Ready; safety: Ready; tts?: Ready; requestsLeft: number; voice: { left: number; limit: number } };
 type Turn = { position: number; childText: string; reply: string };
 type Session = { sessionId: string; topic: string; turns: Turn[] };
 type State = { status: Status; session: Session | null; topics: readonly string[]; maxTurns: number };
@@ -32,17 +35,43 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
   const [recap, setRecap] = useState<Recap | undefined>(undefined);
+  // The reply arriving, sentence by sentence (null: none), and the voice reading the replies.
+  const [streaming, setStreaming] = useState<string[] | null>(null);
+  const initialTts = initial && 'state' in initial ? initial.state.status.tts : undefined;
+  const [voice, setVoice] = useState<VoiceMode>(initialTts === 'ready' ? 'server' : 'phone');
+  const voiceRef = useRef(voice);
+  // The sentences waiting to be read, one after the other; a new generation drops what the last one queued.
+  const queue = useRef<Promise<void>>(Promise.resolve());
+  const generation = useRef(0);
 
+  const switchVoice = (mode: VoiceMode) => {
+    voiceRef.current = mode;
+    setVoice(mode);
+  };
   const load = async () => {
     const r = await familyApi<State>('/api/family/english/live', 'GET');
     if (r.ok) {
       setState(r.data);
       setError(null);
+      switchVoice(r.data.status.tts === 'ready' ? 'server' : 'phone');
     } else setError(r.error);
+  };
+  const silence = () => {
+    generation.current++;
+    queue.current = Promise.resolve();
+    stopLine();
+  };
+  // One line read aloud after the ones before it; the voice it reports carries on to the next.
+  const readAloud = (source: LineSource, text: string, mine = generation.current) => {
+    queue.current = queue.current.then(async () => {
+      if (generation.current !== mine) return;
+      const spoken = await speakLine(voiceRef.current, source, { text, lang: 'en', rate: 0.9 });
+      if (!spoken.cancelled && spoken.mode !== voiceRef.current) switchVoice(spoken.mode);
+    });
   };
   useEffect(() => {
     if (!initial) void load();
-    return () => stopSpeaking();
+    return () => silence();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -97,25 +126,62 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
     setState({ ...state, session: r.data.session });
   };
 
+  // The reply streams as JSON lines (the live route): each checked sentence is shown and read aloud at once; the
+  // kept turn replaces them at the end; an error takes them away.
   const send = async () => {
     if (!session || !draft.trim() || busy) return;
     setBusy(true);
     setNote(null);
-    const r = await familyApi<{ turn: Turn }>('/api/family/english/live', 'POST', { action: 'say', sessionId: session.sessionId, text: draft });
+    silence();
+    const mine = generation.current;
+    let error: string | null = null;
+    let turn: Turn | null = null;
+    try {
+      const res = await fetch('/api/family/english/live', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'say', sessionId: session.sessionId, text: draft }), credentials: 'same-origin' });
+      if (!res.ok || !res.body) error = String((await res.json().catch(() => ({})))?.error ?? 'network');
+      else {
+        setStreaming([]);
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        for (;;) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          for (let nl = buf.indexOf('\n'); nl >= 0; nl = buf.indexOf('\n')) {
+            const line = buf.slice(0, nl).trim();
+            buf = buf.slice(nl + 1);
+            if (!line) continue;
+            const e = JSON.parse(line) as { t: string; text?: string; voice?: string; turn?: Turn; error?: string };
+            if (e.t === 'sentence' && typeof e.text === 'string') {
+              const text = e.text;
+              setStreaming((s) => [...(s ?? []), text]);
+              readAloud({ kind: 'live_line', token: String(e.voice ?? '') }, text, mine);
+            } else if (e.t === 'turn' && e.turn) turn = e.turn;
+            else if (e.t === 'error') error = e.error ?? 'failed';
+          }
+        }
+        if (!turn && !error) error = 'network';
+      }
+    } catch {
+      error = 'network';
+    }
     setBusy(false);
-    if (!r.ok) {
-      if (r.error === 'no_session') return void load();
-      return setNote(say(r.error));
+    setStreaming(null);
+    if (error || !turn) {
+      silence();
+      if (error === 'no_session') return void load();
+      return setNote(say(error ?? 'network'));
     }
     setDraft('');
-    setState({ ...state, session: { ...session, turns: [...session.turns, r.data.turn] } });
-    void speak(r.data.turn.reply, 'en', 0.9);
+    const kept = turn;
+    setState({ ...state, session: { ...session, turns: [...session.turns, kept] } });
   };
 
   const finish = async () => {
     if (!session) return;
     setBusy(true);
-    stopSpeaking();
+    silence();
     const r = await familyApi<{ recap: Recap }>('/api/family/english/live', 'POST', { action: 'end', sessionId: session.sessionId });
     setBusy(false);
     if (!r.ok) return setNote(say(r.error));
@@ -208,14 +274,26 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
             <div className={`${BUBBLE} self-start bg-white text-slate shadow-sm ring-1 ring-slate/10`}>
               <span className="sr-only">{w['fam.english.live.partner']}: </span>
               <span lang="en">{t.reply}</span>
-              <button type="button" onClick={() => void speak(t.reply, 'en', 0.9)} className="fam-press ml-2 inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold text-royal ring-1 ring-royal/30">
+              <button
+                type="button"
+                onClick={() => {
+                  silence();
+                  readAloud({ kind: 'live_turn', sessionId: session.sessionId, position: t.position }, t.reply);
+                }}
+                className="fam-press ml-2 inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold text-royal ring-1 ring-royal/30">
                 <Picture e="🔊" /> {w['fam.english.live.hearAgain']}
               </button>
             </div>
           </li>
         ))}
+        {streaming && streaming.length > 0 && (
+          <li data-live-streaming className={`${BUBBLE} self-start bg-white text-slate shadow-sm ring-1 ring-slate/10`}>
+            <span className="sr-only">{w['fam.english.live.partner']}: </span>
+            <span lang="en">{streaming.join(' ')}</span>
+          </li>
+        )}
       </ol>
-      {busy && <p role="status" className="text-base font-semibold text-royal">{w['fam.english.live.thinking']}</p>}
+      {busy && !streaming?.length && <p role="status" className="text-base font-semibold text-royal">{w['fam.english.live.thinking']}</p>}
       <div className="flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
         {left > 0 ? (
           <>
@@ -235,7 +313,9 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
           <p className="text-base text-slate">{w['fam.english.live.full']}</p>
         )}
         {note && <p role="alert" className="rounded-2xl bg-coral/10 px-3 py-2 text-sm font-semibold text-slate">{note}</p>}
-        <p className="text-sm text-slate/80">{w['fam.english.live.phoneVoice']}</p>
+        <p data-voice-in-use={voice} className="text-sm text-slate/80">
+          {w[voice === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}
+        </p>
         <button type="button" disabled={busy} onClick={() => void finish()} className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-off-white px-5 font-bold text-slate ring-1 ring-slate/20 disabled:opacity-60">
           {w['fam.english.live.finish']}
         </button>

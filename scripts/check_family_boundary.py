@@ -86,7 +86,9 @@ FAMILY_DOORS = {
     "@/lib/marking/checked-pdf": {"src/components/family/CheckedPaperPdf.tsx"},
 }
 # Packages and the framework, allowed everywhere.
-EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:)")
+# pdfjs-dist (W4-1, C385): the tutor reads an attached PDF's text layer on the server. A file parser, not a vendor: no
+# network, nothing leaves the server.
+EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:|pdfjs-dist/)")
 
 # Outside the family area, these files may import exactly these family modules.
 OUTSIDE_MAY_IMPORT_FAMILY = {

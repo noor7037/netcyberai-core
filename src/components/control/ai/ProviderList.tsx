@@ -127,7 +127,7 @@ export function ProviderList({
               {p.capability === "video" && (
                 <p data-ai-video-provider>{t("control.video.ai.provider")}</p>
               )}
-              {p.capability === "text" && (
+              {(p.capability === "text" || p.capability === "text_to_speech") && (
                 <p
                   data-ai-capabilities={
                     p.capabilities

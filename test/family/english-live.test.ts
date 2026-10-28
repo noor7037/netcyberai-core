@@ -52,9 +52,16 @@ const get = async (account = ACCOUNT, child = CHILD) => {
   const res = await (await live()).GET(new NextRequest('http://localhost/api/family/english/live', { headers: { cookie: await cookie(account, child) } }));
   return { status: res.status, body: await res.json() };
 };
+// C386: a turn's reply streams as JSON lines (each checked sentence, then the kept turn or an error); the helper reads
+// the stream to its end and answers as the JSON route did, keeping the events it saw in `events`.
+type LiveEvent = { t: string; text?: string; voice?: string; turn?: unknown; error?: string };
+let events: LiveEvent[] = [];
 const post = async (body: unknown, account = ACCOUNT, child = CHILD) => {
   const res = await (await live()).POST(new NextRequest('http://localhost/api/family/english/live', { method: 'POST', headers: { cookie: await cookie(account, child), 'content-type': 'application/json' }, body: JSON.stringify(body) }));
-  return { status: res.status, body: await res.json() };
+  if (!(res.headers.get('content-type') ?? '').includes('ndjson')) return { status: res.status, body: await res.json() };
+  events = (await res.text()).split('\n').filter(Boolean).map((l) => JSON.parse(l) as LiveEvent);
+  const last = events[events.length - 1];
+  return last?.t === 'turn' ? { status: res.status, body: { turn: last.turn } } : { status: 422, body: { error: last?.error ?? 'no_end' } };
 };
 const hear = async (account = ACCOUNT, child = CHILD) => {
   const { POST } = await import('@/app/api/family/english/live/hear/route');

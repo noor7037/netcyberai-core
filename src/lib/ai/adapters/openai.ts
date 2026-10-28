@@ -1,6 +1,7 @@
 import { streamChatCompletions } from './chat-completions';
 import { dataIds, freeCheck } from './connection';
-import { SPEECH_TIMEOUT_MS, capabilities, type AdapterResult, type ConnectionTest, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { readAudio } from './voice-audio';
+import { SPEECH_TIMEOUT_MS, VOICE_TIMEOUT_MS, capabilities, type AdapterResult, type ConnectionTest, type SpeechAdapter, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
 
 // OpenAI's Chat Completions API, streamed over fetch (no SDK; the wire format is shared, ./chat-completions.ts).
 const URL = 'https://api.openai.com/v1/chat/completions';
@@ -61,4 +62,56 @@ export const openaiSpeechAdapter: SpeechAdapter = {
     const n = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? v : 0);
     return { ok: true, text: body.text, tokensIn: n(body.usage?.input_tokens), tokensOut: n(body.usage?.output_tokens) };
   },
+};
+
+// OpenAI's speech API (C386: a server voice), over fetch: POST /v1/audio/speech with the model Control chose, one fixed
+// voice and mp3 out. The voice reads English and Hindi alike (the language is in the text); the newer gpt-4o models also
+// take a line of instructions, the older tts-1 models do not, so it is sent only to them. The same key as the text
+// adapter above (one OpenAI key in Control), the same terms note.
+const VOICE_URL = 'https://api.openai.com/v1/audio/speech';
+export const OPENAI_VOICE = 'nova';
+const OPENAI_TTS_MODEL = /^[a-z0-9][a-z0-9.-]{1,60}$/;
+const VOICE_INSTRUCTIONS: Record<'en' | 'hi', string> = {
+  en: 'Read clearly and warmly, at a steady pace, for a school child in India, with an Indian English accent.',
+  hi: 'Read clearly and warmly in Hindi, at a steady pace, for a school child in India.',
+};
+
+export const openaiVoiceAdapter: VoiceAdapter = {
+  providerId: 'openai',
+  capability: 'text_to_speech',
+  termsNote: 'no_under_13',
+  needsKey: true,
+  capabilities: capabilities(['tts']),
+  keyLooksRight: (key) => openaiAdapter.keyLooksRight(key),
+  modelLooksRight: (model) => OPENAI_TTS_MODEL.test(model),
+  async synthesize(request): Promise<VoiceResult> {
+    if (!OPENAI_TTS_MODEL.test(request.model)) return { ok: false, failure: 'http', status: 400 };
+    const body = {
+      model: request.model,
+      input: request.text,
+      voice: OPENAI_VOICE,
+      response_format: 'mp3',
+      ...(request.model.startsWith('gpt-') ? { instructions: VOICE_INSTRUCTIONS[request.language] } : {}),
+    };
+    let res: Response;
+    try {
+      res = await fetch(VOICE_URL, {
+        method: 'POST',
+        headers: { authorization: `Bearer ${request.apiKey}`, 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+        redirect: 'error',
+        signal: AbortSignal.timeout(VOICE_TIMEOUT_MS),
+      });
+    } catch {
+      return { ok: false, failure: 'network' };
+    }
+    if (!res.ok) {
+      await res.body?.cancel().catch(() => {});
+      return { ok: false, failure: 'http', status: res.status };
+    }
+    const audio = await readAudio(res);
+    return audio ? { ok: true, audio, mediaType: 'audio/mpeg', characters: request.text.length } : { ok: false, failure: 'bad_stream' };
+  },
+  // The text adapter's free check: the same key.
+  testConnection: (apiKey) => openaiAdapter.testConnection!(apiKey),
 };

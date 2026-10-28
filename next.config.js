@@ -27,6 +27,9 @@ const nextConfig = {
         './node_modules/tesseract.js/src/worker/**',
         './node_modules/tesseract.js-core/**',
         './node_modules/node-fetch/**',
+        // The tutor reads a PDF's text on the server (W4-1, C385) with PDF.js loaded at run time, not bundled (it is not
+        // listed as an external package: AI marking's page renderer bundles it for the browser).
+        './node_modules/pdfjs-dist/legacy/build/**',
       ],
     },
   },

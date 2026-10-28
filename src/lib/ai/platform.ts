@@ -1,7 +1,7 @@
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, moderationAdapterFor, speechAdapterFor, type AdapterResult, type Capability as AdapterCapability, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter } from './adapters';
+import { adapterFor, moderationAdapterFor, speechAdapterFor, voiceAdapterFor, type AdapterResult, type Capability as AdapterCapability, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceMediaType, type VoiceResult } from './adapters';
 import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
@@ -11,7 +11,7 @@ import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt } from './gateway/ledger';
 import { classifyFailure, ranItsTime } from './gateway/taxonomy';
-import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, MODERATION_TIMEOUT_MS } from './adapters/types';
+import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, MODERATION_TIMEOUT_MS, VOICE_TEXT_MAX, VOICE_TIMEOUT_MS } from './adapters/types';
 
 // The AI platform's public interface (docs/family-app/03 §7, C249). The ONLY AI module family code may import
 // (scripts/check_family_boundary.py). A feature profile runs in three steps, so no database connection is held while a
@@ -44,6 +44,7 @@ export type ProfileId =
   | 'family.moderation'
   | 'family.syllabus_extract'
   | 'family.english_conversation'
+  | 'family.text_to_speech'
   | 'copilot.draft'
   | 'parent_ai.home_help'
   | 'content.syllabus_extract'
@@ -51,7 +52,7 @@ export type ProfileId =
   | 'exams.read_pages'
   | 'exams.mark'
   | 'exams.write_questions';
-export type Capability = 'text' | 'speech_to_text' | 'moderation';
+export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
 // control profile runs only for Control's staff.
@@ -78,6 +79,11 @@ export const PROFILES: readonly AiProfile[] = [
   // end-of-session recap. Carries the child's corrected words (the transcript, never the recording). Speech to text
   // stays family.voice_input: the same capability, the same provider choice and the same voice budget.
   { id: 'family.english_conversation', carriesChildWords: true, capability: 'text', audience: 'family' },
+  // C386 (Wave 4 slice 2): the server voice. It reads the chapter reader's narration (NetCyberAI's own text) and the live
+  // English partner's checked replies, which are made from a child's words, so it is a children's-words profile: only a
+  // provider cleared for minors in Control may speak, as for every such profile. It speaks only text the server holds
+  // (src/lib/family/voice-out.ts), never text a phone sends.
+  { id: 'family.text_to_speech', carriesChildWords: true, capability: 'text_to_speech', audience: 'family' },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -103,17 +109,19 @@ export const PROFILES: readonly AiProfile[] = [
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
 // (a provider without a speech adapter cannot serve voice input). Control checks a choice against it; the platform
 // skips a provider without one.
-export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | ModerationAdapter | null {
+export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | ModerationAdapter | VoiceAdapter | null {
   const profile = profileById(profileId);
   if (!profile) return null;
   if (profile.capability === 'moderation') return moderationAdapterFor(providerId, env);
+  if (profile.capability === 'text_to_speech') return voiceAdapterFor(providerId, env);
   return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
 }
 
 // Everything a profile needs its adapter to declare (G1, C369): its capability's own (text; stt for voice input; text
-// for the safety check) and the profile's `needs`.
+// for the safety check; tts for the server voice, C386) and the profile's `needs`.
+const OWN_NEED: Record<Capability, AdapterCapability> = { text: 'text', speech_to_text: 'stt', moderation: 'text', text_to_speech: 'tts' };
 export function profileNeeds(profile: AiProfile): AdapterCapability[] {
-  return [profile.capability === 'speech_to_text' ? 'stt' : 'text', ...(profile.needs ?? [])];
+  return [OWN_NEED[profile.capability], ...(profile.needs ?? [])];
 }
 
 // What the chosen provider's adapter lacks of what the profile needs: [] when it has everything, or when the code has
@@ -308,7 +316,7 @@ export async function profileReady(db: Sql, ctx: AiContext, profileId: ProfileId
   if (!profile) return 'failed';
   const checked = await checkProfile(db, ctx, profileId, profile.capability, env);
   if (!checked.ok) return checked.reason;
-  const find = (p: string) => (profile.capability === 'speech_to_text' ? speechAdapterFor(p, env) : profile.capability === 'moderation' ? moderationAdapterFor(p, env) : adapterFor(p, env));
+  const find = (p: string) => capableAdapter(profile.id, p, env);
   const usable = await usableLinks(db, checked.chain, checked.providers, env, find);
   return usable.length > 0 ? 'ready' : 'not_switched_on';
 }
@@ -486,6 +494,86 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
     return { result: { ok: false, reason: 'failed' }, record };
   };
   return { ok: true, speech: { send } };
+}
+
+// ---- text to speech (C386: a server voice) ----------------------------------------------------------------------------
+
+// The route's whole budget for one line: a second provider is not tried once this much has gone.
+const VOICE_CHAIN_BUDGET_MS = 20_000;
+export { VOICE_TEXT_MAX };
+
+export type SpeakInput = { text: string; language: 'en' | 'hi' };
+export type VoiceAudio = { ok: true; audio: Uint8Array; mediaType: VoiceMediaType; provider: string; model: string } | { ok: false; reason: AiRefusal };
+export type SentVoice = { result: VoiceAudio; record: (db: Sql) => Promise<void> };
+export type PreparedVoice = { send: () => Promise<SentVoice> };
+export type PreparedSpeak = { ok: true; voice: PreparedVoice } | { ok: false; reason: AiRefusal };
+
+// The same seven steps, for one line to speak: 1–4 in the caller's transaction (the profile, the minors check on the
+// whole chain, a provider with a voice adapter and a key, the family's daily cap: one place a line); 5, the child's
+// names and the parent's email taken out of the line; 6 (send, no database) down the chain; 7 (record) counts and the
+// ledger, with the characters spoken as "tokens in". A line longer than VOICE_TEXT_MAX, or empty, is refused before
+// anything is taken. The caller passes only text the server holds; the audio is returned, never stored or logged.
+export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeakInput): Promise<PreparedSpeak> {
+  const env = process.env;
+  const text = typeof input.text === 'string' ? input.text.trim() : '';
+  if (!text || text.length > VOICE_TEXT_MAX || (input.language !== 'en' && input.language !== 'hi')) return { ok: false, reason: 'failed' };
+  const checked = await checkProfile(db, ctx, profileId, 'text_to_speech', env);
+  if (!checked.ok) return checked;
+  const { profile, row, chain, providers } = checked;
+
+  // 3. A provider that can speak; one whose circuit is open is skipped.
+  const usable = await usableLinks(db, chain, providers, env, (p) => voiceAdapterFor(p, env));
+  if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const ledger = ledgerOf(ctx, profile, row);
+  const { admitted: ready, skipped } = await gateLinks(db, usable);
+  if (ready.length === 0) {
+    await recordAttempts(db, ledger, skipped);
+    return { ok: false, reason: 'failed' };
+  }
+
+  // 4. The family's daily cap.
+  if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
+
+  // 5. Nothing that names a child leaves the server.
+  const clean = scrubRequest({ system: '', messages: [{ role: 'user', content: text }] }, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }).messages[0].content;
+
+  let sent = false;
+  const send = async (): Promise<SentVoice> => {
+    const usage: { link: Link; counts: Counts }[] = [];
+    const attempts: Attempt[] = [];
+    const record = async (tx: Sql) => {
+      for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
+      await recordAttempts(tx, ledger, attempts);
+    };
+    if (sent) return { result: { ok: false, reason: 'failed' }, record };
+    sent = true;
+    attempts.push(...skipped);
+    const began = Date.now();
+    for (const [i, r] of ready.entries()) {
+      const { link, adapter, apiKey } = r;
+      if (Date.now() - began > VOICE_CHAIN_BUDGET_MS) {
+        attempts.push(...ready.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
+        break;
+      }
+      let result: VoiceResult;
+      const start = Date.now();
+      try {
+        result = await adapter.synthesize({ apiKey, model: link.model, text: clean, language: input.language });
+      } catch {
+        result = { ok: false, failure: 'network' };
+      }
+      const tried = attemptOf(r, result.ok ? { ok: true, tokensIn: result.characters, tokensOut: 0 } : result, { streamed: false, elapsedMs: Date.now() - start, limitMs: VOICE_TIMEOUT_MS });
+      attempts.push(tried.attempt);
+      if (result.ok) {
+        usage.push({ link, counts: { requests: 1, tokensIn: result.characters } });
+        return { result: { ok: true, audio: result.audio, mediaType: result.mediaType, provider: link.provider, model: link.model }, record };
+      }
+      usage.push({ link, counts: { requests: 1, failures: 1 } });
+      if (!tried.retryable) break;
+    }
+    return { result: { ok: false, reason: 'failed' }, record };
+  };
+  return { ok: true, voice: { send } };
 }
 
 // ---- moderation (W2, C314) -------------------------------------------------------------------------------------------

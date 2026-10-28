@@ -29,9 +29,14 @@ export default async function ContentPage() {
   return (
     <ModulePage title={t(lang, 'control.content.title')} purpose={t(lang, 'control.content.purpose')} about={t(lang, 'control.content.about')} icon="academics" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}
       more={
-        <Link href="/control/content/studio" data-studio-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
-          {t(lang, 'control.content.studioLink')}
-        </Link>
+        <div className="flex flex-wrap gap-x-5">
+          <Link href="/control/content/studio" data-studio-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+            {t(lang, 'control.content.studioLink')}
+          </Link>
+          <Link href="/control/content/hubs" data-hubs-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+            {t(lang, 'control.content.hubsLink')}
+          </Link>
+        </div>
       }
     >
       {versions && <ContentView initial={versions} />}

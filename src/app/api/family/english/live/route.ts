@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
 import {
   LIVE_MAX_TURNS,
+  LIVE_REPLY_MAX,
   checkedRecap,
   cleanChildText,
   cleanReply,
@@ -19,6 +20,7 @@ import {
   openSession,
   recapRequest,
   replyRequest,
+  sentenceBuffer,
   startSession,
   summaryRequest,
   wordsTakenUp,
@@ -27,13 +29,15 @@ import {
 } from '@/lib/family/english/live';
 import { familyRun, jsonBody, requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE, type FamilySession } from '@/lib/family/session';
+import { sealLine } from '@/lib/family/voice-out';
 import { activePromptVersion, prepareModeration, prepareText, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 
 // The live spoken-English tutor (E1, C382; src/lib/family/english/live.ts).
 //   GET                                      what the screen shows: what is set up (speech to text, the reply, the
 //                                            safety check), the AI requests and voice seconds left, the open session.
 //   POST { action: 'start', topic }          a new session (the child's open one is ended).
-//   POST { action: 'say', sessionId, text }  one turn: the child's corrected words → a short role-play reply.
+//   POST { action: 'say', sessionId, text }  one turn: the child's corrected words → a short role-play reply, streamed
+//                                            sentence by sentence as JSON lines once each sentence is checked (C386).
 //   POST { action: 'end', sessionId }        the session's recap: what was practised and the words that were new.
 // The child is always the one this phone chose, never one the body names. Needs Control's English course switch and
 // the parent's English course and voice practice consents (from Class 1). No database connection is held while the AI
@@ -55,7 +59,7 @@ const aiContext = liveAiContext;
 // A refusal of the AI platform as the screen reads it: the daily cap is its own state.
 const refused = (reason: string) => fail(`ai_${reason}`, reason === 'cap_reached' ? 429 : 503);
 
-async function guarded(session: FamilySession, fn: () => Promise<NextResponse>): Promise<NextResponse> {
+async function guarded(session: FamilySession, fn: () => Promise<Response>): Promise<Response> {
   try {
     return await fn();
   } catch (err) {
@@ -124,7 +128,7 @@ export async function POST(req: NextRequest) {
 
 type SayPlan = { childId: string; text: string; reply: PreparedText; fold: { from: number; upto: number; summary: PreparedText } | null; moderation: PreparedModeration };
 
-async function say(session: FamilySession, chosen: string | undefined, sessionId: string, raw: unknown): Promise<NextResponse> {
+async function say(session: FamilySession, chosen: string | undefined, sessionId: string, raw: unknown): Promise<Response> {
   const text = cleanChildText(raw);
   if (!text) return fail('no_words', 400);
   // 1. The checks and reads, and the platform's own checks (each call takes its daily-cap place), in one transaction.
@@ -149,39 +153,86 @@ async function say(session: FamilySession, chosen: string | undefined, sessionId
   });
   if (plan instanceof NextResponse) return plan;
 
-  // 2. The safety check on the child's words, the reply (and the summary) and the check on the reply, with no
-  // database connection held. Nothing unchecked is shown or kept.
+  // 2. The safety check on the child's words first, with no database connection held: refused words answer at once.
   const recorders: Recorder[] = [(db) => plan.moderation.record(db)];
-  let outcome: { error: string; status: number } | null = null;
-  let reply = '';
-  let summary = '';
   const asked = await plan.moderation.check({ user: plan.text });
-  if (!asked) outcome = { error: 'safety_failed', status: 503 };
-  else if (!asked.safe) outcome = { error: 'unsafe', status: 422 };
-  else {
-    const [sent, folded] = await Promise.all([plan.reply.send(), plan.fold ? plan.fold.summary.send() : Promise.resolve(null as SentText | null)]);
-    recorders.push((db) => sent.record(db));
-    if (folded) {
-      recorders.push((db) => folded.record(db));
-      if (folded.result.ok) summary = cleanSummary(folded.result.text);
-    }
-    reply = sent.result.ok ? cleanReply(sent.result.text) : '';
-    if (!reply) outcome = { error: 'ai_failed', status: 503 };
-    else {
-      const checked = await plan.moderation.check({ user: plan.text, assistant: reply });
-      if (!checked) outcome = { error: 'safety_failed', status: 503 };
-      else if (!checked.safe) outcome = { error: 'unsafe', status: 422 };
-    }
-  }
+  if (!asked || !asked.safe) return finish(session, recorders, async () => (asked ? fail('unsafe', 422) : fail('safety_failed', 503)));
 
-  // 3. The metering, and the turn kept (the corrected words and the checked reply only), in a second transaction.
-  return finish(session, recorders, async (db) => {
-    if (outcome) return fail(outcome.error, outcome.status);
-    const fold = plan.fold && summary ? { from: plan.fold.from, upto: plan.fold.upto, summary } : null;
-    const position = await keepTurn(db, { accountId: session.accountId, childId: plan.childId, sessionId, text: plan.text, reply, fold });
-    if (position === null) return fail('no_session', 409);
-    return NextResponse.json({ turn: { position, childText: plan.text, reply } });
+  // 3. The reply streams (C386), as JSON lines: { t: 'sentence', text, voice } for each sentence once the safety check
+  // has passed it (with the child's words and the reply so far), then { t: 'turn', turn } once the turn is kept, or
+  // { t: 'error', error } instead. A sentence is shown only after its check; the first refused (or unchecked) sentence
+  // stops the reply, and then nothing of it is kept and the screen drops what it showed. `voice` seals the checked
+  // sentence for the server voice (src/lib/family/voice-out.ts), so the speak route reads only what this route made.
+  const encoder = new TextEncoder();
+  const stream = new ReadableStream<Uint8Array>({
+    async start(controller) {
+      const emit = (e: Record<string, unknown>) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
+      try {
+        const accepted: string[] = [];
+        let stopped: string | null = null;
+        let full = false;
+        let queue = Promise.resolve();
+        const handle = (sentence: string) => {
+          queue = queue.then(async () => {
+            if (stopped || full) return;
+            let s = sentence;
+            const sofar = accepted.join(' ');
+            if (sofar.length + (sofar ? 1 : 0) + s.length > LIVE_REPLY_MAX) {
+              full = true;
+              if (accepted.length) return;
+              s = cleanReply(s);
+            }
+            try {
+              const verdict = await plan.moderation.check({ user: plan.text, assistant: [...accepted, s].join(' ') });
+              if (!verdict) stopped = 'safety_failed';
+              else if (!verdict.safe) stopped = 'unsafe';
+              else {
+                accepted.push(s);
+                emit({ t: 'sentence', text: s, voice: sealLine({ accountId: session.accountId, childId: plan.childId, sessionId }, s) });
+              }
+            } catch {
+              stopped = 'safety_failed';
+            }
+          });
+        };
+        const buffer = sentenceBuffer();
+        let streamed = false;
+        const onPiece = (piece: string) => {
+          streamed = true;
+          buffer.push(piece).forEach(handle);
+        };
+        const [sent, folded] = await Promise.all([plan.reply.send(onPiece), plan.fold ? plan.fold.summary.send() : Promise.resolve(null as SentText | null)]);
+        // A provider that answers whole (no pieces) is split into sentences the same way.
+        if (sent.result.ok && !streamed) buffer.push(sent.result.text).forEach(handle);
+        if (sent.result.ok) buffer.flush().forEach(handle);
+        await queue;
+        recorders.push((db) => sent.record(db));
+        let summary = '';
+        if (folded) {
+          recorders.push((db) => folded.record(db));
+          if (folded.result.ok) summary = cleanSummary(folded.result.text);
+        }
+        const reply = sent.result.ok && !stopped ? cleanReply(accepted.join(' ')) : '';
+        const error = stopped ?? (reply ? null : 'ai_failed');
+
+        // 4. The metering, and the turn kept (the corrected words and the checked reply only), in a second transaction.
+        const res = await finish(session, recorders, async (db) => {
+          if (error) return fail(error, 422);
+          const fold = plan.fold && summary ? { from: plan.fold.from, upto: plan.fold.upto, summary } : null;
+          const position = await keepTurn(db, { accountId: session.accountId, childId: plan.childId, sessionId, text: plan.text, reply, fold });
+          if (position === null) return fail('no_session', 409);
+          return NextResponse.json({ turn: { position, childText: plan.text, reply } });
+        });
+        const body = (await res.json()) as Record<string, unknown>;
+        emit(res.ok ? { t: 'turn', turn: body.turn } : { t: 'error', error: body.error ?? 'failed' });
+      } catch {
+        emit({ t: 'error', error: 'failed' });
+      } finally {
+        controller.close();
+      }
+    },
   });
+  return new Response(stream, { headers: { 'Content-Type': 'application/x-ndjson; charset=utf-8', 'Cache-Control': 'no-store', 'X-Accel-Buffering': 'no' } });
 }
 
 type EndPlan = { childId: string; recap: LiveRecap } | { childId: string; live: LiveSession; text: PreparedText; moderation: PreparedModeration };

@@ -60,6 +60,12 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/exams/exams.ts': { 'key:name': 'an exam’s name (Half-yearly), set by the school' },
   'src/lib/exams/boards.ts': { 'key:name': 'a board’s name (CBSE)', 'key:source_title': 'the title of the public document a grading preset cites' },
   'src/lib/content/family-boards.ts': { 'key:name_en': 'a family board’s English name (Central Board of Secondary Education)', 'key:name_hi': 'the same board’s name in Hindi' },
+  'src/lib/content/hub-entries.ts': {
+    "opaque:snapshot(before, before.status)": 'an entry of a family hub: its title, text, scope, class band, public source link and dates (no personal data)',
+    "opaque:snapshot(e, 'draft')": 'an entry of a family hub: its title, text, scope, class band, public source link and dates (no personal data)',
+    "opaque:snapshot(e, before.status)": 'an entry of a family hub: its title, text, scope, class band, public source link and dates (no personal data)',
+    "opaque:snapshot(before, to)": 'an entry of a family hub: its title, text, scope, class band, public source link and dates (no personal data)',
+  },
   'src/lib/fees/structures.ts': { 'key:name': 'a fee head’s name (Tuition)' },
   'src/lib/fees/concessions.ts': { 'opaque:before': 'the RTE tag: a boolean, the entry class (a class code) and the day of admission under RTE' },
   'src/lib/timetable/timetable.ts': { 'opaque:before': 'the period’s subject and teacher ids before it changed', 'opaque:at': 'the period: class id, weekday and period number' },

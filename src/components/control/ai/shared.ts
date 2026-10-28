@@ -120,3 +120,15 @@ export const duration = (t: T, ms: number) =>
   ms < 1000
     ? t("control.ai.time.ms", { value: ms })
     : t("control.ai.time.seconds", { value: (ms / 1000).toFixed(1) });
+
+// The providers a feature's card offers (C386): only those whose adapters declare everything it needs (the server voice
+// only OpenAI and Google Cloud Text-to-Speech; a voice-only provider never for text). A choice Control has no row for
+// (the stand-in) is left to the server's own check, which refuses any provider without an adapter of the capability.
+export const choicesFor = (
+  data: Pick<Data, "providerChoices" | "providers">,
+  needs: readonly Capability[],
+): string[] =>
+  data.providerChoices.filter((c) => {
+    const caps = data.providers.find((x) => x.providerId === c)?.capabilities;
+    return !caps || needs.every((n) => caps[n]);
+  });

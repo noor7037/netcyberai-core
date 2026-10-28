@@ -28,6 +28,7 @@ const SIBLING = 'fa000000-0000-4000-8000-0000000000c2';
 const STRANGER = 'fa000000-0000-4000-8000-0000000000c3';
 const STAFF = 'fa000000-0000-4000-8000-0000000000e1';
 
+const BASE = { titleHi: null, bodyEn: 'Body', bodyHi: null, sourceUrl: 'https://example.invalid/source', verifiedOn: '2026-10-01' };
 const child: FamilyChild = { childId: CHILD, firstName: 'Asha', classLevel: 6, board: 'CBSE', language: 'en', style: 'en', stateCode: 'IN-UP', freeSubject: null };
 const KEYS = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.hub.entry', 'fam.notify.center.title', 'fam.profile.title', 'fam.home.whoIsLearning'] as MessageKey[];
 
@@ -96,9 +97,9 @@ describe('the three hubs', () => {
 
   it('show national entries to every child and a state’s entries to that state’s children only', () => {
     const entries: HubEntry[] = [
-      { id: 'n1', title: 'A national entry', stateCode: null },
-      { id: 'up1', title: 'An entry of UP', stateCode: 'IN-UP' },
-      { id: 'hr1', title: 'An entry of HR', stateCode: 'IN-HR' },
+      { ...BASE, id: 'n1', titleEn: 'A national entry', stateCode: null },
+      { ...BASE, id: 'up1', titleEn: 'An entry of UP', stateCode: 'IN-UP' },
+      { ...BASE, id: 'hr1', titleEn: 'An entry of HR', stateCode: 'IN-HR' },
     ];
     const up = hubSections(entries, 'IN-UP', true);
     expect(up.national.map((e) => e.id)).toEqual(['n1']);
@@ -111,8 +112,9 @@ describe('the three hubs', () => {
     expect(hubSections(entries, '', true).state).toBeNull();
   });
 
-  it('have no entries yet: nothing is invented', async () => {
-    for (const m of ['careers', 'exams_portal', 'opportunities']) expect(await loadHubEntries(m)).toEqual([]);
+  it('read their entries from the database (test/w4/hub-entries.test.ts), so the code holds none', () => {
+    expect(loadHubEntries).toBeTypeOf('function');
+    expect(readFileSync(path.join(ROOT, 'src/lib/family/hubs.ts'), 'utf8')).toContain('content.hub_entries');
   });
 });
 

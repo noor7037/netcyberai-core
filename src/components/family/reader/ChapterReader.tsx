@@ -7,7 +7,8 @@ import type { PublicChapterTest, ReaderBlock } from '@/lib/family/chapter-test-s
 import type { VideoPick } from '@/lib/family/videos';
 import { fill, type Words } from '@/lib/family/fill';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
-import { NO_VOICE_EVENT, speak, stopSpeaking } from '../english/speech';
+import { NO_VOICE_EVENT } from '../english/speech';
+import { speakLine, stopLine, type VoiceMode } from '../voice/lineVoice';
 import { SPEEDS, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
 import { TableView } from './TableView';
 import { VideoList } from '../VideoPicks';
@@ -19,9 +20,11 @@ import type { Subject } from '@/lib/family/subjects';
 // The chapter reader (S1, C374; docs/37 §4 Wave 2): the chapter's blocks in order through the block renderer, and
 // sticky narration controls (play and pause, a sentence back or forward, a slider over every sentence, speed 0.75–1.5×),
 // resuming where this child stopped. Narration reads only the script the server built (blocks.ts narrationScript), so
-// a diagram, table or interactive is never read. The voice is the phone's own (english/speech.ts): the browser's
-// speech engine, or the Android app's. The sentence being read is highlighted in the text, and its word too only when
-// the speech engine reports real word boundaries; nothing is timed or guessed. The page scrolls to the sentence being
+// a diagram, table or interactive is never read. The voice (C386) is the server voice when Control has set one up (each
+// sentence asked by its place in that script, voice/lineVoice.ts), else the phone's own (english/speech.ts: the
+// browser's speech engine, or the Android app's), and the controls say which. The sentence being read is highlighted in
+// the text, and its word too only when the phone's speech engine reports real word boundaries (the server voice reports
+// none); nothing is timed or guessed. The page scrolls to the sentence being
 // read, without smooth motion under prefers-reduced-motion. The interactive blocks load only when the chapter has one.
 
 const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then((m) => m.InteractiveView));
@@ -47,6 +50,8 @@ type Props = {
   videos?: VideoPick[];
   // S3 (C376): the studio's preview: the same reader, the child's place never saved.
   preview?: boolean;
+  // C386: the server voice is set up for this family (read on the server); the phone's own voice otherwise.
+  serverVoice?: boolean;
 };
 
 // The CSS Custom Highlight API, where the browser has it (a phone without it still gets the block's ring and the
@@ -75,7 +80,7 @@ function findSentence(root: HTMLElement, text: string, nth: number): { node: Tex
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, chapterTitle = '', tutor = null, videos = [], preview = false }: Props) {
+export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, resumed, w, tone, chapterTitle = '', tutor = null, videos = [], preview = false, serverVoice = false }: Props) {
   const saver = useDataSaver();
   const [doubt, setDoubt] = useState<TutorReaderContext | null>(null);
   const [index, setIndex] = useState(Math.min(Math.max(start, 0), Math.max(script.length - 1, 0)));
@@ -84,6 +89,8 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   const [done, setDone] = useState(false);
   const [speed, setSpeed] = useState<Speed>(1);
   const [word, setWord] = useState<{ start: number; end: number } | null>(null);
+  const [voice, setVoice] = useState<VoiceMode>(serverVoice && !preview ? 'server' : 'phone');
+  const voiceRef = useRef(voice);
   const run = useRef(0);
   const stoppedAt = useRef(0);
   const blockEls = useRef(new Map<string, HTMLElement>());
@@ -96,10 +103,20 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
     if (!playing || !line) return;
     const mine = ++run.current;
     setWord(null);
-    void speak(line.text, lang, rateOf(speed), (charIndex) => {
-      if (run.current === mine) setWord(wordAt(line.text, charIndex));
-    }).then(() => {
-      if (run.current !== mine) return;
+    const source = { kind: 'chapter' as const, chapterKey, blockId: line.blockId, sentence: line.sentence };
+    void speakLine(voiceRef.current, source, {
+      text: line.text,
+      lang,
+      rate: rateOf(speed),
+      onWord: (charIndex) => {
+        if (run.current === mine) setWord(wordAt(line.text, charIndex));
+      },
+    }).then((spoken) => {
+      if (run.current !== mine || spoken.cancelled) return;
+      if (spoken.mode !== voiceRef.current) {
+        voiceRef.current = spoken.mode;
+        setVoice(spoken.mode);
+      }
       setWord(null);
       if (index + 1 < total) setIndex(index + 1);
       else {
@@ -110,9 +127,9 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
     return () => {
       run.current++;
       stoppedAt.current = Date.now();
-      stopSpeaking();
+      stopLine();
     };
-  }, [playing, index, speed, line, lang, total]);
+  }, [playing, index, speed, line, lang, total, chapterKey]);
 
   // Nothing on this phone can read aloud: the layout says so (NoVoiceNotice); the reader stops instead of racing
   // through the chapter. A notice right after our own stop is the engine answering that stop, not a missing voice.
@@ -128,7 +145,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   useEffect(
     () => () => {
       run.current++;
-      stopSpeaking();
+      stopLine();
       const h = highlights();
       h?.registry.delete('nc-sentence');
       h?.registry.delete('nc-word');
@@ -346,7 +363,9 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
             <span>{fill(w['fam.reader.position'], { n: index + 1, total })}</span>
             <input type="range" min={0} max={Math.max(total - 1, 0)} step={1} value={index} onChange={(e) => seek(Number(e.target.value))} aria-label={w['fam.reader.seek']} className="h-11 w-full accent-royal" />
           </label>
-          <p className="text-xs text-slate/80">{w['fam.block.deviceVoice']}</p>
+          <p data-voice-in-use={voice} className="text-xs text-slate/80">
+            {w[voice === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}
+          </p>
         </section>
       )}
       {tutor && doubt && (
