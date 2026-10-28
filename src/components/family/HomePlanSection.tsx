@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { fill, type Words } from '@/lib/family/fill';
 import { MAX_PLAN_TOPICS, type HomePlan } from '@/lib/family/home-plan-shape';
 import { familyApi } from './client';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The parent area's home plan after a parent-teacher meeting (M3-7, C337; R5, Plus). For each child: the open plan's 14
 // nights (done from the child's checked answers), the parent's notes, "Ask the teacher to follow up" for a child matched
@@ -17,7 +18,7 @@ import { familyApi } from './client';
 export type PlanSubject = { subject: string; name: string; chapters: { title: string; topics: { key: string; title: string }[] }[] };
 export type HomePlanChild = { childId: string; firstName: string; plan: HomePlan | null; linked: boolean; subjects: PlanSubject[] };
 
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 function OpenPlan({ w, lang, child }: { w: Words; lang: 'en' | 'hi'; child: HomePlanChild & { plan: HomePlan } }) {
   const router = useRouter();

@@ -10,6 +10,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 import { ExamTimetable } from './ExamTimetable';
 import { SchoolText } from './SchoolText';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The parent area's "Your school" (C230-AA; docs/family-app/03 §4). A family uses the app on its own; when its school
 // is on NetCyberAI, the school's office gives the parent a Family app code and the parent connects here. Then each of
@@ -21,7 +22,7 @@ export type SchoolLinkView = { linkId: string; school: LinkedSchool; pairs: { st
 
 const rupees = (minor: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(minor / 100);
 // A due day (yyyy-mm-dd) as "24 Oct" / "24 अक्टू॰", read as a calendar day (no time zone moves it).
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 // The homework the school set for a matched child's class and section (C329), read only.
 function HomeworkList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: SchoolHomework[] }) {
@@ -197,7 +198,7 @@ function EventList({ w, lang, items }: { w: Words; lang: 'en' | 'hi'; items: Sch
 }
 
 // An ISO weekday's name (1 is Monday) in the family's language: 1 January 2024 was a Monday.
-const weekdayName = (iso: number, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, iso)));
+const weekdayName = (iso: number, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'long', timeZone: 'UTC' }).format(new Date(Date.UTC(2024, 0, iso))));
 
 // The class's published timetable (C332), one line a day, read only.
 function Timetable({ w, lang, periods }: { w: Words; lang: 'en' | 'hi'; periods: SchoolPeriod[] }) {
