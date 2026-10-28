@@ -10,7 +10,7 @@ const PROVIDERS = [
   ['openai', `sk-${'h'.repeat(30)}HARN`],
 ];
 
-function seal(keyBase64, provider, apiKey) {
+export function seal(keyBase64, provider, apiKey) {
   const iv = randomBytes(12);
   const cipher = createCipheriv('aes-256-gcm', Buffer.from(keyBase64, 'base64'), iv);
   cipher.setAAD(Buffer.from(`ai:${provider}`));

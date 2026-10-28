@@ -522,6 +522,9 @@ ALLOWED_PERMISSIVE = (
         # S5 (C378): a child's chapter-test attempts and answers; own account only (restrictive twins below).
         ("family.chapter_test_attempts", "chapter_test_attempts_own"),
         ("family.chapter_test_answers", "chapter_test_answers_own"),
+        # E1 (C382): a child's live English practice sessions and turns; own account only (restrictive twins below).
+        ("family.english_live_sessions", "english_live_sessions_own"),
+        ("family.english_live_turns", "english_live_turns_own"),
         ("content.video_picks", "video_picks_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
         ("control.ai_profiles", "ai_profiles_staff_read"),
@@ -1078,6 +1081,9 @@ REQUIRED_RESTRICTIVE = {
     ("family.tutor_attachments", "tutor_attachments_own_only"),
     ("family.chapter_test_attempts", "chapter_test_attempts_own_only"),
     ("family.chapter_test_answers", "chapter_test_answers_own_only"),
+    # E1 (C382): own account only.
+    ("family.english_live_sessions", "english_live_sessions_own_only"),
+    ("family.english_live_turns", "english_live_turns_own_only"),
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),

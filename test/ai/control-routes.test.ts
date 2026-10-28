@@ -101,6 +101,8 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'exams.read_pages', carriesChildWords: true, providerId: null, enabled: false, usesPrompt: true }),
       // Writing a paper's questions (C363): no child's words; starts on Workers AI, as the marking tasks do on the test site.
       expect.objectContaining({ profileId: 'exams.write_questions', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true, usesPrompt: true }),
+      // The live English tutor's replies (E1, C382): a child's words; no provider until the founder chooses one.
+      expect.objectContaining({ profileId: 'family.english_conversation', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
       // The safety check (C314): chosen by the founder after clearing Workers AI.
       expect.objectContaining({ profileId: 'family.moderation', carriesChildWords: true, providerId: null, enabled: true }),

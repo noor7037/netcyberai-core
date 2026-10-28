@@ -27,3 +27,9 @@ export async function takeDailyRequest(db: Sql, accountId: string, day: string, 
   );
   return rows.length === 1;
 }
+
+// The requests this account has used today (E1, C382: a screen says the cap is reached before a child speaks).
+export async function dailyRequestsUsed(db: Sql, accountId: string, day: string): Promise<number> {
+  const { rows } = await db.query(`select requests from family.ai_daily where account_id = $1::uuid and day = $2::date`, [accountId, day]);
+  return Number(rows[0]?.requests ?? 0);
+}
