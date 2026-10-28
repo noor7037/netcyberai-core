@@ -10,6 +10,8 @@ import { MARK_TOUR_SEEN_SQL } from '@/lib/auth/db';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { LangProvider } from '@/components/app-shell/LangContext';
 import { ToursProvider } from '@/components/app-shell/ToursContext';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { shellWords } from '@/components/app-shell/shell-words';
 import { HELP_ARTICLES } from '@/content/help/articles';
 import { SCHOOL_ROLES } from '@/lib/contracts/modules';
 import { isTourId, myDayTour, readToursCookie, TOUR_IDS, TOUR_MAX_STEPS, TOURS, toursCookieValue, type TourId } from '@/lib/contracts/tours';
@@ -212,7 +214,7 @@ describe('the API', () => {
 describe('on the screen', () => {
   const page = (lang: 'en' | 'hi', seen: readonly TourId[] | null, props: Record<string, unknown> = {}) =>
     renderToStaticMarkup(
-      h(LangProvider, { lang, children: h(ToursProvider, { initial: seen, children: h(ModulePage, { moduleId: 'attendance', title: 'Attendance', purpose: 'x', help: 'mark-attendance', tour: 'attendance', children: h('p', null, 'body'), ...props } as any) }) })
+      h(LangProvider, { lang, children: h(WordsProvider, { words: shellWords(lang).words, children: h(ToursProvider, { initial: seen, children: h(ModulePage, { moduleId: 'attendance', title: 'Attendance', purpose: 'x', help: 'mark-attendance', tour: 'attendance', children: h('p', null, 'body'), ...props } as any) }) }) })
     );
 
   it('"Show me how" links to the screen’s guide, in the person’s language', () => {
