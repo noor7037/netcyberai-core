@@ -43,7 +43,9 @@ export function openLine(token: unknown, ctx: { accountId: string; childId: stri
   if (parts.length !== 3) return null;
   try {
     const [iv, tag, body] = parts.map((p) => Buffer.from(p, 'base64url'));
-    const decipher = createDecipheriv('aes-256-gcm', familyHashKey('voice-lines.v1'), iv);
+    // A whole 16-byte tag only (Node would accept a cut one) and the 12-byte nonce the seal makes.
+    if (tag.length !== 16 || iv.length !== 12) return null;
+    const decipher = createDecipheriv('aes-256-gcm', familyHashKey('voice-lines.v1'), iv, { authTagLength: 16 });
     decipher.setAuthTag(tag);
     const s = JSON.parse(Buffer.concat([decipher.update(body), decipher.final()]).toString('utf8')) as LineSecret;
     if (s.acct !== ctx.accountId || s.c !== ctx.childId || !(s.exp > now) || !(s.exp - now <= LINE_LIFE_MS)) return null;

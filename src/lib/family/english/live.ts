@@ -50,6 +50,9 @@ export const LIVE_REPLY_MAX = 500;
 export const LIVE_SUMMARY_MAX = 500;
 // The longest a streamed sentence waits for its end before it is cut at a space and shown (C386).
 export const LIVE_SENTENCE_MAX = 240;
+// W4-2 review: a piece is checked by the safety check before it is shown, so short sentences are joined until a piece
+// is at least this long; a reply of LIVE_REPLY_MAX characters then makes at most about nine checks on its one cap place.
+export const LIVE_SENTENCE_MIN = 60;
 const NEW_WORDS_MAX = 6;
 
 export type LiveTurn = { position: number; childText: string; reply: string };
@@ -115,8 +118,16 @@ export function sentenceBuffer(): { push: (piece: string) => string[]; flush: ()
   const take = (): string[] => {
     const out: string[] = [];
     for (;;) {
-      const m = SENTENCE_END.exec(buf);
-      const end = m ? m.index + m[0].length : buf.length > LIVE_SENTENCE_MAX ? (buf.lastIndexOf(' ', LIVE_SENTENCE_MAX) > 0 ? buf.lastIndexOf(' ', LIVE_SENTENCE_MAX) : LIVE_SENTENCE_MAX) : 0;
+      // The first sentence end at or past LIVE_SENTENCE_MIN characters (shorter sentences ride with the next one).
+      let end = 0;
+      const ends = new RegExp(SENTENCE_END.source, 'g');
+      for (let m = ends.exec(buf); m; m = ends.exec(buf)) {
+        if (m.index + m[0].trimEnd().length >= LIVE_SENTENCE_MIN) {
+          end = m.index + m[0].length;
+          break;
+        }
+      }
+      if (!end && buf.length > LIVE_SENTENCE_MAX) end = buf.lastIndexOf(' ', LIVE_SENTENCE_MAX) > 0 ? buf.lastIndexOf(' ', LIVE_SENTENCE_MAX) : LIVE_SENTENCE_MAX;
       if (!end) return out.map(clean).filter(Boolean);
       out.push(buf.slice(0, end));
       buf = buf.slice(end);

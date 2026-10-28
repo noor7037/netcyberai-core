@@ -8,7 +8,7 @@ import { STAND_IN_AUDIO, standInAdapter, standInModerationAdapter, standInVoiceA
 import { LivePractice } from '@/components/family/english/LivePractice';
 import { ChapterReader } from '@/components/family/reader/ChapterReader';
 import { chapterView, showcaseChapter } from '@/lib/family/chapters';
-import { LIVE_SENTENCE_MAX, LIVE_VERBATIM, sentenceBuffer } from '@/lib/family/english/live';
+import { LIVE_SENTENCE_MAX, LIVE_SENTENCE_MIN, LIVE_VERBATIM, sentenceBuffer } from '@/lib/family/english/live';
 import { LIVE_KEYS } from '@/lib/family/english/words';
 import { READER_KEYS } from '@/lib/family/reader-words';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
@@ -75,7 +75,12 @@ const voiceOff = () => q(`update control.ai_profiles set provider_id = null, mod
 // The reply the stand-in writes for "say <n>", sent in small pieces like a real stream; "trouble" makes its second
 // sentence one the safety check refuses.
 const seen: AdapterRequest[] = [];
-const replyFor = (user: string) => (user.includes('trouble') ? 'Hello friend. This is UNSAFE talk. And more words here.' : `Good, you said ${(user.match(/say (\d+)/) ?? [])[1] ?? 'it'}. Would you like a mango? Here it is.`);
+// Each sentence is at least LIVE_SENTENCE_MIN characters, so each is checked on its own.
+const S1 = (n: string | number) => `Good, you said ${n}, and that is a lovely clear sentence to hear.`;
+const S2 = 'Would you like a fresh and juicy mango from the market stall today?';
+const S3 = 'Here it is, take it home and share it with your family at dinner.';
+const HELLO = 'Hello friend, it is very nice to meet you here at the market today.';
+const replyFor = (user: string) => (user.includes('trouble') ? `${HELLO} This is UNSAFE talk that should never be shown to anyone at all. And more words here.` : `${S1((user.match(/say (\d+)/) ?? [])[1] ?? 'it')} ${S2} ${S3}`);
 
 beforeAll(async () => {
   db = await startHarnessDb({ port: 0 });
@@ -209,18 +214,18 @@ describe('live English: streamed, checked sentence by sentence, spoken by the se
     sessionId = (started.json as { session: { sessionId: string } }).session.sessionId;
     const r = await live({ action: 'say', sessionId, text: 'I say 1' });
     expect(r.status).toBe(200);
-    expect(r.events.filter((e) => e.t === 'sentence').map((e) => e.text)).toEqual(['Good, you said 1.', 'Would you like a mango?', 'Here it is.']);
-    expect(r.events[r.events.length - 1]).toEqual({ t: 'turn', turn: { position: 1, childText: 'I say 1', reply: 'Good, you said 1. Would you like a mango? Here it is.' } });
+    expect(r.events.filter((e) => e.t === 'sentence').map((e) => e.text)).toEqual([S1(1), S2, S3]);
+    expect(r.events[r.events.length - 1]).toEqual({ t: 'turn', turn: { position: 1, childText: 'I say 1', reply: `${S1(1)} ${S2} ${S3}` } });
     firstToken = String(r.events[0].voice);
   });
 
   it('the speak route reads a sealed sentence and a kept reply, for this child only', async () => {
     const line = await speak({ kind: 'live_line', token: firstToken });
     expect(line.status).toBe(200);
-    expect(spoken[spoken.length - 1]).toBe('Good, you said 1.');
+    expect(spoken[spoken.length - 1]).toBe(S1(1));
     const turn = await speak({ kind: 'live_turn', sessionId, position: 1 });
     expect(turn.status).toBe(200);
-    expect(spoken[spoken.length - 1]).toBe('Good, you said 1. Would you like a mango? Here it is.');
+    expect(spoken[spoken.length - 1]).toBe(`${S1(1)} ${S2} ${S3}`);
     // A sibling (the same account, the other child) and another account: neither the seal nor the turn.
     const n = spoken.length;
     expect((await speak({ kind: 'live_line', token: firstToken }, ACCOUNT, SIBLING)).status).toBe(404);
@@ -247,7 +252,7 @@ describe('live English: streamed, checked sentence by sentence, spoken by the se
   it('a refused sentence stops the reply: what came before is safe, nothing after is shown, nothing is kept', async () => {
     const r = await live({ action: 'say', sessionId, text: 'trouble please' });
     const shown = r.events.filter((e) => e.t === 'sentence').map((e) => e.text);
-    expect(shown).toEqual(['Hello friend.']);
+    expect(shown).toEqual([HELLO]);
     expect(JSON.stringify(r.events)).not.toContain('UNSAFE');
     expect(JSON.stringify(r.events)).not.toContain('more words');
     expect(r.events[r.events.length - 1]).toEqual({ t: 'error', error: 'unsafe' });
@@ -257,7 +262,7 @@ describe('live English: streamed, checked sentence by sentence, spoken by the se
   it('a ten-turn talk still holds the bounded context', async () => {
     for (let k = 2; k <= 11; k++) {
       const r = await live({ action: 'say', sessionId, text: `I say ${k}` });
-      expect(r.events[r.events.length - 1]).toEqual({ t: 'turn', turn: expect.objectContaining({ childText: `I say ${k}`, reply: `Good, you said ${k}. Would you like a mango? Here it is.` }) });
+      expect(r.events[r.events.length - 1]).toEqual({ t: 'turn', turn: expect.objectContaining({ childText: `I say ${k}`, reply: `${S1(k)} ${S2} ${S3}` }) });
     }
     const replies = seen.filter((r) => r.system.includes('English speaking partner'));
     for (const r of replies) expect(r.messages.length).toBeLessThanOrEqual(2 * LIVE_VERBATIM + 1);
@@ -282,11 +287,18 @@ describe('live English: streamed, checked sentence by sentence, spoken by the se
 describe('the sentence buffer (pure)', () => {
   it('cuts at a sentence end followed by a space, never inside a number, and flushes the rest', () => {
     const b = sentenceBuffer();
-    expect(b.push('It costs 3.5 rup')).toEqual([]);
-    expect(b.push('ees. Do you want ')).toEqual(['It costs 3.5 rupees.']);
-    expect(b.push('two? Yes')).toEqual(['Do you want two?']);
-    expect(b.flush()).toEqual(['Yes']);
+    expect(b.push('It costs 3.5 rupees at the shop near the school, if you ask the shopkeeper nic')).toEqual([]);
+    expect(b.push('ely. Do you want ')).toEqual(['It costs 3.5 rupees at the shop near the school, if you ask the shopkeeper nicely.']);
+    expect(b.push('two? Yes')).toEqual([]);
+    expect(b.flush()).toEqual(['Do you want two? Yes']);
     expect(b.flush()).toEqual([]);
+  });
+  it('joins short sentences until a piece is LIVE_SENTENCE_MIN long, so one reply makes few safety checks (W4-2 review)', () => {
+    const b = sentenceBuffer();
+    const reply = 'Yes. '.repeat(100);
+    const pieces = [...b.push(reply), ...b.flush()];
+    expect(pieces.every((p, i) => i === pieces.length - 1 || p.length >= LIVE_SENTENCE_MIN)).toBe(true);
+    expect(pieces.length).toBeLessThanOrEqual(Math.ceil(reply.length / LIVE_SENTENCE_MIN));
   });
   it('a sentence with no end is cut at a space once it is long, and each piece is one plain line', () => {
     const b = sentenceBuffer();
@@ -294,6 +306,6 @@ describe('the sentence buffer (pure)', () => {
     const out = b.push(long);
     expect(out.length).toBe(1);
     expect(out[0].length).toBeLessThanOrEqual(LIVE_SENTENCE_MAX);
-    expect(sentenceBuffer().push('**Hello**\nthere. ')).toEqual(['Hello there.']);
+    expect(sentenceBuffer().push('**Hello**\nthere, and welcome to the market where we will practise today. ')).toEqual(['Hello there, and welcome to the market where we will practise today.']);
   });
 });
