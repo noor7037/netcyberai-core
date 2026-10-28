@@ -1,4 +1,4 @@
-import { dailyRequestsLeft, profileReady, type AiContext, type AiRefusal, type AiRequest, type ChatMessage } from '@/lib/ai/platform';
+import { dailyRequestsLeft, profileReady, voiceCharsLeft, type AiContext, type AiRefusal, type AiRequest, type ChatMessage } from '@/lib/ai/platform';
 import { englishConversationPrompt, type EnglishConversationPrompt } from '@/lib/ai/prompts/family.english_conversation';
 import { indiaDate } from '@/lib/time/india';
 import { accountSummary } from '../account';
@@ -210,10 +210,12 @@ export async function liveChild(db: Db, accountId: string, chosen: string | unde
 // What the screen must say before a child speaks: whether speech to text, the reply and the safety check are set up,
 // the family's AI requests left today, and the child's voice seconds left. Nothing is sent and no place is taken.
 // `tts` (C386): whether the server voice reads the replies; when not, the phone's own voice does (never a refusal).
+// The family's voice allowance used up for the day (C388) reads as 'cap_reached'.
 export type LiveStatus = { speech: 'ready' | AiRefusal; text: 'ready' | AiRefusal; safety: 'ready' | AiRefusal; tts: 'ready' | AiRefusal; requestsLeft: number; voice: { left: number; limit: number } };
 export async function liveStatus(db: Db, ctx: AiContext, childId: string): Promise<LiveStatus> {
   const [speech, text, safety] = [await profileReady(db as never, ctx, 'family.voice_input'), await profileReady(db as never, ctx, 'family.english_conversation'), await profileReady(db as never, ctx, 'family.moderation')];
-  const tts = await profileReady(db as never, ctx, 'family.text_to_speech');
+  const ttsSetUp = await profileReady(db as never, ctx, 'family.text_to_speech');
+  const tts = ttsSetUp === 'ready' && (await voiceCharsLeft(db as never, ctx.accountId, ctx.day)) < 1 ? 'cap_reached' : ttsSetUp;
   const v = await voiceDay(db, ctx.accountId, childId, ctx.day);
   return { speech, text, safety, tts, requestsLeft: await dailyRequestsLeft(db as never, ctx.accountId, ctx.day), voice: { left: v.left, limit: v.limit } };
 }

@@ -139,7 +139,7 @@ async function say(session: FamilySession, chosen: string | undefined, sessionId
     if (!live) return fail('no_session', 404);
     if (live.turns.length >= LIVE_MAX_TURNS) return fail('session_full', 409);
     const ctx = await aiContext(db, session.accountId, gate.children.map((c) => c.firstName));
-    const ready = await prepareModeration(db, ctx);
+    const ready = await prepareModeration(db, ctx, 'family.english_conversation');
     if (!ready.ok) return fail('safety_off', 503);
     const prompt = englishConversationPrompt(await activePromptVersion(db, PROFILE));
     const unsummarised = live.turns.filter((t) => t.position > live.summarisedUpto);
@@ -250,7 +250,7 @@ async function end(session: FamilySession, chosen: string | undefined, sessionId
       return NextResponse.json({ recap: null });
     }
     const ctx = await aiContext(db, session.accountId, gate.children.map((c) => c.firstName));
-    const ready = await prepareModeration(db, ctx);
+    const ready = await prepareModeration(db, ctx, 'family.english_conversation');
     const prompt = englishConversationPrompt(await activePromptVersion(db, PROFILE));
     const text = ready.ok ? await prepareText(db, ctx, PROFILE, recapRequest(prompt, live.topic, live.turns)) : null;
     if (!ready.ok || !text?.ok) return { childId: gate.child.childId, recap: byRule };

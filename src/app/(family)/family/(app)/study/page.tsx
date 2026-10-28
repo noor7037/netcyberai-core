@@ -153,7 +153,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         ) : (
           <>
             {/* S2 (C375): the shared tutor window replaces the stacked ask form; the homework helper keeps its own link. */}
-            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={TUTOR_READS_FILES && page.consents.photo_input} homework={homeworkOn} />
+            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={TUTOR_READS_FILES && page.consents.photo_input && homeworkOn} homework={homeworkOn} />
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
             {homeworkOn && (

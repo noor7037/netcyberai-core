@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { photoGate } from '@/lib/family/photo-gate';
 import { accountSummary } from '@/lib/family/account';
 import { classSubjects } from '@/lib/family/catalog';
-import { activeChild, isPrePrimary, listChildren, syllabusBoardOf } from '@/lib/family/children';
-import { consentState } from '@/lib/family/consent';
+import { activeChild, listChildren, syllabusBoardOf } from '@/lib/family/children';
 import { FamilySessionRevokedError, withFamilyContext, familyClaims } from '@/lib/family/db';
-import { familyModuleOn } from '@/lib/family/flags';
 import { newLadder, parseRead, PHOTO_MAX_BYTES, screenPhoto, sealLadder, viewOf } from '@/lib/family/homework';
 import { claimSubject, setting } from '@/lib/family/learning';
 import type { Subject } from '@/lib/family/modules';
@@ -48,12 +47,9 @@ export async function POST(req: NextRequest) {
     const early = await withFamilyContext(claims, async (db): Promise<NextResponse | null> => {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
       if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-      if (isPrePrimary(child.classLevel)) return NextResponse.json({ error: 'not_for_class' }, { status: 403 });
-      const consents = await consentState(db, session.accountId);
-      if (!consents.study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
-      // A photo goes to a provider only with the parent's photo_input consent (03 §11).
-      if (!consents.photo_input) return NextResponse.json({ error: 'photo_consent' }, { status: 403 });
-      if (!(await familyModuleOn(db, 'homework', session.accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
+      // The photo rules, the same as a tutor photo's (C389): Class 1 up, both consents, the helper's switch.
+      const refused = await photoGate(db, session.accountId, child);
+      if (refused) return NextResponse.json({ error: refused }, { status: 403 });
       const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
       const used = await db.query(`select photo_questions from family.day_counts where account_id = $1 and child_id = $2 and day = $3`, [session.accountId, child.childId, indiaDate()]);
       if (Number(used.rows[0]?.photo_questions ?? 0) >= limit) return NextResponse.json({ error: 'photo_cap', limit }, { status: 429 });
@@ -69,11 +65,9 @@ export async function POST(req: NextRequest) {
       const children = await listChildren(db, session.accountId);
       const child = activeChild(children, chosen);
       if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-      const consents = await consentState(db, session.accountId);
-      if (!consents.study_core) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
-      // A photo goes to a provider only with the parent's photo_input consent (03 §11).
-      if (!consents.photo_input) return NextResponse.json({ error: 'photo_consent' }, { status: 403 });
-      if (!(await familyModuleOn(db, 'homework', session.accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
+      // Read again: a consent may be withdrawn, or the switch turned off, since the first look.
+      const refused = await photoGate(db, session.accountId, child);
+      if (refused) return NextResponse.json({ error: refused }, { status: 403 });
       const day = indiaDate();
       const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
       const taken = await db.query(
@@ -89,7 +83,7 @@ export async function POST(req: NextRequest) {
       const aiCtx = { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day };
       // The safety check (C314) must be ready before the photo is read: what the model reads and says is checked
       // before the child sees it.
-      const moderation = await prepareModeration(db, aiCtx);
+      const moderation = await prepareModeration(db, aiCtx, 'family.homework');
       if (!moderation.ok) {
         await refund(db, session.accountId, child.childId, day);
         return NextResponse.json({ error: 'safety_off' }, { status: 503 });

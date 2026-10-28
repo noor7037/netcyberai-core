@@ -81,6 +81,7 @@ APPEND_ONLY_TABLES.add("disclosure_entries")  # C227: every version of a disclos
 APPEND_ONLY_TABLES.add("family.consents")  # C247: a family's consent ledger; a withdrawal is a new row (erased only with the account)
 APPEND_ONLY_TABLES.add("control.ai_route_revisions")  # C370: every activation of an AI route; a rollback is a new revision
 APPEND_ONLY_TABLES.add("control.ai_usage_ledger")  # C370: one row per AI attempt, written only through control.record_ai_attempt()
+APPEND_ONLY_TABLES.add("control.ai_reply_checks")  # C390: the safety checks per reply, written only through control.record_reply_checks()
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role
