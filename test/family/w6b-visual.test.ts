@@ -78,7 +78,7 @@ describe('the shared pieces', () => {
   });
 
   it('a link row is 48 px, goes where it says and keeps its data attribute', () => {
-    const html = renderToStaticMarkup(h(LinkRow, { href: '/family/parent', icon: 'lock', 'data-parent-space': '' }, 'Parent space'));
+    const html = renderToStaticMarkup(h(LinkRow, { href: '/family/parent', icon: 'lock', 'data-parent-space': '', children: 'Parent space' } as Parameters<typeof LinkRow>[0]));
     expect(html).toContain('href="/family/parent"');
     expect(html).toContain('data-parent-space');
     expect(html).toContain('fam-row');
@@ -103,7 +103,7 @@ describe('the shared pieces', () => {
   });
 
   it('the door frame has one h1 and the form in a card', () => {
-    const html = renderToStaticMarkup(h(GateFrame, { app: 'NetCyberAI Family', title: 'Enter your PIN', lead: 'Six digits' }, h('p', null, 'form')));
+    const html = renderToStaticMarkup(h(GateFrame, { app: 'NetCyberAI Family', title: 'Enter your PIN', lead: 'Six digits', children: h('p', null, 'form') }));
     expect(html.match(/<h1/g)).toHaveLength(1);
     expect(html).toContain('fam-gate');
     expect(html).toContain('fam-card');
