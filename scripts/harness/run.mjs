@@ -7025,8 +7025,7 @@ const controlAi = (hindi) => async (page) => {
   await page.locator('[data-ai-ledger]').waitFor({ timeout: 20000 });
   if (hindi) await speak('हिन्दी')(page);
   await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-revisions] summary`).click();
-  // G6 (C379): the route editor open, so the model pickers (a listed service and one whose list is unavailable) show.
-  await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-route-edit] summary`).click();
+  // W6-C (C397): the slots are always on the card, one "provider · model" drop-down each.
   const seen = await page.evaluate((profile) => ({
     route: [...document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-slot]`)].length,
     promote: document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-promote]`).length,
@@ -7048,8 +7047,8 @@ const controlAi = (hindi) => async (page) => {
 const controlAiTts = (hindi) => async (page) => {
   await page.locator('[data-ai-profile="family.text_to_speech"]').waitFor({ timeout: 20000 });
   if (hindi) await speak('हिन्दी')(page);
-  await page.locator('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] summary').click();
-  const offered = await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] option')].map((o) => o.getAttribute('value')).filter(Boolean))]);
+  // An option's value is "provider|model": the providers offered are the part before the bar.
+  const offered = await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] option')].map((o) => (o.getAttribute('value') ?? '').split('|')[0]).filter(Boolean))]);
   if (offered.some((p) => !['openai', 'google_tts', 'stand-in'].includes(p)) || !offered.includes('google_tts')) throw new Error(`Control → AI, the voice card offers: ${JSON.stringify(offered)}`);
   await page.locator('[data-ai-profile="family.text_to_speech"]').scrollIntoViewIfNeeded();
   // Where the card is on the full-page picture, for cropping it (cwebp -crop).
