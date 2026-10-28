@@ -63,7 +63,7 @@ export function clientWords(page: string, keys: Set<string>): ClientWords {
   for (const f of files) {
     const { src } = read(f);
     for (const m of src.matchAll(/['"]([a-z][A-Za-z0-9_]*\.[A-Za-z0-9_.]+)['"]/g)) if (keys.has(m[1]) && !quoted.has(m[1])) quoted.set(m[1], f);
-    for (const m of src.matchAll(/`([a-z][A-Za-z0-9_]*\.[A-Za-z0-9_.]*\.)\$\{/g)) if (!built.has(m[1])) built.set(m[1], f);
+    for (const m of src.matchAll(/`([a-z][A-Za-z0-9_]*\.(?:[A-Za-z0-9_]+\.)*)\$\{/g)) if (!built.has(m[1])) built.set(m[1], f);
   }
   return { files: [...files].sort(), tableUsers: [...tableUsers].sort(), quoted, built };
 }

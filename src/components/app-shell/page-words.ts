@@ -13,7 +13,7 @@ export const PAGE_WORDS = {
   '/control/ai': ['control.ai.', 'control.video.'],
   '/control/ai/lab': ['control.ai.'],
   '/control/apps': ['control.apps.'],
-  '/control/billing-plans': ['billing.'],
+  '/control/billing-plans': ['billing.', 'module.'],
   '/control/boards': ['boards.', 'fboards.', 'gs.'],
   '/control/content': ['control.content.', 'control.english.', 'control.import.', 'control.queue.', 'control.video.', 'fam.english.track.'],
   '/control/content/hubs': ['fam.class.', 'fam.hub.', 'gs.', 'hubs.'],
