@@ -107,8 +107,13 @@ export const FAMILY_SCREENS = [
   ['full', 'family-hub-schemes', '/family/future/schemes', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-hub-section="state"]' }],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
+  // W6-F (docs/38 §6): the parent area is six sections; the hash opens one (privacy has its own screens below).
+  ['full', 'family-parent-area-children', '/family/parent#children', { parent: true, settle: '[data-parent-panel="children"]:not([hidden])' }],
+  ['full', 'family-parent-area-school', '/family/parent#school', { parent: true, settle: '[data-parent-panel="school"]:not([hidden])' }],
+  ['full', 'family-parent-area-learning', '/family/parent#learning', { parent: true, settle: '[data-parent-panel="learning"]:not([hidden])' }],
+  ['full', 'family-parent-area-account', '/family/parent#account', { parent: true, settle: '[data-parent-panel="account"]:not([hidden])' }],
   // S3 (C376): asking for a chapter and the source choice, in the parent area; Study lists the requests with their badges.
-  ['full', 'family-parent-chapter-request', '/family/parent', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
+  ['full', 'family-parent-chapter-request', '/family/parent#learning', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
   ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-study', '/family/study', {}],
@@ -143,8 +148,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
   // C230-AP: a photo yes given on the older notice is asked again, and the row says why.
-  ['full', 'family-parent-photo-notice', '/family/parent', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
-  ['full', 'family-parent-area-voice', '/family/parent', { parent: true, settle: '[data-consent-voice]' }],
+  ['full', 'family-parent-photo-notice', '/family/parent#privacy', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
+  ['full', 'family-parent-area-voice', '/family/parent#privacy', { parent: true, settle: '[data-consent-voice]' }],
   // Worksheets (M2-4, C278): the worksheet on screen, and the parent's print with the answer key.
   ['full', 'family-worksheet', '/family/study/worksheet/cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W2 (C315): how the AI works, the page every "made by AI" notice links to.
@@ -159,12 +164,12 @@ export const FAMILY_SCREENS = [
   ['full', 'family-home-habit', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-family-jar]' }],
   ['full', 'family-parent-habit', '/family/parent', { parent: true, settle: '[data-habit-child]' }],
   // m2b-2, reversed: children's own phones in the parent area, where the parent types the phone's code (C342, C346).
-  ['full', 'family-parent-phones', '/family/parent', { parent: true, flags: { focus_lock: true }, settle: '[data-child-phone-link]' }],
+  ['full', 'family-parent-phones', '/family/parent#children', { parent: true, flags: { focus_lock: true }, settle: '[data-child-phone-link]' }],
   // m3-7: the parent's home plan after a parent-teacher meeting, and tonight's night on the child's home (C337).
-  ['full', 'family-parent-home-plan', '/family/parent', { parent: true, settle: '[data-home-plan-nights]' }],
+  ['full', 'family-parent-home-plan', '/family/parent#school', { parent: true, settle: '[data-home-plan-nights]' }],
   ['full', 'family-home-meeting', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-home-plan-tonight]' }],
   // m3-8a: what the app tells the parent about (C338).
-  ['full', 'family-parent-notify', '/family/parent', { parent: true, settle: '[data-notify-section]' }],
+  ['full', 'family-parent-notify', '/family/parent#school', { parent: true, settle: '[data-notify-section]' }],
   // The English course (C274): the course map, and a lesson's first card.
   ['english', 'family-english', '/family/english', { settle: 'ol[aria-label] li' }],
   ['english', 'family-english-lesson', '/family/english/lesson/b.u01.l1', { settle: '[role=progressbar]' }],
@@ -183,11 +188,11 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-live-voice', '/family/english/live', { ai: true, voice: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-voice-in-use="server"]' }],
   ['english', 'family-parent-english-live', '/family/parent/english/f0000000-0000-4000-8000-0000000fc005', { parent: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-live-parent-session]' }],
   // m2b-1 (C305): the parent area's Focus Lock section, two phones of the English family, one with notices to look at.
-  ['english', 'family-parent-focus', '/family/parent', { parent: true, settle: '[data-focus-section]' }],
+  ['english', 'family-parent-focus', '/family/parent#children', { parent: true, settle: '[data-focus-section]' }],
   // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
   // AM-4 (C351): the checked paper in the parent area, the child's own results and paper, and the private report link.
   ['linked', 'family-parent-checked-paper', `/family/parent/results/${LINKED_CHILD}/${MK.paper}`, { parent: true, child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
-  ['linked', 'family-parent-school-results', '/family/parent', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
+  ['linked', 'family-parent-school-results', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
   ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
   ['linked', 'family-my-checked-paper', `/family/results/${MK.paper}`, { child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
   // AJ-5 (C230-AJ part 5): a child's progress report by exam type, in the parent area and the child's own view.
@@ -409,7 +414,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           await page.screenshot({ path: path.join(out, file), fullPage: true });
           const problems = [];
           if (response.status() !== 200) problems.push(`answered ${response.status()}`);
-          if (seen.path !== route.split('?')[0]) problems.push(`landed on ${seen.path}`);
+          if (seen.path !== route.split(/[?#]/)[0]) problems.push(`landed on ${seen.path}`);
           if (seen.horizontalScroll) problems.push('sideways scroll');
           if (seen.smallTargets.length) problems.push(`targets under 44 px: ${seen.smallTargets.join(', ')}`);
           if (motion === 'reduce' && seen.running) problems.push(`${seen.running} animations run under reduced motion`);

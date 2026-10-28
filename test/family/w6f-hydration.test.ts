@@ -14,11 +14,11 @@ describe('the parent area dates hydrate the same in Hindi', () => {
     expect(sameInkOnBothSides('24 Oct')).toBe('24 Oct');
   });
   it('is used by every date helper of the parent area sections', () => {
-    for (const f of ['SchoolSection', 'HomePlanSection', 'ChildPhoneSection']) {
+    for (const f of ['SchoolSection', 'HomePlanSection', 'ChildPhoneSection', 'ExamTimetable', 'SchoolProgress']) {
       const src = readFileSync(path.join(ROOT, `src/components/family/${f}.tsx`), 'utf8');
-      const helpers = src.split('\n').filter((l) => /^const (day|when|weekdayName) = /.test(l));
-      expect(helpers.length).toBeGreaterThan(0);
-      for (const l of helpers) expect(l).toContain('sameInkOnBothSides(');
+      const helpers = [...src.matchAll(/^const (?:day|when|weekdayName) = ([\s\S]*?);\n/gm)].map((m) => m[1]);
+      expect(helpers.length, f).toBeGreaterThan(0);
+      for (const body of helpers) expect(body, f).toContain('sameInkOnBothSides(');
     }
   });
 });
