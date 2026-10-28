@@ -41,7 +41,8 @@ import { activePromptVersion, prepareModeration, prepareText, type PreparedModer
 // the metering and the kept turn in a second one. An error thrown out of a transaction answers 503 (the transaction
 // has rolled back). The recording never reaches this route: speech to text is /api/family/english/live/hear.
 export const dynamic = 'force-dynamic';
-export const maxDuration = 60;
+// A reply (and, every few turns, the summary fold) may each take a whole answer's time (C230-X).
+export const maxDuration = 300;
 
 const fail = (error: string, status: number, extra: Record<string, unknown> = {}) => NextResponse.json({ error, ...extra }, { status });
 const PROFILE = 'family.english_conversation' as const;
