@@ -248,7 +248,7 @@ insert into control.app_flags (app, module, enabled, reason) values ('family', '
 insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', true, 'harness')
   on conflict (app, module) do update set enabled = true;
 insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values
-  ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-1');
+  ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-3');
 -- m2-6 end
 
 -- m2-7 begin

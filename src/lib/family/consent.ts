@@ -12,21 +12,38 @@ export type FamilyPurpose = (typeof FAMILY_PURPOSES)[number];
 // messages about the family's own account or plan need no consent, offers do.
 export const ASKED_PURPOSES: readonly FamilyPurpose[] = ['study_core', 'english_programme', 'photo_input', 'voice_practice', 'offers'];
 // The notice the parent read when tapping (its words are the fam.consent.* messages of this version). fam-notice-2
-// (C230-V): the offers row joined the notice; a tap recorded with -1 was made before it existed.
-export const FAMILY_NOTICE_VERSION = 'fam-notice-2';
+// (C230-V): the offers row joined the notice; a tap recorded with -1 was made before it existed. fam-notice-3 (C230-AP):
+// photo_input no longer says "not kept", because files attached in the tutor stay until the parent clears them.
+export const FAMILY_NOTICE_VERSION = 'fam-notice-3';
+// A purpose whose words changed in a way that matters: a yes given on an older notice no longer counts, so the parent
+// is asked again (the family.control_accounts function in the database holds the same rule).
+export const PURPOSE_NOTICE_FROM: Partial<Record<FamilyPurpose, number>> = { photo_input: 3 };
+
+const noticeNumber = (v: unknown): number => {
+  const m = /^fam-notice-(\d+)$/.exec(String(v));
+  return m ? Number(m[1]) : 0;
+};
+const yesStands = (purpose: FamilyPurpose, notice: unknown): boolean => noticeNumber(notice) >= (PURPOSE_NOTICE_FROM[purpose] ?? 0);
 
 export const isFamilyPurpose = (v: unknown): v is FamilyPurpose => typeof v === 'string' && (FAMILY_PURPOSES as readonly string[]).includes(v);
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 
+const latestRows = (db: Db, accountId: string) =>
+  db.query(`select distinct on (purpose) purpose, granted, notice_version from family.consents where account_id = $1 order by purpose, created_at desc`, [accountId]);
+
 export async function consentState(db: Db, accountId: string): Promise<Record<FamilyPurpose, boolean>> {
-  const { rows } = await db.query(
-    `select distinct on (purpose) purpose, granted from family.consents where account_id = $1 order by purpose, created_at desc`,
-    [accountId]
-  );
+  const { rows } = await latestRows(db, accountId);
   const state = Object.fromEntries(FAMILY_PURPOSES.map((p) => [p, false])) as Record<FamilyPurpose, boolean>;
-  for (const r of rows) if (isFamilyPurpose(r.purpose)) state[r.purpose] = r.granted === true;
+  for (const r of rows) if (isFamilyPurpose(r.purpose)) state[r.purpose] = r.granted === true && yesStands(r.purpose, r.notice_version);
   return state;
+}
+
+// The purposes whose latest answer was yes on a notice that has since changed: off until the parent reads and agrees
+// again, and the parent area says why.
+export async function consentsToRenew(db: Db, accountId: string): Promise<FamilyPurpose[]> {
+  const { rows } = await latestRows(db, accountId);
+  return rows.filter((r) => isFamilyPurpose(r.purpose) && r.granted === true && !yesStands(r.purpose, r.notice_version)).map((r) => r.purpose as FamilyPurpose);
 }
 
 export async function recordParentTap(db: Db, accountId: string, purpose: FamilyPurpose, granted: boolean): Promise<void> {

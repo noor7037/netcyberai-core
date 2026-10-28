@@ -12,7 +12,7 @@ import { POST as previewRemovePost } from '@/app/api/control/apps/preview/remove
 import { POST as undoPost } from '@/app/api/control/apps/undo/route';
 import { loadFamilyPeople, parsePeopleQuery, readFamilyPeople, PEOPLE_VIEWED_ACTION, type FamilyPeople } from '@/lib/control/family-people';
 import { FamilyPeopleView } from '@/components/control/family/FamilyPeopleView';
-import { ASKED_PURPOSES, FAMILY_NOTICE_VERSION, recordParentTap } from '@/lib/family/consent';
+import { ASKED_PURPOSES, FAMILY_NOTICE_VERSION, consentState, consentsToRenew, recordParentTap } from '@/lib/family/consent';
 
 // C230-V: Control → Family → People, on the real migrations (PGlite). The people come only through
 // family.control_accounts(), which the platform role may call and nobody else; each read is audited; "offers" is the
@@ -202,13 +202,34 @@ describe('the offers consent', () => {
   });
 
   it('a tap is recorded against the notice that names offers', async () => {
-    expect(FAMILY_NOTICE_VERSION).toBe('fam-notice-2');
+    expect(FAMILY_NOTICE_VERSION).toBe('fam-notice-3');
     await recordParentTap(h.db.pg, MEERA, 'offers', false);
     // Both rows can carry the same instant in the test database (its clock is coarser), so "newest first" cannot pick
     // between them: the tap's own row is looked for among the account's rows.
     const rows = await q(`select granted, notice_version from family.consents where account_id = $1 and purpose = 'offers'`, [MEERA]);
     expect(rows).toHaveLength(2);
-    expect(rows).toContainEqual({ granted: false, notice_version: 'fam-notice-2' });
+    expect(rows).toContainEqual({ granted: false, notice_version: 'fam-notice-3' });
+  });
+});
+
+describe('the photo notice (C230-AP)', () => {
+  const photoOf = async (account: string) => ((await people(null, false, 100, 0)) as { rows: { account_id: string; consents: Record<string, boolean> }[] }).rows.find((r) => r.account_id === account)?.consents.photo_input;
+
+  it('a yes given on an older notice no longer counts, in the app and in Control, and the parent is told why', async () => {
+    await q(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'photo_input', true, 'parent_tap', 'fam-notice-2')`, [RAVI]);
+    expect((await consentState(h.db.pg, RAVI)).photo_input).toBe(false);
+    expect(await consentsToRenew(h.db.pg, RAVI)).toEqual(['photo_input']);
+    expect(await photoOf(RAVI)).toBe(false);
+  });
+
+  it('a new tap on the current notice counts again; other purposes keep their older yes', async () => {
+    await new Promise((r) => setTimeout(r, 5));
+    await recordParentTap(h.db.pg, RAVI, 'photo_input', true);
+    expect((await consentState(h.db.pg, RAVI)).photo_input).toBe(true);
+    expect(await consentsToRenew(h.db.pg, RAVI)).toEqual([]);
+    expect(await photoOf(RAVI)).toBe(true);
+    await q(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'voice_practice', true, 'parent_tap', 'fam-notice-1')`, [RAVI]);
+    expect((await consentState(h.db.pg, RAVI)).voice_practice).toBe(true);
   });
 });
 
