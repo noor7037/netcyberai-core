@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { InfoTip } from "@/components/app-ui/InfoTip";
 import { Input } from "@/components/ui/Input";
 import { priceRows } from "@/lib/ai/prices";
-import { CARD, INNER, TAP, when, type Data, type Send, type T } from "./shared";
+import { INNER, TAP, when, type Data, type Send, type T } from "./shared";
 
-// Prices (G5, C373): for each provider and model in a route, the ledger or a saved price, what it costs in US dollars
+// Prices (G5, C373; the body of a Panel since W6-C, C397): for each provider and model in a route, the ledger or a saved price, what it costs in US dollars
 // per million tokens in and out, as the founder reads it on the vendor's price page. From the next attempt on, the
 // ledger writes each attempt's cost; the Quality Lab shows its answers' cost at today's price. A model with no price
 // keeps "cost unknown": nothing is estimated.
@@ -20,13 +19,9 @@ export function PriceList({ data, busy, send, t }: { data: Data; busy: boolean; 
   const keyOf = (r: { providerId: string; model: string }) => `${r.providerId} ${r.model}`;
 
   return (
-    <section data-ai-prices className={CARD}>
-      <div className="flex flex-wrap items-center gap-x-1">
-        <h2 className="text-lg font-bold">{t("control.ai.price.title")}</h2>
-        <InfoTip>{t("control.ai.price.how")}</InfoTip>
-      </div>
+    <>
       {rows.length === 0 && <p data-ai-prices-empty>{t("control.ai.price.none")}</p>}
-      <ul className="grid gap-3 xl:grid-cols-2">
+      <ul className="flex flex-col gap-3">
         {rows.map((r) => {
           const k = keyOf(r);
           const d = drafts[k] ?? { inUsd: r.price ? String(r.price.inUsd) : "", outUsd: r.price ? String(r.price.outUsd) : "" };
@@ -45,9 +40,9 @@ export function PriceList({ data, busy, send, t }: { data: Data; busy: boolean; 
                     })
                   : t("control.ai.price.notSet")}
               </p>
-              <div className="grid gap-2 sm:grid-cols-2">
-                <Input id={`${id}-in`} inputMode="decimal" label={t("control.ai.price.in")} value={d.inUsd} onChange={(e) => set({ inUsd: e.target.value })} />
-                <Input id={`${id}-out`} inputMode="decimal" label={t("control.ai.price.out")} value={d.outUsd} onChange={(e) => set({ outUsd: e.target.value })} />
+              <div className="flex flex-col gap-3">
+                <Input id={`${id}-in`} floating={false} inputMode="decimal" label={t("control.ai.price.in")} value={d.inUsd} onChange={(e) => set({ inUsd: e.target.value })} />
+                <Input id={`${id}-out`} floating={false} inputMode="decimal" label={t("control.ai.price.out")} value={d.outUsd} onChange={(e) => set({ outUsd: e.target.value })} />
               </div>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -82,6 +77,6 @@ export function PriceList({ data, busy, send, t }: { data: Data; busy: boolean; 
           );
         })}
       </ul>
-    </section>
+    </>
   );
 }

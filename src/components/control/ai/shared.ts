@@ -21,14 +21,16 @@ export type T = (
   params?: Record<string, string | number>,
 ) => string;
 
-export const TAP =
-  "min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60";
-export const PRIMARY =
-  "min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60";
-export const CARD =
-  "flex flex-col gap-3 rounded-xl border border-slate/10 bg-white p-4";
-export const INNER =
-  "flex flex-col gap-2 rounded-md border border-slate/10 p-3";
+// The visual system (W6-C, C397): one card elevation and radius for the whole screen, tabular figures for numbers,
+// 44 px targets, and CSS-only transitions that stop under prefers-reduced-motion.
+const MOTION = "transition duration-150 motion-reduce:transition-none";
+export const TAP = `min-h-[44px] rounded-lg border border-slate/20 px-4 text-sm font-semibold text-slate hover:bg-slate/5 active:scale-[0.98] disabled:opacity-60 disabled:hover:bg-transparent disabled:active:scale-100 motion-reduce:active:scale-100 ${MOTION}`;
+export const PRIMARY = `min-h-[44px] rounded-lg bg-sapphire px-5 text-sm font-semibold text-white hover:brightness-110 active:scale-[0.98] disabled:opacity-60 disabled:hover:brightness-100 disabled:active:scale-100 motion-reduce:active:scale-100 ${MOTION}`;
+export const CARD = `flex flex-col gap-3 rounded-2xl border border-slate/10 bg-white p-4 shadow-sm ${MOTION}`;
+export const INNER = "flex flex-col gap-2 rounded-xl border border-slate/10 p-3";
+// A workload card: the same elevation as CARD, lifting a little on hover.
+export const TILE = `flex flex-col gap-3 rounded-2xl border border-slate/10 bg-white p-4 shadow-sm hover:shadow-md ${MOTION}`;
+export const NUM = "tabular-nums";
 
 // What the vendor's terms say for a product children use (C368): advice beside the switch, never a block.
 export const TERMS_NOTE: Record<TermsNote, MessageKey> = {

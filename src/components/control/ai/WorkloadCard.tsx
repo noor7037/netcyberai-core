@@ -3,21 +3,21 @@
 import { useEffect, useRef, useState } from "react";
 import { StatusPill } from "@/components/app-ui/StatusPill";
 import { Input } from "@/components/ui/Input";
-import { Select } from "@/components/ui/Select";
 import { Switch } from "@/components/ui/Switch";
 import type { ModelList } from "@/lib/ai/control";
 import { promote, type Slot } from "@/lib/ai/ledger-view";
+import { hasDuplicate, validModel } from "@/lib/ai/model-options";
 import type { ProviderStateResult } from "@/lib/ai/provider-state";
 import type { RouteRevision } from "@/lib/contracts/ai-gateway";
 import { isMessageKey, type MessageKey } from "@/lib/i18n";
-import { ModelPicker } from "./ModelPicker";
+import { ModelSelect } from "./ModelSelect";
 import {
   CAPABILITY_WORDS,
-  INNER,
   PRIMARY,
   SLOT_WORDS,
   STATE_TONE,
   TAP,
+  TILE,
   profileName,
   stateWords,
   when,
@@ -26,9 +26,10 @@ import {
   type T,
 } from "./shared";
 
-// One feature's route (G3, C371; the brief's §4.4): Primary, Backup 1 and Backup 2 (the server refuses a third backup),
-// the prompt version and the switch. "Make Primary" and "Go back" are each one request and one server transaction
-// (a profile save, or a rollback to a revision); going back asks first.
+// One feature's route (G3, C371; the brief's §4.4; a dashboard card since W6-C, C397): Primary, Backup 1 and Backup 2
+// (the server refuses a third backup), each one drop-down of "provider · model", with the service's state. "Make
+// Primary" and "Roll back" are each one request and one server transaction (a profile save, or a rollback to a
+// revision); rolling back asks first. The prompt version and the switch sit in a folded part of the card.
 
 type Profile = Data["profiles"][number];
 type Draft = { slots: Slot[]; promptVersion: string; enabled: boolean };
@@ -107,7 +108,7 @@ export function WorkloadCard({
   };
   const route = routeOf(p);
   const active = revisions.find((r) => r.active) ?? null;
-  // The revision "Go back one step" restores: the newest one before the active one.
+  // The revision "Roll back" restores: the newest one before the active one.
   const previous =
     revisions.find(
       (r) =>
@@ -139,37 +140,38 @@ export function WorkloadCard({
     how: MessageKey,
     base: { promptVersion: string; enabled: boolean } = d,
   ) => {
-    const used = slots.filter((s) => s.provider);
+    const filled = slots.filter((s) => s.provider);
     void send(
       {
         action: "profile",
         profileId: p.profileId,
-        providerId: used[0]?.provider ?? null,
-        model: used[0]?.model.trim() || null,
+        providerId: filled[0]?.provider ?? null,
+        model: filled[0]?.model.trim() || null,
         promptVersion: base.promptVersion.trim(),
         enabled: base.enabled,
-        fallback: used
+        fallback: filled
           .slice(1)
           .map((s) => ({ provider: s.provider, model: s.model.trim() })),
       },
       how,
     );
   };
-  const options = (
-    <>
-      <option value="">{t("control.ai.profile.none")}</option>
-      {providerChoices.map((c) => (
-        <option key={c} value={c}>
-          {c}
-        </option>
-      ))}
-    </>
-  );
+  // The draft's filled slots, in order (an empty slot between two filled ones is closed up on save).
+  const used = d.slots.filter((s) => s.provider);
+  const key = (x: Slot[]) => x.map((s) => `${s.provider}|${s.model.trim()}`).join(",");
+  const dirty =
+    key(used) !== key(route) ||
+    d.promptVersion.trim() !== p.promptVersion ||
+    d.enabled !== p.enabled;
+  const duplicate = hasDuplicate(used);
+  const valid = used.every((s) => validModel(s.model)) && !duplicate;
+  const setSlot = (i: number, slot: Slot) =>
+    setDraft({ ...d, slots: d.slots.map((x, k) => (k === i ? slot : x)) });
 
   return (
-    <article data-ai-profile={p.profileId} className={INNER}>
+    <article data-ai-profile={p.profileId} className={TILE}>
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="font-bold">{profileName(t, p.profileId)}</h3>
+        <h3 className="text-base font-bold">{profileName(t, p.profileId)}</h3>
         <div className="flex flex-wrap gap-2">
           {p.carriesChildWords && (
             <span data-ai-child-words>
@@ -187,134 +189,116 @@ export function WorkloadCard({
           </span>
         </div>
       </div>
-      {isMessageKey(about) && <p data-ai-profile-about>{t(about)}</p>}
+      {isMessageKey(about) && (
+        <p data-ai-profile-about className="text-xs text-slate/80">
+          {t(about)}
+        </p>
+      )}
       {p.carriesChildWords && (
-        <p className="text-slate/80">{t("control.ai.profile.childWords")}</p>
+        <p className="text-xs text-slate/80">{t("control.ai.profile.childWords")}</p>
       )}
       {p.needs.length > 0 && (
-        <p data-ai-profile-needs className="text-slate/80">
+        <p data-ai-profile-needs className="text-xs text-slate/80">
           {t("control.ai.profile.needs", {
             list: p.needs.map((k) => t(CAPABILITY_WORDS[k])).join(", "),
           })}
         </p>
       )}
 
-      {/* The route that runs now, slot by slot, with each service's state. */}
-      <h4 className="font-semibold">{t("control.ai.route.now")}</h4>
-      {route.length === 0 ? (
-        <p data-ai-route-empty className="rounded-md bg-slate/5 p-2">
-          {t("control.ai.route.empty")}
-        </p>
-      ) : (
-        <ol data-ai-route className="flex flex-col gap-2">
-          {route.map((s, i) => {
-            const st = states[s.provider];
-            return (
-              <li
-                key={`${i}-${s.provider}`}
-                data-ai-slot={i}
-                className="flex flex-wrap items-center justify-between gap-2 rounded-md bg-slate/5 p-2"
-              >
-                <span className="min-w-0 break-all">
-                  <span className="font-semibold">{t(SLOT_WORDS[i])}:</span>{" "}
-                  {s.provider} · {s.model}
-                </span>
-                <span className="flex flex-wrap items-center gap-2">
-                  {st && (
-                    <StatusPill tone={STATE_TONE[st.state]}>
-                      {t(stateWords(st.state))}
-                    </StatusPill>
-                  )}
-                  {i > 0 && (
-                    <button
-                      type="button"
-                      data-ai-promote={i}
-                      disabled={busy}
-                      className={TAP}
-                      onClick={() =>
-                        save(promote(route, i), "control.ai.promoted", p)
-                      }
-                    >
-                      {t("control.ai.route.promote")}
-                    </button>
-                  )}
-                </span>
-              </li>
-            );
-          })}
-          {route.length < SLOTS &&
-            Array.from({ length: SLOTS - route.length }, (_, k) => (
-              <li
-                key={`empty-${k}`}
-                data-ai-slot-empty={route.length + k}
-                className="rounded-md border border-dashed border-slate/20 p-2 text-slate/80"
-              >
-                <span className="font-semibold">
-                  {t(SLOT_WORDS[route.length + k])}:
-                </span>{" "}
-                {t("control.ai.route.slotEmpty")}
-              </li>
-            ))}
-        </ol>
-      )}
-
-      {/* Change the route: the three slots, the prompt version and the switch, saved together. */}
-      <details data-ai-route-edit className="rounded-md border border-slate/10">
-        <summary className="flex min-h-[44px] cursor-pointer items-center px-3 font-semibold">
-          {t("control.ai.route.change")}
-        </summary>
-        <div className="flex flex-col gap-3 p-3 pt-0">
-          <div className="grid gap-3 sm:grid-cols-2">
-            {d.slots.map((s, i) => (
-              <div key={i} className="contents">
-                <Select
+      {/* The route: three slots, each one drop-down of "provider · model", with the service's state. */}
+      <div data-ai-route-edit className="flex flex-col gap-3 pt-2">
+        {d.slots.map((s, i) => {
+          const saved = route[i];
+          const st = s.provider ? states[s.provider] : undefined;
+          return (
+            <div
+              key={i}
+              {...(saved ? { "data-ai-slot": i } : { "data-ai-slot-empty": i })}
+              className="flex flex-wrap items-start gap-x-3 gap-y-2"
+            >
+              <div className="min-w-[17rem] flex-1">
+                <ModelSelect
                   id={`slot-${p.profileId}-${i}`}
-                  label={t("control.ai.slot.service", {
-                    slot: t(SLOT_WORDS[i]),
-                  })}
-                  value={s.provider}
-                  onChange={(e) =>
-                    setDraft({
-                      ...d,
-                      slots: d.slots.map((x, k) =>
-                        k === i ? { ...x, provider: e.target.value } : x,
-                      ),
-                    })
-                  }
-                >
-                  {options}
-                </Select>
-                <ModelPicker
-                  id={`slot-model-${p.profileId}-${i}`}
-                  label={t("control.ai.slot.model", { slot: t(SLOT_WORDS[i]) })}
-                  provider={s.provider}
-                  list={modelLists[s.provider]}
-                  value={s.model}
+                  label={t(SLOT_WORDS[i])}
+                  value={s}
+                  providers={providerChoices}
+                  lists={modelLists}
+                  taken={d.slots.filter((_, k) => k !== i)}
+                  none={t("control.ai.route.slotEmpty")}
+                  disabled={busy}
                   t={t}
-                  onChange={(model) =>
-                    setDraft({
-                      ...d,
-                      slots: d.slots.map((x, k) =>
-                        k === i ? { ...x, model } : x,
-                      ),
-                    })
-                  }
+                  onChange={(slot) => setSlot(i, slot)}
                 />
               </div>
-            ))}
-            {p.usesPrompt && (
-              <Input
-                id={`prompt-${p.profileId}`}
-                maxLength={32}
-                spellCheck={false}
-                label={t("control.ai.profile.promptVersion")}
-                value={d.promptVersion}
-                onChange={(e) =>
-                  setDraft({ ...d, promptVersion: e.target.value })
-                }
-              />
-            )}
-          </div>
+              <span className="flex min-h-[48px] items-center gap-2">
+                {st && (
+                  <StatusPill tone={STATE_TONE[st.state]}>
+                    {t(stateWords(st.state))}
+                  </StatusPill>
+                )}
+                {i > 0 && saved && (
+                  <button
+                    type="button"
+                    data-ai-promote={i}
+                    disabled={busy || dirty}
+                    className={TAP}
+                    onClick={() =>
+                      save(promote(route, i), "control.ai.promoted", p)
+                    }
+                  >
+                    {t("control.ai.route.promote")}
+                  </button>
+                )}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      {duplicate && (
+        <p data-ai-duplicate role="alert" className="text-xs font-semibold text-red-800">
+          {t("control.ai.slot.duplicate")}
+        </p>
+      )}
+
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          data-ai-profile-save
+          disabled={busy || !dirty || !valid}
+          className={PRIMARY}
+          onClick={() => save(d.slots, "control.ai.saved")}
+        >
+          {t("control.ai.profile.save")}
+        </button>
+        <button
+          type="button"
+          data-ai-rollback-previous
+          disabled={busy || !previous}
+          className={TAP}
+          onClick={(e) => ask(null, e.currentTarget)}
+        >
+          {t("control.ai.route.rollback")}
+        </button>
+      </div>
+
+      {/* The switch and the prompt version, saved with the route. */}
+      <details data-ai-settings className="rounded-lg border border-slate/10">
+        <summary className="flex min-h-[44px] cursor-pointer items-center px-3 text-sm font-semibold">
+          {t("control.ai.card.settings")}
+        </summary>
+        <div className="flex flex-col gap-3 p-3 pt-2">
+          {p.usesPrompt && (
+            <Input
+              id={`prompt-${p.profileId}`}
+              maxLength={32}
+              spellCheck={false}
+              label={t("control.ai.profile.promptVersion")}
+              value={d.promptVersion}
+              onChange={(e) =>
+                setDraft({ ...d, promptVersion: e.target.value })
+              }
+            />
+          )}
           <Switch
             id={`enabled-${p.profileId}`}
             label={t("control.ai.profile.enabled")}
@@ -326,39 +310,20 @@ export function WorkloadCard({
             checked={d.enabled}
             onChange={(e) => setDraft({ ...d, enabled: e.target.checked })}
           />
-          <button
-            type="button"
-            data-ai-profile-save
-            disabled={busy}
-            className={`${PRIMARY} self-start`}
-            onClick={() => save(d.slots, "control.ai.saved")}
-          >
-            {t("control.ai.profile.save")}
-          </button>
         </div>
       </details>
 
       {/* Earlier versions of the route, newest first, with "Go back". */}
-      <details data-ai-revisions className="rounded-md border border-slate/10">
-        <summary className="flex min-h-[44px] cursor-pointer items-center px-3 font-semibold">
+      <details data-ai-revisions className="rounded-lg border border-slate/10">
+        <summary className="flex min-h-[44px] cursor-pointer items-center px-3 text-sm font-semibold">
           {t("control.ai.revision.title", { count: revisions.length })}
         </summary>
-        <div className="flex flex-col gap-2 p-3 pt-0">
+        <div className="flex flex-col gap-2 p-3 pt-1">
           {revisions.length === 0 ? (
             <p data-ai-revisions-empty>{t("control.ai.revision.none")}</p>
           ) : (
             <>
-              {previous ? (
-                <button
-                  type="button"
-                  data-ai-rollback-previous
-                  disabled={busy}
-                  className={`${TAP} self-start`}
-                  onClick={(e) => ask(null, e.currentTarget)}
-                >
-                  {t("control.ai.revision.backOne")}
-                </button>
-              ) : (
+              {!previous && (
                 <p data-ai-revisions-no-earlier>
                   {t("control.ai.revision.noEarlier")}
                 </p>
@@ -368,7 +333,7 @@ export function WorkloadCard({
                   <li
                     key={r.revisionId}
                     data-ai-revision={r.revisionId}
-                    className="flex flex-col gap-1 rounded-md bg-slate/5 p-2"
+                    className="flex flex-col gap-1 rounded-lg bg-slate/5 p-2"
                   >
                     <span className="flex flex-wrap items-center gap-2">
                       <span className="font-semibold">
@@ -420,7 +385,7 @@ export function WorkloadCard({
           tabIndex={-1}
           role="group"
           aria-labelledby={`confirm-${p.profileId}`}
-          className="flex flex-col gap-2 rounded-md border border-tangerine/40 bg-tangerine/10 p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
+          className="flex flex-col gap-2 rounded-lg border border-tangerine/40 bg-tangerine/10 p-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-sapphire"
         >
           <p id={`confirm-${p.profileId}`} className="font-semibold">
             {(() => {
