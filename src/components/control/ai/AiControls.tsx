@@ -274,6 +274,7 @@ export function AiControls({ initial }: { initial: Data }) {
                 (r) => r.profileId === p.profileId,
               )}
               providerChoices={data.providerChoices}
+              modelLists={data.modelLists}
               states={states}
               busy={busy}
               send={send}

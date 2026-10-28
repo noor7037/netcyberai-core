@@ -1,5 +1,5 @@
 import { streamChatCompletions } from './chat-completions';
-import { freeCheck } from './connection';
+import { dataIds, freeCheck } from './connection';
 import { SPEECH_TIMEOUT_MS, capabilities, type AdapterResult, type ConnectionTest, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
 
 // OpenAI's Chat Completions API, streamed over fetch (no SDK; the wire format is shared, ./chat-completions.ts).
@@ -18,9 +18,9 @@ export const openaiAdapter: TextAdapter = {
   streamText(request, onDelta): Promise<AdapterResult> {
     return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_completion_tokens', jsonMode: true, includeUsage: true });
   },
-  // GET /v1/models: free, and answers only for a working key (G5).
+  // GET /v1/models: free, and answers only for a working key (G5); its ids fill Control's model picker (G6).
   testConnection(apiKey): Promise<ConnectionTest> {
-    return freeCheck('https://api.openai.com/v1/models', { authorization: `Bearer ${apiKey}` });
+    return freeCheck('https://api.openai.com/v1/models', { authorization: `Bearer ${apiKey}` }, dataIds);
   },
 };
 

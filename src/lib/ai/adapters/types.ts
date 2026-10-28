@@ -42,7 +42,8 @@ export type Capabilities = Readonly<Record<Capability, boolean>>;
 export const capabilities = (has: readonly Capability[]): Capabilities => Object.freeze(Object.fromEntries(CAPABILITIES.map((c) => [c, has.includes(c)])) as Record<Capability, boolean>);
 
 // A key test's outcome (G1): whether the vendor took the key, and the kind of failure. Never the key or the answer.
-export type ConnectionTest = { ok: true } | { ok: false; failure: AdapterFailure; status?: number };
+// `models` (G6, C379): the provider's model ids when its check is a model list that could be read; absent otherwise.
+export type ConnectionTest = { ok: true; models?: string[] } | { ok: false; failure: AdapterFailure; status?: number };
 
 export interface TextAdapter {
   readonly providerId: string;

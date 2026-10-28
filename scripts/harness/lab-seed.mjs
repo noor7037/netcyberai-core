@@ -27,6 +27,13 @@ export async function seedLab(db, keyBase64, founder) {
       [provider, s.ciphertext, s.iv, s.tag, founder]
     );
   }
+  // G6 (C379): the model pickers' lists: one service listed, one whose list is unavailable.
+  await db.pg.query(
+    `insert into control.ai_model_lists (provider_id, models, ok, fetched_at) values
+         ('anthropic', array['claude-haiku-4-5', 'claude-lab-a', 'claude-opus-4-1', 'claude-sonnet-4-5'], true, now() - interval '2 hours'),
+         ('openai', '{}', false, now() - interval '2 hours')
+       on conflict (provider_id) do update set models = excluded.models, ok = excluded.ok, fetched_at = excluded.fetched_at`
+  );
   await db.pg.query(
     `insert into control.ai_eval_runs (run_id, dataset_version, case_ids, models, started_by) values ($1, 'a4b1a4b1a4b1', $2::text[], $3::jsonb, $4) on conflict (run_id) do nothing`,
     [LAB_RUN, ['maths-percent-discount', 'maths-area-rectangle-json'], JSON.stringify([{ provider: 'anthropic', model: 'claude-lab-a' }, { provider: 'openai', model: 'gpt-lab-b' }]), founder]
@@ -50,4 +57,5 @@ export async function clearLab(db) {
   await db.pg.query(`delete from control.ai_eval_results where run_id = $1`, [LAB_RUN]);
   await db.pg.query(`delete from control.ai_eval_runs where run_id = $1`, [LAB_RUN]);
   await db.pg.query(`delete from control.ai_credentials where key_last4 = 'HARN'`);
+  await db.pg.query(`delete from control.ai_model_lists`);
 }

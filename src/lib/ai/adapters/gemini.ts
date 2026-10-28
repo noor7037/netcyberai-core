@@ -23,8 +23,13 @@ export const geminiAdapter: TextAdapter = {
   streamText(request, onDelta): Promise<AdapterResult> {
     return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_tokens', jsonMode: true, includeUsage: true });
   },
-  // The model list: free, and answers only for a working key (G5). The key goes in a header.
+  // The model list: free, and answers only for a working key (G5). The key goes in a header. Its names ("models/<id>")
+  // give the ids for Control's model picker (G6): the ones that can write an answer (generateContent).
   testConnection(apiKey): Promise<ConnectionTest> {
-    return freeCheck('https://generativelanguage.googleapis.com/v1beta/models?pageSize=1', { 'x-goog-api-key': apiKey });
+    return freeCheck('https://generativelanguage.googleapis.com/v1beta/models?pageSize=1000', { 'x-goog-api-key': apiKey }, (b) =>
+      ((b as { models?: { name?: unknown; supportedGenerationMethods?: unknown }[] }).models ?? [])
+        .filter((m) => !Array.isArray(m?.supportedGenerationMethods) || m.supportedGenerationMethods.includes('generateContent'))
+        .map((m) => (typeof m?.name === 'string' ? m.name.replace(/^models\//, '') : null))
+    );
   },
 };

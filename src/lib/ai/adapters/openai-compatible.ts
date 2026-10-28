@@ -1,4 +1,5 @@
 import { streamChatCompletions } from './chat-completions';
+import { dataIds, modelIds } from './connection';
 import { guardedFetch } from './endpoint-guard';
 import { CALL_TIMEOUT_MS, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
@@ -45,7 +46,12 @@ export const openaiCompatibleAdapter: TextAdapter = {
       return { ok: false, failure: 'network' };
     }
     if (!got.ok) return { ok: false, failure: 'endpoint' };
-    await got.res.body?.cancel().catch(() => {});
-    return got.res.ok ? { ok: true } : { ok: false, failure: 'http', status: got.res.status };
+    if (!got.res.ok) {
+      await got.res.body?.cancel().catch(() => {});
+      return { ok: false, failure: 'http', status: got.res.status };
+    }
+    // Its ids fill Control's model picker (G6, C379); an answer that cannot be read still means the key works.
+    const body = await got.res.json().catch(() => null);
+    return body ? { ok: true, models: modelIds(dataIds(body)) } : { ok: true };
   },
 };
