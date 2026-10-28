@@ -10,6 +10,7 @@ import { weightedChildResult, type WeightedPaper } from '@/lib/exams/results';
 import { emptyScheme, validateScheme, type GradingScheme } from '@/lib/exams/scheme';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
+import { withWords } from '../i18n/with-words';
 
 // The exam types a scheme counts toward a report card, and their weights (C230-AJ part 2, C357): the rule, the scheme
 // that keeps it, the form that edits it, and the sentences for what it refuses. Every number is made up.
@@ -101,7 +102,7 @@ describe('a scheme with exam types', () => {
 
 describe('the chooser of the types that count', () => {
   const render = (weights: { type: string; weight: string }[], types = DEFAULT_EXAM_TYPES.map((t) => ({ ...t }))) =>
-    renderToStaticMarkup(h(ExamTypesEditor, { idPrefix: 'scheme', types, weights, onChange: () => undefined }));
+    renderToStaticMarkup(withWords('en', '/app/exams/*', h(ExamTypesEditor, { idPrefix: 'scheme', types, weights, onChange: () => undefined })));
   it('lists the school’s shown types, each with a tick; a weight is asked only of a ticked one', () => {
     const html = render([{ type: 'annual', weight: '60' }]);
     expect((html.match(/data-exam-type="/g) ?? []).length).toBe(DEFAULT_EXAM_TYPES.length);

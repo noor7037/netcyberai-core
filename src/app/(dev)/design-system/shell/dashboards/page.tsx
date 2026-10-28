@@ -8,6 +8,7 @@ import { principalNavigationFixture } from '@/demo-fixture/contracts';
 import { controlDashboardFixture, officeDashboardEmptyFixture, officeDashboardFixture } from '@/demo-fixture/visual-foundation';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { controlNav } from '@/lib/nav/nav-items';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // The two live dashboards on illustrative values (C131), development only:
 // the real ones need a signed-in session and a database. ?view=control is
@@ -27,14 +28,14 @@ export default function DashboardsPreview({ searchParams }: { searchParams: { vi
   );
   if (searchParams.view === 'control') {
     return (
-      <AppShell groups={controlShellGroups(controlNav, (h) => (h === '/control' ? `${here}?view=control` : h))} brand="NetCyberAI Control" roleLabel="Platform admin" navLabel="Platform 2 navigation" accountHref={here}>
+      <AppShell {...shellWords('en')} groups={controlShellGroups(controlNav, (h) => (h === '/control' ? `${here}?view=control` : h))} brand="NetCyberAI Control" roleLabel="Platform admin" navLabel="Platform 2 navigation" accountHref={here}>
         {note}
         <ControlDashboardView data={controlDashboardFixture} now={NOW} schoolsTable={<p className="text-sm text-slate">{controlDashboardFixture.schools.map((s) => s.name).join(' · ')}</p>} />
       </AppShell>
     );
   }
   return (
-    <AppShell groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref={here}>
+    <AppShell {...shellWords('en')} groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref={here}>
       {note}
       <OfficeDashboardView data={searchParams.view === 'empty' ? officeDashboardEmptyFixture : officeDashboardFixture} now={NOW} />
     </AppShell>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from '../client';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The Learning Vault's list (S2, C375), in parent mode: each child's conversations with the tutor, a subject at a time,
 // with the child's questions (newest first) and a "clear" that removes the questions, answers and files for good,
@@ -20,7 +21,7 @@ export function VaultList({ w, list, lang }: { w: Words; list: VaultChild[]; lan
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [said, setSaid] = useState<string | null>(null);
-  const date = (at: string) => new Date(at).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' });
+  const date = (at: string) => sameInkOnBothSides(new Date(at).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' }));
 
   const clear = async (conversationId: string) => {
     setBusy(true);

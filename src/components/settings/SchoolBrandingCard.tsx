@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { SchoolLogo } from '@/components/app-shell/SchoolLogo';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
@@ -63,7 +63,7 @@ async function drawLogo(file: File): Promise<{ blob: Blob } | { problem: Message
 }
 
 export function SchoolBrandingCard(props: { scope: 'school' | 'control'; schoolId: string; initial?: Brand }) {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const router = useRouter();
   const ids = useId();
   const fileRef = useRef<HTMLInputElement>(null);

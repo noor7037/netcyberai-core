@@ -9,6 +9,7 @@ import { QuizView } from '../blocks/QuizView';
 import { FamIcon, rise } from '../FamIcon';
 import { SubjectGlyph } from '../ui/SubjectGlyph';
 import { flushAnswers, listPacks, queueAnswer, queuedAnswers, rememberedChild, type SavedPack } from './store';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The chapters saved on this phone (M2-9, C283), on the Family app's offline shell. With no network the service worker
 // answers every /family page with this shell, so the address may still be the page the child asked for: a saved topic's
@@ -23,7 +24,7 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
   const [open, setOpen] = useState<Open | null>(null);
   const [asked, setAsked] = useState<string | null>(null);
   const [waiting, setWaiting] = useState(0);
-  const day = (iso: string) => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' }).format(new Date(iso));
+  const day = (iso: string) => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' }).format(new Date(iso)));
 
   useEffect(() => {
     let live = true;

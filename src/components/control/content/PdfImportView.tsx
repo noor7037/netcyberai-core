@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { PRIMARY_ACTION } from '@/components/app-ui/ModulePage';
 import { Input } from '@/components/ui/Input';
 import type { ImportedVersion } from '@/lib/content/library';
@@ -25,7 +25,7 @@ const toBase64 = async (file: File): Promise<string> => {
 };
 
 export function PdfImportView({ onImported }: { onImported: () => Promise<void> | void }) {
-  const { t, tCount } = useT();
+  const { t, tCount } = useWords();
   const [file, setFile] = useState<File | null>(null);
   const [sourceUrl, setSourceUrl] = useState('');
   const [board, setBoard] = useState('CBSE');

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { useStepUp } from '@/components/auth/StepUp';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -15,7 +15,7 @@ export type PreparableVersion = { versionId: string; boardId: string; classLevel
 type State = { total: number; checked: number; aiMade: number; missing: number; withdrawn: number };
 
 export function PrepareExplanationsView({ versions }: { versions: PreparableVersion[] }) {
-  const { t } = useT();
+  const { t } = useWords();
   const { stepUpFetch } = useStepUp();
   const [versionId, setVersionId] = useState(versions[0]?.versionId ?? '');
   const [state, setState] = useState<State | null>(null);

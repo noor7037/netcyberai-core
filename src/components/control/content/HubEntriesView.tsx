@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
 import { Badge } from '@/components/ui/Badge';
@@ -53,7 +53,7 @@ const formOf = (e: HubEntryRow): Form => ({
 const complete = (f: Form) => Boolean(f.titleEn.trim() && f.bodyEn.trim() && f.sourceUrl.trim() && f.verifiedOn && f.reviewOn && (f.scope === 'national' || f.stateCode));
 
 export function HubEntriesView({ initial }: { initial: HubEntryRow[] }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [entries, setEntries] = useState<HubEntryRow[]>(initial);
   const [adding, setAdding] = useState<Form>(EMPTY);
   const [editing, setEditing] = useState<{ id: string; form: Form } | null>(null);

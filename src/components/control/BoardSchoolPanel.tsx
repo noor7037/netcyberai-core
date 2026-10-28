@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { PRIMARY, SECTION } from '@/components/exams/SchemeParts';
 import { Select } from '@/components/ui/Select';
@@ -13,7 +13,7 @@ import type { MessageKey } from '@/lib/i18n';
 type Data = { board: { boardId: string | null; name: string | null; setBy: string | null; setAt: string | null }; boards: { boardId: string; name: string }[] };
 
 export function BoardSchoolPanel({ schoolId }: { schoolId: string }) {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const [data, setData] = useState<Data | null>(null);
   const [failed, setFailed] = useState(false);
   const [choice, setChoice] = useState('');

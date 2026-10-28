@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
 import { Textarea } from '@/components/ui/Textarea';
@@ -27,7 +27,7 @@ const statusKey = (v: ControlVersion): MessageKey =>
 const statusVariant = (v: ControlVersion) => (v.status === 'published' ? (v.audience === 'everyone' ? 'success' : 'warning') : v.status === 'rejected' || v.status === 'withdrawn' ? 'danger' : 'neutral');
 
 export function ContentView({ initial }: { initial: ControlVersion[] }) {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const [versions, setVersions] = useState<ControlVersion[]>(initial);
   const [csv, setCsv] = useState('');
   const [result, setResult] = useState<CatalogImport | null>(null);

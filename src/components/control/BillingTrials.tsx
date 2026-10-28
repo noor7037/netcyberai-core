@@ -1,6 +1,6 @@
 'use client';
 
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import type { BillingOverview } from '@/lib/control/billing';
@@ -26,7 +26,7 @@ export function trialLine(t: T, tCount: (base: string, count: number) => string,
 }
 
 export function BillingTrials({ data }: { data: BillingOverview }) {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const locale = lang === 'hi' ? 'hi-IN' : 'en-IN';
   const day = (isoDate: string) => new Intl.DateTimeFormat(locale, { timeZone: 'UTC', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${isoDate}T00:00:00Z`));
   return (

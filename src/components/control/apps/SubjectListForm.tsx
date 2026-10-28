@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useStepUp } from '@/components/auth/StepUp';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -11,7 +11,7 @@ import type { MessageKey } from '@/lib/i18n';
 // its Class 5 children (C230-S). Saving asks for the authenticator if this session has not shown it, and is audited.
 export function SubjectListForm({ list, subjects, initial }: { list: 'open_subjects' | 'reviewed_only'; subjects: readonly string[]; initial: readonly string[] }) {
   const k = list === 'open_subjects' ? 'open' : 'reviewed';
-  const { t } = useT();
+  const { t } = useWords();
   const { stepUpFetch } = useStepUp();
   const [chosen, setChosen] = useState<string[]>([...initial]);
   const [busy, setBusy] = useState(false);

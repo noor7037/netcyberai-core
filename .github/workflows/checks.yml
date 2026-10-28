@@ -122,7 +122,7 @@ jobs:
           python3 scripts/check_harness_isolation.py --self-test
           python3 scripts/check_harness_isolation.py --build .next
 
-      - name: Every family page stays under its First Load JS budget
+      - name: Every Family and Control page stays under its First Load JS budget
         run: |
           python3 scripts/check_family_budget.py --self-test
           python3 scripts/check_family_budget.py --build .next

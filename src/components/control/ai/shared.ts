@@ -2,7 +2,7 @@ import type { StatusTone } from "@/components/app-ui/tones";
 import type { AiOverview, AiRouting } from "@/lib/ai/control";
 import type { Capability, TermsNote } from "@/lib/ai/adapters/types";
 import type { ProviderState } from "@/lib/ai/provider-state";
-import { isMessageKey, type MessageKey } from "@/lib/i18n";
+import type { MessageKey } from "@/lib/i18n";
 
 // Control → AI's parts share these (G3, C371): the page's data, the styles, and the words for each code.
 
@@ -72,7 +72,7 @@ export const stateWhy = (s: ProviderState): MessageKey =>
 // An attempt's outcome class (gateway/taxonomy.ts), in plain words; an unknown class is shown as its code.
 export const outcomeWords = (t: T, outcome: string) => {
   const key = `control.ai.outcome.${outcome}`;
-  return isMessageKey(key) ? t(key) : outcome;
+  return t(key as MessageKey) || outcome;
 };
 export const outcomeTone = (outcome: string): StatusTone =>
   outcome === "ok"
@@ -87,7 +87,7 @@ export const outcomeTone = (outcome: string): StatusTone =>
 
 export const profileName = (t: T, profileId: string) => {
   const key = `control.ai.profile.name.${profileId}`;
-  return isMessageKey(key) ? t(key) : profileId;
+  return t(key as MessageKey) || profileId;
 };
 
 // Route slots by position: Primary, Backup 1, Backup 2.

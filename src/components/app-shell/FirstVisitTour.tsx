@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { TOURS, type TourId, type TourSlot } from '@/lib/contracts/tours';
 import type { MessageKey } from '@/lib/i18n';
-import { useT } from './LangContext';
+import { useWords } from './Words';
 import { useTours } from './ToursContext';
 
 // A first-visit tour (docs/19 rule 8, C138): up to three short steps the
@@ -16,7 +16,7 @@ import { useTours } from './ToursContext';
 // after the page's header in reading order, and a screen reader is told the
 // step when it appears and each time it changes.
 export function FirstVisitTour({ id }: { id: TourId }) {
-  const { lang, t } = useT();
+  const { lang, t } = useWords();
   const { seen, markSeen } = useTours();
   const [at, setAt] = useState(0);
   // What a screen reader is told: set after the page has loaded, so the first step is announced too.

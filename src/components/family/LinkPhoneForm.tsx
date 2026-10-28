@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // A child's own phone asks for a code and shows it (M2b-2; reversed by C230-AF, C346). The parent types it in the
 // parent area on their own phone; this page asks every few seconds, and opens the app for that one child once it is.
 const POLL_MS = 3000;
-const time = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }).format(new Date(iso));
+const time = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { hour: 'numeric', minute: '2-digit', timeZone: 'Asia/Kolkata' }).format(new Date(iso)));
 
 export function LinkPhoneForm({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
   const [shown, setShown] = useState<{ code: string; expiresAt: string } | null>(null);

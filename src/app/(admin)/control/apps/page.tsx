@@ -7,6 +7,8 @@ import { liveBuild, loadControlApps } from '@/lib/control/apps';
 import { loadHealth } from '@/lib/control/health';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { pageWords } from '@/components/app-shell/page-words';
+import { WordsProvider } from '@/components/app-shell/Words';
 
 // Control → Apps (docs/family-app/10 §2, M1-7): the version, the modules and who sees them, the kill switch and the
 // banner of each app, the staff-preview accounts, and the recent changes with Undo. The layout has already refused
@@ -29,7 +31,10 @@ export default async function ControlAppsPage() {
             </h2>
             <HealthView health={data.health} lang={lang} />
           </section>
-          <AppsView data={data.apps} build={liveBuild()} lang={lang} now={new Date()} />
+          {/* The change forms' shared parts take picked words (ChangeForm, C401). */}
+          <WordsProvider words={pageWords(lang, '/control/apps')}>
+            <AppsView data={data.apps} build={liveBuild()} lang={lang} now={new Date()} />
+          </WordsProvider>
         </div>
       )}
     </ModulePage>

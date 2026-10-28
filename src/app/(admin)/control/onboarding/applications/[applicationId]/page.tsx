@@ -9,6 +9,9 @@ import { getApplication } from '@/lib/onboarding/applications';
 import { INDIAN_STATES } from '@/lib/onboarding/states';
 import { UUID_RE } from '@/lib/onboarding/public-http';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // One application: details, decisions, the principal's invitation, the
 // jobs that carry it out, and every recorded step (C98).
@@ -19,6 +22,7 @@ const when = (v: string | null) =>
 
 export default async function ApplicationPage({ params }: { params: { applicationId: string } }) {
   const session = await getServerSession();
+  const { lang } = getLang(session?.sub ?? '');
   if (!session || !UUID_RE.test(params.applicationId)) notFound();
   const data = await withTenantContext(session, async (db) => {
     const app = await getApplication(db, params.applicationId);
@@ -63,6 +67,7 @@ export default async function ApplicationPage({ params }: { params: { applicatio
         </>
       }
     >
+      <WordsProvider words={pageWords(lang, '/control/onboarding/applications/[applicationId]')}>
       <dl className="grid grid-cols-1 gap-3 rounded-md border border-slate/10 bg-white p-4 text-sm sm:grid-cols-2">
         {[
           ['City', `${app.city}, ${stateName}`],
@@ -136,6 +141,7 @@ export default async function ApplicationPage({ params }: { params: { applicatio
           ))}
         </ol>
       </section>
+      </WordsProvider>
     </ModulePage>
   );
 }

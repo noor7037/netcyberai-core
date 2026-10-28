@@ -3,6 +3,7 @@ import type { FamilyOnlineTest } from '@/lib/contracts/marking';
 import { fill, type Words } from '@/lib/family/fill';
 import { FamIcon } from '../FamIcon';
 import { SchoolText } from '../SchoolText';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The school's online tests in Study (AQ-4, C365): for the child using the app now, matched to a school student, the
 // tests of their class that are coming up or open now, and one they are sitting. Each opens its start screen. Nothing
@@ -23,7 +24,7 @@ export const TEST_LIST_KEYS = [
 ] as const;
 
 const when = (iso: string, lang: string) =>
-  new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(iso));
+  sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(iso)));
 
 export function TestList({ w, lang, tests }: { w: Words; lang: string; tests: FamilyOnlineTest[] }) {
   if (!tests.length) return null;

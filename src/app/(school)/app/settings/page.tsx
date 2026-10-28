@@ -13,6 +13,8 @@ import { loadEntitlements } from '@/lib/frameworks/entitlements';
 import { readAllSettings, type ModuleSettingsForScreen } from '@/lib/frameworks/settings-store';
 import { loadSchoolBrand, type SchoolBrand } from '@/lib/school/branding';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // The school's settings: what is switched on for the school, with one plain
 // sentence on what each module being off changes (docs/19 rule 7, C139),
@@ -52,12 +54,14 @@ export default async function SettingsPage() {
 
   return (
     <ModulePage moduleId="setup" help="whatsapp-settings" tour="settings" title="Settings" purpose="What is on for your school, how each part is set up, and WhatsApp.">
+      <WordsProvider words={pageWords(lang, '/app/settings')}>
       {canManage && brand && session?.schoolId && <SchoolBrandingCard scope="school" schoolId={session.schoolId} initial={brand} />}
       {entitlements && <ModuleSwitchList entitlements={entitlements} lang={lang} />}
       <SchoolSettingsPanel modules={settings} />
       {settings.some((m) => m.moduleId === 'setup') && <HolidaysCard />}
       {(canManage || session?.role === 'accountant') && settings.some((m) => m.moduleId === 'fees') && <PaymentRailsPanel scope="school" />}
       <WhatsAppConfigPanel canManage={canManage} />
+      </WordsProvider>
     </ModulePage>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { PRIMARY, SECTION, TAP } from '@/components/exams/SchemeParts';
 import { Input } from '@/components/ui/Input';
@@ -18,7 +18,7 @@ type Form = { boardId: string; nameEn: string; nameHi: string };
 const EMPTY: Form = { boardId: '', nameEn: '', nameHi: '' };
 
 export function FamilyBoardsSection({ initial }: { initial: FamilyBoard[] }) {
-  const { t, tCount } = useT();
+  const { t, tCount } = useWords();
   const [boards, setBoards] = useState<FamilyBoard[]>(initial);
   const [adding, setAdding] = useState<Form>(EMPTY);
   const [editing, setEditing] = useState<Form | null>(null);

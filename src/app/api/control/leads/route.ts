@@ -35,7 +35,7 @@ export async function PATCH(req: NextRequest) {
       eventAction: 'lead.updated',
       targetType: 'lead',
       targetId: input.leadId,
-      beforeState: out.before,
+      beforeState: { status: out.before.status },
       afterState: { status: out.lead.status, countryCode: input.countryCode ? out.lead.countryCode : undefined },
     });
     return out;

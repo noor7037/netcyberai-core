@@ -66,6 +66,7 @@ import { PulseShown } from '@/components/pulse/PulseShown';
 import { StaffLeaveOffice } from '@/components/staff/StaffLeaveOffice';
 import { StaffLeaveShown } from '@/components/staff/StaffLeaveShown';
 import { TicketsShown } from '@/components/tickets/TicketsShown';
+import { pageContent } from '../i18n/with-words';
 
 let db: Db;
 const claimsOf = (w: Who) => ({ sub: w.user, role: w.role, schoolId: A, membershipId: null, tv: 0 });
@@ -569,7 +570,7 @@ describe('the dashboard on the whole schema', () => {
     expect(has(await StaffPage({}), StaffLeaveShown)).toBeNull();
     // The list comes first on its screen, above the screen's own content.
     const staff: any = await StaffPage({ searchParams: { show: 'leave-waiting' } });
-    expect(([] as any[]).concat(staff.props.children).filter(Boolean).slice(0, 2).map((el: any) => el.type)).toEqual([StaffLeaveShown, StaffLeaveOffice]);
+    expect(([] as any[]).concat(pageContent(staff)).filter(Boolean).slice(0, 2).map((el: any) => el.type)).toEqual([StaffLeaveShown, StaffLeaveOffice]);
     // The screen below is told when a list is drawn above it, so that a change made below (a complaint closed, a
     // leave request decided, a meeting cancelled) has the list above read again; with no list above, it is not.
     expect([has(await ComplaintsPage({ searchParams: { show: 'overdue' } }), ComplaintsView)?.props, has(await ComplaintsPage({ searchParams: { show: 'closed' } }), ComplaintsView)?.props, has(await ComplaintsPage({}), ComplaintsView)?.props]).toEqual([{ shownAbove: true }, { shownAbove: false }, { shownAbove: false }]);

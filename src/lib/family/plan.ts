@@ -1,6 +1,7 @@
 import { classSubjects, readFamilyCatalog, type CatalogLang } from './catalog';
 import { isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { setting } from './learning';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The mastery loop's returns and the day's plan (M2-2, C276; docs/family-app/11 L4, L5, R6 step 1; 02 §4.2).
 //
@@ -70,7 +71,7 @@ const addDays = (day: string, n: number) => {
 };
 // "Friday, 24 October" in the child's language, for the note after a wrong answer.
 export const dayLabel = (day: string, lang: 'en' | 'hi') =>
-  new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(`${day}T00:00:00Z`));
+  sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' }).format(new Date(`${day}T00:00:00Z`)));
 const dayText = (v: unknown) => (v == null ? null : String(v).slice(0, 10));
 
 // After a checked answer on a syllabus topic: due returns are done; a wrong answer schedules the topic's returns (a

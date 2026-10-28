@@ -7,6 +7,7 @@ import { ScanButton } from '@/components/shell/ScanButton';
 import { bottomNavItems } from '@/lib/contracts/navigation';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { principalNavigationFixture, teacherNavigationFixture } from '@/demo-fixture/contracts';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // The app shell on illustrative navigation (C121), development only: the
 // real /app needs a signed-in session and a database. ?role=teacher shows
@@ -19,7 +20,7 @@ export default function ShellPreview({ searchParams }: { searchParams: { role?: 
   const teacher = searchParams.role === 'teacher';
   const nav = (teacher ? teacherNavigationFixture : principalNavigationFixture).data;
   return (
-    <AppShell
+    <AppShell {...shellWords('en')}
       groups={toShellGroups(nav)}
       bottomItems={teacher ? bottomNavItems(nav).map((i) => toShellItem(i)) : undefined}
       brand="Illustrative School"

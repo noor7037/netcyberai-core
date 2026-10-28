@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -22,7 +22,7 @@ const rupees = (paise: number) => `₹${(paise / 100).toLocaleString('en-IN', { 
 const today = () => new Date(Date.now() + 5.5 * 3600_000).toISOString().slice(0, 10);
 
 export function CostControls() {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const router = useRouter();
   const [schools, setSchools] = useState<School[] | null>(null);
   const [rate, setRate] = useState({ category: 'utility', rateRupees: '', gstPercent: '18', source: '', verifiedOn: today(), effectiveFrom: today() });
