@@ -9,7 +9,7 @@ import type { MessageKey } from '@/lib/i18n';
 
 // What every Control → Apps change shares (M1-7): the request, its busy state and error, the reason it asks for, and
 // the one-reason button the People page uses too. Its words are picked on the server (the `control.apps.` messages,
-// C395), so a page that shows it does not carry the whole message table.
+// C401), so a page that shows it does not carry the whole message table.
 
 type Result = { ok: true } | { ok: false; code: string };
 

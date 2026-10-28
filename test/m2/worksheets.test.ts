@@ -64,7 +64,7 @@ beforeAll(async () => {
     insert into content.topics (version_id, chapter_id, topic_key, position, title_en, source_url, source_page, checked_on) values
       ('${VERSION}', 'f7000000-0000-4000-8000-0000000000d1', '${TOPIC}', 1, 'Rational numbers', 'https://cbseacademic.nic.in/', '4', '2026-10-21'),
       ('${VERSION}', 'f7000000-0000-4000-8000-0000000000d1', '${EMPTY_TOPIC}', 2, 'Irrational numbers', 'https://cbseacademic.nic.in/', '4', '2026-10-21');
-    insert into control.app_flags (app, module, enabled, reason) values ('family', 'worksheets', true, 'test');
+    insert into control.app_flags (app, module, enabled, reason) values ('family', 'worksheets', true, 'test') on conflict (app, module) do update set enabled = excluded.enabled, reason = excluded.reason;
   `);
   const { signFamilySession, signParentMode } = await import('@/lib/family/session');
   const s = { accountId: ACCOUNT, tokenVersion: 0, sessionId: 's1' };

@@ -10,6 +10,7 @@ import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { READER_KEYS } from '@/lib/family/reader-words';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { openSubjects } from '@/lib/family/learning';
+import { photoGate } from '@/lib/family/photo-gate';
 import { subjectAccess } from '@/lib/family/modules';
 import { isSubject } from '@/lib/family/subjects';
 import { TUTOR_KEYS } from '@/lib/family/tutor-words';
@@ -55,7 +56,9 @@ export default async function ChapterPage({ params }: { params: { key: string } 
   const tutorOn = !!subject && switchOn(switches, 'understand') && subjectAccess(child, subject, openToAll).open;
   const voice =
     tutorOn && page.consents.voice_practice && switchOn(switches, 'voice_input') ? { secondsLeft: (await familyPageRead(page, (db) => voiceDay(db, page.session.accountId, child.childId, indiaDate()))).left } : null;
-  const tutor = tutorOn && subject ? { subject, voice, files: TUTOR_READS_FILES && page.consents.photo_input && switchOn(switches, 'homework'), homework: switchOn(switches, 'homework') } : null;
+  // W6-A (C395): Attach shows only when the photo gate (the same rules the server applies to every photo) lets a photo through.
+  const files = tutorOn && TUTOR_READS_FILES && (await familyPageRead(page, (db) => photoGate(db, page.session.accountId, child))) === null;
+  const tutor = tutorOn && subject ? { subject, voice, files, homework: switchOn(switches, 'homework') } : null;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...READER_KEYS, ...(tutor ? TUTOR_KEYS : []), ...(voice ? VOICE_KEYS : [])]);
   // C386: the server voice reads the narration when Control has set one up; else the phone's own voice.
   const serverVoice = await familyPageRead(page, (db) => serverVoiceReady(db, page.session.accountId));

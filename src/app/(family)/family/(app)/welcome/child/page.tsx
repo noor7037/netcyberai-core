@@ -19,8 +19,8 @@ export default async function FamilyFirstChildPage() {
   // S4: the boards come from the database (content.boards), not a list in the page.
   const boards = await familyPageRead(page, (db) => listFamilyBoards(db, lang));
   return (
-    <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8">
-      <FirstChildStep w={familyWords(lang, ['fam.child.addTitle', 'fam.child.addLead', ...CHILD_FORM_KEYS])} states={familyStates(lang)} boards={boards} lang={lang} />
-    </main>
+    <div lang={lang}>
+      <FirstChildStep w={familyWords(lang, ['fam.app.name', 'fam.child.addTitle', 'fam.child.addLead', ...CHILD_FORM_KEYS])} states={familyStates(lang)} boards={boards} lang={lang} />
+    </div>
   );
 }

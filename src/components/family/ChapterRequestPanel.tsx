@@ -105,8 +105,8 @@ export function ChapterRequestPanel({
   };
 
   return (
-    <section data-chapter-request aria-labelledby="fam-chapter-request" className="fam-card fam-rise mt-4 flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 id="fam-chapter-request" className="text-lg font-extrabold text-slate">
+    <section data-chapter-request aria-labelledby="fam-chapter-request" className="fam-card fam-section fam-rise bg-white">
+      <h2 id="fam-chapter-request" className="fam-h2 text-slate">
         {w['fam.request.title']}
       </h2>
       <p className="text-sm text-slate">{w['fam.request.lead']}</p>

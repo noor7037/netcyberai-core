@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { LinkRow } from '@/components/family/ui/LinkRow';
 import { VaultList, type VaultChild } from '@/components/family/tutor/VaultList';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { vaultConversations } from '@/lib/family/tutor';
@@ -34,12 +34,10 @@ export default async function FamilyVaultPage() {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.vault.title']} tone="royal" />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-parent-vault>
-        <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.vault.lead']}</p>
-        <Link href="/family/parent/tests" data-parent-tests-link className="fam-card fam-press flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 text-base font-bold text-slate">
-          <span>{w['fam.tests.link']}</span>
-          <span aria-hidden="true">→</span>
-        </Link>
+      <main className="fam-page" data-parent-vault>
+        <LinkRow href="/family/parent/tests" icon="sheet" data-parent-tests-link="" card>
+          {w['fam.tests.link']}
+        </LinkRow>
         <VaultList w={w} lang={lang} list={list} />
       </main>
     </div>

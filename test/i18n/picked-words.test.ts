@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { SHELL_WORD_KEYS, SHELL_WORD_PREFIXES } from '@/components/app-shell/shell-words';
 import { en } from '@/lib/i18n/messages/en';
 
-// Picked words (C395): a client component on a light page reads only the words the server picked for it, never the
+// Picked words (C401): a client component on a light page reads only the words the server picked for it, never the
 // whole message table. A word it asks for and nobody picked would show as nothing, so this reads each such component
 // and checks every message key it names (a quoted key, a ternary's keys, or the fixed start of a key built at run
 // time, `role.${role}`) is covered by what its pages pick. And none of them may import the table again.

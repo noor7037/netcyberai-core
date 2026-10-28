@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""First Load JS budgets (C393, C395): every Family app page under 200 kB, Control → Family pages under 250 kB.
+"""First Load JS budgets (C393, C401): every Family app page under 200 kB, Control → Family pages under 250 kB.
 
 The Family app runs on low-end phones on slow data, so each of its pages has a budget for the JavaScript a first visit
 downloads: the "First Load JS" `next build` prints. This check reads the build's app-build-manifest.json and, for each
 page, adds up the gzip size of every distinct script in the page's manifest entry AND in the entries of every layout
-above it (C395), in kB of 1000 bytes. `next build` prints the page's own entry without its layouts, which hid a
+above it (C401), in kB of 1000 bytes. `next build` prints the page's own entry without its layouts, which hid a
 layout that carried the whole message table on every Control page; this check counts what a first visit downloads.
 It fails when any page under a budget is over it, or when a budget finds no page. No page is excluded.
 
@@ -91,7 +91,7 @@ def self_test() -> int:
         if len(problems) != 1 or "parent/page" not in problems[0]:
             print(f"self-test FAILED: the heavy parent page was not caught alone: {problems}", file=sys.stderr)
             return 1
-        # A heavy layout counts for every page under it (C395): here, the Control layout under Control → Family.
+        # A heavy layout counts for every page under it (C401): here, the Control layout under Control → Family.
         manifest["pages"]["/(family)/family/(app)/parent/page"] = ["static/small.js"]
         manifest["pages"]["/(admin)/control/layout"] = ["static/big.js"]
         (build / "app-build-manifest.json").write_text(json.dumps(manifest))

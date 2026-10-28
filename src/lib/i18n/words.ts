@@ -1,6 +1,6 @@
 import type { MessageKey } from './index';
 
-// Words picked on the server for a client screen (C395). The client gets only the messages it shows, never the whole
+// Words picked on the server for a client screen (C401). The client gets only the messages it shows, never the whole
 // message table: the table is about 380 kB of JavaScript, and a client component that imports `t` from '@/lib/i18n'
 // sends all of it to every page that shows that component. Only types come from './index', so nothing of the table
 // is bundled here. scripts/check_family_budget.py measures the result.

@@ -1,18 +1,19 @@
 import type { SchoolExamPaper } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
 import { SchoolText } from './SchoolText';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The child's exam timetable (C351): the coming papers of the child's class, day by day, with the child's own exam
 // number when the exam uses them. Read only, as the school published it; nothing about any other child.
 const day = (iso: string, lang: 'en' | 'hi') =>
-  new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+  sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 export function ExamTimetable({ w, lang, papers, heading = 'p' }: { w: Words; lang: 'en' | 'hi'; papers: SchoolExamPaper[]; heading?: 'p' | 'h2' }) {
   const Title = heading;
   const seats = Array.from(new Set(papers.map((p) => p.seatNo).filter((s): s is string => !!s)));
   return (
     <div className="flex flex-col gap-2" data-exam-timetable>
-      <Title className={heading === 'h2' ? 'text-lg font-extrabold text-slate' : 'text-sm font-semibold text-slate'}>{w['fam.marks.timetable']}</Title>
+      <Title className={heading === 'h2' ? 'fam-h2 text-slate' : 'text-sm font-semibold text-slate'}>{w['fam.marks.timetable']}</Title>
       {papers.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.marks.timetableNone']}</p>
       ) : (

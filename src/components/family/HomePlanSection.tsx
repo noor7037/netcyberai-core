@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { fill, type Words } from '@/lib/family/fill';
 import { MAX_PLAN_TOPICS, type HomePlan } from '@/lib/family/home-plan-shape';
 import { familyApi } from './client';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The parent area's home plan after a parent-teacher meeting (M3-7, C337; R5, Plus). For each child: the open plan's 14
 // nights (done from the child's checked answers), the parent's notes, "Ask the teacher to follow up" for a child matched
@@ -17,7 +18,7 @@ import { familyApi } from './client';
 export type PlanSubject = { subject: string; name: string; chapters: { title: string; topics: { key: string; title: string }[] }[] };
 export type HomePlanChild = { childId: string; firstName: string; plan: HomePlan | null; linked: boolean; subjects: PlanSubject[] };
 
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 function OpenPlan({ w, lang, child }: { w: Words; lang: 'en' | 'hi'; child: HomePlanChild & { plan: HomePlan } }) {
   const router = useRouter();
@@ -158,8 +159,8 @@ function NewPlan({ w, child }: { w: Words; child: HomePlanChild }) {
 
 export function HomePlanSection({ w, lang, children }: { w: Words; lang: 'en' | 'hi'; children: HomePlanChild[] }) {
   return (
-    <section data-home-plan className="fam-card fam-rise flex flex-col gap-4 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.homePlan.title']}</h2>
+    <section data-home-plan className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.homePlan.title']}</h2>
       {children.map((c) => (
         <div key={c.childId} data-home-plan-child={c.childId} className="flex flex-col gap-2 rounded-2xl bg-off-white/60 p-3 ring-1 ring-slate/10">
           <p className="text-base font-bold text-slate">{c.firstName}</p>

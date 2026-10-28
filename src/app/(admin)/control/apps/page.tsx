@@ -31,7 +31,7 @@ export default async function ControlAppsPage() {
             </h2>
             <HealthView health={data.health} lang={lang} />
           </section>
-          {/* The change forms' shared parts take picked words (ChangeForm, C395). */}
+          {/* The change forms' shared parts take picked words (ChangeForm, C401). */}
           <WordsProvider words={pickWords(lang, [], ['control.apps.'])}>
             <AppsView data={data.apps} build={liveBuild()} lang={lang} now={new Date()} />
           </WordsProvider>

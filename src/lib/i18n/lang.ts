@@ -1,4 +1,4 @@
-// The two languages and their names, with nothing of the message table (C395), for client code that needs only
+// The two languages and their names, with nothing of the message table (C401), for client code that needs only
 // these. './index' re-exports them.
 export const LANGS = ['en', 'hi'] as const;
 export type Lang = (typeof LANGS)[number];

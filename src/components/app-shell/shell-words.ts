@@ -2,7 +2,7 @@ import { LANGS, t, type Lang, type MessageKey } from '@/lib/i18n';
 import { pickWords } from '@/lib/i18n/pick';
 import type { Words } from '@/lib/i18n/words';
 
-// The shell's words, picked on the server for AppShell (C395): its menu, search, quick add, sync line, language
+// The shell's words, picked on the server for AppShell (C401): its menu, search, quick add, sync line, language
 // switch and account parts, the first-visit tours and Show me how and the page header's About (ModulePage), and the authenticator check (StepUp), which any
 // screen under the shell may open. By
 // prefix, because some are looked up by an id at run time (`role.${role}`, `search.group.${kind}`, `new.${id}`).

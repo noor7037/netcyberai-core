@@ -49,11 +49,11 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
   if (error) {
     const text = error === 'consent_needed' ? w['fam.english.consent'] : error === 'off' ? w['fam.english.off'] : error === 'no_course' ? w['fam.english.noCourse'] : w['fam.english.error'];
     return (
-      <div className="flex flex-col items-start gap-3 rounded-3xl bg-white p-5 text-slate shadow-sm ring-1 ring-slate/10">
+      <div className="flex flex-col items-start gap-3 fam-card bg-white p-5 text-slate">
         <Pic pic={error === 'consent_needed' ? '🙋' : '🌱'} size={48} />
         <p className="text-lg font-bold text-slate">{text}</p>
         {error === 'consent_needed' && (
-          <Link href="/family/parent" className="flex min-h-[44px] items-center rounded-full bg-royal px-5 font-bold text-white">
+          <Link href="/family/parent" className="fam-press flex min-h-[44px] items-center rounded-full bg-royal px-5 font-bold text-white">
             {w['fam.english.consentButton']}
           </Link>
         )}
@@ -64,7 +64,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
     return (
       <div aria-busy="true" className="flex flex-col gap-3">
         {[0, 1, 2, 3].map((i) => (
-          <div key={i} className="h-20 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />
+          <div key={i} className="h-20 animate-pulse rounded-2xl bg-slate/10 motion-reduce:animate-none" />
         ))}
       </div>
     );
@@ -79,7 +79,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
 
   return (
     <div className="flex flex-col gap-4">
-      <section className={`flex items-center gap-4 rounded-3xl p-4 shadow-md ${theme.header}`}>
+      <section className={`fam-rise flex items-center gap-4 rounded-2xl p-4 shadow-lg ${theme.header}`}>
         <Ring done={data.week.done} goal={data.week.goal} hex={data.track === 'a' ? colors.slate : colors.offWhite} light={colors.offWhite} />
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold uppercase tracking-wide">{w[`fam.english.track.${data.track}`]}</p>
@@ -88,18 +88,18 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
         </div>
       </section>
 
-      {restToday && <p className="rounded-3xl bg-leaf/15 p-4 text-base font-bold text-slate"><Picture e="🌙" /> {w['fam.english.rest']}</p>}
-      {data.reviewDue > 0 && <p className="rounded-3xl bg-cyan/15 p-4 text-base font-semibold text-slate"><Picture e="🔁" /> {w['fam.english.reviewDue'].replace('{n}', String(data.reviewDue))}</p>}
+      {restToday && <p className="fam-rise rounded-2xl bg-leaf/15 p-4 text-base font-bold text-slate"><Picture e="🌙" /> {w['fam.english.rest']}</p>}
+      {data.reviewDue > 0 && <p className="rounded-2xl bg-cyan/15 p-4 text-base font-semibold text-slate"><Picture e="🔁" /> {w['fam.english.reviewDue'].replace('{n}', String(data.reviewDue))}</p>}
 
       {checks.map((a) => (
-        <div key={a.kind} className="flex items-center gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10">
+        <div key={a.kind} className="flex items-center gap-3 fam-card bg-white p-4 text-slate">
           <Pic pic={a.result ? '📈' : '📝'} size={40} />
           <div className="flex flex-1 flex-col">
             <p className="text-lg font-bold text-slate">{w[`fam.english.check.${a.kind}`]}</p>
             {a.result && <p className="text-base text-slate">{w['fam.english.check.score'].replace('{n}', String(a.result.total))}</p>}
           </div>
           {a.open && !a.result && (
-            <Link href={`/family/english/check/${a.kind}`} className={`flex min-h-[44px] items-center rounded-full px-4 font-bold ${theme.button}`}>
+            <Link href={`/family/english/check/${a.kind}`} className={`fam-press flex min-h-[44px] items-center rounded-full px-4 font-bold ${theme.button}`}>
               {w['fam.english.check.take']}
             </Link>
           )}
@@ -121,7 +121,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
                 type="button"
                 onClick={() => setOpenUnit(shown === u.key ? null : u.key)}
                 aria-expanded={shown === u.key}
-                className={`relative flex w-11/12 items-center gap-3 rounded-3xl p-3 text-left shadow-md ring-2 animate-rise-in motion-reduce:animate-none ${locked ? 'bg-off-white text-slate ring-slate/10' : isCurrent ? `bg-white text-slate ${theme.ring}` : 'bg-white text-slate ring-slate/10'}`}
+                className={`fam-lift relative flex w-11/12 items-center gap-3 rounded-2xl p-3 text-left shadow-md ring-2 animate-rise-in motion-reduce:animate-none ${locked ? 'bg-off-white text-slate ring-slate/10' : isCurrent ? `bg-white text-slate ${theme.ring}` : 'bg-white text-slate ring-slate/10'}`}
                 style={{ animationDelay: `${Math.min(i, 8) * 60}ms`, animationFillMode: 'both' }}
               >
                 <span className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full" style={{ background: locked ? undefined : `${theme.light}33` }}>
@@ -135,7 +135,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
                 </span>
               </button>
               {shown === u.key && (
-                <div className="flex w-11/12 flex-col gap-2 rounded-3xl bg-white p-3 text-slate shadow-sm ring-1 ring-slate/10 animate-rise-in motion-reduce:animate-none">
+                <div className="flex w-11/12 flex-col gap-2 fam-card bg-white p-3 text-slate animate-rise-in motion-reduce:animate-none">
                   <p className="rounded-2xl bg-sunshine/20 p-2 text-sm font-semibold text-slate"><Picture e="🎯" /> {t(u.canDoEn, u.canDoHi)}</p>
                   {u.lessons.map((l) => {
                     const can = l.state === 'done' || l.state === 'placed' || l.state === 'open';
@@ -155,7 +155,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
                       </>
                     );
                     return can ? (
-                      <Link key={l.key} href={`/family/english/lesson/${l.key}`} className={`flex min-h-[56px] items-center gap-3 rounded-2xl p-2 text-slate ${l.state === 'open' ? theme.soft : 'bg-off-white text-slate'}`}>
+                      <Link key={l.key} href={`/family/english/lesson/${l.key}`} className={`fam-lift flex min-h-[56px] items-center gap-3 rounded-xl p-2 text-slate ${l.state === 'open' ? theme.soft : 'bg-off-white text-slate'}`}>
                         {body}
                       </Link>
                     ) : (

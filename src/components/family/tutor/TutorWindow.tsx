@@ -1,24 +1,21 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { Button } from '@/components/ui/Button';
-import { Textarea } from '@/components/ui/Textarea';
+import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { Block } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
-import { subjectTheme } from '@/lib/family/subject-theme';
 import type { Subject } from '@/lib/family/subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_FILE_TYPES, TUTOR_TEXT_MAX, TUTOR_TEXT_MIN, sniffTutorFile, type TutorFileType, type TutorTurn } from '@/lib/family/tutor-shape';
+import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type TutorTurn } from '@/lib/family/tutor-shape';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
 import { UnderstandView, type UnderstandInput } from '../UnderstandView';
-import { VoiceInput } from '../VoiceInput';
+import { Composer, type ComposerFile } from './Composer';
 
 // The shared tutor window (S2, C375; docs/37 §4 Wave 2): one window for every question a child types, on the Study page
-// and in the chapter reader's doubt drawer. An input rail (the question, the microphone when the parent said yes to
-// voice, Attach file when the parent said yes to photo questions, Send) and two tabs: Ask, the answer being drawn
-// (through Understand: the same consent, module switch, safety check and daily cap), and Conversation, this child's
-// earlier questions and answers in this subject, read from the server (the child is the one this phone chose).
+// and in the chapter reader's doubt drawer. W6-A (C395): one composer (Composer.tsx) pinned at the foot, and above it
+// one place for what the composer brings: the answer being drawn (through Understand: the same consent, module switch,
+// safety check and daily cap), or, from the composer's Conversation button, this child's earlier questions and
+// answers in this subject, read from the server (the child is the one this phone chose). Study passes its chapters as
+// `children`, between that place and the composer, so the composer stays pinned while the chapters scroll.
 // A file goes straight to the private store (the server gives a link for it, then reads and checks what arrived); it is
 // shown only through the app's own address, which answers with a link that works for one minute.
 
@@ -35,9 +32,12 @@ type Props = {
   homework?: boolean;
   reader?: TutorReaderContext | null;
   idPrefix?: string;
+  // Where the composer is pinned: above the tab dock (Study) or at the foot of the doubt drawer.
+  pinned?: 'dock' | 'sheet';
+  children?: ReactNode;
 };
 
-type Attached = { key: string; name: string; mime: TutorFileType; state: 'sending' | 'checking' | 'ready'; id: string | null };
+type Attached = ComposerFile;
 
 const postJson = (url: string, body: unknown) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify(body) }).catch(() => null);
 const errorOf = async (res: Response | null) => (res ? String(((await res.json().catch(() => ({}))) as { error?: unknown }).error ?? 'network') : 'network');
@@ -54,8 +54,8 @@ function sendToStore(url: string, file: File, contentType: string): Promise<bool
   });
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor' }: Props) {
-  const [tab, setTab] = useState<'ask' | 'conversation'>('ask');
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', children }: Props) {
+  const [view, setView] = useState<'ask' | 'history'>('ask');
   const [text, setText] = useState('');
   const [asked, setAsked] = useState<{ n: number; input: UnderstandInput } | null>(null);
   const [attached, setAttached] = useState<Attached[]>([]);
@@ -63,9 +63,18 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [turns, setTurns] = useState<TutorTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
   const stale = useRef(true);
-  const fileInput = useRef<HTMLInputElement>(null);
+  const slot = useRef<HTMLDivElement>(null);
+  const historyHead = useRef<HTMLHeadingElement>(null);
   const uid = useId().replace(/:/g, '');
-  const ids = { tabs: `${idPrefix}-${uid}`, ask: `${idPrefix}-${uid}-ask`, conv: `${idPrefix}-${uid}-conv`, q: `${idPrefix}-${uid}-q` };
+  const ids = { title: `${idPrefix}-${uid}-title`, slot: `${idPrefix}-${uid}-slot`, q: `${idPrefix}-${uid}-q` };
+
+  // Bring the answer or the conversation into view (the composer may be far below, pinned over the chapters).
+  const reveal = (focus?: HTMLElement | null) =>
+    requestAnimationFrame(() => {
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      slot.current?.scrollIntoView({ block: 'start', behavior: still ? 'auto' : 'smooth' });
+      focus?.focus({ preventScroll: true });
+    });
 
   const loadTurns = useCallback(async () => {
     stale.current = false;
@@ -81,8 +90,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   }, [subject]);
 
   useEffect(() => {
-    if (tab === 'conversation' && stale.current) void loadTurns();
-  }, [tab, loadTurns]);
+    if (view === 'history' && stale.current) void loadTurns();
+  }, [view, loadTurns]);
 
   const onAnswered = useCallback(() => {
     stale.current = true;
@@ -129,169 +138,119 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     setText('');
     setAttached([]);
     setFileError(null);
-    setTab('ask');
+    setView('ask');
+    reveal();
   };
 
-  const tabClass = (on: boolean) => `fam-press flex min-h-[44px] flex-1 items-center justify-center rounded-2xl px-3 text-sm font-bold ${on ? 'bg-royal-deep text-white shadow-md' : 'bg-white text-slate hover:bg-off-white'}`;
+  const toggleHistory = () => {
+    if (view === 'history') return setView('ask');
+    setView('history');
+    reveal(historyHead.current);
+  };
 
   return (
-    <section data-tutor-window data-subject={subject} aria-labelledby={`${ids.tabs}-title`} className="flex flex-col gap-3">
-      <h2 id={`${ids.tabs}-title`} className="sr-only">
+    <section data-tutor-window data-subject={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
+      <h2 id={ids.title} className="sr-only">
         {w['fam.tutor.title']}
       </h2>
-      <div role="tablist" aria-label={w['fam.tutor.tabs']} className="fam-card flex gap-2 bg-white p-2">
-        <button type="button" role="tab" id={`${ids.ask}-tab`} aria-controls={ids.ask} aria-selected={tab === 'ask'} onClick={() => setTab('ask')} className={tabClass(tab === 'ask')} data-tutor-tab="ask">
-          {w['fam.tutor.tabAsk']}
-        </button>
-        <button type="button" role="tab" id={`${ids.conv}-tab`} aria-controls={ids.conv} aria-selected={tab === 'conversation'} onClick={() => setTab('conversation')} className={tabClass(tab === 'conversation')} data-tutor-tab="conversation">
-          {w['fam.tutor.tabConversation']}
-        </button>
-      </div>
-
-      <div role="tabpanel" id={ids.ask} aria-labelledby={`${ids.ask}-tab`} hidden={tab !== 'ask'} className={`${tab === 'ask' ? 'flex' : 'hidden'} flex-col gap-3`}>
-        {reader && (
-          <p data-tutor-context className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
-            {fill(w['fam.tutor.doubtAbout'], { section: reader.section })}
-          </p>
-        )}
-        {asked && <UnderstandView key={asked.n} w={w} input={asked.input} tone={tone} onDone={onAnswered} />}
-        <form
-          data-tutor-rail
-          className="fam-card flex flex-col gap-3 bg-white p-4 sm:p-5"
-          onSubmit={(e) => {
-            e.preventDefault();
-            send();
-          }}
-        >
-          <Textarea id={ids.q} label={w['fam.tutor.question']} helperText={w['fam.tutor.questionHelp']} maxLength={TUTOR_TEXT_MAX} rows={3} value={text} onChange={(e) => setText(e.target.value)} />
-          {attached.length > 0 && (
-            <ul data-tutor-files className="flex flex-col gap-2">
-              {attached.map((a) => (
-                <li key={a.key} data-tutor-file={a.state} className="flex min-h-[44px] items-center gap-2 rounded-2xl bg-off-white px-3 text-sm text-slate">
-                  <span className="font-bold">{a.mime === 'application/pdf' ? w['fam.tutor.filePdf'] : w['fam.tutor.filePhoto']}</span>
-                  <span className="min-w-0 flex-1 truncate">{a.state === 'sending' ? w['fam.tutor.fileSending'] : a.state === 'checking' ? w['fam.tutor.fileChecking'] : a.name}</span>
-                  <button type="button" onClick={() => remove(a)} aria-label={w['fam.tutor.removeFile']} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate hover:bg-white">
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                      <path d="M6 6l12 12M18 6L6 18" />
-                    </svg>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          {fileError && (
-            <p role="alert" data-tutor-file-error className="rounded-2xl bg-off-white px-3 py-2 text-sm font-semibold text-slate">
-              {fileError}
-            </p>
-          )}
-          {voice && <VoiceInput w={w} secondsLeft={voice.secondsLeft} onText={(heard) => setText((t) => (t.trim() ? `${t.trim()} ${heard}` : heard).slice(0, TUTOR_TEXT_MAX))} />}
-          <div className="flex flex-wrap items-center gap-2">
-            {files && (
-              <>
-                <input
-                  ref={fileInput}
-                  type="file"
-                  accept={TUTOR_FILE_TYPES.join(',')}
-                  className="sr-only"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  onChange={(e) => {
-                    const f = e.target.files?.[0];
-                    e.target.value = '';
-                    if (f) void attach(f);
-                  }}
-                />
-                <button
-                  type="button"
-                  data-tutor-attach
-                  onClick={() => fileInput.current?.click()}
-                  disabled={attached.length >= TUTOR_FILES_PER_TURN}
-                  aria-describedby={`${ids.q}-attach-help`}
-                  className="fam-press flex min-h-[48px] items-center gap-2 rounded-2xl bg-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/20 hover:bg-off-white disabled:opacity-50"
-                >
-                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 11.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.6-8.6a3.5 3.5 0 0 1 5 5l-8.6 8.6a2 2 0 0 1-2.8-2.8l7.9-7.9" />
-                  </svg>
-                  {w['fam.tutor.attach']}
-                </button>
-              </>
-            )}
-            <Button type="submit" disabled={!canSend} data-tutor-send className={`fam-cta fam-press ml-auto min-h-[48px] rounded-2xl bg-royal-deep px-6 font-extrabold text-white ${subjectTheme(subject).tile}`}>
-              {w['fam.tutor.send']}
-            </Button>
+      {reader && (
+        <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate ring-1 ring-slate/10">
+          {fill(w['fam.tutor.doubtAbout'], { section: reader.section })}
+        </p>
+      )}
+      <div id={ids.slot} ref={slot} data-tutor-slot={view} className={`scroll-mt-4 flex-col gap-3 ${(view === 'ask' && !asked) ? 'hidden' : 'flex'}`}>
+        {asked && (
+          <div hidden={view !== 'ask'} className={view === 'ask' ? 'flex flex-col gap-3' : 'hidden'}>
+            <UnderstandView key={asked.n} w={w} input={asked.input} tone={tone} onDone={onAnswered} />
           </div>
-          {files && (
-            <p id={`${ids.q}-attach-help`} className="text-xs text-slate/80">
-              {w['fam.tutor.attachHelp']}
-            </p>
-          )}
-        </form>
-        {homework && (
-          <p data-tutor-homework className="flex flex-wrap items-center gap-x-2 rounded-2xl bg-white px-4 py-3 text-sm text-slate ring-1 ring-slate/10">
-            <span>{w['fam.tutor.homeworkNote']}</span>
-            <Link href="/family/study/homework" className="inline-flex min-h-[44px] items-center font-bold text-royal-deep underline-offset-4 hover:underline">
-              {w['fam.tutor.homeworkOpen']} <span aria-hidden="true">→</span>
-            </Link>
-          </p>
         )}
-      </div>
-
-      <div role="tabpanel" id={ids.conv} aria-labelledby={`${ids.conv}-tab`} hidden={tab !== 'conversation'} className={`${tab === 'conversation' ? 'flex' : 'hidden'} flex-col gap-3`} aria-busy={turns === null && !turnsError}>
-        {turnsError && (
-          <p role="status" className="fam-card bg-white p-4 text-sm text-slate">
-            {w['fam.err.network']}
-          </p>
-        )}
-        {turns === null && !turnsError && <p className="fam-card bg-white p-4 text-sm text-slate">{w['fam.tutor.loading']}</p>}
-        {turns && turns.length === 0 && (
-          <p data-tutor-empty className="fam-card bg-white p-4 text-base text-slate">
-            {w['fam.tutor.empty']}
-          </p>
-        )}
-        {turns && turns.length > 0 && (
-          <ol data-tutor-turns className="flex flex-col gap-3">
-            {turns.map((t) => (
-              <li key={t.id} data-turn={t.role}>
-                {t.role === 'child' ? (
-                  <div className="ml-6 flex flex-col gap-2 rounded-3xl rounded-br-md bg-royal-deep p-4 text-white sm:ml-16">
-                    <p className="text-xs font-bold uppercase tracking-wide text-white">{w['fam.tutor.you']}</p>
-                    <p lang={t.lang} className="whitespace-pre-wrap break-words text-base">
-                      {t.text}
-                    </p>
-                    {t.chapterKey && <p className="text-xs font-semibold text-white">{w['fam.tutor.fromReader']}</p>}
-                    {t.files.length > 0 && (
-                      <ul className="flex flex-wrap gap-2">
-                        {t.files.map((f) => (
-                          <li key={f.id}>
-                            <a
-                              href={`/api/family/tutor/files/${encodeURIComponent(f.id)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex min-h-[44px] items-center gap-1 rounded-2xl bg-white px-3 text-sm font-bold text-royal-deep"
-                            >
-                              {f.mime === 'application/pdf' ? w['fam.tutor.filePdf'] : w['fam.tutor.filePhoto']}
-                              <span className="sr-only">: {w['fam.tutor.openFile']}</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+        {view === 'history' && (
+          <div data-tutor-history-panel className="fam-acc-in flex flex-col gap-3" aria-busy={turns === null && !turnsError}>
+            <div className="flex items-center justify-between gap-2">
+              <h3 ref={historyHead} tabIndex={-1} className="px-1 text-lg font-extrabold text-slate focus:outline-none">
+                {w['fam.tutor.tabConversation']}
+              </h3>
+              <button type="button" onClick={() => setView('ask')} data-tutor-history-close className="fam-press flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-slate ring-1 ring-slate/15 hover:bg-off-white">
+                {w['fam.tutor.close']}
+              </button>
+            </div>
+            {turnsError && (
+              <p role="status" className="fam-surface bg-white p-4 text-sm text-slate">
+                {w['fam.err.network']}
+              </p>
+            )}
+            {turns === null && !turnsError && <p className="fam-surface bg-white p-4 text-sm text-slate">{w['fam.tutor.loading']}</p>}
+            {turns && turns.length === 0 && (
+              <p data-tutor-empty className="fam-surface bg-white p-4 text-base text-slate">
+                {w['fam.tutor.empty']}
+              </p>
+            )}
+            {turns && turns.length > 0 && (
+              <ol data-tutor-turns className="flex flex-col gap-3">
+                {turns.map((t) => (
+                  <li key={t.id} data-turn={t.role}>
+                    {t.role === 'child' ? (
+                      <div className="ml-6 flex flex-col gap-2 rounded-2xl rounded-br-md bg-royal-deep p-4 text-white sm:ml-16">
+                        <p className="text-xs font-bold uppercase tracking-wide text-white">{w['fam.tutor.you']}</p>
+                        <p lang={t.lang} className="whitespace-pre-wrap break-words text-base">
+                          {t.text}
+                        </p>
+                        {t.chapterKey && <p className="text-xs font-semibold text-white">{w['fam.tutor.fromReader']}</p>}
+                        {t.files.length > 0 && (
+                          <ul className="flex flex-wrap gap-2">
+                            {t.files.map((f) => (
+                              <li key={f.id}>
+                                <a
+                                  href={`/api/family/tutor/files/${encodeURIComponent(f.id)}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex min-h-[44px] items-center gap-1 rounded-xl bg-white px-3 text-sm font-bold text-royal-deep"
+                                >
+                                  {f.mime === 'application/pdf' ? w['fam.tutor.filePdf'] : w['fam.tutor.filePhoto']}
+                                  <span className="sr-only">: {w['fam.tutor.openFile']}</span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-2">
+                        <p className="px-1 text-xs font-bold uppercase tracking-wide text-slate">{w['fam.tutor.tutorSaid']}</p>
+                        <div lang={t.lang} className="flex flex-col gap-2">
+                          {t.blocks.map((b, i) => (
+                            <TurnBlock key={i} b={b} w={w} tone={tone} />
+                          ))}
+                        </div>
+                      </div>
                     )}
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-2">
-                    <p className="px-1 text-xs font-bold uppercase tracking-wide text-slate">{w['fam.tutor.tutorSaid']}</p>
-                    <div lang={t.lang} className="flex flex-col gap-2">
-                      {t.blocks.map((b, i) => (
-                        <TurnBlock key={i} b={b} w={w} tone={tone} />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ol>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
         )}
       </div>
+      {children}
+      <Composer
+        w={w}
+        id={ids.q}
+        value={text}
+        onChange={setText}
+        onSend={send}
+        canSend={canSend}
+        pinned={pinned}
+        files={files}
+        homework={homework}
+        attached={attached}
+        onAttach={(f) => void attach(f)}
+        onRemove={remove}
+        fileError={fileError}
+        voice={voice}
+        historyOpen={view === 'history'}
+        historyFor={ids.slot}
+        onHistory={toggleHistory}
+      />
     </section>
   );
 }

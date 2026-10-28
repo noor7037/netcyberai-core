@@ -27,7 +27,7 @@ async function save(lang: Lang): Promise<Response> {
   return renewed?.ok ? send() : res;
 }
 
-// `saved`: "Saved: <language>" in each language, picked on the server (C395), so it is said in the language chosen.
+// `saved`: "Saved: <language>" in each language, picked on the server (C401), so it is said in the language chosen.
 export function LanguageSwitch({ known = true, saved }: { known?: boolean; saved: Record<Lang, string> }) {
   const lang = useLang();
   const { t } = useWords();

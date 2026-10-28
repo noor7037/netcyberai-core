@@ -15,7 +15,7 @@ import { PatternVisual } from './Visuals';
 
 type Props<T extends Step['type']> = { step: Extract<Step, { type: T }>; w: Words; hindi: boolean; track: Track };
 
-const card = 'flex flex-col gap-3 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10';
+const card = 'flex flex-col gap-3 fam-card bg-white p-4';
 const big = 'min-h-[44px] rounded-full px-5 font-bold';
 
 function Listen({ text, w, lang = 'en', className = '' }: { text: string; w: Words; lang?: 'en' | 'hi'; className?: string }) {
@@ -59,7 +59,7 @@ export function Feedback({ kind, w, answer }: { kind: 'right' | 'almost' | null;
 
 export function TipStep({ step, hindi }: Props<'tip'>) {
   return (
-    <div className="flex flex-col gap-3 rounded-3xl bg-sunshine/25 p-5 text-slate shadow-sm ring-1 ring-gold/40">
+    <div className="flex flex-col gap-3 rounded-2xl bg-sunshine/25 p-5 text-slate shadow-sm ring-1 ring-gold/40">
       <div className="flex items-start gap-4">
         <Pic pic={step.pic ?? '💡'} size={64} className="animate-bounce-once motion-reduce:animate-none" />
         <div className="flex flex-col gap-1">
@@ -87,7 +87,7 @@ export function WordsStep({ step, w, track }: Props<'words'>) {
       <ul className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2">
         {step.words.map((word, i) => (
           <li key={word.key} className="w-4/5 max-w-[300px] shrink-0 snap-center animate-rise-in motion-reduce:animate-none" style={{ animationDelay: `${i * 90}ms`, animationFillMode: 'both' }}>
-            <div className={`flex h-full flex-col items-center gap-3 rounded-3xl p-5 text-center shadow-md ring-2 ${theme.ring} ${flipped[word.key] ? theme.soft : 'bg-white text-slate'}`}>
+            <div className={`flex h-full flex-col items-center gap-3 rounded-2xl p-5 text-center shadow-md ring-2 ${theme.ring} ${flipped[word.key] ? theme.soft : 'bg-white text-slate'}`}>
               <button
                 type="button"
                 onClick={() => setFlipped((f) => ({ ...f, [word.key]: !f[word.key] }))}
@@ -130,7 +130,7 @@ export function ActionStep({ step, w, hindi }: Props<'action'>) {
               setOn(i);
               void speak(p.en, 'en', 0.8);
             }}
-            className={`flex min-h-[132px] w-full flex-col items-center justify-center gap-2 rounded-3xl p-3 text-center shadow-sm ring-1 ring-slate/10 ${on === i ? 'bg-sunshine/30 text-slate' : 'bg-white text-slate'}`}
+            className={`flex min-h-[132px] w-full flex-col items-center justify-center gap-2 rounded-2xl p-3 text-center shadow-sm ring-1 ring-slate/10 ${on === i ? 'bg-sunshine/30 text-slate' : 'bg-white text-slate'}`}
           >
             <span className={on === i ? 'animate-bounce-once motion-reduce:animate-none' : ''}>
               <Pic pic={p.pic} size={52} />
@@ -191,7 +191,7 @@ export function StoryStep({ step, w, hindi, track }: Props<'story'>) {
           return (
             <li key={i} className={`flex items-end gap-2 animate-rise-in motion-reduce:animate-none ${right ? 'flex-row-reverse' : ''}`}>
               <Pic pic={l.pic} size={34} />
-              <div className={`flex max-w-xs flex-col gap-1 rounded-3xl px-4 py-3 shadow-sm ${right ? 'rounded-br-md bg-cyan/20 text-slate' : 'rounded-bl-md bg-white text-slate'} ring-1 ring-slate/10`}>
+              <div className={`flex max-w-xs flex-col gap-1 rounded-2xl px-4 py-3 shadow-sm ${right ? 'rounded-br-md bg-cyan/20 text-slate' : 'rounded-bl-md bg-white text-slate'} ring-1 ring-slate/10`}>
                 {l.speaker && <span lang="en" className="text-xs font-bold uppercase tracking-wide text-slate/70">{l.speaker}</span>}
                 <p lang="en" className="text-lg text-slate">
                   {reading?.line === i ? <Karaoke text={l.en} at={reading.char} /> : l.en}
@@ -518,7 +518,7 @@ export function RoleplayStep({ step, w, hindi, track }: Props<'roleplay'>) {
           return (
             <li key={i} className={`flex items-end gap-2 animate-rise-in motion-reduce:animate-none ${mine ? 'flex-row-reverse' : ''}`}>
               <Pic pic={role?.pic} size={34} />
-              <div className={`flex max-w-xs flex-col gap-1 rounded-3xl px-4 py-3 shadow-sm ring-1 ring-slate/10 ${mine ? `rounded-br-md ${theme.soft}` : 'rounded-bl-md bg-white text-slate'}`}>
+              <div className={`flex max-w-xs flex-col gap-1 rounded-2xl px-4 py-3 shadow-sm ring-1 ring-slate/10 ${mine ? `rounded-br-md ${theme.soft}` : 'rounded-bl-md bg-white text-slate'}`}>
                 <span className="text-xs font-bold uppercase tracking-wide text-slate/70">{mine && i === at ? w['fam.english.roleplay.turn'] : role?.name}</span>
                 <p className="text-lg text-slate"><span lang="en">{t.en}</span></p>
                 <Hi text={t.hi} show={hindi} />

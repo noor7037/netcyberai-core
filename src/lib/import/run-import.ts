@@ -62,6 +62,9 @@ export interface ImportResult {
   skippedCount: number;
   errors: RowError[];
   siblingSuggestions: ImportSiblingSuggestion[];
+  // The students written, by data row: only when written and asked for (opts.withIds), so a caller in the same
+  // transaction can link each to its guardian (school provisioning, C399).
+  created?: { row: number; studentId: string }[];
 }
 
 // Two-phase commit, per Prompt F Task 2: Phase 1 validates every row
@@ -119,7 +122,7 @@ export async function importStudentRecords(
   records: Record<string, string | undefined>[],
   fileHash: string,
   fileName: string,
-  opts: { preview?: boolean; rowErrors?: ReadonlyMap<number, string[]>; today?: string } = {}
+  opts: { preview?: boolean; rowErrors?: ReadonlyMap<number, string[]>; today?: string; withIds?: boolean; importedBy?: string | null } = {}
 ): Promise<ImportResult> {
   const preview = opts.preview === true;
   const today = opts.today ?? indiaDate();
@@ -267,7 +270,7 @@ export async function importStudentRecords(
     `insert into csv_imports (school_id, file_hash, file_name, imported_by, row_count, imported_count, skipped_count, errors)
      values ($1, $2, $3, $4, $5, $6, $7, $8)
      returning import_id, created_at`,
-    [claims.schoolId, fileHash, fileName, claims.sub, records.length, importedCount, errors.length, JSON.stringify(errors)]
+    [claims.schoolId, fileHash, fileName, opts.importedBy === undefined ? claims.sub : opts.importedBy, records.length, importedCount, errors.length, JSON.stringify(errors)]
   );
 
   return {
@@ -281,5 +284,6 @@ export async function importStudentRecords(
     skippedCount: errors.length,
     errors,
     siblingSuggestions,
+    ...(opts.withIds ? { created: valid.map((v) => ({ row: v.row, studentId: v.studentId })) } : {}),
   };
 }

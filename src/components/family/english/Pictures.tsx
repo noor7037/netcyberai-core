@@ -125,7 +125,7 @@ const PLACES: Record<Scene['place'], [string, string]> = {
 export function SceneView({ scene, label, className = '' }: { scene: Scene; label?: string; className?: string }) {
   const [sky, ground] = PLACES[scene.place] ?? PLACES.plain;
   return (
-    <div role={label ? 'img' : undefined} aria-label={label} className={`relative w-full overflow-hidden rounded-3xl ring-1 ring-slate/10 ${className}`} style={{ aspectRatio: '100 / 60', background: ground, containerType: 'inline-size' }}>
+    <div role={label ? 'img' : undefined} aria-label={label} className={`relative w-full overflow-hidden rounded-2xl ring-1 ring-slate/10 ${className}`} style={{ aspectRatio: '100 / 60', background: ground, containerType: 'inline-size' }}>
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-3/5" style={{ background: sky }} />
       {scene.pics.map((p, i) => (
         <span

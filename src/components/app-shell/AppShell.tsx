@@ -267,7 +267,7 @@ export function AppShell({
   // Which search this shell has: the school's, or Control's.
   scope?: 'school' | 'control';
   quickAdd?: readonly QuickAddItem[];
-  // The shell's words, picked on the server (shellWords, C395): the shell never carries the whole message table.
+  // The shell's words, picked on the server (shellWords, C401): the shell never carries the whole message table.
   words: Words;
   // "Saved: <language>" in each language, for the language switch (shellWords).
   langSaved: Record<Lang, string>;

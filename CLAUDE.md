@@ -183,3 +183,11 @@ quality bar does not change.
 - The production database cutover is **deferred to the very end**, before the
   first real school (docs/18 §0). Do not restart it or ask Noor for any of its
   steps until the supervisor schedules it.
+
+## Supervisor token discipline (founder, 2026-10-28, C230-AT)
+
+Trust what the build lead already verified. No second security review when the builder ran one; a second review only
+for a slice that touches children's data or money and has no builder review. No supervisor re-run of `ci_local.sh`
+when the builder's run and GitHub CI are green. Decision Log rows ride the next integration PR, never a PR of their
+own. List only the PRs needed, bodies on demand. Keep the chain check, the migration name and md5 check, and one
+targeted read of the risky lines. No preamble narration: say what was decided and what the founder does.

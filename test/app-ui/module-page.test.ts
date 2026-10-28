@@ -14,7 +14,7 @@ import { HERO_TONES } from '@/components/app-ui/tones';
 
 const slots = (html: string) => [...html.matchAll(/data-slot="(\w+)"|<(h1)|role="(note)"|data-bulk="(1)"/g)].map((m) => m[1] ?? m[2] ?? m[3] ?? 'bulk');
 
-// The shell gives every page its words (C395); a page drawn alone here gets them the same way.
+// The shell gives every page its words (C401); a page drawn alone here gets them the same way.
 const render = (el: Parameters<typeof renderToStaticMarkup>[0]) => renderToStaticMarkup(h(WordsProvider, { words: shellWords('en').words, children: el }));
 
 describe('ModulePage', () => {

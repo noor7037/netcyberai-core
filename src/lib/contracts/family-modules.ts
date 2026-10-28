@@ -26,7 +26,7 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'careers', tab: 'future', flag: 'careers', entitlement: 'public', built: true, milestone: 'H1' },
   { id: 'opportunities', tab: 'future', flag: 'opportunities', entitlement: 'public', built: true, milestone: 'H1' },
   { id: 'exams_portal', tab: 'future', flag: 'exams_portal', entitlement: 'public', built: true, milestone: 'H1' },
-  { id: 'school_today', tab: 'home', flag: 'school_today', entitlement: 'school_info', built: false, milestone: 'M3' },
+  { id: 'school_today', tab: 'home', flag: 'school_today', entitlement: 'school_info', built: true, milestone: 'M3' },
   // M2 (C275): each slice sets its module's `built` when it ships.
   { id: 'plan', tab: 'home', flag: 'plan', entitlement: 'learning', built: true, milestone: 'M2' },
   // m2-3

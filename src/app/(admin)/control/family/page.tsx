@@ -40,7 +40,7 @@ export default async function ControlFamilyPage() {
       </p>
       {counts && <FamilyCountsView counts={counts} lang={lang} />}
       {lists && (
-        // The forms' words, picked here (C395): the page never carries the whole message table.
+        // The forms' words, picked here (C401): the page never carries the whole message table.
         <WordsProvider words={pickWords(lang, [], ['control.family.', 'fam.subject.'])}>
         <div className="mt-6 flex flex-col gap-6">
           <SubjectListForm list="open_subjects" subjects={SUBJECT_IDS} initial={lists.open} />

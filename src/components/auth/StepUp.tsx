@@ -130,7 +130,7 @@ function askStepUp(method: Method, w: Words): Promise<boolean> {
 }
 
 export function useStepUp() {
-  // Its words come with the shell's (shellWords, C395), so a screen that asks for the authenticator stays light.
+  // Its words come with the shell's (shellWords, C401), so a screen that asks for the authenticator stays light.
   const { t } = useWords();
   const words = useRef<Words | null>(null);
   words.current = Object.fromEntries(KEYS.map((k) => [k, t(k)])) as Words;

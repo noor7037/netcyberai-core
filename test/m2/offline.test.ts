@@ -96,7 +96,7 @@ const key = () => crypto.randomUUID();
 
 describe('the chapter pack', () => {
   it('needs the offline module switched on in Control (on by default once built, C230-Z; off when Control says so)', async () => {
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'offline', false, 'test')`);
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'offline', false, 'test') on conflict (app, module) do update set enabled = excluded.enabled, reason = excluded.reason`);
     const res = await getPack(jar);
     expect(res.status).toBe(403);
     expect((await res.json()).error).toBe('not_switched_on');

@@ -3,7 +3,7 @@
 import { createContext, useContext, type ReactNode } from 'react';
 import { DEFAULT_LANG, type Lang } from '@/lib/i18n/lang';
 
-// The page's language for client components (C134), with nothing of the message table (C395): LangContext.tsx adds
+// The page's language for client components (C134), with nothing of the message table (C401): LangContext.tsx adds
 // useT on top of it for screens that still read the whole table.
 const LangContext = createContext<Lang>(DEFAULT_LANG);
 

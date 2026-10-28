@@ -2,7 +2,7 @@ import type { IconName } from '@/components/visual/Icons';
 import type { ColorToken, Phase } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
 
-// What the shell draws, and the link that is the page (C121), with nothing of the message table (C395): the shell is
+// What the shell draws, and the link that is the page (C121), with nothing of the message table (C401): the shell is
 // a client component, and shell-nav.ts (which names the links on the server) reads the whole table.
 
 // `tone` colours this item's icon tile; without it the group's tone is used.
