@@ -127,7 +127,9 @@ export const FAMILY_SCREENS = [
   // S2 (C375): the shared tutor window on Study (its input rail, then its Conversation tab), the reader's doubt drawer,
   // and the parent's Learning Vault.
   ['full', 'family-tutor-window', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]' }],
-  ['full', 'family-tutor-conversation', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ tap: '[data-tutor-tab="conversation"]', wait: '[data-tutor-turns]' }] }],
+  // W6-A (C395): Study's chapter accordion with its first chapter open (topics, worksheets, explain, offline pack).
+  ['full', 'family-study-accordion', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-row] summary', steps: [{ tap: '[data-chapter-row] summary', wait: '[data-chapter-row] details[open] .fam-acc-body' }] }],
+  ['full', 'family-tutor-conversation', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ tap: '[data-tutor-history]', wait: '[data-tutor-turns]' }] }],
   ['full', 'family-tutor-doubt', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-doubt]', steps: [{ tap: '[data-reader-doubt]', wait: '[data-tutor-drawer] [data-tutor-rail]' }] }],
   ['full', 'family-tutor-vault', '/family/parent/vault', { parent: true, settle: '[data-vault-conversation]' }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
@@ -135,7 +137,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
   // m2-6: the homework helper's start screen, and its link in Study (C280).
   ['full', 'family-homework', '/family/study/homework', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-start]' }],
-  ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-link]' }],
+  // W6-A (C395): the homework helper's link is in the composer's Attach menu.
+  ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-homework-link]' }] }],
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
   ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
@@ -351,7 +354,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `mic`: start a recording on Chromium's fake microphone (the browser is launched with it), so the recording
           // state can be pictured. Nothing is sent: the context closes while it records.
           if (opts.mic) {
-            await page.locator('[data-voice-input] button').first().click();
+            await page.locator('[data-voice-input] button, button[data-voice-input]').first().click();
             await page.locator('[data-voice-state="recording"]').waitFor({ timeout: 10000 }).catch(() => errors.push('the recording never started'));
             await page.waitForTimeout(1600);
           }

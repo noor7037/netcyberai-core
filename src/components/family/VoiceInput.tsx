@@ -1,142 +1,19 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
-import { familyApi } from './client';
+import { useVoiceRecorder, VOICE_MAX_SECONDS } from './voice/useVoiceRecorder';
 
 // Voice input (M2-7, C281): tap the microphone, speak a question (30 seconds at most, a timer shows), tap Stop. The
 // recording goes once to /api/family/voice and is dropped there; only the words come back, into the question box, for
 // the child to check and edit before asking. Shown only when the parent said yes to voice and the module is on (the
-// server page decides). Nothing here keeps the recording after it is sent.
+// server page decides). Nothing here keeps the recording after it is sent. The logic is useVoiceRecorder (W6-A, C395),
+// shared with the tutor composer's microphone.
 // F2 on D1 (C230-Q): the buttons press like every D1 button, and look disabled while they cannot be pressed.
-
-const MAX_SECONDS = 30;
-const TYPES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
-
-const ERROR_KEY: Record<string, string> = {
-  ai_not_switched_on: 'ai.not_switched_on',
-  ai_cap_reached: 'ai.cap_reached',
-  ai_not_cleared_for_minors: 'ai.not_cleared_for_minors',
-  ai_not_capable: 'ai.not_capable',
-  ai_failed: 'ai.failed',
-  too_big: 'fam.voice.err.not_audio',
-};
-
-async function toBase64(blob: Blob): Promise<string> {
-  const bytes = new Uint8Array(await blob.arrayBuffer());
-  let binary = '';
-  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-  return btoa(binary);
-}
-
-type State = 'idle' | 'recording' | 'sending';
 
 // `secondsLeft`: what the server says is left of today's speaking time, so a recording never runs past it.
 // `endpoint`: where the recording goes; the live English tutor sends it to its own ear (E1, C382), the same path.
-export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS, endpoint = '/api/family/voice' }: { w: Words; onText: (text: string) => void; secondsLeft?: number; endpoint?: string }) {
-  const [state, setState] = useState<State>('idle');
-  const [elapsed, setElapsed] = useState(0);
-  const [limit, setLimit] = useState(Math.max(0, Math.min(MAX_SECONDS, secondsLeft)));
-  const busy = useRef(false);
-  const [error, setError] = useState<string | null>(null);
-  const [heard, setHeard] = useState(false);
-  const recorder = useRef<MediaRecorder | null>(null);
-  const stream = useRef<MediaStream | null>(null);
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-  const started = useRef(0);
-
-  const say = (code: string) => fill(w[ERROR_KEY[code] ?? `fam.voice.err.${code}`] ?? w['fam.err.network']);
-
-  const release = () => {
-    if (timer.current) clearInterval(timer.current);
-    timer.current = null;
-    stream.current?.getTracks().forEach((t) => t.stop());
-    stream.current = null;
-  };
-  useEffect(() => () => {
-    if (recorder.current && recorder.current.state !== 'inactive') {
-      recorder.current.ondataavailable = null;
-      recorder.current.onstop = null;
-      recorder.current.stop();
-    }
-    release();
-  }, []);
-
-  const send = async (blob: Blob, seconds: number) => {
-    setState('sending');
-    const r = await familyApi<{ text: string; maxSeconds: number }>(endpoint, 'POST', { audio: await toBase64(blob), seconds });
-    setState('idle');
-    busy.current = false;
-    // The server says how long the next recording may be (the seconds left today, 30 at most).
-    if (typeof r.data.maxSeconds === 'number') setLimit(Math.max(0, Math.min(MAX_SECONDS, r.data.maxSeconds)));
-    if (!r.ok) return setError(say(r.error));
-    onText(r.data.text);
-    setHeard(true);
-  };
-
-  const start = async () => {
-    // One recording at a time: a second tap while the microphone is opening does nothing.
-    if (busy.current) return;
-    busy.current = true;
-    setError(null);
-    setHeard(false);
-    const fail = (code: string) => {
-      release();
-      recorder.current = null;
-      busy.current = false;
-      setState('idle');
-      setError(say(code));
-    };
-    if (typeof window === 'undefined' || !navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') return fail('unsupported');
-    try {
-      stream.current = await navigator.mediaDevices.getUserMedia({ audio: true });
-    } catch {
-      return fail('denied');
-    }
-    const max = Math.max(1, limit);
-    const mimeType = TYPES.find((t) => MediaRecorder.isTypeSupported(t));
-    let rec: MediaRecorder;
-    try {
-      rec = new MediaRecorder(stream.current, mimeType ? { mimeType } : undefined);
-    } catch {
-      return fail('unsupported');
-    }
-    const chunks: Blob[] = [];
-    rec.ondataavailable = (e) => {
-      if (e.data.size > 0) chunks.push(e.data);
-    };
-    rec.onstop = () => {
-      const seconds = Math.max(1, Math.ceil((Date.now() - started.current) / 1000));
-      release();
-      recorder.current = null;
-      const blob = new Blob(chunks, { type: rec.mimeType || mimeType || 'audio/webm' });
-      chunks.length = 0;
-      // Never more than the time this recording was allowed (the timer may stop it a moment late).
-      void send(blob, Math.min(seconds, max));
-    };
-    recorder.current = rec;
-    started.current = Date.now();
-    setElapsed(0);
-    try {
-      rec.start();
-    } catch {
-      return fail('unsupported');
-    }
-    setState('recording');
-    timer.current = setInterval(() => {
-      const s = Math.floor((Date.now() - started.current) / 1000);
-      setElapsed(Math.min(s, max));
-      if (s >= max) stop();
-    }, 250);
-  };
-
-  const stop = () => {
-    if (timer.current) clearInterval(timer.current);
-    timer.current = null;
-    if (recorder.current && recorder.current.state !== 'inactive') recorder.current.stop();
-  };
-
-  const max = Math.max(1, limit);
+export function VoiceInput({ w, onText, secondsLeft = VOICE_MAX_SECONDS, endpoint = '/api/family/voice' }: { w: Words; onText: (text: string) => void; secondsLeft?: number; endpoint?: string }) {
+  const { state, elapsed, limit, max, error, heard, start, stop, say } = useVoiceRecorder({ w, onText, secondsLeft, endpoint });
   return (
     <div className="flex flex-col gap-2" data-voice-input data-voice-state={state}>
       {state === 'recording' ? (

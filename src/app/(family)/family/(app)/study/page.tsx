@@ -6,9 +6,8 @@ import { TutorWindow } from '@/components/family/tutor/TutorWindow';
 import { TUTOR_KEYS } from '@/lib/family/tutor-words';
 import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
 import { PackButton } from '@/components/family/offline/PackButton';
-import { SaverLink } from '@/components/family/offline/SaverLink';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
-import { SyllabusList } from '@/components/family/SyllabusList';
+import { SyllabusList, type SyllabusListChapter } from '@/components/family/SyllabusList';
 import { StatusBadge } from '@/components/family/StatusBadge';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
 import { classSubjects, publishedSubjects, readFamilyCatalog } from '@/lib/family/catalog';
@@ -20,6 +19,7 @@ import { classText, fill } from '@/lib/family/fill';
 import { openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { readFamilySwitches, switchOn } from '@/lib/family/flags';
+import { photoGate } from '@/lib/family/photo-gate';
 import { voiceDay } from '@/lib/family/voice';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { indiaDate } from '@/lib/time/india';
@@ -40,9 +40,10 @@ import { t, type MessageKey } from '@/lib/i18n';
 // Study (M1-5, C251): the child's subject, its chapters and topics from the catalog released to everyone for the
 // child's class, each opening Understand; and a typed question, in the shared tutor window (S2, C375). Without a catalog for the class (classes 6–8 for
 // 2026-27, C250) only the question is offered. Nursery, LKG and UKG (C263) see a plain note: their module comes later.
-// A title is marked with the language it is written in (a Hindi title from NCERT's Hindi edition, or a Hindi
-// textbook's own Devanagari title, is Hindi; an English-only title stays English on a Hindi page), for screen readers.
-const titleLang = (title: string) => (/[\u0900-\u097F]/.test(title) ? 'hi' : 'en');
+// W6-A (C395): three things: the subject strip, the chapters as one accordion (a row per chapter; inside it the
+// topics, the worksheets, the published chapter to read and hear, the offline pack), and the tutor's one composer,
+// pinned above the tab dock. A chapter the parent asked for is a row of the same list with its badge; the photo of a
+// question (the homework helper) sits in the composer's Attach menu.
 
 // The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
 // holds for the class, the free one first once claimed.
@@ -97,6 +98,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const schoolChapters = school.chapters;
   // M2-6 (C280): the homework helper's link, while its module is on.
   const homeworkOn = switchOn(switches, 'homework');
+  // W6-A (C395): Attach (and the homework helper in its menu) shows only when the photo gate, the same rules the server
+  // applies to every photo, lets a photo through.
+  const files = access.open && TUTOR_READS_FILES && (await familyPageRead(page, (db) => photoGate(db, page.session.accountId, child))) === null;
   // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on, with the
   // seconds left of the child's day.
   const voice =
@@ -109,12 +113,55 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
   const tone = subject;
+
+  const readerHref = (key: string) => `/family/study/chapter/${encodeURIComponent(key)}`;
+  const readerLabel = t(lang, 'fam.study.openChapter');
+  const catalogKeys = new Set(catalog?.chapters.map((c) => c.key) ?? []);
+  const readableByKey = new Map(readable.map((c) => [c.key, c]));
+  // Every chapter listed from the catalog comes from the version released to everyone: it is Published.
+  const publishedBadge = <StatusBadge status="published" label={t(lang, STUDY_STATUS_KEY.published)} />;
+  const rows: SyllabusListChapter[] = [
+    ...(catalog?.chapters ?? []).map((c): SyllabusListChapter => {
+      const pack = packs?.get(c.key);
+      return {
+        key: c.key,
+        title: c.title,
+        href: `/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`,
+        hrefLabel: t(lang, 'fam.study.understandChapter'),
+        reader: readableByKey.has(c.key) ? { href: readerHref(c.key), label: readerLabel } : undefined,
+        status: publishedBadge,
+        extra: pack && pack.topics.length > 0 ? <PackButton w={ow} lang={lang} childId={child.childId} chapterKey={c.key} chapterTitle={c.title} bytes={pack.bytes} missing={pack.missing.length} /> : undefined,
+        topics: c.topics.map((tp) => ({
+          key: tp.key,
+          title: tp.title,
+          href: `/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`,
+          worksheet: worksheets ? { href: `/family/study/worksheet/${encodeURIComponent(tp.key)}`, label: t(lang, 'fam.worksheet.action'), ariaLabel: fill(t(lang, 'fam.worksheet.openFor'), { topic: tp.title }) } : undefined,
+        })),
+      };
+    }),
+    // S1 (C374), S3 (C376): a published chapter to read and hear that is not in the catalog (the parent's own, the showcase).
+    ...readable
+      .filter((c) => !catalogKeys.has(c.key))
+      .map((c): SyllabusListChapter => ({ key: c.key, title: c.title[lang === 'hi' ? 'hi' : 'en'], mark: 'book', reader: { href: readerHref(c.key), label: readerLabel }, status: publishedBadge, topics: [] })),
+    // S3 (C376): the chapters the parent asked for, with the queue's badge (Received, Digitizing) or "Not possible".
+    ...subjectRequests.map((r): SyllabusListChapter => {
+      const st = requestStudyStatus(r.status);
+      return {
+        key: `request:${r.requestId}`,
+        title: r.title,
+        mark: 'dot',
+        data: 'data-chapter-requests',
+        topics: [],
+        status: st ? <StatusBadge status={st} label={t(lang, STUDY_STATUS_KEY[st])} /> : <span className="shrink-0 text-sm font-semibold text-slate">{t(lang, 'fam.request.declined')}</span>,
+      };
+    }),
+  ];
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
-        <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-card relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
+        <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-surface relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
           {subjects.map((s) => {
             const on = s === subject;
             const locked = !subjectAccess(child, s, openToAll).open;
@@ -125,9 +172,9 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                 key={s}
                 href={`/family/study?subject=${s}`}
                 aria-current={on ? 'page' : undefined}
-                className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-2xl px-3 text-base font-bold ${on ? `bg-royal-deep text-white shadow-md ${subjectTheme(s).tile}` : 'bg-white text-slate hover:bg-off-white'}`}
+                className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-xl px-3 text-base font-bold ${on ? `bg-royal-deep text-white shadow-md ${subjectTheme(s).tile}` : 'bg-white text-slate hover:bg-off-white'}`}
               >
-                <span aria-hidden="true" className={`flex h-8 w-8 items-center justify-center rounded-xl ${on ? 'fam-icon-glass' : subjectTheme(s).soft + ' ' + subjectTheme(s).ink}`}>
+                <span aria-hidden="true" className={`flex h-8 w-8 items-center justify-center rounded-lg ${on ? 'fam-icon-glass' : subjectTheme(s).soft + ' ' + subjectTheme(s).ink}`}>
                   <SubjectGlyph subject={s} className="h-5 w-5" />
                 </span>
                 {t(lang, `fam.subject.${s}`)}
@@ -144,128 +191,32 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           })}
         </nav>
         {!child.freeSubject && <p className="fam-rise flex items-center gap-2 rounded-2xl bg-sunshine/30 px-4 py-3 text-sm font-semibold text-slate"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-gold-deep" fill="currentColor"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" /></svg>{t(lang, 'fam.subject.firstIsFree')}</p>}
-        {offline && <DataSaverSwitch w={ow} />}
         <TestList w={familyWords(lang, TEST_LIST_KEYS)} lang={lang} tests={tests} />
         {!access.open ? (
-          <p data-family-locked className="fam-card bg-white p-5 text-base text-slate">
+          <p data-family-locked className="fam-surface bg-white p-5 text-base text-slate">
             {t(lang, 'fam.subject.notOpen')}
           </p>
         ) : (
-          <>
-            {/* S2 (C375): the shared tutor window replaces the stacked ask form; the homework helper keeps its own link. */}
-            <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={TUTOR_READS_FILES && page.consents.photo_input && homeworkOn} homework={homeworkOn} />
+          // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
+          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn}>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
+            {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
-            {homeworkOn && (
-              <Link href="/family/study/homework" data-homework-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
-                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sunshine/30 text-gold-deep">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
-                    <circle cx="12" cy="13" r="3.5" />
-                  </svg>
-                </span>
-                <span className="flex flex-col">
-                  <span className="text-base font-bold text-slate">{t(lang, 'fam.homework.studyLink')}</span>
-                  <span className="text-sm text-slate/80">{t(lang, 'fam.homework.studyLead')}</span>
-                </span>
-              </Link>
+            {own && (
+              <SyllabusList
+                id="fam-own-syllabus"
+                title={t(lang, 'fam.syllabus.yours')}
+                tone={subject}
+                chapters={own.chapters.map((c) => ({ title: c.title, href: ownHref(c.itemId), hrefLabel: t(lang, 'fam.study.understandChapter'), topics: c.topics.map((tp) => ({ title: tp.title, href: ownHref(tp.itemId) })) }))}
+              />
             )}
-            {/* S1 (C374), S3 (C376): the chapter reader, for each chapter of the subject that can be opened. */}
-            {readable.map((c) => (
-              <Link key={c.key} href={`/family/study/chapter/${encodeURIComponent(c.key)}`} data-reader-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
-                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 5a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2V5zM20 5a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 1 2 2V5z" />
-                  </svg>
-                </span>
-                <span className="flex min-w-0 flex-col">
-                  <span className="text-base font-bold text-slate" lang={lang}>{c.title[lang === 'hi' ? 'hi' : 'en']}</span>
-                  <span className="text-sm text-slate/80">{t(lang, 'fam.reader.studyLead')}</span>
-                </span>
-              </Link>
-            ))}
-            {subjectRequests.length > 0 && (
-              <section aria-labelledby="fam-requests" data-chapter-requests className="flex flex-col gap-2">
-                <h2 id="fam-requests" className="px-1 text-lg font-extrabold text-slate">
-                  {t(lang, 'fam.request.studyTitle')}
-                </h2>
-                <ul className="flex flex-col gap-2">
-                  {subjectRequests.map((r) => {
-                    const st = requestStudyStatus(r.status);
-                    return (
-                      <li key={r.requestId} className="fam-card flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 py-2 text-base font-bold text-slate">
-                        <span className="min-w-0" lang={titleLang(r.title)}>{r.title}</span>
-                        {st ? <StatusBadge status={st} label={t(lang, STUDY_STATUS_KEY[st])} /> : <span className="text-sm font-semibold text-slate/80">{t(lang, 'fam.request.declined')}</span>}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
+            {!catalog && !own && (
+              <p data-family-no-catalog className="fam-surface bg-white p-5 text-base text-slate">
+                {t(lang, 'fam.study.noCatalog')}
+              </p>
             )}
-          </>
-        )}
-        {!access.open ? null : catalog ? (
-          <section aria-labelledby="fam-chapters" className="flex flex-col gap-2">
-            <h2 id="fam-chapters" className="px-1 text-lg font-extrabold text-slate">
-              {t(lang, 'fam.study.chapters')}
-            </h2>
-            <ol className="flex flex-col gap-2">
-              {catalog.chapters.map((c, i) => (
-                <li key={c.key} className="fam-card fam-rise bg-white p-3" style={{ ['--d' as string]: `${Math.min(i, 8) * 50}ms` } as React.CSSProperties}>
-                  <SaverLink href={`/family/understand?kind=chapter&key=${encodeURIComponent(c.key)}`} className="fam-press flex min-h-[52px] items-center gap-3 rounded-2xl px-1 text-base font-bold text-slate">
-                    <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal-deep text-base font-black text-white shadow-md ${subjectTheme(subject).tile}`}>
-                      {i + 1}
-                    </span>
-                    <span className="min-w-0 flex-1" lang={titleLang(c.title)}>
-                      {c.title}
-                    </span>
-                    {/* Every chapter listed here comes from the version released to everyone: it is Published. */}
-                    <StatusBadge status="published" label={t(lang, STUDY_STATUS_KEY.published)} />
-                    <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${subjectTheme(subject).ink}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                      <path d="M9 6l6 6-6 6" />
-                    </svg>
-                  </SaverLink>
-                  {packs && (packs.get(c.key)?.topics.length ?? 0) > 0 && (
-                    <PackButton w={ow} lang={lang} childId={child.childId} chapterKey={c.key} chapterTitle={c.title} bytes={packs.get(c.key)!.bytes} missing={packs.get(c.key)!.missing.length} />
-                  )}
-                  {c.topics.length > 0 && (
-                    <ul className="mt-1 flex flex-col">
-                      {c.topics.map((tp) => (
-                        <li key={tp.key} className="flex items-center gap-1">
-                          <SaverLink href={`/family/understand?kind=topic&key=${encodeURIComponent(tp.key)}`} className="flex min-h-[44px] flex-1 items-center gap-3 rounded-xl px-2 text-sm text-slate hover:bg-off-white">
-                            <span aria-hidden="true" className={`ml-4 h-2 w-2 shrink-0 rounded-full ${subjectTheme(subject).chip}`} />
-                            <span lang={titleLang(tp.title)}>{tp.title}</span>
-                          </SaverLink>
-                          {worksheets && (
-                            <Link
-                              href={`/family/study/worksheet/${encodeURIComponent(tp.key)}`}
-                              aria-label={fill(t(lang, 'fam.worksheet.openFor'), { topic: tp.title })}
-                              className={`fam-press flex min-h-[44px] shrink-0 items-center rounded-xl px-3 text-sm font-bold hover:bg-off-white ${subjectTheme(subject).ink}`}
-                            >
-                              {t(lang, 'fam.worksheet.action')}
-                            </Link>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </section>
-        ) : own ? null : (
-          <p data-family-no-catalog className="fam-card bg-white p-5 text-base text-slate">
-            {t(lang, 'fam.study.noCatalog')}
-          </p>
-        )}
-        {access.open && own && (
-          <SyllabusList
-            id="fam-own-syllabus"
-            title={t(lang, 'fam.syllabus.yours')}
-            note={t(lang, 'fam.syllabus.yoursNote')}
-            tone={subject}
-            chapters={own.chapters.map((c) => ({ title: c.title, href: ownHref(c.itemId), topics: c.topics.map((tp) => ({ title: tp.title, href: ownHref(tp.itemId) })) }))}
-          />
+            {offline && <DataSaverSwitch w={ow} />}
+          </TutorWindow>
         )}
       </main>
     </div>
