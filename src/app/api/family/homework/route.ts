@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
       const aiCtx = { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day };
       // The safety check (C314) must be ready before the photo is read: what the model reads and says is checked
       // before the child sees it.
-      const moderation = await prepareModeration(db, aiCtx);
+      const moderation = await prepareModeration(db, aiCtx, 'family.homework');
       if (!moderation.ok) {
         await refund(db, session.accountId, child.childId, day);
         return NextResponse.json({ error: 'safety_off' }, { status: 503 });
