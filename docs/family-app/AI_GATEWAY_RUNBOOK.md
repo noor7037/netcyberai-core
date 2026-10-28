@@ -31,6 +31,8 @@ Build lead → the founder and whoever runs Control. What to do when the AI misb
   - The family daily cap is Control's `family.ai.daily_requests` (0–1000). The count is `family.ai_daily`, one place
     per request, taken atomically. A missing or non-numeric setting lets nothing through.
   - There are per-feature caps too: photo questions a day, and voice seconds a day.
+  - The server voice (read aloud) has its own allowance per family per day, in characters: Control → Family,
+    `family.voice.daily_characters` (20,000 to start; 0 turns it off). It is not counted against the daily requests (C388).
 - **Server secrets** (names only): `AI_CREDENTIALS_KEY` and `AI_CREDENTIALS_KEY_VERSION` seal the stored keys; `SUPABASE_SERVICE_ROLE_KEY` is used for
   storage. Provider keys are typed into Control, never into the environment.
 
@@ -75,6 +77,5 @@ Build lead → the founder and whoever runs Control. What to do when the AI misb
 ## Not built yet (honest list)
 
 - No automatic spend alert, and no retention rule for the ledger.
-- No server text-to-speech: narration and the English tutor's replies use the phone's own voice.
 - No live vendor call has been measured: there are no keys on the test site yet. Every benchmark number waits for the
   founder's keys and a Quality Lab run.
