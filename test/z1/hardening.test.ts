@@ -44,19 +44,62 @@ beforeAll(async () => {
 }, 120_000);
 afterAll(async () => db?.stop());
 
-type Table = { name: string; rls: boolean; force: boolean; hasChild: boolean; policies: { name: string; permissive: boolean; roles: string[]; qual: string }[] };
+// A policy's `cmd` is pg_policy.polcmd: '*' all, r select, a insert, w update, d delete. `qual` is the using clause
+// (null for an insert-only policy); `check` is the with check clause as Postgres applies it: when a policy for all
+// or update has none, its using clause is the check (null for select and delete, which write nothing).
+// `forFamily` is whether the policy binds family_app: it names family_app (or a role family_app belongs to), or it is
+// written TO public, which pg_policy stores as role oid 0 and which binds every role, family_app included.
+type Policy = { name: string; permissive: boolean; cmd: string; forFamily: boolean; qual: string | null; check: string | null };
+type Table = { name: string; rls: boolean; force: boolean; hasChild: boolean; familyGrant: boolean; policies: Policy[] };
 async function familyTables(): Promise<Table[]> {
   const rows = await q(`
     select c.relname as name, c.relrowsecurity as rls, c.relforcerowsecurity as force,
            exists (select 1 from information_schema.columns k where k.table_schema = 'family' and k.table_name = c.relname and k.column_name = 'child_id') as has_child,
-           coalesce((select json_agg(json_build_object('name', p.polname, 'permissive', p.polpermissive,
-                       'roles', (select coalesce(array_agg(r.rolname), '{}') from pg_roles r where r.oid = any(p.polroles)),
-                       'qual', coalesce(pg_get_expr(p.polqual, p.polrelid), '')))
+           has_table_privilege('family_app', c.oid, 'SELECT, INSERT, UPDATE, DELETE') as family_grant,
+           coalesce((select json_agg(json_build_object('name', p.polname, 'permissive', p.polpermissive, 'cmd', p.polcmd,
+                       'forFamily', exists (select 1 from unnest(p.polroles) r(oid)
+                                             where r.oid = 0 or pg_has_role('family_app', r.oid, 'MEMBER')),
+                       'qual', pg_get_expr(p.polqual, p.polrelid),
+                       'check', case when p.polwithcheck is not null then pg_get_expr(p.polwithcheck, p.polrelid)
+                                     when p.polcmd in ('*', 'w') then pg_get_expr(p.polqual, p.polrelid) end))
                      from pg_policy p where p.polrelid = c.oid), '[]'::json) as policies
       from pg_class c join pg_namespace n on n.oid = c.relnamespace
      where n.nspname = 'family' and c.relkind = 'r' order by 1`);
-  return rows.map((r: any) => ({ name: r.name, rls: r.rls, force: r.force, hasChild: r.has_child, policies: typeof r.policies === 'string' ? JSON.parse(r.policies) : r.policies }));
+  return rows.map((r: any) => ({
+    name: r.name, rls: r.rls, force: r.force, hasChild: r.has_child, familyGrant: r.family_grant,
+    policies: typeof r.policies === 'string' ? JSON.parse(r.policies) : r.policies,
+  }));
 }
+
+const OWN_ACCOUNT = 'family.current_account()';
+const ONE_CHILD = 'app.current_child_id';
+// A table a family session can reach: family_app holds a right on it, or some policy binds family_app (a TO public
+// policy included), so a later grant would open it.
+const reachable = (t: Table) => t.familyGrant || t.policies.some((p) => p.forFamily);
+// The commands a policy's rule truly holds for: reads and deletes through its using clause, inserts through its
+// check, updates through both. A policy whose clause lacks the marker holds for none of those commands.
+const heldCommands = (p: Policy, marker: string): Set<string> => {
+  const usingHolds = p.qual?.includes(marker) ?? false;
+  const checkHolds = p.check?.includes(marker) ?? false;
+  const held = new Set<string>();
+  const cmds = p.cmd === '*' ? ['r', 'a', 'w', 'd'] : [p.cmd];
+  for (const c of cmds) {
+    if ((c === 'r' || c === 'd') && usingHolds) held.add(c);
+    if (c === 'a' && checkHolds) held.add(c);
+    if (c === 'w' && usingHolds && checkHolds) held.add(c);
+  }
+  return held;
+};
+// Restrictive policies binding family_app must, between them, hold the marker for every command.
+const restrictiveCovers = (t: Table, marker: string) => {
+  const held = new Set<string>();
+  for (const p of t.policies.filter((x) => !x.permissive && x.forFamily)) heldCommands(p, marker).forEach((c) => held.add(c));
+  return ['r', 'a', 'w', 'd'].every((c) => held.has(c));
+};
+// Every permissive policy binding family_app keeps to the own account in each clause it has, so no permissive
+// rule widens what a family can see or write (a weak `with check (true)` is caught here).
+const permissiveAllOwn = (t: Table) =>
+  t.policies.filter((p) => p.permissive && p.forFamily).every((p) => (p.qual === null || p.qual.includes(OWN_ACCOUNT)) && (p.check === null || p.check.includes(OWN_ACCOUNT)));
 
 describe('sibling and account isolation, from the catalog', () => {
   it('every family table has row security on and forced', async () => {
@@ -66,18 +109,35 @@ describe('sibling and account isolation, from the catalog', () => {
   });
 
   it('every family table a family session can reach is own-account only twice: a permissive and a restrictive rule', async () => {
-    const gaps = (await familyTables())
-      .filter((t) => t.policies.some((p) => p.roles.includes('family_app')))
-      .filter((t) => !t.policies.some((p) => !p.permissive && p.roles.includes('family_app')))
+    const tables = (await familyTables()).filter(reachable);
+    // A broken catalog query (or a role rename) must not pass by finding nothing to check.
+    expect(tables.length).toBeGreaterThan(30);
+    const noPermissive = tables
+      .filter((t) => !t.policies.some((p) => p.permissive && p.forFamily && heldCommands(p, OWN_ACCOUNT).size > 0))
       .map((t) => t.name);
-    expect(gaps).toEqual([]);
+    const noRestrictive = tables.filter((t) => !restrictiveCovers(t, OWN_ACCOUNT)).map((t) => t.name);
+    const widePermissive = tables.filter((t) => !permissiveAllOwn(t)).map((t) => t.name);
+    expect({ noPermissive, noRestrictive, widePermissive }).toEqual({ noPermissive: [], noRestrictive: [], widePermissive: [] });
+  });
+
+  it('no family policy is written TO public, and the rules above count any that were as binding family_app', async () => {
+    // pg_policy stores TO public as role oid 0. Every policy naming public or family_app must be read as binding
+    // family_app, or a public policy would slip past the own-account rule.
+    const [{ public_n: publicPolicies, bound_n: bound }] = await q(`
+      select count(*) filter (where 0 = any(p.polroles))::int as public_n,
+             count(*) filter (where 0 = any(p.polroles) or 'family_app'::regrole::oid = any(p.polroles))::int as bound_n
+        from pg_policy p join pg_class c on c.oid = p.polrelid join pg_namespace n on n.oid = c.relnamespace
+       where n.nspname = 'family'`);
+    const forFamily = (await familyTables()).flatMap((t) => t.policies.filter((p) => p.forFamily)).length;
+    expect(bound).toBeGreaterThan(0);
+    expect(forFamily).toBeGreaterThanOrEqual(bound);
+    expect(publicPolicies).toBe(0);
   });
 
   it('every one keyed by a child narrows to the current child on that child’s phone (or no family session reaches it)', async () => {
-    const gaps = (await familyTables())
-      .filter((t) => t.hasChild && t.policies.some((p) => p.roles.includes('family_app')))
-      .filter((t) => !t.policies.some((p) => !p.permissive && p.roles.includes('family_app') && p.qual.includes('app.current_child_id')))
-      .map((t) => t.name);
+    const tables = (await familyTables()).filter((t) => t.hasChild && reachable(t));
+    expect(tables.length).toBeGreaterThan(15);
+    const gaps = tables.filter((t) => !restrictiveCovers(t, ONE_CHILD)).map((t) => t.name);
     expect(gaps).toEqual([]);
   });
 
@@ -107,7 +167,7 @@ describe('tenant isolation, from the grants', () => {
   it('families and schools hold no right on the gateway’s revisions, health, ledger, prices, model lists or the Quality Lab', async () => {
     const rows = await q(`
       select table_name, grantee from information_schema.role_table_grants
-       where table_schema = 'control' and (table_name like 'ai_eval%' or table_name in ('ai_route_revisions', 'ai_provider_health', 'ai_usage_ledger', 'ai_model_prices', 'ai_model_lists'))
+       where table_schema = 'control' and (table_name like 'ai_eval%' or table_name in ('ai_route_revisions', 'ai_provider_health', 'ai_usage_ledger', 'ai_reply_checks', 'ai_model_prices', 'ai_model_lists'))
          and grantee in ('family_app', 'app_user', 'anon', 'authenticated', 'PUBLIC', 'service_role')`);
     expect(rows).toEqual([]);
   });
