@@ -14,6 +14,7 @@ import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 import { readerContext, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
+import { photoGate } from '@/lib/family/photo-gate';
 import { isSubject } from '@/lib/family/subjects';
 import { indiaDate } from '@/lib/time/india';
 import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
@@ -87,8 +88,11 @@ export async function POST(req: NextRequest) {
             if (!child) return { refused: t(lang, 'fam.understand.noChild') };
             const consents = await consentState(db, session.accountId);
             if (!consents.study_core) return { refused: t(lang, 'fam.err.consent_required') };
-            // A file goes to a provider only with the parent's photo consent, read again now (it may be withdrawn).
-            if (!consents.photo_input) return { refused: t(lang, 'fam.tutor.err.photo_consent') };
+            // A file goes to a provider only under the homework helper's photo rules (C389), read again now: Class 1
+            // up, the parent's photo consent (it may be withdrawn) and the helper's switch.
+            const photoRefused = await photoGate(db, session.accountId, child);
+            if (photoRefused === 'photo_consent') return { refused: t(lang, 'fam.tutor.err.photo_consent') };
+            if (photoRefused) return { refused: t(lang, 'fam.tutor.err.homework_off') };
             if (!(await familyModuleOn(db, 'understand', session.accountId))) return { refused: t(lang, 'fam.understand.off') };
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
