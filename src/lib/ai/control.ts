@@ -8,6 +8,7 @@ import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, worke
 import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
 import { DAILY_REQUESTS_SETTING } from './daily-cap';
+import { SPEND_ALERT_MAX_USD, SPEND_ALERT_SETTING, spendAlertUsd, spentOn } from './gateway/upkeep';
 import { capableAdapter, chainOf, missingCapabilities, PROFILES, profileById, profileNeeds } from './platform';
 import { activated, activating, loadRouteRevisions, revisionToRestore } from './gateway/revisions';
 import { loadProviderHealth } from './gateway/circuit';
@@ -52,6 +53,8 @@ export type ChangeError =
   | 'incomplete'
   | 'not_cleared_for_minors'
   | 'cap'
+  // W5-7 (C394): the spend alert is an amount in US dollars from 0.01 to 10,000, or off.
+  | 'spend'
   | 'not_found'
   | 'cannot_restore_key'
   | 'no_key'
@@ -100,6 +103,9 @@ export type AiOverview = {
   profiles: { profileId: string; carriesChildWords: boolean; needs: Capability[]; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; usesPrompt: boolean; enabled: boolean }[];
   usage: { profileId: string; today: Counts; month: Counts }[];
   cap: number | null;
+  // W5-7 (C394): the daily spend alert in US dollars (null: off), and today's known cost against it.
+  spendAlert: number | null;
+  spentToday: { usd: number; unpriced: number };
   changes: { auditId: string; action: string; at: string; byName: string | null; target: string | null; canUndo: boolean }[];
   // G5 (C373): the founder's prices, US dollars per million tokens in and out, per provider and model.
   prices: ModelPrice[];
@@ -110,7 +116,7 @@ export type ModelPrice = { providerId: string; model: string; inUsd: number; out
 export type PriceEntry = { inUsd: number; outUsd: number };
 export type Counts = { requests: number; failures: number; capRefusals: number; tokensIn: number; tokensOut: number };
 
-const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set'] as const;
+const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set', 'ai.spend_alert_changed'] as const;
 type Action = (typeof ACTIONS)[number];
 // A model id as the vendor names it; Workers AI ids start with "@" (C230-U). The database holds the same rule.
 const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
@@ -150,6 +156,8 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     [today]
   );
   const cap = await db.query(`select value from control.settings where key = $1`, [DAILY_REQUESTS_SETTING]);
+  const spendAlert = await spendAlertUsd(db);
+  const spentToday = await spentOn(db, today);
   const changes = await db.query(
     `select a.audit_id, a.event_action, a.occurred_at, a.target_id, a.before_state, u.display_name
        from audit_log a left join users u on u.user_id = a.actor_user_id
@@ -225,6 +233,8 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
     })),
     usage: Array.from(byProfile, ([profileId, c]) => ({ profileId, ...c })),
     cap: typeof capValue === 'number' ? capValue : null,
+    spendAlert,
+    spentToday,
     changes: changes.rows.map((r) => ({
       auditId: String(r.audit_id),
       action: r.event_action,
@@ -574,6 +584,25 @@ export async function setCap(db: Sql, by: By, value: number): Promise<ChangeResu
   return writeCap(db, by, value);
 }
 
+// The daily spend alert (W5-7, C394): US dollars of known AI cost in one India day, from 0.01 to SPEND_ALERT_MAX_USD;
+// null turns it off. The upkeep job reads it each hour.
+const spendOk = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v) && v >= 0.01 && v <= SPEND_ALERT_MAX_USD;
+
+export async function setSpendAlert(db: Sql, by: By, value: number | null): Promise<ChangeResult> {
+  if (value !== null && !spendOk(value)) return { ok: false, code: 'spend' };
+  return writeSpendAlert(db, by, value === null ? null : Math.round(value * 100) / 100);
+}
+
+async function writeSpendAlert(db: Sql, by: By, value: number | null, undoOf?: string): Promise<ChangeResult> {
+  const before = await spendAlertUsd(db);
+  await db.query(
+    `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+    [SPEND_ALERT_SETTING, JSON.stringify(value), by.userId]
+  );
+  await audit(db, by, 'ai.spend_alert_changed', SPEND_ALERT_SETTING, { key: SPEND_ALERT_SETTING, value: before }, { key: SPEND_ALERT_SETTING, value, ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
 // One step back: the change's before state, restored and itself audited (so an undo can be undone).
 export async function undoChange(db: Sql, by: By, auditId: string): Promise<ChangeResult> {
   if (!/^\d{1,18}$/.test(auditId)) return { ok: false, code: 'not_found' };
@@ -602,6 +631,8 @@ export async function undoChange(db: Sql, by: By, auditId: string): Promise<Chan
       );
     case 'ai.cap_changed':
       return typeof before.value === 'number' ? writeCap(db, by, before.value, auditId) : { ok: false, code: 'not_found' };
+    case 'ai.spend_alert_changed':
+      return before.value === null || spendOk(before.value) ? writeSpendAlert(db, by, (before.value as number | null) ?? null, auditId) : { ok: false, code: 'not_found' };
     case 'ai.price_set': {
       const p = before.price as PriceEntry | null;
       return typeof before.providerId === 'string' && typeof before.model === 'string'

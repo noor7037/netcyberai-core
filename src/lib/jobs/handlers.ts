@@ -14,6 +14,7 @@ import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
 import { AI_HEALTH_PROBE_JOB, aiHealthProbeHandler } from '@/lib/ai/gateway/probe';
+import { AI_UPKEEP_JOB, aiUpkeepHandler } from '@/lib/ai/gateway/upkeep';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
 import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
@@ -78,6 +79,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     [AI_SMOKE_JOB]: aiSmokeHandler({ platform }),
     // G5 (C373): every 15 minutes, each provider in a route is asked its free key check (never a paid answer).
     [AI_HEALTH_PROBE_JOB]: aiHealthProbeHandler({ platform }),
+    // W5-7 (C394): each hour, the AI spend alert to the founders and the ledger's 90-day retention.
+    [AI_UPKEEP_JOB]: aiUpkeepHandler({ platform, queue: jobQueue }),
     [CONTENT_PREPARE_JOB]: contentPrepareHandler({ platform, queue: jobQueue }),
     // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
     [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),

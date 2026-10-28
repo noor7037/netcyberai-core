@@ -33,6 +33,9 @@ Build lead → the founder and whoever runs Control. What to do when the AI misb
   - There are per-feature caps too: photo questions a day, and voice seconds a day.
   - The server voice (read aloud) has its own allowance per family per day, in characters: Control → Family,
     `family.voice.daily_characters` (20,000 to start; 0 turns it off). It is not counted against the daily requests (C388).
+- **Spend and retention** (C394). Control → AI → Daily spend alert: an amount in US dollars a day; each hour the day's
+  known cost (from the prices you set) is added up, and at or over it the founders get one email that day. Off until set.
+  The usage ledger and the reply checks keep 90 days; the hourly upkeep job removes older rows.
 - **Server secrets** (names only): `AI_CREDENTIALS_KEY` and `AI_CREDENTIALS_KEY_VERSION` seal the stored keys; `SUPABASE_SERVICE_ROLE_KEY` is used for
   storage. Provider keys are typed into Control, never into the environment.
 
@@ -76,6 +79,5 @@ Build lead → the founder and whoever runs Control. What to do when the AI misb
 
 ## Not built yet (honest list)
 
-- No automatic spend alert, and no retention rule for the ledger.
 - No live vendor call has been measured: there are no keys on the test site yet. Every benchmark number waits for the
   founder's keys and a Quality Lab run.

@@ -4,8 +4,8 @@ import { PermanentJobError } from '@/lib/jobs/types';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice'];
+export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert'];
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -101,6 +101,22 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
         subject: `${data.kind === 'after_7' ? 'Fees overdue' : 'Fee reminder'}: ₹${amount}, ${school}`,
         html: wrap(`<p><strong>${escapeHtml(lead)}</strong>${escapeHtml(total)}</p><p>${escapeHtml(how)}</p>${payUrl ? `<p><a href="${escapeHtml(payUrl)}" style="color:#1d4ed8">See what is due and pay</a></p>` : ''}<p>${escapeHtml(after)}</p>`),
         text: `${lead}${total}\n${how}${payUrl ? `\nSee what is due and pay: ${payUrl}` : ''}\n${after}`,
+      };
+    }
+    // To the founders (W5-7, C394), from the AI upkeep job: the day's known AI cost reached the amount set in Control →
+    // AI. Once a day. Answers with no price set have no cost, and are counted apart.
+    case 'ai_spend_alert': {
+      const day = str(data, 'day');
+      const spent = str(data, 'spentUsd');
+      const limit = str(data, 'limitUsd');
+      const unpriced = str(data, 'unpriced');
+      const link = str(data, 'url');
+      const lead = `The AI services have cost US$${spent} so far today (${day}, India), at or over the alert of US$${limit} set in Control → AI.`;
+      const more = unpriced !== '0' ? ` ${unpriced} answers today had no price set, so their cost is not in that figure.` : '';
+      return {
+        subject: `AI spend alert: US$${spent} today`,
+        html: wrap(`<p><strong>${escapeHtml(lead)}</strong>${escapeHtml(more)}</p><p>Nothing has been switched off. To change the alert or the daily cap, open Control → AI.</p><p><a href="${escapeHtml(link)}" style="color:#1d4ed8">Open Control → AI</a></p>`),
+        text: `${lead}${more}\nNothing has been switched off. To change the alert or the daily cap, open Control → AI.\nOpen: ${link}`,
       };
     }
     case 'ticket_raised': {
