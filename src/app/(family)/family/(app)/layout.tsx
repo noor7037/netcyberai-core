@@ -54,7 +54,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
       <OfflineSync owner={createHash('sha256').update(`ncf-offline:${page.session.accountId}`).digest('hex').slice(0, 24)} childId={page.child?.childId ?? null} on={switchOn(switches, 'offline')} />
       <div className="pb-28">{children}</div>
       <NoVoiceNotice inApp={shellVersion(headers().get('user-agent')) !== null} words={{ app: t(lang, 'fam.voice.needsApp'), browser: t(lang, 'fam.voice.noBrowserVoice'), close: t(lang, 'fam.voice.close') }} />
-      <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future'), family: t(lang, 'fam.tab.family') }} />
+      <FamilyTabs tabs={tabs} navLabel={t(lang, 'fam.tab.nav')} labels={{ home: t(lang, 'fam.tab.home'), study: t(lang, 'fam.tab.study'), english: t(lang, 'fam.tab.english'), future: t(lang, 'fam.tab.future') }} />
     </>
   );
 }

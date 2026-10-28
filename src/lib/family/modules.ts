@@ -3,11 +3,14 @@
 import { FAMILY_MODULES, type FamilyTab } from '@/lib/contracts/family-modules';
 export { FAMILY_MODULES, type Entitlement, type FamilyModule, type FamilyTab } from '@/lib/contracts/family-modules';
 
-export const TABS: readonly FamilyTab[] = ['home', 'study', 'english', 'future', 'family'];
+// The bottom dock has four tabs (C391): the Family tab is gone, the parent area is one door, Parent space under Profile,
+// behind the PIN. The 'family' value stays on FamilyTab only as the module group of the parent-area modules.
+export type DockTab = Exclude<FamilyTab, 'family'>;
+export const TABS: readonly DockTab[] = ['home', 'study', 'english', 'future'];
 
-// Home and the family (parent) tab are always there; the others when a module of theirs is built and switched on.
-export function visibleTabs(isOn: (flag: string) => boolean): FamilyTab[] {
-  return TABS.filter((tab) => tab === 'home' || tab === 'family' || FAMILY_MODULES.some((m) => m.tab === tab && m.built && !m.addOn && isOn(m.flag)));
+// Home is always there; the others when a module of theirs is built and switched on.
+export function visibleTabs(isOn: (flag: string) => boolean): DockTab[] {
+  return TABS.filter((tab) => tab === 'home' || FAMILY_MODULES.some((m) => m.tab === tab && m.built && !m.addOn && isOn(m.flag)));
 }
 
 // Every subject the app knows (C264): src/lib/family/subjects.ts. A child studies the subjects of their class.
