@@ -32,7 +32,8 @@ async function toBase64(blob: Blob): Promise<string> {
 type State = 'idle' | 'recording' | 'sending';
 
 // `secondsLeft`: what the server says is left of today's speaking time, so a recording never runs past it.
-export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS }: { w: Words; onText: (text: string) => void; secondsLeft?: number }) {
+// `endpoint`: where the recording goes; the live English tutor sends it to its own ear (E1, C382), the same path.
+export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS, endpoint = '/api/family/voice' }: { w: Words; onText: (text: string) => void; secondsLeft?: number; endpoint?: string }) {
   const [state, setState] = useState<State>('idle');
   const [elapsed, setElapsed] = useState(0);
   const [limit, setLimit] = useState(Math.max(0, Math.min(MAX_SECONDS, secondsLeft)));
@@ -63,7 +64,7 @@ export function VoiceInput({ w, onText, secondsLeft = MAX_SECONDS }: { w: Words;
 
   const send = async (blob: Blob, seconds: number) => {
     setState('sending');
-    const r = await familyApi<{ text: string; maxSeconds: number }>('/api/family/voice', 'POST', { audio: await toBase64(blob), seconds });
+    const r = await familyApi<{ text: string; maxSeconds: number }>(endpoint, 'POST', { audio: await toBase64(blob), seconds });
     setState('idle');
     busy.current = false;
     // The server says how long the next recording may be (the seconds left today, 30 at most).

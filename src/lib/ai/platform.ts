@@ -6,7 +6,7 @@ import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
-import { dailyLimit, takeDailyRequest } from './daily-cap';
+import { dailyLimit, dailyRequestsUsed, takeDailyRequest } from './daily-cap';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt } from './gateway/ledger';
@@ -43,6 +43,7 @@ export type ProfileId =
   | 'family.voice_input'
   | 'family.moderation'
   | 'family.syllabus_extract'
+  | 'family.english_conversation'
   | 'copilot.draft'
   | 'parent_ai.home_help'
   | 'content.syllabus_extract'
@@ -73,6 +74,10 @@ export const PROFILES: readonly AiProfile[] = [
   // C230-AB: a parent's photos of a book's contents pages, read for the chapter and topic names of their child's own
   // syllabus (parent mode). A printed book's titles, never a child's words; the parent checks every line before use.
   { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family', needs: ['vision'] },
+  // E1 (C382): the live spoken-English tutor's short role-play replies, its rolling summary of older turns and its
+  // end-of-session recap. Carries the child's corrected words (the transcript, never the recording). Speech to text
+  // stays family.voice_input: the same capability, the same provider choice and the same voice budget.
+  { id: 'family.english_conversation', carriesChildWords: true, capability: 'text', audience: 'family' },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -292,6 +297,27 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
   // refusal with its own reason, never a call sent to fail or a provider quietly skipped.
   if (chain.some((l) => missingCapabilities(profile.id, l.provider, env).length > 0)) return { ok: false, reason: 'not_capable' };
   return { ok: true, profile, row, chain, providers };
+}
+
+// Whether a profile could serve a call now, without taking a daily-cap place or sending anything (E1, C382): steps 1–3
+// (switched on, the minors check on the whole chain, a provider with an adapter of the capability and a key that
+// opens). For a screen that must say plainly what is not set up before a child speaks.
+export async function profileReady(db: Sql, ctx: AiContext, profileId: ProfileId): Promise<'ready' | AiRefusal> {
+  const env = process.env;
+  const profile = profileById(profileId);
+  if (!profile) return 'failed';
+  const checked = await checkProfile(db, ctx, profileId, profile.capability, env);
+  if (!checked.ok) return checked.reason;
+  const find = (p: string) => (profile.capability === 'speech_to_text' ? speechAdapterFor(p, env) : profile.capability === 'moderation' ? moderationAdapterFor(p, env) : adapterFor(p, env));
+  const usable = await usableLinks(db, checked.chain, checked.providers, env, find);
+  return usable.length > 0 ? 'ready' : 'not_switched_on';
+}
+
+// The family's daily requests left today (Control's cap less what the account has used); 0 when the setting is missing.
+export async function dailyRequestsLeft(db: Sql, accountId: string, day: string): Promise<number> {
+  const limit = await dailyLimit(db);
+  if (limit === null || !UUID.test(accountId) || !DAY.test(day)) return 0;
+  return Math.max(0, limit - (await dailyRequestsUsed(db, accountId, day)));
 }
 
 // 4. The family's daily cap, counted before the request leaves.
