@@ -8,6 +8,7 @@ import { StatusPill } from '@/components/app-ui/StatusPill';
 import { principalNavigationFixture, studentPageFixture } from '@/demo-fixture/contracts';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { isModuleId, type ModuleId } from '@/lib/contracts/modules';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // The ModulePage template with every slot filled (C132), development only,
 // on illustrative rows. ?module=<id> shows the same layout in another
@@ -28,7 +29,7 @@ export default function ModulePagePreview({ searchParams }: { searchParams: { mo
   if (process.env.NODE_ENV === 'production') notFound();
   const moduleId: ModuleId = isModuleId(searchParams.module) ? searchParams.module : 'students';
   return (
-    <AppShell groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref="/design-system/shell/module-page">
+    <AppShell {...shellWords('en')} groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref="/design-system/shell/module-page">
       <ModulePage
         moduleId={moduleId}
         title={moduleId === 'students' ? 'Students' : moduleId === 'fees' ? 'Fees' : 'Attendance'}

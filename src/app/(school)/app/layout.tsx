@@ -19,6 +19,7 @@ import { loadSchoolBrand } from '@/lib/school/branding';
 import { logoAddress } from '@/lib/school/logo-file';
 import { storageHealth, type StorageHealth } from '@/lib/observability/storage-health';
 import { showsStorageAlert, StorageAlert } from '@/components/app-shell/StorageAlert';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // Every page under this route group renders through THIS layout by
 // Next.js's own nesting rules. The guard below runs first and is checked
@@ -98,7 +99,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <ToastProvider>
-      <AppShell
+      <AppShell {...shellWords(lang)}
         groups={menu.groups}
         home={menu.home}
         frequent={menu.frequent}

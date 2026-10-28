@@ -1,6 +1,6 @@
 'use client';
 
-import { useT } from './LangContext';
+import { useWords } from './Words';
 import { useOffline } from './OfflineContext';
 
 // The sync line (docs/20 §2, C143): one small line that always tells the
@@ -9,7 +9,7 @@ import { useOffline } from './OfflineContext';
 // While everything is saved and the network is there it stays out of the
 // way; a screen reader is told each change.
 export function SyncLine() {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const { ready, sync, sendNow, online } = useOffline();
   if (!ready) return null;
 

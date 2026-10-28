@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { errorMessage, explainError } from '@/lib/errors/catalogue';
-import { isLang, LANG_NAME, LANGS, t, type Lang } from '@/lib/i18n';
-import { useLang } from './LangContext';
+import { isLang, LANG_NAME, LANGS, type Lang } from '@/lib/i18n/lang';
+import { useLang } from './lang-core';
+import { useWords } from './Words';
 
 // English | हिन्दी (docs/19 rule 3, C134). Each name is written in its own
 // language, so a person who cannot read the current one still finds theirs.
@@ -26,8 +27,10 @@ async function save(lang: Lang): Promise<Response> {
   return renewed?.ok ? send() : res;
 }
 
-export function LanguageSwitch({ known = true }: { known?: boolean }) {
+// `saved`: "Saved: <language>" in each language, picked on the server (C395), so it is said in the language chosen.
+export function LanguageSwitch({ known = true, saved }: { known?: boolean; saved: Record<Lang, string> }) {
   const lang = useLang();
+  const { t } = useWords();
   const router = useRouter();
   const [busy, setBusy] = useState<Lang | null>(null);
   const [said, setSaid] = useState('');
@@ -64,7 +67,7 @@ export function LanguageSwitch({ known = true }: { known?: boolean }) {
         setProblem(explainError(await res.json().catch(() => null), errorMessage('not_saved', {}, lang), lang, res.status));
         return;
       }
-      setSaid(t(next, 'lang.saved', { language: LANG_NAME[next] }));
+      setSaid(saved[next].replace('{language}', LANG_NAME[next]));
       router.refresh();
     } catch {
       setProblem(errorMessage('not_saved', {}, lang));
@@ -75,7 +78,7 @@ export function LanguageSwitch({ known = true }: { known?: boolean }) {
 
   return (
     <div className="relative flex items-center">
-      <div role="group" aria-label={t(lang, 'lang.label')} className="flex rounded-md border border-slate/20 bg-white">
+      <div role="group" aria-label={t('lang.label')} className="flex rounded-md border border-slate/20 bg-white">
         {LANGS.map((l) => (
           <button
             key={l}

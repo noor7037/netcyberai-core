@@ -7,6 +7,7 @@ import { principalNavigationFixture } from '@/demo-fixture/contracts';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { controlNav } from '@/lib/nav/nav-items';
 import { TicketsPreview } from './TicketsPreview';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // The ticket screens on illustrative data (C128), development only: the
 // real /app and /control need a signed-in session and a database.
@@ -37,7 +38,7 @@ export default function TicketsPreviewPage({ searchParams }: { searchParams: { s
     </ModulePage>
   );
   return control ? (
-    <AppShell
+    <AppShell {...shellWords('en')}
       groups={controlShellGroups(controlNav, (h) => (h === '/control/support' ? here : h))}
       brand="NetCyberAI Control"
       roleLabel="Platform admin"
@@ -47,7 +48,7 @@ export default function TicketsPreviewPage({ searchParams }: { searchParams: { s
       {body}
     </AppShell>
   ) : (
-    <AppShell groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref={here}>
+    <AppShell {...shellWords('en')} groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref={here}>
       {body}
     </AppShell>
   );

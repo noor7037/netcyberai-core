@@ -12,6 +12,7 @@ import { hi } from '@/lib/i18n/messages/hi';
 import { controlShellGroups, toShellGroups } from '@/components/app-shell/shell-nav';
 import { buildNavigation } from '@/lib/contracts/navigation';
 import { controlNav } from '@/lib/nav/nav-items';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // The app's two languages (docs/19 rule 3, C134).
 
@@ -149,7 +150,7 @@ describe('the shell in Hindi', () => {
   const nav = buildNavigation('principal', ents());
   const render = (lang: 'en' | 'hi') =>
     renderToStaticMarkup(
-      h(AppShell, { groups: toShellGroups(nav, lang), brand: 'Illustrative School', roleLabel: t(lang, 'role.principal'), navLabel: t(lang, 'shell.nav.school'), accountHref: '/app/account', lang, children: h('p', { id: 'page-body' }, 'A screen still in English') })
+      h(AppShell, { ...shellWords(lang), groups: toShellGroups(nav, lang), brand: 'Illustrative School', roleLabel: t(lang, 'role.principal'), navLabel: t(lang, 'shell.nav.school'), accountHref: '/app/account', lang, children: h('p', { id: 'page-body' }, 'A screen still in English') })
     );
 
   it('its own words are Hindi: menu, account, sign out, and the switch names each language in its own', () => {

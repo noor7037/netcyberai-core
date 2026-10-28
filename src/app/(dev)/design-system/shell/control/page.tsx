@@ -6,6 +6,7 @@ import { PageHeader } from '@/components/app-ui/PageHeader';
 import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { controlNav } from '@/lib/nav/nav-items';
 import { EntitlementsPreview } from './EntitlementsPreview';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // Control → a school → Modules & access on illustrative data (C123),
 // development only: the real /control needs the founder's session and a
@@ -16,7 +17,7 @@ export const metadata: Metadata = { title: 'Control: modules and access (develop
 export default function ControlEntitlementsPreviewPage() {
   if (process.env.NODE_ENV === 'production') notFound();
   return (
-    <AppShell
+    <AppShell {...shellWords('en')}
       groups={controlShellGroups(controlNav, (h) => (h === '/control/schools' ? '/design-system/shell/control' : h))}
       brand="NetCyberAI Control"
       roleLabel="Platform admin"

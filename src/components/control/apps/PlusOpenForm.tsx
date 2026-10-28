@@ -2,14 +2,14 @@
 
 import { useState } from 'react';
 import { useStepUp } from '@/components/auth/StepUp';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 
 // Control → Family: Family Plus open to every family, for a pilot (C337). Plus has no checkout before P3 and no school
 // sponsors it yet, so its modules (the home plan after a parent-teacher meeting) are used only when this is on. Saving
 // asks for the authenticator if this session has not shown it, and is audited.
 export function PlusOpenForm({ initial }: { initial: boolean }) {
-  const { t } = useT();
+  const { t } = useWords();
   const { stepUpFetch } = useStepUp();
   const [open, setOpen] = useState(initial);
   const [busy, setBusy] = useState(false);

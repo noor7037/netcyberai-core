@@ -9,20 +9,22 @@ import { TOKEN_TONES } from '@/components/app-ui/tones';
 import type { ColorToken } from '@/lib/contracts/modules';
 import type { NavBadge } from '@/lib/contracts/navigation';
 import type { QuickAddItem } from '@/lib/contracts/quick-add';
-import { t as translate, type Lang, type MessageKey } from '@/lib/i18n';
+import type { Lang, MessageKey } from '@/lib/i18n';
+import { fillWord, type Words } from '@/lib/i18n/words';
 import { clearScanOutbox, scanPagesOnPhone } from '@/lib/marking/outbox-clear';
 import { brandInitials } from '@/lib/school/logo-file';
 import { GlobalSearch } from './GlobalSearch';
 import { QuickAdd } from './QuickAdd';
 import type { TourId } from '@/lib/contracts/tours';
-import { LangProvider, useT } from './LangContext';
+import { LangProvider } from './lang-core';
+import { WordsProvider, useWords } from './Words';
 import { ToursProvider } from './ToursContext';
 import { LanguageSwitch } from './LanguageSwitch';
 import { OfflineProvider, useOffline } from './OfflineContext';
 import { SchoolLogo } from './SchoolLogo';
 import { readSidebarHidden, writeSidebarHidden } from './sidebar-preference';
 import { SyncLine } from './SyncLine';
-import { activeHref, type ShellGroup, type ShellItem } from './shell-nav';
+import { activeHref, type ShellGroup, type ShellItem } from './shell-active';
 
 type Values = Record<string, string>;
 
@@ -64,13 +66,13 @@ function useWideScreen(): boolean {
 // English.
 
 function Badge({ badge }: { badge: NavBadge }) {
-  const { t } = useT();
+  const { t } = useWords();
   const text = badge.kind === 'new' ? t('shell.badge.new') : badge.kind === 'percent' ? `${badge.value}%` : String(badge.value);
   return <span className="ml-auto rounded-full bg-white px-2 text-xs font-bold text-midnight">{text}</span>;
 }
 
 function ItemLink({ item, active, tone, onNavigate }: { item: ShellItem; active: boolean; tone: ColorToken; onNavigate?: () => void }) {
-  const { t } = useT();
+  const { t } = useWords();
   return (
     <Link
       href={item.href}
@@ -152,7 +154,7 @@ function Part({ id, label, children }: { id: string; label: string; children: Re
 }
 
 function Menu({ home, frequent, groups, active, onNavigate }: { home?: readonly ShellItem[]; frequent?: readonly ShellItem[]; groups: readonly ShellGroup[]; active: string | null; onNavigate?: () => void }) {
-  const { t } = useT();
+  const { t } = useWords();
   const id = useId();
   if (!home && !frequent) return <Groups groups={groups} active={active} onNavigate={onNavigate} />;
   const list = (items: readonly ShellItem[], tone: ColorToken) => (
@@ -183,7 +185,7 @@ function Menu({ home, frequent, groups, active, onNavigate }: { home?: readonly 
 
 function Footer({ accountHref }: { accountHref: string }) {
   const router = useRouter();
-  const { t, tCount } = useT();
+  const { t, tCount } = useWords();
   const { sendNow, operations, clear } = useOffline();
   const link = 'flex min-h-[44px] w-full items-center rounded-md bg-midnight px-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white';
   return (
@@ -236,6 +238,8 @@ export function AppShell({
   device = null,
   scope = 'school',
   quickAdd = [],
+  words,
+  langSaved,
   children,
 }: {
   // The menu's groups: the school's module groups ("All modules" when `home` or `frequent` is given), or Control's one.
@@ -263,9 +267,13 @@ export function AppShell({
   // Which search this shell has: the school's, or Control's.
   scope?: 'school' | 'control';
   quickAdd?: readonly QuickAddItem[];
+  // The shell's words, picked on the server (shellWords, C395): the shell never carries the whole message table.
+  words: Words;
+  // "Saved: <language>" in each language, for the language switch (shellWords).
+  langSaved: Record<Lang, string>;
   children: ReactNode;
 }) {
-  const t = (key: MessageKey, params?: Values) => translate(lang, key, params);
+  const t = (key: MessageKey, params?: Values) => fillWord(words, key, params);
   const pathname = usePathname() ?? '';
   const active = activeHref([{ items: [...(home ?? []), ...(frequent ?? [])] }, ...groups], pathname);
   const wide = useWideScreen();
@@ -329,6 +337,7 @@ export function AppShell({
 
   return (
     <LangProvider lang={lang}>
+      <WordsProvider words={words}>
       <ToursProvider initial={toursSeen}>
       <OfflineProvider schoolId={device?.schoolId ?? null} userId={device?.userId ?? null}>
       <div className="min-h-screen bg-off-white">
@@ -370,7 +379,7 @@ export function AppShell({
           <QuickAdd items={quickAdd} />
           {device && <SyncLine />}
           <div className="ml-auto">
-            <LanguageSwitch known={langKnown} />
+            <LanguageSwitch known={langKnown} saved={langSaved} />
           </div>
         </div>
         <Link
@@ -441,6 +450,7 @@ export function AppShell({
       </div>
       </OfflineProvider>
       </ToursProvider>
+      </WordsProvider>
     </LangProvider>
   );
 }

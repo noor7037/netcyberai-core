@@ -9,6 +9,7 @@ import { getLang, getToursSeen } from '@/lib/i18n/server';
 import { controlNav } from '@/lib/nav/nav-items';
 import { storageHealth } from '@/lib/observability/storage-health';
 import { StorageAlert } from '@/components/app-shell/StorageAlert';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // Redundant with middleware.ts's edge gate on purpose -- defense in
 // depth, same principle as RLS remaining the backstop under the app
@@ -38,7 +39,7 @@ export default async function ControlLayout({ children }: { children: React.Reac
   const role = t(lang, 'role.super_admin');
   const storageState = await storage;
   return (
-    <AppShell groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} logoSrc="/brand/logo-mark.svg" person={name ? { name, role } : null} roleLabel={role} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} toursSeen={getToursSeen(session!.sub)} scope="control">
+    <AppShell {...shellWords(lang)} groups={controlShellGroups(controlNav, undefined, lang)} brand={t(lang, 'shell.brand.control')} logoSrc="/brand/logo-mark.svg" person={name ? { name, role } : null} roleLabel={role} navLabel={t(lang, 'shell.nav.control')} accountHref="/control/account" lang={lang} langKnown={known} toursSeen={getToursSeen(session!.sub)} scope="control">
       {storageState !== 'ok' && <StorageAlert state={storageState} scope="control" lang={lang} />}
       {children}
     </AppShell>
