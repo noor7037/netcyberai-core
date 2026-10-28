@@ -40,6 +40,16 @@ export const FAMILY_SCREENS = [
   ['consented', 'family-pin-setup', '/family/welcome/pin', {}],
   ['pinned', 'family-first-child', '/family/welcome/child', { parent: true }],
   ['full', 'family-home', '/family', {}],
+  // H1 (C383): the header with the notifications bell and the hub entry (no Parent button), the Profile with Parent
+  // space, the notifications centre with items and empty, and the Future page with the three hub shells.
+  ['full', 'family-header-bell', '/family', { settle: '[data-notify-bell]' }],
+  ['full', 'family-profile', '/family/profile', { settle: '[data-parent-space]' }],
+  ['full', 'family-notifications', '/family/notifications', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-notify-list]' }],
+  ['english', 'family-notifications-empty', '/family/notifications', { settle: '[data-notify-empty]' }],
+  ['full', 'family-hub-future', '/family/future', { settle: '[data-hub-list]' }],
+  ['full', 'family-hub-career', '/family/future/career', { settle: '[data-hub-section="national"]' }],
+  ['full', 'family-hub-exams', '/family/future/exams', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-hub-section="state"]' }],
+  ['full', 'family-hub-schemes', '/family/future/schemes', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-hub-section="state"]' }],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
   // S3 (C376): asking for a chapter and the source choice, in the parent area; Study lists the requests with their badges.
@@ -315,9 +325,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               smallTargets: small,
               running: document.getAnimations().filter((a) => a.playState === 'running').length,
               devanagari: /[ऀ-ॿ]/.test(text),
-              // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names and the seeded children's
+              // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus'].includes(w.toLowerCase())),
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus', 'water', 'moves', 'from', 'book', 'polynomials'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });

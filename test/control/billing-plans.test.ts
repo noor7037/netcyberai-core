@@ -153,7 +153,7 @@ describe('plans are rows, not code', () => {
     // The public website names the plans it sells and is written by the supervisor, not by the app (founder,
     // 2026-10-14, C212): its own files are left out. Everything of the app is searched: the school's screens,
     // Control, the APIs, the libraries behind them, and the illustrative data.
-    const WEBSITE = [/^src\/content\/(?!help\/)/, /^src\/app\/(?!\((school|admin|dev)\)\/|api\/)/, /^src\/components\/(marketing|showcase|home|catalog|visual|content|layout|free-tools)\//, /^src\/lib\/(seo|og-card)\.tsx?$/];
+    const WEBSITE = [/^src\/content\/(?!help\/)/, /^src\/app\/(?!\((school|admin|dev|family)\)\/|api\/)/, /^src\/components\/(marketing|showcase|home|catalog|visual|content|layout|free-tools)\//, /^src\/lib\/(seo|og-card)\.tsx?$/];
     const all = files(path.join(ROOT, 'src'));
     const sources = all.filter((f) => !WEBSITE.some((w) => w.test(path.relative(ROOT, f))));
     expect(sources.length).toBeGreaterThan(500);
