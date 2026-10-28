@@ -7916,6 +7916,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.tutor.err.upload_aadhaar_card': 'इस फ़ाइल में आधार कार्ड दिखता है, इसलिए इसे नहीं रखा गया।',
   'fam.tutor.err.upload_unreadable': 'यह फ़ाइल पढ़ी नहीं जा सकी, इसलिए इसे नहीं रखा गया।',
   'fam.tutor.err.photo_consent': 'पहले माता-पिता को पैरेंट एरिया में फ़ोटो और फ़ाइलों के लिए हाँ कहना होगा।',
+  'fam.tutor.err.homework_off': 'होमवर्क हेल्पर चालू होने पर ही फ़ोटो और फ़ाइलें भेजी जा सकती हैं।',
   'fam.tutor.err.storage_unavailable': 'अभी फ़ाइल नहीं जोड़ी जा सकती। कृपया बाद में फिर कोशिश करो।',
   'fam.tutor.empty': 'यहाँ अभी कोई सवाल नहीं है। तुम्हारे सवाल और उनके जवाब यहीं रहेंगे।',
   'fam.tutor.loading': 'बातचीत खुल रही है…',

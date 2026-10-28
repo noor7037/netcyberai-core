@@ -221,6 +221,19 @@ describe('said, never dropped; never another child’s', () => {
     await q(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ($1, 'photo_input', true, 'parent_tap', 'fam-notice-3', now() + interval '2 minutes')`, [ACCOUNT]);
   });
 
+  it('the homework helper switched off: the tutor reads no file and takes none (C389, one set of photo rules)', async () => {
+    await q(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', false, 'test') on conflict (app, module) do update set enabled = false`);
+    const ev = await ask([id(8)]);
+    expect(ev).toEqual([expect.objectContaining({ t: 'refused', message: 'Photos and files can be sent once the homework helper is switched on.' })]);
+    expect(ai.asked).toEqual([]);
+    const { POST } = await import('@/app/api/family/tutor/files/route');
+    const res = await POST(new NextRequest('http://localhost/api/family/tutor/files', { method: 'POST', headers: { 'content-type': 'application/json', cookie }, body: JSON.stringify({ subject: 'mathematics', mime: 'image/png', size: 100, name: 'a.png' }) }));
+    expect(res.status).toBe(403);
+    expect(await res.json()).toEqual({ error: 'homework_off' });
+    await q(`update control.app_flags set enabled = true where app = 'family' and module = 'homework'`);
+    expect((await ask([id(8)])).some((e) => e.t === 'files')).toBe(true);
+  });
+
   it('what the files say is labelled per file and capped', () => {
     const long = 'x'.repeat(5000);
     const out = attachedText([

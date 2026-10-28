@@ -7926,6 +7926,7 @@ export const en = {
   'fam.tutor.err.upload_aadhaar_card': 'This file seems to show an Aadhaar card, so it was not kept.',
   'fam.tutor.err.upload_unreadable': 'This file could not be read, so it was not kept.',
   'fam.tutor.err.photo_consent': 'A parent needs to say yes to photos and files first, in the parent area.',
+  'fam.tutor.err.homework_off': 'Photos and files can be sent once the homework helper is switched on.',
   'fam.tutor.err.storage_unavailable': 'Files cannot be attached right now. Please try again later.',
   'fam.tutor.empty': 'No questions here yet. Your questions and the answers will stay here.',
   'fam.tutor.loading': 'Loading the conversation…',
