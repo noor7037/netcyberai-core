@@ -358,6 +358,62 @@
   animation: fam-pop 380ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
 }
 
+/* ---- the tutor composer and the chapter accordion (W6-A, C395) ------------------------------------------------- */
+/* A surface: 16 px corners and the cards' elevation (its colour comes from a bg- class). The composer's field takes the royal ring while it has the
+   focus (its textarea draws no outline of its own). The dock under the composer fades the page out behind it. */
+
+.fam-surface,
+.fam-composer {
+  border-radius: 1rem;
+  box-shadow:
+    0 1px 2px rgb(30 41 59 / 0.06),
+    0 10px 30px -12px rgb(29 78 216 / 0.22),
+    inset 0 0 0 1px rgb(30 41 59 / 0.08);
+}
+.fam-composer {
+  transition: box-shadow 160ms ease;
+}
+.fam-composer:focus-within {
+  box-shadow:
+    0 1px 2px rgb(30 41 59 / 0.06),
+    0 12px 32px -12px rgb(29 78 216 / 0.32),
+    inset 0 0 0 2px #1d4ed8;
+}
+.fam-composer-dock {
+  background: linear-gradient(to top, #f9fafb 70%, rgb(249 250 251 / 0));
+}
+.fam-acc > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.fam-acc > summary::-webkit-details-marker {
+  display: none;
+}
+.fam-acc > summary:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+.fam-acc-chev {
+  transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fam-acc[open] .fam-acc-chev {
+  transform: rotate(90deg);
+}
+.fam-acc[open] > .fam-acc-body,
+.fam-acc-in {
+  animation: fam-acc-in 180ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes fam-acc-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ---- keyframes --------------------------------------------------------------------------------------------------- */
 
 @keyframes fam-aurora {
@@ -429,8 +485,14 @@
   .fam-rise,
   .fam-pop,
   .fam-tab-on,
-  .fam-ring-arc {
+  .fam-ring-arc,
+  .fam-acc[open] > .fam-acc-body,
+  .fam-acc-in {
     animation: none !important;
+  }
+  .fam-acc-chev,
+  .fam-composer {
+    transition: none !important;
   }
   .fam-cta::after {
     display: none;
