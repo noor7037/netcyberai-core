@@ -1,13 +1,14 @@
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
 import { fill, type Words } from '@/lib/family/fill';
 import { SchoolText } from './SchoolText';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // A child's progress report in the Family app (C230-AJ part 5): the exams of this session the school published and shared,
 // by kind of exam, oldest first, each with its subjects' percent and grade and the overall, as the report card says them.
 // Read as the guardian, so only the child's own published results are ever here; it compares the child with no one (no rank,
 // no position). The kinds of exam are the school's own, in the reader's language. Calm: no chart, no colour judging.
 
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 const scored = (w: Words, percent: number | null, grade: string | null) => (percent === null ? w['fam.school.resultNotComplete'] : grade ? `${percent}% · ${grade}` : `${percent}%`);
 
 export function SchoolProgressView({ progress, w, lang }: { progress: SchoolProgress; w: Words; lang: 'en' | 'hi' }) {

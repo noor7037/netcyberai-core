@@ -7,7 +7,7 @@ import { listRequests, readSourceModes } from '@/lib/family/chapter-requests';
 import { FamIcon } from '@/components/family/FamIcon';
 import { GateFrame } from '@/components/family/GateFrame';
 import { FocusSection } from '@/components/family/FocusSection';
-import { ParentArea } from '@/components/family/ParentArea';
+import { ParentArea, type ParentNeed } from '@/components/family/ParentArea';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { NotifySection } from '@/components/family/NotifySection';
@@ -61,6 +61,9 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
   'fam.parent.privacy', 'fam.parent.privacyIntro',
+  'fam.parent.tabs', 'fam.parent.tab.overview', 'fam.parent.tab.children', 'fam.parent.tab.school', 'fam.parent.tab.learning', 'fam.parent.tab.privacy', 'fam.parent.tab.account',
+  'fam.parent.needs.title', 'fam.parent.needs.none', 'fam.parent.needs.open', 'fam.parent.needs.requestsDeclined', 'fam.parent.needs.requestsOpen', 'fam.parent.needs.renew', 'fam.parent.needs.consent', 'fam.parent.needs.meeting',
+  'fam.parent.learningEmpty', 'fam.parent.goChildren',
   'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.marks.open', 'fam.marks.openSubject', 'fam.schoolProgress.open', 'fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
@@ -207,6 +210,15 @@ export default async function FamilyParentPage() {
           notices: focusRead.notices.map((n) => ({ noticeId: n.noticeId, deviceId: n.deviceId, kind: n.kind, time: focusTimeLabel(n.at, lang) })),
         }
       : null;
+  // What needs the parent now (W6-F): one line and one action each.
+  const needs: ParentNeed[] = [];
+  const declined = own.requests.filter((r) => r.status === 'declined').length;
+  const preparing = own.requests.filter((r) => r.status === 'received' || r.status === 'digitizing').length;
+  if (!page.consents.study_core) needs.push({ kind: 'consent' });
+  if (renew) needs.push({ kind: 'renew' });
+  if (declined > 0) needs.push({ kind: 'requests_declined', n: declined });
+  if (preparing > 0) needs.push({ kind: 'requests_open', n: preparing });
+  for (const c of plans ?? []) if (c.linked && c.plan && !c.plan.followupAsked) needs.push({ kind: 'meeting', name: c.firstName });
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <ParentArea
@@ -222,8 +234,10 @@ export default async function FamilyParentPage() {
         states={familyStates(lang)}
         boards={await familyPageRead(page, (db) => listFamilyBoards(db, lang))}
         studyCore={page.consents.study_core}
-        afterChildren={
-          <>
+        needs={needs}
+        slots={{
+          overview: (
+            <>
             {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
             {page.children.length > 0 && (
               <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
@@ -240,20 +254,34 @@ export default async function FamilyParentPage() {
                 <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
               </Link>
             )}
-            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            </>
+          ),
+          children: (
+            <>
             {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
             {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
               <ChildPhoneSection w={familyWords(lang, PHONE_KEYS)} lang={lang} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} phones={phones} canLink={phoneLinking} />
             )}
+            {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            </>
+          ),
+          school: (
+            <>
+            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
-            {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            </>
+          ),
+          learning:
+            own.childList.length > 0 ? (
+              <>
             {own.childList.length > 0 && page.consents.study_core && (
               <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} childList={own.childList} requests={own.requests} modes={own.modes} />
             )}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
-          </>
-        }
+              </>
+            ) : null,
+        }}
       />
     </div>
   );

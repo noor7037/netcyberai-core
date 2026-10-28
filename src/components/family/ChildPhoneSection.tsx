@@ -7,11 +7,12 @@ import { Input } from '@/components/ui/Input';
 import { fill, type Words } from '@/lib/family/fill';
 import type { ChildPhone } from '@/lib/family/child-phone-shape';
 import { familyApi } from './client';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // Children's own phones (M2b-2; reversed by C230-AF, C346; docs/34 §9.4), in the parent area: the code the child's
 // phone shows is typed here, with the child it is for, and each phone still linked is listed, which the parent removes
 // at once. `canLink`: Control has the family's Focus Lock switched on; without it only the list (and Remove) shows.
-const when = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' }).format(new Date(iso));
+const when = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' }).format(new Date(iso)));
 
 export function ChildPhoneSection({ w, lang, children, phones, canLink }: { w: Words; lang: 'en' | 'hi'; children: { childId: string; firstName: string }[]; phones: ChildPhone[]; canLink: boolean }) {
   const router = useRouter();
