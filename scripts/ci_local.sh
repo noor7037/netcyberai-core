@@ -198,6 +198,11 @@ python3 scripts/check_harness_isolation.py --self-test
 python3 scripts/check_harness_isolation.py --build .next
 STEP
 
+run_step "Every family page stays under its First Load JS budget" <<'STEP'
+python3 scripts/check_family_budget.py --self-test
+python3 scripts/check_family_budget.py --build .next
+STEP
+
 uses_step actions/setup-python@v5 python-version=3.12
 
 run_step "SEO/AEO audit" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 <<'STEP'

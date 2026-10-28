@@ -243,7 +243,7 @@ export default async function FamilyParentPage() {
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
             {own.childList.length > 0 && page.consents.study_core && (
-              <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} lang={lang} childList={own.childList} requests={own.requests} modes={own.modes} />
+              <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} childList={own.childList} requests={own.requests} modes={own.modes} />
             )}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
           </>
