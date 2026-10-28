@@ -301,3 +301,9 @@ values ('f0000000-0000-4000-8000-0000000fa204', 'f0000000-0000-4000-8000-0000000
         'f0000000-0000-4000-8000-0000000fa202', 'ready', 'image/jpeg', 182000,
         'f0000000-0000-4000-8000-0000000f0004/f0000000-0000-4000-8000-0000000fc002/f0000000-0000-4000-8000-0000000fa204.jpg', now() - interval '1 hour');
 -- s2 end
+-- e1 begin
+-- Live English practice (E1, C382): the English family's parent also said yes to voice practice, so the course shows
+-- the live practice entry and the live screen opens. Illustrative only.
+insert into family.consents (account_id, purpose, granted, verification_method, notice_version)
+values ('f0000000-0000-4000-8000-0000000f0005', 'voice_practice', true, 'parent_tap', 'fam-notice-1');
+-- e1 end

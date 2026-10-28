@@ -30,7 +30,7 @@ import { indiaDate } from '@/lib/time/india';
 // (checked and mastered per subject, "free", a lock), and progress as a ring. Learning first: no streaks, no ranks.
 // M2-2 (C276): with the plan module on, today's plan follows the ask card (the learning-first routine).
 // M2-3 (C277): with the habit module on, the week, the badges and the jar follow the plan.
-const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.home.parent', 'fam.home.whoIsLearning'];
+const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.hub.entry', 'fam.notify.center.title', 'fam.profile.title', 'fam.home.whoIsLearning'];
 
 export default async function FamilyHomePage() {
   const page = await requireFamilyPage();
@@ -66,7 +66,7 @@ export default async function FamilyHomePage() {
   });
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} />
+      <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} news={news?.total ?? 0} />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-5 px-4 pb-10">
         <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
         {atSchool && (

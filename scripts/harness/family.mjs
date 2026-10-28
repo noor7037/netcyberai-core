@@ -9,6 +9,7 @@ import { SignJWT } from 'jose';
 import { MK, routeScriptPictures, seedMarking } from './marking-seed.mjs';
 import { seedOutputs } from './outputs-seed.mjs';
 import { clearAaravAttempt, ON, seedOnline } from './online-seed.mjs';
+import { seal } from './lab-seed.mjs';
 
 // axe-core checks every picture against WCAG 2.1 A and AA; a serious or critical finding fails the run (07 §3).
 const AXE = createRequire(import.meta.url).resolve('axe-core/axe.min.js');
@@ -28,6 +29,40 @@ export const FAMILY = {
 const LINKED_CHILD = 'f0000000-0000-4000-8000-0000000fc006';
 export const REPORT_KEY = 'HarnessReportLinkKeyMadeUp00000000000000000';
 
+// E1 (C382): Meena's talk at the market, three turns (illustrative words only), and its removal after the picture.
+const LIVE_TALK = `
+insert into family.english_live_sessions (session_id, account_id, child_id, topic, track, started_at)
+values ('f0000000-0000-4000-8000-0000000fe101', 'f0000000-0000-4000-8000-0000000f0005', 'f0000000-0000-4000-8000-0000000fc005', 'market', 'b', now() - interval '5 minutes');
+insert into family.english_live_turns (session_id, account_id, child_id, position, child_text, reply) values
+  ('f0000000-0000-4000-8000-0000000fe101', 'f0000000-0000-4000-8000-0000000f0005', 'f0000000-0000-4000-8000-0000000fc005', 1, 'Hello. I want mangoes.', 'Hello! These mangoes are sweet. How many mangoes do you want?'),
+  ('f0000000-0000-4000-8000-0000000fe101', 'f0000000-0000-4000-8000-0000000f0005', 'f0000000-0000-4000-8000-0000000fc005', 2, 'I want three mango.', 'You can say: I want three mangoes. Here they are! Do you want bananas too?'),
+  ('f0000000-0000-4000-8000-0000000fe101', 'f0000000-0000-4000-8000-0000000f0005', 'f0000000-0000-4000-8000-0000000fc005', 3, 'Yes, I want three mangoes and two bananas.', 'Very good! That is twenty rupees. Do you have a bag?');`;
+const LIVE_TALK_GONE = `delete from family.english_live_sessions where session_id = 'f0000000-0000-4000-8000-0000000fe101'`;
+const LIVE_PROFILES = [
+  ['family.voice_input', '@cf/openai/whisper-large-v3-turbo'],
+  ['family.english_conversation', '@cf/meta/llama-4-scout-17b-16e-instruct'],
+  ['family.moderation', '@cf/meta/llama-guard-3-8b'],
+];
+
+// `ai`: for this picture, a made-up Workers AI key sealed with this run's own key, the provider cleared for children
+// and the live tutor's three workloads on it, so the screen reads "set up" without any call. All put back after.
+async function liveAiOn(db, aiKey) {
+  const provider = (await db.pg.query(`select cleared_for_minors, cleared_terms_url, cleared_at, cleared_by, enabled from control.ai_providers where provider_id = 'workers-ai'`)).rows[0];
+  const profiles = (await db.pg.query(`select profile_id, provider_id, model, fallback, enabled from control.ai_profiles where profile_id = any($1::text[])`, [LIVE_PROFILES.map(([p]) => p)])).rows;
+  const hadKey = (await db.pg.query(`select 1 from control.ai_credentials where provider_id = 'workers-ai'`)).rows.length > 0;
+  const k = seal(aiKey, 'workers-ai', `${'d'.repeat(32)}:cfat_${'H'.repeat(36)}`);
+  if (!hadKey)
+    await db.pg.query(`insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by) values ('workers-ai', $1, $2, $3, 1, 'HARN', '00000000-0000-4000-8000-00000000f001')`, [k.ciphertext, k.iv, k.tag]);
+  await db.pg.query(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.invalid/terms', cleared_at = now(), cleared_by = '00000000-0000-4000-8000-00000000f001', enabled = true where provider_id = 'workers-ai'`);
+  for (const [id, model] of LIVE_PROFILES) await db.pg.query(`update control.ai_profiles set provider_id = 'workers-ai', model = $2, fallback = '[]', enabled = true where profile_id = $1`, [id, model]);
+  return async () => {
+    for (const p of profiles) await db.pg.query(`update control.ai_profiles set provider_id = $2, model = $3, fallback = $4::jsonb, enabled = $5 where profile_id = $1`, [p.profile_id, p.provider_id, p.model, JSON.stringify(p.fallback ?? []), p.enabled]);
+    if (provider)
+      await db.pg.query(`update control.ai_providers set cleared_for_minors = $1, cleared_terms_url = $2, cleared_at = $3, cleared_by = $4, enabled = $5 where provider_id = 'workers-ai'`, [provider.cleared_for_minors, provider.cleared_terms_url, provider.cleared_at, provider.cleared_by, provider.enabled]);
+    if (!hadKey) await db.pg.query(`delete from control.ai_credentials where provider_id = 'workers-ai'`);
+  };
+}
+
 // [account (null: no session), picture name, address, { parent: parent mode open }]
 // `flags`: Control's family switches set for this picture only (saved with the reason "harness screen", removed after);
 // `reset`: SQL run after the picture (so a limit the picture spends does not carry over to the next).
@@ -40,6 +75,16 @@ export const FAMILY_SCREENS = [
   ['consented', 'family-pin-setup', '/family/welcome/pin', {}],
   ['pinned', 'family-first-child', '/family/welcome/child', { parent: true }],
   ['full', 'family-home', '/family', {}],
+  // H1 (C383): the header with the notifications bell and the hub entry (no Parent button), the Profile with Parent
+  // space, the notifications centre with items and empty, and the Future page with the three hub shells.
+  ['full', 'family-header-bell', '/family', { settle: '[data-notify-bell]' }],
+  ['full', 'family-profile', '/family/profile', { settle: '[data-parent-space]' }],
+  ['full', 'family-notifications', '/family/notifications', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-notify-list]' }],
+  ['english', 'family-notifications-empty', '/family/notifications', { settle: '[data-notify-empty]' }],
+  ['full', 'family-hub-future', '/family/future', { settle: '[data-hub-list]' }],
+  ['full', 'family-hub-career', '/family/future/career', { settle: '[data-hub-section="national"]' }],
+  ['full', 'family-hub-exams', '/family/future/exams', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-hub-section="state"]' }],
+  ['full', 'family-hub-schemes', '/family/future/schemes', { child: 'f0000000-0000-4000-8000-0000000fc001', settle: '[data-hub-section="state"]' }],
   ['full', 'family-parent-gate', '/family/parent', {}],
   ['full', 'family-parent-area', '/family/parent', { parent: true }],
   // S3 (C376): asking for a chapter and the source choice, in the parent area; Study lists the requests with their badges.
@@ -104,6 +149,12 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-l2-pattern', '/family/english/lesson/b.u01.l2', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l3-story', '/family/english/lesson/b.u01.l3', { settle: '[role=progressbar]' }],
   ['english', 'family-english-l4-roleplay', '/family/english/lesson/b.u01.l4', { settle: '[role=progressbar]' }],
+  // E1 (C382): live practice beside the course: with no speech service (the screen says so), ready (a made-up Workers
+  // AI key sealed for the picture, `ai`), and a talk of three turns; then the parent's English page with that talk.
+  ['english', 'family-english-live-not-set-up', '/family/english/live', { settle: '[data-live-not-set-up]' }],
+  ['english', 'family-english-live-ready', '/family/english/live', { ai: true, settle: '[data-live-ready]' }],
+  ['english', 'family-english-live-session', '/family/english/live', { ai: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-live-turns] li' }],
+  ['english', 'family-parent-english-live', '/family/parent/english/f0000000-0000-4000-8000-0000000fc005', { parent: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-live-parent-session]' }],
   // m2b-1 (C305): the parent area's Focus Lock section, two phones of the English family, one with notices to look at.
   ['english', 'family-parent-focus', '/family/parent', { parent: true, settle: '[data-focus-section]' }],
   // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
@@ -232,7 +283,7 @@ async function seedLinkedFamily(db) {
   await seedOnline(db, { school, principal, teacher: '00000000-0000-4000-8000-00000000a003' });
 }
 
-export async function runFamilyMatrix({ browser, base, db, secret, out, only }) {
+export async function runFamilyMatrix({ browser, base, db, secret, out, only, aiKey }) {
   await seedEnglish(db);
   await seedFocus(db);
   await seedLinkedFamily(db);
@@ -251,6 +302,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
         for (const [who, name, route, opts] of screens) {
           // Rows only this screen needs, taken away again by its `reset`.
           if (opts.prep) await db.pg.exec(opts.prep);
+          const aiOff = opts.ai ? await liveAiOn(db, aiKey) : null;
           for (const [module, on] of Object.entries(opts.flags ?? {}))
             await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
           const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
@@ -315,9 +367,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
               smallTargets: small,
               running: document.getAnimations().filter((a) => a.playState === 'running').length,
               devanagari: /[ऀ-ॿ]/.test(text),
-              // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names and the seeded children's
+              // Words left in English on a Hindi screen. Product names (NetCyberAI, Family Plus), the language names the seeded children's
               // first names (data, not words of the app) do not count.
-              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus'].includes(w.toLowerCase())),
+              latinWords: (text.match(/\b[A-Za-z]{4,}\b/g) ?? []).filter((w) => !['netcyberai', 'cbse', 'english', 'hinglish', 'delete', 'asha', 'kabir', 'meena', 'aarav', 'family', 'plus', 'water', 'moves', 'from', 'book', 'polynomials'].includes(w.toLowerCase())),
             };
           });
           await page.addScriptTag({ path: AXE });
@@ -340,6 +392,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
           console.log(`${width} ${lang} ${motion} ${name}: ${problems.length ? problems.join('; ') : 'ok'}`);
           await context.close();
           if (opts.flags) await db.pg.query(`delete from control.app_flags where app = 'family' and reason = 'harness screen'`);
+          if (aiOff) await aiOff();
           if (opts.reset === 'online') await clearAaravAttempt(db, 'a0000000-0000-4000-8000-000000000001');
           else if (opts.reset) await db.pg.exec(opts.reset);
         }

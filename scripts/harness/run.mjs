@@ -7589,7 +7589,7 @@ try {
     // A fake microphone (M2-7): voice input's recording state is pictured without a real one.
     const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream'] });
     await seedStudio(db, PEOPLE.founder.sub);
-    const rows = await runFamilyMatrix({ browser, base, db, secret, out: OUT, only: ONLY ? ONLY.split(',').filter(Boolean) : [] });
+    const rows = await runFamilyMatrix({ browser, base, db, secret, out: OUT, only: ONLY ? ONLY.split(',').filter(Boolean) : [], aiKey: childEnv.AI_CREDENTIALS_KEY });
     await browser.close();
     writeFileSync(path.join(OUT, 'app.log'), appLog);
     let total = 0;

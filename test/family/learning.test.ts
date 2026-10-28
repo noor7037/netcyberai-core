@@ -41,9 +41,10 @@ describe('the registry', () => {
     expect(FAMILY_MODULES.filter((m) => m.tab === 'home' && m.entitlement === 'school_info').every((m) => m.entitlement !== 'plus' && m.entitlement !== 'learning')).toBe(true);
   });
   it('shows a tab only when a built module of it is switched on', () => {
-    expect(visibleTabs(() => true)).toEqual(['home', 'study', 'english', 'family']);
+    // H1: the Future tab shows with the three hub shells built.
+    expect(visibleTabs(() => true)).toEqual(['home', 'study', 'english', 'future', 'family']);
     // Every Study module switched off (M2 adds more of them): no Study tab.
-    expect(visibleTabs((f) => !FAMILY_MODULES.some((m) => m.tab === 'study' && m.flag === f))).toEqual(['home', 'english', 'family']);
+    expect(visibleTabs((f) => !FAMILY_MODULES.some((m) => m.tab === 'study' && m.flag === f))).toEqual(['home', 'english', 'future', 'family']);
   });
   it('opens every subject until the first is claimed, then only that one', () => {
     expect(subjectAccess({ freeSubject: null }, 'science').open).toBe(true);
