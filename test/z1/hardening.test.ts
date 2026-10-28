@@ -40,7 +40,8 @@ beforeAll(async () => {
       ('${ACCOUNT}', '${ASHA}', 'cbse.c7.science.ch01', 'b1', 2), ('${ACCOUNT}', '${KABIR}', 'cbse.c9.science.ch01', 'b3', 0);
     insert into family.child_subject_source (account_id, child_id, subject, mode) values
       ('${ACCOUNT}', '${ASHA}', 'science', 'catalog'), ('${ACCOUNT}', '${KABIR}', 'science', 'parent');
-  `);}, 120_000);
+  `);
+}, 120_000);
 afterAll(async () => db?.stop());
 
 // A policy's `cmd` is pg_policy.polcmd: '*' all, r select, a insert, w update, d delete. `qual` is the using clause
