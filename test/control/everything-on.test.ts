@@ -22,7 +22,7 @@ describe('a module with no row is on; a row a person set off stays off', () => {
   });
 });
 
-const SQL = readFileSync('supabase/migrations/20261028120000_w6_d_everything_on.sql', 'utf8');
+const SQL = readFileSync('supabase/migrations/20261028103229_w6_d_everything_on.sql', 'utf8');
 let db: { pg: { exec: (s: string) => Promise<unknown>; query: (s: string) => Promise<{ rows: Record<string, unknown>[] }> }; stop: () => Promise<void> };
 const row = async (app: string, module: string) => (await db.pg.query(`select enabled, audience, reason from control.app_flags where app = '${app}' and module = '${module}'`)).rows[0];
 
