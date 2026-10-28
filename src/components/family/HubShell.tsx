@@ -8,6 +8,7 @@ import { HUB_PRESENTATION, hubSections, hubText, loadHubEntries, type HubEntry }
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyStates } from '@/lib/family/states';
 import { t } from '@/lib/i18n';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // One hub of the Future tab (H1): its sections and the entries Control publishes (W4-3, C387). Server-rendered, no
 // script, no image: the structure is the national part for every child and, where the hub has one, the child's own
@@ -18,7 +19,7 @@ const glyph = {
 };
 
 // The day it was checked, as the child reads dates (the stored day, not shifted by the phone's time zone).
-const dayText = (lang: 'en' | 'hi', iso: string) => new Date(`${iso}T00:00:00Z`).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const dayText = (lang: 'en' | 'hi', iso: string) => sameInkOnBothSides(new Date(`${iso}T00:00:00Z`).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }));
 
 function Section({ id, title, entries, empty, path, lang }: { id: 'national' | 'state'; title: string; entries: HubEntry[]; empty: string; path: string; lang: 'en' | 'hi' }) {
   return (

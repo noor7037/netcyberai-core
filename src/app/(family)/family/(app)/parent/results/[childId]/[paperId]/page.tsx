@@ -8,6 +8,7 @@ import { activeLinks, appSubjectFor, schoolPaperFor } from '@/lib/family/school'
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // A child's checked paper, in the parent area (C351): behind the parent PIN, for a child of this account matched to a
 // school student, read as the guardian (the school's row rules decide: the child's own approved script of a
@@ -15,7 +16,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 // the paper is not available.
 export const dynamic = 'force-dynamic';
 
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 export default async function FamilyParentCheckedPaperPage({ params }: { params: { childId: string; paperId: string } }) {
   const page = await requireFamilyPage();

@@ -3,6 +3,7 @@ import { isPrePrimary, listChildren } from './children';
 import { readFamilySwitches, switchOn } from './flags';
 import { dayPlan, type PlanKind } from './plan';
 import { familyHashKey } from './secret';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The Focus Lock's server (M2b-1, C305; docs/34 §9; M2B_PLAN.md, Decisions C304). The lock itself runs on the phone and
 // keeps its rules there (the apps, the lock times, the parent session, WhatsApp, the educational apps). The server only:
@@ -215,5 +216,5 @@ export async function parentFocus(db: Db, accountId: string): Promise<ParentFocu
 
 // "24 Oct, 4:30 pm" in India time, in the parent's language.
 export function focusTimeLabel(at: string, lang: 'en' | 'hi'): string {
-  return new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(at));
+  return sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(at)));
 }

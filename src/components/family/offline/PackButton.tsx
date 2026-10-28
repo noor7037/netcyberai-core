@@ -7,6 +7,7 @@ import type { ChapterPack } from '@/lib/family/pack';
 import { familyApi } from '../client';
 import { FamIcon } from '../FamIcon';
 import { keepShell, listPacks, removePack, savePack } from './store';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // "Save for offline" on a chapter (M2-9, C283): its size is shown before anything is fetched; the pack is kept in this
 // phone's IndexedDB, "Saved" with the day it is kept until, and "Remove".
@@ -17,7 +18,7 @@ export function PackButton({ w, lang, childId, chapterKey, chapterTitle, bytes, 
   const [state, setState] = useState<State>('checking');
   const [until, setUntil] = useState<string | null>(null);
   const size = sizeText(bytes);
-  const day = (iso: string) => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' }).format(new Date(iso));
+  const day = (iso: string) => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', timeZone: 'Asia/Kolkata' }).format(new Date(iso)));
 
   useEffect(() => {
     let live = true;
