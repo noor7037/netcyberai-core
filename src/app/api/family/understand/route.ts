@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
+import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
@@ -91,8 +92,16 @@ export async function POST(req: NextRequest) {
             if (!(await familyModuleOn(db, 'understand', session.accountId))) return { refused: t(lang, 'fam.understand.off') };
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
+            // W4-1 review: whatever would refuse the question is checked before any photo leaves, so a question that will
+            // not be answered never sends a photo or spends a place: the reader's chapter and section, the safety check
+            // ready (C314, as the homework helper does), and room in the family's day for every photo read and the answer.
+            if (tutorBody!.chapterKey !== undefined && !readerContext(String(tutorBody!.subject), tutorBody!.chapterKey, tutorBody!.blockId, child.language)) return { refused: t(lang, 'fam.understand.notFound') };
             const account = await accountSummary(db, session.accountId);
-            return { files, lang, childId: child.childId, ai: { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day: indiaDate() } };
+            const ai = { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day: indiaDate() };
+            if (!(await prepareModeration(db, ai)).ok) return { refused: t(lang, 'fam.understand.safetyOff') };
+            const photos = files.filter((f) => f.mime !== 'application/pdf').length;
+            if (photos > 0 && (await dailyRequestsLeft(db, session.accountId, ai.day)) < photos + 1) return { refused: t(lang, 'ai.cap_reached') };
+            return { files, lang, childId: child.childId, ai };
           });
           if ('refused' in asked) return void send({ t: 'refused', reason: 'not_found', message: asked.refused! });
           const fetched = await fetchFiles(asked.files, (key) => tutorStorage.get(key));
