@@ -41,7 +41,8 @@ const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold
 
 // One purpose the parent agreed to (or not), C230-Y: a short name and an on/off switch, with the full words of what it
 // means one tap away. Each purpose keeps its own switch (DPDP: consent is given for each purpose, never bundled).
-function ConsentRow({ w, consent, granted, onToggle, data, note }: { w: Words; consent: string; granted: boolean; onToggle: () => void; data?: Record<string, string | boolean>; note?: string }) {
+// `changed`: the notice for this purpose changed since the parent said yes (C230-AP); said in the open, not folded away.
+function ConsentRow({ w, consent, granted, onToggle, data, note, changed }: { w: Words; consent: string; granted: boolean; onToggle: () => void; data?: Record<string, string | boolean>; note?: string; changed?: string }) {
   const name = w[`fam.consent.short.${consent}`];
   return (
     <div {...data} className="flex flex-col rounded-2xl bg-off-white px-3 py-1">
@@ -53,6 +54,11 @@ function ConsentRow({ w, consent, granted, onToggle, data, note }: { w: Words; c
           </span>
         </button>
       </div>
+      {changed && (
+        <p data-consent-changed={consent} className="pb-1 text-sm font-semibold text-slate">
+          {changed}
+        </p>
+      )}
       <details className="pb-2">
         <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-semibold text-royal">{w['fam.consent.more']}</summary>
         <p className="text-sm text-slate">{w[`fam.consent.purpose.${consent}`]}</p>
@@ -196,11 +202,12 @@ function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states
 }
 
 // `english`: the English course (C274) when Control has it switched on: whether the parent has given its consent.
-// `photo`: the same for photo questions (M2-6, C280), when Control has the homework helper switched on.
+// `photo`: the same for photo questions (M2-6, C280), when Control has the homework helper or the tutor switched on;
+// `renew` when a yes given on the older notice no longer counts (C230-AP).
 // `voice`: the same for voice (M2-7, C281), when Control has voice input switched on.
 // `offers` (C230-V): whether the parent agreed to hear about offers; always shown, optional, off until turned on.
 // `afterChildren`: the sections about the children's school and syllabus (C230-AA, C230-AB), placed after the children.
-export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, afterChildren = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; afterChildren?: ReactNode }) {
+export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, afterChildren = null }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean; renew?: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; afterChildren?: ReactNode }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -284,7 +291,7 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
         <ConsentRow w={w} consent="study_core" granted={studyCore} note={w['fam.parent.withdrawNote']} onToggle={() => void post('/api/family/consent', { purpose: 'study_core', granted: !studyCore, tap: true }, null)} />
         {english && <ConsentRow w={w} consent="english_programme" granted={english.granted} onToggle={() => void post('/api/family/consent', { purpose: 'english_programme', granted: !english.granted, tap: true }, null)} />}
         {photo && (
-          <ConsentRow w={w} consent="photo_input" granted={photo.granted} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />
+          <ConsentRow w={w} consent="photo_input" granted={photo.granted} changed={photo.renew ? w['fam.consent.changed.photo_input'] : undefined} data={{ 'data-consent': 'photo_input' }} onToggle={() => void post('/api/family/consent', { purpose: 'photo_input', granted: !photo.granted, tap: true }, null)} />
         )}
         {voice && (
           <ConsentRow w={w} consent="voice_practice" granted={voice.granted} data={{ 'data-consent-voice': true }} onToggle={() => void post('/api/family/consent', { purpose: 'voice_practice', granted: !voice.granted, tap: true }, null)} />

@@ -72,6 +72,8 @@ export const FAMILY_SCREENS = [
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
   ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
+  // C230-AP: a photo yes given on the older notice is asked again, and the row says why.
+  ['full', 'family-parent-photo-notice', '/family/parent', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
   ['full', 'family-parent-area-voice', '/family/parent', { parent: true, settle: '[data-consent-voice]' }],
   // Worksheets (M2-4, C278): the worksheet on screen, and the parent's print with the answer key.
   ['full', 'family-worksheet', '/family/study/worksheet/cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
@@ -247,6 +249,8 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only }) 
     for (const motion of FAMILY_MOTIONS) {
       for (const width of FAMILY_WIDTHS) {
         for (const [who, name, route, opts] of screens) {
+          // Rows only this screen needs, taken away again by its `reset`.
+          if (opts.prep) await db.pg.exec(opts.prep);
           for (const [module, on] of Object.entries(opts.flags ?? {}))
             await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
           const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });

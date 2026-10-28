@@ -63,8 +63,8 @@ beforeAll(async () => {
   await db.pg.exec(`
     insert into family.accounts (account_id, email) values ('${ACCOUNT}', 'tutor@example.org'), ('${OTHER}', 'other-tutor@example.org');
     insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values
-      ('${ACCOUNT}', 'study_core', true, 'parent_tap', 'v1'), ('${ACCOUNT}', 'photo_input', true, 'parent_tap', 'v1'),
-      ('${OTHER}', 'study_core', true, 'parent_tap', 'v1'), ('${OTHER}', 'photo_input', true, 'parent_tap', 'v1');
+      ('${ACCOUNT}', 'study_core', true, 'parent_tap', 'v1'), ('${ACCOUNT}', 'photo_input', true, 'parent_tap', 'fam-notice-3'),
+      ('${OTHER}', 'study_core', true, 'parent_tap', 'v1'), ('${OTHER}', 'photo_input', true, 'parent_tap', 'fam-notice-3');
     insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values
       ('${CHILD}', '${ACCOUNT}', 'Aarav', 6, 'CBSE', 'en', 'en', 'IN-HR'),
       ('${SIBLING}', '${ACCOUNT}', 'Meera', 7, 'CBSE', 'en', 'en', 'IN-HR'),
