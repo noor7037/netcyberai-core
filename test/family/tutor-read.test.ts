@@ -14,7 +14,7 @@ import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 //   4. A file that cannot be read is said so in the answer: none is dropped in silence.
 //   5. Another child's file, or one already withdrawn by consent, is never read.
 
-const ai = vi.hoisted(() => ({ asked: [] as { profile: string; system: string; content: string; images: number }[], photoText: 'What is 7 x 8?', photoOff: false, checked: [] as string[] }));
+const ai = vi.hoisted(() => ({ asked: [] as { profile: string; system: string; content: string; images: number }[], photoText: 'What is 7 x 8?', photoOff: false, safetyOff: false, left: 100, checked: [] as string[] }));
 vi.mock('@/lib/ai/platform', async (original) => ({
   ...(await original<typeof import('@/lib/ai/platform')>()),
   activePromptVersion: async () => 'v1',
@@ -33,7 +33,8 @@ vi.mock('@/lib/ai/platform', async (original) => ({
       },
     };
   },
-  prepareModeration: async () => ({ ok: true, moderation: { check: async (t: { user: string }) => (ai.checked.push(t.user), { safe: true, categories: [] }), record: async () => {} } }),
+  dailyRequestsLeft: async () => ai.left,
+  prepareModeration: async () => ai.safetyOff ? { ok: false, reason: 'not_switched_on' } : ({ ok: true, moderation: { check: async (t: { user: string }) => (ai.checked.push(t.user), { safe: true, categories: [] }), record: async () => {} } }),
 }));
 const store = vi.hoisted(() => ({ files: new Map<string, Uint8Array>() }));
 vi.mock('@/lib/family/tutor', async (original) => ({
@@ -116,6 +117,8 @@ beforeEach(() => {
   ai.asked = [];
   ai.checked = [];
   ai.photoOff = false;
+  ai.safetyOff = false;
+  ai.left = 100;
 });
 
 const ask = async (files: string[], text = 'Please help with this') => {
@@ -194,6 +197,20 @@ describe('said, never dropped; never another child’s', () => {
     expect(ev).toEqual([expect.objectContaining({ t: 'refused' })]);
     expect(ai.asked).toEqual([]);
     expect(JSON.stringify(ev)).not.toContain('Dev private worksheet');
+  });
+
+  it('a question that will be refused never sends a photo (W4-1 review): safety check off, or no room in the day', async () => {
+    await q(`insert into family.tutor_attachments (attachment_id, conversation_id, account_id, child_id, status, mime, size_bytes, storage_key) values ($1, $2, $3, $4, 'ready', 'image/png', 12, $5)`, [id(9), CONV, ACCOUNT, CHILD, keyOf(ACCOUNT, CHILD, 9, 'png')]);
+    store.files.set(keyOf(ACCOUNT, CHILD, 9, 'png'), PNG);
+    const places = async () => (await q(`select coalesce(sum(photo_questions), 0)::int as n from family.day_counts where child_id = $1`, [CHILD]))[0].n;
+    const before = await places();
+    ai.safetyOff = true;
+    expect(await ask([id(9)])).toEqual([expect.objectContaining({ t: 'refused', message: expect.stringContaining('safety check') })]);
+    ai.safetyOff = false;
+    ai.left = 1;
+    expect(await ask([id(9)])).toEqual([expect.objectContaining({ t: 'refused' })]);
+    expect(ai.asked).toEqual([]);
+    expect(await places()).toBe(before);
   });
 
   it('the photo consent withdrawn since the upload: nothing is read', async () => {
