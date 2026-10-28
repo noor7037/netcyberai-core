@@ -89,7 +89,7 @@ export async function HubShell({ module }: { module: 'careers' | 'exams_portal' 
         <Section id="national" title={t(lang, 'fam.hub.national')} entries={sections.national} empty={empty} path={hub.path} lang={lang} />
         {sections.state && <Section id="state" title={fill(t(lang, 'fam.hub.yourState'), { state: stateName(lang, sections.state.code, sections.state.name) })} entries={sections.state.entries} empty={empty} path={hub.path} lang={lang} />}
         {sections.national.length === 0 && (!sections.state || sections.state.entries.length === 0) && (
-          <LinkRow href="/family/future" icon="compass">
+          <LinkRow href="/family/future" icon="explore">
             {t(lang, 'fam.tab.future')}
           </LinkRow>
         )}
