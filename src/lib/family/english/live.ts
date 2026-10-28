@@ -147,15 +147,18 @@ export function wordsTakenUp(turns: readonly LiveTurn[]): string[] {
 export type LiveGate = { ok: true; child: FamilyChild; children: FamilyChild[]; track: Track } | { ok: false; status: number; error: string };
 
 // The child using the app now (the one this phone chose, never one the request names), from Class 1 up, with Control's
-// English course switched on and the parent's yes to the English course AND to voice practice.
+// English course and voice input switched on, and the parent's yes to learning, the English course AND voice practice.
 export async function liveChild(db: Db, accountId: string, chosen: string | undefined): Promise<LiveGate> {
   const children = await listChildren(db as never, accountId);
   const child = activeChild(children, chosen);
   if (!child) return { ok: false, status: 404, error: 'no_child' };
   if (isPrePrimary(child.classLevel)) return { ok: false, status: 403, error: 'not_for_class' };
-  if (!switchOn(await readFamilySwitches(db as never, accountId), 'english_programme')) return { ok: false, status: 403, error: 'off' };
+  // Voice input's own switch too (E1 review): switching voice off in Control stops live speech as it stops Study's.
+  const switches = await readFamilySwitches(db as never, accountId);
+  if (!switchOn(switches, 'english_programme') || !switchOn(switches, 'voice_input')) return { ok: false, status: 403, error: 'off' };
+  // study_core as well (E1 review): every family AI path needs it, and a parent who withdraws it stops this one too.
   const consents = await consentState(db as never, accountId);
-  if (!consents.english_programme || !consents.voice_practice) return { ok: false, status: 403, error: 'consent_needed' };
+  if (!consents.study_core || !consents.english_programme || !consents.voice_practice) return { ok: false, status: 403, error: 'consent_needed' };
   const track = (await readEnrolment(db as never, child.childId))?.track ?? trackForClass(child.classLevel);
   return { ok: true, child, children, track };
 }

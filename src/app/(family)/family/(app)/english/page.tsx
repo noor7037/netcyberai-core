@@ -21,7 +21,7 @@ export default async function FamilyEnglishPage() {
   const lang = page.childLang;
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
   if (!switches || !switchOn(switches, 'english_programme')) redirect('/family');
-  const live = page.consents.english_programme && page.consents.voice_practice && !!page.child && !isPrePrimary(page.child.classLevel);
+  const live = switchOn(switches, 'voice_input') && page.consents.english_programme && page.consents.voice_practice && !!page.child && !isPrePrimary(page.child.classLevel);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={t(lang, 'fam.english.course')} title={t(lang, 'fam.english.title')} subject="english" />
