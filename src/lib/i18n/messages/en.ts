@@ -9285,6 +9285,6 @@ export const en = {
   'fam.voiceOut.server': 'Voice: NetCyberAI voice',
   'fam.voiceOut.phone': 'Voice: this phone’s voice',
   'control.ai.profile.name.family.text_to_speech': 'Reading aloud (text to speech)',
-  'control.ai.profile.about.family.text_to_speech': 'Reads the chapter reader’s sentences and the English partner’s replies aloud. Without it, the phone’s own voice reads them. Each sentence spoken uses one of the family’s AI requests for the day.',
+  'control.ai.profile.about.family.text_to_speech': 'Reads the chapter reader’s sentences and the English partner’s replies aloud. Without it, the phone’s own voice reads them. Spoken lines count against the family’s daily voice allowance in characters (Control → Family), not its AI requests.',
   // w4-2 end
 } as const;
