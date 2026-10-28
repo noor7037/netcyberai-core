@@ -70,8 +70,10 @@ All runs are local. GitHub CI runs `ci_local.sh` again on each PR.
 
 | Command | Where | Result |
 |---|---|---|
-| `bash scripts/ci_local.sh --no-install` | the top of the Wave 3 stack | _filled after the run_ |
+| `bash scripts/ci_local.sh --no-install` | the top of the Wave 3 stack (Z1 at `d75b7d34`, 2026-10-28) | all 26 steps passed: 321 unit test files, 3,989 tests; a second suite of 20; the production build; 102 public pages, 0 problems |
+| `npx next build` (inside ci_local) | the same | First Load JS shared 87.9 kB; `/family/english/live` 105 kB; H1's routes 96.9–98.3 kB (H1's own build); budget 200 kB |
 | `npx vitest run test/z1` | Z1 | 9/9. Without the Z1 migration, 2 fail: the catalog check and the sibling check. |
+| E1 security review (Opus) | E1 | one MEDIUM (the learning consent was not checked), fixed; two tests pin it, each failing without the fix |
 | per-slice targeted runs | each PR body | listed in each PR |
 
 Baseline: main passed `ci_local` 26/26 on the Wave 2 top (the supervisor's run, C230-AP).
