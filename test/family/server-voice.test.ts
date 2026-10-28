@@ -246,8 +246,16 @@ describe('live English: streamed, checked sentence by sentence, spoken by the se
   it('streams each checked sentence with its seal, then the kept turn', async () => {
     const started = await live({ action: 'start', topic: 'market' });
     sessionId = (started.json as { session: { sessionId: string } }).session.sessionId;
+    const checksBefore = vi.mocked(standInModerationAdapter.moderate).mock.calls.length;
     const r = await live({ action: 'say', sessionId, text: 'I say 1' });
     expect(r.status).toBe(200);
+    // C390: the checks this reply took (the child's words, then each sentence) are written down, one row for the reply.
+    const made = vi.mocked(standInModerationAdapter.moderate).mock.calls.length - checksBefore;
+    expect(made).toBe(4);
+    expect(await q(`select reply_profile, checks from control.ai_reply_checks order by reply_id desc limit 1`)).toEqual([{ reply_profile: 'family.english_conversation', checks: made }]);
+    const { loadReplyChecks } = await import('@/lib/ai/gateway/ledger');
+    const { indiaDate } = await import('@/lib/time/india');
+    expect((await loadReplyChecks(db.pg as never, indiaDate())).find((x) => x.replyProfile === 'family.english_conversation')).toEqual(expect.objectContaining({ replies: expect.any(Number), most: expect.any(Number) }));
     expect(r.events.filter((e) => e.t === 'sentence').map((e) => e.text)).toEqual([S1(1), S2, S3]);
     expect(r.events[r.events.length - 1]).toEqual({ t: 'turn', turn: { position: 1, childText: 'I say 1', reply: `${S1(1)} ${S2} ${S3}` } });
     firstToken = String(r.events[0].voice);

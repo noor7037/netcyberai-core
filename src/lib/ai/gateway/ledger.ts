@@ -74,3 +74,21 @@ export async function loadUsageLedger(db: Sql, f: { day?: string; profileId?: st
     costUsd: r.cost_usd === null || r.cost_usd === undefined ? null : Number(r.cost_usd),
   }));
 }
+
+// The safety checks per reply (C390), for the Quality Lab: over the last `days` India days, per profile that made the
+// reply, how many replies were checked and how many checks they took (all, on average, at most). Counts only.
+export type ReplyChecks = { replyProfile: string | null; replies: number; checks: number; average: number; most: number };
+export async function loadReplyChecks(db: Sql, today: string, days = 7): Promise<ReplyChecks[]> {
+  if (!DAY.test(today)) return [];
+  const { rows } = await db.query(
+    `select reply_profile, count(*)::int as replies, sum(checks)::int as checks, max(checks)::int as most
+       from control.ai_reply_checks where day > $1::date - $2::int and day <= $1::date
+      group by reply_profile order by reply_profile nulls last`,
+    [today, Math.min(90, Math.max(1, Math.floor(days)))]
+  );
+  return rows.map((r) => {
+    const replies = Number(r.replies);
+    const checks = Number(r.checks);
+    return { replyProfile: r.reply_profile === null || r.reply_profile === undefined ? null : String(r.reply_profile), replies, checks, average: replies ? Math.round((checks / replies) * 10) / 10 : 0, most: Number(r.most) };
+  });
+}

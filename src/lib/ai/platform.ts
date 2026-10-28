@@ -604,7 +604,7 @@ export type ModerationReady = { ok: true; moderation: PreparedModeration } | { o
 // provider with a moderation adapter and a key; no daily-cap place: it runs beside a call that took one). Step 5 runs
 // on every check: the child's names and the parent's email are removed from the words before they leave. 6 (check, no
 // database) tries the chain in order; 7 (record) counts requests, failures and tokens only. The words are never stored.
-export async function prepareModeration(db: Sql, ctx: AiContext): Promise<ModerationReady> {
+export async function prepareModeration(db: Sql, ctx: AiContext, replyProfile: ProfileId | null = null): Promise<ModerationReady> {
   const env = process.env;
   const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
   if (!checked.ok) return checked;
@@ -620,7 +620,9 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
 
   const usage: { link: Link; counts: Counts }[] = [];
   const attempts: Attempt[] = [...skipped];
+  let checks = 0;
   const check = async (turns: { user: string; assistant?: string }): Promise<ModerationVerdict | null> => {
+    checks += 1;
     const clean = scrubRequest(
       { system: '', messages: [{ role: 'user', content: turns.user }, ...(turns.assistant === undefined ? [] : [{ role: 'assistant' as const, content: turns.assistant }])] },
       { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }
@@ -650,6 +652,9 @@ export async function prepareModeration(db: Sql, ctx: AiContext): Promise<Modera
   const record = async (tx: Sql) => {
     for (const u of usage.splice(0)) await count(tx, ctx.day, profile.id, u.link, u.counts);
     await recordAttempts(tx, ledger, attempts.splice(0));
+    // C390: how many checks this reply took, one row per reply, so the Quality Lab shows the cost of checking.
+    if (checks > 0) await tx.query(`select control.record_reply_checks($1::date, $2::text, $3::int)`, [ctx.day, replyProfile, checks]);
+    checks = 0;
   };
   return { ok: true, moderation: { check, record } };
 }
