@@ -26,7 +26,7 @@ import { indiaDate } from '@/lib/time/india';
 import { OFFLINE_KEYS } from '@/lib/family/offline-words';
 import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
-import { subjectStatus } from '@/lib/family/study-status';
+import { STUDY_STATUS_KEY, subjectStatus } from '@/lib/family/study-status';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
 import { TonightPractice } from '@/components/family/TonightPractice';
 import { TEST_LIST_KEYS, TestList } from '@/components/family/school-test/TestList';
@@ -131,7 +131,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                   <SubjectGlyph subject={s} className="h-5 w-5" />
                 </span>
                 {t(lang, `fam.subject.${s}`)}
-                {status && <StatusBadge status={status} lang={lang} />}
+                {status && <StatusBadge status={status} label={t(lang, STUDY_STATUS_KEY[status])} />}
                 {locked && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
                 {locked && (
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -195,7 +195,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                     return (
                       <li key={r.requestId} className="fam-card flex min-h-[52px] items-center justify-between gap-3 bg-white px-4 py-2 text-base font-bold text-slate">
                         <span className="min-w-0" lang={titleLang(r.title)}>{r.title}</span>
-                        {st ? <StatusBadge status={st} lang={lang} /> : <span className="text-sm font-semibold text-slate/80">{t(lang, 'fam.request.declined')}</span>}
+                        {st ? <StatusBadge status={st} label={t(lang, STUDY_STATUS_KEY[st])} /> : <span className="text-sm font-semibold text-slate/80">{t(lang, 'fam.request.declined')}</span>}
                       </li>
                     );
                   })}
@@ -220,7 +220,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                       {c.title}
                     </span>
                     {/* Every chapter listed here comes from the version released to everyone: it is Published. */}
-                    <StatusBadge status="published" lang={lang} />
+                    <StatusBadge status="published" label={t(lang, STUDY_STATUS_KEY.published)} />
                     <svg aria-hidden="true" viewBox="0 0 24 24" className={`h-5 w-5 shrink-0 ${subjectTheme(subject).ink}`} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                       <path d="M9 6l6 6-6 6" />
                     </svg>

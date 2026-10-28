@@ -6,6 +6,7 @@ import { SOURCE_MODES, requestStudyStatus, type ChapterRequest, type SourceMode 
 import type { Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
 import { StatusBadge } from './StatusBadge';
+import { STUDY_STATUS_KEY } from '@/lib/family/study-status';
 
 // Asking for a chapter, and choosing the source (S3, C376), in the parent area (parent mode). The parent names the
 // chapter the catalog does not have and may add the book's chapter as a PDF; it is kept private for the NetCyberAI
@@ -21,13 +22,11 @@ const FIELD = 'min-h-[44px] w-full min-w-0 rounded-xl border border-slate/20 bg-
 
 export function ChapterRequestPanel({
   w,
-  lang,
   childList,
   requests: initial,
   modes: initialModes,
 }: {
   w: Words;
-  lang: 'en' | 'hi';
   childList: PanelChild[];
   requests: ChapterRequest[];
   modes: Record<string, Record<string, SourceMode>>;
@@ -180,7 +179,7 @@ export function ChapterRequestPanel({
                   <span className="text-sm font-semibold text-slate/80">{w[`fam.subject.${r.subject}`] ?? r.subject}</span>
                 </span>
                 <span className="flex items-center gap-2">
-                  {st ? <StatusBadge status={st} lang={lang} /> : <span className="text-sm font-semibold text-slate/80">{w['fam.request.declined']}</span>}
+                  {st ? <StatusBadge status={st} label={w[STUDY_STATUS_KEY[st]]} /> : <span className="text-sm font-semibold text-slate/80">{w['fam.request.declined']}</span>}
                   {r.status === 'received' && (
                     <button type="button" onClick={() => withdraw(r.requestId)} disabled={busy} className={`${QUIET} !min-h-[44px] !px-3 text-sm`}>
                       {w['fam.request.withdraw']}
