@@ -43,13 +43,19 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // `about`: where a question was asked from (the chapter reader's chapter and section, S2, C375), decided on the server
 // from NetCyber's own chapter, never the child's words: the tutor is told it beside the question; the safety check and
 // the history see the question alone.
-export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null; about?: string };
+// `attached`: what the files sent with a tutor question say (W4-1, C385: src/lib/family/tutor-read.ts), read on the
+// server; it joins the question, so the safety check and the scrub read it like the child's own words.
+export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string };
+
+const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
 export type PublicBlock = Exclude<Block, { type: 'check' } | { type: 'practice' }> | { type: 'check' | 'practice'; items: PublicItem[] };
 export type ResolverEvent =
   | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
   | { t: 'block'; block: PublicBlock }
   | { t: 'done'; complete: boolean }
+  // W4-1 (C385): what became of the files sent with a tutor question, said before the answer.
+  | { t: 'files'; message: string }
   | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string } };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
@@ -327,7 +333,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     classSubjects: ofClass,
     chapter: line?.chapterEn ?? null,
     topic: line?.topicEn ?? null,
-    question: input.kind === 'question' ? (input.about ? `${input.text} (asked while reading: ${input.about})` : input.text) : null,
+    question: input.kind === 'question' ? withAttached(input.about ? `${input.text} (asked while reading: ${input.about})` : input.text, input.attached) : null,
     language: child.language,
     style: child.style,
     followUp,
@@ -343,7 +349,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
-  const question = input.kind === 'question' ? input.text : null;
+  const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
   return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question };
 }

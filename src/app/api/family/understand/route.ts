@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
+import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
@@ -10,10 +11,12 @@ import { SUBJECTS, type Subject } from '@/lib/family/modules';
 import { jsonBody, requireFamily } from '@/lib/family/request';
 import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
-import { readerContext, saveTurn, sendableFiles } from '@/lib/family/tutor';
+import { readerContext, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
+import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
+import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { isSubject } from '@/lib/family/subjects';
 import { indiaDate } from '@/lib/time/india';
-import { isMessageKey, t } from '@/lib/i18n';
+import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 
 // Understand (M1-5, C251): POST { kind: 'topic' | 'chapter', key } or { kind: 'question', text }, with an optional
 // followUp ('simpler', 'another_example', 'differently', 'practise_more') or retry { token, choice } (a wrong answer:
@@ -28,9 +31,20 @@ import { isMessageKey, t } from '@/lib/i18n';
 // teaching blocks are kept in the child's conversation of the subject the server decided (src/lib/family/tutor.ts).
 // A follow-up or a retry is not kept again. The child is always the one this phone has chosen, never one the body names.
 //
+// The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
+// vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
+// answer. That reading has its own short transactions around the fetch and the vision calls.
+//
 // No database connection is held while the AI answers (F1-3): the checks and reads in one short transaction, the call
 // with no connection, then the writes (metering, the library line) in a second one.
 export const dynamic = 'force-dynamic';
+
+const UNREADABLE_WORDS: Record<Unreadable, MessageKey> = {
+  no_text: 'fam.tutor.files.no_text',
+  photo_limit: 'fam.tutor.files.photo_limit',
+  not_set_up: 'fam.tutor.files.not_set_up',
+  failed: 'fam.tutor.files.failed',
+};
 
 export async function POST(req: NextRequest) {
   const g = await requireFamily(req);
@@ -62,6 +76,49 @@ export async function POST(req: NextRequest) {
         return null;
       };
       try {
+        // 0. The files sent with a tutor question, read before it is asked (W4-1). Not for a follow-up or a retry.
+        let attached: string | undefined;
+        const fileIds = TUTOR_READS_FILES && tutorBody && !followUp && !retry && Array.isArray(tutorBody.files) && tutorBody.files.length > 0 ? tutorBody.files : null;
+        if (fileIds) {
+          const asked = await withFamilyContext(claims, async (db) => {
+            const children = await listChildren(db, session.accountId);
+            const child = activeChild(children, chosen);
+            const lang = child?.language ?? 'en';
+            if (!child) return { refused: t(lang, 'fam.understand.noChild') };
+            const consents = await consentState(db, session.accountId);
+            if (!consents.study_core) return { refused: t(lang, 'fam.err.consent_required') };
+            // A file goes to a provider only with the parent's photo consent, read again now (it may be withdrawn).
+            if (!consents.photo_input) return { refused: t(lang, 'fam.tutor.err.photo_consent') };
+            if (!(await familyModuleOn(db, 'understand', session.accountId))) return { refused: t(lang, 'fam.understand.off') };
+            const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
+            if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
+            // W4-1 review: whatever would refuse the question is checked before any photo leaves, so a question that will
+            // not be answered never sends a photo or spends a place: the reader's chapter and section, the safety check
+            // ready (C314, as the homework helper does), and room in the family's day for every photo read and the answer.
+            if (tutorBody!.chapterKey !== undefined && !readerContext(String(tutorBody!.subject), tutorBody!.chapterKey, tutorBody!.blockId, child.language)) return { refused: t(lang, 'fam.understand.notFound') };
+            const account = await accountSummary(db, session.accountId);
+            const ai = { accountId: session.accountId, childFirstNames: children.map((c) => c.firstName), parentEmail: account?.email ?? '', day: indiaDate() };
+            if (!(await prepareModeration(db, ai)).ok) return { refused: t(lang, 'fam.understand.safetyOff') };
+            const photos = files.filter((f) => f.mime !== 'application/pdf').length;
+            if (photos > 0 && (await dailyRequestsLeft(db, session.accountId, ai.day)) < photos + 1) return { refused: t(lang, 'ai.cap_reached') };
+            return { files, lang, childId: child.childId, ai };
+          });
+          if ('refused' in asked) return void send({ t: 'refused', reason: 'not_found', message: asked.refused! });
+          const fetched = await fetchFiles(asked.files, (key) => tutorStorage.get(key));
+          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched));
+          const { reads, sent } = await readFetched(fetched, calls);
+          await withFamilyContext(claims, async (db) => {
+            for (const s of sent) {
+              await s.sent.record(db);
+              // A photo the provider could not read is not counted against the child's day, as in the homework helper.
+              if (!s.sent.result.ok) await givePhotoPlaceBack(db, session.accountId, asked.childId, asked.ai.day);
+            }
+          });
+          const outcome = attachedText(reads);
+          attached = outcome.attached ?? undefined;
+          const lines = [t(asked.lang, 'fam.tutor.files.read', { read: String(outcome.read), total: String(reads.length) }), ...[...new Set(outcome.unreadable)].map((u) => t(asked.lang, UNREADABLE_WORDS[u]))];
+          send({ t: 'files', message: lines.join(' ') });
+        }
         // 1. The checks and reads, and the AI platform's own checks (the daily cap taken), in one short transaction.
         const pending = await withFamilyContext(claims, async (db): Promise<Pending | null> => {
           const children = await listChildren(db, session.accountId);
@@ -79,6 +136,7 @@ export async function POST(req: NextRequest) {
               if (!reader) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.notFound') });
               target = { ...target, about: reader.about };
             }
+            if (attached && target?.kind === 'question') target = { ...target, attached };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
             if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: reader?.chapterKey ?? null, blockId: reader?.blockId ?? null, files, windowSubject: subject, lang: child.language };

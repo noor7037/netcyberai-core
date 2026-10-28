@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { notFound, redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { ChapterReader } from '@/components/family/reader/ChapterReader';
@@ -54,7 +55,7 @@ export default async function ChapterPage({ params }: { params: { key: string } 
   const tutorOn = !!subject && switchOn(switches, 'understand') && subjectAccess(child, subject, openToAll).open;
   const voice =
     tutorOn && page.consents.voice_practice && switchOn(switches, 'voice_input') ? { secondsLeft: (await familyPageRead(page, (db) => voiceDay(db, page.session.accountId, child.childId, indiaDate()))).left } : null;
-  const tutor = tutorOn && subject ? { subject, voice, files: page.consents.photo_input, homework: switchOn(switches, 'homework') } : null;
+  const tutor = tutorOn && subject ? { subject, voice, files: TUTOR_READS_FILES && page.consents.photo_input, homework: switchOn(switches, 'homework') } : null;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...READER_KEYS, ...(tutor ? TUTOR_KEYS : []), ...(voice ? VOICE_KEYS : [])]);
   // C386: the server voice reads the narration when Control has set one up; else the phone's own voice.
   const serverVoice = await familyPageRead(page, (db) => serverVoiceReady(db, page.session.accountId));

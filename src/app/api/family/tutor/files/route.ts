@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { familyRun, jsonBody, requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 import { askTutorUpload, tutorChild, tutorStorage } from '@/lib/family/tutor';
+import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 
 // Attach a file to a tutor question (S2, C375), step 1: POST { subject, mime, size, name } → { attachmentId, uploadUrl,
 // contentType, maxBytes }. The phone then sends the file to the link and confirms it (files/<attachmentId>, POST).
@@ -11,6 +12,8 @@ export const dynamic = 'force-dynamic';
 export async function POST(req: NextRequest) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
+  // C230-AR: no file is taken while the tutor cannot read it.
+  if (!TUTOR_READS_FILES) return NextResponse.json({ error: 'files_not_read_yet' }, { status: 403 });
   const body = await jsonBody(req);
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
   return familyRun(g.session, async (db) => {
