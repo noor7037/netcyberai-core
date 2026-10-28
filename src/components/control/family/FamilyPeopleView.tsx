@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { AppCard } from '@/components/app-ui/Card';
-import { ReasonButton } from '@/components/control/apps/AppsPanels';
+import { ReasonButton } from '@/components/control/apps/ChangeForm';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';

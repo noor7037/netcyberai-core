@@ -7,8 +7,9 @@ import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import { GLOBAL_SEARCH_MIN_CHARS, type GlobalSearchKind, type GlobalSearchResponse, type GlobalSearchResult } from '@/lib/contracts/global-search';
 import type { ColorToken } from '@/lib/contracts/modules';
 import { explainError } from '@/lib/errors/catalogue';
-import { tOr, type Lang, type MessageKey } from '@/lib/i18n';
-import { useT } from './LangContext';
+import type { MessageKey } from '@/lib/i18n';
+import type { Words } from '@/lib/i18n/words';
+import { useWords } from './Words';
 
 // The one search box of the shell (docs/19 rule 6, C135). Type a name, an
 // admission number, a parent's phone or a ticket number; results appear as
@@ -26,25 +27,26 @@ const LOOK: Record<GlobalSearchKind, [IconName, ColorToken]> = {
 const KIND_ORDER: readonly GlobalSearchKind[] = ['student', 'staff', 'school', 'user', 'ticket'];
 
 // The line under a result's title, in the person's language.
-function describe(r: GlobalSearchResult, lang: Lang, t: (k: MessageKey, p?: Record<string, string | number>) => string): string {
+function describe(r: GlobalSearchResult, words: Words, t: (k: MessageKey, p?: Record<string, string | number>) => string): string {
+  const role = (id: string) => words[`role.${id}` as MessageKey] ?? id;
   const d = r.detail;
   const parts: (string | null | undefined | false)[] =
     d.kind === 'student'
       ? [d.className && t('search.student.class', { class: d.className }), d.admissionNo && t('search.student.admission', { number: d.admissionNo }), d.guardianPhoneLast4 && t('search.student.phone', { digits: d.guardianPhoneLast4 })]
       : d.kind === 'staff'
-        ? [tOr(lang, `role.${d.role}`, d.role), !d.active && t('search.staff.inactive')]
+        ? [role(d.role), !d.active && t('search.staff.inactive')]
         : d.kind === 'ticket'
           ? [d.ref, t(`search.ticket.status.${d.status}`), d.schoolName]
           : d.kind === 'school'
             ? [d.testFixture && t('search.school.test')]
-            : [tOr(lang, `role.${d.role}`, d.role), d.schoolName, d.email];
+            : [role(d.role), d.schoolName, d.email];
   return parts.filter(Boolean).join(' · ');
 }
 
 type State = { phase: 'idle' } | { phase: 'short' } | { phase: 'loading' } | { phase: 'done'; results: readonly GlobalSearchResult[]; query: string } | { phase: 'failed'; message: string };
 
 export function GlobalSearch({ scope }: { scope: 'school' | 'control' }) {
-  const { lang, t, tCount } = useT();
+  const { lang, words, t, tCount } = useWords();
   const router = useRouter();
   const [q, setQ] = useState('');
   const [state, setState] = useState<State>({ phase: 'idle' });
@@ -200,7 +202,7 @@ export function GlobalSearch({ scope }: { scope: 'school' | 'control' }) {
               {results.map((r, i) => {
                 const first = i === 0 || results[i - 1].kind !== r.kind;
                 const [icon, tone] = LOOK[r.kind];
-                const line = describe(r, lang, t);
+                const line = describe(r, words, t);
                 return (
                   <li key={`${r.kind}-${r.id}`} role="presentation">
                     {first && (

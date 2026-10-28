@@ -10,6 +10,7 @@ import { activeHref, schoolShellMenu, toShellGroups, toShellItem } from '@/compo
 import { MODULE_REGISTRY } from '@/lib/contracts/modules';
 import { bottomNavItems, buildNavigation } from '@/lib/contracts/navigation';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 const all = Object.fromEntries(MODULE_REGISTRY.map((m) => [m.id, { enabled: true, source: 'plan' as const }]));
 const ent: SchoolEntitlements = { schoolId: 's', plan: 'standard', accessMode: 'full', modules: all };
@@ -49,7 +50,7 @@ describe('app shell render', () => {
   const render = (role: 'principal' | 'teacher') => {
     const nav = buildNavigation(role, ent);
     return renderToStaticMarkup(
-      h(AppShell, {
+      h(AppShell, { ...shellWords('en'),
         groups: toShellGroups(nav),
         bottomItems: role === 'teacher' ? bottomNavItems(nav).map((i) => toShellItem(i)) : undefined,
         brand: 'Illustrative School',
@@ -83,7 +84,7 @@ describe('the branded bar and the menu (C235-B)', () => {
   const shell = (role: 'principal' | 'teacher', extra: Record<string, unknown> = {}) => {
     const menu = schoolShellMenu(buildNavigation(role, ent), role);
     return renderToStaticMarkup(
-      h(AppShell, {
+      h(AppShell, { ...shellWords(extra.lang === 'hi' ? 'hi' : 'en'),
         groups: menu.groups,
         home: menu.home,
         frequent: menu.frequent,

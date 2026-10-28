@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ModuleIcon } from '@/components/app-ui/ModuleIcon';
 import type { QuickAddItem } from '@/lib/contracts/quick-add';
-import { useT } from './LangContext';
+import { useWords } from './Words';
 
 // The "+ New" button (docs/19 rule 4, C135): the day's common additions,
 // one tap from any screen. The items are computed by the server from the
@@ -12,7 +12,7 @@ import { useT } from './LangContext';
 // the button is not drawn. A menu button: Enter or Space opens, arrows
 // move, Escape closes and returns to the button.
 export function QuickAdd({ items }: { items: readonly QuickAddItem[] }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [open, setOpen] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);

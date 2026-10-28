@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState, type ReactNode } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Icon } from '@/components/visual/Icons';
 
 // The words of a page banner (C235-C): the group, the title, ONE short line,
@@ -10,7 +10,7 @@ import { Icon } from '@/components/visual/Icons';
 // wants it, not on screen for everyone, every visit. Text takes the
 // banner's white; the panel is white with slate text.
 export function BannerTitle({ eyebrow, title, subtitle, about }: { eyebrow?: string; title: string; subtitle?: string; about?: ReactNode }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [open, setOpen] = useState(false);
   const panelId = useId();
   return (

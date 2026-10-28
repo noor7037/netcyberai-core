@@ -7,6 +7,7 @@ import { HelpArticleView } from '@/components/help/HelpArticleView';
 import { HelpIndex } from '@/components/help/HelpIndex';
 import { HELP_TEXT, helpArticle, isHelpLang } from '@/content/help/articles';
 import { principalNavigationFixture } from '@/demo-fixture/contracts';
+import { shellWords } from '@/components/app-shell/shell-words';
 
 // The Help Center in the app shell (C129), development only: the real
 // /app/help needs a signed-in session. The guides are the real ones.
@@ -19,7 +20,7 @@ export default function HelpPreviewPage({ searchParams }: { searchParams: { lang
   const lang = isHelpLang(searchParams.lang) ? searchParams.lang : 'en';
   const article = searchParams.article ? helpArticle(searchParams.article) : null;
   return (
-    <AppShell groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref="/design-system/shell/help">
+    <AppShell {...shellWords(lang)} groups={toShellGroups(principalNavigationFixture.data)} brand="Illustrative School" roleLabel="Principal" navLabel="School navigation" accountHref="/design-system/shell/help">
       <ModulePage moduleId="help-center" title={HELP_TEXT.title[lang]} purpose={HELP_TEXT.intro[lang]}>
         {article ? <HelpArticleView article={article} lang={lang} mode="preview" /> : <HelpIndex lang={lang} mode="preview" initialQuery={searchParams.q ?? ''} />}
       </ModulePage>

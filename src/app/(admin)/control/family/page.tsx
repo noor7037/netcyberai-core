@@ -11,6 +11,8 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { loadFamilyCounts } from '@/lib/control/family-counts';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { pickWords } from '@/lib/i18n/pick';
+import { WordsProvider } from '@/components/app-shell/Words';
 
 // Control → Family (docs/family-app/10 §9, M1-7): counts of the Family app, read only. They come from
 // family.control_counts(), the only door Control has to family data; no name, child, answer or email is read. Below
@@ -38,12 +40,15 @@ export default async function ControlFamilyPage() {
       </p>
       {counts && <FamilyCountsView counts={counts} lang={lang} />}
       {lists && (
+        // The forms' words, picked here (C401): the page never carries the whole message table.
+        <WordsProvider words={pickWords(lang, [], ['control.family.', 'fam.subject.'])}>
         <div className="mt-6 flex flex-col gap-6">
           <SubjectListForm list="open_subjects" subjects={SUBJECT_IDS} initial={lists.open} />
           <SubjectListForm list="reviewed_only" subjects={SUBJECT_IDS} initial={lists.reviewed} />
           <PlusOpenForm initial={lists.plusOpen} />
           <VoiceAllowanceForm initial={lists.voiceChars} />
         </div>
+        </WordsProvider>
       )}
     </ModulePage>
   );

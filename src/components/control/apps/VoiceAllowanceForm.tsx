@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useStepUp } from '@/components/auth/StepUp';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 
 // Control → Family: the daily voice allowance per family, in characters (C230-AS, C388). The server voice's lines
@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/Button';
 const MAX = 1_000_000;
 
 export function VoiceAllowanceForm({ initial }: { initial: number | null }) {
-  const { t } = useT();
+  const { t } = useWords();
   const { stepUpFetch } = useStepUp();
   const [saved, setSaved] = useState<number | null>(initial);
   const [value, setValue] = useState(initial === null ? '' : String(initial));

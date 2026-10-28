@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Icon } from '@/components/visual/Icons';
-import { useT } from './LangContext';
+import { useWords } from './Words';
 
 // "Show me how" (docs/19 rule 8, C138): one link in every screen's header to
 // the Help Center guide for that screen's task, in the person's language.
@@ -10,7 +10,7 @@ import { useT } from './LangContext';
 // that the guide exists; this component stays small (it does not load the
 // guides) because every screen carries it.
 export function ShowMeHow({ slug }: { slug: string }) {
-  const { lang, t } = useT();
+  const { lang, t } = useWords();
   if (!/^[a-z][a-z0-9-]+$/.test(slug)) return null;
   return (
     <Link

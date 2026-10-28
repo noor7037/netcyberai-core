@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { MessageKey } from '@/lib/i18n';
@@ -130,7 +130,8 @@ function askStepUp(method: Method, w: Words): Promise<boolean> {
 }
 
 export function useStepUp() {
-  const { t } = useT();
+  // Its words come with the shell's (shellWords, C401), so a screen that asks for the authenticator stays light.
+  const { t } = useWords();
   const words = useRef<Words | null>(null);
   words.current = Object.fromEntries(KEYS.map((k) => [k, t(k)])) as Words;
   const stepUpFetch = useCallback(async (input: string, init?: RequestInit): Promise<Response> => {

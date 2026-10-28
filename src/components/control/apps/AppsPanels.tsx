@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
 import { useT } from '@/components/app-shell/LangContext';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -9,59 +8,14 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { FLAG_AUDIENCES, WHOLE_APP, type AppId, type FlagAudience } from '@/lib/contracts/app-flags';
-import { isMessageKey, type MessageKey } from '@/lib/i18n';
+import type { MessageKey } from '@/lib/i18n';
 import type { FlagRow } from '@/lib/control/apps';
+import { ErrorLine, Reason, ReasonButton, useChange } from './ChangeForm';
+export { ReasonButton };
 
 // The forms of Control → Apps (M1-7). Each posts to /api/control/apps/** and then reads the page again. Every change
 // asks for its reason; the server refuses one without. The whole-app switch asks twice, on the page (no browser
 // dialog). Words come from the message files.
-
-type Result = { ok: true } | { ok: false; code: string };
-
-async function send(url: string, body: unknown): Promise<Result> {
-  const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }).catch(() => null);
-  if (!res) return { ok: false, code: 'generic' };
-  if (res.ok) return { ok: true };
-  const json = (await res.json().catch(() => ({}))) as { code?: string };
-  return { ok: false, code: res.status === 401 ? 'session' : (json.code ?? 'generic') };
-}
-
-// The state every form keeps: busy, the last error, and the way to run a request and refresh.
-function useChange(onDone?: () => void) {
-  const { t } = useT();
-  const router = useRouter();
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const run = async (url: string, body: unknown) => {
-    setBusy(true);
-    setError(null);
-    const r = await send(url, body);
-    setBusy(false);
-    if (!r.ok) {
-      const key = `control.apps.err.${r.code}`;
-      setError(t(isMessageKey(key) ? (key as MessageKey) : 'control.apps.err.generic'));
-      return false;
-    }
-    onDone?.();
-    router.refresh();
-    return true;
-  };
-  return { busy, error, run };
-}
-
-function ErrorLine({ error }: { error: string | null }) {
-  if (!error) return null;
-  return (
-    <p role="alert" className="text-sm font-medium text-red-800">
-      {error}
-    </p>
-  );
-}
-
-function Reason({ id, value, onChange }: { id: string; value: string; onChange: (v: string) => void }) {
-  const { t } = useT();
-  return <Input id={id} label={t('control.apps.reason')} value={value} onChange={(e) => onChange(e.target.value)} maxLength={300} required helperText={t('control.apps.reason.help')} />;
-}
 
 const toIso = (local: string): string | null => {
   if (!local) return null;
@@ -290,27 +244,6 @@ export function BannerForm({ app }: { app: AppId }) {
 }
 
 // A one-line form: a reason and one button (end a banner, remove a preview account).
-export function ReasonButton({ url, field, id, label }: { url: string; field: string; id: string; label: string }) {
-  const { t } = useT();
-  const [reason, setReason] = useState('');
-  const { busy, error, run } = useChange(() => setReason(''));
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    void run(url, { [field]: id, reason });
-  };
-  return (
-    <form onSubmit={submit} className="flex flex-col gap-2">
-      <Reason id={`${field}-${id}`} value={reason} onChange={setReason} />
-      <ErrorLine error={error} />
-      <div>
-        <Button type="submit" variant="outline" disabled={busy || reason.trim() === ''}>
-          {busy ? t('control.apps.saving') : label}
-        </Button>
-      </div>
-    </form>
-  );
-}
-
 // --- Undo ------------------------------------------------------------------------------------------------------
 
 export function UndoButton({ auditId }: { auditId: string }) {

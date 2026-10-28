@@ -9,9 +9,8 @@ import { t, tOr, type Lang } from '@/lib/i18n';
 // Control plane passes its own. A module not built yet carries its phase,
 // so the menu can say "Soon" without a date.
 
-// `tone` colours this item's icon tile; without it the group's tone is used.
-export type ShellItem = { href: string; label: string; icon?: IconName; tone?: ColorToken; badge?: NavBadge; comingIn?: Phase };
-export type ShellGroup = { id: string; label: string; tone: readonly [ColorToken, ColorToken]; items: ShellItem[] };
+import type { ShellGroup, ShellItem } from './shell-active';
+export { activeHref, type ShellGroup, type ShellItem } from './shell-active';
 
 const NOT_BUILT: readonly ModuleStatus[] = ['planned', 'foundation', 'spec-v0'];
 
@@ -31,12 +30,6 @@ export function toShellGroups(nav: Navigation, lang: Lang = 'en'): ShellGroup[] 
   return nav.groups.map((g) => ({ id: g.id, label: tOr(lang, `group.${g.id}`, g.label), tone: g.tone, items: g.items.map((i) => toShellItem(i, lang)) }));
 }
 
-// The link that matches the page: exact, or the closest parent route. A link
-// with a query (a task of Frequent work) is never the page itself.
-export function activeHref(groups: readonly Pick<ShellGroup, 'items'>[], pathname: string): string | null {
-  const hrefs = groups.flatMap((g) => g.items.map((i) => i.href)).filter((h) => pathname === h || pathname.startsWith(`${h}/`));
-  return hrefs.sort((a, b) => b.length - a.length)[0] ?? null;
-}
 
 // The school app's menu (C235-B), like a school app's menu is read: the Home
 // items (My Day, everyone's home, docs/19 rule 2; the Dashboard and Settings

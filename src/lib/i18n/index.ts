@@ -6,13 +6,10 @@ import { hi } from './messages/hi';
 // the same in both; scripts/check_ui_strings.py fails a screen that writes
 // its own words. The Hindi is a first translation: it stays marked
 // unreviewed until the founder approves it (supervisor decision, C133).
-export const LANGS = ['en', 'hi'] as const;
-export type Lang = (typeof LANGS)[number];
-export const DEFAULT_LANG: Lang = 'en';
+import { isLang, type Lang } from './lang';
+export { LANGS, DEFAULT_LANG, LANG_NAME, isLang, type Lang } from './lang';
 export const HINDI_REVIEWED = false;
 
-// The language's own name, always shown in that language.
-export const LANG_NAME: Record<Lang, string> = { en: 'English', hi: 'हिन्दी' };
 
 // The language belongs to the signed-in person (users.ui_language), not to
 // the browser. This cookie only saves pages from asking the database: it
@@ -44,9 +41,6 @@ export type MessageKey = keyof typeof en;
 export type Messages = Record<MessageKey, string>;
 const TABLES: Record<Lang, Messages> = { en, hi };
 
-export function isLang(v: unknown): v is Lang {
-  return typeof v === 'string' && (LANGS as readonly string[]).includes(v);
-}
 
 export function isMessageKey(v: string): v is MessageKey {
   return Object.prototype.hasOwnProperty.call(en, v);
