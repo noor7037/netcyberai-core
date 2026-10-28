@@ -23,7 +23,7 @@ export default async function FamilyEnglishLivePage() {
   const r = await familyPageRead(page, (db) => liveView(db, page.session.accountId, page.child?.childId)).catch(() => ({ ok: false as const, status: 503, error: 'failed' }));
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family/english" backLabel={t(lang, 'fam.english.title')} kicker={t(lang, 'fam.english.live.kicker')} title={t(lang, 'fam.english.live.title')} subject="english" />
+      <SubPageHeader back="/family/english" backLabel={t(lang, 'fam.english.title')} kicker={t(lang, 'fam.english.live.kicker')} title={t(lang, 'fam.english.live.title')} />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
         <LivePractice w={familyWords(lang, [...LIVE_KEYS, ...VOICE_KEYS, 'fam.english.consentButton'])} initial={r.ok ? { state: r.view } : { error: r.error }} />
       </main>

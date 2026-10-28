@@ -192,7 +192,7 @@ const count = async () => Number((await db.pg.query(`select coalesce(sum(photo_q
 describe('the photo route', () => {
   it('needs its module switched on (on by default once built, C230-Z; off when Control says so)', async () => {
     await db.pg.query(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version) values ($1, 'photo_input', true, 'parent_tap', 'fam-notice-3')`, [ACCOUNT]);
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', false, 'test')`);
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'homework', false, 'test') on conflict (app, module) do update set enabled = excluded.enabled, reason = excluded.reason`);
     expect((await post('/api/family/homework', { photo: JPEG })).body.error).toBe('off');
     await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'homework'`);
   });

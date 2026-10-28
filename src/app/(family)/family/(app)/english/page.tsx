@@ -24,10 +24,10 @@ export default async function FamilyEnglishPage() {
   const live = switchOn(switches, 'voice_input') && page.consents.english_programme && page.consents.voice_practice && !!page.child && !isPrePrimary(page.child.classLevel);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={t(lang, 'fam.english.course')} title={t(lang, 'fam.english.title')} subject="english" />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={t(lang, 'fam.english.course')} title={t(lang, 'fam.english.title')} />
+      <main className="fam-page">
         {live && (
-          <Link href="/family/english/live" data-live-entry className="fam-press flex min-h-[56px] items-center gap-3 rounded-3xl bg-white p-4 text-slate shadow-md ring-2 ring-royal/30">
+          <Link href="/family/english/live" data-live-entry className="fam-card fam-press fam-rise flex min-h-[64px] items-center gap-3 bg-white p-4 text-slate">
             <Picture e="🗣️" size={36} />
             <span className="flex flex-1 flex-col">
               <span className="text-lg font-extrabold text-slate">{t(lang, 'fam.english.live.entry')}</span>

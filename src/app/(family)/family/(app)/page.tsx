@@ -4,7 +4,9 @@ import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { HabitCard } from '@/components/family/HabitCard';
 import { PlanCard } from '@/components/family/PlanCard';
+import { FamIcon } from '@/components/family/FamIcon';
 import { HomeAsk } from '@/components/family/ui/HomeAsk';
+import { LinkRow } from '@/components/family/ui/LinkRow';
 import { ProgressRing } from '@/components/family/ui/ProgressRing';
 import { SubjectGrid } from '@/components/family/ui/SubjectGrid';
 import { classSubjects } from '@/lib/family/catalog';
@@ -39,20 +41,21 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links, meeting, seen, off } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
     openToAll: await openSubjects(db),
     links: await activeLinks(db, page.session.accountId),
+    schoolOn: await familyModuleOn(db, 'school_today', page.session.accountId),
     // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
     seen: await readSeen(db, page.session.accountId),
     off: await notifyOff(db, page.session.accountId),
     meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
-  const atSchool = await schoolTodayFor(familyClaims(page.session), links, child.childId, { withResults: true });
+  const atSchool = !schoolOn ? null : await schoolTodayFor(familyClaims(page.session), links, child.childId, { withResults: true });
   // Tonight's practice (C335, L10): the app's subjects in which the class covered something today, each opening Study.
   const tonight = atSchool ? subjects.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
   // What is new from the connected schools since the parent last looked (M3-8a, C338), without the kinds turned off:
@@ -67,20 +70,27 @@ export default async function FamilyHomePage() {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} news={news?.total ?? 0} />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-5 px-4 pb-10">
+      <main className="fam-page">
         <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
         {atSchool && (
-          <section data-school-today className="fam-card flex flex-col gap-1 bg-white p-4">
-            <p className="text-base font-bold text-slate">{fill(t(lang, 'fam.school.homeToday'), { mark: t(lang, `fam.school.mark.${atSchool.today ?? 'none'}` as MessageKey) })}</p>
-            <p className="text-sm text-slate">{atSchool.schoolName}</p>
+          <section data-school-today className="fam-card fam-section fam-rise bg-white">
+            <div className="flex items-center gap-3">
+              <span aria-hidden="true" className="fam-chip-icon bg-emerald text-white">
+                <FamIcon name="calendar" className="h-5 w-5" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-base font-extrabold text-slate">{fill(t(lang, 'fam.school.homeToday'), { mark: t(lang, `fam.school.mark.${atSchool.today ?? 'none'}` as MessageKey) })}</p>
+                <p className="fam-note text-slate/80">{atSchool.schoolName}</p>
+              </div>
+            </div>
             {tonight.length > 0 && (
-              <div data-school-tonight-home className="mt-2 flex flex-col gap-2">
+              <div data-school-tonight-home className="flex flex-col gap-2">
                 <p className="text-sm font-semibold text-slate">
                   {t(lang, 'fam.school.tonightTitle')}: {t(lang, 'fam.school.tonightHome')}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {tonight.map((s) => (
-                    <Link key={s} href={`/family/study?subject=${s}`} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+                    <Link key={s} href={`/family/study?subject=${s}`} className="fam-lift inline-flex min-h-[44px] items-center rounded-full bg-off-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/20">
                       {t(lang, `fam.subject.${s}` as MessageKey)}
                     </Link>
                   ))}
@@ -91,33 +101,33 @@ export default async function FamilyHomePage() {
         )}
         {/* C351: the child's own results, when the school lets children see them. */}
         {atSchool?.myResults && (
-          <section data-my-results-home className="fam-card flex flex-col gap-2 bg-white p-4">
-            <p className="text-base font-bold text-slate">{t(lang, 'fam.marks.homeCard')}</p>
-            <Link href="/family/results" className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+          <section data-my-results-home className="fam-card fam-section fam-rise bg-white">
+            <h2 className="fam-h2 text-slate">{t(lang, 'fam.marks.homeCard')}</h2>
+            <LinkRow href="/family/results" icon="chart">
               {t(lang, 'fam.marks.homeOpen')}
-            </Link>
+            </LinkRow>
           </section>
         )}
         {news && news.total > 0 && (
-          <section data-school-news className="fam-card flex flex-col gap-2 bg-white p-4">
-            <p className="text-base font-bold text-slate">{t(lang, 'fam.news.title')}</p>
+          <section data-school-news className="fam-card fam-section fam-rise bg-white">
+            <h2 className="fam-h2 text-slate">{t(lang, 'fam.news.title')}</h2>
             <p className="text-sm text-slate">
               {(['homework', 'notices', 'results'] as const)
                 .filter((k) => news[k] > 0)
                 .map((k) => t(lang, `fam.news.${k}` as MessageKey, { n: news[k] }))
                 .join(' · ')}
             </p>
-            <Link href="/family/parent" className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+            <LinkRow href="/family/parent" icon="bell">
               {t(lang, 'fam.news.open')}
-            </Link>
+            </LinkRow>
           </section>
         )}
         {meeting && (
-          <section data-home-plan-tonight className="fam-card flex flex-col gap-2 bg-white p-4">
-            <p className="text-sm font-semibold text-slate">{t(lang, 'fam.homePlan.childHome')}</p>
-            <Link href={`/family/understand?kind=topic&key=${encodeURIComponent(meeting.topicKey)}`} className="fam-press inline-flex min-h-[44px] items-center self-start rounded-xl bg-off-white px-3 text-sm font-semibold text-royal">
+          <section data-home-plan-tonight className="fam-card fam-section fam-rise bg-white">
+            <h2 className="fam-h2 text-slate">{t(lang, 'fam.homePlan.childHome')}</h2>
+            <LinkRow href={`/family/understand?kind=topic&key=${encodeURIComponent(meeting.topicKey)}`} icon="bulb">
               {meeting.title}
-            </Link>
+            </LinkRow>
           </section>
         )}
         {plan && <PlanCard plan={plan} lang={lang} />}
@@ -134,31 +144,30 @@ export default async function FamilyHomePage() {
           }}
         />
         {progress.length > 0 && (
-          <section data-family-progress aria-labelledby="fam-progress" className="fam-card fam-rise bg-white p-5" style={{ ['--d' as string]: '240ms' } as React.CSSProperties}>
+          <section data-family-progress aria-labelledby="fam-progress" className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: '240ms' } as React.CSSProperties}>
             <div className="flex items-center gap-4">
               <ProgressRing value={mastered} max={progress.length} size={72} stroke={8} track="text-leaf/20" arc="text-emerald">
-                <span className="text-lg font-black text-slate">{mastered}</span>
+                <span className="fam-num text-lg text-slate">{mastered}</span>
               </ProgressRing>
               <div className="min-w-0">
-                <h2 id="fam-progress" className="text-lg font-extrabold text-slate">
+                <h2 id="fam-progress" className="fam-h2 text-slate">
                   {t(lang, 'fam.progress.title')}
                 </h2>
                 <p className="mt-0.5 text-sm text-slate/80">{t(lang, 'fam.progress.summary', { topics: progress.length, mastered })}</p>
               </div>
             </div>
-            <ul className="mt-4 flex flex-col gap-2">
+            <ul className="flex flex-col gap-2">
               {progress.slice(0, 6).map((p) => (
                 <li key={p.topicKey}>
-                  <Link href={`/family/understand?kind=${/\.t\d+$/.test(p.topicKey) ? 'topic' : 'chapter'}&key=${encodeURIComponent(p.topicKey)}`} className="fam-press flex min-h-[48px] items-center justify-between gap-3 rounded-2xl bg-off-white px-3 py-2">
+                  <Link href={`/family/understand?kind=${/\.t\d+$/.test(p.topicKey) ? 'topic' : 'chapter'}&key=${encodeURIComponent(p.topicKey)}`} className="fam-row fam-lift justify-between bg-off-white">
                     <span className="min-w-0 text-sm font-semibold text-slate">{p.title}</span>
-                    <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${p.mastered ? 'bg-emerald-text text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
+                    <span className={`fam-pill shrink-0 ${p.mastered ? 'bg-emerald-text text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
                       {p.mastered ? t(lang, 'fam.progress.mastered') : t(lang, 'fam.progress.rightOf', { right: p.correct, all: p.answered })}
                     </span>
                   </Link>
                 </li>
               ))}
             </ul>
-            <p className="mt-3 text-xs text-slate/80">{t(lang, 'fam.progress.how')}</p>
           </section>
         )}
       </main>

@@ -17,21 +17,21 @@ export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang
   const total = plan.items.length;
   const done = plan.items.filter((i) => i.done).length;
   return (
-    <section data-family-plan aria-labelledby="fam-plan" className="fam-card fam-rise bg-white p-5" style={rise(delay)}>
+    <section data-family-plan aria-labelledby="fam-plan" className="fam-card fam-section fam-rise bg-white" style={rise(delay)}>
       <div className="flex items-center gap-4">
         {total > 0 ? (
           <ProgressRing value={done} max={total} size={60} stroke={7} track="text-leaf/20" arc="text-emerald">
-            <span aria-hidden="true" className="text-base font-black text-slate">
+            <span aria-hidden="true" className="fam-num text-base text-slate">
               {done}/{total}
             </span>
           </ProgressRing>
         ) : (
-          <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-lg">
+          <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
             <FamIcon name="calendar" className="h-6 w-6" />
           </span>
         )}
         <div className="min-w-0 flex-1">
-          <h2 id="fam-plan" className="text-xl font-extrabold text-slate">
+          <h2 id="fam-plan" className="fam-h2 text-slate">
             {t(lang, 'fam.plan.title')}
           </h2>
           {total > 0 && (
@@ -42,47 +42,51 @@ export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang
         </div>
       </div>
       {total === 0 ? (
-        <p className="mt-3 text-base text-slate/80">{t(lang, 'fam.plan.empty')}</p>
+        <div data-plan-empty className="flex flex-col items-start gap-3">
+          <p className="text-base text-slate">{t(lang, 'fam.plan.empty')}</p>
+          <Link href="/family/study" className="fam-press inline-flex min-h-[44px] items-center rounded-full bg-white px-5 text-sm font-bold text-royal-deep ring-1 ring-royal/30">
+            {t(lang, 'fam.home.study')}
+          </Link>
+        </div>
       ) : (
         <>
           {plan.complete && (
-            <p role="status" data-plan-complete className="fam-pop mt-4 flex items-center gap-2 rounded-2xl bg-emerald/10 px-3 py-2 text-base font-bold text-emerald-text">
+            <p role="status" data-plan-complete className="fam-pop flex items-center gap-2 rounded-xl bg-emerald/10 px-3 py-2 text-base font-bold text-emerald-text">
               <FamIcon name="sparkle" className="h-5 w-5 shrink-0" />
               {t(lang, 'fam.plan.complete')}
             </p>
           )}
-          <ol className="mt-4 flex flex-col gap-2">
+          <ol className="flex flex-col gap-2">
             {plan.items.map((i) => {
               const theme = subjectTheme(i.subject);
               return (
                 <li key={i.topicKey}>
                   <Link
                     href={`/family/understand?kind=${i.isTopic ? 'topic' : 'chapter'}&key=${encodeURIComponent(i.topicKey)}`}
-                    className={`fam-press flex min-h-[56px] items-center gap-3 rounded-2xl px-3 py-2 ${i.done ? 'bg-emerald/10' : 'bg-off-white hover:bg-slate/5'}`}
+                    className={`fam-row fam-lift min-h-[56px] ${i.done ? 'bg-emerald/10' : 'bg-off-white hover:bg-slate/5'}`}
                   >
-                    <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal-deep text-white shadow-md ${theme.tile}`}>
+                    <span aria-hidden="true" className={`fam-chip-icon bg-royal-deep text-white ${theme.tile}`}>
                       <SubjectGlyph subject={i.subject} className="h-5 w-5" />
                     </span>
                     <span className="flex min-w-0 flex-1 flex-col">
-                      <span className="text-xs font-bold uppercase tracking-wide text-slate/80">{t(lang, `fam.plan.kind.${i.kind}`)}</span>
+                      <span className="fam-eyebrow text-slate/80">{t(lang, `fam.plan.kind.${i.kind}`)}</span>
                       <span lang={titleLang(i.title)} className="text-base font-semibold text-slate">
                         {i.title}
                       </span>
                     </span>
                     {i.done ? (
-                      <span className="flex shrink-0 items-center gap-1 rounded-full bg-emerald-text px-2.5 py-1 text-xs font-bold text-white">
+                      <span className="fam-pill shrink-0 bg-emerald-text text-white">
                         <FamIcon name="check" className="h-3.5 w-3.5" />
                         {t(lang, 'fam.plan.done')}
                       </span>
                     ) : (
-                      <span className="shrink-0 rounded-full bg-white px-2.5 py-1 text-xs font-bold text-slate ring-1 ring-slate/20">{t(lang, 'fam.plan.todo')}</span>
+                      <span className="fam-pill shrink-0 bg-white text-slate ring-1 ring-slate/20">{t(lang, 'fam.plan.todo')}</span>
                     )}
                   </Link>
                 </li>
               );
             })}
           </ol>
-          {total - done > 0 && <p className="mt-3 text-xs text-slate/80">{t(lang, 'fam.plan.how')}</p>}
         </>
       )}
     </section>

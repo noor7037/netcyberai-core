@@ -57,8 +57,8 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
   }, [childId]);
   useEffect(() => load(), [load]);
 
-  if (error) return <p className="rounded-3xl bg-white p-5 text-base font-bold text-slate shadow-sm ring-1 ring-slate/10">{error === 'consent_needed' ? w['fam.english.parent.consentFirst'] : w['fam.english.error']}</p>;
-  if (!data) return <div aria-busy="true" className="h-64 animate-pulse rounded-3xl bg-slate/10 motion-reduce:animate-none" />;
+  if (error) return <p className="fam-card bg-white p-5 text-base font-bold text-slate">{error === 'consent_needed' ? w['fam.english.parent.consentFirst'] : w['fam.english.error']}</p>;
+  if (!data) return <div aria-busy="true" className="h-64 animate-pulse rounded-2xl bg-slate/10 motion-reduce:animate-none" />;
 
   const name = data.child.firstName;
   const r = data.report;
@@ -69,13 +69,13 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
     if (res.ok) load();
     else setError(res.error);
   };
-  const card = 'flex flex-col gap-3 rounded-3xl bg-white p-4 text-slate shadow-sm ring-1 ring-slate/10';
+  const card = 'flex flex-col gap-3 fam-card bg-white p-4 text-slate';
   const share = Math.min(1, r.thisWeek.goal ? r.thisWeek.done / r.thisWeek.goal : 0);
   const totalWords = r.totals.wordsLearned + r.totals.wordsLearning;
 
   return (
     <div className="flex flex-col gap-4">
-      <section className="flex items-center gap-4 rounded-3xl bg-royal p-4 text-white shadow-md">
+      <section className="fam-band fam-rise flex items-center gap-4 rounded-2xl bg-royal-deep bg-gradient-to-br from-royal-deep to-violet p-4 text-white shadow-lg">
         <svg viewBox="0 0 44 44" className="h-20 w-20 -rotate-90" aria-hidden="true">
           <circle cx="22" cy="22" r="18" fill="none" stroke={colors.offWhite} strokeOpacity="0.3" strokeWidth="6" />
           <circle cx="22" cy="22" r="18" fill="none" stroke={colors.sunshine} strokeWidth="6" strokeLinecap="round" strokeDasharray={`${share * 113.1} 113.1`} />
@@ -87,14 +87,14 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
         </div>
       </section>
 
-      {r.totals.lessons === 0 && <p className="rounded-3xl bg-sunshine/25 p-4 text-base text-slate">{fill(w['fam.english.parent.empty'], { name })}</p>}
+      {r.totals.lessons === 0 && <p className="rounded-2xl bg-sunshine/25 p-4 text-base text-slate">{fill(w['fam.english.parent.empty'], { name })}</p>}
 
       <section className={card}>
-        <h2 className="text-lg font-extrabold text-slate">{w['fam.english.parent.lessons']}</h2>
+        <h2 className="fam-h2 text-slate">{w['fam.english.parent.lessons']}</h2>
         <Columns values={r.weeks.map((x) => x.lessons)} labels={weekLabels} max={Math.max(7, ...r.weeks.map((x) => x.lessons))} color={chartSeries[0]} />
-        <h2 className="text-lg font-extrabold text-slate">{w['fam.english.parent.scores']}</h2>
+        <h2 className="fam-h2 text-slate">{w['fam.english.parent.scores']}</h2>
         <Columns values={r.weeks.map((x) => x.meanScore)} labels={weekLabels} max={100} color={chartSeries[3]} />
-        <h2 className="text-lg font-extrabold text-slate">{w['fam.english.parent.voice']}</h2>
+        <h2 className="fam-h2 text-slate">{w['fam.english.parent.voice']}</h2>
         <Columns values={r.weeks.map((x) => x.voiceMinutes)} labels={weekLabels} max={Math.max(10, ...r.weeks.map((x) => x.voiceMinutes))} color={chartSeries[4]} />
         <details className="text-sm text-slate">
           <summary className="min-h-[44px] cursor-pointer py-3 font-semibold text-royal">{w['fam.english.parent.table']}</summary>
@@ -122,7 +122,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
       </section>
 
       <section className={card}>
-        <h2 className="text-lg font-extrabold text-slate">{w['fam.english.parent.words']}</h2>
+        <h2 className="fam-h2 text-slate">{w['fam.english.parent.words']}</h2>
         {/* The bar repeats the two numbers written under it, so screen readers skip it. */}
         <div aria-hidden="true" className="flex h-6 overflow-hidden rounded-full bg-slate/10">
           <span style={{ width: `${totalWords ? (100 * r.totals.wordsLearned) / totalWords : 0}%`, background: chartSeries[2] }} />
@@ -136,7 +136,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
 
       {r.canDos.length > 0 && (
         <section className={card}>
-          <h2 className="text-lg font-extrabold text-slate">{fill(w['fam.english.parent.canDos'], { name })}</h2>
+          <h2 className="fam-h2 text-slate">{fill(w['fam.english.parent.canDos'], { name })}</h2>
           <ul className="flex flex-col gap-2">
             {r.canDos.map((c) => (
               <li key={c.unitKey} className="flex items-start gap-2 rounded-2xl bg-leaf/10 p-3 text-slate">
@@ -150,7 +150,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
 
       {r.assessments.length > 0 && (
         <section className={card}>
-          <h2 className="text-lg font-extrabold text-slate">{w['fam.english.parent.checks']}</h2>
+          <h2 className="fam-h2 text-slate">{w['fam.english.parent.checks']}</h2>
           <ul className="flex flex-col gap-3">
             {(['listening', 'words', 'grammar', 'reading', 'speaking'] as const).map((skill) => {
               const rows = r.assessments.map((a) => ({ kind: a.kind, v: a[skill] })).filter((x) => x.v !== null);
@@ -175,7 +175,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
       )}
 
       {data.home && (
-        <section className="flex flex-col gap-1 rounded-3xl bg-grape/10 p-4 text-slate">
+        <section className="flex flex-col gap-1 rounded-2xl bg-grape/10 p-4 text-slate">
           <h2 className="text-sm font-bold uppercase tracking-wide text-slate"><Picture e="🏡" /> {w['fam.english.parent.home']}</h2>
           <p lang="en" className="text-lg font-bold text-slate">
             {data.home.en}

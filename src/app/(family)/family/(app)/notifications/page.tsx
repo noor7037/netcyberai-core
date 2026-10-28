@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { NotifySeen } from '@/components/family/NotifyBell';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { FamIcon } from '@/components/family/FamIcon';
+import { EmptyState } from '@/components/family/ui/EmptyState';
 import { familyClaims } from '@/lib/family/db';
 import { fill } from '@/lib/family/fill';
 import { NEWS_TEXT, readNotifications, REQUEST_TEXT, type NotificationItem } from '@/lib/family/notifications';
@@ -29,17 +31,19 @@ export default async function FamilyNotificationsPage() {
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} title={t(lang, 'fam.notify.center.title')} />
       <NotifySeen total={total} />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+      <main className="fam-page">
         {items.length === 0 ? (
-          <p data-notify-empty className="fam-card bg-white p-5 text-base font-semibold text-slate">
-            {t(lang, 'fam.notify.center.empty')}
-          </p>
+          <EmptyState data-notify-empty="" icon="bell" text={t(lang, 'fam.notify.center.empty')} href="/family" action={t(lang, 'fam.nav.home')} />
         ) : (
           <ul data-notify-list className="flex flex-col gap-3">
-            {items.map((i) => (
-              <li key={i.id}>
-                <Link href={i.href} data-notify-item={i.kind} className="fam-card fam-press flex min-h-[56px] items-center bg-white p-4 text-base font-semibold text-slate">
-                  {text(i)}
+            {items.map((i, n) => (
+              <li key={i.id} className="fam-rise" style={{ ['--d' as string]: `${n * 50}ms` } as React.CSSProperties}>
+                <Link href={i.href} data-notify-item={i.kind} className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4 text-base font-semibold text-slate">
+                  <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+                    <FamIcon name={i.kind === 'tonight' ? 'bulb' : i.kind === 'request' ? 'sheet' : 'bell'} className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0 flex-1">{text(i)}</span>
+                  <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
                 </Link>
               </li>
             ))}

@@ -1,5 +1,7 @@
 import { redirect } from 'next/navigation';
+import { FamIcon } from '@/components/family/FamIcon';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { LinkRow } from '@/components/family/ui/LinkRow';
 import { familyModuleOn } from '@/lib/family/flags';
 import { fill } from '@/lib/family/fill';
 import { HUB_PRESENTATION, hubSections, hubText, loadHubEntries, type HubEntry } from '@/lib/family/hubs';
@@ -20,19 +22,19 @@ const dayText = (lang: 'en' | 'hi', iso: string) => new Date(`${iso}T00:00:00Z`)
 
 function Section({ id, title, entries, empty, path, lang }: { id: 'national' | 'state'; title: string; entries: HubEntry[]; empty: string; path: string; lang: 'en' | 'hi' }) {
   return (
-    <section data-hub-section={id} aria-labelledby={`hub-${id}`} className="fam-card flex flex-col gap-3 bg-white p-5">
+    <section data-hub-section={id} aria-labelledby={`hub-${id}`} className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: id === 'state' ? '80ms' : '0ms' } as React.CSSProperties}>
       <div className="flex items-center gap-3">
-        <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-off-white text-royal-deep">
+        <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d={glyph[id]} />
           </svg>
         </span>
-        <h2 id={`hub-${id}`} className="text-lg font-extrabold text-slate">
+        <h2 id={`hub-${id}`} className="fam-h2 text-slate">
           {title}
         </h2>
       </div>
       {entries.length === 0 ? (
-        <p data-hub-empty className="text-sm text-slate">
+        <p data-hub-empty className="fam-row bg-off-white text-sm font-semibold text-slate">
           {empty}
         </p>
       ) : (
@@ -40,18 +42,19 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
           {entries.map((e) => {
             const x = hubText(e, lang);
             return (
-              <li key={e.id} data-hub-entry={e.id} className="flex flex-col gap-1.5 rounded-2xl bg-off-white px-3 py-3 text-sm text-slate">
-                <h3 lang={x.titleLang} className="font-extrabold">
+              <li key={e.id} data-hub-entry={e.id} className="flex flex-col gap-1.5 rounded-xl bg-off-white px-3 py-3 text-sm text-slate">
+                <h3 lang={x.titleLang} className="text-base font-extrabold">
                   {x.title}
                 </h3>
                 <p lang={x.bodyLang} className="whitespace-pre-line">
                   {x.body}
                 </p>
                 <p className="flex flex-wrap items-center gap-x-3 text-xs font-semibold">
-                  <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer" data-hub-source className="inline-flex min-h-[44px] items-center text-royal-deep underline">
+                  <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer" data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-royal-deep underline underline-offset-4">
+                    <FamIcon name="next" className="h-3.5 w-3.5" />
                     {t(lang, 'fam.hub.source')}
                   </a>
-                  <span>{fill(t(lang, 'fam.hub.checked'), { date: dayText(lang, e.verifiedOn) })}</span>
+                  <span className="fam-pill bg-white text-slate ring-1 ring-slate/15">{fill(t(lang, 'fam.hub.checked'), { date: dayText(lang, e.verifiedOn) })}</span>
                 </p>
               </li>
             );
@@ -82,9 +85,14 @@ export async function HubShell({ module }: { module: 'careers' | 'exams_portal' 
   return (
     <div lang={lang} data-hub={hub.module} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/future" backLabel={t(lang, 'fam.tab.future')} title={t(lang, hub.title)} />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+      <main className="fam-page">
         <Section id="national" title={t(lang, 'fam.hub.national')} entries={sections.national} empty={empty} path={hub.path} lang={lang} />
         {sections.state && <Section id="state" title={fill(t(lang, 'fam.hub.yourState'), { state: stateName(lang, sections.state.code, sections.state.name) })} entries={sections.state.entries} empty={empty} path={hub.path} lang={lang} />}
+        {sections.national.length === 0 && (!sections.state || sections.state.entries.length === 0) && (
+          <LinkRow href="/family/future" icon="explore">
+            {t(lang, 'fam.tab.future')}
+          </LinkRow>
+        )}
       </main>
     </div>
   );

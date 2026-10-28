@@ -7025,8 +7025,7 @@ const controlAi = (hindi) => async (page) => {
   await page.locator('[data-ai-ledger]').waitFor({ timeout: 20000 });
   if (hindi) await speak('हिन्दी')(page);
   await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-revisions] summary`).click();
-  // G6 (C379): the route editor open, so the model pickers (a listed service and one whose list is unavailable) show.
-  await page.locator(`[data-ai-profile="${G3.profile}"] [data-ai-route-edit] summary`).click();
+  // W6-C (C397): the slots are always on the card, one "provider · model" drop-down each.
   const seen = await page.evaluate((profile) => ({
     route: [...document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-slot]`)].length,
     promote: document.querySelectorAll(`[data-ai-profile="${profile}"] [data-ai-promote]`).length,
@@ -7048,8 +7047,8 @@ const controlAi = (hindi) => async (page) => {
 const controlAiTts = (hindi) => async (page) => {
   await page.locator('[data-ai-profile="family.text_to_speech"]').waitFor({ timeout: 20000 });
   if (hindi) await speak('हिन्दी')(page);
-  await page.locator('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] summary').click();
-  const offered = await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] option')].map((o) => o.getAttribute('value')).filter(Boolean))]);
+  // An option's value is "provider|model": the providers offered are the part before the bar.
+  const offered = await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] option')].map((o) => (o.getAttribute('value') ?? '').split('|')[0]).filter(Boolean))]);
   if (offered.some((p) => !['openai', 'google_tts', 'stand-in'].includes(p)) || !offered.includes('google_tts')) throw new Error(`Control → AI, the voice card offers: ${JSON.stringify(offered)}`);
   await page.locator('[data-ai-profile="family.text_to_speech"]').scrollIntoViewIfNeeded();
   // Where the card is on the full-page picture, for cropping it (cwebp -crop).
@@ -7455,6 +7454,34 @@ const SCREENS = [
   // answers in the review; the screens are in scripts/harness/online-screens.mjs.
   ...onlineScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, speak, backToEnglish }),
   // aq-4 end
+  // w6-e begin
+  // Control → Onboarding → Provision a school (C399): the one screen filled in and checked (a dry run: nothing is
+  // kept), so the picture shows all three steps and what would be made.
+  [
+    'founder',
+    'control-provision',
+    '/control/onboarding/provision',
+    async (page) => {
+      page.setDefaultTimeout(30000);
+      await page.locator('#provision-name').fill('Harness Provisioned School');
+      await page.locator('#provision-board').selectOption('cbse');
+      await page.locator('#provision-state').selectOption('IN-KA');
+      await page.locator('#provision-city').fill('Mysuru');
+      await page.locator('#provision-principal-name').fill('Meera Iyer');
+      await page.locator('#provision-principal-email').fill('meera@provision.example');
+      await page.locator('#provision-teacher-0-name').fill('Ravi Kumar');
+      await page.locator('#provision-teacher-0-email').fill('ravi@provision.example');
+      await page.locator('#provision-teacher-0-class').fill('9-A');
+      await page.locator('#provision-students').fill('name,class,section,guardian_phone\nAsha Verma,9,A,9800000101\nBilal Khan,9,A,9800000102');
+      await page.locator('[data-provision-check]').click();
+      await page.locator('[data-provision-result="preview"]').waitFor({ timeout: 30000 });
+    },
+    async () => {
+      const kept = (await db.pg.query(`select count(*)::int as n from schools where name = 'Harness Provisioned School'`)).rows[0].n;
+      if (kept !== 0) throw new Error(`the check kept a school: ${kept}`);
+    },
+  ],
+  // w6-e end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed

@@ -51,16 +51,15 @@ function QuestionRow({ q, w }: { q: SchoolMarkedQuestion; w: Words }) {
 export function CheckedPaperView({ paper, w, childView }: { paper: SchoolCheckedPaper; w: Words; childView: boolean }) {
   return (
     <div data-checked-paper={paper.paperId} className="flex flex-col gap-4">
-      {childView && <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.marks.childLead']}</p>}
-      <section aria-label={paper.subject} className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
+      <section aria-label={paper.subject} className="fam-card fam-section fam-rise bg-white">
         <p className="text-base font-bold text-slate">
           <SchoolText text={paper.term ? `${paper.exam} · ${paper.term}` : paper.exam} />
         </p>
         <ul className="flex flex-wrap gap-3" data-part-totals>
           {paper.parts.map((p) => (
-            <li key={p.component} className="flex min-w-[8rem] flex-1 flex-col rounded-2xl bg-off-white px-4 py-3">
+            <li key={p.component} className="flex min-w-[8rem] flex-1 flex-col rounded-xl bg-off-white px-4 py-3">
               <SchoolText text={p.name} className="text-sm font-semibold text-slate" />
-              <span className="text-3xl font-black text-slate">{fill(w['fam.marks.partScore'], { score: shown(p.score), max: shown(p.max) })}</span>
+              <span className="fam-num text-3xl text-slate">{fill(w['fam.marks.partScore'], { score: shown(p.score), max: shown(p.max) })}</span>
             </li>
           ))}
         </ul>
@@ -70,8 +69,8 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
       </section>
 
       {paper.pages.length > 0 && (
-        <section aria-labelledby="fam-marks-pages" className="fam-card flex flex-col gap-3 bg-white p-4 sm:p-5">
-          <h2 id="fam-marks-pages" className="text-lg font-extrabold text-slate">
+        <section aria-labelledby="fam-marks-pages" className="fam-card fam-section bg-white">
+          <h2 id="fam-marks-pages" className="fam-h2 text-slate">
             {w['fam.marks.pagesTitle']}
           </h2>
           <p className="text-sm text-slate">{w['fam.marks.pagesLead']}</p>
@@ -81,8 +80,8 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
       {/* The school's days for keeping the pictures have passed (C230-AG): the marks stay. */}
       {paper.pages.length === 0 && <p data-no-pages className="text-sm text-slate">{w['fam.marks.noPages']}</p>}
 
-      <section aria-labelledby="fam-marks-questions" className="fam-card flex flex-col gap-3 bg-white p-4 sm:p-5">
-        <h2 id="fam-marks-questions" className="text-lg font-extrabold text-slate">
+      <section aria-labelledby="fam-marks-questions" className="fam-card fam-section bg-white">
+        <h2 id="fam-marks-questions" className="fam-h2 text-slate">
           {w['fam.marks.questionsTitle']}
         </h2>
         <ol className="flex flex-col gap-2">
@@ -93,10 +92,10 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
       </section>
 
       {(paper.strengths || paper.improve || paper.practice.length > 0) && (
-        <section className="fam-card flex flex-col gap-4 bg-white p-4 sm:p-5" data-paper-advice>
+        <section className="fam-card fam-section bg-white" data-paper-advice>
           {paper.strengths && (
             <div className="flex flex-col gap-1">
-              <h2 className="text-lg font-extrabold text-emerald-text">{childView ? w['fam.marks.childStrengths'] : w['fam.marks.strengths']}</h2>
+              <h2 className="fam-h2 text-emerald-text">{childView ? w['fam.marks.childStrengths'] : w['fam.marks.strengths']}</h2>
               <p className="whitespace-pre-line text-base text-slate">
                 <SchoolText text={paper.strengths} />
               </p>
@@ -104,7 +103,7 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
           )}
           {paper.improve && (
             <div className="flex flex-col gap-1">
-              <h2 className="text-lg font-extrabold text-slate">{childView ? w['fam.marks.childImprove'] : w['fam.marks.improve']}</h2>
+              <h2 className="fam-h2 text-slate">{childView ? w['fam.marks.childImprove'] : w['fam.marks.improve']}</h2>
               <p className="whitespace-pre-line text-base text-slate">
                 <SchoolText text={paper.improve} />
               </p>
@@ -112,7 +111,7 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
           )}
           {paper.practice.length > 0 && (
             <div className="flex flex-col gap-2" data-practice-next>
-              <h2 className="text-lg font-extrabold text-royal-deep">{w['fam.marks.practice']}</h2>
+              <h2 className="fam-h2 text-royal-deep">{w['fam.marks.practice']}</h2>
               <ul className="flex flex-col gap-2">
                 {paper.practice.map((p, i) => (
                   <li key={i} className="flex flex-col gap-1 rounded-2xl bg-royal/5 px-3 py-3">

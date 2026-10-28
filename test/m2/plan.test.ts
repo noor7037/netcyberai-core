@@ -140,7 +140,7 @@ describe('the routes', () => {
     return GET(new NextRequest('http://localhost/api/family/plan', { headers: { cookie } }));
   };
   it('the plan needs its module switched on in Control (on by default once built, C230-Z; off when Control says so)', async () => {
-    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', false, 'test')`);
+    await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'plan', false, 'test') on conflict (app, module) do update set enabled = excluded.enabled, reason = excluded.reason`);
     expect((await get()).status).toBe(403);
     await db.pg.query(`update control.app_flags set enabled = true where app = 'family' and module = 'plan'`);
     const res = await get();

@@ -436,7 +436,7 @@ describe('the Focus Lock’s server (M2b-1, C305)', () => {
       ['percent of A', `update control.app_flags set audience = 'percent', audience_percent = ${rolloutBucket(A) + 1} where app = 'family' and module = 'focus_lock'`],
       ['percent below A', `update control.app_flags set audience = 'percent', audience_percent = ${rolloutBucket(A)} where app = 'family' and module = 'focus_lock'`],
       ['ended', `update control.app_flags set audience = 'everyone', audience_percent = null, ends_at = now() - interval '1 minute' where app = 'family' and module = 'focus_lock'`],
-      ['plan off for B', `update control.app_flags set ends_at = null where app = 'family' and module = 'focus_lock'; insert into control.app_flags (app, module, enabled, audience, audience_percent) values ('family', 'plan', true, 'percent', ${rolloutBucket(B)})`],
+      ['plan off for B', `update control.app_flags set ends_at = null where app = 'family' and module = 'focus_lock'; insert into control.app_flags (app, module, enabled, audience, audience_percent) values ('family', 'plan', true, 'percent', ${rolloutBucket(B)}) on conflict (app, module) do update set audience = excluded.audience, audience_percent = excluded.audience_percent`],
     ];
     await q(`insert into control.preview_accounts (account_id, added_by) values ($1, $1)`, [A]);
     for (const [name, sql] of configs) {

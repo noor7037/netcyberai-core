@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
+import { GateFrame } from './GateFrame';
 import { PinFields } from './PinFields';
 
 // The door to the parent area (docs/34 §9.1 rule 1; M1-2, C248): the parent PIN, with waits after 5 wrong tries and no
@@ -20,11 +21,7 @@ export function PinGate({ w }: { w: Words }) {
 
   if (mode === 'reset') {
     return (
-      <div className="flex flex-col gap-5">
-        <div>
-          <h1 className="text-3xl font-extrabold text-slate">{w['fam.pin.forgot']}</h1>
-          <p className="mt-2 text-base text-slate/80">{sent ? w['fam.pin.resetSent'] : w['fam.pin.resetLead']}</p>
-        </div>
+      <GateFrame app={w['fam.app.name']} title={w['fam.pin.forgot']} lead={sent ? w['fam.pin.resetSent'] : w['fam.pin.resetLead']}>
         {!sent ? (
           <Button
             disabled={busy}
@@ -69,16 +66,12 @@ export function PinGate({ w }: { w: Words }) {
         <button type="button" className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline" onClick={() => setMode('enter')}>
           {w['fam.common.cancel']}
         </button>
-      </div>
+      </GateFrame>
     );
   }
 
   return (
-    <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-3xl font-extrabold text-slate">{w['fam.pin.enterTitle']}</h1>
-        <p className="mt-2 text-base text-slate/80">{w['fam.pin.enterLead']}</p>
-      </div>
+    <GateFrame app={w['fam.app.name']} title={w['fam.pin.enterTitle']} lead={w['fam.pin.enterLead']}>
       <PinFields
         w={w}
         busy={busy}
@@ -96,6 +89,6 @@ export function PinGate({ w }: { w: Words }) {
       <button type="button" className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline" onClick={() => setMode('reset')}>
         {w['fam.pin.forgot']}
       </button>
-    </div>
+    </GateFrame>
   );
 }

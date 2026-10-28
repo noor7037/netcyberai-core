@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { ExamTimetable } from '@/components/family/ExamTimetable';
 import { SchoolText } from '@/components/family/SchoolText';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { LinkRow } from '@/components/family/ui/LinkRow';
 import { fill } from '@/lib/family/fill';
 import { MY_RESULTS_KEYS } from '@/lib/family/marks-words';
 import { activeLinks, childResultsFor } from '@/lib/family/school';
@@ -33,35 +34,36 @@ export default async function FamilyMyResultsPage() {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={w['fam.tab.home']} title={w['fam.marks.myResults']} tone="emerald" />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-my-results>
-        <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.marks.myResultsLead']}</p>
-        <Link href="/family/results/progress" data-my-progress-link className="fam-card fam-press flex min-h-[44px] items-center bg-white p-4 text-base font-bold text-royal">
+      <main className="fam-page" data-my-results>
+        <LinkRow href="/family/results/progress" icon="chart" data-my-progress-link="" card>
           {w['fam.schoolProgress.open']}
-        </Link>
-        <section className="fam-card fam-rise bg-white p-4 sm:p-5">
+        </LinkRow>
+        <section className="fam-card fam-section fam-rise bg-white">
           <ExamTimetable w={w} lang={lang} papers={mine.examSchedule} heading="h2" />
         </section>
         {mine.results.length === 0 ? (
-          <p className="fam-card bg-white p-4 text-base text-slate">{w['fam.marks.none']}</p>
+          <p className="fam-card bg-white p-4 text-base font-semibold text-slate">{w['fam.marks.none']}</p>
         ) : (
           mine.results.map((r, i) => (
-            <section key={i} className="fam-card flex flex-col gap-2 bg-white p-4 sm:p-5" data-my-result>
-              <h2 className="text-lg font-extrabold text-slate">
-                <SchoolText text={r.term ? `${r.exam} · ${r.term}` : r.exam} />
-              </h2>
-              <p className="text-sm text-slate">{fill(w['fam.school.resultPublished'], { date: day(r.publishedOn, lang) })}</p>
+            <section key={i} className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: `${i * 60}ms` } as React.CSSProperties} data-my-result>
+              <div className="flex flex-col gap-1">
+                <h2 className="fam-h2 text-slate">
+                  <SchoolText text={r.term ? `${r.exam} · ${r.term}` : r.exam} />
+                </h2>
+                <p className="fam-note text-slate/80">{fill(w['fam.school.resultPublished'], { date: day(r.publishedOn, lang) })}</p>
+              </div>
               <ul className="flex flex-col gap-2">
                 {r.subjects.map((s) => (
-                  <li key={s.paperId} className="flex flex-wrap items-center justify-between gap-2 rounded-2xl bg-off-white px-3 py-2">
+                  <li key={s.paperId} className="fam-row flex-wrap justify-between gap-2 bg-off-white">
                     <span className="text-base font-semibold text-slate">
-                      <SchoolText text={s.name} />: {scored(s.percent, s.grade)}
+                      <SchoolText text={s.name} />: <span className="fam-num">{scored(s.percent, s.grade)}</span>
                     </span>
                     {s.checked && (
                       <Link
                         href={`/family/results/${s.paperId}`}
                         aria-label={fill(w['fam.marks.openSubject'], { subject: s.name })}
                         data-checked-paper-link={s.paperId}
-                        className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-white px-3 text-sm font-bold text-royal ring-1 ring-royal/20"
+                        className="fam-lift inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/30"
                       >
                         {w['fam.marks.open']}
                       </Link>
@@ -69,8 +71,9 @@ export default async function FamilyMyResultsPage() {
                   </li>
                 ))}
               </ul>
-              <p className="text-base font-bold text-slate">
-                {w['fam.school.resultOverall']}: {scored(r.overall.percent, r.overall.grade)}
+              <p className="fam-row justify-between bg-royal-deep bg-gradient-to-r from-royal-deep to-violet text-base font-extrabold text-white">
+                <span>{w['fam.school.resultOverall']}</span>
+                <span className="fam-num text-lg">{scored(r.overall.percent, r.overall.grade)}</span>
               </p>
             </section>
           ))

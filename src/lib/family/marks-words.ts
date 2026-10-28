@@ -18,7 +18,7 @@ export const CHECKED_PAPER_KEYS: MessageKey[] = [
   'fam.school.resultPublished', 'fam.marks.title', 'fam.marks.paperTitle', 'fam.marks.gone', 'fam.marks.partScore', 'fam.marks.approved', 'fam.marks.pagesTitle', 'fam.marks.pagesLead', 'fam.marks.noPages', 'fam.marks.page',
   'fam.marks.badge', 'fam.marks.badgeNotCounted', 'fam.marks.showPages', 'fam.marks.saverNote', 'fam.marks.questionsTitle', 'fam.marks.question',
   'fam.marks.markOf', 'fam.marks.noMark', 'fam.marks.notCounted', 'fam.marks.strengths', 'fam.marks.improve', 'fam.marks.practice',
-  'fam.marks.childStrengths', 'fam.marks.childImprove', 'fam.marks.childLead', 'fam.marks.backParent', 'fam.marks.backResults',
+  'fam.marks.childStrengths', 'fam.marks.childImprove', 'fam.marks.backParent', 'fam.marks.backResults',
   ...Object.values(MISTAKE_KEYS),
   // AQ-5 (C366): "Download as PDF" and the PDF's own words (CHECKED_PDF_WORD_KEYS of src/lib/marking/checked-pdf-shape.ts,
   // which the family's code may not import; a test holds the two the same).
@@ -27,13 +27,13 @@ export const CHECKED_PAPER_KEYS: MessageKey[] = [
 ];
 
 export const MY_RESULTS_KEYS: MessageKey[] = [
-  'fam.marks.myResults', 'fam.marks.myResultsLead', 'fam.marks.none', 'fam.marks.open', 'fam.marks.openSubject', 'fam.tab.home',
+  'fam.marks.myResults', 'fam.marks.none', 'fam.marks.open', 'fam.marks.openSubject', 'fam.tab.home',
   'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.schoolProgress.open', ...TIMETABLE_KEYS,
 ];
 
 // The progress report (AJ-5): the child's own view and the parent's.
 export const PROGRESS_KEYS: MessageKey[] = [
-  'fam.schoolProgress.title', 'fam.schoolProgress.lead', 'fam.schoolProgress.leadParent', 'fam.schoolProgress.none', 'fam.schoolProgress.session',
+  'fam.schoolProgress.title', 'fam.schoolProgress.none', 'fam.schoolProgress.session',
   'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.marks.backParent', 'fam.marks.myResults', 'fam.tab.home',
   'fam.schoolProgress.counted', 'fam.schoolProgress.countedHow', 'fam.schoolProgress.countedType', 'fam.schoolProgress.countedResult',
 ];

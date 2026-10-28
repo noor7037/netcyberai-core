@@ -6,7 +6,7 @@ import { useT } from "@/components/app-shell/LangContext";
 import { InfoTip } from "@/components/app-ui/InfoTip";
 import { StatusPill } from "@/components/app-ui/StatusPill";
 import { Input } from "@/components/ui/Input";
-import type { Counts } from "@/lib/ai/control";
+import { totals } from "@/lib/ai/usage-view";
 import {
   PROVIDER_STATES,
   providerState,
@@ -16,15 +16,17 @@ import type { LedgerAttempt } from "@/lib/contracts/ai-gateway";
 import type { MessageKey } from "@/lib/i18n";
 import Link from "next/link";
 import { LedgerView } from "./LedgerView";
+import { Panel } from "./Panel";
 import { PriceList } from "./PriceList";
 import { ProviderList } from "./ProviderList";
+import { UsageTable } from "./UsageTable";
 import {
   CARD,
+  NUM,
   choicesFor,
   STATE_TONE,
   TAP,
   day,
-  profileName,
   stateWords,
   type Data,
 } from "./shared";
@@ -64,6 +66,8 @@ const ERRORS = [
 ];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ["no_key", "not_testable"];
+
+const n = (v: number) => v.toLocaleString("en-IN");
 
 export function AiControls({ initial }: { initial: Data }) {
   const { stepUpFetch } = useStepUp();
@@ -189,14 +193,7 @@ export function AiControls({ initial }: { initial: Data }) {
   }, [data, readAt]);
 
   const name = (n: string | null) => n ?? t("control.ai.someone");
-  const usageLine = (c: Counts) =>
-    t("control.ai.usage.line", {
-      requests: c.requests,
-      failures: c.failures,
-      capRefusals: c.capRefusals,
-      tokensIn: c.tokensIn,
-      tokensOut: c.tokensOut,
-    });
+  const { today } = totals(data.usage);
   // The overview: counts of what the server holds, nothing else.
   const textProviders = data.providers.filter((p) => p.capability !== "video");
   const stateCounts = PROVIDER_STATES.map((s) => ({
@@ -211,7 +208,7 @@ export function AiControls({ initial }: { initial: Data }) {
   };
 
   return (
-    <div lang={lang} className="flex flex-col gap-5 text-sm text-slate">
+    <div lang={lang} className="flex flex-col gap-4 text-sm text-slate">
       {/* The outcome of a save sits at the bottom of the window, wherever the page is scrolled (C319). */}
       {note && (
         <p
@@ -231,115 +228,109 @@ export function AiControls({ initial }: { initial: Data }) {
         </p>
       )}
 
-      <section data-ai-overview className={CARD}>
-        <div className="flex flex-wrap items-center gap-x-1">
-          <h2 className="text-lg font-bold">
-            {t("control.ai.overview.title")}
-          </h2>
-          <InfoTip>{t("control.ai.overview.how")}</InfoTip>
-        </div>
-        <p data-ai-overview-features>
-          {t("control.ai.overview.features", features)}
-        </p>
-        {/* G5 (C373): the Quality Lab, from the screen itself (the header's link is easy to miss). */}
-        <Link
-          href="/control/ai/lab"
-          data-ai-overview-lab
-          className="inline-flex min-h-[44px] items-center self-start rounded-md border border-slate/20 px-4 font-semibold text-sapphire underline"
-        >
-          {t("control.ai.overview.lab")}
-        </Link>
-        <ul data-ai-overview-states className="flex flex-wrap gap-2">
-          {stateCounts.map(({ s, n }) => (
-            <li key={s} data-ai-overview-state={s}>
-              <StatusPill tone={STATE_TONE[s]}>
-                {t("control.ai.overview.stateCount", {
-                  state: t(stateWords(s)),
-                  count: n,
-                })}
-              </StatusPill>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* Four numbers for the day, from the counts and the ledger's total; zero is shown as zero. */}
+      <div data-ai-stats className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {(
+          [
+            ["requests", t("control.ai.stat.requests"), n(today.requests), ""],
+            ["failures", t("control.ai.stat.failures"), n(today.failures), today.failures > 0 ? "text-coral-deep" : ""],
+            ["cost", t("control.ai.stat.cost"), t("control.ai.stat.usd", { value: data.spentToday.usd.toFixed(2) }), ""],
+            ["unpriced", t("control.ai.stat.unpriced"), n(data.spentToday.unpriced), ""],
+          ] as const
+        ).map(([k, label, value, tone]) => (
+          <div key={k} data-ai-stat={k} className={`${CARD} gap-1 hover:shadow-md`}>
+            <p className="text-xs font-semibold text-slate/80">{label}</p>
+            <p className={`text-2xl font-bold ${NUM} ${tone}`}>{value}</p>
+          </div>
+        ))}
+      </div>
 
-      <section data-ai-profiles className={CARD}>
-        <div className="flex flex-wrap items-center gap-x-1">
-          <h2 className="text-lg font-bold">{t("control.ai.profile.title")}</h2>
-          <InfoTip>{t("control.ai.profile.how")}</InfoTip>
-        </div>
-        <div className="grid gap-3 xl:grid-cols-2">
-          {data.profiles.map((p) => (
-            <WorkloadCard
-              key={p.profileId}
-              profile={p}
-              revisions={data.routing.revisions.filter(
-                (r) => r.profileId === p.profileId,
-              )}
-              providerChoices={choicesFor(data, p.needs)}
-              modelLists={data.modelLists}
-              states={states}
-              busy={busy}
-              send={send}
-              t={t}
-              draft={drafts[p.profileId] ?? draftOf(p)}
-              setDraft={(d) =>
-                setDrafts((all) => ({ ...all, [p.profileId]: d }))
-              }
-            />
-          ))}
-        </div>
-      </section>
-
-      <ProviderList
-        data={data}
-        busy={busy}
-        send={send}
-        test={test}
-        t={t}
-        states={states}
-        lastAttempt={lastAttempt}
-      />
-
-      <LedgerView ledger={data.routing.ledger} t={t} />
-
-      <PriceList data={data} busy={busy} send={send} t={t} />
-
-      <section data-ai-usage className={CARD}>
-        <div className="flex flex-wrap items-center gap-x-1">
-          <h2 className="text-lg font-bold">{t("control.ai.usage.title")}</h2>
-          <InfoTip>{t("control.ai.usage.how")}</InfoTip>
-        </div>
-        <div className="grid gap-3 md:grid-cols-2">
-          {data.usage.map((u) => (
-            <div
-              key={u.profileId}
-              data-ai-usage-profile={u.profileId}
-              className="flex flex-col gap-1"
-            >
-              <p className="font-bold">{profileName(t, u.profileId)}</p>
-              <p>
-                <span className="font-semibold">
-                  {t("control.ai.usage.today")}
-                </span>
-                : {usageLine(u.today)}
-              </p>
-              <p>
-                <span className="font-semibold">
-                  {t("control.ai.usage.month")}
-                </span>
-                : {usageLine(u.month)}
-              </p>
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_22rem] xl:items-start">
+        <div className="flex min-w-0 flex-col gap-4">
+          <section data-ai-overview className={CARD}>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center gap-x-1">
+                <h2 className="text-lg font-bold">
+                  {t("control.ai.overview.title")}
+                </h2>
+                <InfoTip>{t("control.ai.overview.how")}</InfoTip>
+              </div>
+              {/* G5 (C373): the Quality Lab, from the screen itself (the header's link is easy to miss). */}
+              <Link
+                href="/control/ai/lab"
+                data-ai-overview-lab
+                className="inline-flex min-h-[44px] items-center rounded-lg border border-slate/20 px-4 font-semibold text-sapphire underline hover:bg-slate/5"
+              >
+                {t("control.ai.overview.lab")}
+              </Link>
             </div>
-          ))}
-        </div>
-      </section>
+            <p data-ai-overview-features>
+              {t("control.ai.overview.features", features)}
+            </p>
+            <ul data-ai-overview-states className="flex flex-wrap gap-2">
+              {stateCounts.map(({ s, n: count }) => (
+                <li key={s} data-ai-overview-state={s}>
+                  <StatusPill tone={STATE_TONE[s]}>
+                    {t("control.ai.overview.stateCount", {
+                      state: t(stateWords(s)),
+                      count,
+                    })}
+                  </StatusPill>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-      <section data-ai-cap className={CARD}>
-        <div className="flex flex-wrap items-center gap-x-1">
-          <h2 className="text-lg font-bold">{t("control.ai.cap.title")}</h2>
-          <InfoTip>{t("control.ai.cap.how")}</InfoTip>
+          <section data-ai-profiles className="flex flex-col gap-3">
+            <div className="flex flex-wrap items-center gap-x-1">
+              <h2 className="text-lg font-bold">{t("control.ai.profile.title")}</h2>
+              <InfoTip>{t("control.ai.profile.how")}</InfoTip>
+            </div>
+            <div className="grid items-start gap-4 lg:grid-cols-2">
+              {data.profiles.map((p) => (
+                <WorkloadCard
+                  key={p.profileId}
+                  profile={p}
+                  revisions={data.routing.revisions.filter(
+                    (r) => r.profileId === p.profileId,
+                  )}
+                  providerChoices={choicesFor(data, p.needs)}
+                  modelLists={data.modelLists}
+                  states={states}
+                  busy={busy}
+                  send={send}
+                  t={t}
+                  draft={drafts[p.profileId] ?? draftOf(p)}
+                  setDraft={(d) =>
+                    setDrafts((all) => ({ ...all, [p.profileId]: d }))
+                  }
+                />
+              ))}
+            </div>
+          </section>
+
+          <UsageTable data={data} t={t} />
+
+          <ProviderList
+            data={data}
+            busy={busy}
+            send={send}
+            test={test}
+            t={t}
+            states={states}
+            lastAttempt={lastAttempt}
+          />
+
+          <LedgerView ledger={data.routing.ledger} t={t} />
         </div>
+
+        {/* Prices, the limit, the alert and the changes: a right-hand column on a laptop, folded sections below. */}
+        <div className="flex min-w-0 flex-col gap-4">
+          <Panel marker="data-ai-prices" title={t("control.ai.price.title")} how={t("control.ai.price.how")}>
+            <PriceList data={data} busy={busy} send={send} t={t} />
+          </Panel>
+
+          <Panel marker="data-ai-cap" title={t("control.ai.cap.title")} how={t("control.ai.cap.how")}>
         <p>
           {data.cap === null
             ? t("control.ai.cap.notSet")
@@ -368,13 +359,10 @@ export function AiControls({ initial }: { initial: Data }) {
             {t("control.ai.cap.save")}
           </button>
         </div>
-      </section>
+      
+          </Panel>
 
-      <section data-ai-spend-alert className={CARD}>
-        <div className="flex flex-wrap items-center gap-x-1">
-          <h2 className="text-lg font-bold">{t("control.ai.spend.title")}</h2>
-          <InfoTip>{t("control.ai.spend.how")}</InfoTip>
-        </div>
+          <Panel marker="data-ai-spend-alert" title={t("control.ai.spend.title")} how={t("control.ai.spend.how")}>
         <p>
           {data.spendAlert === null
             ? t("control.ai.spend.off")
@@ -420,10 +408,10 @@ export function AiControls({ initial }: { initial: Data }) {
             </button>
           )}
         </div>
-      </section>
+      
+          </Panel>
 
-      <section data-ai-changes className={CARD}>
-        <h2 className="text-lg font-bold">{t("control.ai.changes.title")}</h2>
+          <Panel marker="data-ai-changes" title={t("control.ai.changes.title")}>
         {data.changes.length === 0 && <p>{t("control.ai.changes.none")}</p>}
         <ul className="flex flex-col gap-2">
           {data.changes.map((c) => (
@@ -465,7 +453,10 @@ export function AiControls({ initial }: { initial: Data }) {
             </li>
           ))}
         </ul>
-      </section>
+      
+          </Panel>
+        </div>
+      </div>
     </div>
   );
 }

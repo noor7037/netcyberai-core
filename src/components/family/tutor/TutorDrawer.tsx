@@ -9,7 +9,8 @@ import type { TutorReaderContext } from './TutorWindow';
 // The chapter reader's doubt drawer (S2, C375): the same tutor window as Study, opened over the chapter with its
 // subject, chapter and the block the child was on (board and class are the child's own, read on the server). The window
 // loads only when the drawer first opens (09 §4: the reader's first-load budget). Escape or Close shuts it and gives
-// the focus back to the button that opened it; nothing moves under prefers-reduced-motion.
+// the focus back to the button that opened it; nothing moves under prefers-reduced-motion. W6-A (C395): the window's
+// composer is pinned at the drawer's foot, the same composer as Study.
 
 const TutorWindow = dynamic(() => import('./TutorWindow').then((m) => m.TutorWindow), { ssr: false });
 
@@ -67,7 +68,7 @@ export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = n
         role="dialog"
         aria-modal="true"
         aria-labelledby="fam-tutor-drawer-title"
-        className="relative flex max-h-[92vh] w-full max-w-xl flex-col gap-3 overflow-y-auto rounded-t-[2rem] bg-off-white p-4 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)] shadow-xl sm:rounded-[2rem] sm:p-5"
+        className="relative flex max-h-[92vh] w-full max-w-xl flex-col gap-3 overflow-y-auto rounded-t-[1.5rem] bg-off-white p-4 pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] shadow-xl sm:rounded-[1.5rem] sm:p-5"
       >
         <div className="flex items-center justify-between gap-2">
           <h2 id="fam-tutor-drawer-title" className="text-lg font-extrabold text-slate">
@@ -80,7 +81,7 @@ export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = n
             {w['fam.tutor.close']}
           </button>
         </div>
-        <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homework} reader={reader} idPrefix="fam-doubt" />
+        <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homework} reader={reader} idPrefix="fam-doubt" pinned="sheet" />
       </div>
     </div>
   );

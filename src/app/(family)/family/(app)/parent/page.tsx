@@ -4,8 +4,10 @@ import { redirect } from 'next/navigation';
 import { ChapterRequestPanel } from '@/components/family/ChapterRequestPanel';
 import { ChildSyllabusEditor } from '@/components/family/ChildSyllabusEditor';
 import { listRequests, readSourceModes } from '@/lib/family/chapter-requests';
+import { FamIcon } from '@/components/family/FamIcon';
+import { GateFrame } from '@/components/family/GateFrame';
 import { FocusSection } from '@/components/family/FocusSection';
-import { ParentArea } from '@/components/family/ParentArea';
+import { ParentArea, type ParentNeed } from '@/components/family/ParentArea';
 import { ChildPhoneSection } from '@/components/family/ChildPhoneSection';
 import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanSection';
 import { NotifySection } from '@/components/family/NotifySection';
@@ -35,6 +37,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248): behind the parent PIN, always.
 const GATE_KEYS: MessageKey[] = [
+  'fam.app.name',
   'fam.pin.enterTitle', 'fam.pin.enterLead', 'fam.pin.enter', 'fam.pin.open', 'fam.pin.forgot', 'fam.pin.resetLead', 'fam.pin.resetSend', 'fam.pin.resetSent',
   'fam.pin.resetSave', 'fam.pin.new', 'fam.pin.again', 'fam.pin.mismatch', 'fam.signIn.code', 'fam.common.cancel', 'fam.err.pinWrong', 'fam.err.wait',
   'fam.err.format', 'fam.err.too_simple', 'fam.err.wrong', 'fam.err.locked', 'fam.err.expired', 'fam.err.none', 'fam.err.rate_limited',
@@ -58,12 +61,15 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
   'fam.parent.privacy', 'fam.parent.privacyIntro',
+  'fam.parent.tabs', 'fam.parent.tab.overview', 'fam.parent.tab.children', 'fam.parent.tab.school', 'fam.parent.tab.learning', 'fam.parent.tab.privacy', 'fam.parent.tab.account',
+  'fam.parent.needs.title', 'fam.parent.needs.none', 'fam.parent.needs.open', 'fam.parent.needs.requestsDeclined', 'fam.parent.needs.requestsOpen', 'fam.parent.needs.renew', 'fam.parent.needs.consent', 'fam.parent.needs.meeting',
+  'fam.parent.learningEmpty', 'fam.parent.goChildren',
   'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.marks.open', 'fam.marks.openSubject', 'fam.schoolProgress.open', 'fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
   ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
-  'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.calm.note',
+  'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.profile.title',
   'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.changed.photo_input', 'fam.consent.purpose.voice_practice', 'fam.consent.purpose.offers',
   // m2-3: the habit section.
   'fam.habit.parent.title', 'fam.habit.parent.goal', 'fam.habit.parent.goalHelp', 'fam.habit.parent.goalOption', 'fam.habit.parent.jarTitle', 'fam.habit.parent.jarNone',
@@ -120,16 +126,18 @@ export default async function FamilyParentPage() {
   // A child's own phone (C342): the parent area is on the parent's phone.
   if (page.session.device) {
     return (
-      <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8" data-parent-on-parent-phone>
-        <p className="rounded-2xl bg-white p-5 text-base text-slate">{t(lang, 'fam.phone.parentHere')}</p>
-      </main>
+      <div lang={lang} data-parent-on-parent-phone>
+        <GateFrame app={t(lang, 'fam.app.name')} title={t(lang, 'fam.parent.title')}>
+          <p className="text-base text-slate">{t(lang, 'fam.phone.parentHere')}</p>
+        </GateFrame>
+      </div>
     );
   }
   if (!page.parentMode) {
     return (
-      <main lang={lang} className="mx-auto w-full max-w-md px-4 py-8">
+      <div lang={lang}>
         <PinGate w={familyWords(lang, GATE_KEYS)} />
-      </main>
+      </div>
     );
   }
   const calm = await familyPageRead(page, async (db) => Promise.all(page.children.map((c) => calmCard(db, page.session.accountId, c.childId, indiaDate(), lang))));
@@ -202,8 +210,17 @@ export default async function FamilyParentPage() {
           notices: focusRead.notices.map((n) => ({ noticeId: n.noticeId, deviceId: n.deviceId, kind: n.kind, time: focusTimeLabel(n.at, lang) })),
         }
       : null;
+  // What needs the parent now (W6-F): one line and one action each.
+  const needs: ParentNeed[] = [];
+  const declined = own.requests.filter((r) => r.status === 'declined').length;
+  const preparing = own.requests.filter((r) => r.status === 'received' || r.status === 'digitizing').length;
+  if (!page.consents.study_core) needs.push({ kind: 'consent' });
+  if (renew) needs.push({ kind: 'renew' });
+  if (declined > 0) needs.push({ kind: 'requests_declined', n: declined });
+  if (preparing > 0) needs.push({ kind: 'requests_open', n: preparing });
+  for (const c of plans ?? []) if (c.linked && c.plan && !c.plan.followupAsked) needs.push({ kind: 'meeting', name: c.firstName });
   return (
-    <main lang={lang} className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-6">
+    <div lang={lang} className="flex min-h-screen flex-col">
       <ParentArea
         english={english}
         photo={photo}
@@ -217,38 +234,55 @@ export default async function FamilyParentPage() {
         states={familyStates(lang)}
         boards={await familyPageRead(page, (db) => listFamilyBoards(db, lang))}
         studyCore={page.consents.study_core}
-        afterChildren={
-          <>
+        needs={needs}
+        slots={{
+          overview: (
+            <>
             {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
             {page.children.length > 0 && (
               <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
-                <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal/10 text-royal-deep">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+                  <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="5" width="18" height="15" rx="2" />
                     <path d="M3 10h18M10 14h4" />
                   </svg>
                 </span>
-                <span className="flex flex-col">
+                <span className="flex min-w-0 flex-1 flex-col">
                   <span className="text-base font-bold text-slate">{t(lang, 'fam.vault.open')}</span>
                   <span className="text-sm text-slate/80">{t(lang, 'fam.vault.openLead')}</span>
                 </span>
+                <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
               </Link>
             )}
-            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            </>
+          ),
+          children: (
+            <>
             {/* Behind the Focus Lock's switch (C230-AF): with it off, only phones already linked are listed, to remove. */}
             {page.children.length > 0 && (phoneLinking || phones.length > 0) && (
               <ChildPhoneSection w={familyWords(lang, PHONE_KEYS)} lang={lang} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} phones={phones} canLink={phoneLinking} />
             )}
+            {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            </>
+          ),
+          school: (
+            <>
+            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
-            {focus && <FocusSection w={familyWords(lang, FOCUS_KEYS)} devices={focus.devices} notices={focus.notices} />}
+            </>
+          ),
+          learning:
+            own.childList.length > 0 ? (
+              <>
             {own.childList.length > 0 && page.consents.study_core && (
               <ChapterRequestPanel w={familyWords(lang, [...REQUEST_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey)])} childList={own.childList} requests={own.requests} modes={own.modes} />
             )}
             {own.childList.length > 0 && <ChildSyllabusEditor w={familyWords(lang, [...SYLLABUS_KEYS, ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.common.cancel'])} childList={own.childList} syllabi={own.syllabi} studyCore={page.consents.study_core} />}
-          </>
-        }
+              </>
+            ) : null,
+        }}
       />
-    </main>
+    </div>
   );
 }

@@ -37,11 +37,10 @@ export default async function FamilyParentCheckedPaperPage({ params }: { params:
         backLabel={w['fam.marks.backParent']}
         kicker={paper ? fill(w['fam.school.resultPublished'], { date: day(paper.publishedOn, lang) }) : undefined}
         title={paper ? fill(w['fam.marks.title'], { subject: subjectName }) : w['fam.marks.paperTitle']}
-        subject={subject ?? undefined}
         tone="royal"
       />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
-        {paper ? <CheckedPaperView paper={paper} w={w} childView={false} /> : <p className="fam-card bg-white p-4 text-base text-slate" data-paper-gone>{w['fam.marks.gone']}</p>}
+      <main className="fam-page">
+        {paper ? <CheckedPaperView paper={paper} w={w} childView={false} /> : <p className="fam-card bg-white p-4 text-base font-semibold text-slate" data-paper-gone>{w['fam.marks.gone']}</p>}
       </main>
     </div>
   );
