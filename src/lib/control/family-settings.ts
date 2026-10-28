@@ -1,5 +1,6 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
+import { VOICE_CHARS_SETTING, voiceCharLimit } from '@/lib/ai/daily-cap';
 import { SUBJECT_IDS, SUBJECT_LIST_KEYS, subjectListOf, type Subject, type SubjectList } from '@/lib/contracts/subjects';
 
 // Control → Family's settings: two lists of subjects. `open` (C298): open to every child, whatever their free subject
@@ -62,4 +63,33 @@ export async function setPlusOpen(db: Sql, by: { userId: string }, raw: unknown)
     afterState: { open: raw },
   });
   return { ok: true, open: raw };
+}
+
+// The daily voice allowance per family, in characters (C230-AS, C388): what the server voice may speak for one family in
+// one India day; spoken lines meter against it, not the AI requests. A whole number from 0 (the server voice off for
+// families) to VOICE_CHARS_MAX; audited.
+export const VOICE_CHARS_MAX = 1_000_000;
+
+export async function readVoiceAllowance(db: Sql): Promise<number | null> {
+  return voiceCharLimit(db);
+}
+
+export async function setVoiceAllowance(db: Sql, by: { userId: string }, raw: unknown): Promise<{ ok: true; chars: number } | { ok: false; code: 'bad_value' }> {
+  if (typeof raw !== 'number' || !Number.isInteger(raw) || raw < 0 || raw > VOICE_CHARS_MAX) return { ok: false, code: 'bad_value' };
+  const before = await readVoiceAllowance(db);
+  await db.query(
+    `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+    [VOICE_CHARS_SETTING, JSON.stringify(raw), by.userId]
+  );
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: by.userId,
+    actorRole: 'super_admin',
+    eventAction: 'family.voice_allowance_set',
+    targetType: 'control_setting',
+    targetId: VOICE_CHARS_SETTING,
+    beforeState: { chars: before },
+    afterState: { chars: raw },
+  });
+  return { ok: true, chars: raw };
 }

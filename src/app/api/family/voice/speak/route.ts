@@ -12,8 +12,9 @@ import { prepareSpeak, type PreparedVoice } from '@/lib/ai/platform';
 //   { kind: 'live_turn', sessionId, position }            a kept live English reply of the child's own session.
 // It speaks only text the server holds (src/lib/family/voice-out.ts), for the child this phone has chosen, behind the
 // gate of the screen it belongs to. The answer is the audio itself (mp3), never cached and never stored. A voice that
-// is not set up answers 503 "not_set_up" and a family at its daily cap 429 "ai_cap_reached": the phone then reads the
-// line with its own voice and says so. No database connection is held while the vendor speaks (F1-3).
+// is not set up answers 503 "not_set_up" and a family whose voice allowance for the day is used up (C388: characters,
+// Control's setting, not the AI requests) 429 "voice_allowance_reached": the phone then reads the line with its own
+// voice and says so. No database connection is held while the vendor speaks (F1-3).
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
@@ -28,14 +29,15 @@ export async function POST(req: NextRequest) {
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
   const claims = familyClaims(session);
   try {
-    // 1. The gate, the line the server holds, and the platform's own checks (one daily-cap place) in one transaction.
+    // 1. The gate, the line the server holds, and the platform's own checks (the line's characters taken from the
+    //    family's voice allowance) in one transaction.
     const plan = await withFamilyContext(claims, async (db): Promise<PreparedVoice | NextResponse> => {
       const line = await speakLine(db, session.accountId, chosen, ask);
       if (!line.ok) return fail(line.error, line.status);
       const ctx = await liveAiContext(db, session.accountId, line.children.map((c) => c.firstName));
       const prepared = await prepareSpeak(db, ctx, VOICE_PROFILE, { text: line.text, language: line.language });
       if (prepared.ok) return prepared.voice;
-      if (prepared.reason === 'cap_reached') return fail('ai_cap_reached', 429);
+      if (prepared.reason === 'cap_reached') return fail('voice_allowance_reached', 429);
       return fail(prepared.reason === 'failed' ? 'failed' : 'not_set_up', 503);
     });
     if (plan instanceof NextResponse) return plan;

@@ -6,7 +6,7 @@ import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
-import { dailyLimit, dailyRequestsUsed, takeDailyRequest } from './daily-cap';
+import { dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, voiceCharLimit, voiceCharsLeft } from './daily-cap';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt } from './gateway/ledger';
@@ -339,6 +339,17 @@ async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link)
   return true;
 }
 
+// 4, for a line to speak: the family's voice allowance in characters (C388) instead of a request place.
+async function takeVoiceCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, chars: number): Promise<boolean> {
+  if (profile.audience !== 'family') return true;
+  const limit = await voiceCharLimit(db);
+  if (limit === null || !(await takeVoiceChars(db, ctx.accountId, ctx.day, chars, limit))) {
+    await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
+    return false;
+  }
+  return true;
+}
+
 // A provider is not tried on a profile's own time (callMs) with less than this left.
 const CHAIN_MIN_MS = 15_000;
 
@@ -500,7 +511,7 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
 
 // The route's whole budget for one line: a second provider is not tried once this much has gone.
 const VOICE_CHAIN_BUDGET_MS = 20_000;
-export { VOICE_TEXT_MAX };
+export { VOICE_TEXT_MAX, voiceCharsLeft };
 
 export type SpeakInput = { text: string; language: 'en' | 'hi' };
 export type VoiceAudio = { ok: true; audio: Uint8Array; mediaType: VoiceMediaType; provider: string; model: string } | { ok: false; reason: AiRefusal };
@@ -509,7 +520,7 @@ export type PreparedVoice = { send: () => Promise<SentVoice> };
 export type PreparedSpeak = { ok: true; voice: PreparedVoice } | { ok: false; reason: AiRefusal };
 
 // The same seven steps, for one line to speak: 1–4 in the caller's transaction (the profile, the minors check on the
-// whole chain, a provider with a voice adapter and a key, the family's daily cap: one place a line); 5, the child's
+// whole chain, a provider with a voice adapter and a key, the family's voice allowance: the line's characters); 5, the child's
 // names and the parent's email taken out of the line; 6 (send, no database) down the chain; 7 (record) counts and the
 // ledger, with the characters spoken as "tokens in". A line longer than VOICE_TEXT_MAX, or empty, is refused before
 // anything is taken. The caller passes only text the server holds; the audio is returned, never stored or logged.
@@ -531,8 +542,8 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
     return { ok: false, reason: 'failed' };
   }
 
-  // 4. The family's daily cap.
-  if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
+  // 4. The family's daily voice allowance, in characters (C388), not the daily requests: a line takes its length.
+  if (!(await takeVoiceCap(db, ctx, profile, ready[0].link, text.length))) return { ok: false, reason: 'cap_reached' };
 
   // 5. Nothing that names a child leaves the server.
   const clean = scrubRequest({ system: '', messages: [{ role: 'user', content: text }] }, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }).messages[0].content;
@@ -541,11 +552,14 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
   const send = async (): Promise<SentVoice> => {
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
+    let spoke = false;
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
       await recordAttempts(tx, ledger, attempts);
+      // Nothing spoken: the line's characters go back to the family's day.
+      if (!spoke && profile.audience === 'family') await giveVoiceCharsBack(tx, ctx.accountId, ctx.day, text.length);
     };
-    if (sent) return { result: { ok: false, reason: 'failed' }, record };
+    if (sent) return { result: { ok: false, reason: 'failed' }, record: async () => {} };
     sent = true;
     attempts.push(...skipped);
     const began = Date.now();
@@ -565,6 +579,7 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
       const tried = attemptOf(r, result.ok ? { ok: true, tokensIn: result.characters, tokensOut: 0 } : result, { streamed: false, elapsedMs: Date.now() - start, limitMs: VOICE_TIMEOUT_MS });
       attempts.push(tried.attempt);
       if (result.ok) {
+        spoke = true;
         usage.push({ link, counts: { requests: 1, tokensIn: result.characters } });
         return { result: { ok: true, audio: result.audio, mediaType: result.mediaType, provider: link.provider, model: link.model }, record };
       }
