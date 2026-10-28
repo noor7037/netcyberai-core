@@ -63,6 +63,26 @@ async function liveAiOn(db, aiKey) {
   };
 }
 
+// C386: `voice`: for this picture, a made-up OpenAI key sealed with this run's own key, OpenAI cleared for children and
+// the server voice (family.text_to_speech) on it, so the reader and live English say the server voice reads. Nothing is
+// played or asked for (the picture never presses play). All put back after.
+async function serverVoiceOn(db, aiKey) {
+  const provider = (await db.pg.query(`select cleared_for_minors, cleared_terms_url, cleared_at, cleared_by, enabled from control.ai_providers where provider_id = 'openai'`)).rows[0];
+  const profile = (await db.pg.query(`select provider_id, model, fallback, enabled from control.ai_profiles where profile_id = 'family.text_to_speech'`)).rows[0];
+  const hadKey = (await db.pg.query(`select 1 from control.ai_credentials where provider_id = 'openai'`)).rows.length > 0;
+  const k = seal(aiKey, 'openai', `sk-${'H'.repeat(40)}HARN`);
+  if (!hadKey)
+    await db.pg.query(`insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by) values ('openai', $1, $2, $3, 1, 'HARN', '00000000-0000-4000-8000-00000000f001')`, [k.ciphertext, k.iv, k.tag]);
+  await db.pg.query(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.invalid/terms', cleared_at = now(), cleared_by = '00000000-0000-4000-8000-00000000f001', enabled = true where provider_id = 'openai'`);
+  await db.pg.query(`update control.ai_profiles set provider_id = 'openai', model = 'gpt-4o-mini-tts', fallback = '[]', enabled = true where profile_id = 'family.text_to_speech'`);
+  return async () => {
+    if (profile) await db.pg.query(`update control.ai_profiles set provider_id = $1, model = $2, fallback = $3::jsonb, enabled = $4 where profile_id = 'family.text_to_speech'`, [profile.provider_id, profile.model, JSON.stringify(profile.fallback ?? []), profile.enabled]);
+    if (provider)
+      await db.pg.query(`update control.ai_providers set cleared_for_minors = $1, cleared_terms_url = $2, cleared_at = $3, cleared_by = $4, enabled = $5 where provider_id = 'openai'`, [provider.cleared_for_minors, provider.cleared_terms_url, provider.cleared_at, provider.cleared_by, provider.enabled]);
+    if (!hadKey) await db.pg.query(`delete from control.ai_credentials where provider_id = 'openai'`);
+  };
+}
+
 // [account (null: no session), picture name, address, { parent: parent mode open }]
 // `flags`: Control's family switches set for this picture only (saved with the reason "harness screen", removed after);
 // `reset`: SQL run after the picture (so a limit the picture spends does not carry over to the next).
@@ -96,6 +116,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // S1 (C374): the chapter reader, its blocks and the sticky read-aloud controls.
   ['full', 'family-chapter-reader', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-controls]' }],
+  // C386: the reader with the server voice set up (its controls say the NetCyberAI voice reads).
+  ['full', 'family-chapter-voice', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', voice: true, settle: '[data-voice-in-use="server"]' }],
   // S5 (C378): the slider, the 3D model (drawn in 2D until asked for) and the chapter test, in the same chapter.
   ['full', 'family-chapter-slider', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="slider"]' }],
   ['full', 'family-chapter-model', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="model_3d"] [data-model-2d]' }],
@@ -154,6 +176,8 @@ export const FAMILY_SCREENS = [
   ['english', 'family-english-live-not-set-up', '/family/english/live', { settle: '[data-live-not-set-up]' }],
   ['english', 'family-english-live-ready', '/family/english/live', { ai: true, settle: '[data-live-ready]' }],
   ['english', 'family-english-live-session', '/family/english/live', { ai: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-live-turns] li' }],
+  // C386: the same talk with the server voice set up: the line says the NetCyberAI voice reads.
+  ['english', 'family-english-live-voice', '/family/english/live', { ai: true, voice: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-voice-in-use="server"]' }],
   ['english', 'family-parent-english-live', '/family/parent/english/f0000000-0000-4000-8000-0000000fc005', { parent: true, prep: LIVE_TALK, reset: LIVE_TALK_GONE, settle: '[data-live-parent-session]' }],
   // m2b-1 (C305): the parent area's Focus Lock section, two phones of the English family, one with notices to look at.
   ['english', 'family-parent-focus', '/family/parent', { parent: true, settle: '[data-focus-section]' }],
@@ -303,6 +327,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // Rows only this screen needs, taken away again by its `reset`.
           if (opts.prep) await db.pg.exec(opts.prep);
           const aiOff = opts.ai ? await liveAiOn(db, aiKey) : null;
+          const voiceOff = opts.voice ? await serverVoiceOn(db, aiKey) : null;
           for (const [module, on] of Object.entries(opts.flags ?? {}))
             await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
           const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
@@ -393,6 +418,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           await context.close();
           if (opts.flags) await db.pg.query(`delete from control.app_flags where app = 'family' and reason = 'harness screen'`);
           if (aiOff) await aiOff();
+          if (voiceOff) await voiceOff();
           if (opts.reset === 'online') await clearAaravAttempt(db, 'a0000000-0000-4000-8000-000000000001');
           else if (opts.reset) await db.pg.exec(opts.reset);
         }

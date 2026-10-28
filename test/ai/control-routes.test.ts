@@ -90,7 +90,7 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'openai', 'openai_compatible', 'vertex_ai', 'workers-ai', 'youtube']);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'google_tts', 'openai', 'openai_compatible', 'vertex_ai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
       // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
       expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
@@ -109,6 +109,8 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
       // C230-AB: a parent's photos of a book's contents pages (titles, never a child's words) start on Workers AI.
       expect.objectContaining({ profileId: 'family.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
+      // The server voice (C386): reads a child's partner's replies, so a children's-words profile; no provider yet, no prompt.
+      expect.objectContaining({ profileId: 'family.text_to_speech', carriesChildWords: true, needs: ['tts'], providerId: null, enabled: true, usesPrompt: false }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
     ]);
@@ -398,5 +400,55 @@ describe('the founder’s address for the OpenAI-compatible adapter (G1)', () =>
   it('with no address set, the test says so', async () => {
     await post({ action: 'endpoint', providerId: 'openai_compatible', baseUrl: null });
     expect(await post({ action: 'test', providerId: 'openai_compatible' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'no_base_url' }) });
+  });
+});
+
+describe('the server voice in Control (C386)', () => {
+  const GOOGLE_KEY = `AIza${'G'.repeat(31)}GTTS`;
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  it('the text_to_speech card takes only a provider that speaks; a voice-only provider never serves text', async () => {
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'provider' }) });
+    expect(await post({ action: 'profile', profileId: 'copilot.draft', providerId: 'google_tts', model: 'Neural2-A', promptVersion: 'v1', enabled: false })).toEqual({ status: 400, body: expect.objectContaining({ code: 'provider' }) });
+    // Children's words: Google Cloud Text-to-Speech must be cleared first, like every provider.
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_cleared_for_minors' }) });
+    expect(await post({ action: 'clearance', providerId: 'google_tts', cleared: true, termsUrl: 'https://example.org/cloud-terms-read' })).toEqual({ status: 200, body: { ok: true } });
+    // A voice id that could become something else in the vendor's voice name is refused where the founder sees it.
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A/../x', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'model' }) });
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A', promptVersion: 'v1', enabled: true })).toEqual({ status: 200, body: { ok: true } });
+    const page = await (await GET(req(undefined, founder))).json();
+    const google = page.providers.find((p: { providerId: string }) => p.providerId === 'google_tts');
+    expect(google).toMatchObject({ capability: 'text_to_speech', testable: true, hasAdapter: true, capabilities: { tts: true, text: false } });
+    expect(page.providers.find((p: { providerId: string }) => p.providerId === 'openai').capabilities).toMatchObject({ text: true, stt: true, tts: true });
+    expect(page.profiles.find((p: { profileId: string }) => p.profileId === 'family.text_to_speech')).toMatchObject({ providerId: 'google_tts', model: 'Neural2-A', needs: ['tts'] });
+    await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: null, model: null, promptVersion: 'v1', enabled: true });
+  });
+
+  it('“Test the key” for Google Cloud Text-to-Speech: the free voice list, the shared voices kept, no key anywhere', async () => {
+    const logged: string[] = [];
+    for (const level of ['log', 'info', 'warn', 'error', 'debug'] as const) vi.spyOn(console, level).mockImplementation((...a: unknown[]) => void logged.push(a.map(String).join(' ')));
+    expect(await post({ action: 'credential', providerId: 'google_tts', apiKey: GOOGLE_KEY })).toEqual({ status: 200, body: { ok: true } });
+    const fetched: { url: string; init: RequestInit }[] = [];
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string, init: RequestInit) => {
+        fetched.push({ url: String(url), init });
+        return new Response(JSON.stringify({ voices: [{ name: 'en-IN-Neural2-A' }, { name: 'hi-IN-Neural2-A' }, { name: 'en-IN-Wavenet-D' }] }), { status: 200, headers: { 'content-type': 'application/json' } });
+      })
+    );
+    expect(await post({ action: 'test', providerId: 'google_tts' })).toEqual({ status: 200, body: { ok: true, works: true, code: 'ok' } });
+    expect(fetched[0].url).toBe('https://texttospeech.googleapis.com/v1/voices');
+    expect((fetched[0].init.headers as Record<string, string>)['x-goog-api-key']).toBe(GOOGLE_KEY);
+    expect(await q(`select models from control.ai_model_lists where provider_id = 'google_tts'`)).toEqual([{ models: ['Neural2-A', 'default'] }]);
+    vi.stubGlobal('fetch', vi.fn(async () => new Response(JSON.stringify({ error: { message: `API key not valid: ${GOOGLE_KEY}` } }), { status: 403 })));
+    const wrong = await post({ action: 'test', providerId: 'google_tts' });
+    expect(wrong).toEqual({ status: 200, body: { ok: true, works: false, code: 'http_403' } });
+    const page = await (await GET(req(undefined, founder))).text();
+    const stored = JSON.stringify(await q(`select provider_id, key_last4, test_ok, test_message from control.ai_credentials`));
+    const audits = JSON.stringify(await q(`select before_state, after_state from audit_log where event_action like 'ai.%'`));
+    for (const text of [JSON.stringify(wrong), page, stored, audits, logged.join(' ')]) expect(text).not.toContain(GOOGLE_KEY);
   });
 });

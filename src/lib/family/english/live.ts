@@ -15,11 +15,12 @@ import { readEnrolment } from './store';
 //   1. the child taps, speaks and taps again; the recording goes once to speech to text (the existing family.voice_input
 //      profile and the child's voice seconds a day) and is dropped; the words come back to the screen;
 //   2. the child reads the words and may correct them, then sends; only the corrected text is ever kept;
-//   3. the reply is a short, level-appropriate role-play line from family.english_conversation, checked by the safety
-//      check (family.moderation) with the child's words before it is shown, and read aloud by the phone's own voice
-//      (speechSynthesis, as the chapter reader does). There is NO server text-to-speech: no adapter in the code has a
-//      speech-out capability yet, so nothing is spoken by a provider. Duplex (talking over each other) needs an adapter
-//      that declares it; none does, so it is not built.
+//   3. the reply is a short, level-appropriate role-play line from family.english_conversation, streamed sentence by
+//      sentence (C386): each sentence is checked by the safety check (family.moderation), with the child's words and the
+//      reply so far, before it is shown; the first refused sentence stops the reply and nothing of it is kept. Each
+//      shown sentence is read aloud by the server voice when Control has set one up (family.text_to_speech, through
+//      /api/family/voice/speak), else by the phone's own voice, and the screen says which. Duplex (talking over each
+//      other) needs an adapter that declares it; none does, so it is not built.
 // The context is bounded: the prompt holds at most LIVE_VERBATIM earlier turns word for word, plus a rolling summary of
 // the older ones, made by the same workload when the turns not yet summarised reach LIVE_FOLD_AT. A session ends with a
 // recap: what was practised and the words that were new, each word checked to be in the talk. Never a pronunciation
@@ -47,6 +48,8 @@ export const LIVE_MAX_TURNS = 30;
 export const LIVE_TEXT_MAX = 300;
 export const LIVE_REPLY_MAX = 500;
 export const LIVE_SUMMARY_MAX = 500;
+// The longest a streamed sentence waits for its end before it is cut at a space and shown (C386).
+export const LIVE_SENTENCE_MAX = 240;
 const NEW_WORDS_MAX = 6;
 
 export type LiveTurn = { position: number; childText: string; reply: string };
@@ -102,6 +105,36 @@ function cut(text: string, max: number): string {
 export const cleanReply = (text: string): string => cleanTranscript(cut(flat(text), LIVE_REPLY_MAX));
 export const cleanSummary = (text: string): string => cleanTranscript(cut(flat(text), LIVE_SUMMARY_MAX));
 // The child's corrected words: the voice path's own rule (one line, an Aadhaar-like number taken out), at most 300.
+// The reply as it streams (C386): pieces in, whole sentences out (each one plain line, cleaned as the reply is), at a
+// sentence end followed by a space, or at a space once LIVE_SENTENCE_MAX characters wait; flush() gives the rest once
+// the reply is done. A number such as 3.5 is not an end (no space follows its point).
+const SENTENCE_END = /[.!?।]+["'’”)\]]*\s/;
+export function sentenceBuffer(): { push: (piece: string) => string[]; flush: () => string[] } {
+  let buf = '';
+  const clean = (t: string) => cleanTranscript(flat(t));
+  const take = (): string[] => {
+    const out: string[] = [];
+    for (;;) {
+      const m = SENTENCE_END.exec(buf);
+      const end = m ? m.index + m[0].length : buf.length > LIVE_SENTENCE_MAX ? (buf.lastIndexOf(' ', LIVE_SENTENCE_MAX) > 0 ? buf.lastIndexOf(' ', LIVE_SENTENCE_MAX) : LIVE_SENTENCE_MAX) : 0;
+      if (!end) return out.map(clean).filter(Boolean);
+      out.push(buf.slice(0, end));
+      buf = buf.slice(end);
+    }
+  };
+  return {
+    push: (piece: string) => {
+      buf += piece;
+      return take();
+    },
+    flush: () => {
+      const rest = [...take(), clean(buf)].filter(Boolean);
+      buf = '';
+      return rest;
+    },
+  };
+}
+
 export const cleanChildText = (text: unknown): string => (typeof text === 'string' ? cleanTranscript(text).slice(0, LIVE_TEXT_MAX).trim() : '');
 
 const WORD = /^[A-Za-z][A-Za-z\u0027-]{1,23}$/;
@@ -165,11 +198,13 @@ export async function liveChild(db: Db, accountId: string, chosen: string | unde
 
 // What the screen must say before a child speaks: whether speech to text, the reply and the safety check are set up,
 // the family's AI requests left today, and the child's voice seconds left. Nothing is sent and no place is taken.
-export type LiveStatus = { speech: 'ready' | AiRefusal; text: 'ready' | AiRefusal; safety: 'ready' | AiRefusal; requestsLeft: number; voice: { left: number; limit: number } };
+// `tts` (C386): whether the server voice reads the replies; when not, the phone's own voice does (never a refusal).
+export type LiveStatus = { speech: 'ready' | AiRefusal; text: 'ready' | AiRefusal; safety: 'ready' | AiRefusal; tts: 'ready' | AiRefusal; requestsLeft: number; voice: { left: number; limit: number } };
 export async function liveStatus(db: Db, ctx: AiContext, childId: string): Promise<LiveStatus> {
   const [speech, text, safety] = [await profileReady(db as never, ctx, 'family.voice_input'), await profileReady(db as never, ctx, 'family.english_conversation'), await profileReady(db as never, ctx, 'family.moderation')];
+  const tts = await profileReady(db as never, ctx, 'family.text_to_speech');
   const v = await voiceDay(db, ctx.accountId, childId, ctx.day);
-  return { speech, text, safety, requestsLeft: await dailyRequestsLeft(db as never, ctx.accountId, ctx.day), voice: { left: v.left, limit: v.limit } };
+  return { speech, text, safety, tts, requestsLeft: await dailyRequestsLeft(db as never, ctx.accountId, ctx.day), voice: { left: v.left, limit: v.limit } };
 }
 
 // The AI platform's context for this family today: the children's first names and the parent's email, which the

@@ -20,6 +20,7 @@ import { PriceList } from "./PriceList";
 import { ProviderList } from "./ProviderList";
 import {
   CARD,
+  choicesFor,
   STATE_TONE,
   TAP,
   day,
@@ -273,7 +274,7 @@ export function AiControls({ initial }: { initial: Data }) {
               revisions={data.routing.revisions.filter(
                 (r) => r.profileId === p.profileId,
               )}
-              providerChoices={data.providerChoices}
+              providerChoices={choicesFor(data, p.needs)}
               modelLists={data.modelLists}
               states={states}
               busy={busy}

@@ -7037,6 +7037,21 @@ const controlAi = (hindi) => async (page) => {
   await page.evaluate(() => window.scrollTo(0, 0));
 };
 // g3 end
+// C386: the text_to_speech card with its route editor open; its provider choices must be the voice providers only.
+const controlAiTts = (hindi) => async (page) => {
+  await page.locator('[data-ai-profile="family.text_to_speech"]').waitFor({ timeout: 20000 });
+  if (hindi) await speak('हिन्दी')(page);
+  await page.locator('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] summary').click();
+  const offered = await page.evaluate(() => [...new Set([...document.querySelectorAll('[data-ai-profile="family.text_to_speech"] [data-ai-route-edit] option')].map((o) => o.getAttribute('value')).filter(Boolean))]);
+  if (offered.some((p) => !['openai', 'google_tts', 'stand-in'].includes(p)) || !offered.includes('google_tts')) throw new Error(`Control → AI, the voice card offers: ${JSON.stringify(offered)}`);
+  await page.locator('[data-ai-profile="family.text_to_speech"]').scrollIntoViewIfNeeded();
+  // Where the card is on the full-page picture, for cropping it (cwebp -crop).
+  const box = await page.evaluate(() => {
+    const r = document.querySelector('[data-ai-profile="family.text_to_speech"]').getBoundingClientRect();
+    return [Math.floor(r.left), Math.floor(r.top + window.scrollY), Math.ceil(r.width), Math.ceil(r.height)];
+  });
+  console.log(`control-ai-tts card at ${box.join(' ')}`);
+};
 const SCREENS = [
   ['principal', 'app-my-day', '/app/my-day'],
   ['principal', 'app-my-day-hindi', '/app/my-day', speak('हिन्दी'), backToEnglish],
@@ -7370,6 +7385,10 @@ const SCREENS = [
   // and the recent requests from the ledger, in English and Hindi.
   ['founder', 'control-ai', '/control/ai', controlAi(false), g3PutBack],
   ['founder', 'control-ai-hindi', '/control/ai', controlAi(true), async (page) => { await g3PutBack(); await backToEnglish(page); }],
+  // C386: the server voice's card (Reading aloud), its route editor open: only OpenAI and Google Cloud Text-to-Speech
+  // are offered; Google Cloud Text-to-Speech listed as a provider of its own.
+  ['founder', 'control-ai-tts', '/control/ai', controlAiTts(false), async () => {}],
+  ['founder', 'control-ai-tts-hindi', '/control/ai', controlAiTts(true), async (page) => { await backToEnglish(page); }],
   // m1-3 end
   // g4 begin
   // Control → AI → Quality Lab (C372): the same made-up questions to two to four models side by side, scored and exported.

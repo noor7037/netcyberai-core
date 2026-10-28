@@ -35,7 +35,7 @@ export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOu
 // chosen adapter does not declare is refused when it is saved in Control and again at run time, never sent and left to
 // fail. text: words in, words out. vision: a message may carry photos (ChatMessage.images); a call with photos skips a
 // provider that cannot. stream: the answer arrives piece by piece. json: the vendor itself holds the answer to one JSON
-// object (elsewhere only the instructions ask for it). stt: speech to text. tts: text to speech (no adapter yet).
+// object (elsewhere only the instructions ask for it). stt: speech to text. tts: text to speech (C386: OpenAI and Google Cloud).
 export const CAPABILITIES = ['text', 'vision', 'stream', 'json', 'stt', 'tts'] as const;
 export type Capability = (typeof CAPABILITIES)[number];
 export type Capabilities = Readonly<Record<Capability, boolean>>;
@@ -128,4 +128,36 @@ export interface ModerationAdapter {
   readonly needsKey: boolean;
   readonly capabilities: Capabilities;
   moderate(request: ModerationRequest): Promise<ModerationResult>;
+}
+
+// ---- text to speech (Wave 4 slice 2, C386: a server voice) ----------------------------------------------------------
+
+// One sentence (or one short reply) to speech takes a second or two; one that takes longer is given up, so the next
+// provider still fits and the phone falls back to its own voice without a long wait.
+export const VOICE_TIMEOUT_MS = 15_000;
+// The most characters one request may speak (the platform refuses more before anything leaves).
+export const VOICE_TEXT_MAX = 600;
+
+export type VoiceMediaType = 'audio/mpeg' | 'audio/ogg';
+// `language`: the line's language; an adapter picks its voice for it (Google: en-IN or hi-IN; OpenAI: one voice that
+// reads either, the language being in the text itself). The text is the server's own (a chapter's narration or a
+// checked reply), read inside the call and dropped, never stored or logged.
+export type VoiceRequest = { apiKey: string; model: string; text: string; language: 'en' | 'hi' };
+// `characters`: what the vendor bills by; the platform meters it as "tokens in" (so a price per million in Control is a
+// price per million characters for these providers).
+export type VoiceResult = { ok: true; audio: Uint8Array; mediaType: VoiceMediaType; characters: number } | { ok: false; failure: AdapterFailure; status?: number };
+
+// The text_to_speech capability, beside the others and under the same rules: the key is opened by the platform and
+// handed in; nothing is kept, logged or thrown; a failure says only its kind. Declares `tts`.
+export interface VoiceAdapter {
+  readonly providerId: string;
+  readonly capability: 'text_to_speech';
+  readonly termsNote: TermsNote | null;
+  readonly needsKey: boolean;
+  readonly capabilities: Capabilities;
+  keyLooksRight(key: string): boolean;
+  // A model id this adapter can use (it may become part of the request's voice name).
+  modelLooksRight(model: string): boolean;
+  synthesize(request: VoiceRequest): Promise<VoiceResult>;
+  testConnection?(apiKey: string): Promise<ConnectionTest>;
 }

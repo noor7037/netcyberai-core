@@ -9156,7 +9156,7 @@ export const en = {
   'fam.english.live.title': 'Talk in English',
   'fam.english.live.kicker': 'Live practice',
   'fam.english.live.entry': 'Talk with your English partner',
-  'fam.english.live.entryBody': 'Tap to talk, check your words, then send. Your phone reads the reply aloud.',
+  'fam.english.live.entryBody': 'Tap to talk, check your words, then send. The reply is read aloud to you.',
   'fam.english.live.noSpeech': 'Live practice needs a speech service; it is not set up yet.',
   'fam.english.live.noText': 'Live practice needs a partner to write the replies; it is not set up yet.',
   'fam.english.live.noSafety': 'Live practice needs the safety check; it is not set up yet.',
@@ -9182,7 +9182,6 @@ export const en = {
   'fam.english.live.you': 'You',
   'fam.english.live.partner': 'Partner',
   'fam.english.live.hearAgain': 'Hear again',
-  'fam.english.live.phoneVoice': 'Replies are read aloud by your phone’s own voice.',
   'fam.english.live.finish': 'Finish',
   'fam.english.live.turnsLeft': '{n} turns left in this talk',
   'fam.english.live.full': 'This talk is full. Finish it to see what you practised.',
@@ -9205,4 +9204,10 @@ export const en = {
   'fam.english.live.parent.clear': 'Clear',
   'fam.english.live.parent.clearFailed': 'It could not be cleared. Try again.',
   // e1 end
+  // w4-2 begin
+  'fam.voiceOut.server': 'Voice: NetCyberAI voice',
+  'fam.voiceOut.phone': 'Voice: this phone’s voice',
+  'control.ai.profile.name.family.text_to_speech': 'Reading aloud (text to speech)',
+  'control.ai.profile.about.family.text_to_speech': 'Reads the chapter reader’s sentences and the English partner’s replies aloud. Without it, the phone’s own voice reads them. Each sentence spoken uses one of the family’s AI requests for the day.',
+  // w4-2 end
 } as const;

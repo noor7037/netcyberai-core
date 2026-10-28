@@ -9142,7 +9142,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.english.live.title': 'अंग्रेज़ी में बात करें',
   'fam.english.live.kicker': 'बोलने का अभ्यास',
   'fam.english.live.entry': 'अपने अंग्रेज़ी साथी से बात करें',
-  'fam.english.live.entryBody': 'बोलने के लिए दबाएँ, अपने शब्द जाँचें, फिर भेजें। उत्तर आपका फ़ोन पढ़कर सुनाता है।',
+  'fam.english.live.entryBody': 'बोलने के लिए दबाएँ, अपने शब्द जाँचें, फिर भेजें। उत्तर आपको पढ़कर सुनाया जाता है।',
   'fam.english.live.noSpeech': 'लाइव अभ्यास के लिए बोली को शब्दों में बदलने वाली सेवा चाहिए; वह अभी चालू नहीं है।',
   'fam.english.live.noText': 'लाइव अभ्यास के लिए उत्तर लिखने वाला साथी चाहिए; वह अभी चालू नहीं है।',
   'fam.english.live.noSafety': 'लाइव अभ्यास के लिए सुरक्षा जाँच चाहिए; वह अभी चालू नहीं है।',
@@ -9168,7 +9168,6 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.english.live.you': 'आप',
   'fam.english.live.partner': 'साथी',
   'fam.english.live.hearAgain': 'फिर से सुनें',
-  'fam.english.live.phoneVoice': 'उत्तर आपके फ़ोन की अपनी आवाज़ में पढ़े जाते हैं।',
   'fam.english.live.finish': 'समाप्त करें',
   'fam.english.live.turnsLeft': 'इस बातचीत में {n} बारी बाकी हैं',
   'fam.english.live.full': 'यह बातचीत पूरी हो गई। आपने क्या अभ्यास किया, देखने के लिए समाप्त करें।',
@@ -9191,4 +9190,10 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.english.live.parent.clear': 'मिटाएँ',
   'fam.english.live.parent.clearFailed': 'इसे मिटाया नहीं जा सका। फिर से कोशिश करें।',
   // e1 end
+  // w4-2 begin
+  'fam.voiceOut.server': 'आवाज़: NetCyberAI की आवाज़',
+  'fam.voiceOut.phone': 'आवाज़: इस फ़ोन की आवाज़',
+  'control.ai.profile.name.family.text_to_speech': 'पढ़कर सुनाना (लिखाई से बोली)',
+  'control.ai.profile.about.family.text_to_speech': 'अध्याय के वाक्य और अंग्रेज़ी साथी के उत्तर पढ़कर सुनाता है। इसके बिना फ़ोन की अपनी आवाज़ उन्हें पढ़ती है। हर बोला गया वाक्य परिवार के आज के AI अनुरोधों में से एक लेता है।',
+  // w4-2 end
 };

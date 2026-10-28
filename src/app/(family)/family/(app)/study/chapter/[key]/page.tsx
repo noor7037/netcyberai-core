@@ -16,6 +16,7 @@ import { voiceDay } from '@/lib/family/voice';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { indiaDate } from '@/lib/time/india';
 import { readPlace } from '@/lib/family/reading';
+import { serverVoiceReady } from '@/lib/family/voice-out';
 import { readChapterVideos } from '@/lib/family/videos';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
@@ -23,7 +24,7 @@ import { familyWords } from '@/lib/family/words';
 import { t } from '@/lib/i18n';
 
 // The chapter reader (S1, C374): a NetCyber-authored chapter in the child's language, read on the page and, when the
-// child asks, read aloud by the phone's own voice from where this child last stopped. Server side: the chapter is
+// child asks, read aloud (by the server voice when set up, C386, else the phone's own) from where this child last stopped. Server side: the chapter is
 // checked (lib/family/chapters.ts), its narration script built (only teaching text; never a diagram, table or
 // interactive), and the child's saved place read; the phone gets the blocks, the script and the place.
 export const dynamic = 'force-dynamic';
@@ -55,12 +56,14 @@ export default async function ChapterPage({ params }: { params: { key: string } 
     tutorOn && page.consents.voice_practice && switchOn(switches, 'voice_input') ? { secondsLeft: (await familyPageRead(page, (db) => voiceDay(db, page.session.accountId, child.childId, indiaDate()))).left } : null;
   const tutor = tutorOn && subject ? { subject, voice, files: page.consents.photo_input, homework: switchOn(switches, 'homework') } : null;
   const w = familyWords(lang, [...UNDERSTAND_KEYS, ...READER_KEYS, ...(tutor ? TUTOR_KEYS : []), ...(voice ? VOICE_KEYS : [])]);
+  // C386: the server voice reads the narration when Control has set one up; else the phone's own voice.
+  const serverVoice = await familyPageRead(page, (db) => serverVoiceReady(db, page.session.accountId));
   const others = (await familyPageRead(page, (db) => readableChapters(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, subject: chapter.subject, childId: child.childId }))).filter((c) => c.key !== chapter.key);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back={`/family/study?subject=${chapter.subject}`} backLabel={t(lang, 'fam.study.title')} kicker={t(lang, 'fam.reader.kicker')} title={view.title} subject={chapter.subject} />
       <main data-chapter-reader={chapter.key} lang={view.lang} className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-28">
-        <ChapterReader chapterKey={chapter.key} lang={view.lang} blocks={blocks} ids={view.ids} script={view.script} start={start} resumed={saved !== null && start > 0} w={w} tone={chapter.subject} chapterTitle={view.title} tutor={tutor} videos={videos} />
+        <ChapterReader chapterKey={chapter.key} lang={view.lang} blocks={blocks} ids={view.ids} script={view.script} start={start} resumed={saved !== null && start > 0} w={w} tone={chapter.subject} chapterTitle={view.title} tutor={tutor} videos={videos} serverVoice={serverVoice} />
         {others.length > 0 && (
           <nav aria-labelledby="fam-reader-more" className="flex flex-col gap-2">
             <h2 id="fam-reader-more" className="px-1 text-lg font-extrabold text-slate">

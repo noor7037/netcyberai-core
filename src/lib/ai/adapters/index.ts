@@ -1,13 +1,14 @@
 import { anthropicAdapter } from './anthropic';
 import { geminiAdapter } from './gemini';
-import { openaiAdapter, openaiSpeechAdapter } from './openai';
+import { googleTtsAdapter } from './google-tts';
+import { openaiAdapter, openaiSpeechAdapter, openaiVoiceAdapter } from './openai';
 import { openaiCompatibleAdapter } from './openai-compatible';
 import { vertexAiAdapter } from './vertex-ai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
-import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter } from './types';
+import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
 
-export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter } from './types';
+export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter, VoiceAdapter, VoiceMediaType, VoiceResult } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, clearance,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -96,21 +97,48 @@ export function moderationAdapterFor(providerId: string, env: Record<string, str
   return REAL_MODERATION.find((a) => a.providerId === providerId) ?? null;
 }
 
-// Providers whose key Control → AI keeps: every text adapter, and the content adapters that are not text models (the
-// video finder's YouTube, M2-5). A content adapter is never returned by adapterFor(), so no AI profile can choose it.
-export type KeyedProvider = { providerId: string; capability: 'text' | 'video'; needsKey: boolean; keyLooksRight: (key: string) => boolean };
+// ---- text to speech (C386: a server voice) --------------------------------------------------------------------------
+
+// The stand-in's voice: a few fixed bytes labelled mp3, so the speak route and the screens can be built and tested
+// without a key. Like the others it does not exist in a production build.
+export const STAND_IN_AUDIO = new Uint8Array([0x49, 0x44, 0x33, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+export const standInVoiceAdapter: VoiceAdapter = {
+  providerId: STAND_IN_PROVIDER,
+  capability: 'text_to_speech',
+  termsNote: null,
+  needsKey: false,
+  capabilities: capabilities(['tts']),
+  keyLooksRight: () => false,
+  modelLooksRight: () => true,
+  async synthesize(request): Promise<VoiceResult> {
+    return { ok: true, audio: new Uint8Array(STAND_IN_AUDIO), mediaType: 'audio/mpeg', characters: request.text.length };
+  },
+};
+
+const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter];
+
+// The voice adapter for a provider id, or null when the code has none (only OpenAI and Google Cloud speak).
+export function voiceAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): VoiceAdapter | null {
+  if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInVoiceAdapter : null;
+  return REAL_VOICE.find((a) => a.providerId === providerId) ?? null;
+}
+
+// Providers whose key Control → AI keeps: every text adapter, a voice-only provider (Google Cloud Text-to-Speech, C386),
+// and the content adapters that are not text models (the video finder's YouTube, M2-5). A content adapter is never
+// returned by adapterFor(), so no AI profile can choose it.
+export type KeyedProvider = { providerId: string; capability: 'text' | 'video' | 'text_to_speech'; needsKey: boolean; keyLooksRight: (key: string) => boolean };
 const CONTENT: readonly KeyedProvider[] = [youtubeAdapter];
 
 export function keyedProviderFor(providerId: string, env: Record<string, string | undefined> = process.env): KeyedProvider | null {
-  return adapterFor(providerId, env) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
+  return adapterFor(providerId, env) ?? (providerId === STAND_IN_PROVIDER ? null : voiceAdapterFor(providerId, env)) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
 }
 
 // ---- capabilities (G1, C369) -----------------------------------------------------------------------------------------
 
-// Everything a provider's adapters declare between them (its text, speech and safety-check adapters), for Control to
+// Everything a provider's adapters declare between them (its text, speech, safety-check and voice adapters), for Control to
 // show beside the provider. A feature is checked against the one adapter of its own capability (platform.ts), not this.
 export function providerCapabilities(providerId: string, env: Record<string, string | undefined> = process.env): Capabilities | null {
-  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env)].filter((a) => a !== null);
+  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env), voiceAdapterFor(providerId, env)].filter((a) => a !== null);
   if (found.length === 0) return null;
   return capabilities(CAPABILITIES.filter((c: Capability) => found.some((a) => a.capabilities[c])));
 }
