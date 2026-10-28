@@ -10,6 +10,7 @@ import { MY_RESULTS_KEYS } from '@/lib/family/marks-words';
 import { activeLinks, childResultsFor } from '@/lib/family/school';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // "My results" (C351), the child's own view: for the child using the app now, matched to a school student, the results
 // the school published for their class and their coming exam papers, only while the school lets children see their
@@ -17,7 +18,7 @@ import { familyWords } from '@/lib/family/words';
 // nothing about any other child. Without the school's leave there is nothing here, and the home shows no way in.
 export const dynamic = 'force-dynamic';
 
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 export default async function FamilyMyResultsPage() {
   const page = await requireFamilyPage();

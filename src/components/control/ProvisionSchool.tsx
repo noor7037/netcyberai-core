@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useMemo, useState, type ReactNode } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
-import { isMessageKey, type MessageKey } from '@/lib/i18n';
+import type { MessageKey } from '@/lib/i18n';
 import {
   MAX_SECTIONS,
   PROVISION_GRADES,
@@ -82,7 +82,7 @@ function Stat({ value, children }: { value: number | string; children: ReactNode
 }
 
 export function ProvisionSchool({ boards, states, initialSession }: { boards: Board[]; states: State[]; initialSession: ProvisionSession }) {
-  const { t } = useT();
+  const { t, has } = useWords();
   const [schoolName, setSchoolName] = useState('');
   const [boardId, setBoardId] = useState('');
   const [stateCode, setStateCode] = useState('');
@@ -131,16 +131,16 @@ export function ProvisionSchool({ boards, states, initialSession }: { boards: Bo
     if (data.reason === 'school_exists') return setAnswer({ kind: 'exists', schoolId: data.schoolId, schoolName: data.schoolName });
     if (data.reason === 'students') return setAnswer({ kind: 'students', errors: data.errors ?? [] });
     const key = `control.provision.error.${data.reason ?? 'other'}`;
-    setAnswer({ kind: 'error', key: isMessageKey(key) ? key : 'control.provision.error.other' });
+    setAnswer({ kind: 'error', key: has(key) ? key : 'control.provision.error.other' });
   }
 
   const problemText = (p: Problem) => {
     const key = p.field === 'teacher' || p.field === 'students' ? `control.provision.problem.${p.field}.${p.code}` : `control.provision.problem.${p.field}`;
-    return isMessageKey(key) ? t(key, { line: p.line ?? '' }) : t('control.provision.error.other');
+    return has(key) ? t(key, { line: p.line ?? '' }) : t('control.provision.error.other');
   };
   const inviteWord = (status: string) => {
     const key = `control.provision.invite.${status}`;
-    return isMessageKey(key) ? t(key) : status;
+    return has(key) ? t(key) : status;
   };
 
   return (
@@ -329,7 +329,7 @@ export function ProvisionSchool({ boards, states, initialSession }: { boards: Bo
 }
 
 function Outcome({ result: r, dryRun, inviteWord }: { result: Result; dryRun: boolean; inviteWord: (s: string) => string }) {
-  const { t } = useT();
+  const { t } = useWords();
   return (
     <div className="mt-5 flex flex-col gap-4" data-provision-result={dryRun ? 'preview' : 'done'}>
       <h3 className="text-base font-bold text-slate">{dryRun ? t('control.provision.review.preview') : t('control.provision.review.done')}</h3>

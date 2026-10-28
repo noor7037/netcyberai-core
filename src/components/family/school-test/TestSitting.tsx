@@ -7,6 +7,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import { FamIcon } from '../FamIcon';
 import { schoolLang, SchoolText } from '../SchoolText';
 import { clockWords, heldFrom, markOf, numberAnswer, SaveQueue, secondsLeft, type Held, type SaveItem, type SendResult } from './sitting';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // Sitting a school's online test in child mode (AQ-4, C365; docs/36 §1.3). Start: the rules and the time. Then one
 // question at a time, a palette (answered, not answered, marked to look at again), every answer saved as it is given
@@ -24,7 +25,7 @@ const NUMBER_SAVE_MS = 600;
 const TEXT_SAVE_MS = 900;
 
 const dateTime = (iso: string, lang: string) =>
-  new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(iso));
+  sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { timeZone: 'Asia/Kolkata', weekday: 'short', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' }).format(new Date(iso)));
 
 // `keepalive`: sent even as the page is hidden or closed (leaving the test screen).
 async function post(url: string, body: unknown, keepalive = false): Promise<{ status: number; body: Record<string, unknown> | null }> {

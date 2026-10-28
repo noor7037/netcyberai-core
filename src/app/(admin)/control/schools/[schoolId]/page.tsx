@@ -10,6 +10,8 @@ import { SchoolChecklistPanel } from '@/components/control/SchoolChecklistPanel'
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { getLang } from '@/lib/i18n/server';
 import { onboardingChecklist, type ChecklistItem } from '@/lib/setup/checklist';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Prompt E fills in the real Overview tab (onboarding stage, pilot
 // status, consent meter, feature flags, invite, impersonation), and
@@ -90,7 +92,9 @@ export default async function SchoolDetailPage({ params }: { params: { schoolId:
       tone="sapphire"
       eyebrow="School"
     >
+      <WordsProvider words={pageWords(lang, '/control/schools/[schoolId]')}>
       <Tabs items={items} orientation="vertical" />
+      </WordsProvider>
     </ModulePage>
   );
 }

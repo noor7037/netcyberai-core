@@ -18,6 +18,7 @@ import { applyPlan } from '@/lib/frameworks/plans';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
 import { indiaDate } from '@/lib/time/india';
+import { withWords } from '../i18n/with-words';
 
 // Control → Billing & Plans (docs/26 slice 8e, C204): what a payment does to a school's access, and what it leaves
 // alone. Each case here is one a second pair of eyes found wrong after the slice was built:
@@ -271,7 +272,7 @@ describe('a grace period set by hand ends when a payment brings the school up to
 
 describe('full access set by hand after the check acted: Control says the check is off for that school', () => {
   const card = (overview: BillingOverview, school: string) => {
-    const html = renderToStaticMarkup(h(BillingSchools, { data: { ...overview, schools: overview.schools.filter((x) => x.schoolId === school) }, busy: false, send: async () => true }));
+    const html = renderToStaticMarkup(withWords('en', '/control/billing-plans', h(BillingSchools, { data: { ...overview, schools: overview.schools.filter((x) => x.schoolId === school) }, busy: false, send: async () => true })));
     return html;
   };
   const off = (en as Record<string, string>)['billing.access.checkOff'];
@@ -329,7 +330,7 @@ describe('the check runs just after midnight in India, when the UTC date is stil
 describe('the last day of grace is the same day on every screen', () => {
   const api: EntitlementsApi = { load: async () => panel('2099-10-18T18:30:00.000Z'), change: async () => undefined };
   const panel = (graceEndsAt: string): EntitlementsData => ({ entitlements: { schoolId: 's', plan: 'made-up', accessMode: 'grace', graceEndsAt, modules: {} }, plans: [], history: [] });
-  const shown = (graceEndsAt: string) => renderToStaticMarkup(h(SchoolEntitlementsPanel, { api, initial: panel(graceEndsAt) }));
+  const shown = (graceEndsAt: string) => renderToStaticMarkup(withWords('en', '/control/schools/[schoolId]', h(SchoolEntitlementsPanel, { api, initial: panel(graceEndsAt) })));
 
   it('one helper: the check ends grace at midnight, Control at 23:59:59, and both name the same last day', () => {
     expect(lastGraceDay('2026-10-18T18:30:00.000Z')).toBe('2026-10-18'); // 00:00 on the 19th in India: the check's own end
@@ -351,7 +352,7 @@ describe('the last day of grace is the same day on every screen', () => {
     expect(await notice(V)).toMatchObject({ kind: 'grace', worksUntil: day(4) });
     const short = (d: string) => new Intl.DateTimeFormat('en-IN', { timeZone: 'UTC', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${d}T00:00:00Z`));
     const overview = await platform((c) => billingOverview(c));
-    const billing = renderToStaticMarkup(h(BillingSchools, { data: { ...overview, schools: overview.schools.filter((x) => x.schoolId === V) }, busy: false, send: async () => true }));
+    const billing = renderToStaticMarkup(withWords('en', '/control/billing-plans', h(BillingSchools, { data: { ...overview, schools: overview.schools.filter((x) => x.schoolId === V) }, busy: false, send: async () => true })));
     expect(billing).toContain(short(day(4)));
     expect(billing).not.toContain(short(day(5)));
     expect(shown(end)).toContain(`Grace ends ${short(day(4))}`);

@@ -7,6 +7,8 @@ import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { defaultSession } from '@/lib/onboarding/provision-input';
 import { indiaDate } from '@/lib/time/india';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → Onboarding → Provision a school (W6-E, C230-AU; Decision Log C399). The layout already admits only
 // NetCyberAI staff; the route the screen posts to checks again. The boards are the exam boards Control keeps.
@@ -22,7 +24,9 @@ export default async function ProvisionPage() {
     : [];
   return (
     <ModulePage title={t(lang, 'control.provision.title')} purpose={t(lang, 'control.provision.purpose')} icon="admissions" tone="turquoise" eyebrow={t(lang, 'group.control')}>
+      <WordsProvider words={pageWords(lang, '/control/onboarding/provision')}>
       <ProvisionSchool boards={boards} states={[...INDIAN_STATES]} initialSession={defaultSession(indiaDate())} />
+      </WordsProvider>
     </ModulePage>
   );
 }

@@ -5,6 +5,8 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { billingOverview } from '@/lib/control/billing';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Billing & Plans (docs/26 slice 8e, C204). The plans are rows typed here: their names and prices are in the
 // database, never in code. Below them, every school by plan and state: what it has paid until, its access, when
@@ -20,7 +22,9 @@ export default async function BillingPlansPage() {
   const data = session ? await withTenantContext(session, (db) => billingOverview(db)) : null;
   return (
     <ModulePage title={t(lang, 'billing.title')} purpose={t(lang, 'billing.purpose')} about={t(lang, 'billing.about')} icon="fees" tone="tangerine" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+      <WordsProvider words={pageWords(lang, '/control/billing-plans')}>
       {data && <BillingPlansView initial={data} />}
+      </WordsProvider>
     </ModulePage>
   );
 }

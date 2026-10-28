@@ -146,7 +146,7 @@ describe('what a family sees', () => {
       expect(html).toContain('href="https://example.invalid/page-entry"');
       expect(html).toMatch(/<a [^>]*target="_blank"[^>]*rel="noopener noreferrer"|<a [^>]*rel="noopener noreferrer"[^>]*target="_blank"/);
       expect(html).toContain(lang === 'hi' ? 'स्रोत' : 'Source');
-      expect(html).toContain(lang === 'hi' ? 'अक्टू॰ 2026' : '1 Oct 2026');
+      expect(html).toContain(lang === 'hi' ? 'अक्तू॰ 2026' : '1 Oct 2026');
       expect(html).toContain('Only English');
       if (lang === 'hi') {
         expect(html).toContain('<h3 lang="hi"');

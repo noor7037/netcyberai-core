@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -18,7 +18,7 @@ const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold 
 const OURS = { approved: 'success', pending: 'warning', rejected: 'danger' } as const;
 
 export function TemplatesPanel() {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const [rows, setRows] = useState<Row[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);

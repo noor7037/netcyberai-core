@@ -10,6 +10,7 @@ import { Switch } from '@/components/ui/Switch';
 import { Textarea } from '@/components/ui/Textarea';
 import { FLOAT_MAX } from '@/components/ui/field';
 import { InfoTip } from '@/components/app-ui/InfoTip';
+import { withWords } from '../i18n/with-words';
 
 // Design system v5 form controls (C235-C): floating labels that stay real
 // labels, helper text and errors under the field, and drawn checkboxes,
@@ -115,12 +116,12 @@ describe('drawn controls over real inputs', () => {
 
 describe('InfoTip', () => {
   it('is a 44px button that says what it opens, and a hidden panel with every word in it', () => {
-    const html = render(h(InfoTip, { label: 'About fees', children: 'A change starts from a date.' }));
+    const html = render(withWords('en', null, h(InfoTip, { label: 'About fees', children: 'A change starts from a date.' })));
     expect(html).toMatch(/<button type="button" aria-expanded="false" aria-controls="([^"]+)" title="About fees"[^>]*class="[^"]*h-11 w-11/);
     const id = /aria-controls="([^"]+)"/.exec(html)![1];
     expect(html).toContain(`<div id="${id}" hidden="" data-info-panel="true" class="basis-full`);
     expect(html).toContain('A change starts from a date.');
     expect(html).toContain('<span class="sr-only">About fees</span>');
-    expect(render(h(InfoTip, { children: 'x' }))).toContain('More about this');
+    expect(render(withWords('en', null, h(InfoTip, { children: 'x' })))).toContain('More about this');
   });
 });

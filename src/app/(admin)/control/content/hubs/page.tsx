@@ -6,6 +6,8 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { listHubEntriesForControl } from '@/lib/content/hub-entries';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → Content → Hubs (W4-3, C387): the entries the Career Hub, the Exam Portal and Schemes & Scholarships show.
 // NetCyberAI staff only (the layout refuses anyone else); the list is read as the platform role.
@@ -23,7 +25,9 @@ export default async function HubsPage() {
         </Link>
       }
     >
+      <WordsProvider words={pageWords(lang, '/control/content/hubs')}>
       {entries && <HubEntriesView initial={entries} />}
+      </WordsProvider>
     </ModulePage>
   );
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '@/components/family/client';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The parent's view of a child's live English practice (E1, C382): each kept talk with the child's corrected words and
 // the partner's replies, and the words that were new; the parent may clear any talk. Recordings are never kept.
@@ -24,7 +25,7 @@ export function LiveSessions({ childId, w, lang }: { childId: string; w: Words; 
     setSessions((s) => (s ?? []).filter((x) => x.sessionId !== sessionId));
   };
 
-  const day = (iso: string) => new Date(iso).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' });
+  const day = (iso: string) => sameInkOnBothSides(new Date(iso).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata' }));
   return (
     <section data-live-parent className="flex flex-col gap-3 fam-card bg-white p-4 text-slate">
       <h2 className="fam-h2 text-slate">{w['fam.english.live.parent.title']}</h2>

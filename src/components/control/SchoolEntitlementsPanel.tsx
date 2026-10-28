@@ -7,13 +7,13 @@ import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ErrorState, Skeleton } from '@/components/app-ui/States';
 import { StatusPill } from '@/components/app-ui/StatusPill';
 import type { StatusTone } from '@/components/app-ui/tones';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
 import { Select } from '@/components/ui/Select';
 import { Switch } from '@/components/ui/Switch';
 import { lastGraceDay } from '@/lib/control/grace-day';
-import { moduleOffSentence } from '@/lib/i18n/module-off';
+import { moduleOffSentenceFrom } from '@/lib/i18n/module-off-words';
 import {
   accessModeLabel,
   describeEntitlementChange,
@@ -79,7 +79,7 @@ export function SchoolEntitlementsPanel({
   // Render tests only: the switch dialog open for a module, with an error.
   initialDialog?: { moduleId: string; error?: string };
 }) {
-  const { lang, t } = useT();
+  const { lang, t, words } = useWords();
   const [data, setData] = useState<EntitlementsData | null>(initial ?? null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(initialDialog?.error ?? null);
@@ -235,7 +235,7 @@ export function SchoolEntitlementsPanel({
                           <InfoTip label={m.label}>
                             <p lang={lang} data-module-off={m.id}>
                               {!always && <span className="font-semibold">{t('modules.whenOff')} </span>}
-                              {moduleOffSentence(lang, m)}
+                              {moduleOffSentenceFrom(words, m)}
                             </p>
                           </InfoTip>
                         </div>
@@ -291,7 +291,7 @@ export function SchoolEntitlementsPanel({
             </p>
             {isOn(toggle) && (
               <p lang={lang} className="rounded-md bg-tangerine/10 px-3 py-2 text-sm text-slate">
-                {moduleOffSentence(lang, toggle)}
+                {moduleOffSentenceFrom(words, toggle)}
               </p>
             )}
             <Reason id="toggle-reason" value={toggleReason} onChange={setToggleReason} />

@@ -1,7 +1,7 @@
 'use client';
 
 import { useId, useState, type ReactNode } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Icon } from '@/components/visual/Icons';
 
 // The ⓘ beside a heading, a row or a field (C235-C): the explanation a
@@ -13,7 +13,7 @@ import { Icon } from '@/components/visual/Icons';
 // the start (hidden), so search engines, tests and "find in page" after
 // opening all see the same words.
 export function InfoTip({ children, label, tone = 'light', className = '' }: { children: ReactNode; label?: string; tone?: 'light' | 'white'; className?: string }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [open, setOpen] = useState(false);
   const id = useId();
   const name = label ?? t('info.more');

@@ -7,6 +7,8 @@ import { loadCostMonth } from '@/lib/control/messaging-cost';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { indiaMonth, monthToShow } from '@/lib/whatsapp/cost';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Messaging & Cost (T7, C140; by month since docs/26 slice 8f, C205). One month of India's calendar, chosen in the
 // address (?month=YYYY-MM): this month when none is given, and never a month after this one. For that month: each
@@ -42,10 +44,12 @@ export default async function MessagingCostPage({ searchParams }: { searchParams
       }
       filters={data && <CostMonthPicker data={data} lang={lang} />}
     >
+      <WordsProvider words={pageWords(lang, '/control/messaging-cost')}>
       <div className="flex flex-col gap-5">
         {data && <CostMonthView data={data} lang={lang} />}
         <CostControls />
       </div>
+      </WordsProvider>
     </ModulePage>
   );
 }

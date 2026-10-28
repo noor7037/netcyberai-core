@@ -8,13 +8,14 @@ import { activeLinks, appSubjectFor, schoolPaperFor } from '@/lib/family/school'
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // One checked paper in the child's own view (C351): the child using the app now, matched to a school student, while
 // the school lets children see their own results and families see the checked answer sheets (both held by School
 // Link, read as the guardian). The same paper as the parent's, in the child's language and a warmer register.
 export const dynamic = 'force-dynamic';
 
-const day = (iso: string, lang: 'en' | 'hi') => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const day = (iso: string, lang: 'en' | 'hi') => sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 export default async function FamilyMyCheckedPaperPage({ params }: { params: { paperId: string } }) {
   const page = await requireFamilyPage();

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -26,7 +26,7 @@ const ERRORS = ['not_found', 'bad_request', 'blocked_channel'];
 const statusVariant = (s: ControlVideoPick['status']) => (s === 'pinned' ? 'success' : s === 'rejected' ? 'danger' : 'neutral');
 
 export function VideoPicksView({ initial }: { initial: VideoReview }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [data, setData] = useState(initial);
   const [topic, setTopic] = useState('');
   const [channel, setChannel] = useState({ channelId: '', title: '', kind: 'official' as VideoChannelKind });

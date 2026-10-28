@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Checkbox } from '@/components/ui/Checkbox';
@@ -58,7 +58,7 @@ const proposedYear = (month: string) => {
 };
 
 export function BillingPlansView({ initial }: { initial: BillingOverview }) {
-  const { t, tCount, lang } = useT();
+  const { t, tCount, lang } = useWords();
   const [data, setData] = useState<BillingOverview>(initial);
   const [draft, setDraft] = useState<Draft | null>(null);
   const [busy, setBusy] = useState(false);

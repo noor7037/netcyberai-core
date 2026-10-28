@@ -11,6 +11,8 @@ import { featureOff, moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { isStaffShow } from '@/lib/insights/screens';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Staff, for the principal and the school admin: leave (the requests waiting, who is away, recording leave for
 // someone who phoned in; C201), inviting staff (C98), who teaches what with the teachers' proposals (Setup, C231)
@@ -35,11 +37,13 @@ export default async function StaffPage({ searchParams = {} }: { searchParams?: 
   const shown = isStaffShow(searchParams.show) ? searchParams.show : null;
   return (
     <ModulePage moduleId="staff" help="send-staff-reset-code" tour="staff" title={t(lang, 'staff.page.title')} purpose={t(lang, 'staff.page.purpose')} about={t(lang, 'staff.page.about')} more={<ListExport lists={['staff']} />}>
+      <WordsProvider words={pageWords(lang, '/app/staff')}>
       {!leaveOff && shown && <StaffLeaveShown show={shown} />}
       {!leaveOff && <StaffLeaveOffice shownAbove={shown !== null} />}
       <StaffInvitations />
       <TeacherSubjects />
       <StaffAccounts endpoint="/api/app/users" profileBase="/app/staff" />
+      </WordsProvider>
     </ModulePage>
   );
 }

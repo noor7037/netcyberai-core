@@ -6,6 +6,8 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { listResponses, oldestQueueAgeDays } from '@/lib/content/response-queue';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → Content → Responses to review (M2-12, C286; docs/family-app/11 L1): the explanations made by AI that
 // families asked for, most asked first; mark checked or withdraw. Above it (C300): prepare a syllabus version's
@@ -31,8 +33,10 @@ export default async function ResponsesPage() {
     : null;
   return (
     <ModulePage title={t(lang, 'control.queue.title')} purpose={t(lang, 'control.queue.purpose')} about={t(lang, 'control.queue.about')} icon="academics" tone="royal" eyebrow={t(lang, 'group.control')} headerLang={lang}>
+      <WordsProvider words={pageWords(lang, '/control/content/responses')}>
       {data && <PrepareExplanationsView versions={data.versions} />}
       {data && <ResponseQueueView initial={data.responses} age={data.age} />}
+      </WordsProvider>
     </ModulePage>
   );
 }

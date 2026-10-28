@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ModelSelect } from './ModelSelect';
 import { CARD, NUM, PRIMARY, TAP } from './shared';
@@ -30,7 +30,7 @@ const CONCURRENCY = 2;
 const day = (v: string) => new Date(v).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' });
 
 export function QualityLab({ initial }: { initial: LabData }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [data] = useState<LabData>(initial);
   const [areas, setAreas] = useState<Set<LabArea>>(() => new Set(AREAS));
   const first = initial.suggestions;
@@ -396,7 +396,7 @@ const ERROR_CLASS: Record<LabErrorClass, MessageKey> = {
 };
 
 // A sortable column header: a button that says which way it sorts (aria-sort on the cell, an arrow beside the name).
-function SortHead({ k, sort, onSort, label, t }: { k: SortKey; sort: Sort; onSort: (k: SortKey) => void; label: string; t: ReturnType<typeof useT>['t'] }) {
+function SortHead({ k, sort, onSort, label, t }: { k: SortKey; sort: Sort; onSort: (k: SortKey) => void; label: string; t: ReturnType<typeof useWords>['t'] }) {
   const on = sort?.key === k ? sort.dir : null;
   return (
     <th aria-sort={on === 'asc' ? 'ascending' : on === 'desc' ? 'descending' : 'none'} className="px-1 py-1 font-semibold">
@@ -412,7 +412,7 @@ function SortHead({ k, sort, onSort, label, t }: { k: SortKey; sort: Sort; onSor
 
 // The cells of one result row: its numbers, the score and note inline, the answer folded, and the two buttons.
 function Row({ cell, draft, busy, onDraft, onSave, onAgain }: { cell: LabResult; draft?: { score: string; notes: string }; busy: boolean; onDraft: (d: { score: string; notes: string }) => void; onSave: () => void; onAgain: () => void }) {
-  const { t } = useT();
+  const { t } = useWords();
   const d = draft ?? { score: cell.score === null ? '' : String(cell.score), notes: cell.notes ?? '' };
   const yes = (v: boolean | null, kind: 'json' | 'check') =>
     v === null ? (

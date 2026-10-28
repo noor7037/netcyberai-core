@@ -7,6 +7,7 @@ import { listAttempts } from '@/lib/family/chapter-tests';
 import { fill } from '@/lib/family/fill';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { familyWords } from '@/lib/family/words';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The chapter tests the children sent (S5, C378): in the parent area, behind the parent PIN, never on a child's own
 // phone. Every attempt is one the child really sent. Choice questions show what the app found; written and photo answers
@@ -28,7 +29,7 @@ export default async function FamilyChapterTestsPage() {
     titles.set(key, c ? c.title[lang === 'hi' ? 'hi' : 'en'] : key);
   }
   const name = new Map(page.children.map((c) => [c.childId, c.firstName]));
-  const day = (iso: string) => new Date(iso).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
+  const day = (iso: string) => sameInkOnBothSides(new Date(iso).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }));
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.tests.title']} tone="royal" />

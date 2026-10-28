@@ -7,6 +7,8 @@ import { FIXTURE_NOTICE } from '@/lib/contracts/fixture';
 import { controlNav } from '@/lib/nav/nav-items';
 import { EntitlementsPreview } from './EntitlementsPreview';
 import { shellWords } from '@/components/app-shell/shell-words';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 
 // Control → a school → Modules & access on illustrative data (C123),
 // development only: the real /control needs the founder's session and a
@@ -29,7 +31,9 @@ export default function ControlEntitlementsPreviewPage() {
         <p role="note" className="rounded-md border border-tangerine/40 bg-tangerine/10 p-3 text-sm text-slate">
           {FIXTURE_NOTICE}
         </p>
-        <EntitlementsPreview />
+        <WordsProvider words={pageWords('en', '/design-system/shell/control')}>
+          <EntitlementsPreview />
+        </WordsProvider>
       </div>
     </AppShell>
   );

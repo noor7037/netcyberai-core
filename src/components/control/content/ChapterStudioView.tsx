@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { PRIMARY_ACTION, QUIET_ACTION } from '@/components/app-ui/ModulePage';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -25,7 +25,7 @@ const pretty = (blocks: unknown[]) => JSON.stringify(blocks, null, 2);
 const latest = (o: StudioOverview, key: string) => Math.max(...o.chapters.filter((c) => c.chapterKey === key).map((c) => c.versionNo), 1);
 
 export function ChapterStudioView({ initial, selected }: { initial: StudioOverview; selected: StudioVersion | null }) {
-  const { t } = useT();
+  const { t } = useWords();
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);

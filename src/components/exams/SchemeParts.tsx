@@ -1,7 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -44,7 +44,7 @@ const set = <T,>(list: readonly T[], i: number, v: T) => list.map((x, j) => (j =
 const without = <T,>(list: readonly T[], i: number) => list.filter((_, j) => j !== i);
 
 export function BandsEditor({ bands, onChange, idPrefix }: { bands: BandForm[]; onChange: (b: BandForm[]) => void; idPrefix: string }) {
-  const { t } = useT();
+  const { t } = useWords();
   return (
     <div className="flex flex-col gap-3">
       <ol className="flex flex-col gap-3">
@@ -69,7 +69,7 @@ export function BandsEditor({ bands, onChange, idPrefix }: { bands: BandForm[]; 
 }
 
 export function ComponentsEditor({ components, onChange, idPrefix }: { components: ComponentForm[]; onChange: (c: ComponentForm[]) => void; idPrefix: string }) {
-  const { t } = useT();
+  const { t } = useWords();
   const total = components.reduce((s, c) => s + (Number(c.share.replace(',', '.')) || 0), 0);
   return (
     <div className="flex flex-col gap-3">
@@ -129,7 +129,7 @@ export function ComponentsEditor({ components, onChange, idPrefix }: { component
 // each of the school's exam types (the shown ones, and a hidden one that already counts). Nothing ticked: no type is
 // weighed and every exam stands alone. The weights are checked by the scheme's own rules (validateScheme).
 export function ExamTypesEditor({ types, weights, onChange, idPrefix }: { types: readonly ExamTypeRow[]; weights: TypeWeightForm[]; onChange: (w: TypeWeightForm[]) => void; idPrefix: string }) {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const total = weights.reduce((s, w) => s + (Number(w.weight.replace(',', '.')) || 0), 0);
   const rows = types.filter((x) => !x.hidden || weights.some((w) => w.type === x.key));
   // A weighed type the school's list no longer has still shows, by its code, so it can be taken off.

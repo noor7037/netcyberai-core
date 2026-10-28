@@ -3,7 +3,7 @@
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import type { MessageKey } from '@/lib/i18n';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
@@ -57,7 +57,7 @@ export function SchoolOnboardingPanel({
   pilotAllowOutbound: boolean;
 }) {
   const router = useRouter();
-  const { t } = useT();
+  const { t } = useWords();
   const [stage, setStage] = useState(initialStage);
   const [stageError, setStageError] = useState<string | null>(null);
   const [consent, setConsent] = useState<ConsentSummary | null>(null);

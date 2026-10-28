@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
 import { Input } from '@/components/ui/Input';
@@ -40,7 +40,7 @@ const proposedYear = (month: string) => {
 const validReason = (r: string) => r.trim().length >= 3 && r.trim().length <= 500;
 
 export function BillingTerms({ school, data, busy, send }: { school: School; data: BillingOverview; busy: boolean; send: Send }) {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const locale = lang === 'hi' ? 'hi-IN' : 'en-IN';
   const day = (isoDate: string) => new Intl.DateTimeFormat(locale, { timeZone: 'UTC', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${isoDate}T00:00:00Z`));
   const moment = (at: string) => new Intl.DateTimeFormat(locale, { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date(at));
