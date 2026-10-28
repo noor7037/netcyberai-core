@@ -60,6 +60,7 @@ const ERRORS = [
   "no_base_url",
   "no_revision",
   "price",
+  "spend",
 ];
 // M2-5: a content provider's key test (their words are under control.video.ai.err.*).
 const TEST_ERRORS = ["no_key", "not_testable"];
@@ -68,6 +69,7 @@ export function AiControls({ initial }: { initial: Data }) {
   const { stepUpFetch } = useStepUp();
   const { t, lang } = useT();
   const [data, setData] = useState<Data>(initial);
+  const [spend, setSpend] = useState(initial.spendAlert === null ? "" : String(initial.spendAlert));
   const [drafts, setDrafts] = useState(() =>
     Object.fromEntries(initial.profiles.map((p) => [p.profileId, draftOf(p)])),
   );
@@ -365,6 +367,58 @@ export function AiControls({ initial }: { initial: Data }) {
           >
             {t("control.ai.cap.save")}
           </button>
+        </div>
+      </section>
+
+      <section data-ai-spend-alert className={CARD}>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <h2 className="text-lg font-bold">{t("control.ai.spend.title")}</h2>
+          <InfoTip>{t("control.ai.spend.how")}</InfoTip>
+        </div>
+        <p>
+          {data.spendAlert === null
+            ? t("control.ai.spend.off")
+            : t("control.ai.spend.current", { value: data.spendAlert.toFixed(2) })}
+        </p>
+        <p data-ai-spent-today>
+          {t("control.ai.spend.today", { value: data.spentToday.usd.toFixed(2), unpriced: data.spentToday.unpriced })}
+        </p>
+        <div className="grid gap-2 sm:grid-cols-[minmax(0,12rem)_auto_auto] sm:items-end">
+          <Input
+            id="ai-spend-alert"
+            inputMode="decimal"
+            label={t("control.ai.spend.label")}
+            value={spend}
+            onChange={(e) => setSpend(e.target.value)}
+          />
+          <button
+            type="button"
+            data-ai-spend-save
+            disabled={busy || !/^\d{1,5}(\.\d{1,2})?$/.test(spend.trim()) || Number(spend.trim()) <= 0}
+            className={`${TAP} sm:justify-self-start`}
+            onClick={() =>
+              void send(
+                { action: "spend_alert", value: Number(spend.trim()) },
+                "control.ai.saved",
+              )
+            }
+          >
+            {t("control.ai.spend.save")}
+          </button>
+          {data.spendAlert !== null && (
+            <button
+              type="button"
+              data-ai-spend-off
+              disabled={busy}
+              className={`${TAP} sm:justify-self-start`}
+              onClick={() => {
+                setSpend("");
+                void send({ action: "spend_alert", value: null }, "control.ai.saved");
+              }}
+            >
+              {t("control.ai.spend.turnOff")}
+            </button>
+          )}
         </div>
       </section>
 
