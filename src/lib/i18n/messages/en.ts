@@ -7962,7 +7962,6 @@ export const en = {
   'fam.tab.study': 'Study',
   'fam.tab.english': 'English',
   'fam.tab.future': 'Future',
-  'fam.tab.family': 'Family',
   // H1: the notifications centre, the Profile with Parent space, and the three hub shells.
   'fam.notify.center.title': 'Notifications',
   'fam.notify.center.empty': 'Nothing new',

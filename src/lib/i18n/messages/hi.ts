@@ -7951,7 +7951,6 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.tab.study': 'पढ़ाई',
   'fam.tab.english': 'अंग्रेज़ी',
   'fam.tab.future': 'भविष्य',
-  'fam.tab.family': 'परिवार',
   'fam.notify.center.title': 'सूचनाएँ',
   'fam.notify.center.empty': 'कुछ नया नहीं',
   'fam.notify.center.tonight': 'स्कूल से आज रात का अभ्यास: {subject}',
