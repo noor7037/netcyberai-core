@@ -52,7 +52,7 @@ export default async function OnboardingPage() {
              from schools where onboarding_stage <> 'go_live' order by onboarding_stage_updated_at desc`
           ),
           client.query(
-            `select lead_id, source, school_name, contact_name, contact_phone, status, created_at
+            `select lead_id, source, school_name, contact_name, contact_phone, contact_email, city, status, created_at
              from leads order by created_at desc limit 20`
           ),
         ]);
@@ -130,6 +130,9 @@ export default async function OnboardingPage() {
                   <p className="font-medium text-slate">
                     {l.school_name} <span className="font-normal text-slate/70">— {l.contact_name}</span>
                   </p>
+                  {(l.contact_email || l.city) && (
+                    <p className="break-all text-sm text-slate/70">{[l.contact_email, l.city].filter(Boolean).join(' · ')}</p>
+                  )}
                   <p className="text-sm text-slate/70">
                     {l.contact_phone} · {SOURCE_LABELS[l.source] ?? l.source} ·{' '}
                     {new Date(l.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -140,6 +143,9 @@ export default async function OnboardingPage() {
             ))}
           </ul>
         )}
+        <Link href="/control/leads" className="mt-2 inline-flex min-h-[44px] items-center text-sm font-medium text-sapphire underline">
+          {t(lang, 'control.leads.recent.all')}
+        </Link>
       </div>
     </ModulePage>
   );

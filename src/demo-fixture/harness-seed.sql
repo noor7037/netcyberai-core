@@ -339,3 +339,12 @@ insert into content.hub_entries (hub, title_en, title_hi, body_en, body_hi, scop
   ('careers', 'A page taken down (illustrative, withdrawn)', null, 'An illustrative entry that staff withdrew.', null,
    'national', null, 1, 12, 'https://example.invalid/careers/withdrawn', (now() at time zone 'Asia/Kolkata')::date - 20, (now() at time zone 'Asia/Kolkata')::date + 30, 'withdrawn', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001');
 -- w4-3 end
+
+-- w7-l: website leads for Control → Leads (all made up; example.test addresses). One is a local Saudi number with no
+-- country code yet, as the real one that started this slice.
+insert into leads (source, school_name, contact_name, contact_phone, contact_email, city, student_count_band, required_modules, requirements, country_code, phone_e164, status, created_at) values
+  ('get_started', 'Harness Example Public School', 'Anita Example', '98100 00011', 'anita@example.test', 'Jaipur', '500-1,000', '{attendance,fees}', 'We want attendance and fees first.', '+91', '+919810000011', 'new', now() - interval '1 hour'),
+  ('book_demo', 'مدرسة المثال الدولية', 'Sara Example', '0503000000', 'sara@example.test', 'Riyadh', '200-500', '{communication}', null, '+966', '+966503000000', 'contacted', now() - interval '1 day'),
+  ('contact', 'Gulf Example Academy', 'Omar Example', '0503000001', 'omar@example.test', 'Jeddah', null, '{}', 'Please call after 4 pm.', '+91', null, 'new', now() - interval '2 days'),
+  ('quote', 'Example Convent School', 'Ravi Example', '98100 00012', 'ravi@example.test', 'Lucknow', '1,000-2,500', '{records,exams}', null, '+91', '+919810000012', 'qualified', now() - interval '3 days');
+-- w7-l end

@@ -61,6 +61,7 @@ const CONTROL_LOOK: Record<string, [IconName, ColorToken]> = {
   '/control/schools': ['school', 'sapphire'],
   '/control/users': ['users', 'azure'],
   '/control/onboarding': ['admissions', 'turquoise'],
+  '/control/leads': ['admissions', 'turquoise'],
   '/control/messaging-cost': ['chat', 'cyan'],
   '/control/templates': ['chat', 'azure'],
   '/control/whatsapp': ['chat', 'emerald'],
