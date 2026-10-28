@@ -5967,6 +5967,13 @@ const studioDone = async () => {
   await clearStudio(db);
 };
 // s3 end
+// w4-3 begin
+// Control → Content → Hubs: the first entry opened for editing, to show the whole form.
+const hubsEdit = async (page) => {
+  await page.locator('[data-hub-edit]').first().click();
+  await page.locator('[data-hub-save]').waitFor({ timeout: 10000 });
+};
+// w4-3 end
 let upiSeen = null;
 const payByUpi = async (page) => {
   await clearUpi();
@@ -7382,6 +7389,11 @@ const SCREENS = [
   // s3 begin
   ['founder', 'control-content-studio', `/control/content/studio?key=${encodeURIComponent(STUDIO_KEY)}&version=1`, studioSeed, studioDone],
   // s3 end
+  // w4-3 begin
+  // Control → Content → Hubs (C387): the list of entries with each status and expiry, and one entry open for editing.
+  ['founder', 'control-content-hubs', '/control/content/hubs'],
+  ['founder', 'control-content-hubs-edit', '/control/content/hubs', hubsEdit],
+  // w4-3 end
   // m1-4 end
   // m1-7 begin
   // Control → Apps v1 (C253): versions, flags with audiences, kill switches, banners, preview, recent changes with Undo;

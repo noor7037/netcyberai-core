@@ -307,3 +307,35 @@ values ('f0000000-0000-4000-8000-0000000fa204', 'f0000000-0000-4000-8000-0000000
 insert into family.consents (account_id, purpose, granted, verification_method, notice_version)
 values ('f0000000-0000-4000-8000-0000000f0005', 'voice_practice', true, 'parent_tap', 'fam-notice-1');
 -- e1 end
+-- w4-3 begin
+-- Hub entries (W4-3, C387): illustrative only, each marked so on its face, with example.invalid links; no real scheme,
+-- amount or date is presented. Published entries for the three hubs (a national one, a Delhi one and an Uttar Pradesh
+-- one), a draft, a withdrawn one and an expired one for Control's list.
+insert into content.hub_entries (hub, title_en, title_hi, body_en, body_hi, scope, state_code, class_from, class_to, source_url, verified_on, review_on, status, created_by, updated_by) values
+  ('careers', 'Choosing a stream after Class 10 (illustrative)', 'दसवीं के बाद धारा चुनना (उदाहरण)',
+   'An illustrative entry. It would explain, in plain words, what each stream leads to, in the words of the official guidance it links.',
+   'यह एक उदाहरण प्रविष्टि है। यह आधिकारिक मार्गदर्शन के शब्दों में सरल भाषा में बताएगी कि हर धारा आगे कहाँ ले जाती है।',
+   'national', null, 6, 12, 'https://example.invalid/careers/streams', (now() at time zone 'Asia/Kolkata')::date - 8, (now() at time zone 'Asia/Kolkata')::date + 170, 'published', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('careers', 'Jobs of the future (illustrative, draft)', null, 'An illustrative draft, not yet shown to any family.', null,
+   'national', null, 1, 12, 'https://example.invalid/careers/jobs', (now() at time zone 'Asia/Kolkata')::date - 2, (now() at time zone 'Asia/Kolkata')::date + 100, 'draft', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('exams_portal', 'How an entrance exam is registered for (illustrative)', 'प्रवेश परीक्षा का पंजीकरण कैसे होता है (उदाहरण)',
+   'An illustrative entry. It would list the steps from the exam body’s own page, and where to check the dates.',
+   'यह एक उदाहरण प्रविष्टि है। यह परीक्षा संस्था के अपने पन्ने से चरण और तारीख़ें देखने की जगह बताएगी।',
+   'national', null, 8, 12, 'https://example.invalid/exams/register', (now() at time zone 'Asia/Kolkata')::date - 6, (now() at time zone 'Asia/Kolkata')::date + 120, 'published', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('exams_portal', 'A Delhi state exam page (illustrative)', 'दिल्ली की एक राज्य परीक्षा का पन्ना (उदाहरण)',
+   'An illustrative entry for children of Delhi only, pointing to the state board’s own page.',
+   'यह केवल दिल्ली के बच्चों के लिए एक उदाहरण प्रविष्टि है, जो राज्य बोर्ड के अपने पन्ने की ओर ले जाती है।',
+   'state', 'IN-DL', 6, 12, 'https://example.invalid/exams/delhi', (now() at time zone 'Asia/Kolkata')::date - 5, (now() at time zone 'Asia/Kolkata')::date + 90, 'published', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('opportunities', 'A scholarship page to check each year (illustrative)', 'हर साल देखने के लिए एक छात्रवृत्ति पन्ना (उदाहरण)',
+   'An illustrative entry. It would say who a scheme is for, from the scheme’s own official page, and when to look again.',
+   'यह एक उदाहरण प्रविष्टि है। यह योजना के अपने आधिकारिक पन्ने से बताएगी कि योजना किसके लिए है, और कब फिर देखना है।',
+   'national', null, 1, 12, 'https://example.invalid/schemes/scholarship', (now() at time zone 'Asia/Kolkata')::date - 10, (now() at time zone 'Asia/Kolkata')::date + 60, 'published', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('opportunities', 'An Uttar Pradesh scheme page (illustrative)', 'उत्तर प्रदेश की एक योजना का पन्ना (उदाहरण)',
+   'An illustrative entry for children of Uttar Pradesh only, pointing to the state’s own page.',
+   'यह केवल उत्तर प्रदेश के बच्चों के लिए एक उदाहरण प्रविष्टि है, जो राज्य के अपने पन्ने की ओर ले जाती है।',
+   'state', 'IN-UP', 1, 12, 'https://example.invalid/schemes/up', (now() at time zone 'Asia/Kolkata')::date - 4, (now() at time zone 'Asia/Kolkata')::date + 45, 'published', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('opportunities', 'An older scheme page (illustrative, expired)', null, 'An illustrative entry whose review date has passed, so families no longer see it.', null,
+   'national', null, 1, 12, 'https://example.invalid/schemes/older', (now() at time zone 'Asia/Kolkata')::date - 200, (now() at time zone 'Asia/Kolkata')::date - 3, 'published', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001'),
+  ('careers', 'A page taken down (illustrative, withdrawn)', null, 'An illustrative entry that staff withdrew.', null,
+   'national', null, 1, 12, 'https://example.invalid/careers/withdrawn', (now() at time zone 'Asia/Kolkata')::date - 20, (now() at time zone 'Asia/Kolkata')::date + 30, 'withdrawn', '00000000-0000-4000-8000-00000000f001', '00000000-0000-4000-8000-00000000f001');
+-- w4-3 end
