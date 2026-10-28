@@ -150,7 +150,7 @@ const grantVoice = (granted: boolean) => q(`insert into family.consents (account
 
 describe('the voice route', () => {
   it('without the parent\'s voice consent: refused, nothing counted, no call', async () => {
-    await q(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'voice_input', true, 'test')`);
+    await q(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'voice_input', true, 'test') on conflict (app, module) do update set enabled = excluded.enabled, reason = excluded.reason`);
     expect(await post({ audio: B64, seconds: 5 })).toEqual({ status: 403, body: { error: 'consent_required' } });
     expect([calls.length, await seconds()]).toEqual([0, 0]);
   });

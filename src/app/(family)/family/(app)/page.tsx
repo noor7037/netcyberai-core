@@ -39,20 +39,21 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links, meeting, seen, off } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
     openToAll: await openSubjects(db),
     links: await activeLinks(db, page.session.accountId),
+    schoolOn: await familyModuleOn(db, 'school_today', page.session.accountId),
     // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
     seen: await readSeen(db, page.session.accountId),
     off: await notifyOff(db, page.session.accountId),
     meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
   // At school today (C230-AA): for a child matched to a connected school's student, today's mark as the school has it.
-  const atSchool = await schoolTodayFor(familyClaims(page.session), links, child.childId, { withResults: true });
+  const atSchool = !schoolOn ? null : await schoolTodayFor(familyClaims(page.session), links, child.childId, { withResults: true });
   // Tonight's practice (C335, L10): the app's subjects in which the class covered something today, each opening Study.
   const tonight = atSchool ? subjects.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
   // What is new from the connected schools since the parent last looked (M3-8a, C338), without the kinds turned off:
