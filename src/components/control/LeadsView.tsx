@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState, type ChangeEvent } from 'react';
-import { useT } from '@/components/app-shell/LangContext';
+import { useWords } from '@/components/app-shell/Words';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -42,7 +42,7 @@ function query(status: string, source: string, q: string, page?: number): string
 }
 
 export function LeadsView({ initial }: { initial: Page }) {
-  const { t, lang } = useT();
+  const { t, lang } = useWords();
   const [data, setData] = useState<Page>(initial);
   const [status, setStatus] = useState('');
   const [source, setSource] = useState('');
@@ -302,7 +302,7 @@ function LeadPanel({
   onClose: () => void;
   onSaved: (l: Lead) => void;
 }) {
-  const { t } = useT();
+  const { t } = useWords();
   const [status, setStatus] = useState<LeadStatus>(lead.status as LeadStatus);
   const [notes, setNotes] = useState(lead.notes ?? '');
   const [country, setCountry] = useState(KEEP);

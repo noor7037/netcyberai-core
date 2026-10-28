@@ -30,6 +30,7 @@ export const PAGE_WORDS = {
   '/control/monitoring': ['monitoring.jobs.'],
   '/control/onboarding/applications/[applicationId]': ['onb.apps.'],
   '/control/onboarding/provision': ['control.provision.'],
+  '/control/leads': ['control.leads.'],
   '/control/schools/[schoolId]': [
     'billing.form.', 'billing.source.', 'boards.err.', 'boards.school.', 'branding.', 'fee.', 'gs.bands.', 'gs.board.', 'gs.comp.', 'gs.types.',
     'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.',

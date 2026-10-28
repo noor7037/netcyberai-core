@@ -2,6 +2,8 @@ import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { LeadsView } from '@/components/control/LeadsView';
+import { WordsProvider } from '@/components/app-shell/Words';
+import { pageWords } from '@/components/app-shell/page-words';
 import { listLeads, PAGE_SIZE } from '@/lib/control/leads';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
@@ -18,7 +20,9 @@ export default async function LeadsPage() {
     : { leads: [], total: 0, page: 1, pageSize: PAGE_SIZE };
   return (
     <ModulePage title={t(lang, 'control.leads.title')} purpose={t(lang, 'control.leads.purpose')} icon="admissions" tone="turquoise" eyebrow={t(lang, 'group.control')}>
-      <LeadsView initial={first} />
+      <WordsProvider words={pageWords(lang, '/control/leads')}>
+        <LeadsView initial={first} />
+      </WordsProvider>
     </ModulePage>
   );
 }
