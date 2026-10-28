@@ -166,7 +166,7 @@ describe('tenant isolation, from the grants', () => {
   it('families and schools hold no right on the gateway’s revisions, health, ledger, prices, model lists or the Quality Lab', async () => {
     const rows = await q(`
       select table_name, grantee from information_schema.role_table_grants
-       where table_schema = 'control' and (table_name like 'ai_eval%' or table_name in ('ai_route_revisions', 'ai_provider_health', 'ai_usage_ledger', 'ai_model_prices', 'ai_model_lists'))
+       where table_schema = 'control' and (table_name like 'ai_eval%' or table_name in ('ai_route_revisions', 'ai_provider_health', 'ai_usage_ledger', 'ai_reply_checks', 'ai_model_prices', 'ai_model_lists'))
          and grantee in ('family_app', 'app_user', 'anon', 'authenticated', 'PUBLIC', 'service_role')`);
     expect(rows).toEqual([]);
   });

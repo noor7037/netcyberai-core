@@ -1,5 +1,5 @@
 import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
-import { profileReady, type AiContext } from '@/lib/ai/platform';
+import { profileReady, voiceCharsLeft, type AiContext } from '@/lib/ai/platform';
 import { guarded, loadChapter } from './chapter-store';
 import { chapterView } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
@@ -110,9 +110,11 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
   return { ok: true, child, children: gate.children, text: String(rows[0].reply), language: 'en' };
 }
 
-// Whether the server voice could speak now (nothing sent, no place taken), for a screen to say which voice it uses.
-// The check reads no child's words, so the context names no one.
+// Whether the server voice could speak now (nothing sent, no place taken), for a screen to say which voice it uses:
+// set up, and the family's voice allowance for today not used up (C388). The check reads no child's words, so the
+// context names no one.
 export async function serverVoiceReady(db: Db, accountId: string): Promise<boolean> {
   const ctx: AiContext = { accountId, childFirstNames: [], day: indiaDate() };
-  return (await profileReady(db as never, ctx, VOICE_PROFILE)) === 'ready';
+  if ((await profileReady(db as never, ctx, VOICE_PROFILE)) !== 'ready') return false;
+  return (await voiceCharsLeft(db as never, accountId, ctx.day)) > 0;
 }

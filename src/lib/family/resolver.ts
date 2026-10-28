@@ -316,7 +316,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   // takes the family's daily place.
   let moderation: PreparedModeration | null = null;
   if (!ctx.preparing) {
-    const ready = await prepareModeration(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day });
+    const ready = await prepareModeration(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day }, profileId);
     if (!ready.ok) {
       emit({ t: 'refused', reason: ready.reason, message: ctx.refusalWords('fam.understand.safetyOff') });
       return null;

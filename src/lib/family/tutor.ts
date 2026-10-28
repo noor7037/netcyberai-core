@@ -6,6 +6,7 @@ import { parseBlockLine } from './blocks';
 import { chapterView, showcaseChapter } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
 import { consentState } from './consent';
+import { photoGate } from './photo-gate';
 import { isSubject } from './subjects';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type TutorFileType, type TutorTurn } from './tutor-shape';
 
@@ -454,6 +455,10 @@ export async function tutorChild(db: Db, accountId: string, chosen: string | und
   if (!child || isPrePrimary(child.classLevel)) return { ok: false, status: 404, error: 'not_found' };
   const consents = await consentState(db as never, accountId);
   if (!consents.study_core) return { ok: false, status: 403, error: 'consent_required' };
-  if (files && !consents.photo_input) return { ok: false, status: 403, error: 'photo_consent' };
+  // A file to attach: the photo rules of the homework helper (C389): Class 1 up, both consents, the helper's switch.
+  if (files) {
+    const refused = await photoGate(db as never, accountId, child);
+    if (refused) return { ok: false, status: 403, error: refused === 'off' ? 'homework_off' : refused };
+  }
   return { ok: true, child };
 }
