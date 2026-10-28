@@ -19,7 +19,7 @@ export default async function FamilyEnglishLivePage() {
   if (next) redirect(next);
   const lang = page.childLang;
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
-  if (!switches || !switchOn(switches, 'english_programme')) redirect('/family');
+  if (!switches || !switchOn(switches, 'english_programme') || !switchOn(switches, 'voice_input')) redirect('/family/english');
   const r = await familyPageRead(page, (db) => liveView(db, page.session.accountId, page.child?.childId)).catch(() => ({ ok: false as const, status: 503, error: 'failed' }));
   return (
     <div lang={lang} className="flex min-h-screen flex-col">

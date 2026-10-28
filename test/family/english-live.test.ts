@@ -160,6 +160,21 @@ describe('consent', () => {
     expect((await get(OTHER, OTHER_CHILD)).body.error).toBe('consent_needed');
     await q(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ($1, 'voice_practice', true, 'parent_tap', 'v1', now() + interval '2 seconds')`, [OTHER]);
   });
+
+  it('withdrawing learning (study_core) stops it too, while the other two stay yes (E1 review)', async () => {
+    await q(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ($1, 'study_core', false, 'parent_tap', 'v1', now() + interval '3 seconds')`, [OTHER]);
+    expect((await get(OTHER, OTHER_CHILD)).body.error).toBe('consent_needed');
+    expect((await hear(OTHER, OTHER_CHILD)).body.error).toBe('consent_needed');
+    await q(`insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ($1, 'study_core', true, 'parent_tap', 'v1', now() + interval '4 seconds')`, [OTHER]);
+    expect((await get(OTHER, OTHER_CHILD)).status).toBe(200);
+  });
+
+  it('Control switching voice input off stops live speech as it stops Study’s (E1 review)', async () => {
+    await q(`insert into control.app_flags (app, module, enabled, reason) values ('family', 'voice_input', false, 'test') on conflict (app, module) do update set enabled = false`);
+    expect((await get(OTHER, OTHER_CHILD)).body.error).toBe('off');
+    expect((await hear(OTHER, OTHER_CHILD)).body.error).toBe('off');
+    await q(`delete from control.app_flags where app = 'family' and module = 'voice_input'`);
+  });
 });
 
 describe('a ten-turn talk (speech to text set up)', () => {
