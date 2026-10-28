@@ -4,8 +4,8 @@ import { PermanentJobError } from '@/lib/jobs/types';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert'];
+export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert'];
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -37,6 +37,21 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
             `<p>It works for 15 minutes. If you did not register a school on NetCyberAI, ignore this email.</p>`
         ),
         text: `Your NetCyberAI code for ${school}'s registration: ${code}\nIt works for 15 minutes. If you did not register a school, ignore this email.`,
+      };
+    }
+    // A website lead's confirmation (W7-L): the request arrived, a person replies. No claims, no numbers.
+    case 'lead_received': {
+      const school = str(data, 'schoolName');
+      const name = str(data, 'contactName');
+      return {
+        subject: 'We received your request',
+        html: wrap(
+          `<p>Hello ${escapeHtml(name)},</p>` +
+            `<p>We received your request for <strong>${escapeHtml(school)}</strong>.</p>` +
+            `<p>A person from our team will reply by phone or email within one working day.</p>` +
+            `<p>To add anything, reply to this email.</p>`
+        ),
+        text: `Hello ${name},\nWe received your request for ${school}.\nA person from our team will reply by phone or email within one working day.\nTo add anything, reply to this email.`,
       };
     }
     case 'application_verified': {

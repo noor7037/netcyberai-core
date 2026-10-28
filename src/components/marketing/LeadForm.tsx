@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
 import { submitLead } from '@/components/marketing/submitLead';
 import { Honeypot } from '@/components/marketing/Honeypot';
+import { EMPTY_PHONE, PhoneWithCountry, countryCodeOf, type PhoneValue } from '@/components/marketing/PhoneWithCountry';
 
 type Source = 'get_started' | 'book_demo' | 'start_pilot';
 
@@ -25,7 +26,6 @@ const ORG_TYPES = ['School', 'Group of schools', 'Coaching centre', 'Trust / Soc
 type FormState = {
   schoolName: string;
   contactName: string;
-  contactPhone: string;
   contactEmail: string;
   city: string;
   orgType: string;
@@ -40,7 +40,6 @@ type FormState = {
 const EMPTY: FormState = {
   schoolName: '',
   contactName: '',
-  contactPhone: '',
   contactEmail: '',
   city: '',
   orgType: '',
@@ -59,6 +58,7 @@ export function LeadForm({ source }: { source: Source }) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [result, setResult] = useState<{ isDuplicate: boolean } | null>(null);
   const [website, setWebsite] = useState('');
+  const [phone, setPhone] = useState<PhoneValue>(EMPTY_PHONE);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -82,7 +82,7 @@ export function LeadForm({ source }: { source: Source }) {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const body = await submitLead({ source, ...values, website });
+      const body = await submitLead({ source, ...values, contactPhone: phone.phone, countryCode: countryCodeOf(phone), website });
       setResult({ isDuplicate: body.isDuplicate });
       setStep('done');
     } catch (err) {
@@ -100,7 +100,7 @@ export function LeadForm({ source }: { source: Source }) {
         </h3>
         <p className="mt-2 text-slate/70">
           {result?.isDuplicate
-            ? "We found an earlier request from this phone number — our team will follow up on that one shortly, so there's no need to submit again."
+            ? "We found an earlier request from this phone number or email — our team will follow up on that one shortly, so there's no need to submit again."
             : source === 'book_demo'
               ? "Thanks — our team will confirm your demo slot shortly, on the phone number you shared."
               : source === 'start_pilot'
@@ -119,8 +119,8 @@ export function LeadForm({ source }: { source: Source }) {
           {source !== 'book_demo' && <Field label="Organisation type" value={values.orgType || '—'} />}
           <Field label="School" value={values.schoolName} />
           <Field label="Contact" value={values.contactName} />
-          <Field label="Phone" value={values.contactPhone} />
-          <Field label="Email" value={values.contactEmail || '—'} />
+          <Field label="Phone" value={`${countryCodeOf(phone)} ${phone.phone}`} />
+          <Field label="Email" value={values.contactEmail} />
           <Field label="City" value={values.city || '—'} />
           <Field label="Students" value={values.studentCountBand || '—'} />
           {source === 'book_demo' && <Field label="Preferred date" value={values.preferredDate || '—'} />}
@@ -179,23 +179,17 @@ export function LeadForm({ source }: { source: Source }) {
           onChange={(e) => update('contactName', e.target.value)}
         />
         <Input
-          id="lead-contact-phone"
-          label="Phone (WhatsApp preferred)"
-          type="tel"
-          required
-          value={values.contactPhone}
-          onChange={(e) => update('contactPhone', e.target.value)}
-        />
-      </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Input
           id="lead-contact-email"
           label="Email"
           type="email"
-          helperText="Optional"
+          autoComplete="email"
+          required
           value={values.contactEmail}
           onChange={(e) => update('contactEmail', e.target.value)}
         />
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <PhoneWithCountry idPrefix="lead" phoneId="lead-contact-phone" value={phone} onChange={setPhone} />
         <Input id="lead-city" label="City" value={values.city} onChange={(e) => update('city', e.target.value)} />
       </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

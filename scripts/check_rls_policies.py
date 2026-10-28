@@ -177,6 +177,8 @@ ALLOWED_PERMISSIVE = (
         ("leads", "leads_backend_duplicate_check"),
         ("leads", "leads_super_admin_read"),
         ("leads", "leads_super_admin_write"),
+        # W7-L: Control -> Leads CSV import; the same super_admin role check.
+        ("leads", "leads_super_admin_insert"),
         # B2 (Decision Log C97, C98): platform tables. Every policy is
         # scoped `to nca_super` (BYPASSRLS anyway; the policies state the
         # intended access), app_user/app_backend/anon/authenticated hold no

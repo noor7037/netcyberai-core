@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
 import { Honeypot } from '@/components/marketing/Honeypot';
 import { submitLead } from '@/components/marketing/submitLead';
+import { EMPTY_PHONE, PhoneWithCountry, countryCodeOf, type PhoneValue } from '@/components/marketing/PhoneWithCountry';
+import { EMAIL_RE, toE164 } from '@/lib/leads/contact';
 
 // Pricing page "Get a custom quote". Same /api/public/leads intake as
 // every other website form (source 'quote'), so the request lands in the
@@ -26,7 +28,7 @@ const STUDENT_BANDS = ['Under 200', '200-500', '500-1,000', '1,000-2,500', '2,50
 type Values = {
   schoolName: string;
   contactName: string;
-  contactPhone: string;
+  phone: PhoneValue;
   contactEmail: string;
   city: string;
   studentCountBand: string;
@@ -39,7 +41,7 @@ type Values = {
 const EMPTY: Values = {
   schoolName: '',
   contactName: '',
-  contactPhone: '',
+  phone: EMPTY_PHONE,
   contactEmail: '',
   city: '',
   studentCountBand: '',
@@ -55,11 +57,8 @@ function validate(v: Values): Errors {
   const e: Errors = {};
   if (!v.schoolName.trim()) e.schoolName = 'Please enter your school’s name.';
   if (!v.contactName.trim()) e.contactName = 'Please enter your name.';
-  const digits = v.contactPhone.replace(/\D/g, '').length;
-  if (digits < 10 || digits > 15) e.contactPhone = 'Please enter a phone number with at least 10 digits.';
-  const email = v.contactEmail.trim();
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.contactEmail = 'Please enter a valid email address.';
-  if (v.preferredContact === 'email' && !email) e.contactEmail = 'Add an email address, or choose phone or WhatsApp.';
+  if (!toE164(countryCodeOf(v.phone), v.phone.phone)) e.phone = 'Please check the phone number and the country code.';
+  if (!EMAIL_RE.test(v.contactEmail.trim())) e.contactEmail = 'Please enter a valid email address.';
   if (!v.studentCountBand) e.studentCountBand = 'Please choose the number of students.';
   return e;
 }
@@ -83,13 +82,14 @@ export function QuoteForm() {
     setErrors(found);
     const first = Object.keys(found)[0];
     if (first) {
-      document.getElementById(`quote-${first}`)?.focus();
+      document.getElementById(`quote-${first === 'phone' ? 'contactPhone' : first}`)?.focus();
       return;
     }
     setSubmitting(true);
     setSubmitError(null);
     try {
-      setDone(await submitLead({ source: 'quote', ...v, website }));
+      const { phone, ...rest } = v;
+      setDone(await submitLead({ source: 'quote', ...rest, contactPhone: phone.phone, countryCode: countryCodeOf(phone), website }));
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
@@ -103,7 +103,7 @@ export function QuoteForm() {
         <p className="text-lg font-bold text-slate">{done.isDuplicate ? 'We already have your request' : 'Quote request received'}</p>
         <p className="mt-2 text-slate/70">
           {done.isDuplicate
-            ? 'We found an earlier request from this phone number and will follow up on that one.'
+            ? 'We found an earlier request from this phone number or email and will follow up on that one.'
             : v.preferredContact === 'email'
               ? 'A member of our team will send your quote by email.'
               : `A member of our team will contact you on ${v.preferredContact === 'whatsapp' ? 'WhatsApp' : 'the phone number you shared'} with your quote.`}
@@ -118,8 +118,8 @@ export function QuoteForm() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Input id="quote-schoolName" label="School name" required autoComplete="organization" value={v.schoolName} error={errors.schoolName} onChange={(e) => set('schoolName', e.target.value)} />
         <Input id="quote-contactName" label="Your name" required autoComplete="name" value={v.contactName} error={errors.contactName} onChange={(e) => set('contactName', e.target.value)} />
-        <Input id="quote-contactPhone" label="Phone" type="tel" inputMode="tel" required autoComplete="tel" value={v.contactPhone} error={errors.contactPhone} onChange={(e) => set('contactPhone', e.target.value)} />
-        <Input id="quote-contactEmail" label="Email" type="email" autoComplete="email" helperText="Optional unless you choose email below" value={v.contactEmail} error={errors.contactEmail} onChange={(e) => set('contactEmail', e.target.value)} />
+        <PhoneWithCountry idPrefix="quote" phoneId="quote-contactPhone" helperText="" value={v.phone} error={errors.phone} onChange={(p) => set('phone', p)} />
+        <Input id="quote-contactEmail" label="Email" type="email" required autoComplete="email" value={v.contactEmail} error={errors.contactEmail} onChange={(e) => set('contactEmail', e.target.value)} />
         <Input id="quote-city" label="City" autoComplete="address-level2" value={v.city} onChange={(e) => set('city', e.target.value)} />
         <Select id="quote-studentCountBand" label="Number of students" required value={v.studentCountBand} error={errors.studentCountBand} onChange={(e) => set('studentCountBand', e.target.value)}>
           <option value="">Select a range</option>

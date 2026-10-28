@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { withBackendConnection } from '@/lib/auth/db';
+import { withBackendConnection, withPlatformService } from '@/lib/auth/db';
+import { kickJobs } from '@/lib/jobs/handlers';
+import { jobQueue } from '@/lib/jobs/pg-queue';
+import { DEFAULT_COUNTRY_CODE, normaliseCountryCode, normaliseEmail, toE164 } from '@/lib/leads/contact';
 
 // Public, unauthenticated intake for every website lead flow: Get
 // Started, Book a Demo, Start a Pilot, Contact Sales and Request a
@@ -10,6 +13,8 @@ import { withBackendConnection } from '@/lib/auth/db';
 // here at all). RLS on `leads` scopes both the insert and the
 // duplicate-check read to the `app_backend` role specifically
 // (supabase/migrations/20260925061202_leads_table.sql).
+// Email is required on every form (W7-L): a mistyped phone number must not lose the lead. The phone is stored as typed
+// and in international form (phone_e164) from the country code the visitor chose.
 const SOURCES = ['get_started', 'book_demo', 'contact', 'callback', 'start_pilot', 'quote', 'free_tools'] as const;
 const CONTACT_METHODS = ['phone', 'whatsapp', 'email'] as const;
 // Burst limit: more than this many submissions from one phone number in
@@ -59,16 +64,23 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Indian mobile numbers are 10 digits (12 with the 91 prefix); allow up
-  // to 15 for international numbers. Anything shorter cannot be called
-  // back, so reject it visibly instead of storing a dead lead.
-  const phoneDigits = contactPhone.replace(/\D/g, '').length;
-  if (phoneDigits < 10 || phoneDigits > 15) {
-    return NextResponse.json({ error: 'Please enter a valid phone number with at least 10 digits.' }, { status: 400 });
+  const contactEmail = normaliseEmail(body?.contactEmail);
+  if (!contactEmail) {
+    return NextResponse.json({ error: 'Please enter a valid email address, so we can reply even if the phone number has a typo.' }, { status: 400 });
+  }
+
+  // The country code the visitor chose (India when the form sent none), and the number in international form. A
+  // number that cannot be dialled is refused visibly instead of stored as a dead lead.
+  const countryCode = body?.countryCode === undefined ? DEFAULT_COUNTRY_CODE : normaliseCountryCode(body.countryCode);
+  if (!countryCode) {
+    return NextResponse.json({ error: 'Please choose your country code, or type it as + and digits.' }, { status: 400 });
+  }
+  const phoneE164 = toE164(countryCode, contactPhone);
+  if (!phoneE164) {
+    return NextResponse.json({ error: 'Please check the phone number and the country code.' }, { status: 400 });
   }
 
   const orgType = str(body?.orgType, MAX_SHORT);
-  const contactEmail = str(body?.contactEmail, MAX_SHORT);
   const city = str(body?.city, MAX_SHORT);
   const studentCountBand = str(body?.studentCountBand, MAX_SHORT);
   const currentErp = str(body?.currentErp, MAX_SHORT);
@@ -93,16 +105,17 @@ export async function POST(req: NextRequest) {
       );
       if ((recent[0]?.n ?? 0) >= BURST_LIMIT) return { throttled: true as const };
 
-      // Duplicate check: same phone number, any source, within the
-      // lookback window -- flagged, not rejected, so a genuine repeat
-      // inquiry still reaches the Control Plane pipeline (the founder's
-      // own flow lists "duplicate validation" as a step before the lead
-      // record, not a hard stop).
+      // Duplicate check: same number (international form) or same email,
+      // any source, within the lookback window -- flagged, not rejected,
+      // so a genuine repeat inquiry still reaches the Control Plane
+      // pipeline (the founder's own flow lists "duplicate validation" as a
+      // step before the lead record, not a hard stop).
       const { rows: existing } = await client.query(
         `select lead_id from leads
-         where contact_phone = $1 and created_at > now() - interval '${DUPLICATE_LOOKBACK_DAYS} days'
+         where (phone_e164 = $1 or lower(contact_email) = $2)
+           and created_at > now() - interval '${DUPLICATE_LOOKBACK_DAYS} days'
          order by created_at desc limit 1`,
-        [contactPhone]
+        [phoneE164, contactEmail]
       );
       const duplicateOfLeadId = existing[0]?.lead_id ?? null;
 
@@ -110,9 +123,10 @@ export async function POST(req: NextRequest) {
         `insert into leads (
            source, org_type, school_name, contact_name, contact_phone, contact_email,
            city, student_count_band, current_erp, required_modules, requirements,
-           preferred_date, preferred_time, status, duplicate_of_lead_id, preferred_contact
+           preferred_date, preferred_time, status, duplicate_of_lead_id, preferred_contact,
+           country_code, phone_e164
          )
-         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
          returning lead_id, status`,
         [
           source,
@@ -131,6 +145,8 @@ export async function POST(req: NextRequest) {
           duplicateOfLeadId ? 'duplicate' : 'new',
           duplicateOfLeadId,
           preferredContact,
+          countryCode,
+          phoneE164,
         ]
       );
       return { throttled: false as const, lead: rows[0], isDuplicate: Boolean(duplicateOfLeadId) };
@@ -151,6 +167,28 @@ export async function POST(req: NextRequest) {
       { error: 'We already received several requests from this number in the last few minutes. Our team will be in touch.' },
       { status: 429 }
     );
+  }
+
+  // A first request gets a confirmation email through the jobs queue, the
+  // way school applications send theirs. The lead is already stored: the
+  // public route holds no grant on `jobs`, so the job is queued as the
+  // platform role after the insert committed, and a failure here (or no
+  // email service configured, which fails the job) never loses the lead.
+  if (!result.isDuplicate) {
+    const key = `email.send:lead_received:${result.lead.lead_id}`;
+    try {
+      await withPlatformService((db) =>
+        jobQueue.enqueue(db, {
+          type: 'email.send',
+          idempotencyKey: key,
+          payload: { to: [contactEmail], template: 'lead_received', data: { schoolName, contactName } },
+          maxAttempts: 4,
+        })
+      );
+      await kickJobs([key]);
+    } catch (err) {
+      console.error('[leads] confirmation email not queued', err instanceof Error ? err.name : 'error');
+    }
   }
 
   return NextResponse.json(

@@ -7,6 +7,7 @@ export const controlNav: NavItem[] = [
   { label: 'Schools', href: '/control/schools' },
   { label: 'Users', href: '/control/users' },
   { label: 'Onboarding', href: '/control/onboarding' },
+  { label: 'Leads', href: '/control/leads' },
   { label: 'Messaging & Cost', href: '/control/messaging-cost' },
   { label: 'Message templates', href: '/control/templates' },
   { label: 'WhatsApp account', href: '/control/whatsapp' },

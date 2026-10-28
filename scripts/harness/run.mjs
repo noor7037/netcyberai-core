@@ -6217,6 +6217,11 @@ const timetableClash = async (page) => {
   if (rows[0]?.display_name !== 'Tanvi Example') throw new Error(`the clash was saved: 5-B Monday period 1 is now ${rows[0]?.display_name}`);
 };
 // The shell's own tools (C134, C135), used the way a person uses them.
+// Control → Leads (W7-L): the first lead opens in its panel (the card at phone width, the table row on a desktop).
+const openLead = async (page) => {
+  await page.locator('[data-leads-cards] button:visible, [data-leads-table] button:visible').first().click();
+  await page.locator('[data-lead-panel]').waitFor({ timeout: 10000 });
+};
 const typeInSearch = (text) => async (page) => {
   await page.getByRole('combobox', { name: /Search|खोजें/ }).fill(text);
   await page.getByRole('option').first().waitFor({ timeout: 15000 });
@@ -7147,6 +7152,8 @@ const SCREENS = [
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],
   ['founder', 'control-users', '/control/users'],
   ['founder', 'control-onboarding', '/control/onboarding'],
+  ['founder', 'control-leads', '/control/leads'],
+  ['founder', 'control-lead-panel', '/control/leads', openLead],
   ['founder', 'control-applications', '/control/onboarding/applications'],
   ['founder', 'control-tickets', '/control/tickets'],
   ['founder', 'control-ticket', `/control/tickets/${TICKET}`],

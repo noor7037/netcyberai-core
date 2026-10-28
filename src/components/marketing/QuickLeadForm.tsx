@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/Button';
 import { SubmitError } from '@/components/marketing/SubmitError';
 import { submitLead } from '@/components/marketing/submitLead';
 import { Honeypot } from '@/components/marketing/Honeypot';
+import { EMPTY_PHONE, PhoneWithCountry, countryCodeOf, type PhoneValue } from '@/components/marketing/PhoneWithCountry';
+import { EMAIL_RE, toE164 } from '@/lib/leads/contact';
 
 // Short, single-step lead capture for Contact Sales and Request a
 // Callback. Posts to the same /api/public/leads intake as Get Started
@@ -15,7 +17,7 @@ type Source = 'contact' | 'callback';
 
 type Values = {
   contactName: string;
-  contactPhone: string;
+  phone: PhoneValue;
   contactEmail: string;
   schoolName: string;
   city: string;
@@ -25,7 +27,7 @@ type Values = {
 
 const EMPTY: Values = {
   contactName: '',
-  contactPhone: '',
+  phone: EMPTY_PHONE,
   contactEmail: '',
   schoolName: '',
   city: '',
@@ -38,12 +40,9 @@ type Errors = Partial<Record<keyof Values, string>>;
 function validate(v: Values, source: Source): Errors {
   const errors: Errors = {};
   if (!v.contactName.trim()) errors.contactName = 'Please enter your name.';
-  const digits = v.contactPhone.replace(/\D/g, '').length;
-  if (digits < 10 || digits > 15) errors.contactPhone = 'Please enter a phone number with at least 10 digits.';
+  if (!toE164(countryCodeOf(v.phone), v.phone.phone)) errors.phone = 'Please check the phone number and the country code.';
   if (!v.schoolName.trim()) errors.schoolName = 'Please enter your school or organisation name.';
-  if (v.contactEmail.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.contactEmail.trim())) {
-    errors.contactEmail = 'Please enter a valid email address, or leave it blank.';
-  }
+  if (!EMAIL_RE.test(v.contactEmail.trim())) errors.contactEmail = 'Please enter a valid email address.';
   if (source === 'contact' && !v.requirements.trim()) errors.requirements = 'Please tell us what you would like to discuss.';
   return errors;
 }
@@ -68,13 +67,14 @@ export function QuickLeadForm({ source }: { source: Source }) {
     setErrors(found);
     if (Object.keys(found).length > 0) {
       const first = Object.keys(found)[0];
-      document.getElementById(`${idp}-${first}`)?.focus();
+      document.getElementById(`${idp}-${first === 'phone' ? 'contactPhone' : first}`)?.focus();
       return;
     }
     setSubmitting(true);
     setSubmitError(null);
     try {
-      setDone(await submitLead({ source, ...values, website }));
+      const { phone, ...rest } = values;
+      setDone(await submitLead({ source, ...rest, contactPhone: phone.phone, countryCode: countryCodeOf(phone), website }));
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
@@ -90,7 +90,7 @@ export function QuickLeadForm({ source }: { source: Source }) {
         </p>
         <p className="mt-2 text-slate/70">
           {done.isDuplicate
-            ? 'We found an earlier request from this phone number. Our team will follow up on that one, so there is no need to send it again.'
+            ? 'We found an earlier request from this phone number or email. Our team will follow up on that one, so there is no need to send it again.'
             : source === 'callback'
               ? 'A member of our team will call you on the number you shared, in the time window you picked where possible.'
               : 'A member of our team will reply by phone or email. Nothing is sent to your parents or staff from this form.'}
@@ -113,17 +113,17 @@ export function QuickLeadForm({ source }: { source: Source }) {
           onChange={(e) => update('contactName', e.target.value)}
         />
         <Input
-          id={`${idp}-contactPhone`}
-          label="Phone (WhatsApp preferred)"
-          type="tel"
+          id={`${idp}-contactEmail`}
+          label="Email"
+          type="email"
           required
-          autoComplete="tel"
-          inputMode="tel"
-          value={values.contactPhone}
-          error={errors.contactPhone}
-          onChange={(e) => update('contactPhone', e.target.value)}
+          autoComplete="email"
+          value={values.contactEmail}
+          error={errors.contactEmail}
+          onChange={(e) => update('contactEmail', e.target.value)}
         />
       </div>
+      <PhoneWithCountry idPrefix={idp} phoneId={`${idp}-contactPhone`} value={values.phone} error={errors.phone} onChange={(p) => update('phone', p)} />
       <Input
         id={`${idp}-schoolName`}
         label="School / organisation"
@@ -134,19 +134,7 @@ export function QuickLeadForm({ source }: { source: Source }) {
         onChange={(e) => update('schoolName', e.target.value)}
       />
       {source === 'contact' ? (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <Input
-            id={`${idp}-contactEmail`}
-            label="Email"
-            type="email"
-            autoComplete="email"
-            helperText="Optional"
-            value={values.contactEmail}
-            error={errors.contactEmail}
-            onChange={(e) => update('contactEmail', e.target.value)}
-          />
-          <Input id={`${idp}-city`} label="City" autoComplete="address-level2" value={values.city} onChange={(e) => update('city', e.target.value)} />
-        </div>
+        <Input id={`${idp}-city`} label="City" autoComplete="address-level2" value={values.city} onChange={(e) => update('city', e.target.value)} />
       ) : (
         <Select
           id={`${idp}-preferredTime`}
