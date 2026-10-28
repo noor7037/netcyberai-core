@@ -6,6 +6,8 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { Badge } from '@/components/ui/Badge';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { t } from '@/lib/i18n';
+import { getLang } from '@/lib/i18n/server';
 
 const STAGE_LABELS: Record<string, string> = {
   tenant_created: 'Tenant Created',
@@ -39,6 +41,7 @@ const SOURCE_LABELS: Record<string, string> = {
 };
 export default async function OnboardingPage() {
   const session = await getServerSession();
+  const lang = session ? getLang(session.sub).lang : 'en';
   // canAccessControl already gated this whole route group at the layout
   // (Prompt D) -- session is real and super_admin by construction here.
   const { inProgress, leads } = session
@@ -59,6 +62,18 @@ export default async function OnboardingPage() {
 
   return (
     <ModulePage title="Onboarding" purpose="Bring a school on, step by step." icon="admissions" tone="turquoise" eyebrow="Control">
+
+      <Link
+        href="/control/onboarding/provision"
+        data-provision-link
+        className="flex min-h-[44px] items-center justify-between gap-3 rounded-2xl bg-gradient-to-r from-sapphire to-royal p-4 text-off-white shadow-sm motion-safe:transition motion-safe:duration-200 motion-safe:hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <span>
+          <span className="block font-semibold">{t(lang, 'control.provision.link.title')}</span>
+          <span className="block text-sm">{t(lang, 'control.provision.link.lead')}</span>
+        </span>
+        <span className="text-sm font-semibold underline">{t(lang, 'control.provision.link.open')}</span>
+      </Link>
 
       <Link
         href="/control/onboarding/applications"

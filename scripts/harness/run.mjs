@@ -7454,6 +7454,34 @@ const SCREENS = [
   // answers in the review; the screens are in scripts/harness/online-screens.mjs.
   ...onlineScreens({ db: { get pg() { return db.pg; } }, SCHOOL, PEOPLE, speak, backToEnglish }),
   // aq-4 end
+  // w6-e begin
+  // Control → Onboarding → Provision a school (C399): the one screen filled in and checked (a dry run: nothing is
+  // kept), so the picture shows all three steps and what would be made.
+  [
+    'founder',
+    'control-provision',
+    '/control/onboarding/provision',
+    async (page) => {
+      page.setDefaultTimeout(30000);
+      await page.locator('#provision-name').fill('Harness Provisioned School');
+      await page.locator('#provision-board').selectOption('cbse');
+      await page.locator('#provision-state').selectOption('IN-KA');
+      await page.locator('#provision-city').fill('Mysuru');
+      await page.locator('#provision-principal-name').fill('Meera Iyer');
+      await page.locator('#provision-principal-email').fill('meera@provision.example');
+      await page.locator('#provision-teacher-0-name').fill('Ravi Kumar');
+      await page.locator('#provision-teacher-0-email').fill('ravi@provision.example');
+      await page.locator('#provision-teacher-0-class').fill('9-A');
+      await page.locator('#provision-students').fill('name,class,section,guardian_phone\nAsha Verma,9,A,9800000101\nBilal Khan,9,A,9800000102');
+      await page.locator('[data-provision-check]').click();
+      await page.locator('[data-provision-result="preview"]').waitFor({ timeout: 30000 });
+    },
+    async () => {
+      const kept = (await db.pg.query(`select count(*)::int as n from schools where name = 'Harness Provisioned School'`)).rows[0].n;
+      if (kept !== 0) throw new Error(`the check kept a school: ${kept}`);
+    },
+  ],
+  // w6-e end
 ];
 
 // The same claims the app's own sign-in writes (src/lib/auth/jwt.ts), signed
