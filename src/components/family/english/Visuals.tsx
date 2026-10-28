@@ -92,7 +92,7 @@ function QuestionFlip({ step, w, hindi }: { step: PatternStep; w: Words; hindi: 
   const ex = step.examples[i];
   return (
     <div className="flex flex-col gap-3">
-      <div key={i} className="flex flex-col gap-2 rounded-3xl bg-cyan/10 p-4 animate-flip-in motion-reduce:animate-none">
+      <div key={i} className="flex flex-col gap-2 rounded-2xl bg-cyan/10 p-4 animate-flip-in motion-reduce:animate-none">
         {ex.pic && <Pic pic={ex.pic} size={40} />}
         <PartsLine ex={ex} w={w} />
         <Hindi text={ex.hi} show={hindi} />
@@ -157,7 +157,7 @@ function Builder({ step, w, hindi }: { step: PatternStep; w: Words; hindi: boole
   return (
     <ul className="flex flex-col gap-4">
       {step.examples.map((ex, i) => (
-        <li key={i} className="flex flex-col gap-2 rounded-3xl bg-white p-4 shadow-sm ring-1 ring-slate/10 animate-rise-in motion-reduce:animate-none" style={{ animationDelay: `${i * 260}ms`, animationFillMode: 'both' }}>
+        <li key={i} className="flex flex-col gap-2 fam-card bg-white p-4 animate-rise-in motion-reduce:animate-none" style={{ animationDelay: `${i * 260}ms`, animationFillMode: 'both' }}>
           <div className="flex items-center gap-3">
             <Pic pic={ex.pic} size={36} />
             <ListenButton text={ex.en} label={w['fam.english.listenTo']} className="ml-auto" />

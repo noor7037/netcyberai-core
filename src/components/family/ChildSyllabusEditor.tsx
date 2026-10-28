@@ -189,8 +189,8 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
   const topicCount = (s: StoredSyllabus) => s.chapters.reduce((n, c) => n + c.topics.length, 0);
 
   return (
-    <section data-child-syllabus aria-labelledby="fam-child-syllabus" className="fam-card fam-rise mt-4 flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 id="fam-child-syllabus" className="text-lg font-extrabold text-slate">
+    <section data-child-syllabus aria-labelledby="fam-child-syllabus" className="fam-card fam-section fam-rise bg-white">
+      <h2 id="fam-child-syllabus" className="fam-h2 text-slate">
         {w['fam.syllabus.title']}
       </h2>
       <p className="text-sm text-slate">{w['fam.syllabus.lead']}</p>

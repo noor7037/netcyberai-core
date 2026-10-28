@@ -11,10 +11,9 @@ import { UnderstandView, type UnderstandInput } from './UnderstandView';
 export function TonightPractice({ w, topics, tone }: { w: Words; topics: SchoolTaught[]; tone: string }) {
   const [asked, setAsked] = useState<UnderstandInput | null>(null);
   return (
-    <section data-school-tonight className="fam-card flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.school.tonightTitle']}</h2>
-      <p className="text-sm text-slate">{w['fam.school.tonightLead']}</p>
-      <ul className="flex flex-col">
+    <section data-school-tonight className="fam-card fam-section bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.school.tonightTitle']}</h2>
+      <ul className="flex flex-col gap-1">
         {topics.map((t, i) => (
           <li key={`${t.topic}-${i}`}>
             <button
@@ -25,7 +24,7 @@ export function TonightPractice({ w, topics, tone }: { w: Words; topics: SchoolT
                   text: (t.chapter ? fill(w['fam.school.syllabusAsk'], { topic: t.topic, chapter: t.chapter }) : fill(w['fam.school.tonightAsk'], { topic: t.topic })).slice(0, 500),
                 })
               }
-              className="fam-press flex min-h-[44px] w-full items-center rounded-xl px-2 text-left text-sm font-semibold text-slate hover:bg-off-white"
+              className="fam-row fam-lift w-full bg-off-white text-left text-sm font-semibold text-slate"
             >
               {t.topic}
             </button>

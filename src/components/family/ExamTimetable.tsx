@@ -12,7 +12,7 @@ export function ExamTimetable({ w, lang, papers, heading = 'p' }: { w: Words; la
   const seats = Array.from(new Set(papers.map((p) => p.seatNo).filter((s): s is string => !!s)));
   return (
     <div className="flex flex-col gap-2" data-exam-timetable>
-      <Title className={heading === 'h2' ? 'text-lg font-extrabold text-slate' : 'text-sm font-semibold text-slate'}>{w['fam.marks.timetable']}</Title>
+      <Title className={heading === 'h2' ? 'fam-h2 text-slate' : 'text-sm font-semibold text-slate'}>{w['fam.marks.timetable']}</Title>
       {papers.length === 0 ? (
         <p className="text-sm text-slate">{w['fam.marks.timetableNone']}</p>
       ) : (

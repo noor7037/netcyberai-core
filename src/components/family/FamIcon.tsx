@@ -26,6 +26,11 @@ const PATHS = {
   upload: 'M7 18a4.5 4.5 0 0 1-.6-9A6 6 0 0 1 18 10.5 3.8 3.8 0 0 1 17.5 18M12 20v-8M9 15l3-3 3 3',
   offline: 'M3 3l18 18M8.5 16.5a5 5 0 0 1 6.2-.8M5 12.6a10 10 0 0 1 4-2.3M19 12.6a10 10 0 0 0-2.6-1.8M2 8.8a15 15 0 0 1 4.3-2.8M22 8.8a15 15 0 0 0-11.6-3.7M12 20h.01',
   saver: 'M4 20v-3M9 20v-7M14 20V9M19 20V4',
+  bell: 'M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4',
+  user: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
+  compass: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z',
+  inbox: 'M4 13l2-8h12l2 8M4 13v6h16v-6M4 13h4l1 2h6l1-2h4',
+  chart: 'M4 20h16M7 20v-6M12 20V8M17 20v-9',
 } as const;
 
 export type IconName = keyof typeof PATHS;

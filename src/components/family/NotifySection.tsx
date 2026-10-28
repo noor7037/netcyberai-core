@@ -103,8 +103,8 @@ export function NotifySection({ w, off, publicKey }: { w: Words; off: readonly s
     }
   };
   return (
-    <section data-notify-section className="fam-card fam-rise flex flex-col gap-2 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.notify.title']}</h2>
+    <section data-notify-section className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.notify.title']}</h2>
       <p className="text-sm text-slate">{w['fam.notify.lead']}</p>
       {publicKey && <PushControl w={w} publicKey={publicKey} />}
       {KINDS.map((k) => (

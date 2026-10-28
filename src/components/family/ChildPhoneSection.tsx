@@ -42,8 +42,8 @@ export function ChildPhoneSection({ w, lang, children, phones, canLink }: { w: W
     router.refresh();
   };
   return (
-    <section data-child-phones className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.phone.title']}</h2>
+    <section data-child-phones className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.phone.title']}</h2>
       <p className="text-sm text-slate">{w['fam.phone.lead']}</p>
       {phones.length > 0 && (
         <ul className="flex flex-col gap-2">

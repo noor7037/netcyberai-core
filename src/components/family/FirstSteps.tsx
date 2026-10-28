@@ -7,6 +7,7 @@ import type { Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
 import type { BoardOption } from '@/lib/family/children';
 import { ChildForm } from './ChildForm';
+import { GateFrame } from './GateFrame';
 import { PinFields } from './PinFields';
 
 // The parent's first steps after the first sign-in (M1-2, C248): agree to study_core with an explicit tap, set the
@@ -18,15 +19,11 @@ export function ConsentStep({ w }: { w: Words }) {
   const [error, setError] = useState('');
   const items = ['fam.consent.item.child', 'fam.consent.item.answers', 'fam.consent.item.ai', 'fam.consent.item.never', 'fam.consent.item.control'];
   return (
-    <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-3xl font-extrabold text-slate">{w['fam.consent.title']}</h1>
-        <p className="mt-2 text-base text-slate/80">{w['fam.consent.lead']}</p>
-      </div>
-      <ul className="flex flex-col gap-3">
+    <GateFrame app={w['fam.app.name']} title={w['fam.consent.title']} lead={w['fam.consent.lead']}>
+      <ul className="flex flex-col gap-2">
         {items.map((k) => (
-          <li key={k} className="flex gap-3 rounded-2xl bg-white p-4 text-base text-slate shadow-sm ring-1 ring-slate/10">
-            <span aria-hidden="true" className="mt-1 h-3 w-3 shrink-0 rounded-full bg-royal" />
+          <li key={k} className="fam-row items-start bg-off-white text-base text-slate">
+            <span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-royal" />
             <span>{w[k]}</span>
           </li>
         ))}
@@ -63,7 +60,7 @@ export function ConsentStep({ w }: { w: Words }) {
       >
         {w['fam.consent.notNow']}
       </Button>
-    </div>
+    </GateFrame>
   );
 }
 
@@ -72,11 +69,7 @@ export function PinSetup({ w }: { w: Words }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   return (
-    <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-3xl font-extrabold text-slate">{w['fam.pin.setTitle']}</h1>
-        <p className="mt-2 text-base text-slate/80">{w['fam.pin.setLead']}</p>
-      </div>
+    <GateFrame app={w['fam.app.name']} title={w['fam.pin.setTitle']} lead={w['fam.pin.setLead']}>
       <PinFields
         w={w}
         confirm
@@ -95,18 +88,14 @@ export function PinSetup({ w }: { w: Words }) {
           router.refresh();
         }}
       />
-    </div>
+    </GateFrame>
   );
 }
 
 export function FirstChildStep({ w, states, boards, lang }: { w: Words; states: { code: string; name: string }[]; boards?: BoardOption[]; lang: 'en' | 'hi' }) {
   const router = useRouter();
   return (
-    <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="text-3xl font-extrabold text-slate">{w['fam.child.addTitle']}</h1>
-        <p className="mt-2 text-base text-slate/80">{w['fam.child.addLead']}</p>
-      </div>
+    <GateFrame app={w['fam.app.name']} title={w['fam.child.addTitle']} lead={w['fam.child.addLead']}>
       <ChildForm
         w={w}
         states={states}
@@ -118,6 +107,6 @@ export function FirstChildStep({ w, states, boards, lang }: { w: Words; states: 
           router.refresh();
         }}
       />
-    </div>
+    </GateFrame>
   );
 }

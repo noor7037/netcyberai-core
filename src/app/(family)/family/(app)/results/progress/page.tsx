@@ -26,8 +26,7 @@ export default async function FamilyMyProgressPage() {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/results" backLabel={w['fam.marks.myResults']} title={w['fam.schoolProgress.title']} tone="emerald" />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-my-progress>
-        <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.schoolProgress.lead']}</p>
+      <main className="fam-page" data-my-progress>
         <SchoolProgressView progress={progress} w={w} lang={lang} />
       </main>
     </div>

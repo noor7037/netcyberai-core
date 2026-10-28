@@ -412,8 +412,8 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
 
 export function SchoolSection({ w, lang, links, children }: { w: Words; lang: 'en' | 'hi'; links: SchoolLinkView[]; children: { childId: string; firstName: string }[] }) {
   return (
-    <section data-school-section className="fam-card fam-rise flex flex-col gap-3 bg-white p-4 sm:p-5">
-      <h2 className="text-lg font-extrabold text-slate">{w['fam.school.title']}</h2>
+    <section data-school-section className="fam-card fam-section fam-rise bg-white">
+      <h2 className="fam-h2 text-slate">{w['fam.school.title']}</h2>
       {links.map((l) => (
         <LinkCard key={l.linkId} w={w} lang={lang} link={l} children={children} />
       ))}

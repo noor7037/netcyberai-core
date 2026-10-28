@@ -34,11 +34,10 @@ export default async function FamilyMyCheckedPaperPage({ params }: { params: { p
         backLabel={w['fam.marks.backResults']}
         kicker={paper ? fill(w['fam.school.resultPublished'], { date: day(paper.publishedOn, lang) }) : undefined}
         title={paper ? fill(w['fam.marks.title'], { subject: subject ? t(lang, `fam.subject.${subject}` as MessageKey) : paper.subject }) : w['fam.marks.paperTitle']}
-        subject={subject ?? undefined}
         tone="emerald"
       />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-3 px-4 pb-24">
-        {paper ? <CheckedPaperView paper={paper} w={w} childView /> : <p className="fam-card bg-white p-4 text-base text-slate" data-paper-gone>{w['fam.marks.gone']}</p>}
+      <main className="fam-page">
+        {paper ? <CheckedPaperView paper={paper} w={w} childView /> : <p className="fam-card bg-white p-4 text-base font-semibold text-slate" data-paper-gone>{w['fam.marks.gone']}</p>}
       </main>
     </div>
   );

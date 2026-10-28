@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
+import { EmptyState } from '@/components/family/ui/EmptyState';
 import { loadChapter } from '@/lib/family/chapter-store';
 import { TESTS_KEYS } from '@/lib/family/chapter-test-words';
 import { listAttempts } from '@/lib/family/chapter-tests';
@@ -31,22 +32,22 @@ export default async function FamilyChapterTestsPage() {
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.tests.title']} tone="royal" />
-      <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-parent-tests>
-        <p className="fam-card bg-white p-4 text-sm font-semibold text-slate">{w['fam.tests.lead']}</p>
-        {attempts.length === 0 && <p className="fam-card bg-white p-4 text-base text-slate">{w['fam.tests.none']}</p>}
+      <main className="fam-page" data-parent-tests>
+        <p className="fam-note px-1 font-semibold text-slate">{w['fam.tests.lead']}</p>
+        {attempts.length === 0 && <EmptyState icon="sheet" text={w['fam.tests.none']} href="/family/parent" action={w['fam.marks.backParent']} />}
         <ul className="flex flex-col gap-4">
           {attempts.map((a) => (
-            <li key={a.attemptId} data-test-attempt={a.attemptId} className="fam-card flex flex-col gap-3 bg-white p-4 text-slate">
-              <div>
-                <h2 className="text-lg font-extrabold">
+            <li key={a.attemptId} data-test-attempt={a.attemptId} className="fam-card fam-section bg-white text-slate">
+              <div className="flex flex-col gap-1">
+                <h2 className="fam-h2">
                   {name.get(a.childId) ?? ''} · <span lang={a.lang}>{titles.get(a.chapterKey)}</span>
                 </h2>
-                <p className="text-sm">{fill(w['fam.tests.when'], { day: day(a.submittedAt) })}</p>
-                <p className="text-sm font-bold">{a.mcqTotal > 0 ? fill(w['fam.tests.score'], { n: a.mcqCorrect, d: a.mcqTotal }) : w['fam.tests.noChoice']}</p>
+                <p className="fam-note text-slate/80">{fill(w['fam.tests.when'], { day: day(a.submittedAt) })}</p>
+                <p className="fam-pill self-start bg-off-white font-bold text-slate ring-1 ring-slate/15">{a.mcqTotal > 0 ? fill(w['fam.tests.score'], { n: a.mcqCorrect, d: a.mcqTotal }) : w['fam.tests.noChoice']}</p>
               </div>
               <ol className="flex flex-col gap-3">
                 {a.answers.map((x) => (
-                  <li key={x.itemId} className="flex flex-col gap-1 rounded-2xl bg-off-white p-3 text-sm">
+                  <li key={x.itemId} className="flex flex-col gap-1 rounded-xl bg-off-white p-3 text-sm">
                     <p className="font-bold">
                       {x.kind === 'mcq' ? w['fam.tests.mcq'] : x.kind === 'written' ? w['fam.tests.written'] : w['fam.tests.photo']}
                     </p>
