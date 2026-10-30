@@ -16,10 +16,13 @@ import edge from '../../../../data/ai-lab/edge.json';
 
 export const LAB_AREAS = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge'] as const;
 export type LabArea = (typeof LAB_AREAS)[number];
+// The cases built from the syllabus (W9-D, curriculum-cases.ts) are a further area; they live in the database.
+export type LabCaseArea = LabArea | 'curriculum';
+export type LabCaseTags = { board: string; classLevel: number; subject: string; unit: string; type: string; band: string };
 
 export type LabCase = {
   id: string;
-  area: LabArea;
+  area: LabCaseArea;
   language: 'en' | 'hi' | 'hinglish';
   system: string;
   messages: { role: 'user' | 'assistant'; content: string }[];
@@ -29,6 +32,7 @@ export type LabCase = {
   maxTokens?: number;
   timeoutMs?: number;
   rubric: string[];
+  tags?: LabCaseTags;
 };
 
 const CASE_ID = /^[a-z][a-z0-9-]{2,40}$/;
@@ -95,7 +99,7 @@ export function labCase(id: string): LabCase | null {
 }
 
 // What the screen needs to choose and read a case (the full prompt stays on the server until it is run).
-export type LabCaseSummary = { id: string; area: LabArea; language: LabCase['language']; expect: LabCase['expect']; ask: string; rubric: string[]; turns: number };
+export type LabCaseSummary = { id: string; area: LabCaseArea; language: LabCase['language']; expect: LabCase['expect']; ask: string; rubric: string[]; turns: number };
 export function caseSummaries(): LabCaseSummary[] {
   return labDataset().cases.map((c) => ({ id: c.id, area: c.area, language: c.language, expect: c.expect, ask: c.messages[c.messages.length - 1].content.slice(0, 200), rubric: c.rubric, turns: c.messages.length }));
 }

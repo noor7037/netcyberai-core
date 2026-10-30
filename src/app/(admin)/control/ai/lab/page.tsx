@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { QualityLab } from '@/components/control/ai/QualityLab';
 import { caseSummaries } from '@/lib/ai/lab/cases';
+import { curriculumList } from '@/lib/ai/lab/curriculum-cases';
 import { listLabRuns, loadLabSetup } from '@/lib/ai/lab/store';
 import { loadReplyChecks } from '@/lib/ai/gateway/ledger';
 import { ReplyChecksView } from '@/components/control/ai/ReplyChecksView';
@@ -25,7 +26,7 @@ export default async function QualityLabPage() {
   const { lang } = getLang(session?.sub ?? '');
   const strong = session?.aal === 'aal2';
   // The layout has already refused anyone but the founder; this runs as nca_super.
-  const data = session && strong ? await withTenantContext(session, async (db) => ({ setup: await loadLabSetup(db), runs: await listLabRuns(db), checks: await loadReplyChecks(db, indiaDate()) })) : null;
+  const data = session && strong ? await withTenantContext(session, async (db) => ({ setup: await loadLabSetup(db), runs: await listLabRuns(db), curriculum: await curriculumList(db), checks: await loadReplyChecks(db, indiaDate()) })) : null;
   return (
     <ModulePage
       title={t(lang, 'control.ai.lab.title')}
@@ -43,7 +44,7 @@ export default async function QualityLabPage() {
       notice={!strong ? <p data-lab-need-aal2 className="rounded-md border border-slate/20 bg-off-white px-3 py-2 text-sm font-semibold text-slate">{t(lang, 'control.ai.lab.needAal2')}</p> : undefined}
     >
       <WordsProvider words={pageWords(lang, '/control/ai/lab')}>
-      {data && <QualityLab initial={{ ...data.setup, cases: caseSummaries(), runs: data.runs }} />}
+      {data && <QualityLab initial={{ ...data.setup, cases: [...caseSummaries(), ...data.curriculum.cases], curriculumTotal: data.curriculum.total, scopes: data.curriculum.scopes, runs: data.runs }} />}
       {data && <ReplyChecksView rows={data.checks} lang={lang} />}
       </WordsProvider>
     </ModulePage>

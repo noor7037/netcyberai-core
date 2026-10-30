@@ -7411,6 +7411,7 @@ const SCREENS = [
   // m1-4 begin
   // Control → Content (C250): import a catalog file, review by a second person, staff preview, release, diff, rollback.
   ['founder', 'control-content', '/control/content'],
+  ['founder', 'control-content-coverage', '/control/content/coverage'],
   // s3 begin
   ['founder', 'control-content-studio', `/control/content/studio?key=${encodeURIComponent(STUDIO_KEY)}&version=1`, studioSeed, studioDone],
   // s3 end
