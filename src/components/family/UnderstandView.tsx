@@ -16,6 +16,8 @@ import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
 import { placeBlock, unfilled } from '@/lib/family/blocks';
+import { SceneView } from './blocks/SceneView';
+import { ChartView } from './blocks/ChartView';
 import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
@@ -231,7 +233,11 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           case 'figure':
             return <FigureView key={i} b={b} tone={tone} />;
           case 'steps':
-            return <StepsView key={i} b={b} tone={tone} />;
+            return <StepsView key={i} b={b} w={w} tone={tone} />;
+          case 'scene':
+            return <SceneView key={i} b={b} w={w} tone={tone} />;
+          case 'chart':
+            return <ChartView key={i} b={b} w={w} tone={tone} />;
           case 'timeline':
             return <TimelineView key={i} b={b} tone={tone} />;
           case 'image':
