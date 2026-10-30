@@ -10,10 +10,10 @@ export function TestingModeBanner({ on, busy, send, t }: { on: boolean; busy: bo
   return (
     <section
       data-ai-testing-mode={on ? "on" : "off"}
-      className={`${CARD} border-l-4 ${on ? "border-l-amber bg-sunshine/15" : "border-l-slate/30"}`}
+      className={`${CARD} border-l-4 ${on ? "border-l-amber" : "border-l-slate/30"}`}
     >
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <div className="flex min-w-0 flex-1 basis-60 flex-col gap-1">
           <h2 className="text-lg font-bold">{t("control.ai.testing.title")}</h2>
           <p role={on ? "alert" : undefined} className={on ? "font-semibold text-slate" : "text-slate/80"}>
             {on ? t("control.ai.testing.onText") : t("control.ai.testing.offText")}
