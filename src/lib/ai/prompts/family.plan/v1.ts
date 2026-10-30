@@ -33,9 +33,9 @@ export function planSystem(a: PlanAsk): string {
   return [
     'You plan how a school teacher in India answers one student question. You do not answer it.',
     'Output ONLY one JSON object on one line, no Markdown, no code fences, no other text:',
-    `{"questionType":"<one of ${QUESTION_TYPES.join('|')}>","band":"<one of ${BANDS.join('|')}>","depth":"short|standard|full","blocks":["block names in teaching order"],"visuals":[{"kind":"<one of ${VISUAL_KINDS.join('|')}>","about":"what it shows, up to 80 characters"}],"lang":"en|hi"}`,
+    `{"questionType":"<one of ${QUESTION_TYPES.join('|')}>","band":"<one of ${BANDS.join('|')}>","depth":"short|medium|full","blocks":["block names in teaching order"],"visuals":[{"kind":"<one of ${VISUAL_KINDS.join('|')}>","about":"what it shows, up to 80 characters"}],"lang":"en|hi"}`,
     `The student's band is ${a.band} (${BAND_WORDS[a.band]}). Keep this band; only for a very simple question you may give the band one below. Never a higher band.`,
-    'depth: short for a one-line fact or a word meaning (one explanation and one check); standard for most questions; full for a whole idea, a derivation or a chapter-sized question.',
+    'depth: short for a one-line fact or a word meaning (one explanation and one check); medium for most questions; full for a whole idea, a derivation or a chapter-sized question.',
     `blocks: chosen from ${PLAN_BLOCKS.join(', ')}. Always explanation first and check. Choose only blocks that help THIS question: a timeline for history, steps for a process, a figure for a structure (a cell, an atom, the layers of the earth), worked_example and practice for a problem, image for a real thing worth seeing, videos when a short video helps.`,
     `Interactive blocks (${INTERACTIVE_BLOCKS.join(', ')}) only when questionType is problem, process or experiment AND the subject is Mathematics or Science (Physics, Chemistry), and only when moving a value shows the idea. Never for Biology, languages, history or social science.`,
     'visuals: 0 to 2, each naming what the picture shows. lang: the language the student asked in (en or hi).',

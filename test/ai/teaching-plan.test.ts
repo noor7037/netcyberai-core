@@ -10,7 +10,7 @@ import type { PreparedText } from '@/lib/ai/platform';
 // Science; any failure gives the band's default plan; the planner never blocks an answer.
 
 const ctx = (classLevel: number, subject: string | null = 'science', lang: 'en' | 'hi' = 'en') => ({ classLevel, subject, lang });
-const good = (o: Partial<Record<keyof Plan, unknown>> = {}) => JSON.stringify({ questionType: 'concept', band: 'c6_8', depth: 'standard', blocks: ['explanation', 'figure', 'check', 'practice'], visuals: [{ kind: 'figure', about: 'a leaf cell' }], lang: 'en', ...o });
+const good = (o: Partial<Record<keyof Plan, unknown>> = {}) => JSON.stringify({ questionType: 'concept', band: 'c6_8', depth: 'medium', blocks: ['explanation', 'figure', 'check', 'practice'], visuals: [{ kind: 'figure', about: 'a leaf cell' }], lang: 'en', ...o });
 
 describe('bands', () => {
   it('come from the class', () => {
@@ -23,7 +23,7 @@ describe('checkPlan', () => {
   it('keeps a plan whose every field is in its enum', () => {
     const r = checkPlan(good(), ctx(7));
     expect(r.fromModel).toBe(true);
-    expect(r.plan).toEqual({ questionType: 'concept', band: 'c6_8', depth: 'standard', blocks: ['explanation', 'figure', 'check', 'practice'], visuals: [{ kind: 'figure', about: 'a leaf cell' }], lang: 'en' });
+    expect(r.plan).toEqual({ questionType: 'concept', band: 'c6_8', depth: 'medium', blocks: ['explanation', 'figure', 'check', 'practice'], visuals: [{ kind: 'figure', about: 'a leaf cell' }], lang: 'en' });
     // Wrapped in a code fence or a sentence, the object is still read.
     expect(checkPlan('Here is the plan:\n```json\n' + good() + '\n```', ctx(7)).fromModel).toBe(true);
   });
@@ -48,9 +48,9 @@ describe('checkPlan', () => {
       expect(r.fromModel, raw).toBe(false);
       expect(r.plan, raw).toEqual(defaultPlan(ctx(3)));
     }
-    expect(defaultPlan(ctx(3))).toEqual({ questionType: 'concept', band: 'c2_5', depth: 'standard', blocks: blocksFor('c2_5', 'standard'), visuals: [], lang: 'en' });
+    expect(defaultPlan(ctx(3))).toEqual({ questionType: 'concept', band: 'c2_5', depth: 'medium', blocks: blocksFor('c2_5', 'medium'), visuals: [], lang: 'en' });
     // No default carries an interactive block.
-    for (const band of BANDS) for (const depth of ['short', 'standard', 'full'] as const) expect(blocksFor(band, depth).some(isInteractiveBlock)).toBe(false);
+    for (const band of BANDS) for (const depth of ['short', 'medium', 'full'] as const) expect(blocksFor(band, depth).some(isInteractiveBlock)).toBe(false);
   });
 
   it('forces the band from the class: never up, one band down at most', () => {

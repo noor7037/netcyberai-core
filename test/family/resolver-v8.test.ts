@@ -12,7 +12,7 @@ import { generate } from '@/lib/family/resolver';
 // a biology plan has no interactive block. Made-up content only.
 
 const base: ResolverAsk = { board: 'CBSE', classLevel: 7, subject: 'science', openSubjects: ['science'], classSubjects: ['mathematics', 'science'], chapter: null, topic: null, question: 'How do plants make food?', language: 'en', style: 'en', followUp: null, misconception: null };
-const plan = (o: Partial<Plan>): Plan => ({ questionType: 'concept', band: 'c6_8', depth: 'standard', blocks: ['explanation', 'check'], visuals: [], lang: 'en', ...o });
+const plan = (o: Partial<Plan>): Plan => ({ questionType: 'concept', band: 'c6_8', depth: 'medium', blocks: ['explanation', 'check'], visuals: [], lang: 'en', ...o });
 const v8 = resolverPrompt('v8', false);
 const system = (o: Partial<ResolverAsk>) => v8.system({ ...base, ...o });
 
@@ -89,7 +89,7 @@ describe('prompt v8', () => {
   });
 
   it('a biology plan has no interactive block; a physics problem keeps v4\'s bounded-number lines word for word', () => {
-    const bio = checkPlan(JSON.stringify({ questionType: 'process', band: 'c9_10', depth: 'standard', blocks: ['explanation', 'simulation', 'steps', 'check'], visuals: [], lang: 'en' }), { classLevel: 9, subject: 'biology', lang: 'en' }).plan;
+    const bio = checkPlan(JSON.stringify({ questionType: 'process', band: 'c9_10', depth: 'medium', blocks: ['explanation', 'simulation', 'steps', 'check'], visuals: [], lang: 'en' }), { classLevel: 9, subject: 'biology', lang: 'en' }).plan;
     const s = system({ classLevel: 9, subject: 'biology', plan: bio });
     expect(asked(s).filter((t) => ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'].includes(t))).toEqual([]);
     expect(s).not.toContain('pendulum');
@@ -117,7 +117,7 @@ describe('the planned answer, end to end through generate()', () => {
     const recorded: string[] = [];
     const sentWith: (string | undefined)[] = [];
     const planCtx = { classLevel: 9, subject: 'biology', lang: 'en' as const };
-    const plannerSays = JSON.stringify({ questionType: 'process', band: 'c9_10', depth: 'standard', blocks: ['explanation', 'simulation', 'steps', 'key_points', 'check'], visuals: [], lang: 'en' });
+    const plannerSays = JSON.stringify({ questionType: 'process', band: 'c9_10', depth: 'medium', blocks: ['explanation', 'simulation', 'steps', 'key_points', 'check'], visuals: [], lang: 'en' });
     const ask: ResolverAsk = { ...base, classLevel: 9, subject: 'biology', openSubjects: ['biology'], classSubjects: ['biology'] };
     const lines = [
       { type: 'explanation', title: 'Osmosis', idea: 'Water moves across a membrane.', example: 'A raisin swells in water.', steps: ['Look', 'Tell'], terms: [{ en: 'membrane', local: 'membrane' }] },

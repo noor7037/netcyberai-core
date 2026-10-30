@@ -362,8 +362,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     ...(teach ? { passages: teach.passages } : {}),
     ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
   };
-  // The default plan (v8's own rule: a question at standard depth, a chapter or topic whole) until the planner answers.
-  const plan = prompt.usesPlan ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'standard' : 'full') : null;
+  // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
+  const plan = prompt.usesPlan ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;
   const build = (p: Plan | null): AiRequest => {
     const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
     return { system: prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };

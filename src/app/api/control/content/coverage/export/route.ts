@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
   const filters = parseCoverageFilters(req.nextUrl.searchParams);
   const run = await asLiveStaff(guard.claims, async (db) => {
     const result = await coverage(db, filters);
-    await writeAuditLog(db, { schoolId: null, actorUserId: guard.claims.sub, actorRole: 'super_admin', eventAction: 'content.coverage_exported', targetType: 'content_coverage', beforeState: undefined, afterState: { ...filters, rows: result.units.length } });
+    await writeAuditLog(db, { schoolId: null, actorUserId: guard.claims.sub, actorRole: 'super_admin', eventAction: 'content.coverage_exported', targetType: 'content_coverage', beforeState: undefined, afterState: { boardId: filters.boardId ?? null, classLevel: filters.classLevel ?? null, subject: filters.subject ?? null, rows: result.units.length } });
     return result.units;
   });
   if ('refused' in run) return run.refused;

@@ -171,7 +171,7 @@ function passageLines(passages: Passage[] | undefined): string[] {
 
 // The plan the prompt is written from: the one given, or the band's default (a chapter or topic taught whole: full).
 export function planOf(a: ResolverAsk): Plan {
-  return a.plan ?? defaultPlan({ classLevel: a.classLevel, subject: a.subject, lang: a.language }, a.question ? 'standard' : 'full');
+  return a.plan ?? defaultPlan({ classLevel: a.classLevel, subject: a.subject, lang: a.language }, a.question ? 'medium' : 'full');
 }
 
 export function resolverSystem(a: ResolverAsk): string {

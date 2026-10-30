@@ -39,9 +39,9 @@ carries `title` (first question, 60 chars), `turn_count`, `summary` (≤ 1,200 c
 verbatim (child text and the tutor's explanation paragraphs only, no blocks), the chapter key.
 
 **Plan (9B).** `{"questionType": "definition|concept|why_how|comparison|problem|derivation|process|experiment|history|
-case|application", "band": "lkg_1|c2_5|c6_8|c9_10|c11_12", "depth": "short|standard|full", "blocks": [..block names..],
+case|application", "band": "lkg_1|c2_5|c6_8|c9_10|c11_12", "depth": "short|medium|full", "blocks": [..block names..],
 "visuals": [{"kind": "figure|steps|timeline|image|video", "about": "..."}], "lang": "en|hi"}`. The band comes from the
-child's class, never guessed from the question. `short` is one explanation and one check; `full` is the whole set. No
+child's class, never guessed from the question. `short` is one explanation and one check; `medium` the usual set; `full` the whole set. No
 interactive block unless `questionType` is `problem`, `process` or `experiment` **and** the subject is Mathematics or
 Science.
 

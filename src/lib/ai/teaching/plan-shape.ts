@@ -13,7 +13,7 @@ export type QuestionType = (typeof QUESTION_TYPES)[number];
 export const BANDS = ['lkg_1', 'c2_5', 'c6_8', 'c9_10', 'c11_12'] as const;
 export type Band = (typeof BANDS)[number];
 
-export const DEPTHS = ['short', 'standard', 'full'] as const;
+export const DEPTHS = ['short', 'medium', 'full'] as const;
 export type Depth = (typeof DEPTHS)[number];
 
 export const VISUAL_KINDS = ['figure', 'steps', 'timeline', 'image', 'video'] as const;
@@ -61,11 +61,11 @@ export function interactiveAllowed(questionType: QuestionType, subject: string |
 // The band's usual blocks at each depth. `short` is one explanation and one check (docs/39); `full` is the band's whole
 // set. No default carries an interactive block: only a checked model plan can.
 const BAND_BLOCKS: Record<Band, Record<Exclude<Depth, 'short'>, PlanBlock[]>> = {
-  lkg_1: { standard: ['explanation', 'image', 'check'], full: ['explanation', 'image', 'check'] },
-  c2_5: { standard: ['explanation', 'image', 'check'], full: ['explanation', 'image', 'key_points', 'check', 'practice'] },
-  c6_8: { standard: ['explanation', 'steps', 'key_points', 'check', 'practice'], full: ['explanation', 'worked_example', 'figure', 'steps', 'key_points', 'check', 'practice'] },
-  c9_10: { standard: ['explanation', 'worked_example', 'key_points', 'check', 'practice'], full: ['explanation', 'worked_example', 'diagram', 'key_points', 'check', 'practice'] },
-  c11_12: { standard: ['explanation', 'worked_example', 'key_points', 'check', 'practice'], full: ['explanation', 'worked_example', 'diagram', 'key_points', 'check', 'practice'] },
+  lkg_1: { medium: ['explanation', 'image', 'check'], full: ['explanation', 'image', 'check'] },
+  c2_5: { medium: ['explanation', 'image', 'check'], full: ['explanation', 'image', 'key_points', 'check', 'practice'] },
+  c6_8: { medium: ['explanation', 'steps', 'key_points', 'check', 'practice'], full: ['explanation', 'worked_example', 'figure', 'steps', 'key_points', 'check', 'practice'] },
+  c9_10: { medium: ['explanation', 'worked_example', 'key_points', 'check', 'practice'], full: ['explanation', 'worked_example', 'diagram', 'key_points', 'check', 'practice'] },
+  c11_12: { medium: ['explanation', 'worked_example', 'key_points', 'check', 'practice'], full: ['explanation', 'worked_example', 'diagram', 'key_points', 'check', 'practice'] },
 };
 
 export function blocksFor(band: Band, depth: Depth): PlanBlock[] {
@@ -74,9 +74,9 @@ export function blocksFor(band: Band, depth: Depth): PlanBlock[] {
 
 export type PlanContext = { classLevel: number; subject: string | null; lang: 'en' | 'hi' };
 
-// The plan used when there is no planner, or its answer failed a check: the band's usual blocks at `standard` depth
+// The plan used when there is no planner, or its answer failed a check: the band's usual blocks at medium depth
 // (a chapter or topic taught whole asks for `full`).
-export function defaultPlan(ctx: PlanContext, depth: Depth = 'standard', questionType: QuestionType = 'concept'): Plan {
+export function defaultPlan(ctx: PlanContext, depth: Depth = 'medium', questionType: QuestionType = 'concept'): Plan {
   const band = bandOf(ctx.classLevel);
   return { questionType, band, depth, blocks: blocksFor(band, depth), visuals: [], lang: ctx.lang };
 }
