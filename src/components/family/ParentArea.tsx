@@ -80,6 +80,8 @@ function ConsentRow({ w, consent, granted, onToggle, data, note, changed }: { w:
 function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states: { code: string; name: string }[]; boards?: BoardOption[] }) {
   const router = useRouter();
   const [mode, setMode] = useState<'view' | 'edit' | 'remove' | 'answers'>('view');
+  // W10 (C411): a change saved is said, not only closed.
+  const [saved, setSaved] = useState(false);
   const [answers, setAnswers] = useState<Answer[] | null>(null);
   const [error, setError] = useState('');
   const loadAnswers = async () => {
@@ -95,7 +97,15 @@ function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states
           {child.firstName} <span className="font-normal text-slate/80">· {classText((k) => w[k], child.classLevel)}</span>
         </p>
         <div className="flex flex-wrap gap-1">
-          <button type="button" className={linkButton} onClick={() => setMode(mode === 'edit' ? 'view' : 'edit')}>
+          <button
+            type="button"
+            className={linkButton}
+            data-child-edit
+            onClick={() => {
+              setSaved(false);
+              setMode(mode === 'edit' ? 'view' : 'edit');
+            }}
+          >
             {w['fam.parent.edit']}
           </button>
           <button type="button" className={linkButton} onClick={() => (mode === 'answers' ? setMode('view') : void loadAnswers())}>
@@ -135,9 +145,15 @@ function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states
           submitLabel={w['fam.child.save']}
           onDone={() => {
             setMode('view');
+            setSaved(true);
             router.refresh();
           }}
         />
+      )}
+      {saved && mode === 'view' && (
+        <p role="status" data-child-saved className="flex min-h-[44px] items-center rounded-xl bg-emerald/10 px-3 text-sm font-semibold text-emerald-text">
+          {fill(w['fam.parent.childSaved'], { name: child.firstName })}
+        </p>
       )}
       {mode === 'remove' && (
         <div className="flex flex-col gap-2 rounded-xl bg-white p-3 ring-1 ring-red-200">
