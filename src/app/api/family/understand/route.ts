@@ -72,6 +72,9 @@ export async function POST(req: NextRequest) {
   // subject, else the newest open one) and what the tutor is told of it (its summary and last turns). A new question in
   // a full chat is refused before anything is asked (409 chat_full); a follow-up still sees the chat.
   let chatId: string | null = null;
+  // W10 (C411): the chat the window named is kept whatever subject is decided; a chat with turns steers by its own subject.
+  let pinned = false;
+  let chatSubject: string | null = null;
   if (tutorBody && input?.kind === 'question' && !retry) {
     const chat = await withFamilyContext(claims, async (db) => {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
@@ -79,7 +82,11 @@ export async function POST(req: NextRequest) {
     }).catch(() => null);
     if (chat?.full && !followUp) return NextResponse.json({ error: 'chat_full' }, { status: 409 });
     chatId = chat?.chatId ?? null;
-    if (chat?.memory) input = { ...input, memory: chat.memory };
+    pinned = chat?.pinned ?? false;
+    if (chat?.memory) {
+      input = { ...input, memory: chat.memory };
+      chatSubject = chat.subject;
+    }
   }
 
   const encoder = new TextEncoder();
@@ -156,8 +163,9 @@ export async function POST(req: NextRequest) {
             }
             // W9-B (docs/39 §3): the window's subject and the reader's open chapter steer the library's passages and the
             // teaching plan (src/lib/family/resolver.ts plans the answer and retrieves before the answer call). They never
-            // decide the answer's subject.
-            target = { ...target, windowSubject: subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
+            // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
+            // in a Science chat opened from the Mathematics tab is taught from Science passages).
+            target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
             if (attached && target?.kind === 'question') target = { ...target, attached };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
@@ -223,13 +231,16 @@ export async function POST(req: NextRequest) {
         // W9-A (C406): kept in the chat it was asked in (or the subject's newest open chat when the server decided another
         // subject, or that chat filled up meanwhile); after every fifth child turn the chat's summary is rewritten once
         // the answer's last line is sent, its own short transactions around the call.
+        // W10 (C411): a chat the window named keeps the turn whatever subject was decided; its first answer moves it to
+        // that subject (tutor.ts appendTurn). The last line names the chat and its subject, so the window lists it there.
         const turn = keepTurn as typeof keepTurn;
         let kept: Awaited<ReturnType<typeof saveTurn>> = null;
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
           const same = subject === turn.windowSubject;
-          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept })).catch(() => null);
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept })).catch(() => null);
         }
+        if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
         if (last) send(last);
         if (kept) await refreshChatSummary((fn) => withFamilyContext(claims, fn), pending.ctx, kept.chatId, kept.turnCount).catch(() => false);
       } catch (err) {

@@ -551,7 +551,7 @@
   --fl-muted: #4b5563;
   --fl-line: #e7e1d6;
   --fl-saffron: #e8702a;
-  --fl-saffron-deep: #b4521a;
+  --fl-saffron-deep: #c2410c;
   --fl-teal: #0f766e;
   --fl-plum: #6d28d9;
   --fl-mint: #e4f3ea;
@@ -703,6 +703,8 @@ div.fam-lesson {
 /* A section: its kind's tint, no bar or border, a numbered badge in its kind's accent. */
 .fam-lesson [data-tint='mint'] { --fl-tint: var(--fl-mint); --fl-accent: var(--fl-mint-accent); }
 .fam-lesson [data-tint='butter'] { --fl-tint: var(--fl-butter); --fl-accent: var(--fl-butter-accent); }
+/* The founder's review (30 Oct): ink, never white, on the saffron-family badge. */
+.fam-lesson [data-tint='butter'] [data-badge] { color: var(--fl-ink); }
 .fam-lesson [data-tint='lilac'] { --fl-tint: var(--fl-lilac); --fl-accent: var(--fl-lilac-accent); }
 .fam-lesson [data-tint='blush'] { --fl-tint: var(--fl-blush); --fl-accent: var(--fl-blush-accent); }
 .fam-lesson [data-tint='sky'],

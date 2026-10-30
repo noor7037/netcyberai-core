@@ -291,6 +291,8 @@ export function QualityLab({ initial }: { initial: LabData }) {
                     ['control.ai.lab.summary.json', (s) => (s.jsonExpected ? t('control.ai.lab.summary.ofTotal', { n: s.jsonValid, total: s.jsonExpected }) : '–')],
                     ['control.ai.lab.summary.checks', (s) => (s.checks ? t('control.ai.lab.summary.ofTotal', { n: s.checksPassed, total: s.checks }) : '–')],
                     ['control.ai.lab.summary.median', (s) => (s.medianMs === null ? '–' : t('control.ai.lab.summary.ms', { ms: s.medianMs }))],
+                    ['control.ai.lab.summary.p95', (s) => (s.p95Ms === null ? '–' : t('control.ai.lab.summary.ms', { ms: s.p95Ms }))],
+                    ['control.ai.lab.summary.firstText', (s) => (s.firstTextMedianMs === null || s.firstTextP95Ms === null ? '–' : t('control.ai.lab.summary.msPair', { p50: s.firstTextMedianMs, p95: s.firstTextP95Ms }))],
                     ['control.ai.lab.summary.score', (s) => (s.meanScore === null ? '–' : t('control.ai.lab.summary.meanScore', { score: s.meanScore, n: s.scored }))],
                     ['control.ai.lab.summary.cost', (s) => (s.costUsd === null ? t('control.ai.lab.summary.costUnknown') : t('control.ai.lab.summary.usd', { value: s.costUsd.toFixed(6) }))],
                   ] as [MessageKey, (s: (typeof summaries)[number]) => string][]

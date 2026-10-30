@@ -3,7 +3,7 @@ import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prom
 import { logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
 import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
-import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -61,7 +61,10 @@ export type PublicBlock = Exclude<Block, { type: 'check' } | { type: 'practice' 
 export type ResolverEvent =
   | { t: 'meta'; label: 'ai_made' | 'checked'; cached: boolean; title: string | null; subject: string; topicKey: string | null }
   | { t: 'block'; block: PublicBlock }
-  | { t: 'done'; complete: boolean }
+  // W10 (C411): `missing`, the core blocks the plan asked for that never came (coreBlocks); `cut`, the answer ended
+  // early (the call failed or timed out after some blocks, or the model stopped inside a block). `complete`: neither.
+  // `chat`: the tutor chat the answer was kept in, and that chat's subject (the tutor window lists it there).
+  | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject } }
   // W4-1 (C385): what became of the files sent with a tutor question, said before the answer.
   | { t: 'files'; message: string }
   | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string } };
@@ -142,7 +145,9 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   );
   const cached = rows[0];
   if (!cached || !Array.isArray(cached.blocks)) return null;
-  const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseStoredBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
+  // A kept response is complete for the class's whole plan (a Class 1 one has no practice by design, W10 C411).
+  const core = coreBlocks(defaultPlan({ classLevel: child.classLevel, subject: line.subject, lang: child.language === 'hi' ? 'hi' : 'en' }, 'full').blocks);
+  const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseStoredBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null), core);
   if (!blocks) return null;
   // One serving, counted for Control's review queue, most asked first (M2-12, C286), in this same transaction. Only the
   // count changes; a fresh AI answer is never counted here.
@@ -150,7 +155,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   return [
     { t: 'meta', label: cached.status === 'checked' ? 'checked' : 'ai_made', cached: true, title: line.title, subject: line.subject, topicKey: line.key },
     ...blocks.map((b): ResolverEvent => ({ t: 'block', block: toPublic(b, ctx, line.key, line.subject) })),
-    { t: 'done', complete: true },
+    { t: 'done', complete: true, missing: [], cut: false },
   ];
 }
 
@@ -537,11 +542,16 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   await p.moderation?.record(db as never);
   if (g.stopped || g.error !== null) return null;
   const result = g.sent.result;
-  if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
+  // W10 (C411): the core blocks this answer's plan asked for (all three under a prompt that takes no plan), and those
+  // that never came. The notice names them; an answer missing none and not cut shows none.
+  const core = coreBlocks(g.plan?.blocks ?? null);
+  const missing = core.filter((t) => !g.kept.some((k) => k.type === t));
+  if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false, missing, cut: true } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
   if (g.refusedByModel && g.kept.length === 0) return { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') };
   // The model never named the subject: nothing was shown, and no subject is guessed.
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };
-  const complete = completeResponse(g.kept);
+  const cut = g.unclosed;
+  const complete = cut ? null : completeResponse(g.kept, core);
 
   // A complete topic or chapter response is kept for the next child, as AI-made, until the founder approves it. One
   // staff prepared (C313) names who prepared it, and no child is served it before it is checked.
@@ -555,7 +565,5 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   }
   // Under a plan (W9-B), an answer is complete when every one of the explanation, check and practice it asked for came:
   // a Class 3 answer has no practice by design, and is not "incomplete" for it.
-  const plan = g.plan;
-  const asked = plan ? (['explanation', 'check', 'practice'] as const).filter((t) => plan.blocks.includes(t)) : null;
-  return { t: 'done', complete: asked ? asked.every((t) => g.kept.some((k) => k.type === t)) : complete !== null };
+  return { t: 'done', complete: missing.length === 0 && !cut, missing, cut };
 }

@@ -475,3 +475,39 @@ describe('the server voice in Control (C386)', () => {
     for (const text of [JSON.stringify(wrong), page, stored, audits, logged.join(' ')]) expect(text).not.toContain(GOOGLE_KEY);
   });
 });
+
+// ---- W10: why the backups of the Nemotron routes were not saved ---------------------------------------------------
+
+describe('backups for a route whose Primary was saved in testing mode (W10)', () => {
+  const NEMO = 'nvidia/made-up-nemotron-vl-1b';
+  const SCOUT = '@cf/meta/made-up-scout-17b';
+  const route = (fallback: unknown[]) => ({ action: 'profile', profileId: 'family.summary', providerId: 'nvidia', model: NEMO, promptVersion: 'v1', enabled: true, fallback });
+
+  it('the refusal names the service it is about (the Primary), not "that service"; once it is cleared the backups save', async () => {
+    // A Primary on a service not cleared for children, saved while testing mode let every service through.
+    expect(await post({ action: 'testing_mode', on: true })).toEqual({ status: 200, body: { ok: true } });
+    expect(await post(route([]))).toEqual({ status: 200, body: { ok: true } });
+    expect(await post({ action: 'testing_mode', on: false })).toEqual({ status: 200, body: { ok: true } });
+    // Testing mode off: adding a cleared backup is refused for the uncleared Primary, and the answer says which.
+    expect(await post({ action: 'clearance', providerId: 'workers-ai', cleared: true, termsUrl: 'https://example.org/workers-terms' })).toEqual({ status: 200, body: { ok: true } });
+    const refused = await post(route([{ provider: 'workers-ai', model: SCOUT }]));
+    expect(refused).toEqual({ status: 400, body: { error: 'not saved', code: 'not_cleared_for_minors', provider: 'nvidia' } });
+    expect(await q(`select fallback from control.ai_profiles where profile_id = 'family.summary'`)).toEqual([{ fallback: [] }]);
+    // A backup that is itself not cleared is the one named.
+    expect(await post({ action: 'clearance', providerId: 'nvidia', cleared: true, termsUrl: 'https://example.org/nim-terms' })).toEqual({ status: 200, body: { ok: true } });
+    expect((await post(route([{ provider: 'gemini', model: 'made-up-flash' }]))).body).toMatchObject({ code: 'not_cleared_for_minors', provider: 'gemini' });
+    // Every service cleared: Backup 1 and Backup 2 save, and the page reads them back.
+    const both = [{ provider: 'workers-ai', model: SCOUT }, { provider: 'nvidia', model: 'meta/made-up-maverick' }];
+    expect(await post(route(both))).toEqual({ status: 200, body: { ok: true } });
+    const page = await (await GET(req(undefined, founder))).json();
+    expect(page.profiles.find((p: { profileId: string }) => p.profileId === 'family.summary').fallback).toEqual(both);
+    // The words, in English and Hindi, name the service.
+    const { en } = await import('@/lib/i18n/messages/en');
+    const { hi } = await import('@/lib/i18n/messages/hi');
+    expect(en['control.ai.err.not_cleared_for_minors_named']).toContain('{provider}');
+    expect(hi['control.ai.err.not_cleared_for_minors_named']).toContain('{provider}');
+    expect(en['control.ai.slot.needsModel']).toBeTruthy();
+    expect(hi['control.ai.slot.needsModel']).toBeTruthy();
+    await q(`update control.ai_profiles set provider_id = null, model = null, fallback = '[]' where profile_id = 'family.summary'`);
+  });
+});

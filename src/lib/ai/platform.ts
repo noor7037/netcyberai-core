@@ -68,14 +68,17 @@ export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_spe
 // profile that reads photos. Refused when saved in Control (control.ts) and at run time (checkProfile), never a no-op.
 // `besideCall` (W9-B): a family profile that runs only beside another call which already took the family's daily place
 // (the teaching plan before the answer); it takes none of its own.
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; needs?: readonly AdapterCapability[]; besideCall?: boolean };
+// `firstTextMs` (W10, latency): a person is waiting, so a streaming provider that has sent no answer text this long
+// after the call went out (thinking does not count) is given up as a timeout and the next provider is tried. It needs
+// `callMs`, which then holds the whole chain.
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; firstTextMs?: number; needs?: readonly AdapterCapability[]; besideCall?: boolean };
 
 // Code-defined: which profiles exist, whether a child's words may pass, and which capability each one uses. Control
 // sets each one's provider, model, prompt version and on switch; never this list. M2 (C275): the homework helper reads a
 // photo, voice input hears a child (speech_to_text, M2-7, C281: prepareTranscription below).
 export const PROFILES: readonly AiProfile[] = [
-  { id: 'family.resolver', carriesChildWords: true, capability: 'text', audience: 'family' },
-  { id: 'family.homework', carriesChildWords: true, capability: 'text', audience: 'family', needs: ['vision'] },
+  { id: 'family.resolver', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 40_000, firstTextMs: 12_000 },
+  { id: 'family.homework', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 40_000, firstTextMs: 12_000, needs: ['vision'] },
   { id: 'family.voice_input', carriesChildWords: true, capability: 'speech_to_text', audience: 'family' },
   // W2 (C314): the safety check (Llama Guard) on a child's typed words and on every live answer before it is shown.
   // It takes no daily-cap place of its own: it runs only beside a call that already took one.
@@ -83,7 +86,7 @@ export const PROFILES: readonly AiProfile[] = [
   // W9-B (docs/39 §3): the teaching plan, one short call before the answer that says how to teach a child's question
   // (its type, the depth, the blocks and visuals). It reads the child's question, so only a provider cleared for minors
   // may serve it; it takes no daily place of its own, as it runs only beside the answer's call.
-  { id: 'family.plan', carriesChildWords: true, capability: 'text', audience: 'family', besideCall: true },
+  { id: 'family.plan', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, firstTextMs: 6_000, besideCall: true },
   // C230-AB: a parent's photos of a book's contents pages, read for the chapter and topic names of their child's own
   // syllabus (parent mode). A printed book's titles, never a child's words; the parent checks every line before use.
   { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family', needs: ['vision'] },
@@ -93,7 +96,7 @@ export const PROFILES: readonly AiProfile[] = [
   { id: 'family.english_conversation', carriesChildWords: true, capability: 'text', audience: 'family' },
   // W9-A (C406): the running summary of a tutor chat, rewritten every fifth child turn from the chat's own questions
   // and the tutor's explanations, so a follow-up is answered with the chat in view. Carries the child's words.
-  { id: 'family.summary', carriesChildWords: true, capability: 'text', audience: 'family' },
+  { id: 'family.summary', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 15_000, firstTextMs: 6_000 },
   // C386 (Wave 4 slice 2): the server voice. It reads the chapter reader's narration (NetCyberAI's own text) and the live
   // English partner's checked replies, which are made from a child's words, so it is a children's-words profile: only a
   // provider cleared for minors in Control may speak, as for every such profile. It speaks only text the server holds
@@ -383,6 +386,9 @@ async function takeVoiceCap(db: Sql, ctx: AiContext, profile: AiProfile, first: 
 
 // A provider is not tried on a profile's own time (callMs) with less than this left.
 const CHAIN_MIN_MS = 15_000;
+// W10: with a first-text deadline (firstTextMs), a provider reached by the one before it timing out is still tried with
+// this much left (a person is waiting; even a short try beats the default answer).
+const FIRST_TEXT_FLOOR_MS = 3_000;
 
 // 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
 export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
@@ -434,29 +440,57 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     // left less CHAIN_MIN_MS for each provider still behind it, so a Primary that times out leaves its backups their
     // turn inside the deadline; none is tried once less than CHAIN_MIN_MS is left.
     const deadline = profile.callMs ? Date.now() + profile.callMs : null;
+    // W10: a profile with a first-text deadline holds for each provider behind what the profile has beyond one
+    // first-text wait (at most CHAIN_MIN_MS), so a Primary that says nothing in time leaves its backup that much.
+    const firstTextMs = profile.callMs && profile.firstTextMs ? profile.firstTextMs : null;
+    const reserveMs = firstTextMs === null ? CHAIN_MIN_MS : Math.min(CHAIN_MIN_MS, Math.max(FIRST_TEXT_FLOOR_MS, (profile.callMs ?? 0) - firstTextMs));
+    const floorMs = firstTextMs === null ? CHAIN_MIN_MS : FIRST_TEXT_FLOOR_MS;
     // 6. Down the chain until one answers, or a failure that may not go on to the next.
     for (const [i, r] of ready.entries()) {
       const { link, adapter, apiKey, baseUrl } = r;
       const left = deadline === null ? null : deadline - Date.now();
-      if (left !== null && left < CHAIN_MIN_MS) {
+      if (left !== null && left < floorMs) {
         attempts.push(...ready.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
         break;
       }
-      const limitMs = left === null ? null : Math.max(CHAIN_MIN_MS, left - (ready.length - 1 - i) * CHAIN_MIN_MS);
+      const limitMs = left === null ? null : Math.min(left, Math.max(reserveMs, left - (ready.length - 1 - i) * reserveMs));
+      // W10: a streaming provider must send answer text within its first-text time (never more than its share above);
+      // once text flows no backup may take over, so it may then use what is left of the route's time. A provider that
+      // answers in one piece (Workers AI) has no first text before its whole answer and keeps its share as its limit.
+      const watchMs = firstTextMs !== null && left !== null && limitMs !== null && adapter.capabilities.stream ? Math.min(firstTextMs, limitMs) : null;
+      const sendMs = watchMs !== null ? left : limitMs;
       let streamed = false;
-      let result: AdapterResult;
+      let gaveUp = false;
+      let result: AdapterResult | { ok: false; failure: 'timeout' };
       const began = Date.now();
+      const abort = new AbortController();
+      let timer: ReturnType<typeof setTimeout> | undefined;
       try {
-        const timeout = limitMs === null ? {} : { timeoutMs: limitMs };
-        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...timeout, ...(baseUrl ? { baseUrl } : {}) }, (piece) => {
-          streamed = true;
+        const timeout = sendMs === null ? {} : { timeoutMs: sendMs };
+        const call = adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...timeout, ...(baseUrl ? { baseUrl } : {}), ...(watchMs !== null ? { signal: abort.signal } : {}) }, (piece) => {
+          // Words from an attempt already given up never reach the caller (an adapter that ignores the abort).
+          if (gaveUp) return;
+          // W10: only words count as text shown (and as the first text); blank pieces a model sends first do not.
+          if (watchMs === null || piece.trim()) streamed = true;
           onDelta(piece);
         });
+        // No answer text by the first-text time (thinking is not text): the attempt is aborted and counted a timeout.
+        const firstText = watchMs === null ? null : new Promise<{ ok: false; failure: 'timeout' }>((resolve) => {
+          timer = setTimeout(() => {
+            if (streamed) return;
+            gaveUp = true;
+            abort.abort();
+            resolve({ ok: false, failure: 'timeout' });
+          }, watchMs);
+        });
+        result = firstText ? await Promise.race([call, firstText]) : await call;
       } catch {
         // An adapter never throws by design; if one did (or the caller's onDelta did), the call is still counted.
         result = { ok: false, failure: 'network' };
+      } finally {
+        clearTimeout(timer);
       }
-      const tried = attemptOf(r, result, { streamed, elapsedMs: Date.now() - began, limitMs: limitMs ?? CALL_TIMEOUT_MS });
+      const tried = attemptOf(r, result, { streamed, elapsedMs: Date.now() - began, limitMs: sendMs ?? CALL_TIMEOUT_MS });
       attempts.push(tried.attempt);
       if (result.ok) {
         usage.push({ link, counts: { requests: 1, tokensIn: result.tokensIn, tokensOut: result.tokensOut } });

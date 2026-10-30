@@ -26,6 +26,8 @@ export type ChatCompletionsOptions = {
   // How the request leaves, for an address the founder set (G1, C369: ./endpoint-guard.ts checks it again and refuses a
   // redirect); null when the address was refused. Elsewhere the platform's fetch to the vendor's fixed address.
   send?: (init: { headers: Record<string, string>; body: string; signal: AbortSignal }) => Promise<Response | null>;
+  // Vendor fields added to the body as they are (W10: NVIDIA's chat_template_kwargs, thinking off).
+  extraBody?: Record<string, unknown>;
 };
 
 export async function streamChatCompletions(url: string, token: string, request: AdapterRequest, onDelta: (text: string) => void, opts: ChatCompletionsOptions): Promise<AdapterResult> {
@@ -48,13 +50,14 @@ export async function streamChatCompletions(url: string, token: string, request:
     ...(opts.temperature === undefined ? {} : { temperature: opts.temperature }),
     messages: inUser && firstUser >= 0 ? messages : [{ role: 'system', content: system }, ...messages],
     ...(json && opts.jsonMode ? { response_format: { type: 'json_object' } } : {}),
+    ...(opts.extraBody ?? {}),
   };
   let res: Response;
   try {
     const init = {
       headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
       body: JSON.stringify(body),
-      signal: AbortSignal.timeout(callTimeoutMs(request, stream ? CALL_TIMEOUT_MS : WHOLE_ANSWER_TIMEOUT_MS)),
+      signal: withAbort(request.signal, AbortSignal.timeout(callTimeoutMs(request, stream ? CALL_TIMEOUT_MS : WHOLE_ANSWER_TIMEOUT_MS))),
     };
     const sent = opts.send ? await opts.send(init) : await fetch(url, { method: 'POST', ...init });
     if (!sent) return { ok: false, failure: 'endpoint' };
@@ -76,7 +79,7 @@ export async function streamChatCompletions(url: string, token: string, request:
         finished = true;
         break;
       }
-      let chunk: { choices?: { delta?: { content?: string | null; refusal?: string | null }; finish_reason?: string | null }[]; usage?: { prompt_tokens?: number; completion_tokens?: number } | null; error?: unknown };
+      let chunk: { choices?: { delta?: { content?: string | null; refusal?: string | null; reasoning_content?: string | null; reasoning?: string | null }; finish_reason?: string | null }[]; usage?: { prompt_tokens?: number; completion_tokens?: number } | null; error?: unknown };
       try {
         chunk = JSON.parse(data);
       } catch {
@@ -90,6 +93,9 @@ export async function streamChatCompletions(url: string, token: string, request:
         text += piece;
         onDelta(piece);
       }
+      // W10: a reasoning model's thinking (NVIDIA's reasoning_content, some routes' reasoning) shows the model is alive
+      // but is never shown, kept or counted as the answer's first text: only delta.content is the answer, so the
+      // platform's first-text deadline (platform.ts) still runs while a model only thinks.
       if (choice?.finish_reason) finish = choice.finish_reason;
       if (choice?.finish_reason === 'content_filter') refused = true;
       if (chunk.usage) {
@@ -136,4 +142,9 @@ async function wholeAnswer(res: Response, request: AdapterRequest, onDelta: (tex
   const tokensIn = body.usage?.prompt_tokens ?? Math.ceil(sent / 4);
   const tokensOut = body.usage?.completion_tokens ?? Math.ceil(text.length / 4);
   return { ok: true, text, tokensIn, tokensOut, ...(finish ? { finish } : {}) };
+}
+
+// The adapter's own time limit, and the platform's abort for the attempt when it sent one (W10's first-text deadline).
+function withAbort(platform: AbortSignal | undefined, limit: AbortSignal): AbortSignal {
+  return platform ? AbortSignal.any([platform, limit]) : limit;
 }

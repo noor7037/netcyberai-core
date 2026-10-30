@@ -121,9 +121,12 @@ export function AiControls({ initial }: { initial: Data }) {
       setBusy(false);
       return setNote({
         ok: false,
-        text: ERRORS.includes(got?.code)
-          ? t(`control.ai.err.${got.code}` as MessageKey)
-          : t("control.ai.err.other"),
+        text:
+          got?.code === "not_cleared_for_minors" && typeof got?.provider === "string"
+            ? t("control.ai.err.not_cleared_for_minors_named", { provider: got.provider })
+            : ERRORS.includes(got?.code)
+              ? t(`control.ai.err.${got.code}` as MessageKey)
+              : t("control.ai.err.other"),
       });
     }
     await read();

@@ -46,6 +46,29 @@ const LIVE_PROFILES = [
   ['family.moderation', '@cf/meta/llama-guard-3-8b'],
 ];
 
+// W10 (C411): a Science chat of two turns (opened from Mathematics; its first answer moved it), the scripted follow-up
+// answer kept in it, and the class the parent-area picture changes, put back.
+const FOLLOW_CHAT_ID = 'f0000000-0000-4000-8000-0000000fa301';
+const FOLLOW_UP_CHAT = `
+  insert into family.tutor_conversations (conversation_id, account_id, child_id, subject, title, turn_count, status, updated_at, last_at)
+  values ('${FOLLOW_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'science', 'What is photosynthesis?', 1, 'open', now(), now())
+  on conflict do nothing;
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, created_at)
+  values ('${FOLLOW_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'child', 'What is photosynthesis?', now() - interval '2 minutes');
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, created_at)
+  values ('${FOLLOW_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'tutor',
+    '[{"type":"explanation","title":"How leaves make food","idea":"Green leaves make food from sunlight, water and air.","paragraphs":["Leaves take in carbon dioxide from the air and water from the roots, and use sunlight to make sugar."],"example":"","steps":[],"terms":[]}]'::jsonb, now() - interval '1 minute');
+`;
+const FOLLOW_UP_CHAT_GONE = `delete from family.tutor_messages where conversation_id = '${FOLLOW_CHAT_ID}'; delete from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}';`;
+const FOLLOW_UP_ANSWER = [
+  { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
+  { t: 'block', block: { type: 'explanation', title: 'Photosynthesis in a money plant', idea: 'The leaves we talked about make food the same way in a plant at home.', paragraphs: ['A money plant near a sunny window grows towards the light: its leaves use the sunlight, the water you pour in and the air around it to make sugar, as explained above.'], example: 'Keep one plant in the sun and one in a dark cupboard for a week: the one in the dark turns pale.', steps: [], terms: [] } },
+  { t: 'done', complete: true, missing: [], cut: false, chat: { chatId: FOLLOW_CHAT_ID, subject: 'science' } },
+]
+  .map((e) => `${JSON.stringify(e)}\n`)
+  .join('');
+const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
+
 // `ai`: for this picture, a made-up Workers AI key sealed with this run's own key, the provider cleared for children
 // and the live tutor's three workloads on it, so the screen reads "set up" without any call. All put back after.
 async function liveAiOn(db, aiKey) {
@@ -147,6 +170,11 @@ export const FAMILY_SCREENS = [
   // "Start a new chat", and the composer locked.
   ['full', 'family-tutor-chats', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chats]' }],
   ['full', 'family-tutor-chat-full', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chats]', steps: [{ choose: { field: '[data-chat-select]', value: 'f0000000-0000-4000-8000-0000000fa205', or: '[data-chat="full"]' }, wait: '[data-chat-full]' }] }],
+  // W10 (C411): a follow-up typed with the Mathematics tab selected, in a chat whose first answer was about
+  // photosynthesis: the answer is kept in that chat, which the window now lists under Science, with no notice under it.
+  // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
+  ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"]' }] }],
+  ['full', 'family-parent-child-saved', '/family/parent#children', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
   ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
@@ -363,6 +391,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.storage) await context.addInitScript((s) => Object.entries(s).forEach(([k, v]) => window.localStorage.setItem(k, v)), opts.storage);
           // The checked pages' pictures are drawn in the browser (marking-seed.mjs): the harness has no file store.
           if (opts.pictures) await routeScriptPictures(context);
+          // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
+          // NDJSON stream is answered here; what follows it (the chats read again) is the app's own.
+          if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: opts.answer }));
           const page = await context.newPage();
           const errors = [];
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
@@ -383,6 +414,9 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.tap) await page.locator(opts.tap).first().click().catch(() => errors.push(`${opts.tap} could not be tapped`));
           // `steps`: taps in turn, each waiting for what it brings (AQ-4's test screens).
           for (const step of opts.steps ?? []) {
+            // `fill` and `select` (W10, C411): words typed into a field, a value picked in a drop-down.
+            if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
+            if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
             if (step.choose) {

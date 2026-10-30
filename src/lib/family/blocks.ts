@@ -106,6 +106,14 @@ export const CHAPTER_ONLY_TYPES: readonly BlockType[] = ['table', 'slider', 'mod
 // Every response must teach, check and give practice (08 §7); the others come when they fit.
 export const REQUIRED_BLOCKS: readonly BlockType[] = ['explanation', 'check', 'practice'];
 
+// W10 (C411): the blocks an answer must carry to be complete under its plan: the explanation always, the check and the
+// practice only when the plan asked for them (a Class 1 or a short answer has no practice by design). No plan (an older
+// prompt): all three.
+export function coreBlocks(planned?: readonly string[] | null): BlockType[] {
+  if (!planned) return [...REQUIRED_BLOCKS];
+  return REQUIRED_BLOCKS.filter((t) => t === 'explanation' || planned.includes(t));
+}
+
 // Official pages a source link may point to (allowlist; anything else is dropped, never shown).
 export const SOURCE_HOSTS: readonly string[] = ['ncert.nic.in', 'cbseacademic.nic.in', 'www.cbse.gov.in', 'cbse.gov.in', 'diksha.gov.in', 'epathshala.nic.in', 'www.education.gov.in'];
 
@@ -842,13 +850,13 @@ function parsed(line: string, stored: boolean): Block | null {
   }
 }
 
-// A whole response's blocks: the first of each type that passed, in a fixed teaching order. null when a required
-// block is missing (the response is then not shown as complete and never cached).
+// A whole response's blocks: the first of each type that passed, in a fixed teaching order. null when a core block
+// (`core`: REQUIRED_BLOCKS, or the plan's coreBlocks) is missing (the response is then not complete and never cached).
 // At most one interactive block: the first that passed.
 // W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
 // videos last.
 const ORDER: BlockType[] = ['explanation', 'figure', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
-export function completeResponse(blocks: Block[]): Block[] | null {
+export function completeResponse(blocks: Block[], core: readonly BlockType[] = REQUIRED_BLOCKS): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;
   for (const b of blocks) {
@@ -856,7 +864,7 @@ export function completeResponse(blocks: Block[]): Block[] | null {
     if (isInteractive(b.type)) interactive = true;
     first.set(b.type, b);
   }
-  if (!REQUIRED_BLOCKS.every((t) => first.has(t))) return null;
+  if (!core.every((t) => first.has(t))) return null;
   return ORDER.filter((t) => first.has(t)).map((t) => first.get(t)!);
 }
 

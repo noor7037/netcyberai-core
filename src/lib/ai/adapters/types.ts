@@ -23,6 +23,11 @@ export type AdapterRequest = {
   // The address the founder set in Control for a provider whose address is his choice (the OpenAI-compatible adapter,
   // G1, C369). Checked again by the adapter at every call (./endpoint-guard.ts); ignored by every other adapter.
   baseUrl?: string;
+  // W10 (latency): whether a model that thinks before it answers may do so. Off unless a caller asks for 'on'; only the
+  // NVIDIA adapter reads it (its reasoning models sent minutes of thinking before the first word of a child's answer).
+  reasoning?: 'off' | 'on';
+  // W10: the platform's own abort for this attempt (a first-text deadline passed), beside the adapter's time limit.
+  signal?: AbortSignal;
 };
 
 // 'endpoint': the founder's address was refused at call time (not https, a private or reserved address, a redirect),

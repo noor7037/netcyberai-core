@@ -100,7 +100,7 @@ export const lessonColors = {
   muted: '#4B5563', // secondary text (muted slate)
   line: '#E7E1D6', // hairlines on paper
   saffron: '#E8702A', // primary actions (ink text on it, never white)
-  saffronDeep: '#B4521A', // saffron as text or an outline on paper (4.76:1)
+  saffronDeep: '#C2410C', // saffron as text or an outline on paper (the founder's review, 30 Oct)
   teal: '#0F766E', // progress, a correct answer, the subject chip (white text 5.47:1)
   plum: '#6D28D9', // the tutor avatar, "Made by AI", AI marks (white text 7.10:1)
 } as const;

@@ -136,7 +136,7 @@ describe('Understand, end to end', () => {
     const check = blocks.find((b) => b.type === 'check');
     expect(Object.keys(check.items[0]).sort()).toEqual(['id', 'options', 'question', 'token']);
     expect(JSON.stringify(blocks)).not.toContain('Think of pairs');
-    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false });
     const kept = (await db.pg.query(`select status, topic_key, language, style, prompt_version from content.responses`)).rows;
     expect(kept).toEqual([{ status: 'ai_made', topic_key: TOPIC, language: 'en', style: 'hinglish', prompt_version: 'v1' }]);
     // The request names no child, and asks in the child's explanation style.
@@ -164,7 +164,7 @@ describe('Understand, end to end', () => {
       const line = (await syllabusLine(c, child, { kind: 'topic', key: TOPIC }))!;
       const ev = (await libraryResponse(c, { accountId: ACCOUNT, child }, line))!;
       expect(ev[0]).toMatchObject({ t: 'meta', cached: true });
-      expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+      expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false });
       expect(JSON.stringify(ev)).not.toContain('Think of pairs');
       // A subject not yet claimed (drawing a page never claims one), another subject, or another style: the phone asks.
       expect(await libraryResponse(c, { accountId: ACCOUNT, child: { ...child, freeSubject: null } }, line)).toBeNull();
@@ -287,7 +287,7 @@ describe('a typed question’s subject, decided on the server', () => {
     ai.lines = answer('mathematics');
     const ev = await ask('Why is 6 + 6 twelve?', jar, 'science');
     expect(ev[0]).toMatchObject({ t: 'meta', subject: 'mathematics', topicKey: null });
-    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false });
     const call = ai.calls.at(-1)!;
     expect(call.system).toContain('{"type":"subject"');
     expect(call.system).toContain('may be answered only in: mathematics.');
@@ -368,7 +368,7 @@ describe('the tutor window’s questions (C375)', () => {
     const v = chapterView(showcaseChapter('nc.showcase.equal-fractions')!, 'en');
     ai.lines = [named('mathematics'), ...GOOD.map((g) => JSON.stringify(g))];
     const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', childId: SIBLING, tutor: { subject: 'mathematics', chapterKey: v.key, blockId: v.ids[0], childId: SIBLING } }, jar)));
-    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId: expect.any(String), subject: 'mathematics' } });
     expect(ai.calls.at(-1)!.user).toContain(`asked while reading: ${v.title}`);
     const kept = await turns(CHILD);
     expect(kept).toEqual([

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { BANDS, PLAN_BLOCKS, QUESTION_TYPES, bandOf, blocksFor, checkPlan, defaultPlan, interactiveAllowed, isInteractiveBlock, type Plan } from '@/lib/ai/teaching/plan-shape';
-import { planAnswer } from '@/lib/ai/teaching/plan';
+import { PLAN_MAX_TOKENS, planAnswer } from '@/lib/ai/teaching/plan';
 import { planPrompt } from '@/lib/ai/prompts/family.plan';
 import { PROFILES } from '@/lib/ai/platform';
 import type { PreparedText } from '@/lib/ai/platform';
@@ -108,5 +108,29 @@ describe('planAnswer', () => {
     const a = { board: 'CBSE', classLevel: 7, band: 'c6_8' as const, subject: null, chapter: null, question: 'Why is the sky blue?', passageTitles: [] };
     expect(p.system(a)).toContain('band is c6_8');
     expect(p.user(a)).toContain('"Why is the sky blue?"');
+  });
+});
+
+// W10 (latency): the plan came back cut at 297 of 300 tokens on a verbose model; the answer now uses one-letter keys
+// (documented in the prompt) under a 600-token limit, and the checker reads both shapes.
+describe('the compact plan (W10)', () => {
+  const a = { board: 'CBSE', classLevel: 7, band: 'c6_8' as const, subject: null, chapter: null, question: 'Why is the sky blue?', passageTitles: [] };
+
+  it('the prompt asks for the short keys and says what each means', () => {
+    const system = planPrompt(null).system(a);
+    expect(system).toContain('{"t":"<one of');
+    expect(system).toContain('"v":[{"k":"<one of');
+    expect(system).toMatch(/t = the question type, b = the band, d = the depth, k = the blocks, v = the visuals \(k = its kind, a = what it shows\), l = the language/);
+    expect(PLAN_MAX_TOKENS).toBe(600);
+  });
+
+  it('a compact answer reads the same as the long one', () => {
+    const compact = JSON.stringify({ t: 'concept', b: 'c6_8', d: 'medium', k: ['explanation', 'figure', 'check', 'practice'], v: [{ k: 'figure', a: 'a leaf cell' }], l: 'en' });
+    expect(checkPlan(compact, ctx(7))).toEqual(checkPlan(good(), ctx(7)));
+    expect(checkPlan(compact, ctx(7)).fromModel).toBe(true);
+    // A compact answer that fails a check still gives the default plan.
+    expect(checkPlan(JSON.stringify({ t: 'riddle', b: 'c6_8', d: 'medium', k: ['explanation'], l: 'en' }), ctx(7))).toEqual({ plan: defaultPlan(ctx(7)), fromModel: false });
+    // A long key the model also sent wins over its short one.
+    expect(checkPlan(JSON.stringify({ questionType: 'process', t: 'riddle', b: 'c6_8', d: 'medium', k: ['explanation', 'check'], l: 'en' }), ctx(7)).plan.questionType).toBe('process');
   });
 });
