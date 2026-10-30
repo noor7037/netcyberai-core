@@ -1,6 +1,6 @@
 // Chapter retrieval (W9-B, docs/39 §2 "Retrieval"): the passages of the library's published chapters that match a
 // child's question, for the answer to quote. Postgres full text over content.chapter_contents (the generated columns
-// search_en and search_hi of migration 20261030150100), no new service. Read in the caller's family transaction, so the
+// search_en and search_hi of migration 20261030115621), no new service. Read in the caller's family transaction, so the
 // table's own policy decides what a family may read (published, for everyone or from this account's own upload); a
 // chapter made from a parent's upload is used only for the child it was made for.
 //
