@@ -65,3 +65,15 @@ never up.
 - Every photo shown carries a credit and a licence; none is generated.
 - Control → Content → Coverage lists every syllabus unit with: chapters published, reviewed, missing; CSV export.
 - The Lab runs an eval set of at least one case per class × subject × question type in the configured syllabus.
+
+## 5. Wave 10 additions (founder, 30 Oct: content-matched, animated, interactive visuals; chat like the chat products)
+
+**The visual must match the content, never plain text alone.** The planner (`visuals`) chooses: a `chart` for numbers and comparisons; `timeline` for history and ordered processes; `mind_map` (animated reveal) for connected ideas; `scene` for anything with parts (the body, the mind, a motor, a circuit, a cell, a flower, the water cycle), tap-able part by part; for Mathematics at least one of `number_line`, `graph`, `geometry`, `fraction_model` or `steps` (animated working) in every answer. Cards and progress rings stay for status and key points.
+
+**New blocks (final shapes; drawn by our code, checked by `blocks.ts`).**
+- `{"type":"scene","title":"≤60","layout":"row|ring|stack|free","parts":[{"id":"a1","label":"≤30","text":"≤220","shape":"circle|rect|pill|hex|coil|magnet|wire|arrow|organ","colour":1-8}],"links":[{"from":"a1","to":"a2","kind":"flow|line|arrow","label":"≤20"}],"animate":"flow|pulse|rotate|none"}`: 2–12 parts, each in its own palette colour; a tap opens the part's text; `flow` animates dashes along links (current, blood, water), `pulse` breathes the parts (heart, lungs), `rotate` turns `coil` parts (a motor's rotor). Motion off under `prefers-reduced-motion`; everything still readable without it.
+- `{"type":"chart","title":"≤60","kind":"bar|line|pie","unit":"≤12","labels":["≤12"],"series":[{"label":"≤20","values":[numbers]}]}`: 2–12 points, 1–3 series; our code scales axes and computes percentages; the caption says the figures are as given in the answer.
+- `steps` gains `"animate": true`: steps reveal one by one (300 ms apart), tap to replay.
+- `mind_map` gains the same reveal, branch by branch.
+
+**Chat, final rule (replaces the 15-chat list on the screen).** Each subject shows one continuous feed: every question and every answer, in order, newest at the bottom, like the chat products. The feed keeps the last **30 child turns per subject**; the 31st deletes the oldest automatically (the chats of §3 stay as storage; the screen never lists them). The latest conversation is always visible on opening the subject. A follow-up answer opens with one sentence that refers back ("Earlier we saw that …"). A subject change decided by the server is announced in the feed ("Moved to Science") and the subject tab follows it.
