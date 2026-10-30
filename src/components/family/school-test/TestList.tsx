@@ -59,7 +59,7 @@ export function TestList({ w, lang, tests }: { w: Words; lang: string; tests: Fa
               <Link
                 href={`/family/study/tests/${t.testId}`}
                 data-school-test-open={t.testId}
-                className="fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-5 text-base font-extrabold text-white"
+                className="fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-ink px-5 text-base font-extrabold text-white"
               >
                 {t.state === 'in_progress' ? w['fam.test.continue'] : w['fam.test.start']}
                 <FamIcon name="next" className="h-5 w-5" />

@@ -332,6 +332,19 @@ values ('f0000000-0000-4000-8000-0000000fa207', 'f0000000-0000-4000-8000-0000000
         '[{"type":"explanation","title":"Adding unlike fractions","idea":"Make the parts the same size first, then add the parts.","example":"1/2 + 1/3 = 3/6 + 2/6 = 5/6.","steps":["Find a common denominator.","Rewrite both fractions with it.","Add the numerators."],"terms":[]}]'::jsonb,
         now() - interval '2 hours' + interval '1 second');
 -- w9a end
+-- w10-4 begin
+-- The Study chat as one feed per subject (W10-4, C413): Kabir's newest Mathematics chat gets a follow-up, so his
+-- Mathematics feed shows three questions and their answers across his two chats, oldest first. Illustrative only.
+insert into family.tutor_messages (message_id, conversation_id, account_id, child_id, role, body, created_at)
+values ('f0000000-0000-4000-8000-0000000fa208', 'f0000000-0000-4000-8000-0000000fa201', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'child',
+        'And what about 0/5?', now() - interval '30 minutes');
+insert into family.tutor_messages (message_id, conversation_id, account_id, child_id, role, blocks, created_at)
+values ('f0000000-0000-4000-8000-0000000fa209', 'f0000000-0000-4000-8000-0000000fa201', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'tutor',
+        '[{"type":"explanation","title":"Zero on top is fine","idea":"Earlier we saw that q can never be zero; p can be zero, so 0/5 is simply 0.","paragraphs":["Sharing nothing into 5 equal parts gives each part nothing, so 0/5 = 0. Only a zero below the line has no answer."],"example":"0 rotis shared by 5 friends: each friend gets 0.","steps":["Check q: 5 is not zero, so 0/5 is a rational number.","Divide: 0 ÷ 5 = 0."],"terms":[]}]'::jsonb,
+        now() - interval '30 minutes' + interval '1 second');
+update family.tutor_conversations set turn_count = 2, last_at = now() - interval '30 minutes'
+ where conversation_id = 'f0000000-0000-4000-8000-0000000fa201';
+-- w10-4 end
 -- e1 begin
 -- Live English practice (E1, C382): the English family's parent also said yes to voice practice, so the course shows
 -- the live practice entry and the live screen opens. Illustrative only.

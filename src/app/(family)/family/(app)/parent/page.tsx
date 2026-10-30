@@ -241,7 +241,7 @@ export default async function FamilyParentPage() {
             {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
             {page.children.length > 0 && (
               <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">
-                <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+                <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="3" y="5" width="18" height="15" rx="2" />
                     <path d="M3 10h18M10 14h4" />
@@ -251,7 +251,7 @@ export default async function FamilyParentPage() {
                   <span className="text-base font-bold text-slate">{t(lang, 'fam.vault.open')}</span>
                   <span className="text-sm text-slate/80">{t(lang, 'fam.vault.openLead')}</span>
                 </span>
-                <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
+                <FamIcon name="next" className="h-5 w-5 shrink-0 text-ink" />
               </Link>
             )}
             </>

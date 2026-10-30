@@ -12,7 +12,7 @@ import { errorWords, familyApi } from './client';
 // weekly goal, the reward jar (set, see, mark given, remove), the weekly summary in three lines and tonight's talk
 // question. Every change is the parent's own tap. NetCyberAI never holds or moves money; the parent gives the reward.
 // F2 on D1 (C230-Q): inside the parent area's D1 card; every tappable thing presses (fam-press).
-const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold text-royal underline-offset-4 hover:underline';
+const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold text-ink underline-offset-4 hover:underline';
 
 function ChildHabit({ w, name, h }: { w: Words; name: string; h: ParentHabit }) {
   const router = useRouter();
@@ -57,7 +57,7 @@ function ChildHabit({ w, name, h }: { w: Words; name: string; h: ParentHabit }) 
               aria-pressed={h.goal === n}
               aria-label={fill(w['fam.habit.parent.goalOption'], { n })}
               onClick={() => void call('PATCH', { goal: n })}
-              className={`fam-press min-h-[44px] min-w-[44px] rounded-full px-3 text-base font-bold ${h.goal === n ? 'bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-md' : 'bg-white text-slate ring-1 ring-slate/20 hover:bg-slate/5'}`}
+              className={`fam-press min-h-[44px] min-w-[44px] rounded-full px-3 text-base font-bold ${h.goal === n ? 'bg-ink text-white shadow-md' : 'bg-white text-slate ring-1 ring-slate/20 hover:bg-slate/5'}`}
             >
               {n}
             </button>

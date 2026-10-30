@@ -10,8 +10,8 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.tutor.err.photo_consent',
   'fam.tutor.err.homework_off', 'fam.tutor.err.storage_unavailable', 'fam.tutor.empty', 'fam.tutor.loading', 'fam.tutor.you', 'fam.tutor.tutorSaid',
   'fam.tutor.fromReader', 'fam.tutor.doubt', 'fam.tutor.doubtAbout', 'fam.tutor.close', 'fam.err.network',
-  // W9-A (C406): the chats of a subject, named with the subject's own word.
-  'fam.chat.list', 'fam.chat.new', 'fam.chat.pick', 'fam.chat.questions', 'fam.chat.full', 'fam.chat.startNew', 'fam.chat.fullBadge',
+  // W9-A (C406), W10-4 (C413): the subject's feed, named with the subject's own word.
+  'fam.chat.feed', 'fam.chat.kept', 'fam.chat.moved', 'fam.chat.full',
   ...SUBJECT_IDS.map((s) => `fam.subject.${s}` as MessageKey),
 ];
 

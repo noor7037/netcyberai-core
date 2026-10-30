@@ -16,9 +16,9 @@ import { STUDY_STATUS_KEY } from '@/lib/family/study-status';
 
 type PanelChild = { childId: string; firstName: string; subjects: string[] };
 const MAX_BYTES = 3 * 1024 * 1024;
-const CTA = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-4 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60';
+const CTA = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-ink px-4 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60';
 const QUIET = 'fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60';
-const FIELD = 'min-h-[44px] w-full min-w-0 rounded-xl border border-slate/20 bg-white px-3 text-base text-slate focus:border-royal focus:outline-none focus:ring-2 focus:ring-royal/30';
+const FIELD = 'min-h-[44px] w-full min-w-0 rounded-xl border border-slate/20 bg-white px-3 text-base text-slate focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30';
 
 export function ChapterRequestPanel({
   w,
@@ -121,7 +121,7 @@ export function ChapterRequestPanel({
               aria-pressed={c.childId === child.childId}
               disabled={busy}
               onClick={() => choose(c.childId)}
-              className={`fam-press min-h-[44px] rounded-full px-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 ${c.childId === child.childId ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
+              className={`fam-press min-h-[44px] rounded-full px-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 ${c.childId === child.childId ? 'bg-ink text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
             >
               {c.firstName}
             </button>
@@ -203,7 +203,7 @@ export function ChapterRequestPanel({
               aria-pressed={mode === m}
               disabled={busy}
               onClick={() => setMode(m)}
-              className={`fam-press min-h-[44px] rounded-full px-4 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-60 ${mode === m ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
+              className={`fam-press min-h-[44px] rounded-full px-4 text-sm font-bold disabled:cursor-not-allowed disabled:opacity-60 ${mode === m ? 'bg-ink text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
             >
               {w[`fam.request.source.${m ?? 'all'}`]}
             </button>

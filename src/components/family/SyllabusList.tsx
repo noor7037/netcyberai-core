@@ -52,7 +52,7 @@ export function SyllabusList({ title, chapters, tone, id = 'fam-syllabus', start
             <>
               <span
                 aria-hidden="true"
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black ${mark === 'dot' ? 'bg-off-white text-slate' : `bg-royal-deep text-white shadow-sm ${theme.tile}`}`}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black ${mark === 'dot' ? 'bg-off-white text-slate' : `bg-ink text-white shadow-sm ${theme.tile}`}`}
               >
                 {mark === 'number' ? (
                   n
@@ -87,7 +87,7 @@ export function SyllabusList({ title, chapters, tone, id = 'fam-syllabus', start
                     {(c.reader || c.href) && (
                       <div className="flex flex-wrap gap-2 px-1 pb-1">
                         {c.reader && (
-                          <SaverLink href={c.reader.href} data-reader-link className={`fam-press flex min-h-[44px] items-center gap-2 rounded-xl bg-royal-deep px-4 text-sm font-bold text-white shadow-sm ${theme.tile}`}>
+                          <SaverLink href={c.reader.href} data-reader-link className={`fam-press flex min-h-[44px] items-center gap-2 rounded-xl bg-ink px-4 text-sm font-bold text-white shadow-sm ${theme.tile}`}>
                             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                               <path d="M4 5a2 2 0 0 1 2-2h5v16H6a2 2 0 0 0-2 2V5zM20 5a2 2 0 0 0-2-2h-5v16h5a2 2 0 0 1 2 2V5z" />
                             </svg>
@@ -95,7 +95,7 @@ export function SyllabusList({ title, chapters, tone, id = 'fam-syllabus', start
                           </SaverLink>
                         )}
                         {c.href && (
-                          <SaverLink href={c.href} data-chapter-explain className="fam-press flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/25 hover:bg-off-white">
+                          <SaverLink href={c.href} data-chapter-explain className="fam-press flex min-h-[44px] items-center rounded-xl bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/25 hover:bg-off-white">
                             {c.hrefLabel ?? c.title}
                           </SaverLink>
                         )}

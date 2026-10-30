@@ -8,7 +8,7 @@ import { TRACK_THEME } from './theme';
 // come up under it. Visual only: the lesson, its steps and its scoring are untouched. Before the lesson has loaded
 // there is no track yet, so the band is the app's navy. Every colour pair is a Tailwind class the contrast checker reads.
 export function PlayerShell({ track, close, closeLabel, title, kind, progress, aside, children }: { track?: Track; close: string; closeLabel: string; title?: string; kind?: string; progress?: { now: number; max: number; label: string }; aside?: ReactNode; children: ReactNode }) {
-  const band = track ? TRACK_THEME[track].header : 'bg-royal-deep bg-gradient-to-br from-midnight via-royal-deep to-violet text-white';
+  const band = track ? TRACK_THEME[track].header : 'bg-paper text-ink';
   const sunny = track === 'a';
   return (
     <>
@@ -22,7 +22,7 @@ export function PlayerShell({ track, close, closeLabel, title, kind, progress, a
               </svg>
             </Link>
             {progress && (
-              <div className="h-3 flex-1 overflow-hidden rounded-full bg-midnight/30" role="progressbar" aria-valuemin={0} aria-valuemax={progress.max} aria-valuenow={progress.now} aria-label={progress.label}>
+              <div className="h-3 flex-1 overflow-hidden rounded-full bg-ink/30" role="progressbar" aria-valuemin={0} aria-valuemax={progress.max} aria-valuenow={progress.now} aria-label={progress.label}>
                 <div className={`h-full rounded-full transition-[width] duration-300 motion-reduce:transition-none ${sunny ? 'bg-slate' : 'bg-white'}`} style={{ width: `${(progress.now / progress.max) * 100}%` }} />
               </div>
             )}

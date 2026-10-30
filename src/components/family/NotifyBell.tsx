@@ -23,13 +23,13 @@ export function NotifyBell({ label, total }: { label: string; total: number }) {
       href="/family/notifications"
       aria-label={label}
       data-notify-bell
-      className="fam-press relative flex h-11 min-h-[44px] w-11 min-w-[44px] shrink-0 items-center justify-center rounded-full bg-royal-deep text-white shadow-lg ring-1 ring-white/40 hover:bg-midnight"
+      className="fam-press relative flex h-11 min-h-[44px] w-11 min-w-[44px] shrink-0 items-center justify-center rounded-full bg-ink text-white shadow-lg ring-1 ring-white/40 hover:bg-ink/90"
     >
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M6 9a6 6 0 0 1 12 0c0 6 2 7 2 7H4s2-1 2-7" />
         <path d="M10 20a2 2 0 0 0 4 0" />
       </svg>
-      {dot && <span data-notify-dot aria-hidden="true" className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-amber ring-2 ring-royal-deep" />}
+      {dot && <span data-notify-dot aria-hidden="true" className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-amber ring-2 ring-ink" />}
     </Link>
   );
 }

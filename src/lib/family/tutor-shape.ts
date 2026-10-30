@@ -41,6 +41,8 @@ export type TutorFile = { id: string; mime: TutorFileType };
 export type TutorTurn =
   | { id: string; role: 'child'; lang: 'en' | 'hi'; text: string; chapterKey: string | null; blockId: string | null; files: TutorFile[]; at: string }
   | { id: string; role: 'tutor'; lang: 'en' | 'hi'; blocks: Block[]; at: string };
+// W10-4 (C413): a turn of a subject's feed, with the chat it was kept in and that chat's subject.
+export type FeedTurn = TutorTurn & { chatId: string; subject: string };
 
 // The kept part of an answer: every block but a check or practice.
 export const keptTutorBlocks = (blocks: readonly Block[]): Block[] => blocks.filter((b) => b.type !== 'check' && b.type !== 'practice');

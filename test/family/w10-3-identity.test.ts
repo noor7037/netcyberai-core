@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -123,12 +123,16 @@ describe('the direct answer', () => {
     expect(html.split(EXPLANATION.idea).length - 1).toBe(1);
   });
 
-  it('leaves a typed question (the tutor window) as it was', () => {
+  // W10-4 (C413): rolled out; a typed question (the tutor window) wears it too, under the "Direct answer" heading.
+  it('dresses a typed question (the tutor window) the same way, the direct answer under its heading', () => {
     const initial = [{ t: 'meta', label: 'ai_made', cached: false, title: 'Q', subject: 'science', topicKey: null }, { t: 'block', block: EXPLANATION }, { t: 'done', complete: true }] as unknown as ResolverEvent[];
     const html = renderToStaticMarkup(h(UnderstandView, { w, input: { kind: 'question', text: 'Why do shadows form?' }, tone: 'science', initial }));
-    expect(html).not.toContain('fam-lesson');
-    expect(html).not.toContain('data-direct-answer');
-    expect(html).toContain(EXPLANATION.idea);
+    expect(html).toContain('fam-lesson');
+    expect(html).toContain('data-direct-answer');
+    expect(html.indexOf('Direct answer')).toBeGreaterThan(-1);
+    expect(html.indexOf('Direct answer')).toBeLessThan(html.indexOf('<section data-direct-answer'));
+    expect(html.split(EXPLANATION.idea).length - 1).toBe(1);
+    expect(html).not.toContain('data-show-model');
   });
 });
 
@@ -143,5 +147,71 @@ describe('motion', () => {
 
   it('draws no gradient in the lesson styles', () => {
     expect(LESSON_CSS).not.toMatch(/gradient\(/);
+  });
+});
+
+// W10-4 (C413): the identity rolled out. The Family screens the harness pictures (Home, Study with the tutor's feed, the
+// parent area, English, the hubs, the door pages) are drawn from these files: none of them carries a dark-blue class,
+// the bands are paper with ink, and the page is paper.
+describe('the identity on every Family screen (W10-4)', () => {
+  const SCREENS = [
+    'src/app/(family)/family/(app)/page.tsx',
+    'src/app/(family)/family/(app)/study/page.tsx',
+    'src/app/(family)/family/(app)/parent/page.tsx',
+    'src/components/family/SubPageHeader.tsx',
+    'src/components/family/FamilyHeader.tsx',
+    'src/components/family/FamilyTabs.tsx',
+    'src/components/family/GateFrame.tsx',
+    'src/components/family/NotifyBell.tsx',
+    'src/components/family/ChildSwitcher.tsx',
+    'src/components/family/HubShell.tsx',
+    'src/components/family/UnderstandView.tsx',
+    'src/components/family/VideoPicks.tsx',
+    'src/components/family/VoiceInput.tsx',
+    'src/components/family/HabitCard.tsx',
+    'src/components/family/PlanCard.tsx',
+    'src/components/family/FirstSteps.tsx',
+    'src/components/family/HomePlanSection.tsx',
+    'src/components/family/SchoolSection.tsx',
+    'src/components/family/SyllabusList.tsx',
+    'src/components/family/SchoolSyllabus.tsx',
+    'src/components/family/ChapterRequestPanel.tsx',
+    'src/components/family/ParentArea.tsx',
+    'src/components/family/HabitParent.tsx',
+    'src/components/family/ChildPhoneSection.tsx',
+    'src/components/family/PinGate.tsx',
+    'src/components/family/school-test/TestList.tsx',
+    'src/components/family/offline/DataSaverSwitch.tsx',
+    'src/components/family/offline/PackButton.tsx',
+    'src/components/family/english/PlayerShell.tsx',
+    'src/components/family/english/EnglishCourse.tsx',
+    'src/components/family/english/LessonPlayer.tsx',
+    'src/components/family/english/LiveSessions.tsx',
+    'src/components/family/english/theme.ts',
+    ...readdirSync(path.join(ROOT, 'src/components/family/tutor')).map((f) => `src/components/family/tutor/${f}`),
+    ...readdirSync(path.join(ROOT, 'src/components/family/ui')).map((f) => `src/components/family/ui/${f}`),
+  ];
+  const DARK_BLUE = /\b(?:bg|text|ring|from|via|to|border|fill|stroke|decoration|outline|shadow)-(?:royal|violet|midnight)(?:-deep)?\b/g;
+
+  it('leaves no royal, violet or midnight class on those screens', () => {
+    for (const f of SCREENS) expect(readFileSync(path.join(ROOT, f), 'utf8').match(DARK_BLUE), f).toBeNull();
+  });
+
+  it('draws every band on paper with ink, and the page on paper', () => {
+    for (const f of ['src/components/family/SubPageHeader.tsx', 'src/components/family/FamilyHeader.tsx', 'src/components/family/GateFrame.tsx']) {
+      const src = readFileSync(path.join(ROOT, f), 'utf8');
+      expect(src, f).toMatch(/fam-band[^"`]*bg-paper/);
+      expect(src, f).not.toMatch(/fam-band[^"`]*bg-gradient/);
+    }
+    const page = CSS.slice(CSS.indexOf('.fam-canvas {'), CSS.indexOf('}', CSS.indexOf('.fam-canvas {')));
+    expect(page).toMatch(/background-color: #fbf8f3/);
+    expect(page).not.toMatch(/gradient\(/);
+    expect(CSS).toMatch(/\.fam-canvas,\n\.fam-lesson \{\n\s+--fl-paper/);
+  });
+
+  it('wears the lesson look wherever an answer is drawn, in the tutor feed too', () => {
+    const tutor = readFileSync(path.join(ROOT, 'src/components/family/tutor/TutorWindow.tsx'), 'utf8');
+    expect(tutor).toMatch(/data-feed-answer className="fam-lesson/);
+    expect(tutor).toContain('DirectAnswerCard');
   });
 });

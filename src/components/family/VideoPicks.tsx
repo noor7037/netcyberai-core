@@ -92,14 +92,14 @@ export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; 
                 type="button"
                 data-video-play
                 onClick={() => setPlaying(v.videoId)}
-                className="fam-press group relative isolate block aspect-video w-full overflow-hidden rounded-2xl bg-midnight bg-gradient-to-br from-midnight via-royal-deep to-violet focus:outline-none focus-visible:ring-4 focus-visible:ring-royal-deep/60"
+                className="fam-press group relative isolate block aspect-video w-full overflow-hidden rounded-2xl bg-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/60"
               >
                 <span className="sr-only">
                   {w['fam.video.play']} <span lang={script(v.title)}>{v.title}</span>
                 </span>
                 <span aria-hidden="true" className="fam-band-dots" />
                 <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-royal-deep shadow-lg">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-ink shadow-lg">
                     <FamIcon name="play" className="ml-1 h-7 w-7" />
                   </span>
                 </span>

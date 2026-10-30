@@ -38,7 +38,7 @@ function OpenPlan({ w, lang, child }: { w: Words; lang: 'en' | 'hi'; child: Home
     <div className="flex flex-col gap-3">
       <ol className="flex flex-col gap-1" data-home-plan-nights>
         {plan.nights.map((n) => (
-          <li key={n.night} data-night={n.night} className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm text-slate ${plan.tonight?.night === n.night ? 'bg-royal/10 font-semibold' : 'bg-slate/5'}`}>
+          <li key={n.night} data-night={n.night} className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm text-slate ${plan.tonight?.night === n.night ? 'bg-saffron/10 font-semibold' : 'bg-slate/5'}`}>
             <span className="min-w-0">
               {fill(w['fam.homePlan.night'], { n: n.night })} · {day(n.date, lang)} · {n.title || '—'}
             </span>

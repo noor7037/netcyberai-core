@@ -163,17 +163,15 @@ export const FAMILY_SCREENS = [
   ['full', 'family-tutor-window', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]' }],
   // W6-A (C395): Study's chapter accordion with its first chapter open (topics, worksheets, explain, offline pack).
   ['full', 'family-study-accordion', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-row] summary', steps: [{ tap: '[data-chapter-row] summary', wait: '[data-chapter-row] details[open] .fam-acc-body' }] }],
-  ['full', 'family-tutor-conversation', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ tap: '[data-tutor-history]', wait: '[data-tutor-turns]' }] }],
+  // W10-4 (C413): the subject's feed, open on Study: Kabir's three Mathematics questions and answers across two chats,
+  // newest at the bottom, with no list of chats.
+  ['full', 'family-tutor-feed', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-turns] [data-feed-answer]' }],
   ['full', 'family-tutor-doubt', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-doubt]', steps: [{ tap: '[data-reader-doubt]', wait: '[data-tutor-drawer] [data-tutor-rail]' }] }],
   ['full', 'family-tutor-vault', '/family/parent/vault', { parent: true, settle: '[data-vault-conversation]' }],
-  // W9-A (C406): a subject's chats (a drop-down at 390, a list at 1440), then the older chat that is full: its message,
-  // "Start a new chat", and the composer locked.
-  ['full', 'family-tutor-chats', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chats]' }],
-  ['full', 'family-tutor-chat-full', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chats]', steps: [{ choose: { field: '[data-chat-select]', value: 'f0000000-0000-4000-8000-0000000fa205', or: '[data-chat="full"]' }, wait: '[data-chat-full]' }] }],
-  // W10 (C411): a follow-up typed with the Mathematics tab selected, in a chat whose first answer was about
-  // photosynthesis: the answer is kept in that chat, which the window now lists under Science, with no notice under it.
+  // W10 (C411), W10-4 (C413): a follow-up typed with the Mathematics tab selected, about photosynthesis: the server keeps
+  // it in Science, the feed says "Moved to Science" above the answer and the subject tab follows to Science.
   // Then the parent area right after a child's class is saved: the "Saved" line (Asha is put back in Class 7 after).
-  ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"]' }] }],
+  ['full', 'family-tutor-followup', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: FOLLOW_UP_CHAT, reset: FOLLOW_UP_CHAT_GONE, answer: FOLLOW_UP_ANSWER, settle: '[data-tutor-rail]', steps: [{ fill: { field: '[data-tutor-window] textarea', value: 'Can you show it with an example?' }, tap: '[data-tutor-send]', wait: '[data-tutor-window][data-listed="science"] [data-feed-moved="science"]' }] }],
   ['full', 'family-parent-child-saved', '/family/parent#children', { parent: true, reset: CLASS_PUT_BACK, settle: '[data-parent-panel="children"]:not([hidden])', steps: [{ tap: '[data-child-edit]', wait: 'select[id$="-class"]' }, { select: { field: 'select[id$="-class"]', value: '3' }, tap: '[data-parent-panel="children"] form button[type="submit"]', wait: '[data-child-saved]' }] }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],

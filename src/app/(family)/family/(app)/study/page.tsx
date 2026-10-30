@@ -172,7 +172,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
                 key={s}
                 href={`/family/study?subject=${s}`}
                 aria-current={on ? 'page' : undefined}
-                className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-xl px-3 text-base font-bold ${on ? `bg-royal-deep text-white shadow-md ${subjectTheme(s).tile}` : 'bg-white text-slate hover:bg-off-white'}`}
+                className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-xl px-3 text-base font-bold ${on ? 'bg-ink text-white shadow-md' : 'bg-white text-slate hover:bg-off-white'}`}
               >
                 <span aria-hidden="true" className={`flex h-8 w-8 items-center justify-center rounded-lg ${on ? 'fam-icon-glass' : subjectTheme(s).soft + ' ' + subjectTheme(s).ink}`}>
                   <SubjectGlyph subject={s} className="h-5 w-5" />
@@ -198,7 +198,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
-          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn}>
+          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} follow>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}

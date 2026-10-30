@@ -8,12 +8,8 @@
 /* ---- the page ---------------------------------------------------------------------------------------------------- */
 
 .fam-canvas {
-  background-color: #f9fafb; /* off-white */
-  background-image:
-    radial-gradient(36rem 22rem at 110% -6%, rgb(139 61 255 / 0.08), transparent 70%),
-    radial-gradient(30rem 20rem at -12% 18%, rgb(2 207 249 / 0.08), transparent 70%),
-    radial-gradient(34rem 26rem at 50% 120%, rgb(29 78 216 / 0.07), transparent 70%);
-  background-attachment: fixed;
+  /* W10-4 (C413): the lesson identity's paper on every Family screen, with no coloured light behind it. */
+  background-color: #fbf8f3; /* paper (design-tokens.ts lessonColors) */
   /* Room for the phone's status bar and navigation bar (C230-Y): what the browser reports, or, for the first Android
      shell on Android 15+ (`data-edge`, which reports nothing), a status bar's and a gesture bar's usual height. */
   --fam-top: env(safe-area-inset-top, 0px);
@@ -32,7 +28,7 @@
   position: fixed;
   inset: 0 0 auto 0;
   height: var(--fam-top);
-  background: #061233; /* midnight */
+  background: #1c1b1a; /* ink */
   z-index: 60;
   pointer-events: none;
 }
@@ -43,6 +39,12 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
+}
+/* W10-4 (C413): on the paper band the coloured lights and the dots are not drawn. */
+.fam-band::before,
+.fam-band::after,
+.fam-band-dots {
+  display: none;
 }
 .fam-band::before,
 .fam-band::after {
@@ -95,7 +97,7 @@
   background-color: #ffffff;
   box-shadow:
     0 1px 2px rgb(30 41 59 / 0.06),
-    0 10px 30px -12px rgb(29 78 216 / 0.22),
+    0 10px 30px -12px rgb(28 27 26 / 0.22),
     inset 0 0 0 1px rgb(30 41 59 / 0.06);
 }
 .fam-press {
@@ -112,7 +114,7 @@
     transform: translateY(-3px);
     box-shadow:
       0 2px 4px rgb(30 41 59 / 0.08),
-      0 18px 40px -14px rgb(29 78 216 / 0.35),
+      0 18px 40px -14px rgb(28 27 26 / 0.35),
       inset 0 0 0 1px rgb(30 41 59 / 0.06);
   }
 }
@@ -125,7 +127,7 @@
   overflow: hidden;
   border-radius: 1rem;
   box-shadow:
-    0 12px 28px -14px rgb(6 18 51 / 0.55),
+    0 12px 28px -14px rgb(28 27 26 / 0.55),
     inset 0 1px 0 rgb(255 255 255 / 0.25);
 }
 .fam-tile::before {
@@ -161,7 +163,7 @@
   position: relative;
   overflow: hidden;
   box-shadow:
-    0 10px 24px -10px rgb(29 78 216 / 0.7),
+    0 10px 24px -10px rgb(28 27 26 / 0.7),
     inset 0 1px 0 rgb(255 255 255 / 0.25);
 }
 .fam-cta::after {
@@ -260,7 +262,7 @@
 @media (hover: hover) and (pointer: fine) {
   .fam-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px -14px rgb(29 78 216 / 0.45);
+    box-shadow: 0 10px 24px -14px rgb(28 27 26 / 0.45);
   }
 }
 
@@ -275,7 +277,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
-  box-shadow: 0 6px 14px -8px rgb(29 78 216 / 0.6);
+  box-shadow: 0 6px 14px -8px rgb(28 27 26 / 0.6);
 }
 
 /* A small status word in a pill (a state, a count, "Made by AI"). */
@@ -316,7 +318,7 @@
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 9999px;
-  box-shadow: 0 10px 22px -12px rgb(29 78 216 / 0.7);
+  box-shadow: 0 10px 22px -12px rgb(28 27 26 / 0.7);
 }
 
 /* The door pages (welcome, the parent PIN): the band is short and the card holds the form. */
@@ -349,7 +351,7 @@
   background-color: rgb(255 255 255 / 0.92);
   box-shadow:
     0 -1px 0 rgb(30 41 59 / 0.05),
-    0 16px 40px -12px rgb(6 18 51 / 0.35),
+    0 16px 40px -12px rgb(28 27 26 / 0.35),
     inset 0 0 0 1px rgb(30 41 59 / 0.06);
   backdrop-filter: blur(14px) saturate(1.4);
   -webkit-backdrop-filter: blur(14px) saturate(1.4);
@@ -359,7 +361,7 @@
 }
 
 /* ---- the tutor composer and the chapter accordion (W6-A, C395) ------------------------------------------------- */
-/* A surface: 16 px corners and the cards' elevation (its colour comes from a bg- class). The composer's field takes the royal ring while it has the
+/* A surface: 16 px corners and the cards' elevation (its colour comes from a bg- class). The composer's field takes the saffron ring while it has the
    focus (its textarea draws no outline of its own). The dock under the composer fades the page out behind it. */
 
 .fam-surface,
@@ -367,7 +369,7 @@
   border-radius: 1rem;
   box-shadow:
     0 1px 2px rgb(30 41 59 / 0.06),
-    0 10px 30px -12px rgb(29 78 216 / 0.22),
+    0 10px 30px -12px rgb(28 27 26 / 0.22),
     inset 0 0 0 1px rgb(30 41 59 / 0.08);
 }
 .fam-composer {
@@ -376,11 +378,11 @@
 .fam-composer:focus-within {
   box-shadow:
     0 1px 2px rgb(30 41 59 / 0.06),
-    0 12px 32px -12px rgb(29 78 216 / 0.32),
-    inset 0 0 0 2px #1d4ed8;
+    0 12px 32px -12px rgb(28 27 26 / 0.32),
+    inset 0 0 0 2px #c2410c; /* saffron-deep */
 }
 .fam-composer-dock {
-  background: linear-gradient(to top, #f9fafb 70%, rgb(249 250 251 / 0));
+  background: linear-gradient(to top, #fbf8f3 70%, rgb(251 248 243 / 0));
 }
 .fam-acc > summary {
   list-style: none;
@@ -390,7 +392,7 @@
   display: none;
 }
 .fam-acc > summary:focus-visible {
-  outline: 2px solid #1d4ed8;
+  outline: 2px solid #c2410c;
   outline-offset: 2px;
 }
 .fam-acc-chev {
@@ -535,15 +537,16 @@
   color: #1e293b;
 }
 
-/* ---- the lesson identity (W10-3, C412): the Understand answer page only ------------------------------------------ */
-/* A preview the founder judges before it rolls out. Everything below is scoped to `.fam-lesson` (UnderstandView's root
-   for a topic or chapter) or to the page that holds one (`:has(.fam-lesson)`), so no other screen changes. The values
+/* ---- the lesson identity (W10-3, C412), on every Family screen since W10-4 (C413) ------------------------------ */
+/* The founder approved the preview (30 Oct). Its variables are on every Family page (`.fam-canvas`); the answer's own
+   look is scoped to `.fam-lesson` (every UnderstandView, a typed question too, and a kept answer in the tutor's feed),
+   and a few page rules still to the Understand page (`:has(main > .fam-lesson)`). The values
    are src/lib/design-tokens.ts's lessonColors / lessonTints / lessonType (test/family/w10-3-identity.test.ts holds the
    two in step): warm paper, near-black ink, no dark blue; saffron acts, teal is progress and correct, plum is the AI;
    one pastel tint per kind of section with a numbered badge in its deep accent. Soft layered shadows, no gradients.
    Motion is 180 ms on a card's entry and on quiz feedback, and none under prefers-reduced-motion. */
 
-.fam-canvas:has(.fam-lesson),
+.fam-canvas,
 .fam-lesson {
   --fl-paper: #fbf8f3;
   --fl-card: #fffdf9;
@@ -571,47 +574,32 @@
 }
 
 /* The page: paper instead of the coloured light, and a quiet paper header with the title in ink. */
-.fam-canvas:has(.fam-lesson) {
+.fam-canvas:has(main > .fam-lesson) {
   background-color: var(--fl-paper);
   background-image: none;
 }
-.fam-canvas:has(.fam-lesson)::before {
+.fam-canvas:has(main > .fam-lesson)::before {
   background: var(--fl-ink);
 }
-.fam-canvas:has(.fam-lesson) .fam-band {
+.fam-canvas:has(main > .fam-lesson) .fam-band {
   background: var(--fl-paper);
   padding-bottom: 2.5rem;
 }
-.fam-canvas:has(.fam-lesson) .fam-band::before,
-.fam-canvas:has(.fam-lesson) .fam-band::after,
-.fam-canvas:has(.fam-lesson) .fam-band-dots {
+.fam-canvas:has(main > .fam-lesson) .fam-band::before,
+.fam-canvas:has(main > .fam-lesson) .fam-band::after,
+.fam-canvas:has(main > .fam-lesson) .fam-band-dots {
   display: none;
 }
-.fam-canvas:has(.fam-lesson) .fam-band .text-white {
-  color: var(--fl-ink);
-}
-.fam-canvas:has(.fam-lesson) .fam-band .opacity-20 {
-  opacity: 0.07;
-}
-/* The subject, as a teal chip that goes back to it. */
-.fam-canvas:has(.fam-lesson) .fam-band a.text-white {
-  margin-left: 0;
-  padding: 0 1rem 0 0.75rem;
-  background: var(--fl-teal);
-  color: #fff;
-}
-.fam-canvas:has(.fam-lesson) .fam-band p.text-xs {
-  color: var(--fl-saffron-deep);
-}
-.fam-canvas:has(.fam-lesson) .fam-band h1 {
+.fam-canvas:has(main > .fam-lesson) .fam-band h1 {
   font-family: var(--fl-display);
   font-size: 2.25rem;
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
-/* The tab bar's current tab in ink, not the product blue. */
-.fam-canvas:has(.fam-lesson) .fam-tab-on {
-  background: var(--fl-ink);
+/* The display face for the bands' titles (W10-4). */
+.fam-display {
+  font-family: var(--fl-display);
+  letter-spacing: -0.025em;
 }
 /* The data-saver switch above the lesson, in the same surfaces (teal when it is on). */
 main:has(> .fam-lesson) [data-data-saver] {
@@ -636,10 +624,10 @@ main:has(> .fam-lesson) [data-data-saver] .bg-royal {
     max-width: 52rem;
   }
   /* The header's own padding sits outside its column, the page's inside: 52rem less the 2rem of padding. */
-  .fam-canvas:has(.fam-lesson) .fam-band > div {
+  .fam-canvas:has(main > .fam-lesson) .fam-band > div {
     max-width: 50rem;
   }
-  .fam-canvas:has(.fam-lesson) .fam-band h1 {
+  .fam-canvas:has(main > .fam-lesson) .fam-band h1 {
     font-size: 3rem;
   }
 }
@@ -954,4 +942,16 @@ div.fam-lesson {
   .fam-lesson .fam-lesson-chip {
     transition: none !important;
   }
+}
+
+/* ---- the tutor's feed (W10-4, C413; docs/39 §5) ----------------------------------------------------------------- */
+/* The subject's questions and answers, newest at the bottom, in a box of its own that scrolls; the page around it does
+   not move when it opens at the newest. */
+.fam-feed {
+  scroll-padding-top: 0.5rem;
+  scrollbar-gutter: stable;
+}
+.fam-feed [data-direct-answer-card] .fam-lesson-eyebrow,
+.fam-lesson [data-direct-answer-card] .fam-lesson-eyebrow {
+  margin-top: 0;
 }

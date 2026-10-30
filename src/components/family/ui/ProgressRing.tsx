@@ -1,6 +1,6 @@
 // A progress ring (D1, C230-Q) that draws itself to its value once (family.css `.fam-ring-arc`; still under reduced
 // motion). The value is shown as text beside or inside it, so the ring is never the only sign.
-export function ProgressRing({ value, max, size = 64, stroke = 7, track = 'text-royal/15', arc = 'text-royal', children }: { value: number; max: number; size?: number; stroke?: number; track?: string; arc?: string; children?: React.ReactNode }) {
+export function ProgressRing({ value, max, size = 64, stroke = 7, track = 'text-ink/15', arc = 'text-ink', children }: { value: number; max: number; size?: number; stroke?: number; track?: string; arc?: string; children?: React.ReactNode }) {
   const r = (size - stroke) / 2;
   const c = 2 * Math.PI * r;
   const share = max > 0 ? Math.min(1, Math.max(0, value / max)) : 0;

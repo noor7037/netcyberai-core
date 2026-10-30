@@ -90,7 +90,7 @@ export default async function FamilyHomePage() {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {tonight.map((s) => (
-                    <Link key={s} href={`/family/study?subject=${s}`} className="fam-lift inline-flex min-h-[44px] items-center rounded-full bg-off-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/20">
+                    <Link key={s} href={`/family/study?subject=${s}`} className="fam-lift inline-flex min-h-[44px] items-center rounded-full bg-off-white px-4 text-sm font-bold text-ink ring-1 ring-ink/20">
                       {t(lang, `fam.subject.${s}` as MessageKey)}
                     </Link>
                   ))}
