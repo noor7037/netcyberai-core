@@ -1,3 +1,6 @@
+import { activePromptVersion, prepareText, type AiContext } from '@/lib/ai/platform';
+import type { ResolverMemory } from '@/lib/ai/prompts/family.resolver';
+import { SUMMARY_MAX, summaryPrompt } from '@/lib/ai/prompts/family.summary';
 import { checkUpload, textProblem, type OcrImage } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, type DirectUploadStorage } from '@/lib/storage/file-storage';
 import { familyTutorFileStorage } from '@/lib/storage/supabase-file-storage';
@@ -64,20 +67,136 @@ async function guarded<T>(db: Db, fn: () => Promise<T>, fallback: T): Promise<T>
   }
 }
 
-// The child's conversation in a subject, made on first use.
-export async function conversationFor(db: Db, accountId: string, childId: string, subject: string): Promise<string> {
+// ---- chats (W9-A, C406; docs/39 §3 "Chat") -------------------------------------------------------------------------
+// A child has chats per subject: at most CHATS_KEPT listed (open or full; a new one past that archives the least
+// recently used), each taking CHAT_TURNS child turns, then 'full': a child turn on a full chat is refused with
+// 'chat_full', never dropped. The tutor is sent the chat's running summary (rewritten every SUMMARY_EVERY child turns
+// by the family.summary workload) and its last MEMORY_TURNS turns: the child's words and the tutor's explanation
+// paragraphs only, each at most MEMORY_TEXT characters. An archived chat is no longer listed or answered in; the
+// parent still sees and clears it in the Learning Vault, and it goes with the child.
+
+export const CHATS_KEPT = 15;
+export const CHAT_TURNS = 30;
+export const MEMORY_TURNS = 6;
+export const MEMORY_TEXT = 600;
+export const SUMMARY_EVERY = 5;
+const TITLE_MAX = 60;
+// At most this many child turns are read into one summary rewrite (the turns since the last one, normally five).
+const SUMMARY_TURNS_READ = 10;
+
+export type TutorChat = { chatId: string; title: string | null; turnCount: number; status: 'open' | 'full'; lastAt: string };
+
+const chatOf = (r: Record<string, unknown>): TutorChat => ({
+  chatId: String(r.conversation_id),
+  title: (r.title as string | null) ?? null,
+  turnCount: Number(r.turn_count),
+  status: r.status === 'full' ? 'full' : 'open',
+  lastAt: new Date(r.last_at as string).toISOString(),
+});
+const CHAT_COLUMNS = 'conversation_id, title, turn_count, status, last_at';
+const NEWEST = 'order by last_at desc, created_at desc';
+
+// A new chat in a subject; the chats listed beyond CHATS_KEPT (the least recently used) are archived.
+export async function newChat(db: Db, accountId: string, childId: string, subject: string): Promise<string> {
   if (!isSubject(subject)) throw new Error('not a subject');
   const { rows } = await db.query(
-    `insert into family.tutor_conversations (account_id, child_id, subject) values ($1, $2, $3)
-     on conflict (child_id, subject) do update set updated_at = now()
-     returning conversation_id`,
+    `insert into family.tutor_conversations (account_id, child_id, subject, created_at, last_at) values ($1, $2, $3, clock_timestamp(), clock_timestamp()) returning conversation_id`,
     [accountId, childId, subject]
+  );
+  await db.query(
+    `update family.tutor_conversations set status = 'archived', updated_at = now()
+      where conversation_id in (select conversation_id from family.tutor_conversations
+                                 where account_id = $1 and child_id = $2 and subject = $3 and status <> 'archived' ${NEWEST} offset $4)`,
+    [accountId, childId, subject, CHATS_KEPT]
   );
   return String(rows[0].conversation_id);
 }
 
-// The conversation's last turns, oldest first, with each child turn's ready files.
-export function readTurns(db: Db, accountId: string, childId: string, subject: string): Promise<TutorTurn[]> {
+// The newest open chat in a subject, or a new one.
+export async function openChat(db: Db, accountId: string, childId: string, subject: string): Promise<string> {
+  if (!isSubject(subject)) throw new Error('not a subject');
+  const { rows } = await db.query(
+    `select conversation_id from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' ${NEWEST} limit 1`,
+    [accountId, childId, subject]
+  );
+  return rows[0] ? String(rows[0].conversation_id) : newChat(db, accountId, childId, subject);
+}
+
+// Where a file is filed when it is sent (S2's name): the subject's newest open chat. It joins its question's chat later.
+export const conversationFor = openChat;
+
+// The child's chats in a subject, open and full, the most recently used first.
+export function listChats(db: Db, accountId: string, childId: string, subject: string): Promise<TutorChat[]> {
+  if (!isSubject(subject)) return Promise.resolve([]);
+  return guarded(
+    db,
+    async () =>
+      (
+        await db.query(
+          `select ${CHAT_COLUMNS} from family.tutor_conversations
+            where account_id = $1 and child_id = $2 and subject = $3 and status in ('open', 'full') ${NEWEST} limit $4`,
+          [accountId, childId, subject, CHATS_KEPT]
+        )
+      ).rows.map(chatOf),
+    []
+  );
+}
+
+// One of the child's own listed chats in the subject (null when the id is not one: another child's, archived, unknown).
+export async function ownChat(db: Db, accountId: string, childId: string, subject: string, chatId: unknown): Promise<TutorChat | null> {
+  if (!isUuid(chatId) || !isSubject(subject)) return null;
+  const { rows } = await db.query(
+    `select ${CHAT_COLUMNS} from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and subject = $4 and status in ('open', 'full')`,
+    [chatId, accountId, childId, subject]
+  );
+  return rows[0] ? chatOf(rows[0]) : null;
+}
+
+// What a stored tutor turn is remembered as: its explanation's paragraphs (the idea when it has none), nothing else.
+function explanationText(blocks: unknown): string {
+  const b = (Array.isArray(blocks) ? blocks : []).find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
+  if (!b) return '';
+  const paragraphs = Array.isArray(b.paragraphs) ? b.paragraphs.filter((x): x is string => typeof x === 'string') : [];
+  return (paragraphs.length ? paragraphs.join(' ') : typeof b.idea === 'string' ? b.idea : '').replace(/\s+/g, ' ').trim();
+}
+const clip = (text: string, max: number) => (text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`);
+
+// The chat's last `n` messages as remembered turns, oldest first.
+async function rememberedTurns(db: Db, chatId: string, n: number): Promise<ResolverMemory['turns']> {
+  const { rows } = await db.query(`select role, body, blocks from family.tutor_messages where conversation_id = $1 order by created_at desc, role desc limit $2`, [chatId, n]);
+  return rows
+    .reverse()
+    .map((r) => ({ role: r.role === 'tutor' ? ('tutor' as const) : ('child' as const), text: clip(r.role === 'tutor' ? explanationText(r.blocks) : String(r.body ?? '').trim(), MEMORY_TEXT) }))
+    .filter((t) => t.text.length > 0);
+}
+
+// What the tutor is told of a chat: its summary and its last MEMORY_TURNS turns. The caller has checked the chat is
+// the child's own (ownChat, resolveChat); the policies keep every read to the account and, on a child's phone, the child.
+export async function memoryFor(db: Db, chatId: string): Promise<ResolverMemory> {
+  const { rows } = await db.query(`select summary from family.tutor_conversations where conversation_id = $1`, [chatId]);
+  return { summary: (rows[0]?.summary as string | null | undefined) ?? null, turns: await rememberedTurns(db, chatId, MEMORY_TURNS) };
+}
+
+// The chat a tutor question is asked in: the one the screen names when it is this child's own in this subject, else the
+// newest open one (none yet: null; the answered turn opens one). `full`: a new turn would be refused.
+export async function resolveChat(db: Db, accountId: string, childId: string, subject: string, requested: unknown): Promise<{ chatId: string; full: boolean; memory: ResolverMemory | null } | null> {
+  if (!isSubject(subject)) return null;
+  let chat = await ownChat(db, accountId, childId, subject, requested);
+  if (!chat) {
+    const { rows } = await db.query(
+      `select ${CHAT_COLUMNS} from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' ${NEWEST} limit 1`,
+      [accountId, childId, subject]
+    );
+    chat = rows[0] ? chatOf(rows[0]) : null;
+  }
+  if (!chat) return null;
+  const memory = await memoryFor(db, chat.chatId);
+  return { chatId: chat.chatId, full: chat.status === 'full', memory: memory.summary || memory.turns.length ? memory : null };
+}
+
+// A chat's turns, oldest first, with each child turn's ready files. With no chat named: the subject's most recently
+// used listed chat.
+export function readTurns(db: Db, accountId: string, childId: string, subject: string, chatId: string | null = null): Promise<TutorTurn[]> {
   if (!isSubject(subject)) return Promise.resolve([]);
   return guarded(
     db,
@@ -88,8 +207,11 @@ export function readTurns(db: Db, accountId: string, childId: string, subject: s
                             from family.tutor_attachments a where a.message_id = m.message_id and a.status = 'ready'), '[]'::json) as files
            from family.tutor_messages m join family.tutor_conversations c on c.conversation_id = m.conversation_id
           where c.account_id = $1 and c.child_id = $2 and c.subject = $3
+            and c.conversation_id = coalesce($5::uuid, (select x.conversation_id from family.tutor_conversations x
+                                                         where x.account_id = $1 and x.child_id = $2 and x.subject = $3 and x.status in ('open', 'full')
+                                                         order by x.last_at desc, x.created_at desc limit 1))
           order by m.created_at desc, m.role desc limit $4`,
-        [accountId, childId, subject, TURNS_SHOWN]
+        [accountId, childId, subject, TURNS_SHOWN, chatId]
       );
       return rows.reverse().map((r): TutorTurn => {
         const at = new Date(r.created_at as string).toISOString();
@@ -136,27 +258,38 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
   return rows.length === ids.length ? (ids as string[]) : null;
 }
 
+type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string };
+
 // A turn: the child's words (and the reader's chapter and block, and the files sent with them), then the tutor's
-// answer as shown, without its check and practice items. In the conversation of the subject the server decided.
-export async function saveTurn(
-  db: Db,
-  t: { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string }
-): Promise<void> {
+// answer as shown, without its check and practice items, in this child's chat of that subject. The chat's child turns
+// go up by one; at CHAT_TURNS it is full. A turn on a full chat is refused ('chat_full'), on an archived or unknown one
+// 'not_found'; nothing is written when refused.
+export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Promise<{ ok: true; turnCount: number } | { ok: false; error: 'chat_full' | 'not_found' | 'empty' }> {
   const text = t.text.trim().slice(0, TUTOR_TEXT_MAX);
   const blocks = keptTutorBlocks(t.blocks);
-  if (!text || blocks.length === 0) return;
+  if (!text || blocks.length === 0) return { ok: false, error: 'empty' };
+  if (!isUuid(t.chatId) || !isSubject(t.subject)) return { ok: false, error: 'not_found' };
+  const { rows: chat } = await db.query(
+    `select status from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and subject = $4 for update`,
+    [t.chatId, t.accountId, t.childId, t.subject]
+  );
+  if (!chat[0] || chat[0].status === 'archived') return { ok: false, error: 'not_found' };
+  if (chat[0].status === 'full') return { ok: false, error: 'chat_full' };
   const lang = t.lang === 'hi' ? 'hi' : 'en';
-  const conversationId = await conversationFor(db, t.accountId, t.childId, t.subject);
+  const conversationId = t.chatId;
   const asked = await db.query(
-    `insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, chapter_key, block_id, lang) values ($1, $2, $3, 'child', $4, $5, $6, $7) returning message_id`,
+    `insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, chapter_key, block_id, lang, created_at) values ($1, $2, $3, 'child', $4, $5, $6, $7, clock_timestamp()) returning message_id`,
     [conversationId, t.accountId, t.childId, text, t.chapterKey, t.blockId, lang]
   );
   const messageId = String(asked.rows[0].message_id);
+  // A file was filed in the subject's newest open chat when it was sent; it joins the chat its question is kept in.
   if (t.files.length) {
     await db.query(
-      `update family.tutor_attachments set message_id = $1
-        where attachment_id = any($2::uuid[]) and conversation_id = $3 and account_id = $4 and child_id = $5 and status = 'ready' and message_id is null and kept_for is null`,
-      [messageId, t.files, conversationId, t.accountId, t.childId]
+      `update family.tutor_attachments a set message_id = $1, conversation_id = $3
+         from family.tutor_conversations c
+        where a.attachment_id = any($2::uuid[]) and a.account_id = $4 and a.child_id = $5 and a.status = 'ready' and a.message_id is null and a.kept_for is null
+          and c.conversation_id = a.conversation_id and c.subject = $6`,
+      [messageId, t.files, conversationId, t.accountId, t.childId, t.subject]
     );
   }
   // The answer's tutor turn is a moment later than the question, so the two always read back in order.
@@ -164,6 +297,58 @@ export async function saveTurn(
     `insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, lang, created_at) values ($1, $2, $3, 'tutor', $4::jsonb, $5, clock_timestamp())`,
     [conversationId, t.accountId, t.childId, JSON.stringify(blocks), lang]
   );
+  const { rows } = await db.query(
+    `update family.tutor_conversations
+        set turn_count = turn_count + 1, status = case when turn_count + 1 >= $2 then 'full' else 'open' end,
+            title = coalesce(title, left($3, $4)), last_at = clock_timestamp(), updated_at = now()
+      where conversation_id = $1 returning turn_count`,
+    [conversationId, CHAT_TURNS, text, TITLE_MAX]
+  );
+  return { ok: true, turnCount: Number(rows[0].turn_count) };
+}
+
+// An answered tutor question kept: in the chat the screen asked in while it is open (`chatId`, already checked to be
+// this child's own in `subject`), else in the subject's newest open chat (a new one when there is none, or when the
+// named chat filled up meanwhile). Returns the chat and its child turns, or null when nothing was kept.
+export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }): Promise<{ chatId: string; turnCount: number } | null> {
+  if (t.chatId) {
+    const kept = await appendTurn(db, { ...t, chatId: t.chatId });
+    if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount };
+    if (kept.error === 'empty') return null;
+  }
+  const chatId = await openChat(db, t.accountId, t.childId, t.subject);
+  const kept = await appendTurn(db, { ...t, chatId });
+  return kept.ok ? { chatId, turnCount: kept.turnCount } : null;
+}
+
+// ---- the running summary (family.summary) ----------------------------------------------------------------------------
+
+type Run = <R>(fn: (db: Db) => Promise<R>) => Promise<R>;
+
+// Rewritten after every SUMMARY_EVERY-th child turn: the request prepared in a short transaction (the profile's checks,
+// the minors rule, the family's daily cap), sent with no connection held, then kept in another. When the workload has
+// no route, is switched off or fails, the chat keeps its old summary and goes on working.
+export async function refreshChatSummary(run: Run, ai: AiContext, chatId: string, turnCount: number): Promise<boolean> {
+  if (turnCount <= 0 || turnCount % SUMMARY_EVERY !== 0) return false;
+  const prepared = await run(async (db) => {
+    const { rows } = await db.query(`select subject, summary, summary_turns from family.tutor_conversations where conversation_id = $1`, [chatId]);
+    const chat = rows[0];
+    if (!chat || Number(chat.summary_turns) >= turnCount) return null;
+    const turns = await rememberedTurns(db, chatId, Math.min(turnCount - Number(chat.summary_turns), SUMMARY_TURNS_READ) * 2);
+    if (turns.length === 0) return null;
+    const prompt = summaryPrompt(await activePromptVersion(db as never, 'family.summary'));
+    const ask = { subject: String(chat.subject), summary: (chat.summary as string | null) ?? null, turns };
+    const out = await prepareText(db as never, ai, 'family.summary', { system: prompt.system(), messages: [{ role: 'user', content: prompt.user(ask) }] });
+    return out.ok ? out.text : null;
+  });
+  if (!prepared) return false;
+  const sent = await prepared.send();
+  const text = sent.result.ok ? clip(sent.result.text.replace(/\s+/g, ' ').trim(), SUMMARY_MAX) : '';
+  await run(async (db) => {
+    await sent.record(db as never);
+    if (text) await db.query(`update family.tutor_conversations set summary = $2, summary_turns = $3 where conversation_id = $1 and summary_turns < $3`, [chatId, text, turnCount]);
+  });
+  return text.length > 0;
 }
 
 // ---- files ---------------------------------------------------------------------------------------------------------

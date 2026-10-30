@@ -18,6 +18,7 @@ import * as v8 from './v8';
 
 // v8's request is v3's with the optional plan, passages and chat memory; earlier versions read only v3's fields.
 export type { ResolverAsk, ResolverSubject, ChatMemory } from './v8';
+export type { ResolverMemory } from './v3';
 
 export type ResolverPrompt = {
   version: string;

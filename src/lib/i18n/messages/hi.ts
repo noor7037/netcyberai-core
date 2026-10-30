@@ -7957,6 +7957,13 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.tutor.err.homework_off': 'होमवर्क हेल्पर चालू होने पर ही फ़ोटो और फ़ाइलें भेजी जा सकती हैं।',
   'fam.tutor.err.storage_unavailable': 'अभी फ़ाइल नहीं जोड़ी जा सकती। कृपया बाद में फिर कोशिश करो।',
   'fam.tutor.empty': 'यहाँ अभी कोई सवाल नहीं है। तुम्हारे सवाल और उनके जवाब यहीं रहेंगे।',
+  'fam.chat.list': '{subject} में तुम्हारी चैट',
+  'fam.chat.new': 'नई चैट',
+  'fam.chat.pick': 'चैट चुनो',
+  'fam.chat.questions': '{max} में से {n} सवाल',
+  'fam.chat.full': 'यह चैट भर गई है। {subject} में नई चैट शुरू करो।',
+  'fam.chat.startNew': 'नई चैट शुरू करो',
+  'fam.chat.fullBadge': 'भर गई',
   'fam.tutor.loading': 'बातचीत खुल रही है…',
   'fam.tutor.you': 'तुमने पूछा',
   'fam.tutor.tutorSaid': 'ट्यूटर',
@@ -9283,6 +9290,7 @@ export const hi: Record<keyof typeof en, string> = {
   // s3 end
   // e1 begin
   'control.ai.profile.name.family.english_conversation': 'अंग्रेज़ी बोलने का लाइव अभ्यास (साथी के उत्तर)',
+  'control.ai.profile.name.family.summary': 'ट्यूटर चैट का सारांश (चैट की याद)',
   'fam.english.live.title': 'अंग्रेज़ी में बात करें',
   'fam.english.live.kicker': 'बोलने का अभ्यास',
   'fam.english.live.entry': 'अपने अंग्रेज़ी साथी से बात करें',
