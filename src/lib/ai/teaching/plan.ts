@@ -17,7 +17,8 @@ type Db = Parameters<typeof prepareText>[0];
 
 export type PlanAskContext = PlanContext & { board: string; chapter: string | null; passageTitles: string[] };
 
-export const PLAN_MAX_TOKENS = 300;
+// W10: 600, with the compact answer (family.plan v1's short keys): at 300 a model's plan arrived cut (297 of 300).
+export const PLAN_MAX_TOKENS = 600;
 
 // In the caller's transaction: the planning call ready to send, or null when the workload cannot run now (no route,
 // switched off, a provider not cleared for children's words): the default plan is used then.

@@ -2,7 +2,7 @@ import { randomBytes } from 'crypto';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
-import { REFUSAL_MESSAGE, prepareText, streamText, type AiContext, type AiRequest } from '@/lib/ai/platform';
+import { PROFILES, REFUSAL_MESSAGE, prepareText, streamText, type AiContext, type AiRequest } from '@/lib/ai/platform';
 import { adapterFor, standInAllowed } from '@/lib/ai/adapters';
 import { sealAiKey, aiEncryptionKey } from '@/lib/ai/credentials';
 import { en } from '@/lib/i18n/messages/en';
@@ -291,6 +291,93 @@ describe('fallback', () => {
     const pieces: string[] = [];
     expect(await run(ctxA, ask(), (p) => pieces.push(p))).toEqual({ ok: false, reason: 'failed' });
     expect(pieces).toEqual(['Half']);
+    expect(calls).toHaveLength(1);
+  });
+});
+
+// W10 (latency): a streaming provider that has said no answer text by the profile's first-text time is given up as a
+// timeout and the backup answers; a reasoning model's thinking does not count as text. The deadline is shortened here
+// (12 s in the code) so the test runs in a moment.
+describe('the first-text deadline (W10)', () => {
+  const NVIDIA_KEY = `nvapi-${'N'.repeat(40)}`;
+  const resolver = PROFILES.find((p) => p.id === 'family.resolver') as { firstTextMs?: number; callMs?: number };
+  const saved = resolver.firstTextMs;
+  const chunk = (delta: Record<string, unknown>, finish: string | null = null) => `data: ${JSON.stringify({ choices: [{ index: 0, delta, finish_reason: finish }] })}\n\n`;
+  // A vendor stream: each piece after its wait, ended with [DONE]; or left open (never ended) when `hang`. It stops when
+  // the call is aborted, as a real connection does.
+  const slow = (pieces: { after: number; data: string }[], signal: AbortSignal | undefined, hang: boolean) =>
+    new Response(
+      new ReadableStream({
+        async start(c) {
+          const enc = new TextEncoder();
+          signal?.addEventListener('abort', () => c.error(new DOMException('aborted', 'AbortError')));
+          for (const p of pieces) {
+            await new Promise((r) => setTimeout(r, p.after));
+            if (signal?.aborted) return;
+            c.enqueue(enc.encode(p.data));
+          }
+          if (!hang) {
+            c.enqueue(enc.encode('data: [DONE]\n\n'));
+            c.close();
+          }
+        },
+      }),
+      { status: 200, headers: { 'content-type': 'text/event-stream' } }
+    );
+  let primary: (signal: AbortSignal | undefined) => Response;
+  beforeEach(async () => {
+    resolver.firstTextMs = 300;
+    await q(`delete from control.ai_usage_ledger`);
+    await clear('nvidia');
+    await clear('workers-ai');
+    await sealInto('nvidia', NVIDIA_KEY);
+    await sealInto('workers-ai', WORKERS_KEY);
+    await useProfile('nvidia', 'nvidia/nemotron-made-up-vl-1b', [{ provider: 'workers-ai', model: 'test-model-b' }]);
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string, init: RequestInit) => {
+        calls.push({ url: String(url), body: String(init.body), headers: init.headers as Record<string, string> });
+        if (new URL(String(url)).hostname === 'integrate.api.nvidia.com') return primary(init.signal ?? undefined);
+        return new Response(JSON.stringify({ choices: [{ message: { content: 'From the backup.' }, finish_reason: 'stop' }], usage: { prompt_tokens: 13, completion_tokens: 4 } }), { status: 200 });
+      })
+    );
+  });
+  afterEach(() => {
+    resolver.firstTextMs = saved;
+  });
+
+  it('the profiles carry the deadlines the brief set, inside their own time', () => {
+    const of = (id: string) => PROFILES.find((p) => p.id === id);
+    expect(saved).toBe(12_000);
+    expect(of('family.homework')).toMatchObject({ callMs: 40_000, firstTextMs: 12_000 });
+    expect(of('family.plan')).toMatchObject({ callMs: 10_000, firstTextMs: 6_000 });
+    expect(of('family.summary')).toMatchObject({ callMs: 15_000, firstTextMs: 6_000 });
+    expect(resolver.callMs).toBe(40_000);
+  });
+
+  it('a primary that only thinks past the deadline is aborted as upstream_timeout and the backup answers; no thinking is shown', async () => {
+    let aborted = false;
+    primary = (signal) => {
+      signal?.addEventListener('abort', () => (aborted = true));
+      return slow([0, 100, 100, 100, 100, 100].map((after) => ({ after, data: chunk({ reasoning_content: 'hmm ' }) })), signal, true);
+    };
+    const pieces: string[] = [];
+    const got = await run(ctxA, ask(), (p) => pieces.push(p));
+    expect(got).toMatchObject({ ok: true, text: 'From the backup.', provider: 'workers-ai' });
+    expect(pieces).toEqual(['From the backup.']);
+    expect(aborted).toBe(true);
+    const sent = JSON.parse(calls[0].body);
+    expect(sent.chat_template_kwargs).toEqual({ enable_thinking: false, thinking: false });
+    expect(await q(`select provider_id, outcome, streamed from control.ai_usage_ledger order by attempt_id`)).toEqual([
+      { provider_id: 'nvidia', outcome: 'upstream_timeout', streamed: false },
+      { provider_id: 'workers-ai', outcome: 'ok', streamed: true },
+    ]);
+  });
+
+  it('text before the deadline holds the call: it may finish after it, and no backup is asked', async () => {
+    primary = (signal) => slow([{ after: 50, data: chunk({ content: 'Iron ' }) }, { after: 500, data: chunk({ content: 'is pulled.' }) }, { after: 0, data: chunk({}, 'stop') }], signal, false);
+    const got = await run();
+    expect(got).toMatchObject({ ok: true, text: 'Iron is pulled.', provider: 'nvidia' });
     expect(calls).toHaveLength(1);
   });
 });

@@ -164,7 +164,9 @@ export function WorkloadCard({
     d.promptVersion.trim() !== p.promptVersion ||
     d.enabled !== p.enabled;
   const duplicate = hasDuplicate(used);
-  const valid = used.every((s) => validModel(s.model)) && !duplicate;
+  // W10: a slot with a service but no model id kept Save greyed with nothing said; now the card says why.
+  const noModel = used.some((s) => !validModel(s.model));
+  const valid = !noModel && !duplicate;
   const setSlot = (i: number, slot: Slot) =>
     setDraft({ ...d, slots: d.slots.map((x, k) => (k === i ? slot : x)) });
 
@@ -257,6 +259,11 @@ export function WorkloadCard({
       {duplicate && (
         <p data-ai-duplicate role="alert" className="text-xs font-semibold text-red-800">
           {t("control.ai.slot.duplicate")}
+        </p>
+      )}
+      {noModel && dirty && (
+        <p data-ai-slot-no-model role="alert" className="text-xs font-semibold text-red-800">
+          {t("control.ai.slot.needsModel")}
         </p>
       )}
 
