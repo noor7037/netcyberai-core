@@ -149,7 +149,7 @@ describe('allow: a cleared provider with a key streams', () => {
     expect(pieces).toEqual(['Plants ', 'make food ', 'from light.']);
     expect(calls).toHaveLength(1);
     expect(calls[0].headers['x-api-key']).toBe(ANTHROPIC_KEY);
-    expect(JSON.parse(calls[0].body)).toMatchObject({ model: 'test-model-a', stream: true, max_tokens: 2000 });
+    expect(JSON.parse(calls[0].body)).toMatchObject({ model: 'test-model-a', stream: true, max_tokens: 8000 });
     expect(await q(`select account_id, requests from family.ai_daily`)).toEqual([{ account_id: A, requests: 1 }]);
     const usage = await q(`select profile_id, provider_id, model, requests, failures, cap_refusals, tokens_in::int, tokens_out::int from control.ai_usage`);
     expect(usage).toEqual([{ profile_id: 'family.resolver', provider_id: 'anthropic', model: 'test-model-a', requests: 1, failures: 0, cap_refusals: 0, tokens_in: 21, tokens_out: 9 }]);
@@ -172,7 +172,7 @@ describe('allow: a cleared provider with a key streams', () => {
     await run(ctxA, { ...ask(), responseFormat: 'json', maxTokens: 99_999 });
     const body = JSON.parse(calls[0].body);
     expect(body.system).toMatch(/JSON object only/);
-    expect(body.max_tokens).toBe(2000); // never above the profile's own limit
+    expect(body.max_tokens).toBe(8000); // never above the profile's own limit (8000 since W8-AI)
   });
 });
 

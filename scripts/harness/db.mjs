@@ -60,7 +60,10 @@ export const HARNESS_MARKER = 'NCA_SCREENSHOT_HARNESS';
 
 // `before`: SQL run just before the migration whose file name ends with `migration`, for a test of what that
 // migration does to rows that were already there (as test/db/pglite-harness.ts allows).
-export async function startHarnessDb({ port = 54329, seedSql = '', before = null } = {}) {
+// `testingMode` (W8-AI): the migrations switch the platform's testing mode on (control.settings 'ai.testing_mode') for
+// the founder's testing phase. Tests assert the behaviour the release ships with, so the harness switches it off unless
+// asked for 'on' (the screenshot harness, which shows Control as the TEST database has it; a test of testing mode).
+export async function startHarnessDb({ port = 54329, seedSql = '', before = null, testingMode = 'off' } = {}) {
   const pg = new PGlite({ extensions: { pgcrypto, pg_trgm, uuid_ossp } });
   await pg.exec(SUPABASE_STAND_INS);
   const applied = [];
@@ -78,6 +81,7 @@ export async function startHarnessDb({ port = 54329, seedSql = '', before = null
       throw new Error(`harness: migration ${file} did not apply: ${err.message}`);
     }
   }
+  if (testingMode !== 'on') await pg.exec(`update control.settings set value = '"off"'::jsonb where key = 'ai.testing_mode'`);
   if (seedSql) await pg.exec(seedSql);
   const server = new PGLiteSocketServer({ db: pg, port, host: '127.0.0.1', maxConnections: 20 });
   await server.start();

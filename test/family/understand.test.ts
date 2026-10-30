@@ -249,14 +249,14 @@ describe('a typed question’s subject, decided on the server', () => {
   const ask = async (text: string, j: Record<string, string>, screenSubject: string) => events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text, subject: screenSubject }, j)));
   const freeSubject = async (child: string) => (await db.pg.query(`select free_subject from family.children where child_id = $1`, [child])).rows[0].free_subject;
 
-  it('the prompt names the subject first under the latest version (v3), whatever Control chose; a topic keeps v1, word for word', async () => {
+  it('the prompt names the subject first under the default version (v7 since W8-AI), whatever Control chose; a topic keeps v1, word for word', async () => {
     const { resolverPrompt } = await import('@/lib/ai/prompts/family.resolver');
     const v1 = await import('@/lib/ai/prompts/family.resolver/v1');
-    expect(resolverPrompt('v1', true).version).toBe('v3');
+    expect(resolverPrompt('v1', true).version).toBe('v7');
     expect(resolverPrompt('v1', false).version).toBe('v1');
     expect(resolverPrompt('v2', true).version).toBe('v2');
-    expect(resolverPrompt('v9', false).version).toBe('v3');
-    expect(resolverPrompt(null, true).version).toBe('v3');
+    expect(resolverPrompt('v9', false).version).toBe('v7');
+    expect(resolverPrompt(null, true).version).toBe('v7');
     const topic = { board: 'CBSE', classLevel: 9, subject: 'mathematics', openSubjects: ['mathematics'], classSubjects: ['mathematics', 'science'], chapter: 'Number System', topic: 'Rational numbers', question: null, language: 'en' as const, style: 'en' as const, followUp: null, misconception: null };
     expect(resolverPrompt('v2', false).system(topic)).toBe(v1.resolverSystem({ ...topic, subject: 'mathematics' }));
     expect(resolverPrompt('v3', false).user(topic)).toBe(v1.resolverUser({ ...topic, subject: 'mathematics' }));

@@ -42,6 +42,7 @@ function BlockText({ b }: { b: Any }) {
               <li key={j} className={j === it?.answer ? 'font-semibold text-emerald-text' : ''}>
                 {str(o)}
                 {j === it?.answer ? ` (${t('control.queue.block.rightOption')})` : ''}
+                {j !== it?.answer && str(arr(it?.wrong)[j]) && <span className="block text-slate/70">{t('control.queue.block.wrongWhy', { text: str(arr(it?.wrong)[j]) })}</span>}
               </li>
             ))}
           </ul>
@@ -58,6 +59,9 @@ function BlockText({ b }: { b: Any }) {
           {heading}
           <p className="font-semibold">{str(b.title)}</p>
           <p>{str(b.idea)}</p>
+          {arr(b.paragraphs).map((para, i) => (
+            <p key={i}>{str(para)}</p>
+          ))}
           {str(b.example) && <p>{t('control.queue.block.example', { text: str(b.example) })}</p>}
           <ol className="list-decimal pl-5">
             {arr(b.steps).map((s, i) => (
@@ -108,6 +112,19 @@ function BlockText({ b }: { b: Any }) {
               return <li key={i}>{[label(e?.from), '→', label(e?.to), str(e?.label) && `(${str(e.label)})`].filter(Boolean).join(' ')}</li>;
             })}
           </ol>
+        </div>
+      );
+    case 'mind_map':
+      return (
+        <div className="flex flex-col gap-1">
+          {heading}
+          <p className="font-semibold">{str(b.title)}</p>
+          <p>{str(b.root)}</p>
+          <ul className="list-disc pl-5">
+            {arr(b.branches).map((br, i) => (
+              <li key={i}>{[str(br?.label), ...arr(br?.leaves).map(str)].filter(Boolean).join(' → ')}</li>
+            ))}
+          </ul>
         </div>
       );
     case 'check':

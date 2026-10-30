@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requireStepUp } from '@/lib/auth/step-up';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
-import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setPrice, setProfile, setSpendAlert, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
+import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerChoices, recordKeyTest, rollbackRoute, setCap, setClearance, setCredential, setEndpoint, setPrice, setProfile, setSpendAlert, setTestingMode, setWorkersCredential, undoChange, type ChangeResult, type Link } from '@/lib/ai/control';
 
 // Control → AI (docs/family-app/10 §3, C249). The founder only, with the authenticator (aal2).
 //   GET   providers and their clearance for minors, each key's last four characters (never a key), the profiles, usage
@@ -17,6 +17,8 @@ import { checkBaseUrl, loadAiOverview, loadAiRouting, prepareKeyTest, providerCh
 //         { action: 'cap', value }                                            requests per family per day
 //         { action: 'spend_alert', value }                                    US$ of known cost a day before the
 //                                                                             founders are emailed; null: off (C394)
+//         { action: 'testing_mode', on }                                      testing mode on or off (W8-AI): no daily caps,
+//                                                                             no safety pre-check, every provider cleared
 //         { action: 'undo', auditId }                                         restore the state before that change
 //         { action: 'rollback', profileId, revisionId? }                       activate the route's previous revision (or the one named) again
 //         { action: 'price', providerId, model, inUsd, outUsd } | { ..., price: null }   US dollars per million tokens (G5)
@@ -83,6 +85,8 @@ export async function POST(req: NextRequest) {
     if (typeof b.value === 'number') result = await withPlatformService((db) => setCap(db, by, b.value));
   } else if (b?.action === 'spend_alert') {
     if (typeof b.value === 'number' || b.value === null) result = await withPlatformService((db) => setSpendAlert(db, by, b.value));
+  } else if (b?.action === 'testing_mode') {
+    if (typeof b.on === 'boolean') result = await withPlatformService((db) => setTestingMode(db, by, b.on));
   } else if (b?.action === 'price') {
     const providerId = str(b.providerId, 40);
     const model = str(b.model, 80);

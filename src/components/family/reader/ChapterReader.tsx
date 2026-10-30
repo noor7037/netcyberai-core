@@ -7,6 +7,7 @@ import type { PublicChapterTest, ReaderBlock } from '@/lib/family/chapter-test-s
 import type { VideoPick } from '@/lib/family/videos';
 import { fill, type Words } from '@/lib/family/fill';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
+import { MindMapView } from '../blocks/MindMapView';
 import { NO_VOICE_EVENT } from '../english/speech';
 import { speakLine, stopLine, type VoiceMode } from '../voice/lineVoice';
 import { SPEEDS, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
@@ -386,6 +387,8 @@ function renderBlock(b: ReaderBlock, w: Words, tone: string, at: { id: string; c
       return <KeyPointsView b={b} w={w} tone={tone} />;
     case 'diagram':
       return <DiagramView b={b} tone={tone} />;
+    case 'mind_map':
+      return <MindMapView b={b} w={w} tone={tone} />;
     case 'table':
       return <TableView b={b} tone={tone} />;
     case 'graph':

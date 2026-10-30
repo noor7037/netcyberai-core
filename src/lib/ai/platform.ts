@@ -6,7 +6,7 @@ import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
-import { dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, voiceCharLimit, voiceCharsLeft } from './daily-cap';
+import { UNCAPPED_LEFT, countDailyRequest, countVoiceChars, dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, testingModeOn, voiceCharLimit, voiceCharsLeft } from './daily-cap';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt } from './gateway/ledger';
@@ -32,6 +32,10 @@ import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, MODERATION_TIMEOUT_MS, VOICE_TEXT_M
 //   7. the call is metered with counts and tokens only (control.count_ai_usage), and each attempt is one ledger row
 //      (control.ai_usage_ledger, src/lib/ai/gateway/ledger.ts) that also moves the provider's circuit. No prompt or
 //      answer is stored or logged.
+//
+// Testing mode (W8-AI, Control's 'ai.testing_mode', src/lib/ai/daily-cap.ts): while it is on, step 2 reads every
+// provider as cleared, step 4 counts without refusing, the safety pre-check (family.moderation) is skipped, and a text
+// call gets the profile's max_output_tokens as saved. Off, every step is exactly as above.
 //
 // `db` is the caller's family_app client, inside withFamilyContext. The answer is data, never code: callers parse it
 // against their schema and drop anything outside it. The key opened in 3 lives only inside the prepared call (a closure,
@@ -282,7 +286,7 @@ type Checked = { ok: true; profile: AiProfile; row: ProfileRow; chain: Link[]; p
 
 // 1 and 2, for either capability: the profile switched on, and the minors check on the whole chain, against the
 // adapter of the profile's own capability.
-async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capability: Capability, env: Record<string, string | undefined>): Promise<Checked> {
+async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capability: Capability, env: Record<string, string | undefined>, testing = false): Promise<Checked> {
   const profile = profileById(profileId);
   if (!profile || profile.capability !== capability || !UUID.test(ctx.accountId) || !DAY.test(ctx.day)) return { ok: false, reason: 'failed' };
 
@@ -298,7 +302,8 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
     // Every provider in the chain must be cleared in Control (C368: the founder's switch is the one gate). A text
     // provider needs its adapter (as before); a provider with no speech adapter is not refused for that alone: it is
     // skipped at step 3.
-    const cleared = chain.every((l) => providers.get(l.provider)?.cleared_for_minors === true && (capability !== 'text' || capableAdapter(profile.id, l.provider, env) !== null));
+    // Testing mode reads every provider as cleared; the founder's switch in Control keeps its own value for later.
+    const cleared = chain.every((l) => (testing || providers.get(l.provider)?.cleared_for_minors === true) && (capability !== 'text' || capableAdapter(profile.id, l.provider, env) !== null));
     if (!cleared) return { ok: false, reason: 'not_cleared_for_minors' };
   }
   // The capability check (G1, C369), on the whole chain: a provider whose adapter lacks what the profile needs is a
@@ -314,23 +319,33 @@ export async function profileReady(db: Sql, ctx: AiContext, profileId: ProfileId
   const env = process.env;
   const profile = profileById(profileId);
   if (!profile) return 'failed';
-  const checked = await checkProfile(db, ctx, profileId, profile.capability, env);
+  const testing = await testingModeOn(db);
+  // Testing mode skips the safety pre-check, so it never stands in a child's way.
+  if (testing && profile.id === 'family.moderation') return 'ready';
+  const checked = await checkProfile(db, ctx, profileId, profile.capability, env, testing);
   if (!checked.ok) return checked.reason;
   const find = (p: string) => capableAdapter(profile.id, p, env);
   const usable = await usableLinks(db, checked.chain, checked.providers, env, find);
   return usable.length > 0 ? 'ready' : 'not_switched_on';
 }
 
-// The family's daily requests left today (Control's cap less what the account has used); 0 when the setting is missing.
+// The family's daily requests left today (Control's cap less what the account has used); 0 when the setting is missing;
+// uncapped while testing mode is on.
 export async function dailyRequestsLeft(db: Sql, accountId: string, day: string): Promise<number> {
+  if (await testingModeOn(db)) return UNCAPPED_LEFT;
   const limit = await dailyLimit(db);
   if (limit === null || !UUID.test(accountId) || !DAY.test(day)) return 0;
   return Math.max(0, limit - (await dailyRequestsUsed(db, accountId, day)));
 }
 
 // 4. The family's daily cap, counted before the request leaves.
-async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link): Promise<boolean> {
+async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, testing: boolean): Promise<boolean> {
   if (profile.audience !== 'family') return true;
+  // Testing mode: the request is counted, never refused.
+  if (testing) {
+    await countDailyRequest(db, ctx.accountId, ctx.day);
+    return true;
+  }
   const limit = await dailyLimit(db);
   if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
@@ -340,8 +355,10 @@ async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link)
 }
 
 // 4, for a line to speak: the family's voice allowance in characters (C388) instead of a request place.
-async function takeVoiceCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, chars: number): Promise<boolean> {
+async function takeVoiceCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, chars: number, testing: boolean): Promise<boolean> {
   if (profile.audience !== 'family') return true;
+  // Testing mode: the characters are counted, never refused.
+  if (testing) return countVoiceChars(db, ctx.accountId, ctx.day, chars);
   const limit = await voiceCharLimit(db);
   if (limit === null || !(await takeVoiceChars(db, ctx.accountId, ctx.day, chars, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
@@ -356,7 +373,8 @@ const CHAIN_MIN_MS = 15_000;
 // 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
 export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
   const env = process.env;
-  const checked = await checkProfile(db, ctx, profileId, 'text', env);
+  const testing = await testingModeOn(db);
+  const checked = await checkProfile(db, ctx, profileId, 'text', env, testing);
   if (!checked.ok) return checked;
   const { profile, row, chain, providers } = checked;
 
@@ -373,11 +391,12 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
   }
 
   // 4. The family's daily cap (a school or Control profile's limit is checked by its caller).
-  if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
+  if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
 
   // 5. Nothing that names a child leaves the server.
   const clean = scrubRequest(request, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
-  const maxTokens = Math.min(Math.max(1, Math.floor(request.maxTokens ?? row.max_output_tokens)), row.max_output_tokens);
+  // Testing mode honours the profile's limit as saved in Control, whatever smaller limit the caller asked for.
+  const maxTokens = testing ? row.max_output_tokens : Math.min(Math.max(1, Math.floor(request.maxTokens ?? row.max_output_tokens)), row.max_output_tokens);
 
   let sent = false;
   const send = async (onDelta: (text: string) => void = () => {}): Promise<SentText> => {
@@ -450,7 +469,8 @@ export type PreparedTranscription = { ok: true; speech: PreparedSpeech } | { ok:
 // the prepared call's closure and is never stored or logged; the words that come back are the caller's to check.
 export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeechInput): Promise<PreparedTranscription> {
   const env = process.env;
-  const checked = await checkProfile(db, ctx, profileId, 'speech_to_text', env);
+  const testing = await testingModeOn(db);
+  const checked = await checkProfile(db, ctx, profileId, 'speech_to_text', env, testing);
   if (!checked.ok) return checked;
   const { profile, row, chain, providers } = checked;
 
@@ -465,7 +485,7 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
   }
 
   // 4. The family's daily cap.
-  if (!(await takeCap(db, ctx, profile, ready[0].link))) return { ok: false, reason: 'cap_reached' };
+  if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
 
   let sent = false;
   const send = async (): Promise<SentTranscript> => {
@@ -528,7 +548,8 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
   const env = process.env;
   const text = typeof input.text === 'string' ? input.text.trim() : '';
   if (!text || text.length > VOICE_TEXT_MAX || (input.language !== 'en' && input.language !== 'hi')) return { ok: false, reason: 'failed' };
-  const checked = await checkProfile(db, ctx, profileId, 'text_to_speech', env);
+  const testing = await testingModeOn(db);
+  const checked = await checkProfile(db, ctx, profileId, 'text_to_speech', env, testing);
   if (!checked.ok) return checked;
   const { profile, row, chain, providers } = checked;
 
@@ -543,7 +564,7 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
   }
 
   // 4. The family's daily voice allowance, in characters (C388), not the daily requests: a line takes its length.
-  if (!(await takeVoiceCap(db, ctx, profile, ready[0].link, text.length))) return { ok: false, reason: 'cap_reached' };
+  if (!(await takeVoiceCap(db, ctx, profile, ready[0].link, text.length, testing))) return { ok: false, reason: 'cap_reached' };
 
   // 5. Nothing that names a child leaves the server.
   const clean = scrubRequest({ system: '', messages: [{ role: 'user', content: text }] }, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }).messages[0].content;
@@ -606,6 +627,8 @@ export type ModerationReady = { ok: true; moderation: PreparedModeration } | { o
 // database) tries the chain in order; 7 (record) counts requests, failures and tokens only. The words are never stored.
 export async function prepareModeration(db: Sql, ctx: AiContext, replyProfile: ProfileId | null = null): Promise<ModerationReady> {
   const env = process.env;
+  // Testing mode skips the safety pre-check: nothing is sent, nothing is counted, every check reads as safe.
+  if (await testingModeOn(db)) return { ok: true, moderation: { check: async () => ({ safe: true, categories: [] }), record: async () => {} } };
   const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
   if (!checked.ok) return checked;
   const { profile, row, chain, providers } = checked;
@@ -676,13 +699,15 @@ export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sq
 const SMOKE_QUESTION = 'What does a magnet attract?';
 export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInputs): Promise<PreparedSmoke> {
   const env = process.env;
+  // The minors check as a child's call reads it now (testing mode included).
+  const testing = await testingModeOn(db);
   const usage: { profile: ProfileId; link: Link; counts: Counts }[] = [];
   type Step = () => Promise<SmokeCheck[]>;
   const steps: Step[] = [];
   const refused = (check: string, profile: ProfileId, reason: string): Step => async () => [{ check, profile, ok: false, failure: reason }];
 
   const textChain = async (profile: ProfileId, check: string, request: AdapterRequestPart, judge: (text: string, finish?: string) => string | undefined) => {
-    const c = await checkProfile(db, ctx, profile, 'text', env);
+    const c = await checkProfile(db, ctx, profile, 'text', env, testing);
     if (!c.ok) return steps.push(refused(check, profile, c.reason));
     const usable = await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env));
     const ready = usable.filter((r) => !request.images || r.adapter.capabilities.vision);
@@ -732,7 +757,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   }
   // Workers AI: the same question over each of its four transports, to see which keeps the JSON whole (C321).
   {
-    const c = await checkProfile(db, ctx, 'family.resolver', 'text', env);
+    const c = await checkProfile(db, ctx, 'family.resolver', 'text', env, testing);
     const ready = c.ok ? (await usableLinks(db, c.chain, c.providers, env, (p) => adapterFor(p, env))).filter((r) => r.link.provider === 'workers-ai') : [];
     if (ready[0]) {
       const { link, apiKey } = ready[0];
@@ -750,7 +775,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
     (text) => (/magnet/i.test(text) ? 'read the printed question' : 'answered, but not with the printed question')
   );
 
-  const voice = await checkProfile(db, ctx, 'family.voice_input', 'speech_to_text', env);
+  const voice = await checkProfile(db, ctx, 'family.voice_input', 'speech_to_text', env, testing);
   if (!voice.ok) steps.push(refused('voice', 'family.voice_input', voice.reason));
   else {
     const ready = await usableLinks(db, voice.chain, voice.providers, env, (p) => speechAdapterFor(p, env));
@@ -774,7 +799,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
     }
   }
 
-  const guard = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
+  const guard = await checkProfile(db, ctx, 'family.moderation', 'moderation', env, testing);
   if (!guard.ok) steps.push(refused('safety', 'family.moderation', guard.reason));
   else {
     const ready = await usableLinks(db, guard.chain, guard.providers, env, (p) => moderationAdapterFor(p, env));

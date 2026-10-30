@@ -7,7 +7,7 @@ import { vertexModelLooksRight } from './adapters/vertex-ai';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersModelLooksRight, workersTokenLooksRight } from './adapters/workers-ai';
 import { testYoutubeKey } from './adapters/youtube';
 import { aiEncryptionKey, sealAiKey, unsealAiKey, type SealedRow } from './credentials';
-import { DAILY_REQUESTS_SETTING } from './daily-cap';
+import { DAILY_REQUESTS_SETTING, TESTING_MODE_SETTING, testingModeOn } from './daily-cap';
 import { SPEND_ALERT_MAX_USD, SPEND_ALERT_SETTING, spendAlertUsd, spentOn } from './gateway/upkeep';
 import { capableAdapter, chainOf, missingCapabilities, PROFILES, profileById, profileNeeds } from './platform';
 import { activated, activating, loadRouteRevisions, revisionToRestore } from './gateway/revisions';
@@ -111,12 +111,14 @@ export type AiOverview = {
   prices: ModelPrice[];
   // G6 (C379): each provider's model ids for the pickers, from its latest key test or health probe.
   modelLists: Record<string, ModelList>;
+  // W8-AI: the testing-phase switch (no daily caps, no safety pre-check, every provider cleared for testing).
+  testingMode: boolean;
 };
 export type ModelPrice = { providerId: string; model: string; inUsd: number; outUsd: number; setAt: string; setByName: string | null };
 export type PriceEntry = { inUsd: number; outUsd: number };
 export type Counts = { requests: number; failures: number; capRefusals: number; tokensIn: number; tokensOut: number };
 
-const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set', 'ai.spend_alert_changed'] as const;
+const ACTIONS = ['ai.credential_set', 'ai.provider_clearance', 'ai.endpoint_changed', 'ai.profile_changed', 'ai.cap_changed', 'ai.price_set', 'ai.spend_alert_changed', 'ai.testing_mode_changed'] as const;
 type Action = (typeof ACTIONS)[number];
 // A model id as the vendor names it; Workers AI ids start with "@" (C230-U). The database holds the same rule.
 const MODEL = /^@?[A-Za-z0-9._:/-]{1,80}$/;
@@ -244,6 +246,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       canUndo: r.before_state !== null && !(r.event_action === 'ai.credential_set' && r.before_state?.had === true),
     })),
     modelLists: await loadModelLists(db),
+    testingMode: await testingModeOn(db),
     prices: prices.rows.map((r) => ({
       providerId: r.provider_id,
       model: r.model,
@@ -603,6 +606,23 @@ async function writeSpendAlert(db: Sql, by: By, value: number | null, undoOf?: s
   return { ok: true };
 }
 
+// Testing mode (W8-AI): 'on' or 'off', one platform audit row per change with the before and after. Read live by the
+// platform on every call (src/lib/ai/daily-cap.ts testingModeOn); switched off before the Play Store release.
+export async function setTestingMode(db: Sql, by: By, on: boolean): Promise<ChangeResult> {
+  return writeTestingMode(db, by, on);
+}
+
+async function writeTestingMode(db: Sql, by: By, on: boolean, undoOf?: string): Promise<ChangeResult> {
+  const before = (await db.query(`select value from control.settings where key = $1`, [TESTING_MODE_SETTING])).rows[0]?.value ?? null;
+  const value = on ? 'on' : 'off';
+  await db.query(
+    `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+    [TESTING_MODE_SETTING, JSON.stringify(value), by.userId]
+  );
+  await audit(db, by, 'ai.testing_mode_changed', TESTING_MODE_SETTING, { key: TESTING_MODE_SETTING, value: before }, { key: TESTING_MODE_SETTING, value, ...(undoOf ? { undoOf } : {}) });
+  return { ok: true };
+}
+
 // One step back: the change's before state, restored and itself audited (so an undo can be undone).
 export async function undoChange(db: Sql, by: By, auditId: string): Promise<ChangeResult> {
   if (!/^\d{1,18}$/.test(auditId)) return { ok: false, code: 'not_found' };
@@ -631,6 +651,8 @@ export async function undoChange(db: Sql, by: By, auditId: string): Promise<Chan
       );
     case 'ai.cap_changed':
       return typeof before.value === 'number' ? writeCap(db, by, before.value, auditId) : { ok: false, code: 'not_found' };
+    case 'ai.testing_mode_changed':
+      return before.value === 'on' || before.value === 'off' ? writeTestingMode(db, by, before.value === 'on', auditId) : { ok: false, code: 'not_found' };
     case 'ai.spend_alert_changed':
       return before.value === null || spendOk(before.value) ? writeSpendAlert(db, by, (before.value as number | null) ?? null, auditId) : { ok: false, code: 'not_found' };
     case 'ai.price_set': {

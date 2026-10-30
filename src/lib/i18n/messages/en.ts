@@ -9512,4 +9512,20 @@ export const en = {
   'control.leads.source.import': 'Imported',
   'control.leads.recent.all': 'All leads →',
   // w7-l end
+  // w8-ai start
+  'control.ai.testing.title': 'Testing mode',
+  'control.ai.testing.onText': 'Testing mode is on: no daily caps, no moderation, every provider cleared for testing. Switch it off before the Play Store release.',
+  'control.ai.testing.offText': 'Testing mode is off: the daily limits, the safety check and each provider’s clearance for children apply as set below.',
+  'control.ai.testing.switch': 'Testing mode',
+  'control.ai.testing.stateOn': 'On',
+  'control.ai.testing.stateOff': 'Off',
+  'control.ai.testing.savedOn': 'Testing mode switched on.',
+  'control.ai.testing.savedOff': 'Testing mode switched off.',
+  'control.ai.change.ai.testing_mode_changed': 'Testing mode',
+  'fam.block.mindMap': 'Mind map',
+  'control.queue.block.mind_map': 'Mind map',
+  'control.queue.block.wrongWhy': 'Why not: {text}',
+  'fam.check.notThis': 'Not this one',
+  'fam.check.correct': 'Correct',
+  // w8-ai end
 } as const;

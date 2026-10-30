@@ -16,7 +16,7 @@ vi.mock('@/lib/ai/platform', async (original) => {
     prepareText: async (db: unknown, ctx: unknown, profile: string, req: { messages: { content: string }[] }) => {
       // Only the preparing path is replaced; the smoke test reaches the vendors through the real adapters.
       if (profile !== 'content.prepare') return real.prepareText(db as never, ctx as never, profile as never, req as never);
-      const item = (id: string) => ({ id, question: `Question ${id}?`, options: ['a', 'b', 'c', 'd'], answer: 1, hint: 'h', why: 'w', wrong: ['', '', '', ''] });
+      const item = (id: string) => ({ id, question: `Question ${id}?`, options: ['a', 'b', 'c', 'd'], answer: 1, hint: 'h', why: 'w', wrong: ['Not a: made up.', '', 'Not c: made up.', 'Not d: made up.'] });
       const full = [
         { type: 'explanation', title: 'Magnets', idea: 'A magnet pulls iron.', example: 'A fridge magnet.', steps: ['One', 'Two'], terms: [] },
         { type: 'check', items: [item('c1'), item('c2')] },
