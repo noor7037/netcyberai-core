@@ -184,11 +184,11 @@ describe('prompt v4: registered, not active', () => {
     expect(RESOLVER_PROMPTS.map((p) => p.version)).toContain('v4');
     expect(resolverPrompt('v4', false).version).toBe('v4');
     expect(resolverPrompt('v4', true).version).toBe('v4');
-    // Never the fallback: an unknown or missing choice goes to the default (v7 since W8-AI).
-    expect(LATEST_RESOLVER_PROMPT).toBe('v7');
-    expect(resolverPrompt(null, true).version).toBe('v7');
-    expect(resolverPrompt('v9', false).version).toBe('v7');
-    expect(resolverPrompt('v1', true).version).toBe('v7');
+    // Never the fallback: an unknown or missing choice goes to the default (v8 since W9-B).
+    expect(LATEST_RESOLVER_PROMPT).toBe('v8');
+    expect(resolverPrompt(null, true).version).toBe('v8');
+    expect(resolverPrompt('v9', false).version).toBe('v8');
+    expect(resolverPrompt('v1', true).version).toBe('v8');
   });
 
   it('is v3 word for word plus the interactive lines', () => {

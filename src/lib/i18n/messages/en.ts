@@ -9022,6 +9022,7 @@ export const en = {
   'control.ai.profile.name.family.homework': 'Homework help from a photo',
   'control.ai.profile.name.family.voice_input': 'Voice questions (speech to text)',
   'control.ai.profile.name.family.moderation': 'Safety check on children’s words and answers',
+  'control.ai.profile.name.family.plan': 'Planning how to teach a question',
   'control.ai.profile.name.family.syllabus_extract': 'Reading a book’s contents pages (parents)',
   'control.ai.profile.name.copilot.draft': 'Teacher Copilot drafts',
   'control.ai.profile.name.parent_ai.home_help': 'Home help for parents',

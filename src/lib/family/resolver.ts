@@ -1,5 +1,8 @@
-import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
-import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
+import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type AiRequest, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
+import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
+import { logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
+import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
+import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
 import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
@@ -45,7 +48,12 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // the history see the question alone.
 // `attached`: what the files sent with a tutor question say (W4-1, C385: src/lib/family/tutor-read.ts), read on the
 // server; it joins the question, so the safety check and the scrub read it like the child's own words.
-export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string };
+// A question asked in the tutor window (W9-B) may carry the reader's open chapter and the window's subject: both only
+// steer the library's passages and the teaching plan; the answer's subject is still decided on the server. `memory`
+// (9A): the chat's summary and last turns, for the prompt's "Earlier in this chat".
+export type ResolveInput =
+  | { kind: 'topic' | 'chapter'; key: string }
+  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -195,7 +203,15 @@ export type Pending = {
   moderation: PreparedModeration | null;
   asked: string;
   question: string | null;
+  // W9-B: the plan the prompt is written from (v8 on; null under an earlier prompt), and for a live answer the planning
+  // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
+  plan: Plan | null;
+  teach: Teach | null;
 };
+
+// The planning call (null: no route, the default plan), the library's passages, and the answer's request written from
+// a plan.
+type Teach = { ctx: PlanContext; call: PreparedText | null; passages: Passage[]; build: (plan: Plan) => AiRequest };
 
 export type Generated = {
   sent: SentText;
@@ -216,6 +232,8 @@ export type Generated = {
   // Drawing the answer failed (the phone went away, or a fault): the call is still metered by keep(), then this is
   // raised.
   error: unknown;
+  // The plan the answer was written from (W9-B); null under a prompt that takes none.
+  plan: Plan | null;
 };
 
 const SUBJECT_NAMED = /"type"\s*:\s*"subject"/;
@@ -324,6 +342,9 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     moderation = ready.moderation;
   }
 
+  // W9-B (docs/39 §3): the library's passages and the planning call, for a live answer under a prompt that takes a plan.
+  // Neither ever refuses: no passage is a general answer, no planner is the band's default plan.
+  const teach = prompt.usesPlan && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const ask: ResolverAsk = {
     board: boardNameOf(child),
@@ -338,20 +359,56 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     style: child.style,
     followUp,
     misconception,
+    ...(teach ? { passages: teach.passages } : {}),
+    ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
   };
-  const prepared = await prepareText(
-    db as never,
-    { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day },
-    profileId,
-    { system: prompt.system(ask), messages: [{ role: 'user', content: prompt.user(ask) }], responseFormat: undefined }
-  );
+  // The default plan (v8's own rule: a question at standard depth, a chapter or topic whole) until the planner answers.
+  const plan = prompt.usesPlan ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'standard' : 'full') : null;
+  const build = (p: Plan | null): AiRequest => {
+    const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
+    return { system: prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+  };
+  const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day }, profileId, build(plan));
   if (!prepared.ok) {
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question };
+  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, plan, teach: teach ? { ...teach, build } : null };
+}
+
+// The planner reads the question and the start of what attached files say: enough to plan, not to answer.
+const PLAN_QUESTION_MAX = 2000;
+
+// The passages and the planning call for a live answer (W9-B), in the first transaction. The child's own syllabus
+// chapters (family.child_syllabus_items, by title) lead the passages after the open chapter. A typed question's plan is
+// asked for; a chapter or topic, and a wrong answer's retry, are taught on the band's default plan.
+async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, line: Line | null, known: Subject | null, misconception: string | null): Promise<Omit<Teach, 'build'>> {
+  const child = ctx.child;
+  const hint: Subject | null = known ?? (input.kind === 'question' && isSubject(input.windowSubject) ? input.windowSubject : null);
+  const planCtx: PlanContext = { classLevel: child.classLevel, subject: hint, lang: child.language };
+  const titles = (
+    await db.query(
+      `select i.title from family.child_syllabus_items i join family.child_syllabi s on s.syllabus_id = i.syllabus_id
+        where s.child_id = $1 and s.status = 'confirmed' and i.kind = 'chapter' and ($2::text is null or s.subject = $2)
+        order by i.position limit 200`,
+      [child.childId, hint]
+    )
+  ).rows.map((r) => String(r.title));
+  const passages = await retrievePassages(db, {
+    question: input.kind === 'question' ? input.text : (line?.topicEn ?? line?.chapterEn ?? ''),
+    subject: hint,
+    classLevel: child.classLevel,
+    boardId: syllabusBoardOf(child),
+    lang: child.language,
+    chapterKey: input.kind === 'question' ? (input.chapterKey ?? null) : (line?.key ?? null),
+    syllabusTitles: titles,
+    childId: child.childId,
+  });
+  const ai = { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day };
+  const call = input.kind === 'question' && misconception === null ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
+  return { ctx: planCtx, call, passages };
 }
 
 // 3–4. The model's answer, checked line by line as it arrives. No database connection is held while the model answers.
@@ -368,6 +425,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   let error: unknown = null;
   const seen = new Set<BlockType>();
   const kept: Block[] = [];
+  // The plan the answer is written from (W9-B): the prepared default until the planner answers.
+  let plan: Plan | null = p.plan;
   let objects = 0;
   const rejected: string[] = [];
   // A safety check that failed, or found the words unsafe, stops the answer here; what was already shown had passed.
@@ -407,8 +466,10 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       rejected.push(typeOf(text));
       return;
     }
-    // One block of each type, and at most one interactive block (M2-8): the first that passed.
+    // One block of each type, and at most one interactive block (M2-8): the first that passed. Under a plan (W9-B), an
+    // interactive block only where the plan names one: a biology answer never shows a pendulum, whatever the model wrote.
     if (seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
+    if (plan && isInteractive(b.type) && !plan.blocks.some(isInteractiveBlock)) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {
@@ -435,15 +496,37 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
   };
   // A typed question is checked before it is sent: one found unsafe is never sent to the model (C314).
   if (p.moderation && p.question !== null && !(await safe({ user: p.question }))) {
-    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0 };
+    return { sent: { result: { ok: false, reason: 'failed' }, record: async () => {} }, subject, kept, refusedByModel, stopped, error, objects, rejected, unclosed: false, droppedForSize: 0, plan };
+  }
+  // W9-B: the teaching plan, one short call after the question passed the safety check and before the answer; the
+  // answer's prompt is rewritten from it. Never blocks: the default plan stands when it cannot be had.
+  let late: AiRequest | undefined;
+  let planSent: SentText | null = null;
+  if (p.teach) {
+    const planned = await planAnswer(p.teach.ctx, p.teach.call);
+    logPlan(planned, p.teach.passages.length > 0);
+    planSent = planned.sent;
+    plan = planned.plan;
+    if (planned.fromModel) late = p.teach.build(planned.plan);
   }
   // Each JSON object is checked as soon as it closes, however the model laid it out (C316).
   const scan = jsonObjectScanner();
-  const sent = await p.text.send((delta) => {
+  const answered = await p.text.send((delta) => {
     for (const o of scan(delta)) enqueue(o);
-  });
+  }, late);
   await queue;
-  return { sent, subject, kept, refusedByModel, stopped, error, objects, rejected, ...scan.dropped() };
+  // The plan's call is metered with the answer's, in the same transaction.
+  const both = planSent;
+  const sent: SentText = both
+    ? {
+        result: answered.result,
+        record: async (tx) => {
+          await both.record(tx);
+          await answered.record(tx);
+        },
+      }
+    : answered;
+  return { sent, subject, kept, refusedByModel, stopped, error, objects, rejected, ...scan.dropped(), plan };
 }
 
 // 5. The writes after the call, in the caller's second transaction: the metering first, then the library line. Returns
@@ -470,5 +553,9 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
       [syllabusBoardOf(ctx.child), ctx.child.classLevel, line.subject, line.key, ctx.child.language, ctx.child.style, p.promptVersion, BLOCK_SCHEMA_VERSION, JSON.stringify(complete), result.provider, result.model, ctx.preparing ? ctx.accountId : null]
     );
   }
-  return { t: 'done', complete: complete !== null };
+  // Under a plan (W9-B), an answer is complete when every one of the explanation, check and practice it asked for came:
+  // a Class 3 answer has no practice by design, and is not "incomplete" for it.
+  const plan = g.plan;
+  const asked = plan ? (['explanation', 'check', 'practice'] as const).filter((t) => plan.blocks.includes(t)) : null;
+  return { t: 'done', complete: asked ? asked.every((t) => g.kept.some((k) => k.type === t)) : complete !== null };
 }

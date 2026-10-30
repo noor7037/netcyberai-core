@@ -9008,6 +9008,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.profile.name.family.homework': 'फ़ोटो से होमवर्क मदद',
   'control.ai.profile.name.family.voice_input': 'बोलकर पूछे प्रश्न (बोली से लिखित)',
   'control.ai.profile.name.family.moderation': 'बच्चों के शब्दों और उत्तरों की सुरक्षा जाँच',
+  'control.ai.profile.name.family.plan': 'प्रश्न को कैसे पढ़ाएँ, इसकी योजना',
   'control.ai.profile.name.family.syllabus_extract': 'किताब की विषय-सूची पढ़ना (माता-पिता)',
   'control.ai.profile.name.copilot.draft': 'शिक्षक Copilot के मसौदे',
   'control.ai.profile.name.parent_ai.home_help': 'माता-पिता के लिए घर पर मदद',
