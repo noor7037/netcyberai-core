@@ -38,6 +38,12 @@ export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string
   simulation: INTERACTIVE_TONE,
   slider: INTERACTIVE_TONE,
   model_3d: INTERACTIVE_TONE,
+  // W9-C: the figure with the diagrams (violet), steps and the timeline blue, the photograph teal, the videos coral.
+  figure: VIOLET_TONE,
+  steps: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
+  timeline: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
+  image: { bar: 'border-l-emerald', head: 'bg-emerald/10', dot: 'bg-emerald' },
+  videos: { bar: 'border-l-coral', head: 'bg-coral/15', dot: 'bg-coral' },
 };
 
 export function Card({ title, tone, children, tag }: { title: string; tone: string; children: React.ReactNode; tag?: string }) {

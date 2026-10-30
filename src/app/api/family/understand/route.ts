@@ -16,6 +16,7 @@ import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhoto
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { photoGate } from '@/lib/family/photo-gate';
 import { isSubject } from '@/lib/family/subjects';
+import { fillVisuals } from '@/lib/family/visuals/fill';
 import { indiaDate } from '@/lib/time/india';
 import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 
@@ -200,6 +201,7 @@ export async function POST(req: NextRequest) {
         // typed question's subject just before its first block is shown, in a short transaction of its own.
         const childId = pending.ctx.child.childId;
         const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
+        if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
         // 3. The writes, in a second short transaction; the last event only once they are kept.
         let last: ResolverEvent | null;
         try {

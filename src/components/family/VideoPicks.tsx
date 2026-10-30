@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import type { VideoPick } from '@/lib/family/videos';
 import { FamIcon } from './FamIcon';
+import { BLOCK_TONE } from './blocks/BlockViews';
 
 // The honest player (docs/family-app/02 §5; M2-5, C279), under a topic's response when the video finder has picks.
 // A card first (title, channel, length); nothing from YouTube is loaded until the child taps — not even its thumbnail
@@ -50,11 +51,12 @@ export function VideoPicks({ w, topicKey }: { w: Words; topicKey: string }) {
 // The list itself, from picks already in hand (S5, C378: a chapter's reviewer-chosen picks are read on the server and
 // passed in). `saver`: the data-saver is on; the card is drawn here and nothing of the video loads until the tap, so
 // the note only says so. `title`: a heading other than the topic's.
-export function VideoList({ w, videos, saver = false, title }: { w: Words; videos: VideoPick[]; saver?: boolean; title?: string }) {
+// `tag`: drawn as an answer's block (W9-C), with that block type's colour bar.
+export function VideoList({ w, videos, saver = false, title, tag }: { w: Words; videos: VideoPick[]; saver?: boolean; title?: string; tag?: string }) {
   const [playing, setPlaying] = useState<string | null>(null);
   if (!videos.length) return null;
   return (
-    <section data-videos className="fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-slate" aria-labelledby="videos-title">
+    <section data-videos data-block={tag} className={`fam-card fam-rise flex flex-col gap-3 bg-white p-5 text-slate ${tag && BLOCK_TONE[tag] ? `border-l-[6px] ${BLOCK_TONE[tag].bar}` : ''}`} aria-labelledby="videos-title">
       <h2 id="videos-title" className="flex items-center gap-3 text-lg font-extrabold">
         <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-coral-deep bg-gradient-to-br from-coral-deep to-grape-deep text-white shadow-md">
           <FamIcon name="video" className="h-5 w-5" />

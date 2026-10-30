@@ -166,13 +166,13 @@ describe('the route sends the chat to the tutor (C406)', () => {
     await events(await ask(CHILD, 'Can you show it with a roti?', { subject: 'mathematics', chatId }));
     await events(await ask(CHILD, 'and why is that?', { subject: 'mathematics', chatId }));
     const third = ai.calls.filter((c) => c.profile === 'family.resolver').at(-1)!;
-    expect(third.user).toContain('Earlier in this chat');
-    expect(third.user).toContain('Why is 1/2 the same as 2/4?');
-    expect(third.user).toContain('Can you show it with a roti?');
-    expect(third.user).toContain('Half of a roti is the same as two quarters.');
-    expect(third.user).toContain('refer back to what was already explained');
+    expect(third.system + '\n' + third.user).toContain('Earlier in this chat');
+    expect(third.system + '\n' + third.user).toContain('Why is 1/2 the same as 2/4?');
+    expect(third.system + '\n' + third.user).toContain('Can you show it with a roti?');
+    expect(third.system + '\n' + third.user).toContain('Half of a roti is the same as two quarters.');
+    expect(third.system + '\n' + third.user).toContain('refer back to what was already explained');
     // The check and practice items never reach the memory.
-    expect(third.user).not.toContain('Think of pairs');
+    expect(third.system + '\n' + third.user).not.toContain('Think of pairs');
     expect(ai.calls.some((c) => c.profile === 'family.summary')).toBe(false);
     await events(await ask(CHILD, 'What about 3/6?', { subject: 'mathematics', chatId }));
     await events(await ask(CHILD, 'And 4/8?', { subject: 'mathematics', chatId }));
@@ -182,7 +182,7 @@ describe('the route sends the chat to the tutor (C406)', () => {
     expect(await q(`select turn_count, summary, summary_turns from family.tutor_conversations where conversation_id = $1`, [chatId])).toEqual([{ turn_count: 5, summary: ai.summary, summary_turns: 5 }]);
     // The next question sees the summary.
     await events(await ask(CHILD, 'So is 5/10 a half too?', { subject: 'mathematics', chatId }));
-    expect(ai.calls.filter((c) => c.profile === 'family.resolver').at(-1)!.user).toContain(ai.summary.replace(/\.$/, ''));
+    { const last = ai.calls.filter((c) => c.profile === 'family.resolver').at(-1)!; expect(last.system + '\n' + last.user).toContain(ai.summary.replace(/\.$/, '')); }
   });
 
   it('a new question in a full chat is refused with 409 chat_full before the tutor is asked', async () => {
@@ -208,8 +208,8 @@ describe('a sibling never reads another child’s chat (C406)', () => {
     ai.lines = ANSWER;
     await events(await ask(SIBLING, 'What is a fraction?', { subject: 'mathematics', chatId }));
     const asked = ai.calls.filter((c) => c.profile === 'family.resolver').at(-1)!;
-    expect(asked.user).not.toContain('Earlier in this chat');
-    expect(asked.user).not.toContain('Why is 1/2 the same as 2/4?');
+    expect(asked.system + '\n' + asked.user).not.toContain('Earlier in this chat');
+    expect(asked.system + '\n' + asked.user).not.toContain('Why is 1/2 the same as 2/4?');
     expect(await q(`select count(*)::int as n from family.tutor_messages where conversation_id = $1 and child_id = $2`, [chatId, SIBLING])).toEqual([{ n: 0 }]);
     // On the sibling's own phone the policies show none of the other child's chats or turns, whatever is named.
     const t = await import('@/lib/family/tutor');
