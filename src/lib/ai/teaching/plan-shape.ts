@@ -16,13 +16,14 @@ export type Band = (typeof BANDS)[number];
 export const DEPTHS = ['short', 'medium', 'full'] as const;
 export type Depth = (typeof DEPTHS)[number];
 
-export const VISUAL_KINDS = ['figure', 'steps', 'timeline', 'image', 'video'] as const;
+// W10-6 (docs/39 §5): `scene` (a thing with parts, tap-able) and `chart` (numbers and comparisons) join the kinds.
+export const VISUAL_KINDS = ['figure', 'steps', 'timeline', 'image', 'video', 'scene', 'chart'] as const;
 export type VisualKind = (typeof VISUAL_KINDS)[number];
 
 export const INTERACTIVE_BLOCKS = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'] as const;
 // The blocks a plan may name: the resolver's teaching blocks, the new visual blocks (docs/39 "New blocks") and the
 // interactive set.
-export const PLAN_BLOCKS = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'figure', 'steps', 'timeline', 'image', 'videos', ...INTERACTIVE_BLOCKS] as const;
+export const PLAN_BLOCKS = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', ...INTERACTIVE_BLOCKS] as const;
 export type PlanBlock = (typeof PLAN_BLOCKS)[number];
 
 export type Visual = { kind: VisualKind; about: string };
@@ -39,7 +40,7 @@ const MAX_VISUALS = 3;
 const MAX_BLOCKS = 9;
 
 // The visual block each visual kind asks for.
-export const VISUAL_BLOCK: Record<VisualKind, PlanBlock> = { figure: 'figure', steps: 'steps', timeline: 'timeline', image: 'image', video: 'videos' };
+export const VISUAL_BLOCK: Record<VisualKind, PlanBlock> = { figure: 'figure', steps: 'steps', timeline: 'timeline', image: 'image', video: 'videos', scene: 'scene', chart: 'chart' };
 
 export const isInteractiveBlock = (b: string): boolean => (INTERACTIVE_BLOCKS as readonly string[]).includes(b);
 
@@ -78,7 +79,53 @@ export type PlanContext = { classLevel: number; subject: string | null; lang: 'e
 // (a chapter or topic taught whole asks for `full`).
 export function defaultPlan(ctx: PlanContext, depth: Depth = 'medium', questionType: QuestionType = 'concept'): Plan {
   const band = bandOf(ctx.classLevel);
-  return { questionType, band, depth, blocks: blocksFor(band, depth), visuals: [], lang: ctx.lang };
+  return { questionType, band, depth, blocks: bounded(withContentVisuals(blocksFor(band, depth), questionType, ctx.subject, NO_FLAGS), band), visuals: [], lang: ctx.lang };
+}
+
+// ---- the visual matches the content (W10-6, founder 30 Oct, docs/39 §5) ----
+// Held here, in the checker, not only in the prompt: whatever the model planned (or forgot), the answer carries the
+// visual its content calls for. None of these is an interactive block, so the interactive rule above is untouched.
+
+// The visuals a Mathematics answer may carry; at least one in every answer (steps, the animated working, when none).
+export const MATHS_VISUALS: readonly PlanBlock[] = ['number_line', 'graph', 'geometry', 'fraction_model', 'steps'];
+// The question types a thing with parts is asked as (with the plan's own `hasParts` flag): a scene, tap-able part by part.
+const PARTS_TYPES: readonly QuestionType[] = ['process', 'experiment', 'concept'];
+
+// What the model says about the question's content: it is about a thing with parts (the body, a motor, a circuit, a
+// flower); it compares numbers. Booleans only; anything else reads as false.
+export type ContentFlags = { hasParts: boolean; hasNumbers: boolean };
+const NO_FLAGS: ContentFlags = { hasParts: false, hasNumbers: false };
+// The drawn visuals a concept may already carry in place of its mind map.
+const DRAWN: readonly PlanBlock[] = ['mind_map', 'figure', 'diagram', 'scene', 'chart', 'timeline'];
+
+// The plan's blocks with the content's visuals added right after the explanation (so a cut to MAX_BLOCKS keeps them):
+//   - Mathematics: one of number_line, graph, geometry, fraction_model or steps; steps when the plan has none;
+//   - history: a timeline; a process: a timeline, unless its stages are already a step strip;
+//   - a comparison of numbers: a chart;
+//   - a thing with parts (process, experiment or concept): a scene;
+//   - any other concept: a mind map, unless it is drawn already (a figure, a diagram, a scene, a chart or a timeline).
+export function withContentVisuals(blocks: readonly PlanBlock[], questionType: QuestionType, subject: string | null, flags: ContentFlags): PlanBlock[] {
+  const add: PlanBlock[] = [];
+  const has = (b: PlanBlock) => blocks.includes(b) || add.includes(b);
+  if (subject === 'mathematics' && !blocks.some((b) => MATHS_VISUALS.includes(b))) add.push('steps');
+  if (questionType === 'history' && !has('timeline')) add.push('timeline');
+  if (questionType === 'process' && !has('timeline') && !has('steps')) add.push('timeline');
+  if (questionType === 'comparison' && flags.hasNumbers && !has('chart')) add.push('chart');
+  const parts = flags.hasParts && PARTS_TYPES.includes(questionType);
+  if (parts && !has('scene')) add.push('scene');
+  if (questionType === 'concept' && !parts && !DRAWN.some(has)) add.push('mind_map');
+  if (add.length === 0) return [...blocks];
+  const at = blocks.indexOf('explanation') + 1;
+  return [...blocks.slice(0, at), ...add, ...blocks.slice(at)];
+}
+
+// The plan's length (MAX_BLOCKS, the check kept last) and LKG to Class 1's one picture (docs/39 "Bands"): at most 60
+// words and one picture, whatever else was asked.
+function bounded(list: PlanBlock[], band: Band): PlanBlock[] {
+  let blocks = list.slice(0, MAX_BLOCKS);
+  if (!blocks.includes('check')) blocks[blocks.length - 1] = 'check';
+  if (band === 'lkg_1') blocks = ['explanation', blocks.find((b) => b === 'figure' || b === 'image') ?? 'image', 'check'];
+  return blocks;
 }
 
 const oneOf = <T extends string>(list: readonly T[], v: unknown): v is T => typeof v === 'string' && (list as readonly string[]).includes(v);
@@ -111,8 +158,10 @@ export function checkPlan(raw: unknown, ctx: PlanContext): { plan: Plan; fromMod
   const depth = p.depth;
   const band = keptBand(bandOf(ctx.classLevel), p.band);
   const mayInteract = interactiveAllowed(questionType, ctx.subject);
+  const flags: ContentFlags = { hasParts: p.hasParts === true, hasNumbers: p.hasNumbers === true };
   let blocks: PlanBlock[];
-  if (depth === 'short') blocks = blocksFor(band, 'short');
+  // W10-6: even a short answer (one explanation and one check) carries the visual its content calls for.
+  if (depth === 'short') blocks = bounded(withContentVisuals(blocksFor(band, 'short'), questionType, ctx.subject, flags), band);
   else {
     blocks = [];
     for (const b of p.blocks as PlanBlock[]) {
@@ -126,18 +175,16 @@ export function checkPlan(raw: unknown, ctx: PlanContext): { plan: Plan; fromMod
     if (!blocks.includes('check')) blocks.push('check');
     // A visual the plan describes has its block.
     for (const v of visuals) if (!blocks.includes(VISUAL_BLOCK[v.kind])) blocks.push(VISUAL_BLOCK[v.kind]);
-    blocks = blocks.slice(0, MAX_BLOCKS);
-    if (!blocks.includes('check')) blocks[blocks.length - 1] = 'check';
-    // LKG to Class 1: at most 60 words and one picture (docs/39 "Bands"), whatever else was asked.
-    if (band === 'lkg_1') blocks = ['explanation', blocks.find((b) => b === 'figure' || b === 'image') ?? 'image', 'check'];
+    blocks = bounded(withContentVisuals(blocks, questionType, ctx.subject, flags), band);
   }
   const kept = visuals.filter((v) => blocks.includes(VISUAL_BLOCK[v.kind]));
   return { plan: { questionType, band, depth, blocks, visuals: kept, lang: ctx.lang }, fromModel: true };
 }
 
 // The compact answer (W10, family.plan v1): t the question type, b the band, d the depth, k the blocks, v the visuals
-// (each k its kind, a what it shows), l the language. Read as the long keys; a long key the model also sent wins.
-const COMPACT: Record<string, string> = { t: 'questionType', b: 'band', d: 'depth', k: 'blocks', v: 'visuals', l: 'lang' };
+// (each k its kind, a what it shows), l the language; W10-6: p a thing with parts, n numbers compared. Read as the long
+// keys; a long key the model also sent wins.
+const COMPACT: Record<string, string> = { t: 'questionType', b: 'band', d: 'depth', k: 'blocks', v: 'visuals', l: 'lang', p: 'hasParts', n: 'hasNumbers' };
 function expanded(o: Record<string, unknown>): Record<string, unknown> {
   const p: Record<string, unknown> = { ...o };
   for (const [short, long] of Object.entries(COMPACT)) if (p[long] === undefined && o[short] !== undefined) p[long] = o[short];

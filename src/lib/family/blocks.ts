@@ -74,7 +74,8 @@ export type FigureShape = (typeof FIGURE_SHAPES)[number];
 export const FIGURE_AT = ['centre', 'top', 'right', 'bottom', 'left', 'ring'] as const;
 export type FigureAt = (typeof FIGURE_AT)[number];
 export type Figure = { type: 'figure'; title: string; kind: 'schematic'; shape: FigureShape; labels: { at: FigureAt; text: string }[] };
-export type Steps = { type: 'steps'; title: string; items: { label: string; text: string }[] };
+// W10-6 (docs/39 §5): `animate: true` reveals the steps one by one (300 ms apart), tap to replay.
+export type Steps = { type: 'steps'; title: string; items: { label: string; text: string }[]; animate?: true };
 export type Timeline = { type: 'timeline'; title: string; items: { when: string; text: string }[] };
 // As the model writes it (a search for a photograph), and after the server filled it (the photograph and its credit).
 export type ImageQuery = { type: 'image'; query: string; caption: string };
@@ -83,6 +84,23 @@ export type ImageBlock = ImageQuery | ImagePhoto;
 export type VideoItem = { videoId: string; title: string; channel: string; seconds: number };
 // As written: `{ type: 'videos' }`; filled: up to four of the chapter's picks.
 export type Videos = { type: 'videos'; items?: VideoItem[] };
+// W10-6 (docs/39 §5, final shapes): a tap-able scene of real parts, each in its own palette colour, and a chart of the
+// figures the answer states. Both are drawn by our own code (SceneView, ChartView); never an image, never a library.
+export const SCENE_LAYOUTS = ['row', 'ring', 'stack', 'free'] as const;
+export type SceneLayout = (typeof SCENE_LAYOUTS)[number];
+export const SCENE_SHAPES = ['circle', 'rect', 'pill', 'hex', 'coil', 'magnet', 'wire', 'arrow', 'organ'] as const;
+export type SceneShape = (typeof SCENE_SHAPES)[number];
+export const SCENE_LINK_KINDS = ['flow', 'line', 'arrow'] as const;
+export type SceneLinkKind = (typeof SCENE_LINK_KINDS)[number];
+export const SCENE_ANIMATIONS = ['flow', 'pulse', 'rotate', 'none'] as const;
+export type SceneAnimation = (typeof SCENE_ANIMATIONS)[number];
+export type ScenePart = { id: string; label: string; text: string; shape: SceneShape; colour: number };
+export type SceneLink = { from: string; to: string; kind: SceneLinkKind; label?: string };
+export type Scene = { type: 'scene'; title: string; layout: SceneLayout; parts: ScenePart[]; links: SceneLink[]; animate: SceneAnimation };
+export const CHART_KINDS = ['bar', 'line', 'pie'] as const;
+export type ChartKind = (typeof CHART_KINDS)[number];
+export type Chart = { type: 'chart'; title: string; kind: ChartKind; unit: string; labels: string[]; series: { label: string; values: number[] }[] };
+export const SCENE_COLOURS = 8;
 export const FIGURE_LABEL_MAX = 40;
 export const VISUAL_TITLE_MAX = 120;
 // The hosts a filled photograph may come from: the file itself, and the file's page on Commons (its credit link).
@@ -93,11 +111,11 @@ export const PHOTO_LICENCE = /^(?:CC0(?: 1\.0)?|CC BY(?:-SA)?(?: \d\.\d)?(?: [A-
 
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | Chart) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart'];
 // The blocks the server fills before they are kept (W9-C): a photograph and the videos.
 export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
@@ -423,6 +441,10 @@ function blockBody(o: Record<string, unknown>): Block | null {
     case 'steps':
     case 'timeline':
       return stripBlock(o);
+    case 'scene':
+      return sceneBlock(o);
+    case 'chart':
+      return chartBlock(o);
     default:
       return null;
   }
@@ -464,7 +486,7 @@ function stripBlock(o: Record<string, unknown>): Steps | Timeline | null {
       if (!label || !text) return null;
       items.push({ label, text });
     }
-    return { type: 'steps', title, items };
+    return o.animate === true ? { type: 'steps', title, items, animate: true } : { type: 'steps', title, items };
   }
   const items: Timeline['items'] = [];
   for (const x of raw) {
@@ -475,6 +497,69 @@ function stripBlock(o: Record<string, unknown>): Steps | Timeline | null {
     items.push({ when, text });
   }
   return { type: 'timeline', title, items };
+}
+
+// A scene (W10-6, docs/39 §5): 2 to 12 parts with unique ids, each a label up to 30 characters, a text up to 220, one
+// of the nine shapes and a palette colour 1 to 8; links (up to 24) only between parts it names, a link's label up to 20.
+// The layout and the motion from their lists (motion absent: none). Anything over its limits drops the whole scene.
+export const SCENE_PART_ID = /^[A-Za-z0-9_-]{1,20}$/;
+const SCENE_LINKS_MAX = 24;
+function sceneBlock(o: Record<string, unknown>): Scene | null {
+  const title = fits(o.title, 60);
+  const layout = SCENE_LAYOUTS.find((x) => x === o.layout);
+  const animate = o.animate === undefined ? 'none' : SCENE_ANIMATIONS.find((x) => x === o.animate);
+  const rawParts = exactly(o.parts, 2, 12);
+  const rawLinks = o.links === undefined ? [] : exactly(o.links, 0, SCENE_LINKS_MAX);
+  if (!title || !layout || !animate || !rawParts || !rawLinks) return null;
+  const parts: ScenePart[] = [];
+  for (const x of rawParts) {
+    const p = (x ?? {}) as Record<string, unknown>;
+    const id = typeof p.id === 'string' && SCENE_PART_ID.test(p.id) ? p.id : null;
+    const label = fits(p.label, 30);
+    const text = fits(p.text, 220);
+    const shape = SCENE_SHAPES.find((s) => s === p.shape);
+    const colour = wholeWithin(p.colour, 1, SCENE_COLOURS);
+    if (!id || parts.some((q) => q.id === id) || !label || !text || !shape || colour === null) return null;
+    parts.push({ id, label, text, shape, colour });
+  }
+  const links: SceneLink[] = [];
+  for (const x of rawLinks) {
+    const l = (x ?? {}) as Record<string, unknown>;
+    const known = (v: unknown) => typeof v === 'string' && parts.some((p) => p.id === v);
+    const kind = SCENE_LINK_KINDS.find((k) => k === l.kind);
+    const label = l.label === undefined || l.label === '' ? undefined : fits(l.label, 20);
+    if (!known(l.from) || !known(l.to) || l.from === l.to || !kind || label === null) return null;
+    links.push({ from: l.from as string, to: l.to as string, kind, ...(label ? { label } : {}) });
+  }
+  return { type: 'scene', title, layout, parts, links, animate };
+}
+
+// A chart (W10-6, docs/39 §5): 2 to 12 points (labels up to 12 characters), 1 to 3 series (a label up to 20, one finite
+// number per point), a unit up to 12 (may be empty). A pie is one series of numbers at or above zero that add to more
+// than zero. Our code scales the axes and works out the percentages; nothing else is taken from the model.
+function chartBlock(o: Record<string, unknown>): Chart | null {
+  const title = fits(o.title, 60);
+  const kind = CHART_KINDS.find((k) => k === o.kind);
+  const unit = o.unit === undefined || o.unit === '' ? '' : fits(o.unit, 12);
+  const rawLabels = exactly(o.labels, 2, 12);
+  const rawSeries = exactly(o.series, 1, 3);
+  if (!title || !kind || unit === null || !rawLabels || !rawSeries) return null;
+  const labels: string[] = [];
+  for (const l of rawLabels) {
+    const label = fits(l, 12);
+    if (!label) return null;
+    labels.push(label);
+  }
+  const series: Chart['series'] = [];
+  for (const x of rawSeries) {
+    const r = (x ?? {}) as Record<string, unknown>;
+    const label = fits(r.label, 20);
+    const values = Array.isArray(r.values) && r.values.length === labels.length && r.values.every((v) => typeof v === 'number' && Number.isFinite(v)) ? (r.values as number[]) : null;
+    if (!label || !values) return null;
+    series.push({ label, values: [...values] });
+  }
+  if (kind === 'pie' && (series.length !== 1 || series[0].values.some((v) => v < 0) || series[0].values.reduce((a, b) => a + b, 0) <= 0)) return null;
+  return { type: 'chart', title, kind, unit, labels, series };
 }
 
 // An https address on exactly this host, with no user name, password or port.
@@ -854,8 +939,8 @@ function parsed(line: string, stored: boolean): Block | null {
 // (`core`: REQUIRED_BLOCKS, or the plan's coreBlocks) is missing (the response is then not complete and never cached).
 // At most one interactive block: the first that passed.
 // W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
-// videos last.
-const ORDER: BlockType[] = ['explanation', 'figure', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
+// videos last. W10-6: the scene after the figure, the chart after the key points.
+const ORDER: BlockType[] = ['explanation', 'figure', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
 export function completeResponse(blocks: Block[], core: readonly BlockType[] = REQUIRED_BLOCKS): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;

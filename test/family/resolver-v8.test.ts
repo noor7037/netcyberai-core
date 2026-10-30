@@ -117,8 +117,9 @@ describe('prompt v8', () => {
     expect(s).toContain('FIRST, before any block, write one line naming the school subject');
     expect(s).toContain(ITEM_EXAMPLE);
     expect(s).toContain('for each wrong option, say plainly that it is wrong and exactly why');
-    // Without a plan a question is taught on the band's default plan, which has no interactive block.
-    expect(asked(system({}))).toEqual(['explanation', 'key_points', 'check', 'practice', 'steps']);
+    // Without a plan a question is taught on the band's default plan, which has no interactive block (W10-6: a concept
+    // gets its mind map).
+    expect(asked(system({}))).toEqual(['explanation', 'mind_map', 'key_points', 'check', 'practice', 'steps']);
   });
 });
 

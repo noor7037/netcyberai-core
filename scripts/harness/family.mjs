@@ -146,6 +146,11 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],
   // W9-C: an answer with a drawn figure, a real photograph with its credit, a step strip and the chapter's videos.
   ['full', 'family-understand-visuals', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t08', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="videos"]' }],
+  // W10-6: a motor scene (its rotor turns, the current flows), the heart (it pulses) and a bar chart with steps that
+  // reveal one by one. The motor's coil is tapped open, so its text shows in the panel under the scene.
+  ['full', 'family-understand-scene-motor', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t09', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="scene"]', steps: [{ tap: '[data-scene-part="coil"]', wait: '[data-scene-text]' }] }],
+  ['full', 'family-understand-scene-heart', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t10', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="scene"]' }],
+  ['full', 'family-understand-chart', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t11', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="chart"]' }],
   // S1 (C374): the chapter reader, its blocks and the sticky read-aloud controls.
   ['full', 'family-chapter-reader', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-controls]' }],
   // C386: the reader with the server voice set up (its controls say the NetCyberAI voice reads).

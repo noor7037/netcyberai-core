@@ -4,13 +4,19 @@ import type { MindMap } from '@/lib/family/blocks';
 import { colors, deepColors } from '@/lib/design-tokens';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
+import { useReducedMotion } from './InteractiveViews';
+
+const BRANCH_DELAY_MS = 300;
+// A branch's reveal: CSS only (nca-pop), each branch after the one before; none when still.
+const reveal = (moving: boolean, i: number) => (moving ? { animation: `nca-pop 400ms ease-out ${(i + 1) * BRANCH_DELAY_MS}ms both`, transformBox: 'fill-box' as const, transformOrigin: 'center' } : undefined);
 
 // A mind map (W8-AI, resolver v7), drawn by our own code from checked data (src/lib/family/blocks.ts: 2 to 6 branches,
 // 0 to 4 leaves, every label up to 40 characters); no library, no markup from the model.
 //   - From 480 px: an SVG with the root idea in the centre, the branches in a column either side of it and each
 //     branch's leaves beyond it, one logo colour per branch (all carry white text at AA).
 //   - Under 480 px (and always for a screen reader): a vertical tree in plain HTML that wraps at any width (390 first).
-// No motion of its own; the card's rise is off under prefers-reduced-motion.
+// W10-6 (docs/39 §5): the map opens branch by branch (300 ms apart, the root first), in the SVG and in the tree alike.
+// No motion under prefers-reduced-motion (and the first paint is still): the whole map at once. `still` forces that.
 
 // One colour per branch, in a fixed order: logo tokens that carry white text at AA (design-tokens.ts).
 const BRANCH_HEX = [colors.royal, colors.emerald, colors.grape, deepColors.tangerineDeep, deepColors.coralDeep, colors.azure] as const;
@@ -96,8 +102,10 @@ function BoxText({ p, fill, bold }: { p: Placed; fill: string; bold?: boolean })
   );
 }
 
-export function MindMapView({ b, w, tone }: { b: MindMap; w: Words; tone: string }) {
+export function MindMapView({ b, w, tone, still }: { b: MindMap; w: Words; tone: string; still?: boolean }) {
   const { H, root, branches } = placeMindMap(b);
+  const reduced = useReducedMotion();
+  const moving = !(still ?? reduced);
   return (
     <Card title={b.title} tone={tone} tag="mind_map">
       <p className="sr-only">{w['fam.block.mindMap']}</p>
@@ -108,7 +116,7 @@ export function MindMapView({ b, w, tone }: { b: MindMap; w: Words; tone: string
           const spineX = br.right ? W - LEAF_W - 10 : LEAF_W + 10;
           const last = br.leaves[br.leaves.length - 1];
           return (
-            <g key={i}>
+            <g key={i} className={moving ? 'fam-reveal' : undefined} style={reveal(moving, i)}>
               <path d={curve(root.x + (br.right ? root.w : 0), root.y + root.h / 2, br.right ? br.box.x : br.box.x + br.box.w, br.box.y + br.box.h / 2)} fill="none" stroke={hex} strokeWidth="3" />
               {last && <line x1={spineX} y1={br.box.y + br.box.h} x2={spineX} y2={last.y + last.h / 2} stroke={hex} strokeWidth="2" />}
               {br.leaves.map((leaf, k) => (
@@ -133,7 +141,7 @@ export function MindMapView({ b, w, tone }: { b: MindMap; w: Words; tone: string
         <p className="self-start rounded-2xl bg-violet px-4 py-2 text-base font-extrabold text-white">{b.root}</p>
         <ul className="flex flex-col gap-3">
           {b.branches.map((br, i) => (
-            <li key={i} className={`ml-3 flex flex-col gap-2 border-l-4 pl-3 ${BRANCH_RING[i % BRANCH_RING.length]}`}>
+            <li key={i} className={`ml-3 flex flex-col gap-2 border-l-4 pl-3 ${BRANCH_RING[i % BRANCH_RING.length]} ${moving ? 'fam-reveal' : ''}`} style={reveal(moving, i)}>
               <span className={`self-start rounded-xl px-3 py-1.5 text-sm font-bold ${BRANCH_CHIP[i % BRANCH_CHIP.length]}`}>{br.label}</span>
               {br.leaves.length > 0 && (
                 <ul className="flex flex-wrap gap-2">

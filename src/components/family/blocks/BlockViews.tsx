@@ -44,6 +44,9 @@ export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string
   timeline: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
   image: { bar: 'border-l-emerald', head: 'bg-emerald/10', dot: 'bg-emerald' },
   videos: { bar: 'border-l-coral', head: 'bg-coral/15', dot: 'bg-coral' },
+  // W10-6: the scene lilac (grape), the chart sky (cyan); their views are SceneView.tsx and ChartView.tsx.
+  scene: { bar: 'border-l-grape', head: 'bg-grape/10', dot: 'bg-grape' },
+  chart: { bar: 'border-l-cyan', head: 'bg-cyan/15', dot: 'bg-cyan' },
 };
 
 export function Card({ title, tone, children, tag }: { title: string; tone: string; children: React.ReactNode; tag?: string }) {

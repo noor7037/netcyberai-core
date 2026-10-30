@@ -50,6 +50,9 @@ const EVERY: Record<string, unknown> = {
   timeline: { type: 'timeline', title: MARK('timeline'), items: [{ when: '1900', text: MARK('timeline') }, { when: '1950', text: 'Two.' }, { when: '2000', text: 'Three.' }] },
   image: { type: 'image', query: 'plant cell', caption: MARK('image') },
   videos: { type: 'videos' },
+  // W10-6: the scene and the chart are silent as well.
+  scene: { type: 'scene', title: MARK('scene'), layout: 'row', parts: [{ id: 'a', label: 'One', text: MARK('scene'), shape: 'circle', colour: 1 }, { id: 'b', label: 'Two', text: 'Two.', shape: 'rect', colour: 2 }], links: [], animate: 'none' },
+  chart: { type: 'chart', title: MARK('chart'), kind: 'bar', unit: '', labels: ['One', 'Two'], series: [{ label: 'Values', values: [1, 2] }] },
 };
 
 describe('narration reads only teaching text (C374)', () => {
