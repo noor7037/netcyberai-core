@@ -11,7 +11,7 @@ export function StepsView({ b, tone }: { b: Steps; tone: string }) {
       <ol data-steps className="flex flex-col gap-3 md:flex-row md:items-stretch">
         {b.items.map((s, i) => (
           <li key={i} className="flex flex-1 gap-3 rounded-2xl bg-off-white p-3 text-slate ring-1 ring-slate/10 md:flex-col">
-            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-royal text-base font-extrabold text-white">
+            <span aria-hidden="true" data-num className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-royal text-base font-extrabold text-white">
               {i + 1}
             </span>
             <span className="flex flex-col gap-1">

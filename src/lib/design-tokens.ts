@@ -86,3 +86,64 @@ export function seriesColor(index: number): string {
 // opacities on the white surface. Validated with --ordinal: monotone
 // lightness, visible steps, light end 2.16:1 against the surface.
 export const sequentialRoyal = { color: colors.royal, steps: [0.45, 0.65, 0.85, 1] } as const;
+
+// W10-3 (C412): the lesson identity, previewed on the Understand answer page only (the `.fam-lesson` root in
+// src/app/(family)/family/family.css carries these same values as CSS variables; test/family/w10-3-identity.test.ts
+// holds the two in step). Warm paper and near-black ink instead of white and slate, no dark blue; three accents with
+// one meaning each; one soft tint per kind of section, each with a deep accent for its numbered badge (white numeral).
+// Contrast, by scripts/check_contrast.py's own contrast_ratio(): ink on paper 16.2:1, on every tint >= 14.3:1; muted
+// on every tint >= 6.3:1; white on every badge accent >= 5.9:1 (teal 5.47:1); ink on saffron 5.55:1.
+export const lessonColors = {
+  paper: '#FBF8F3', // the page
+  card: '#FFFDF9', // a surface on the page or inside a tinted section
+  ink: '#1C1B1A', // reading text and headings
+  muted: '#4B5563', // secondary text (muted slate)
+  line: '#E7E1D6', // hairlines on paper
+  saffron: '#E8702A', // primary actions (ink text on it, never white)
+  saffronDeep: '#B4521A', // saffron as text or an outline on paper (4.76:1)
+  teal: '#0F766E', // progress, a correct answer, the subject chip (white text 5.47:1)
+  plum: '#6D28D9', // the tutor avatar, "Made by AI", AI marks (white text 7.10:1)
+} as const;
+
+export type LessonTint = 'mint' | 'butter' | 'lilac' | 'blush' | 'sky';
+export const lessonTints: Record<LessonTint, { tint: string; accent: string }> = {
+  mint: { tint: '#E4F3EA', accent: '#0F766E' }, // explanation
+  butter: { tint: '#FBF1D3', accent: '#8A5300' }, // worked example, key points
+  lilac: { tint: '#EFE9FB', accent: '#6D28D9' }, // figure, diagram, mind map, timeline
+  blush: { tint: '#FBE6E3', accent: '#B42318' }, // misconceptions and the check
+  sky: { tint: '#E3EEF9', accent: '#0369A1' }, // steps, practice, videos
+};
+
+// Which tint each block kind wears. A kind not listed keeps the mint of an explanation.
+export const LESSON_TINT_OF: Record<string, LessonTint> = {
+  explanation: 'mint',
+  worked_example: 'butter',
+  key_points: 'butter',
+  english_moment: 'butter',
+  figure: 'lilac',
+  diagram: 'lilac',
+  mind_map: 'lilac',
+  timeline: 'lilac',
+  image: 'lilac',
+  graph: 'lilac',
+  number_line: 'lilac',
+  fraction_model: 'lilac',
+  geometry: 'lilac',
+  simulation: 'lilac',
+  check: 'blush',
+  steps: 'sky',
+  practice: 'sky',
+  videos: 'sky',
+  sources: 'sky',
+};
+
+// No web font is loaded anywhere in the repository, so the faces are the phone's own: a rounded display face where the
+// phone has one (iOS), else its system sans at a heavier weight; the reading face is the app's existing stack.
+export const lessonType = {
+  display: 'ui-rounded, "SF Pro Rounded", "Segoe UI Variable Display", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif',
+  text: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif',
+  scale: { answer: '1.375rem', h1: '2.25rem', h2: '1.25rem', body: '1.0625rem', small: '0.875rem' },
+} as const;
+
+// 8-point spacing, 16 px card radii, and the one entry/feedback duration (off under prefers-reduced-motion).
+export const lessonShape = { space: 8, radius: 16, enterMs: 180 } as const;

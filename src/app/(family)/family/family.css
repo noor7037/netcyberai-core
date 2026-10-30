@@ -534,3 +534,422 @@
   background-color: #ff7a1a;
   color: #1e293b;
 }
+
+/* ---- the lesson identity (W10-3, C412): the Understand answer page only ------------------------------------------ */
+/* A preview the founder judges before it rolls out. Everything below is scoped to `.fam-lesson` (UnderstandView's root
+   for a topic or chapter) or to the page that holds one (`:has(.fam-lesson)`), so no other screen changes. The values
+   are src/lib/design-tokens.ts's lessonColors / lessonTints / lessonType (test/family/w10-3-identity.test.ts holds the
+   two in step): warm paper, near-black ink, no dark blue; saffron acts, teal is progress and correct, plum is the AI;
+   one pastel tint per kind of section with a numbered badge in its deep accent. Soft layered shadows, no gradients.
+   Motion is 180 ms on a card's entry and on quiz feedback, and none under prefers-reduced-motion. */
+
+.fam-canvas:has(.fam-lesson),
+.fam-lesson {
+  --fl-paper: #fbf8f3;
+  --fl-card: #fffdf9;
+  --fl-ink: #1c1b1a;
+  --fl-muted: #4b5563;
+  --fl-line: #e7e1d6;
+  --fl-saffron: #e8702a;
+  --fl-saffron-deep: #b4521a;
+  --fl-teal: #0f766e;
+  --fl-plum: #6d28d9;
+  --fl-mint: #e4f3ea;
+  --fl-mint-accent: #0f766e;
+  --fl-butter: #fbf1d3;
+  --fl-butter-accent: #8a5300;
+  --fl-lilac: #efe9fb;
+  --fl-lilac-accent: #6d28d9;
+  --fl-blush: #fbe6e3;
+  --fl-blush-accent: #b42318;
+  --fl-sky: #e3eef9;
+  --fl-sky-accent: #0369a1;
+  --fl-display: ui-rounded, 'SF Pro Rounded', 'Segoe UI Variable Display', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Devanagari', sans-serif;
+  --fl-text: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Devanagari', sans-serif;
+  --fl-enter: 180ms;
+  --fl-shadow: 0 1px 2px rgb(28 27 26 / 0.05), 0 4px 12px -6px rgb(28 27 26 / 0.1), 0 18px 36px -20px rgb(28 27 26 / 0.18);
+}
+
+/* The page: paper instead of the coloured light, and a quiet paper header with the title in ink. */
+.fam-canvas:has(.fam-lesson) {
+  background-color: var(--fl-paper);
+  background-image: none;
+}
+.fam-canvas:has(.fam-lesson)::before {
+  background: var(--fl-ink);
+}
+.fam-canvas:has(.fam-lesson) .fam-band {
+  background: var(--fl-paper);
+  padding-bottom: 2.5rem;
+}
+.fam-canvas:has(.fam-lesson) .fam-band::before,
+.fam-canvas:has(.fam-lesson) .fam-band::after,
+.fam-canvas:has(.fam-lesson) .fam-band-dots {
+  display: none;
+}
+.fam-canvas:has(.fam-lesson) .fam-band .text-white {
+  color: var(--fl-ink);
+}
+.fam-canvas:has(.fam-lesson) .fam-band .opacity-20 {
+  opacity: 0.07;
+}
+/* The subject, as a teal chip that goes back to it. */
+.fam-canvas:has(.fam-lesson) .fam-band a.text-white {
+  margin-left: 0;
+  padding: 0 1rem 0 0.75rem;
+  background: var(--fl-teal);
+  color: #fff;
+}
+.fam-canvas:has(.fam-lesson) .fam-band p.text-xs {
+  color: var(--fl-saffron-deep);
+}
+.fam-canvas:has(.fam-lesson) .fam-band h1 {
+  font-family: var(--fl-display);
+  font-size: 2.25rem;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+/* The tab bar's current tab in ink, not the product blue. */
+.fam-canvas:has(.fam-lesson) .fam-tab-on {
+  background: var(--fl-ink);
+}
+/* The data-saver switch above the lesson, in the same surfaces (teal when it is on). */
+main:has(> .fam-lesson) [data-data-saver] {
+  background: var(--fl-card);
+  box-shadow: var(--fl-shadow), inset 0 0 0 1px var(--fl-line);
+}
+main:has(> .fam-lesson) [data-data-saver] .bg-white {
+  background-color: var(--fl-card);
+}
+main:has(> .fam-lesson) [data-data-saver] .bg-royal\/10 {
+  background-color: var(--fl-sky);
+}
+main:has(> .fam-lesson) [data-data-saver] :is(.text-slate, .text-royal-deep) {
+  color: var(--fl-ink);
+}
+main:has(> .fam-lesson) [data-data-saver] .bg-royal {
+  background-color: var(--fl-teal);
+  --tw-ring-color: var(--fl-teal);
+}
+@media (min-width: 1024px) {
+  main:has(> .fam-lesson) {
+    max-width: 52rem;
+  }
+  /* The header's own padding sits outside its column, the page's inside: 52rem less the 2rem of padding. */
+  .fam-canvas:has(.fam-lesson) .fam-band > div {
+    max-width: 50rem;
+  }
+  .fam-canvas:has(.fam-lesson) .fam-band h1 {
+    font-size: 3rem;
+  }
+}
+
+/* The lesson column: 8-point rhythm, ink on paper, sections counted for their badges. */
+div.fam-lesson {
+  gap: 1rem;
+  color: var(--fl-ink);
+  font-family: var(--fl-text);
+  counter-reset: fam-sec;
+}
+@media (min-width: 1024px) {
+  div.fam-lesson {
+    gap: 1.5rem;
+  }
+}
+.fam-lesson .text-slate {
+  color: var(--fl-ink);
+}
+.fam-lesson .text-slate\/80,
+.fam-lesson .text-slate\/70 {
+  color: var(--fl-muted);
+}
+.fam-lesson .fam-rise {
+  animation: fam-lesson-in var(--fl-enter) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: 0ms;
+}
+.fam-lesson > .bg-white,
+.fam-lesson .animate-pulse {
+  background-color: var(--fl-card);
+}
+
+/* The direct answer: the tutor's face and the one-line idea, before everything else. */
+.fam-lesson-answer {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: var(--fl-card);
+  box-shadow: var(--fl-shadow), inset 0 0 0 1px var(--fl-line);
+}
+.fam-lesson-answer-text {
+  font-family: var(--fl-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--fl-ink);
+}
+@media (min-width: 640px) {
+  .fam-lesson-answer {
+    gap: 1.25rem;
+    padding: 1.5rem 1.75rem;
+  }
+  .fam-lesson-answer-text {
+    font-size: 1.625rem;
+  }
+}
+
+/* A section: its kind's tint, no bar or border, a numbered badge in its kind's accent. */
+.fam-lesson [data-tint='mint'] { --fl-tint: var(--fl-mint); --fl-accent: var(--fl-mint-accent); }
+.fam-lesson [data-tint='butter'] { --fl-tint: var(--fl-butter); --fl-accent: var(--fl-butter-accent); }
+.fam-lesson [data-tint='lilac'] { --fl-tint: var(--fl-lilac); --fl-accent: var(--fl-lilac-accent); }
+.fam-lesson [data-tint='blush'] { --fl-tint: var(--fl-blush); --fl-accent: var(--fl-blush-accent); }
+.fam-lesson [data-tint='sky'],
+.fam-lesson [data-block='videos'] { --fl-tint: var(--fl-sky); --fl-accent: var(--fl-sky-accent); }
+.fam-lesson > [data-block] {
+  border-left-width: 0;
+  border-radius: 1rem;
+  background-color: var(--fl-tint, var(--fl-mint));
+  box-shadow: var(--fl-shadow);
+  counter-increment: fam-sec;
+}
+.fam-lesson > [data-block='videos'] {
+  counter-increment: none;
+}
+.fam-lesson [data-card-bar] {
+  display: none;
+}
+.fam-lesson > [data-block] > div:not([data-card-bar]) {
+  gap: 1rem;
+  padding: 1.25rem;
+}
+@media (min-width: 640px) {
+  .fam-lesson > [data-block] > div:not([data-card-bar]) {
+    padding: 1.5rem 1.75rem;
+  }
+}
+.fam-lesson [data-block-head] {
+  gap: 0.75rem;
+  padding: 0;
+  background: transparent;
+  font-family: var(--fl-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--fl-ink);
+}
+.fam-lesson [data-badge] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  background: var(--fl-accent);
+  color: #fff;
+  font: 800 0.9375rem/1 var(--fl-display);
+}
+.fam-lesson > [data-block] [data-badge]::before {
+  content: counter(fam-sec);
+}
+.fam-lesson [data-block] .text-base {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Inside a section: card surfaces on the tint, the accent for numbers, dots and lines. */
+.fam-lesson [data-block] :is(.bg-off-white, .bg-white) {
+  background-color: var(--fl-card);
+}
+.fam-lesson [data-block] .ring-1 {
+  --tw-ring-color: var(--fl-line);
+}
+.fam-lesson [data-example] {
+  background: var(--fl-card);
+  box-shadow: inset 3px 0 0 var(--fl-accent);
+}
+.fam-lesson [data-example] > p:first-child {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+}
+.fam-lesson [data-num],
+.fam-lesson [data-dot],
+.fam-lesson .bg-royal,
+.fam-lesson .bg-royal-deep,
+.fam-lesson .bg-violet {
+  background-color: var(--fl-accent, var(--fl-plum));
+  background-image: none;
+  color: #fff;
+}
+.fam-lesson [data-num] {
+  font-family: var(--fl-display);
+}
+.fam-lesson .border-royal,
+.fam-lesson .border-royal\/40 {
+  border-color: var(--fl-accent, var(--fl-plum));
+}
+.fam-lesson [data-block='videos'] h2 > span[aria-hidden] {
+  background: var(--fl-accent);
+  box-shadow: none;
+}
+.fam-lesson [data-video-play] {
+  background: var(--fl-ink);
+}
+.fam-lesson [data-timeline] {
+  border-left-color: var(--fl-line);
+  border-left-color: color-mix(in srgb, var(--fl-accent) 35%, transparent);
+}
+.fam-lesson [data-timeline] [data-dot] {
+  border-color: var(--fl-tint);
+}
+.fam-lesson [data-when] {
+  background: var(--fl-card);
+  color: var(--fl-ink);
+}
+.fam-lesson [data-flow-node] {
+  border-color: var(--fl-accent) !important;
+  background: var(--fl-card);
+}
+.fam-lesson .text-royal,
+.fam-lesson .text-royal-deep {
+  color: var(--fl-ink);
+  text-decoration-color: var(--fl-saffron);
+}
+/* Drawn pictures: the old product blues become the section's accent. */
+.fam-lesson svg [fill='#1D4ED8' i],
+.fam-lesson svg [fill='#4400F0' i] {
+  fill: var(--fl-accent, var(--fl-plum));
+}
+.fam-lesson svg [stroke='#1D4ED8' i],
+.fam-lesson svg [stroke='#1E3A8A' i] {
+  stroke: var(--fl-accent, var(--fl-plum));
+}
+/* In a lilac section (a figure, a diagram) the drawing's second tone, teal, takes the plum accent as well, and its white
+   fills the card surface, so the drawing sits in one family of colour. */
+.fam-lesson [data-tint='lilac'] svg [fill='#0F766E' i] {
+  fill: var(--fl-accent);
+}
+.fam-lesson [data-tint='lilac'] svg [stroke='#0F766E' i] {
+  stroke: var(--fl-accent);
+}
+.fam-lesson [data-tint='lilac'] svg [fill='white' i],
+.fam-lesson [data-tint='lilac'] svg [fill='#ffffff' i] {
+  fill: var(--fl-card);
+}
+
+/* The check and practice: correct in teal on mint, not this one in coral on blush, feedback that arrives softly. */
+.fam-lesson [data-block] [role='group'] > button[class*='ring-emerald'] {
+  background-color: var(--fl-mint);
+}
+.fam-lesson [data-block] [role='group'] > button[class*='ring-coral'] {
+  background-color: var(--fl-blush);
+}
+.fam-lesson [data-result] {
+  border-radius: 0.75rem;
+  background-color: var(--fl-card);
+  animation: fam-lesson-in var(--fl-enter) ease-out both;
+}
+.fam-lesson [data-result='correct'] {
+  border-color: var(--fl-teal);
+}
+.fam-lesson [data-hint-ask] {
+  color: var(--fl-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--fl-saffron);
+  text-decoration-thickness: 2px;
+}
+.fam-lesson [data-retry] {
+  background: var(--fl-saffron);
+  color: var(--fl-ink);
+}
+
+/* What made it: plum for the AI, teal once checked. */
+.fam-lesson [data-label='ai_made'] {
+  background: var(--fl-plum);
+  color: #fff;
+  box-shadow: none;
+}
+.fam-lesson [data-label='checked'] {
+  background: var(--fl-teal);
+  color: #fff;
+  box-shadow: none;
+}
+.fam-lesson [data-ai-notice] a {
+  background: var(--fl-lilac);
+  color: var(--fl-plum);
+  box-shadow: none;
+}
+
+/* The follow-ups: saffron-ringed chips, saffron filled on hover; four in a row from 640 px. */
+.fam-lesson [data-follow-ups] {
+  gap: 0.5rem;
+}
+.fam-lesson-eyebrow {
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+  font: 800 0.75rem/1.5 var(--fl-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fl-muted);
+}
+.fam-lesson .fam-lesson-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--fl-card);
+  color: var(--fl-ink);
+  font-family: var(--fl-display);
+  box-shadow: inset 0 0 0 1.5px var(--fl-saffron), 0 1px 2px rgb(28 27 26 / 0.06);
+  transition:
+    background-color var(--fl-enter) ease,
+    transform var(--fl-enter) cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.fam-lesson .fam-lesson-chip::before {
+  content: '';
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--fl-saffron);
+}
+@media (hover: hover) and (pointer: fine) {
+  .fam-lesson .fam-lesson-chip:hover {
+    background: var(--fl-saffron);
+    box-shadow: inset 0 0 0 1.5px var(--fl-saffron), var(--fl-shadow);
+  }
+  .fam-lesson .fam-lesson-chip:hover::before {
+    background: var(--fl-ink);
+  }
+}
+@media (min-width: 640px) {
+  .fam-lesson [data-follow-ups] {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@keyframes fam-lesson-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-lesson .fam-rise,
+  .fam-lesson .fam-lesson-answer,
+  .fam-lesson [data-result] {
+    animation: none !important;
+  }
+  .fam-lesson .fam-lesson-chip {
+    transition: none !important;
+  }
+}

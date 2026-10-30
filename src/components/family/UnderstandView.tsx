@@ -9,7 +9,7 @@ import { dataSaverBlocks, droppedCount } from '@/lib/family/data-saver';
 import { queueAnswer } from './offline/store';
 import { useDataSaver } from './useDataSaver';
 import { AiNotice } from './AiNotice';
-import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
+import { DiagramView, DirectAnswer, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
@@ -43,6 +43,7 @@ type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
 type Ask = { input: UnderstandInput; followUp?: string; retry?: { token: string; choice: number } };
 
 const FOLLOW_UPS = ['simpler', 'another_example', 'differently', 'practise_more'] as const;
+type ExplanationBlock = Extract<PublicBlock, { type: 'explanation' }>;
 
 export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: () => void }) {
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
@@ -58,6 +59,12 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // A photograph or video list the server has not filled yet is never drawn, nor counted as left out (W9-C).
   const shown = blocks.filter((b) => !unfilled(b));
   const top = useRef<HTMLDivElement>(null);
+  // W10-3 (C412): the Understand page's own topics and chapters wear the lesson identity (`.fam-lesson`, family.css): a
+  // direct-answer card first, the numbered sections, the follow-ups, then the videos. A typed question (the tutor
+  // window, tonight's practice, the school syllabus) draws as before.
+  const lesson = input.kind !== 'question';
+  const drawn = dataSaverBlocks(shown, saving);
+  const lead = lesson ? drawn.find((b): b is ExplanationBlock => b.type === 'explanation') : undefined;
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
   const current = useRef<AbortController | null>(null);
@@ -146,8 +153,50 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     void run(ask);
   };
 
+  const draw = (b: PublicBlock) => {
+    // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
+    const i = blocks.indexOf(b);
+    switch (b.type) {
+      case 'explanation':
+        return <ExplanationView key={i} b={b} w={w} tone={tone} lead={b === lead} />;
+      case 'worked_example':
+        return <WorkedExampleView key={i} b={b} w={w} tone={tone} />;
+      case 'key_points':
+        return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
+      case 'diagram':
+        return <DiagramView key={i} b={b} tone={tone} />;
+      case 'mind_map':
+        return <MindMapView key={i} b={b} w={w} tone={tone} />;
+      case 'graph':
+      case 'number_line':
+      case 'fraction_model':
+      case 'geometry':
+      case 'simulation':
+        return <InteractiveView key={i} b={b} w={w} tone={tone} />;
+      case 'check':
+      case 'practice':
+        return <QuizView key={i} kind={b.type} items={b.items} w={w} tone={tone} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} />;
+      case 'english_moment':
+        return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
+      case 'sources':
+        return <SourcesView key={i} b={b} w={w} tone={tone} />;
+      case 'figure':
+        return <FigureView key={i} b={b} tone={tone} />;
+      case 'steps':
+        return <StepsView key={i} b={b} tone={tone} />;
+      case 'timeline':
+        return <TimelineView key={i} b={b} tone={tone} />;
+      case 'image':
+        return <ImageView key={i} b={b} w={w} tone={tone} />;
+      case 'videos':
+        return <VideosView key={i} b={b} w={w} />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div ref={top} className="flex flex-col gap-3" aria-busy={state === 'loading' || state === 'streaming'}>
+    <div ref={top} className={`flex flex-col gap-3${lesson ? ' fam-lesson' : ''}`} aria-busy={state === 'loading' || state === 'streaming'}>
       {filesNote && (
         <p role="status" data-files-note className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-slate/10">
           {filesNote}
@@ -185,47 +234,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           {fill(w['fam.dataSaver.skipped'], { n: droppedCount(shown, true) })}
         </p>
       )}
-      {dataSaverBlocks(shown, saving).map((b) => {
-        // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
-        const i = blocks.indexOf(b);
-        switch (b.type) {
-          case 'explanation':
-            return <ExplanationView key={i} b={b} w={w} tone={tone} />;
-          case 'worked_example':
-            return <WorkedExampleView key={i} b={b} w={w} tone={tone} />;
-          case 'key_points':
-            return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
-          case 'diagram':
-            return <DiagramView key={i} b={b} tone={tone} />;
-          case 'mind_map':
-            return <MindMapView key={i} b={b} w={w} tone={tone} />;
-          case 'graph':
-          case 'number_line':
-          case 'fraction_model':
-          case 'geometry':
-          case 'simulation':
-            return <InteractiveView key={i} b={b} w={w} tone={tone} />;
-          case 'check':
-          case 'practice':
-            return <QuizView key={i} kind={b.type} items={b.items} w={w} tone={tone} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} />;
-          case 'english_moment':
-            return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
-          case 'sources':
-            return <SourcesView key={i} b={b} w={w} tone={tone} />;
-          case 'figure':
-            return <FigureView key={i} b={b} tone={tone} />;
-          case 'steps':
-            return <StepsView key={i} b={b} tone={tone} />;
-          case 'timeline':
-            return <TimelineView key={i} b={b} tone={tone} />;
-          case 'image':
-            return <ImageView key={i} b={b} w={w} tone={tone} />;
-          case 'videos':
-            return <VideosView key={i} b={b} w={w} />;
-          default:
-            return null;
-        }
-      })}
+      {lead && <DirectAnswer b={lead} />}
+      {drawn.filter((b) => !lesson || b.type !== 'videos').map((b) => draw(b))}
       {(state === 'loading' || state === 'streaming') && (
         <div className="flex flex-col gap-3" aria-hidden="true">
           <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
@@ -234,17 +244,24 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       )}
       {(state === 'loading' || state === 'streaming') && <p className="sr-only">{w['fam.understand.loading']}</p>}
       {state === 'incomplete' && <p className="rounded-2xl bg-white p-4 text-sm text-slate ring-1 ring-slate/10">{w['fam.understand.incomplete']}</p>}
-      {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
-      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && !shown.some((b) => b.type === 'videos') && <VideoPicks w={w} topicKey={input.key} />}
       {(state === 'done' || state === 'incomplete') && (
-        <nav aria-label={w['fam.understand.followUps']} className="grid grid-cols-2 gap-2">
+        <nav aria-label={w['fam.understand.followUps']} data-follow-ups className="grid grid-cols-2 gap-2">
+          {lesson && (
+            <p aria-hidden="true" className="fam-lesson-eyebrow col-span-2">
+              {w['fam.understand.followUps']}
+            </p>
+          )}
           {FOLLOW_UPS.map((f) => (
-            <button key={f} type="button" onClick={() => again({ input, followUp: f })} className="fam-press min-h-[48px] rounded-2xl bg-white px-3 py-2 text-sm font-bold text-royal-deep shadow-md ring-1 ring-royal/15 hover:bg-off-white">
+            <button key={f} type="button" onClick={() => again({ input, followUp: f })} className={`fam-press${lesson ? ' fam-lesson-chip' : ''} min-h-[48px] rounded-2xl bg-white px-3 py-2 text-sm font-bold text-royal-deep shadow-md ring-1 ring-royal/15 hover:bg-off-white`}>
               {w[`fam.followUp.${f}`]}
             </button>
           ))}
         </nav>
       )}
+      {/* W10-3: on the lesson page the videos come last, after the follow-ups. */}
+      {lesson && drawn.filter((b) => b.type === 'videos').map((b) => draw(b))}
+      {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
+      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && !shown.some((b) => b.type === 'videos') && <VideoPicks w={w} topicKey={input.key} />}
     </div>
   );
 }

@@ -57,7 +57,7 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
         })}
       </div>
       {!done && !s.hint && (
-        <button type="button" onClick={onHint} className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline">
+        <button type="button" data-hint-ask onClick={onHint} className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline">
           {w['fam.check.hint']}
         </button>
       )}
@@ -78,7 +78,7 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
           <p>{s.result.explanation}</p>
           {!s.result.correct && s.result.revisitDay && <p data-revisit>{fill(w['fam.plan.comesBack'], { day: s.result.revisitDay })}</p>}
           {!s.result.correct && (
-            <button type="button" onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
+            <button type="button" data-retry onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
               {w['fam.check.explainAgain']}
             </button>
           )}

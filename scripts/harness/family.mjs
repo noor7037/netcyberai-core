@@ -21,6 +21,8 @@ export const FAMILY = {
   full: 'f0000000-0000-4000-8000-0000000f0004',
   english: 'f0000000-0000-4000-8000-0000000f0005',
   linked: 'f0000000-0000-4000-8000-0000000f0006',
+  // W10-3 (C412): the lesson identity preview's family, six children at the classes of its six answers.
+  identity: 'f0000000-0000-4000-8000-0000000f0a10',
 };
 
 // AM-4 (C351): a family linked to the illustrative school, whose child is matched to Aarav Example A of 5-A, with the
@@ -218,6 +220,12 @@ export const FAMILY_SCREENS = [
     ([name, t, block]) => ['full', `family-interactive-${name}`, `/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.${t}`, { child: 'f0000000-0000-4000-8000-0000000fc002', settle: `[data-block="${block}"]` }]
   ),
   // m2-8 end
+  // W10-3 (C412): the lesson identity on the Understand page, each a real render of a seeded answer (harness-seed.sql):
+  // the black hole at classes 3, 6, 8 and 11, the heart (class 11 Biology) and Indian independence (class 12 History).
+  // English only (`langs`): the answers are written in English for the preview.
+  ...[['blackhole-c3', 'fca10', 'cbse.c3.evs'], ['blackhole-c6', 'fca20', 'cbse.c6.science'], ['blackhole-c8', 'fca30', 'cbse.c8.science'], ['blackhole-c11', 'fca40', 'cbse.c11.physics'], ['heart-c11', 'fca50', 'cbse.c11.biology'], ['independence-c12', 'fca60', 'cbse.c12.history']].map(
+    ([name, child, key]) => ['identity', `family-identity-${name}`, `/family/understand?kind=topic&key=${key}.u90.ch90.t01`, { child: `f0000000-0000-4000-8000-0000000${child}`, settle: '[data-direct-answer]', langs: ['en'] }]
+  ),
 ];
 
 export const FAMILY_WIDTHS = [360, 390, 1440];
@@ -340,6 +348,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
     for (const motion of FAMILY_MOTIONS) {
       for (const width of FAMILY_WIDTHS) {
         for (const [who, name, route, opts] of screens) {
+          if (opts.langs && !opts.langs.includes(lang)) continue;
           // Rows only this screen needs, taken away again by its `reset`.
           if (opts.prep) await db.pg.exec(opts.prep);
           const aiOff = opts.ai ? await liveAiOn(db, aiKey) : null;
