@@ -13,7 +13,9 @@ vi.mock('@/lib/ai/platform', async (original) => ({
   activePromptVersion: async () => 'v1',
   // The safety check (C314) passes everything here; test/w2/moderation.test.ts covers it.
   prepareModeration: async () => ({ ok: true, moderation: { check: async () => ({ safe: true, categories: [] }), record: async () => {} } }),
-  prepareText: async (_db: unknown, _ctx: unknown, _p: unknown, req: { system: string; messages: { content: string }[] }) => {
+  prepareText: async (_db: unknown, _ctx: unknown, p: unknown, req: { system: string; messages: { content: string }[] }) => {
+    // The teaching plan (W9-B) has no route here: the answer is written on the band's default plan.
+    if (p === 'family.plan') return { ok: false, reason: 'not_switched_on' };
     ai.calls.push({ system: req.system, user: req.messages[0].content });
     const lines = [...ai.lines];
     return {

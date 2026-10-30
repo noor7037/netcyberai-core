@@ -140,6 +140,10 @@ export async function POST(req: NextRequest) {
               if (!reader) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.notFound') });
               target = { ...target, about: reader.about };
             }
+            // W9-B (docs/39 §3): the window's subject and the reader's open chapter steer the library's passages and the
+            // teaching plan (src/lib/family/resolver.ts plans the answer and retrieves before the answer call). They never
+            // decide the answer's subject.
+            target = { ...target, windowSubject: subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
             if (attached && target?.kind === 'question') target = { ...target, attached };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });

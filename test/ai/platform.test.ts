@@ -345,6 +345,29 @@ describe('the daily cap', () => {
   });
 });
 
+describe('the teaching plan and a request given at send time (W9-B)', () => {
+  it('family.plan takes no daily place; a late request is cleaned the same way and sent instead of the prepared one', async () => {
+    await clear('anthropic');
+    await sealInto('anthropic', ANTHROPIC_KEY);
+    await q(`update control.ai_profiles set provider_id = 'anthropic', model = 'test-model-a' where profile_id = 'family.plan'`);
+    replies.push(() => anthropicOk(['{"questionType":"concept"}'], 5, 3));
+    const prepared = await asFamily(A, (tx) => prepareText(tx as never, ctxA, 'family.plan', ask('Asha asks: what is photosynthesis?')));
+    if (!prepared.ok) throw new Error('not prepared');
+    expect(await q(`select requests from family.ai_daily`)).toEqual([]);
+    await prepared.text.send(undefined, { system: 'Plan it.', messages: [{ role: 'user', content: 'Asha asks again: why are leaves green?' }] });
+    expect(calls).toHaveLength(1);
+    expect(calls[0].body).toContain('why are leaves green?');
+    expect(calls[0].body).not.toContain('what is photosynthesis');
+    expect(calls[0].body).not.toContain('Asha');
+    // A late request with a photo, for providers chosen without one, is refused before anything is sent.
+    const again = await asFamily(A, (tx) => prepareText(tx as never, ctxA, 'family.plan', ask()));
+    if (!again.ok) throw new Error('not prepared');
+    const refused = await again.text.send(undefined, { system: 's', messages: [{ role: 'user', content: 'x', images: [{ mediaType: 'image/jpeg', base64: 'AAAA' }] }] });
+    expect(refused.result).toEqual({ ok: false, reason: 'failed' });
+    expect(calls).toHaveLength(1);
+  });
+});
+
 describe('three steps, so no connection is held during the call (F1-3)', () => {
   it('prepare takes the cap place; send needs no database and goes out once; record writes the metering', async () => {
     await clear('anthropic');
