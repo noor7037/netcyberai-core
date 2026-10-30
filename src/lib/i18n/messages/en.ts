@@ -7947,6 +7947,13 @@ export const en = {
   'fam.tutor.err.homework_off': 'Photos and files can be sent once the homework helper is switched on.',
   'fam.tutor.err.storage_unavailable': 'Files cannot be attached right now. Please try again later.',
   'fam.tutor.empty': 'No questions here yet. Your questions and the answers will stay here.',
+  'fam.chat.list': 'Your chats in {subject}',
+  'fam.chat.new': 'New chat',
+  'fam.chat.pick': 'Choose a chat',
+  'fam.chat.questions': '{n} of {max} questions',
+  'fam.chat.full': 'This chat is full. Start a new chat in {subject}.',
+  'fam.chat.startNew': 'Start a new chat',
+  'fam.chat.fullBadge': 'Full',
   'fam.tutor.loading': 'Loading the conversation…',
   'fam.tutor.you': 'You asked',
   'fam.tutor.tutorSaid': 'Tutor',
@@ -9276,6 +9283,7 @@ export const en = {
   // s3 end
   // e1 begin
   'control.ai.profile.name.family.english_conversation': 'English live practice (the partner’s replies)',
+  'control.ai.profile.name.family.summary': 'Tutor chat summary (the memory of a chat)',
   'fam.english.live.title': 'Talk in English',
   'fam.english.live.kicker': 'Live practice',
   'fam.english.live.entry': 'Talk with your English partner',

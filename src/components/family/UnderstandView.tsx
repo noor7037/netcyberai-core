@@ -28,7 +28,7 @@ const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((
 // A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
 // window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
 // answered turn in the child's conversation.
-export type TutorAsk = { subject: string; chapterKey?: string; blockId?: string; files?: string[] };
+export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[] };
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
@@ -77,6 +77,13 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         body: JSON.stringify({ ...ask.input, followUp: ask.followUp, retry: ask.retry }),
         signal: mine.signal,
       });
+      // W9-A (C406): the chat filled up before this question; the tutor window reads its chats again.
+      if (res.status === 409 && ask.input.kind === 'question' && ask.input.tutor) {
+        const subject = ask.input.tutor.subject;
+        setRefusal(w['fam.chat.full'] ? fill(w['fam.chat.full'], { subject: w[`fam.subject.${subject}`] ?? subject }) : w['fam.err.network']);
+        answered.current?.();
+        return setState('refused');
+      }
       if (!res.ok || !res.body) {
         setRefusal(w['fam.err.network']);
         return setState('refused');

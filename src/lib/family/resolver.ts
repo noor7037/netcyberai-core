@@ -1,5 +1,5 @@
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
-import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
+import { resolverPrompt, type ResolverAsk, type ResolverMemory } from '@/lib/ai/prompts/family.resolver';
 import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
@@ -45,7 +45,9 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // the history see the question alone.
 // `attached`: what the files sent with a tutor question say (W4-1, C385: src/lib/family/tutor-read.ts), read on the
 // server; it joins the question, so the safety check and the scrub read it like the child's own words.
-export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string };
+// `memory`: the tutor chat the question is asked in (W9-A, C406: src/lib/family/tutor.ts memoryFor), read on the server
+// for the child's own chat; the prompt (v7 and later) answers in that context. The scrub reads it; it is never kept.
+export type ResolveInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; memory?: ResolverMemory };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -338,6 +340,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     style: child.style,
     followUp,
     misconception,
+    ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
   };
   const prepared = await prepareText(
     db as never,

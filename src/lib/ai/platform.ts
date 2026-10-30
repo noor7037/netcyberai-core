@@ -48,6 +48,7 @@ export type ProfileId =
   | 'family.moderation'
   | 'family.syllabus_extract'
   | 'family.english_conversation'
+  | 'family.summary'
   | 'family.text_to_speech'
   | 'copilot.draft'
   | 'parent_ai.home_help'
@@ -83,6 +84,9 @@ export const PROFILES: readonly AiProfile[] = [
   // end-of-session recap. Carries the child's corrected words (the transcript, never the recording). Speech to text
   // stays family.voice_input: the same capability, the same provider choice and the same voice budget.
   { id: 'family.english_conversation', carriesChildWords: true, capability: 'text', audience: 'family' },
+  // W9-A (C406): the running summary of a tutor chat, rewritten every fifth child turn from the chat's own questions
+  // and the tutor's explanations, so a follow-up is answered with the chat in view. Carries the child's words.
+  { id: 'family.summary', carriesChildWords: true, capability: 'text', audience: 'family' },
   // C386 (Wave 4 slice 2): the server voice. It reads the chapter reader's narration (NetCyberAI's own text) and the live
   // English partner's checked replies, which are made from a child's words, so it is a children's-words profile: only a
   // provider cleared for minors in Control may speak, as for every such profile. It speaks only text the server holds

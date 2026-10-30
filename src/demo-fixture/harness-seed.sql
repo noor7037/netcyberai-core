@@ -306,6 +306,24 @@ values ('f0000000-0000-4000-8000-0000000fa204', 'f0000000-0000-4000-8000-0000000
         'f0000000-0000-4000-8000-0000000fa202', 'ready', 'image/jpeg', 182000,
         'f0000000-0000-4000-8000-0000000f0004/f0000000-0000-4000-8000-0000000fc002/f0000000-0000-4000-8000-0000000fa204.jpg', now() - interval '1 hour');
 -- s2 end
+-- w9a begin
+-- Chats with memory (W9-A, C406): Kabir's chat gets its title and count, and an older Mathematics chat has reached its
+-- 30 questions, so Study lists both chats and, picked, the full chat shows its message. Illustrative only.
+update family.tutor_conversations set title = 'Why can q not be zero in p/q?', turn_count = 1, last_at = now() - interval '1 hour'
+ where conversation_id = 'f0000000-0000-4000-8000-0000000fa201';
+insert into family.tutor_conversations (conversation_id, account_id, child_id, subject, title, turn_count, status, summary, summary_turns, updated_at, last_at)
+values ('f0000000-0000-4000-8000-0000000fa205', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'mathematics',
+        'How do I add fractions with different denominators?', 30, 'full',
+        'The student asked how to add fractions with different denominators; the common denominator was explained with 1/2 + 1/3.', 30,
+        now() - interval '2 hours', now() - interval '2 hours');
+insert into family.tutor_messages (message_id, conversation_id, account_id, child_id, role, body, created_at)
+values ('f0000000-0000-4000-8000-0000000fa206', 'f0000000-0000-4000-8000-0000000fa205', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'child',
+        'How do I add fractions with different denominators?', now() - interval '2 hours');
+insert into family.tutor_messages (message_id, conversation_id, account_id, child_id, role, blocks, created_at)
+values ('f0000000-0000-4000-8000-0000000fa207', 'f0000000-0000-4000-8000-0000000fa205', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'tutor',
+        '[{"type":"explanation","title":"Adding unlike fractions","idea":"Make the parts the same size first, then add the parts.","example":"1/2 + 1/3 = 3/6 + 2/6 = 5/6.","steps":["Find a common denominator.","Rewrite both fractions with it.","Add the numerators."],"terms":[]}]'::jsonb,
+        now() - interval '2 hours' + interval '1 second');
+-- w9a end
 -- e1 begin
 -- Live English practice (E1, C382): the English family's parent also said yes to voice practice, so the course shows
 -- the live practice entry and the live screen opens. Illustrative only.

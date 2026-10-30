@@ -15,7 +15,7 @@ import * as v7 from './v7';
 // v4 (M2-8, C282: the interactive blocks) is registered but opt-in: it is used only when Control chooses it by name,
 // never as the fallback, so adding it changes nothing until then.
 
-export type { ResolverAsk, ResolverSubject } from './v3';
+export type { ResolverAsk, ResolverMemory, ResolverSubject } from './v3';
 
 export type ResolverPrompt = {
   version: string;

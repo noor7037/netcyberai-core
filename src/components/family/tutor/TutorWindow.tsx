@@ -39,6 +39,10 @@ type Props = {
 };
 
 type Attached = ComposerFile;
+// A chat as the list shows it (src/lib/family/tutor.ts TutorChat).
+type ChatRow = { chatId: string; title: string | null; turnCount: number; status: 'open' | 'full'; lastAt: string };
+// The child turns a chat takes (CHAT_TURNS on the server).
+const CHAT_TURNS = 30;
 
 const postJson = (url: string, body: unknown) => fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify(body) }).catch(() => null);
 const errorOf = async (res: Response | null) => (res ? String(((await res.json().catch(() => ({}))) as { error?: unknown }).error ?? 'network') : 'network');
@@ -63,11 +67,18 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [fileError, setFileError] = useState<string | null>(null);
   const [turns, setTurns] = useState<TutorTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
+  // W9-A (C406): the child's chats in this subject and the one asked in (null: none yet; the first answer opens one).
+  const [chats, setChats] = useState<ChatRow[] | null>(null);
+  const [chatId, setChatId] = useState<string | null>(null);
   const stale = useRef(true);
+  const root = useRef<HTMLElement>(null);
   const slot = useRef<HTMLDivElement>(null);
   const historyHead = useRef<HTMLHeadingElement>(null);
   const uid = useId().replace(/:/g, '');
-  const ids = { title: `${idPrefix}-${uid}-title`, slot: `${idPrefix}-${uid}-slot`, q: `${idPrefix}-${uid}-q` };
+  const ids = { title: `${idPrefix}-${uid}-title`, slot: `${idPrefix}-${uid}-slot`, q: `${idPrefix}-${uid}-q`, chats: `${idPrefix}-${uid}-chats` };
+  const subjectName = w[`fam.subject.${subject}`] ?? subject;
+  const current = chats?.find((c) => c.chatId === chatId) ?? null;
+  const full = current?.status === 'full';
 
   // Bring the answer or the conversation into view (the composer may be far below, pinned over the chapters).
   const reveal = (focus?: HTMLElement | null) =>
@@ -77,29 +88,82 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       focus?.focus({ preventScroll: true });
     });
 
-  const loadTurns = useCallback(async () => {
-    stale.current = false;
-    setTurnsError(false);
-    const res = await fetch(`/api/family/tutor?subject=${encodeURIComponent(subject)}`, { credentials: 'same-origin', cache: 'no-store' }).catch(() => null);
-    const data = res?.ok ? ((await res.json().catch(() => null)) as { turns?: TutorTurn[] } | null) : null;
-    if (!data || !Array.isArray(data.turns)) {
-      stale.current = true;
-      setTurnsError(true);
-      return;
-    }
-    setTurns(data.turns);
-  }, [subject]);
+  // The chats (and, with `withTurns`, the turns of the chat shown). The server answers for the chat named when it is
+  // this child's own, else the most recently used one.
+  const fetchChats = useCallback(
+    async (chat: string | null, withTurns: boolean) => {
+      const q = `subject=${encodeURIComponent(subject)}${chat ? `&chat=${encodeURIComponent(chat)}` : ''}${withTurns ? '' : '&turns=0'}`;
+      const res = await fetch(`/api/family/tutor?${q}`, { credentials: 'same-origin', cache: 'no-store' }).catch(() => null);
+      const data = res?.ok ? ((await res.json().catch(() => null)) as { chats?: ChatRow[]; chatId?: string | null; turns?: TutorTurn[] } | null) : null;
+      if (!data || !Array.isArray(data.chats)) return null;
+      setChats(data.chats);
+      setChatId(data.chatId ?? null);
+      return data;
+    },
+    [subject]
+  );
+
+  const loadTurns = useCallback(
+    async (chat: string | null) => {
+      stale.current = false;
+      setTurnsError(false);
+      const data = await fetchChats(chat, true);
+      if (!data || !Array.isArray(data.turns)) {
+        stale.current = true;
+        setTurnsError(true);
+        return;
+      }
+      setTurns(data.turns);
+    },
+    [fetchChats]
+  );
+
+  // The list (and whether the chat is full) as the window opens.
+  useEffect(() => {
+    void fetchChats(null, false);
+  }, [fetchChats]);
 
   useEffect(() => {
-    if (view === 'history' && stale.current) void loadTurns();
-  }, [view, loadTurns]);
+    if (view === 'history' && stale.current) void loadTurns(chatId);
+  }, [view, loadTurns, chatId]);
 
+  // An answer kept (or refused because the chat filled up): the list and the chat's state are read again.
   const onAnswered = useCallback(() => {
     stale.current = true;
-  }, []);
+    void fetchChats(chatId, false);
+  }, [fetchChats, chatId]);
+
+  const pickChat = (id: string) => {
+    if (!id) return;
+    if (id !== chatId) {
+      setChatId(id);
+      setTurns(null);
+      setAsked(null);
+      stale.current = true;
+    }
+    setView('history');
+    reveal(historyHead.current);
+  };
+
+  const startNew = async () => {
+    const res = await postJson('/api/family/tutor', { subject });
+    const made = res?.ok ? ((await res.json().catch(() => null)) as { chatId?: string } | null) : null;
+    if (!made?.chatId) return;
+    setAsked(null);
+    setTurns([]);
+    stale.current = false;
+    setView('ask');
+    await fetchChats(made.chatId, false);
+    document.getElementById(ids.q)?.focus();
+  };
+
+  // A locale for the chats' dates: the language of the page around the window.
+  const locale = () => (root.current?.closest('[lang]')?.getAttribute('lang') === 'hi' ? 'hi-IN' : 'en-IN');
+  const when = (iso: string) => new Date(iso).toLocaleDateString(locale(), { day: 'numeric', month: 'short' });
+  const titleOf = (c: ChatRow) => c.title ?? w['fam.chat.new'];
 
   const busy = attached.some((a) => a.state !== 'ready');
-  const canSend = text.trim().length >= TUTOR_TEXT_MIN && !busy;
+  const canSend = text.trim().length >= TUTOR_TEXT_MIN && !busy && !full;
 
   const attach = async (file: File) => {
     setFileError(null);
@@ -134,7 +198,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
 
   const send = () => {
     if (!canSend) return;
-    const tutor = { subject, ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])) };
+    const tutor = { subject, ...(chatId ? { chatId } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])) };
     setAsked((prev) => ({ n: (prev?.n ?? 0) + 1, input: { kind: 'question', text: text.trim(), tutor } }));
     setText('');
     setAttached([]);
@@ -150,7 +214,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   return (
-    <section data-tutor-window data-subject={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
+    <section ref={root} data-tutor-window data-subject={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
       <h2 id={ids.title} className="sr-only">
         {w['fam.tutor.title']}
       </h2>
@@ -158,6 +222,56 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate ring-1 ring-slate/10">
           {fill(w['fam.tutor.doubtAbout'], { section: reader.section })}
         </p>
+      )}
+      {chats && chats.length > 0 && (
+        <div data-tutor-chats className="fam-surface flex flex-col gap-2 bg-white p-3">
+          <div className="flex items-center justify-between gap-2">
+            <h3 id={ids.chats} className="min-w-0 px-1 text-base font-extrabold text-slate">
+              {fill(w['fam.chat.list'], { subject: subjectName })}
+            </h3>
+            <button type="button" onClick={() => void startNew()} data-chat-new className="fam-press flex min-h-[44px] shrink-0 items-center gap-1 rounded-full bg-royal-deep px-4 text-sm font-bold text-white shadow-md">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+              {w['fam.chat.new']}
+            </button>
+          </div>
+          {/* Under 480 px the list is a drop-down; wider, a list of titles and dates. */}
+          <label className="flex flex-col min-[480px]:hidden">
+            <span className="sr-only">{w['fam.chat.pick']}</span>
+            <select value={chatId ?? ''} onChange={(e) => pickChat(e.target.value)} data-chat-select className="min-h-[44px] w-full rounded-xl bg-off-white px-3 text-base text-slate ring-1 ring-slate/15">
+              {chatId === null && <option value="">{w['fam.chat.pick']}</option>}
+              {chats.map((c) => (
+                <option key={c.chatId} value={c.chatId}>
+                  {`${titleOf(c)} · ${when(c.lastAt)}${c.status === 'full' ? ` · ${w['fam.chat.fullBadge']}` : ''}`}
+                </option>
+              ))}
+            </select>
+          </label>
+          <ul aria-labelledby={ids.chats} data-chat-list className="hidden max-h-64 flex-col gap-1 overflow-y-auto min-[480px]:flex">
+            {chats.map((c) => {
+              const on = c.chatId === chatId;
+              return (
+                <li key={c.chatId}>
+                  <button
+                    type="button"
+                    onClick={() => pickChat(c.chatId)}
+                    aria-current={on ? 'true' : undefined}
+                    data-chat={c.status}
+                    className={`fam-press flex min-h-[44px] w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-base ${on ? 'bg-royal-deep text-white' : 'text-slate hover:bg-off-white'}`}
+                  >
+                    <span className="min-w-0 truncate font-bold">{titleOf(c)}</span>
+                    <span className="flex shrink-0 items-center gap-2 text-sm">
+                      {c.status === 'full' && <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${on ? 'bg-white text-royal-deep' : 'bg-off-white text-slate'}`}>{w['fam.chat.fullBadge']}</span>}
+                      <span className="sr-only">{fill(w['fam.chat.questions'], { n: String(c.turnCount), max: String(CHAT_TURNS) })}, </span>
+                      <time dateTime={c.lastAt}>{when(c.lastAt)}</time>
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
       <div id={ids.slot} ref={slot} data-tutor-slot={view} className={`scroll-mt-4 flex-col gap-3 ${(view === 'ask' && !asked) ? 'hidden' : 'flex'}`}>
         {asked && (
@@ -251,6 +365,17 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         historyOpen={view === 'history'}
         historyFor={ids.slot}
         onHistory={toggleHistory}
+        locked={full}
+        notice={
+          full ? (
+            <div role="status" data-chat-full className="flex flex-col gap-2 rounded-2xl bg-white p-3 text-base font-semibold text-slate shadow-sm ring-1 ring-slate/10 min-[480px]:flex-row min-[480px]:items-center min-[480px]:justify-between">
+              <p>{fill(w['fam.chat.full'], { subject: subjectName })}</p>
+              <button type="button" onClick={() => void startNew()} data-chat-start-new className="fam-press flex min-h-[44px] shrink-0 items-center justify-center rounded-full bg-royal-deep px-4 text-sm font-bold text-white shadow-md">
+                {w['fam.chat.startNew']}
+              </button>
+            </div>
+          ) : null
+        }
       />
     </section>
   );
