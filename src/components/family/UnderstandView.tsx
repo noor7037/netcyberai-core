@@ -14,6 +14,14 @@ import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
+import { placeBlock, unfilled } from '@/lib/family/blocks';
+import { StepsView } from './blocks/StepsView';
+import { TimelineView } from './blocks/TimelineView';
+import { ImageView } from './blocks/ImageView';
+import { VideosView } from './blocks/VideosView';
+
+// W9-C: the drawn figure comes as its own chunk, only when a response carries one.
+const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.FigureView));
 
 // The interactive blocks (M2-8) come as their own chunk, only when a response carries one (09 §4: first-load budget).
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
@@ -28,7 +36,7 @@ const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((
 // A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
 // window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
 // answered turn in the child's conversation.
-export type TutorAsk = { subject: string; chapterKey?: string; blockId?: string; files?: string[] };
+export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[] };
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
@@ -47,6 +55,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const [noInternet, setNoInternet] = useState(false);
   const saver = useDataSaver();
   const saving = offline && saver.state.on;
+  // A photograph or video list the server has not filled yet is never drawn, nor counted as left out (W9-C).
+  const shown = blocks.filter((b) => !unfilled(b));
   const top = useRef<HTMLDivElement>(null);
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
@@ -77,6 +87,13 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         body: JSON.stringify({ ...ask.input, followUp: ask.followUp, retry: ask.retry }),
         signal: mine.signal,
       });
+      // W9-A (C406): the chat filled up before this question; the tutor window reads its chats again.
+      if (res.status === 409 && ask.input.kind === 'question' && ask.input.tutor) {
+        const subject = ask.input.tutor.subject;
+        setRefusal(w['fam.chat.full'] ? fill(w['fam.chat.full'], { subject: w[`fam.subject.${subject}`] ?? subject }) : w['fam.err.network']);
+        answered.current?.();
+        return setState('refused');
+      }
       if (!res.ok || !res.body) {
         setRefusal(w['fam.err.network']);
         return setState('refused');
@@ -98,7 +115,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           if (e.t === 'meta') {
             setMeta(e);
             setState('streaming');
-          } else if (e.t === 'block') setBlocks((b) => [...b, e.block]);
+          } else if (e.t === 'block') setBlocks((b) => placeBlock(b, e.block));
           else if (e.t === 'files') setFilesNote(e.message);
           else if (e.t === 'done') {
             setState(e.complete ? 'done' : 'incomplete');
@@ -163,12 +180,12 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           )}
         </section>
       )}
-      {saving && droppedCount(blocks, true) > 0 && (
+      {saving && droppedCount(shown, true) > 0 && (
         <p data-saver-note className="rounded-2xl bg-white px-4 py-3 text-sm text-slate ring-1 ring-slate/10">
-          {fill(w['fam.dataSaver.skipped'], { n: droppedCount(blocks, true) })}
+          {fill(w['fam.dataSaver.skipped'], { n: droppedCount(shown, true) })}
         </p>
       )}
-      {dataSaverBlocks(blocks, saving).map((b) => {
+      {dataSaverBlocks(shown, saving).map((b) => {
         // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
         const i = blocks.indexOf(b);
         switch (b.type) {
@@ -195,6 +212,16 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
           case 'sources':
             return <SourcesView key={i} b={b} w={w} tone={tone} />;
+          case 'figure':
+            return <FigureView key={i} b={b} tone={tone} />;
+          case 'steps':
+            return <StepsView key={i} b={b} tone={tone} />;
+          case 'timeline':
+            return <TimelineView key={i} b={b} tone={tone} />;
+          case 'image':
+            return <ImageView key={i} b={b} w={w} tone={tone} />;
+          case 'videos':
+            return <VideosView key={i} b={b} w={w} />;
           default:
             return null;
         }
@@ -208,7 +235,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       {(state === 'loading' || state === 'streaming') && <p className="sr-only">{w['fam.understand.loading']}</p>}
       {state === 'incomplete' && <p className="rounded-2xl bg-white p-4 text-sm text-slate ring-1 ring-slate/10">{w['fam.understand.incomplete']}</p>}
       {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
-      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && <VideoPicks w={w} topicKey={input.key} />}
+      {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && !shown.some((b) => b.type === 'videos') && <VideoPicks w={w} topicKey={input.key} />}
       {(state === 'done' || state === 'incomplete') && (
         <nav aria-label={w['fam.understand.followUps']} className="grid grid-cols-2 gap-2">
           {FOLLOW_UPS.map((f) => (

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { TUTOR_FILES_PER_TURN, TUTOR_FILE_TYPES, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
 import { useVoiceRecorder } from '../voice/useVoiceRecorder';
@@ -35,6 +35,10 @@ type Props = {
   historyOpen: boolean;
   historyFor: string;
   onHistory: () => void;
+  // W9-A (C406): the chat is full; nothing can be typed, attached or said until a new chat is started.
+  locked?: boolean;
+  // Shown above the field, inside the pinned composer (the full chat's message and its action).
+  notice?: ReactNode;
 };
 
 const ICON = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
@@ -102,6 +106,7 @@ export function Composer(p: Props) {
           p.onSend();
         }}
       >
+        {p.notice}
         {line && (
           <p role={line.alert ? 'alert' : 'status'} data-tutor-notice={line.alert ? 'alert' : 'status'} className="fam-acc-in mx-1 flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate shadow-sm ring-1 ring-slate/10">
             {voice.state === 'recording' && <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 animate-pulse rounded-full bg-coral-deep motion-reduce:animate-none" />}
@@ -154,7 +159,7 @@ export function Composer(p: Props) {
                     aria-label={p.homework ? w['fam.tutor.attachMenu'] : w['fam.tutor.attach']}
                     aria-expanded={p.homework ? menu : undefined}
                     aria-controls={p.homework ? `${id}-attach-menu` : undefined}
-                    disabled={!p.homework && full}
+                    disabled={p.locked || (!p.homework && full)}
                     onClick={() => (p.homework ? setMenu((m) => !m) : pick())}
                     className={`${ROUND} text-royal-deep hover:bg-off-white disabled:opacity-50`}
                   >
@@ -196,6 +201,7 @@ export function Composer(p: Props) {
                 ref={box}
                 id={id}
                 rows={1}
+                disabled={p.locked}
                 maxLength={TUTOR_TEXT_MAX}
                 value={p.value}
                 placeholder={w['fam.tutor.title']}
@@ -206,7 +212,7 @@ export function Composer(p: Props) {
                     p.onSend();
                   }
                 }}
-                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${p.files ? 'px-1' : 'px-3'}`}
+                className={`block min-h-[44px] min-w-0 flex-1 resize-none bg-transparent disabled:cursor-not-allowed py-[0.625rem] text-base leading-6 text-slate placeholder:text-slate/80 focus:outline-none ${p.files ? 'px-1' : 'px-3'}`}
               />
               {p.voice && (
                 <button
@@ -214,7 +220,7 @@ export function Composer(p: Props) {
                   data-voice-input
                   data-voice-state={voice.state}
                   onClick={() => (voice.state === 'recording' ? voice.stop() : void voice.start())}
-                  disabled={voice.state === 'sending'}
+                  disabled={p.locked || voice.state === 'sending'}
                   aria-busy={voice.state === 'sending' || undefined}
                   aria-label={voice.state === 'recording' ? w['fam.voice.stop'] : w['fam.voice.speak']}
                   className={`${ROUND} disabled:opacity-60 ${voice.state === 'recording' ? 'bg-coral-deep text-white shadow-md' : 'text-royal-deep hover:bg-off-white'}`}

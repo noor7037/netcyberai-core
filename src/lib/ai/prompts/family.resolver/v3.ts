@@ -30,7 +30,12 @@ export type ResolverAsk = {
   followUp: 'simpler' | 'another_example' | 'differently' | 'practise_more' | null;
   // A different explanation after a wrong answer: the misunderstanding the child's answer showed.
   misconception: string | null;
+  // W9-A (C406): the tutor chat so far, for a question asked in a chat: its running summary and its last turns (the
+  // child's words, the tutor's explanation paragraphs only). Read by v7 and later; earlier versions ignore it.
+  memory?: ResolverMemory;
 };
+
+export type ResolverMemory = { summary: string | null; turns: { role: 'child' | 'tutor'; text: string }[] };
 
 const STYLE: Record<ResolverAsk['style'], string> = {
   en: 'simple English',

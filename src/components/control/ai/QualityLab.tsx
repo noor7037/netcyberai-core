@@ -8,7 +8,8 @@ import { ModelSelect } from './ModelSelect';
 import { CARD, NUM, PRIMARY, TAP } from './shared';
 import { flatRows, nextSort, sortRows, type Sort, type SortKey } from '@/lib/ai/lab/rows';
 import { hasDuplicate, validModel } from '@/lib/ai/model-options';
-import type { LabArea, LabCaseSummary } from '@/lib/ai/lab/cases';
+import type { LabCaseArea, LabCaseSummary } from '@/lib/ai/lab/cases';
+import { CurriculumCases, type Scope } from './CurriculumCases';
 import type { LabErrorClass } from '@/lib/ai/lab/runner';
 import type { LabLink, LabResult, LabRun, LabRunSummary, LabSetup } from '@/lib/ai/lab/store';
 import { columnSummaries, labTable } from '@/lib/ai/lab/table';
@@ -19,9 +20,13 @@ import type { MessageKey } from '@/lib/i18n';
 // any length never outlives a route's time. Each answer is shown as it lands, with its time, tokens, whether the
 // format was kept and the check passed, or the kind of failure; the founder scores each 1–5 and exports the run.
 
-export type LabData = LabSetup & { cases: LabCaseSummary[]; runs: LabRunSummary[] };
+export type LabData = LabSetup & { cases: LabCaseSummary[]; runs: LabRunSummary[]; curriculumTotal?: number; scopes?: Scope[] };
 
-const AREAS: LabArea[] = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge'];
+const AREAS: LabCaseArea[] = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge', 'curriculum'];
+// A run takes at most 200 cases (the route's limit). The cases built from the syllabus are many, so a run takes the
+// hand-written ones chosen first and then curriculum cases spread evenly across what is listed.
+const RUN_MAX = 200;
+const spread = <T,>(list: T[], n: number): T[] => (list.length <= n ? list : Array.from({ length: n }, (_, i) => list[Math.floor((i * list.length) / n)]));
 const ERRORS = ['cases', 'models', 'provider', 'model', 'not_found', 'not_configured', 'score', 'request', 'aal2'];
 const MOTION = 'transition duration-150 motion-reduce:transition-none';
 const FIELD = `min-h-[44px] rounded-lg border border-slate/30 bg-white px-2 text-sm text-slate ${MOTION}`;
@@ -31,8 +36,8 @@ const day = (v: string) => new Date(v).toLocaleString('en-IN', { day: 'numeric',
 
 export function QualityLab({ initial }: { initial: LabData }) {
   const { t } = useWords();
-  const [data] = useState<LabData>(initial);
-  const [areas, setAreas] = useState<Set<LabArea>>(() => new Set(AREAS));
+  const [data, setData] = useState<LabData>(initial);
+  const [areas, setAreas] = useState<Set<LabCaseArea>>(() => new Set(AREAS.filter((a) => a !== 'curriculum')));
   const first = initial.suggestions;
   const [models, setModels] = useState<LabLink[]>(() => {
     const pick = (i: number): LabLink => first[i] ?? { provider: initial.providers[Math.min(i, initial.providers.length - 1)] ?? '', model: '' };
@@ -50,9 +55,11 @@ export function QualityLab({ initial }: { initial: LabData }) {
 
   const caseById = new Map(data.cases.map((c) => [c.id, c]));
   const chosen = data.cases.filter((c) => areas.has(c.area));
+  const fixedChosen = chosen.filter((c) => c.area !== 'curriculum');
+  const runCases = [...fixedChosen.slice(0, RUN_MAX), ...spread(chosen.filter((c) => c.area === 'curriculum'), Math.max(0, RUN_MAX - fixedChosen.length))];
   const cleanModels = models.map((m) => ({ provider: m.provider, model: m.model.trim() }));
   const distinct = !hasDuplicate(cleanModels);
-  const canRun = !busy && chosen.length > 0 && cleanModels.length >= 2 && distinct && cleanModels.every((m) => m.provider && validModel(m.model));
+  const canRun = !busy && runCases.length > 0 && cleanModels.length >= 2 && distinct && cleanModels.every((m) => m.provider && validModel(m.model));
   const errorText = (code: unknown) => (ERRORS.includes(code as string) ? t(`control.ai.lab.err.${code}` as MessageKey) : t('control.ai.lab.err.other'));
 
   const post = async (body: Record<string, unknown>) => {
@@ -92,7 +99,7 @@ export function QualityLab({ initial }: { initial: LabData }) {
   const start = async () => {
     setNote(null);
     setBusy(true);
-    const caseIds = chosen.map((c) => c.id);
+    const caseIds = runCases.map((c) => c.id);
     const { ok, got } = await post({ action: 'start', caseIds, models: cleanModels });
     if (!ok || !got?.runId) {
       setBusy(false);
@@ -140,7 +147,7 @@ export function QualityLab({ initial }: { initial: LabData }) {
 
   const table = run ? labTable(run) : null;
   const summaries = table ? columnSummaries(table) : [];
-  const calls = chosen.length * cleanModels.length;
+  const calls = runCases.length * cleanModels.length;
   const rows = table ? sortRows(flatRows(table), sort, (r) => modelName(r.link, r.column)) : [];
   const head = (k: SortKey) => <SortHead key={k} k={k} sort={sort} onSort={(key) => setSort(nextSort(sort, key))} label={t(`control.ai.lab.col.${k}` as MessageKey)} t={t} />;
 
@@ -191,6 +198,8 @@ export function QualityLab({ initial }: { initial: LabData }) {
           })}
         </div>
         <p data-lab-chosen className="text-sm">{t('control.ai.lab.cases.chosen', { count: chosen.length })}</p>
+        {runCases.length < chosen.length && <p data-lab-spread className="text-sm text-slate/80">{t('control.ai.lab.curriculum.spread', { used: runCases.length, count: chosen.length })}</p>}
+        <CurriculumCases scopes={data.scopes ?? []} total={data.curriculumTotal ?? 0} disabled={busy} onAdded={(fresh) => setData(fresh)} />
       </section>
 
       <section data-lab-models className={CARD}>

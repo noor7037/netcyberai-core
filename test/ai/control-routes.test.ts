@@ -106,7 +106,11 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
       // The safety check (C314): chosen by the founder after clearing Workers AI.
       expect.objectContaining({ profileId: 'family.moderation', carriesChildWords: true, providerId: null, enabled: true }),
+      // The teaching plan (W9-B): reads the child's question; starts on the resolver's route (none here), prompt v1.
+      expect.objectContaining({ profileId: 'family.plan', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
+      // A tutor chat's running summary (W9-A, C406): the child's questions; no provider until Control routes it.
+      expect.objectContaining({ profileId: 'family.summary', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
       // C230-AB: a parent's photos of a book's contents pages (titles, never a child's words) start on Workers AI.
       expect.objectContaining({ profileId: 'family.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
       // The server voice (C386): reads a child's partner's replies, so a children's-words profile; no provider yet, no prompt.

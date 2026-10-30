@@ -35,6 +35,9 @@ export default async function ContentPage() {
           <Link href="/control/content/studio" data-studio-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
             {t(lang, 'control.content.studioLink')}
           </Link>
+          <Link href="/control/content/coverage" data-coverage-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+            {t(lang, 'control.coverage.link')}
+          </Link>
           <Link href="/control/content/hubs" data-hubs-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
             {t(lang, 'control.content.hubsLink')}
           </Link>

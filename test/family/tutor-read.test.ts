@@ -126,7 +126,7 @@ const ask = async (files: string[], text = 'Please help with this') => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (await res.text()).trim().split('\n').map((l: string) => JSON.parse(l)) as any[];
 };
-const answerAsk = () => ai.asked.find((a) => a.profile !== 'family.homework');
+const answerAsk = () => ai.asked.find((a) => a.profile === 'family.resolver');
 
 describe('the path is on (C230-AR: never a control that does nothing)', () => {
   it('Attach file shows and the server takes a file only because the tutor now reads it', () => {

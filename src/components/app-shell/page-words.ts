@@ -11,18 +11,19 @@ import type { Words } from '@/lib/i18n/words';
 export const PAGE_WORDS = {
   '/control/account': ['account.devices.'],
   '/control/ai': ['control.ai.', 'control.video.'],
-  '/control/ai/lab': ['control.ai.'],
+  '/control/ai/lab': ['control.ai.', 'fam.subject.'],
   '/control/apps': ['control.apps.'],
   '/control/billing-plans': ['billing.', 'module.'],
   '/control/boards': ['boards.', 'fboards.', 'gs.'],
   '/control/content': ['control.content.', 'control.english.', 'control.import.', 'control.queue.', 'control.video.', 'fam.english.track.'],
+  '/control/content/coverage': ['control.coverage.', 'fam.subject.'],
   '/control/content/hubs': ['fam.class.', 'fam.hub.', 'gs.', 'hubs.'],
   '/control/content/responses': ['control.content.', 'control.prepare.', 'control.queue.', 'fam.subject.'],
   // The studio shows a chapter as the Family reader does, so it picks the reader's words too.
   '/control/content/studio': [
     'ai.', 'control.studio.', 'fam.ai.', 'fam.block.', 'fam.check.', 'fam.class.', 'fam.ctest.', 'fam.dataSaver.', 'fam.err.', 'fam.followUp.',
     'fam.homework.', 'fam.label.', 'fam.model.', 'fam.offline.', 'fam.plan.', 'fam.reader.', 'fam.tutor.', 'fam.understand.', 'fam.video.',
-    'fam.voice.', 'fam.voiceOut.',
+    'fam.voice.', 'fam.voiceOut.', 'fam.chat.', 'fam.subject.',
   ],
   '/control/family': ['control.family.', 'fam.subject.'],
   '/control/family/people': ['control.apps.'],

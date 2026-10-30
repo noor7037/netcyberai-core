@@ -4,7 +4,9 @@ import { workersModelLooksRight } from '../adapters/workers-ai';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from '../credentials';
 import { loadModelLists, type ModelList } from '../control';
 import { costOf } from '../prices';
-import { labCase, labDataset } from './cases';
+import { createHash } from 'crypto';
+import { labCase, labDataset, type LabCase } from './cases';
+import { curriculumCase, storedCurriculumIds } from './curriculum-cases';
 import { runLabCall, type LabErrorClass, type LabOutcome } from './runner';
 
 // The Quality Lab's database side (G4, C372). The founder only: every statement runs as the platform role (nca_super)
@@ -85,7 +87,10 @@ function linkLooksRight(l: LabLink): boolean {
 // usable key. The run keeps the cases' version, so its table can always be read against the cases it ran.
 export async function startLabRun(db: Sql, by: { userId: string }, caseIds: string[], models: LabLink[], env: Record<string, string | undefined> = process.env): Promise<{ ok: true; runId: string } | { ok: false; code: LabError }> {
   const ids = Array.from(new Set(caseIds));
-  if (ids.length === 0 || ids.length > 200 || ids.length !== caseIds.length || ids.some((id) => labCase(id) === null)) return { ok: false, code: 'cases' };
+  if (ids.length === 0 || ids.length > 200 || ids.length !== caseIds.length) return { ok: false, code: 'cases' };
+  // The hand-written cases are in the repository; any other id must be a stored curriculum case (W9-D).
+  const others = ids.filter((id) => labCase(id) === null);
+  if (others.length > 0 && (await storedCurriculumIds(db, others)).size !== others.length) return { ok: false, code: 'cases' };
   const pairs = new Set(models.map((m) => `${m.provider} ${m.model}`));
   if (models.length < 2 || models.length > 4 || pairs.size !== models.length) return { ok: false, code: 'models' };
   if (models.some((m) => !linkLooksRight(m))) return { ok: false, code: 'model' };
@@ -93,7 +98,7 @@ export async function startLabRun(db: Sql, by: { userId: string }, caseIds: stri
   if (keys.size === 0) return { ok: false, code: 'not_configured' };
   if (models.some((m) => !keys.has(m.provider) || adapterFor(m.provider, env) === null)) return { ok: false, code: 'provider' };
   const { rows } = await db.query(`insert into control.ai_eval_runs (dataset_version, case_ids, models, started_by) values ($1, $2::text[], $3::jsonb, $4) returning run_id`, [
-    labDataset().version,
+    others.length > 0 ? createHash('sha256').update(`${labDataset().version}:${others.slice().sort().join(',')}`).digest('hex').slice(0, 12) : labDataset().version,
     ids,
     JSON.stringify(models.map((m) => ({ provider: m.provider, model: m.model }))),
     by.userId,
@@ -110,7 +115,7 @@ export type PreparedLabCase = { ok: true; send: () => Promise<LabOutcome> } | { 
 export async function prepareLabCase(db: Sql, runId: string, caseId: string, link: LabLink, env: Record<string, string | undefined> = process.env): Promise<PreparedLabCase> {
   if (!UUID.test(runId) || !linkLooksRight(link)) return { ok: false, code: 'not_found' };
   const run = (await db.query(`select case_ids, models from control.ai_eval_runs where run_id = $1`, [runId])).rows[0];
-  const c = labCase(caseId);
+  const c: LabCase | null = labCase(caseId) ?? (await curriculumCase(db, caseId));
   if (!run || !c || !(run.case_ids as string[]).includes(caseId)) return { ok: false, code: 'not_found' };
   if (!(run.models as LabLink[]).some((m) => m.provider === link.provider && m.model === link.model)) return { ok: false, code: 'not_found' };
   const keys = await openKeys(db, env);

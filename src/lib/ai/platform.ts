@@ -46,8 +46,10 @@ export type ProfileId =
   | 'family.homework'
   | 'family.voice_input'
   | 'family.moderation'
+  | 'family.plan'
   | 'family.syllabus_extract'
   | 'family.english_conversation'
+  | 'family.summary'
   | 'family.text_to_speech'
   | 'copilot.draft'
   | 'parent_ai.home_help'
@@ -64,7 +66,9 @@ export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_spe
 // shared by every provider tried (C349). Without it each provider gets the adapter's own limit.
 // `needs`: what the chosen adapter must declare beyond its capability's own (G1, C369), for example `vision` for a
 // profile that reads photos. Refused when saved in Control (control.ts) and at run time (checkProfile), never a no-op.
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; needs?: readonly AdapterCapability[] };
+// `besideCall` (W9-B): a family profile that runs only beside another call which already took the family's daily place
+// (the teaching plan before the answer); it takes none of its own.
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; needs?: readonly AdapterCapability[]; besideCall?: boolean };
 
 // Code-defined: which profiles exist, whether a child's words may pass, and which capability each one uses. Control
 // sets each one's provider, model, prompt version and on switch; never this list. M2 (C275): the homework helper reads a
@@ -76,6 +80,10 @@ export const PROFILES: readonly AiProfile[] = [
   // W2 (C314): the safety check (Llama Guard) on a child's typed words and on every live answer before it is shown.
   // It takes no daily-cap place of its own: it runs only beside a call that already took one.
   { id: 'family.moderation', carriesChildWords: true, capability: 'moderation', audience: 'family' },
+  // W9-B (docs/39 §3): the teaching plan, one short call before the answer that says how to teach a child's question
+  // (its type, the depth, the blocks and visuals). It reads the child's question, so only a provider cleared for minors
+  // may serve it; it takes no daily place of its own, as it runs only beside the answer's call.
+  { id: 'family.plan', carriesChildWords: true, capability: 'text', audience: 'family', besideCall: true },
   // C230-AB: a parent's photos of a book's contents pages, read for the chapter and topic names of their child's own
   // syllabus (parent mode). A printed book's titles, never a child's words; the parent checks every line before use.
   { id: 'family.syllabus_extract', carriesChildWords: false, capability: 'text', audience: 'family', needs: ['vision'] },
@@ -83,6 +91,9 @@ export const PROFILES: readonly AiProfile[] = [
   // end-of-session recap. Carries the child's corrected words (the transcript, never the recording). Speech to text
   // stays family.voice_input: the same capability, the same provider choice and the same voice budget.
   { id: 'family.english_conversation', carriesChildWords: true, capability: 'text', audience: 'family' },
+  // W9-A (C406): the running summary of a tutor chat, rewritten every fifth child turn from the chat's own questions
+  // and the tutor's explanations, so a follow-up is answered with the chat in view. Carries the child's words.
+  { id: 'family.summary', carriesChildWords: true, capability: 'text', audience: 'family' },
   // C386 (Wave 4 slice 2): the server voice. It reads the chapter reader's narration (NetCyberAI's own text) and the live
   // English partner's checked replies, which are made from a child's words, so it is a children's-words profile: only a
   // provider cleared for minors in Control may speak, as for every such profile. It speaks only text the server holds
@@ -276,7 +287,10 @@ function attemptOf(r: { link: Link; position: number }, result: { ok: true; toke
 type Counts = { requests?: number; failures?: number; capRefusals?: number; tokensIn?: number; tokensOut?: number };
 
 // A call that passed every check, ready to go to the vendor. send() needs no database.
-export type PreparedText = { send: (onDelta?: (text: string) => void) => Promise<SentText> };
+// `request` (W9-B): the request to send instead of the one prepared, built after an earlier call answered (the resolver's
+// prompt is written from the teaching plan). It is cleaned the same way; one with photos goes only where the prepared
+// one had photos (the providers were chosen for them).
+export type PreparedText = { send: (onDelta?: (text: string) => void, request?: AiRequest) => Promise<SentText> };
 // A call that went out: its result, and the metering to write in the caller's next transaction. Each record() adds
 // the counts again, so a caller records once, or again only when its transaction was refused before anything ran.
 export type SentText = { result: AiResult; record: (db: Sql) => Promise<void> };
@@ -340,7 +354,7 @@ export async function dailyRequestsLeft(db: Sql, accountId: string, day: string)
 
 // 4. The family's daily cap, counted before the request leaves.
 async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, testing: boolean): Promise<boolean> {
-  if (profile.audience !== 'family') return true;
+  if (profile.audience !== 'family' || profile.besideCall) return true;
   // Testing mode: the request is counted, never refused.
   if (testing) {
     await countDailyRequest(db, ctx.accountId, ctx.day);
@@ -393,13 +407,14 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
   // 4. The family's daily cap (a school or Control profile's limit is checked by its caller).
   if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
 
-  // 5. Nothing that names a child leaves the server.
-  const clean = scrubRequest(request, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
+  // 5. Nothing that names a child leaves the server (a request given at send time is cleaned there, the same way).
+  const cleanOf = (r: AiRequest) => scrubRequest(r, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
   // Testing mode honours the profile's limit as saved in Control, whatever smaller limit the caller asked for.
-  const maxTokens = testing ? row.max_output_tokens : Math.min(Math.max(1, Math.floor(request.maxTokens ?? row.max_output_tokens)), row.max_output_tokens);
+  const limitOf = (r: AiRequest) => (testing ? row.max_output_tokens : Math.min(Math.max(1, Math.floor(r.maxTokens ?? row.max_output_tokens)), row.max_output_tokens));
+  const prepared = cleanOf(request);
 
   let sent = false;
-  const send = async (onDelta: (text: string) => void = () => {}): Promise<SentText> => {
+  const send = async (onDelta: (text: string) => void = () => {}, late?: AiRequest): Promise<SentText> => {
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
     const record = async (tx: Sql) => {
@@ -408,7 +423,12 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     };
     // One cap place, one request: a prepared call never goes out twice.
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
+    // A late request with photos, for providers chosen without them, is refused before anything is sent.
+    if (late && !withPhotos && late.messages.some((m) => (m.images?.length ?? 0) > 0)) return { result: { ok: false, reason: 'failed' }, record };
     sent = true;
+    const clean = late ? cleanOf(late) : prepared;
+    const maxTokens = limitOf(late ?? request);
+    const responseFormat = (late ?? request).responseFormat;
     attempts.push(...skipped);
     // A profile with its own time (callMs) is the route's deadline, shared across the chain: each provider gets what is
     // left less CHAIN_MIN_MS for each provider still behind it, so a Primary that times out leaves its backups their
@@ -428,7 +448,7 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
       const began = Date.now();
       try {
         const timeout = limitMs === null ? {} : { timeoutMs: limitMs };
-        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat: request.responseFormat, ...timeout, ...(baseUrl ? { baseUrl } : {}) }, (piece) => {
+        result = await adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...timeout, ...(baseUrl ? { baseUrl } : {}) }, (piece) => {
           streamed = true;
           onDelta(piece);
         });

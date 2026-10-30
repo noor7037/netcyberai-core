@@ -43,7 +43,7 @@ export function labRunCsv(run: LabRun): string {
     for (const cell of row.cells) {
       if (!cell) continue;
       lines.push(
-        [run.runId, run.datasetVersion, cell.caseId, c?.area, c?.language, c?.expect, cell.provider, cell.model, cell.latencyMs, cell.firstTokenMs, cell.tokensIn, cell.tokensOut, cell.costUsd, cell.jsonValid, cell.checkPassed, cell.errorClass, cell.score, cell.notes, cell.outputText]
+        [run.runId, run.datasetVersion, cell.caseId, c?.area ?? (row.caseId.startsWith('cur-') ? 'curriculum' : undefined), c?.language, c?.expect, cell.provider, cell.model, cell.latencyMs, cell.firstTokenMs, cell.tokensIn, cell.tokensOut, cell.costUsd, cell.jsonValid, cell.checkPassed, cell.errorClass, cell.score, cell.notes, cell.outputText]
           .map(csvCell)
           .join(',')
       );
@@ -63,7 +63,7 @@ export function labRunJson(run: LabRun): string {
       models: run.models.map((m, i) => ({ ...m, summary: summaries[i] })),
       cases: table.rows.map((r) => {
         const c = labCase(r.caseId);
-        return { caseId: r.caseId, area: c?.area ?? null, language: c?.language ?? null, expect: c?.expect ?? null, results: r.cells.filter((x) => x !== null) };
+        return { caseId: r.caseId, area: c?.area ?? (r.caseId.startsWith('cur-') ? 'curriculum' : null), language: c?.language ?? null, expect: c?.expect ?? null, results: r.cells.filter((x) => x !== null) };
       }),
     },
     null,

@@ -121,6 +121,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],
+  // W9-C: an answer with a drawn figure, a real photograph with its credit, a step strip and the chapter's videos.
+  ['full', 'family-understand-visuals', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t08', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="videos"]' }],
   // S1 (C374): the chapter reader, its blocks and the sticky read-aloud controls.
   ['full', 'family-chapter-reader', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-controls]' }],
   // C386: the reader with the server voice set up (its controls say the NetCyberAI voice reads).
@@ -139,6 +141,10 @@ export const FAMILY_SCREENS = [
   ['full', 'family-tutor-conversation', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-rail]', steps: [{ tap: '[data-tutor-history]', wait: '[data-tutor-turns]' }] }],
   ['full', 'family-tutor-doubt', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-doubt]', steps: [{ tap: '[data-reader-doubt]', wait: '[data-tutor-drawer] [data-tutor-rail]' }] }],
   ['full', 'family-tutor-vault', '/family/parent/vault', { parent: true, settle: '[data-vault-conversation]' }],
+  // W9-A (C406): a subject's chats (a drop-down at 390, a list at 1440), then the older chat that is full: its message,
+  // "Start a new chat", and the composer locked.
+  ['full', 'family-tutor-chats', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chats]' }],
+  ['full', 'family-tutor-chat-full', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chats]', steps: [{ choose: { field: '[data-chat-select]', value: 'f0000000-0000-4000-8000-0000000fa205', or: '[data-chat="full"]' }, wait: '[data-chat-full]' }] }],
   // M2-5 (C279): the honest player under the response, before and after the tap that loads the embed.
   ['full', 'family-video', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]' }],
   ['full', 'family-video-playing', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-video-play]', tap: '[data-video-play]' }],
@@ -369,6 +375,12 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `steps`: taps in turn, each waiting for what it brings (AQ-4's test screens).
           for (const step of opts.steps ?? []) {
             if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
+            // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
+            if (step.choose) {
+              const field = page.locator(step.choose.field).first();
+              const done = (await field.isVisible().catch(() => false)) ? field.selectOption(step.choose.value) : page.locator(step.choose.or).first().click();
+              await done.catch(() => errors.push(`${step.choose.field} could not be chosen`));
+            }
             if (step.wait) await page.locator(step.wait).first().waitFor({ timeout: 20000 }).catch(() => errors.push(`${step.wait} never appeared`));
           }
           // A full-page picture does not scroll, so a lazy picture below the fold would never load: load them all first.

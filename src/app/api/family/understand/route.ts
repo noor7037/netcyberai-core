@@ -11,11 +11,12 @@ import { SUBJECTS, type Subject } from '@/lib/family/modules';
 import { jsonBody, requireFamily } from '@/lib/family/request';
 import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
-import { readerContext, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
+import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { photoGate } from '@/lib/family/photo-gate';
 import { isSubject } from '@/lib/family/subjects';
+import { fillVisuals } from '@/lib/family/visuals/fill';
 import { indiaDate } from '@/lib/time/india';
 import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 
@@ -67,6 +68,19 @@ export async function POST(req: NextRequest) {
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
   let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
+  // W9-A (C406): the chat a tutor question is asked in (`tutor.chatId` when it is this child's own in the window's
+  // subject, else the newest open one) and what the tutor is told of it (its summary and last turns). A new question in
+  // a full chat is refused before anything is asked (409 chat_full); a follow-up still sees the chat.
+  let chatId: string | null = null;
+  if (tutorBody && input?.kind === 'question' && !retry) {
+    const chat = await withFamilyContext(claims, async (db) => {
+      const child = activeChild(await listChildren(db, session.accountId), chosen);
+      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId) : null;
+    }).catch(() => null);
+    if (chat?.full && !followUp) return NextResponse.json({ error: 'chat_full' }, { status: 409 });
+    chatId = chat?.chatId ?? null;
+    if (chat?.memory) input = { ...input, memory: chat.memory };
+  }
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -140,6 +154,10 @@ export async function POST(req: NextRequest) {
               if (!reader) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.notFound') });
               target = { ...target, about: reader.about };
             }
+            // W9-B (docs/39 §3): the window's subject and the reader's open chapter steer the library's passages and the
+            // teaching plan (src/lib/family/resolver.ts plans the answer and retrieves before the answer call). They never
+            // decide the answer's subject.
+            target = { ...target, windowSubject: subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
             if (attached && target?.kind === 'question') target = { ...target, attached };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
@@ -183,6 +201,7 @@ export async function POST(req: NextRequest) {
         // typed question's subject just before its first block is shown, in a short transaction of its own.
         const childId = pending.ctx.child.childId;
         const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
+        if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
         // 3. The writes, in a second short transaction; the last event only once they are kept.
         let last: ResolverEvent | null;
         try {
@@ -201,12 +220,18 @@ export async function POST(req: NextRequest) {
         // The tutor's history (S2): an answered question and its teaching blocks, in a short transaction of its own.
         // The answer was already shown and metered: a history that cannot be written never takes it back. Files are
         // linked only to a question kept in the window's own subject.
+        // W9-A (C406): kept in the chat it was asked in (or the subject's newest open chat when the server decided another
+        // subject, or that chat filled up meanwhile); after every fifth child turn the chat's summary is rewritten once
+        // the answer's last line is sent, its own short transactions around the call.
         const turn = keepTurn as typeof keepTurn;
+        let kept: Awaited<ReturnType<typeof saveTurn>> = null;
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
-          await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: subject === turn.windowSubject ? turn.files : [], blocks: generated.kept })).catch(() => {});
+          const same = subject === turn.windowSubject;
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept })).catch(() => null);
         }
         if (last) send(last);
+        if (kept) await refreshChatSummary((fn) => withFamilyContext(claims, fn), pending.ctx, kept.chatId, kept.turnCount).catch(() => false);
       } catch (err) {
         send({ t: 'refused', reason: err instanceof FamilySessionRevokedError ? 'not_found' : 'failed', message: t('en', 'fam.err.network') });
       } finally {

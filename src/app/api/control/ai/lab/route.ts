@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withPlatformService } from '@/lib/auth/db';
 import { requireAiControl } from '@/lib/ai/control-guard';
 import { caseSummaries } from '@/lib/ai/lab/cases';
+import { addCurriculumCases, curriculumList } from '@/lib/ai/lab/curriculum-cases';
 import { labRunCsv, labRunJson } from '@/lib/ai/lab/export';
 import { listLabRuns, loadLabRun, loadLabSetup, prepareLabCase, saveLabResult, scoreLabResult, startLabRun, type LabLink } from '@/lib/ai/lab/store';
 
@@ -12,6 +13,8 @@ import { listLabRuns, loadLabRun, loadLabSetup, prepareLabCase, saveLabResult, s
 //   POST { action: 'start', caseIds, models: [{ provider, model }] }   a new run (2–4 models)
 //        { action: 'case', runId, caseId, provider, model }            one case × model: the browser sends one request a
 //                                                                     cell, so a long run never outlives a route's time
+//        { action: 'curriculum', boardId, classLevel?, subject?, perUnit? }  adds cases built from the syllabus (no model
+//                                                                     call); one already stored is skipped (W9-D)
 //        { action: 'score', resultId, score, notes }                   the founder's 1–5 and a note
 // A cell's key is opened in one short transaction, the vendor asked with none held, the answer kept in a second. No
 // response carries a key, nothing here logs a prompt or an answer, and nothing is written outside control.ai_eval_*.
@@ -43,8 +46,8 @@ export async function GET(req: NextRequest) {
     }
     return NextResponse.json({ run }, { headers: NO_STORE });
   }
-  const { setup, runs } = await withPlatformService(async (db) => ({ setup: await loadLabSetup(db), runs: await listLabRuns(db) }));
-  return NextResponse.json({ ...setup, cases: caseSummaries(), runs }, { headers: NO_STORE });
+  const { setup, runs, curriculum } = await withPlatformService(async (db) => ({ setup: await loadLabSetup(db), runs: await listLabRuns(db), curriculum: await curriculumList(db) }));
+  return NextResponse.json({ ...setup, cases: [...caseSummaries(), ...curriculum.cases], curriculumTotal: curriculum.total, scopes: curriculum.scopes, runs }, { headers: NO_STORE });
 }
 
 export async function POST(req: NextRequest) {
@@ -71,6 +74,16 @@ export async function POST(req: NextRequest) {
     const outcome = await prepared.send();
     const result = await withPlatformService((db) => saveLabResult(db, runId, caseId, link, outcome));
     return NextResponse.json({ ok: true, result }, { headers: NO_STORE });
+  }
+  if (b?.action === 'curriculum') {
+    const boardId = str(b.boardId, 16);
+    const num = (v: unknown) => (v === undefined || v === null || v === '' ? null : typeof v === 'number' ? v : NaN);
+    const classLevel = num(b.classLevel);
+    const perUnit = num(b.perUnit);
+    const subject = b.subject === undefined || b.subject === null || b.subject === '' ? null : str(b.subject, 40);
+    if (!boardId || Number.isNaN(classLevel) || Number.isNaN(perUnit) || (b.subject && !subject)) return refused('request');
+    const added = await withPlatformService((db) => addCurriculumCases(db, by, { boardId, classLevel, subject, perUnit }));
+    return added.ok ? NextResponse.json(added, { headers: NO_STORE }) : refused(added.code);
   }
   if (b?.action === 'score') {
     const resultId = str(b.resultId, 36);

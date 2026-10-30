@@ -44,6 +44,12 @@ const EVERY: Record<string, unknown> = {
       { kind: 'photo', id: 'q3', question: MARK('chapter_test'), rubric: [MARK('chapter_test')] },
     ],
   },
+  // W9-C: the visual blocks are silent too (a photograph and the videos as the model writes them).
+  figure: { type: 'figure', title: MARK('figure'), kind: 'schematic', shape: 'cell', labels: [{ at: 'centre', text: MARK('figure') }, { at: 'ring', text: 'Wall' }] },
+  steps: { type: 'steps', title: MARK('steps'), items: [{ label: MARK('steps'), text: 'One.' }, { label: 'Two', text: 'Two.' }, { label: 'Three', text: 'Three.' }] },
+  timeline: { type: 'timeline', title: MARK('timeline'), items: [{ when: '1900', text: MARK('timeline') }, { when: '1950', text: 'Two.' }, { when: '2000', text: 'Three.' }] },
+  image: { type: 'image', query: 'plant cell', caption: MARK('image') },
+  videos: { type: 'videos' },
 };
 
 describe('narration reads only teaching text (C374)', () => {
