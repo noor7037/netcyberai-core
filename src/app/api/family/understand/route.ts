@@ -233,12 +233,13 @@ export async function POST(req: NextRequest) {
         // the answer's last line is sent, its own short transactions around the call.
         // W10 (C411): a chat the window named keeps the turn whatever subject was decided; its first answer moves it to
         // that subject (tutor.ts appendTurn). The last line names the chat and its subject, so the window lists it there.
+        // W10-4 (C413): the subject's feed keeps its last 30 child turns; the oldest go with this write (tutor.ts trimFeed).
         const turn = keepTurn as typeof keepTurn;
         let kept: Awaited<ReturnType<typeof saveTurn>> = null;
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
           const same = subject === turn.windowSubject;
-          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept })).catch(() => null);
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage })).catch(() => null);
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
         if (last) send(last);

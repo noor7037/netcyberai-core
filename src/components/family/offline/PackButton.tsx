@@ -58,7 +58,7 @@ export function PackButton({ w, lang, childId, chapterKey, chapterTitle, bytes, 
           {w['fam.offline.pack.saved']}
           {until && <span className="block text-xs font-normal">{fill(w['fam.offline.pack.until'], { day: day(until) })}</span>}
         </p>
-        <button type="button" onClick={() => void remove()} aria-label={fill(w['fam.offline.pack.removeLabel'], { chapter: chapterTitle })} className="fam-press min-h-[44px] rounded-xl px-3 text-sm font-bold text-royal-deep underline-offset-4 hover:underline">
+        <button type="button" onClick={() => void remove()} aria-label={fill(w['fam.offline.pack.removeLabel'], { chapter: chapterTitle })} className="fam-press min-h-[44px] rounded-xl px-3 text-sm font-bold text-ink underline-offset-4 hover:underline">
           {w['fam.offline.pack.remove']}
         </button>
       </div>
@@ -70,7 +70,7 @@ export function PackButton({ w, lang, childId, chapterKey, chapterTitle, bytes, 
         type="button"
         disabled={state === 'saving'}
         onClick={() => void save()}
-        className="fam-press flex min-h-[44px] items-center justify-between gap-2 rounded-2xl bg-off-white px-3 text-sm font-bold text-royal-deep ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60"
+        className="fam-press flex min-h-[44px] items-center justify-between gap-2 rounded-2xl bg-off-white px-3 text-sm font-bold text-ink ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60"
       >
         <span className="flex items-center gap-2">
           <FamIcon name="download" className="h-5 w-5" />

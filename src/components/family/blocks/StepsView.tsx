@@ -26,7 +26,7 @@ export function StepsView({ b, tone, w, still }: { b: Steps; tone: string; w?: W
             className={`flex flex-1 gap-3 rounded-2xl bg-off-white p-3 text-slate ring-1 ring-slate/10 md:flex-col ${moving ? 'fam-reveal' : ''}`}
             style={moving ? { animation: `nca-pop 400ms ease-out ${i * STEP_DELAY_MS}ms both` } : undefined}
           >
-            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-royal text-base font-extrabold text-white">
+            <span aria-hidden="true" data-num className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-royal text-base font-extrabold text-white">
               {i + 1}
             </span>
             <span className="flex flex-col gap-1">

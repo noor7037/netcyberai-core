@@ -26,7 +26,7 @@ export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang
             </span>
           </ProgressRing>
         ) : (
-          <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+          <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-ink text-white">
             <FamIcon name="calendar" className="h-6 w-6" />
           </span>
         )}
@@ -44,7 +44,7 @@ export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang
       {total === 0 ? (
         <div data-plan-empty className="flex flex-col items-start gap-3">
           <p className="text-base text-slate">{t(lang, 'fam.plan.empty')}</p>
-          <Link href="/family/study" className="fam-press inline-flex min-h-[44px] items-center rounded-full bg-white px-5 text-sm font-bold text-royal-deep ring-1 ring-royal/30">
+          <Link href="/family/study" className="fam-press inline-flex min-h-[44px] items-center rounded-full bg-white px-5 text-sm font-bold text-ink ring-1 ring-ink/30">
             {t(lang, 'fam.home.study')}
           </Link>
         </div>
@@ -65,7 +65,7 @@ export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang
                     href={`/family/understand?kind=${i.isTopic ? 'topic' : 'chapter'}&key=${encodeURIComponent(i.topicKey)}`}
                     className={`fam-row fam-lift min-h-[56px] ${i.done ? 'bg-emerald/10' : 'bg-off-white hover:bg-slate/5'}`}
                   >
-                    <span aria-hidden="true" className={`fam-chip-icon bg-royal-deep text-white ${theme.tile}`}>
+                    <span aria-hidden="true" className={`fam-chip-icon bg-ink text-white ${theme.tile}`}>
                       <SubjectGlyph subject={i.subject} className="h-5 w-5" />
                     </span>
                     <span className="flex min-w-0 flex-1 flex-col">

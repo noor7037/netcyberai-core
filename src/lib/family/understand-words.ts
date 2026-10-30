@@ -8,7 +8,7 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 'fam.block.photo', 'fam.block.photoCredit',
   // W10-6: the scene, the chart and the steps' replay.
   'fam.block.sceneTap', 'fam.block.chartCaption', 'fam.block.chartUnit', 'fam.block.chartTable', 'fam.block.replay',
-  'fam.understand.loading', 'fam.understand.missing', 'fam.understand.cut', 'fam.understand.part.explanation', 'fam.understand.part.check', 'fam.understand.part.practice', 'fam.understand.and', 'fam.understand.followUps', 'fam.followUp.simpler', 'fam.followUp.another_example',
+  'fam.understand.loading', 'fam.understand.missing', 'fam.understand.cut', 'fam.understand.part.explanation', 'fam.understand.part.check', 'fam.understand.part.practice', 'fam.understand.and', 'fam.understand.followUps', 'fam.understand.directAnswer', 'fam.understand.show3d', 'fam.followUp.simpler', 'fam.followUp.another_example',
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack',
   ...INTERACTIVE_KEYS,
   // M2-5: the honest player under a topic's response.

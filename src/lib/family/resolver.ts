@@ -546,7 +546,11 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   // that never came. The notice names them; an answer missing none and not cut shows none.
   const core = coreBlocks(g.plan?.blocks ?? null);
   const missing = core.filter((t) => !g.kept.some((k) => k.type === t));
-  if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false, missing, cut: true } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
+  // W10-4 (C413): `cut` says the child's answer stopped inside a block (the scanner ended in an object that never
+  // closed), never how the call ended. A call that fails after its last block closed (the route's deadline reached by a
+  // backup that took over from a Primary given up at its first-text time, a stream that closes without its end mark)
+  // shows every block it sent whole: that answer is not cut, and a block it never sent is named by `missing`.
+  if (!result.ok) return g.kept.length > 0 ? { t: 'done', complete: false, missing, cut: g.unclosed } : { t: 'refused', reason: result.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[result.reason]) };
   if (g.refusedByModel && g.kept.length === 0) return { t: 'refused', reason: 'not_school_study', message: ctx.refusalWords('fam.understand.notStudy') };
   // The model never named the subject: nothing was shown, and no subject is guessed.
   if (!g.subject) return { t: 'refused', reason: 'failed', message: ctx.refusalWords(REFUSAL_MESSAGE.failed) };

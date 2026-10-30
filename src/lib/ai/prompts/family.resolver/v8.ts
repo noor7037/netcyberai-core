@@ -174,7 +174,24 @@ function memoryLines(m: ChatMemory | undefined): string[] {
     m.summary ? `Summary: ${inline(m.summary, 1200)}` : '',
     ...m.turns.map((t) => `${t.role === 'child' ? 'Student' : 'Tutor'}: ${inline(t.text, 800)}`),
     'Answer the new question with this in view: a short follow-up (such as \'and why is that?\') refers to what was said above; refer back to what was already explained instead of repeating it.',
+    // W10-4 (C413; docs/39 §5): the refer-back is said in words, as the explanation's first sentence.
+    REFER_BACK_LINE,
   ].filter(Boolean);
+}
+
+// W10-4 (C413): a follow-up's first sentence refers back in words; anything else asked to open the first paragraph
+// (the chapter quote) comes after it.
+export const REFER_BACK_LINE =
+  'The explanation\'s first paragraph MUST begin with one sentence that refers back to the earlier turn in words, naming what was explained there: in English \'Earlier we saw that …\', in Hindi \'पहले हमने देखा कि …\', in Hinglish \'Pehle humne dekha ki …\'. Then answer the new question. Anything else asked to begin the first paragraph comes right after that sentence.';
+
+// A follow-up asks for more only in words like these; otherwise its answer is not taught at full length again.
+const ASKS_FOR_MORE = /\b(in detail|detailed|details|fully|full answer|elaborate|explain more|more about|tell me more|step by step|everything|long answer)\b|विस्तार|पूरा समझा|और बताओ|detail mein|vistaar/i;
+
+// W10-4 (C413): with the chat's memory (a follow-up), the plan's depth is `medium` or `short`, never `full`, unless the
+// question asks for more.
+export function followUpDepth(plan: Plan, a: Pick<ResolverAsk, 'memory' | 'question'>): Plan {
+  if (!hasMemory(a.memory) || plan.depth !== 'full' || (a.question && ASKS_FOR_MORE.test(a.question))) return plan;
+  return { ...plan, depth: 'medium' };
 }
 
 function passageLines(passages: Passage[] | undefined): string[] {
@@ -194,7 +211,7 @@ export function planOf(a: ResolverAsk): Plan {
 export function resolverSystem(a: ResolverAsk): string {
   const named = namesSubject(a);
   const open = a.openSubjects.length > 0 ? a.openSubjects.join(' or ') : 'none';
-  const plan = planOf(a);
+  const plan = followUpDepth(planOf(a), a);
   // An interactive block only where the plan names one; v4's lines come with it, word for word.
   const blocks = plan.blocks.filter((b, i) => !isInteractiveBlock(b) || plan.blocks.findIndex(isInteractiveBlock) === i);
   const numbered = blocks.flatMap((b, i) => {

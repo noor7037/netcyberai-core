@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors, deepColors, accessibleTextColors, onAccentColors } from './src/lib/design-tokens';
+import { colors, deepColors, accessibleTextColors, onAccentColors, lessonColors } from './src/lib/design-tokens';
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -25,6 +25,10 @@ const config: Config = {
         gold: { DEFAULT: colors.gold, text: onAccentColors.onGold, deep: deepColors.goldDeep },
         slate: colors.slate,
         'off-white': colors.offWhite,
+        // W10-4 (C413): the lesson identity on every Family screen (src/lib/design-tokens.ts lessonColors).
+        ink: lessonColors.ink,
+        paper: lessonColors.paper,
+        saffron: { DEFAULT: lessonColors.saffron, deep: lessonColors.saffronDeep },
       },
       // The phone menu slides in from the left (F1-2); `motion-reduce:animate-none` takes the slide away.
       // The English course's motion (docs/family-app/12 §10): short, explaining, and off under reduced motion

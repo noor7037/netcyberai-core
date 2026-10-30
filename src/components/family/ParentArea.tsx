@@ -35,7 +35,7 @@ function Section({ title, icon, children }: { title: string; icon?: IconName; ch
     <section className="fam-card fam-section fam-rise bg-white">
       <h2 className="fam-h2 flex items-center gap-3 text-slate">
         {icon && (
-          <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+          <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
             <FamIcon name={icon} className="h-5 w-5" />
           </span>
         )}
@@ -46,7 +46,7 @@ function Section({ title, icon, children }: { title: string; icon?: IconName; ch
   );
 }
 
-const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold text-royal underline-offset-4 hover:underline';
+const linkButton = 'fam-press min-h-[44px] rounded-xl px-2 text-sm font-semibold text-ink underline-offset-4 hover:underline';
 
 // One purpose the parent agreed to (or not), C230-Y: a short name and an on/off switch, with the full words of what it
 // means one tap away. Each purpose keeps its own switch (DPDP: consent is given for each purpose, never bundled).
@@ -69,7 +69,7 @@ function ConsentRow({ w, consent, granted, onToggle, data, note, changed }: { w:
         </p>
       )}
       <details className="pb-2">
-        <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-semibold text-royal">{w['fam.consent.more']}</summary>
+        <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-semibold text-ink">{w['fam.consent.more']}</summary>
         <p className="text-sm text-slate">{w[`fam.consent.purpose.${consent}`]}</p>
         {note && <p className="mt-1 text-sm text-slate">{note}</p>}
       </details>
@@ -129,7 +129,7 @@ function ChildRow({ w, child, states, boards }: { w: Words; child: Child; states
               if (!r.ok) return setError(r.error === 'too_soon' ? w['fam.parent.freeSubjectTooSoon'] : errorWords(w, r.error));
               router.refresh();
             }}
-            className={`fam-press min-h-[44px] rounded-full px-4 font-bold ${child.freeSubject === sub ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
+            className={`fam-press min-h-[44px] rounded-full px-4 font-bold ${child.freeSubject === sub ? 'bg-ink text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
           >
             {w[`fam.subject.${sub}`]}
           </button>
@@ -314,7 +314,7 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
   const emptyLine = (text: string, action: string, to: TabId) => (
     <section data-parent-empty className="fam-card fam-empty bg-white text-slate">
       <p className="text-base font-semibold text-slate">{text}</p>
-      <button type="button" onClick={() => go(to)} className="fam-press inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-5 text-sm font-bold text-royal-deep ring-1 ring-royal/30">
+      <button type="button" onClick={() => go(to)} className="fam-press inline-flex min-h-[44px] items-center justify-center rounded-full bg-white px-5 text-sm font-bold text-ink ring-1 ring-ink/30">
         {action}
       </button>
     </section>
@@ -331,7 +331,7 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
           <button
             type="button"
             onClick={() => void post('/api/family/pin/lock', {}, '/family')}
-            className="fam-press inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-royal-deep px-4 text-sm font-bold text-white ring-1 ring-white/40"
+            className="fam-press inline-flex min-h-[44px] shrink-0 items-center gap-2 rounded-full bg-ink px-4 text-sm font-bold text-white ring-1 ring-white/40"
           >
             <FamIcon name="lock" className="h-4 w-4" />
             {w['fam.parent.back']}
@@ -354,7 +354,7 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
                 tabIndex={tab === id ? 0 : -1}
                 data-parent-tab={id}
                 onClick={() => go(id)}
-                className={`fam-press min-h-[44px] shrink-0 rounded-full px-4 text-sm font-bold ${tab === id ? 'bg-royal text-white' : 'text-slate'}`}
+                className={`fam-press min-h-[44px] shrink-0 rounded-full px-4 text-sm font-bold ${tab === id ? 'bg-ink text-white' : 'text-slate'}`}
               >
                 {w[`fam.parent.tab.${id}`]}
               </button>
@@ -377,7 +377,7 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
                     return (
                       <li key={i} className="fam-row justify-between gap-3 bg-off-white text-base text-slate">
                         <span className="min-w-0 flex-1">{text}</span>
-                        <button type="button" onClick={() => go(to)} className="fam-press min-h-[44px] shrink-0 rounded-full bg-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/30">
+                        <button type="button" onClick={() => go(to)} className="fam-press min-h-[44px] shrink-0 rounded-full bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/30">
                           {w['fam.parent.needs.open']}
                         </button>
                       </li>

@@ -39,9 +39,9 @@ export function VoiceInput({ w, onText, secondsLeft = VOICE_MAX_SECONDS, endpoin
             onClick={() => void start()}
             disabled={state === 'sending' || limit < 1}
             aria-label={w['fam.voice.speak']}
-            className="fam-press flex min-h-[44px] items-center gap-2 rounded-full bg-white py-1 pl-1 pr-4 text-base font-bold text-royal ring-1 ring-royal/40 hover:bg-royal/5 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal"
+            className="fam-press flex min-h-[44px] items-center gap-2 rounded-full bg-white py-1 pl-1 pr-4 text-base font-bold text-ink ring-1 ring-ink/40 hover:bg-saffron/5 disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
           >
-            <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-full bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+            <span aria-hidden="true" className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-white">
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="9" y="3" width="6" height="11" rx="3" />
                 <path d="M5 11a7 7 0 0 0 14 0M12 18v3" />
@@ -50,7 +50,7 @@ export function VoiceInput({ w, onText, secondsLeft = VOICE_MAX_SECONDS, endpoin
             {w['fam.voice.speak']}
           </button>
           {state === 'sending' && (
-            <p role="status" className="text-sm font-semibold text-royal">
+            <p role="status" className="text-sm font-semibold text-ink">
               {w['fam.voice.sending']}
             </p>
           )}

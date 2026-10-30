@@ -29,8 +29,8 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
           const on = active(t);
           return (
             <li key={t} className="flex-1">
-              <Link href={HREF[t]} aria-current={on ? 'page' : undefined} className={`fam-press flex min-h-[56px] flex-col items-center justify-center gap-0.5 rounded-[1.25rem] text-xs font-bold ${on ? 'text-royal-deep' : 'text-slate/80'}`}>
-                <span className={`flex h-8 w-12 items-center justify-center rounded-full ${on ? 'fam-tab-on bg-gradient-to-br from-royal to-violet text-white shadow-md' : ''}`}>
+              <Link href={HREF[t]} aria-current={on ? 'page' : undefined} className={`fam-press flex min-h-[56px] flex-col items-center justify-center gap-0.5 rounded-[1.25rem] text-xs font-bold ${on ? 'text-ink' : 'text-slate/80'}`}>
+                <span className={`flex h-8 w-12 items-center justify-center rounded-full ${on ? 'fam-tab-on bg-ink text-white shadow-md' : ''}`}>
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">
                     <path d={ICON[t]} />
                   </svg>

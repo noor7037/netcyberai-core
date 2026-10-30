@@ -161,7 +161,7 @@ export function Composer(p: Props) {
                     aria-controls={p.homework ? `${id}-attach-menu` : undefined}
                     disabled={p.locked || (!p.homework && full)}
                     onClick={() => (p.homework ? setMenu((m) => !m) : pick())}
-                    className={`${ROUND} text-royal-deep hover:bg-off-white disabled:opacity-50`}
+                    className={`${ROUND} text-ink hover:bg-off-white disabled:opacity-50`}
                   >
                     <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
                       <path d="M21 11.5l-8.6 8.6a5 5 0 0 1-7.1-7.1l8.6-8.6a3.5 3.5 0 0 1 5 5l-8.6 8.6a2 2 0 0 1-2.8-2.8l7.9-7.9" />
@@ -170,7 +170,7 @@ export function Composer(p: Props) {
                   {menu && (
                     <div id={`${id}-attach-menu`} data-tutor-attach-menu className="fam-acc-in absolute bottom-full left-0 z-30 mb-3 flex w-[17rem] max-w-[calc(100vw-3rem)] flex-col gap-1 rounded-2xl bg-white p-1.5 shadow-xl ring-1 ring-slate/10">
                       <button type="button" onClick={pick} disabled={full} data-tutor-pick className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 text-left text-base font-bold text-slate hover:bg-off-white disabled:opacity-50">
-                        <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-royal/10 text-royal-deep">
+                        <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-saffron/10 text-ink">
                           <svg className="h-5 w-5" {...ICON}>
                             <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
                             <path d="M14 3v5h5M9 14h6M9 17h4" />
@@ -223,7 +223,7 @@ export function Composer(p: Props) {
                   disabled={p.locked || voice.state === 'sending'}
                   aria-busy={voice.state === 'sending' || undefined}
                   aria-label={voice.state === 'recording' ? w['fam.voice.stop'] : w['fam.voice.speak']}
-                  className={`${ROUND} disabled:opacity-60 ${voice.state === 'recording' ? 'bg-coral-deep text-white shadow-md' : 'text-royal-deep hover:bg-off-white'}`}
+                  className={`${ROUND} disabled:opacity-60 ${voice.state === 'recording' ? 'bg-coral-deep text-white shadow-md' : 'text-ink hover:bg-off-white'}`}
                 >
                   {voice.state === 'recording' ? (
                     <span aria-hidden="true" className="h-3.5 w-3.5 rounded-sm bg-white" />
@@ -235,7 +235,7 @@ export function Composer(p: Props) {
                   )}
                 </button>
               )}
-              <button type="submit" disabled={!p.canSend} data-tutor-send aria-label={w['fam.tutor.send']} className={`${ROUND} fam-cta bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-md disabled:opacity-50`}>
+              <button type="submit" disabled={!p.canSend} data-tutor-send aria-label={w['fam.tutor.send']} className={`${ROUND} fam-cta bg-saffron text-ink shadow-md disabled:opacity-50`}>
                 <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>
                   <path d="M12 19V5M5 12l7-7 7 7" />
                 </svg>
@@ -249,7 +249,7 @@ export function Composer(p: Props) {
             aria-expanded={p.historyOpen}
             aria-controls={p.historyFor}
             onClick={p.onHistory}
-            className={`fam-surface fam-press flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl ${p.historyOpen ? 'bg-royal-deep text-white' : 'bg-white text-royal-deep'}`}
+            className={`fam-surface fam-press flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-2xl ${p.historyOpen ? 'bg-ink text-white' : 'bg-white text-ink'}`}
           >
             <svg aria-hidden="true" className="h-6 w-6" {...ICON}>
               <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />

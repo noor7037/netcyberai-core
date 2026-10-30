@@ -41,9 +41,13 @@ describe('the last line of an answer', () => {
     expect(await keep(db, pending, generated({ kept: [explanation, check], plan: plan(['explanation', 'key_points', 'check', 'practice']) }))).toEqual({ t: 'done', complete: false, missing: ['practice'], cut: false });
   });
 
-  it('an answer whose call ended early after some blocks is cut', async () => {
-    const timedOut = generated({ kept: [explanation, check], plan: plan(['explanation', 'check']), sent: { result: { ok: false, reason: 'timeout' }, record: async () => {} } as never });
-    expect(await keep(db, pending, timedOut)).toEqual({ t: 'done', complete: false, missing: [], cut: true });
+  // W10-4 (C413): the founder's phone showed "stopped before it was finished" under an answer that had every block. The
+  // call had failed after the last block closed; `cut` now says only that the answer stopped inside a block.
+  it('an answer whose call failed after every block it sent had closed is not cut; a block it never sent is named', async () => {
+    const failed = (kept: Block[], unclosed = false) => generated({ kept, unclosed, plan: plan(['explanation', 'check', 'practice']), sent: { result: { ok: false, reason: 'timeout' }, record: async () => {} } as never });
+    expect(await keep(db, pending, failed([explanation, check, practice]))).toEqual({ t: 'done', complete: false, missing: [], cut: false });
+    expect(await keep(db, pending, failed([explanation, check]))).toEqual({ t: 'done', complete: false, missing: ['practice'], cut: false });
+    expect(await keep(db, pending, failed([explanation, check], true))).toEqual({ t: 'done', complete: false, missing: ['practice'], cut: true });
   });
 
   it('an answer that stopped inside a block is cut', async () => {

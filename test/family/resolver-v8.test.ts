@@ -3,7 +3,7 @@ import { LATEST_RESOLVER_PROMPT, RESOLVER_PROMPTS, resolverPrompt } from '@/lib/
 import { INTERACTIVE_LINES } from '@/lib/ai/prompts/family.resolver/v4';
 import { JSON_LINES_RULE, NO_DOUBLE_QUOTES_RULE } from '@/lib/ai/prompts/family.resolver/v6';
 import { ITEM_EXAMPLE } from '@/lib/ai/prompts/family.resolver/v7';
-import { DERIVATION_LINE, FIGURE_LINE, IMAGE_LINE, NUMERICALS_LINE, STEPS_LINE, TIMELINE_LINE, VIDEOS_LINE, type ResolverAsk } from '@/lib/ai/prompts/family.resolver/v8';
+import { DERIVATION_LINE, FIGURE_LINE, IMAGE_LINE, NUMERICALS_LINE, REFER_BACK_LINE, STEPS_LINE, TIMELINE_LINE, VIDEOS_LINE, followUpDepth, type ResolverAsk } from '@/lib/ai/prompts/family.resolver/v8';
 import { checkPlan, defaultPlan, type Plan } from '@/lib/ai/teaching/plan-shape';
 import { generate } from '@/lib/family/resolver';
 
@@ -175,5 +175,33 @@ describe('the planned answer, end to end through generate()', () => {
     expect(events.filter((e) => e.t === 'block').map((e) => e.block!.type)).toEqual(['explanation', 'key_points']);
     await g.sent.record({} as never);
     expect(recorded).toEqual(['plan', 'answer']);
+  });
+});
+
+// W10-4 (C413): answer three on the founder's phone referred back only weakly. With the chat's memory, the explanation's
+// first sentence refers back in words, before the chapter quote, and a follow-up is not taught at full length again
+// unless the question asks for more.
+describe('the refer-back (W10-4)', () => {
+  const memory = { summary: null, turns: [{ role: 'child' as const, text: 'What is photosynthesis?' }, { role: 'tutor' as const, text: 'Leaves make sugar from light, water and air.' }] };
+
+  it('opens a follow-up explanation with one sentence that refers back in words, before the chapter quote', () => {
+    const s = system({ memory, question: 'and why do leaves need light?', passages: [{ title: 'Nutrition in Plants', text: 'Leaves make food using sunlight.' }] as never });
+    expect(s).toContain(REFER_BACK_LINE);
+    expect(REFER_BACK_LINE).toContain('Earlier we saw that');
+    expect(REFER_BACK_LINE).toContain('पहले हमने देखा कि');
+    expect(REFER_BACK_LINE).not.toContain('"');
+    expect(s.indexOf(REFER_BACK_LINE)).toBeLessThan(s.indexOf('From your chapter'));
+    expect(system({ question: 'What is photosynthesis?' })).not.toContain('Earlier we saw that');
+  });
+
+  it('gives a follow-up the depth medium or short, never full, unless the question asks for more', () => {
+    const full = plan({ depth: 'full' });
+    expect(followUpDepth(full, { memory, question: 'and why is that?' }).depth).toBe('medium');
+    expect(followUpDepth(plan({ depth: 'short' }), { memory, question: 'and why is that?' }).depth).toBe('short');
+    expect(followUpDepth(full, { memory, question: 'Explain it in detail, step by step' }).depth).toBe('full');
+    expect(followUpDepth(full, { memory, question: 'इसे विस्तार से समझाओ' }).depth).toBe('full');
+    // A first question (no memory) keeps its plan.
+    expect(followUpDepth(full, { question: 'What is photosynthesis?' }).depth).toBe('full');
+    expect(followUpDepth(full, { memory: { summary: null, turns: [] }, question: 'and why?' }).depth).toBe('full');
   });
 });

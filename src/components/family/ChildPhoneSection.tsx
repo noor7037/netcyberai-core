@@ -75,7 +75,7 @@ export function ChildPhoneSection({ w, lang, children, phones, canLink }: { w: W
         </div>
       )}
       {done && (
-        <p role="status" data-child-phone-done className="rounded-xl bg-royal/10 p-3 text-sm font-semibold text-slate">
+        <p role="status" data-child-phone-done className="rounded-xl bg-saffron/10 p-3 text-sm font-semibold text-slate">
           {done}
         </p>
       )}

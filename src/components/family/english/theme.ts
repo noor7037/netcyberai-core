@@ -7,13 +7,13 @@ import type { PartRole, Track } from '@/lib/family/english/course';
 export const TRACK_THEME: Record<Track, { header: string; button: string; soft: string; ring: string; hex: string; light: string }> = {
   a: { header: 'bg-sunshine bg-gradient-to-br from-sunshine to-gold text-slate', button: 'bg-tangerine text-slate', soft: 'bg-sunshine/20 text-slate', ring: 'ring-tangerine', hex: colors.tangerine, light: colors.sunshine },
   b: { header: 'bg-emerald bg-gradient-to-br from-emerald to-azure text-white', button: 'bg-emerald text-white', soft: 'bg-turquoise/10 text-slate', ring: 'ring-emerald', hex: colors.emerald, light: colors.turquoise },
-  c: { header: 'bg-royal bg-gradient-to-br from-royal-deep to-electric text-white', button: 'bg-royal text-white', soft: 'bg-cyan/10 text-slate', ring: 'ring-royal', hex: colors.royal, light: colors.cyan },
-  d: { header: 'bg-violet bg-gradient-to-br from-violet to-grape text-white', button: 'bg-grape-deep text-white', soft: 'bg-grape/10 text-slate', ring: 'ring-grape', hex: colors.grape, light: colors.violet },
+  c: { header: 'bg-ink text-white', button: 'bg-ink text-white', soft: 'bg-cyan/10 text-slate', ring: 'ring-ink', hex: colors.royal, light: colors.cyan },
+  d: { header: 'bg-grape-deep text-white', button: 'bg-grape-deep text-white', soft: 'bg-grape/10 text-slate', ring: 'ring-grape', hex: colors.grape, light: colors.violet },
 };
 
 // The sentence builder's colour for each part of a sentence (12 §10): the same colour means the same job everywhere.
 export const PART_STYLE: Record<PartRole, string> = {
-  who: 'bg-royal text-white',
+  who: 'bg-ink text-white',
   do: 'bg-tangerine text-slate',
   what: 'bg-leaf text-slate',
   where: 'bg-turquoise text-slate',

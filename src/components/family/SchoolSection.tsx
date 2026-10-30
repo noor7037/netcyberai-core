@@ -240,7 +240,7 @@ function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; ite
     <div className="flex flex-col gap-1" data-school-results>
       <p className="text-sm font-semibold text-slate">{w['fam.school.results']}</p>
       {items.length > 0 && childId && (
-        <Link href={`/family/parent/progress/${childId}`} data-progress-link className="fam-press inline-flex min-h-[44px] items-center self-start font-semibold text-royal underline underline-offset-2">
+        <Link href={`/family/parent/progress/${childId}`} data-progress-link className="fam-press inline-flex min-h-[44px] items-center self-start font-semibold text-ink underline underline-offset-2">
           {w['fam.schoolProgress.open']}
         </Link>
       )}
@@ -265,7 +265,7 @@ function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; ite
                         href={`/family/parent/results/${childId}/${s.paperId}`}
                         aria-label={fill(w['fam.marks.openSubject'], { subject: s.name })}
                         data-checked-paper-link={s.paperId}
-                        className="fam-press inline-flex min-h-[44px] items-center font-semibold text-royal underline underline-offset-2"
+                        className="fam-press inline-flex min-h-[44px] items-center font-semibold text-ink underline underline-offset-2"
                       >
                         {w['fam.marks.open']}
                       </Link>
