@@ -9523,6 +9523,8 @@ export const en = {
   'control.ai.testing.savedOff': 'Testing mode switched off.',
   'control.ai.change.ai.testing_mode_changed': 'Testing mode',
   'fam.block.mindMap': 'Mind map',
+  'fam.block.photo': 'A real photo',
+  'fam.block.photoCredit': 'Photo: {author} · {licence} · Wikimedia Commons',
   'control.queue.block.mind_map': 'Mind map',
   'control.queue.block.wrongWhy': 'Why not: {text}',
   'fam.check.notThis': 'Not this one',

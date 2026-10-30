@@ -1,6 +1,6 @@
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
-import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, isInteractive, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -134,7 +134,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   );
   const cached = rows[0];
   if (!cached || !Array.isArray(cached.blocks)) return null;
-  const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
+  const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseStoredBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
   if (!blocks) return null;
   // One serving, counted for Control's review queue, most asked first (M2-12, C286), in this same transaction. Only the
   // count changes; a fresh AI answer is never counted here.

@@ -66,13 +66,40 @@ export type ChapterTest = { type: 'chapter_test'; title: string; items: TestItem
 // What any block may carry (S1, C374): a stable id (narration and the saved reading position point at it) and
 // `tts_read_aloud: false` to keep a readable block silent. The flag can only silence: it never makes a diagram, table
 // or interactive readable.
+// The visual blocks (W9-C, docs/39 §3): drawn by our own code from the model's labels, or filled on the server. No
+// picture is ever generated: a photograph is a licensed Wikimedia Commons file with its credit, and the videos are the
+// library's checked picks (src/lib/family/visuals/fill.ts).
+export const FIGURE_SHAPES = ['circle', 'ring', 'cell', 'layered', 'orbit'] as const;
+export type FigureShape = (typeof FIGURE_SHAPES)[number];
+export const FIGURE_AT = ['centre', 'top', 'right', 'bottom', 'left', 'ring'] as const;
+export type FigureAt = (typeof FIGURE_AT)[number];
+export type Figure = { type: 'figure'; title: string; kind: 'schematic'; shape: FigureShape; labels: { at: FigureAt; text: string }[] };
+export type Steps = { type: 'steps'; title: string; items: { label: string; text: string }[] };
+export type Timeline = { type: 'timeline'; title: string; items: { when: string; text: string }[] };
+// As the model writes it (a search for a photograph), and after the server filled it (the photograph and its credit).
+export type ImageQuery = { type: 'image'; query: string; caption: string };
+export type ImagePhoto = { type: 'image'; url: string; caption: string; credit: string; licence: string; source: string };
+export type ImageBlock = ImageQuery | ImagePhoto;
+export type VideoItem = { videoId: string; title: string; channel: string; seconds: number };
+// As written: `{ type: 'videos' }`; filled: up to four of the chapter's picks.
+export type Videos = { type: 'videos'; items?: VideoItem[] };
+export const FIGURE_LABEL_MAX = 40;
+export const VISUAL_TITLE_MAX = 120;
+// The hosts a filled photograph may come from: the file itself, and the file's page on Commons (its credit link).
+export const PHOTO_HOST = 'upload.wikimedia.org';
+export const PHOTO_PAGE_HOST = 'commons.wikimedia.org';
+// The licences a photograph may carry, any version (and a port such as "de"): CC0, CC BY, CC BY-SA, public domain.
+export const PHOTO_LICENCE = /^(?:CC0(?: 1\.0)?|CC BY(?:-SA)?(?: \d\.\d)?(?: [A-Za-z]{2,3})?|Public domain)$/i;
+
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos'];
+// The blocks the server fills before they are kept (W9-C): a photograph and the videos.
+export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
 export const CHAPTER_ONLY_TYPES: readonly BlockType[] = ['table', 'slider', 'model_3d', 'chapter_test'];
 
@@ -248,9 +275,18 @@ function mindMap(o: Record<string, unknown>): MindMap | null {
 export const BLOCK_ID = /^[a-z0-9][a-z0-9_-]{0,39}$/;
 
 // A block that passed its shape, with its id and narration flag when given (anything else in them is dropped).
+// From the model only the unfilled photograph and video shapes pass: a model never names a photograph's address or its
+// credit. checkStoredBlock reads back what this server kept, where a filled photograph or video list is accepted.
 export function checkBlock(raw: unknown): Block | null {
+  return checked(raw, false);
+}
+export function checkStoredBlock(raw: unknown): Block | null {
+  return checked(raw, true);
+}
+
+function checked(raw: unknown, stored: boolean): Block | null {
   const o = (raw ?? {}) as Record<string, unknown>;
-  const b = blockBody(o);
+  const b = o.type === 'image' ? imageBlock(o, stored) : o.type === 'videos' ? videosBlock(o, stored) : blockBody(o);
   if (!b) return null;
   const meta: BlockMeta = {};
   if (typeof o.id === 'string' && BLOCK_ID.test(o.id)) meta.id = o.id;
@@ -374,9 +410,116 @@ function blockBody(o: Record<string, unknown>): Block | null {
       return model3dBlock(o);
     case 'chapter_test':
       return chapterTestBlock(o);
+    case 'figure':
+      return figureBlock(o);
+    case 'steps':
+    case 'timeline':
+      return stripBlock(o);
     default:
       return null;
   }
+}
+
+// ---- visual blocks (W9-C, docs/39 §3) ----
+// Every label and text fits as written or the whole block is dropped (never cut short), and a block with more or fewer
+// items than its range is dropped whole too.
+
+const exactly = (v: unknown, min: number, max: number): unknown[] | null => (Array.isArray(v) && v.length >= min && v.length <= max ? v : null);
+
+function figureBlock(o: Record<string, unknown>): Figure | null {
+  const title = fits(o.title, VISUAL_TITLE_MAX);
+  const shape = FIGURE_SHAPES.find((x) => x === o.shape);
+  const raw = exactly(o.labels, 2, 6);
+  if (!title || (o.kind !== undefined && o.kind !== 'schematic') || !shape || !raw) return null;
+  const labels: Figure['labels'] = [];
+  for (const x of raw) {
+    const l = (x ?? {}) as Record<string, unknown>;
+    const at = FIGURE_AT.find((a) => a === l.at);
+    const text = fits(l.text, FIGURE_LABEL_MAX);
+    if (!at || !text) return null;
+    labels.push({ at, text });
+  }
+  return { type: 'figure', title, kind: 'schematic', shape, labels };
+}
+
+function stripBlock(o: Record<string, unknown>): Steps | Timeline | null {
+  const title = fits(o.title, VISUAL_TITLE_MAX);
+  const steps = o.type === 'steps';
+  const raw = steps ? exactly(o.items, 3, 5) : exactly(o.items, 3, 8);
+  if (!title || !raw) return null;
+  if (steps) {
+    const items: Steps['items'] = [];
+    for (const x of raw) {
+      const i = (x ?? {}) as Record<string, unknown>;
+      const label = fits(i.label, 30);
+      const text = fits(i.text, 120);
+      if (!label || !text) return null;
+      items.push({ label, text });
+    }
+    return { type: 'steps', title, items };
+  }
+  const items: Timeline['items'] = [];
+  for (const x of raw) {
+    const i = (x ?? {}) as Record<string, unknown>;
+    const when = fits(i.when, 20);
+    const text = fits(i.text, 100);
+    if (!when || !text) return null;
+    items.push({ when, text });
+  }
+  return { type: 'timeline', title, items };
+}
+
+// An https address on exactly this host, with no user name, password or port.
+function onHost(v: unknown, host: string, path: RegExp = /^\//): string | null {
+  if (typeof v !== 'string' || v.length > 1000) return null;
+  try {
+    const u = new URL(v);
+    return u.protocol === 'https:' && !u.username && !u.password && !u.port && u.hostname === host && path.test(u.pathname) ? u.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+function imageBlock(o: Record<string, unknown>, stored: boolean): ImageBlock | null {
+  const caption = fits(o.caption, 120);
+  if (!caption) return null;
+  if (!stored) {
+    const query = fits(o.query, 80);
+    return query && o.url === undefined ? { type: 'image', query, caption } : null;
+  }
+  // A kept photograph: a Commons file, its page, an allowed licence and a credit, or nothing.
+  const url = onHost(o.url, PHOTO_HOST);
+  const source = onHost(o.source, PHOTO_PAGE_HOST, /^\/wiki\/File:/);
+  const licence = typeof o.licence === 'string' && PHOTO_LICENCE.test(o.licence.trim()) ? o.licence.trim() : null;
+  const credit = fits(o.credit, 120);
+  return url && source && licence && credit ? { type: 'image', url, caption, credit, licence, source } : null;
+}
+
+const VIDEO_ID = /^[A-Za-z0-9_-]{11}$/;
+function videosBlock(o: Record<string, unknown>, stored: boolean): Videos | null {
+  if (!stored) return { type: 'videos' };
+  const raw = exactly(o.items, 1, 4);
+  if (!raw) return null;
+  const items: VideoItem[] = [];
+  for (const x of raw) {
+    const v = (x ?? {}) as Record<string, unknown>;
+    const title = plain(v.title, 200);
+    const channel = plain(v.channel, 120);
+    const seconds = Number(v.seconds);
+    if (typeof v.videoId !== 'string' || !VIDEO_ID.test(v.videoId) || !title || !channel || !Number.isInteger(seconds) || seconds < 1 || seconds > 36000) return null;
+    items.push({ videoId: v.videoId, title, channel, seconds });
+  }
+  return { type: 'videos', items };
+}
+
+// A photograph or video list still waiting for the server (as the model wrote it): never drawn.
+export const unfilled = (b: { type: string }): boolean => (b.type === 'image' && !('url' in b)) || (b.type === 'videos' && !Array.isArray((b as { items?: unknown }).items));
+
+// A block arriving on the phone: a filled photograph or video list takes the place of the unfilled one the model wrote
+// (so it shows where the answer put it); anything else is added at the end.
+export function placeBlock<B extends { type: string }>(list: readonly B[], b: B): B[] {
+  const at = unfilled(b) ? -1 : list.findIndex((x) => x.type === b.type && unfilled(x));
+  return at >= 0 ? list.map((x, i) => (i === at ? b : x)) : [...list, b];
 }
 
 // ---- slider, 3D model and chapter test (S5, C378) ----
@@ -680,11 +823,19 @@ export function jsonObjectScanner(): JsonObjectScan {
 }
 
 export function parseBlockLine(line: string): Block | null {
+  return parsed(line, false);
+}
+// A line read back from what this server kept (see checkStoredBlock).
+export function parseStoredBlockLine(line: string): Block | null {
+  return parsed(line, true);
+}
+
+function parsed(line: string, stored: boolean): Block | null {
   const start = line.indexOf('{');
   const end = line.lastIndexOf('}');
   if (start < 0 || end <= start) return null;
   try {
-    const b = checkBlock(JSON.parse(line.slice(start, end + 1)));
+    const b = checked(JSON.parse(line.slice(start, end + 1)), stored);
     return b && !CHAPTER_ONLY_TYPES.includes(b.type) ? b : null;
   } catch {
     return null;
@@ -694,7 +845,9 @@ export function parseBlockLine(line: string): Block | null {
 // A whole response's blocks: the first of each type that passed, in a fixed teaching order. null when a required
 // block is missing (the response is then not shown as complete and never cached).
 // At most one interactive block: the first that passed.
-const ORDER: BlockType[] = ['explanation', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'check', 'practice', 'english_moment', 'sources'];
+// W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
+// videos last.
+const ORDER: BlockType[] = ['explanation', 'figure', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
 export function completeResponse(blocks: Block[]): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;

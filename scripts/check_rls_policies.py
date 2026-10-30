@@ -528,6 +528,9 @@ ALLOWED_PERMISSIVE = (
         ("family.english_live_sessions", "english_live_sessions_own"),
         ("family.english_live_turns", "english_live_turns_own"),
         ("content.video_picks", "video_picks_family_read"),
+        # W9-C: families read the licensed photographs the server found, and write them only through
+        # content.save_image_pick.
+        ("content.image_picks", "image_picks_family_read"),
         # W4-3 (C387): the hub entries a family reads (published, before their review day).
         ("content.hub_entries", "hub_entries_family_read"),
         # m2-10: school staff read the two school AI profiles and the provider list (C284).
@@ -1093,6 +1096,7 @@ REQUIRED_RESTRICTIVE = {
     ("family_connect_codes", "family_connect_codes_office"),
     ("family_connect_codes", "family_connect_codes_no_parent"),
     ("content.video_picks", "video_picks_family_only"),
+    ("content.image_picks", "image_picks_family_only"),
     ("content.hub_entries", "hub_entries_family_only"),
     # m2-10: staff never write the AI settings.
     ("control.ai_profiles", "ai_profiles_staff_only"),

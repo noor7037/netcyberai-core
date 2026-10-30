@@ -9509,6 +9509,8 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.testing.savedOff': 'टेस्टिंग मोड बंद हो गया।',
   'control.ai.change.ai.testing_mode_changed': 'टेस्टिंग मोड',
   'fam.block.mindMap': 'माइंड मैप',
+  'fam.block.photo': 'असली फ़ोटो',
+  'fam.block.photoCredit': 'फ़ोटो: {author} · {licence} · Wikimedia Commons',
   'control.queue.block.mind_map': 'माइंड मैप',
   'control.queue.block.wrongWhy': 'क्यों नहीं: {text}',
   'fam.check.notThis': 'यह नहीं',
