@@ -103,13 +103,18 @@ export async function newChat(db: Db, accountId: string, childId: string, subjec
     `insert into family.tutor_conversations (account_id, child_id, subject, created_at, last_at) values ($1, $2, $3, clock_timestamp(), clock_timestamp()) returning conversation_id`,
     [accountId, childId, subject]
   );
+  await archiveOverflow(db, accountId, childId, subject);
+  return String(rows[0].conversation_id);
+}
+
+// The chats listed in a subject beyond CHATS_KEPT (the least recently used) are archived.
+async function archiveOverflow(db: Db, accountId: string, childId: string, subject: string): Promise<void> {
   await db.query(
     `update family.tutor_conversations set status = 'archived', updated_at = now()
       where conversation_id in (select conversation_id from family.tutor_conversations
                                  where account_id = $1 and child_id = $2 and subject = $3 and status <> 'archived' ${NEWEST} offset $4)`,
     [accountId, childId, subject, CHATS_KEPT]
   );
-  return String(rows[0].conversation_id);
 }
 
 // The newest open chat in a subject, or a new one.
@@ -177,11 +182,30 @@ export async function memoryFor(db: Db, chatId: string): Promise<ResolverMemory>
   return { summary: (rows[0]?.summary as string | null | undefined) ?? null, turns: await rememberedTurns(db, chatId, MEMORY_TURNS) };
 }
 
-// The chat a tutor question is asked in: the one the screen names when it is this child's own in this subject, else the
-// newest open one (none yet: null; the answered turn opens one). `full`: a new turn would be refused.
-export async function resolveChat(db: Db, accountId: string, childId: string, subject: string, requested: unknown): Promise<{ chatId: string; full: boolean; memory: ResolverMemory | null } | null> {
+// One of the child's own listed chats in any subject, with its subject (W10, C411: the chat the window has open).
+async function pinnedChat(db: Db, accountId: string, childId: string, chatId: unknown): Promise<(TutorChat & { subject: string }) | null> {
+  if (!isUuid(chatId)) return null;
+  const { rows } = await db.query(
+    `select ${CHAT_COLUMNS}, subject from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and status in ('open', 'full')`,
+    [chatId, accountId, childId]
+  );
+  return rows[0] ? { ...chatOf(rows[0]), subject: String(rows[0].subject) } : null;
+}
+
+// The chat a tutor question is asked in: the one the screen names when it is this child's own, in whatever subject
+// (W10, C411: a question typed in an open chat goes to that chat, whatever subject tab is selected), else the window
+// subject's newest open one (none yet: null; the answered turn opens one). `full`: a new turn would be refused.
+// `pinned`: the chat is the one the screen named; `subject`: the chat's own.
+export async function resolveChat(
+  db: Db,
+  accountId: string,
+  childId: string,
+  subject: string,
+  requested: unknown
+): Promise<{ chatId: string; full: boolean; memory: ResolverMemory | null; pinned: boolean; subject: string } | null> {
   if (!isSubject(subject)) return null;
-  let chat = await ownChat(db, accountId, childId, subject, requested);
+  const pinned = await pinnedChat(db, accountId, childId, requested);
+  let chat: TutorChat | null = pinned;
   if (!chat) {
     const { rows } = await db.query(
       `select ${CHAT_COLUMNS} from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' ${NEWEST} limit 1`,
@@ -191,7 +215,7 @@ export async function resolveChat(db: Db, accountId: string, childId: string, su
   }
   if (!chat) return null;
   const memory = await memoryFor(db, chat.chatId);
-  return { chatId: chat.chatId, full: chat.status === 'full', memory: memory.summary || memory.turns.length ? memory : null };
+  return { chatId: chat.chatId, full: chat.status === 'full', memory: memory.summary || memory.turns.length ? memory : null, pinned: pinned !== null, subject: pinned?.subject ?? subject };
 }
 
 // A chat's turns, oldest first, with each child turn's ready files. With no chat named: the subject's most recently
@@ -261,20 +285,25 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
 type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string };
 
 // A turn: the child's words (and the reader's chapter and block, and the files sent with them), then the tutor's
-// answer as shown, without its check and practice items, in this child's chat of that subject. The chat's child turns
-// go up by one; at CHAT_TURNS it is full. A turn on a full chat is refused ('chat_full'), on an archived or unknown one
-// 'not_found'; nothing is written when refused.
-export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Promise<{ ok: true; turnCount: number } | { ok: false; error: 'chat_full' | 'not_found' | 'empty' }> {
+// answer as shown, without its check and practice items, in this child's chat. The chat's child turns go up by one; at
+// CHAT_TURNS it is full. A turn on a full chat is refused ('chat_full'), on an archived or unknown one 'not_found';
+// nothing is written when refused. W10 (C411): `subject` is the one the server decided; a chat's first answer moves the
+// chat to it (a chat opened in Mathematics whose first question is about photosynthesis becomes a Science chat); a later
+// turn stays in the chat, whatever subject it was decided in. Returns the chat's subject after the turn.
+export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Promise<{ ok: true; turnCount: number; subject: string } | { ok: false; error: 'chat_full' | 'not_found' | 'empty' }> {
   const text = t.text.trim().slice(0, TUTOR_TEXT_MAX);
   const blocks = keptTutorBlocks(t.blocks);
   if (!text || blocks.length === 0) return { ok: false, error: 'empty' };
   if (!isUuid(t.chatId) || !isSubject(t.subject)) return { ok: false, error: 'not_found' };
   const { rows: chat } = await db.query(
-    `select status from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and subject = $4 for update`,
-    [t.chatId, t.accountId, t.childId, t.subject]
+    `select status, subject, turn_count from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 for update`,
+    [t.chatId, t.accountId, t.childId]
   );
   if (!chat[0] || chat[0].status === 'archived') return { ok: false, error: 'not_found' };
   if (chat[0].status === 'full') return { ok: false, error: 'chat_full' };
+  const moved = Number(chat[0].turn_count) === 0 && chat[0].subject !== t.subject;
+  if (moved) await db.query(`update family.tutor_conversations set subject = $2, updated_at = now() where conversation_id = $1`, [t.chatId, t.subject]);
+  const chatSubject = moved ? t.subject : String(chat[0].subject);
   const lang = t.lang === 'hi' ? 'hi' : 'en';
   const conversationId = t.chatId;
   const asked = await db.query(
@@ -304,21 +333,22 @@ export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Pro
       where conversation_id = $1 returning turn_count`,
     [conversationId, CHAT_TURNS, text, TITLE_MAX]
   );
-  return { ok: true, turnCount: Number(rows[0].turn_count) };
+  if (moved) await archiveOverflow(db, t.accountId, t.childId, chatSubject);
+  return { ok: true, turnCount: Number(rows[0].turn_count), subject: chatSubject };
 }
 
 // An answered tutor question kept: in the chat the screen asked in while it is open (`chatId`, already checked to be
-// this child's own in `subject`), else in the subject's newest open chat (a new one when there is none, or when the
-// named chat filled up meanwhile). Returns the chat and its child turns, or null when nothing was kept.
-export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }): Promise<{ chatId: string; turnCount: number } | null> {
+// this child's own), else in the decided subject's newest open chat (a new one when there is none, or when the named
+// chat filled up meanwhile). Returns the chat, its subject and its child turns, or null when nothing was kept.
+export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }): Promise<{ chatId: string; turnCount: number; subject: string } | null> {
   if (t.chatId) {
     const kept = await appendTurn(db, { ...t, chatId: t.chatId });
-    if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount };
+    if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount, subject: kept.subject };
     if (kept.error === 'empty') return null;
   }
   const chatId = await openChat(db, t.accountId, t.childId, t.subject);
   const kept = await appendTurn(db, { ...t, chatId });
-  return kept.ok ? { chatId, turnCount: kept.turnCount } : null;
+  return kept.ok ? { chatId, turnCount: kept.turnCount, subject: kept.subject } : null;
 }
 
 // ---- the running summary (family.summary) ----------------------------------------------------------------------------

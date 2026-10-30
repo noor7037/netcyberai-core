@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
+import type { BlockType } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { SUBJECTS } from '@/lib/family/modules';
 import { dataSaverBlocks, droppedCount } from '@/lib/family/data-saver';
@@ -43,8 +44,18 @@ type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
 type Ask = { input: UnderstandInput; followUp?: string; retry?: { token: string; choice: number } };
 
 const FOLLOW_UPS = ['simpler', 'another_example', 'differently', 'practise_more'] as const;
+// W10 (C411): the blocks the completeness notice may name (the server's coreBlocks), in plain words.
+const GAP_PARTS: readonly BlockType[] = ['explanation', 'check', 'practice'];
 
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: () => void }) {
+// "check questions and practice questions"; "explanation, check questions and practice questions".
+export function gapNotice(w: Words, gap: { missing: readonly BlockType[]; cut: boolean }): string[] {
+  const parts = gap.missing.filter((b) => GAP_PARTS.includes(b)).map((b) => w[`fam.understand.part.${b}`] ?? b);
+  const and = w['fam.understand.and'] ?? 'and';
+  const named = parts.length <= 1 ? parts.join('') : `${parts.slice(0, -1).join(', ')} ${and} ${parts[parts.length - 1]}`;
+  return [...(parts.length > 0 ? [fill(w['fam.understand.missing'], { parts: named })] : []), ...(gap.cut ? [w['fam.understand.cut']] : [])];
+}
+
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void }) {
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -52,6 +63,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // W4-1 (C385): what became of the files sent with a tutor question.
   const [filesNote, setFilesNote] = useState('');
   const [goTo, setGoTo] = useState<GoTo | null>(null);
+  const [gap, setGap] = useState<{ missing: BlockType[]; cut: boolean }>({ missing: [], cut: false });
   const [noInternet, setNoInternet] = useState(false);
   const saver = useDataSaver();
   const saving = offline && saver.state.on;
@@ -73,6 +85,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     setState('loading');
     setBlocks([]);
     setFilesNote('');
+    setGap({ missing: [], cut: false });
     setRefusal('');
     setGoTo(null);
     setNoInternet(false);
@@ -118,8 +131,11 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           } else if (e.t === 'block') setBlocks((b) => placeBlock(b, e.block));
           else if (e.t === 'files') setFilesNote(e.message);
           else if (e.t === 'done') {
-            setState(e.complete ? 'done' : 'incomplete');
-            answered.current?.();
+            // W10 (C411): the notice only when a block the plan asked for never came or the answer was cut, naming it.
+            const missing = Array.isArray(e.missing) ? e.missing.filter((b) => GAP_PARTS.includes(b)) : [];
+            setGap({ missing, cut: e.cut === true });
+            setState(missing.length > 0 || e.cut === true ? 'incomplete' : 'done');
+            answered.current?.(e.chat);
           }
           else if (e.t === 'refused') {
             setRefusal(e.message);
@@ -233,7 +249,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
         </div>
       )}
       {(state === 'loading' || state === 'streaming') && <p className="sr-only">{w['fam.understand.loading']}</p>}
-      {state === 'incomplete' && <p className="rounded-2xl bg-white p-4 text-sm text-slate ring-1 ring-slate/10">{w['fam.understand.incomplete']}</p>}
+      {state === 'incomplete' && gapNotice(w, gap).length > 0 && <p data-answer-gap className="rounded-2xl bg-white p-4 text-sm text-slate ring-1 ring-slate/10">{gapNotice(w, gap).join(' ')}</p>}
       {/* M2-5: a topic's video, when the finder has one; the response never depends on it. */}
       {input.kind === 'topic' && (state === 'done' || state === 'incomplete') && !shown.some((b) => b.type === 'videos') && <VideoPicks w={w} topicKey={input.key} />}
       {(state === 'done' || state === 'incomplete') && (

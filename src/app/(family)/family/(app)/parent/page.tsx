@@ -58,7 +58,7 @@ const NOTIFY_KEYS: MessageKey[] = [
   'fam.push.title', 'fam.push.unsupported', 'fam.push.blocked', 'fam.push.isOn', 'fam.push.turnOn', 'fam.push.turnOff',
 ];
 const AREA_KEYS: MessageKey[] = [
-  'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
+  'fam.parent.title', 'fam.parent.back', 'fam.parent.children', 'fam.parent.edit', 'fam.parent.childSaved', 'fam.parent.remove', 'fam.parent.removeConfirm', 'fam.parent.removeYes',
   'fam.parent.answersShow', 'fam.parent.answersNone', 'fam.parent.answerRight', 'fam.parent.answerWrong', 'fam.parent.delete', 'fam.parent.deleteAll',
   'fam.parent.privacy', 'fam.parent.privacyIntro',
   'fam.parent.tabs', 'fam.parent.tab.overview', 'fam.parent.tab.children', 'fam.parent.tab.school', 'fam.parent.tab.learning', 'fam.parent.tab.privacy', 'fam.parent.tab.account',

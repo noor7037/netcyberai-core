@@ -88,6 +88,18 @@ describe('prompt v8', () => {
     expect(system({ memory: { summary: null, turns: [] } })).not.toContain('Earlier in this chat');
   });
 
+  it('decides the subject line from the question and the earlier turns together when the chat has memory', () => {
+    const alone = system({ subject: null });
+    expect(alone).toContain('decided from the question alone');
+    const withMemory = system({ subject: null, memory: { summary: null, turns: [{ role: 'child', text: 'What is photosynthesis?' }, { role: 'tutor', text: 'Plants make food from light.' }] } });
+    expect(withMemory).not.toContain('decided from the question alone');
+    expect(withMemory).toContain('decided from the question and the earlier turns of this chat together');
+    expect(withMemory).toContain("a follow-up such as 'show it with an example' is about the subject of the turns above");
+    // The allowed list and the refusal rule stay.
+    expect(withMemory).toContain('If the subject is not one of these, write only the subject line and nothing else.');
+    expect(withMemory).toContain('The student may be answered only in:');
+  });
+
   it('a biology plan has no interactive block; a physics problem keeps v4\'s bounded-number lines word for word', () => {
     const bio = checkPlan(JSON.stringify({ questionType: 'process', band: 'c9_10', depth: 'medium', blocks: ['explanation', 'simulation', 'steps', 'check'], visuals: [], lang: 'en' }), { classLevel: 9, subject: 'biology', lang: 'en' }).plan;
     const s = system({ classLevel: 9, subject: 'biology', plan: bio });

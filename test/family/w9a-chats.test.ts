@@ -120,7 +120,7 @@ describe('chats (C406)', () => {
     const t = await import('@/lib/family/tutor');
     const chat = await fam((c) => t.newChat(c, ACCOUNT, CHILD, 'science'));
     await fam(async (c) => {
-      for (let n = 1; n <= 30; n++) expect(await t.appendTurn(c, turnInput(chat, n))).toEqual({ ok: true, turnCount: n });
+      for (let n = 1; n <= 30; n++) expect(await t.appendTurn(c, turnInput(chat, n))).toEqual({ ok: true, turnCount: n, subject: 'science' });
     });
     expect(await q(`select title, turn_count, status from family.tutor_conversations where conversation_id = $1`, [chat])).toEqual([{ title: 'Question 1?', turn_count: 30, status: 'full' }]);
     expect(await fam((c) => t.appendTurn(c, turnInput(chat, 31)))).toEqual({ ok: false, error: 'chat_full' });
@@ -160,7 +160,7 @@ describe('the route sends the chat to the tutor (C406)', () => {
   it('a third question is asked with the earlier turns in its prompt, and the summary is rewritten at the fifth', async () => {
     ai.lines = ANSWER;
     const first = await events(await ask(CHILD, 'Why is 1/2 the same as 2/4?', { subject: 'mathematics' }));
-    expect(first.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(first.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId: expect.any(String), subject: 'mathematics' } });
     const [chat] = await q(`select conversation_id from family.tutor_conversations where child_id = $1 and subject = 'mathematics'`, [CHILD]);
     const chatId = String(chat.conversation_id);
     await events(await ask(CHILD, 'Can you show it with a roti?', { subject: 'mathematics', chatId }));
@@ -217,5 +217,41 @@ describe('a sibling never reads another child’s chat (C406)', () => {
     expect(await fam((c) => t.listChats(c, ACCOUNT, CHILD, 'mathematics'), device)).toEqual([]);
     expect(await fam((c) => t.memoryFor(c, chatId), device)).toEqual({ summary: null, turns: [] });
     expect(await fam((c) => t.resolveChat(c, ACCOUNT, CHILD, 'mathematics', chatId), device)).toBeNull();
+  });
+});
+
+describe('the chat keeps its subject and the follow-up stays in it (W10, C411)', () => {
+  const SCIENCE = [
+    JSON.stringify({ type: 'subject', subject: 'science' }),
+    JSON.stringify({ type: 'explanation', title: 'Plants make food', idea: 'Leaves make food from light.', paragraphs: ['Green leaves use sunlight, water and air to make sugar.'], example: 'A leaf in the sun', steps: ['Light', 'Sugar'], terms: [] }),
+    JSON.stringify({ type: 'check', items: [item('s1')] }),
+    JSON.stringify({ type: 'practice', items: [item('s2')] }),
+  ];
+
+  it('a chat opened from the Mathematics tab whose first question is about photosynthesis becomes a Science chat; the follow-up stays in it with its memory', async () => {
+    await q(`update control.settings set value = '["science"]'::jsonb where key = 'family.open_subjects'`);
+    const t = await import('@/lib/family/tutor');
+    const chatId = await fam((c) => t.newChat(c, ACCOUNT, CHILD, 'mathematics'));
+    ai.lines = SCIENCE;
+    const first = await events(await ask(CHILD, 'What is photosynthesis?', { subject: 'mathematics', chatId }));
+    // The answer names the chat and its new subject, so the window lists it under Science.
+    expect(first.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId, subject: 'science' } });
+    expect(await q(`select subject, turn_count from family.tutor_conversations where conversation_id = $1`, [chatId])).toEqual([{ subject: 'science', turn_count: 1 }]);
+
+    // The follow-up typed with the Mathematics tab still selected goes to that chat, with its turns in the prompt, and
+    // the subject line is decided from the question and the earlier turns together.
+    await events(await ask(CHILD, 'can you show it with an example?', { subject: 'mathematics', chatId }));
+    const follow = ai.calls.filter((c) => c.profile === 'family.resolver').at(-1)!;
+    expect(follow.system).toContain('Earlier in this chat');
+    expect(follow.system).toContain('Student: What is photosynthesis?');
+    expect(follow.system).toContain('decided from the question and the earlier turns of this chat together');
+    expect(await q(`select subject, turn_count from family.tutor_conversations where conversation_id = $1`, [chatId])).toEqual([{ subject: 'science', turn_count: 2 }]);
+
+    // A later turn decided in another subject stays in the chat; the chat keeps its subject.
+    ai.lines = ANSWER;
+    const later = await events(await ask(CHILD, 'and how many halves make one?', { subject: 'mathematics', chatId }));
+    expect(later.at(-1)).toMatchObject({ t: 'done', chat: { chatId, subject: 'science' } });
+    expect(await q(`select subject, turn_count from family.tutor_conversations where conversation_id = $1`, [chatId])).toEqual([{ subject: 'science', turn_count: 3 }]);
+    await q(`update control.settings set value = '[]'::jsonb where key = 'family.open_subjects'`);
   });
 });
