@@ -1,6 +1,7 @@
 import { anthropicAdapter } from './anthropic';
 import { geminiAdapter } from './gemini';
 import { googleTtsAdapter } from './google-tts';
+import { nvidiaAdapter } from './nvidia';
 import { openaiAdapter, openaiSpeechAdapter, openaiVoiceAdapter } from './openai';
 import { openaiCompatibleAdapter } from './openai-compatible';
 import { vertexAiAdapter } from './vertex-ai';
@@ -32,8 +33,8 @@ export const standInAdapter: TextAdapter = {
 
 // Every text adapter the code has. Which one serves a profile, and whether it may carry a child's words, is Control's
 // choice (C368); Gemini joined the list for the founder's testing (C230-AO); Vertex AI and the OpenAI-compatible adapter
-// at the founder's own address in G1 (C369).
-const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, openaiAdapter, openaiCompatibleAdapter, vertexAiAdapter, workersAiAdapter];
+// at the founder's own address in G1 (C369); NVIDIA NIM in W8-AI.
+const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, nvidiaAdapter, openaiAdapter, openaiCompatibleAdapter, vertexAiAdapter, workersAiAdapter];
 
 // The build's own NODE_ENV is checked as well as the one passed, so no caller can switch the stand-in on in production.
 export function standInAllowed(env: Record<string, string | undefined> = process.env): boolean {

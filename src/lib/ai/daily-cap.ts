@@ -63,10 +63,51 @@ export async function giveVoiceCharsBack(db: Sql, accountId: string, day: string
   await db.query(`update family.ai_daily set voice_chars = greatest(voice_chars - $3::int, 0) where account_id = $1::uuid and day = $2::date`, [accountId, day, chars]);
 }
 
-// The characters left for this account today (a screen says the phone's voice reads before the first line is asked).
+// The characters left for this account today (a screen says the phone's voice reads before the first line is asked);
+// uncapped while testing mode is on.
 export async function voiceCharsLeft(db: Sql, accountId: string, day: string): Promise<number> {
+  if (await testingModeOn(db)) return UNCAPPED_LEFT;
   const limit = await voiceCharLimit(db);
   if (limit === null) return 0;
   const { rows } = await db.query(`select voice_chars from family.ai_daily where account_id = $1::uuid and day = $2::date`, [accountId, day]);
   return Math.max(0, limit - Number(rows[0]?.voice_chars ?? 0));
+}
+
+// ---- testing mode (W8-AI) ------------------------------------------------------------------------------------------
+
+// The founder's one switch for the testing phase, Control's setting 'ai.testing_mode' ('on' or 'off'). On: no daily
+// request cap and no voice-characters cap (the counters below still count, nothing refuses), every enabled provider
+// read as cleared for children's words, the safety pre-check skipped and each profile's max_output_tokens used as
+// saved (src/lib/ai/platform.ts). It is switched off before the Play Store release. Anything but the exact 'on' reads
+// as off, so a missing or damaged setting can only make the platform stricter, never looser.
+export const TESTING_MODE_SETTING = 'ai.testing_mode';
+
+// Read through control.ai_testing_mode() (security definer), so a school's staff session, which cannot read
+// control.settings, gets the same answer as a family's.
+export async function testingModeOn(db: Sql): Promise<boolean> {
+  const { rows } = await db.query(`select control.ai_testing_mode() as testing`);
+  return rows[0]?.testing === true;
+}
+
+// What "requests left" reads as while testing mode is on: more than any screen's check needs, nothing a screen shows.
+export const UNCAPPED_LEFT = 1_000_000;
+
+// One more request for this account today, counted with no limit (testing mode).
+export async function countDailyRequest(db: Sql, accountId: string, day: string): Promise<void> {
+  await db.query(
+    `insert into family.ai_daily as d (account_id, day, requests) values ($1::uuid, $2::date, 1)
+     on conflict (account_id, day) do update set requests = d.requests + 1`,
+    [accountId, day]
+  );
+}
+
+// This many more voice characters for this account today, counted with no limit (testing mode).
+export async function countVoiceChars(db: Sql, accountId: string, day: string, chars: number): Promise<boolean> {
+  if (!Number.isInteger(chars) || chars < 1) return false;
+  await db.query(
+    `insert into family.ai_daily as d (account_id, day, voice_chars) values ($1::uuid, $2::date, $3::int)
+     on conflict (account_id, day) do update set voice_chars = d.voice_chars + $3::int`,
+    [accountId, day, chars]
+  );
+  return true;
 }

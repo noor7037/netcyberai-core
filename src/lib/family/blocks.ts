@@ -25,11 +25,15 @@ import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
-export type Explanation = { type: 'explanation'; title: string; idea: string; example: string; steps: string[]; terms: { en: string; local: string }[] };
+// `paragraphs` (W8-AI, resolver v7): the longer explanation in short paragraphs; optional, so older content stays valid.
+export type Explanation = { type: 'explanation'; title: string; idea: string; paragraphs?: string[]; example: string; steps: string[]; terms: { en: string; local: string }[] };
 export type WorkedStep = { text: string; expression?: string; result?: string };
 export type WorkedExample = { type: 'worked_example'; problem: string; steps: WorkedStep[]; answer: string };
 export type KeyPoints = { type: 'key_points'; points: string[] };
 export type Diagram = { type: 'diagram'; title: string; kind: 'flow' | 'cycle'; nodes: { id: string; label: string }[]; edges: { from: string; to: string; label?: string }[] };
+// W8-AI (resolver v7): a mind map, the idea in the centre with 2 to 6 branches of 0 to 4 leaves; every label short.
+export type MindMap = { type: 'mind_map'; title: string; root: string; branches: { label: string; leaves: string[] }[] };
+export const MIND_MAP_LABEL_MAX = 40;
 export type QuizItem = { id: string; question: string; options: string[]; answer: number; hint: string; why: string; wrong: string[]; expression?: string };
 export type Check = { type: 'check'; items: QuizItem[] };
 export type Practice = { type: 'practice'; items: QuizItem[] };
@@ -64,11 +68,11 @@ export type ChapterTest = { type: 'chapter_test'; title: string; items: TestItem
 // or interactive readable.
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test'];
 // Types only authored chapters carry; the model's answer never does.
 export const CHAPTER_ONLY_TYPES: readonly BlockType[] = ['table', 'slider', 'model_3d', 'chapter_test'];
 
@@ -88,7 +92,7 @@ export function plain(v: unknown, max: number): string | null {
     .replace(/<[^>]*>/g, ' ')
     .replace(/[<>]/g, ' ')
     .replace(/\*\*|__|`+|^#{1,6}\s+/gm, '')
-    .replace(/\[([^\]]*)\]\(([^)]*)\)/g, '$1')
+    .replace(/\[([^\]]*)\]\(([^)]*)\)/g, (_link: string, label: string) => label)
     .replace(/\s+/g, ' ')
     .trim();
   return s.length > 0 && s.length <= max ? s : s.length > max ? s.slice(0, max).trimEnd() : null;
@@ -184,7 +188,9 @@ export const sameNumber = (a: number, b: number) => Math.abs(a - b) <= Math.max(
 
 // ---- each block ----
 
-function quizItem(v: unknown): QuizItem | null {
+// `strictWrong` (W8-AI, a check block): every wrong option must carry its own reason in `wrong`, or the item is dropped;
+// elsewhere (practice, older content) a missing reason falls back to `why`.
+function quizItem(v: unknown, strictWrong = false): QuizItem | null {
   const o = (v ?? {}) as Record<string, unknown>;
   const id = typeof o.id === 'string' && /^[a-z0-9_-]{1,20}$/i.test(o.id) ? o.id : null;
   const question = plain(o.question, 400);
@@ -194,7 +200,9 @@ function quizItem(v: unknown): QuizItem | null {
   const why = plain(o.why, 400);
   if (!id || !question || !options || options.length !== (Array.isArray(o.options) ? Math.min(o.options.length, 4) : 0)) return null;
   if (!Number.isInteger(answer) || answer < 0 || answer >= options.length || !hint || !why) return null;
-  const wrong = options.map((_, k) => (k === answer ? '' : (plain(Array.isArray(o.wrong) ? o.wrong[k] : null, 400) ?? why)));
+  const given = options.map((_, k) => (k === answer ? '' : plain(Array.isArray(o.wrong) ? o.wrong[k] : null, 400)));
+  if (strictWrong && given.some((g) => g === null)) return null;
+  const wrong = given.map((g) => g ?? why);
   const item: QuizItem = { id, question, options, answer, hint, why, wrong };
   if (typeof o.expression === 'string' && o.expression.trim()) {
     // The question's own arithmetic: its keyed option must be what the arithmetic gives, or the item is dropped.
@@ -204,6 +212,37 @@ function quizItem(v: unknown): QuizItem | null {
     item.expression = o.expression.slice(0, 120);
   }
   return item;
+}
+
+// A label that fits as written: plain text, not empty, and no longer than `max` (never cut short: a mind map whose
+// label is too long is dropped whole, so a shortened word is never shown).
+function fits(v: unknown, max: number): string | null {
+  const s = plain(v, 2000);
+  return s && s.length <= max ? s : null;
+}
+
+// A mind map (W8-AI): a title, the root idea, 2 to 6 branches, 0 to 4 leaves each, every label up to
+// MIND_MAP_LABEL_MAX characters. A branch or leaf with no label or a label over the limit drops the whole block.
+function mindMap(o: Record<string, unknown>): MindMap | null {
+  const title = plain(o.title, 120);
+  const root = fits(o.root, MIND_MAP_LABEL_MAX);
+  if (!title || !root || !Array.isArray(o.branches) || o.branches.length < 2) return null;
+  const branches: MindMap['branches'] = [];
+  for (const raw of o.branches.slice(0, 6)) {
+    const b = (raw ?? {}) as Record<string, unknown>;
+    const label = fits(b.label, MIND_MAP_LABEL_MAX);
+    if (!label) return null;
+    const rawLeaves = b.leaves === undefined ? [] : b.leaves;
+    if (!Array.isArray(rawLeaves)) return null;
+    const leaves: string[] = [];
+    for (const l of rawLeaves.slice(0, 4)) {
+      const leaf = fits(l, MIND_MAP_LABEL_MAX);
+      if (!leaf) return null;
+      leaves.push(leaf);
+    }
+    branches.push({ label, leaves });
+  }
+  return { type: 'mind_map', title, root, branches };
 }
 
 export const BLOCK_ID = /^[a-z0-9][a-z0-9_-]{0,39}$/;
@@ -225,6 +264,7 @@ function blockBody(o: Record<string, unknown>): Block | null {
       const title = plain(o.title, 120);
       const idea = plain(o.idea, 300);
       const example = plain(o.example, 600);
+      const paragraphs = o.paragraphs === undefined ? undefined : (list(o.paragraphs, 1, 6, (x) => plain(x, 1200)) ?? undefined);
       const steps = list(o.steps, 2, 6, (x) => plain(x, 400));
       const terms = list(o.terms, 0, 8, (x) => {
         const t = (x ?? {}) as Record<string, unknown>;
@@ -232,7 +272,7 @@ function blockBody(o: Record<string, unknown>): Block | null {
         const local = plain(t.local, 60);
         return en && local ? { en, local } : null;
       });
-      return title && idea && example && steps && terms ? { type: 'explanation', title, idea, example, steps, terms } : null;
+      return title && idea && example && steps && terms ? { type: 'explanation', title, idea, ...(paragraphs ? { paragraphs } : {}), example, steps, terms } : null;
     }
     case 'worked_example': {
       const problem = plain(o.problem, 500);
@@ -257,7 +297,8 @@ function blockBody(o: Record<string, unknown>): Block | null {
       return problem && answer && steps.length >= 1 ? { type: 'worked_example', problem, steps, answer } : null;
     }
     case 'key_points': {
-      const points = list(o.points, 2, 6, (x) => plain(x, 240));
+      // Up to 8 (v7 asks for 4 to 8; older content gave 2 to 6).
+      const points = list(o.points, 2, 8, (x) => plain(x, 240));
       return points ? { type: 'key_points', points } : null;
     }
     case 'diagram': {
@@ -282,9 +323,12 @@ function blockBody(o: Record<string, unknown>): Block | null {
     }
     case 'check':
     case 'practice': {
-      const items = list(o.items, 1, 3, quizItem);
+      // A check may carry up to 5 items (v7: 3 to 5), each with a reason for every wrong option; practice up to 3.
+      const items = o.type === 'check' ? list(o.items, 1, 5, (x) => quizItem(x, true)) : list(o.items, 1, 3, (x) => quizItem(x));
       return items ? ({ type: o.type, items } as Check | Practice) : null;
     }
+    case 'mind_map':
+      return mindMap(o);
     case 'english_moment': {
       const words = list(o.words, 1, 3, (x) => {
         const w = (x ?? {}) as Record<string, unknown>;
@@ -650,7 +694,7 @@ export function parseBlockLine(line: string): Block | null {
 // A whole response's blocks: the first of each type that passed, in a fixed teaching order. null when a required
 // block is missing (the response is then not shown as complete and never cached).
 // At most one interactive block: the first that passed.
-const ORDER: BlockType[] = ['explanation', 'worked_example', 'diagram', ...INTERACTIVE_TYPES, 'key_points', 'check', 'practice', 'english_moment', 'sources'];
+const ORDER: BlockType[] = ['explanation', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'check', 'practice', 'english_moment', 'sources'];
 export function completeResponse(blocks: Block[]): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;
@@ -709,7 +753,7 @@ export function sentences(text: string): string[] {
 function spokenTexts(b: Block): string[] {
   switch (b.type) {
     case 'explanation':
-      return [b.title, b.idea, b.example, ...b.steps];
+      return [b.title, b.idea, ...(b.paragraphs ?? []), b.example, ...b.steps];
     case 'worked_example':
       return [b.problem, ...b.steps.map((s) => s.text), b.answer];
     case 'key_points':

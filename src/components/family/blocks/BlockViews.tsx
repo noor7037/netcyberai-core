@@ -16,13 +16,38 @@ export const SUBJECT_TONE: Record<string, { bar: string; chip: string; soft: str
   Object.entries(SUBJECT_THEME).map(([k, v]) => [k, { bar: `bg-royal-deep ${v.tile}`, chip: `${v.chip} text-white`, soft: v.soft }])
 );
 
+// W8-AI: each block type wears its own colour as well, so a child sees at a glance what kind of block it is: a solid
+// left bar and a tinted heading (slate text on a light tint, AA), from the logo tokens. Explanation teal, worked example
+// blue, diagram and mind map violet, key points amber, check and practice green, the interactive blocks coral. The
+// class strings are literal so Tailwind keeps them; no gradients. A type not listed keeps the subject's colour only.
+const INTERACTIVE_TONE = { bar: 'border-l-coral', head: 'bg-coral/15', dot: 'bg-coral' };
+const VIOLET_TONE = { bar: 'border-l-violet', head: 'bg-violet/10', dot: 'bg-violet' };
+const GREEN_TONE = { bar: 'border-l-leaf', head: 'bg-leaf/15', dot: 'bg-leaf' };
+export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string }> = {
+  explanation: { bar: 'border-l-turquoise', head: 'bg-turquoise/15', dot: 'bg-turquoise' },
+  worked_example: { bar: 'border-l-royal', head: 'bg-royal/10', dot: 'bg-royal' },
+  diagram: VIOLET_TONE,
+  mind_map: VIOLET_TONE,
+  key_points: { bar: 'border-l-amber', head: 'bg-amber/15', dot: 'bg-amber' },
+  check: GREEN_TONE,
+  practice: GREEN_TONE,
+  graph: INTERACTIVE_TONE,
+  number_line: INTERACTIVE_TONE,
+  fraction_model: INTERACTIVE_TONE,
+  geometry: INTERACTIVE_TONE,
+  simulation: INTERACTIVE_TONE,
+  slider: INTERACTIVE_TONE,
+  model_3d: INTERACTIVE_TONE,
+};
+
 export function Card({ title, tone, children, tag }: { title: string; tone: string; children: React.ReactNode; tag?: string }) {
+  const kind = tag ? BLOCK_TONE[tag] : undefined;
   return (
-    <section data-block={tag} className="fam-card fam-rise overflow-hidden bg-white">
+    <section data-block={tag} className={`fam-card fam-rise overflow-hidden bg-white ${kind ? `border-l-[6px] ${kind.bar}` : ''}`}>
       <div className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
       <div className="flex flex-col gap-3 p-4 sm:p-5">
-        <h2 className="flex items-center gap-2 text-lg font-extrabold text-slate">
-          <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal'}`} />
+        <h2 data-block-head className={`flex items-center gap-2 text-lg font-extrabold text-slate ${kind ? `rounded-xl px-3 py-1.5 ${kind.head}` : ''}`}>
+          <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-royal')}`} />
           {title}
         </h2>
         {children}
@@ -35,6 +60,11 @@ export function ExplanationView({ b, w, tone }: { b: Explanation; w: Words; tone
   return (
     <Card title={b.title} tone={tone} tag="explanation">
       <p className="text-lg font-semibold leading-relaxed text-slate">{b.idea}</p>
+      {b.paragraphs?.map((para, i) => (
+        <p key={i} data-paragraph className="text-base leading-relaxed text-slate">
+          {para}
+        </p>
+      ))}
       <div className={`rounded-2xl p-3 ${SUBJECT_TONE[tone]?.soft ?? 'bg-royal/10'}`}>
         <p className="text-sm font-bold text-slate">{w['fam.block.example']}</p>
         <p className="text-base leading-relaxed text-slate">{b.example}</p>

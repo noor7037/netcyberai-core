@@ -90,7 +90,7 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'google_tts', 'openai', 'openai_compatible', 'vertex_ai', 'workers-ai', 'youtube']);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'google_tts', 'nvidia', 'openai', 'openai_compatible', 'vertex_ai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
       // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
       expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
@@ -270,6 +270,25 @@ describe('every change is audited and undone in one step', () => {
     expect(page.changes.length).toBeGreaterThan(5);
     expect(JSON.stringify(await q(`select before_state, after_state from audit_log where event_action like 'ai.%'`))).not.toMatch(/sk-ant/);
     expect(await post({ action: 'undo', auditId: '999999' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_found' }) });
+  });
+
+  it('testing mode (W8-AI): the founder only switches it, each change audited and undoable; the page says which way it is', async () => {
+    // The harness starts with it off (tests assert the release behaviour); the migration itself seeds 'on'.
+    expect(await q(`select value from control.settings where key = 'ai.testing_mode'`)).toEqual([{ value: 'off' }]);
+    expect((await post({ action: 'testing_mode', on: true }, principal)).status).toBe(403);
+    expect((await post({ action: 'testing_mode', on: true }, founderAal1)).status).toBe(403);
+    expect(await post({ action: 'testing_mode', on: 'yes' })).toEqual({ status: 400, body: expect.objectContaining({ code: 'request' }) });
+    expect(await q(`select value from control.settings where key = 'ai.testing_mode'`)).toEqual([{ value: 'off' }]);
+
+    expect(await post({ action: 'testing_mode', on: true })).toEqual({ status: 200, body: { ok: true } });
+    expect(await q(`select value from control.settings where key = 'ai.testing_mode'`)).toEqual([{ value: 'on' }]);
+    expect((await (await GET(req(undefined, founder))).json()).testingMode).toBe(true);
+    const [row] = await q(`select audit_id, before_state, after_state from audit_log where event_action = 'ai.testing_mode_changed' order by audit_id desc limit 1`);
+    expect([(row.before_state as { value: string }).value, (row.after_state as { value: string }).value]).toEqual(['off', 'on']);
+
+    await post({ action: 'undo', auditId: String(row.audit_id) });
+    expect(await q(`select value from control.settings where key = 'ai.testing_mode'`)).toEqual([{ value: 'off' }]);
+    expect((await (await GET(req(undefined, founder))).json()).testingMode).toBe(false);
   });
 });
 

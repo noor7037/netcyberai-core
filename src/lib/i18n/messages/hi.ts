@@ -9498,4 +9498,20 @@ export const hi: Record<keyof typeof en, string> = {
   'control.leads.source.import': 'CSV से जोड़ी गई',
   'control.leads.recent.all': 'सारी पूछताछ →',
   // w7-l end
+  // w8-ai start
+  'control.ai.testing.title': 'टेस्टिंग मोड',
+  'control.ai.testing.onText': 'टेस्टिंग मोड चालू है: कोई दैनिक सीमा नहीं, कोई सुरक्षा जाँच नहीं, हर सेवा टेस्टिंग के लिए मंज़ूर। Play Store पर जारी करने से पहले इसे बंद करें।',
+  'control.ai.testing.offText': 'टेस्टिंग मोड बंद है: दैनिक सीमाएँ, सुरक्षा जाँच और बच्चों के लिए हर सेवा की मंज़ूरी नीचे जैसी तय है वैसी लागू होती हैं।',
+  'control.ai.testing.switch': 'टेस्टिंग मोड',
+  'control.ai.testing.stateOn': 'चालू',
+  'control.ai.testing.stateOff': 'बंद',
+  'control.ai.testing.savedOn': 'टेस्टिंग मोड चालू हो गया।',
+  'control.ai.testing.savedOff': 'टेस्टिंग मोड बंद हो गया।',
+  'control.ai.change.ai.testing_mode_changed': 'टेस्टिंग मोड',
+  'fam.block.mindMap': 'माइंड मैप',
+  'control.queue.block.mind_map': 'माइंड मैप',
+  'control.queue.block.wrongWhy': 'क्यों नहीं: {text}',
+  'fam.check.notThis': 'यह नहीं',
+  'fam.check.correct': 'सही',
+  // w8-ai end
 };

@@ -7541,7 +7541,7 @@ if (await portInUse(APP_PORT)) {
   console.error(`harness: something is already running on port ${APP_PORT}. Stop it, or pass --port.`);
   process.exit(2);
 }
-const db = await startHarnessDb({ port: DB_PORT, seedSql: readFileSync(path.join(ROOT, 'src/demo-fixture/harness-seed.sql'), 'utf8') });
+const db = await startHarnessDb({ port: DB_PORT, seedSql: readFileSync(path.join(ROOT, 'src/demo-fixture/harness-seed.sql'), 'utf8'), testingMode: 'on' });
 // M2-5: the video finder's picks, for the family player and Control → Content → Videos.
 await seedVideos(db);
 const secret = randomBytes(32).toString('hex');

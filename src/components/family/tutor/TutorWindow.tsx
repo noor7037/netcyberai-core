@@ -7,6 +7,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import type { Subject } from '@/lib/family/subjects';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type TutorTurn } from '@/lib/family/tutor-shape';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
+import { MindMapView } from '../blocks/MindMapView';
 import { UnderstandView, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
 
@@ -266,6 +267,8 @@ function TurnBlock({ b, w, tone }: { b: Block; w: Words; tone: string }) {
       return <KeyPointsView b={b} w={w} tone={tone} />;
     case 'diagram':
       return <DiagramView b={b} tone={tone} />;
+    case 'mind_map':
+      return <MindMapView b={b} w={w} tone={tone} />;
     case 'graph':
     case 'number_line':
     case 'fraction_model':

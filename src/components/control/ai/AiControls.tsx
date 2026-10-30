@@ -18,6 +18,7 @@ import Link from "next/link";
 import { LedgerView } from "./LedgerView";
 import { Panel } from "./Panel";
 import { PriceList } from "./PriceList";
+import { TestingModeBanner } from "./TestingModeBanner";
 import { ProviderList } from "./ProviderList";
 import { UsageTable } from "./UsageTable";
 import {
@@ -227,6 +228,9 @@ export function AiControls({ initial }: { initial: Data }) {
           </button>
         </p>
       )}
+
+      {/* W8-AI: testing mode, first on the screen while it is on. */}
+      <TestingModeBanner on={data.testingMode} busy={busy} send={send} t={t} />
 
       {/* Four numbers for the day, from the counts and the ledger's total; zero is shown as zero. */}
       <div data-ai-stats className="grid grid-cols-2 gap-3 lg:grid-cols-4">

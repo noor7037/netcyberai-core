@@ -12,6 +12,7 @@ import { AiNotice } from './AiNotice';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from './blocks/BlockViews';
 import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
+import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
 
 // The interactive blocks (M2-8) come as their own chunk, only when a response carries one (09 §4: first-load budget).
@@ -179,6 +180,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
           case 'diagram':
             return <DiagramView key={i} b={b} tone={tone} />;
+          case 'mind_map':
+            return <MindMapView key={i} b={b} w={w} tone={tone} />;
           case 'graph':
           case 'number_line':
           case 'fraction_model':
