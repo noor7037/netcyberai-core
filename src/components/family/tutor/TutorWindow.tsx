@@ -108,6 +108,13 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const subjectName = (s: string) => w[`fam.subject.${s}`] ?? s;
 
   // The newest at the bottom: the feed box is scrolled to its end (the page itself does not move).
+  // A question asked here at the top of the feed box (a moved one after the tab followed), its answer below it.
+  const toAsk = (n: number) =>
+    requestAnimationFrame(() => {
+      const box = feed.current;
+      const ask = box?.querySelector<HTMLElement>(`[data-tutor-ask="${n}"]`);
+      if (box && ask) box.scrollTop = ask.offsetTop - 8;
+    });
   const toNewest = () =>
     requestAnimationFrame(() => {
       const box = feed.current;
@@ -128,7 +135,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       if (!live) return;
       if (!data || !Array.isArray(data.turns)) return setTurnsError(true);
       setTurns(withoutCarried(data.turns, carried));
-      if (!carried) toNewest();
+      if (carried) toAsk(carried.n);
+      else toNewest();
     })();
     return () => {
       live = false;
@@ -222,7 +230,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         role="log"
         aria-label={fill(w['fam.chat.feed'], { subject: subjectName(subject) })}
         aria-busy={turns === null && !turnsError}
-        className={`fam-feed max-h-[70vh] flex-col gap-4 overflow-y-auto overscroll-contain ${open && shown ? 'flex' : 'hidden'}`}
+        className={`fam-feed relative max-h-[70vh] flex-col gap-4 overflow-y-auto overscroll-contain ${open && shown ? 'flex' : 'hidden'}`}
       >
         {turnsError && (
           <p role="status" className="fam-surface bg-white p-4 text-sm text-ink">

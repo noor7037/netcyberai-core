@@ -16,7 +16,7 @@ import { STUDY_STATUS_KEY } from '@/lib/family/study-status';
 
 type PanelChild = { childId: string; firstName: string; subjects: string[] };
 const MAX_BYTES = 3 * 1024 * 1024;
-const CTA = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-ink px-4 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60';
+const CTA = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-saffron px-4 text-base font-extrabold text-ink disabled:cursor-not-allowed disabled:opacity-60';
 const QUIET = 'fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60';
 const FIELD = 'min-h-[44px] w-full min-w-0 rounded-xl border border-slate/20 bg-white px-3 text-base text-slate focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/30';
 
