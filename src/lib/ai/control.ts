@@ -38,7 +38,8 @@ export async function loadAiRouting(db: Sql): Promise<AiRouting> {
 
 export type By = { userId: string };
 export type Link = { provider: string; model: string };
-export type ChangeResult = { ok: true } | { ok: false; code: ChangeError };
+// `provider` (W10): for not_cleared_for_minors, the service the database refused, so Control can name it.
+export type ChangeResult = { ok: true } | { ok: false; code: ChangeError; provider?: string };
 export type ChangeError =
   | 'account_id_format'
   | 'token_format'
@@ -127,6 +128,12 @@ const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
 const num = (v: unknown) => Number(v ?? 0);
 const CHECK_VIOLATION = '23514';
 const isCheckViolation = (err: unknown) => (err as { code?: string })?.code === CHECK_VIOLATION;
+// The provider the minors check refused, from its message ("provider <id> is not cleared for minors"); nothing else of
+// the message is passed on.
+function refusedProvider(err: unknown): { provider?: string } {
+  const m = /provider ([a-z0-9_-]{1,40}) is not cleared for minors/.exec(String((err as { message?: unknown })?.message ?? ''));
+  return m ? { provider: m[1] } : {};
+}
 
 async function audit(db: Sql, by: By, action: Action, targetId: string, before: unknown, after: unknown) {
   await writeAuditLog(db, { schoolId: null, actorUserId: by.userId, actorRole: 'super_admin', eventAction: action, targetType: action.split('_')[0].replace('ai.', 'ai_'), targetId, beforeState: before, afterState: after });
@@ -519,7 +526,10 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   } catch (err) {
     // The minors check (C368: the one gate): the database refuses a child-words profile on a provider the founder has
     // not cleared in Control.
-    if (isCheckViolation(err)) return { ok: false, code: 'not_cleared_for_minors' };
+    // W10: the check covers every slot, the Primary included, so a Primary saved while testing mode was on blocks any
+    // later change once it is off; the refusal names the service (the database's own words say which), else Control
+    // only said "that service" and a cleared backup looked refused.
+    if (isCheckViolation(err)) return { ok: false, code: 'not_cleared_for_minors', ...refusedProvider(err) };
     throw err;
   }
   await audit(db, by, 'ai.profile_changed', profileId, before, { ...next, ...(how.undoOf ? { undoOf: how.undoOf } : {}), ...(how.rollbackOf ? { rollbackOf: how.rollbackOf } : {}) });

@@ -214,6 +214,25 @@ describe('the parent area', () => {
     expect((await toFour.json()).child.freeSubject).toBe('mathematics');
   });
 
+  it('a changed class drops today’s plan built from the old class, so Home links the new class’s pages (W10, C411)', async () => {
+    const jar = await onboard('classplan@example.org');
+    const made = await (await addChild(jar, { ...CHILD, firstName: 'Riya', classLevel: 6, board: 'CBSE' })).json();
+    const id = made.child.childId;
+    const { indiaDate } = await import('@/lib/time/india');
+    const plant = () =>
+      db.pg.query(`insert into family.plan_days (account_id, child_id, day, items, minutes) select account_id, child_id, $2::date, '[]'::jsonb, 0 from family.children where child_id = $1 on conflict do nothing`, [id, indiaDate()]);
+    const plans = async () => (await db.pg.query(`select count(*)::int n from family.plan_days where child_id = $1`, [id])).rows[0].n;
+    await plant();
+    // The same class (only the name changed): today's plan stays.
+    await R.child.PATCH(req(`/api/family/children/${id}`, 'PATCH', { ...CHILD, firstName: 'Riyaa', classLevel: 6, board: 'CBSE' }, jar), { params: { childId: id } });
+    expect(await plans()).toBe(1);
+    // Class 6 to class 3: today's plan of class 6 topics goes; Home builds class 3's.
+    const toThree = await R.child.PATCH(req(`/api/family/children/${id}`, 'PATCH', { ...CHILD, firstName: 'Riyaa', classLevel: 3, board: 'CBSE' }, jar), { params: { childId: id } });
+    const body = await toThree.json();
+    expect(body).toMatchObject({ child: { classLevel: 3 } });
+    expect(await plans()).toBe(0);
+  });
+
   it('wrong PINs bring growing waits, with no hint; the right PIN after the wait opens parent mode', async () => {
     const jar = await onboard('waits@example.org');
     delete jar.ncf_parent;

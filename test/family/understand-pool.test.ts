@@ -104,7 +104,7 @@ describe('no database connection is held while the AI answers', () => {
     const ev = await answer;
     expect(ev[0]).toMatchObject({ t: 'meta', cached: false });
     expect(ev.filter((e) => e.t === 'block').map((e) => e.block.type)).toEqual(['explanation', 'check', 'practice']);
-    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false });
     expect(await usage()).toEqual({ requests: 1, failures: 0, tokens_in: 30 });
     // One safety check per block shown, metered after the call too.
     expect(await checks()).toBe(3);

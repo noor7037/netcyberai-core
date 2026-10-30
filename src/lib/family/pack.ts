@@ -81,7 +81,8 @@ export async function chapterPacks(
   for (const r of rows) {
     const key = String(r.topic_key);
     if (library.has(key) || !Array.isArray(r.blocks)) continue;
-    const blocks = completeResponse((r.blocks as unknown[]).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null));
+    // W10-2 (C411): a cached answer whose plan asked for no practice (Class 1 to 5) still goes into the pack.
+    const blocks = completeResponse((r.blocks as unknown[]).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null), ['explanation']);
     if (blocks) library.set(key, { blocks, label: r.status === 'checked' ? 'checked' : 'ai_made' });
   }
   const days = await packDays(db);

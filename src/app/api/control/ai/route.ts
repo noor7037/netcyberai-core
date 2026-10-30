@@ -113,6 +113,6 @@ export async function POST(req: NextRequest) {
     if (auditId) result = await withPlatformService((db) => undoChange(db, by, auditId));
   }
   if (!result) return NextResponse.json({ error: 'not sent properly', code: 'request' }, { status: 400, headers: NO_STORE });
-  if (!result.ok) return NextResponse.json({ error: 'not saved', code: result.code }, { status: result.code === 'no_encryption_key' ? 409 : 400, headers: NO_STORE });
+  if (!result.ok) return NextResponse.json({ error: 'not saved', code: result.code, ...('provider' in result && result.provider ? { provider: result.provider } : {}) }, { status: result.code === 'no_encryption_key' ? 409 : 400, headers: NO_STORE });
   return NextResponse.json({ ok: true }, { headers: NO_STORE });
 }

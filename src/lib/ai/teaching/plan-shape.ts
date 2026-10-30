@@ -95,7 +95,7 @@ export function checkPlan(raw: unknown, ctx: PlanContext): { plan: Plan; fromMod
   const fallback = { plan: defaultPlan(ctx), fromModel: false };
   const o = typeof raw === 'string' ? parseObject(raw) : raw;
   if (!o || typeof o !== 'object' || Array.isArray(o)) return fallback;
-  const p = o as Record<string, unknown>;
+  const p = expanded(o as Record<string, unknown>);
   if (!oneOf(QUESTION_TYPES, p.questionType) || !oneOf(BANDS, p.band) || !oneOf(DEPTHS, p.depth) || !oneOf(['en', 'hi'] as const, p.lang)) return fallback;
   if (!Array.isArray(p.blocks) || p.blocks.length === 0 || !p.blocks.every((b) => oneOf(PLAN_BLOCKS, b))) return fallback;
   const rawVisuals = p.visuals === undefined ? [] : p.visuals;
@@ -133,6 +133,22 @@ export function checkPlan(raw: unknown, ctx: PlanContext): { plan: Plan; fromMod
   }
   const kept = visuals.filter((v) => blocks.includes(VISUAL_BLOCK[v.kind]));
   return { plan: { questionType, band, depth, blocks, visuals: kept, lang: ctx.lang }, fromModel: true };
+}
+
+// The compact answer (W10, family.plan v1): t the question type, b the band, d the depth, k the blocks, v the visuals
+// (each k its kind, a what it shows), l the language. Read as the long keys; a long key the model also sent wins.
+const COMPACT: Record<string, string> = { t: 'questionType', b: 'band', d: 'depth', k: 'blocks', v: 'visuals', l: 'lang' };
+function expanded(o: Record<string, unknown>): Record<string, unknown> {
+  const p: Record<string, unknown> = { ...o };
+  for (const [short, long] of Object.entries(COMPACT)) if (p[long] === undefined && o[short] !== undefined) p[long] = o[short];
+  if (Array.isArray(p.visuals)) {
+    p.visuals = p.visuals.map((v: unknown) => {
+      if (!v || typeof v !== 'object' || Array.isArray(v)) return v;
+      const x = v as Record<string, unknown>;
+      return { kind: x.kind ?? x.k, about: x.about ?? x.a };
+    });
+  }
+  return p;
 }
 
 // The first JSON object in the text, or null.

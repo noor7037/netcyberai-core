@@ -128,7 +128,7 @@ describe('checked explanations only (C300)', () => {
     await db.pg.query(`update content.responses set status = 'checked', checked_by = $1, checked_at = now() where topic_key = $2 and language = 'hi'`, [STAFF, TOPIC]);
     const ev = await ask({ kind: 'topic', key: TOPIC });
     expect(ev[0]).toMatchObject({ t: 'meta', label: 'checked', cached: true });
-    expect(ev.at(-1)).toEqual({ t: 'done', complete: true });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false });
     // Another style, or a newer prompt version, still finds what a reviewer checked.
     await db.pg.query(`update family.children set style = 'hinglish' where child_id = $1`, [CHILD]);
     expect((await ask({ kind: 'topic', key: TOPIC }))[0]).toMatchObject({ t: 'meta', label: 'checked' });

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { Block } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
-import type { Subject } from '@/lib/family/subjects';
+import { isSubject, type Subject } from '@/lib/family/subjects';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type TutorTurn } from '@/lib/family/tutor-shape';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
 import { MindMapView } from '../blocks/MindMapView';
@@ -70,13 +70,18 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   // W9-A (C406): the child's chats in this subject and the one asked in (null: none yet; the first answer opens one).
   const [chats, setChats] = useState<ChatRow[] | null>(null);
   const [chatId, setChatId] = useState<string | null>(null);
+  // W10 (C411): a chat whose first answer the server decided is in another subject moved there; the window then lists
+  // that subject's chats with this chat open, until the subject tab changes. The next question still goes to this chat.
+  const [moved, setMoved] = useState<{ from: Subject; to: Subject } | null>(null);
+  const listed: Subject = moved && moved.from === subject ? moved.to : subject;
+  const reopen = useRef<string | null>(null);
   const stale = useRef(true);
   const root = useRef<HTMLElement>(null);
   const slot = useRef<HTMLDivElement>(null);
   const historyHead = useRef<HTMLHeadingElement>(null);
   const uid = useId().replace(/:/g, '');
   const ids = { title: `${idPrefix}-${uid}-title`, slot: `${idPrefix}-${uid}-slot`, q: `${idPrefix}-${uid}-q`, chats: `${idPrefix}-${uid}-chats` };
-  const subjectName = w[`fam.subject.${subject}`] ?? subject;
+  const subjectName = w[`fam.subject.${listed}`] ?? listed;
   const current = chats?.find((c) => c.chatId === chatId) ?? null;
   const full = current?.status === 'full';
 
@@ -92,7 +97,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   // this child's own, else the most recently used one.
   const fetchChats = useCallback(
     async (chat: string | null, withTurns: boolean) => {
-      const q = `subject=${encodeURIComponent(subject)}${chat ? `&chat=${encodeURIComponent(chat)}` : ''}${withTurns ? '' : '&turns=0'}`;
+      const q = `subject=${encodeURIComponent(listed)}${chat ? `&chat=${encodeURIComponent(chat)}` : ''}${withTurns ? '' : '&turns=0'}`;
       const res = await fetch(`/api/family/tutor?${q}`, { credentials: 'same-origin', cache: 'no-store' }).catch(() => null);
       const data = res?.ok ? ((await res.json().catch(() => null)) as { chats?: ChatRow[]; chatId?: string | null; turns?: TutorTurn[] } | null) : null;
       if (!data || !Array.isArray(data.chats)) return null;
@@ -100,7 +105,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       setChatId(data.chatId ?? null);
       return data;
     },
-    [subject]
+    [listed]
   );
 
   const loadTurns = useCallback(
@@ -120,18 +125,30 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
 
   // The list (and whether the chat is full) as the window opens.
   useEffect(() => {
-    void fetchChats(null, false);
+    const keep = reopen.current;
+    reopen.current = null;
+    void fetchChats(keep, false);
   }, [fetchChats]);
 
   useEffect(() => {
     if (view === 'history' && stale.current) void loadTurns(chatId);
   }, [view, loadTurns, chatId]);
 
-  // An answer kept (or refused because the chat filled up): the list and the chat's state are read again.
-  const onAnswered = useCallback(() => {
-    stale.current = true;
-    void fetchChats(chatId, false);
-  }, [fetchChats, chatId]);
+  // An answer kept (or refused because the chat filled up): the list and the chat's state are read again. W10 (C411):
+  // the answer names the chat it was kept in and that chat's subject; another subject's chat is listed under it.
+  const onAnswered = useCallback(
+    (chat?: { chatId: string; subject: string }) => {
+      stale.current = true;
+      if (chat && chat.subject !== listed && isSubject(chat.subject)) {
+        reopen.current = chat.chatId;
+        setChatId(chat.chatId);
+        setMoved({ from: subject, to: chat.subject });
+        return;
+      }
+      void fetchChats(chat?.chatId ?? chatId, false);
+    },
+    [fetchChats, chatId, listed, subject]
+  );
 
   const pickChat = (id: string) => {
     if (!id) return;
@@ -146,6 +163,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   const startNew = async () => {
+    // A new chat opens in the subject tab's own subject (a moved chat's list is left).
     const res = await postJson('/api/family/tutor', { subject });
     const made = res?.ok ? ((await res.json().catch(() => null)) as { chatId?: string } | null) : null;
     if (!made?.chatId) return;
@@ -153,7 +171,11 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     setTurns([]);
     stale.current = false;
     setView('ask');
-    await fetchChats(made.chatId, false);
+    if (listed !== subject) {
+      reopen.current = made.chatId;
+      setChatId(made.chatId);
+      setMoved(null);
+    } else await fetchChats(made.chatId, false);
     document.getElementById(ids.q)?.focus();
   };
 
@@ -214,7 +236,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   return (
-    <section ref={root} data-tutor-window data-subject={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
+    <section ref={root} data-tutor-window data-subject={subject} data-listed={listed} aria-labelledby={ids.title} className="flex flex-col gap-4">
       <h2 id={ids.title} className="sr-only">
         {w['fam.tutor.title']}
       </h2>

@@ -95,3 +95,63 @@ describe('NVIDIA NIM: the key test', () => {
     expect(await nvidiaAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 401 });
   });
 });
+
+// W10 (latency): NIM's reasoning models thought for up to a minute before the first word of a child's answer.
+describe('NVIDIA NIM: thinking off (W10)', () => {
+  const reasoningThenText = () => {
+    const events = [
+      { choices: [{ index: 0, delta: { role: 'assistant', content: null, reasoning_content: 'Let me think about ' }, finish_reason: null }] },
+      { choices: [{ index: 0, delta: { reasoning: 'magnets.' }, finish_reason: null }] },
+      { choices: [{ index: 0, delta: { content: 'Iron ' }, finish_reason: null }] },
+      { choices: [{ index: 0, delta: { content: 'is pulled.' }, finish_reason: null }] },
+      { choices: [{ index: 0, delta: {}, finish_reason: 'stop' }] },
+      { choices: [], usage: { prompt_tokens: 30, completion_tokens: 12 } },
+    ];
+    const body = [...events.map((e) => `data: ${JSON.stringify(e)}\n\n`), 'data: [DONE]\n\n'].join('');
+    return new Response(body, { status: 200, headers: { 'content-type': 'text/event-stream' } });
+  };
+
+  it('every request sends the chat template switch off, under both names', async () => {
+    await nvidiaAdapter.streamText(request(), () => {});
+    const body = JSON.parse(calls[0].body);
+    expect(body.chat_template_kwargs).toEqual({ enable_thinking: false, thinking: false });
+    // A model that is not Nemotron gets no system line of ours.
+    expect(body.messages[0]).toEqual({ role: 'system', content: 'Explain for a Class 6 student.' });
+  });
+
+  it('a Nemotron model also gets "detailed thinking off" as the first system line, before the instructions and JSON line', async () => {
+    await nvidiaAdapter.streamText(request({ model: 'nvidia/nemotron-made-up-vl-1b', responseFormat: 'json' }), () => {});
+    const system: string = JSON.parse(calls[0].body).messages[0].content;
+    expect(system.split('\n')[0]).toBe('detailed thinking off');
+    expect(system.indexOf('Explain for a Class 6 student.')).toBeGreaterThan(0);
+  });
+
+  it("a request that asks for reasoning 'on' sends the switch on and no system line", async () => {
+    await nvidiaAdapter.streamText(request({ model: 'nvidia/nemotron-made-up-vl-1b', reasoning: 'on' }), () => {});
+    const body = JSON.parse(calls[0].body);
+    expect(body.chat_template_kwargs).toEqual({ enable_thinking: true, thinking: true });
+    expect(body.messages[0].content).toBe('Explain for a Class 6 student.');
+  });
+
+  it('thinking deltas (reasoning_content, reasoning) are never handed on or kept: only delta.content is the answer', async () => {
+    reply = reasoningThenText;
+    const pieces: string[] = [];
+    const r = await nvidiaAdapter.streamText(request(), (p) => pieces.push(p));
+    expect(pieces).toEqual(['Iron ', 'is pulled.']);
+    expect(r).toEqual({ ok: true, text: 'Iron is pulled.', tokensIn: 30, tokensOut: 12, finish: 'stop' });
+  });
+
+  it("the platform's abort (a first-text deadline) ends the call as a network failure", async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (_url: string, init: RequestInit) => {
+        const signal = init.signal as AbortSignal;
+        return await new Promise<Response>((_resolve, reject) => signal.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError'))));
+      })
+    );
+    const abort = new AbortController();
+    const pending = nvidiaAdapter.streamText(request({ signal: abort.signal }), () => {});
+    abort.abort();
+    expect(await pending).toEqual({ ok: false, failure: 'network' });
+  });
+});

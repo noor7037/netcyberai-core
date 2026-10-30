@@ -285,3 +285,20 @@ describe('two configured providers, side by side', () => {
     }
   });
 });
+
+// W10 (latency): the run's summary gives each model's p50 and p95 time, and the same for its first words.
+describe('the Lab summary: latency (W10)', () => {
+  it('p50 and p95 of the whole time and of the first words, over the answers only', () => {
+    const cell = (i: number, latencyMs: number, firstTokenMs: number | null, errorClass: string | null = null) => ({
+      resultId: String(i), caseId: `c${i}`, provider: 'nvidia', model: 'made-up-model', outputText: '', latencyMs, firstTokenMs, tokensIn: 1, tokensOut: 1,
+      jsonValid: null, checkPassed: null, errorClass, score: null, notes: null, createdAt: '2026-10-30T00:00:00Z', costUsd: null,
+    });
+    // Twenty answers of 1..20 s (first words at a tenth of each), and one timeout that is left out.
+    const cells = Array.from({ length: 20 }, (_, i) => cell(i, (i + 1) * 1000, (i + 1) * 100));
+    cells.push(cell(99, 60_000, null, 'upstream_timeout'));
+    const table = { columns: [{ provider: 'nvidia', model: 'made-up-model' }], rows: cells.map((c) => ({ caseId: c.caseId, cells: [c as never] })) };
+    const [s] = columnSummaries(table);
+    expect(s).toMatchObject({ answered: 20, failed: 1, medianMs: 10_500, p95Ms: 19_000, firstTextMedianMs: 1_050, firstTextP95Ms: 1_900 });
+    expect(columnSummaries({ columns: table.columns, rows: [] })[0]).toMatchObject({ medianMs: null, p95Ms: null, firstTextMedianMs: null, firstTextP95Ms: null });
+  });
+});
