@@ -9668,4 +9668,20 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w13-b staff start
+  'control.school.staff.title': 'Staff',
+  'control.school.staff.kpi.total': 'Staff in all',
+  'control.school.staff.kpi.teaching': 'Teaching',
+  'control.school.staff.kpi.nonTeaching': 'Not teaching',
+  'control.school.staff.kpi.active': 'Active',
+  'control.school.staff.inactiveNote': '{n} no longer active',
+  'control.school.staff.col.name': 'Name',
+  'control.school.staff.col.role': 'Role',
+  'control.school.staff.col.subjects': 'Subjects',
+  'control.school.staff.col.status': 'Status',
+  'control.school.staff.col.joined': 'Joined',
+  'control.school.staff.empty.title': 'No staff yet',
+  'control.school.staff.empty.desc': 'When this school adds its staff, they will be listed here.',
+  'control.school.staff.failed': 'Could not load the staff.',
+  // w13-b staff end
 } as const;

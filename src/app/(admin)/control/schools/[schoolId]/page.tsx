@@ -6,6 +6,7 @@ import { withTenantContext } from '@/lib/auth/db';
 import { SchoolOnboardingPanel } from '@/components/control/SchoolOnboardingPanel';
 import { SchoolEntitlements } from '@/components/control/SchoolEntitlementsPanel';
 import { BoardSchoolPanel } from '@/components/control/BoardSchoolPanel';
+import { SchoolStaffPanel } from '@/components/control/SchoolStaffPanel';
 import { SchoolChecklistPanel } from '@/components/control/SchoolChecklistPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { getLang } from '@/lib/i18n/server';
@@ -72,6 +73,7 @@ export default async function SchoolDetailPage({ params }: { params: { schoolId:
     if (tab.id === 'exams' && school) {
       return { id: tab.id, label: tab.label, content: <BoardSchoolPanel schoolId={school.school_id} /> };
     }
+    if (tab.id === 'staff' && school) return { id: tab.id, label: tab.label, content: <SchoolStaffPanel schoolId={school.school_id} /> };
     return {
       id: tab.id,
       label: tab.label,
