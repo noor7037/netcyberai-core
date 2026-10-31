@@ -1,20 +1,37 @@
-# NetCyberAI — Public Web Platform (Phase 0)
+# NetCyberAI
 
 WhatsApp-native Student Learning Monitoring & Parent Engagement Engine
-for Indian schools. This repository currently contains **only the
-Phase 0 public marketing site** — no database, no authentication, no
-messaging integration. That's a statement about what's actually built
-here, not about what's authorized: Phase 1 (Control Plane, School
-Portal) was originally gated behind a pilot-data trigger in
-[`docs/01_CONSTITUTION.md`](docs/01_CONSTITUTION.md) §6, but that gate
-was overridden by founder decision — see Amendment 1 in that same
-section. Start at [`docs/00_START_HERE.md`](docs/00_START_HERE.md) for
-the full picture and the Phase 1 build sequence.
+for Indian schools. This repository holds the whole product:
+
+- **The school platform** (`src/app/(school)`): principal, teachers and the
+  office: students, attendance, fees, exams and AI marking, papers, the
+  timetable, WhatsApp messages and notices.
+- **The Family app** (`src/app/(family)/family`): one app for parents and
+  children: the Study tutor with memory and visual answers, Understand,
+  English, Future hubs, the parent area, School Link, offline packs. Also an
+  Android shell (`android/`).
+- **Control** (`src/app/(admin)/control`): NetCyberAI staff only: schools,
+  onboarding and one-click provisioning, Leads, the AI gateway and Quality
+  Lab, the content library and its coverage, billing, monitoring.
+- **The public site** (`src/app`): marketing pages, the demo, pricing,
+  verification pages.
+
+**Where it stands today:** [`docs/00_CURRENT_MILESTONE.md`](docs/00_CURRENT_MILESTONE.md)
+(the current milestone, what is live, what is next, the launch blockers).
+Decisions and their reasons: [`docs/10_DECISION_LOG.md`](docs/10_DECISION_LOG.md).
+The plan: [`docs/16_MASTER_ROADMAP.md`](docs/16_MASTER_ROADMAP.md). The
+reading order for a new session: [`docs/00_START_HERE.md`](docs/00_START_HERE.md)
+and [`CLAUDE.md`](CLAUDE.md).
+
+**Running the checks:** `bash scripts/ci_local.sh` runs the same steps as
+`.github/workflows/checks.yml` (typecheck, tests, the checkers in
+`scripts/`). Run it once before a push; while building, run `npx tsc --noEmit -p .`
+and the tests of the files you changed.
 
 ## Stack
 
 Next.js 14 (App Router, standard Vercel output — not static export),
-TypeScript strict, Tailwind. See
+TypeScript strict, Tailwind, Postgres (Supabase) with row level security. See
 [`docs/03_ARCHITECTURE_PLAIN.md`](docs/03_ARCHITECTURE_PLAIN.md) for
 the reasoning in plain language.
 
@@ -45,7 +62,11 @@ other tracked file.
 
 | Path | What it is |
 |---|---|
-| `src/app/` | Pages (App Router) |
+| `src/app/` | Pages and API routes (App Router): the public site, `(school)`, `(family)`, `(admin)/control`, `api/` |
+| `src/lib/` | Logic by module: `family/`, `ai/`, `content/`, `fees/`, `marking/` and more; `contracts/` holds the typed shapes screens are built against |
+| `supabase/migrations/` | The database, one migration per change |
+| `docs/` | The plan, the Decision Log and the module specs; `docs/family-app/` for the Family app |
+| `scripts/` | `ci_local.sh`, the checkers and the screenshot harness |
 | `src/components/` | UI, layout, content, and demo components |
 | `src/content/blog/` | Blog post data (`BlogPost` objects, see `contract.ts`) |
 | `src/demo-fixture/` | The **only** allowlisted fictional data in the repo — used solely by `/demo` |
@@ -59,8 +80,8 @@ other tracked file.
   `/demo` is the single allowlisted exception, and even there names and
   figures are fictional but plausible — never a real school.
 - **No dummy data outside the fixture.** Enforced by CI (see below).
-- **The Bridge Rule.** Overridden by Amendment 1 — Phase 1 is
-  authorized. Read [`docs/01_CONSTITUTION.md`](docs/01_CONSTITUTION.md)
+- **The Bridge Rule.** Overridden by Amendment 1 — the platform is
+  authorized and built. Read [`docs/01_CONSTITUTION.md`](docs/01_CONSTITUTION.md)
   §6 and [`docs/08_EXECUTION_BIBLE.md`](docs/08_EXECUTION_BIBLE.md)
   before starting Control Plane or School Portal work, not because
   it's blocked, but because the build sequence and its gates
@@ -98,7 +119,7 @@ build/typecheck/audit) before a change is considered done.
 `.github/workflows/checks.yml` runs the same checks on every push and
 pull request.
 
-## Not yet done (manual, before a real launch)
+## Not yet done (manual, before the first real school)
 
 These cannot be verified by an AI session and are not automated in CI:
 
@@ -114,5 +135,7 @@ These cannot be verified by an AI session and are not automated in CI:
   pricing card immediately before publish, even though none is
   currently hardcoded (see `src/lib/site-config.ts` and the fee-recovery
   feature page for how this is handled without a fixed number).
-- DNS and hosting deploy — needs credentials this repo does not have
-  and no session should have without the domain owner present.
+- The production database cutover before the first real school
+  ([`docs/18_PRODUCTION_CUTOVER.md`](docs/18_PRODUCTION_CUTOVER.md)). The site
+  is live at www.netcyberai.com on the test database; the cutover needs
+  credentials only the founder holds.

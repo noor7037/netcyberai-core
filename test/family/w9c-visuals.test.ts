@@ -240,7 +240,7 @@ describe('the views', () => {
       const out = html(h(FigureView, { b: checkBlock({ ...FIGURE, shape }) as Figure, tone: 'science' }));
       expect(out).toContain(`data-figure="${shape}"`);
       expect(out).toContain('data-block="figure"');
-      expect(out).toContain('border-l-violet');
+      expect(out).toContain('border-l-lesson-lilac-deep');
       expect(out).not.toMatch(/<(linear|radial)Gradient/);
     }
     const out = html(h(FigureView, { b: checkBlock(FIGURE) as Figure, tone: 'science' }));

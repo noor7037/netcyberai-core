@@ -179,6 +179,13 @@ ALLOWED_PERMISSIVE = (
         ("leads", "leads_super_admin_write"),
         # W7-L: Control -> Leads CSV import; the same super_admin role check.
         ("leads", "leads_super_admin_insert"),
+        # W12-F: replies sent to a lead. The super_admin role check, as on leads; the email job's read and insert are
+        # scoped `to nca_super`, so no school role gains anything. Select and insert only: a sent reply never changes.
+        ("lead_replies", "lead_replies_super_admin_read"),
+        ("lead_replies", "lead_replies_super_admin_insert"),
+        ("lead_replies", "lead_replies_platform_read"),
+        ("lead_replies", "lead_replies_platform_insert"),
+        ("lead_replies", "lead_replies_no_parent"),
         # B2 (Decision Log C97, C98): platform tables. Every policy is
         # scoped `to nca_super` (BYPASSRLS anyway; the policies state the
         # intended access), app_user/app_backend/anon/authenticated hold no

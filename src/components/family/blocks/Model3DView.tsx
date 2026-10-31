@@ -121,7 +121,7 @@ export function Model3DView({ b, w, tone }: { b: Model3D; w: Words; tone: string
   const dims = Object.entries(b.dims).map(([k, v]) => `${k} = ${num(v)}${u}`).join(', ');
   const note = saver.ready && saver.state.on ? w['fam.model.saver'] : failed ? w['fam.model.failed'] : glOk === false ? w['fam.model.noGl'] : null;
   const canAsk = saver.ready && !saver.state.on && glOk === true && !failed;
-  const btn = 'fam-press flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white px-3 text-sm font-bold text-royal-deep ring-1 ring-royal/25';
+  const btn = 'fam-press flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white px-3 text-sm font-bold text-ink ring-1 ring-ink/25';
 
   return (
     <Card title={b.title} tone={tone} tag="model_3d">
@@ -133,7 +133,7 @@ export function Model3DView({ b, w, tone }: { b: Model3D; w: Words; tone: string
             aria-label={fill(w['fam.model.aria'], { title: b.title })}
             tabIndex={0}
             data-model-canvas
-            className="h-64 w-full max-w-md touch-none rounded-2xl bg-off-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal"
+            className="h-64 w-full max-w-md touch-none rounded-2xl bg-off-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             onPointerDown={(e) => {
               drag.current = { x: e.clientX, y: e.clientY };
               e.currentTarget.setPointerCapture(e.pointerId);
@@ -181,7 +181,7 @@ export function Model3DView({ b, w, tone }: { b: Model3D; w: Words; tone: string
         )}
         {view === '3d' && <p className="text-xs text-slate/80">{loading ? w['fam.model.loading'] : w['fam.model.hint']}</p>}
         {canAsk && (
-          <button type="button" data-model-3d-ask onClick={() => (view === '3d' ? setAsked(false) : setAsked(true))} className="fam-press flex min-h-[44px] items-center rounded-full bg-royal-deep px-5 text-sm font-bold text-white">
+          <button type="button" data-model-3d-ask onClick={() => (view === '3d' ? setAsked(false) : setAsked(true))} className="fam-press flex min-h-[44px] items-center rounded-full bg-ink px-5 text-sm font-bold text-white">
             {view === '3d' ? w['fam.model.back2d'] : w['fam.model.see3d']}
           </button>
         )}

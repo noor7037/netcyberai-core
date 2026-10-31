@@ -23,7 +23,7 @@ export function SchoolSyllabus({ w, chapters, tone }: { w: Words; chapters: { ti
           <li key={`${c.title}-${i}`} className="fam-surface bg-white">
             <details name={CHAPTER_GROUP} className="fam-acc">
               <summary className="flex min-h-[60px] items-center gap-3 rounded-2xl px-3 py-2">
-                <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink text-base font-black text-white shadow-sm ${theme.tile}`}>
+                <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-base font-black shadow-sm ${theme.chip}`}>
                   {i + 1}
                 </span>
                 <span className="min-w-0 flex-1 text-base font-bold text-slate">{c.title}</span>

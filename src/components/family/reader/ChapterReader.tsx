@@ -300,7 +300,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
             </p>
           )}
           <div role="progressbar" aria-label={w['fam.reader.progress']} aria-valuemin={0} aria-valuemax={100} aria-valuenow={pct} className="h-2 overflow-hidden rounded-full bg-slate/10">
-            <div className="h-2 rounded-full bg-royal" style={{ width: `${pct}%` }} />
+            <div className="h-2 rounded-full bg-lesson-mint-deep" style={{ width: `${pct}%` }} />
           </div>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-1">
@@ -313,7 +313,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
                 type="button"
                 onClick={playing ? pause : play}
                 data-reader-play
-                className="flex min-h-[48px] items-center gap-2 rounded-full bg-royal-deep px-5 text-base font-bold text-white"
+                className="flex min-h-[48px] items-center gap-2 rounded-full bg-saffron px-5 text-base font-bold text-ink"
               >
                 {playing ? (
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor">
@@ -339,7 +339,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
                   type="button"
                   aria-pressed={speed === s}
                   onClick={() => setSpeed(s)}
-                  className={`flex h-11 min-w-[44px] items-center justify-center rounded-full px-2 text-sm font-bold ${speed === s ? 'bg-royal-deep text-white' : 'bg-off-white text-slate'}`}
+                  className={`flex h-11 min-w-[44px] items-center justify-center rounded-full px-2 text-sm font-bold ${speed === s ? 'bg-ink text-white' : 'bg-off-white text-slate'}`}
                 >
                   {s}×
                 </button>
@@ -351,7 +351,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
               type="button"
               onClick={openDoubt}
               data-reader-doubt
-              className="fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-white px-4 text-base font-bold text-royal-deep ring-1 ring-royal/20 hover:bg-off-white"
+              className="fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-white px-4 text-base font-bold text-ink ring-1 ring-ink/25 hover:bg-off-white"
             >
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
@@ -362,7 +362,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
           )}
           <label className="flex flex-col gap-1 text-xs font-semibold text-slate">
             <span>{fill(w['fam.reader.position'], { n: index + 1, total })}</span>
-            <input type="range" min={0} max={Math.max(total - 1, 0)} step={1} value={index} onChange={(e) => seek(Number(e.target.value))} aria-label={w['fam.reader.seek']} className="h-11 w-full accent-royal" />
+            <input type="range" min={0} max={Math.max(total - 1, 0)} step={1} value={index} onChange={(e) => seek(Number(e.target.value))} aria-label={w['fam.reader.seek']} className="h-11 w-full accent-saffron-deep" />
           </label>
           <p data-voice-in-use={voice} className="text-xs text-slate/80">
             {w[voice === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}

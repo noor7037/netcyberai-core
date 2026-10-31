@@ -33,7 +33,7 @@ export default async function FamilyVaultPage() {
   }));
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.vault.title']} tone="royal" />
+      <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.vault.title']} tone="ink" />
       <main className="fam-page" data-parent-vault>
         <LinkRow href="/family/parent/tests" icon="sheet" data-parent-tests-link="" card>
           {w['fam.tests.link']}

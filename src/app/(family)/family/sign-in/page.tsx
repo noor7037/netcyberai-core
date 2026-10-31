@@ -15,14 +15,14 @@ export default function FamilySignInPage() {
   const lang = familyLangBeforeSignIn();
   return (
     <div lang={lang} className="mx-auto flex min-h-screen w-full max-w-md flex-col">
-      <header className="bg-gradient-to-br from-royal-deep to-royal px-4 pb-10 pt-8 text-white">
-        <p className="text-sm font-bold uppercase tracking-wide text-white/90">{t(lang, 'fam.app.name')}</p>
+      <header className="bg-paper px-4 pb-10 pt-8 text-ink">
+        <p className="text-sm font-bold uppercase tracking-wide text-saffron-deep">{t(lang, 'fam.app.name')}</p>
         <p className="mt-2 text-2xl font-extrabold">{t(lang, 'fam.signIn.tagline')}</p>
       </header>
       <main className="-mt-6 flex-1 rounded-t-3xl bg-off-white px-4 pb-10 pt-6">
         <FamilySignIn w={familyWords(lang, KEYS)} lang={lang} />
         <p className="mt-8 text-center text-sm">
-          <a href="/family/link" data-link-child-phone className="inline-flex min-h-[44px] items-center font-semibold text-royal underline">
+          <a href="/family/link" data-link-child-phone className="inline-flex min-h-[44px] items-center font-semibold text-ink underline">
             {t(lang, 'fam.link.signInLink')}
           </a>
         </p>

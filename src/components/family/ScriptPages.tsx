@@ -19,7 +19,7 @@ export function ScriptPages({ pages, marks, w }: { pages: MarkedScriptPage[]; ma
     return (
       <div className="flex flex-col items-start gap-2" data-pages-saver>
         <p className="text-sm text-slate">{w['fam.marks.saverNote']}</p>
-        <button type="button" onClick={() => setAsked(true)} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-off-white px-4 text-sm font-bold text-royal">
+        <button type="button" onClick={() => setAsked(true)} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-off-white px-4 text-sm font-bold text-ink">
           {w['fam.marks.showPages']}
         </button>
       </div>

@@ -39,11 +39,11 @@ export default async function FamilyNotificationsPage() {
             {items.map((i, n) => (
               <li key={i.id} className="fam-rise" style={{ ['--d' as string]: `${n * 50}ms` } as React.CSSProperties}>
                 <Link href={i.href} data-notify-item={i.kind} className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4 text-base font-semibold text-slate">
-                  <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+                  <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
                     <FamIcon name={i.kind === 'tonight' ? 'bulb' : i.kind === 'request' ? 'sheet' : 'bell'} className="h-5 w-5" />
                   </span>
                   <span className="min-w-0 flex-1">{text(i)}</span>
-                  <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
+                  <FamIcon name="next" className="h-5 w-5 shrink-0 text-ink" />
                 </Link>
               </li>
             ))}

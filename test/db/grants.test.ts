@@ -55,6 +55,7 @@ const APP_USER: Record<string, string> = {
   impersonation_sessions: 'DELETE,INSERT,SELECT,UPDATE',
   intake_rate_events: '',
   jobs: 'INSERT',
+  lead_replies: '', // W12-F: the platform role only (NCA_SUPER_DIFFERS)
   leads: 'DELETE,INSERT,SELECT,UPDATE',
   marks: 'DELETE,INSERT,SELECT,UPDATE',
   memberships: 'DELETE,INSERT,SELECT,UPDATE',
@@ -295,6 +296,7 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   fee_followups: 'SELECT', // the nightly reminders hold while a promise or hardship is open
   fee_refunds: '',
   fee_reminders: 'INSERT,SELECT', // the nightly reminders (C179)
+  lead_replies: 'INSERT,SELECT', // W12-F: a sent reply is recorded once, never changed
   fee_clearance_overrides: '',
   class_notices: 'SELECT',
   ptm_events: 'SELECT',

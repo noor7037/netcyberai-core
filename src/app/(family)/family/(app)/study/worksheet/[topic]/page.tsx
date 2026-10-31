@@ -30,7 +30,7 @@ export default async function FamilyWorksheetPage({ params }: { params: { topic:
       {understand && (
         <Link
           href={`/family/understand?kind=${line.topicEn ? 'topic' : 'chapter'}&key=${encodeURIComponent(line.key)}`}
-          className="fam-cta fam-press inline-flex min-h-[48px] items-center self-start rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-5 py-2 font-extrabold text-white"
+          className="fam-cta fam-press inline-flex min-h-[48px] items-center self-start rounded-2xl bg-saffron px-5 py-2 font-extrabold text-ink"
         >
           {t(lang, 'fam.worksheet.openUnderstand')}
         </Link>

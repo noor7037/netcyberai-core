@@ -21,7 +21,7 @@ export default async function FamilyHomeworkPage() {
   const on = await familyPageRead(page, (db) => familyModuleOn(db, 'homework', page.session.accountId));
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family/study" backLabel={t(lang, 'fam.study.title')} kicker={classText((k) => t(lang, k), child.classLevel)} title={t(lang, 'fam.homework.title')} tone="royal" />
+      <SubPageHeader back="/family/study" backLabel={t(lang, 'fam.study.title')} kicker={classText((k) => t(lang, k), child.classLevel)} title={t(lang, 'fam.homework.title')} tone="ink" />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
         {on && !page.consents.photo_input ? (
           <p data-homework-consent className="fam-card fam-rise bg-white p-5 text-base text-slate">

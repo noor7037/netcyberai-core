@@ -19,7 +19,7 @@ export function ImageView({ b, w, tone }: { b: ImageBlock; w: Words; tone: strin
         </div>
         <figcaption className="flex flex-col gap-1">
           <span className="text-base text-slate">{b.caption}</span>
-          <a href={b.source} target="_blank" rel="noopener noreferrer" data-photo-credit className="inline-flex min-h-[44px] items-center self-start text-sm font-semibold text-royal-deep underline underline-offset-4">
+          <a href={b.source} target="_blank" rel="noopener noreferrer" data-photo-credit className="inline-flex min-h-[44px] items-center self-start text-sm font-semibold text-ink underline underline-offset-4">
             {fill(w['fam.block.photoCredit'], { author: b.credit, licence: b.licence })}
           </a>
         </figcaption>

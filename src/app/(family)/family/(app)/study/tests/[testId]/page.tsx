@@ -84,7 +84,7 @@ export default async function FamilySchoolTestPage({ params }: { params: { testI
         backLabel={t(lang, 'fam.study.title')}
         kicker={classText((k) => t(lang, k), child.classLevel)}
         title={t(lang, 'fam.test.title')}
-        tone="royal"
+        tone="ink"
       />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24" data-school-test-page>
         <TestSitting w={familyWords(lang, KEYS)} lang={lang} test={test} testId={params.testId} />

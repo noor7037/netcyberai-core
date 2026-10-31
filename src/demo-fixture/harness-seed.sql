@@ -406,6 +406,15 @@ insert into leads (source, school_name, contact_name, contact_phone, contact_ema
   ('contact', 'Gulf Example Academy', 'Omar Example', '0503000001', 'omar@example.test', 'Jeddah', null, '{}', 'Please call after 4 pm.', '+91', null, 'new', now() - interval '2 days'),
   ('quote', 'Example Convent School', 'Ravi Example', '98100 00012', 'ravi@example.test', 'Lucknow', '1,000-2,500', '{records,exams}', null, '+91', '+919810000012', 'qualified', now() - interval '3 days');
 -- w7-l end
+-- w12-f begin
+-- The automatic first reply (W12-F), sent to the newest made-up lead two minutes after it arrived, so the lead panel
+-- shows "First reply sent" and what was sent. The text is the lead_first_reply template's, for this made-up school.
+insert into lead_replies (lead_id, kind, channel, sent_at, provider_id, body)
+select lead_id, 'first_reply', 'email', created_at + interval '2 minutes', 'harness-example-reply',
+       E'Hello Anita Example,\n\nThank you for asking about NetCyberAI for Harness Example Public School.\n\nNetCyberAI keeps students, guardians, classes, sections, admissions and certificates in one validated school record.\n\nThere are two easy next steps. Choose whichever suits you:\n1. A 20-minute call, at a time that works for you.\n2. A pilot on one class, so your teachers can try it first.\n\nTo choose one, reply to this email or message me on WhatsApp at +91 98177 07037.\nWhatsApp: https://wa.me/919817707037\n\nNoor\nFounder, NetCyberAI'
+  from leads where school_name = 'Harness Example Public School';
+update leads set status = 'contacted', status_changed_at = created_at + interval '2 minutes' where school_name = 'Harness Example Public School';
+-- w12-f end
 -- w10-3 begin
 -- The lesson identity preview (W10-3, C412): an illustrative family whose six children (classes 3, 6, 8, 11, 11 and 12)
 -- each have one cached answer, so the harness photographs the Understand page as a real render of real blocks: a black

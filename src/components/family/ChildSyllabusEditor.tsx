@@ -24,11 +24,11 @@ const MAX_TOPICS = 40;
 const MAX_SIDE = 2000;
 
 // D1's call to action and quiet button (as in the homework helper), and the small icon buttons of a line.
-const CTA = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-4 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60';
+const CTA = 'fam-cta fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-saffron px-4 text-base font-extrabold text-ink disabled:cursor-not-allowed disabled:opacity-60';
 const QUIET = 'fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60';
 const ICON_BUTTON = 'fam-press flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-slate hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-40';
-const LINK_BUTTON = 'fam-press min-h-[44px] self-start rounded-xl px-2 text-sm font-semibold text-royal underline-offset-4 hover:underline';
-const FIELD = 'min-h-[44px] w-full min-w-0 flex-1 rounded-xl border border-slate/20 bg-white px-3 text-base text-slate focus:border-royal focus:outline-none focus:ring-2 focus:ring-royal/30';
+const LINK_BUTTON = 'fam-press min-h-[44px] self-start rounded-xl px-2 text-sm font-semibold text-ink underline-offset-4 hover:underline';
+const FIELD = 'min-h-[44px] w-full min-w-0 flex-1 rounded-xl border border-slate/20 bg-white px-3 text-base text-slate focus:border-ink focus:outline-none focus:ring-2 focus:ring-ink/25';
 
 const PATH = { up: 'M6 15l6-6 6 6', down: 'M6 9l6 6 6-6', remove: 'M6 6l12 12M18 6L6 18', add: 'M12 5v14M5 12h14' } as const;
 function Glyph({ d }: { d: string }) {
@@ -205,7 +205,7 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
               aria-pressed={c.childId === child.childId}
               disabled={!!editing || !!busy}
               onClick={() => choose(c.childId, c.subjects[0] ?? '')}
-              className={`fam-press min-h-[44px] rounded-full px-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 ${c.childId === child.childId ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
+              className={`fam-press min-h-[44px] rounded-full px-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 ${c.childId === child.childId ? 'bg-ink text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
             >
               {c.firstName}
             </button>
@@ -221,7 +221,7 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
             aria-pressed={s === subject}
             disabled={!!editing || !!busy}
             onClick={() => choose(child.childId, s)}
-            className={`fam-press min-h-[44px] rounded-full px-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 ${s === subject ? 'bg-royal text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
+            className={`fam-press min-h-[44px] rounded-full px-4 font-bold disabled:cursor-not-allowed disabled:opacity-60 ${s === subject ? 'bg-ink text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}
           >
             {w[`fam.subject.${s}`] ?? s}
           </button>
@@ -448,7 +448,7 @@ export function ChildSyllabusEditor({ w, childList, syllabi: initial, studyCore 
       )}
 
       {busy && (
-        <p role="status" className="animate-pulse text-base font-semibold text-royal motion-reduce:animate-none">
+        <p role="status" className="animate-pulse text-base font-semibold text-ink motion-reduce:animate-none">
           {busy}
         </p>
       )}

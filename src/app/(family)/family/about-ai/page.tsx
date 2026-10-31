@@ -57,7 +57,7 @@ export default async function FamilyAboutAiPage() {
         </section>
       )}
 
-      <a href="/family" className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-royal-deep underline-offset-4 hover:underline">
+      <a href="/family" className="inline-flex min-h-[44px] items-center self-start rounded-2xl px-1 font-bold text-ink underline-offset-4 hover:underline">
         {t(lang, 'fam.ai.back')}
       </a>
     </main>

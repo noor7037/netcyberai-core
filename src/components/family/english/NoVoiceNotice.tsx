@@ -14,7 +14,7 @@ export function NoVoiceNotice({ inApp, words }: { inApp: boolean; words: { app: 
   }, []);
   if (!shown) return null;
   return (
-    <div role="status" data-no-voice className="fixed inset-x-3 bottom-[calc(var(--fam-bottom,0px)+6rem)] z-40 mx-auto flex max-w-xl items-center gap-3 rounded-2xl bg-midnight py-2 pl-4 pr-2 text-base font-semibold text-white shadow-lg">
+    <div role="status" data-no-voice className="fixed inset-x-3 bottom-[calc(var(--fam-bottom,0px)+6rem)] z-40 mx-auto flex max-w-xl items-center gap-3 rounded-2xl bg-ink py-2 pl-4 pr-2 text-base font-semibold text-white shadow-lg">
       <span className="flex-1">{inApp ? words.app : words.browser}</span>
       <button type="button" onClick={() => setShown(false)} className="min-h-[44px] rounded-full px-4 font-bold text-white ring-1 ring-white/40">
         {words.close}

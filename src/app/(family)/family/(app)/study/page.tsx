@@ -59,7 +59,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   if (isPrePrimary(child.classLevel)) {
     return (
       <div lang={lang} className="flex min-h-screen flex-col">
-        <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone="royal" />
+        <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} tone="ink" />
         <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
           <p data-pre-primary className="fam-card bg-white p-5 text-base text-slate">
             {t(lang, 'fam.study.prePrimary')}

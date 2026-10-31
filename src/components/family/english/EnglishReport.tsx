@@ -75,7 +75,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
 
   return (
     <div className="flex flex-col gap-4">
-      <section className="fam-band fam-rise flex items-center gap-4 rounded-2xl bg-royal-deep bg-gradient-to-br from-royal-deep to-violet p-4 text-white shadow-lg">
+      <section className="fam-band fam-rise flex items-center gap-4 rounded-2xl bg-ink p-4 text-white shadow-lg">
         <svg viewBox="0 0 44 44" className="h-20 w-20 -rotate-90" aria-hidden="true">
           <circle cx="22" cy="22" r="18" fill="none" stroke={colors.offWhite} strokeOpacity="0.3" strokeWidth="6" />
           <circle cx="22" cy="22" r="18" fill="none" stroke={colors.sunshine} strokeWidth="6" strokeLinecap="round" strokeDasharray={`${share * 113.1} 113.1`} />
@@ -97,7 +97,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
         <h2 className="fam-h2 text-slate">{w['fam.english.parent.voice']}</h2>
         <Columns values={r.weeks.map((x) => x.voiceMinutes)} labels={weekLabels} max={Math.max(10, ...r.weeks.map((x) => x.voiceMinutes))} color={chartSeries[4]} />
         <details className="text-sm text-slate">
-          <summary className="min-h-[44px] cursor-pointer py-3 font-semibold text-royal">{w['fam.english.parent.table']}</summary>
+          <summary className="min-h-[44px] cursor-pointer py-3 font-semibold text-ink">{w['fam.english.parent.table']}</summary>
           <table className="w-full text-left text-sm text-slate">
             <thead>
               <tr>
@@ -210,7 +210,7 @@ export function EnglishReport({ childId, w, lang, tracks }: { childId: string; w
           </select>
           <span className="text-sm font-normal text-slate">{w['fam.english.parent.trackNote']}</span>
         </label>
-        <button type="button" onClick={() => void save()} className="min-h-[44px] self-start rounded-full bg-royal px-5 font-bold text-white">
+        <button type="button" onClick={() => void save()} className="min-h-[44px] self-start rounded-full bg-saffron px-5 font-bold text-ink">
           {w['fam.english.parent.save']}
         </button>
         {saved && <p aria-live="polite" className="text-sm font-semibold text-slate"><Picture e="✅" /> {w['fam.english.parent.saved']}</p>}

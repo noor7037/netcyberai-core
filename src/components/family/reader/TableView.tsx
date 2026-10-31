@@ -11,7 +11,7 @@ export function TableView({ b, tone }: { b: Table; tone: string }) {
           <thead>
             <tr>
               {b.columns.map((c, i) => (
-                <th key={i} scope="col" className={`px-3 py-2 font-bold first:rounded-l-xl last:rounded-r-xl ${SUBJECT_TONE[tone]?.soft ?? 'bg-royal/10'}`}>
+                <th key={i} scope="col" className={`px-3 py-2 font-bold first:rounded-l-xl last:rounded-r-xl ${SUBJECT_TONE[tone]?.soft ?? 'bg-lesson-sky'}`}>
                   {c}
                 </th>
               ))}

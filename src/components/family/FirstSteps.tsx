@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/family/ui/Button';
 import type { Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';
 import type { BoardOption } from '@/lib/family/children';

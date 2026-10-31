@@ -107,7 +107,7 @@ describe('the drawings take their subject colour (InteractiveViews)', () => {
   });
 
   it('keeps the colours mathematics and science had before', () => {
-    expect(toneColor('mathematics').toUpperCase()).toBe('#1D4ED8');
+    expect(toneColor('mathematics').toUpperCase()).toBe('#0369A1');
     expect(toneColor('science').toUpperCase()).toBe('#0F766E');
   });
 });
@@ -129,9 +129,8 @@ describe('PlanCard and HabitCard on D1', () => {
     expect(html).toContain('fam-card');
     expect(html).toContain('stroke-dasharray');
     expect(html).toContain('1 of 3 done');
-    for (const s of ['from-royal to-electric', 'from-emerald to-azure', 'from-coral-deep to-grape-deep']) expect(html).toContain(s);
-    // White text over a subject's gradient always has a literal solid dark under it (ink since W10-4, C413).
-    for (const cls of [...html.matchAll(/class="([^"]*)"/g)].map((m) => m[1]).filter((c) => /\bfrom-/.test(c) && /\btext-white\b/.test(c))) expect(cls, cls).toMatch(/\bbg-ink\b/);
+    for (const s of ['bg-lesson-sky-deep', 'bg-lesson-mint-deep', 'bg-lesson-blush-deep']) expect(html).toContain(s);
+    expect(html).not.toMatch(/bg-gradient|\bfrom-/);
   });
 
   it('says the progress in Hindi on a Hindi screen', () => {
