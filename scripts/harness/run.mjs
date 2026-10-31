@@ -6232,6 +6232,8 @@ const timetableClash = async (page) => {
 const openLead = async (page) => {
   await page.locator('[data-leads-cards] button:visible, [data-leads-table] button:visible').first().click();
   await page.locator('[data-lead-panel]').waitFor({ timeout: 10000 });
+  // W12-F: the replies sent load after the panel opens.
+  await page.locator('[data-lead-replies][data-loaded]').waitFor({ timeout: 10000 });
 };
 const typeInSearch = (text) => async (page) => {
   await page.getByRole('combobox', { name: /Search|खोजें/ }).fill(text);

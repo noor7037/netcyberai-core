@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withBackendConnection, withPlatformService } from '@/lib/auth/db';
 import { kickJobs } from '@/lib/jobs/handlers';
 import { jobQueue } from '@/lib/jobs/pg-queue';
+import { queueFirstReply } from '@/lib/leads/reply';
 import { DEFAULT_COUNTRY_CODE, normaliseCountryCode, normaliseEmail, toE164 } from '@/lib/leads/contact';
 
 // Public, unauthenticated intake for every website lead flow: Get
@@ -175,7 +176,8 @@ export async function POST(req: NextRequest) {
   // platform role after the insert committed, and a failure here (or no
   // email service configured, which fails the job) never loses the lead.
   if (!result.isDuplicate) {
-    const key = `email.send:lead_received:${result.lead.lead_id}`;
+    const leadId = result.lead.lead_id;
+    const key = `email.send:lead_received:${leadId}`;
     try {
       await withPlatformService((db) =>
         jobQueue.enqueue(db, {
@@ -188,6 +190,14 @@ export async function POST(req: NextRequest) {
       await kickJobs([key]);
     } catch (err) {
       console.error('[leads] confirmation email not queued', err instanceof Error ? err.name : 'error');
+    }
+    // W12-F: two minutes later, the founder's first reply, unless the switch in Control → Leads is off. Its own
+    // transaction, so a failure here never takes the receipt with it. The job checks again before sending (still
+    // 'new', no reply recorded yet, the switch still on).
+    try {
+      await withPlatformService((db) => queueFirstReply(db, jobQueue, leadId));
+    } catch (err) {
+      console.error('[leads] first reply not queued', err instanceof Error ? err.name : 'error');
     }
   }
 

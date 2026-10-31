@@ -24,6 +24,7 @@ import { RESULT_PDFS_SWEEP_JOB, resultPdfsSweepHandler } from '@/lib/marking/che
 import { ONLINE_MARK_JOB, ONLINE_SWEEP_JOB, onlineMarkHandler, onlineSweepHandler } from '@/lib/online/mark';
 import { PAPERS_MAKE_JOB, papersMakeHandler } from '@/lib/papers/make';
 import { emailSendHandler } from './email-handler';
+import { LEAD_REPLY_JOB, leadReplyHandler } from '@/lib/leads/reply';
 import { recordHandledTypes } from './handled-types';
 import { jobQueue } from './pg-queue';
 import { runJobs, KICK_BUDGET_MS, RUN_BATCH_CAP, type RunSummary } from './runner';
@@ -44,6 +45,8 @@ const platform = withPlatformService as <T>(fn: (db: Sql) => Promise<T>) => Prom
 export function productionHandlers(): Record<string, JobHandler> {
   return {
     'email.send': emailSendHandler({ sender: emailSenderFromEnv, platform }),
+    // W12-F: a reply to a website lead (the automatic first reply, or one typed in Control → Leads), recorded once sent.
+    [LEAD_REPLY_JOB]: leadReplyHandler({ sender: emailSenderFromEnv, platform }),
     'invite.send': inviteSendHandler({
       platform,
       queue: jobQueue,

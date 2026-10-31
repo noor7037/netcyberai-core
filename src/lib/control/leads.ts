@@ -15,6 +15,9 @@ export const PAGE_SIZE = 50;
 export const MAX_IMPORT_ROWS = 2000;
 export const MAX_IMPORT_BYTES = 2_000_000;
 export const MAX_NOTES = 4000;
+// A reply to a lead (W12-F, src/lib/leads/reply.ts): the lead_replies.body limit. Here so the client panel can use it.
+export const MAX_REPLY_BODY = 4000;
+export type LeadReply = { replyId: string; kind: 'first_reply' | 'manual'; channel: 'email'; sentAt: string; body: string };
 const MAX_SHORT = 200;
 
 const isStatus = (v: unknown): v is LeadStatus => typeof v === 'string' && (LEAD_STATUSES as readonly string[]).includes(v);

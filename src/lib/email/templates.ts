@@ -1,11 +1,20 @@
 import { t, type Lang } from '@/lib/i18n';
 import { PermanentJobError } from '@/lib/jobs/types';
+import { displayPhone, whatsappLink } from '@/lib/site-config';
 
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert'];
+export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply'];
+
+// The founder signs the first reply to every lead (W12-F).
+export const FOUNDER_NAME = 'Noor';
+// What NetCyberAI does for a school, in one sentence, word for word from the catalogue's School Record module
+// (src/content/catalog.ts; test/control/lead-reply.test.ts checks it is still there). No numbers, no claims.
+export const WHAT_WE_DO = 'NetCyberAI keeps students, guardians, classes, sections, admissions and certificates in one validated school record.';
+// Devanagari anywhere in the text: the lead wrote in Hindi (or Marathi, Nepali), so the reply offers Hindi.
+export const hasDevanagari = (text: string) => /[\u0900-\u097F]/.test(text);
 
 export function escapeHtml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -52,6 +61,49 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
             `<p>To add anything, reply to this email.</p>`
         ),
         text: `Hello ${name},\nWe received your request for ${school}.\nA person from our team will reply by phone or email within one working day.\nTo add anything, reply to this email.`,
+      };
+    }
+    // The first reply to a new lead (W12-F), two minutes after lead_received, signed by the founder: thanks, what we
+    // do, the two next steps and the founder's WhatsApp. A Hindi line when the lead wrote in Devanagari.
+    case 'lead_first_reply': {
+      const school = str(data, 'schoolName');
+      const name = str(data, 'contactName');
+      const wa = whatsappLink();
+      const hindi = data.hindi === true;
+      const lines = {
+        thanks: `Thank you for asking about NetCyberAI for ${school}.`,
+        steps: 'There are two easy next steps. Choose whichever suits you:',
+        call: 'A 20-minute call, at a time that works for you.',
+        pilot: 'A pilot on one class, so your teachers can try it first.',
+        choose: `To choose one, reply to this email or message me on WhatsApp at ${displayPhone()}.`,
+        hi: 'आप चाहें तो हिंदी में जवाब दें, हम हिंदी में बात कर सकते हैं।',
+      };
+      return {
+        subject: `Next steps for ${school}`,
+        html: wrap(
+          `<p>Hello ${escapeHtml(name)},</p>` +
+            `<p>${escapeHtml(lines.thanks)}</p>` +
+            `<p>${escapeHtml(WHAT_WE_DO)}</p>` +
+            `<p>${escapeHtml(lines.steps)}</p>` +
+            `<ol><li>${escapeHtml(lines.call)}</li><li>${escapeHtml(lines.pilot)}</li></ol>` +
+            `<p>${escapeHtml(lines.choose)}</p>` +
+            `<p><a href="${escapeHtml(wa)}" style="color:#1d4ed8">Message ${escapeHtml(FOUNDER_NAME)} on WhatsApp</a></p>` +
+            (hindi ? `<p lang="hi">${escapeHtml(lines.hi)}</p>` : '') +
+            `<p>${escapeHtml(FOUNDER_NAME)}<br>Founder, NetCyberAI</p>`
+        ),
+        text:
+          `Hello ${name},\n\n${lines.thanks}\n\n${WHAT_WE_DO}\n\n${lines.steps}\n1. ${lines.call}\n2. ${lines.pilot}\n\n` +
+          `${lines.choose}\nWhatsApp: ${wa}\n\n${hindi ? `${lines.hi}\n\n` : ''}${FOUNDER_NAME}\nFounder, NetCyberAI`,
+      };
+    }
+    // A reply a NetCyberAI staff member typed in Control -> Leads (W12-F): their words as typed, nothing added.
+    case 'lead_manual_reply': {
+      const school = str(data, 'schoolName');
+      const body = str(data, 'body');
+      return {
+        subject: `Re: your request for ${school}`,
+        html: wrap(body.split(/\n{2,}/).map((p) => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('')),
+        text: body,
       };
     }
     case 'application_verified': {
