@@ -9654,4 +9654,23 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.notThis': 'यह नहीं',
   'fam.check.correct': 'सही',
   // w8-ai end
+  // w13-d fees start
+  'control.school.fees.title': 'इस स्कूल की फीस',
+  'control.school.fees.loading': 'लोड हो रहा है…',
+  'control.school.fees.failed': 'फीस लोड नहीं हो सकी। पेज दोबारा खोलें।',
+  'control.school.fees.empty.title': 'अभी फीस तय नहीं हुई',
+  'control.school.fees.empty.body': 'इस स्कूल ने अभी फीस ढांचा नहीं बनाया है और कोई फीस नहीं लगाई है।',
+  'control.school.fees.kpi.collected': 'जमा हुई',
+  'control.school.fees.kpi.pending': 'देना बाकी, अभी देय नहीं',
+  'control.school.fees.kpi.overdue': 'देय तिथि निकल चुकी',
+  'control.school.fees.kpi.students': 'बकाया वाले विद्यार्थी',
+  'control.school.fees.chart.title': 'प्राप्त भुगतान, पिछले 30 दिन',
+  'control.school.fees.chart.series': 'प्राप्त',
+  'control.school.fees.chart.empty': 'पिछले 30 दिनों में कोई भुगतान नहीं।',
+  'control.school.fees.method.title': 'तरीके के अनुसार भुगतान, पिछले 30 दिन',
+  'control.school.fees.method.none': 'पिछले 30 दिनों में कोई भुगतान नहीं।',
+  'control.school.fees.col.method': 'तरीका',
+  'control.school.fees.col.amount': 'प्राप्त',
+  'control.school.fees.col.count': 'भुगतान',
+  // w13-d fees end
 };
