@@ -71,6 +71,16 @@ describe('keep me signed in: the sliding session', () => {
     expect(near((await row(short.id)).expires_at, 60_000)).toBe(true);
   });
 
+  it('a refresh token used twice at once yields one live session, never two (C417)', async () => {
+    const { refreshSession } = await import('@/lib/auth/refresh');
+    const s = await newSession(true);
+    const [a, b] = await Promise.all([refreshSession(s.token), refreshSession(s.token)]);
+    expect([a.ok, b.ok].filter(Boolean)).toHaveLength(1);
+    expect((await row(s.id)).revoked_at).not.toBeNull();
+    const loser = a.ok ? b : a;
+    expect(loser).toEqual({ ok: false, reason: 'not_found' });
+  });
+
   it('a revoked or expired session is never renewed; the refresh route keeps a session-only cookie session-only', async () => {
     const { refreshSession } = await import('@/lib/auth/refresh');
     const revoked = await newSession(true);
