@@ -5,6 +5,7 @@ import { greetingFor, HeroBand, indiaDate, indiaHour } from '@/components/app-ui
 import { KpiTile } from '@/components/app-ui/KpiTile';
 import { AreaTrend, RingProgress } from '@/components/app-ui/ProgressCharts';
 import type { ControlDashboardData } from '@/lib/control/dashboard';
+import { t, type Lang } from '@/lib/i18n';
 import { AttentionList, lastDays, QuickActions, type AttentionItem } from './dashboard-parts';
 
 export type { ControlDashboardData };
@@ -14,7 +15,7 @@ export type { ControlDashboardData };
 // listed with their badge and never added in. With no live school yet,
 // every total is an honest "No data yet", not a zero dressed as a result.
 
-export function ControlDashboardView({ data, schoolsTable, now = new Date() }: { data: ControlDashboardData; schoolsTable: ReactNode; now?: Date }) {
+export function ControlDashboardView({ data, schoolsTable, now = new Date(), lang = 'en' }: { data: ControlDashboardData; schoolsTable: ReactNode; now?: Date; lang?: Lang }) {
   const fixtures = data.schools.length - data.liveSchools;
   const live = data.liveSchools > 0;
   // No live school: nothing to total. null shows "No data yet" on each tile.
@@ -67,6 +68,28 @@ export function ControlDashboardView({ data, schoolsTable, now = new Date() }: {
         </div>
         <RingProgress title="Consent recorded" done={data.consentActive} total={data.consentActive + data.consentPending} noun="students" doneWord="are active with consent recorded" tone="emerald" emptyHint="Appears once a live school adds students." />
       </section>
+
+      {/* C421: the founder reaches every app from Control. The teacher app has no sign-in of its own: a teacher is
+          seen through "View as" on a school's People tab, which opens that teacher's own screens. */}
+      <AppCard title={t(lang, 'control.dash.apps.title')} tone="royal">
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4" aria-label={t(lang, 'control.dash.apps.aria')}>
+          {(
+            [
+              { id: 'site', href: '/' },
+              { id: 'school', href: '/login' },
+              { id: 'family', href: '/family' },
+              { id: 'teacher', href: '/control/schools' },
+            ] as const
+          ).map((a) => (
+            <li key={a.id}>
+              <Link href={a.href} className="flex min-h-[44px] flex-col justify-center rounded-md border border-slate/10 bg-white px-3 py-2 hover:bg-sapphire/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal">
+                <span className="font-semibold text-sapphire underline">{t(lang, `control.dash.apps.${a.id}`)}</span>
+                <span className="text-sm text-slate">{t(lang, `control.dash.apps.${a.id}.hint`)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </AppCard>
 
       <QuickActions
         actions={[

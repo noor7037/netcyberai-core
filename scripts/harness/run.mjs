@@ -3381,6 +3381,12 @@ const controlBoardsDone = async () => {
   if (boardsSeen?.link !== HARNESS_CIRCULAR || boardsSeen?.presets !== 4) throw new Error(`the state board on the screen: ${JSON.stringify(boardsSeen)}`);
 };
 // Control → a school → Exams: the founder records the school's board.
+// W13: the four read-only school tabs; each waits for its panel's table, tiles or empty state before the picture.
+const controlSchoolTab = (name) => async (page) => {
+  await page.getByRole('tab', { name }).click();
+  await page.waitForLoadState('networkidle');
+  await page.locator('[role="tabpanel"] table, [role="tabpanel"] h2, [role="tabpanel"] h3').first().waitFor({ timeout: 20000 });
+};
 const controlSchoolBoard = async (page) => {
   await clearGrading();
   await page.reload({ waitUntil: 'networkidle' });
@@ -7162,6 +7168,12 @@ const SCREENS = [
   ['parent', 'family-home', '/parent', familyHome, familyHomeDone],
   ['founder', 'control-schools', '/control/schools'],
   ['founder', 'control-school', `/control/schools/${SCHOOL}`],
+  ['founder', 'control-school-students', `/control/schools/${SCHOOL}`, controlSchoolTab('Students')],
+  ['founder', 'control-school-staff', `/control/schools/${SCHOOL}`, controlSchoolTab('Staff')],
+  ['founder', 'control-school-attendance', `/control/schools/${SCHOOL}`, controlSchoolTab('Attendance')],
+  ['founder', 'control-school-fees', `/control/schools/${SCHOOL}`, controlSchoolTab('Fees')],
+  ['founder', 'control-audit-logs', '/control/audit-logs'],
+  ['founder', 'control-system-settings', '/control/system-settings'],
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],
   ['founder', 'control-users', '/control/users'],
   ['founder', 'control-onboarding', '/control/onboarding'],
