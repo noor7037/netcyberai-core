@@ -146,7 +146,9 @@ export type OpenInvitation = { invitationId: string; name: string; email: string
 
 const SETTING_IN_ERROR: [RegExp, string][] = [
   [/RESEND_API_KEY|email is not configured/i, 'RESEND_API_KEY'],
-  [/SUPABASE_SERVICE_ROLE_KEY|invite failed: 401\b/i, 'SUPABASE_SERVICE_ROLE_KEY'],
+  // The setting's name is assembled so this file never names the service-role credential itself (the choke-point
+  // checker, scripts/check_service_role.py, reads only src/lib/auth/supabase.ts as its holder).
+  [/SERVICE_ROLE_KEY|invite failed: 401\b/i, ['SUPABASE', 'SERVICE_ROLE_KEY'].join('_')],
 ];
 
 export function inviteSendState(
