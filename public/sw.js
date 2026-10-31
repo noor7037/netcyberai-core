@@ -171,6 +171,29 @@ function staticFiles(html) {
   return [...out].slice(0, 80);
 }
 
+// A Family app page (W11-A, C416). It comes from the network. One failed fetch is not "no internet": on a phone a
+// connection drops for a moment (a network change, a connection gone stale while the phone slept), yet the app showed
+// the offline page for it. So the page is asked for once more, as a fresh request with the same sign-in. Only when that
+// fails too, and the phone is offline or the failure is a network error, the shell (or the last-resort page) answers;
+// any other failure is passed on as the error it is. A redirect (to sign-in) is passed on as it came: the retry keeps
+// the navigation's 'manual' redirect mode, because a followed redirect may not answer a navigation.
+async function familyPage(request, deps) {
+  try {
+    return await deps.fetch(request);
+  } catch {
+    // asked once more below
+  }
+  try {
+    return await deps.fetch(new Request(request.url, { credentials: 'include', redirect: 'manual' }));
+  } catch (err) {
+    if (deps.online() === false || (err && err.name === 'TypeError')) {
+      const shell = await deps.shell().catch(() => undefined);
+      return shell || new Response(FAMILY_OFFLINE_PAGE, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
+    }
+    return Response.error();
+  }
+}
+
 async function keepFamilyShell() {
   const response = await fetch(FAMILY_SHELL, { credentials: 'same-origin' });
   if (!keepable(response)) return;
@@ -254,9 +277,10 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
 
     if (kind === 'family-page') {
       event.respondWith(
-        fetch(request).catch(async () => {
-          const shell = await caches.open(FAMILY_CACHE).then((c) => c.match(FAMILY_SHELL));
-          return shell || new Response(FAMILY_OFFLINE_PAGE, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
+        familyPage(request, {
+          fetch: (r) => fetch(r),
+          online: () => self.navigator.onLine,
+          shell: () => caches.open(FAMILY_CACHE).then((c) => c.match(FAMILY_SHELL)),
         })
       );
       return;
@@ -280,4 +304,4 @@ if (typeof self !== 'undefined' && typeof self.addEventListener === 'function') 
 }
 
 // For the tests (test/offline/service-worker.test.ts).
-if (typeof module !== 'undefined') module.exports = { route, keepable, staticFiles, pushNotice, scanPagesToSend, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };
+if (typeof module !== 'undefined') module.exports = { route, keepable, familyPage, staticFiles, pushNotice, scanPagesToSend, KEPT_PAGES, OFFLINE_PAGE, FAMILY_OFFLINE_PAGE, FAMILY_SHELL };
