@@ -84,7 +84,7 @@ export function HabitCard({ habit, lang, delay = 80 }: { habit: ChildHabit; lang
             <div
               role="img"
               aria-label={t(lang, 'fam.habit.jarLabel', { days: jar.days, target: jar.targetDays })}
-              className="relative h-24 w-16 shrink-0 overflow-hidden rounded-b-3xl rounded-t-lg border-4 border-royal bg-off-white shadow-md"
+              className="relative h-24 w-16 shrink-0 overflow-hidden rounded-b-3xl rounded-t-lg border-4 border-ink bg-off-white shadow-md"
             >
               <div data-jar-fill style={{ height: `${pct}%` }} className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-gold to-sunshine transition-[height] duration-700 motion-reduce:transition-none" />
             </div>

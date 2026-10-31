@@ -11,7 +11,7 @@ import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './chi
 import { consentState } from './consent';
 import { photoGate } from './photo-gate';
 import { isSubject } from './subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type TutorFileType, type TutorTurn } from './tutor-shape';
+import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
 
 // The shared tutor window's history and files (S2, C375; docs/37 §4 Wave 2), on the family's own transaction (the
 // family_app role; every tutor table's policies keep each row to its own account, and on a child's own phone to that
@@ -67,16 +67,20 @@ async function guarded<T>(db: Db, fn: () => Promise<T>, fallback: T): Promise<T>
   }
 }
 
-// ---- chats (W9-A, C406; docs/39 §3 "Chat") -------------------------------------------------------------------------
+// ---- chats (W9-A, C406; docs/39 §3 "Chat"; W10-4, C413: §5 "Chat, final rule") ----------------------------------------
 // A child has chats per subject: at most CHATS_KEPT listed (open or full; a new one past that archives the least
-// recently used), each taking CHAT_TURNS child turns, then 'full': a child turn on a full chat is refused with
-// 'chat_full', never dropped. The tutor is sent the chat's running summary (rewritten every SUMMARY_EVERY child turns
+// recently used). W10-4 (C413): the screen shows no list of chats; it shows the subject's feed (readFeed), every turn
+// of the subject's chats in order, and the feed keeps the subject's last FEED_TURNS child turns: a child turn past that
+// deletes the oldest (with its answer and files) in the same transaction, so a chat is no longer marked 'full' (a chat
+// marked full before W10-4 still refuses a turn with 'chat_full', and the answer goes to a new chat). The tutor is sent the chat's running summary (rewritten every SUMMARY_EVERY child turns
 // by the family.summary workload) and its last MEMORY_TURNS turns: the child's words and the tutor's explanation
 // paragraphs only, each at most MEMORY_TEXT characters. An archived chat is no longer listed or answered in; the
 // parent still sees and clears it in the Learning Vault, and it goes with the child.
 
 export const CHATS_KEPT = 15;
 export const CHAT_TURNS = 30;
+// The child turns a subject's feed keeps (docs/39 §5): the 31st deletes the oldest.
+export const FEED_TURNS = 30;
 export const MEMORY_TURNS = 6;
 export const MEMORY_TEXT = 600;
 export const SUMMARY_EVERY = 5;
@@ -237,20 +241,73 @@ export function readTurns(db: Db, accountId: string, childId: string, subject: s
           order by m.created_at desc, m.role desc limit $4`,
         [accountId, childId, subject, TURNS_SHOWN, chatId]
       );
-      return rows.reverse().map((r): TutorTurn => {
-        const at = new Date(r.created_at as string).toISOString();
-        const lang = r.lang === 'hi' ? 'hi' : 'en';
-        if (r.role === 'child') {
-          const files = (Array.isArray(r.files) ? r.files : []) as { id: string; mime: string }[];
-          return { id: String(r.message_id), role: 'child', lang, text: String(r.body), chapterKey: (r.chapter_key as string | null) ?? null, blockId: (r.block_id as string | null) ?? null, files: files.filter((f) => isTutorFileType(f.mime)).map((f) => ({ id: String(f.id), mime: f.mime as TutorFileType })), at };
-        }
-        // Read back through the block checks, so only a block the renderer knows is ever drawn.
-        const blocks = (Array.isArray(r.blocks) ? r.blocks : []).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null);
-        return { id: String(r.message_id), role: 'tutor', lang, blocks: keptTutorBlocks(blocks), at };
-      });
+      return rows.reverse().map(turnOf);
     },
     []
   );
+}
+
+function turnOf(r: Record<string, unknown>): TutorTurn {
+  const at = new Date(r.created_at as string).toISOString();
+  const lang = r.lang === 'hi' ? 'hi' : 'en';
+  if (r.role === 'child') {
+    const files = (Array.isArray(r.files) ? r.files : []) as { id: string; mime: string }[];
+    return { id: String(r.message_id), role: 'child', lang, text: String(r.body), chapterKey: (r.chapter_key as string | null) ?? null, blockId: (r.block_id as string | null) ?? null, files: files.filter((f) => isTutorFileType(f.mime)).map((f) => ({ id: String(f.id), mime: f.mime as TutorFileType })), at };
+  }
+  // Read back through the block checks, so only a block the renderer knows is ever drawn.
+  const blocks = (Array.isArray(r.blocks) ? r.blocks : []).map((b) => parseBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null);
+  return { id: String(r.message_id), role: 'tutor', lang, blocks: keptTutorBlocks(blocks), at };
+}
+
+// W10-4 (C413; docs/39 §5): a subject's feed, every turn of the child's chats in that subject (archived ones too: the
+// feed is the subject's last FEED_TURNS child turns, whatever chat they were kept in), oldest first, each with its
+// chat and the chat's subject.
+export function readFeed(db: Db, accountId: string, childId: string, subject: string): Promise<FeedTurn[]> {
+  if (!isSubject(subject)) return Promise.resolve([]);
+  return guarded(
+    db,
+    async () => {
+      const { rows } = await db.query(
+        `select m.message_id, m.role, m.body, m.blocks, m.chapter_key, m.block_id, m.lang, m.created_at, m.conversation_id, c.subject,
+                coalesce((select json_agg(json_build_object('id', a.attachment_id, 'mime', a.mime) order by a.created_at)
+                            from family.tutor_attachments a where a.message_id = m.message_id and a.status = 'ready'), '[]'::json) as files
+           from family.tutor_messages m join family.tutor_conversations c on c.conversation_id = m.conversation_id
+          where c.account_id = $1 and c.child_id = $2 and c.subject = $3
+          order by m.created_at desc, m.role desc limit $4`,
+        [accountId, childId, subject, TURNS_SHOWN]
+      );
+      return rows.reverse().map((r): FeedTurn => ({ ...turnOf(r), chatId: String(r.conversation_id), subject: String(r.subject) }));
+    },
+    []
+  );
+}
+
+// The rolling feed (W10-4, C413): the child turns of a subject beyond its newest FEED_TURNS go, each with what follows
+// it in its own chat up to that chat's oldest kept turn (its answer), and their files (the cascade takes the rows; the
+// files are removed from the bucket here, best effort: a file left behind is never shown, its row being gone). An
+// archived chat left empty goes too. Runs in the caller's transaction, right after a child turn is written.
+async function trimFeed(db: Db, accountId: string, childId: string, subject: string, storage: DirectUploadStorage | null): Promise<number> {
+  const { rows: gone } = await db.query(
+    `select m.message_id from family.tutor_messages m join family.tutor_conversations c on c.conversation_id = m.conversation_id
+       left join (select k.conversation_id, min(k.created_at) as at
+                    from (select x.conversation_id, x.created_at from family.tutor_messages x join family.tutor_conversations y on y.conversation_id = x.conversation_id
+                           where y.account_id = $1 and y.child_id = $2 and y.subject = $3 and x.role = 'child'
+                           order by x.created_at desc limit $4) k
+                   group by k.conversation_id) s on s.conversation_id = m.conversation_id
+      where c.account_id = $1 and c.child_id = $2 and c.subject = $3 and (s.at is null or m.created_at < s.at)`,
+    [accountId, childId, subject, FEED_TURNS]
+  );
+  if (gone.length === 0) return 0;
+  const ids = gone.map((r) => String(r.message_id));
+  const { rows: files } = await db.query(`select account_id, attachment_id, mime, storage_key from family.tutor_attachments where message_id = any($1::uuid[])`, [ids]);
+  await db.query(`delete from family.tutor_messages where message_id = any($1::uuid[])`, [ids]);
+  await db.query(
+    `delete from family.tutor_conversations c where c.account_id = $1 and c.child_id = $2 and c.subject = $3 and c.status = 'archived'
+        and not exists (select 1 from family.tutor_messages m where m.conversation_id = c.conversation_id)`,
+    [accountId, childId, subject]
+  );
+  if (storage && files.length) await removeFiles(storage, keysOf(files)).catch(() => undefined);
+  return ids.length;
 }
 
 // The reader's context, checked on the server: a NetCyber chapter of this subject and one of its blocks. Returns the
@@ -282,12 +339,14 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
   return rows.length === ids.length ? (ids as string[]) : null;
 }
 
-type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string };
+// `storage`: where the files of turns the feed lets go are removed from (the route's bucket; none in a test).
+type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null };
 
 // A turn: the child's words (and the reader's chapter and block, and the files sent with them), then the tutor's
-// answer as shown, without its check and practice items, in this child's chat. The chat's child turns go up by one; at
-// CHAT_TURNS it is full. A turn on a full chat is refused ('chat_full'), on an archived or unknown one 'not_found';
-// nothing is written when refused. W10 (C411): `subject` is the one the server decided; a chat's first answer moves the
+// answer as shown, without its check and practice items, in this child's chat. The chat's child turns go up by one, and
+// the subject's feed keeps its last FEED_TURNS (W10-4, C413: trimFeed; a chat is never marked full now). A turn on a
+// chat marked full before W10-4 is refused ('chat_full'), on an archived or unknown one 'not_found'; nothing is
+// written when refused. W10 (C411): `subject` is the one the server decided; a chat's first answer moves the
 // chat to it (a chat opened in Mathematics whose first question is about photosynthesis becomes a Science chat); a later
 // turn stays in the chat, whatever subject it was decided in. Returns the chat's subject after the turn.
 export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Promise<{ ok: true; turnCount: number; subject: string } | { ok: false; error: 'chat_full' | 'not_found' | 'empty' }> {
@@ -328,12 +387,12 @@ export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Pro
   );
   const { rows } = await db.query(
     `update family.tutor_conversations
-        set turn_count = turn_count + 1, status = case when turn_count + 1 >= $2 then 'full' else 'open' end,
-            title = coalesce(title, left($3, $4)), last_at = clock_timestamp(), updated_at = now()
+        set turn_count = turn_count + 1, title = coalesce(title, left($2, $3)), last_at = clock_timestamp(), updated_at = now()
       where conversation_id = $1 returning turn_count`,
-    [conversationId, CHAT_TURNS, text, TITLE_MAX]
+    [conversationId, text, TITLE_MAX]
   );
   if (moved) await archiveOverflow(db, t.accountId, t.childId, chatSubject);
+  await trimFeed(db, t.accountId, t.childId, chatSubject, t.storage ?? null);
   return { ok: true, turnCount: Number(rows[0].turn_count), subject: chatSubject };
 }
 

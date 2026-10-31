@@ -53,7 +53,7 @@ export function EnglishCourse({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
         <Pic pic={error === 'consent_needed' ? '🙋' : '🌱'} size={48} />
         <p className="text-lg font-bold text-slate">{text}</p>
         {error === 'consent_needed' && (
-          <Link href="/family/parent" className="fam-press flex min-h-[44px] items-center rounded-full bg-royal px-5 font-bold text-white">
+          <Link href="/family/parent" className="fam-press flex min-h-[44px] items-center rounded-full bg-ink px-5 font-bold text-white">
             {w['fam.english.consentButton']}
           </Link>
         )}

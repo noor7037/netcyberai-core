@@ -144,7 +144,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
       <PlayerShell close="/family/english" closeLabel={w['fam.english.close']}>
         <div className="fam-card fam-section bg-white text-slate">
           <p className="text-lg font-bold text-slate">{error === 'rest' ? w['fam.english.rest'] : error === 'locked' ? w['fam.english.locked'] : w['fam.english.error']}</p>
-          <Link href="/family/english" className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-royal px-5 font-bold text-white">
+          <Link href="/family/english" className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-ink px-5 font-bold text-white">
             {w['fam.english.results.map']}
           </Link>
         </div>
@@ -276,7 +276,7 @@ export function LessonPlayer({ lessonKey, w, lang, startAt = 0 }: { lessonKey: s
       progress={{ now: at + 1, max: pages, label: lesson.title.en }}
       aside={
         (track === 'c' || track === 'd') && (
-          <button type="button" aria-pressed={hindiOn} onClick={() => setHindiOn(!hindiOn)} className={`fam-press min-h-[44px] rounded-full px-4 text-sm font-bold ${hindiOn ? 'bg-midnight text-white' : 'bg-white text-slate'}`}>
+          <button type="button" aria-pressed={hindiOn} onClick={() => setHindiOn(!hindiOn)} className={`fam-press min-h-[44px] rounded-full px-4 text-sm font-bold ${hindiOn ? 'bg-ink text-white' : 'bg-white text-slate'}`}>
             {w['fam.english.showHindi']}
           </button>
         )

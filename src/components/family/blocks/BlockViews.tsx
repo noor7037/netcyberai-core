@@ -5,6 +5,8 @@ import type { Diagram, EnglishMoment, Explanation, KeyPoints, Sources, WorkedExa
 import { fill, type Words } from '@/lib/family/fill';
 import { SUBJECT_THEME } from '@/lib/family/subject-theme';
 import { speak } from '@/components/family/english/speech';
+import { LESSON_TINT_OF } from '@/lib/design-tokens';
+import { TutorAvatar } from '../TutorAvatar';
 
 // One component per block type (M1-5, C251): the model's output is data, and only these draw it, as plain text. No
 // block is ever rendered as markup. Each card carries its subject's colour (docs/family-app/09 §2).
@@ -44,16 +46,19 @@ export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string
   timeline: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
   image: { bar: 'border-l-emerald', head: 'bg-emerald/10', dot: 'bg-emerald' },
   videos: { bar: 'border-l-coral', head: 'bg-coral/15', dot: 'bg-coral' },
+  // W10-6: the scene lilac (grape), the chart sky (cyan); their views are SceneView.tsx and ChartView.tsx.
+  scene: { bar: 'border-l-grape', head: 'bg-grape/10', dot: 'bg-grape' },
+  chart: { bar: 'border-l-cyan', head: 'bg-cyan/15', dot: 'bg-cyan' },
 };
 
 export function Card({ title, tone, children, tag }: { title: string; tone: string; children: React.ReactNode; tag?: string }) {
   const kind = tag ? BLOCK_TONE[tag] : undefined;
   return (
-    <section data-block={tag} className={`fam-card fam-rise overflow-hidden bg-white ${kind ? `border-l-[6px] ${kind.bar}` : ''}`}>
-      <div className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
+    <section data-block={tag} data-tint={tag ? (LESSON_TINT_OF[tag] ?? 'mint') : undefined} className={`fam-card fam-rise overflow-hidden bg-white ${kind ? `border-l-[6px] ${kind.bar}` : ''}`}>
+      <div data-card-bar className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
       <div className="flex flex-col gap-3 p-4 sm:p-5">
         <h2 data-block-head className={`flex items-center gap-2 text-lg font-extrabold text-slate ${kind ? `rounded-xl px-3 py-1.5 ${kind.head}` : ''}`}>
-          <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-royal')}`} />
+          <span aria-hidden="true" data-badge className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-royal')}`} />
           {title}
         </h2>
         {children}
@@ -62,23 +67,34 @@ export function Card({ title, tone, children, tag }: { title: string; tone: stri
   );
 }
 
-export function ExplanationView({ b, w, tone }: { b: Explanation; w: Words; tone: string }) {
+// W10-3 (C412): the answer page's first card, the explanation's one-line idea in the tutor's voice, before the numbered
+// sections. That explanation then draws without its idea (`lead`), so nothing is said twice.
+export function DirectAnswer({ b }: { b: Explanation }) {
+  return (
+    <section data-direct-answer className="fam-lesson-answer fam-rise">
+      <TutorAvatar className="h-12 w-12 shrink-0 sm:h-14 sm:w-14" />
+      <p className="fam-lesson-answer-text">{b.idea}</p>
+    </section>
+  );
+}
+
+export function ExplanationView({ b, w, tone, lead = false }: { b: Explanation; w: Words; tone: string; lead?: boolean }) {
   return (
     <Card title={b.title} tone={tone} tag="explanation">
-      <p className="text-lg font-semibold leading-relaxed text-slate">{b.idea}</p>
+      {!lead && <p data-idea className="text-lg font-semibold leading-relaxed text-slate">{b.idea}</p>}
       {b.paragraphs?.map((para, i) => (
         <p key={i} data-paragraph className="text-base leading-relaxed text-slate">
           {para}
         </p>
       ))}
-      <div className={`rounded-2xl p-3 ${SUBJECT_TONE[tone]?.soft ?? 'bg-royal/10'}`}>
+      <div data-example className={`rounded-2xl p-3 ${SUBJECT_TONE[tone]?.soft ?? 'bg-royal/10'}`}>
         <p className="text-sm font-bold text-slate">{w['fam.block.example']}</p>
         <p className="text-base leading-relaxed text-slate">{b.example}</p>
       </div>
       <ol className="flex flex-col gap-2">
         {b.steps.map((s, i) => (
           <li key={i} className="flex gap-3 text-base leading-relaxed text-slate">
-            <span aria-hidden="true" className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
+            <span aria-hidden="true" data-num className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
               {i + 1}
             </span>
             <span>{s}</span>
@@ -128,7 +144,7 @@ export function KeyPointsView({ b, w, tone }: { b: KeyPoints; w: Words; tone: st
       <ul className="flex flex-col gap-2">
         {b.points.map((p, i) => (
           <li key={i} className="flex gap-2 text-base text-slate">
-            <span aria-hidden="true" className={`mt-2 h-2 w-2 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} />
+            <span aria-hidden="true" data-dot className={`mt-2 h-2 w-2 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} />
             <span>{p}</span>
           </li>
         ))}
@@ -195,7 +211,7 @@ export function DiagramView({ b, tone }: { b: Diagram; tone: string }) {
           const edge = next ? b.edges.find((e) => e.from === id && e.to === next) : undefined;
           return (
             <li key={id} className="flex flex-col items-center">
-              <span className="w-full rounded-2xl border-2 bg-white px-4 py-3 text-center text-base font-bold text-slate" style={{ borderColor: color }}>
+              <span data-flow-node className="w-full rounded-2xl border-2 bg-white px-4 py-3 text-center text-base font-bold text-slate" style={{ borderColor: color }}>
                 {node.label}
               </span>
               {next && (

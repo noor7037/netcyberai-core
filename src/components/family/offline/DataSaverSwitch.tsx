@@ -11,7 +11,7 @@ export function DataSaverSwitch({ w, id = 'fam-data-saver' }: { w: Words; id?: s
   const { state, set } = useDataSaver();
   return (
     <div data-data-saver={state.on ? 'on' : 'off'} className="fam-card fam-rise flex items-center justify-between gap-3 bg-white p-4">
-      <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${state.on ? 'bg-emerald text-white' : 'bg-royal/10 text-royal-deep'}`}>
+      <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${state.on ? 'bg-emerald text-white' : 'bg-saffron/10 text-ink'}`}>
         <FamIcon name="saver" className="h-5 w-5" />
       </span>
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
@@ -30,7 +30,7 @@ export function DataSaverSwitch({ w, id = 'fam-data-saver' }: { w: Words; id?: s
         aria-labelledby={`${id}-title`}
         aria-describedby={`${id}-state`}
         onClick={() => set(!state.on)}
-        className={`relative inline-flex h-11 w-[4.5rem] shrink-0 items-center rounded-full ring-2 transition-colors motion-reduce:transition-none ${state.on ? 'bg-royal ring-royal' : 'bg-white ring-slate'}`}
+        className={`relative inline-flex h-11 w-[4.5rem] shrink-0 items-center rounded-full ring-2 transition-colors motion-reduce:transition-none ${state.on ? 'bg-ink ring-ink' : 'bg-white ring-slate'}`}
       >
         <span
           aria-hidden="true"

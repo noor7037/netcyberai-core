@@ -23,7 +23,7 @@ export function ConsentStep({ w }: { w: Words }) {
       <ul className="flex flex-col gap-2">
         {items.map((k) => (
           <li key={k} className="fam-row items-start bg-off-white text-base text-slate">
-            <span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-royal" />
+            <span aria-hidden="true" className="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-ink" />
             <span>{w[k]}</span>
           </li>
         ))}

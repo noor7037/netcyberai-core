@@ -78,7 +78,7 @@ export function VaultList({ w, list, lang }: { w: Words; list: VaultChild[]; lan
                   <div role="group" aria-label={w['fam.vault.clear']} className="flex flex-col gap-2 rounded-2xl bg-off-white p-3">
                     <p className="text-sm font-semibold text-slate">{fill(w['fam.vault.clearConfirm'], { subject: v.subjectName, name: c.firstName })}</p>
                     <div className="flex flex-wrap gap-2">
-                      <button type="button" disabled={busy} data-vault-clear-yes onClick={() => void clear(v.conversationId)} className="fam-press min-h-[44px] rounded-2xl bg-royal-deep px-4 text-sm font-bold text-white disabled:opacity-60">
+                      <button type="button" disabled={busy} data-vault-clear-yes onClick={() => void clear(v.conversationId)} className="fam-press min-h-[44px] rounded-2xl bg-ink px-4 text-sm font-bold text-white disabled:opacity-60">
                         {w['fam.vault.clearYes']}
                       </button>
                       <button type="button" disabled={busy} onClick={() => setAsking(null)} className="fam-press min-h-[44px] rounded-2xl bg-white px-4 text-sm font-bold text-slate ring-1 ring-slate/20">

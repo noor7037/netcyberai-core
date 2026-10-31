@@ -50,7 +50,7 @@ export function LiveSessions({ childId, w, lang }: { childId: string; w: Words; 
               </p>
             ) : null}
             <details>
-              <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-bold text-royal">{w['fam.english.live.parent.show']}</summary>
+              <summary className="flex min-h-[44px] cursor-pointer items-center text-sm font-bold text-ink">{w['fam.english.live.parent.show']}</summary>
               <ol className="flex flex-col gap-2 pt-2" lang="en">
                 {s.turns.map((t) => (
                   <li key={t.position} className="flex flex-col gap-1 text-sm">

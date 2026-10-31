@@ -6,12 +6,12 @@ import type { ReactNode } from 'react';
 export function GateFrame({ app, title, lead, children }: { app: string; title: string; lead?: string; children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="fam-band rounded-b-[2rem] bg-royal-deep bg-gradient-to-br from-midnight via-royal-deep to-violet px-4 pb-12 pt-6 text-white">
+      <header className="fam-band rounded-b-[2rem] bg-paper px-4 pb-12 pt-6 text-ink">
         <span aria-hidden="true" className="fam-band-dots" />
         <div className="mx-auto flex w-full max-w-md flex-col gap-2">
-          <p className="fam-eyebrow text-white">{app}</p>
-          <h1 className="fam-rise text-3xl font-extrabold leading-tight tracking-tight text-white">{title}</h1>
-          {lead && <p className="text-base font-semibold text-white">{lead}</p>}
+          <p className="fam-eyebrow text-saffron-deep">{app}</p>
+          <h1 className="fam-display fam-rise text-3xl font-extrabold leading-tight tracking-tight text-ink">{title}</h1>
+          {lead && <p className="text-base font-semibold text-ink">{lead}</p>}
         </div>
       </header>
       <main className="fam-gate">

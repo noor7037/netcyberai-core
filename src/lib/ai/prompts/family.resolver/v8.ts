@@ -15,6 +15,8 @@
 // v4's bounded-number lines for the interactive blocks, the check rule (every wrong option says why it is wrong), the
 // curriculum rules, the follow-ups and a wrong answer's retry. Without a plan (staff preparing the library, a chapter
 // or topic taught whole) the band's default plan is used.
+// W10-6 (docs/39 §5): a scene (a thing with parts, tap-able part by part) and a chart (numbers and comparisons) in their
+// exact shapes when the plan names them, each with one short example; steps and a mind map may reveal one by one.
 
 import { INTERACTIVE_LINES } from './v4';
 import { SUBJECT_LINE, type ResolverAsk as V3Ask } from './v3';
@@ -89,6 +91,13 @@ export const STEPS_LINE = '{"type":"steps","title":"...","items":[{"label":"≤3
 export const TIMELINE_LINE = '{"type":"timeline","title":"...","items":[{"when":"≤20","text":"≤100"}]}';
 export const IMAGE_LINE = '{"type":"image","query":"≤80","caption":"≤120"}';
 export const VIDEOS_LINE = '{"type":"videos"}';
+export const SCENE_LINE = '{"type":"scene","title":"≤60","layout":"row|ring|stack|free","parts":[{"id":"a1","label":"≤30","text":"≤220","shape":"circle|rect|pill|hex|coil|magnet|wire|arrow|organ","colour":1-8}],"links":[{"from":"a1","to":"a2","kind":"flow|line|arrow","label":"≤20"}],"animate":"flow|pulse|rotate|none"}';
+export const CHART_LINE = '{"type":"chart","title":"≤60","kind":"bar|line|pie","unit":"≤12","labels":["≤12"],"series":[{"label":"≤20","values":[numbers]}]}';
+// The two short examples (W10-6): a simple circuit and a bar chart of three values.
+export const SCENE_EXAMPLE = '{"type":"scene","title":"A simple circuit","layout":"ring","parts":[{"id":"cell","label":"Cell","text":"The cell pushes the current round the circuit.","shape":"rect","colour":1},{"id":"switch","label":"Switch","text":"Closing the switch completes the path.","shape":"pill","colour":2},{"id":"bulb","label":"Bulb","text":"The current heats the thin wire inside, and it glows.","shape":"circle","colour":3}],"links":[{"from":"cell","to":"switch","kind":"flow","label":"current"},{"from":"switch","to":"bulb","kind":"flow"},{"from":"bulb","to":"cell","kind":"flow"}],"animate":"flow"}';
+export const CHART_EXAMPLE = '{"type":"chart","title":"Days in three months","kind":"bar","unit":"days","labels":["January","February","April"],"series":[{"label":"Days","values":[31,28,30]}]}';
+export const SCENE_RULES = 'A scene\'s parts are real parts with their real names (never a made-up part); each part has its own colour, by part, never by decoration. flow moves dashes along the links (current, blood, water), pulse breathes the parts (the heart, the lungs), rotate turns the coil parts (a motor\'s rotor); none when nothing moves.';
+export const CHART_RULES = 'Numbers in a chart only from the chapter passages above or well-known facts that the answer also states in words; never invent a number. Our code draws the axes and works out the percentages: give only the values.';
 
 // The subjects whose answers may carry an interactive block.
 const SCIENCE_OR_MATHS = /^(mathematics|science|physics|chemistry)$/;
@@ -115,7 +124,7 @@ function blockLine(block: PlanBlock, plan: Plan, a: ResolverAsk): string[] {
     case 'diagram':
       return ['A diagram for a structure or process: {"type":"diagram","title":"...","kind":"flow or cycle","nodes":[{"id":"a","label":"short label"}],"edges":[{"from":"a","to":"b","label":"optional"}]} with 2 to 8 nodes, only where the idea really is a flow or a cycle.'];
     case 'mind_map':
-      return [`A mind map of how the parts of the idea connect: ${MIND_MAP_LINE}`];
+      return [`A mind map of how the parts of the idea connect: ${MIND_MAP_LINE} (it opens branch by branch on the screen).`];
     case 'key_points':
       return [`{"type":"key_points","points":["${small ? '2 to 4' : '4 to 8'} short points"]}`];
     case 'check':
@@ -130,13 +139,17 @@ function blockLine(block: PlanBlock, plan: Plan, a: ResolverAsk): string[] {
     case 'figure':
       return [`A schematic figure with callouts: ${FIGURE_LINE} with 2 to 6 labels, each label's text up to 40 characters.${about(plan, block)}`];
     case 'steps':
-      return [`The stages as a strip: ${STEPS_LINE} with 3 to 5 items, each label up to 30 characters and each text up to 120.${about(plan, block)}`];
+      return [`The stages as a strip: ${STEPS_LINE} with 3 to 5 items, each label up to 30 characters and each text up to 120. For working in Mathematics or stages in order, add "animate":true so the steps appear one by one.${about(plan, block)}`];
     case 'timeline':
       return [`The events in order: ${TIMELINE_LINE} with 3 to 8 items, each when up to 20 characters and each text up to 100.${about(plan, block)}`];
     case 'image':
       return [`A real photo or drawing: ${IMAGE_LINE} where query is up to 80 characters of plain search words for a licensed picture (the server finds it, or leaves it out; never write a link) and caption is up to 120 characters.${about(plan, block)}`];
     case 'videos':
       return [`Exactly ${VIDEOS_LINE}: the server adds the chapter's checked videos, or leaves it out.`];
+    case 'scene':
+      return [`The thing and its parts, tap-able part by part: ${SCENE_LINE} with 2 to 12 parts, each id unique, each label up to 30 characters and each text (what the part does) up to 220; links only between the ids given, each label up to 20; colour 1 to 8. Example: ${SCENE_EXAMPLE}.${about(plan, block)}`, `   ${SCENE_RULES}`];
+    case 'chart':
+      return [`The numbers as a chart: ${CHART_LINE} with 2 to 12 labels (each up to 12 characters) and 1 to 3 series, each with exactly one number per label; a pie is one series. Example: ${CHART_EXAMPLE}.${about(plan, block)}`, `   ${CHART_RULES}`];
     default: {
       // An interactive block (the plan names at most one).
       const when =
@@ -161,7 +174,24 @@ function memoryLines(m: ChatMemory | undefined): string[] {
     m.summary ? `Summary: ${inline(m.summary, 1200)}` : '',
     ...m.turns.map((t) => `${t.role === 'child' ? 'Student' : 'Tutor'}: ${inline(t.text, 800)}`),
     'Answer the new question with this in view: a short follow-up (such as \'and why is that?\') refers to what was said above; refer back to what was already explained instead of repeating it.',
+    // W10-4 (C413; docs/39 §5): the refer-back is said in words, as the explanation's first sentence.
+    REFER_BACK_LINE,
   ].filter(Boolean);
+}
+
+// W10-4 (C413): a follow-up's first sentence refers back in words; anything else asked to open the first paragraph
+// (the chapter quote) comes after it.
+export const REFER_BACK_LINE =
+  'The explanation\'s first paragraph MUST begin with one sentence that refers back to the earlier turn in words, naming what was explained there: in English \'Earlier we saw that …\', in Hindi \'पहले हमने देखा कि …\', in Hinglish \'Pehle humne dekha ki …\'. Then answer the new question. Anything else asked to begin the first paragraph comes right after that sentence.';
+
+// A follow-up asks for more only in words like these; otherwise its answer is not taught at full length again.
+const ASKS_FOR_MORE = /\b(in detail|detailed|details|fully|full answer|elaborate|explain more|more about|tell me more|step by step|everything|long answer)\b|विस्तार|पूरा समझा|और बताओ|detail mein|vistaar/i;
+
+// W10-4 (C413): with the chat's memory (a follow-up), the plan's depth is `medium` or `short`, never `full`, unless the
+// question asks for more.
+export function followUpDepth(plan: Plan, a: Pick<ResolverAsk, 'memory' | 'question'>): Plan {
+  if (!hasMemory(a.memory) || plan.depth !== 'full' || (a.question && ASKS_FOR_MORE.test(a.question))) return plan;
+  return { ...plan, depth: 'medium' };
 }
 
 function passageLines(passages: Passage[] | undefined): string[] {
@@ -181,7 +211,7 @@ export function planOf(a: ResolverAsk): Plan {
 export function resolverSystem(a: ResolverAsk): string {
   const named = namesSubject(a);
   const open = a.openSubjects.length > 0 ? a.openSubjects.join(' or ') : 'none';
-  const plan = planOf(a);
+  const plan = followUpDepth(planOf(a), a);
   // An interactive block only where the plan names one; v4's lines come with it, word for word.
   const blocks = plan.blocks.filter((b, i) => !isInteractiveBlock(b) || plan.blocks.findIndex(isInteractiveBlock) === i);
   const numbered = blocks.flatMap((b, i) => {

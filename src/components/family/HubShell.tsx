@@ -25,7 +25,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
   return (
     <section data-hub-section={id} aria-labelledby={`hub-${id}`} className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: id === 'state' ? '80ms' : '0ms' } as React.CSSProperties}>
       <div className="flex items-center gap-3">
-        <span aria-hidden="true" className="fam-chip-icon bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+        <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d={glyph[id]} />
           </svg>
@@ -51,7 +51,7 @@ function Section({ id, title, entries, empty, path, lang }: { id: 'national' | '
                   {x.body}
                 </p>
                 <p className="flex flex-wrap items-center gap-x-3 text-xs font-semibold">
-                  <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer" data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-royal-deep underline underline-offset-4">
+                  <a href={e.sourceUrl} target="_blank" rel="noopener noreferrer" data-hub-source className="inline-flex min-h-[44px] items-center gap-1 text-ink underline underline-offset-4">
                     <FamIcon name="next" className="h-3.5 w-3.5" />
                     {t(lang, 'fam.hub.source')}
                   </a>

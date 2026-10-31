@@ -74,10 +74,12 @@ export const anthropicAdapter: TextAdapter = {
         }
       }
     } catch {
-      return { ok: false, failure: 'network' };
+      // W10-4 (C413): a connection lost after the model said it ended its turn loses nothing the child has not seen
+      // (as for the chat-completions vendors); before that, the answer was cut.
+      if (!ended(stop)) return { ok: false, failure: 'network' };
     }
     if (stop === 'refusal') return { ok: false, failure: 'refused' };
-    if (!finished) return { ok: false, failure: 'cut_short' };
+    if (!finished && !ended(stop)) return { ok: false, failure: 'cut_short' };
     return { ok: true, text, tokensIn, tokensOut };
   },
   // GET /v1/models: free, and answers only for a working key (G5); its ids fill Control's model picker (G6).
@@ -85,3 +87,8 @@ export const anthropicAdapter: TextAdapter = {
     return freeCheck('https://api.anthropic.com/v1/models?limit=1000', { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }, dataIds);
   },
 };
+
+// The model ended its turn itself (not cut by its token limit, not refused).
+function ended(stop: string | null): boolean {
+  return stop === 'end_turn' || stop === 'stop_sequence';
+}

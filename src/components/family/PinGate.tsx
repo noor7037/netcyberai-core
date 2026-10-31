@@ -63,7 +63,7 @@ export function PinGate({ w }: { w: Words }) {
             {error}
           </p>
         )}
-        <button type="button" className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline" onClick={() => setMode('enter')}>
+        <button type="button" className="min-h-[44px] self-start px-1 text-sm font-semibold text-ink underline-offset-4 hover:underline" onClick={() => setMode('enter')}>
           {w['fam.common.cancel']}
         </button>
       </GateFrame>
@@ -86,7 +86,7 @@ export function PinGate({ w }: { w: Words }) {
           router.refresh();
         }}
       />
-      <button type="button" className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline" onClick={() => setMode('reset')}>
+      <button type="button" className="min-h-[44px] self-start px-1 text-sm font-semibold text-ink underline-offset-4 hover:underline" onClick={() => setMode('reset')}>
         {w['fam.pin.forgot']}
       </button>
     </GateFrame>

@@ -48,7 +48,8 @@ describe('checkPlan', () => {
       expect(r.fromModel, raw).toBe(false);
       expect(r.plan, raw).toEqual(defaultPlan(ctx(3)));
     }
-    expect(defaultPlan(ctx(3))).toEqual({ questionType: 'concept', band: 'c2_5', depth: 'medium', blocks: blocksFor('c2_5', 'medium'), visuals: [], lang: 'en' });
+    // W10-6: the default plan carries the visual its content calls for (a concept: a mind map).
+    expect(defaultPlan(ctx(3))).toEqual({ questionType: 'concept', band: 'c2_5', depth: 'medium', blocks: ['explanation', 'mind_map', ...blocksFor('c2_5', 'medium').slice(1)], visuals: [], lang: 'en' });
     // No default carries an interactive block.
     for (const band of BANDS) for (const depth of ['short', 'medium', 'full'] as const) expect(blocksFor(band, depth).some(isInteractiveBlock)).toBe(false);
   });
@@ -76,9 +77,10 @@ describe('checkPlan', () => {
     expect(interactiveAllowed('problem', null)).toBe(true);
   });
 
-  it('always explains and checks; short is one explanation and one check; LKG to Class 1 keeps one picture', () => {
+  it('always explains and checks; short is one explanation, its visual and one check; LKG to Class 1 keeps one picture', () => {
     expect(checkPlan(good({ blocks: ['worked_example'] }), ctx(9)).plan.blocks).toEqual(['explanation', 'worked_example', 'check', 'figure']);
-    expect(checkPlan(good({ depth: 'short' }), ctx(9)).plan).toMatchObject({ blocks: ['explanation', 'check'], visuals: [] });
+    // W10-6: a short answer is never plain text alone: a concept keeps a mind map.
+    expect(checkPlan(good({ depth: 'short' }), ctx(9)).plan).toMatchObject({ blocks: ['explanation', 'mind_map', 'check'], visuals: [] });
     expect(checkPlan(good({ blocks: ['explanation', 'worked_example', 'practice', 'mind_map'] }), ctx(1)).plan.blocks).toEqual(['explanation', 'figure', 'check']);
     expect(checkPlan(good({ blocks: ['explanation', 'timeline', 'check'], visuals: [{ kind: 'timeline', about: 'the 1857 revolt' }, { kind: 'video', about: 'a short video' }] }), ctx(8, 'history')).plan.blocks).toEqual(['explanation', 'timeline', 'check', 'videos']);
     expect(PLAN_BLOCKS).toEqual(expect.arrayContaining(['figure', 'steps', 'timeline', 'image', 'videos']));

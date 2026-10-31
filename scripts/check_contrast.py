@@ -100,6 +100,11 @@ COLOR_HEX = {
     "cyan-text": "#1E293B",
     "slate": "#1E293B",
     "off-white": "#F9FAFB",
+    # W10-4 (C413): the lesson identity (src/lib/design-tokens.ts lessonColors).
+    "ink": "#1C1B1A",
+    "paper": "#FBF8F3",
+    "saffron": "#E8702A",
+    "saffron-deep": "#C2410C",
     "white": "#FFFFFF",
     "black": "#000000",
     "red-600": "#DC2626",

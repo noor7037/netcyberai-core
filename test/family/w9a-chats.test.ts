@@ -6,8 +6,8 @@ import type { Block } from '@/lib/family/blocks';
 
 // W9-A (C406; docs/39 §3 "Chat", §4): chats with memory, on the real migrations.
 //   1. A subject keeps at most 15 listed chats: a 16th archives the least recently used.
-//   2. A chat takes 30 child turns, then it is full: the 31st is refused with chat_full (nothing written), and the route
-//      refuses a new question in a full chat with 409 before the tutor is asked.
+//   2. A chat marked full refuses a turn with chat_full (nothing written), and the route refuses a new question in a full
+//      chat with 409 before the tutor is asked (W10-4: no chat is marked full any more; the feed rolls instead).
 //   3. memoryFor gives the running summary and the last 6 turns: the child's words and the tutor's explanation
 //      paragraphs only (no other block).
 //   4. The route sends that memory to the tutor: a third follow-up is asked with the earlier questions in its prompt;
@@ -116,13 +116,16 @@ describe('chats (C406)', () => {
     expect(await fam((c) => t.appendTurn(c, { ...turnInput(made[0], 1), subject: 'english' }))).toEqual({ ok: false, error: 'not_found' });
   });
 
-  it('the 31st child turn is refused with chat_full, and nothing of it is written', async () => {
+  // W10-4 (C413): a chat is never marked full now (the subject's feed keeps its last 30 child turns instead, see
+  // test/family/w10-4-feed.test.ts); a chat marked full before W10-4 still refuses a turn, and nothing of it is written.
+  it('30 child turns leave a chat open; a chat marked full earlier refuses the next turn with chat_full', async () => {
     const t = await import('@/lib/family/tutor');
     const chat = await fam((c) => t.newChat(c, ACCOUNT, CHILD, 'science'));
     await fam(async (c) => {
       for (let n = 1; n <= 30; n++) expect(await t.appendTurn(c, turnInput(chat, n))).toEqual({ ok: true, turnCount: n, subject: 'science' });
     });
-    expect(await q(`select title, turn_count, status from family.tutor_conversations where conversation_id = $1`, [chat])).toEqual([{ title: 'Question 1?', turn_count: 30, status: 'full' }]);
+    expect(await q(`select title, turn_count, status from family.tutor_conversations where conversation_id = $1`, [chat])).toEqual([{ title: 'Question 1?', turn_count: 30, status: 'open' }]);
+    await q(`update family.tutor_conversations set status = 'full' where conversation_id = $1`, [chat]);
     expect(await fam((c) => t.appendTurn(c, turnInput(chat, 31)))).toEqual({ ok: false, error: 'chat_full' });
     expect(await q(`select count(*)::int as n from family.tutor_messages where conversation_id = $1`, [chat])).toEqual([{ n: 60 }]);
     // saveTurn, as the route keeps an answer, moves on to a new open chat instead of dropping it.
