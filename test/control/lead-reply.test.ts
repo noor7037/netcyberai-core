@@ -42,7 +42,7 @@ const MIGRATIONS = [
   '20260927200000_leads_free_tools_source.sql',
   '20261028134900_leads_contact_notes_import.sql',
 ];
-const W12F = '20261031120100_w12_f_lead_replies.sql';
+const W12F = '20261031121203_w12_f_lead_replies.sql';
 // control.settings comes from the Family app's migration, which needs far more than this small database has: the
 // table alone, exactly as 20261021094627_m1_family_content_control.sql creates it, with its platform-role grant.
 const CONTROL_SETTINGS = `
