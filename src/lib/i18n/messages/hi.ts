@@ -9689,4 +9689,20 @@ export const hi: Record<keyof typeof en, string> = {
   'control.school.students.failed': 'छात्रों की सूची नहीं खुल सकी। थोड़ी देर में फिर कोशिश करें।',
   'control.school.students.loading': 'छात्र खुल रहे हैं...',
   // w13-a students end
+  // w13-b staff start
+  'control.school.staff.title': 'स्टाफ',
+  'control.school.staff.kpi.total': 'कुल स्टाफ',
+  'control.school.staff.kpi.teaching': 'पढ़ाने वाले',
+  'control.school.staff.kpi.nonTeaching': 'पढ़ाने वाले नहीं',
+  'control.school.staff.kpi.active': 'सक्रिय',
+  'control.school.staff.inactiveNote': '{n} अब सक्रिय नहीं',
+  'control.school.staff.col.name': 'नाम',
+  'control.school.staff.col.role': 'भूमिका',
+  'control.school.staff.col.subjects': 'विषय',
+  'control.school.staff.col.status': 'स्थिति',
+  'control.school.staff.col.joined': 'जुड़े',
+  'control.school.staff.empty.title': 'अभी कोई स्टाफ नहीं',
+  'control.school.staff.empty.desc': 'जब यह स्कूल अपना स्टाफ जोड़ेगा, वे यहाँ दिखेंगे।',
+  'control.school.staff.failed': 'स्टाफ लोड नहीं हो सका।',
+  // w13-b staff end
 };
