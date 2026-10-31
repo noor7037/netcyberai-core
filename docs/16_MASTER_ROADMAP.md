@@ -118,6 +118,13 @@ numbers: supervisor C100–C109, Claude Code from C110.
 
 ## 6. Change log
 
+- **2026-10-31** — Wave 12 (W12-D): docs brought current (`README.md`, `docs/00_CURRENT_MILESTONE.md` new, the Family index and feature map); the pilot scope marker in Control → Content → Library coverage. Next: the first real school (cutover per `18`).
+- **2026-10-31** — Wave 11 merged (#389, #390, #391; C415–C417): the Family page asks the keyboard to shrink, one failed fetch is no longer "offline", the composer follows the keyboard, parent-area addresses redirect, the uptime check every 30 minutes; Control QA fixes (End view, View as, unsent invites, class format), a refresh token is spent once.
+- **2026-10-30** — Wave 10 merged (#386, #388; C410–C414): first answer text within a deadline (thinking off on NVIDIA), a chat keeps its subject, the lesson identity, one Study feed per subject, `scene` and `chart` visuals on every answer.
+- **2026-10-30** — Wave 9 merged (#385; C406–C409): the teaching engine (`39`): chats with memory, a planning call and chapter retrieval with resolver v8, five visual blocks, library coverage in Control and Quality Lab cases from the syllabus.
+- **2026-10-30** — Wave 8 merged (#383, with #384; C404–C405): NVIDIA NIM as a provider, testing mode on until the Play Store release, resolver v7 with mind maps and checked wrong answers.
+- **2026-10-28** — Wave 7 merged (#381; C401–C403, with #378 and #380): picked words for light pages, every Control page under 250 kB, Family dates in Hindi, website leads with a Control Leads screen.
+- **2026-10-28** — Wave 6 merged (#379; C395–C400): one composer and an accordion in Study, one visual system for the Family screens, Control → AI as a dashboard, everything built is on by default, one-click school provisioning, the parent area in six sections.
 - **2026-10-20** — C230-K: the family app's experience and design standard (`docs/family-app/09`); the weekend prototype is audited read-only (wave PA) and its useful parts ported into netcyberai-core, with no separate app.
 - **2026-10-20** — C230-J: QR/NFC labels and every hardware or device concept removed from NetCyberAI's scope for good (founder); `33` deleted. The operating context for every session written into `CLAUDE.md`.
 - **2026-10-20** — C230-I: the Family App plan revised: a dynamic learning loop (the Concept Resolver with typed blocks, checks and mastery), video inside the response, English moments and a 90-day programme with measured outcomes, a vetted career explorer, opportunities with a readiness tracker, one free subject per child, and a shared AI platform managed in Control (wave P-AI). Waves are now FA-1, P-AI, FA-2 to FA-7.

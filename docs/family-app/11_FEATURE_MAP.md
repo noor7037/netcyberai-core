@@ -1,6 +1,6 @@
 # 11 — Feature map: every planned feature, judged
 
-**Status:** plan (C230-L, 2026-10-20). **Sources:** the plan in `00`–`10`; the founder's four mockup boards
+**Status:** the plan (C230-L, 2026-10-20), with "Built today" (31 Oct 2026) above it. **Sources:** the plan in `00`–`10`; the founder's four mockup boards
 (`mockups/`); the founder's 10 private features and 3 recommendations (2026-10-20); the build-lead's master prompt v2
 for the Family App, which first drew this map. This file is the copy that binds; the supervisor's corrections to v2
 are marked **(C230-L)**.
@@ -18,6 +18,40 @@ launch, by evidence) · Founder (needs the founder) · Out (not built).
 
 **Money:** Free · 1-subject (free for one subject per child, Plus for the rest) · Plus · Pack (one-time, season) ·
 School (school information, always free to linked families). Every price is a test band until `05` §4's evidence.
+
+## Built today (checked against the routes, 31 Oct 2026)
+
+Every row names a route that exists in `src/app/(family)/family/(app)` and the Decision Log row that built it. The
+tables below this one are the original plan; where they say "plan", this table is what exists. The current milestone is
+in `docs/00_CURRENT_MILESTONE.md`.
+
+| Feature | Route | Built by (`docs/10`) |
+|---|---|---|
+| Understand (the Concept Resolver), typed or photo question | `/family/understand` | C251; resolver v7 C405, v8 C407 |
+| Study feed: one feed per subject, last 30 questions, chats with memory, "Earlier we saw that …" | `/family/study` | C375, C395, C406, C413 |
+| Teaching planner (one planning call before the answer) and chapter retrieval from the library | `/family/study`, `/family/understand` | C407 |
+| Chapter reader with narration, doubt drawer, interactive and tested blocks | `/family/study/chapter/[key]` | C374, C378 |
+| Visual blocks: figure, steps, timeline, licensed photo, videos | answer pages | C408 |
+| Visual blocks: `scene` and `chart`, a visual that matches the content | answer pages | C414 |
+| The lesson identity (warm paper and ink, saffron, teal, plum) on every Family screen | all Family screens | C412, C413 |
+| Home: the daily plan, the weekly habit card and the 14-day home plan after a parent-teacher meeting | `/family` | M2 (L5, R7); home plan C337 |
+| Homework helper (hint ladder) | `/family/study/homework` | M2 (L3) |
+| Practice worksheets | `/family/study/worksheet/[topic]`, `/family/parent/worksheet/[topic]` | M2 (L7) |
+| Online tests of the child's class | `/family/study/tests/[testId]`, `/family/parent/tests` | C365 |
+| The parent area in six sections (Overview, Children, School, Learning, Privacy, Account); progress, English and results per child | `/family/parent`, `/family/parent/progress/[childId]`, `/family/parent/english/[childId]` | C391, C396, C400 |
+| Learning Vault (tutor history and attachments, cleared by the parent) | `/family/parent/vault` | C375, C380 |
+| School Link and the school's information (homework, timetable, notices, results as published) | `/family/link`, `/family/parent`, `/family/results` | C329 to C340, C333 |
+| English: the 90-day course, checks, and the live spoken tutor | `/family/english`, `/family/english/lesson/[key]`, `/family/english/check/[kind]`, `/family/english/live` | C274, C290, C382 |
+| Hubs: Career, Exams, Schemes and scholarships, read from Control → Content → Hubs | `/family/future`, `/family/future/career`, `/family/future/exams`, `/family/future/schemes` | C387 |
+| Notifications centre and the Profile (Parent space behind the PIN) | `/family/notifications`, `/family/profile` | C383, C391 |
+| Offline chapter packs, answers that sync later, the data-saver | `/family/offline` | C283, C416 |
+| "How the AI works" and the "made by AI" notice | `/family/about-ai` | C315 |
+| First steps: welcome, the child, the parent PIN, sign-in | `/family/welcome`, `/family/welcome/child`, `/family/welcome/pin`, `/family/sign-in` | M1 |
+| Focus Lock (Android app only) | `android/` (`focuslock-core`), not a web route | C304, C306 |
+
+Not built yet, whatever the plan below says: the 30-day board plan (L6), exam runway mock tests (F1), the career
+compass (F3), the lifetime record, health record and admission dossier (R1 to R3), Plus and the subscription screen
+(P1), books and uniform exchange (R8).
 
 ## Learn
 

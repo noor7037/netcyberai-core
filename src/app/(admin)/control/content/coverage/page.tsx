@@ -6,17 +6,19 @@ import { pageWords } from '@/components/app-shell/page-words';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
 import { coverage } from '@/lib/content/coverage';
+import { EMPTY_PILOT_SCOPE, readPilotScope } from '@/lib/content/pilot-scope';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
 // Control → Content → Coverage (W9-D, docs/39 §4): what the library holds against the syllabus, unit by unit. The layout
-// already admits only NetCyberAI staff; /api/control/content/coverage/export checks again for the export.
+// already admits only NetCyberAI staff; /api/control/content/coverage/export checks again for the export,
+// and /api/control/content/pilot for the pilot scope (super_admin only, W12-D).
 export const dynamic = 'force-dynamic';
 
 export default async function CoveragePage() {
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
-  const data = session ? await withTenantContext(session, (db) => coverage(db)) : null;
+  const data = session ? await withTenantContext(session, async (db) => ({ coverage: await coverage(db), scope: await readPilotScope(db) })) : null;
   return (
     <ModulePage
       title={t(lang, 'control.coverage.title')}
@@ -32,7 +34,7 @@ export default async function CoveragePage() {
         </Link>
       }
     >
-      <WordsProvider words={pageWords(lang, '/control/content/coverage')}>{data && <CoverageView initial={data} />}</WordsProvider>
+      <WordsProvider words={pageWords(lang, '/control/content/coverage')}>{data && <CoverageView initial={data.coverage} initialScope={data.scope ?? EMPTY_PILOT_SCOPE} canEdit={session?.role === 'super_admin'} />}</WordsProvider>
     </ModulePage>
   );
 }

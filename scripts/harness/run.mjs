@@ -5967,6 +5967,17 @@ const studioDone = async () => {
   await clearStudio(db);
 };
 // s3 end
+// w12-d begin
+// Control → Content → Library coverage with a pilot scope set (CBSE, Classes 6 and 7), so the pill and the filter show.
+const pilotSeed = async (page) => {
+  await db.pg.query(`update control.settings set value = '{"boardId": "CBSE", "classLevels": [6, 7], "subjects": []}'::jsonb where key = 'content.pilot_scope'`);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-coverage-pilot-state]').waitFor({ timeout: 20000 });
+};
+const pilotDone = async () => {
+  await db.pg.query(`update control.settings set value = '{"boardId": null, "classLevels": [], "subjects": []}'::jsonb where key = 'content.pilot_scope'`);
+};
+// w12-d end
 // w4-3 begin
 // Control → Content → Hubs: the first entry opened for editing, to show the whole form.
 const hubsEdit = async (page) => {
@@ -7412,6 +7423,7 @@ const SCREENS = [
   // Control → Content (C250): import a catalog file, review by a second person, staff preview, release, diff, rollback.
   ['founder', 'control-content', '/control/content'],
   ['founder', 'control-content-coverage', '/control/content/coverage'],
+  ['founder', 'control-content-coverage-pilot', '/control/content/coverage', pilotSeed, pilotDone],
   // s3 begin
   ['founder', 'control-content-studio', `/control/content/studio?key=${encodeURIComponent(STUDIO_KEY)}&version=1`, studioSeed, studioDone],
   // s3 end

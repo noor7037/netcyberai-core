@@ -1,6 +1,8 @@
 # Family App programme (P7b, redefined by C230-H, revised by C230-I and C230-L)
 
-**Status:** plan. Nothing here is built yet beyond C230-D's first parent home. Build starts with milestone M1 (`07`).
+**Status (31 Oct 2026):** built and live on the test database: the learning loop, English, hubs, offline packs, School Link and
+the parent area. What exists, route by route, is in `11_FEATURE_MAP.md` under "Built today"; where the product stands is
+in `docs/00_CURRENT_MILESTONE.md`. The rest of this file is the plan as set in October (milestones M1 to M7).
 - **C230-H** (2026-10-18) set the shape.
 - **C230-I** (2026-10-20) revised it after the founder's review:
   - the learning loop is dynamic, not a library;
@@ -29,11 +31,12 @@ and that adds the school's own information when the child's school uses NetCyber
 | `08_PROMPT_FRAMEWORKS.md` | Build prompts any AI coding tool can follow; the app's product prompts per profile |
 | `09_EXPERIENCE_DESIGN.md` | Learning first with engagement as its servant; the visual identity; the 3D and motion policy; performance budgets; patterns from ten leading products; the banned list and the design review gate |
 | `10_CONTROL_AND_CONTENT.md` | What Control may change (never code); Control → Apps for the Teacher app, school web and Family app; credentials; the central content library that schools, linked and standalone families share |
-| `11_FEATURE_MAP.md` | Every planned feature (38) with its verdict, what is built, its milestone and its money class |
+| `11_FEATURE_MAP.md` | **Built today** (route and Decision Log row per feature), then every planned feature (38) with its verdict, milestone and money class |
 | `12_ENGLISH_COURSE.md` | The 90-day English speaking and confidence course (C274): four age tracks from 3 to 15, the lesson rhythm, the syllabus, locks and review, the progress report, voice for practice only, design and build slices |
+| `docs/37` to `docs/39` (outside this folder) | The AI gateway and Study plan (waves 1 to 3), the premium look and everything-on rule, the teaching engine (waves 9 and 10): they change what `02` and `03` describe for Study |
 | `mockups/` | The founder's four mockup boards: the reference for look and scope, never for facts |
 | `prototype-audit/` | The weekend prototype's audit: a list of failures to prevent, not a source |
-| `prompts/` | The build lead's prompts: `M1_PROMPT.md` (done, merged), `F1_PROMPT.md` (next); the platform-wide plan is `docs/34_ECOSYSTEM_AND_SYNC.md` |
+| `prompts/` | The build lead's prompts: `M1_PROMPT.md`, `F1_PROMPT.md` (both done, merged); the platform-wide plan is `docs/34_ECOSYSTEM_AND_SYNC.md`; the later waves are `docs/37`, `docs/38` and `docs/39` |
 
 ## Decisions in brief
 
