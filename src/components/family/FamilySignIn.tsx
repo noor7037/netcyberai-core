@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/family/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { Lang } from '@/lib/i18n';
 import { fill, type Words } from '@/lib/family/fill';
@@ -132,10 +132,10 @@ export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
             {w['fam.signIn.verify']}
           </Button>
           <div className="flex flex-wrap justify-between gap-2">
-            <button type="button" className="min-h-[44px] px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline" onClick={() => void send()} disabled={busy}>
+            <button type="button" className="min-h-[44px] px-1 text-sm font-semibold text-ink underline-offset-4 hover:underline" onClick={() => void send()} disabled={busy}>
               {w['fam.signIn.resend']}
             </button>
-            <button type="button" className="min-h-[44px] px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline" onClick={() => setStep('email')}>
+            <button type="button" className="min-h-[44px] px-1 text-sm font-semibold text-ink underline-offset-4 hover:underline" onClick={() => setStep('email')}>
               {w['fam.signIn.otherEmail']}
             </button>
           </div>

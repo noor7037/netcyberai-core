@@ -14,8 +14,8 @@ import { FamIcon, rise } from './FamIcon';
 // F2 on D1 (C230-Q): D1 cards (the question, each hint with its bulb, the steps), the main button in D1's call-to-action
 // style, drawn icons instead of device emoji, and buttons that look disabled while they cannot be pressed.
 
-// The main button (D1's call to action): white on a solid royal-deep under the gradient, so the contrast check reads it.
-const CTA = 'fam-cta fam-press flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-4 text-base font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-60';
+// The main button (D1's call to action): saffron with ink text (W12-E), so the contrast check reads it.
+const CTA = 'fam-cta fam-press flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-saffron px-4 text-base font-extrabold text-ink disabled:cursor-not-allowed disabled:opacity-60';
 const QUIET = 'fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl bg-off-white px-4 text-base font-bold text-slate ring-1 ring-slate/15 hover:bg-slate/5 disabled:cursor-not-allowed disabled:opacity-60';
 
 type Ladder = { token: string; view: LadderView };
@@ -102,7 +102,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
     return (
       <section data-homework-start className="fam-card fam-rise flex flex-col gap-4 bg-white p-5">
         <div className="flex items-start gap-4">
-          <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-lg">
+          <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ink text-white shadow-lg">
             <FamIcon name="camera" className="h-6 w-6" />
           </span>
           <p className="min-w-0 text-base text-slate">{w['fam.homework.lead']}</p>
@@ -126,7 +126,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
           {w['fam.homework.privacy']}
         </p>
         {busy && (
-          <p role="status" className="animate-pulse text-base font-semibold text-royal motion-reduce:animate-none">
+          <p role="status" className="animate-pulse text-base font-semibold text-ink motion-reduce:animate-none">
             {w['fam.homework.reading']}
           </p>
         )}
@@ -143,7 +143,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
   return (
     <section data-homework-ladder className="flex flex-col gap-3">
       <div className="fam-card fam-rise flex items-start gap-4 bg-white p-5">
-        <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-royal-deep bg-gradient-to-br from-royal to-violet text-white shadow-md">
+        <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-ink text-white shadow-md">
           <FamIcon name="question" className="h-6 w-6" />
         </span>
         <div className="min-w-0">
@@ -176,7 +176,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
       {v.steps && (
         <div className="fam-card fam-rise bg-white p-5" style={rise(60)}>
           <h2 className="flex items-center gap-2 text-base font-extrabold text-slate">
-            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-royal/10 text-royal-deep">
+            <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-lesson-sky text-ink">
               <FamIcon name="steps" className="h-5 w-5" />
             </span>
             {w['fam.homework.steps']}
@@ -184,7 +184,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
           <ol className="mt-3 flex flex-col gap-2">
             {v.steps.map((s, i) => (
               <li key={i} className="flex gap-3 text-base text-slate">
-                <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-royal-deep bg-gradient-to-br from-royal to-violet text-sm font-bold text-white">
+                <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-ink text-sm font-bold text-white">
                   {i + 1}
                 </span>
                 <span lang={titleLang(s)} className="min-w-0 break-words pt-0.5">
@@ -220,7 +220,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
             onChange={(e) => setAnswer(e.target.value)}
             maxLength={200}
             autoComplete="off"
-            className="min-h-[48px] rounded-2xl bg-white px-3 text-base text-slate ring-1 ring-slate/20 focus:outline-none focus:ring-2 focus:ring-royal"
+            className="min-h-[48px] rounded-2xl bg-white px-3 text-base text-slate ring-1 ring-slate/20 focus:outline-none focus:ring-2 focus:ring-ink"
           />
           <button type="submit" disabled={busy || !answer.trim()} className={CTA}>
             {w['fam.homework.check']}
@@ -253,7 +253,7 @@ export function HomeworkHelper({ w }: { w: Words }) {
           {error}
         </p>
       )}
-      <button type="button" onClick={reset} className="fam-press flex min-h-[44px] items-center gap-2 self-start rounded-2xl px-2 text-sm font-bold text-royal underline-offset-2 hover:underline">
+      <button type="button" onClick={reset} className="fam-press flex min-h-[44px] items-center gap-2 self-start rounded-2xl px-2 text-sm font-bold text-ink underline-offset-2 hover:underline">
         <FamIcon name="again" className="h-4 w-4" />
         {w['fam.homework.another']}
       </button>

@@ -22,7 +22,7 @@ export default async function FamilyParentEnglishPage({ params }: { params: { ch
   const w = familyWords(lang, ENGLISH_PARENT_KEYS);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family/parent" backLabel={t(lang, 'fam.parent.title')} title={fill(w['fam.english.parent.title'], { name: child.firstName })} tone="royal" />
+      <SubPageHeader back="/family/parent" backLabel={t(lang, 'fam.parent.title')} title={fill(w['fam.english.parent.title'], { name: child.firstName })} tone="ink" />
       <main className="fam-page">
         <EnglishReport childId={child.childId} w={w} lang={lang} tracks={tracksAllowed(child.classLevel)} />
         <LiveSessions childId={child.childId} w={familyWords(lang, LIVE_PARENT_KEYS)} lang={lang} />

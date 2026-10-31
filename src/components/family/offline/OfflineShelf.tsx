@@ -65,7 +65,7 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
     const t = open.topic;
     return (
       <section data-offline-topic aria-labelledby="fam-offline-topic" className="flex w-full flex-col gap-3 text-left">
-        <button type="button" onClick={() => setOpen(null)} className="fam-press inline-flex min-h-[44px] items-center gap-1 self-start rounded-2xl px-1 text-base font-bold text-royal-deep underline-offset-4 hover:underline">
+        <button type="button" onClick={() => setOpen(null)} className="fam-press inline-flex min-h-[44px] items-center gap-1 self-start rounded-2xl px-1 text-base font-bold text-ink underline-offset-4 hover:underline">
           <FamIcon name="back" className="h-5 w-5" /> {w['fam.offline.pack.allChapters']}
         </button>
         <h2 id="fam-offline-topic" className="text-xl font-extrabold text-slate">
@@ -109,7 +109,7 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
           {packs.map((p, i) => (
             <li key={p.id} className="fam-card fam-rise bg-white p-3" style={rise(Math.min(i, 8) * 50)}>
               <div className="flex items-center gap-3 px-1">
-                <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-royal-deep text-white shadow-md ${subjectTheme(p.pack.subject).tile}`}>
+                <span aria-hidden="true" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl shadow-md ${subjectTheme(p.pack.subject).chip}`}>
                   <SubjectGlyph subject={p.pack.subject} className="h-5 w-5" />
                 </span>
                 <span className="flex min-w-0 flex-col">
@@ -141,7 +141,7 @@ export function OfflineShelf({ w, lang }: { w: Words; lang: 'en' | 'hi' }) {
 function Waiting({ text }: { text: string }) {
   return (
     <p className="fam-card flex items-center gap-3 bg-white px-4 py-3 text-sm text-slate">
-      <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-royal/10 text-royal-deep">
+      <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-lesson-sky text-ink">
         <FamIcon name="upload" className="h-4 w-4" />
       </span>
       {text}

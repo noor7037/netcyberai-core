@@ -33,7 +33,7 @@ function QuestionRow({ q, w }: { q: SchoolMarkedQuestion; w: Words }) {
         <div className="flex flex-wrap gap-2">
           {q.mistake && q.mistake !== 'none' && <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate ring-1 ring-slate/15">{w[MISTAKE_KEYS[q.mistake]]}</span>}
           {q.topic && (
-            <span className="rounded-full bg-royal/10 px-3 py-1 text-xs font-bold text-royal-deep">
+            <span className="rounded-full bg-lesson-sky px-3 py-1 text-xs font-bold text-ink">
               <SchoolText text={q.chapter ? `${q.chapter} · ${q.topic}` : q.topic} />
             </span>
           )}
@@ -111,12 +111,12 @@ export function CheckedPaperView({ paper, w, childView }: { paper: SchoolChecked
           )}
           {paper.practice.length > 0 && (
             <div className="flex flex-col gap-2" data-practice-next>
-              <h2 className="fam-h2 text-royal-deep">{w['fam.marks.practice']}</h2>
+              <h2 className="fam-h2 text-ink">{w['fam.marks.practice']}</h2>
               <ul className="flex flex-col gap-2">
                 {paper.practice.map((p, i) => (
-                  <li key={i} className="flex flex-col gap-1 rounded-2xl bg-royal/5 px-3 py-3">
+                  <li key={i} className="flex flex-col gap-1 rounded-2xl bg-lesson-sky px-3 py-3">
                     {p.topic && (
-                      <span className="text-xs font-bold text-royal-deep">
+                      <span className="text-xs font-bold text-ink">
                         <SchoolText text={p.chapter ? `${p.chapter} · ${p.topic}` : p.topic} />
                       </span>
                     )}

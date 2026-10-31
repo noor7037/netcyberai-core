@@ -1,7 +1,7 @@
 'use client';
 
 import type { Figure, FigureAt, FigureShape } from '@/lib/family/blocks';
-import { colors, deepColors } from '@/lib/design-tokens';
+import { colors, deepColors, lessonColors } from '@/lib/design-tokens';
 import { Card } from './BlockViews';
 
 // A labelled schematic (W9-C, docs/39 §3), drawn by our own code from checked data: one of five shapes (circle, ring,
@@ -13,8 +13,8 @@ import { Card } from './BlockViews';
 // Logo tokens only, no gradients, and no motion of its own (the card's rise is off under prefers-reduced-motion).
 
 const INK = colors.slate;
-const LINE = colors.royal;
-const TONE_A = colors.royal;
+const LINE = lessonColors.plum;
+const TONE_A = lessonColors.plum;
 const TONE_B = colors.emerald;
 
 // The drawing's centre and size, in the wide picture's units (the narrow picture is the same drawing, cropped).
@@ -166,7 +166,7 @@ function Shape({ shape }: { shape: FigureShape }) {
         <g>
           <ellipse cx={CX} cy={CY} rx={R * 1.3} ry={R * 0.82} fill="none" stroke={TONE_A} strokeWidth="2.5" strokeDasharray="7 7" />
           <circle cx={CX} cy={CY} r={R * 0.3} fill={colors.gold} stroke={deepColors.goldDeep} strokeWidth="2.5" />
-          <circle cx={CX + R * 1.3} cy={CY} r={R * 0.14} fill={TONE_A} stroke={deepColors.royalDeep} strokeWidth="2" />
+          <circle cx={CX + R * 1.3} cy={CY} r={R * 0.14} fill={TONE_A} stroke={lessonColors.ink} strokeWidth="2" />
         </g>
       );
   }

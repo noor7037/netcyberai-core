@@ -115,7 +115,7 @@ const PLACES: Record<Scene['place'], [string, string]> = {
   field: [`${C.cyan}26`, `${C.leaf}99`],
   village: [`${C.cyan}33`, `${C.leaf}80`],
   clinic: [`${C.turquoise}1a`, `${C.turquoise}66`],
-  station: [`${C.royal}14`, `${C.slate}33`],
+  station: [`${C.slate}14`, `${C.slate}33`],
   road: [`${C.cyan}26`, `${C.slate}40`],
   festival: [`${C.sunshine}40`, `${C.coral}66`],
   plain: [C.offWhite, `${C.slate}1a`],

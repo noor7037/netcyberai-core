@@ -81,7 +81,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
       <div data-live-refused={error} className="flex flex-col items-start gap-3 fam-card bg-white p-5 text-slate">
         <p className="text-lg font-bold text-slate">{text}</p>
         {error === 'consent_needed' && (
-          <Link href="/family/parent" className="flex min-h-[44px] items-center rounded-full bg-royal px-5 font-bold text-white">
+          <Link href="/family/parent" className="flex min-h-[44px] items-center rounded-full bg-saffron px-5 font-bold text-ink">
             {w['fam.english.consentButton']}
           </Link>
         )}
@@ -219,7 +219,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
             <p className="text-base text-slate">{w['fam.english.live.recapNone']}</p>
           )}
         </div>
-        <button type="button" onClick={() => setRecap(undefined)} className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-royal px-5 font-bold text-white">
+        <button type="button" onClick={() => setRecap(undefined)} className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-saffron px-5 font-bold text-ink">
           {w['fam.english.live.again']}
         </button>
       </section>
@@ -239,7 +239,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
               role="radio"
               aria-checked={topic === k}
               onClick={() => setTopic(k)}
-              className={`fam-press min-h-[44px] rounded-2xl px-3 py-2 text-base font-bold ${topic === k ? 'bg-royal text-white' : 'bg-off-white text-slate ring-1 ring-slate/15'}`}
+              className={`fam-press min-h-[44px] rounded-2xl px-3 py-2 text-base font-bold ${topic === k ? 'bg-ink text-white' : 'bg-off-white text-slate ring-1 ring-slate/15'}`}
             >
               {w[`fam.english.live.topic.${k}`]}
             </button>
@@ -248,7 +248,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
         {capped ? (
           <p role="status" className="rounded-2xl bg-slate/5 px-3 py-2 text-base text-slate">{w['fam.english.live.capReached']}</p>
         ) : (
-          <button type="button" disabled={busy} onClick={() => void start()} className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-royal px-5 font-bold text-white disabled:opacity-60">
+          <button type="button" disabled={busy} onClick={() => void start()} className="fam-press flex min-h-[44px] items-center self-start rounded-full bg-saffron px-5 font-bold text-ink disabled:opacity-60">
             {w['fam.english.live.start']}
           </button>
         )}
@@ -267,7 +267,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
       <ol data-live-turns aria-live="polite" className="flex flex-col gap-3">
         {session.turns.map((t) => (
           <li key={t.position} className="flex flex-col gap-2">
-            <p lang="en" className={`${BUBBLE} self-end bg-royal text-white`}>
+            <p lang="en" className={`${BUBBLE} self-end bg-ink text-white`}>
               <span className="sr-only">{w['fam.english.live.you']}: </span>
               {t.childText}
             </p>
@@ -280,7 +280,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
                   silence();
                   readAloud({ kind: 'live_turn', sessionId: session.sessionId, position: t.position }, t.reply);
                 }}
-                className="fam-press ml-2 inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold text-royal ring-1 ring-royal/30">
+                className="fam-press ml-2 inline-flex min-h-[44px] items-center rounded-full px-3 text-sm font-bold text-ink ring-1 ring-ink/25">
                 <Picture e="🔊" /> {w['fam.english.live.hearAgain']}
               </button>
             </div>
@@ -293,7 +293,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
           </li>
         )}
       </ol>
-      {busy && !streaming?.length && <p role="status" className="text-base font-semibold text-royal">{w['fam.english.live.thinking']}</p>}
+      {busy && !streaming?.length && <p role="status" className="text-base font-semibold text-ink">{w['fam.english.live.thinking']}</p>}
       <div className="flex flex-col gap-3 fam-card bg-white p-4 text-slate">
         {left > 0 ? (
           <>
@@ -303,7 +303,7 @@ export function LivePractice({ w, initial }: { w: Words; initial?: { state: Stat
               <textarea value={draft} onChange={(e) => setDraft(e.target.value)} maxLength={300} rows={2} lang="en" className="rounded-2xl bg-off-white p-3 text-base font-normal text-slate ring-1 ring-slate/20" />
             </label>
             <div className="flex flex-wrap items-center gap-3">
-              <button type="button" disabled={busy || !draft.trim()} onClick={() => void send()} className="fam-press flex min-h-[44px] items-center rounded-full bg-royal px-6 font-bold text-white disabled:opacity-60">
+              <button type="button" disabled={busy || !draft.trim()} onClick={() => void send()} className="fam-press flex min-h-[44px] items-center rounded-full bg-saffron px-6 font-bold text-ink disabled:opacity-60">
                 {w['fam.english.live.send']}
               </button>
               <span className="text-sm text-slate/80">{fill(w['fam.english.live.turnsLeft'], { n: left })}</span>

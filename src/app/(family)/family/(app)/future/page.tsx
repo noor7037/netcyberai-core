@@ -29,11 +29,11 @@ export default async function FamilyFuturePage() {
           {hubs.map((h, n) => (
             <li key={h.module} className="fam-rise" style={{ ['--d' as string]: `${n * 60}ms` } as React.CSSProperties}>
               <Link href={h.path} data-hub-link={h.module} className="fam-card fam-press flex min-h-[72px] items-center gap-4 bg-white p-4 text-slate">
-                <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-royal-deep bg-gradient-to-br from-royal to-violet text-white">
+                <span aria-hidden="true" className="fam-chip-icon h-12 w-12 bg-ink text-white">
                   <FamIcon name={ICON[h.module] ?? 'explore'} className="h-6 w-6" />
                 </span>
                 <span className="min-w-0 flex-1 text-lg font-extrabold leading-snug">{t(lang, h.title)}</span>
-                <FamIcon name="next" className="h-5 w-5 shrink-0 text-royal-deep" />
+                <FamIcon name="next" className="h-5 w-5 shrink-0 text-ink" />
               </Link>
             </li>
           ))}

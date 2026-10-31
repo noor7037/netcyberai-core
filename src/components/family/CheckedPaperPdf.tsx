@@ -27,7 +27,7 @@ export function CheckedPaperPdf({ paper, w }: { paper: SchoolCheckedPaper; w: Wo
   };
   return (
     <div ref={here} className="flex flex-col items-start gap-2" data-paper-pdf>
-      <button type="button" onClick={() => void make()} disabled={state === 'making'} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-royal px-4 text-sm font-bold text-white disabled:opacity-60">
+      <button type="button" onClick={() => void make()} disabled={state === 'making'} className="fam-press inline-flex min-h-[44px] items-center rounded-xl bg-saffron px-4 text-sm font-bold text-ink disabled:opacity-60">
         {state === 'making' ? w['fam.marks.pdfMaking'] : w['fam.marks.pdf']}
       </button>
       {state === 'failed' && (

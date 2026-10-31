@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/family/ui/Button';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 import { sameInkOnBothSides } from '@/lib/family/day-text';

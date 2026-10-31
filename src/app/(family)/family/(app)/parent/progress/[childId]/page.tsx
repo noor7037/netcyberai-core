@@ -25,7 +25,7 @@ export default async function FamilyParentProgressPage({ params }: { params: { c
   const progress = child ? await schoolProgressFor(familyClaims(page.session), links, child.childId, { childView: false }) : null;
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} kicker={child?.firstName} title={w['fam.schoolProgress.title']} tone="royal" />
+      <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} kicker={child?.firstName} title={w['fam.schoolProgress.title']} tone="ink" />
       <main className="fam-page" data-parent-progress>
         <SchoolProgressView progress={progress ?? { session: null, groups: [] }} w={w} lang={lang} />
       </main>

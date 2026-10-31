@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
-import { colors, deepColors } from '@/lib/design-tokens';
+import { colors, lessonColors, lessonTints } from '@/lib/design-tokens';
 import { sliderValue, type FractionModel, type Geometry, type Graph, type Interactive, type NumberLine, type Simulation, type Slider as SliderBlock } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import {
@@ -33,36 +33,21 @@ import { Card } from './BlockViews';
 // under prefers-reduced-motion (a still picture with the same computed values).
 
 const ink = colors.slate;
-// F2 on D1 (C230-Q): a drawing takes its subject's solid colour (`chip` in src/lib/family/subject-theme.ts, a logo token
-// that holds AA with white, so a line or a filled part stands out on the white card). The second colour is tangerine,
-// or royal blue when the subject is warm itself, so the two never look alike.
-const CHIP_HEX: Record<string, string> = {
-  'bg-royal': colors.royal,
-  'bg-royal-deep': deepColors.royalDeep,
-  'bg-emerald': colors.emerald,
-  'bg-grape': colors.grape,
-  'bg-grape-deep': deepColors.grapeDeep,
-  'bg-violet': colors.violet,
-  'bg-azure': colors.azure,
-  'bg-sapphire': colors.sapphire,
-  'bg-midnight': colors.midnight,
-  'bg-tangerine-deep': deepColors.tangerineDeep,
-  'bg-coral-deep': deepColors.coralDeep,
-  'bg-gold-deep': deepColors.goldDeep,
-};
-const WARM = new Set<string>([deepColors.tangerineDeep, deepColors.coralDeep, deepColors.goldDeep]);
-export const toneColor = (tone: string): string => CHIP_HEX[subjectTheme(tone).chip] ?? colors.royal;
-export const secondColor = (tone: string): string => (WARM.has(toneColor(tone)) ? colors.royal : deepColors.tangerineDeep);
+// F2 on D1 (C230-Q), on the lesson identity (W12-E, C419): a drawing takes its subject's solid accent (`hex` in
+// src/lib/family/subject-theme.ts, AA on white), so a line or a filled part stands out on the white card. The second
+// colour is deep saffron, or plum when the subject is saffron itself, so the two never look alike.
+export const toneColor = (tone: string): string => subjectTheme(tone).hex;
+export const secondColor = (tone: string): string => (toneColor(tone) === lessonColors.saffronDeep ? lessonTints.lilac.accent : lessonColors.saffronDeep);
 // SVG path data from its commands and numbers.
 const svgPath = (...parts: (string | number)[]) => parts.join(' ');
 
 // A 44 px target with a 24 px visible thumb (the transparent border is part of the target).
 const SLIDER =
-  'h-11 w-full cursor-pointer appearance-none bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-royal ' +
+  'h-11 w-full cursor-pointer appearance-none bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ' +
   '[&::-webkit-slider-runnable-track]:h-2 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:bg-slate/20 ' +
-  '[&::-webkit-slider-thumb]:-mt-[18px] [&::-webkit-slider-thumb]:h-11 [&::-webkit-slider-thumb]:w-11 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[10px] [&::-webkit-slider-thumb]:border-solid [&::-webkit-slider-thumb]:border-transparent [&::-webkit-slider-thumb]:bg-royal [&::-webkit-slider-thumb]:bg-clip-padding ' +
+  '[&::-webkit-slider-thumb]:-mt-[18px] [&::-webkit-slider-thumb]:h-11 [&::-webkit-slider-thumb]:w-11 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[10px] [&::-webkit-slider-thumb]:border-solid [&::-webkit-slider-thumb]:border-transparent [&::-webkit-slider-thumb]:bg-ink [&::-webkit-slider-thumb]:bg-clip-padding ' +
   '[&::-moz-range-track]:h-2 [&::-moz-range-track]:rounded-full [&::-moz-range-track]:bg-slate/20 ' +
-  '[&::-moz-range-thumb]:h-11 [&::-moz-range-thumb]:w-11 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-[10px] [&::-moz-range-thumb]:border-solid [&::-moz-range-thumb]:border-transparent [&::-moz-range-thumb]:bg-royal [&::-moz-range-thumb]:bg-clip-padding';
+  '[&::-moz-range-thumb]:h-11 [&::-moz-range-thumb]:w-11 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-[10px] [&::-moz-range-thumb]:border-solid [&::-moz-range-thumb]:border-transparent [&::-moz-range-thumb]:bg-ink [&::-moz-range-thumb]:bg-clip-padding';
 
 export function useReducedMotion(): boolean {
   // Still until the browser says otherwise: the first paint never moves.
@@ -123,10 +108,10 @@ function Values({ lines }: { lines: string[] }) {
   );
 }
 
-// White on a solid royal-deep under the subject's gradient (D1), so the contrast holds whatever the subject.
+// Saffron with ink text (W12-E), whatever the subject.
 function PlayButton({ playing, onToggle, w, tone }: { playing: boolean; onToggle: () => void; w: Words; tone: string }) {
   return (
-    <button type="button" onClick={onToggle} aria-pressed={playing} className={`fam-press flex min-h-[44px] items-center gap-2 self-start rounded-full bg-royal-deep px-5 text-sm font-bold text-white shadow-md ${subjectTheme(tone).tile}`}>
+    <button type="button" onClick={onToggle} aria-pressed={playing} className={`fam-press flex min-h-[44px] items-center gap-2 self-start rounded-full bg-saffron px-5 text-sm font-bold text-ink shadow-md`}>
       <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
         {playing ? <path d="M6 5h4v14H6zM14 5h4v14h-4z" /> : <path d="M7 4l13 8-13 8z" />}
       </svg>

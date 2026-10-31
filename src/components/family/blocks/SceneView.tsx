@@ -2,7 +2,7 @@
 
 import { useId, useState, type KeyboardEvent } from 'react';
 import type { Scene, ScenePart, SceneShape } from '@/lib/family/blocks';
-import { colors } from '@/lib/design-tokens';
+import { colors, lessonColors } from '@/lib/design-tokens';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
 import { useReducedMotion } from './InteractiveViews';
@@ -23,7 +23,7 @@ import { wrapLabel } from './MindMapView';
 //     under prefers-reduced-motion (and the first paint is still); the scene is complete without it.
 
 // The part palette, colour 1 to 8 (the model names a number; the hue is ours).
-export const PART_HEX = [colors.royal, colors.tangerine, colors.turquoise, colors.grape, colors.azure, colors.coral, colors.emerald, colors.gold] as const;
+export const PART_HEX = [lessonColors.ink, colors.tangerine, colors.turquoise, colors.grape, colors.azure, colors.coral, colors.emerald, colors.gold] as const;
 export const partHex = (colour: number) => PART_HEX[(Math.max(1, Math.min(8, Math.round(colour))) - 1) % PART_HEX.length];
 
 export const SCENE_W = 360;
@@ -237,7 +237,7 @@ export function SceneView({ b, w, tone, still, initial }: { b: Scene; w: Words; 
               onKeyDown={(e) => onKey(e, p.part.id)}
               className="group cursor-pointer outline-none"
             >
-              <rect x={p.box.x} y={p.box.y} width={p.box.w} height={p.box.h} rx="14" fill={on ? colors.offWhite : 'transparent'} stroke={on ? colors.royal : 'transparent'} strokeWidth="2.5" className="group-focus-visible:stroke-royal" />
+              <rect x={p.box.x} y={p.box.y} width={p.box.w} height={p.box.h} rx="14" fill={on ? colors.offWhite : 'transparent'} stroke={on ? lessonColors.ink : 'transparent'} strokeWidth="2.5" className="group-focus-visible:stroke-ink" />
               <g transform={`translate(${p.cx} ${p.cy})`}>
                 <g className={pulse ? 'fam-scene-pulse' : turn ? 'fam-scene-rotate' : undefined}>
                   {pulse && <animateTransform attributeName="transform" type="scale" values="1;1.08;1" dur="1.6s" repeatCount="indefinite" />}
