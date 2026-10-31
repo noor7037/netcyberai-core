@@ -36,6 +36,7 @@ export const PAGE_WORDS = {
     'billing.form.', 'billing.source.', 'boards.err.', 'boards.school.', 'branding.', 'fee.', 'gs.bands.', 'gs.board.', 'gs.comp.', 'gs.types.',
     'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.', 'control.invite.', 'control.school.students.',
     'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.', 'control.invite.', 'control.school.staff.',
+    'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.', 'control.invite.', 'control.school.attendance.',
   ],
   '/control/templates': ['tpl.'],
   '/control/users': ['sprof.', 'staff.reset.'],
