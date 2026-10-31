@@ -103,3 +103,70 @@ describe('the Family app offline', () => {
     expect(src.match(/caches\.open\(FAMILY_CACHE\)\)\.put\(([^,]+),/)?.[1]).toBe('FAMILY_SHELL');
   });
 });
+
+// W11-A (C416): a reload showed the offline page although the site answered. The cause: one thrown fetch (a dropped
+// or stale connection on the phone, or an interrupted navigation) was taken for "no internet", with no second try and
+// no look at navigator.onLine. A reload and a redirect were never the cause: both pass straight through.
+describe('a Family page when a fetch fails', () => {
+  type Deps = { fetch: (r: Request) => Promise<Response>; online: () => boolean; shell: () => Promise<Response | undefined> };
+  const fam = sw as unknown as { familyPage: (r: Request, d: Deps) => Promise<Response>; FAMILY_OFFLINE_PAGE: string };
+  const page = () => new Response('page', { status: 200 });
+  const nav = (init: RequestInit = {}) => new Request(O + '/family/study', init);
+  const deps = (answers: Array<Response | Error>, online = true, kept: 'shell' | 'none' = 'shell') => {
+    const seen: Request[] = [];
+    const d: Deps = {
+      fetch: async (r) => {
+        seen.push(r);
+        const a = answers.shift() ?? new TypeError('Failed to fetch');
+        if (a instanceof Error) throw a;
+        return a;
+      },
+      online: () => online,
+      shell: async () => (kept === 'shell' ? new Response('shell', { status: 200 }) : undefined),
+    };
+    return { d, seen };
+  };
+  const net = () => new TypeError('Failed to fetch');
+
+  it('a reload is answered by the network, once', async () => {
+    const { d, seen } = deps([page()]);
+    expect(await (await fam.familyPage(nav({ cache: 'reload' }), d)).text()).toBe('page');
+    expect(seen).toHaveLength(1);
+    expect(seen[0].cache).toBe('reload');
+  });
+
+  it('a redirect (to sign-in) is passed on as it came, not taken for offline', async () => {
+    const { d, seen } = deps([new Response(null, { status: 307, headers: { location: '/family/sign-in' } })]);
+    expect((await fam.familyPage(nav({ redirect: 'manual' }), d)).status).toBe(307);
+    expect(seen).toHaveLength(1);
+  });
+
+  it('one thrown fetch while online is asked once more, fresh, with the sign-in and the redirect mode kept', async () => {
+    const { d, seen } = deps([net(), page()]);
+    expect(await (await fam.familyPage(nav({ cache: 'no-cache' }), d)).text()).toBe('page');
+    expect(seen).toHaveLength(2);
+    expect(seen[1].url).toBe(O + '/family/study');
+    expect(seen[1].credentials).toBe('include');
+    expect(seen[1].redirect).toBe('manual');
+  });
+
+  it('really offline: both tries fail and the shell answers; with no shell, the last-resort page', async () => {
+    expect(await (await fam.familyPage(nav(), deps([net(), net()], false).d)).text()).toBe('shell');
+    expect(await (await fam.familyPage(nav(), deps([net(), net()], false, 'none').d)).text()).toBe(fam.FAMILY_OFFLINE_PAGE);
+  });
+
+  it('online, a network error on the second try too: the shell answers', async () => {
+    expect(await (await fam.familyPage(nav(), deps([net(), net()], true).d)).text()).toBe('shell');
+  });
+
+  it('online, any other failure (an aborted navigation) is passed on as the error, not the offline page', async () => {
+    const abort = () => new DOMException('aborted', 'AbortError');
+    expect((await fam.familyPage(nav(), deps([abort(), abort()], true).d)).type).toBe('error');
+  });
+
+  it('the fetch handler answers a family page through it', () => {
+    const src = readFileSync(path.join(__dirname, '../../public/sw.js'), 'utf8');
+    expect(src).toMatch(/kind === 'family-page'\) \{\s*event\.respondWith\(\s*familyPage\(request,/);
+    expect(src).toMatch(/online: \(\) => self\.navigator\.onLine/);
+  });
+});
