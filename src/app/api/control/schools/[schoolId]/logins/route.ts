@@ -58,6 +58,12 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
           [created.userId, params.schoolId, login.signIn.email, login.role, name]
         );
         const { rows } = await client.query(`insert into memberships (user_id, school_id, role) values ($1, $2, $3) returning membership_id`, [created.userId, params.schoolId, login.role]);
+        // A login made for someone whose invitation was never sent replaces it (W11-B): the invitation is withdrawn,
+        // so its job stops trying and the school's page no longer lists it as waiting.
+        await client.query(
+          `update staff_invitations set status = 'revoked', updated_at = now() where school_id = $1 and email_key = lower($2) and status = 'pending'`,
+          [params.schoolId, login.signIn.email]
+        );
         await writeAuditLog(client, {
           schoolId: params.schoolId,
           actorUserId: guard.claims.sub,

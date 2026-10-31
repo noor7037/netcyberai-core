@@ -102,7 +102,10 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
   const expiresAt = new Date(Date.now() + (persistent ? REFRESH_TOKEN_TTL_MS : SESSION_ONLY_TTL_MS));
 
   const newSessionId = await withBackendConnection(async (client) => {
-    await client.query(`update sessions set revoked_at = now() where session_id = $1`, [row.session_id]);
+    // C417: the old token is spent exactly once. Two requests carrying the same refresh token both read the row above;
+    // only the one that revokes it here goes on, so a replayed token never yields a second live session.
+    const spent = await client.query(`update sessions set revoked_at = now() where session_id = $1 and revoked_at is null returning 1`, [row.session_id]);
+    if (spent.rowCount === 0) return null;
     const { rows } = await client.query(
       `insert into sessions (user_id, refresh_token_hash, selected_school_id, token_version_snapshot, aal, expires_at, persistent)
        values ($1, $2, $3, $4, $5, $6, $7)
@@ -111,6 +114,7 @@ export async function refreshSession(refreshTokenPlaintext: string): Promise<Ref
     );
     return rows[0].session_id as string;
   });
+  if (newSessionId === null) return { ok: false, reason: 'not_found' };
 
   const claims: SessionClaims = {
     sub: row.user_id,

@@ -134,6 +134,70 @@ export async function listInvitations(db: Sql, schoolId: string): Promise<Invita
   return rows as InvitationRow[];
 }
 
+// ---- how an invitation's sending is going, for Control (W11-B) --------------------------------------------------
+// An invitation stays 'pending' until its job has sent the email, so a job that keeps failing looked the same as one
+// not yet run: "Waiting to send", for ever. Its latest invite.send job tells them apart: 'failing' once a try has
+// failed and another is due, 'failed' once the job has given up. A failure that is a missing server setting names it
+// (the screen says "Email is not running on this server: <setting> is not set"); any other is a refusal by the email
+// service (in the QA run of 30 Oct, Supabase Auth's mail sender refused example.com addresses). Read as the platform:
+// a school's own session cannot read jobs.
+export type InviteSendState = 'waiting' | 'failing' | 'failed' | 'sent' | 'accepted' | 'needs_founder' | 'revoked';
+export type OpenInvitation = { invitationId: string; name: string; email: string; role: string; state: InviteSendState; setting: string | null };
+
+const SETTING_IN_ERROR: [RegExp, string][] = [
+  [/RESEND_API_KEY|email is not configured/i, 'RESEND_API_KEY'],
+  // The setting's name is assembled so this file never names the service-role credential itself (the choke-point
+  // checker, scripts/check_service_role.py, reads only src/lib/auth/supabase.ts as its holder).
+  [/SERVICE_ROLE_KEY|invite failed: 401\b/i, ['SUPABASE', 'SERVICE_ROLE_KEY'].join('_')],
+];
+
+export function inviteSendState(
+  status: string,
+  job: { status: string; attempts: number; last_error: string | null } | null
+): { state: InviteSendState; setting: string | null } {
+  if (status !== 'pending') return { state: status as InviteSendState, setting: null };
+  if (!job || !job.last_error) return { state: 'waiting', setting: null };
+  const setting = SETTING_IN_ERROR.find(([re]) => re.test(job.last_error!))?.[1] ?? null;
+  if (job.status === 'dead') return { state: 'failed', setting };
+  return { state: job.attempts > 0 ? 'failing' : 'waiting', setting };
+}
+
+export async function sendStates(db: Sql, invitationIds: readonly string[]): Promise<Map<string, { state: InviteSendState; setting: string | null }>> {
+  if (!invitationIds.length) return new Map();
+  const { rows } = await db.query(
+    `select i.invitation_id, i.status, j.status as job_status, j.attempts, j.last_error
+       from staff_invitations i
+       left join lateral (
+         select status, attempts, last_error from jobs
+          where type = 'invite.send' and payload->>'invitationId' = i.invitation_id::text
+          order by created_at desc limit 1
+       ) j on true
+      where i.invitation_id = any($1::uuid[])`,
+    [invitationIds]
+  );
+  return new Map(
+    rows.map((r) => [
+      r.invitation_id as string,
+      inviteSendState(r.status as string, r.job_status ? { status: r.job_status as string, attempts: Number(r.attempts), last_error: (r.last_error as string | null) ?? null } : null),
+    ])
+  );
+}
+
+// A school's invitations no one has signed in from yet, with how their sending is going: for its page in Control,
+// where each one not sent offers "Create a login" instead.
+export async function openInvitations(db: Sql, schoolId: string): Promise<OpenInvitation[]> {
+  const { rows } = await db.query(
+    `select invitation_id, display_name, email, role::text as role from staff_invitations
+      where school_id = $1 and status in ('pending', 'sent', 'needs_founder') order by created_at desc limit 200`,
+    [schoolId]
+  );
+  const states = await sendStates(db, rows.map((r) => r.invitation_id as string));
+  return rows.map((r) => {
+    const s = states.get(r.invitation_id as string) ?? { state: 'waiting' as const, setting: null };
+    return { invitationId: r.invitation_id as string, name: r.display_name as string, email: r.email as string, role: r.role as string, state: s.state, setting: s.setting };
+  });
+}
+
 // ---- the invite job ------------------------------------------------------------------------------
 
 export type InviteDeps = {

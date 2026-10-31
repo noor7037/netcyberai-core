@@ -39,6 +39,7 @@ import { createTestDb } from '../db/pglite-harness';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
 import { POST as createLogin } from '@/app/api/control/schools/[schoolId]/logins/route';
+import { GET as people } from '@/app/api/control/schools/[schoolId]/people/route';
 
 const FOUNDER = randomUUID();
 const A = randomUUID();
@@ -106,6 +107,25 @@ describe('a staff login', () => {
     const body = await res.json();
     expect(body).toMatchObject({ signIn: 'kavita@school-a.in', password: 'Sunrise-Morning-42' });
     expect(h.made[0]).toMatchObject({ email: 'kavita@school-a.in', password: 'Sunrise-Morning-42' });
+  });
+});
+
+describe('an invitation that was never sent (W11-B)', () => {
+  it('is listed on the school’s page as not sent; a login made for that email withdraws it', async () => {
+    const [inv] = await q(
+      `insert into staff_invitations (school_id, email, email_key, display_name, role, source, invited_by) values ($1, 'neha@example.com', 'neha@example.com', 'Neha Joshi', 'teacher', 'staff', $2) returning invitation_id`,
+      [A, FOUNDER]
+    );
+    await q(
+      `insert into jobs (type, idempotency_key, school_id, payload, status, attempts, max_attempts, last_error, completed_at) values ('invite.send', $1, $2, $3, 'dead', 8, 8, 'invite failed: 500 unexpected_failure', now())`,
+      [`invite.send:${inv.invitation_id}:1`, A, JSON.stringify({ invitationId: inv.invitation_id, sendNumber: 1, redirectTo: 'https://x.invalid' })]
+    );
+    const list = async () => (await (await people(new NextRequest(`https://www.netcyberai.test/api/control/schools/${A}/people`, { headers: { cookie: founder } }), { params: { schoolId: A } })).json()).invites;
+    expect(await list()).toEqual([{ invitationId: inv.invitation_id, name: 'Neha Joshi', email: 'neha@example.com', role: 'teacher', state: 'failed', setting: null }]);
+
+    expect((await post(A, { role: 'teacher', name: 'Neha Joshi', signIn: 'neha@example.com' })).status).toBe(201);
+    expect((await q(`select status from staff_invitations where invitation_id = $1`, [inv.invitation_id]))[0].status).toBe('revoked');
+    expect(await list()).toEqual([]);
   });
 });
 
