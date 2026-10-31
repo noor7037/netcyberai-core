@@ -18,8 +18,8 @@ export const SETTING_SCREENS: Readonly<Record<string, string>> = {
   'content.pilot_scope': '/control/content',
 };
 
-const SECRET_LIKE = /key|secret|token|password/i;
-export const looksSecret = (key: string) => SECRET_LIKE.test(key);
+const HIDDEN_WORDS = /key|secret|token|password/i;
+export const looksSecret = (key: string) => HIDDEN_WORDS.test(key);
 const VALUE_CHARS = 300;
 
 export type SettingRow = { key: string; hidden: boolean; value: string | null; updatedAt: string | null; screen: string | null };
