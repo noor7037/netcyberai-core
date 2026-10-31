@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useWords } from '@/components/app-shell/Words';
 import { KpiTile } from '@/components/app-ui/KpiTile';
 import { AreaTrend } from '@/components/app-ui/ProgressCharts';
-import { lastDays } from '@/components/dashboards/dashboard-parts';
+import { lastDays } from '@/components/dashboards/last-days';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { Table } from '@/components/ui/Table';
 import { formatValue } from '@/components/app-ui/format';
