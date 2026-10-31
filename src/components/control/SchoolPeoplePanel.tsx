@@ -11,6 +11,7 @@ import type { MessageKey } from '@/lib/i18n';
 import { Select } from '@/components/ui/Select';
 import { makePassword } from '@/lib/auth/usernames';
 import { LOGIN_ROLES } from '@/lib/control/login-roles';
+import { viewAsRefusal, type ViewAsRefusal } from '@/lib/control/people';
 
 // Control → a school → its people (C165). The founder sees who belongs to
 // the school and can open the app as any active one of them: a reason is
@@ -23,6 +24,8 @@ import { LOGIN_ROLES } from '@/lib/control/login-roles';
 
 type Person = { userId: string; membershipId: string; name: string; role: string; status: 'active' | 'inactive'; signIn: string | null };
 type Shared = { schoolName?: string; name: string; role: string; signIn: string | null; password: string };
+// An invitation no one has signed in from yet, and how its sending is going (W11-B).
+type Invite = { invitationId: string; name: string; email: string; role: string; state: string; setting: string | null };
 const LOGIN_FAILS = ['name', 'role', 'sign_in', 'password', 'guardian', 'service_key', 'already_registered', 'email'];
 type Guardian = { parentId: string; name: string; phoneLast4: string | null; children: string; hasLogin: boolean };
 const newPassword = () => {
@@ -37,11 +40,12 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   const { stepUpFetch } = useStepUp();
   const { t } = useWords();
   const [people, setPeople] = useState<Person[] | null>(null);
+  const [invites, setInvites] = useState<Invite[]>([]);
   const [failed, setFailed] = useState(false);
   const [target, setTarget] = useState<Person | null>(null);
   const [reason, setReason] = useState('');
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<'failed' | 'aadhaar' | null>(null);
+  const [error, setError] = useState<ViewAsRefusal | null>(null);
   const [form, setForm] = useState({ name: '', role: 'teacher', signIn: '', password: '', parentId: '' });
   const [guardianQuery, setGuardianQuery] = useState('');
   const [guardians, setGuardians] = useState<Guardian[]>([]);
@@ -64,12 +68,23 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   const load = useCallback(async () => {
     const res = await fetch(`/api/control/schools/${schoolId}/people`).catch(() => null);
     const body = res?.ok ? await res.json().catch(() => null) : null;
-    if (body?.people) setPeople(body.people);
+    if (body?.people) {
+      setPeople(body.people);
+      setInvites(Array.isArray(body.invites) ? body.invites : []);
+    }
     else setFailed(true);
   }, [schoolId]);
   useEffect(() => {
     void load();
   }, [load]);
+
+  // "Create a login" beside an invitation not sent: the form is filled with that person, so a school gets an active
+  // login without email; the founder checks it and saves.
+  function loginFor(i: Invite) {
+    setForm({ name: i.name, role: (LOGIN_ROLES as readonly string[]).includes(i.role) ? i.role : 'teacher', signIn: i.email, password: newPassword(), parentId: '' });
+    document.getElementById('create-login')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('login-name')?.focus({ preventScroll: true });
+  }
 
   function ask(p: Person) {
     setTarget(p);
@@ -88,9 +103,10 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
       return;
     }
     setBusy(false);
-    // A reason with an Aadhaar number in it is refused (the one rule, C232 part B): said as such.
-    const got = res ? ((await res.json().catch(() => null)) as { code?: string } | null) : null;
-    setError(got?.code === 'aadhaar' ? 'aadhaar' : 'failed');
+    // Each refusal is said by its real reason (W11-B); a reason with an Aadhaar number in it is refused (the one rule,
+    // C232 part B).
+    const got = res ? ((await res.json().catch(() => null)) as { code?: string; error?: string } | null) : null;
+    setError(viewAsRefusal(res?.status ?? 0, got));
   }
 
   async function createLogin(e: FormEvent) {
@@ -134,7 +150,33 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
     <section data-school-people className="flex flex-col gap-3">
       <h3 className="text-base font-bold text-slate">{t('viewAs.people.title')}</h3>
 
-      <form data-create-login onSubmit={createLogin} className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
+      {invites.length > 0 && (
+        <div data-school-invites className="flex flex-col gap-2 rounded-lg border border-slate/10 bg-white p-4">
+          <p className="text-sm font-bold text-slate">{t('control.invite.title')}</p>
+          <ul className="flex flex-col gap-2">
+            {invites.map((i) => (
+              <li key={i.invitationId} data-invite={i.state} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate/10 px-3 py-2 text-sm text-slate">
+                <span className="flex min-w-0 flex-col gap-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="font-semibold">{i.name}</span>
+                    <span className="text-slate/70">{t(`role.${i.role}` as MessageKey)}</span>
+                    <Badge variant={i.state === 'sent' ? 'success' : 'neutral'}>{t(`control.invite.state.${i.state}` as MessageKey)}</Badge>
+                  </span>
+                  {i.setting ? <span className="text-xs font-semibold text-red-800">{t('control.invite.setting', { setting: i.setting })}</span> : null}
+                  {!i.setting && (i.state === 'failing' || i.state === 'failed') ? <span className="text-xs">{t('control.invite.notSent')}</span> : null}
+                </span>
+                {i.state !== 'sent' && i.state !== 'needs_founder' && (
+                  <button type="button" data-invite-login className={TAP} onClick={() => loginFor(i)}>
+                    {t('control.invite.createLogin')}
+                  </button>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <form id="create-login" data-create-login onSubmit={createLogin} className="flex scroll-mt-4 flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
         <p className="text-sm font-bold text-slate">{t('login.create.title')}</p>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           <Select id="login-role" label={t('login.field.role')} value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value, parentId: '' })}>
@@ -223,7 +265,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
           <form onSubmit={start} className="flex flex-col gap-3">
             <p className="text-sm text-slate">{t('viewAs.dialog.how', { role: t(`role.${target.role}` as MessageKey) })}</p>
             <Input id="view-as-reason" label={t('viewAs.reason')} maxLength={300} value={reason} onChange={(e) => setReason(e.target.value)} required />
-            {error && <p role="alert" className="text-sm font-semibold text-red-800">{t(error === 'aadhaar' ? 'viewAs.dialog.aadhaar' : 'viewAs.dialog.failed')}</p>}
+            {error && <p role="alert" className="text-sm font-semibold text-red-800">{t(error === 'aadhaar' ? 'viewAs.dialog.aadhaar' : `viewAs.refused.${error}` as MessageKey)}</p>}
             <div className="flex flex-wrap gap-2">
               <button type="submit" data-view-as-start disabled={busy || !reason.trim()} className={PRIMARY}>
                 {t('viewAs.dialog.start')}

@@ -135,7 +135,13 @@ export function useStepUp() {
   const words = useRef<Words | null>(null);
   words.current = Object.fromEntries(KEYS.map((k) => [k, t(k)])) as Words;
   const stepUpFetch = useCallback(async (input: string, init?: RequestInit): Promise<Response> => {
-    const res = await fetch(input, init);
+    let res = await fetch(input, init);
+    // The 15-minute sign-in runs out on a page left open: API calls never renew it (only a page load does), so the
+    // first try after that was refused as signed out (W11-B). It is renewed once here and the request sent again.
+    if (res.status === 401) {
+      const renewed = await fetch('/api/auth/refresh', { method: 'POST' }).catch(() => null);
+      if (renewed?.ok) res = await fetch(input, init);
+    }
     if (res.status !== 403) return res;
     const body = await res
       .clone()

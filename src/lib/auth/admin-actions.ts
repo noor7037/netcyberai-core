@@ -81,7 +81,10 @@ export async function inviteUserToSchool(
   if (!error && data?.user) return { userId: data.user.id };
   const code = (error as { code?: string } | null)?.code;
   if (code === 'email_exists' || /already (been )?registered/i.test(error?.message ?? '')) return { exists: true };
-  throw new Error(`invite failed: ${error?.status ?? 'no status'} ${code ?? ''}`.trim());
+  // Supabase Auth's mail sender refused the email (its SMTP answer is in Supabase's own log, not here): said as such in
+  // the job's error, so Control can tell it from a server setting (W11-B).
+  const unsent = /sending .*email|email.*(send|deliver)/i.test(error?.message ?? '') ? ' email_not_sent' : '';
+  throw new Error(`invite failed: ${error?.status ?? 'no status'} ${code ?? ''}${unsent}`.trim());
 }
 
 // A sign-in account the founder makes from Control with a password he hands over (C230-D): confirmed at once, so no

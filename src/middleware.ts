@@ -57,7 +57,7 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
 
   const accessToken = req.cookies.get(ACCESS_COOKIE)?.value;
   let claims: GateClaims | null = accessToken ? await verifyAccessToken(accessToken) : null;
-  let refreshedSetCookie: string | null = null;
+  let refreshed: ReturnType<NextResponse['cookies']['getAll']> = [];
 
   if (!claims && req.cookies.get(REFRESH_COOKIE)?.value) {
     const refreshRes = await fetch(new URL('/api/auth/refresh', req.url), {
@@ -66,10 +66,19 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
     });
     if (refreshRes.ok) {
       const body = (await refreshRes.json()) as { role: SessionRole; schoolId: string | null };
-      refreshedSetCookie = refreshRes.headers.get('set-cookie');
+      refreshed = refreshedCookies(refreshRes.headers);
       claims = { role: body.role, schoolId: body.schoolId };
     }
   }
+
+  // The renewed cookies go on EVERY answer, a refusal or a redirect too (W11-B): the refresh already rotated the
+  // refresh token, so an answer without them left the browser holding a spent one, and the next page asked for a
+  // sign-in. Set through `cookies`, they also reach this same request's layout, which otherwise still read the
+  // expired access token and sent the person to sign in.
+  const keep = (res: NextResponse) => {
+    for (const c of refreshed) res.cookies.set(c);
+    return res;
+  };
 
   if (!claims) {
     return NextResponse.redirect(new URL('/login', req.url));
@@ -78,16 +87,18 @@ async function gate(req: NextRequest, requestId: string): Promise<NextResponse> 
   const allowed = isControl ? canAccessControl(claims) : isApp ? canAccessApp(claims) : canAccessFamily(claims);
   if (!allowed) {
     // A parent who opens a staff address is taken to the parent home; staff who open the parent home, to their own.
-    if (claims.role === 'parent') return NextResponse.redirect(new URL('/parent', req.url));
-    if (isFamily) return NextResponse.redirect(new URL(claims.role === 'super_admin' ? '/control' : '/app', req.url));
-    return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+    if (claims.role === 'parent') return keep(NextResponse.redirect(new URL('/parent', req.url)));
+    if (isFamily) return keep(NextResponse.redirect(new URL(claims.role === 'super_admin' ? '/control' : '/app', req.url)));
+    return keep(NextResponse.json({ error: 'forbidden' }, { status: 403 }));
   }
 
-  const res = next(req, requestId);
-  if (refreshedSetCookie) {
-    res.headers.append('set-cookie', refreshedSetCookie);
-  }
-  return res;
+  return keep(next(req, requestId));
+}
+
+// The refresh route's Set-Cookie lines, each read as a cookie (a plain headers.get joins them into one line, which the
+// browser cannot split). Next's own cookie reader does the splitting.
+function refreshedCookies(headers: Headers) {
+  return new NextResponse(null, { headers }).cookies.getAll();
 }
 
 export const config = {

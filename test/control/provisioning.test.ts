@@ -11,10 +11,14 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 
 const kicked = vi.hoisted(() => [] as string[][]);
 vi.mock('@/lib/jobs/handlers', () => ({ kickJobs: async (keys: string[]) => void kicked.push(keys) }));
+const revalidated = vi.hoisted(() => [] as string[]);
+vi.mock('next/cache', () => ({ revalidatePath: (path: string) => void revalidated.push(path) }));
 
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
 import { POST } from '@/app/api/control/onboarding/provision/route';
+import { teacherClass } from '@/lib/onboarding/provision';
+import { inviteSendState } from '@/lib/onboarding/invitations';
 
 const PLATFORM = 'e6000000-0000-4000-8000-000000000001';
 const OTHER = 'e6000000-0000-4000-8000-000000000002';
@@ -186,10 +190,12 @@ describe('one provision', () => {
     ]);
     expect(kicked.at(-1)).toHaveLength(3);
     expect(result.invitations.map((i: { role: string; status: string; sendStatus: string }) => [i.role, i.status, i.sendStatus])).toEqual([
-      ['principal', 'queued', 'pending'],
-      ['teacher', 'queued', 'pending'],
-      ['teacher', 'queued', 'pending'],
+      ['principal', 'queued', 'waiting'],
+      ['teacher', 'queued', 'waiting'],
+      ['teacher', 'queued', 'waiting'],
     ]);
+    // The dashboard, the schools list and the new school's page are read again at once (W11-B).
+    expect(revalidated.slice(-3)).toEqual(['/control', '/control/schools', `/control/schools/${schoolId}`]);
 
     // Students wait for consent; one guardian a phone, linked to that phone's students (Bilal and Chitra share one).
     expect(await n(`students where school_id = $1 and status <> 'pending_consent'`, [schoolId])).toBe(0);
@@ -238,5 +244,46 @@ describe('again', () => {
   it('a school that does not exist is not found', async () => {
     expect((await post(request({ existingSchoolId: randomUUID() }))).status).toBe(404);
     expect((await post(request({ existingSchoolId: 'not-a-school' }))).status).toBe(404);
+  });
+});
+
+describe('a teacher’s class as typed (W11-B)', () => {
+  const chosen = ['5-A', '6-A', '7-A', '7-B'];
+  it('any spelling of a chosen class is that class', () => {
+    expect(teacherClass('6a', chosen)).toEqual({ ok: true, name: '6-A' });
+    expect(teacherClass('7 B', chosen)).toEqual({ ok: true, name: '7-B' });
+  });
+  it('a bare grade with one chosen section is that section', () => {
+    expect(teacherClass('6', chosen)).toEqual({ ok: true, name: '6-A' });
+  });
+  it('a bare grade with several sections is refused with their names; a class not chosen, with every chosen name', () => {
+    expect(teacherClass('7', chosen)).toEqual({ ok: false, code: 'class_which', options: ['7-A', '7-B'] });
+    expect(teacherClass('9-Z', chosen)).toEqual({ ok: false, code: 'class', options: chosen });
+    expect(teacherClass('1', chosen)).toMatchObject({ ok: false, code: 'class' });
+  });
+  it('through the route: "6" is saved as 6-A, and "7" is a problem that lists 7-A and 7-B', async () => {
+    const res = await post(request({ dryRun: true, studentsCsv: '', grades: ['6', '7'], sections: 2, teachers: [{ name: 'Ravi Kumar', email: 'ravi@sunrise.example', className: '6' }] }));
+    const body = await res.json();
+    expect(body.problems).toEqual([{ field: 'teacher', code: 'class_which', line: 1, options: ['6-A', '6-B'] }]);
+    const one = await post(request({ dryRun: true, studentsCsv: '', schoolName: 'Class Check School', grades: ['6'], sections: 1, teachers: [{ name: 'Ravi Kumar', email: 'ravi@sunrise.example', className: '6' }] }));
+    expect(one.status).toBe(200);
+    expect((await one.json()).result.invitations.find((i: { role: string }) => i.role === 'teacher').className).toBe('6-A');
+  });
+});
+
+describe('how an invitation’s sending is going (W11-B)', () => {
+  it('waiting until a try has failed; failing while it tries again; failed once it gives up', () => {
+    expect(inviteSendState('pending', null)).toEqual({ state: 'waiting', setting: null });
+    expect(inviteSendState('pending', { status: 'pending', attempts: 0, last_error: null })).toEqual({ state: 'waiting', setting: null });
+    expect(inviteSendState('pending', { status: 'pending', attempts: 1, last_error: 'invite failed: 500 unexpected_failure email_not_sent' })).toEqual({ state: 'failing', setting: null });
+    expect(inviteSendState('pending', { status: 'dead', attempts: 8, last_error: 'invite failed: 500 unexpected_failure' })).toEqual({ state: 'failed', setting: null });
+  });
+  it('a missing server setting is named', () => {
+    expect(inviteSendState('pending', { status: 'pending', attempts: 1, last_error: 'email is not configured: RESEND_API_KEY and EMAIL_FROM are required' }).setting).toBe('RESEND_API_KEY');
+    expect(inviteSendState('pending', { status: 'dead', attempts: 8, last_error: 'invite failed: 401 no_authorization' }).setting).toBe('SUPABASE_SERVICE_ROLE_KEY');
+  });
+  it('a sent, accepted or withdrawn invitation keeps its own state', () => {
+    expect(inviteSendState('sent', { status: 'succeeded', attempts: 1, last_error: null }).state).toBe('sent');
+    expect(inviteSendState('revoked', { status: 'dead', attempts: 8, last_error: 'x' }).state).toBe('revoked');
   });
 });

@@ -36,7 +36,8 @@ import {
 export type Actor = { userId: string; role: 'super_admin' };
 
 export type ProvisionField = 'school_name' | 'board' | 'state' | 'city' | 'grades' | 'sections' | 'session' | 'principal_name' | 'principal_email' | 'teacher' | 'students';
-export type ProvisionProblem = { field: ProvisionField; code: string; line?: number };
+// `options`: the class names a teacher's class could mean, for the screen to list ("use 6-A or 6-B").
+export type ProvisionProblem = { field: ProvisionField; code: string; line?: number; options?: string[] };
 
 export type ProvisionInput = {
   schoolName: string;
@@ -111,7 +112,7 @@ export function parseProvisionInput(body: unknown): { ok: true; value: Provision
   if (principalName.length < 2) problems.push({ field: 'principal_name', code: 'required' });
   if (!principalEmail) problems.push({ field: 'principal_email', code: 'email' });
 
-  const classNames = new Set(provisionClassNames(grades, Number.isInteger(sections) ? sections : 1).map(classKey));
+  const chosenClasses = provisionClassNames(grades, Number.isInteger(sections) ? sections : 1);
   const seen = new Set<string>(principalEmail ? [principalEmail] : []);
   const rawTeachers = Array.isArray(b.teachers) ? b.teachers : [];
   if (rawTeachers.length > MAX_TEACHERS) problems.push({ field: 'teacher', code: 'too_many' });
@@ -121,12 +122,14 @@ export function parseProvisionInput(body: unknown): { ok: true; value: Provision
     const line = i + 1;
     const name = text(r.name, 200);
     const email = emailKey(r.email);
-    const className = text(r.className, 20) || null;
-    if (!name && !text(r.email, 254) && !className) return; // an empty row on the screen
+    const typed = text(r.className, 20) || null;
+    if (!name && !text(r.email, 254) && !typed) return; // an empty row on the screen
+    const cls = typed ? teacherClass(typed, chosenClasses) : null;
+    const className = cls?.ok ? cls.name : typed;
     if (name.length < 2) problems.push({ field: 'teacher', code: 'name', line });
     if (!email) problems.push({ field: 'teacher', code: 'email', line });
     else if (seen.has(email)) problems.push({ field: 'teacher', code: 'email_twice', line });
-    if (className && !classNames.has(classKey(className))) problems.push({ field: 'teacher', code: 'class', line });
+    if (cls && !cls.ok) problems.push({ field: 'teacher', code: cls.code, line, options: cls.options });
     if (email) seen.add(email);
     teachers.push({ line, name, email: email ?? '', className });
   });
@@ -143,6 +146,19 @@ export function parseProvisionInput(body: unknown): { ok: true; value: Provision
     ok: true,
     value: { schoolName, boardId, stateCode, city, grades, sections, session: session.value, principal: { name: principalName, email: principalEmail! }, teachers, students },
   };
+}
+
+// A teacher's class as typed, read against the classes chosen (W11-B): its exact name in any spelling ("6a", "6 A",
+// "6-A"), or a bare grade when that grade has exactly one chosen section ("6" is 6-A when only 6-A is made). A bare
+// grade with several sections is refused with those names; a class not chosen, with every chosen name.
+export function teacherClass(typed: string, chosen: readonly string[]): { ok: true; name: string } | { ok: false; code: 'class' | 'class_which'; options: string[] } {
+  const key = classKey(typed);
+  const exact = chosen.find((c) => classKey(c) === key);
+  if (exact) return { ok: true, name: exact };
+  const ofGrade = chosen.filter((c) => classKey(c.slice(0, c.lastIndexOf('-'))) === key);
+  if (ofGrade.length === 1) return { ok: true, name: ofGrade[0] };
+  if (ofGrade.length > 1) return { ok: false, code: 'class_which', options: ofGrade };
+  return { ok: false, code: 'class', options: chosen.length > 12 ? [...chosen.slice(0, 12), '…'] : [...chosen] };
 }
 
 // ---- the database ---------------------------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState, type ReactNode } from 'react';
 import { useWords } from '@/components/app-shell/Words';
 import { Input } from '@/components/ui/Input';
@@ -24,9 +25,9 @@ import {
 
 type Board = { boardId: string; name: string };
 type State = { code: string; name: string };
-type Problem = { field: string; code: string; line?: number };
+type Problem = { field: string; code: string; line?: number; options?: string[] };
 type RowError = { row: number; errors: string[] };
-type Invite = { invitationId: string | null; displayName: string; role: 'principal' | 'teacher'; status: 'queued' | 'already_invited'; className: string | null; sendStatus?: string | null };
+type Invite = { invitationId: string | null; displayName: string; role: 'principal' | 'teacher'; status: 'queued' | 'already_invited'; className: string | null; sendStatus?: string | null; setting?: string | null };
 type Result = {
   schoolId: string;
   schoolName: string;
@@ -83,6 +84,7 @@ function Stat({ value, children }: { value: number | string; children: ReactNode
 
 export function ProvisionSchool({ boards, states, initialSession }: { boards: Board[]; states: State[]; initialSession: ProvisionSession }) {
   const { t, has } = useWords();
+  const router = useRouter();
   const [schoolName, setSchoolName] = useState('');
   const [boardId, setBoardId] = useState('');
   const [stateCode, setStateCode] = useState('');
@@ -126,7 +128,11 @@ export function ProvisionSchool({ boards, states, initialSession }: { boards: Bo
       body: JSON.stringify({ schoolName, boardId, stateCode, city, grades, sections, session, principal, teachers, studentsCsv, existingSchoolId, dryRun }),
     }).catch(() => null);
     const data = res ? await res.json().catch(() => ({})) : {};
-    if (res?.ok && data.result) return setAnswer({ kind: 'result', dryRun, result: data.result });
+    if (res?.ok && data.result) {
+      // A school made: the pages this browser already holds (the dashboard, the schools list) are read again (W11-B).
+      if (!dryRun) router.refresh();
+      return setAnswer({ kind: 'result', dryRun, result: data.result });
+    }
     if (res?.status === 400 && Array.isArray(data.problems)) return setAnswer({ kind: 'problems', problems: data.problems });
     if (data.reason === 'school_exists') return setAnswer({ kind: 'exists', schoolId: data.schoolId, schoolName: data.schoolName });
     if (data.reason === 'students') return setAnswer({ kind: 'students', errors: data.errors ?? [] });
@@ -136,7 +142,9 @@ export function ProvisionSchool({ boards, states, initialSession }: { boards: Bo
 
   const problemText = (p: Problem) => {
     const key = p.field === 'teacher' || p.field === 'students' ? `control.provision.problem.${p.field}.${p.code}` : `control.provision.problem.${p.field}`;
-    return has(key) ? t(key, { line: p.line ?? '' }) : t('control.provision.error.other');
+    // The class names a teacher's class could be, as they are typed.
+    const options = (p.options ?? []).join(', ');
+    return has(key) ? t(key, { line: p.line ?? '', options }) : t('control.provision.error.other');
   };
   const inviteWord = (status: string) => {
     const key = `control.provision.invite.${status}`;
@@ -357,6 +365,15 @@ function Outcome({ result: r, dryRun, inviteWord }: { result: Result; dryRun: bo
             <span className="font-semibold">{i.displayName}</span>
             <span>{i.role === 'principal' ? t('role.principal') : t('role.teacher')}</span>
             <span className="ml-auto rounded-full bg-slate/5 px-3 py-1 text-xs font-semibold">{inviteWord(i.status === 'already_invited' ? 'already' : (i.sendStatus ?? 'queued'))}</span>
+            {i.setting ? <span className="w-full text-xs font-semibold text-red-800">{t('control.invite.setting', { setting: i.setting })}</span> : null}
+            {!dryRun && (i.sendStatus === 'failing' || i.sendStatus === 'failed') && !i.setting ? (
+              <span className="w-full text-xs">
+                {t('control.invite.notSent')}{' '}
+                <Link href={`/control/schools/${r.schoolId}#create-login`} className="font-semibold text-sapphire underline">
+                  {t('control.invite.createLogin')}
+                </Link>
+              </span>
+            ) : null}
             {i.className ? <span className="w-full text-xs">{t('control.provision.invite.classNote', { name: i.className })}</span> : null}
           </li>
         ))}

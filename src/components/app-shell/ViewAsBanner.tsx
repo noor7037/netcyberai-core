@@ -20,8 +20,9 @@ export function ViewAsBanner({ name, role, endsAt, schoolId }: { name: string; r
 
   const end = useCallback(async () => {
     setBusy(true);
-    await fetch('/api/control/impersonate/end', { method: 'POST' }).catch(() => null);
-    window.location.assign(`/control/schools/${schoolId}`);
+    const res = await fetch('/api/control/impersonate/end', { method: 'POST' }).catch(() => null);
+    // Only an ended view goes back to Control; otherwise the sign-in page, never a bare "forbidden" (W11-B).
+    window.location.assign(res?.ok ? `/control/schools/${schoolId}` : '/login');
   }, [schoolId]);
 
   useEffect(() => {

@@ -1,10 +1,11 @@
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { kickJobs } from '@/lib/jobs/handlers';
 import { jobQueue } from '@/lib/jobs/pg-queue';
-import { listInvitations } from '@/lib/onboarding/invitations';
+import { sendStates } from '@/lib/onboarding/invitations';
 import { UUID_RE } from '@/lib/onboarding/public-http';
 import { parseProvisionInput, provisionSchool, ProvisionDryRun, ProvisionRefused, type ProvisionOutcome } from '@/lib/onboarding/provision';
 
@@ -44,10 +45,16 @@ export async function POST(req: NextRequest) {
   }
   if (!outcome.ok) return NextResponse.json(outcome, { status: STATUS[outcome.reason] });
 
-  // The invitations' jobs run now (the sweeper retries what does not finish), then their state is read back.
+  // The invitations' jobs run now (the sweeper retries what does not finish), then their state is read back: with
+  // their jobs, so a send that failed says so instead of "Waiting to send" (W11-B).
   await kickJobs(outcome.result.jobKeys);
-  const states = await withTenantContext(guard.claims, (db) => listInvitations(db, outcome.result.schoolId)).catch(() => []);
-  const byId = new Map(states.map((s) => [s.invitation_id, s.status]));
-  const invitations = outcome.result.invitations.map((i) => ({ ...i, sendStatus: i.invitationId ? (byId.get(i.invitationId) ?? 'pending') : null }));
+  const ids = outcome.result.invitations.flatMap((i) => (i.invitationId ? [i.invitationId] : []));
+  const byId = await withTenantContext(guard.claims, (db) => sendStates(db, ids)).catch(() => new Map<string, { state: string; setting: string | null }>());
+  const invitations = outcome.result.invitations.map((i) => {
+    const s = i.invitationId ? byId.get(i.invitationId) : undefined;
+    return { ...i, sendStatus: i.invitationId ? (s?.state ?? 'waiting') : null, setting: s?.setting ?? null };
+  });
+  // The new school is on the dashboard, the schools list and its own page at once, not after a reload (W11-B).
+  for (const path of ['/control', '/control/schools', `/control/schools/${outcome.result.schoolId}`]) revalidatePath(path);
   return NextResponse.json({ dryRun: false, ok: true, result: { ...outcome.result, invitations, jobKeys: undefined } }, { status: 201 });
 }

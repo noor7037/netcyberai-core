@@ -5,6 +5,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { fetchActiveMemberships, fetchLiveUser } from '@/lib/auth/resolve';
 import { signAccessToken } from '@/lib/auth/jwt';
+import type { SessionClaims } from '@/lib/auth/types';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeImpersonationAudit } from '@/lib/audit/log';
 import { membershipToViewAs, viewAsReason } from '@/lib/control/people';
@@ -43,7 +44,10 @@ export async function POST(req: NextRequest) {
   const membership = membershipToViewAs(memberships, membershipId);
   if (!membership) {
     const unclear = !membershipId && memberships.length > 1;
-    return NextResponse.json({ error: unclear ? 'this person belongs to more than one school: say which membership' : 'this person has no such active membership' }, { status: unclear ? 400 : 404 });
+    if (unclear) return NextResponse.json({ error: 'this person belongs to more than one school: say which membership', code: 'which' }, { status: 400 });
+    // The refusal names its real reason (W11-B): the membership switched off, or none of this person's at all.
+    const code = await refusalReason(guard.claims, targetUserId, membershipId);
+    return NextResponse.json({ error: code === 'membership_inactive' ? 'this membership is switched off' : 'this person has no such membership', code }, { status: 404 });
   }
   // A parent's view is not opened from Control (C230-D): the parent rules refuse a parent's session the viewing
   // record, so the founder signs in with the parent's own login to see the family app.
@@ -52,7 +56,7 @@ export async function POST(req: NextRequest) {
   }
   const targetLive = await fetchLiveUser(targetUserId).catch(() => null);
   if (!targetLive || !targetLive.is_active) {
-    return NextResponse.json({ error: 'target user is not active' }, { status: 409 });
+    return NextResponse.json({ error: 'target user is not active', code: 'account_inactive' }, { status: 409 });
   }
   const expiresAt = new Date(Date.now() + IMPERSONATION_TTL_SECONDS * 1000);
 
@@ -108,4 +112,15 @@ export async function POST(req: NextRequest) {
   }
   res.cookies.set(ACCESS_COOKIE, impersonatedToken, cookieOptions(IMPERSONATION_TTL_SECONDS));
   return res;
+}
+
+// Why no active membership was found, read as the platform: the chosen membership is this person's but switched off,
+// or there is none of theirs. Only a code goes back; the screen says it in plain words.
+async function refusalReason(claims: SessionClaims, targetUserId: string, membershipId: string | null): Promise<'membership_inactive' | 'no_membership'> {
+  if (!membershipId) return 'no_membership';
+  const found = await withTenantContext(claims, async (client) => {
+    const { rows } = await client.query(`select is_active from memberships where membership_id = $1 and user_id = $2`, [membershipId, targetUserId]);
+    return rows[0] as { is_active: boolean } | undefined;
+  }).catch(() => undefined);
+  return found && !found.is_active ? 'membership_inactive' : 'no_membership';
 }

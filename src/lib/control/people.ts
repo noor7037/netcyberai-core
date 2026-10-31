@@ -39,3 +39,15 @@ export function viewAsReason(raw: unknown): { ok: true; reason: string } | { ok:
   if (hasAadhaarNumber(reason)) return { ok: false, code: 'aadhaar' };
   return { ok: true, reason };
 }
+
+// Why a "View as" did not start, from the start route's answer, so the dialog names the real reason (W11-B) and never
+// says "no longer active" for a sign-in that ran out or an authenticator check left unfinished.
+export type ViewAsRefusal = 'aadhaar' | 'signed_out' | 'step_up' | 'account_inactive' | 'membership_inactive' | 'no_membership' | 'parent' | 'other';
+export function viewAsRefusal(status: number, body: { code?: string; error?: string } | null): ViewAsRefusal {
+  if (body?.code === 'aadhaar') return 'aadhaar';
+  if (status === 401) return 'signed_out';
+  if (status === 403 && body?.error === 'step_up_required') return 'step_up';
+  const code = body?.code;
+  if (code === 'account_inactive' || code === 'membership_inactive' || code === 'no_membership' || code === 'parent') return code;
+  return 'other';
+}
