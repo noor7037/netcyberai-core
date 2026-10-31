@@ -185,6 +185,7 @@ ALLOWED_PERMISSIVE = (
         ("lead_replies", "lead_replies_super_admin_insert"),
         ("lead_replies", "lead_replies_platform_read"),
         ("lead_replies", "lead_replies_platform_insert"),
+        ("lead_replies", "lead_replies_no_parent"),
         # B2 (Decision Log C97, C98): platform tables. Every policy is
         # scoped `to nca_super` (BYPASSRLS anyway; the policies state the
         # intended access), app_user/app_backend/anon/authenticated hold no
