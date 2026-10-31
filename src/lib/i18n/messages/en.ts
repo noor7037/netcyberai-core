@@ -9747,4 +9747,23 @@ export const en = {
   'control.school.attendance.marked.no': 'Not marked',
   'control.school.attendance.section.none': 'None',
   // w13-c attendance end
+  // w13-d fees start
+  'control.school.fees.title': 'Fees of this school',
+  'control.school.fees.loading': 'Loading…',
+  'control.school.fees.failed': 'The fees could not be loaded. Reload the page.',
+  'control.school.fees.empty.title': 'No fees set up yet',
+  'control.school.fees.empty.body': 'This school has not set up a fee structure or raised any fees.',
+  'control.school.fees.kpi.collected': 'Collected',
+  'control.school.fees.kpi.pending': 'Still to pay, not yet due',
+  'control.school.fees.kpi.overdue': 'Overdue',
+  'control.school.fees.kpi.students': 'Students with dues',
+  'control.school.fees.chart.title': 'Payments received, last 30 days',
+  'control.school.fees.chart.series': 'Received',
+  'control.school.fees.chart.empty': 'No payments in the last 30 days.',
+  'control.school.fees.method.title': 'Payments by method, last 30 days',
+  'control.school.fees.method.none': 'No payments in the last 30 days.',
+  'control.school.fees.col.method': 'Method',
+  'control.school.fees.col.amount': 'Received',
+  'control.school.fees.col.count': 'Payments',
+  // w13-d fees end
 } as const;
