@@ -1,7 +1,7 @@
 'use client';
 
 import type { MindMap } from '@/lib/family/blocks';
-import { colors, deepColors } from '@/lib/design-tokens';
+import { colors, deepColors, lessonColors } from '@/lib/design-tokens';
 import type { Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
 import { useReducedMotion } from './InteractiveViews';
@@ -19,10 +19,10 @@ const reveal = (moving: boolean, i: number) => (moving ? { animation: `nca-pop 4
 // No motion under prefers-reduced-motion (and the first paint is still): the whole map at once. `still` forces that.
 
 // One colour per branch, in a fixed order: logo tokens that carry white text at AA (design-tokens.ts).
-const BRANCH_HEX = [colors.royal, colors.emerald, colors.grape, deepColors.tangerineDeep, deepColors.coralDeep, colors.azure] as const;
+const BRANCH_HEX = [lessonColors.ink, colors.emerald, colors.grape, deepColors.tangerineDeep, deepColors.coralDeep, colors.azure] as const;
 // A branch's chip: its colour with white text (each pair AA).
-const BRANCH_CHIP = ['bg-royal text-white', 'bg-emerald text-white', 'bg-grape text-white', 'bg-tangerine-deep text-white', 'bg-coral-deep text-white', 'bg-azure text-white'] as const;
-const BRANCH_RING = ['border-royal', 'border-emerald', 'border-grape', 'border-tangerine-deep', 'border-coral-deep', 'border-azure'] as const;
+const BRANCH_CHIP = ['bg-ink text-white', 'bg-emerald text-white', 'bg-grape text-white', 'bg-tangerine-deep text-white', 'bg-coral-deep text-white', 'bg-azure text-white'] as const;
+const BRANCH_RING = ['border-ink', 'border-emerald', 'border-grape', 'border-tangerine-deep', 'border-coral-deep', 'border-azure'] as const;
 
 // The SVG's geometry, drawn about 1:1 in the Family app's column (max-w-xl): the root in the centre column, the
 // branches in a column either side, each branch's leaves beyond it (stacked under it, at the outer edge, on a spine).
@@ -133,12 +133,12 @@ export function MindMapView({ b, w, tone, still }: { b: MindMap; w: Words; tone:
             </g>
           );
         })}
-        <rect x={root.x} y={root.y} width={root.w} height={root.h} rx="16" fill={colors.violet} />
+        <rect x={root.x} y={root.y} width={root.w} height={root.h} rx="16" fill={lessonColors.plum} />
         <BoxText p={root} fill="#ffffff" bold />
       </svg>
       {/* The same map as a vertical tree: what a phone shows, and what a screen reader reads at every width. */}
       <div data-mind-map-tree className="flex flex-col gap-3 min-[480px]:sr-only">
-        <p className="self-start rounded-2xl bg-violet px-4 py-2 text-base font-extrabold text-white">{b.root}</p>
+        <p className="self-start rounded-2xl bg-lesson-lilac-deep px-4 py-2 text-base font-extrabold text-white">{b.root}</p>
         <ul className="flex flex-col gap-3">
           {b.branches.map((br, i) => (
             <li key={i} className={`ml-3 flex flex-col gap-2 border-l-4 pl-3 ${BRANCH_RING[i % BRANCH_RING.length]} ${moving ? 'fam-reveal' : ''}`} style={reveal(moving, i)}>

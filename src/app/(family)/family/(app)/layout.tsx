@@ -45,7 +45,7 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
   return (
     <>
       {banner && (
-        <div role="status" lang={lang} className={`px-4 py-2 text-center text-sm font-semibold ${banner.tone === 'warning' ? 'bg-amber text-slate' : 'bg-sapphire text-white'}`}>
+        <div role="status" lang={lang} className={`px-4 py-2 text-center text-sm font-semibold ${banner.tone === 'warning' ? 'bg-amber text-slate' : 'bg-ink text-white'}`}>
           {lang === 'hi' ? banner.textHi : banner.textEn}
         </div>
       )}

@@ -4,7 +4,7 @@ import { forgetThisBrowser } from './push-client';
 import type { Subject } from '@/lib/family/subjects';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/family/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { Lang } from '@/lib/i18n';
 import { classText, fill, type Words } from '@/lib/family/fill';
@@ -326,7 +326,7 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
         back="/family/profile"
         backLabel={w['fam.profile.title']}
         title={w['fam.parent.title']}
-        tone="royal"
+        tone="ink"
         aside={
           <button
             type="button"

@@ -32,7 +32,7 @@ export default async function FamilyChapterTestsPage() {
   const day = (iso: string) => sameInkOnBothSides(new Date(iso).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' }));
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.tests.title']} tone="royal" />
+      <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} title={w['fam.tests.title']} tone="ink" />
       <main className="fam-page" data-parent-tests>
         <p className="fam-note px-1 font-semibold text-slate">{w['fam.tests.lead']}</p>
         {attempts.length === 0 && <EmptyState icon="sheet" text={w['fam.tests.none']} href="/family/parent" action={w['fam.marks.backParent']} />}
@@ -61,7 +61,7 @@ export default async function FamilyChapterTestsPage() {
                     {x.kind === 'written' && <p className="whitespace-pre-wrap rounded-xl bg-white p-2">{x.body}</p>}
                     {x.kind === 'photo' &&
                       (x.attachmentId ? (
-                        <a href={`/api/family/tutor/files/${encodeURIComponent(x.attachmentId)}`} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center self-start rounded-2xl bg-white px-3 font-bold text-royal-deep">
+                        <a href={`/api/family/tutor/files/${encodeURIComponent(x.attachmentId)}`} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center self-start rounded-2xl bg-white px-3 font-bold text-ink">
                           {w['fam.tutor.openFile']}
                         </a>
                       ) : (

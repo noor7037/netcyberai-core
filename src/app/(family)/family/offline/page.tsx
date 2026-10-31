@@ -16,12 +16,12 @@ export default function FamilyOfflinePage() {
   return (
     <main lang={lang} className="mx-auto flex min-h-screen w-full max-w-xl flex-col items-center justify-center gap-4 px-4 py-8">
       <section className="fam-card fam-rise flex w-full flex-col items-center gap-3 bg-white p-6 text-center">
-        <span aria-hidden="true" className="flex h-16 w-16 items-center justify-center rounded-3xl bg-royal-deep bg-gradient-to-br from-midnight via-royal-deep to-violet text-white shadow-lg">
+        <span aria-hidden="true" className="flex h-16 w-16 items-center justify-center rounded-3xl bg-ink text-white shadow-lg">
           <FamIcon name="offline" className="h-8 w-8" />
         </span>
         <h1 className="bg-white text-2xl font-extrabold text-slate">{t(lang, 'fam.offline.title')}</h1>
         <p className="bg-white text-base text-slate">{t(lang, 'fam.offline.lead')}</p>
-        <a href="/family" className="fam-cta fam-press mt-1 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-royal-deep bg-gradient-to-r from-royal to-violet px-6 text-base font-extrabold text-white sm:w-auto">
+        <a href="/family" className="fam-cta fam-press mt-1 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-saffron px-6 text-base font-extrabold text-ink sm:w-auto">
           <FamIcon name="again" className="h-5 w-5" />
           {t(lang, 'fam.offline.retry')}
         </a>

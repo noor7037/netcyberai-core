@@ -10,7 +10,7 @@ import { SubjectGlyph } from './ui/SubjectGlyph';
 // Understand; a tick shows it has a checked answer today. Done means today's answers, never pages opened. No streaks and
 // nothing about missed days.
 // F2 on D1 (C230-Q): a D1 card, the day's progress as a ring with its words beside it, and each item in its subject's
-// colour with the subject's mark (white on a solid royal-deep under the subject's gradient).
+// colour with the subject's mark (the subject's solid accent, W12-E).
 const titleLang = (title: string) => (/[ऀ-ॿ]/.test(title) ? 'hi' : 'en');
 
 export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang; delay?: number }) {
@@ -65,7 +65,7 @@ export function PlanCard({ plan, lang, delay = 40 }: { plan: DayPlan; lang: Lang
                     href={`/family/understand?kind=${i.isTopic ? 'topic' : 'chapter'}&key=${encodeURIComponent(i.topicKey)}`}
                     className={`fam-row fam-lift min-h-[56px] ${i.done ? 'bg-emerald/10' : 'bg-off-white hover:bg-slate/5'}`}
                   >
-                    <span aria-hidden="true" className={`fam-chip-icon bg-ink text-white ${theme.tile}`}>
+                    <span aria-hidden="true" className={`fam-chip-icon ${theme.chip}`}>
                       <SubjectGlyph subject={i.subject} className="h-5 w-5" />
                     </span>
                     <span className="flex min-w-0 flex-1 flex-col">

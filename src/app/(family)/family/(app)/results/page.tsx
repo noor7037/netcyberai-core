@@ -64,7 +64,7 @@ export default async function FamilyMyResultsPage() {
                         href={`/family/results/${s.paperId}`}
                         aria-label={fill(w['fam.marks.openSubject'], { subject: s.name })}
                         data-checked-paper-link={s.paperId}
-                        className="fam-lift inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-royal-deep ring-1 ring-royal/30"
+                        className="fam-lift inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/25"
                       >
                         {w['fam.marks.open']}
                       </Link>
@@ -72,7 +72,7 @@ export default async function FamilyMyResultsPage() {
                   </li>
                 ))}
               </ul>
-              <p className="fam-row justify-between bg-royal-deep bg-gradient-to-r from-royal-deep to-violet text-base font-extrabold text-white">
+              <p className="fam-row justify-between bg-ink text-base font-extrabold text-white">
                 <span>{w['fam.school.resultOverall']}</span>
                 <span className="fam-num text-lg">{scored(r.overall.percent, r.overall.grade)}</span>
               </p>

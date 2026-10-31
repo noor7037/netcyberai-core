@@ -41,7 +41,7 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { 
   const mcq = b.items.filter((i) => i.kind === 'mcq');
   const photoBusy = Object.values(photo).some((p) => p.state !== 'ready');
   const complete = mcq.every((i) => choice[i.id] !== undefined);
-  const chip = SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white';
+  const chip = SUBJECT_TONE[tone]?.chip ?? 'bg-ink text-white';
 
   const attach = async (itemId: string, file: File) => {
     const fail = (code: string) => {
@@ -105,8 +105,8 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { 
                   </legend>
                   <span className="sr-only">{w['fam.ctest.mcq']}</span>
                   {item.options.map((o, i) => (
-                    <label key={i} className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-xl bg-white px-4 py-2 text-base text-slate ring-1 ${choice[item.id] === i ? 'ring-2 ring-royal' : 'ring-slate/15'}`}>
-                      <input type="radio" name={`${blockId}-${item.id}`} checked={choice[item.id] === i} onChange={() => setChoice((c) => ({ ...c, [item.id]: i }))} className="h-5 w-5 accent-royal" />
+                    <label key={i} className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-xl bg-white px-4 py-2 text-base text-slate ring-1 ${choice[item.id] === i ? 'ring-2 ring-ink' : 'ring-slate/15'}`}>
+                      <input type="radio" name={`${blockId}-${item.id}`} checked={choice[item.id] === i} onChange={() => setChoice((c) => ({ ...c, [item.id]: i }))} className="h-5 w-5 accent-saffron-deep" />
                       <span>{o}</span>
                     </label>
                   ))}
@@ -139,7 +139,7 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { 
                         value={text[item.id] ?? ''}
                         disabled={done || preview}
                         onChange={(e) => setText((t) => ({ ...t, [item.id]: e.target.value }))}
-                        className="min-h-[96px] w-full rounded-xl bg-white p-3 text-base font-normal text-slate ring-1 ring-slate/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-royal"
+                        className="min-h-[96px] w-full rounded-xl bg-white p-3 text-base font-normal text-slate ring-1 ring-slate/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink"
                       />
                     </label>
                   ) : (
@@ -167,7 +167,7 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { 
                         </p>
                       )}
                       {photo[item.id]?.state === 'ready' && !done && (
-                        <button type="button" onClick={() => drop(item.id)} className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline">
+                        <button type="button" onClick={() => drop(item.id)} className="min-h-[44px] self-start px-1 text-sm font-semibold text-ink underline-offset-4 hover:underline">
                           {w['fam.ctest.photoRemove']}
                         </button>
                       )}

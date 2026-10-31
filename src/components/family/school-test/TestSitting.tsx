@@ -18,8 +18,8 @@ import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 type Phase = 'start' | 'starting' | 'sitting' | 'confirm' | 'sending' | 'done' | 'time_up' | 'not_yet' | 'closed' | 'gone';
 const BTN = 'fam-press flex min-h-[48px] items-center justify-center gap-2 rounded-2xl px-5 py-2 text-base font-extrabold';
-const CTA = `${BTN} fam-cta bg-royal-deep bg-gradient-to-r from-royal to-violet text-white`;
-const PLAIN = `${BTN} bg-white text-royal-deep ring-1 ring-royal/20 hover:bg-off-white`;
+const CTA = `${BTN} fam-cta bg-saffron text-ink`;
+const PLAIN = `${BTN} bg-white text-ink ring-1 ring-ink/25 hover:bg-off-white`;
 const TEXT_MAX = 4000;
 const NUMBER_SAVE_MS = 600;
 const TEXT_SAVE_MS = 900;
@@ -309,7 +309,7 @@ export function TestSitting({ w, lang, test, testId }: { w: Words; lang: string;
           )}
         </p>
         {!full && (
-          <button type="button" className="fam-press min-h-[44px] rounded-xl px-3 text-sm font-bold text-royal-deep ring-1 ring-royal/20" onClick={() => void document.documentElement.requestFullscreen?.().catch(() => {})}>
+          <button type="button" className="fam-press min-h-[44px] rounded-xl px-3 text-sm font-bold text-ink ring-1 ring-ink/25" onClick={() => void document.documentElement.requestFullscreen?.().catch(() => {})}>
             {w['fam.test.fullscreen']}
           </button>
         )}
@@ -318,7 +318,7 @@ export function TestSitting({ w, lang, test, testId }: { w: Words; lang: string;
       {leftNote && (
         <p role="status" className="fam-card flex items-start gap-2 bg-sunshine/30 p-3 text-sm font-semibold text-slate">
           {w['fam.test.leftNote']}
-          <button type="button" className="ml-auto flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-xl text-royal-deep" onClick={() => setLeftNote(false)} aria-label={w['fam.test.keepGoing']}>
+          <button type="button" className="ml-auto flex min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-xl text-ink" onClick={() => setLeftNote(false)} aria-label={w['fam.test.keepGoing']}>
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
@@ -365,7 +365,7 @@ export function TestSitting({ w, lang, test, testId }: { w: Words; lang: string;
                   onClick={() => setAt(i)}
                   className={`fam-press relative flex h-11 w-full min-w-[44px] items-center justify-center rounded-xl text-base font-black ${
                     mark === 'answered' ? 'bg-emerald-text text-white' : 'bg-white text-slate ring-1 ring-slate/30'
-                  } ${i === at ? 'outline outline-2 outline-offset-2 outline-royal' : ''}`}
+                  } ${i === at ? 'outline outline-2 outline-offset-2 outline-ink' : ''}`}
                 >
                   {i + 1}
                   {flagged && <span aria-hidden="true" className="absolute -right-1 -top-1 h-3.5 w-3.5 rounded-full bg-sunshine ring-2 ring-white" />}
@@ -388,7 +388,7 @@ export function TestSitting({ w, lang, test, testId }: { w: Words; lang: string;
       </nav>
 
       {(phase === 'confirm' || phase === 'sending') && (
-        <div role="dialog" aria-modal="true" aria-labelledby="test-submit-title" data-test-confirm className="fixed inset-0 z-20 flex items-end justify-center bg-midnight/60 p-4 sm:items-center">
+        <div role="dialog" aria-modal="true" aria-labelledby="test-submit-title" data-test-confirm className="fixed inset-0 z-20 flex items-end justify-center bg-ink/60 p-4 sm:items-center">
           <div className="fam-card flex w-full max-w-md flex-col gap-3 bg-white p-5">
             <h2 id="test-submit-title" className="text-lg font-extrabold text-slate">{w['fam.test.submitSure']}</h2>
             <p className="text-base text-slate">{fill(w['fam.test.submitCount'], { n: answered, all: questions.length })}</p>
@@ -492,9 +492,9 @@ function QuestionCard({
           {q.options.map((o, i) => {
             const on = keys.includes(o.key);
             return (
-              <label key={o.key} className={`fam-press flex min-h-[52px] cursor-pointer items-center gap-3 rounded-2xl px-3 py-2 text-base text-slate ring-1 ${on ? 'bg-royal/10 ring-2 ring-royal' : 'bg-white ring-slate/20'}`}>
-                <input type={q.multi ? 'checkbox' : 'radio'} name={name} checked={on} onChange={() => choose(o.key)} className="h-5 w-5 shrink-0 accent-royal" />
-                <span aria-hidden="true" className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-sm font-black ${on ? 'bg-royal-deep text-white' : 'bg-off-white text-slate'}`}>
+              <label key={o.key} className={`fam-press flex min-h-[52px] cursor-pointer items-center gap-3 rounded-2xl px-3 py-2 text-base text-slate ring-1 ${on ? 'bg-lesson-sky ring-2 ring-ink' : 'bg-white ring-slate/20'}`}>
+                <input type={q.multi ? 'checkbox' : 'radio'} name={name} checked={on} onChange={() => choose(o.key)} className="h-5 w-5 shrink-0 accent-saffron-deep" />
+                <span aria-hidden="true" className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl text-sm font-black ${on ? 'bg-ink text-white' : 'bg-off-white text-slate'}`}>
                   {on ? <FamIcon name="check" className="h-5 w-5" /> : letter(i)}
                 </span>
                 <span lang={schoolLang(o.text)} className="min-w-0 break-words">
@@ -504,7 +504,7 @@ function QuestionCard({
             );
           })}
           {keys.length > 0 && (
-            <button type="button" className="min-h-[44px] self-start rounded-xl px-2 text-sm font-bold text-royal-deep" onClick={() => onGive({ answer: null })}>
+            <button type="button" className="min-h-[44px] self-start rounded-xl px-2 text-sm font-bold text-ink" onClick={() => onGive({ answer: null })}>
               {w['fam.test.clear']}
             </button>
           )}
@@ -527,7 +527,7 @@ function QuestionCard({
               setNumberBad(a === 'bad');
               if (a !== 'bad') keepSoon(NUMBER_SAVE_MS, () => onGive({ answer: a }));
             }}
-            className="min-h-[52px] rounded-2xl bg-white px-4 text-lg text-slate ring-1 ring-slate/30 focus:ring-2 focus:ring-royal"
+            className="min-h-[52px] rounded-2xl bg-white px-4 text-lg text-slate ring-1 ring-slate/30 focus:ring-2 focus:ring-ink"
           />
         </label>
       )}
@@ -544,7 +544,7 @@ function QuestionCard({
               setText(v);
               keepSoon(TEXT_SAVE_MS, () => onGive({ answer: v.trim() ? { text: v } : null }));
             }}
-            className="min-h-[160px] rounded-2xl bg-white p-3 text-base text-slate ring-1 ring-slate/30 focus:ring-2 focus:ring-royal"
+            className="min-h-[160px] rounded-2xl bg-white p-3 text-base text-slate ring-1 ring-slate/30 focus:ring-2 focus:ring-ink"
           />
           <span className="text-xs font-normal text-slate">{fill(w['fam.test.textLeft'], { n: TEXT_MAX - text.length })}</span>
         </label>
@@ -557,7 +557,7 @@ function QuestionCard({
       )}
 
       <label className="flex min-h-[44px] cursor-pointer items-center gap-3 text-base font-semibold text-slate">
-        <input type="checkbox" checked={held.flagged} onChange={(e) => onGive({ flagged: e.target.checked })} className="h-5 w-5 accent-royal" />
+        <input type="checkbox" checked={held.flagged} onChange={(e) => onGive({ flagged: e.target.checked })} className="h-5 w-5 accent-saffron-deep" />
         {w['fam.test.review']}
       </label>
     </section>

@@ -48,7 +48,7 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
       <div role="group" aria-label={item.question} className="grid gap-2">
         {item.options.map((o, i) => {
           const chosen = s.picked === i;
-          const look = s.result && chosen ? (s.result.correct ? 'ring-2 ring-emerald-text bg-emerald/10' : 'ring-2 ring-coral-deep bg-coral/10') : chosen && s.kept ? 'ring-2 ring-royal' : 'ring-1 ring-slate/15';
+          const look = s.result && chosen ? (s.result.correct ? 'ring-2 ring-emerald-text bg-emerald/10' : 'ring-2 ring-coral-deep bg-coral/10') : chosen && s.kept ? 'ring-2 ring-ink' : 'ring-1 ring-slate/15';
           return (
             <button key={i} type="button" disabled={s.busy || done} onClick={() => onPick(i)} className={`min-h-[44px] rounded-xl bg-white px-4 py-2 text-left text-base text-slate ${look}`}>
               {o}
@@ -57,7 +57,7 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
         })}
       </div>
       {!done && !s.hint && (
-        <button type="button" data-hint-ask onClick={onHint} className="min-h-[44px] self-start px-1 text-sm font-semibold text-royal underline-offset-4 hover:underline">
+        <button type="button" data-hint-ask onClick={onHint} className="min-h-[44px] self-start px-1 text-sm font-semibold text-ink underline-offset-4 hover:underline">
           {w['fam.check.hint']}
         </button>
       )}
@@ -78,7 +78,7 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
           <p>{s.result.explanation}</p>
           {!s.result.correct && s.result.revisitDay && <p data-revisit>{fill(w['fam.plan.comesBack'], { day: s.result.revisitDay })}</p>}
           {!s.result.correct && (
-            <button type="button" data-retry onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
+            <button type="button" data-retry onClick={() => onRetry(item.token, s.picked!)} className={`min-h-[44px] self-start rounded-full px-4 text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-ink text-white'}`}>
               {w['fam.check.explainAgain']}
             </button>
           )}

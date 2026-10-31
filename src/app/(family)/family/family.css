@@ -119,8 +119,8 @@
   }
 }
 
-/* A subject tile: its gradient comes from the Tailwind classes of src/lib/family/subject-theme.ts; this adds the
-   light from above, two soft shapes and the sheen. */
+/* a subject tile: its tint comes from the Tailwind classes of src/lib/family/subject-theme.ts; this adds the
+   light from above and two soft shapes (W12-E: white on the tint). */
 .fam-tile {
   position: relative;
   isolation: isolate;
@@ -139,7 +139,7 @@
   right: -3rem;
   bottom: -4rem;
   border-radius: 9999px;
-  background: rgb(255 255 255 / 0.14);
+  background: rgb(255 255 255 / 0.45);
 }
 .fam-tile::after {
   content: '';
@@ -150,7 +150,7 @@
   right: 1.5rem;
   top: -1.75rem;
   border-radius: 9999px;
-  background: rgb(255 255 255 / 0.1);
+  background: rgb(255 255 255 / 0.35);
   animation: fam-float 7s ease-in-out infinite;
 }
 .fam-icon-glass {
@@ -609,13 +609,10 @@ main:has(> .fam-lesson) [data-data-saver] {
 main:has(> .fam-lesson) [data-data-saver] .bg-white {
   background-color: var(--fl-card);
 }
-main:has(> .fam-lesson) [data-data-saver] .bg-royal\/10 {
-  background-color: var(--fl-sky);
-}
-main:has(> .fam-lesson) [data-data-saver] :is(.text-slate, .text-royal-deep) {
+main:has(> .fam-lesson) [data-data-saver] .text-slate {
   color: var(--fl-ink);
 }
-main:has(> .fam-lesson) [data-data-saver] .bg-royal {
+main:has(> .fam-lesson) [data-data-saver] .bg-ink {
   background-color: var(--fl-teal);
   --tw-ring-color: var(--fl-teal);
 }
@@ -767,20 +764,13 @@ div.fam-lesson {
   color: var(--fl-muted);
 }
 .fam-lesson [data-num],
-.fam-lesson [data-dot],
-.fam-lesson .bg-royal,
-.fam-lesson .bg-royal-deep,
-.fam-lesson .bg-violet {
+.fam-lesson [data-dot] {
   background-color: var(--fl-accent, var(--fl-plum));
   background-image: none;
   color: #fff;
 }
 .fam-lesson [data-num] {
   font-family: var(--fl-display);
-}
-.fam-lesson .border-royal,
-.fam-lesson .border-royal\/40 {
-  border-color: var(--fl-accent, var(--fl-plum));
 }
 .fam-lesson [data-block='videos'] h2 > span[aria-hidden] {
   background: var(--fl-accent);
@@ -804,8 +794,7 @@ div.fam-lesson {
   border-color: var(--fl-accent) !important;
   background: var(--fl-card);
 }
-.fam-lesson .text-royal,
-.fam-lesson .text-royal-deep {
+.fam-lesson .text-ink {
   color: var(--fl-ink);
   text-decoration-color: var(--fl-saffron);
 }

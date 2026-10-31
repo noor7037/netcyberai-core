@@ -12,24 +12,24 @@ import { TutorAvatar } from '../TutorAvatar';
 // block is ever rendered as markup. Each card carries its subject's colour (docs/family-app/09 §2).
 
 // D1 (C230-Q): every subject's colour comes from src/lib/family/subject-theme.ts, so a card in English, Hindi or Social
-// Science wears its own colour, not Mathematics' blue. `bar` keeps a solid royal-deep under the gradient for the
-// contrast check; `chip` is solid and carries white text at AA.
+// Science wears its own colour, not Mathematics'. `bar` and `chip` are the solid accent (W12-E, C419: no gradient); `chip`
+// carries its own text colour at AA.
 export const SUBJECT_TONE: Record<string, { bar: string; chip: string; soft: string }> = Object.fromEntries(
-  Object.entries(SUBJECT_THEME).map(([k, v]) => [k, { bar: `bg-royal-deep ${v.tile}`, chip: `${v.chip} text-white`, soft: v.soft }])
+  Object.entries(SUBJECT_THEME).map(([k, v]) => [k, { bar: v.chip, chip: v.chip, soft: v.soft }])
 );
 
 // W8-AI: each block type wears its own colour as well, so a child sees at a glance what kind of block it is: a solid
 // left bar and a tinted heading (slate text on a light tint, AA), from the logo tokens. Explanation teal, worked example
-// blue, diagram and mind map violet, key points amber, check and practice green, the interactive blocks coral. The
+// butter, diagram and mind map lilac, key points amber, check and practice green, the interactive blocks coral. The
 // class strings are literal so Tailwind keeps them; no gradients. A type not listed keeps the subject's colour only.
 const INTERACTIVE_TONE = { bar: 'border-l-coral', head: 'bg-coral/15', dot: 'bg-coral' };
-const VIOLET_TONE = { bar: 'border-l-violet', head: 'bg-violet/10', dot: 'bg-violet' };
+const LILAC_TONE = { bar: 'border-l-lesson-lilac-deep', head: 'bg-lesson-lilac', dot: 'bg-lesson-lilac-deep' };
 const GREEN_TONE = { bar: 'border-l-leaf', head: 'bg-leaf/15', dot: 'bg-leaf' };
 export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string }> = {
   explanation: { bar: 'border-l-turquoise', head: 'bg-turquoise/15', dot: 'bg-turquoise' },
-  worked_example: { bar: 'border-l-royal', head: 'bg-royal/10', dot: 'bg-royal' },
-  diagram: VIOLET_TONE,
-  mind_map: VIOLET_TONE,
+  worked_example: { bar: 'border-l-lesson-butter-deep', head: 'bg-lesson-butter', dot: 'bg-lesson-butter-deep' },
+  diagram: LILAC_TONE,
+  mind_map: LILAC_TONE,
   key_points: { bar: 'border-l-amber', head: 'bg-amber/15', dot: 'bg-amber' },
   check: GREEN_TONE,
   practice: GREEN_TONE,
@@ -40,8 +40,8 @@ export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string
   simulation: INTERACTIVE_TONE,
   slider: INTERACTIVE_TONE,
   model_3d: INTERACTIVE_TONE,
-  // W9-C: the figure with the diagrams (violet), steps and the timeline blue, the photograph teal, the videos coral.
-  figure: VIOLET_TONE,
+  // W9-C: the figure with the diagrams (lilac), steps and the timeline blue, the photograph teal, the videos coral.
+  figure: LILAC_TONE,
   steps: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
   timeline: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
   image: { bar: 'border-l-emerald', head: 'bg-emerald/10', dot: 'bg-emerald' },
@@ -55,10 +55,10 @@ export function Card({ title, tone, children, tag }: { title: string; tone: stri
   const kind = tag ? BLOCK_TONE[tag] : undefined;
   return (
     <section data-block={tag} data-tint={tag ? (LESSON_TINT_OF[tag] ?? 'mint') : undefined} className={`fam-card fam-rise overflow-hidden bg-white ${kind ? `border-l-[6px] ${kind.bar}` : ''}`}>
-      <div data-card-bar className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} aria-hidden="true" />
+      <div data-card-bar className={`h-2 ${SUBJECT_TONE[tone]?.bar ?? 'bg-ink'}`} aria-hidden="true" />
       <div className="flex flex-col gap-3 p-4 sm:p-5">
         <h2 data-block-head className={`flex items-center gap-2 text-lg font-extrabold text-slate ${kind ? `rounded-xl px-3 py-1.5 ${kind.head}` : ''}`}>
-          <span aria-hidden="true" data-badge className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-royal')}`} />
+          <span aria-hidden="true" data-badge className={`h-2.5 w-2.5 shrink-0 rounded-full ${kind ? kind.dot : (SUBJECT_TONE[tone]?.chip ?? 'bg-ink')}`} />
           {title}
         </h2>
         {children}
@@ -87,14 +87,14 @@ export function ExplanationView({ b, w, tone, lead = false }: { b: Explanation; 
           {para}
         </p>
       ))}
-      <div data-example className={`rounded-2xl p-3 ${SUBJECT_TONE[tone]?.soft ?? 'bg-royal/10'}`}>
+      <div data-example className={`rounded-2xl p-3 ${SUBJECT_TONE[tone]?.soft ?? 'bg-lesson-sky'}`}>
         <p className="text-sm font-bold text-slate">{w['fam.block.example']}</p>
         <p className="text-base leading-relaxed text-slate">{b.example}</p>
       </div>
       <ol className="flex flex-col gap-2">
         {b.steps.map((s, i) => (
           <li key={i} className="flex gap-3 text-base leading-relaxed text-slate">
-            <span aria-hidden="true" data-num className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-royal text-white'}`}>
+            <span aria-hidden="true" data-num className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold ${SUBJECT_TONE[tone]?.chip ?? 'bg-ink text-white'}`}>
               {i + 1}
             </span>
             <span>{s}</span>
@@ -144,7 +144,7 @@ export function KeyPointsView({ b, w, tone }: { b: KeyPoints; w: Words; tone: st
       <ul className="flex flex-col gap-2">
         {b.points.map((p, i) => (
           <li key={i} className="flex gap-2 text-base text-slate">
-            <span aria-hidden="true" data-dot className={`mt-2 h-2 w-2 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.bar ?? 'bg-royal'}`} />
+            <span aria-hidden="true" data-dot className={`mt-2 h-2 w-2 shrink-0 rounded-full ${SUBJECT_TONE[tone]?.bar ?? 'bg-ink'}`} />
             <span>{p}</span>
           </li>
         ))}
@@ -282,7 +282,7 @@ export function SourcesView({ b, w, tone }: { b: Sources; w: Words; tone: string
       <ul className="flex flex-col gap-2">
         {b.links.map((l, i) => (
           <li key={i}>
-            <a href={l.url} target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-between gap-2 rounded-2xl bg-off-white px-4 text-sm font-semibold text-royal-deep hover:bg-slate/10">
+            <a href={l.url} target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-between gap-2 rounded-2xl bg-off-white px-4 text-sm font-semibold text-ink hover:bg-slate/10">
               <span>{l.label}</span>
               <span aria-hidden="true">↗</span>
             </a>

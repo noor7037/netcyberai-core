@@ -12,7 +12,7 @@ const back = (
   </svg>
 );
 
-export function SubPageHeader(p: { back: string; backLabel: string; title: string; kicker?: string; tone?: 'royal' | 'emerald'; subject?: string; aside?: ReactNode }) {
+export function SubPageHeader(p: { back: string; backLabel: string; title: string; kicker?: string; tone?: 'ink' | 'emerald'; subject?: string; aside?: ReactNode }) {
   return (
     <header className="fam-band rounded-b-[2rem] bg-paper px-4 pb-12 pt-4">
       <span aria-hidden="true" className="fam-band-dots" />

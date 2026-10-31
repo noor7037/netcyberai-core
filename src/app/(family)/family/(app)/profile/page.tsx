@@ -20,7 +20,7 @@ export default async function FamilyProfilePage() {
       <main className="fam-page">
         <section data-profile className="fam-card fam-rise flex items-center gap-4 bg-white p-5">
           <span aria-hidden="true" className="fam-avatar-ring flex h-16 w-16 shrink-0 items-center justify-center rounded-full p-[3px]">
-            <span className="flex h-full w-full items-center justify-center rounded-full bg-midnight text-2xl font-black text-white">{child.firstName.slice(0, 1).toUpperCase()}</span>
+            <span className="flex h-full w-full items-center justify-center rounded-full bg-ink text-2xl font-black text-white">{child.firstName.slice(0, 1).toUpperCase()}</span>
           </span>
           <div className="min-w-0">
             <p className="truncate text-2xl font-extrabold tracking-tight text-slate">{child.firstName}</p>

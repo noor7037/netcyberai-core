@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/family/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { Words } from '@/lib/family/fill';
 import { errorWords, familyApi } from './client';

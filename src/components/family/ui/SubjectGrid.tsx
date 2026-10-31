@@ -19,9 +19,9 @@ export function SubjectGrid({ title, tiles, words, delay = 0 }: { title: string;
           const theme = subjectTheme(s.subject);
           return (
             <li key={s.subject} className="fam-rise" style={{ ['--d' as string]: `${delay + i * 60}ms` } as React.CSSProperties}>
-              <Link href={`/family/study?subject=${s.subject}`} className={`fam-tile fam-press flex h-full min-h-[132px] flex-col justify-between gap-3 bg-ink p-4 text-white ${theme.tile}`}>
+              <Link href={`/family/study?subject=${s.subject}`} className={`fam-tile fam-press flex h-full min-h-[132px] flex-col justify-between gap-3 p-4 ${theme.tile}`}>
                 <span className="flex items-start justify-between gap-2">
-                  <span className="fam-icon-glass flex h-11 w-11 items-center justify-center rounded-xl">
+                  <span className={`flex h-11 w-11 items-center justify-center rounded-xl ${theme.chip}`}>
                     <SubjectGlyph subject={s.subject} className="h-6 w-6" />
                   </span>
                   {s.free && <span className="fam-pill bg-white text-slate">{words.free}</span>}
@@ -36,8 +36,8 @@ export function SubjectGrid({ title, tiles, words, delay = 0 }: { title: string;
                   )}
                 </span>
                 <span className="flex flex-col gap-0.5">
-                  <span className="text-lg font-extrabold leading-tight text-white">{s.name}</span>
-                  <span className="fam-num text-sm font-semibold text-white">{s.checked ? words.meter(s.checked, s.mastered) : words.start}</span>
+                  <span className="text-lg font-extrabold leading-tight text-ink">{s.name}</span>
+                  <span className="fam-num text-sm font-semibold text-ink">{s.checked ? words.meter(s.checked, s.mastered) : words.start}</span>
                 </span>
               </Link>
             </li>

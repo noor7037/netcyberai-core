@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors, deepColors, accessibleTextColors, onAccentColors, lessonColors } from './src/lib/design-tokens';
+import { colors, deepColors, accessibleTextColors, onAccentColors, lessonColors, lessonTints } from './src/lib/design-tokens';
 
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
@@ -29,6 +29,13 @@ const config: Config = {
         ink: lessonColors.ink,
         paper: lessonColors.paper,
         saffron: { DEFAULT: lessonColors.saffron, deep: lessonColors.saffronDeep },
+        // W12-E (C419): the five lesson tints and their accents as classes (bg-lesson-mint, bg-lesson-mint-deep, ...).
+        lesson: Object.fromEntries(
+          Object.entries(lessonTints).flatMap(([name, v]) => [
+            [name, v.tint],
+            [`${name}-deep`, v.accent],
+          ]),
+        ),
       },
       // The phone menu slides in from the left (F1-2); `motion-reduce:animate-none` takes the slide away.
       // The English course's motion (docs/family-app/12 §10): short, explaining, and off under reduced motion

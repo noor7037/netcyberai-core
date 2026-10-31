@@ -37,7 +37,7 @@ export default async function FamilyParentWorksheetPage({ params }: { params: { 
   if (w.state !== 'ok') redirect(w.line ? `/family/study/worksheet/${encodeURIComponent(w.line.key)}` : '/family/study');
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back={`/family/study/worksheet/${encodeURIComponent(w.line.key)}`} backLabel={t(lang, 'fam.worksheet.title')} kicker={t(lang, 'fam.worksheet.keyTitle')} title={w.line.title} tone="royal" />
+      <SubPageHeader back={`/family/study/worksheet/${encodeURIComponent(w.line.key)}`} backLabel={t(lang, 'fam.worksheet.title')} kicker={t(lang, 'fam.worksheet.keyTitle')} title={w.line.title} tone="ink" />
       {/* F2 on D1 (C230-Q): pulled up under the band, and `relative` so the band never paints over it. */}
       <main className="fam-page">
         <ParentWorksheet w={familyWords(lang, WORKSHEET_KEYS)} sheetW={familyWords(page.childLang, WORKSHEET_KEYS)} name={child.firstName} title={w.line.title} items={printItems(w)} keyRows={answerKey(w)} />
