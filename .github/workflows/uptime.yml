@@ -1,4 +1,4 @@
-# Uptime check (Decision Log C111). Every 10 minutes GitHub calls the live
+# Uptime check (Decision Log C111; every 30 minutes since C416, to spare the Actions minutes). GitHub calls the live
 # site's /api/health; a run fails when the site does not answer, answers
 # with an error, or reports status "down". GitHub emails the person who last
 # changed this schedule when a scheduled run fails (their Actions
@@ -9,7 +9,7 @@ name: uptime
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:

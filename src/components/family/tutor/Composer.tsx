@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { TUTOR_FILES_PER_TURN, TUTOR_FILE_TYPES, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
 import { useVoiceRecorder } from '../voice/useVoiceRecorder';
+import { useKeyboardInset } from './useKeyboardInset';
 
 // The tutor's composer (W6-A, C395): one rounded field for every question a child types, on Study and in the chapter
 // reader's doubt drawer. Inside the field: Attach on the left (only when the photo gate lets photos through: the page
@@ -68,6 +69,14 @@ export function Composer(p: Props) {
     el.style.height = `${Math.min(el.scrollHeight, 152)}px`;
   }, [p.value]);
 
+  // While the keyboard is open the field is kept in view: when the keyboard opens under it, and when it is tapped again.
+  const keyboard = useKeyboardInset();
+  const keepInView = () => {
+    if (keyboard > 0 && box.current && document.activeElement === box.current) box.current.scrollIntoView({ block: 'nearest' });
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(keepInView, [keyboard]);
+
   // The attach menu closes on Escape (focus back on the clip) and on a tap outside it.
   useEffect(() => {
     if (!menu) return;
@@ -96,8 +105,19 @@ export function Composer(p: Props) {
             ? { alert: true, text: p.fileError }
             : null;
 
+  // W11-A (C416): where the page keeps its height under the keyboard (the Android app, iOS), the dock rises with it: it
+  // sits at the foot of the page and its bottom padding is the keyboard's height, so the field is just above the keys
+  // and, scrolled to the end, the last message is still above the dock. The tab bar is under the keyboard then, so its
+  // room is not added.
+  const lifted = keyboard > 0;
+  const dockStyle = { '--fam-keyboard': `${keyboard}px`, ...(lifted ? { paddingBottom: 'calc(var(--fam-keyboard) + 0.25rem)' } : {}) } as CSSProperties;
+
   return (
-    <div data-tutor-composer className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-4 ${p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}>
+    <div
+      data-tutor-composer
+      style={dockStyle}
+      className={`fam-composer-dock sticky z-20 -mx-2 px-2 pb-1 pt-4 ${lifted ? 'bottom-0' : p.pinned === 'dock' ? 'bottom-[calc(var(--fam-bottom,0px)+5.25rem)]' : 'bottom-0'}`}
+    >
       <form
         data-tutor-rail
         className="flex flex-col gap-2"
@@ -206,6 +226,7 @@ export function Composer(p: Props) {
                 value={p.value}
                 placeholder={w['fam.tutor.title']}
                 onChange={(e) => p.onChange(e.target.value)}
+                onFocus={keepInView}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing && window.matchMedia('(pointer: fine)').matches) {
                     e.preventDefault();
