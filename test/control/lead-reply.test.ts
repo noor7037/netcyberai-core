@@ -110,6 +110,7 @@ async function runJob(row: Record<string, unknown>, sent: EmailMessage[]) {
 
 beforeAll(async () => {
   process.env.APP_SESSION_SECRET = 'test-only-secret-for-lead-reply-tests-0123456789';
+  process.env.LEADS_FROM_EMAIL = 'Noor <noor@made-up.test>';
   h.db = await createTestDb();
   for (const f of MIGRATIONS) await h.db.pg.exec(readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8'));
   await h.db.pg.exec(CONTROL_SETTINGS);
@@ -141,6 +142,9 @@ describe('the automatic first reply', () => {
     expect(sent[0].subject).toBe(`Next steps for Made-up School ${n}`);
     expect(sent[0].text).toContain('https://wa.me/');
     expect(sent[0].text).not.toContain('हिंदी');
+    // C421: sent as the founder, not as the app, when LEADS_FROM_EMAIL is set.
+    expect(sent[0].from).toBe('Noor <noor@made-up.test>');
+    expect(sent[0].text).toMatch(/Noor\nFounder, NetCyberAI$/);
     const replies = await q(`select kind, channel, "by", provider_id, body from lead_replies where lead_id = $1`, [leadId]);
     expect(replies).toEqual([{ kind: 'first_reply', channel: 'email', by: null, provider_id: `msg-${LEAD_REPLY_JOB}:first_reply:${leadId}`, body: sent[0].text }]);
     const [lead] = await q(`select status, status_changed_at from leads where lead_id = $1`, [leadId]);
@@ -245,6 +249,7 @@ describe('a reply by email from Control', () => {
     expect(sent).toHaveLength(1);
     expect(sent[0].text).toBe(words);
     expect(sent[0].subject).toBe(`Re: your request for Made-up School ${n}`);
+    expect(sent[0].from).toBe('Noor <noor@made-up.test>');
     expect(await q(`select kind, "by", body from lead_replies where lead_id = $1`, [leadId])).toEqual([{ kind: 'manual', by: FOUNDER, body: words }]);
     expect((await q(`select status from leads where lead_id = $1`, [leadId]))[0].status).toBe('contacted');
 

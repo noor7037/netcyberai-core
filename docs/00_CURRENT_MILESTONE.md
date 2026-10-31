@@ -7,7 +7,8 @@
 
 **Waves 6 to 11 merged:** the teaching engine, the premium Family identity, everything on by default, one-click
 provisioning, the Leads screen, and the QA fixes of 30–31 Oct. Last merged: #391 (C417). Wave 12 is the docs and the
-pilot scope marker (W12-D).
+pilot scope marker (W12-D). C421 answers the Control re-test of 31 Oct: see `docs/AI_TUTOR_AGENT_PROGRESS.md` for
+the item-by-item status and the three-wave plan for the Control tabs marked "Not built yet".
 
 ## What is live on www.netcyberai.com (the test database)
 
