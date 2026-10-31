@@ -21,9 +21,9 @@ the Decision Log holds the reasons, this file holds the status.
 Each Control tab is a read-only view of the school's own module, built on the module's existing loader and contract,
 so nothing is written twice. Three waves, in your order.
 
-| Wave | Screens | When |
+| Wave | Screens | Status |
 |---|---|---|
-| 13 | School tabs **Students, Staff, Attendance, Fees**; platform **Audit Logs, System Settings** | PRs open 1–2 Nov |
+| 13 | School tabs **Students, Staff, Attendance, Fees**; platform **Audit Logs, System Settings** | Built 31 Oct (C422), in the C421 PR |
 | 14 | School tabs **Admissions, Academics, Communication**; platform **Analytics, Compliance, Integrations** | PRs open 3–4 Nov |
 | 15 | School tabs Profile, Users, Pulse & Engagement, Recognition, Teacher Impact, Capture & Documents, Compliance, Integrations, Usage, Billing, Reports, Audit | PRs open 5–7 Nov |
 
