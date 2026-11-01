@@ -3,6 +3,7 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 import { DataCheckView } from '@/components/students/DataCheckView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { SCHOOL_ROLES } from '@/lib/contracts/modules';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
@@ -10,7 +11,7 @@ import { getLang } from '@/lib/i18n/server';
 // printed, for UDISE+ and APAAR. Part of Students: switched off with it. The office types, asks and corrects; a class
 // teacher reads their own class; the API and the database decide who sees what.
 export default async function StudentDataCheckPage() {
-  const off = await moduleOffReason('students');
+  const off = await moduleOffReason('students', { roles: SCHOOL_ROLES });
   if (off) return <ModuleOffPage moduleId="students" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');

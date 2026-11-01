@@ -1,6 +1,6 @@
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
-import type { ModuleId } from '@/lib/contracts/modules';
+import { moduleById, type ModuleId, type SchoolRole } from '@/lib/contracts/modules';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 import { readRefusal } from '@/lib/frameworks/write-guard';
 import { planHasFeature, type PlanFeature } from '@/lib/frameworks/plans';
@@ -14,9 +14,18 @@ import { planHasFeature, type PlanFeature } from '@/lib/frameworks/plans';
 //
 // If the entitlements cannot be read the page goes ahead: its APIs are
 // guarded on their own, so nothing is shown that should not be.
-export async function moduleOffReason(moduleId: ModuleId): Promise<'module_off' | 'account_paused' | null> {
+//
+// 'role_not_allowed' (W14-A): the session's school role is not one of the
+// module's roles (17 §5), the same rule as the APIs' checkModuleAccess. A
+// founder's View as carries the viewed person's role, so it follows the same
+// rule. A page that serves more roles than its module (a teacher's own
+// guardians, leave on My account) names them in `roles`.
+export type ModuleOffReason = 'module_off' | 'account_paused' | 'role_not_allowed';
+export async function moduleOffReason(moduleId: ModuleId, opts: { roles?: readonly SchoolRole[] } = {}): Promise<ModuleOffReason | null> {
   const session = await getServerSession();
   if (!session?.schoolId) return null;
+  const roles = opts.roles ?? moduleById(moduleId).roles;
+  if (!(roles as readonly string[]).includes(session.role)) return 'role_not_allowed';
   const schoolId = session.schoolId;
   try {
     const entitlements = await withTenantContext(session, (db) => loadEntitlements(db, schoolId));

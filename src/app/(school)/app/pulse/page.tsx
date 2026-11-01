@@ -5,6 +5,7 @@ import { PulseDraftsView } from '@/components/pulse/PulseDraftsView';
 import { PulseShown } from '@/components/pulse/PulseShown';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { moduleById } from '@/lib/contracts/modules';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { readRange } from '@/lib/insights/screens';
@@ -17,7 +18,8 @@ import { readRange } from '@/lib/insights/screens';
 // messages list below is told so, and a message sent there has that list read again (C210). The needs-help queue
 // changes nothing that list counts.
 export default async function PulsePage({ searchParams = {} }: { searchParams?: { show?: string; from?: string; to?: string } }) {
-  const off = await moduleOffReason('pulse');
+  // The coordinator too (W14-A): My Day's open follow-ups open the needs-help queue here.
+  const off = await moduleOffReason('pulse', { roles: [...moduleById('pulse').roles, 'academic_coordinator'] });
   if (off) return <ModuleOffPage moduleId="pulse" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');

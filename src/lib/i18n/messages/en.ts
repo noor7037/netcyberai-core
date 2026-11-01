@@ -9668,4 +9668,9 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w14-a start
+  'modules.roleOff': 'This part is for the office.',
+  'modules.roleOffHint': 'Your role does not use this part. If you need something from it, ask your principal.',
+  'modules.roleOffAction': 'Go to My Day',
+  // w14-a end
 } as const;

@@ -1,5 +1,6 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { SCHOOL_ROLES } from '@/lib/contracts/modules';
 import { notFound } from 'next/navigation';
 import { getServerSession } from '@/lib/auth/server-session';
 import { withTenantContext } from '@/lib/auth/db';
@@ -23,7 +24,7 @@ async function fetchStudent(schoolId: string, studentId: string, claims: Paramet
 }
 
 export default async function StudentDetailPage({ params }: { params: { studentId: string } }) {
-  const off = await moduleOffReason('students');
+  const off = await moduleOffReason('students', { roles: SCHOOL_ROLES });
   if (off) return <ModuleOffPage moduleId="students" reason={off} />;
   const session = await getServerSession();
   if (!session || !session.schoolId) notFound();

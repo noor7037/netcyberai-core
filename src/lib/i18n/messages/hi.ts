@@ -9654,4 +9654,9 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.notThis': 'यह नहीं',
   'fam.check.correct': 'सही',
   // w8-ai end
+  // w14-a start
+  'modules.roleOff': 'यह हिस्सा ऑफ़िस के लिए है।',
+  'modules.roleOffHint': 'आपकी भूमिका में इस हिस्से का काम नहीं है। अगर इससे कुछ चाहिए, तो अपने प्रिंसिपल से कहें।',
+  'modules.roleOffAction': 'मेरा दिन खोलें',
+  // w14-a end
 };
