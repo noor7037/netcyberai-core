@@ -50,7 +50,7 @@ export const PAGE_WORDS = {
   '/app/learning-genome': ['gs.'],
   '/app/settings': ['branding.', 'fee.failed', 'rails.', 'set.off', 'set.on'],
   '/app/staff': ['sprof.open', 'staff.reset.'],
-  '/design-system/shell/control': ['billing.form.', 'billing.source.', 'moduleOff.', 'modules.'],
+  '/design-system/shell/control': ['billing.form.', 'billing.source.', 'moduleOff.', 'modules.', 'school.aiPages.'],
 } as const satisfies Record<string, readonly string[]>;
 
 export type PageRoute = keyof typeof PAGE_WORDS;
