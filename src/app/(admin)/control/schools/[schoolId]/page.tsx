@@ -6,6 +6,10 @@ import { withTenantContext } from '@/lib/auth/db';
 import { SchoolOnboardingPanel } from '@/components/control/SchoolOnboardingPanel';
 import { SchoolEntitlements } from '@/components/control/SchoolEntitlementsPanel';
 import { BoardSchoolPanel } from '@/components/control/BoardSchoolPanel';
+import { SchoolStudentsPanel } from '@/components/control/SchoolStudentsPanel';
+import { SchoolStaffPanel } from '@/components/control/SchoolStaffPanel';
+import { SchoolAttendancePanel } from '@/components/control/SchoolAttendancePanel';
+import { SchoolFeesPanel } from '@/components/control/SchoolFeesPanel';
 import { SchoolChecklistPanel } from '@/components/control/SchoolChecklistPanel';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { getLang } from '@/lib/i18n/server';
@@ -72,6 +76,11 @@ export default async function SchoolDetailPage({ params }: { params: { schoolId:
     if (tab.id === 'exams' && school) {
       return { id: tab.id, label: tab.label, content: <BoardSchoolPanel schoolId={school.school_id} /> };
     }
+    // The school's students, read only (W13-A).
+    if (tab.id === 'students' && school) return { id: tab.id, label: tab.label, content: <SchoolStudentsPanel schoolId={school.school_id} /> };
+    if (tab.id === 'staff' && school) return { id: tab.id, label: tab.label, content: <SchoolStaffPanel schoolId={school.school_id} /> };
+    if (tab.id === 'attendance' && school) return { id: tab.id, label: tab.label, content: <SchoolAttendancePanel schoolId={school.school_id} /> };
+    if (tab.id === 'fees' && school) return { id: tab.id, label: tab.label, content: <SchoolFeesPanel schoolId={school.school_id} /> };
     return {
       id: tab.id,
       label: tab.label,

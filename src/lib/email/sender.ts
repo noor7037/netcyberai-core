@@ -15,6 +15,9 @@ export type EmailMessage = {
   // The job's idempotency key: Resend returns the first result for a
   // repeated key (24 hours), so a retried job never sends twice.
   idempotencyKey: string;
+  // C421: a message sent as a person (the founder's replies to leads) names its own sender; every other message
+  // goes out as the app (EMAIL_FROM).
+  from?: string;
 };
 
 export interface EmailSender {
@@ -43,7 +46,7 @@ export class ResendEmailSender implements EmailSender {
         'Content-Type': 'application/json',
         'Idempotency-Key': message.idempotencyKey.slice(0, 256),
       },
-      body: JSON.stringify({ from: this.from, to: message.to, subject: message.subject, html: message.html, text: message.text }),
+      body: JSON.stringify({ from: message.from ?? this.from, to: message.to, subject: message.subject, html: message.html, text: message.text }),
     });
     const body = (await res.json().catch(() => ({}))) as { id?: string; message?: string; name?: string };
     if (res.ok && body.id) return { providerId: body.id };
@@ -57,6 +60,13 @@ export class ResendEmailSender implements EmailSender {
 
 // null when not configured; a job that needs email then fails and retries,
 // and sends once the settings exist.
+// C421: the address the founder's replies to leads are sent from ("Noor <noor@netcyberai.com>"), one setting
+// (LEADS_FROM_EMAIL); unset, they go out as the app, like every other message.
+export function leadsFromAddress(env: NodeJS.ProcessEnv = process.env): string | undefined {
+  const from = env.LEADS_FROM_EMAIL?.trim();
+  return from ? from : undefined;
+}
+
 export function emailSenderFromEnv(): EmailSender | null {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.EMAIL_FROM;

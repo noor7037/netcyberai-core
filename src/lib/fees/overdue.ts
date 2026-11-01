@@ -33,7 +33,7 @@ type Sql = { query: (text: string, params?: unknown[]) => Promise<{ rows: Record
 // school: the entries are asked for by school, as every other number is, so
 // the answer is one school's whoever asks (a nightly job or a check running
 // as the platform role is not narrowed by row level security).
-const ENTRIES_WITH_PAID = `select l.fee_id, l.status, l.due_date, l.amount_minor,
+export const ENTRIES_WITH_PAID = `select l.fee_id, l.status, l.due_date, l.amount_minor,
               case when l.status::text = 'paid' then l.amount_minor
                    when l.status::text = 'waived' then 0
                    else least(l.amount_minor, greatest(0, coalesce((select sum(p.amount_minor) from payments p where p.fee_id = l.fee_id), 0))) end as paid

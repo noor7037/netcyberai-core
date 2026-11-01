@@ -3,6 +3,7 @@ import { ControlDashboardView } from '@/components/dashboards/ControlDashboardVi
 import { Badge } from '@/components/ui/Badge';
 import { Table, type TableColumn } from '@/components/ui/Table';
 import { getServerSession } from '@/lib/auth/server-session';
+import { getLang } from '@/lib/i18n/server';
 import { withTenantContext } from '@/lib/auth/db';
 import { loadControlDashboard, type ControlSchoolRow } from '@/lib/control/dashboard';
 
@@ -39,6 +40,7 @@ export default async function ControlDashboardPage() {
 
   // Platform totals count live schools only; the list below shows every school (C132).
   const data = await withTenantContext(session, (client) => loadControlDashboard(client));
+  const { lang } = getLang(session.sub);
 
-  return <ControlDashboardView data={data} schoolsTable={<Table<SchoolRow> columns={columns} rows={data.schools} getRowId={(s) => s.id} emptyTitle="No schools onboarded yet" emptyDescription="Schools created through the onboarding pipeline will appear here." />} />;
+  return <ControlDashboardView data={data} lang={lang} schoolsTable={<Table<SchoolRow> columns={columns} rows={data.schools} getRowId={(s) => s.id} emptyTitle="No schools onboarded yet" emptyDescription="Schools created through the onboarding pipeline will appear here." />} />;
 }

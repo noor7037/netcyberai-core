@@ -390,6 +390,17 @@ const CHAIN_MIN_MS = 15_000;
 // this much left (a person is waiting; even a short try beats the default answer).
 const FIRST_TEXT_FLOOR_MS = 3_000;
 
+// A provider's share of the route's remaining time (`left`), with `behind` providers still after it. A streaming
+// provider holds reserveMs for each one behind (their first-text wait, at most CHAIN_MIN_MS). C421: a provider that
+// answers in one piece (Workers AI) is given its whole answer time: it holds one first-text wait for whoever is
+// behind, not one share per backup, because the first backup that shows text then owns the rest of the route's time.
+// On the resolver (40 s, first text 12 s, three slots) that is 28 s for Scout in front, not the 15 s that cut 1 in 10
+// of its answers at upstream_timeout.
+export function chainShareMs(a: { left: number; behind: number; reserveMs: number; firstTextMs: number | null; streams: boolean }): number {
+  const hold = a.behind === 0 ? 0 : !a.streams && a.firstTextMs !== null ? a.firstTextMs : a.behind * a.reserveMs;
+  return Math.min(a.left, Math.max(a.reserveMs, a.left - hold));
+}
+
 // 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
 export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
   const env = process.env;
@@ -453,7 +464,7 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
         attempts.push(...ready.slice(i).map((x) => skippedAttempt(x, 'skipped_deadline')));
         break;
       }
-      const limitMs = left === null ? null : Math.min(left, Math.max(reserveMs, left - (ready.length - 1 - i) * reserveMs));
+      const limitMs = left === null ? null : chainShareMs({ left, behind: ready.length - 1 - i, reserveMs, firstTextMs, streams: adapter.capabilities.stream });
       // W10: a streaming provider must send answer text within its first-text time (never more than its share above);
       // once text flows no backup may take over, so it may then use what is left of the route's time. A provider that
       // answers in one piece (Workers AI) has no first text before its whole answer and keeps its share as its limit.

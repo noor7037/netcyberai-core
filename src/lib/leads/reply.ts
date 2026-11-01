@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { writeAuditLog } from '@/lib/audit/log';
-import { EmailNotConfiguredError, type EmailSender } from '@/lib/email/sender';
+import { EmailNotConfiguredError, leadsFromAddress, type EmailSender } from '@/lib/email/sender';
 import { hasDevanagari, renderEmail } from '@/lib/email/templates';
 import { MAX_REPLY_BODY, type LeadReply } from '@/lib/control/leads';
 import { isUuid } from '@/lib/frameworks/custom-fields';
@@ -124,7 +124,9 @@ export function leadReplyHandler(deps: LeadReplyDeps): JobHandler {
         : renderEmail('lead_manual_reply', { schoolName: lead.school_name, body: p.body });
     const sender = deps.sender();
     if (!sender) throw new EmailNotConfiguredError();
-    const { providerId } = await sender.send({ to: [lead.contact_email], ...rendered, idempotencyKey: job.idempotencyKey });
+    // C421: both replies go out from the founder's own address, so the school answers a person, not no-reply.
+    const from = leadsFromAddress();
+    const { providerId } = await sender.send({ to: [lead.contact_email], ...rendered, idempotencyKey: job.idempotencyKey, ...(from ? { from } : {}) });
 
     await deps.platform(async (db) => {
       await db.query(
