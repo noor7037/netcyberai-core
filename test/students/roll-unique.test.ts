@@ -89,6 +89,19 @@ describe('roll numbers and counts on the real schema', () => {
     await db.pg.query(`delete from students where name like 'No Roll%'`);
   });
 
+  it('a roll held by a student who has left or been transferred can be given to a new student', async () => {
+    await db.pg.query(`insert into students (school_id, name, class_id, roll_no, status) values ('${A}', 'Gone Left', '${C6A}', '40', 'transferred'), ('${A}', 'Gone Inactive', '${C6A}', '41', 'inactive')`);
+    signIn();
+    const add = await addStudent(new NextRequest('http://localhost/api/app/students', json('POST', { name: 'Fresh Arrival', classId: C6A, rollNo: '40' })));
+    expect(add.status).toBe(201);
+    const imported = await sendCsv(['name,class_name,roll_no', 'Another Arrival,6-A,41'].join('\n'));
+    expect(imported.status).toBe(201);
+    // A live student's roll is still refused.
+    const clash = await addStudent(new NextRequest('http://localhost/api/app/students', json('POST', { name: 'Third Arrival', classId: C6A, rollNo: '40' })));
+    expect(clash.status).toBe(409);
+    expect((await clash.json()).error).toContain('roll 40 is already Fresh Arrival in 6-A');
+  });
+
   it('the import refuses a roll already held in the class, and one repeated in the file, naming the row', async () => {
     const csv = ['name,class_name,roll_no', 'Anaya Madeup,6-A,9', 'Reyansh Example,6-A,7', 'Saanvi Sample,7-A,9', 'Ishaan Specimen,7-A, 9 '].join('\n');
     const checked = await sendCsv(csv, true);

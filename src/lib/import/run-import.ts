@@ -171,7 +171,7 @@ export async function importStudentRecords(
   // Roll numbers (W14-H): one student's in a class, in the file and in the school.
   const classNameById = new Map<string, string>(classRows.rows.map((r: { class_id: string; name: string }) => [r.class_id, r.name]));
   const holderOfRoll = new Map<string, string>(
-    (await client.query(`select class_id, lower(btrim(roll_no)) as r, name from students where school_id = $1 and class_id is not null and roll_no is not null`, [claims.schoolId])).rows.map(
+    (await client.query(`select class_id, lower(btrim(roll_no)) as r, name from students where school_id = $1 and class_id is not null and roll_no is not null and status in ('active', 'pending_consent')`, [claims.schoolId])).rows.map(
       (r: { class_id: string; r: string; name: string }) => [`${r.class_id}|${r.r}`, r.name] as [string, string]
     )
   );

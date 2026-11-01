@@ -1,6 +1,7 @@
 import type { Sql } from '@/lib/jobs/types';
 
-// A roll number belongs to one student in a class (W14-H). Compared with spaces at the ends and letter case ignored,
+// A roll number belongs to one live student (active or waiting for consent) in a class (W14-H); a roll held by a
+// student who has left or been transferred can be given again. Compared with spaces at the ends and letter case ignored,
 // so "7 " and "7" are the same roll. The database's students_class_roll_unique index is the backstop.
 export const ROLL_UNIQUE_INDEX = 'students_class_roll_unique';
 
@@ -18,6 +19,7 @@ export async function findRollClash(client: Sql, schoolId: string, classId: stri
        from students s
        join classes c on c.school_id = s.school_id and c.class_id = s.class_id
       where s.school_id = $1 and s.class_id = $2 and lower(btrim(s.roll_no)) = $3
+        and s.status in ('active', 'pending_consent')
         and ($4::uuid is null or s.student_id <> $4::uuid)
       order by s.created_at limit 1`,
     [schoolId, classId, rollKey(rollNo), exceptStudentId ?? null]
