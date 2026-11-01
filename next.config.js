@@ -78,6 +78,14 @@ const nextConfig = {
       { source: '/free-tools/attendance-calculator', destination: '/free-tools/attendance-recovery-planner', permanent: true },
       { source: '/free-tools/fee-reminder-message', destination: '/free-tools/fee-leakage-calculator', permanent: true },
       { source: '/free-tools/daily-pulse-message', destination: '/features/daily-learning-pulse-hinglish', permanent: true },
+      // W14-D: the AI marking screens are one address a paper's own (the review list and the scripts are that page); the old
+      // paths a person types land there, or on the exams list when no paper is named.
+      { source: '/app/exams/papers/:paperId/marking/review', destination: '/app/exams/papers/:paperId/marking', permanent: false },
+      { source: '/app/exams/papers/:paperId/marking/scripts', destination: '/app/exams/papers/:paperId/marking', permanent: false },
+      { source: '/marking/review', destination: '/app/exams', permanent: false },
+      { source: '/marking/scripts', destination: '/app/exams', permanent: false },
+      { source: '/app/marking/review', destination: '/app/exams', permanent: false },
+      { source: '/app/marking/scripts', destination: '/app/exams', permanent: false },
     ];
   },
 };

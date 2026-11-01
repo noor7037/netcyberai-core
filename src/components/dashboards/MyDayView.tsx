@@ -20,7 +20,9 @@ function words(lang: Lang, card: TodayCard): { title: string; detail: string | n
   // The detail line: one sentence, or `.one` / `.other` chosen by the count its noun belongs to.
   const detailBase = `${base}.detail`;
   const detail = isMessageKey(detailBase) ? t(lang, detailBase, values) : isMessageKey(`${detailBase}.other`) ? tCount(lang, detailBase, card.count, values) : null;
-  return { title, detail };
+  // Marked scripts waiting for approval in the AI review (W14-D) come before any other detail.
+  const approval = card.approval && card.approval > 0 ? tCount(lang, 'today.marks-to-enter.approve', card.approval) : null;
+  return { title, detail: approval ?? detail };
 }
 
 // One line of the day (C230-D redesign, after Linear's inbox): the module's mark, what is waiting and its detail,

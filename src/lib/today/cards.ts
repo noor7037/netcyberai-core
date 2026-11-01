@@ -471,7 +471,20 @@ export const TODAY_PROVIDERS: readonly TodayProvider[] = [
     roles: ['teacher'],
     async load(db, ctx) {
       const { rows } = await db.query(`select count(*) as c from (${TO_ENTER_SQL}) w`, [ctx.schoolId]);
-      return waiting('marks-to-enter', 'exams', n(rows[0]?.c), '/app/exams');
+      const cards = waiting('marks-to-enter', 'exams', n(rows[0]?.c), '/app/exams');
+      if (!cards.length) return cards;
+      // Scripts the AI has marked for those papers that wait for the teacher: the card says so and opens the review
+      // (the one paper's, or the exams list when there are several).
+      const wait = await db.query(
+        `select s.paper_id, count(*) as c from (${TO_ENTER_SQL}) w
+           join marking_sheets s on s.school_id = $1 and s.paper_id = w.paper_id
+          where s.state = 'marked' or (s.state = 'approved' and 'changed' = any (s.flags))
+          group by s.paper_id`,
+        [ctx.schoolId]
+      );
+      const approval = wait.rows.reduce((sum, r) => sum + n(r.c), 0);
+      if (approval > 0) return [{ ...cards[0], approval, href: wait.rows.length === 1 ? `/app/exams/papers/${String(wait.rows[0].paper_id)}/marking` : '/app/exams' }];
+      return cards;
     },
   },
   // p6-9b end

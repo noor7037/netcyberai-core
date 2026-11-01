@@ -356,10 +356,15 @@ describe('publishing, families and the report link (C351)', () => {
     await expect(asJob((c) => c.query(`update marking_sheets set strengths = 'by a job' where sheet_id = $1`, [meera]))).rejects.toThrow(/changed by a person only/);
     await expect(asJob((c) => c.query(`update marking_marks set ai_marks = 1 where sheet_id = $1 and question_id = $2`, [meera, q1]))).rejects.toThrow(/changed by a person only/);
     expect(await as(tMaths, (c) => changeSheet(c, actor(tMaths), meera, { strengths: 'Careful working throughout.' }))).toEqual({ ok: true });
-    expect((await owner(`select state, flags from marking_sheets where sheet_id = $1`, [meera]))[0]).toEqual({ state: 'approved', flags: ['unsure', 'changed'] });
+    expect((await owner(`select state, flags from marking_sheets where sheet_id = $1`, [meera]))[0]).toEqual({ state: 'approved', flags: ['changed'] });
     expect(await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).toEqual({ ok: false, reason: 'scripts_changed' });
     expect(await as(tMaths, (c) => approveSheets(c, actor(tMaths), paperA, [meera]))).toMatchObject({ ok: true, approved: 1 });
-    expect((await owner(`select flags, match_note from marking_sheets where sheet_id = $1`, [meera]))[0]).toMatchObject({ flags: ['unsure'], match_note: { read: { rollNo: '1' } } });
+    expect((await owner(`select flags, match_note from marking_sheets where sheet_id = $1`, [meera]))[0]).toMatchObject({ flags: [], match_note: { read: { rollNo: '1' } } });
+    // Marks entry offers the approved script as a score for the part it marks (W14-D).
+    const { aiMarksForEntry } = await import('@/lib/marking/approved');
+    const offered = await as(tMaths, (c) => aiMarksForEntry(c, tMaths.school, paperA, [{ key: 'theory', max: 80 }, { key: 'internal', max: 20 }]));
+    expect(offered?.approved.find((a) => a.studentId === K1)).toMatchObject({ scores: { theory: expect.any(Number) } });
+    expect(Object.keys(offered?.approved.find((a) => a.studentId === K1)?.scores ?? {})).toEqual(['theory']);
     expect(await as(principal, (c) => publishClass(c, actor(principal), examId, C7A))).toMatchObject({ ok: true });
     expect(await as(tMaths, (c) => changeSheet(c, actor(tMaths), meera, { questions: [{ questionId: q1, marks: 4 }] }))).toEqual({ ok: false, reason: 'closed' });
     await expect(run(tMaths, `update marking_marks set marks = 4 where sheet_id = $1 and question_id = $2`, [meera, q1])).resolves.toMatchObject({ rowCount: 0 });

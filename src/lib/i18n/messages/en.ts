@@ -9817,4 +9817,17 @@ export const en = {
   'crumbs.back': 'Back',
   'crumbs.backTo': 'Back to {name}',
   // w14-e end
+  // w14-d start
+  'ex.entry.ai.have.one': '{n} child has approved AI marks',
+  'ex.entry.ai.have.other': '{n} children have approved AI marks',
+  'ex.entry.ai.waiting.one': '{n} marked script is waiting for your approval.',
+  'ex.entry.ai.waiting.other': '{n} marked scripts are waiting for your approval.',
+  'ex.entry.ai.fill': 'Fill them in',
+  'ex.entry.ai.filled': 'The approved AI marks are in the boxes. Check them, then press Save.',
+  'ex.entry.ai.review': 'Open the AI review',
+  'today.marks-to-enter.approve.one': '{count} marked script waits for your approval',
+  'today.marks-to-enter.approve.other': '{count} marked scripts wait for your approval',
+  'fam.signOut.working': 'Signing you out...',
+  'fam.signOut.signIn': 'Go to sign in',
+  // w14-d end
 } as const;

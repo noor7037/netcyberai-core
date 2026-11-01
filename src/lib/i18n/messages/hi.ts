@@ -9803,4 +9803,17 @@ export const hi: Record<keyof typeof en, string> = {
   'crumbs.back': 'पीछे',
   'crumbs.backTo': '{name} पर वापस',
   // w14-e end
+  // w14-d start
+  'ex.entry.ai.have.one': '{n} बच्चे के AI अंक मंज़ूर हो चुके हैं',
+  'ex.entry.ai.have.other': '{n} बच्चों के AI अंक मंज़ूर हो चुके हैं',
+  'ex.entry.ai.waiting.one': 'जाँचे हुए {n} उत्तर-पत्र आपकी मंज़ूरी की राह देख रहे हैं।',
+  'ex.entry.ai.waiting.other': 'जाँचे हुए {n} उत्तर-पत्र आपकी मंज़ूरी की राह देख रहे हैं।',
+  'ex.entry.ai.fill': 'भर दें',
+  'ex.entry.ai.filled': 'मंज़ूर किए गए AI अंक खानों में भर दिए गए हैं। उन्हें देखें, फिर सेव दबाएँ।',
+  'ex.entry.ai.review': 'AI समीक्षा खोलें',
+  'today.marks-to-enter.approve.one': 'जाँचा हुआ {count} उत्तर-पत्र आपकी मंज़ूरी की राह देख रहा है',
+  'today.marks-to-enter.approve.other': 'जाँचे हुए {count} उत्तर-पत्र आपकी मंज़ूरी की राह देख रहे हैं',
+  'fam.signOut.working': 'आपको साइन आउट किया जा रहा है...',
+  'fam.signOut.signIn': 'साइन इन पर जाएँ',
+  // w14-d end
 };

@@ -1,7 +1,7 @@
 import type { ErrorType } from '@/lib/contracts/marking';
 import { percent, roundPercent } from '@/lib/exams/grading';
 import type { Sql } from '@/lib/jobs/types';
-import { countedQuestions, round1 } from './rollup';
+import { countedQuestions, markedParts, partTotals, round1 } from './rollup';
 
 // Approved question marks, read for learning intelligence (docs/35 section 1 step 8, C352): the Learning Genome by
 // topic and a paper's class view both stand on this one reading, so they never disagree about what a script scored.
@@ -103,4 +103,26 @@ export async function scoreSheets(db: Sql, schoolId: string, sheets: readonly Sh
       }),
     };
   });
+}
+
+// What marks entry offers from the paper's AI marking (W14-D): each child's approved script as a score for every part the
+// script marks (the same parts, rules and rounding approval saves), and how many marked scripts still wait for a person.
+// Null when the paper has no script. Reads under the caller's own row level security.
+export type EntryAiMarks = { approved: { studentId: string; scores: Record<string, number> }[]; waiting: number };
+
+export async function aiMarksForEntry(db: Sql, schoolId: string, paperId: string, components: readonly { key: string; max: number }[]): Promise<EntryAiMarks | null> {
+  const rows = (
+    await db.query(`select sheet_id, student_id, state, flags from marking_sheets s where s.school_id = $1 and s.paper_id = $2 and s.state <> 'set_aside'`, [schoolId, paperId])
+  ).rows;
+  if (!rows.length) return null;
+  const changed = (r: { flags: unknown }) => ((r.flags ?? []) as string[]).includes('changed');
+  const waiting = rows.filter((r) => r.state === 'marked' || (r.state === 'approved' && changed(r))).length;
+  const done = rows.filter((r) => r.state === 'approved' && !changed(r) && r.student_id);
+  const scored = await scoreSheets(db, schoolId, done.map((r) => ({ sheetId: r.sheet_id as string, paperId, studentId: r.student_id as string })));
+  const approved = scored.map((sc) => {
+    const marks = new Map<string, number | null>(sc.questions.map((q) => [q.questionId, q.marks]));
+    const parts = markedParts(components, sc.questions);
+    return { studentId: sc.studentId, scores: Object.fromEntries(partTotals(parts, sc.questions, marks, sc.choiceCounts).map((t) => [t.component, t.score])) };
+  });
+  return { approved: approved.filter((a) => Object.keys(a.scores).length > 0), waiting };
 }

@@ -10,7 +10,7 @@ import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { Icon } from '@/components/visual/Icons';
 import { BubbleReadLine, BubbleSheetPane, type BubbleSheetPaneHandle } from '@/components/bubbles/BubbleSheetPane';
-import { ERROR_TYPES, type BubbleSheetDetail, type ErrorType, type MarkingOverview, type SetupScreen, type SheetDetail, type SheetQuestion } from '@/lib/contracts/marking';
+import { ERROR_TYPES, type BubbleSheetDetail, type ErrorType, type MarkingOverview, type SetupScreen, type SheetDetail, type SheetQuestion, type SheetState } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
 import { markRange } from '@/lib/marking/answers';
 import { layoutBadges } from '@/lib/marking/margin';
@@ -168,6 +168,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const taken = new Set((overview?.sheets ?? []).filter((s) => s.student && s.sheetId !== sheetId).map((s) => s.student!.studentId));
   // An approved script changed just now is approved again (the flag follows when the change is kept).
   const changedSince = sheet.flags.includes('changed') || pending !== null;
+  // One state for the badge, the button and the list: approved only while nothing has changed since (otherwise it waits to be approved again).
+  const stateShown: SheetState = sheet.state === 'approved' && changedSince ? 'marked' : sheet.state;
   const oddPages = detail.pages.filter((g) => g.state === 'not_answer');
   const mayApprove = detail.mayChange && !!sheet.student && (sheet.state === 'marked' || (sheet.state === 'approved' && changedSince)) && allMarked && oddPages.length === 0;
   const approveWhy: MessageKey | null = !detail.mayChange
@@ -308,7 +310,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
             )}
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant={sheet.state === 'approved' && !sheet.flags.includes('changed') ? 'success' : sheet.state === 'failed' ? 'danger' : 'neutral'}>{t(STATE_KEYS[sheet.state])}</Badge>
+            <Badge variant={stateShown === 'approved' ? 'success' : stateShown === 'failed' ? 'danger' : 'neutral'}>{t(STATE_KEYS[stateShown])}</Badge>
             {hasMarks && <span data-sheet-total className="font-bold">{t('mk.review.total', { score: numberWords(grand.score, lang), max: numberWords(grand.max, lang) })}</span>}
             <a href={scriptsHref(paperId)} className={TAP}>{t('mk.sheet.back')}</a>
           </div>

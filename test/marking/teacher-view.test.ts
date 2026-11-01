@@ -101,6 +101,7 @@ describe('which list a script is in', () => {
     expect(bucketOf(sheet({ state: 'failed' }))).toBe('needs');
     expect(bucketOf(sheet({ state: 'approved' }))).toBe('approved');
     expect(bucketOf(sheet({ state: 'approved', flags: ['changed'] }))).toBe('needs');
+    expect(bucketOf(sheet({ state: 'approved', flags: ['unsure'] }))).toBe('approved');
     expect(bucketOf(sheet({ state: 'waiting' }))).toBe('working');
     expect(bucketOf(sheet({ state: 'marking' }))).toBe('working');
   });
