@@ -48,7 +48,7 @@ export const PICTURES_MS = 25_000;
 const PICTURES_AT_ONCE = 8;
 // A script's pictures together, at most: what a vendor takes in one request, with room for the words.
 export const MARK_MAX_BYTES = 20_000_000;
-// W14-C: marking samples no words freely, so the same script gets the same marks each time.
+// W14-C: marking draws no words at random, so the same script gets the same marks each time.
 export const MARK_TEMPERATURE = 0;
 const JOB_ACTOR = (schoolId: string) => ({ schoolId, userId: '00000000-0000-0000-0000-000000000000', role: 'principal' as const });
 const OFF: readonly AiRefusal[] = ['not_switched_on', 'not_cleared_for_minors', 'not_capable'];
