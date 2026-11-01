@@ -56,14 +56,15 @@ beforeAll(async () => {
     insert into students (school_id, admission_no, name, class_id, roll_no, status) values ('${B}', 'B-1', 'Rohan Madeup', '${B_CLASS}', '1', 'active');
     insert into fee_structures (school_id, class_id, academic_year, effective_from) values ('${B}', '${B_CLASS}', '2026-27', '2026-04-01');
     insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ('${B}', '${B_CLASS}', 1, 1, '${B_MATHS}', '${B_TEACHER}');
+    insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic) values ('${B}', '${B_CLASS}', '${B_MATHS}', 1, 'Chapter', 'Topic');
     update schools set logo_path = '${B}/branding/logo-${u(99)}.png' where school_id = '${B}';
   `);
 }, 120_000);
 afterAll(async () => db?.stop());
 
 describe('the onboarding checklist, from an empty school', () => {
-  it('names nine steps, each with the screen where it is done; a school with nothing has none done, whatever another school has', async () => {
-    expect(CHECKLIST_IDS).toEqual(['session', 'classes', 'subjects', 'staff', 'teachers', 'students', 'fees', 'timetable', 'logo']);
+  it('names ten steps, each with the screen where it is done; a school with nothing has none done, whatever another school has', async () => {
+    expect(CHECKLIST_IDS).toEqual(['session', 'classes', 'subjects', 'staff', 'teachers', 'syllabus', 'students', 'fees', 'timetable', 'logo']);
     const items = await read();
     expect(Object.keys(items)).toEqual([...CHECKLIST_IDS]);
     for (const id of CHECKLIST_IDS) expect(items[id], id).toEqual({ id, done: false, count: 0, without: 0, href: CHECKLIST_HREFS[id] });
@@ -73,18 +74,19 @@ describe('the onboarding checklist, from an empty school', () => {
       subjects: '/app/setup/subjects',
       staff: '/app/staff',
       teachers: '/app/staff',
+      syllabus: '/app/syllabus',
       students: '/app/students',
       fees: '/app/fees',
       timetable: '/app/timetable',
       logo: '/app/settings',
     });
-    expect(checklistProgress(Object.values(items))).toEqual({ done: 0, total: 9, complete: false });
+    expect(checklistProgress(Object.values(items))).toEqual({ done: 0, total: 10, complete: false });
     // School B, read as its own principal, has every step.
     const b = Object.fromEntries((await as('principal', B_PRINCIPAL, B, (c) => onboardingChecklist(c, B))).map((i) => [i.id, i]));
     expect(doneIds(b)).toEqual([...CHECKLIST_IDS]);
   });
 
-  it('a school the caller cannot see has no checklist at all: an empty list, never nine steps with nothing done', async () => {
+  it('a school the caller cannot see has no checklist at all: an empty list, never ten steps with nothing done', async () => {
     expect(await as('principal', PRINCIPAL, A, (c) => onboardingChecklist(c, B))).toEqual([]);
     expect(checklistProgress([])).toEqual({ done: 0, total: 0, complete: false });
   });
@@ -142,6 +144,15 @@ describe('the onboarding checklist, from an empty school', () => {
     expect(await read()).toMatchObject({ subjects: { done: true, count: 2 } });
   });
 
+  it('syllabus is done when every taught class-subject has a map: N of M class-subjects mapped', async () => {
+    // 5-A Mathematics and 5-B English are taught; neither has a syllabus map yet.
+    expect(await read()).toMatchObject({ syllabus: { done: false, count: 0, without: 2 } });
+    await owner(`insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic, source) values ($1, $2, $3, 1, 'Chapter', 'Topic', 'library')`, [A, CLASS_5A, MATHS]);
+    expect(await read()).toMatchObject({ syllabus: { done: false, count: 1, without: 1 } });
+    await owner(`insert into syllabus_units (school_id, class_id, subject_id, position, chapter, topic) values ($1, $2, $3, 1, 'Chapter', 'Topic')`, [A, CLASS_5B, ENGLISH]);
+    expect(await read()).toMatchObject({ syllabus: { done: true, count: 2, without: 0 } });
+  });
+
   it('students count only the active ones', async () => {
     await owner(`insert into students (school_id, admission_no, name, class_id, roll_no, status) values ($1, 'A-1', 'Neel Madeup', $2, '1', 'pending_consent'), ($1, 'A-2', 'Ira Madeup', $2, '2', 'transferred')`, [A, CLASS_5A]);
     expect(await read()).toMatchObject({ students: { done: false, count: 0 } });
@@ -162,7 +173,7 @@ describe('the onboarding checklist, from an empty school', () => {
   it('every step is done; the principal and the school admin read the same list; a step opens again when its rows go', async () => {
     const all = await read();
     expect(doneIds(all)).toEqual([...CHECKLIST_IDS]);
-    expect(checklistProgress(Object.values(all))).toEqual({ done: 9, total: 9, complete: true });
+    expect(checklistProgress(Object.values(all))).toEqual({ done: 10, total: 10, complete: true });
     const admin = await as('school_admin', ADMIN, A, (c) => onboardingChecklist(c, A));
     expect(admin).toEqual(Object.values(all));
     // The platform role (Control) reads any school it is given, and counts that school's rows only.
@@ -175,11 +186,11 @@ describe('the onboarding checklist, from an empty school', () => {
     await owner(`update schools set logo_path = null where school_id = $1`, [A]);
     await owner(`update academic_sessions set is_current = false where school_id = $1`, [A]);
     const after = await read();
-    expect(doneIds(after)).toEqual(['classes', 'subjects', 'staff', 'teachers', 'students', 'fees']);
-    expect(checklistProgress(Object.values(after))).toEqual({ done: 6, total: 9, complete: false });
+    expect(doneIds(after)).toEqual(['classes', 'subjects', 'staff', 'teachers', 'syllabus', 'students', 'fees']);
+    expect(checklistProgress(Object.values(after))).toEqual({ done: 7, total: 10, complete: false });
     // School B is the same as before.
     const b = await as('principal', B_PRINCIPAL, B, (c) => onboardingChecklist(c, B));
-    expect(b.filter((i) => i.done)).toHaveLength(9);
+    expect(b.filter((i) => i.done)).toHaveLength(10);
   });
 });
 
@@ -202,13 +213,13 @@ describe('the setup card on My Day', () => {
 
   it('is one card with the steps done out of all of them while any is open, linking to Setup; none when every step is done', async () => {
     // The state the checklist test left School A in: session, logo and timetable were taken away again.
-    expect(await card(A, PRINCIPAL, 'principal')).toEqual([{ id: 'setup-checklist', type: 'setup-checklist', moduleId: 'setup', state: 'todo', count: 6, total: 9, href: '/app/setup' }]);
+    expect(await card(A, PRINCIPAL, 'principal')).toEqual([{ id: 'setup-checklist', type: 'setup-checklist', moduleId: 'setup', state: 'todo', count: 7, total: 10, href: '/app/setup' }]);
     expect(await card(A, ADMIN, 'school_admin')).toHaveLength(1);
     await owner(`update academic_sessions set is_current = true where session_id = $1`, [SESSION_1]);
     await owner(`insert into timetable_entries (school_id, class_id, weekday, period, subject_id, teacher_user_id) values ($1, $2, 1, 1, $3, $4)`, [A, CLASS_5A, MATHS, TARA]);
     await owner(`update schools set logo_path = $2 where school_id = $1`, [A, `${A}/branding/logo-${u(98)}.png`]);
     expect(await card(A, PRINCIPAL, 'principal')).toEqual([]);
     await owner(`delete from fee_structures where school_id = $1`, [A]);
-    expect(await card(A, PRINCIPAL, 'principal')).toEqual([{ id: 'setup-checklist', type: 'setup-checklist', moduleId: 'setup', state: 'todo', count: 8, total: 9, href: '/app/setup' }]);
+    expect(await card(A, PRINCIPAL, 'principal')).toEqual([{ id: 'setup-checklist', type: 'setup-checklist', moduleId: 'setup', state: 'todo', count: 9, total: 10, href: '/app/setup' }]);
   });
 });

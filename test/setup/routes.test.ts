@@ -332,7 +332,7 @@ describe('the checklist route', () => {
     expect(a.status).toBe(200);
     const by = (body: { items: { id: string; done: boolean; count: number }[] }) => Object.fromEntries(body.items.map((i) => [i.id, i]));
     expect(by(a.body)).toMatchObject({ session: { done: true, count: 2 }, classes: { done: true, count: 1 }, subjects: { done: true, count: 3 }, teachers: { done: true, count: 1 }, students: { done: true, count: 1 }, timetable: { done: true, count: 1 }, fees: { done: false }, logo: { done: false } });
-    expect(a.body.progress).toEqual({ done: 6, total: 9, complete: false });
+    expect(a.body.progress).toEqual({ done: 6, total: 10, complete: false });
     expect(await call(admin, () => checklistRoute(req('/api/app/setup/checklist')))).toMatchObject({ status: 200 });
     const b = await call(bPrincipal, () => checklistRoute(req('/api/app/setup/checklist')));
     expect(by(b.body)).toMatchObject({ session: { done: true, count: 1 }, classes: { done: true, count: 1 }, subjects: { done: false, count: 2, without: 1 }, timetable: { done: false } });

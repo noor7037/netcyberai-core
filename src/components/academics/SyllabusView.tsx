@@ -104,6 +104,13 @@ export function SyllabusView({ isTeacher }: { isTeacher: boolean }) {
     if (ready) void load();
   }, [ready, load]);
 
+  // The NetCyberAI syllabus was copied in above: read the list again (W14-I).
+  useEffect(() => {
+    const again = () => void load();
+    window.addEventListener('syllabus-changed', again);
+    return () => window.removeEventListener('syllabus-changed', again);
+  }, [load]);
+
   // When what waited has been sent, show what the server now holds.
   useEffect(() => {
     if (!ready || !data) return;
