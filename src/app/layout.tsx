@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { NavDepthTracker } from '@/components/app-ui/NavDepthTracker';
 import { SiteBreadcrumbs } from '@/components/layout/SiteBreadcrumbs';
 import { AuthLinkForwarder } from '@/components/auth/AuthLinkForwarder';
 import { organizationJsonLd, serializeJsonLd, websiteJsonLd } from '@/lib/seo';
@@ -33,7 +32,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <Footer />
         <AuthLinkForwarder />
-        <NavDepthTracker />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(organizationJsonLd()) }}
