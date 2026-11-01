@@ -569,6 +569,11 @@ ALLOWED_PERMISSIVE = (
         ("marking_marks", "marking_marks_tenant_isolation"),
         ("marking_report_links", "marking_report_links_tenant_isolation"),
         # c347 end
+        # w14-c begin
+        # W14-C (the AI's request and answer per script, for audit): tenant isolation only; narrowed by the RESTRICTIVE
+        # policies required below.
+        ("marking_transcripts", "marking_transcripts_tenant_isolation"),
+        # w14-c end
         # aj-5 begin
         # AJ-5 (publish and notify, merit and participation certificates): tenant isolation only; narrowed by the
         # RESTRICTIVE policies required below.
@@ -1223,6 +1228,12 @@ REQUIRED_RESTRICTIVE = {
     ("paper_generations", "paper_generations_changers"),
     ("paper_generations", "paper_generations_no_parent"),
     # aq-2 end
+    # w14-c begin
+    # A script's transcript: read like its marks by the school's staff, written by the marking job; never by a family.
+    ("marking_transcripts", "marking_transcripts_readers"),
+    ("marking_transcripts", "marking_transcripts_writers"),
+    ("marking_transcripts", "marking_transcripts_no_parent"),
+    # w14-c end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

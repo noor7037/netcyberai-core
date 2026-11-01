@@ -17,7 +17,7 @@ import { layoutBadges } from '@/lib/marking/margin';
 import { changesOf, clampMark, countedOf, emptyDraft, finalOf, flagsInOrder, grandTotal, noteOf, parseMark, stepMark, sureness, totalsOf, type SheetDraft } from '@/lib/marking/review-view';
 import { OnlineAnswers } from '@/components/online/OnlineAnswers';
 import { PagesPane, type PagesPaneHandle } from './PagesPane';
-import { ask, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
+import { ask, CHECK_KEYS, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
 
 // One script, beside its pages (docs/35, C347). The scanned pages are on one side, zoomable, with each question's mark
 // in the margin at its answer; the questions are on the other: marks with − and + in half marks and a field (never above
@@ -497,6 +497,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
                               </ul>
                             )}
                             {q.ai.reason && <p data-ai-reason className="text-slate/80"><span className="font-semibold">{t('mk.q.why')}</span> {q.ai.reason}</p>}
+                            {q.ai.checks && q.ai.checks.length > 0 && <p data-ai-check className="text-amber-text"><span className="font-semibold">{t('mk.check.title')}</span> {q.ai.checks.map((c) => t(CHECK_KEYS[c])).join(' ')}</p>}
 
                             <Textarea id={`mk-note-${q.questionId}`} label={t('mk.q.noteFor')} rows={2} maxLength={1000} disabled={!editable} value={noteOf(q, draft)} onFocus={() => setActive(q.questionId)} onChange={(e) => setQuestion(q.questionId, { note: e.target.value })} />
                             <Select id={`mk-mistake-${q.questionId}`} label={t('mk.q.mistake')} disabled={!editable} value={errorType ?? ''} onChange={(e) => setQuestion(q.questionId, { errorType: (e.target.value || null) as ErrorType | null })}>

@@ -162,6 +162,9 @@ export type AiRequest = {
   messages: ChatMessage[];
   maxTokens?: number;
   responseFormat?: 'json';
+  // W14-C: the sampling temperature, for a task that must answer the same way each time (exams.mark asks for 0). Passed
+  // to the adapters that take it; left out, each vendor's own default (or the adapter's) holds.
+  temperature?: number;
 };
 // 'not_capable' (G1, C369): a provider in the chain lacks something the profile needs (Control refuses saving that;
 // this holds if the code's declarations change after it was saved).
@@ -435,6 +438,7 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
     const clean = late ? cleanOf(late) : prepared;
     const maxTokens = limitOf(late ?? request);
     const responseFormat = (late ?? request).responseFormat;
+    const temperature = (late ?? request).temperature;
     attempts.push(...skipped);
     // A profile with its own time (callMs) is the route's deadline, shared across the chain: each provider gets what is
     // left less CHAIN_MIN_MS for each provider still behind it, so a Primary that times out leaves its backups their
@@ -467,7 +471,7 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
       let timer: ReturnType<typeof setTimeout> | undefined;
       try {
         const timeout = sendMs === null ? {} : { timeoutMs: sendMs };
-        const call = adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...timeout, ...(baseUrl ? { baseUrl } : {}), ...(watchMs !== null ? { signal: abort.signal } : {}) }, (piece) => {
+        const call = adapter.streamText({ apiKey, model: link.model, system: clean.system, messages: clean.messages, maxTokens, responseFormat, ...(typeof temperature === 'number' && Number.isFinite(temperature) ? { temperature } : {}), ...timeout, ...(baseUrl ? { baseUrl } : {}), ...(watchMs !== null ? { signal: abort.signal } : {}) }, (piece) => {
           // Words from an attempt already given up never reach the caller (an adapter that ignores the abort).
           if (gaveUp) return;
           // W10: only words count as text shown (and as the first text); blank pieces a model sends first do not.

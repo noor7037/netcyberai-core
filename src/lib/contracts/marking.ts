@@ -253,8 +253,12 @@ export type MarkingOverview = {
 // `odd`: why a 'not_answer' page waits for the teacher (it looks like an identity document, or is not an answer page).
 export type SheetPage = { pageId: string; position: number; url: string; width: number; height: number; state: PageState; odd: 'id_document' | 'not_answer' | null };
 
+// W14-C: why a question's AI marks disagree with the AI's own words (src/lib/marking/check.ts), shown beside the mark.
+export const MARK_CHECKS = ['says_right', 'says_wrong', 'above_max', 'steps_sum', 'no_reason'] as const;
+export type MarkCheck = (typeof MARK_CHECKS)[number];
+
 export type SheetQuestion = MarkingQuestion & {
-  ai: { attempted: boolean | null; marks: number | null; steps: QuestionResult['steps']; note: string | null; reason: string | null; confidence: number | null };
+  ai: { attempted: boolean | null; marks: number | null; steps: QuestionResult['steps']; note: string | null; reason: string | null; confidence: number | null; checks?: MarkCheck[] };
   teacher: { marks: number | null; note: string | null; changedAt: string | null };
   errorType: ErrorType | null;
   final: number | null; // the teacher's mark when changed, else the AI's

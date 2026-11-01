@@ -9,7 +9,7 @@ import { indiaDate } from '@/lib/time/india';
 import { aiMarkingState, markingPaper } from './context';
 import { parseMarking, parseReading } from './parse';
 import { PAGES_PER_READ, queueGrouping, queueMarking } from './queue';
-import { formSheets, recordPageReading, recordSheetFailure, recordSheetResult, takeSheetForMarking, type SheetToMark } from './store';
+import { formSheets, recordPageReading, recordSheetFailure, recordSheetResult, recordTranscript, takeSheetForMarking, type SheetToMark } from './store';
 
 // The school's marking jobs (C347, docs/35 §1 steps 3 and 4), each in the school's own session as its office sees it,
 // with no person (the 'marking.pipeline' school job of src/lib/auth/db.ts), so the row rules hold as for the office and
@@ -48,6 +48,8 @@ export const PICTURES_MS = 25_000;
 const PICTURES_AT_ONCE = 8;
 // A script's pictures together, at most: what a vendor takes in one request, with room for the words.
 export const MARK_MAX_BYTES = 20_000_000;
+// W14-C: marking samples no words freely, so the same script gets the same marks each time.
+export const MARK_TEMPERATURE = 0;
 const JOB_ACTOR = (schoolId: string) => ({ schoolId, userId: '00000000-0000-0000-0000-000000000000', role: 'principal' as const });
 const OFF: readonly AiRefusal[] = ['not_switched_on', 'not_cleared_for_minors', 'not_capable'];
 
@@ -272,17 +274,21 @@ export function markingMarkHandler(deps: MarkingJobDeps): JobHandler {
         topics: taken.paper.units.map((u) => ({ chapter: u.chapter, topic: u.topic })),
         pages: taken.pages.length,
       };
+      const system = prompt.system(ask);
+      const user = prompt.user(ask);
       const p = await prepare(db, aiContext(schoolId), 'exams.mark', {
-        system: prompt.system(ask),
-        messages: [{ role: 'user', content: prompt.user(ask), images: bytes.map((b) => jpeg(b as Uint8Array)) }],
+        system,
+        messages: [{ role: 'user', content: user, images: bytes.map((b) => jpeg(b as Uint8Array)) }],
         responseFormat: 'json',
         maxTokens: 12000,
+        // W14-C: the same script is marked the same way each time.
+        temperature: MARK_TEMPERATURE,
       });
       if (!p.ok) {
         await recordSheetFailure(db, schoolId, sheetId, OFF.includes(p.reason) ? 'ai_off' : 'no_answer');
         return null;
       }
-      return { text: p.text, version: prompt.version };
+      return { text: p.text, version: prompt.version, system, user };
     });
     if (!got) return;
 
@@ -292,6 +298,26 @@ export function markingMarkHandler(deps: MarkingJobDeps): JobHandler {
     // 5. The marks kept (checked again against the paper), or the script failed on its own.
     const again = await deps.asSchool(schoolId, MARKING_SESSION, async (db) => {
       await sent.record(db);
+      if (sent.result.ok) {
+        // W14-C: the request and the raw answer, for audit. A transcript the database refuses never stops the marks.
+        await db.query('savepoint keep_transcript');
+        try {
+          await recordTranscript(db, schoolId, sheetId, {
+            promptVersion: got.version,
+            system: got.system,
+            user: got.user,
+            pages: taken.pages.length,
+            temperature: MARK_TEMPERATURE,
+            answer: sent.result.text,
+            provider: sent.result.provider,
+            model: sent.result.model,
+            finish: sent.result.finish ?? null,
+          });
+          await db.query('release savepoint keep_transcript');
+        } catch {
+          await db.query('rollback to savepoint keep_transcript');
+        }
+      }
       if (!sent.result.ok) {
         if (!last) return true;
         await recordSheetFailure(db, schoolId, sheetId, 'no_answer');
