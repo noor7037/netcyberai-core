@@ -41,6 +41,8 @@ const card = (cards: TodayCard[], type: string) => cards.find((c) => c.type === 
 
 beforeAll(async () => {
   db = await createTestDb();
+  // The setup checklist counts class-subjects with a syllabus map (W14-I); this small database has not the real table.
+  await db.pg.exec(`create table syllabus_units (school_id uuid not null, class_id uuid not null, subject_id uuid not null); grant select on syllabus_units to app_user, nca_super;`);
   await db.platform(async (q) => {
     await q.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'A', 'IN-HR'), ($2, 'B', 'IN-DL')`, [A, B]);
     for (const [id, role] of [[principal, 'principal'], [admin, 'school_admin'], [teacher, 'teacher'], [otherTeacher, 'teacher'], [accountant, 'accountant'], [coordinator, 'academic_coordinator']] as const) {

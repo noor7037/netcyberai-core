@@ -21,6 +21,7 @@ function words(lang: Lang, it: ChecklistItem): string {
     // Subjects are added; either some class has none taught in it, or there is no class yet.
     return [tCount(lang, 'setup.check.subjects.have', it.count), it.without > 0 ? tCount(lang, 'setup.check.subjects.gap', it.without) : t(lang, 'setup.check.subjects.give')].join(' ');
   }
+  if (it.id === 'syllabus') return it.count + it.without === 0 ? t(lang, 'setup.check.syllabus.todo') : t(lang, 'setup.check.syllabus.progress', { mapped: it.count, total: it.count + it.without });
   if (it.id === 'logo') return t(lang, it.done ? 'setup.check.logo.done' : 'setup.check.logo.todo');
   return it.done ? tCount(lang, `${base}.done`, it.count) : t(lang, `${base}.todo` as MessageKey);
 }

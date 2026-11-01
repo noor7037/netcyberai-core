@@ -22,6 +22,8 @@ describe('the words of the checklist', () => {
       expect(isMessageKey(`setup.check.${id}.title`), id).toBe(true);
       if (id === 'session') {
         for (const k of ['setup.check.session.todo', 'setup.check.session.notCurrent.one', 'setup.check.session.notCurrent.other', 'setup.check.session.done']) expect(isMessageKey(k), k).toBe(true);
+      } else if (id === 'syllabus') {
+        for (const k of ['setup.check.syllabus.todo', 'setup.check.syllabus.progress']) expect(isMessageKey(k), k).toBe(true);
       } else if (id === 'logo') {
         expect(isMessageKey('setup.check.logo.todo') && isMessageKey('setup.check.logo.done')).toBe(true);
       } else {
@@ -40,14 +42,14 @@ describe('the checklist drawn', () => {
     const html = view(items({ session: { done: true, count: 1 }, classes: { done: true, count: 3 }, subjects: { count: 4, without: 2 }, staff: { count: 0 } }), 'en');
     const words = text(html);
     expect(html).toContain('data-done="2"');
-    expect(html).toContain('data-total="9"');
-    expect(words).toContain('2 of 9 steps done');
+    expect(html).toContain('data-total="10"');
+    expect(words).toContain('2 of 10 steps done');
     expect(words).toContain('A session is current.');
     expect(words).toContain('3 classes');
     expect(words).toContain('4 subjects added. 2 classes have no subject taught yet.');
     expect(words).toContain('Nobody besides the principal can sign in yet.');
     expect([...html.matchAll(/data-check="(\w+)" data-check-done="(yes|no)"/g)].map((m) => `${m[1]}:${m[2]}`)).toEqual([
-      'session:yes', 'classes:yes', 'subjects:no', 'staff:no', 'teachers:no', 'students:no', 'fees:no', 'timetable:no', 'logo:no',
+      'session:yes', 'classes:yes', 'subjects:no', 'staff:no', 'teachers:no', 'syllabus:no', 'students:no', 'fees:no', 'timetable:no', 'logo:no',
     ]);
     expect([...html.matchAll(/href="([^"]+)"/g)].map((m) => m[1].replace(/&amp;/g, '&'))).toEqual(CHECKLIST_IDS.map((id) => CHECKLIST_HREFS[id]));
     expect(html).toContain('aria-valuenow="2"');
@@ -66,7 +68,7 @@ describe('the checklist drawn', () => {
   it('says it is complete when every step is done, and nothing is a link where it is only read', () => {
     const all = items(Object.fromEntries(CHECKLIST_IDS.map((id) => [id, { done: true, count: 1 }])));
     const html = view(all, 'en');
-    expect(text(html)).toContain('9 of 9 steps done');
+    expect(text(html)).toContain('10 of 10 steps done');
     expect(text(html)).toContain('Every step is done. Your school is set up.');
     expect(view(all, 'en', false)).not.toContain('<a ');
     expect(html).toContain('<a ');
@@ -75,7 +77,7 @@ describe('the checklist drawn', () => {
   it('speaks Hindi when the person does: no English key or sentence is left in it', () => {
     const html = view(items({ session: { done: true, count: 1 }, subjects: { count: 2, without: 1 } }), 'hi');
     const words = text(html);
-    expect(words).toContain('9 में से 1 कदम पूरे');
+    expect(words).toContain('10 में से 1 कदम पूरे');
     expect(words).toContain('चालू शैक्षणिक सत्र');
     expect(words).not.toMatch(/setup\.check|No session|steps done/);
     expect(html).toContain('lang="hi"');
