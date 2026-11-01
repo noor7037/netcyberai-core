@@ -9798,4 +9798,9 @@ export const hi: Record<keyof typeof en, string> = {
   'control.sys.error': 'सेटिंग्स नहीं खुल सकीं।',
   'control.sys.retry': 'फिर कोशिश करें',
   // w13-e platform end
+  // w14-e start
+  'crumbs.nav': 'आप यहाँ हैं',
+  'crumbs.back': 'पीछे',
+  'crumbs.backTo': '{name} पर वापस',
+  // w14-e end
 };

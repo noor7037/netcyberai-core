@@ -4,7 +4,9 @@ import { MODULE_GROUPS, moduleById, type ColorToken, type ModuleId } from '@/lib
 import { FirstVisitTour } from '@/components/app-shell/FirstVisitTour';
 import { ShowMeHow } from '@/components/app-shell/ShowMeHow';
 import type { TourId } from '@/lib/contracts/tours';
+import { Breadcrumbs } from './Breadcrumbs';
 import { PageBanner } from './PageHeader';
+import type { Crumb } from '@/lib/nav/breadcrumbs';
 
 // The one layout every working screen shares (docs/19 rule 1): learn one
 // screen, know them all. Top to bottom, always in this order:
@@ -21,6 +23,8 @@ import { PageBanner } from './PageHeader';
 //   body     the list, cards or form (children)
 //   bulk     the bar that appears when rows are selected
 //
+// Above the header, a trail with Back (W14-E) on every page below a module page: the module, `crumbs` (the named
+// levels in between: an exam, a class, a paper), then this page. A module's own page shows none.
 // A slot a screen does not need is left out; the order never changes.
 // `help` is the Help Center guide's slug; `tour` the first-visit tour (docs/19 rule 8).
 // Give `moduleId` and the icon, colour and group name come from the registry.
@@ -44,6 +48,7 @@ export function ModulePage({
   hideHeaderInPrint = false,
   help,
   tour,
+  crumbs,
   children,
 }: {
   moduleId?: ModuleId;
@@ -63,6 +68,7 @@ export function ModulePage({
   hideHeaderInPrint?: boolean; // a screen whose body is printed on its own (an ID card)
   help?: string; // slug of the Help Center guide for this screen's task
   tour?: TourId; // the first-visit tour of this screen
+  crumbs?: Crumb[]; // the named levels between the module and this page; a last one with no href is this page
   children: ReactNode;
 }) {
   const mod = moduleId ? moduleById(moduleId) : null;
@@ -72,6 +78,7 @@ export function ModulePage({
   const over = eyebrow ?? group?.label;
   return (
     <div data-module-page={moduleId ?? 'page'} className="flex flex-col gap-4 p-4 md:p-6">
+      <Breadcrumbs current={title} crumbs={crumbs} />
       <PageBanner
         lang={headerLang}
         className={hideHeaderInPrint ? 'print:hidden' : ''}

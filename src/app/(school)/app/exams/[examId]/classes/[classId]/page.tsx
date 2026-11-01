@@ -7,6 +7,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { classCrumbs, classNames } from '@/lib/exams/crumbs';
 
 // Exams → the class result (docs/27 row 9b, C214): each child in roll order with their marks, percent and grade by
 // the grading scheme in force. Never ranked. The office and the coordinator read every class; a teacher their own.
@@ -16,8 +17,9 @@ export default async function ClassResultPage({ params }: { params: { examId: st
   if (!isUuid(params.examId) || !isUuid(params.classId)) notFound();
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
+  const crumbs = classCrumbs(session ? await classNames(session, params.examId, params.classId) : null, params.examId, params.classId, false);
   return (
-    <ModulePage moduleId="exams" help="enter-exam-marks" tour="class-result" title={t(lang, 'ex.result.title')} purpose={t(lang, 'ex.result.purpose')}>
+    <ModulePage moduleId="exams" crumbs={crumbs} help="enter-exam-marks" tour="class-result" title={t(lang, 'ex.result.title')} purpose={t(lang, 'ex.result.purpose')}>
       <ClassResultView examId={params.examId} classId={params.classId} />
     </ModulePage>
   );

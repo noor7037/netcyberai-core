@@ -9812,4 +9812,9 @@ export const en = {
   'control.sys.error': 'The settings could not be loaded.',
   'control.sys.retry': 'Try again',
   // w13-e platform end
+  // w14-e start
+  'crumbs.nav': 'Where you are',
+  'crumbs.back': 'Back',
+  'crumbs.backTo': 'Back to {name}',
+  // w14-e end
 } as const;
