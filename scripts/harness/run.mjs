@@ -3408,6 +3408,33 @@ const controlSchoolBoardDone = async () => {
   if (JSON.stringify(rows) !== JSON.stringify([{ board_id: 'cisce', board_set_by: PEOPLE.founder.sub, audits: 1 }])) throw new Error(`the school's board set in Control: ${JSON.stringify(rows)}`);
 };
 // p6-9a end
+// w14-b start
+// Control → a school → People → View as, with the authenticator check asked on top of it (W14-B d). The start route is
+// answered "step up first" here (the harness founder has already stepped up), so the check opens over the View as
+// dialog: it must be the top one, take the focus and take typing; Escape then closes it alone.
+let stepUpAnswered = false;
+const controlSchoolStepUp = async (page) => {
+  stepUpAnswered = true;
+  await page.route('**/api/control/impersonate/start', (r) => r.fulfill({ status: 403, contentType: 'application/json', body: JSON.stringify({ error: 'step_up_required', method: 'authenticator' }) }));
+  await page.locator('[data-view-as]:not([disabled])').first().click({ timeout: 20000 });
+  await page.locator('[data-view-as-start]').click();
+  await page.locator('[data-step-up]').waitFor({ timeout: 15000 });
+  // A click is refused by Playwright when another layer covers the field.
+  await page.locator('#step-up-password').click({ timeout: 5000 });
+  await page.keyboard.type('harness');
+  const on = await page.evaluate(() => ({ focus: document.activeElement?.id, open: document.querySelectorAll('dialog[open]').length }));
+  if (on.focus !== 'step-up-password' || on.open !== 2) throw new Error(`the step-up over View as: ${JSON.stringify(on)}`);
+};
+const controlSchoolStepUpDone = async (page) => {
+  await page.keyboard.press('Escape');
+  await page.locator('[data-step-up]').waitFor({ state: 'detached', timeout: 5000 });
+  const open = await page.evaluate(() => document.querySelectorAll('dialog[open]').length);
+  await page.keyboard.press('Escape');
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
+  stepUpAnswered = false;
+  if (open !== 1) throw new Error(`Escape closed ${2 - open} dialogs, not only the step-up`);
+};
+// w14-b end
 // p6-9b begin
 // Exams and marks entry (C214). A fixture with fixed ids, so the paper and result screens have an address: a grading
 // scheme (made up: Written 80 and Oral 20 of a subject, four bands, two terms), the exam "Unit test 1 (harness)" with
@@ -7281,6 +7308,7 @@ const SCREENS = [
   ['principal', 'app-exams-scheme-cisce', '/app/exams/scheme', gradingCisce, gradingCisceDone],
   ['founder', 'control-boards', '/control/boards', controlBoards, controlBoardsDone],
   ['founder', 'control-school-board', `/control/schools/${SCHOOL}`, controlSchoolBoard, controlSchoolBoardDone],
+  ['founder', 'control-school-stepup', `/control/schools/${SCHOOL}`, controlSchoolStepUp, controlSchoolStepUpDone],
   // p6-9a end
   // aj-2 begin
   ['principal', 'aj2-settings-exam-types', '/app/settings', aj2Settings, aj2SettingsDone],
@@ -7730,6 +7758,8 @@ try {
         if (r.status() === 409 && r.url().includes('/api/app/timetable')) return;
         // "Submit to Meta" answers 503 on purpose here: the harness server holds no messaging key (C345).
         if (r.status() === 503 && r.url().includes('/api/control/templates') && /"action":"submit"/.test(r.request().postData() ?? '')) return;
+        // The View as screen's start is answered "step up first" on purpose (control-school-stepup, W14-B).
+        if (stepUpAnswered && r.status() === 403 && r.url().endsWith('/api/control/impersonate/start')) return;
         // The upload screen's stand-in server fails one request on purpose, to show it is sent again (marking-screens.mjs).
         if (r.status() === 503 && /\/api\/app\/marking\/uploads\/[^/]+\/pages$/.test(r.url())) return;
         if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);

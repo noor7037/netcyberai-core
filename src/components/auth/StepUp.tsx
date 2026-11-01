@@ -1,17 +1,20 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { useWords } from '@/components/app-shell/Words';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
+import { Modal } from '@/components/ui/Modal';
 import type { MessageKey } from '@/lib/i18n';
 
 // Step-up for sensitive actions (F1-1b, C260). A screen that saves a credential, opens a school as someone, or acts
 // on another person's sign-in sends its request with stepUpFetch instead of fetch. When the server answers
 // `step_up_required`, a dialog asks for the password and the authenticator's code (an emailed code for an account
 // without one), and the request is sent once more. The proof lasts 15 minutes, so the next sensitive action in that
-// time goes straight through. The dialog draws itself over the page; nothing on the screen changes shape.
+// time goes straight through. The dialog draws itself over the page; nothing on the screen changes shape. It is a
+// native dialog (Modal, showModal) so it sits above another dialog already open, such as "View as" (W14-B): a plain
+// fixed layer sat under that one's top layer, out of reach, and Escape closed both.
 
 type Method = 'authenticator' | 'email';
 const KEYS = [
@@ -41,12 +44,6 @@ function StepUpDialog({ method: asked, w, onDone }: { method: Method; w: Words; 
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const esc = (e: KeyboardEvent) => e.key === 'Escape' && onDone(false);
-    document.addEventListener('keydown', esc);
-    return () => document.removeEventListener('keydown', esc);
-  }, [onDone]);
-
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
@@ -69,14 +66,12 @@ function StepUpDialog({ method: asked, w, onDone }: { method: Method; w: Words; 
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-midnight/50 p-4">
-      <div role="dialog" aria-modal="true" aria-labelledby="step-up-title" className="w-full max-w-sm rounded-2xl bg-white p-5 shadow-xl">
-        <h2 id="step-up-title" className="text-lg font-extrabold text-slate">
-          {w['stepup.title']}
-        </h2>
-        <p className="mt-1 text-sm text-slate/80">{method === 'authenticator' ? w['stepup.lead.authenticator'] : w['stepup.lead.email']}</p>
+    // Escape (the dialog's own close) and the ✕ answer "not stepped up", for this dialog only.
+    <Modal open onClose={() => onDone(false)} title={w['stepup.title']}>
+      <div data-step-up>
+        <p className="text-sm text-slate/80">{method === 'authenticator' ? w['stepup.lead.authenticator'] : w['stepup.lead.email']}</p>
         <form onSubmit={submit} className="mt-4 flex flex-col gap-3">
-          <Input autoFocus id="step-up-password" label={w['stepup.password']} type={show ? 'text' : 'password'} autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+          <Input data-autofocus id="step-up-password" label={w['stepup.password']} type={show ? 'text' : 'password'} autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
           <label htmlFor="step-up-show" className="flex min-h-[44px] items-center gap-3 text-sm text-slate">
             <input id="step-up-show" type="checkbox" className="h-5 w-5 shrink-0" checked={show} onChange={(e) => setShow(e.target.checked)} />
             {w['stepup.showPassword']}
@@ -108,7 +103,7 @@ function StepUpDialog({ method: asked, w, onDone }: { method: Method; w: Words; 
           </div>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 }
 
@@ -119,7 +114,10 @@ function askStepUp(method: Method, w: Words): Promise<boolean> {
     const host = document.createElement('div');
     document.body.appendChild(host);
     const root = createRoot(host);
+    let settled = false;
     const done = (ok: boolean) => {
+      if (settled) return;
+      settled = true;
       root.unmount();
       host.remove();
       before?.focus?.();

@@ -7,7 +7,7 @@ const good = { name: '  Priya   Sharma ', role: 'teacher', signIn: 'Priya.Sharma
 describe('a new login from Control', () => {
   it('reads a username login and leaves the password for the server to make', () => {
     const r = parseNewLogin(good);
-    expect(r).toEqual({ ok: true, login: { name: 'Priya Sharma', role: 'teacher', signIn: { kind: 'username', username: 'priya.sharma', email: `priya.sharma@${USERNAME_DOMAIN}` }, password: null, parentId: null } });
+    expect(r).toEqual({ ok: true, login: { name: 'Priya Sharma', role: 'teacher', signIn: { kind: 'username', username: 'priya.sharma', email: `priya.sharma@${USERNAME_DOMAIN}` }, password: null, parentId: null, userId: null } });
   });
 
   it('reads an email login with a typed password', () => {

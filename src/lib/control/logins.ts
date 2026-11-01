@@ -10,13 +10,16 @@ export { LOGIN_ROLES, type LoginRole } from './login-roles';
 import { LOGIN_ROLES, type LoginRole } from './login-roles';
 export type NewLoginProblem = 'name' | 'role' | 'sign_in' | 'password' | 'guardian';
 // A parent's login names its guardian record (`parentId`); its name is the guardian's, read from that record.
-export type NewLogin = { name: string; role: LoginRole; signIn: SignInName; password: string | null; parentId: string | null };
+// `userId`: an existing person of the school with no sign-in yet (seeded staff, W14-B), so the login is theirs and no
+// second person is made; their name and role are read from their own record.
+export type NewLogin = { name: string; role: LoginRole; signIn: SignInName; password: string | null; parentId: string | null; userId: string | null };
 
 export function parseNewLogin(body: unknown): { ok: true; login: NewLogin } | { ok: false; problem: NewLoginProblem } {
   const b = (body ?? {}) as Record<string, unknown>;
   if (!LOGIN_ROLES.includes(b.role as LoginRole)) return { ok: false, problem: 'role' };
   const parentId = b.role === 'parent' ? (isUuid(b.parentId) ? b.parentId : null) : null;
   if (b.role === 'parent' && !parentId) return { ok: false, problem: 'guardian' };
+  const userId = b.role !== 'parent' && isUuid(b.userId) ? b.userId : null;
   const name = typeof b.name === 'string' ? b.name.trim().replace(/\s+/g, ' ') : '';
   if (b.role !== 'parent' && (name.length < 2 || name.length > 80 || hasAadhaarNumber(name))) return { ok: false, problem: 'name' };
   const signIn = signInName(b.signIn);
@@ -24,5 +27,5 @@ export function parseNewLogin(body: unknown): { ok: true; login: NewLogin } | { 
   // Empty: the server makes one. Typed: the sign-in rule (8 to 72 characters, no spaces at either end).
   const password = typeof b.password === 'string' && b.password !== '' ? b.password : null;
   if (password !== null && passwordProblem(password)) return { ok: false, problem: 'password' };
-  return { ok: true, login: { name, role: b.role as LoginRole, signIn, password, parentId } };
+  return { ok: true, login: { name, role: b.role as LoginRole, signIn, password, parentId, userId } };
 }
