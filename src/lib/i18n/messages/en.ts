@@ -9871,4 +9871,11 @@ export const en = {
   'modules.roleOffHint': 'Your role does not use this part. If you need something from it, ask your principal.',
   'modules.roleOffAction': 'Go to My Day',
   // w14-a end
+  // w14-h start
+  'students.import.open': 'Import students (CSV)',
+  'students.counts.active': '{count} active',
+  'students.counts.left': '{count} left or withdrawn',
+  'students.counts.show': 'show',
+  'students.counts.waiting': '{count} waiting for consent',
+  // w14-h end
 } as const;

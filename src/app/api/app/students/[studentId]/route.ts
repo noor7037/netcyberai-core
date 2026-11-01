@@ -5,6 +5,7 @@ import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { assertRowsAffected, NoRowsAffectedError } from '@/lib/db/rows';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { findRollClash, isRollClashViolation, ROLL_RACE_TEXT } from '@/lib/students/roll-clash';
 import { checkDate, validationError } from '@/lib/errors/catalogue';
 import { ruleError } from '@/lib/frameworks/route';
 import { readGender } from '@/lib/students/gender';
@@ -90,10 +91,17 @@ export async function PATCH(req: NextRequest, { params }: { params: { studentId:
   try {
     const student = await withTenantContext(guard.claims, async (client) => {
       const before = await client.query(
-        `select student_id, class_id from students where school_id = $1 and student_id = $2`,
+        `select student_id, class_id, roll_no from students where school_id = $1 and student_id = $2`,
         [guard.claims.schoolId, params.studentId]
       );
       if (!before.rows[0]) return null;
+      // A roll number is one student's in a class (W14-H): checked when the class or the roll changes.
+      if ('classId' in body || 'rollNo' in body) {
+        const nextClass = 'classId' in body ? (body.classId || null) : before.rows[0].class_id;
+        const nextRoll = 'rollNo' in body ? (typeof body.rollNo === 'string' ? body.rollNo.trim() || null : null) : before.rows[0].roll_no;
+        const clash = await findRollClash(client, guard.claims.schoolId, nextClass, nextRoll, params.studentId);
+        if (clash) return { clash };
+      }
 
       values.push(guard.claims.schoolId, params.studentId);
       const result = await client.query(
@@ -118,8 +126,10 @@ export async function PATCH(req: NextRequest, { params }: { params: { studentId:
       return row;
     });
     if (!student) return NextResponse.json({ error: 'not found' }, { status: 404 });
+    if ('clash' in student) return NextResponse.json({ error: `The change was not saved: ${student.clash}.` }, { status: 409 });
     return NextResponse.json({ student });
   } catch (err) {
+    if (isRollClashViolation(err)) return NextResponse.json({ error: ROLL_RACE_TEXT }, { status: 409 });
     if (isForeignKeyViolation(err)) {
       return NextResponse.json(validationError('class_not_in_school'), { status: 400 });
     }

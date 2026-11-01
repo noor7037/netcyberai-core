@@ -58,13 +58,14 @@ const FIRST = ['Aarav', 'Diya', 'Kabir', 'Meera', 'Vihaan', 'Anaya', 'Reyansh', 
 const LAST = ['Example', 'Sample', 'Specimen', 'Placeholder', 'Testwala', 'Demoji', 'Fictional', 'Madeup'];
 const pad = (n: number, w = 2) => String(n).padStart(w, '0');
 const HEADER = 'name,admission_no,class_name,roll_no,dob,gender,guardian_phone';
-// Row i (1-based) of a valid file: a class from the standard set, a real date of birth in the past.
+// Row i (1-based) of a valid file: a class from the standard set, a real date of birth in the past. A roll number is one
+// student's in a class (W14-H), so every file but the first carries its prefix in its rolls.
 const line = (i: number, prefix: string) => {
   const cls = STANDARD_CLASSES[i % STANDARD_CLASSES.length];
   const name = `${FIRST[i % FIRST.length]} ${LAST[Math.floor(i / FIRST.length) % LAST.length]}`;
   const dob = `${2008 + (i % 15)}-${pad(1 + (i % 12))}-${pad(1 + (i % 28))}`;
   const gender = ['female', 'male', '', 'Female', 'MALE'][i % 5];
-  return `${name},${prefix}-${pad(i, 5)},${cls.name},${Math.floor(i / STANDARD_CLASSES.length) + 1},${dob},${gender},+91 90000 ${pad(i, 5)}`;
+  return `${name},${prefix}-${pad(i, 5)},${cls.name},${prefix === 'ADM' ? '' : `${prefix}-`}${Math.floor(i / STANDARD_CLASSES.length) + 1},${dob},${gender},+91 90000 ${pad(i, 5)}`;
 };
 const file = (prefix: string, change: (i: number, l: string) => string = (_i, l) => l) => [HEADER, ...Array.from({ length: N }, (_, k) => change(k + 1, line(k + 1, prefix)))].join('\r\n') + '\r\n';
 const timings: Record<string, number> = {};
@@ -142,15 +143,15 @@ describe('10,000 students through the real student import', () => {
   it('values out of range and duplicate records are row errors, and the file writes nothing', async () => {
     const csv = [
       HEADER,
-      'Ira Example,NEW-1,1-A,1,2030-01-01,,', // a date of birth after today
-      'Neel Example,NEW-2,1-A,2,2016-02-30,,', // not a real date
-      'Pihu Example,NEW-3,13-A,3,2016-02-01,,', // no class 13
-      'Avni Example,NEW-4,1-A,4,01/02/2016,,', // not YYYY-MM-DD
-      'Dhruv Example,NEW-5,1-A,5,2016-02-01,X,', // not a gender Aadhaar prints
-      ',NEW-6,1-A,6,2016-02-01,,', // no name
-      'Rohan Example,new-1,1-A,7,2016-02-01,,', // the admission number of row 1, in other letters
-      'Kiara Example,ADM-00001,1-A,8,2016-02-01,,', // an admission number the school has already
-      'Advik Example,NEW-9,1-A,9,2016-02-01,,', // a good row
+      'Ira Example,NEW-1,1-A,X1,2030-01-01,,', // a date of birth after today (the rolls are X-numbers: ADM files hold the plain ones)
+      'Neel Example,NEW-2,1-A,X2,2016-02-30,,', // not a real date
+      'Pihu Example,NEW-3,13-A,X3,2016-02-01,,', // no class 13
+      'Avni Example,NEW-4,1-A,X4,01/02/2016,,', // not YYYY-MM-DD
+      'Dhruv Example,NEW-5,1-A,X5,2016-02-01,X,', // not a gender Aadhaar prints
+      ',NEW-6,1-A,X6,2016-02-01,,', // no name
+      'Rohan Example,new-1,1-A,X7,2016-02-01,,', // the admission number of row 1, in other letters
+      'Kiara Example,ADM-00001,1-A,X8,2016-02-01,,', // an admission number the school has already
+      'Advik Example,NEW-9,1-A,X9,2016-02-01,,', // a good row
     ].join('\n');
     const done = await send(principal, csv, false);
     expect(done.status).toBe(422);
@@ -170,17 +171,17 @@ describe('10,000 students through the real student import', () => {
 
   it('a malformed file is refused as a whole or by its row; a teacher may not import', async () => {
     // A quote opened and never closed swallows the rest of the file: refused, not guessed at.
-    expect(await send(principal, `${HEADER}\n"Ira Example,NEW-1,1-A,1,2016-02-01,,\nNeel Example,NEW-2,1-A,2,2016-02-01,,\n`, true)).toMatchObject({ status: 400, body: { error: expect.stringContaining('never closed') } });
+    expect(await send(principal, `${HEADER}\n"Ira Example,NEW-1,1-A,X1,2016-02-01,,\nNeel Example,NEW-2,1-A,X2,2016-02-01,,\n`, true)).toMatchObject({ status: 400, body: { error: expect.stringContaining('never closed') } });
     // No "name" column.
     expect(await send(principal, 'student,class\nIra Example,1-A\n', true)).toMatchObject({ status: 400, body: { error: expect.stringContaining('"name" column') } });
     // A header only.
     expect(await send(principal, `${HEADER}\n`, true)).toMatchObject({ status: 400, body: { error: expect.stringContaining('no data rows') } });
     // A row with more values than the header: that row is named, and nothing is written.
-    const wide = await send(principal, `${HEADER}\nIra Example,NEW-1,1-A,1,2016-02-01,,,surplus\nNeel Example,NEW-2,1-A,2,2016-02-01,,\n`, false);
+    const wide = await send(principal, `${HEADER}\nIra Example,NEW-1,1-A,X1,2016-02-01,,,surplus\nNeel Example,NEW-2,1-A,X2,2016-02-01,,\n`, false);
     expect(wide).toMatchObject({ status: 422, body: { refused: true, errors: [{ row: 1, errors: ['this row has more values than the first row has column names'] }] } });
     // A file saved by Excel as "CSV UTF-8" starts with a byte order mark: the name column is still found.
-    expect(await send(principal, `﻿${HEADER}\nIra Example,NEW-1,1-A,1,2016-02-01,,\n`, true)).toMatchObject({ status: 200, body: { errors: [], rowCount: 1 } });
-    expect(await send(tara, `${HEADER}\nIra Example,NEW-1,1-A,1,2016-02-01,,\n`, false)).toMatchObject({ status: 403 });
+    expect(await send(principal, `﻿${HEADER}\nIra Example,NEW-1,1-A,X1,2016-02-01,,\n`, true)).toMatchObject({ status: 200, body: { errors: [], rowCount: 1 } });
+    expect(await send(tara, `${HEADER}\nIra Example,NEW-1,1-A,X1,2016-02-01,,\n`, false)).toMatchObject({ status: 403 });
     expect(await count(`select count(*)::int as n from students where admission_no ilike 'NEW-%'`)).toBe(0);
   });
 });
