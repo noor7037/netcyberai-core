@@ -64,9 +64,16 @@ export function EarlyWarningView() {
   const locale = lang === 'hi' ? 'hi-IN' : 'en-IN';
   const stamp = new Intl.DateTimeFormat(locale, { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
   const dayWords = new Intl.DateTimeFormat(locale, { timeZone: 'UTC', day: 'numeric', month: 'short' });
-  const when = (at: string) => stamp.format(new Date(at));
+  // A date the screen cannot read is shown as it came, never thrown on: one odd record must not take the whole screen down.
+  const when = (at: string) => {
+    const d = new Date(at);
+    return Number.isNaN(d.getTime()) ? String(at ?? '') : stamp.format(d);
+  };
   // A school day has no time of day: it is said as the calendar day it is.
-  const day = (iso: string) => dayWords.format(new Date(`${iso}T00:00:00Z`));
+  const day = (iso: string) => {
+    const d = new Date(`${String(iso ?? '').slice(0, 10)}T00:00:00Z`);
+    return Number.isNaN(d.getTime()) ? String(iso ?? '') : dayWords.format(d);
+  };
 
   const refusal = (body: unknown, status?: number) => {
     const code = (body as { code?: unknown } | null)?.code;
@@ -97,7 +104,7 @@ export function EarlyWarningView() {
   if (!data) return null;
 
   // How many subjects a marks reason found below the pass mark (a subject below in two parts is one subject).
-  const belowCount = (f: Flag) => new Set(f.evidence.marks?.belowPass?.subjects.map((b) => b.paperId) ?? []).size;
+  const belowCount = (f: Flag) => new Set(f.evidence?.marks?.belowPass?.subjects?.map((b) => b.paperId) ?? []).size;
   // One exam's papers and their percents, as the class result shows them.
   const papers = (exam: MarksExam) => (
     <>
@@ -107,7 +114,7 @@ export function EarlyWarningView() {
         </p>
       )}
       <ul className="flex flex-col gap-1 text-slate/70">
-        {exam.papers.map((p) => (
+        {(exam.papers ?? []).map((p) => (
           <li key={p.paperId} data-ew-marks-paper={exam.examId} className="break-words">
             {p.percent === null ? t('ew.why.marks.paper.none', { subject: p.subject }) : t('ew.why.marks.paper', { subject: p.subject, percent: p.percent })}
           </li>
@@ -118,7 +125,7 @@ export function EarlyWarningView() {
 
   // One line a reason, in plain words: what was counted, never a judgement of the child.
   const lines = (f: Flag) => {
-    const e = f.evidence;
+    const e = f.evidence ?? {};
     return (
       <ul className="flex flex-col gap-1">
         {e.attendance && !e.attendance.held && <li data-ew-line="attendance">{t('ew.line.attendance', { inSchool: e.attendance.present + e.attendance.late, counted: e.attendance.counted, from: day(e.attendance.from) })}</li>}
@@ -129,7 +136,7 @@ export function EarlyWarningView() {
           </li>
         )}
         {e.homework && <li data-ew-line="homework">{t(e.homework.notDone === 1 ? 'ew.line.homework.one' : 'ew.line.homework.other', { count: e.homework.notDone, from: day(e.homework.from) })}</li>}
-        {e.needs_help && <li data-ew-line="needs_help">{t(e.needs_help.open.length === 1 ? 'ew.line.needs_help.one' : 'ew.line.needs_help.other', { count: e.needs_help.open.length })}</li>}
+        {e.needs_help && <li data-ew-line="needs_help">{t((e.needs_help.open ?? []).length === 1 ? 'ew.line.needs_help.one' : 'ew.line.needs_help.other', { count: (e.needs_help.open ?? []).length })}</li>}
         {e.marks?.fell && e.marks.previous && (
           <li data-ew-line="marks-fell">{t('ew.line.marks.fell', { exam: e.marks.exam.name, now: e.marks.exam.percent, by: e.marks.fell.by, before: e.marks.previous.percent, previous: e.marks.previous.name })}</li>
         )}
@@ -141,9 +148,9 @@ export function EarlyWarningView() {
   // "Why this?" (docs/21): each reason with the numbers and dates it rests on, the rule and its version, and when
   // the flag was opened and last checked.
   const why = (f: Flag) => {
-    const e = f.evidence;
+    const e = f.evidence ?? {};
     return (
-      <details data-ew-why={f.reasons.join(' ')} className="text-sm text-slate">
+      <details data-ew-why={(f.reasons ?? []).join(' ')} className="text-sm text-slate">
         <summary className={WHY}>{t('myDay.why')}</summary>
         <div className="flex flex-col gap-2 pb-2">
           {e.attendance && (
@@ -151,7 +158,7 @@ export function EarlyWarningView() {
               <p className="font-semibold">{t('ew.reason.attendance')}</p>
               <p>{t('ew.why.attendance', { from: day(e.attendance.from), to: day(e.attendance.to), present: e.attendance.present, late: e.attendance.late, absent: e.attendance.absent, rate: e.attendance.rate, below: e.attendance.below, min: e.attendance.minDays })}</p>
               {e.attendance.leave > 0 && <p className="text-slate/70">{t('ew.why.attendance.leave', { leave: e.attendance.leave })}</p>}
-              {e.attendance.absentDates.length > 0 && <p className="break-words text-slate/70">{t('ew.why.attendance.dates', { dates: e.attendance.absentDates.map(day).join(', ') })}</p>}
+              {(e.attendance.absentDates ?? []).length > 0 && <p className="break-words text-slate/70">{t('ew.why.attendance.dates', { dates: (e.attendance.absentDates ?? []).map((d) => day(d)).join(', ') })}</p>}
             </div>
           )}
           {e.homework && (
@@ -159,7 +166,7 @@ export function EarlyWarningView() {
               <p className="font-semibold">{t('ew.reason.homework')}</p>
               <p>{t('ew.why.homework', { from: day(e.homework.from), to: day(e.homework.to), count: e.homework.notDone, threshold: e.homework.threshold, days: e.homework.schoolDays })}</p>
               <ul className="flex flex-col gap-1 text-slate/70">
-                {e.homework.missed.map((m, i) => (
+                {(e.homework.missed ?? []).map((m, i) => (
                   <li key={i} className="break-words">
                     {t('ew.why.homework.item', { subject: m.subject, title: m.title, date: day(m.dueDate) })}
                   </li>
@@ -171,7 +178,7 @@ export function EarlyWarningView() {
             <div data-ew-evidence="needs_help" className="flex flex-col gap-1">
               <p className="font-semibold">{t('ew.reason.needs_help')}</p>
               <ul className="flex flex-col gap-1">
-                {e.needs_help.open.map((o, i) => (
+                {(e.needs_help.open ?? []).map((o, i) => (
                   <li key={i}>{t(o.source === 'parent_reply' ? 'ew.why.needs_help.parent_reply' : 'ew.why.needs_help.staff', { kind: t(`help2.kind.${o.kind}` as MessageKey), date: day(o.since) })}</li>
                 ))}
               </ul>
@@ -195,7 +202,7 @@ export function EarlyWarningView() {
                 <>
                   <p data-ew-marks-below={belowCount(f)}>{t(belowCount(f) === 1 ? 'ew.why.marks.below.one' : 'ew.why.marks.below.other', { count: belowCount(f), atLeast: e.marks.belowPass.atLeast })}</p>
                   <ul className="flex flex-col gap-1 text-slate/70">
-                    {e.marks.belowPass.subjects.map((b, i) => (
+                    {(e.marks.belowPass.subjects ?? []).map((b, i) => (
                       <li key={i} className="break-words">
                         {b.part ? t('ew.why.marks.below.part', { subject: b.subject, part: b.part, percent: b.percent, passMark: b.passMark }) : t('ew.why.marks.below.item', { subject: b.subject, percent: b.percent, passMark: b.passMark })}
                       </li>
@@ -222,13 +229,13 @@ export function EarlyWarningView() {
   const log = (f: Flag) => (
     <div className="flex flex-col gap-2">
       <h3 className="font-bold">{t('ew.log.title')}</h3>
-      {f.actions.length === 0 ? (
+      {(f.actions ?? []).length === 0 ? (
         <p data-ew-log-none className={SOFT}>
           {t('ew.log.none')}
         </p>
       ) : (
         <ul className="flex flex-col gap-2 border-l-2 border-slate/10 pl-3">
-          {f.actions.map((a) => (
+          {(f.actions ?? []).map((a) => (
             <li key={a.action_id} data-ew-action={a.kind} className="flex flex-col gap-0.5">
               <span className="font-semibold">{a.by ? t('ew.log.line', { kind: t(`ew.kind.${a.kind}` as MessageKey), by: a.by, when: when(a.at) }) : t('ew.log.lineNoName', { kind: t(`ew.kind.${a.kind}` as MessageKey), when: when(a.at) })}</span>
               {a.note && <span className="whitespace-pre-wrap break-words">{t('ew.log.note', { note: a.note })}</span>}
@@ -288,11 +295,11 @@ export function EarlyWarningView() {
   );
 
   const card = (f: Flag) => (
-    <li key={f.flag_id} data-ew-flag={f.resolved_at ? 'closed' : 'open'} data-ew-reasons={f.reasons.join(',')} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
+    <li key={f.flag_id} data-ew-flag={f.resolved_at ? 'closed' : 'open'} data-ew-reasons={(f.reasons ?? []).join(',')} className="flex flex-col gap-2 rounded-md border border-slate/10 p-3">
       <div className="flex flex-wrap items-center gap-2">
         <span className="break-words font-bold">{f.student_name}</span>
         <span className="text-slate/70">{t('ew.flag.class', { class: f.class_name })}</span>
-        {f.reasons.map((r) => (
+        {(f.reasons ?? []).map((r) => (
           <Badge key={r} variant="neutral">
             {t(`ew.reason.${r}` as MessageKey)}
           </Badge>
@@ -310,7 +317,7 @@ export function EarlyWarningView() {
     </li>
   );
 
-  const d = data;
+  const d: Data = { ...data, summary: data.summary ?? [], open: data.open ?? [], closed: data.closed ?? [] };
   // For how many of the students the last check looked at attendance could be used at all, with the two numbers
   // that decided it: said from the check's own record, and left unsaid when the record does not carry them.
   const last = d.lastCheck;

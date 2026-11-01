@@ -3,7 +3,7 @@ import type { FamilyClaims } from './db';
 import { guarded } from './chapter-store';
 import type { FamilyChild } from './children';
 import type { RequestStatus } from './chapter-request-types';
-import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolSubjectIs, schoolTodayFor } from './school';
+import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolNoticesFor, schoolSubjectIs, schoolTodayFor } from './school';
 import { SUBJECT_IDS } from './subjects';
 import type { MessageKey } from '@/lib/i18n';
 
@@ -17,11 +17,14 @@ export const REQUEST_NEWS_DAYS = 14;
 
 export type NotificationItem =
   | { id: string; kind: 'news'; news: 'homework' | 'notices' | 'results'; count: number; href: string }
+  | { id: string; kind: 'notice'; school: string; body: string; href: string }
   | { id: string; kind: 'tonight'; subject: string; href: string }
   | { id: string; kind: 'request'; status: RequestStatus; title: string; href: string };
 
 export type NotificationInput = {
   news: { homework: number; notices: number; results: number } | null;
+  // The school's own notices (W14-J): the school's name as the sender and the notice's words.
+  notices?: readonly { noticeId: string; schoolName: string; body: string }[];
   tonight: readonly string[];
   requests: readonly { requestId: string; subject: string; title: string; status: RequestStatus }[];
 };
@@ -42,6 +45,7 @@ export function buildNotifications(input: NotificationInput): NotificationItem[]
       if (input.news[k] > 0) out.push({ id: `news.${k}`, kind: 'news', news: k, count: input.news[k], href: '/family/parent' });
     }
   }
+  for (const n of input.notices ?? []) out.push({ id: `notice.${n.noticeId}`, kind: 'notice', school: n.schoolName, body: n.body, href: '/family/parent' });
   for (const s of input.tonight) out.push({ id: `tonight.${s}`, kind: 'tonight', subject: s, href: `/family/study?subject=${encodeURIComponent(s)}` });
   for (const r of input.requests) {
     out.push({ id: `request.${r.requestId}`, kind: 'request', status: r.status, title: r.title, href: `/family/study?subject=${encodeURIComponent(r.subject)}` });
@@ -77,5 +81,6 @@ export async function readNotifications(db: PoolClient, claims: FamilyClaims, ac
   const news = mine.length ? await schoolNewsFor(claims, mine, seen, off) : null;
   const atSchool = off.includes('tonight') ? null : await schoolTodayFor(claims, links, child.childId);
   const tonight = atSchool ? SUBJECT_IDS.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
-  return buildNotifications({ news, tonight, requests: await recentRequests(db, accountId, child.childId) });
+  const notices = mine.length ? await schoolNoticesFor(claims, mine, off) : [];
+  return buildNotifications({ news, notices, tonight, requests: await recentRequests(db, accountId, child.childId) });
 }

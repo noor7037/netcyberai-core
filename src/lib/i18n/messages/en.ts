@@ -1611,8 +1611,8 @@ export const en = {
   'set.setup.parent_language.option.en': 'English',
   'set.setup.parent_language.option.hi': 'Hindi',
   'ntc.title': 'Notices to parents',
-  'ntc.how': 'Write a notice for a class. It waits for the principal, and goes to the parents on WhatsApp only when the principal approves it.',
-  'ntc.how.principal': 'Staff write notices here. Nothing goes to a parent until you approve it. A notice you approve goes to every guardian of that class on WhatsApp.',
+  'ntc.how': 'Write a notice for a class. It waits for the principal, and goes to the parents only when the principal approves it.',
+  'ntc.how.principal': 'Staff write notices here. Nothing goes to a parent until you approve it. A notice you approve goes to every guardian of that class: in the Family app where it is linked, by email where the school holds an address and WhatsApp is not set up, and on WhatsApp.',
   'ntc.noClass': 'You have no class of your own yet. The office chooses class teachers under Students, “Manage classes”.',
   'ntc.for': 'Notice for',
   'ntc.allClasses': 'All classes',
@@ -9668,4 +9668,10 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w14-j start
+  'ntc.channels': 'Delivered in the Family app: {inApp} · By email: {byEmail} · WhatsApp: {whatsapp}',
+  'ntc.channels.whatsapp.off': 'not set up',
+  'ntc.channels.whatsapp.n': '{count} guardians',
+  'ntc.approved.channels': 'Approved. In the Family app: {inApp} guardians. By email: {byEmail}. On WhatsApp: going to {queued}; not sent to {held}; {withoutNumber} have no usable number.',
+  // w14-j end
 } as const;

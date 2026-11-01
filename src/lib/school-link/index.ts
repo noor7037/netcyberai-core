@@ -267,6 +267,37 @@ export async function readSchoolNews(claims: Claims, linkId: string, studentIds:
   });
 }
 
+// The recent notices for these matched students, for the Family app's notifications feed (W14-J): each with the school's
+// name as the sender and the notice's own words. Read as the guardian, so the school's own rules and consent decide
+// every row (a withdrawn consent leaves no child, and so no notice); the join keeps each notice to a class of the
+// guardian's own matched children or the whole school.
+export type FeedNotice = { noticeId: string; schoolName: string; body: string; sentAt: string };
+export async function readSchoolNoticeFeed(claims: Claims, linkId: string, studentIds: readonly string[], days: number, limit = 5): Promise<FeedNotice[]> {
+  if (!studentIds.length) return [];
+  return withGuardianContext(claims, linkId, async (db) => {
+    const { rows } = await db.query(
+      `select distinct n.notice_id, sc.name as school_name, n.body, n.decided_at
+         from students s
+         join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+         join schools sc on sc.school_id = n.school_id
+        where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > now() - ($2::int * interval '1 day')
+        order by n.decided_at desc, n.notice_id
+        limit $3`,
+      [[...studentIds], days, limit]
+    );
+    return (rows as { notice_id: string; school_name: string; body: string; decided_at: Date }[]).map((r) => ({ noticeId: r.notice_id, schoolName: r.school_name, body: r.body, sentAt: new Date(r.decided_at).toISOString() }));
+  });
+}
+
+// Which of these guardians have the Family app linked, with the students their family matched to it (W14-J): the
+// school's own question, answered by one definer function for the caller's own school (the principal and the school
+// admin), which says no more than this. A notice's delivery log counts exactly these.
+export async function linkedChildrenForNotice(db: Sql, parentIds: readonly string[]): Promise<{ parentId: string; studentId: string }[]> {
+  if (!parentIds.length) return [];
+  const { rows } = await db.query(`select parent_id, student_id from family.linked_children_for_notice($1::uuid[])`, [[...parentIds]]);
+  return (rows as { parent_id: string; student_id: string }[]).map((r) => ({ parentId: r.parent_id, studentId: r.student_id }));
+}
+
 // The notices the principal approved in the last 30 days for one student's class or the whole school, newest first. In
 // the guardian's session the school's rules (school_link_notices_events.sql) let through only sent notices of the
 // guardian's own children's classes and the whole school; the class filter here keeps each child to their own class.

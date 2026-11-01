@@ -16,8 +16,8 @@ import type { MessageKey } from '@/lib/i18n';
 // `shownAbove` (C210): the page was opened from the dashboard's "Notices waiting for approval", and those notices
 // are drawn above this list. After a change made here, that list is read again too.
 
-type Notice = { notice_id: string; class_id: string | null; class_name: string | null; body: string; status: 'waiting' | 'sent' | 'rejected'; written_by_name: string | null; written_at: string; decided_by_name: string | null; reject_reason: string | null; on_its_way: number; delivered: number; read: number; held: number };
-type Data = { notices: Notice[]; classes: { class_id: string; name: string }[]; mayDecide: boolean; mayWriteToAll: boolean };
+type Notice = { notice_id: string; class_id: string | null; class_name: string | null; body: string; status: 'waiting' | 'sent' | 'rejected'; written_by_name: string | null; written_at: string; decided_by_name: string | null; reject_reason: string | null; on_its_way: number; delivered: number; read: number; held: number; in_app: number; by_email: number };
+type Data = { notices: Notice[]; classes: { class_id: string; name: string }[]; mayDecide: boolean; mayWriteToAll: boolean; whatsappLive: boolean };
 const MAX = 600;
 const ERRORS = ['words', 'class', 'whole_school', 'already_decided', 'reason', 'nobody'];
 const VARIANT = { waiting: 'warning', sent: 'success', rejected: 'neutral' } as const;
@@ -104,13 +104,18 @@ export function NoticesView({ shownAbove = false }: { shownAbove?: boolean }) {
                 <span className="text-slate/70">{t('ntc.by', { name: n.written_by_name ?? '', when: when.format(new Date(n.written_at)) })}</span>
               </div>
               <p className="whitespace-pre-wrap break-words">{n.body}</p>
-              {n.status === 'sent' && <p data-notice-counts className="font-semibold">{t('ntc.counts', { onItsWay: n.on_its_way, delivered: n.delivered, read: n.read, held: n.held })}</p>}
+              {n.status === 'sent' && (
+                <p data-notice-channels className="font-semibold">
+                  {t('ntc.channels', { inApp: n.in_app, byEmail: n.by_email, whatsapp: data.whatsappLive || n.on_its_way + n.delivered + n.held > 0 ? t('ntc.channels.whatsapp.n', { count: n.on_its_way + n.delivered }) : t('ntc.channels.whatsapp.off') })}
+                </p>
+              )}
+              {n.status === 'sent' && (data.whatsappLive || n.on_its_way + n.delivered + n.held > 0) && <p data-notice-counts className="font-semibold">{t('ntc.counts', { onItsWay: n.on_its_way, delivered: n.delivered, read: n.read, held: n.held })}</p>}
               {n.status === 'rejected' && <p className="font-semibold">{t('ntc.rejectedWhy', { name: n.decided_by_name ?? '', reason: n.reject_reason ?? '' })}</p>}
               {n.status === 'waiting' && !data.mayDecide && <p className="text-slate/70">{t('ntc.waitingWhy')}</p>}
               {n.status === 'waiting' && data.mayDecide && (
                 <div className="flex flex-col gap-2">
                   <div className="flex flex-wrap gap-2">
-                    <button type="button" data-notice-approve disabled={busy} className={PRIMARY} onClick={() => void send(`/api/app/communication/notices/${n.notice_id}`, { action: 'approve' }, (r) => t('ntc.approved', { queued: r.queued ?? 0, held: r.held ?? 0, withoutNumber: r.withoutNumber ?? 0 }))}>
+                    <button type="button" data-notice-approve disabled={busy} className={PRIMARY} onClick={() => void send(`/api/app/communication/notices/${n.notice_id}`, { action: 'approve' }, (r) => ((r.inApp ?? 0) + (r.byEmail ?? 0) > 0 ? t('ntc.approved.channels', { inApp: r.inApp ?? 0, byEmail: r.byEmail ?? 0, queued: r.queued ?? 0, held: r.held ?? 0, withoutNumber: r.withoutNumber ?? 0 }) : t('ntc.approved', { queued: r.queued ?? 0, held: r.held ?? 0, withoutNumber: r.withoutNumber ?? 0 })))}>
                       {t('ntc.approve')}
                     </button>
                     <button type="button" data-notice-reject disabled={busy} className={TAP} onClick={() => setRejecting(rejecting === n.notice_id ? null : n.notice_id)}>

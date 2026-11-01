@@ -1605,8 +1605,8 @@ export const hi: Record<keyof typeof en, string> = {
   'set.setup.parent_language.option.en': 'अंग्रेज़ी',
   'set.setup.parent_language.option.hi': 'हिन्दी',
   'ntc.title': 'अभिभावकों के लिए नोटिस',
-  'ntc.how': 'किसी कक्षा के लिए नोटिस लिखें। यह प्रिंसिपल की मंज़ूरी का इंतज़ार करता है, और अभिभावकों को WhatsApp पर तभी जाता है जब प्रिंसिपल मंज़ूर करें।',
-  'ntc.how.principal': 'स्टाफ़ यहाँ नोटिस लिखता है। आपकी मंज़ूरी के बिना अभिभावक को कुछ नहीं जाता। आप जिस नोटिस को मंज़ूर करते हैं वह उस कक्षा के हर अभिभावक को WhatsApp पर जाता है।',
+  'ntc.how': 'किसी कक्षा के लिए नोटिस लिखें। यह प्रिंसिपल की मंज़ूरी का इंतज़ार करता है, और अभिभावकों को तभी जाता है जब प्रिंसिपल मंज़ूर करें।',
+  'ntc.how.principal': 'स्टाफ़ यहाँ नोटिस लिखता है। आपकी मंज़ूरी के बिना अभिभावक को कुछ नहीं जाता। आप जिस नोटिस को मंज़ूर करते हैं वह उस कक्षा के हर अभिभावक को जाता है: जहाँ Family ऐप जुड़ा है वहाँ ऐप में, जहाँ स्कूल के पास पता है और WhatsApp चालू नहीं है वहाँ ईमेल से, और WhatsApp पर।',
   'ntc.noClass': 'अभी आपकी अपनी कोई कक्षा नहीं है। ऑफ़िस Students में “Manage classes” से कक्षा-शिक्षक चुनता है।',
   'ntc.for': 'नोटिस किसके लिए',
   'ntc.allClasses': 'सभी कक्षाएँ',
@@ -9654,4 +9654,10 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.notThis': 'यह नहीं',
   'fam.check.correct': 'सही',
   // w8-ai end
+  // w14-j start
+  'ntc.channels': 'Family ऐप में पहुँचा: {inApp} · ईमेल से: {byEmail} · WhatsApp: {whatsapp}',
+  'ntc.channels.whatsapp.off': 'अभी चालू नहीं है',
+  'ntc.channels.whatsapp.n': '{count} अभिभावक',
+  'ntc.approved.channels': 'मंज़ूर। Family ऐप में: {inApp} अभिभावक। ईमेल से: {byEmail}। WhatsApp पर: {queued} को जा रहा है; {held} को नहीं भेजा गया; {withoutNumber} के पास काम का नंबर नहीं है।',
+  // w14-j end
 };

@@ -2,7 +2,9 @@ import type { PoolClient } from 'pg';
 import { writeAuditLog } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import type { JobQueue } from '@/lib/jobs/types';
-import { queueWhatsAppMessage } from '@/lib/whatsapp/gate';
+import { linkedChildrenForNotice } from '@/lib/school-link';
+import { withPlatformService } from '@/lib/auth/db';
+import { queueWhatsAppMessage, whatsappIsLive } from '@/lib/whatsapp/gate';
 import { normalizePhone } from '@/lib/whatsapp/phone';
 import { classOrderSql } from '@/lib/classes/class-order';
 
@@ -16,25 +18,37 @@ import { classOrderSql } from '@/lib/classes/class-order';
 //   - A notice's words never change. A wrong one is rejected, with a reason
 //     the writer sees, and written again.
 //   - Who received and who read it is counted from the message log.
+//   - THREE WAYS TO A GUARDIAN (W14-J), each a row in that log with its own channel:
+//       WhatsApp   as before, through the one gate.
+//       Family app a guardian with the Family app linked (School Link) and a child of theirs matched to it, with the
+//                  school's consent for the child's records in force, reads the notice in the app's notifications
+//                  (the app reads it as the guardian; nothing is copied into the family's rows). One row a guardian.
+//       email      a guardian with an address on the school's record and the school's consent for operational
+//                  communication in force, when WhatsApp is not set up for the school or the gate held the WhatsApp
+//                  message back: through the job queue (email.send, the school_notice template). One a address.
+//     A family whose consent is withdrawn gets nothing by any of the three.
 
 type Actor = { schoolId: string; userId: string; role: StaffRole };
 const STAFF: readonly string[] = ['principal', 'school_admin', 'teacher'];
 export const MAX_NOTICE = 600;
 const oneLine = (text: string) => text.replace(/\s+/g, ' ').trim();
 
-export type Notice = { notice_id: string; class_id: string | null; class_name: string | null; body: string; status: 'waiting' | 'sent' | 'rejected'; written_by_name: string | null; written_at: string; decided_by_name: string | null; reject_reason: string | null; on_its_way: number; delivered: number; read: number; held: number };
+export type Notice = { notice_id: string; class_id: string | null; class_name: string | null; body: string; status: 'waiting' | 'sent' | 'rejected'; written_by_name: string | null; written_at: string; decided_by_name: string | null; reject_reason: string | null; on_its_way: number; delivered: number; read: number; held: number; in_app: number; by_email: number };
 // The counts are read in one pass over the school's notice messages (their key is "notice:<id>:<child>:<guardian>").
 const SELECT = `select n.notice_id, n.class_id, c.name as class_name, n.body, n.status, w.display_name as written_by_name, n.written_at, d.display_name as decided_by_name, n.reject_reason,
-         coalesce(k.on_its_way, 0) as on_its_way, coalesce(k.delivered, 0) as delivered, coalesce(k.read, 0) as read, coalesce(k.held, 0) as held
+         coalesce(k.on_its_way, 0) as on_its_way, coalesce(k.delivered, 0) as delivered, coalesce(k.read, 0) as read, coalesce(k.held, 0) as held,
+         coalesce(k.in_app, 0) as in_app, coalesce(k.by_email, 0) as by_email
     from class_notices n
     left join classes c on c.school_id = n.school_id and c.class_id = n.class_id
     left join users w on w.user_id = n.written_by
     left join users d on d.user_id = n.decided_by
     left join (select l.school_id, split_part(l.dedupe_key, ':', 2) as notice_id,
-                      (count(*) filter (where l.status::text in ('queued', 'sent', 'uncertain')))::int as on_its_way,
-                      (count(*) filter (where l.status::text in ('delivered', 'read')))::int as delivered,
-                      (count(*) filter (where l.status::text = 'read'))::int as read,
-                      (count(*) filter (where l.status::text like 'blocked_%' or l.status::text = 'failed'))::int as held
+                      (count(*) filter (where l.channel::text = 'whatsapp' and l.status::text in ('queued', 'sent', 'uncertain')))::int as on_its_way,
+                      (count(*) filter (where l.channel::text = 'whatsapp' and l.status::text in ('delivered', 'read')))::int as delivered,
+                      (count(*) filter (where l.channel::text = 'whatsapp' and l.status::text = 'read'))::int as read,
+                      (count(*) filter (where l.channel::text = 'whatsapp' and (l.status::text like 'blocked_%' or l.status::text = 'failed')))::int as held,
+                      (count(*) filter (where l.channel::text = 'family_app' and l.status::text in ('delivered', 'read')))::int as in_app,
+                      (count(*) filter (where l.channel::text = 'email' and l.status::text <> 'failed' and l.status::text not like 'blocked_%'))::int as by_email
                  from communication_log l where l.dedupe_key like 'notice:%' group by 1, 2) k on k.school_id = n.school_id and k.notice_id = n.notice_id::text`;
 const shape = (r: Record<string, unknown>): Notice => ({ ...(r as unknown as Notice), written_at: new Date(r.written_at as string).toISOString() });
 
@@ -65,10 +79,24 @@ export async function writeNotice(db: PoolClient, actor: Actor, input: { classId
   return { ok: true, noticeId: id };
 }
 
-export type DecideResult = { ok: true; queued: number; held: number; withoutNumber: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'already_decided' | 'reason' | 'nobody' };
+export type DecideResult = { ok: true; queued: number; held: number; withoutNumber: number; inApp: number; byEmail: number } | { ok: false; reason: 'not_allowed' | 'not_found' | 'already_decided' | 'reason' | 'nobody' };
 
-// The principal approves: that is what sends it. Or rejects, with a reason for the writer.
-export async function decideNotice(db: PoolClient, queue: JobQueue, actor: Actor, noticeId: string, decision: { approve: true } | { approve: false; reason: string }): Promise<DecideResult> {
+// Whether WhatsApp is set up for this school: the platform's account is on and this school may send. False when it cannot be
+// read, so a guardian with an address is written to by email rather than by nothing.
+export const whatsappSetUp = (schoolId: string): Promise<boolean> => withPlatformService((p) => whatsappIsLive(p, schoolId)).catch(() => false);
+
+// The principal approves: that is what sends it. Or rejects, with a reason for the writer. `whatsappLive`: whether
+// WhatsApp is set up for this school (whatsappIsLive, asked as the platform by the caller); when it is not, a guardian
+// with an address is written to by email.
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+export async function decideNotice(
+  db: PoolClient,
+  queue: JobQueue,
+  actor: Actor,
+  noticeId: string,
+  decision: { approve: true } | { approve: false; reason: string },
+  opts: { whatsappLive?: boolean } = {}
+): Promise<DecideResult> {
   if (actor.role !== 'principal') return { ok: false, reason: 'not_allowed' };
   const notice = (await db.query(`select n.class_id, n.body, n.status, c.name as class_name from class_notices n left join classes c on c.school_id = n.school_id and c.class_id = n.class_id where n.school_id = $1 and n.notice_id = $2 for update of n`, [actor.schoolId, noticeId])).rows[0];
   if (!notice) return { ok: false, reason: 'not_found' };
@@ -78,31 +106,62 @@ export async function decideNotice(db: PoolClient, queue: JobQueue, actor: Actor
     if (!reason) return { ok: false, reason: 'reason' };
     await db.query(`update class_notices set status = 'rejected', decided_by = $3, decided_at = now(), reject_reason = $4 where school_id = $1 and notice_id = $2`, [actor.schoolId, noticeId, actor.userId, reason]);
     await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'notice.rejected', targetType: 'class_notices', targetId: noticeId, beforeState: { status: 'waiting' }, afterState: { status: 'rejected' } });
-    return { ok: true, queued: 0, held: 0, withoutNumber: 0 };
+    return { ok: true, queued: 0, held: 0, withoutNumber: 0, inApp: 0, byEmail: 0 };
   }
+  // One row for each guardian and child, with the two consents as they stand now: the school's core records (what the Family
+  // app shows by) and operational communication (what a message to the guardian needs).
   const guardians = (await db.query(
-    `select s.student_id, p.parent_id, p.phone
+    `select s.student_id, p.parent_id, p.phone, p.email,
+            (sc.is_test_fixture or coalesce((select c.granted from consent_ledger c where c.school_id = s.school_id and c.student_id = s.student_id and c.purpose::text = 'core_records' order by c.created_at desc limit 1), false)) as app_ok,
+            coalesce((select c.granted from consent_ledger c where c.school_id = s.school_id and c.student_id = s.student_id and c.purpose::text = 'operational_communication' order by c.created_at desc limit 1), false) as comm_ok
        from students s join parent_student_map m on m.school_id = s.school_id and m.student_id = s.student_id
        join parents p on p.school_id = m.school_id and p.parent_id = m.parent_id
+       join schools sc on sc.school_id = s.school_id
       where s.school_id = $1 and s.status = 'active' and ($2::uuid is null or s.class_id = $2) order by s.name, s.student_id, p.created_at, p.parent_id`,
     [actor.schoolId, notice.class_id]
-  )).rows as { student_id: string; parent_id: string; phone: string | null }[];
-  const out = { queued: 0, held: 0, withoutNumber: 0 };
-  // A parent of two children in the class (or the school) gets the notice once.
+  )).rows as { student_id: string; parent_id: string; phone: string | null; email: string | null; app_ok: boolean; comm_ok: boolean }[];
+  const linked = new Set((await linkedChildrenForNotice(db, [...new Set(guardians.map((g) => g.parent_id))])).map((l) => `${l.parentId}:${l.studentId}`));
+  const school = String((await db.query(`select name from schools where school_id = $1`, [actor.schoolId])).rows[0]?.name ?? '');
+  const out = { queued: 0, held: 0, withoutNumber: 0, inApp: 0, byEmail: 0 };
+  // A parent of two children in the class (or the school) gets the notice once on each way.
   const told = new Set<string>();
+  const app = new Set<string>();
+  const mailed = new Set<string>();
+  // A line in the delivery log for the Family app or email: free, no phone, no provider.
+  const logged = (channel: 'family_app' | 'email', status: 'delivered' | 'queued', g: { student_id: string; parent_id: string }) =>
+    db.query(
+      `insert into communication_log (school_id, channel, template_name, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, student_id, parent_id, purpose, delivered_at)
+       values ($1, $2::comm_channel, 'class_notice', false, 0, 0, 'not_billable', $3::comm_status, $4, $5, $6, 'operational_communication', case when $3 = 'delivered' then now() else null end)`,
+      [actor.schoolId, channel, status, `notice:${noticeId}:${g.student_id}:${g.parent_id}:${channel === 'email' ? 'email' : 'app'}`, g.student_id, g.parent_id]
+    );
   for (const g of guardians) {
+    let whatsappQueued = false;
     const phone = normalizePhone(String(g.phone ?? ''));
-    if (!phone) {
-      out.withoutNumber += 1;
-      continue;
+    if (!phone) out.withoutNumber += 1;
+    else if (!told.has(phone)) {
+      told.add(phone);
+      const r = await queueWhatsAppMessage(db, queue, { schoolId: actor.schoolId, studentId: g.student_id, parentId: g.parent_id, purpose: 'operational_communication', toPhone: phone, templateName: 'class_notice', templateParams: { class: notice.class_name ?? 'All classes', notice: oneLine(notice.body) }, dedupeKey: `notice:${noticeId}:${g.student_id}:${g.parent_id}` });
+      if (r.status === 'queued') {
+        out.queued += 1;
+        whatsappQueued = true;
+      } else out.held += 1;
+    } else whatsappQueued = true;
+    // The Family app: linked, a child of theirs matched, the school's consent in force.
+    if (g.app_ok && linked.has(`${g.parent_id}:${g.student_id}`) && !app.has(g.parent_id)) {
+      app.add(g.parent_id);
+      await logged('family_app', 'delivered', g);
+      out.inApp += 1;
     }
-    if (told.has(phone)) continue;
-    told.add(phone);
-    const r = await queueWhatsAppMessage(db, queue, { schoolId: actor.schoolId, studentId: g.student_id, parentId: g.parent_id, purpose: 'operational_communication', toPhone: phone, templateName: 'class_notice', templateParams: { class: notice.class_name ?? 'All classes', notice: oneLine(notice.body) }, dedupeKey: `notice:${noticeId}:${g.student_id}:${g.parent_id}` });
-    if (r.status === 'queued') out.queued += 1;
-    else out.held += 1;
+    // Email: an address on the record, consent in force, and WhatsApp not set up or not queued for this guardian.
+    const email = String(g.email ?? '').trim().toLowerCase();
+    if (g.comm_ok && EMAIL.test(email) && !mailed.has(email) && !(opts.whatsappLive && whatsappQueued)) {
+      mailed.add(email);
+      await queue.enqueue(db, { type: 'email.send', idempotencyKey: `email.send:notice:${noticeId}:${email}`, schoolId: actor.schoolId, maxAttempts: 4, payload: { to: [email], template: 'school_notice', data: { schoolName: school, className: notice.class_name ?? '', body: notice.body } } });
+      await logged('email', 'queued', g);
+      out.byEmail += 1;
+    }
   }
-  if (out.queued + out.held === 0) return { ok: false, reason: 'nobody' };
+  if (out.queued + out.held + out.inApp + out.byEmail === 0) return { ok: false, reason: 'nobody' };
   await db.query(`update class_notices set status = 'sent', decided_by = $3, decided_at = now() where school_id = $1 and notice_id = $2`, [actor.schoolId, noticeId, actor.userId]);
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'notice.approved_and_sent', targetType: 'class_notices', targetId: noticeId, beforeState: { status: 'waiting' }, afterState: { status: 'sent', ...out } });
   return { ok: true, ...out };

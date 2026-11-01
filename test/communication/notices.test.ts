@@ -126,7 +126,7 @@ describe('on the real schema', () => {
 
   it('approved by the principal: once to each guardian of that class and no other; no consent, held; no number, no message', async () => {
     const [mine] = await as(teacher5A, (c) => listNotices(c, A));
-    expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), mine.notice_id, { approve: true }))).toEqual({ ok: true, queued: 2, held: 1, withoutNumber: 1 });
+    expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), mine.notice_id, { approve: true }))).toEqual({ ok: true, queued: 2, held: 1, withoutNumber: 1, inApp: 0, byEmail: 0 });
     const rows = await log(mine.notice_id);
     // Dev and Esha share a guardian: one message, not two. Farah (6-B) is not in it.
     expect(rows.map((r: { child: string; phone: string; status: string }) => [r.child, r.phone, r.status])).toEqual([['Asha', '+919000000001', 'queued'], ['Bilal', '+919000000002', 'blocked_consent'], ['Dev', '+919000000004', 'queued']]);
@@ -134,7 +134,7 @@ describe('on the real schema', () => {
     expect((await db.pg.query(`select count(*)::int as n from communication_log`)).rows[0].n).toBe(3);
     expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), mine.notice_id, { approve: true }))).toEqual({ ok: false, reason: 'already_decided' });
     await expect(as(principal, (c) => c.query(`update class_notices set status = 'rejected', reject_reason = 'late' where notice_id = '${mine.notice_id}'`))).rejects.toThrow(/decided once/);
-    expect((await db.pg.query(`select after_state from audit_log where event_action = 'notice.approved_and_sent'`)).rows).toEqual([{ after_state: { status: 'sent', queued: 2, held: 1, withoutNumber: 1 } }]);
+    expect((await db.pg.query(`select after_state from audit_log where event_action = 'notice.approved_and_sent'`)).rows).toEqual([{ after_state: { status: 'sent', queued: 2, held: 1, withoutNumber: 1, inApp: 0, byEmail: 0 } }]);
   });
 
   it('who received and who read it is counted from the message log, and the writer sees it', async () => {
@@ -152,7 +152,7 @@ describe('on the real schema', () => {
     const [theirs] = await as(teacher6B, (c) => listNotices(c, A));
     const before = await sends();
     expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), theirs.notice_id, { approve: false, reason: '  ' }))).toEqual({ ok: false, reason: 'reason' });
-    expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), theirs.notice_id, { approve: false, reason: 'Say which Monday.' }))).toEqual({ ok: true, queued: 0, held: 0, withoutNumber: 0 });
+    expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), theirs.notice_id, { approve: false, reason: 'Say which Monday.' }))).toEqual({ ok: true, queued: 0, held: 0, withoutNumber: 0, inApp: 0, byEmail: 0 });
     expect(await sends()).toBe(before);
     expect((await as(teacher6B, (c) => listNotices(c, A)))[0]).toMatchObject({ status: 'rejected', reject_reason: 'Say which Monday.', decided_by_name: 'Priya Principal' });
     expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), theirs.notice_id, { approve: true }))).toEqual({ ok: false, reason: 'already_decided' });
@@ -160,7 +160,7 @@ describe('on the real schema', () => {
 
   it('a notice for all classes goes to every class’s guardians, once each', async () => {
     const all = (await as(principal, (c) => listNotices(c, A))).find((n) => n.class_id === null)!;
-    expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), all.notice_id, { approve: true }))).toEqual({ ok: true, queued: 3, held: 1, withoutNumber: 1 });
+    expect(await as(principal, (c) => decideNotice(c, queue, actor(principal), all.notice_id, { approve: true }))).toEqual({ ok: true, queued: 3, held: 1, withoutNumber: 1, inApp: 0, byEmail: 0 });
     const rows = await log(all.notice_id);
     expect(rows.map((r: { child: string }) => r.child)).toEqual(['Asha', 'Bilal', 'Dev', 'Farah']);
     expect(rows[0].p).toEqual({ class: 'All classes', notice: 'School is closed on Friday.' });
