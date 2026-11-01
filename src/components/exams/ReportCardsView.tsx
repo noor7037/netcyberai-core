@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { InfoTip } from '@/components/app-ui/InfoTip';
 import { Badge } from '@/components/ui/Badge';
+import { Modal } from '@/components/ui/Modal';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import type { ReportCardsScreen } from '@/lib/exams/publish';
@@ -33,6 +34,8 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
   const [data, setData] = useState<ReportCardsScreen | null>(null);
   const [failed, setFailed] = useState(false);
   const [busy, setBusy] = useState(false);
+  // W15-B: publishing is confirmed first, in words that say what happens (marks frozen, parents told).
+  const [confirming, setConfirming] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string } | null>(null);
   const [reason, setReason] = useState('');
   const [remarks, setRemarks] = useState<Record<string, string>>({});
@@ -160,7 +163,7 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
           {data.scheme ? <p>{t('rc.publish.how', { className: data.className, version: data.scheme.version })}</p> : <p>{t('rc.publish.noScheme')}</p>}
           {data.papers.some((p) => !p.entered) && <p className="rounded-md bg-off-white px-3 py-2">{t('rc.publish.waiting')}</p>}
           {data.mayPublish ? (
-            <button type="button" data-rc-publish-button className={`${PRIMARY} self-start`} disabled={busy || !data.ready} onClick={() => void post({ action: 'publish' }, (b) => t('rc.publish.done', { version: Number(b.version) }))}>
+            <button type="button" data-rc-publish-button className={`${PRIMARY} self-start`} disabled={busy || !data.ready} onClick={() => setConfirming(true)}>
               {t('rc.publish.button')}
             </button>
           ) : (
@@ -168,6 +171,29 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
           )}
         </section>
       )}
+
+      <Modal open={confirming} onClose={() => setConfirming(false)} title={t('rc.publish.confirm.title', { className: data.className })}>
+        <div data-rc-publish-confirm className="flex flex-col gap-4">
+          <p>{t('rc.publish.confirm.text', { className: data.className })}</p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              data-rc-publish-confirm-button
+              className={PRIMARY}
+              disabled={busy}
+              onClick={() => {
+                setConfirming(false);
+                void post({ action: 'publish' }, (b) => t('rc.publish.done', { version: Number(b.version) }));
+              }}
+            >
+              {t('rc.publish.confirm.yes')}
+            </button>
+            <button type="button" data-rc-publish-cancel className={TAP} onClick={() => setConfirming(false)}>
+              {t('rc.publish.confirm.no')}
+            </button>
+          </div>
+        </div>
+      </Modal>
 
       {data.mayReopen && (
         <section data-rc-reopen className={SECTION}>

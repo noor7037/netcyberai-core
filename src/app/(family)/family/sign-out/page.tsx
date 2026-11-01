@@ -8,7 +8,7 @@ export default function FamilySignOutPage() {
   const lang = familyLangBeforeSignIn();
   return (
     <div lang={lang} className="mx-auto flex min-h-screen w-full max-w-md flex-col px-4 pt-10 text-ink">
-      <FamilySignOutNow working={t(lang, 'fam.signOut.working')} signIn={t(lang, 'fam.signOut.signIn')} />
+      <FamilySignOutNow ask={t(lang, 'fam.signOut.ask')} confirm={t(lang, 'fam.signOut.confirm')} stay={t(lang, 'fam.signOut.stay')} working={t(lang, 'fam.signOut.working')} />
     </div>
   );
 }

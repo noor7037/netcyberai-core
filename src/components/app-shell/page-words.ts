@@ -39,6 +39,7 @@ export const PAGE_WORDS = {
     'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.', 'control.invite.', 'control.school.staff.',
     'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.', 'control.invite.', 'control.school.attendance.',
     'login.', 'moduleOff.', 'modules.', 'onb.consent.', 'onb.flags.', 'onb.invite.', 'onb.pilot.', 'onb.stage.', 'rails.', 'set.', 'viewAs.', 'control.invite.', 'control.school.fees.', 'pay.method.',
+    'school.aiPages.',
   ],
   '/control/system-settings': ['control.sys.'],
   '/control/templates': ['tpl.'],
@@ -49,7 +50,7 @@ export const PAGE_WORDS = {
   '/app/learning-genome': ['gs.'],
   '/app/settings': ['branding.', 'fee.failed', 'rails.', 'set.off', 'set.on'],
   '/app/staff': ['sprof.open', 'staff.reset.'],
-  '/design-system/shell/control': ['billing.form.', 'billing.source.', 'moduleOff.', 'modules.'],
+  '/design-system/shell/control': ['billing.form.', 'billing.source.', 'moduleOff.', 'modules.', 'school.aiPages.'],
 } as const satisfies Record<string, readonly string[]>;
 
 export type PageRoute = keyof typeof PAGE_WORDS;

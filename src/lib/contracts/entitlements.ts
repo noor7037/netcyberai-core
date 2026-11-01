@@ -61,6 +61,8 @@ export type EntitlementChange = {
   moduleId: ModuleId;
   enabled: boolean;
   limits?: Readonly<Record<string, number>>;
+  // Takes one limit back to the plan's (W15-D): the key leaves the school's row and the plan's value goes in.
+  clearLimit?: string;
   reason: string;
 };
 
@@ -73,6 +75,7 @@ export type EntitlementHistoryEntry = {
   kind: 'module_changed' | 'access_changed' | 'plan_applied';
   moduleId?: string;
   enabled?: { from: boolean | null; to: boolean };
+  limit?: { key: string; from: number | null; to: number | null; toPlan?: boolean }; // a limit that changed with it (W15-D)
   accessMode?: { from: AccessMode | null; to: AccessMode };
   graceEndsAt?: string | null;
   plan?: string;
@@ -88,6 +91,11 @@ export const accessModeLabel = (m: AccessMode): string => ACCESS_WORDS[m];
 
 // The change in one sentence, for the history list.
 export function describeEntitlementChange(e: EntitlementHistoryEntry, moduleLabel: (id: string) => string): string {
+  if (e.kind === 'module_changed' && e.limit && e.enabled && e.enabled.from === e.enabled.to) {
+    const name = e.limit.key === 'ai_marking_pages' ? 'AI marking pages a month' : e.limit.key.replace(/_/g, ' ');
+    const was = e.limit.from !== null ? ` (was ${e.limit.from})` : '';
+    return `${moduleLabel(e.moduleId ?? '')}: ${name} ${e.limit.toPlan ? `back to the plan’s${e.limit.to !== null ? `, ${e.limit.to}` : ''}` : e.limit.to === null ? 'removed' : `set to ${e.limit.to}`}${was}`;
+  }
   if (e.kind === 'module_changed' && e.enabled) return `${moduleLabel(e.moduleId ?? '')} switched ${e.enabled.to ? 'on' : 'off'}`;
   if (e.kind === 'access_changed' && e.accessMode) {
     const from = e.accessMode.from ? ` (was ${accessModeLabel(e.accessMode.from).toLowerCase()})` : '';

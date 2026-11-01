@@ -9957,4 +9957,31 @@ export const en = {
   'fam.parent.ov.homework': 'Homework due',
   'fam.parent.ov.homeworkNone': 'Nothing due',
   // w14-g end
+  // w15 start
+  'monitoring.jobs.reason.email_refused': 'The email service refused this address, so the message was not sent. Check the address; a real address sends.',
+  'monitoring.jobs.reason.already_has_login': 'This email already has a login, so no invite was sent.',
+  'monitoring.jobs.reason.server_setting': 'A server setting is missing or wrong. Fix it in the deployment and retry.',
+  'monitoring.jobs.reason.provider_down': 'The service it talks to did not answer in time. It will be tried again.',
+  'monitoring.jobs.reason.address_invalid': 'The address or number was refused: it is not one that can be reached.',
+  'rc.publish.confirm.title': 'Publish the result of {className}?',
+  'rc.publish.confirm.text': 'This freezes the marks, papers and remarks of {className}, tells every parent at once, and makes each child\'s report card. To change a mark afterwards, the principal has to reopen the result with a reason.',
+  'rc.publish.confirm.yes': 'Yes, publish',
+  'rc.publish.confirm.no': 'Cancel',
+  'fam.signOut.ask': 'Sign out of the Family app on this phone?',
+  'fam.signOut.confirm': 'Sign out',
+  'fam.signOut.stay': 'Stay',
+  // w15 end
+  // w15-d start
+  'school.aiPages.title': 'AI marking pages a month',
+  'school.aiPages.help': 'How many answer-sheet pages the AI may read and mark for this school each month. A number set here holds even when a plan is applied again. “Use the plan’s limit” puts the plan’s own number back.',
+  'school.aiPages.plan': 'Plan: {n} pages a month',
+  'school.aiPages.planNone': 'Plan: no limit set',
+  'school.aiPages.byHand': 'This school: {n} (set by hand)',
+  'school.aiPages.fromPlan': 'This school: {n} (from the plan)',
+  'school.aiPages.none': 'This school: no limit, so AI marking is off',
+  'school.aiPages.input': 'Pages a month for this school',
+  'school.aiPages.invalid': 'Type a whole number, 0 or more.',
+  'school.aiPages.set': 'Set for this school',
+  'school.aiPages.usePlan': 'Use the plan’s limit',
+  // w15-d end
 } as const;

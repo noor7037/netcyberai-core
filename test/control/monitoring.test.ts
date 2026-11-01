@@ -28,13 +28,26 @@ vi.mock('next/navigation', () => ({ useRouter: () => ({ refresh: () => undefined
 import { GET as healthEndpoint } from '@/app/api/health/route';
 import { LangProvider } from '@/components/app-shell/LangContext';
 import { ageWords, MonitoringView } from '@/components/control/MonitoringView';
-import { cutContacts, FAILED_JOBS_LISTED, invitationsWaiting, loadMonitoring, maskStaffEmail, MONITORING_DAYS, needsALook, type Monitoring } from '@/lib/control/monitoring';
+import { cutContacts, FAILED_JOBS_LISTED, invitationsWaiting, loadMonitoring, maskStaffEmail, MONITORING_DAYS, needsALook, type Monitoring, failureReason } from '@/lib/control/monitoring';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
 import { createPgJobQueue, retryDeadJob } from '@/lib/jobs/pg-queue';
 import { runJobs } from '@/lib/jobs/runner';
 import { BACKLOG_AFTER_MINUTES } from '@/lib/observability/health';
 import { indiaDate } from '@/lib/time/india';
 import { SCHOOL_PREFIX, decideTemplate, recordMetaDecision, type TemplateLanguage } from '@/lib/whatsapp/templates';
+
+describe('why a job failed, in plain words (W15-A)', () => {
+  it('names the usual causes and leaves the rest to the error line', () => {
+    expect(failureReason('invite.send', 'invite failed: 500 unexpected_failure email_not_sent')).toBe('email_refused');
+    expect(failureReason('invite.send', 'invite failed: 422 validation_failed')).toBe('address_invalid');
+    expect(failureReason('invite.send', 'invite failed: 401 no_authorization')).toBe('server_setting');
+    expect(failureReason('email.send', 'email is not configured: RESEND_API_KEY is not set')).toBe('server_setting');
+    expect(failureReason('whatsapp.send', 'timeout talking to the provider')).toBe('provider_down');
+    expect(failureReason('invite.send', 'invite failed: 422 email_exists')).toBe('already_has_login');
+    expect(failureReason('fees.nightly', 'division by zero')).toBeNull();
+    expect(failureReason('fees.nightly', null)).toBeNull();
+  });
+});
 
 describe('what may be shown of an error or a reason', () => {
   it('cuts an email address and anything that looks like a phone number, however it is written', () => {

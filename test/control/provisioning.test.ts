@@ -19,6 +19,7 @@ import { ACCESS_COOKIE } from '@/lib/auth/cookies';
 import { POST } from '@/app/api/control/onboarding/provision/route';
 import { teacherClass } from '@/lib/onboarding/provision';
 import { inviteSendState } from '@/lib/onboarding/invitations';
+import { inviteSendError } from '@/lib/auth/admin-actions';
 
 const PLATFORM = 'e6000000-0000-4000-8000-000000000001';
 const OTHER = 'e6000000-0000-4000-8000-000000000002';
@@ -277,6 +278,12 @@ describe('how an invitation’s sending is going (W11-B)', () => {
     expect(inviteSendState('pending', { status: 'pending', attempts: 0, last_error: null })).toEqual({ state: 'waiting', setting: null });
     expect(inviteSendState('pending', { status: 'pending', attempts: 1, last_error: 'invite failed: 500 unexpected_failure email_not_sent' })).toEqual({ state: 'failing', setting: null });
     expect(inviteSendState('pending', { status: 'dead', attempts: 8, last_error: 'invite failed: 500 unexpected_failure' })).toEqual({ state: 'failed', setting: null });
+    // W15-A: a refusal is final (the job dies at once); a server fault or a rate limit is tried again.
+    expect(inviteSendError({ status: 500, code: 'unexpected_failure', message: 'Error sending invite email' })).toEqual({ message: 'invite failed: 500 unexpected_failure email_not_sent', final: true });
+    expect(inviteSendError({ status: 422, code: 'validation_failed', message: 'Unable to validate email address: invalid format' })).toMatchObject({ final: true });
+    expect(inviteSendError({ status: 500, code: 'unexpected_failure', message: 'database error' })).toMatchObject({ message: 'invite failed: 500 unexpected_failure', final: false });
+    expect(inviteSendError({ status: 429, code: 'over_email_send_rate_limit', message: 'rate limit' })).toMatchObject({ final: false });
+    expect(inviteSendError({ status: 401, code: 'no_authorization', message: 'Invalid API key' })).toMatchObject({ final: false });
   });
   it('a missing server setting is named', () => {
     expect(inviteSendState('pending', { status: 'pending', attempts: 1, last_error: 'email is not configured: RESEND_API_KEY and EMAIL_FROM are required' }).setting).toBe('RESEND_API_KEY');

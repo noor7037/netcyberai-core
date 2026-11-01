@@ -3,6 +3,7 @@ import { hasServiceRoleKey } from './env';
 import { AuthError } from './errors';
 import { passwordProblem, signOutEverywhere } from './account';
 import { inviteFailure, type InviteFailure } from './invite-failure';
+import { PermanentJobError } from '@/lib/jobs/types';
 
 // Founder console account tools (C91), super_admin only (the routes check).
 // They work without any email being delivered: the founder can create a
@@ -81,10 +82,20 @@ export async function inviteUserToSchool(
   if (!error && data?.user) return { userId: data.user.id };
   const code = (error as { code?: string } | null)?.code;
   if (code === 'email_exists' || /already (been )?registered/i.test(error?.message ?? '')) return { exists: true };
-  // Supabase Auth's mail sender refused the email (its SMTP answer is in Supabase's own log, not here): said as such in
-  // the job's error, so Control can tell it from a server setting (W11-B).
-  const unsent = /sending .*email|email.*(send|deliver)/i.test(error?.message ?? '') ? ' email_not_sent' : '';
-  throw new Error(`invite failed: ${error?.status ?? 'no status'} ${code ?? ''}${unsent}`.trim());
+  const failed = inviteSendError({ status: error?.status, code, message: error?.message });
+  throw failed.final ? new PermanentJobError(failed.message) : new Error(failed.message);
+}
+
+// What an invite's failure means for its job (W15-A, the founder's verification of 1 Nov): a refusal is final, so the
+// job dies at once instead of trying eight times and showing a raw "500 unexpected_failure" in Monitoring. Supabase
+// Auth's mail sender refusing the address ("error sending invite email"; its SMTP answer is in Supabase's own log) and
+// any 4xx but a rate limit (429) or a server setting (401/403, which the founder fixes and the retry then passes)
+// are refusals. Said as such in the job's error, so Control can tell them apart (W11-B).
+export function inviteSendError(error: { status?: number | null; code?: string | null; message?: string | null }): { message: string; final: boolean } {
+  const status = typeof error.status === 'number' ? error.status : null;
+  const unsent = /sending .*email|email.*(send|deliver)/i.test(error.message ?? '');
+  const refused = unsent || (status !== null && status >= 400 && status < 500 && ![401, 403, 408, 429].includes(status));
+  return { message: `invite failed: ${status ?? 'no status'} ${error.code ?? ''}${unsent ? ' email_not_sent' : ''}`.replace(/\s+/g, ' ').trim(), final: refused };
 }
 
 // A sign-in account the founder makes from Control with a password he hands over (C230-D): confirmed at once, so no
