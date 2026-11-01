@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withTenantContext } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
-import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory, loadEntitlements } from '@/lib/frameworks/entitlements';
+import { changeModuleEntitlement, changeSchoolAccess, entitlementHistory, loadEntitlements, loadPlanLimits } from '@/lib/frameworks/entitlements';
 import { applyPlan, listPlans } from '@/lib/frameworks/plans';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { AccessMode, PlanSummary } from '@/lib/contracts/entitlements';
@@ -10,6 +10,8 @@ import type { ModuleId } from '@/lib/contracts/modules';
 
 // The founder's entitlement switches for one school (Control, C112).
 // PUT { moduleId, enabled, limits?, reason } switches a module;
+// PUT { moduleId, enabled, clearLimit: 'ai_marking_pages', reason } takes that limit back to the plan's (W15-D);
+// GET also answers planLimits: the plan's own limits per module, beside the school's (entitlements.modules[].limits).
 // PUT { accessMode, graceEndsAt?, reason } sets the access mode by hand.
 // PUT { applyPlan, reason } puts the school on a plan: exactly that plan's
 // modules (C114, C204). The plans are rows of the plans table; a retired one
@@ -29,7 +31,7 @@ export async function GET(req: NextRequest, { params }: { params: { schoolId: st
       const plans: PlanSummary[] = (await listPlans(db))
         .filter((p) => (!p.retired || p.planId === entitlements.plan) && (!p.testSchoolsOnly || testSchool))
         .map((p) => ({ planId: p.planId, label: p.name, moduleIds: p.moduleIds }));
-      return { entitlements, plans, ...(withHistory ? { history: await entitlementHistory(db, params.schoolId) } : {}) };
+      return { entitlements, plans, planLimits: await loadPlanLimits(db, params.schoolId), ...(withHistory ? { history: await entitlementHistory(db, params.schoolId) } : {}) };
     });
     return NextResponse.json(data);
   } catch (err) {
@@ -57,11 +59,13 @@ export async function PUT(req: NextRequest, { params }: { params: { schoolId: st
         const applied = await applyPlan(db, params.schoolId, body.applyPlan, actor, reason);
         return applied.ok ? { ok: true as const, entitlements: await loadEntitlements(db, params.schoolId) } : { ok: false as const, status: 400, error: applied.error };
       }
+      // A clear keeps the module as it is, so it must say how that is: a missing flag would switch the module off.
+      if (body.clearLimit !== undefined && typeof body.enabled !== 'boolean') return { ok: false as const, status: 400, error: 'enabled is required with clearLimit' };
       const r =
         typeof body.moduleId === 'string'
           ? await changeModuleEntitlement(
               db,
-              { schoolId: params.schoolId, moduleId: body.moduleId as ModuleId, enabled: body.enabled === true, limits: body.limits, reason: body.reason },
+              { schoolId: params.schoolId, moduleId: body.moduleId as ModuleId, enabled: body.enabled === true, limits: body.limits, ...(body.clearLimit !== undefined ? { clearLimit: body.clearLimit } : {}), reason: body.reason },
               actor
             )
           : await changeSchoolAccess(

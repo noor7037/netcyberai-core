@@ -50,6 +50,16 @@ describe('Control: modules and access', () => {
     expect(html.slice(0, html.indexOf('<dialog'))).not.toContain('role="alert"'); // not also behind it
   });
 
+  it('the Exams row has the AI marking page limit block only while Exams is on, with 44 px buttons', () => {
+    expect(render()).not.toContain('data-ai-pages-limit');
+    const on: EntitlementsData = { ...data, planLimits: { exams: { ai_marking_pages: 2000 } }, entitlements: { ...data.entitlements, modules: { ...data.entitlements.modules, exams: { enabled: true, source: 'founder_override', limits: { ai_marking_pages: 5000 } } } } };
+    const html = render(on);
+    expect(html).toContain('data-ai-pages-limit');
+    expect(html).toContain('id="ai-pages-input"');
+    expect(html).toContain('id="ai-pages-reason"');
+    expect(html.slice(html.indexOf('data-ai-pages-limit'))).toContain('min-h-[44px]');
+  });
+
   it('shows who changed what and why, or says there is no history yet', () => {
     const html = render();
     expect(html).toContain('Fees switched off');

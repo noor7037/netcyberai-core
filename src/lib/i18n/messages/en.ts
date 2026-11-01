@@ -9957,4 +9957,17 @@ export const en = {
   'fam.parent.ov.homework': 'Homework due',
   'fam.parent.ov.homeworkNone': 'Nothing due',
   // w14-g end
+  // w15-d start
+  'school.aiPages.title': 'AI marking pages a month',
+  'school.aiPages.help': 'How many answer-sheet pages the AI may read and mark for this school each month. A number set here holds even when a plan is applied again. “Use the plan’s limit” puts the plan’s own number back.',
+  'school.aiPages.plan': 'Plan: {n} pages a month',
+  'school.aiPages.planNone': 'Plan: no limit set',
+  'school.aiPages.byHand': 'This school: {n} (set by hand)',
+  'school.aiPages.fromPlan': 'This school: {n} (from the plan)',
+  'school.aiPages.none': 'This school: no limit, so AI marking is off',
+  'school.aiPages.input': 'Pages a month for this school',
+  'school.aiPages.invalid': 'Type a whole number, 0 or more.',
+  'school.aiPages.set': 'Set for this school',
+  'school.aiPages.usePlan': 'Use the plan’s limit',
+  // w15-d end
 } as const;

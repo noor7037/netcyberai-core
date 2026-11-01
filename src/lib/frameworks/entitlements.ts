@@ -1,7 +1,9 @@
 import { writeEntitlementAudit } from '@/lib/audit/log';
 import type { StaffRole } from '@/lib/auth/types';
 import { canWrite, isAlwaysOn, isModuleEnabled, type AccessMode, type EntitlementChange, type EntitlementHistoryEntry, type ModuleEntitlement, type SchoolEntitlements } from '@/lib/contracts/entitlements';
+import { AI_MARKING_PAGES_LIMIT } from '@/lib/contracts/marking';
 import { isModuleId, moduleById, type ModuleId, type SchoolRole } from '@/lib/contracts/modules';
+import { loadPlan, type Plan, type PlanLimits } from '@/lib/frameworks/plans';
 import type { Sql } from '@/lib/jobs/types';
 
 // Per-school entitlements (contracts/entitlements.ts, C112): read by every
@@ -45,6 +47,18 @@ export async function loadEntitlements(db: Sql, schoolId: string): Promise<Schoo
   };
 }
 
+// The plan the school is on (school_entitlements.plan), or null for none. Runs as nca_super: the plans table is the platform's.
+export async function loadSchoolPlan(db: Sql, schoolId: string): Promise<Plan | null> {
+  const { rows } = await db.query(`select plan from school_entitlements where school_id = $1`, [schoolId]);
+  return loadPlan(db, rows[0]?.plan);
+}
+
+// The plan's own limits, per module, so Control can show them beside the school's (W15-D). Marking reads the school's own
+// row (loadEntitlements), never this. Runs as nca_super.
+export async function loadPlanLimits(db: Sql, schoolId: string): Promise<PlanLimits> {
+  return (await loadSchoolPlan(db, schoolId))?.limits ?? {};
+}
+
 export type ModuleAccess =
   | { ok: true; entitlements: SchoolEntitlements }
   | { ok: false; status: 403; error: 'role_not_allowed' | 'module_not_enabled' | 'read_only' };
@@ -74,7 +88,19 @@ function validLimits(limits: unknown): limits is Record<string, number> {
   return entries.length <= 20 && entries.every(([k, v]) => /^[a-z][a-z0-9_]{0,39}$/.test(k) && Number.isInteger(v) && (v as number) >= 0);
 }
 
+// The limits the founder may take back to the plan's (W15-D), by module. Written here, not read from Control's billing
+// list, which imports this file's neighbours (a cycle).
+const CLEARABLE_LIMITS: Partial<Record<ModuleId, readonly string[]>> = { exams: [AI_MARKING_PAGES_LIMIT] };
+const sameLimits = (a: Record<string, number>, b: Record<string, number>): boolean => {
+  const ka = Object.keys(a).sort();
+  const kb = Object.keys(b).sort();
+  return ka.length === kb.length && ka.every((k, i) => k === kb[i] && a[k] === b[k]);
+};
+
 // The founder's module switch (Control). Runs as nca_super.
+// `limits` sets the school's own limits (replacing the row's). `clearLimit` takes one limit back to the plan's: the key
+// leaves the school's row and the plan's value for it, if the plan has one, goes in; when nothing else on the module
+// differs from the plan, the row's source is 'plan' again, so a re-applied plan owns it.
 export async function changeModuleEntitlement(
   db: Sql,
   change: EntitlementChange,
@@ -83,6 +109,11 @@ export async function changeModuleEntitlement(
   if (!isModuleId(change.moduleId)) return { ok: false, error: 'unknown module' };
   if (isAlwaysOn(change.moduleId) && !change.enabled) return { ok: false, error: 'Help Center and Raise Ticket are always on' };
   if (change.limits !== undefined && !validLimits(change.limits)) return { ok: false, error: 'limits must be whole numbers of at least 0' };
+  const clearKey = change.clearLimit;
+  if (clearKey !== undefined) {
+    if (change.limits !== undefined) return { ok: false, error: 'set a limit or clear one, not both' };
+    if (typeof clearKey !== 'string' || !CLEARABLE_LIMITS[change.moduleId]?.includes(clearKey)) return { ok: false, error: 'unknown limit' };
+  }
   const reason = typeof change.reason === 'string' ? change.reason.trim() : '';
   if (reason.length < 3 || reason.length > 500) return { ok: false, error: 'a reason of 3 to 500 characters is required' };
 
@@ -90,15 +121,28 @@ export async function changeModuleEntitlement(
     `select enabled, source, limits from school_module_entitlements where school_id = $1 and module_id = $2`,
     [change.schoolId, change.moduleId]
   );
+  let limits: Record<string, number> | undefined = change.limits as Record<string, number> | undefined;
+  let source: 'founder_override' | 'plan' = 'founder_override';
+  if (clearKey !== undefined) {
+    if (!before[0]) return { ok: false, error: 'this school has no row for that module, so there is no limit to clear' };
+    const plan = await loadSchoolPlan(db, change.schoolId);
+    const planOwn = plan?.limits[change.moduleId] ?? {};
+    const next: Record<string, number> = { ...(before[0].limits ?? {}) };
+    delete next[clearKey];
+    if (Number.isInteger(planOwn[clearKey])) next[clearKey] = planOwn[clearKey];
+    limits = next;
+    const planGives = !!plan && plan.moduleIds.includes(change.moduleId) === change.enabled;
+    if (planGives && sameLimits(next, planOwn) && (before[0].source === 'plan' || before[0].source === 'founder_override')) source = 'plan';
+  }
   const { rows } = await db.query(
     `insert into school_module_entitlements (school_id, module_id, enabled, source, limits, overridden_by, overridden_at)
-     values ($1, $2, $3, 'founder_override', coalesce($4::jsonb, '{}'::jsonb), $5, now())
+     values ($1, $2, $3, $6, coalesce($4::jsonb, '{}'::jsonb), $5, now())
      on conflict (school_id, module_id) do update
-       set enabled = excluded.enabled, source = 'founder_override',
+       set enabled = excluded.enabled, source = $6,
            limits = coalesce($4::jsonb, school_module_entitlements.limits),
            overridden_by = excluded.overridden_by, overridden_at = now(), updated_at = now()
      returning enabled, source, limits`,
-    [change.schoolId, change.moduleId, change.enabled, change.limits ? JSON.stringify(change.limits) : null, actor.userId]
+    [change.schoolId, change.moduleId, change.enabled, limits ? JSON.stringify(limits) : null, actor.userId, source]
   );
   await writeEntitlementAudit(db, {
     schoolId: change.schoolId,
@@ -108,7 +152,7 @@ export async function changeModuleEntitlement(
     targetType: 'school_module_entitlements',
     targetId: change.moduleId,
     beforeState: before[0] ?? null,
-    afterState: rows[0],
+    afterState: clearKey !== undefined ? { ...rows[0], cleared_limit: clearKey } : rows[0],
   }, reason);
   return { ok: true };
 }
@@ -169,7 +213,12 @@ export async function entitlementHistory(db: Sql, schoolId: string, limit = 50):
     const after = (r.after_state ?? {}) as Record<string, any>;
     const base = { id: String(r.audit_id), at: new Date(r.occurred_at).toISOString(), actorName: (r.display_name as string | null) ?? null, reason: (r.reason as string | null) ?? null };
     if (r.event_action === 'entitlement.module_changed') {
-      return { ...base, kind: 'module_changed', moduleId: r.target_id, enabled: { from: typeof before.enabled === 'boolean' ? before.enabled : null, to: after.enabled === true } };
+      // A change of one limit (W15-D): the first limit whose number differs between the two states.
+      const bl = (before.limits ?? {}) as Record<string, number>;
+      const al = (after.limits ?? {}) as Record<string, number>;
+      const key = [...new Set([...Object.keys(bl), ...Object.keys(al)])].sort().find((k) => bl[k] !== al[k]);
+      const limit = key ? { key, from: typeof bl[key] === 'number' ? bl[key] : null, to: typeof al[key] === 'number' ? al[key] : null, ...(after.cleared_limit === key ? { toPlan: true } : {}) } : undefined;
+      return { ...base, kind: 'module_changed', moduleId: r.target_id, enabled: { from: typeof before.enabled === 'boolean' ? before.enabled : null, to: after.enabled === true }, ...(limit ? { limit } : {}) };
     }
     if (r.event_action === 'entitlement.access_changed') {
       return { ...base, kind: 'access_changed', accessMode: { from: before.access_mode ?? null, to: after.access_mode }, graceEndsAt: after.grace_ends_at ? new Date(after.grace_ends_at).toISOString() : null };

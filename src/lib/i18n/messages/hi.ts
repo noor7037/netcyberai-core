@@ -9943,4 +9943,17 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.parent.ov.homework': 'बाकी होमवर्क',
   'fam.parent.ov.homeworkNone': 'कुछ बाकी नहीं',
   // w14-g end
+  // w15-d start
+  'school.aiPages.title': 'हर महीने AI जाँच के पन्ने',
+  'school.aiPages.help': 'AI इस स्कूल के लिए हर महीने उत्तर पुस्तिका के कितने पन्ने पढ़ और जाँच सकता है। यहाँ डाली गई संख्या प्लान दोबारा लगाने पर भी बनी रहती है। “प्लान की सीमा लगाएँ” प्लान की अपनी संख्या वापस रख देता है।',
+  'school.aiPages.plan': 'प्लान: महीने में {n} पन्ने',
+  'school.aiPages.planNone': 'प्लान: कोई सीमा तय नहीं',
+  'school.aiPages.byHand': 'इस स्कूल के लिए: {n} (हाथ से तय)',
+  'school.aiPages.fromPlan': 'इस स्कूल के लिए: {n} (प्लान से)',
+  'school.aiPages.none': 'इस स्कूल के लिए: कोई सीमा नहीं, इसलिए AI जाँच बंद है',
+  'school.aiPages.input': 'इस स्कूल के लिए महीने के पन्ने',
+  'school.aiPages.invalid': 'पूरी संख्या लिखें, 0 या उससे ज़्यादा।',
+  'school.aiPages.set': 'इस स्कूल के लिए तय करें',
+  'school.aiPages.usePlan': 'प्लान की सीमा लगाएँ',
+  // w15-d end
 };
