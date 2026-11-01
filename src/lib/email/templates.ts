@@ -5,8 +5,8 @@ import { displayPhone, whatsappLink } from '@/lib/site-config';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply'];
+export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice'];
 
 // The founder signs the first reply to every lead (W12-F).
 export const FOUNDER_NAME = 'Noor';
@@ -104,6 +104,20 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
         subject: `Re: your request for ${school}`,
         html: wrap(body.split(/\n{2,}/).map((p) => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('')),
         text: body,
+      };
+    }
+    // A notice the principal approved, to a guardian whose address the school holds (W14-J): the notice's words as written,
+    // signed by the school. The class is named when the notice was for one class.
+    case 'school_notice': {
+      const school = str(data, 'schoolName');
+      const body = str(data, 'body');
+      const cls = typeof data.className === 'string' && data.className ? data.className : '';
+      const head = cls ? `Notice for ${cls} from ${school}` : `Notice from ${school}`;
+      const after = 'This notice was sent through NetCyberAI for the school. For any question, please contact the school office.';
+      return {
+        subject: head,
+        html: wrap(`<p><strong>${escapeHtml(head)}</strong></p>${body.split(/\n{2,}/).map((p) => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('')}<p>${escapeHtml(school)}</p><p style="color:#64748b">${escapeHtml(after)}</p>`),
+        text: `${head}\n\n${body}\n\n${school}\n${after}`,
       };
     }
     case 'application_verified': {

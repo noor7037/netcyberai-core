@@ -9,6 +9,7 @@ import {
   readChildSchoolResults,
   readLinkedSchool,
   readSchoolNews,
+  readSchoolNoticeFeed,
   readSchoolPagePicture,
   readSchoolPaper,
   readSchoolProgress,
@@ -19,6 +20,7 @@ import {
   redeemConnectCode,
   requestFollowup,
   SchoolLinkGoneError,
+  type FeedNotice,
   type FollowupRequestResult,
   type PulseAnswerResult,
   type SchoolNews,
@@ -271,6 +273,24 @@ export async function schoolNewsFor(claims: Claims, links: readonly FamilySchool
     }
   }
   return { ...sum, total: sum.homework + sum.notices + sum.results };
+}
+
+// The notices the connected schools sent in the last days to the matched children's classes, newest first, each with the
+// school's name and the notice's own words (W14-J), as the guardian: the school's own rules and consent decide every
+// row. Left out when the parent turned notices off, and for a link the school has closed.
+export const NOTICE_FEED_DAYS = 14;
+export async function schoolNoticesFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<FeedNotice[]> {
+  if (off.includes('notices')) return [];
+  const out: FeedNotice[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await readSchoolNoticeFeed(claims, l.linkId, l.children.map((c) => c.studentId), NOTICE_FEED_DAYS)));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out.sort((a, b) => b.sentAt.localeCompare(a.sentAt)).slice(0, 5);
 }
 
 // One link's news since the given times, as the guardian (the push job, M3-8b, C339); null when the school closed the

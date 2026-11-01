@@ -24,6 +24,7 @@ export default async function FamilyNotificationsPage() {
   const total = items.reduce((n, i) => n + (i.kind === 'news' ? i.count : 0), 0);
   const text = (i: NotificationItem): string => {
     if (i.kind === 'news') return t(lang, NEWS_TEXT[i.news], { n: i.count });
+    if (i.kind === 'notice') return `${i.school}: ${i.body}`;
     if (i.kind === 'tonight') return fill(t(lang, 'fam.notify.center.tonight'), { subject: t(lang, `fam.subject.${i.subject}` as MessageKey) });
     return fill(t(lang, REQUEST_TEXT[i.status]), { title: i.title });
   };
@@ -42,7 +43,14 @@ export default async function FamilyNotificationsPage() {
                   <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
                     <FamIcon name={i.kind === 'tonight' ? 'bulb' : i.kind === 'request' ? 'sheet' : 'bell'} className="h-5 w-5" />
                   </span>
-                  <span className="min-w-0 flex-1">{text(i)}</span>
+                  {i.kind === 'notice' ? (
+                    <span className="min-w-0 flex-1">
+                      <span className="block break-words font-bold">{i.school}</span>
+                      <span className="line-clamp-3 block break-words text-sm font-normal">{i.body}</span>
+                    </span>
+                  ) : (
+                    <span className="min-w-0 flex-1">{text(i)}</span>
+                  )}
                   <FamIcon name="next" className="h-5 w-5 shrink-0 text-ink" />
                 </Link>
               </li>
