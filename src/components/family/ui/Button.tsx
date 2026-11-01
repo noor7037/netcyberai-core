@@ -17,6 +17,9 @@ export const familyButtonVariants = {
 
 type Variant = keyof typeof familyButtonVariants;
 
+// The same look for a plain <a> that next/link must not take over (a file to download, W14-F).
+export const familyButtonClass = (variant: Variant = 'primary') => `${base} ${familyButtonVariants[variant]}`;
+
 type ButtonAsButton = ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined; variant?: Variant };
 type ButtonAsLink = AnchorHTMLAttributes<HTMLAnchorElement> & { href: string; variant?: Variant };
 

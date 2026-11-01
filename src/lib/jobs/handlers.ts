@@ -23,6 +23,8 @@ import { PICTURES_SWEEP_JOB, picturesSweepHandler } from '@/lib/marking/retentio
 import { RESULT_PDFS_SWEEP_JOB, resultPdfsSweepHandler } from '@/lib/marking/checked-pdf-store';
 import { ONLINE_MARK_JOB, ONLINE_SWEEP_JOB, onlineMarkHandler, onlineSweepHandler } from '@/lib/online/mark';
 import { PAPERS_MAKE_JOB, papersMakeHandler } from '@/lib/papers/make';
+import { reportCardJobHandler } from '@/lib/exams/report-card-files';
+import { REPORT_CARD_JOB } from '@/lib/exams/report-card-queue';
 import { emailSendHandler } from './email-handler';
 import { LEAD_REPLY_JOB, leadReplyHandler } from '@/lib/leads/reply';
 import { recordHandledTypes } from './handled-types';
@@ -112,6 +114,9 @@ export function productionHandlers(): Record<string, JobHandler> {
     // AI for the rest, in the school's own session as its office sees it, with no person. A long job (./runner.ts).
     [PAPERS_MAKE_JOB]: papersMakeHandler({ asSchool }),
     // aq-2 end
+    // W14-F: each child's report card made as a file when the class is published, in the school's own session as its
+    // office sees it, with no person (the 'exams.report_cards' school job).
+    [REPORT_CARD_JOB]: reportCardJobHandler({ asSchool, storage: supabaseFileStorage }),
   };
 }
 

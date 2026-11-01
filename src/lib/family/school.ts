@@ -12,6 +12,8 @@ import {
   readSchoolPagePicture,
   readSchoolPaper,
   readSchoolProgress,
+  readSchoolReportCard,
+  ReportCardUnavailableError,
   readSchoolSyllabus,
   readSchoolToday,
   redeemConnectCode,
@@ -341,4 +343,19 @@ export async function schoolPagePicture(claims: Claims, links: readonly FamilySc
     }
   }
   return null;
+}
+
+// A family child's report card of one published exam (W14-F): the file the school made when it published the class,
+// read as the guardian, for this family's own matched child only. In the child's own view, only while the school lets
+// children see their results. null when the child is not matched, the link is gone, or there is no such card.
+export { ReportCardUnavailableError };
+export async function schoolReportCardFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, examId: string, as: { childView: boolean }): Promise<{ bytes: Uint8Array; fileName: string } | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readSchoolReportCard(claims, m.linkId, m.studentId, examId, as);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
 }

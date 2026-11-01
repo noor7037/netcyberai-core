@@ -5,6 +5,7 @@ import { ExamTimetable } from '@/components/family/ExamTimetable';
 import { SchoolText } from '@/components/family/SchoolText';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { LinkRow } from '@/components/family/ui/LinkRow';
+import { ReportCardPart } from '@/components/family/SchoolSection';
 import { fill } from '@/lib/family/fill';
 import { MY_RESULTS_KEYS } from '@/lib/family/marks-words';
 import { activeLinks, childResultsFor } from '@/lib/family/school';
@@ -76,6 +77,7 @@ export default async function FamilyMyResultsPage() {
                 <span>{w['fam.school.resultOverall']}</span>
                 <span className="fam-num text-lg">{scored(r.overall.percent, r.overall.grade)}</span>
               </p>
+              {r.examId && <ReportCardPart w={w} childId={child.childId} examId={r.examId} exam={r.exam} ready={!!r.reportCard} />}
             </section>
           ))
         )}

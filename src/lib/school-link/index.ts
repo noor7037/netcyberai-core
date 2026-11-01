@@ -11,7 +11,7 @@ import { indiaDate } from '@/lib/time/india';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
 import { examTypesOf } from '@/lib/exams/exam-types';
 import { groupByType, progressExams, progressWeighted, sessionFor } from '@/lib/exams/progress-report';
-import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
+import { checkedPaperIds, childrenSeeResults, examSchedule, reportCardExamIds } from './marking';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
 //   1. Issue: the principal or a school admin makes a single-use, 7-day connect code for one guardian. Only its SHA-256
@@ -24,7 +24,7 @@ import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
 
 type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
-export { readSchoolPaper, readSchoolPagePicture, PictureUnavailableError, type ReadAs } from './marking';
+export { readSchoolPaper, readSchoolPagePicture, readSchoolReportCard, PictureUnavailableError, ReportCardUnavailableError, type ReadAs } from './marking';
 import type { ReadAs } from './marking';
 
 // ---- the code ----------------------------------------------------------------------------------------------------------
@@ -342,6 +342,7 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
     )
   ).rows as { exam_id: string; class_id: string; scheme: GradingScheme; published_on: string; name: string; term: string | null }[];
   const grade = (s: Shown) => (s.grade.kind === 'grade' ? s.grade.grade : null);
+  const cards = pubs.length ? await reportCardExamIds(db, studentId) : new Set<string>();
   const results: SchoolResult[] = [];
   for (const pub of pubs) {
     const papers = (
@@ -376,6 +377,8 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
       overall: { percent: result.overall.rounded, grade: grade(result.overall) },
       remark: remark?.remark ?? null,
       coScholastic: co,
+      examId: pub.exam_id,
+      reportCard: cards.has(pub.exam_id),
     });
   }
   return results;

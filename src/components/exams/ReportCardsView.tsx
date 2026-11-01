@@ -14,6 +14,7 @@ import { downloadBlob, safeFilename } from '@/lib/pdf/browser';
 import { CardPreview } from './CardPreview';
 import { momentWords } from './exam-format';
 import { reportCardsPdf } from './report-card-pdf';
+import { ReportCardFiles } from './ReportCardFiles';
 import { PRIMARY, SECTION, TAP } from './SchemeParts';
 
 // Publish and report cards (docs/27 row 9c, C215). The office (the principal, the school admin, the academic
@@ -186,6 +187,8 @@ export function ReportCardsView({ examId, classId }: { examId: string; classId: 
           </button>
         </section>
       )}
+
+      {pub && data.mayDownload && <ReportCardFiles examId={examId} classId={classId} />}
 
       <section data-rc-children className={SECTION}>
         <div className="flex flex-wrap items-center gap-x-1">

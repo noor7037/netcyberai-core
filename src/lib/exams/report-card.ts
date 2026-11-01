@@ -58,7 +58,7 @@ export type CardsResult = { ok: true; set: ReportCardSet } | { ok: false; reason
 
 // The marks a child has that are scores: the total is what they scored of the maximum of those parts. Absent and
 // exempt are not marks, so they are left out of both, as from the percent. None until every part has a mark.
-function totalOf(components: readonly PaperComponent[], marks: Readonly<Record<string, Mark>>): { score: number; max: number } | null {
+export function totalOf(components: readonly PaperComponent[], marks: Readonly<Record<string, Mark>>): { score: number; max: number } | null {
   if (!components.every((c) => marks[c.key])) return null;
   const scored = components.filter((c) => marks[c.key].kind === 'score');
   if (!scored.length) return null;

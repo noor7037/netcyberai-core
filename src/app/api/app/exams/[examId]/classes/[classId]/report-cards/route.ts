@@ -3,11 +3,14 @@ import { saveCoScholastic } from '@/lib/exams/co-scholastic';
 import { publishClass, reopenClass, reportCardsScreen, saveRemarks } from '@/lib/exams/publish';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
+import { kickJobs } from '@/lib/jobs/handlers';
+import { jobQueue } from '@/lib/jobs/pg-queue';
 
 // Publishing an exam for a class, and its report cards (docs/27 row 9c, C215).
 //   GET   the class's papers and whether each is entered, the publication in force and every earlier one, the
 //         children in roll order with their remarks, and what this person may do here
 //   POST  { action: 'publish' }                         the principal, the school admin, the academic coordinator
+//                                                     and queues each child's report card to be made as a file (W14-F)
 //         { action: 'reopen', reason }                  the principal only
 //         { action: 'remarks', remarks: [{ studentId, remark }] }   the class teacher only, while not published
 //         { action: 'co_scholastic', grades: [{ studentId, area, grade }] }   the class teacher or the office, while not
@@ -29,19 +32,27 @@ export async function GET(req: NextRequest, { params }: Params) {
 const STATUS: Partial<Record<string, number>> = { not_found: 404, published: 409, not_published: 409, not_entered: 409, no_scheme: 409, scripts_changed: 409, no_co_scholastic: 409 };
 
 export async function POST(req: NextRequest, { params }: Params) {
-  return appRoute(req, async ({ claims, db }) => {
+  let kick: string[] = [];
+  const res = await appRoute(req, async ({ claims, db }) => {
     const b = await readJson(req);
     if (!b || !isUuid(params.examId) || !isUuid(params.classId)) return ruleError(400, 'not_sent_properly');
     const actor = { schoolId: claims.schoolId, userId: claims.sub, role: claims.role };
     const r =
-      b.action === 'publish' ? await publishClass(db, actor, params.examId, params.classId)
+      b.action === 'publish' ? await publishClass(db, actor, params.examId, params.classId, jobQueue)
       : b.action === 'reopen' ? await reopenClass(db, actor, params.examId, params.classId, b.reason)
       : b.action === 'remarks' ? await saveRemarks(db, actor, params.examId, params.classId, b.remarks)
       : b.action === 'co_scholastic' ? await saveCoScholastic(db, actor, params.examId, params.classId, b.grades)
       : null;
     if (!r) return ruleError(400, 'not_sent_properly');
-    if (r.ok) return NextResponse.json(r);
+    if (r.ok) {
+      const { jobKeys, ...body } = r as typeof r & { jobKeys?: string[] };
+      kick = jobKeys ?? [];
+      return NextResponse.json(body);
+    }
     if (r.reason === 'not_allowed') return ruleError(403, 'not_allowed');
     return jsonError(STATUS[r.reason] ?? 400, 'it was not saved', { code: r.reason, ...(r.at === undefined ? {} : { at: r.at }) });
   });
+  // After the commit: the report cards start being made now; whatever is not done here the sweeper does.
+  if (kick.length) await kickJobs(kick);
+  return res;
 }
