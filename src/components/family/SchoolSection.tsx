@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/family/ui/Button';
+import { Button, familyButtonClass } from '@/components/family/ui/Button';
 import { Input } from '@/components/ui/Input';
 import type { LinkedSchool, PulseAnswer, SchoolEvent, SchoolHomework, SchoolNotice, SchoolPeriod, SchoolPulse, SchoolResult } from '@/lib/contracts/school-link';
 import { fill, type Words } from '@/lib/family/fill';
@@ -233,6 +233,29 @@ function Timetable({ w, lang, periods }: { w: Words; lang: 'en' | 'hi'; periods:
 // missing.
 const scored = (w: Words, percent: number | null, grade: string | null) => (percent === null ? w['fam.school.resultNotComplete'] : grade ? `${percent}% · ${grade}` : `${percent}%`);
 
+// The report card of a published exam (W14-F): the PDF the school made, one tap to get it. Each subject's checked
+// paper opens from its own line above ("See the checked paper").
+export function ReportCardPart({ w, childId, examId, exam, ready }: { w: Words; childId: string; examId: string; exam: string; ready: boolean }) {
+  return (
+    <div className="flex flex-col gap-1" data-report-card={examId}>
+      <p className="font-semibold">{w['fam.rc.title']}</p>
+      {ready ? (
+        <a
+          href={`/api/family/school/report-card?child=${encodeURIComponent(childId)}&exam=${encodeURIComponent(examId)}`}
+          download
+          aria-label={fill(w['fam.rc.getFor'], { exam })}
+          data-report-card-get={examId}
+          className={`${familyButtonClass('primary')} self-start`}
+        >
+          {w['fam.rc.get']}
+        </a>
+      ) : (
+        <p data-report-card-wait>{w['fam.rc.notYet']}</p>
+      )}
+    </div>
+  );
+}
+
 // The results the school published for a matched child's class (C333), newest first, read only. A subject whose
 // script the teacher checked and approved opens its checked paper (C351).
 function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; items: SchoolResult[]; childId: string | null }) {
@@ -277,6 +300,7 @@ function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; ite
                 {w['fam.school.resultOverall']}: {scored(w, r.overall.percent, r.overall.grade)}
               </p>
               {r.coScholastic.length > 0 && <p>{r.coScholastic.map((c) => `${c.area}: ${c.grade}`).join(' · ')}</p>}
+              {r.examId && childId && <ReportCardPart w={w} childId={childId} examId={r.examId} exam={r.exam} ready={!!r.reportCard} />}
               {r.remark && (
                 <p className="whitespace-pre-line">
                   {w['fam.school.resultRemark']}: {r.remark}

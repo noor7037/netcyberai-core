@@ -6,6 +6,7 @@ import { TELL_ROLES, tellParentsSend } from '@/lib/marking/result-send';
 import type { QueueLike } from '@/lib/whatsapp/gate';
 import type { Actor } from './exams';
 import { publicationInForce } from './publish';
+import { queueReportCards } from './report-card-queue';
 
 // "Publish and notify" (C230-AJ part 5, slice E): after the class's marks are approved and the principal (or the office)
 // has published the class, ONE action on the class result queues one WhatsApp message per guardian, lets the Family
@@ -61,6 +62,9 @@ export async function publishAndNotify(db: PoolClient, queue: QueueLike, actor: 
     [actor.schoolId, pub.publicationId, actor.userId]
   );
   const first = (made.rowCount ?? 0) > 0;
+  // Each child's report card as a file (W14-F): queued at publication; queued here too for a class published before
+  // that, once per child and version (the job's key), so nothing is queued twice.
+  await queueReportCards(db, queue, actor.schoolId, examId, classId, pub);
   if (first) {
     await writeAuditLog(db, {
       schoolId: actor.schoolId,

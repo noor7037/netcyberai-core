@@ -59,6 +59,9 @@ export type SchoolResult = {
   overall: { percent: number | null; grade: string | null };
   remark: string | null;
   coScholastic: { area: string; grade: string }[];
+  // W14-F: the exam, and whether the school's report card of it is ready for this child (the Family app's "Get report card").
+  examId?: string;
+  reportCard?: boolean;
 };
 
 // ---- A checked paper (AI answer-sheet marking, C351) -------------------------------------------------------------------

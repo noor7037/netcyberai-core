@@ -151,6 +151,9 @@ describe('a linked family reads its matched child’s published results (C333)',
         overall: { percent: 70, grade: 'B' },
         remark: 'Asks good questions.',
         coScholastic: [{ area: 'Art', grade: 'A' }],
+        // W14-F: the exam, and no report card made as a file for it here.
+        examId: X(1),
+        reportCard: false,
       },
     ]);
   });
