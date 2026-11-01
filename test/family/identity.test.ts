@@ -127,6 +127,12 @@ describe('sign-in by email code', () => {
     for (let i = 0; i < 4; i++) statuses.push((await R.code.POST(req('/api/family/auth/code', 'POST', { email: 'busy@example.org' }))).status);
     expect(statuses).toEqual([200, 200, 200, 429]);
   });
+
+  it('an address the email service refuses answers email_unavailable (503), not a server fault (W14-G)', async () => {
+    const { requestCode } = await import('@/lib/family/sign-in');
+    const refusing = { send: async () => { throw new Error('email service answered 422'); } };
+    expect(await requestCode({ email: 'refused@example.org', purpose: 'sign_in', ip: null, lang: 'en' }, { sender: refusing })).toEqual({ status: 'email_unavailable' });
+  });
 });
 
 describe('a family session and a staff session never pass for each other', () => {

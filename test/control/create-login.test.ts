@@ -1,4 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+// Linking a login to an existing person asks for the step-up proof (security review of W14-B); the proof itself is
+// proven in test/auth; here it is given.
+vi.mock('@/lib/auth/step-up', async (importOriginal) => ({ ...(await importOriginal<typeof import('@/lib/auth/step-up')>()), requireStepUp: async () => null }));
 import { randomUUID } from 'crypto';
 import { NextRequest } from 'next/server';
 import type { InviteFailure } from '@/lib/auth/invite-failure';

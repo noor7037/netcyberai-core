@@ -5,6 +5,7 @@ import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { HabitCard } from '@/components/family/HabitCard';
 import { PlanCard } from '@/components/family/PlanCard';
 import { FamIcon } from '@/components/family/FamIcon';
+import { Button } from '@/components/family/ui/Button';
 import { HomeAsk } from '@/components/family/ui/HomeAsk';
 import { LinkRow } from '@/components/family/ui/LinkRow';
 import { ProgressRing } from '@/components/family/ui/ProgressRing';
@@ -170,6 +171,13 @@ export default async function FamilyHomePage() {
             </ul>
           </section>
         )}
+        {/* W14-G: a plain way out of child mode (H1 keeps the header free of it). The parent area asks for the PIN, and
+            signing out stays behind it. */}
+        <div className="flex justify-center pb-2">
+          <Button href="/family/parent" variant="outline" data-parent-entry className="!px-4 !py-2 text-sm">
+            {t(lang, 'fam.header.switchParent')}
+          </Button>
+        </div>
       </main>
     </div>
   );

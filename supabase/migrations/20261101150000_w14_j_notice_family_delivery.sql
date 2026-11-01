@@ -24,6 +24,7 @@ revoke all on function family.linked_children_for_notice(uuid[]) from public;
 grant execute on function family.linked_children_for_notice(uuid[]) to app_user;
 
 -- 3. The principal's approval of a notice queues its emails in the same transaction, as it queues its WhatsApp messages.
+--    (The policy is restated whole, with W14-F's exam.report_card clause kept: an `alter policy` replaces the check.)
 --    Only that: an email.send job of the school_notice template, for the caller's own school, from a principal. (Every other
 --    email is queued by the platform's own jobs.)
 alter policy jobs_enqueue on jobs
@@ -39,6 +40,12 @@ alter policy jobs_enqueue on jobs
       and school_id is not null
       and school_id = (current_setting('app.current_tenant_id', true))::uuid
       and coalesce(current_setting('app.current_role', true), '') in ('principal', 'school_admin', 'academic_coordinator', 'teacher')
+    )
+    or (
+      type = 'exam.report_card'
+      and school_id is not null
+      and school_id = (current_setting('app.current_tenant_id', true))::uuid
+      and coalesce(current_setting('app.current_role', true), '') in ('principal', 'school_admin', 'academic_coordinator')
     )
     or (
       type = 'email.send'

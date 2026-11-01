@@ -52,7 +52,7 @@ export function FamilySignIn({ w, lang }: { w: Words; lang: Lang }) {
     saveEmail(rememberEmail ? email : null);
     const r = await familyApi('/api/family/auth/code', 'POST', { email, lang });
     setBusy(false);
-    if (!r.ok) return setError(errorWords(w, r.error));
+    if (!r.ok) return setError(r.error === 'email_unavailable' ? w['fam.signIn.codeNotSent'] : errorWords(w, r.error));
     setCode('');
     setStep('code');
   };

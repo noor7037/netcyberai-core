@@ -119,6 +119,34 @@ export async function linkedSchool(claims: Claims, linkId: string, matched: read
   }
 }
 
+// W14-G: the school's numbers for the parent area's Overview, from the same read the School tab uses (linkedSchool), so
+// nothing new is stored or asked of the school. Only the guardian's own children appear (the read decides), and a
+// family with no school link gets an empty list. Homework and results come only for a child this app has matched.
+export type SchoolOverviewRow = {
+  studentId: string;
+  name: string;
+  attendance: { present: number; marked: number } | null;
+  dueMinor: number;
+  results: number | null;
+  homeworkDue: number | null;
+};
+export type SchoolOverview = { linkId: string; schoolName: string; children: SchoolOverviewRow[] };
+
+export function schoolOverview(links: readonly { linkId: string; school: LinkedSchool }[], today: string): SchoolOverview[] {
+  return links.map(({ linkId, school }) => ({
+    linkId,
+    schoolName: school.schoolName,
+    children: school.children.map((c) => ({
+      studentId: c.studentId,
+      name: c.name,
+      attendance: c.markedDays > 0 ? { present: c.presentDays, marked: c.markedDays } : null,
+      dueMinor: c.dueMinor,
+      results: c.results ? c.results.length : null,
+      homeworkDue: c.homework ? c.homework.filter((h) => h.done !== true && (h.due === null || h.due >= today)).length : null,
+    })),
+  }));
+}
+
 // The parent answers the school's Daily Pulse for a child this app has matched (C336). The database decides the rest:
 // the guardian's own consented child, a message sent to the child's class in the last 24 hours, the school's consent for
 // messages; a link the school closed meanwhile is not_found.

@@ -1,6 +1,7 @@
 import { randomBytes } from 'crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
+import { requireStepUp } from '@/lib/auth/step-up';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { SERVICE_ROLE_SETTING_NAME } from '@/lib/auth/env';
@@ -69,6 +70,12 @@ export async function POST(req: NextRequest, { params }: { params: { schoolId: s
   const parsed = parseNewLogin(await req.json().catch(() => null));
   if (!parsed.ok) return NextResponse.json({ error: 'not created', code: parsed.problem }, { status: 400 });
   const { login } = parsed;
+  // A login for an existing person is that person's account and role (a principal's, maybe): the same proof the
+  // temporary password asks for (C260), so a stolen founder cookie without it cannot take a staff identity over.
+  if (login.userId) {
+    const stepUp = await requireStepUp(req, guard.claims);
+    if (stepUp) return stepUp;
+  }
   const password = login.password ?? makePassword(randomBytes(64));
 
   try {

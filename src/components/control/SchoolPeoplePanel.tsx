@@ -161,7 +161,8 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
     setCreating(true);
     setCreateError(null);
     const { userId, ...rest } = form;
-    const res = await fetch(`/api/control/schools/${schoolId}/logins`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(userId && form.role !== 'parent' ? form : rest) }).catch(() => null);
+    const linking = Boolean(userId && form.role !== 'parent');
+    const res = await (linking ? stepUpFetch : fetch)(`/api/control/schools/${schoolId}/logins`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(linking ? form : rest) }).catch(() => null);
     const got = (await res?.json().catch(() => null)) as (Shared & { code?: string; setting?: string }) | null;
     setCreating(false);
     if (res?.ok && got) {
