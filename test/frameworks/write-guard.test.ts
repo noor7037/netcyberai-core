@@ -162,7 +162,7 @@ describe('the rule for reads (C140)', () => {
     // And the pages: each gate names a module of the plan.
     const pages = ['students/page.tsx', 'students/[studentId]/page.tsx', 'students/[studentId]/id-card/page.tsx', 'admissions/page.tsx', 'attendance/page.tsx', 'syllabus/page.tsx', 'compliance/page.tsx', 'dashboard/page.tsx'];
     for (const p of pages) {
-      const gate = /moduleOffReason\('([a-z-]+)'\)/.exec(readFileSync(path.join(__dirname, '../../src/app/(school)/app', p), 'utf8'));
+      const gate = /moduleOffReason\('([a-z-]+)'[,)]/.exec(readFileSync(path.join(__dirname, '../../src/app/(school)/app', p), 'utf8'));
       expect(gate, p).not.toBeNull();
       expect(inPlan.has(gate![1]), `${p} → ${gate![1]}`).toBe(true);
     }

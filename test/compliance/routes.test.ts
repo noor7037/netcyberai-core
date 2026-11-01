@@ -43,6 +43,7 @@ import { POST as noteRoute } from '@/app/api/app/compliance/sqaaf/route';
 import { POST as fileRoute } from '@/app/api/app/compliance/sqaaf/file/route';
 import { DELETE as removeEvidenceRoute, GET as linkRoute } from '@/app/api/app/compliance/sqaaf/[evidenceId]/route';
 import { GET as form6Route } from '@/app/api/app/compliance/form6/route';
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ComplianceDeskView } from '@/components/compliance/ComplianceDeskView';
 
 const A = 'c2270000-0000-4000-8000-0000000002a1';
@@ -262,8 +263,9 @@ describe('a school whose plan does not have the desk', () => {
     expect(html).toContain('530001');
     expect(html).toContain('CBSE affiliation letter, corrected');
     signIn(teacher);
-    const refused = renderToStaticMarkup(((await PrintPage()) as { props: { children: React.ReactElement } }).props.children);
-    expect(refused).toContain('data-cdk-print-refused');
-    expect(refused).not.toContain('530001');
+    // Not the teacher's (W14-A): the module's page says so before anything is read.
+    const refused = (await PrintPage()) as { type: unknown; props: { reason?: string } };
+    expect([refused.type, refused.props.reason]).toEqual([ModuleOffPage, 'role_not_allowed']);
+    expect(JSON.stringify(refused.props)).not.toContain('530001');
   });
 });

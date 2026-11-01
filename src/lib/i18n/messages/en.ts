@@ -9866,4 +9866,9 @@ export const en = {
   'mk.q.stepsSuggested': 'Steps suggested. Check them, change what you need, then save the questions. Nothing is kept until you do.',
   'mk.q.stepsSuggestNone': 'No steps could be suggested. Please add them yourself.',
   // w14-c end
+  // w14-a start
+  'modules.roleOff': 'This part is for the office.',
+  'modules.roleOffHint': 'Your role does not use this part. If you need something from it, ask your principal.',
+  'modules.roleOffAction': 'Go to My Day',
+  // w14-a end
 } as const;

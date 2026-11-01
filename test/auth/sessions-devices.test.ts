@@ -43,7 +43,7 @@ const row = async (id: string) => (await db.pg.query(`select persistent, expires
 const near = (d: Date, ms: number) => Math.abs(new Date(d).getTime() - (Date.now() + ms)) < 60_000;
 
 describe('keep me signed in: the sliding session', () => {
-  it('a kept session renews for another 30 days at each use; the old token stops working', async () => {
+  it('a kept session renews for another 30 days at each use; the old token stops working after the grace', async () => {
     const { refreshSession } = await import('@/lib/auth/refresh');
     const s = await newSession(true, 2 * DAY);
     const r = await refreshSession(s.token);
@@ -53,6 +53,8 @@ describe('keep me signed in: the sliding session', () => {
     expect(fresh.persistent).toBe(true);
     expect(near(fresh.expires_at, 30 * DAY)).toBe(true);
     expect((await row(s.id)).revoked_at).not.toBeNull();
+    // Past the 60-second reuse grace (W14-A), the spent token is refused.
+    await db.pg.query(`update sessions set revoked_at = now() - interval '61 seconds' where session_id = $1`, [s.id]);
     expect(await refreshSession(s.token)).toEqual({ ok: false, reason: 'not_found' });
   });
 
@@ -71,14 +73,54 @@ describe('keep me signed in: the sliding session', () => {
     expect(near((await row(short.id)).expires_at, 60_000)).toBe(true);
   });
 
-  it('a refresh token used twice at once yields one live session, never two (C417)', async () => {
+  it('a refresh token used twice at once yields one live session, never two (C417), and neither caller is signed out (W14-A)', async () => {
     const { refreshSession } = await import('@/lib/auth/refresh');
     const s = await newSession(true);
     const [a, b] = await Promise.all([refreshSession(s.token), refreshSession(s.token)]);
-    expect([a.ok, b.ok].filter(Boolean)).toHaveLength(1);
+    expect(a.ok && b.ok).toBe(true);
+    if (!a.ok || !b.ok) return;
+    expect(b.refreshToken).toBe(a.refreshToken);
+    expect(b.claims.sessionId).toBe(a.claims.sessionId);
     expect((await row(s.id)).revoked_at).not.toBeNull();
-    const loser = a.ok ? b : a;
-    expect(loser).toEqual({ ok: false, reason: 'not_found' });
+    const { hashToken } = await import('@/lib/auth/hash');
+    const live = await db.pg.query(`select count(*)::int as n from sessions where user_id = $1 and revoked_at is null and created_at >= (select created_at from sessions where session_id = $2)`, [ADMIN, s.id]);
+    expect(live.rows[0].n).toBe(1);
+    expect((await db.pg.query(`select session_id from sessions where refresh_token_hash = $1 and revoked_at is null`, [hashToken(a.refreshToken)])).rows).toHaveLength(1);
+  });
+
+  it('the reuse grace (W14-A): within 60 seconds a spent token returns the pair it produced; after, or once that pair ended, it is refused', async () => {
+    const { refreshSession } = await import('@/lib/auth/refresh');
+    const s = await newSession(true);
+    const first = await refreshSession(s.token);
+    expect(first.ok).toBe(true);
+    if (!first.ok) return;
+    // A second tab, a moment later, with the token the first already spent: the same pair, the same session.
+    const again = await refreshSession(s.token);
+    expect(again.ok && again.refreshToken === first.refreshToken && again.claims.sessionId === first.claims.sessionId).toBe(true);
+    // The pair it produced still renews as usual.
+    const next = await refreshSession(first.refreshToken);
+    expect(next.ok).toBe(true);
+    // Now that pair is spent too, so the first token has no live successor: refused, though inside 60 seconds.
+    expect(await refreshSession(s.token)).toEqual({ ok: false, reason: 'not_found' });
+
+    // Past 60 seconds: refused, even with its successor still live.
+    const late = await newSession(true);
+    const lateFirst = await refreshSession(late.token);
+    expect(lateFirst.ok).toBe(true);
+    await db.pg.query(`update sessions set revoked_at = now() - interval '61 seconds' where session_id = $1`, [late.id]);
+    expect(await refreshSession(late.token)).toEqual({ ok: false, reason: 'not_found' });
+
+    // A token revoked by a sign-out, not by a renewal, has no successor: refused at once.
+    const out = await newSession(true);
+    await db.pg.query(`update sessions set revoked_at = now() where session_id = $1`, [out.id]);
+    expect(await refreshSession(out.token)).toEqual({ ok: false, reason: 'not_found' });
+
+    // The successor signed out within the grace: the spent token is refused too.
+    const ended = await newSession(true);
+    const endedFirst = await refreshSession(ended.token);
+    if (!endedFirst.ok) throw new Error('renewal failed');
+    await db.pg.query(`update sessions set revoked_at = now() where session_id = $1`, [endedFirst.claims.sessionId]);
+    expect(await refreshSession(ended.token)).toEqual({ ok: false, reason: 'not_found' });
   });
 
   it('a revoked or expired session is never renewed; the refresh route keeps a session-only cookie session-only', async () => {

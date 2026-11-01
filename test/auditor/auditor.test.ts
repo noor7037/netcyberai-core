@@ -60,7 +60,6 @@ vi.mock('@/lib/ai/provider', async (original) => {
 import { GET as getAuditor, POST as postAuditor } from '@/app/api/app/school-auditor/route';
 import SchoolAuditorPage from '@/app/(school)/app/school-auditor/page';
 import { LangProvider } from '@/components/app-shell/LangContext';
-import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { AuditorScreen, AuditorView, type AuditorData } from '@/components/auditor/AuditorView';
@@ -588,7 +587,9 @@ describe('on the whole schema', () => {
       for (const who of NOT_THE_OFFICE) {
         state.claims = claims(who);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        expect(((await SchoolAuditorPage()) as any).type, who.role).toBe(ModuleComingPage);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const refused = (await SchoolAuditorPage()) as any;
+        expect([refused.type, refused.props.reason], who.role).toEqual([ModuleOffPage, 'role_not_allowed']); // W14-A
       }
       await db.pg.query(`update school_module_entitlements set enabled = false where school_id = $1 and module_id = 'school-auditor'`, [A]);
       try {

@@ -24,6 +24,14 @@ export async function POST(req: NextRequest) {
     return back ?? NextResponse.json({ error: 'not authenticated' }, { status: 401 });
   }
   if (!claims.impersonation) {
+    // The founder's own session is already back (W14-A): the view's token ran out and a page renewed the founder's
+    // own from the refresh cookie before End was pressed. Nothing is left to end; the screen goes back to Control
+    // instead of to the sign-in page.
+    if (claims.role === 'super_admin') {
+      const res = NextResponse.json({ status: 'ended' });
+      res.cookies.delete(IMPERSONATION_RETURN_COOKIE);
+      return res;
+    }
     return NextResponse.json({ error: 'current session is not an impersonation session' }, { status: 400 });
   }
 
