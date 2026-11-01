@@ -9668,4 +9668,11 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w14-h start
+  'students.import.open': 'Import students (CSV)',
+  'students.counts.active': '{count} active',
+  'students.counts.left': '{count} left or withdrawn',
+  'students.counts.show': 'show',
+  'students.counts.waiting': '{count} waiting for consent',
+  // w14-h end
 } as const;

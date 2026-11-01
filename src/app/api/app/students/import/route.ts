@@ -3,6 +3,7 @@ import { requireAppSession, canWriteMasterData } from '@/lib/auth/require-app-se
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { ImportFileError, runCsvImport } from '@/lib/import/run-import';
 import { isForeignKeyViolation, isUniqueViolation } from '@/lib/db/pg-errors';
+import { isRollClashViolation, ROLL_RACE_TEXT } from '@/lib/students/roll-clash';
 
 export async function POST(req: NextRequest) {
   const guard = await requireAppSession(req);
@@ -25,6 +26,8 @@ export async function POST(req: NextRequest) {
     // All or nothing (C235-A): a refused import wrote nothing; the answer lists every row to fix.
     return NextResponse.json(result, { status: result.refused ? 422 : result.alreadyImported || preview ? 200 : 201 });
   } catch (err) {
+    // Two imports raced for the same roll number: the database refused the second (W14-H).
+    if (isRollClashViolation(err)) return NextResponse.json({ error: ROLL_RACE_TEXT }, { status: 409 });
     if (isUniqueViolation(err)) {
       // Lost a race against an identical concurrent upload -- the other
       // request's csv_imports row is now the source of truth; the

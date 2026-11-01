@@ -9654,4 +9654,11 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.notThis': 'यह नहीं',
   'fam.check.correct': 'सही',
   // w8-ai end
+  // w14-h start
+  'students.import.open': 'विद्यार्थी आयात करें (CSV)',
+  'students.counts.active': '{count} सक्रिय',
+  'students.counts.left': '{count} छोड़ चुके या हटाए गए',
+  'students.counts.show': 'दिखाएँ',
+  'students.counts.waiting': '{count} सहमति की प्रतीक्षा में',
+  // w14-h end
 };
