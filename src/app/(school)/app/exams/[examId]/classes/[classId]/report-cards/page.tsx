@@ -7,6 +7,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { classCrumbs, classNames } from '@/lib/exams/crumbs';
 
 // Exams → publish and report cards (docs/27 row 9c, C215): publish a class's result (its marks are then frozen),
 // the principal's reopening with a reason, the class teacher's remarks, and each child's report card PDF.
@@ -16,8 +17,9 @@ export default async function ReportCardsPage({ params }: { params: { examId: st
   if (!isUuid(params.examId) || !isUuid(params.classId)) notFound();
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
+  const crumbs = classCrumbs(session ? await classNames(session, params.examId, params.classId) : null, params.examId, params.classId, true);
   return (
-    <ModulePage moduleId="exams" help="publish-report-cards" tour="report-cards" title={t(lang, 'rc.page.title')} purpose={t(lang, 'rc.page.purpose')}>
+    <ModulePage moduleId="exams" crumbs={crumbs} help="publish-report-cards" tour="report-cards" title={t(lang, 'rc.page.title')} purpose={t(lang, 'rc.page.purpose')}>
       <ReportCardsView examId={params.examId} classId={params.classId} />
     </ModulePage>
   );

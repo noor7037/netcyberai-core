@@ -9668,4 +9668,9 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w14-e start
+  'crumbs.nav': 'Where you are',
+  'crumbs.back': 'Back',
+  'crumbs.backTo': 'Back to {name}',
+  // w14-e end
 } as const;

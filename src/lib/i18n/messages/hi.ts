@@ -9654,4 +9654,9 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.notThis': 'यह नहीं',
   'fam.check.correct': 'सही',
   // w8-ai end
+  // w14-e start
+  'crumbs.nav': 'आप यहाँ हैं',
+  'crumbs.back': 'पीछे',
+  'crumbs.backTo': '{name} पर वापस',
+  // w14-e end
 };

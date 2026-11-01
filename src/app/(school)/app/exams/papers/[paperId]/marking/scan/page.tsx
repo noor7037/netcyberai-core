@@ -7,6 +7,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { paperCrumbs, paperNames } from '@/lib/exams/crumbs';
 
 // Exams → a paper's AI marking → scanning with the phone (C230-AJ): the class child by child in roll order, the pages
 // cut out and straightened on the phone, kept on it until the school has them, sent in the background. The phone's
@@ -19,8 +20,9 @@ export default async function PaperScanPage({ params }: { params: { paperId: str
   const session = await getServerSession();
   if (!session) notFound();
   const { lang } = getLang(session.sub);
+  const crumbs = paperCrumbs(await paperNames(session, params.paperId), params.paperId, true, [{ label: t(lang, 'mk.page.title'), href: `/app/exams/papers/${params.paperId}/marking` }]);
   return (
-    <ModulePage moduleId="exams" help="enter-exam-marks" tour="marking-scan" title={t(lang, 'mk.scan.title')} purpose={t(lang, 'mk.scan.purpose')}>
+    <ModulePage moduleId="exams" crumbs={crumbs} help="enter-exam-marks" tour="marking-scan" title={t(lang, 'mk.scan.title')} purpose={t(lang, 'mk.scan.purpose')}>
       <ScanScreen paperId={params.paperId} owner={`${session.schoolId}:${session.sub}`} />
     </ModulePage>
   );
