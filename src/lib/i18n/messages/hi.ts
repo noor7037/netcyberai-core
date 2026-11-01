@@ -9654,4 +9654,18 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.check.notThis': 'यह नहीं',
   'fam.check.correct': 'सही',
   // w8-ai end
+  // w14-g start
+  'fam.signIn.codeNotSent': 'हम इस पते पर कोड नहीं भेज सके। पता जाँच लें, या कोई दूसरा ईमेल आज़माएँ।',
+  'fam.header.switchParent': 'व्यक्ति बदलें / पैरेंट एरिया',
+  'fam.parent.ov.title': 'आपका स्कूल, एक नज़र में',
+  'fam.parent.ov.from': '{school} से',
+  'fam.parent.ov.attendance': 'उपस्थिति, पिछले 30 दिन',
+  'fam.parent.ov.attendanceNone': 'अभी कोई दिन दर्ज नहीं',
+  'fam.parent.ov.fees': 'बकाया फ़ीस',
+  'fam.parent.ov.feesNone': 'कोई फ़ीस बकाया नहीं',
+  'fam.parent.ov.results': 'प्रकाशित नतीजे',
+  'fam.parent.ov.resultsNone': 'अभी कोई प्रकाशित नहीं',
+  'fam.parent.ov.homework': 'बाकी होमवर्क',
+  'fam.parent.ov.homeworkNone': 'कुछ बाकी नहीं',
+  // w14-g end
 };

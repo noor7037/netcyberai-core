@@ -13,7 +13,7 @@ import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanS
 import { NotifySection } from '@/components/family/NotifySection';
 import { vapidPublicKey } from '@/lib/family/web-push';
 import { SchoolSection } from '@/components/family/SchoolSection';
-import { activeLinks, linkedSchool, notifyOff } from '@/lib/family/school';
+import { activeLinks, linkedSchool, notifyOff, schoolOverview } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { listChildPhones } from '@/lib/family/child-phone';
@@ -68,7 +68,8 @@ const AREA_KEYS: MessageKey[] = [
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
-  ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
+  ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.parent.ov.title', 'fam.parent.ov.from', 'fam.parent.ov.attendance', 'fam.parent.ov.attendanceNone', 'fam.parent.ov.fees', 'fam.parent.ov.feesNone', 'fam.parent.ov.results', 'fam.parent.ov.resultsNone', 'fam.parent.ov.homework', 'fam.parent.ov.homeworkNone',
+  'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.profile.title',
   'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.changed.photo_input', 'fam.consent.purpose.voice_practice', 'fam.consent.purpose.offers',
   // m2-3: the habit section.
@@ -235,6 +236,7 @@ export default async function FamilyParentPage() {
         boards={await familyPageRead(page, (db) => listFamilyBoards(db, lang))}
         studyCore={page.consents.study_core}
         needs={needs}
+        schoolNumbers={schoolOverview(schools, indiaDate())}
         slots={{
           overview: (
             <>

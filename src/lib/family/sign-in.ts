@@ -68,13 +68,19 @@ export async function requestCode(
   });
   if (issued === 'rate_limited') return { status: 'rate_limited' };
   const kind = input.purpose === 'pin_reset' ? 'pinReset' : 'signIn';
-  await sender.send({
-    to: [input.email],
-    subject: t(input.lang, `fam.email.${kind}.subject`),
-    text: t(input.lang, `fam.email.${kind}.text`, { code }),
-    html: `<p>${t(input.lang, `fam.email.${kind}.text`, { code: `<strong style="font-size:20px;letter-spacing:4px">${code}</strong>` })}</p>`,
-    idempotencyKey: `family-code-${randomUUID()}`,
-  });
+  // The email service refusing the address (a 4xx such as an example.com address) or being down is "could not send",
+  // not a server fault: the screen then says so in plain words (W14-G).
+  try {
+    await sender.send({
+      to: [input.email],
+      subject: t(input.lang, `fam.email.${kind}.subject`),
+      text: t(input.lang, `fam.email.${kind}.text`, { code }),
+      html: `<p>${t(input.lang, `fam.email.${kind}.text`, { code: `<strong style="font-size:20px;letter-spacing:4px">${code}</strong>` })}</p>`,
+      idempotencyKey: `family-code-${randomUUID()}`,
+    });
+  } catch {
+    return { status: 'email_unavailable' };
+  }
   return { status: 'sent' };
 }
 

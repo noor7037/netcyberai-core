@@ -16,6 +16,9 @@ import { LanguageSwitch } from './LanguageSwitch';
 import { clearOffline } from './offline/store';
 import { FamIcon, type IconName } from './FamIcon';
 import { SubPageHeader } from './SubPageHeader';
+import { ParentTile } from './ParentTile';
+import { SchoolText } from './SchoolText';
+import type { SchoolOverview } from '@/lib/family/school';
 import type { ParentHabit } from '@/lib/family/habit';
 
 // The parent area (feature P2; docs/34 §9.1 rule 1; M1-2, C248), open only in parent mode: the children, what the
@@ -278,7 +281,7 @@ function useTabs() {
 export type ParentSlots = { overview?: ReactNode; children?: ReactNode; school?: ReactNode; learning?: ReactNode };
 export type ParentNeed = { kind: 'requests_declined' | 'requests_open' | 'renew' | 'consent' | 'meeting'; n?: number; name?: string };
 
-export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, slots = {}, needs = [] }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean; renew?: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; slots?: ParentSlots; needs?: ParentNeed[] }) {
+export function ParentArea({ w, lang, children, states, boards, studyCore, calm, english = null, photo = null, voice = null, offers = null, habit = null, slots = {}, needs = [], schoolNumbers = [] }: { w: Words; lang: Lang; children: Child[]; states: { code: string; name: string }[]; boards?: BoardOption[]; studyCore: boolean; calm: Calm[]; english?: { granted: boolean } | null; photo?: { granted: boolean; renew?: boolean } | null; voice?: { granted: boolean } | null; offers?: { granted: boolean } | null; habit?: ParentHabit[] | null; slots?: ParentSlots; needs?: ParentNeed[]; schoolNumbers?: SchoolOverview[] }) {
   const router = useRouter();
   const [adding, setAdding] = useState(false);
   const [deleteWord, setDeleteWord] = useState('');
@@ -386,6 +389,59 @@ export function ParentArea({ w, lang, children, states, boards, studyCore, calm,
                 </ul>
               )}
             </Section>
+
+            {schoolNumbers.length > 0 && (
+              <Section title={w['fam.parent.ov.title']} icon="calendar">
+                {schoolNumbers.map((s) => (
+                  <div key={s.linkId} data-overview-school={s.linkId} className="flex flex-col gap-4">
+                    {s.children.map((c) => {
+                      // "from DAV Public School", the school's name in its own words inside the app's sentence.
+                      const from = (
+                        <span>
+                          {(w['fam.parent.ov.from'] ?? '').split('{school}').map((part, i) => (
+                            <span key={i}>
+                              {i > 0 && <SchoolText text={s.schoolName} />}
+                              {part}
+                            </span>
+                          ))}
+                        </span>
+                      );
+                      return (
+                        <div key={c.studentId} data-overview-school-child={c.studentId} className="flex flex-col gap-2">
+                          <p className="text-base font-bold text-slate">
+                            <SchoolText text={c.name} />
+                          </p>
+                          <div className="grid grid-cols-2 gap-2">
+                            <ParentTile
+                              data-tile="attendance"
+                              tint="mint"
+                              icon="calendar"
+                              label={w['fam.parent.ov.attendance']}
+                              value={c.attendance ? `${c.attendance.present}/${c.attendance.marked}` : '–'}
+                              lines={[c.attendance ? fill(w['fam.school.present'], { present: c.attendance.present, marked: c.attendance.marked }) : w['fam.parent.ov.attendanceNone'], from]}
+                            />
+                            <ParentTile
+                              data-tile="fees"
+                              tint="butter"
+                              icon="fees"
+                              label={w['fam.parent.ov.fees']}
+                              value={new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(c.dueMinor / 100)}
+                              lines={[c.dueMinor > 0 ? fill(w['fam.school.due'], { amount: new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(c.dueMinor / 100) }) : w['fam.parent.ov.feesNone'], from]}
+                            />
+                            {c.results !== null && (
+                              <ParentTile data-tile="results" tint="lilac" icon="sheet" label={w['fam.parent.ov.results']} value={String(c.results)} lines={[c.results === 0 ? w['fam.parent.ov.resultsNone'] : '', from].filter(Boolean)} />
+                            )}
+                            {c.homeworkDue !== null && (
+                              <ParentTile data-tile="homework" tint="sky" icon="pencil" label={w['fam.parent.ov.homework']} value={String(c.homeworkDue)} lines={[c.homeworkDue === 0 ? w['fam.parent.ov.homeworkNone'] : '', from].filter(Boolean)} />
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </Section>
+            )}
 
             <Section title={w['fam.calm.title']} icon="chart">
               <ul className="flex flex-col gap-2">

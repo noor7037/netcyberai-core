@@ -31,6 +31,9 @@ const PATHS = {
   explore: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z',
   inbox: 'M4 13l2-8h12l2 8M4 13v6h16v-6M4 13h4l1 2h6l1-2h4',
   chart: 'M4 20h16M7 20v-6M12 20V8M17 20v-9',
+  // W14-G: the parent Overview's school tiles.
+  fees: 'M3 7h18v12H3zM3 11h18M7 15h3',
+  pencil: 'M4 20h4L19 9l-4-4L4 16zM13 7l4 4',
 } as const;
 
 export type IconName = keyof typeof PATHS;

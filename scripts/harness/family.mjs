@@ -233,6 +233,8 @@ export const FAMILY_SCREENS = [
   // m2-8 begin: the interactive blocks (C282), each from an illustrative cached response in harness-seed.sql.
   // AM-4 (C351): the checked paper in the parent area, the child's own results and paper, and the private report link.
   ['linked', 'family-parent-checked-paper', `/family/parent/results/${LINKED_CHILD}/${MK.paper}`, { parent: true, child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
+  // W14-G: the Overview of a family with a school connected: the school's numbers as tiles, the school named.
+  ['linked', 'family-parent-area-overview-school', '/family/parent', { parent: true, child: LINKED_CHILD, settle: '[data-overview-school]' }],
   ['linked', 'family-parent-school-results', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
   ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
   ['linked', 'family-my-checked-paper', `/family/results/${MK.paper}`, { child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],

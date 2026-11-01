@@ -9668,4 +9668,18 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w14-g start
+  'fam.signIn.codeNotSent': 'We could not send a code to this address. Check it, or try another email.',
+  'fam.header.switchParent': 'Switch person / Parent area',
+  'fam.parent.ov.title': 'Your school at a glance',
+  'fam.parent.ov.from': 'from {school}',
+  'fam.parent.ov.attendance': 'Attendance, last 30 days',
+  'fam.parent.ov.attendanceNone': 'No days marked yet',
+  'fam.parent.ov.fees': 'Fees due',
+  'fam.parent.ov.feesNone': 'No fees due',
+  'fam.parent.ov.results': 'Published results',
+  'fam.parent.ov.resultsNone': 'None published yet',
+  'fam.parent.ov.homework': 'Homework due',
+  'fam.parent.ov.homeworkNone': 'Nothing due',
+  // w14-g end
 } as const;
