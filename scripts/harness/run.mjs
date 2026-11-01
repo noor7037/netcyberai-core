@@ -3387,6 +3387,35 @@ const controlSchoolTab = (name) => async (page) => {
   await page.waitForLoadState('networkidle');
   await page.locator('[role="tabpanel"] table, [role="tabpanel"] h2, [role="tabpanel"] h3').first().waitFor({ timeout: 20000 });
 };
+// W15-D: Control → a school → Modules & access, the Exams row's AI marking page limit: the plan's number beside the
+// school's own (set by hand). Seeds an Exams row with its own number and a plan number, and puts both back.
+let aiPagesBefore = null;
+const controlSchoolAiPages = async (page) => {
+  const plan = (await db.pg.query(`select p.plan_id, p.limits from school_entitlements e join plans p on p.plan_id = e.plan where e.school_id = $1`, [SCHOOL])).rows[0] ?? null;
+  aiPagesBefore = {
+    exams: (await db.pg.query(`select enabled, source, limits from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL])).rows[0] ?? null,
+    plan,
+  };
+  if (plan) await db.pg.query(`update plans set limits = $2::jsonb where plan_id = $1`, [plan.plan_id, JSON.stringify({ ...plan.limits, exams: { ai_marking_pages: 2000 } })]);
+  await db.pg.query(
+    `insert into school_module_entitlements (school_id, module_id, enabled, source, limits) values ($1, 'exams', true, 'founder_override', '{"ai_marking_pages": 5000}'::jsonb)
+     on conflict (school_id, module_id) do update set enabled = true, source = 'founder_override', limits = excluded.limits`,
+    [SCHOOL]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.getByRole('tab', { name: 'Modules & access' }).click();
+  const block = page.locator('[data-ai-pages-limit]');
+  await block.waitFor({ timeout: 20000 });
+  await block.scrollIntoViewIfNeeded();
+};
+const controlSchoolAiPagesDone = async () => {
+  if (!aiPagesBefore) return;
+  if (aiPagesBefore.plan) await db.pg.query(`update plans set limits = $2::jsonb where plan_id = $1`, [aiPagesBefore.plan.plan_id, JSON.stringify(aiPagesBefore.plan.limits)]);
+  const e = aiPagesBefore.exams;
+  if (e === null) await db.pg.query(`delete from school_module_entitlements where school_id = $1 and module_id = 'exams'`, [SCHOOL]);
+  else await db.pg.query(`update school_module_entitlements set enabled = $2, source = $3, limits = $4::jsonb where school_id = $1 and module_id = 'exams'`, [SCHOOL, e.enabled, e.source, JSON.stringify(e.limits)]);
+  aiPagesBefore = null;
+};
 const controlSchoolBoard = async (page) => {
   await clearGrading();
   await page.reload({ waitUntil: 'networkidle' });
@@ -7205,6 +7234,7 @@ const SCREENS = [
   ['founder', 'control-school-staff', `/control/schools/${SCHOOL}`, controlSchoolTab('Staff')],
   ['founder', 'control-school-attendance', `/control/schools/${SCHOOL}`, controlSchoolTab('Attendance')],
   ['founder', 'control-school-fees', `/control/schools/${SCHOOL}`, controlSchoolTab('Fees')],
+  ['founder', 'control-school-ai-pages', `/control/schools/${SCHOOL}`, controlSchoolAiPages, controlSchoolAiPagesDone],
   ['founder', 'control-audit-logs', '/control/audit-logs'],
   ['founder', 'control-system-settings', '/control/system-settings'],
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],

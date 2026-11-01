@@ -23,6 +23,7 @@ import {
   type PlanSummary,
   type SchoolEntitlements,
 } from '@/lib/contracts/entitlements';
+import { AI_MARKING_PAGES_LIMIT } from '@/lib/contracts/marking';
 import { MODULE_GROUPS, MODULE_REGISTRY, type ModuleDefinition } from '@/lib/contracts/modules';
 
 // Control → a school → Modules & access (C123): apply a plan, switch a
@@ -31,7 +32,13 @@ import { MODULE_GROUPS, MODULE_REGISTRY, type ModuleDefinition } from '@/lib/con
 // log). Everything goes through the entitlements API, which checks the
 // founder's session and writes the audit row; this screen only asks.
 
-export type EntitlementsData = { entitlements: SchoolEntitlements; plans: PlanSummary[]; history: EntitlementHistoryEntry[] };
+// planLimits: the plan's own limits per module (W15-D), shown beside the limits in the school's own rows.
+export type EntitlementsData = {
+  entitlements: SchoolEntitlements;
+  plans: PlanSummary[];
+  history: EntitlementHistoryEntry[];
+  planLimits?: Partial<Record<string, Readonly<Record<string, number>>>>;
+};
 export type EntitlementsApi = { load(): Promise<EntitlementsData>; change(body: Record<string, unknown>): Promise<void> };
 
 export function entitlementsApi(schoolId: string): EntitlementsApi {
@@ -41,7 +48,7 @@ export function entitlementsApi(schoolId: string): EntitlementsApi {
       const r = await fetch(`${url}?history=1`, { cache: 'no-store' });
       if (!r.ok) throw new Error('Could not load this school’s modules.');
       const body = await r.json();
-      return { entitlements: body.entitlements, plans: body.plans ?? [], history: body.history ?? [] };
+      return { entitlements: body.entitlements, plans: body.plans ?? [], history: body.history ?? [], planLimits: body.planLimits ?? {} };
     },
     async change(payload) {
       const r = await fetch(url, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
@@ -64,6 +71,7 @@ const when = (iso: string) => new Date(iso).toLocaleString('en-IN', { dateStyle:
 // same day Billing & Plans and the school's own screen name (lastGraceDay).
 const graceDay = (endsAt: string) => new Date(`${lastGraceDay(endsAt)}T00:00:00Z`).toLocaleDateString('en-IN', { dateStyle: 'medium', timeZone: 'UTC' });
 const validReason = (r: string) => r.trim().length >= 3 && r.trim().length <= 500;
+const pages = (n: number) => n.toLocaleString('en-IN');
 
 function Reason({ value, onChange, id }: { value: string; onChange: (v: string) => void; id: string }) {
   return <Input id={id} label="Reason (only you can read it; the school never sees it)" value={value} onChange={(e) => onChange(e.target.value)} maxLength={500} required />;
@@ -91,6 +99,10 @@ export function SchoolEntitlementsPanel({
   const [planReason, setPlanReason] = useState('');
   const [toggle, setToggle] = useState<ModuleDefinition | null>(MODULE_REGISTRY.find((m) => m.id === initialDialog?.moduleId) ?? null);
   const [toggleReason, setToggleReason] = useState('');
+  // The Exams row's AI marking page limit (W15-D): what is typed, why, and whether the last error belongs to it.
+  const [aiPages, setAiPages] = useState('');
+  const [aiReason, setAiReason] = useState('');
+  const [aiBox, setAiBox] = useState(false);
 
   const load = useCallback(() => {
     setLoadError(null);
@@ -107,9 +119,10 @@ export function SchoolEntitlementsPanel({
   }, [initial, load]);
 
   // One change at a time; on success the screen reloads the server's truth.
-  async function change(body: Record<string, unknown>, done: () => void) {
+  async function change(body: Record<string, unknown>, done: () => void, inAiBlock = false) {
     setBusy(true);
     setError(null);
+    setAiBox(inAiBlock);
     try {
       await api.change(body);
       done();
@@ -124,7 +137,7 @@ export function SchoolEntitlementsPanel({
   if (loadError) return <ErrorState message={loadError} onRetry={load} />;
   if (!data) return <Skeleton lines={6} />;
 
-  const { entitlements: ent, plans, history } = data;
+  const { entitlements: ent, plans, history, planLimits } = data;
   const isOn = (m: ModuleDefinition) => isAlwaysOn(m.id) || ent.modules[m.id]?.enabled === true;
   const onCount = MODULE_REGISTRY.filter(isOn).length;
   const label = (id: string) => MODULE_REGISTRY.find((m) => m.id === id)?.label ?? id;
@@ -148,6 +161,61 @@ export function SchoolEntitlementsPanel({
       {error}
     </p>
   );
+  // The Exams row's block: the plan's monthly page limit, the school's own, and the two ways to change it. Marking reads the
+  // school's row (the effective limit), so a number set here is the one that counts; the plan's is kept beside it.
+  const aiBlock = (m: ModuleDefinition) => {
+    const e = ent.modules[m.id];
+    const planValue = planLimits?.[m.id]?.[AI_MARKING_PAGES_LIMIT];
+    const own = e?.limits?.[AI_MARKING_PAGES_LIMIT];
+    const typed = Number(aiPages);
+    const validPages = aiPages.trim() !== '' && /^\d+$/.test(aiPages.trim()) && Number.isSafeInteger(typed);
+    const byHand = typeof own === 'number' && own !== planValue;
+    const base = { moduleId: m.id, enabled: true, reason: aiReason.trim() };
+    return (
+      <div className="mt-2 flex basis-full flex-col gap-2 rounded-lg border border-slate/10 p-3" data-ai-pages-limit>
+        <div className="flex flex-wrap items-center gap-x-1">
+          <p className="text-sm font-semibold text-slate">{t('school.aiPages.title')}</p>
+          <InfoTip label={t('school.aiPages.title')}>{t('school.aiPages.help')}</InfoTip>
+        </div>
+        <p className="text-xs text-slate/70">{typeof planValue === 'number' ? t('school.aiPages.plan', { n: pages(planValue) }) : t('school.aiPages.planNone')}</p>
+        <p className="text-sm text-slate">
+          {typeof own !== 'number' ? t('school.aiPages.none') : t(byHand ? 'school.aiPages.byHand' : 'school.aiPages.fromPlan', { n: pages(own) })}
+        </p>
+        <form
+          className="flex flex-col gap-3"
+          onSubmit={(ev) => {
+            ev.preventDefault();
+            change({ ...base, limits: { ...(e?.limits ?? {}), [AI_MARKING_PAGES_LIMIT]: typed } }, () => {
+              setAiPages('');
+              setAiReason('');
+            }, true);
+          }}
+        >
+          <Input id="ai-pages-input" type="number" inputMode="numeric" min={0} step={1} label={t('school.aiPages.input')} value={aiPages} onChange={(ev) => setAiPages(ev.target.value)} error={aiPages.trim() !== '' && !validPages ? t('school.aiPages.invalid') : undefined} />
+          <Reason id="ai-pages-reason" value={aiReason} onChange={setAiReason} />
+          {error && aiBox && errorBox}
+          <div className="flex flex-wrap gap-2">
+            <button type="submit" disabled={busy || !validPages || !validReason(aiReason)} className={button}>
+              {t('school.aiPages.set')}
+            </button>
+            <button
+              type="button"
+              disabled={busy || !validReason(aiReason) || !e || (e.source === 'plan' && own === planValue)}
+              className="min-h-[44px] rounded-md border border-sapphire px-4 text-sm font-semibold text-sapphire disabled:opacity-60"
+              onClick={() =>
+                change({ ...base, clearLimit: AI_MARKING_PAGES_LIMIT }, () => {
+                  setAiPages('');
+                  setAiReason('');
+                }, true)
+              }
+            >
+              {t('school.aiPages.usePlan')}
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  };
   const closeToggle = () => {
     setToggle(null);
     setError(null);
@@ -162,7 +230,7 @@ export function SchoolEntitlementsPanel({
 
   return (
     <div className="flex flex-col gap-4">
-      {error && !toggle && errorBox}
+      {error && !toggle && !aiBox && errorBox}
 
       <AppCard title="Plan and access" tone="sapphire" description={`${onCount} of ${MODULE_REGISTRY.length} modules are on for this school.`}>
         <div className="flex flex-wrap items-center gap-2 text-sm text-slate">
@@ -255,10 +323,12 @@ export function SchoolEntitlementsPanel({
                           onChange={() => {
                             setToggleReason('');
                             setError(null);
+                            setAiBox(false);
                             setToggle(m);
                           }}
                         />
                       )}
+                      {m.id === 'exams' && on && aiBlock(m)}
                     </li>
                   );
                 })}
