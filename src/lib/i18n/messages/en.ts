@@ -9668,4 +9668,27 @@ export const en = {
   'fam.check.notThis': 'Not this one',
   'fam.check.correct': 'Correct',
   // w8-ai end
+  // w14-b start
+  'login.existing': 'Existing staff with no sign-in',
+  'login.existing.hint': 'Choose a person the school already has, so the login is theirs and no second person is made.',
+  'login.existing.new': 'A new person',
+  'login.dupe': '{name} is already a person of this school. Check that this is someone else before you create a login.',
+  'login.dupe.noLogin': '{name} is already a person of this school, with no sign-in yet. Give the login to them instead of making a second person.',
+  'login.dupe.use': 'Use the existing person',
+  'login.shared.created': 'This person had no sign-in yet, so it was created now. Send these details to the person.',
+  'login.bad.no_email': 'This person has no email or username yet. Use Create a login above and choose them under Existing staff.',
+  'login.bad.taken': 'Another person of this school already has that email. Choose another, or give the login to that person.',
+  'login.bad.staff': 'That person was not found in this school. Reload the page.',
+  'login.act.deactivate': 'Deactivate',
+  'login.act.reactivate': 'Reactivate',
+  'login.act.remove': 'Remove',
+  'login.act.deactivate.title': 'Deactivate {name}',
+  'login.act.reactivate.title': 'Reactivate {name}',
+  'login.act.remove.title': 'Remove {name}',
+  'login.act.deactivate.how': 'They are signed out everywhere at once and cannot use this school until reactivated. Their records stay.',
+  'login.act.reactivate.how': 'They can use this school again. If their sign-in was removed, give them a new password.',
+  'login.act.remove.how': 'They leave this school and are signed out everywhere at once. When this is their only school, their sign-in is deleted. The school’s records that name them stay.',
+  'login.act.reason': 'Reason (seen only by you)',
+  'login.act.own': 'This cannot be done to your own account.',
+  // w14-b end
 } as const;
