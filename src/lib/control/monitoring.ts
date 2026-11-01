@@ -144,7 +144,20 @@ export function schoolCheckState(rows: SchoolCheckRows, moduleOnSomewhere: boole
   }
   return { state: 'ran', attempts: Math.max(...rows.map((r) => r.attempts)) };
 }
-export type FailedJob = { jobId: string; type: string; state: 'dead' | 'retrying'; attempts: number; maxAttempts: number; error: string | null; forSeconds: number };
+export type FailedJob = { jobId: string; type: string; state: 'dead' | 'retrying'; attempts: number; maxAttempts: number; error: string | null; reason: FailureReason | null; forSeconds: number };
+
+// Why a job failed, in plain words on the screen (W15-A): the usual causes, read from the error the job recorded.
+// null: no known cause, and the screen shows the error's first line (cut of contacts) as before.
+export type FailureReason = 'email_refused' | 'already_has_login' | 'server_setting' | 'provider_down' | 'address_invalid';
+export function failureReason(type: string, error: string | null | undefined): FailureReason | null {
+  if (!error) return null;
+  if (/email_not_sent|could not send email|error sending/i.test(error)) return 'email_refused';
+  if (/email_exists|already (been )?registered|already has a login/i.test(error)) return 'already_has_login';
+  if (/RESEND_API_KEY|SERVICE_ROLE_KEY|is not configured|invite failed: 401\b|invite failed: 403\b/i.test(error)) return 'server_setting';
+  if (/timeout|timed out|ECONNRESET|ENOTFOUND|fetch failed|answered 5\d\d|upstream|unavailable/i.test(error)) return 'provider_down';
+  if (/validation_failed|invalid.*(to|email|address)|not a valid/i.test(error)) return 'address_invalid';
+  return type.startsWith('invite.') && /invite failed: 4\d\d/.test(error) ? 'address_invalid' : null;
+}
 
 export type Monitoring = {
   readAt: string;
@@ -254,6 +267,7 @@ export async function loadMonitoring(db: Sql, storageAnswer?: StorageHealth): Pr
     attempts: num(p.attempts),
     maxAttempts: num(p.max_attempts),
     error: cutContacts(p.last_error as string | null),
+    reason: failureReason(p.type as string, p.last_error as string | null),
     forSeconds: since(p.updated_at) ?? 0,
   }));
 

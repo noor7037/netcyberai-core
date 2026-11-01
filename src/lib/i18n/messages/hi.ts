@@ -9943,4 +9943,18 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.parent.ov.homework': 'बाकी होमवर्क',
   'fam.parent.ov.homeworkNone': 'कुछ बाकी नहीं',
   // w14-g end
+  // w15 start
+  'monitoring.jobs.reason.email_refused': 'ईमेल सेवा ने इस पते को ठुकरा दिया, इसलिए संदेश नहीं गया। पता जाँचें; सही पते पर भेजा जाता है।',
+  'monitoring.jobs.reason.already_has_login': 'इस ईमेल का लॉगिन पहले से है, इसलिए न्योता नहीं भेजा गया।',
+  'monitoring.jobs.reason.server_setting': 'सर्वर की कोई सेटिंग गायब या गलत है। डिप्लॉयमेंट में ठीक करें और फिर कोशिश करें।',
+  'monitoring.jobs.reason.provider_down': 'जिस सेवा से बात होती है उसने समय पर जवाब नहीं दिया। फिर कोशिश होगी।',
+  'monitoring.jobs.reason.address_invalid': 'पता या नंबर अमान्य कहकर ठुकरा दिया गया।',
+  'rc.publish.confirm.title': '{className} का परिणाम प्रकाशित करें?',
+  'rc.publish.confirm.text': 'इससे {className} के अंक, पेपर और टिप्पणियाँ स्थिर हो जाएँगी, हर माता-पिता को तुरंत सूचना जाएगी, और हर बच्चे का रिपोर्ट कार्ड बनेगा। बाद में कोई अंक बदलने के लिए प्रिंसिपल को कारण के साथ परिणाम फिर खोलना होगा।',
+  'rc.publish.confirm.yes': 'हाँ, प्रकाशित करें',
+  'rc.publish.confirm.no': 'रद्द करें',
+  'fam.signOut.ask': 'इस फ़ोन पर परिवार ऐप से साइन आउट करें?',
+  'fam.signOut.confirm': 'साइन आउट',
+  'fam.signOut.stay': 'रुकें',
+  // w15 end
 };

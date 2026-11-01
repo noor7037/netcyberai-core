@@ -3707,6 +3707,12 @@ const rcPublish = async (page) => {
   await page.reload({ waitUntil: 'networkidle' });
   await page.locator('[data-report-cards]').waitFor({ timeout: 20000 });
   await page.locator('[data-rc-publish-button]').click();
+  // W15-B: the confirm step; Cancel first, which must change nothing, then the real confirm.
+  await page.locator('[data-rc-publish-cancel]').click();
+  await page.locator('[data-rc-publish-confirm]').waitFor({ state: 'hidden', timeout: 5000 });
+  if ((await page.locator('[data-report-cards][data-published="1"]').count()) !== 0) throw new Error('cancel published the result');
+  await page.locator('[data-rc-publish-button]').click();
+  await page.locator('[data-rc-publish-confirm-button]').click();
   await page.locator('[data-report-cards][data-published="1"]').waitFor({ timeout: 20000 });
   const downloadAll = await page.locator('[data-rc-download-all]').count();
   const frozen = await db.pg.query(`update marks set score = 1 where paper_id = $1 and kind = 'score'`, [X_MATHS]).then(() => false, (e) => /frozen/.test(e.message));

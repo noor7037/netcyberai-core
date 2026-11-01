@@ -9957,4 +9957,18 @@ export const en = {
   'fam.parent.ov.homework': 'Homework due',
   'fam.parent.ov.homeworkNone': 'Nothing due',
   // w14-g end
+  // w15 start
+  'monitoring.jobs.reason.email_refused': 'The email service refused this address, so the message was not sent. Check the address; a real address sends.',
+  'monitoring.jobs.reason.already_has_login': 'This email already has a login, so no invite was sent.',
+  'monitoring.jobs.reason.server_setting': 'A server setting is missing or wrong. Fix it in the deployment and retry.',
+  'monitoring.jobs.reason.provider_down': 'The service it talks to did not answer in time. It will be tried again.',
+  'monitoring.jobs.reason.address_invalid': 'The address or number was refused: it is not one that can be reached.',
+  'rc.publish.confirm.title': 'Publish the result of {className}?',
+  'rc.publish.confirm.text': 'This freezes the marks, papers and remarks of {className}, tells every parent at once, and makes each child\'s report card. To change a mark afterwards, the principal has to reopen the result with a reason.',
+  'rc.publish.confirm.yes': 'Yes, publish',
+  'rc.publish.confirm.no': 'Cancel',
+  'fam.signOut.ask': 'Sign out of the Family app on this phone?',
+  'fam.signOut.confirm': 'Sign out',
+  'fam.signOut.stay': 'Stay',
+  // w15 end
 } as const;

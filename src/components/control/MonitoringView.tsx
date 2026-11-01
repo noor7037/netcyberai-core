@@ -194,7 +194,7 @@ export function MonitoringView({ data: m, invitations, applications, lang, marki
                   <code className="font-bold">{job.type}</code>
                   <span className="block">{t(lang, job.state === 'dead' ? 'monitoring.jobs.line.dead' : 'monitoring.jobs.line.retrying', { age: ageWords(lang, job.forSeconds), attempts: job.attempts, max: job.maxAttempts })}</span>
                   <span data-monitoring-job-error className="block break-words text-slate/70">
-                    {job.error ?? t(lang, 'monitoring.jobs.noError')}
+                    {job.reason ? t(lang, `monitoring.jobs.reason.${job.reason}`) : job.error ?? t(lang, 'monitoring.jobs.noError')}
                   </span>
                 </span>
                 {job.state === 'dead' && <RetryJobButton jobId={job.jobId} />}

@@ -113,6 +113,8 @@ async function serverVoiceOn(db, aiKey) {
 // `reset`: SQL run after the picture (so a limit the picture spends does not carry over to the next).
 export const FAMILY_SCREENS = [
   [null, 'family-sign-in', '/family/sign-in', {}],
+  // W15-C: the sign-out page asks first; the visit itself ends nothing.
+  ['full', 'family-sign-out', '/family/sign-out', {}],
   [null, 'family-offline', '/family/offline', {}],
   // m2b-2, reversed: a child's own phone asks for a code and shows it (C342, C346; behind the Focus Lock's switch).
   [null, 'family-link', '/family/link', { flags: { focus_lock: true }, tap: '[data-link-start]', reset: 'delete from family.child_link_tries; delete from family.child_link_requests' }],
