@@ -59,7 +59,8 @@ FAMILY_GROUP = "(parent)/parent"
 # requireFamilyPage() (a redirect to sign-in without a session), except the pages that need none.
 FAMILY_APP_GROUP = "(family)/family/(app)"
 # /family/link (M2b-2, C342): a child's own phone enters the parent's code there, before it has a session.
-FAMILY_APP_OPEN = {"/family/sign-in", "/family/link", "/family/offline", "/family/about-ai"}
+# /family/sign-out (W14-D): ends the session it may or may not still have, then lands on sign-in; it needs none.
+FAMILY_APP_OPEN = {"/family/sign-in", "/family/link", "/family/offline", "/family/about-ai", "/family/sign-out"}
 
 GROUP_SEGMENT_RE = re.compile(r"^\([^)]*\)$")
 
