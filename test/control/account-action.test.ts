@@ -156,7 +156,7 @@ describe('deactivate and reactivate (W14-B b)', () => {
     expect(h.accounts.has(MEERA)).toBe(true);
 
     const [row] = await audits(MEERA, 'user.deactivated');
-    expect(JSON.parse(row.after)).toEqual({ membershipId: membership.meera, reasoned: true });
+    expect(JSON.parse(row.after)).toEqual({ membershipId: membership.meera, membershipDeleted: false, accountDeleted: false, reasoned: true });
     expect(row.after).not.toContain('October');
     expect(row.reason).toBe('Left the school in October');
   });

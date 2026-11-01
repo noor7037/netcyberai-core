@@ -121,7 +121,7 @@ describe('the rule for reads (C140)', () => {
     const expected: Record<string, string> = {
       students: 'students', [`students/${id}`]: 'students', 'students/search': 'students', [`students/${id}/documents`]: 'students',
       [`students/${id}/guardians`]: 'parents', [`students/${id}/consent`]: 'parents', [`students/${id}/dsr`]: 'parents', [`guardians/${id}/merges`]: 'parents',
-      attendance: 'attendance', syllabus: 'academics', 'compliance/retention': 'compliance', 'whatsapp-config': 'communication', 'pulse/today': 'checks-itself',
+      attendance: 'attendance', syllabus: 'academics', 'syllabus/library': 'academics', 'compliance/retention': 'compliance', 'whatsapp-config': 'communication', 'pulse/today': 'checks-itself',
       tickets: 'raise-ticket', [`tickets/${id}`]: 'raise-ticket',
       classes: 'any-module', subjects: 'any-module', users: 'any-module', 'staff/invitations': 'any-module', views: 'any-module', entitlements: 'any-module',
       search: 'checks-itself', 'lists/students': 'checks-itself', 'custom-fields': 'checks-itself', 'settings/attendance': 'checks-itself',

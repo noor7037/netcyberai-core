@@ -163,7 +163,8 @@ async function membershipAction(
         targetType: 'users',
         targetId: userId,
         beforeState: { membershipActive: m.is_active },
-        afterState: after,
+        // Spelt out for the audit-PII rule (C224): ids and flags only; the reason lives with the founder's reasons.
+        afterState: { membershipId: after.membershipId, membershipDeleted: after.membershipDeleted ?? false, accountDeleted: after.accountDeleted ?? false, reasoned: true },
       },
       why.reason
     );
