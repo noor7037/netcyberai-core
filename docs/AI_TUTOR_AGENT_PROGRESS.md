@@ -4,6 +4,15 @@
 re-tests, item by item, and the plan for what is not built yet. **Rule:** updated with every PR that answers a re-test;
 the Decision Log holds the reasons, this file holds the status.
 
+## 1 Nov 2026, evening: your verification of PR #395 (C433)
+
+| Your finding | What changed | Status |
+|---|---|---|
+| 1. Invite refusals shown as a raw 500 in Monitoring | A refused invite is final (no retries); Monitoring says "The email service refused this address" and the like in plain words. | Fixed |
+| 2. Publish has no confirm step | "Publish the result" now asks, in words that say what happens; Cancel changes nothing. | Fixed |
+| 3. Family sign-out is instant on visit | The page asks "Sign out?" with Sign out / Stay; the visit itself ends nothing. | Fixed |
+| 4. No per-school AI marking limit | Control → a school → Modules & access → Exams row: set this school's monthly pages above the plan's, or go back to the plan's. | Built |
+
 ## 1 Nov 2026: your onboarding and AI-marking test of 31 Oct (C423–C432)
 
 What changed for each finding, and where I disagree with the finding and why.
