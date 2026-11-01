@@ -17,7 +17,8 @@ export const openaiAdapter: TextAdapter = {
   capabilities: capabilities(['text', 'vision', 'stream', 'json']),
   keyLooksRight: (key) => /^sk-[\x21-\x7e]{20,300}$/.test(key),
   streamText(request, onDelta): Promise<AdapterResult> {
-    return streamChatCompletions(URL, request.apiKey, request, onDelta, { maxTokensField: 'max_completion_tokens', jsonMode: true, includeUsage: true });
+    // No temperature (W14-C): OpenAI's reasoning models refuse any but their default.
+    return streamChatCompletions(URL, request.apiKey, { ...request, temperature: undefined }, onDelta, { maxTokensField: 'max_completion_tokens', jsonMode: true, includeUsage: true });
   },
   // GET /v1/models: free, and answers only for a working key (G5); its ids fill Control's model picker (G6).
   testConnection(apiKey): Promise<ConnectionTest> {

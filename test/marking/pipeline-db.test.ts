@@ -29,6 +29,7 @@ vi.mock('@/lib/storage/supabase-file-storage', async () => {
 
 import { schoolJobContextStatements } from '@/lib/auth/db';
 import { sealAiKey, aiEncryptionKey } from '@/lib/ai/credentials';
+import { prepareText } from '@/lib/ai/platform';
 import { PAGE_MAX_BYTES } from '@/lib/contracts/marking';
 import { makeExam } from '@/lib/exams/exams';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
@@ -142,7 +143,7 @@ const marked = (q1: number) =>
   '```json\n' +
   JSON.stringify({
     questions: [
-      { label: '1', attempted: true, marks: q1, steps: [{ step: 'Common denominator', awarded: 2, note: null }], note: 'Check the sum.', reason: 'Method right.', error_type: 'calculation', confidence: 0.9, page: 1, y_from: 0.1, y_to: 0.3 },
+      { label: '1', attempted: true, marks: q1, steps: [{ step: 'Common denominator', awarded: q1, note: null }], note: 'Check the sum.', reason: 'Method right.', error_type: 'calculation', confidence: 0.9, page: 1, y_from: 0.1, y_to: 0.3 },
       { label: '2', attempted: true, marks: 6, steps: [], note: 'Well done.', reason: 'Complete.', error_type: 'none', confidence: 0.95, page: 1, y_from: 0.4, y_to: 0.5 },
       { label: '3(A)', attempted: true, marks: 8, steps: [], note: 'Good.', reason: 'One point missing.', error_type: 'incomplete', confidence: 0.85, page: 2, y_from: 0.1, y_to: 0.7 },
       { label: '3(b)', attempted: false, marks: 0, steps: [], note: null, reason: null, error_type: 'not_attempted', confidence: 0.99, page: null, y_from: null, y_to: null },
@@ -179,7 +180,13 @@ function stubVendor() {
 // ---- the school's marking jobs through the runner ------------------------------------------------------------------------
 
 const queue = createPgJobQueue(platform as never);
-const deps = { asSchool, queue, storage: store };
+// W14-C: every request the jobs hand the AI platform, by profile, to see how each is asked.
+const asked: { profile: string; temperature: unknown }[] = [];
+const prepare: typeof prepareText = (db, ctx, profile, request) => {
+  asked.push({ profile, temperature: request.temperature });
+  return prepareText(db, ctx, profile, request);
+};
+const deps = { asSchool, queue, storage: store, prepare };
 const handlers: Record<string, JobHandler> = {
   'marking.read': markingReadHandler(deps),
   'marking.group': markingGroupHandler(deps),
@@ -421,8 +428,8 @@ describe('closing an upload and the school’s marking jobs (C347)', () => {
     ]);
     const sheets = await owner(`select student_id, matched_by, state, flags, failure, ai_provider, ai_model, prompt_version from marking_sheets where upload_id = $1 order by student_id`, [upload]);
     expect(sheets).toEqual([
-      { student_id: K1, matched_by: 'roll', state: 'marked', flags: [], failure: null, ai_provider: 'anthropic', ai_model: 'test-vision', prompt_version: 'v1' },
-      { student_id: K2, matched_by: 'roll', state: 'marked', flags: [], failure: null, ai_provider: 'anthropic', ai_model: 'test-vision', prompt_version: 'v1' },
+      { student_id: K1, matched_by: 'roll', state: 'marked', flags: [], failure: null, ai_provider: 'anthropic', ai_model: 'test-vision', prompt_version: 'v2' },
+      { student_id: K2, matched_by: 'roll', state: 'marked', flags: [], failure: null, ai_provider: 'anthropic', ai_model: 'test-vision', prompt_version: 'v2' },
       { student_id: K3, matched_by: 'roll', state: 'failed', flags: [], failure: 'bad_answer', ai_provider: null, ai_model: null, prompt_version: null },
     ]);
     const meera = await owner(
@@ -446,6 +453,16 @@ describe('closing an upload and the school’s marking jobs (C347)', () => {
       { profile_id: 'exams.read_pages', requests: 2 },
     ]);
     expect((await owner(`select count(*)::int as n from jobs where type like 'marking.%' and status <> 'succeeded'`))[0].n).toBe(0);
+    // W14-C: marking goes out at temperature 0 (reading the pages does not); each answer the AI gave is kept with the
+    // request it answered (the prompt version and the questions as sent, never a picture), Dev's broken one too.
+    expect([...new Set(asked.filter((a) => a.profile === 'exams.mark').map((a) => a.temperature))]).toEqual([0]);
+    expect(asked.filter((a) => a.profile === 'exams.read_pages').every((a) => a.temperature === undefined)).toBe(true);
+    type Transcript = { prompt_version: string; request: { system: string; temperature: unknown }; response: { text: string; provider: string } };
+    const transcripts: Transcript[] = await owner(`select t.sheet_id, t.prompt_version, t.request, t.response from marking_transcripts t join marking_sheets s using (school_id, sheet_id) where s.upload_id = $1`, [upload]);
+    expect(transcripts).toHaveLength(3);
+    expect(transcripts.every((t) => t.prompt_version === 'v2' && t.request.temperature === 0 && t.request.system.includes('"answer_key"') && t.response.provider === 'anthropic')).toBe(true);
+    expect(transcripts.some((t) => t.response.text === 'I am not able to mark this script.')).toBe(true);
+    expect(JSON.stringify(transcripts)).not.toMatch(/"data":|base64/);
   });
 
   it('nothing sent to the AI names a child, the roster, the school or the exam', () => {

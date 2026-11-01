@@ -9839,4 +9839,17 @@ export const hi: Record<keyof typeof en, string> = {
   'login.act.reason': 'कारण (सिर्फ़ आप देख सकते हैं)',
   'login.act.own': 'यह आपके अपने खाते पर नहीं किया जा सकता।',
   // w14-b end
+  // w14-c start
+  'mk.check.title': 'यह अंक जाँचें:',
+  'mk.check.says_right': 'कारण में उत्तर को सही कहा गया है, पर कोई अंक नहीं मिला।',
+  'mk.check.says_wrong': 'कारण में उत्तर को गलत कहा गया है, पर पूरे अंक मिले।',
+  'mk.check.above_max': 'AI ने प्रश्न के अंकों से अधिक अंक दिए।',
+  'mk.check.steps_sum': 'चरणों के अंक जोड़ने पर कुल अंक नहीं बनते।',
+  'mk.check.no_reason': 'AI को पूरा भरोसा था, पर उसने कोई कारण नहीं दिया।',
+  'mk.q.stepsNeeded': 'अंकन के चरण जोड़ें, ताकि आंशिक अंक सही मिलें',
+  'mk.q.stepsSuggest': 'चरण सुझाएँ',
+  'mk.q.stepsSuggesting': 'सुझा रहे हैं…',
+  'mk.q.stepsSuggested': 'चरण सुझाए गए। इन्हें जाँचें, जो बदलना हो बदलें, फिर प्रश्न सहेजें। सहेजने से पहले कुछ नहीं रखा जाता।',
+  'mk.q.stepsSuggestNone': 'कोई चरण नहीं सुझाया जा सका। कृपया इन्हें स्वयं जोड़ें।',
+  // w14-c end
 };

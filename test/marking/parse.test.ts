@@ -215,8 +215,10 @@ describe('the two AI tasks and their prompts (C349)', () => {
     expect(read.system({ pages: 8 })).toContain('"id_document"');
     expect(read.system({ pages: 8 })).toContain('"answer_page"');
     expect(read.user({ pages: 8 })).toContain('page 8');
+    // v2 since W14-C; v1 stays registered for a Control row that names it.
     const mark = markPrompt(null);
-    expect(mark.version).toBe('v1');
+    expect(mark.version).toBe('v2');
+    expect(markPrompt('v1').version).toBe('v1');
     const ask = {
       grade: '7',
       subject: 'Mathematics',
@@ -233,7 +235,7 @@ describe('the two AI tasks and their prompts (C349)', () => {
     expect(system).toMatch(/"error_type"/);
     expect(mark.user(ask)).toContain('Page 3');
     // A version the code does not have falls back to the latest.
-    expect(markPrompt('v99').version).toBe('v1');
+    expect(markPrompt('v99').version).toBe('v2');
   });
 });
 

@@ -3,6 +3,7 @@ import { applyChildRead, paperSitting } from '@/lib/bubbles/apply';
 import { onBubbleSheet } from '@/lib/bubbles/layout';
 import type { Sql } from '@/lib/jobs/types';
 import { markingPaper, markingSettings, paperRoster } from './context';
+import { checkReasonOf, markChecks } from './check';
 import { assignClaimed, assignScripts, claimedGroups, groupPages, type ClaimedPage } from './matching';
 import { markedParts, partTotals } from './rollup';
 import { questionsOf } from './setup';
@@ -186,6 +187,10 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
   for (const q of questions) {
     if (onSheet.has(q.questionId)) continue;
     const r = given.get(q.questionId);
+    // W14-C: marks that disagree with the AI's own words (or with its steps, or the question's marks) send the script to
+    // "Needs a look", with the reason kept beside the question's mark.
+    const checks = markChecks(r, q.maxMarks);
+    if (checks.length) unsure = true;
     let marks = r?.marks ?? null;
     if (marks !== null && (!Number.isFinite(marks) || marks < 0 || marks > q.maxMarks || Math.round(marks * 10) !== marks * 10)) marks = null;
     const attempted = r ? r.attempted === true : null;
@@ -201,13 +206,13 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
     const errorType: ErrorType | null = r?.errorType && (ERROR_TYPES as readonly string[]).includes(r.errorType) ? r.errorType : attempted === false ? 'not_attempted' : null;
     const steps = (r?.steps ?? []).slice(0, 12).map((s) => ({ step: short(s.step, 300) ?? '', awarded: typeof s.awarded === 'number' && Number.isFinite(s.awarded) ? Math.max(0, Math.round(s.awarded * 10) / 10) : 0, note: short(s.note, 300) })).filter((s) => s.step);
     await db.query(
-      `insert into marking_marks (school_id, sheet_id, paper_id, question_id, attempted, ai_marks, ai_steps, ai_note, ai_reason, error_type, confidence, page_id, y_from, y_to)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
+      `insert into marking_marks (school_id, sheet_id, paper_id, question_id, attempted, ai_marks, ai_steps, ai_note, ai_reason, error_type, confidence, page_id, y_from, y_to, check_reason)
+       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
        on conflict (school_id, sheet_id, question_id) do update set attempted = excluded.attempted, ai_marks = excluded.ai_marks, ai_steps = excluded.ai_steps,
          ai_note = excluded.ai_note, ai_reason = excluded.ai_reason, error_type = excluded.error_type, confidence = excluded.confidence,
-         page_id = excluded.page_id, y_from = excluded.y_from, y_to = excluded.y_to`,
+         page_id = excluded.page_id, y_from = excluded.y_from, y_to = excluded.y_to, check_reason = excluded.check_reason`,
       [schoolId, sheetId, paper.paperId, q.questionId, attempted, marks, JSON.stringify(steps), short(r?.note, 1000), short(r?.reason, 1500), errorType, confidence,
-        place?.pageId ?? null, place ? Math.min(place.yFrom, place.yTo) : null, place ? Math.max(place.yFrom, place.yTo) : null]
+        place?.pageId ?? null, place ? Math.min(place.yFrom, place.yTo) : null, place ? Math.max(place.yFrom, place.yTo) : null, checkReasonOf(checks)]
     );
   }
   if (onSheet.size) {
@@ -245,4 +250,19 @@ export async function recordSheetResult(db: Sql, schoolId: string, sheetId: stri
 export async function recordSheetFailure(db: Sql, schoolId: string, sheetId: string, failure: string): Promise<void> {
   const kind = /^[a-z_]{2,40}$/.test(failure) ? failure : 'failed';
   await db.query(`update marking_sheets set state = 'failed', failure = $3 where school_id = $1 and sheet_id = $2 and state in ('waiting', 'marking')`, [schoolId, sheetId, kind]);
+}
+
+// W14-C: what was asked of the AI for a script and what it answered, kept for audit (marking_transcripts): the prompt
+// version, the instructions with the questions as sent and the page count (never the pictures), and the raw answer
+// with the provider and model. Read by the school's staff as the script's marks are; never by a family.
+export const TRANSCRIPT_TEXT_MAX = 90_000;
+export type MarkingTranscript = { promptVersion: string; system: string; user: string; pages: number; temperature: number | null; answer: string; provider: string; model: string; finish: string | null };
+export async function recordTranscript(db: Sql, schoolId: string, sheetId: string, t: MarkingTranscript): Promise<void> {
+  // jsonb takes no NUL character.
+  const cut = (s: string) => Array.from(s.replace(/\u0000/g, '')).slice(0, TRANSCRIPT_TEXT_MAX).join('');
+  await db.query(
+    `insert into marking_transcripts (school_id, sheet_id, paper_id, prompt_version, request, response)
+     select s.school_id, s.sheet_id, s.paper_id, $3, $4, $5 from marking_sheets s where s.school_id = $1 and s.sheet_id = $2`,
+    [schoolId, sheetId, t.promptVersion.slice(0, 32), JSON.stringify({ system: cut(t.system), user: cut(t.user), pages: t.pages, temperature: t.temperature }), JSON.stringify({ text: cut(t.answer), provider: t.provider.slice(0, 40), model: t.model.slice(0, 80), finish: t.finish })]
+  );
 }

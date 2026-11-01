@@ -51,7 +51,7 @@ export const vertexAiAdapter: TextAdapter = {
     const body = {
       systemInstruction: { parts: [{ text: json ? `${request.system}\n\n${JSON_ONLY}` : request.system }] },
       contents,
-      generationConfig: { maxOutputTokens: request.maxTokens, ...(json ? { responseMimeType: 'application/json' } : {}) },
+      generationConfig: { maxOutputTokens: request.maxTokens, ...(json ? { responseMimeType: 'application/json' } : {}), ...(request.temperature === undefined ? {} : { temperature: request.temperature }) },
     };
     let res: Response;
     try {

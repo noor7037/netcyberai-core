@@ -9853,4 +9853,17 @@ export const en = {
   'login.act.reason': 'Reason (seen only by you)',
   'login.act.own': 'This cannot be done to your own account.',
   // w14-b end
+  // w14-c start
+  'mk.check.title': 'Check this mark:',
+  'mk.check.says_right': 'the reason calls the answer correct, but it got no marks.',
+  'mk.check.says_wrong': 'the reason calls the answer wrong, but it got full marks.',
+  'mk.check.above_max': 'the AI gave more than the question’s marks.',
+  'mk.check.steps_sum': 'the step marks do not add up to the marks.',
+  'mk.check.no_reason': 'the AI was sure but gave no reason.',
+  'mk.q.stepsNeeded': 'Add marking steps so part marks are fair',
+  'mk.q.stepsSuggest': 'Suggest steps',
+  'mk.q.stepsSuggesting': 'Suggesting…',
+  'mk.q.stepsSuggested': 'Steps suggested. Check them, change what you need, then save the questions. Nothing is kept until you do.',
+  'mk.q.stepsSuggestNone': 'No steps could be suggested. Please add them yourself.',
+  // w14-c end
 } as const;

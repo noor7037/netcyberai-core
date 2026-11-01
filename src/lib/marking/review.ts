@@ -4,6 +4,7 @@ import { saveMarks, type SaveProblem } from '@/lib/exams/marks';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
 import { markRange } from './answers';
+import { checksOf } from './check';
 import { aiMarkingState, markingPaper, markingSettings, paperRoster, type Actor } from './context';
 import { markedParts, partTotals, countedQuestions, round1, structureProblems } from './rollup';
 import { questionsOf } from './setup';
@@ -226,6 +227,7 @@ export async function sheetDetail(db: Sql, actor: Actor, sheetId: string): Promi
           note: m?.ai_note ?? null,
           reason: m?.ai_reason ?? null,
           confidence: m ? num(m.confidence) : null,
+          checks: checksOf(m?.check_reason),
         },
         teacher: { marks: m ? num(m.marks) : null, note: m?.note ?? null, changedAt: m ? iso(m.changed_at) : null },
         errorType: (m?.error_type ?? null) as ErrorType | null,
