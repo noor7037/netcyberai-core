@@ -1,5 +1,6 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
+import { aiMarksForEntry, type EntryAiMarks } from '@/lib/marking/approved';
 import { EXAM_READERS, papersOf, type Actor, type PaperSummary } from './exams';
 import { ON_ROLL, ROLL_ORDER, scoreOk, type Mark, type MarkKind } from './papers';
 
@@ -20,6 +21,8 @@ export type PaperEntry = {
   map: { unitId: string; chapter: string; topic: string; position: number }[];
   mayEnter: boolean;
   mayChange: boolean;
+  // The paper's AI marking, if it has any (W14-D): approved scripts as scores to fill in, and how many marked scripts wait.
+  ai: EntryAiMarks | null;
 };
 
 export async function paperEntry(db: Sql, actor: Actor, paperId: string): Promise<PaperEntry | null> {
@@ -56,6 +59,7 @@ export async function paperEntry(db: Sql, actor: Actor, paperId: string): Promis
     map,
     mayEnter: paper.mayEnter && head.status === 'open',
     mayChange: ['principal', 'school_admin', 'academic_coordinator'].includes(actor.role),
+    ai: await aiMarksForEntry(db, actor.schoolId, paperId, paper.components),
   };
 }
 

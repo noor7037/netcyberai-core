@@ -15,8 +15,9 @@ export type Bucket = 'needs' | 'ready' | 'approved' | 'working' | 'aside';
 export function bucketOf(s: Pick<SheetRow, 'state' | 'flags' | 'student'>): Bucket {
   if (s.state === 'set_aside') return 'aside';
   if (s.state === 'waiting' || s.state === 'marking') return 'working';
+  // An approved script is done unless it was changed after approval; a flag the teacher looked at before approving does not pull it back.
+  if (s.state === 'approved') return s.flags.includes('changed') ? 'needs' : 'approved';
   if (s.state === 'failed' || s.flags.length > 0 || (s.state === 'marked' && !s.student)) return 'needs';
-  if (s.state === 'approved') return 'approved';
   return 'ready';
 }
 
