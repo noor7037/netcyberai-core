@@ -23,14 +23,14 @@ What changed for each finding, and where I disagree with the finding and why.
 | (k) Report cards not made on publish; no bundle; parents cannot see the sheets | Every child's card is made when a class is published (and again on republish), with progress on the publish page; "Get every report card" (one zip) and "Class report"; the Family app has "Get report card" beside "See the checked paper". | Built. Gap: stored PDFs print Hindi as "?", the in-app Hindi card still works |
 | 1. Teachers open office-only pages | Office-only pages now refuse other roles with "This part is for the office". Students, Admissions and Parents stay open to teachers by design (read only, their own classes); the APIs you named already refused a teacher. | Fixed |
 | 2. AI marking caught 2 of 10 planted errors | See (h) and (i); plus a rule that an unreadable answer is reported unreadable, never guessed correct, and a transcript per script for audit. | Improved; needs your re-run |
-| 3. Early Warning crashes | In progress (W14-J). | Pending |
+| 3. Early Warning crashes | Not reproducible: the loader, both routes, a new-school test and the screen at 390 and 1440 all pass. The screen is guarded against a missing list anyway. If it still crashes for you, the browser console line on `/app/early-warning` is what I need. | Guarded; needs your console line |
 | 4. Report cards not built for families | See (k). | Built |
 | 5. DAV goes read-only after 4 Nov | A billing state: paid until 20 Oct, grace to 4 Nov. One click for you in Control (below). | Yours |
 | 6. No syllabus maps | "Use the NetCyberAI syllabus" on the school's Syllabus screen fills every class-subject from the library in one click; Curriculum Gap, Pulse and Taught today then have units. | Built |
 | 7. Staff invite emails fail; sessions sign out | Invites: every failure in the auth log is a QA `example.com` address, which the mail service refuses; Supabase already sends through Resend. Not a bug. Sessions: see (g). | Not a bug / Fixed |
-| 8. Family sign-in code fails; blank scans; overview counts | Code: the same `example.com` refusal; the screen now says so plainly. Overview: the school's numbers now show as tiles (W14-G, in progress). Blank scans: not reproducible from the code; two likely causes recorded, needs the live 404s. | Partly |
+| 8. Family sign-in code fails; blank scans; overview counts | Code: the same `example.com` refusal; the screen now says so plainly. Overview: the school's numbers now show as tiles with the school named. Blank scans: not reproducible from the code; two likely causes recorded, needs the live 404s. | Fixed, except blank scans |
 | 9. Student import hidden; duplicate rolls; 80 vs 67 | Import on the Students page; a roll belongs to one live student in a class (the seeded duplicates were renumbered); the heading counts what the list shows. | Fixed |
-| 10. Notices only by WhatsApp | In progress (W14-J): linked families get notices in the Family app and by email. | Pending |
+| 10. Notices only by WhatsApp | Linked families now get notices in the Family app and by email; the Communication screen counts each channel. | Built |
 | 11. Online payments not wired | Needs your Razorpay account (below). | Yours |
 | 12. Control users: duplicates, no remove, dialog stacking | See (b), (c), (d). | Fixed |
 
