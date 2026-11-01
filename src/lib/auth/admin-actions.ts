@@ -105,3 +105,40 @@ export async function deleteLoginAccount(userId: string): Promise<void> {
   if (!hasServiceRoleKey()) return;
   await newAuthAdminClient().auth.admin.deleteUser(userId).catch(() => undefined);
 }
+
+// Supabase Auth answers "User not found" (404) for an id it holds no account for: a users row written straight into
+// the database (staff made by a seed or a fixture) has none until one is made (W14-B).
+export function isNoLoginAccount(error: { message?: string; status?: number; code?: string } | null | undefined): boolean {
+  return Boolean(error) && (error?.status === 404 || error?.code === 'user_not_found' || /user not found/i.test(error?.message ?? ''));
+}
+
+// A person's sign-in account, made first when their users row has none (W14-B): with the row's own id and email,
+// already confirmed, and the password given (a random one for a link, never shown). `exists` when it was there.
+export type EnsuredLogin = { state: 'exists' } | { state: 'created' } | { state: 'no_email' } | { state: 'refused'; failure: InviteFailure };
+export async function ensureLoginAccount(userId: string, email: string | null, password: string): Promise<EnsuredLogin> {
+  const { data, error } = await admin().auth.admin.getUserById(userId);
+  if (!error && data?.user) return { state: 'exists' };
+  if (!isNoLoginAccount(error)) {
+    if (inviteFailure(error) === 'service_key') throw new AuthError('setup_required', 'the service role key was refused');
+    throw new AuthError('password_rejected', error?.message ?? 'the account could not be read');
+  }
+  if (!email) return { state: 'no_email' };
+  const made = await createLoginAccount(email, password, userId);
+  return made.ok ? { state: 'created' } : { state: 'refused', failure: made.failure };
+}
+
+// Whether Supabase Auth holds a sign-in account with this id (W14-B, the "Existing staff" list); null when it cannot
+// be known (no service key, or Supabase did not answer).
+export async function hasLoginAccount(userId: string): Promise<boolean | null> {
+  if (!hasServiceRoleKey()) return null;
+  const { data, error } = await newAuthAdminClient().auth.admin.getUserById(userId);
+  if (!error && data?.user) return true;
+  return isNoLoginAccount(error) ? false : null;
+}
+
+// Removing a person from their only school (W14-B): their sign-in account goes too. True when it is gone (or was
+// never there); false when Supabase refused.
+export async function removeLoginAccount(userId: string): Promise<boolean> {
+  const { error } = await admin().auth.admin.deleteUser(userId);
+  return !error || isNoLoginAccount(error);
+}

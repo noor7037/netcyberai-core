@@ -118,6 +118,41 @@ describe('ending a view puts the founder back in Control without a new sign-in',
     expect(control.status).toBe(200);
   });
 
+  it('W14-A: End after the founder’s access token ran out, while another tab renewed the same refresh token a moment before, still gives a live founder session', async () => {
+    const stale = await founderAccess(1);
+    const refresh = await founderRefresh();
+    const started = await startView({ nca_access: stale, nca_refresh: refresh });
+    expect(started.status).toBe(200);
+    const viewing = started.cookies.get('nca_access')!.value;
+    await new Promise((r) => setTimeout(r, 1100));
+    // The other tab's page load renews the founder's session first: the refresh cookie End carries is now spent.
+    const { refreshSession } = await import('@/lib/auth/refresh');
+    const otherTab = await refreshSession(refresh);
+    expect(otherTab.ok).toBe(true);
+
+    const { POST: end } = await import('@/app/api/control/impersonate/end/route');
+    const res = await end(post('/api/control/impersonate/end', { nca_access: viewing, nca_impersonation_return: stale, nca_refresh: refresh }));
+    expect(res.status).toBe(200);
+    const { verifyAccessToken } = await import('@/lib/auth/jwt');
+    const back = await verifyAccessToken(res.cookies.get('nca_access')!.value);
+    expect(back).toMatchObject({ sub: FOUNDER, role: 'super_admin', schoolId: null });
+    // The same live session the other tab holds, never a second one and never a sign-out.
+    if (otherTab.ok) {
+      expect(back?.sessionId).toBe(otherTab.claims.sessionId);
+      expect(res.cookies.get('nca_refresh')!.value).toBe(otherTab.refreshToken);
+    }
+    const { middleware } = await import('@/middleware');
+    const control = await middleware(new NextRequest('https://www.netcyberai.test/control', { headers: { cookie: cookieHeader({ nca_access: res.cookies.get('nca_access')!.value }) } }));
+    expect(control.status).toBe(200);
+  });
+
+  it('W14-A: End pressed when the founder’s own session is already back answers ended, not a sign-in', async () => {
+    const { POST: end } = await import('@/app/api/control/impersonate/end/route');
+    const res = await end(post('/api/control/impersonate/end', { nca_access: await founderAccess() }));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ status: 'ended' });
+  });
+
   it('a view that ran out before End was pressed still puts the founder back', async () => {
     const refresh = await founderRefresh();
     const { POST: end } = await import('@/app/api/control/impersonate/end/route');

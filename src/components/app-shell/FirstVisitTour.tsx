@@ -7,8 +7,10 @@ import { useWords } from './Words';
 import { useTours } from './ToursContext';
 
 // A first-visit tour (docs/19 rule 8, C138): up to three short steps the
-// first time a person opens a screen. It sits in a corner and never blocks
-// the page: the person can use the screen, or press Skip at any step.
+// first time a person opens a screen. It sits in the page, straight after the
+// header, so it never covers the part of the screen it talks about and a
+// sticky bar can never hide its Skip button (W14-D): the person can use the
+// screen, or press Skip at any step.
 // Escape skips it only when nothing else on the page is using Escape (an
 // open form, menu or the search box closes first and the tour stays).
 // Finishing or skipping remembers it on their account. While a step is
@@ -60,7 +62,7 @@ export function FirstVisitTour({ id }: { id: TourId }) {
       lang={lang}
       aria-label={t('tour.label')}
       data-tour={id}
-      className="fixed inset-x-3 bottom-20 z-30 rounded-2xl border border-slate/20 bg-white p-4 shadow-xl md:inset-x-auto md:bottom-6 md:right-6 md:w-96 print:hidden"
+      className="relative w-full rounded-2xl border border-slate/20 bg-white p-4 shadow-md md:max-w-md print:hidden"
     >
       <p className="text-xs font-bold uppercase tracking-wider text-slate/70">{t('tour.step', { n: at + 1, total: steps.length })}</p>
       <span role="status" className="sr-only">

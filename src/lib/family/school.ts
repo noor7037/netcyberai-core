@@ -9,14 +9,18 @@ import {
   readChildSchoolResults,
   readLinkedSchool,
   readSchoolNews,
+  readSchoolNoticeFeed,
   readSchoolPagePicture,
   readSchoolPaper,
   readSchoolProgress,
+  readSchoolReportCard,
+  ReportCardUnavailableError,
   readSchoolSyllabus,
   readSchoolToday,
   redeemConnectCode,
   requestFollowup,
   SchoolLinkGoneError,
+  type FeedNotice,
   type FollowupRequestResult,
   type PulseAnswerResult,
   type SchoolNews,
@@ -113,6 +117,34 @@ export async function linkedSchool(claims: Claims, linkId: string, matched: read
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;
   }
+}
+
+// W14-G: the school's numbers for the parent area's Overview, from the same read the School tab uses (linkedSchool), so
+// nothing new is stored or asked of the school. Only the guardian's own children appear (the read decides), and a
+// family with no school link gets an empty list. Homework and results come only for a child this app has matched.
+export type SchoolOverviewRow = {
+  studentId: string;
+  name: string;
+  attendance: { present: number; marked: number } | null;
+  dueMinor: number;
+  results: number | null;
+  homeworkDue: number | null;
+};
+export type SchoolOverview = { linkId: string; schoolName: string; children: SchoolOverviewRow[] };
+
+export function schoolOverview(links: readonly { linkId: string; school: LinkedSchool }[], today: string): SchoolOverview[] {
+  return links.map(({ linkId, school }) => ({
+    linkId,
+    schoolName: school.schoolName,
+    children: school.children.map((c) => ({
+      studentId: c.studentId,
+      name: c.name,
+      attendance: c.markedDays > 0 ? { present: c.presentDays, marked: c.markedDays } : null,
+      dueMinor: c.dueMinor,
+      results: c.results ? c.results.length : null,
+      homeworkDue: c.homework ? c.homework.filter((h) => h.done !== true && (h.due === null || h.due >= today)).length : null,
+    })),
+  }));
 }
 
 // The parent answers the school's Daily Pulse for a child this app has matched (C336). The database decides the rest:
@@ -271,6 +303,24 @@ export async function schoolNewsFor(claims: Claims, links: readonly FamilySchool
   return { ...sum, total: sum.homework + sum.notices + sum.results };
 }
 
+// The notices the connected schools sent in the last days to the matched children's classes, newest first, each with the
+// school's name and the notice's own words (W14-J), as the guardian: the school's own rules and consent decide every
+// row. Left out when the parent turned notices off, and for a link the school has closed.
+export const NOTICE_FEED_DAYS = 14;
+export async function schoolNoticesFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<FeedNotice[]> {
+  if (off.includes('notices')) return [];
+  const out: FeedNotice[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await readSchoolNoticeFeed(claims, l.linkId, l.children.map((c) => c.studentId), NOTICE_FEED_DAYS)));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out.sort((a, b) => b.sentAt.localeCompare(a.sentAt)).slice(0, 5);
+}
+
 // One link's news since the given times, as the guardian (the push job, M3-8b, C339); null when the school closed the
 // link meanwhile.
 export async function readSchoolNewsFor(claims: Claims, link: FamilySchoolLink, since: Record<SchoolNewsKind, string>): Promise<SchoolNews | null> {
@@ -341,4 +391,19 @@ export async function schoolPagePicture(claims: Claims, links: readonly FamilySc
     }
   }
   return null;
+}
+
+// A family child's report card of one published exam (W14-F): the file the school made when it published the class,
+// read as the guardian, for this family's own matched child only. In the child's own view, only while the school lets
+// children see their results. null when the child is not matched, the link is gone, or there is no such card.
+export { ReportCardUnavailableError };
+export async function schoolReportCardFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, examId: string, as: { childView: boolean }): Promise<{ bytes: Uint8Array; fileName: string } | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readSchoolReportCard(claims, m.linkId, m.studentId, examId, as);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
 }

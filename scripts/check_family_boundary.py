@@ -120,7 +120,7 @@ OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     # child is the one matched to that school.
     "src/lib/auth/db.ts": {"accounts", "school_links", "child_devices", "child_links"},
     # The school's office disconnects a guardian's Family app through this one definer function (C230-AA).
-    "src/lib/school-link/index.ts": {"revoke_school_links_for_guardian"},
+    "src/lib/school-link/index.ts": {"revoke_school_links_for_guardian", "linked_children_for_notice"},
     # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
     "src/lib/ai/daily-cap.ts": {"ai_daily"},
     # Control's door to the people (C230-V) returns parents' emails and children's names: only its one reader, which

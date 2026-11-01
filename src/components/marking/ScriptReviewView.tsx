@@ -10,14 +10,14 @@ import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { Icon } from '@/components/visual/Icons';
 import { BubbleReadLine, BubbleSheetPane, type BubbleSheetPaneHandle } from '@/components/bubbles/BubbleSheetPane';
-import { ERROR_TYPES, type BubbleSheetDetail, type ErrorType, type MarkingOverview, type SetupScreen, type SheetDetail, type SheetQuestion } from '@/lib/contracts/marking';
+import { ERROR_TYPES, type BubbleSheetDetail, type ErrorType, type MarkingOverview, type SetupScreen, type SheetDetail, type SheetQuestion, type SheetState } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
 import { markRange } from '@/lib/marking/answers';
 import { layoutBadges } from '@/lib/marking/margin';
 import { changesOf, clampMark, countedOf, emptyDraft, finalOf, flagsInOrder, grandTotal, noteOf, parseMark, stepMark, sureness, totalsOf, type SheetDraft } from '@/lib/marking/review-view';
 import { OnlineAnswers } from '@/components/online/OnlineAnswers';
 import { PagesPane, type PagesPaneHandle } from './PagesPane';
-import { ask, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
+import { ask, CHECK_KEYS, childLine, ERROR_TYPE_KEYS, errorWords, failureWords, FLAG_HOW_KEYS, FLAG_KEYS, scriptsHref, sheetHref, STATE_KEYS } from './parts';
 
 // One script, beside its pages (docs/35, C347). The scanned pages are on one side, zoomable, with each question's mark
 // in the margin at its answer; the questions are on the other: marks with − and + in half marks and a field (never above
@@ -168,6 +168,8 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
   const taken = new Set((overview?.sheets ?? []).filter((s) => s.student && s.sheetId !== sheetId).map((s) => s.student!.studentId));
   // An approved script changed just now is approved again (the flag follows when the change is kept).
   const changedSince = sheet.flags.includes('changed') || pending !== null;
+  // One state for the badge, the button and the list: approved only while nothing has changed since (otherwise it waits to be approved again).
+  const stateShown: SheetState = sheet.state === 'approved' && changedSince ? 'marked' : sheet.state;
   const oddPages = detail.pages.filter((g) => g.state === 'not_answer');
   const mayApprove = detail.mayChange && !!sheet.student && (sheet.state === 'marked' || (sheet.state === 'approved' && changedSince)) && allMarked && oddPages.length === 0;
   const approveWhy: MessageKey | null = !detail.mayChange
@@ -308,7 +310,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
             )}
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant={sheet.state === 'approved' && !sheet.flags.includes('changed') ? 'success' : sheet.state === 'failed' ? 'danger' : 'neutral'}>{t(STATE_KEYS[sheet.state])}</Badge>
+            <Badge variant={stateShown === 'approved' ? 'success' : stateShown === 'failed' ? 'danger' : 'neutral'}>{t(STATE_KEYS[stateShown])}</Badge>
             {hasMarks && <span data-sheet-total className="font-bold">{t('mk.review.total', { score: numberWords(grand.score, lang), max: numberWords(grand.max, lang) })}</span>}
             <a href={scriptsHref(paperId)} className={TAP}>{t('mk.sheet.back')}</a>
           </div>
@@ -497,6 +499,7 @@ export function ScriptReviewView({ paperId, sheetId }: { paperId: string; sheetI
                               </ul>
                             )}
                             {q.ai.reason && <p data-ai-reason className="text-slate/80"><span className="font-semibold">{t('mk.q.why')}</span> {q.ai.reason}</p>}
+                            {q.ai.checks && q.ai.checks.length > 0 && <p data-ai-check className="text-amber-text"><span className="font-semibold">{t('mk.check.title')}</span> {q.ai.checks.map((c) => t(CHECK_KEYS[c])).join(' ')}</p>}
 
                             <Textarea id={`mk-note-${q.questionId}`} label={t('mk.q.noteFor')} rows={2} maxLength={1000} disabled={!editable} value={noteOf(q, draft)} onFocus={() => setActive(q.questionId)} onChange={(e) => setQuestion(q.questionId, { note: e.target.value })} />
                             <Select id={`mk-mistake-${q.questionId}`} label={t('mk.q.mistake')} disabled={!editable} value={errorType ?? ''} onChange={(e) => setQuestion(q.questionId, { errorType: (e.target.value || null) as ErrorType | null })}>

@@ -8,6 +8,8 @@ import { PaymentRailsPanel } from '@/components/payments/PaymentRailsPanel';
 import { SchoolSettingsPanel } from '@/components/settings/SchoolSettingsPanel';
 import { SchoolBrandingCard } from '@/components/settings/SchoolBrandingCard';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
+import { moduleOffReason } from '@/lib/frameworks/page-access';
 import type { SchoolEntitlements } from '@/lib/contracts/entitlements';
 import { loadEntitlements } from '@/lib/frameworks/entitlements';
 import { readAllSettings, type ModuleSettingsForScreen } from '@/lib/frameworks/settings-store';
@@ -24,6 +26,11 @@ import { pageWords } from '@/components/app-shell/page-words';
 // principal and the school admin only: the school's official name and logo
 // (C235-B), shown at the top of every screen.
 export default async function SettingsPage() {
+  // Not a teacher's page (W14-A): the office's, with the accountant's payment rails and the coordinator's settings.
+  // Only the role is asked here: the page stays open while Setup is off or the account is paused, as before.
+  if ((await moduleOffReason('setup', { roles: ['principal', 'school_admin', 'accountant', 'academic_coordinator'] })) === 'role_not_allowed') {
+    return <ModuleOffPage moduleId="setup" reason="role_not_allowed" />;
+  }
   const session = await getServerSession();
   const canManage = session?.role === 'school_admin' || session?.role === 'principal';
   const { lang } = getLang(session?.sub ?? '');

@@ -13,7 +13,7 @@ import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanS
 import { NotifySection } from '@/components/family/NotifySection';
 import { vapidPublicKey } from '@/lib/family/web-push';
 import { SchoolSection } from '@/components/family/SchoolSection';
-import { activeLinks, linkedSchool, notifyOff } from '@/lib/family/school';
+import { activeLinks, linkedSchool, notifyOff, schoolOverview } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { listChildPhones } from '@/lib/family/child-phone';
@@ -64,11 +64,12 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.tabs', 'fam.parent.tab.overview', 'fam.parent.tab.children', 'fam.parent.tab.school', 'fam.parent.tab.learning', 'fam.parent.tab.privacy', 'fam.parent.tab.account',
   'fam.parent.needs.title', 'fam.parent.needs.none', 'fam.parent.needs.open', 'fam.parent.needs.requestsDeclined', 'fam.parent.needs.requestsOpen', 'fam.parent.needs.renew', 'fam.parent.needs.consent', 'fam.parent.needs.meeting',
   'fam.parent.learningEmpty', 'fam.parent.goChildren',
-  'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.marks.open', 'fam.marks.openSubject', 'fam.schoolProgress.open', 'fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
+  'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.rc.title', 'fam.rc.get', 'fam.rc.getFor', 'fam.rc.notYet', 'fam.marks.open', 'fam.marks.openSubject', 'fam.schoolProgress.open', 'fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
   'fam.parent.deleteAccountWord', 'fam.parent.deleteAccountYes', 'fam.consent.purpose.study_core', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.common.cancel', 'fam.lang.label',
-  ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
+  ...SUBJECT_IDS.map((id) => `fam.subject.${id}` as MessageKey), 'fam.parent.ov.title', 'fam.parent.ov.from', 'fam.parent.ov.attendance', 'fam.parent.ov.attendanceNone', 'fam.parent.ov.fees', 'fam.parent.ov.feesNone', 'fam.parent.ov.results', 'fam.parent.ov.resultsNone', 'fam.parent.ov.homework', 'fam.parent.ov.homeworkNone',
+  'fam.err.confirm', 'fam.err.bad_request', 'fam.parent.freeSubject', 'fam.parent.freeSubjectTooSoon',
   'fam.calm.title', 'fam.calm.nothingYet', 'fam.calm.week', 'fam.calm.mastered', 'fam.calm.recent', 'fam.profile.title',
   'fam.consent.purpose.english_programme', 'fam.english.parent.section', 'fam.english.parent.open', 'fam.consent.purpose.photo_input', 'fam.consent.changed.photo_input', 'fam.consent.purpose.voice_practice', 'fam.consent.purpose.offers',
   // m2-3: the habit section.
@@ -235,6 +236,7 @@ export default async function FamilyParentPage() {
         boards={await familyPageRead(page, (db) => listFamilyBoards(db, lang))}
         studyCore={page.consents.study_core}
         needs={needs}
+        schoolNumbers={schoolOverview(schools, indiaDate())}
         slots={{
           overview: (
             <>

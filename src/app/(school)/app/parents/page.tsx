@@ -3,13 +3,14 @@ import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ParentsView } from '@/components/parents/ParentsView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { moduleById } from '@/lib/contracts/modules';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
 // Parents (docs/25 slice 7j, C192): one screen a guardian. The office sees every guardian; a teacher, the guardians
 // of children in their own classes (the database's rule, not this page's).
 export default async function ParentsPage() {
-  const off = await moduleOffReason('parents');
+  const off = await moduleOffReason('parents', { roles: [...moduleById('parents').roles, 'teacher'] });
   if (off) return <ModuleOffPage moduleId="parents" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');

@@ -18,13 +18,16 @@ import type { PoolClient } from 'pg';
 //   staff     at least one account besides the principal: an active staff membership of the school whose role is
 //             not principal (a school admin, a teacher, an accountant or an academic coordinator)
 //   teachers  at least one teacher_subjects row (who teaches what)
+//   syllabus  every class and subject that is taught (a teacher_subjects row for a subject not retired) has a syllabus
+//             map (a syllabus_units row). `count` is the class-subjects mapped, `without` those not yet; none taught: not
+//             done. The syllabus screen's "Use the NetCyberAI syllabus" maps them in one click (W14-I).
 //   students  at least one active student
 //   fees      at least one fee structure
 //   timetable at least one period in the published timetable
 //   logo      the school has a logo
 type Sql = Pick<PoolClient, 'query'>;
 
-export const CHECKLIST_IDS = ['session', 'classes', 'subjects', 'staff', 'teachers', 'students', 'fees', 'timetable', 'logo'] as const;
+export const CHECKLIST_IDS = ['session', 'classes', 'subjects', 'staff', 'teachers', 'syllabus', 'students', 'fees', 'timetable', 'logo'] as const;
 export type ChecklistId = (typeof CHECKLIST_IDS)[number];
 
 export type ChecklistItem = {
@@ -32,7 +35,8 @@ export type ChecklistItem = {
   done: boolean;
   // The rows that exist for this step (sessions, classes, subjects in use, staff accounts, ...). The logo is 1 or 0.
   count: number;
-  // Subjects only: the classes that have no subject taught in them yet (0 when the school has no classes).
+  // Subjects only: the classes that have no subject taught in them yet (0 when the school has no classes). Syllabus: the
+  // class-subjects with no syllabus map yet.
   without: number;
   // The screen where the step is done.
   href: string;
@@ -44,6 +48,7 @@ export const CHECKLIST_HREFS: Record<ChecklistId, string> = {
   subjects: '/app/setup/subjects',
   staff: '/app/staff',
   teachers: '/app/staff',
+  syllabus: '/app/syllabus',
   students: '/app/students',
   fees: '/app/fees',
   timetable: '/app/timetable',
@@ -67,6 +72,10 @@ export async function onboardingChecklist(db: Sql, schoolId: string): Promise<Ch
        (select count(*) from memberships m join users u on u.user_id = m.user_id
          where m.school_id = $1 and m.is_active and u.is_active and m.role::text = any ($2::text[]))::int as staff,
        (select count(*) from teacher_subjects where school_id = $1)::int as teaching,
+       (select count(*) from (select distinct ts.class_id, ts.subject_id from teacher_subjects ts join subjects s on s.school_id = ts.school_id and s.subject_id = ts.subject_id and s.retired_at is null
+                               where ts.school_id = $1) p)::int as pairs,
+       (select count(*) from (select distinct ts.class_id, ts.subject_id from teacher_subjects ts join subjects s on s.school_id = ts.school_id and s.subject_id = ts.subject_id and s.retired_at is null
+                               where ts.school_id = $1 and exists (select 1 from syllabus_units u where u.school_id = ts.school_id and u.class_id = ts.class_id and u.subject_id = ts.subject_id)) p)::int as pairs_mapped,
        (select count(*) from students where school_id = $1 and status = 'active')::int as students,
        (select count(*) from fee_structures where school_id = $1)::int as structures,
        (select count(*) from timetable_entries where school_id = $1)::int as periods,
@@ -85,6 +94,7 @@ export async function onboardingChecklist(db: Sql, schoolId: string): Promise<Ch
     item('subjects', n(r.subjects) > 0 && classes > 0 && withoutSubject === 0, n(r.subjects), withoutSubject),
     item('staff', n(r.staff) > 0, n(r.staff)),
     item('teachers', n(r.teaching) > 0, n(r.teaching)),
+    item('syllabus', n(r.pairs) > 0 && n(r.pairs_mapped) === n(r.pairs), n(r.pairs_mapped), n(r.pairs) - n(r.pairs_mapped)),
     item('students', n(r.students) > 0, n(r.students)),
     item('fees', n(r.structures) > 0, n(r.structures)),
     item('timetable', n(r.periods) > 0, n(r.periods)),

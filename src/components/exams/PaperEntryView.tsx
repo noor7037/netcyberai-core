@@ -109,6 +109,21 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
   const { paper, exam } = data;
   const complete = paper.roll > 0 && paper.entered >= paper.roll;
   const set = (studentId: string, component: string, cell: Cell) => setDraft({ ...draft, [key(studentId, component)]: cell });
+  // Approved AI marks (W14-D): the boxes they would change. Absent and exempt are the teacher's word and stay.
+  const onRoll = new Set(data.children.map((c) => c.studentId));
+  const aiFill: Draft = {};
+  const aiChildren = new Set<string>();
+  for (const a of data.ai?.approved ?? []) {
+    if (!onRoll.has(a.studentId)) continue;
+    for (const [component, score] of Object.entries(a.scores)) {
+      const k = key(a.studentId, component);
+      const cell = draft[k] ?? { kind: 'none', text: '' };
+      if (cell.kind === 'absent' || cell.kind === 'exempt' || (cell.kind === 'score' && cell.text.trim() !== '' && parse(cell.text) === score)) continue;
+      aiFill[k] = { kind: 'score', text: String(score) };
+      aiChildren.add(a.studentId);
+    }
+  }
+  const aiWaiting = data.ai?.waiting ?? 0;
   const saveBar = (withTip: boolean) =>
     data.mayEnter && (
       <div className="flex flex-wrap items-center gap-x-3">
@@ -179,6 +194,32 @@ export function PaperEntryView({ paperId }: { paperId: string }) {
             {t('ex.entry.detailsSave')}
           </button>
         </details>
+      )}
+
+      {data.mayEnter && (aiChildren.size > 0 || aiWaiting > 0) && (
+        <section data-ai-marks className={`${SECTION} border-l-4 border-sapphire`}>
+          {aiChildren.size > 0 && (
+            <p className="font-bold">{aiChildren.size === 1 ? t('ex.entry.ai.have.one', { n: aiChildren.size }) : t('ex.entry.ai.have.other', { n: aiChildren.size })}</p>
+          )}
+          {aiWaiting > 0 && <p>{aiWaiting === 1 ? t('ex.entry.ai.waiting.one', { n: aiWaiting }) : t('ex.entry.ai.waiting.other', { n: aiWaiting })}</p>}
+          <div className="flex flex-wrap gap-2">
+            {aiChildren.size > 0 && (
+              <button
+                type="button"
+                data-ai-fill
+                className={PRIMARY}
+                disabled={busy}
+                onClick={() => {
+                  setDraft({ ...draft, ...aiFill });
+                  setNote({ ok: true, text: t('ex.entry.ai.filled') });
+                }}
+              >
+                {t('ex.entry.ai.fill')}
+              </button>
+            )}
+            <a href={`/app/exams/papers/${paperId}/marking`} data-ai-review className={TAP}>{t('ex.entry.ai.review')}</a>
+          </div>
+        </section>
       )}
 
       {saveBar(true)}

@@ -1,7 +1,7 @@
 'use client';
 
 import { isMessageKey, type Lang, type MessageKey } from '@/lib/i18n';
-import type { ErrorType, SheetFlag, SheetState } from '@/lib/contracts/marking';
+import type { ErrorType, MarkCheck, SheetFlag, SheetState } from '@/lib/contracts/marking';
 
 // What the marking screens share (C347): asking the app's routes and saying a refusal in words, and the plain words
 // for the flags, states and kinds of mistake. Every word is a message (mk.*), in English and Hindi.
@@ -26,6 +26,15 @@ export function errorWords(t: T, reply: Pick<Reply, 'body' | 'status'>, fallback
   if (reply.status === 0) return t('mk.err.network');
   return t(fallback);
 }
+
+// W14-C: why a question's AI marks want a look (src/lib/marking/check.ts).
+export const CHECK_KEYS: Record<MarkCheck, MessageKey> = {
+  says_right: 'mk.check.says_right',
+  says_wrong: 'mk.check.says_wrong',
+  above_max: 'mk.check.above_max',
+  steps_sum: 'mk.check.steps_sum',
+  no_reason: 'mk.check.no_reason',
+};
 
 export const FLAG_KEYS: Record<SheetFlag, MessageKey> = {
   identity: 'mk.flag.identity',

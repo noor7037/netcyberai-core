@@ -8,6 +8,7 @@ import type { ClassResult, Shown } from '@/lib/exams/results';
 import type { WeightedNames } from '@/lib/exams/weighted-view';
 import { gradeWords, markWords, numberWords, percentWords as percentOf } from './exam-format';
 import { SECTION, TAP } from './SchemeParts';
+import { ReportCardFiles } from './ReportCardFiles';
 import { TellParentsWhatsApp } from './TellParentsWhatsApp';
 
 // The class result of an exam (docs/27 row 9b, C214): each child of the class in roll order, with their marks in
@@ -65,6 +66,7 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
           {t('wt.how', { types: weightWords })}
         </p>
       )}
+      {data.publication && <ReportCardFiles examId={examId} classId={classId} />}
       {data.publication && <TellParentsWhatsApp examId={examId} classId={classId} mode="outputs" />}
       {data.publication && <ResultCertificates examId={examId} classId={classId} />}
       {!data.children.length && <p className="rounded-md bg-off-white px-3 py-2">{t('ex.entry.noChildren')}</p>}

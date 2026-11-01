@@ -7,6 +7,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { paperCrumbs, paperNames } from '@/lib/exams/crumbs';
 
 // Exams → a paper's AI marking (docs/35, C347): its questions, the class's scripts, how far marking has come, and the
 // review list. Who may do what is the API's check, and the database's.
@@ -16,8 +17,9 @@ export default async function PaperMarkingPage({ params }: { params: { paperId: 
   if (!isUuid(params.paperId)) notFound();
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
+  const crumbs = paperCrumbs(session ? await paperNames(session, params.paperId) : null, params.paperId, true);
   return (
-    <ModulePage moduleId="exams" help="enter-exam-marks" tour="marking" title={t(lang, 'mk.page.title')} purpose={t(lang, 'mk.page.purpose')}>
+    <ModulePage moduleId="exams" crumbs={crumbs} help="enter-exam-marks" tour="marking" title={t(lang, 'mk.page.title')} purpose={t(lang, 'mk.page.purpose')}>
       <MarkingHubView paperId={params.paperId} />
     </ModulePage>
   );

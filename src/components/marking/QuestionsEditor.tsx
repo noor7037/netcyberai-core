@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { Icon } from '@/components/visual/Icons';
 import { MARKING_LANGUAGES, MAX_QUESTIONS, QUESTION_KINDS, type SetupScreen, type StructureProblem } from '@/lib/contracts/marking';
 import type { MessageKey } from '@/lib/i18n';
-import { firstProblem, formFromQuestion, groupsOf, move, newQuestion, partsWithoutQuestions, problemsOf, sameAsSaved, toNumber, toSaveBody, type QuestionForm, type StepForm } from '@/lib/marking/question-form';
+import { firstProblem, formFromQuestion, groupsOf, move, needsSteps, newQuestion, partsWithoutQuestions, problemsOf, sameAsSaved, toNumber, toSaveBody, type QuestionForm, type StepForm } from '@/lib/marking/question-form';
 import { ask, errorWords } from './parts';
 import { AnswerFields, kindChange } from '@/components/papers/AnswerFields';
 import { BankPicker, ReplaceQuestion } from '@/components/papers/BankTools';
@@ -84,6 +84,9 @@ export function QuestionsEditor({
   const [guidance, setGuidance] = useState(screen.setup.guidance);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<{ ok: boolean; text: string; at?: number } | null>(null);
+  // W14-C: the question whose steps the AI is suggesting, and what came of the last suggestion (by the question's key).
+  const [suggesting, setSuggesting] = useState<string | null>(null);
+  const [stepsNote, setStepsNote] = useState<{ key: string; ok: boolean; text: string } | null>(null);
   const parts = useMemo(() => paper.components.map((c) => c.key), [paper.components]);
   const locked = screen.locked;
   const groups = groupsOf(forms);
@@ -96,6 +99,18 @@ export function QuestionsEditor({
 
   const set = (i: number, patch: Partial<QuestionForm>) => setForms(forms.map((f, j) => (j === i ? { ...f, ...patch } : f)));
   const setStep = (i: number, s: number, patch: Partial<StepForm>) => set(i, { steps: forms[i].steps.map((x, k) => (k === s ? { ...x, ...patch } : x)) });
+
+  // The AI's steps fill the form only; nothing is kept until the teacher saves the questions.
+  const suggest = async (f: QuestionForm) => {
+    setSuggesting(f.key);
+    setStepsNote(null);
+    const r = await ask('POST', `/api/app/marking/papers/${paperId}/steps`, { kind: f.kind, maxMarks: toNumber(f.maxMarks), prompt: f.prompt, answerKey: f.answerKey });
+    setSuggesting(null);
+    const steps = Array.isArray(r.body?.steps) ? (r.body.steps as { step: string; marks: number }[]) : [];
+    if (!r.ok || !steps.length) return setStepsNote({ key: f.key, ok: false, text: r.ok ? t('mk.q.stepsSuggestNone') : errorWords(t, r, 'mk.q.stepsSuggestNone') });
+    setForms((now) => now.map((x) => (x.key === f.key && x.steps.length === 0 ? { ...x, steps: steps.map((s) => ({ step: s.step, marks: String(s.marks) })) } : x)));
+    setStepsNote({ key: f.key, ok: true, text: t('mk.q.stepsSuggested') });
+  };
 
   const save = async () => {
     const wrong = firstProblem(forms, parts, effectiveCounts);
@@ -198,6 +213,15 @@ export function QuestionsEditor({
                   {t('mk.q.steps')}
                   <InfoTip>{t('mk.q.stepsHow')}</InfoTip>
                 </legend>
+                {mayChange && needsSteps(f) && (
+                  <div data-steps-needed className="flex flex-wrap items-center justify-between gap-2 rounded-md bg-off-white px-3 py-2">
+                    <p>{t('mk.q.stepsNeeded')}</p>
+                    <button type="button" className={TAP} data-steps-suggest disabled={!maxOk || (!f.prompt.trim() && !f.answerKey.trim()) || suggesting !== null || busy} onClick={() => suggest(f)}>
+                      {suggesting === f.key ? t('mk.q.stepsSuggesting') : t('mk.q.stepsSuggest')}
+                    </button>
+                  </div>
+                )}
+                {stepsNote?.key === f.key && <p role={stepsNote.ok ? 'status' : 'alert'} className={stepsNote.ok ? 'text-emerald-text' : 'text-red-800'}>{stepsNote.text}</p>}
                 {f.steps.map((s, k) => (
                   <div key={k} className="grid grid-cols-[minmax(0,1fr)_5.5rem_auto] items-start gap-2">
                     <Input id={id(`step-${k}`)} label={t('mk.q.step')} maxLength={300} value={s.step} disabled={!mayChange} onChange={(e) => setStep(i, k, { step: e.target.value })} />

@@ -7,6 +7,7 @@ import { isUuid } from '@/lib/frameworks/custom-fields';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
+import { paperCrumbs, paperNames } from '@/lib/exams/crumbs';
 
 // Exams → a paper's class view (docs/35, C352): from the approved answer sheets, how the class did question by
 // question and topic by topic, and which children may need support by the school's own line. In roll order and
@@ -17,8 +18,9 @@ export default async function PaperInsightsPage({ params }: { params: { paperId:
   if (!isUuid(params.paperId)) notFound();
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');
+  const crumbs = paperCrumbs(session ? await paperNames(session, params.paperId) : null, params.paperId, true);
   return (
-    <ModulePage moduleId="exams" help="read-a-paper-class-view" tour="paper-insights" title={t(lang, 'ins.paper.title')} purpose={t(lang, 'ins.paper.purpose')}>
+    <ModulePage moduleId="exams" crumbs={crumbs} help="read-a-paper-class-view" tour="paper-insights" title={t(lang, 'ins.paper.title')} purpose={t(lang, 'ins.paper.purpose')}>
       <PaperInsightsView paperId={params.paperId} />
     </ModulePage>
   );

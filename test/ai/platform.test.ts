@@ -3,6 +3,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } 
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { PROFILES, REFUSAL_MESSAGE, prepareText, streamText, type AiContext, type AiRequest } from '@/lib/ai/platform';
+import { MARK_TEMPERATURE } from '@/lib/marking/pipeline';
 import { adapterFor, standInAllowed } from '@/lib/ai/adapters';
 import { sealAiKey, aiEncryptionKey } from '@/lib/ai/credentials';
 import { en } from '@/lib/i18n/messages/en';
@@ -484,6 +485,30 @@ describe('three steps, so no connection is held during the call (F1-3)', () => {
     expect(await asFamily(A, (tx) => prepareText(tx as never, ctxA, 'family.resolver', ask()))).toEqual({ ok: false, reason: 'not_switched_on' });
     expect(await q(`select * from family.ai_daily`)).toHaveLength(0);
     expect(calls).toHaveLength(0);
+  });
+});
+
+// W14-C: AI marking asks for temperature 0, so a script is marked the same way each time; a request that names none
+// (the family resolver) sends none, and the vendor's default holds.
+describe('a request’s own temperature (W14-C)', () => {
+  const NVIDIA_KEY = `nvapi-${'T'.repeat(40)}`;
+  beforeEach(async () => {
+    await clear('nvidia');
+    await sealInto('nvidia', NVIDIA_KEY);
+    await useProfile('nvidia', 'nvidia/made-up-vl-1b');
+    await q(`update control.ai_profiles set provider_id = 'nvidia', model = 'nvidia/made-up-vl-1b', enabled = true where profile_id = 'exams.mark'`);
+  });
+
+  it('exams.mark sends temperature 0; the family resolver sends no temperature', async () => {
+    expect(MARK_TEMPERATURE).toBe(0);
+    replies.push(() => openaiOk(['{"questions": []}']));
+    const marked = await asFamily(A, (tx) => streamText(tx as never, { accountId: A, childFirstNames: [], day: DAY }, 'exams.mark', { ...ask('Mark this.'), responseFormat: 'json', temperature: MARK_TEMPERATURE }));
+    expect(marked.ok).toBe(true);
+    replies.push(() => openaiOk(['Plants make food.']));
+    expect((await run()).ok).toBe(true);
+    expect(calls).toHaveLength(2);
+    expect(JSON.parse(calls[0].body).temperature).toBe(0);
+    expect(JSON.parse(calls[1].body)).not.toHaveProperty('temperature');
   });
 });
 

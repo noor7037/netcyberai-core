@@ -89,6 +89,11 @@ export function newQuestion(forms: readonly QuestionForm[], parts: readonly stri
   };
 }
 
+// W14-C: a numerical or long question with no marking steps: the setup form asks for them (part marks are fair only
+// with steps), and offers the AI's suggestion.
+export const STEPS_WANTED: readonly QuestionKind[] = ['numerical', 'long'];
+export const needsSteps = (f: Pick<QuestionForm, 'kind' | 'steps'>): boolean => STEPS_WANTED.includes(f.kind) && f.steps.length === 0;
+
 export function move<T>(list: readonly T[], from: number, by: -1 | 1): T[] {
   const to = from + by;
   if (to < 0 || to >= list.length) return [...list];

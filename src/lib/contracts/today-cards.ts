@@ -106,6 +106,9 @@ export type TodayCard = {
   subject?: string;
   // One tap opens the place where the work is done.
   href: string;
+  // marks-to-enter only (W14-D): how many marked scripts of those papers wait for the teacher's approval in the AI
+  // review; the card then opens that review. Absent when there are none.
+  approval?: number;
 };
 
 // What a provider is told about the person.

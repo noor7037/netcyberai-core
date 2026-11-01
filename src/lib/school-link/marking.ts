@@ -181,3 +181,45 @@ export async function readSchoolPagePicture(
     throw new PictureUnavailableError('the file store could not be read');
   }
 }
+
+// ---- A child's report card as a file (W14-F) --------------------------------------------------------------------------
+// Made by the school when it published the class (src/lib/exams/report-card-files.ts). guardian_report_cards() answers
+// only for the session's guardian's own consented children, and only for a publication in force: a class reopened since
+// shows none, and the school's other files (the checked papers kept for WhatsApp) never.
+
+// Of the student's published exams, those with a report card ready.
+export async function reportCardExamIds(db: Sql, studentId: string): Promise<Set<string>> {
+  const { rows } = await db.query(`select exam_id from public.guardian_report_cards() where student_id = $1`, [studentId]);
+  return new Set((rows as { exam_id: string }[]).map((r) => r.exam_id));
+}
+
+export class ReportCardUnavailableError extends Error {}
+
+// The report card of one exam of one of the link's matched students: its row read as the guardian, then its file read
+// from the store outside the transaction. null when it is not one this family may have, or the store has no such file.
+export async function readSchoolReportCard(
+  claims: Claims,
+  linkId: string,
+  studentId: string,
+  examId: string,
+  as: ReadAs,
+  storage: Pick<DirectUploadStorage, 'get'> = supabaseFileStorage
+): Promise<{ bytes: Uint8Array; fileName: string } | null> {
+  if (!isUuid(studentId) || !isUuid(examId)) return null;
+  const read = await withGuardianContext(claims, linkId, async (db, link) => {
+    const row = (await db.query(`select storage_key, file_name from public.guardian_report_cards() where student_id = $1 and exam_id = $2 limit 1`, [studentId, examId])).rows[0] as
+      | { storage_key: string; file_name: string }
+      | undefined;
+    // The key is the database's own (<school>/result-pdfs/..., held by a check); never another school's.
+    return { schoolId: link.schoolId, row: row && row.storage_key.startsWith(`${link.schoolId}/result-pdfs/`) ? row : null };
+  });
+  if (!read.row) return null;
+  if (as.childView && !(await childrenSeeResults(read.schoolId))) return null;
+  let bytes: Uint8Array | null;
+  try {
+    bytes = await storage.get(read.row.storage_key);
+  } catch {
+    throw new ReportCardUnavailableError('the file store could not be read');
+  }
+  return bytes && bytes.length ? { bytes, fileName: read.row.file_name } : null;
+}

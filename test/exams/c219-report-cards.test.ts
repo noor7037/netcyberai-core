@@ -342,7 +342,8 @@ describe('review of C219: a child who moves class keeps one grade per class', ()
   it('after a move, the office records the new class’s grade; the old class’s grade, frozen with its publication, is untouched', async () => {
     const before = await owner(`select class_id, grade from co_scholastic_grades where student_id = $1 and area = 'Work Education'`, [K1]);
     expect(before).toEqual([{ class_id: C5A, grade: expect.any(String) }]);
-    await owner(`update students set class_id = $1 where student_id = $2`, [C5B, K1]);
+    // W14-H: a roll belongs to one live student in a class, so the move takes a free roll in 5-B.
+    await owner(`update students set class_id = $1, roll_no = '7' where student_id = $2`, [C5B, K1]);
     try {
       expect(await save(principal, [grade(K1, 'Work Education', 'B')], C5B)).toEqual({ ok: true, saved: 1, cleared: 0 });
       expect(Object.fromEntries(await as(principal, (c) => coScholasticOf(c, A, EXAM, C5B)))).toEqual({ [K1]: { 'Work Education': 'B' } });

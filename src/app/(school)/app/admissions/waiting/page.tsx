@@ -2,6 +2,7 @@ import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { StudentsView } from '@/components/students/StudentsView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
+import { SCHOOL_ROLES } from '@/lib/contracts/modules';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 
@@ -9,7 +10,7 @@ import { getLang } from '@/lib/i18n/server';
 // was /app/admissions before the pipeline took that address, unchanged. Opened from the list under the pipeline.
 // The Students module's own screen: it stays with every plan that has Students, whether or not it has Admissions.
 export default async function AdmissionsWaitingPage() {
-  const off = await moduleOffReason('students');
+  const off = await moduleOffReason('students', { roles: SCHOOL_ROLES });
   if (off) return <ModuleOffPage moduleId="students" reason={off} />;
   const session = await getServerSession();
   const { lang } = getLang(session?.sub ?? '');

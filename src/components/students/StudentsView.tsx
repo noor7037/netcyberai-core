@@ -77,6 +77,13 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   const [students, setStudents] = useState<Student[] | null>(null);
   // How many students the list has in all: the number a dashboard tile opened this screen for (C203).
   const [total, setTotal] = useState(0);
+  // What the list shows (W14-H): the active students by default, or the ones who left or were withdrawn, or the one
+  // status a dashboard number opened. The counts come from the same query as the rows.
+  const [view, setView] = useState<string>(statusFilter ?? 'active');
+  useEffect(() => {
+    setView(statusFilter ?? 'active');
+  }, [statusFilter]);
+  const [counts, setCounts] = useState<{ active: number; pending_consent: number; left: number } | null>(null);
   const [classes, setClasses] = useState<ClassRow[]>([]);
   const [classesLoaded, setClassesLoaded] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
@@ -121,7 +128,8 @@ export function StudentsView({ title, description, statusFilter, openNew = false
     setState('loading');
     try {
       const qs = new URLSearchParams();
-      if (statusFilter) qs.set('status', statusFilter);
+      const listed = statusFilter === 'pending_consent' ? statusFilter : view;
+      qs.set('status', listed);
       qs.set('limit', '200');
       if (search) qs.set('search', search);
       const [studentsRes, classesRes] = await Promise.all([
@@ -134,6 +142,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       setStudents(studentsBody.students);
       setOffice(studentsBody.office === true);
       setTotal(Number(studentsBody.total ?? studentsBody.students.length));
+      setCounts(studentsBody.counts ?? null);
       setClasses(classesBody.classes);
       setTeachers(classesBody.teachers ?? []);
       setMayChangeClassTeacher(classesBody.mayChangeClassTeacher === true);
@@ -149,7 +158,7 @@ export function StudentsView({ title, description, statusFilter, openNew = false
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusFilter]);
+  }, [statusFilter, view]);
 
   async function handleCreate(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -354,11 +363,9 @@ export function StudentsView({ title, description, statusFilter, openNew = false
           <button type="button" onClick={() => setClassModalOpen(true)} className={QUIET_ACTION}>
             Manage classes
           </button>
-          {statusFilter === 'pending_consent' && (
-            <button type="button" onClick={() => setImportModalOpen(true)} className={QUIET_ACTION}>
-              Import CSV
-            </button>
-          )}
+          <button type="button" data-students-import onClick={() => setImportModalOpen(true)} className={QUIET_ACTION}>
+            {t('students.import.open')}
+          </button>
           {office && (
             <Link href="/app/students/data-check" data-students-data-check title={t('students.dataCheck.how')} className={QUIET_ACTION}>
               {t('students.dataCheck.link')}
@@ -387,7 +394,35 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       }
     >
 
-      {state === 'ready' && students && students.length > 0 && (
+      {state === 'ready' && counts && statusFilter !== 'pending_consent' && (
+        <p data-students-count={total} className="flex flex-wrap items-center gap-x-2 text-sm text-slate">
+          {([['active', 'students.counts.active', counts.active], ['left', 'students.counts.left', counts.left]] as const).map(([id, key, n], i) => (
+            <span key={id} className="inline-flex items-center gap-x-2">
+              {i > 0 && <span aria-hidden="true">·</span>}
+              {view === id ? (
+                <strong data-students-view={id}>{t(key, { count: n })}</strong>
+              ) : (
+                <span>
+                  {t(key, { count: n })}{' '}
+                  <button type="button" data-students-show={id} onClick={() => setView(id)} className="min-h-[44px] px-1 font-semibold text-sapphire underline">
+                    ({t('students.counts.show')})
+                  </button>
+                </span>
+              )}
+            </span>
+          ))}
+          {counts.pending_consent > 0 && (
+            <span className="inline-flex items-center gap-x-2">
+              <span aria-hidden="true">·</span>
+              <Link href="/app/admissions" className="inline-flex min-h-[44px] items-center font-semibold text-sapphire underline">
+                {t('students.counts.waiting', { count: counts.pending_consent })}
+              </Link>
+            </span>
+          )}
+          {total > (students?.length ?? 0) && <span>{t('students.list.more', { shown: students?.length ?? 0 })}</span>}
+        </p>
+      )}
+      {state === 'ready' && students && students.length > 0 && statusFilter === 'pending_consent' && (
         <p data-students-count={total} className="text-sm text-slate">
           {tCount('students.list.count', total)}
           {total > students.length && ` ${t('students.list.more', { shown: students.length })}`}

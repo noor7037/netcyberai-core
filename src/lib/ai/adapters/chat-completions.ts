@@ -14,7 +14,8 @@ export type ChatCompletionsOptions = {
   jsonMode: boolean;
   // stream_options.include_usage, only where the vendor accepts it (an unknown option can be refused outright).
   includeUsage: boolean;
-  // The sampling temperature, only where the vendor's own default suits our structured answers badly (C316).
+  // The sampling temperature, only where the vendor's own default suits our structured answers badly (C316). A request's
+  // own temperature (W14-C) comes first.
   temperature?: number;
   // Where our instructions go (C320): a system message, or the start of the first user message. A request may ask for
   // one placement itself (the smoke test compares the two).
@@ -47,7 +48,7 @@ export async function streamChatCompletions(url: string, token: string, request:
     stream,
     ...(stream && opts.includeUsage ? { stream_options: { include_usage: true } } : {}),
     [opts.maxTokensField]: request.maxTokens,
-    ...(opts.temperature === undefined ? {} : { temperature: opts.temperature }),
+    ...((request.temperature ?? opts.temperature) === undefined ? {} : { temperature: request.temperature ?? opts.temperature }),
     messages: inUser && firstUser >= 0 ? messages : [{ role: 'system', content: system }, ...messages],
     ...(json && opts.jsonMode ? { response_format: { type: 'json_object' } } : {}),
     ...(opts.extraBody ?? {}),

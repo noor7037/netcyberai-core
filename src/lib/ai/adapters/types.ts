@@ -15,6 +15,10 @@ export type AdapterRequest = {
   messages: ChatMessage[];
   maxTokens: number;
   responseFormat?: 'json';
+  // W14-C: the caller's sampling temperature (exams.mark: 0, so a script is marked the same way each time). The
+  // Chat Completions adapters and Vertex AI send it; OpenAI's own (its reasoning models take only their default) and
+  // Anthropic's do not. Left out, the adapter's own choice holds.
+  temperature?: number;
   // Where the instructions go, when the caller must choose (only the smoke test does, C320); otherwise the adapter's own.
   instructionsAs?: 'system' | 'user';
   // The longest this call may take, set by the platform only for a profile with a long answer of its own (AI marking's

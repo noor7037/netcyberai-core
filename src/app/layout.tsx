@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { SiteBreadcrumbs } from '@/components/layout/SiteBreadcrumbs';
 import { AuthLinkForwarder } from '@/components/auth/AuthLinkForwarder';
 import { organizationJsonLd, serializeJsonLd, websiteJsonLd } from '@/lib/seo';
 import { companyName, ogLocale, siteDescription, siteLanguage, siteUrl } from '@/lib/site-config';
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <Header />
         <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+          <SiteBreadcrumbs />
           {children}
         </main>
         <Footer />

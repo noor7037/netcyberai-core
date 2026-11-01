@@ -4,6 +4,7 @@ import { saveMarks, type SaveProblem } from '@/lib/exams/marks';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import type { Sql } from '@/lib/jobs/types';
 import { markRange } from './answers';
+import { checksOf } from './check';
 import { aiMarkingState, markingPaper, markingSettings, paperRoster, type Actor } from './context';
 import { markedParts, partTotals, countedQuestions, round1, structureProblems } from './rollup';
 import { questionsOf } from './setup';
@@ -226,6 +227,7 @@ export async function sheetDetail(db: Sql, actor: Actor, sheetId: string): Promi
           note: m?.ai_note ?? null,
           reason: m?.ai_reason ?? null,
           confidence: m ? num(m.confidence) : null,
+          checks: checksOf(m?.check_reason),
         },
         teacher: { marks: m ? num(m.marks) : null, note: m?.note ?? null, changedAt: m ? iso(m.changed_at) : null },
         errorType: (m?.error_type ?? null) as ErrorType | null,
@@ -510,10 +512,10 @@ export async function approveSheets(db: Sql, actor: Actor, paperId: string, whic
   if (!chosen.length) return { ok: true, approved: 0, skipped: rows.length };
   const saved = await saveMarks(db, actor, paperId, entries);
   if (!saved.ok) return { ok: false, reason: saved.reason };
-  // Approved: the flags a person has now looked at go, and the other children the match offered are dropped (a family
+  // Approved: the flags a person has now looked at (changed, check child, unsure) go, and the other children the match offered are dropped (a family
   // reads its own child's approved script; it never needs a classmate's id).
   await db.query(
-    `update marking_sheets set state = 'approved', approved_at = now(), flags = array_remove(array_remove(flags, 'changed'), 'check_child'),
+    `update marking_sheets set state = 'approved', approved_at = now(), flags = array_remove(array_remove(array_remove(flags, 'changed'), 'check_child'), 'unsure'),
             match_note = jsonb_build_object('read', match_note -> 'read')
       where school_id = $1 and sheet_id = any ($2::uuid[])`,
     [actor.schoolId, chosen.map((r) => r.sheet_id)]

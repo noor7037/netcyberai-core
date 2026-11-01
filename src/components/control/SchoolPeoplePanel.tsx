@@ -21,12 +21,21 @@ import { viewAsRefusal, type ViewAsRefusal } from '@/lib/control/people';
 //
 // Logins (founder, 2026-10-15, C230-D): "Create a login" makes a person's sign-in with a username or an email and a
 // password, and shows the details to share once. "New password" beside a person sets a new one the same way.
+//
+// W14-B: "New password" for seeded staff (a users row and no sign-in) makes their sign-in first and says so; a login
+// can be given to a person the school already has ("Existing staff"), and a typed name that matches one is warned
+// about, so no second teacher is made; a person can be deactivated, reactivated or removed, with a reason, behind
+// the same authenticator check.
 
 type Person = { userId: string; membershipId: string; name: string; role: string; status: 'active' | 'inactive'; signIn: string | null };
-type Shared = { schoolName?: string; name: string; role: string; signIn: string | null; password: string };
+type Shared = { schoolName?: string; name: string; role: string; signIn: string | null; password: string; created?: boolean };
+// The school's staff with no sign-in yet (seeded staff), from GET …/logins (W14-B).
+type NoLogin = { userId: string; name: string; role: string; signIn: string | null };
+type Act = 'deactivate' | 'reactivate' | 'remove';
+const sameName = (a: string, b: string) => a.trim().replace(/\s+/g, ' ').toLowerCase() === b.trim().replace(/\s+/g, ' ').toLowerCase();
 // An invitation no one has signed in from yet, and how its sending is going (W11-B).
 type Invite = { invitationId: string; name: string; email: string; role: string; state: string; setting: string | null };
-const LOGIN_FAILS = ['name', 'role', 'sign_in', 'password', 'guardian', 'service_key', 'already_registered', 'email'];
+const LOGIN_FAILS = ['name', 'role', 'sign_in', 'password', 'guardian', 'service_key', 'already_registered', 'email', 'taken', 'staff'];
 type Guardian = { parentId: string; name: string; phoneLast4: string | null; children: string; hasLogin: boolean };
 const newPassword = () => {
   const bytes = new Uint8Array(64);
@@ -35,6 +44,7 @@ const newPassword = () => {
 };
 const TAP = 'min-h-[44px] rounded-md border border-slate/20 px-4 text-sm font-semibold text-slate disabled:opacity-60';
 const PRIMARY = 'min-h-[44px] rounded-md bg-sapphire px-5 text-sm font-semibold text-white disabled:opacity-60';
+const DANGER = 'min-h-[44px] rounded-md bg-red-800 px-5 text-sm font-semibold text-white disabled:opacity-60';
 
 export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   const { stepUpFetch } = useStepUp();
@@ -46,7 +56,12 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   const [reason, setReason] = useState('');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<ViewAsRefusal | null>(null);
-  const [form, setForm] = useState({ name: '', role: 'teacher', signIn: '', password: '', parentId: '' });
+  const [form, setForm] = useState({ name: '', role: 'teacher', signIn: '', password: '', parentId: '', userId: '' });
+  const [noLogin, setNoLogin] = useState<NoLogin[]>([]);
+  const [acting, setActing] = useState<{ person: Person; action: Act } | null>(null);
+  const [actReason, setActReason] = useState('');
+  const [actBusy, setActBusy] = useState(false);
+  const [actError, setActError] = useState<string | null>(null);
   const [guardianQuery, setGuardianQuery] = useState('');
   const [guardians, setGuardians] = useState<Guardian[]>([]);
   const [creating, setCreating] = useState(false);
@@ -73,6 +88,9 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
       setInvites(Array.isArray(body.invites) ? body.invites : []);
     }
     else setFailed(true);
+    const staff = await fetch(`/api/control/schools/${schoolId}/logins`).catch(() => null);
+    const got = staff?.ok ? ((await staff.json().catch(() => null)) as { staff?: NoLogin[] } | null) : null;
+    setNoLogin(Array.isArray(got?.staff) ? got.staff : []);
   }, [schoolId]);
   useEffect(() => {
     void load();
@@ -81,9 +99,38 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   // "Create a login" beside an invitation not sent: the form is filled with that person, so a school gets an active
   // login without email; the founder checks it and saves.
   function loginFor(i: Invite) {
-    setForm({ name: i.name, role: (LOGIN_ROLES as readonly string[]).includes(i.role) ? i.role : 'teacher', signIn: i.email, password: newPassword(), parentId: '' });
+    setForm({ name: i.name, role: (LOGIN_ROLES as readonly string[]).includes(i.role) ? i.role : 'teacher', signIn: i.email, password: newPassword(), parentId: '', userId: '' });
     document.getElementById('create-login')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.getElementById('login-name')?.focus({ preventScroll: true });
+  }
+
+  // "Existing staff": the login is that person's own; the name and the role are theirs (W14-B).
+  function pickExisting(userId: string) {
+    const p = noLogin.find((n) => n.userId === userId);
+    if (!p) return setForm({ ...form, userId: '' });
+    setForm({ ...form, userId: p.userId, name: p.name, role: (LOGIN_ROLES as readonly string[]).includes(p.role) ? p.role : form.role, signIn: p.signIn ?? form.signIn, parentId: '' });
+  }
+
+  function askAct(person: Person, action: Act) {
+    setActing({ person, action });
+    setActReason('');
+    setActError(null);
+  }
+
+  async function act(e: FormEvent) {
+    e.preventDefault();
+    if (!acting || !actReason.trim()) return;
+    setActBusy(true);
+    const { person, action } = acting;
+    const res = await stepUpFetch(`/api/control/users/${person.userId}/account-action`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action, membershipId: person.membershipId, reason: actReason.trim() }) }).catch(() => null);
+    setActBusy(false);
+    if (res?.ok) {
+      setActing(null);
+      void load();
+      return;
+    }
+    const got = res ? ((await res.json().catch(() => null)) as { error?: string; code?: string } | null) : null;
+    setActError(got?.code === 'aadhaar' ? t('viewAs.dialog.aadhaar') : got?.error === 'own_account' ? t('login.act.own') : t('login.bad'));
   }
 
   function ask(p: Person) {
@@ -113,13 +160,15 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
     e.preventDefault();
     setCreating(true);
     setCreateError(null);
-    const res = await fetch(`/api/control/schools/${schoolId}/logins`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) }).catch(() => null);
+    const { userId, ...rest } = form;
+    const linking = Boolean(userId && form.role !== 'parent');
+    const res = await (linking ? stepUpFetch : fetch)(`/api/control/schools/${schoolId}/logins`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(linking ? form : rest) }).catch(() => null);
     const got = (await res?.json().catch(() => null)) as (Shared & { code?: string; setting?: string }) | null;
     setCreating(false);
     if (res?.ok && got) {
       setShared({ schoolName: got.schoolName, name: got.name, role: got.role, signIn: got.signIn, password: got.password });
       setCopied(false);
-      setForm({ name: '', role: form.role, signIn: '', password: newPassword(), parentId: '' });
+      setForm({ name: '', role: form.role, signIn: '', password: newPassword(), parentId: '', userId: '' });
       setGuardianQuery('');
       void load();
       return;
@@ -131,20 +180,26 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
   async function resetPassword(p: Person) {
     const password = newPassword();
     const res = await stepUpFetch(`/api/control/users/${p.userId}/account-action`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: 'temp_password', password }) }).catch(() => null);
+    const got = res ? ((await res.json().catch(() => null)) as { error?: string; loginCreated?: boolean } | null) : null;
     if (res?.ok) {
-      setShared({ name: p.name, role: p.role, signIn: p.signIn, password });
+      // Seeded staff had no sign-in: it was made now, with this password (W14-B).
+      setShared({ name: p.name, role: p.role, signIn: p.signIn, password, created: got?.loginCreated === true });
       setCopied(false);
       setCreateError(null);
+      if (got?.loginCreated) void load();
     } else {
-      const got = res ? ((await res.json().catch(() => null)) as { error?: string } | null) : null;
       setShared(null);
-      setCreateError(got?.error === 'setup_required' ? t('login.bad.service_key', { setting: '' }) : t('login.bad'));
+      const why = got?.error;
+      setCreateError(why === 'setup_required' ? t('login.bad.service_key', { setting: '' }) : why === 'no_email' ? t('login.bad.no_email') : why === 'already_registered' ? t('login.bad.already_registered') : t('login.bad'));
     }
   }
 
   const shareText = shared
     ? [shared.schoolName ? `${t('login.share.school')}: ${shared.schoolName}` : null, `${t('login.share.name')}: ${shared.name}`, `${t('login.share.role')}: ${t(`role.${shared.role}` as MessageKey)}`, `${t('login.share.address')}: ${typeof window === 'undefined' ? '' : window.location.origin}/login`, `${t('login.share.signIn')}: ${shared.signIn ?? '—'}`, `${t('login.share.password')}: ${shared.password}`].filter(Boolean).join('\n')
     : '';
+  // A typed name that is already a person of this school (W14-B): said before a second one is made.
+  const dupe = !form.userId && form.role !== 'parent' && form.name.trim().length > 1 ? (people ?? []).find((p) => sameName(p.name, form.name)) : undefined;
+  const dupeHasNoLogin = dupe ? noLogin.some((n) => n.userId === dupe.userId) : false;
 
   return (
     <section data-school-people className="flex flex-col gap-3">
@@ -178,8 +233,18 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
 
       <form id="create-login" data-create-login onSubmit={createLogin} className="flex scroll-mt-4 flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
         <p className="text-sm font-bold text-slate">{t('login.create.title')}</p>
+        {noLogin.length > 0 && form.role !== 'parent' && (
+          <Select id="login-existing" data-login-existing label={t('login.existing')} helperText={t('login.existing.hint')} value={form.userId} onChange={(e) => pickExisting(e.target.value)}>
+            <option value="">{t('login.existing.new')}</option>
+            {noLogin.map((n) => (
+              <option key={n.userId} value={n.userId}>
+                {[n.name, t(`role.${n.role}` as MessageKey), n.signIn].filter(Boolean).join(' · ')}
+              </option>
+            ))}
+          </Select>
+        )}
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          <Select id="login-role" label={t('login.field.role')} value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value, parentId: '' })}>
+          <Select id="login-role" label={t('login.field.role')} value={form.role} disabled={Boolean(form.userId)} onChange={(e) => setForm({ ...form, role: e.target.value, parentId: '', userId: e.target.value === 'parent' ? '' : form.userId })}>
             {LOGIN_ROLES.map((r) => (
               <option key={r} value={r}>
                 {t(`role.${r}` as MessageKey)}
@@ -199,7 +264,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
               </Select>
             </div>
           ) : (
-            <Input id="login-name" label={t('login.field.name')} autoComplete="off" maxLength={80} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
+            <Input id="login-name" label={t('login.field.name')} autoComplete="off" maxLength={80} value={form.name} readOnly={Boolean(form.userId)} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
           )}
           <Input id="login-sign-in" label={t('login.field.signIn')} helperText={t('login.field.signIn.hint')} autoComplete="off" autoCapitalize="none" spellCheck={false} maxLength={254} value={form.signIn} onChange={(e) => setForm({ ...form, signIn: e.target.value })} required />
           <div className="flex flex-col gap-1">
@@ -209,6 +274,16 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
             </button>
           </div>
         </div>
+        {dupe && (
+          <div role="status" data-login-dupe className="flex flex-wrap items-center gap-2 rounded-md border-2 border-sapphire bg-white px-3 py-2 text-sm font-semibold text-slate">
+            <span>{t(dupeHasNoLogin ? 'login.dupe.noLogin' : 'login.dupe', { name: dupe.name })}</span>
+            {dupeHasNoLogin && (
+              <button type="button" data-login-dupe-use className={TAP} onClick={() => pickExisting(dupe.userId)}>
+                {t('login.dupe.use')}
+              </button>
+            )}
+          </div>
+        )}
         <button type="submit" data-create-login-submit disabled={creating || (form.role === 'parent' ? !form.parentId : !form.name.trim()) || !form.signIn.trim() || !form.password} className={`${PRIMARY} self-start`}>
           {t('login.create')}
         </button>
@@ -221,7 +296,7 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
 
       {shared && (
         <div data-login-shared role="status" className="flex flex-col gap-2 rounded-lg border-2 border-emerald-text bg-white p-4 text-sm text-slate">
-          <p className="font-bold text-emerald-text">{t('login.shared.title')}</p>
+          <p className="font-bold text-emerald-text">{t(shared.created ? 'login.shared.created' : 'login.shared.title')}</p>
           <pre className="whitespace-pre-wrap break-all rounded-md bg-off-white p-3 font-mono text-sm">{shareText}</pre>
           <div className="flex flex-wrap items-center gap-2">
             <button type="button" data-login-copy className={TAP} onClick={() => void navigator.clipboard?.writeText(shareText).then(() => setCopied(true))}>
@@ -255,6 +330,12 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
                 <button type="button" data-view-as disabled={p.status !== 'active' || p.role === 'parent'} className={TAP} onClick={() => ask(p)}>
                   {t('viewAs.button')}
                 </button>
+                <button type="button" data-person-active={p.status === 'active' ? 'deactivate' : 'reactivate'} className={TAP} onClick={() => askAct(p, p.status === 'active' ? 'deactivate' : 'reactivate')}>
+                  {t(p.status === 'active' ? 'login.act.deactivate' : 'login.act.reactivate')}
+                </button>
+                <button type="button" data-person-remove className={TAP} onClick={() => askAct(p, 'remove')}>
+                  {t('login.act.remove')}
+                </button>
               </span>
             </li>
           ))}
@@ -271,6 +352,23 @@ export function SchoolPeoplePanel({ schoolId }: { schoolId: string }) {
                 {t('viewAs.dialog.start')}
               </button>
               <button type="button" className={TAP} onClick={() => setTarget(null)}>
+                {t('viewAs.dialog.cancel')}
+              </button>
+            </div>
+          </form>
+        )}
+      </Modal>
+      <Modal open={acting !== null} onClose={() => setActing(null)} title={acting ? t(`login.act.${acting.action}.title` as MessageKey, { name: acting.person.name }) : ''}>
+        {acting && (
+          <form onSubmit={act} data-person-act={acting.action} className="flex flex-col gap-3">
+            <p className="text-sm text-slate">{t(`login.act.${acting.action}.how` as MessageKey)}</p>
+            <Input id="person-act-reason" label={t('login.act.reason')} maxLength={300} value={actReason} onChange={(e) => setActReason(e.target.value)} required />
+            {actError && <p role="alert" className="text-sm font-semibold text-red-800">{actError}</p>}
+            <div className="flex flex-wrap gap-2">
+              <button type="submit" data-person-act-confirm disabled={actBusy || !actReason.trim()} className={acting.action === 'reactivate' ? PRIMARY : DANGER}>
+                {t(`login.act.${acting.action}` as MessageKey)}
+              </button>
+              <button type="button" className={TAP} onClick={() => setActing(null)}>
                 {t('viewAs.dialog.cancel')}
               </button>
             </div>

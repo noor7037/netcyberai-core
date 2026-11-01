@@ -1,4 +1,7 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+// Linking a login to an existing person asks for the step-up proof (security review of W14-B); the proof itself is
+// proven in test/auth; here it is given.
+vi.mock('@/lib/auth/step-up', async (importOriginal) => ({ ...(await importOriginal<typeof import('@/lib/auth/step-up')>()), requireStepUp: async () => null }));
 import { randomUUID } from 'crypto';
 import { NextRequest } from 'next/server';
 import type { InviteFailure } from '@/lib/auth/invite-failure';
@@ -13,6 +16,10 @@ const h = vi.hoisted(() => ({
   made: [] as { email: string; password: string; id?: string }[],
   deleted: [] as string[],
   failNext: null as InviteFailure | null,
+  // The account id Supabase answers with, in place of a new one (to make the database refuse after it was made).
+  forceId: null as string | null,
+  // Ids Supabase Auth holds no account for (seeded staff).
+  noAccount: new Set<string>(),
 }));
 
 vi.mock('@/lib/auth/db', async (importOriginal) => ({
@@ -28,8 +35,11 @@ vi.mock('@/lib/auth/admin-actions', async (importOriginal) => ({
       return { ok: false, failure };
     }
     h.made.push({ email, password, id });
-    return { ok: true, userId: id ?? randomUUID() };
+    const userId = h.forceId ?? id ?? randomUUID();
+    h.forceId = null;
+    return { ok: true, userId };
   },
+  hasLoginAccount: async (userId: string) => !h.noAccount.has(userId),
   deleteLoginAccount: async (userId: string) => {
     h.deleted.push(userId);
   },
@@ -38,7 +48,7 @@ vi.mock('@/lib/auth/admin-actions', async (importOriginal) => ({
 import { createTestDb } from '../db/pglite-harness';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
-import { POST as createLogin } from '@/app/api/control/schools/[schoolId]/logins/route';
+import { GET as noLoginStaff, POST as createLogin } from '@/app/api/control/schools/[schoolId]/logins/route';
 import { GET as people } from '@/app/api/control/schools/[schoolId]/people/route';
 
 const FOUNDER = randomUUID();
@@ -74,6 +84,7 @@ beforeEach(() => {
   h.made.length = 0;
   h.deleted.length = 0;
   h.failNext = null;
+  h.forceId = null;
 });
 
 describe('a staff login', () => {
@@ -177,11 +188,74 @@ describe('refusals', () => {
     expect(await q(`select 1 from users where email = 'ravi.das@login.netcyberai.com'`)).toHaveLength(0);
   });
 
-  it('the database refuses after the account was made (the same sign-in name twice in a school): the account is removed', async () => {
-    const res = await post(A, { role: 'teacher', name: 'Asha Verma Two', signIn: 'asha.verma' }).catch((e: unknown) => e);
+  it('the same sign-in name twice in a school is refused before any account is made (W14-B)', async () => {
+    const res = await post(A, { role: 'teacher', name: 'Asha Verma Two', signIn: 'Asha.Verma' });
+    expect(res.status).toBe(409);
+    expect(await res.json()).toMatchObject({ code: 'taken' });
+    expect(h.made).toHaveLength(0);
+    expect(await q(`select count(*)::int as n from users where email = 'asha.verma@login.netcyberai.com'`)).toEqual([{ n: 1 }]);
+  });
+
+  it('the database refuses after the account was made: the account is removed', async () => {
+    const [someone] = await q(`select user_id from users where email = 'asha.verma@login.netcyberai.com'`);
+    h.forceId = someone.user_id;
+    const res = await post(A, { role: 'teacher', name: 'Dev Malhotra', signIn: 'dev.malhotra' }).catch((e: unknown) => e);
     expect(res instanceof Error || (res as Response).status >= 500).toBe(true);
     expect(h.made).toHaveLength(1);
-    expect(h.deleted).toHaveLength(1);
-    expect(await q(`select count(*)::int as n from users where email = 'asha.verma@login.netcyberai.com'`)).toEqual([{ n: 1 }]);
+    expect(h.deleted).toEqual([someone.user_id]);
+    expect(await q(`select 1 from users where email = 'dev.malhotra@login.netcyberai.com'`)).toHaveLength(0);
+  });
+});
+
+describe('a login for a person the school already has (W14-B c)', () => {
+  const GEETA = randomUUID();
+  const RAVI = randomUUID();
+  let geetaMembership = '';
+  const listNoLogin = async () =>
+    (await (await noLoginStaff(new NextRequest(`https://www.netcyberai.test/api/control/schools/${A}/logins`, { headers: { cookie: founder } }), { params: { schoolId: A } })).json()).staff;
+
+  beforeAll(async () => {
+    // Seeded staff: a users row and a membership, no sign-in account. Geeta has an email; Ravi none.
+    await q(`insert into users (user_id, school_id, email, role, display_name) values ($1, $3, 'geeta@school-a.in', 'teacher', 'Geeta Kulkarni'), ($2, $3, null, 'teacher', 'Ravi Kapoor')`, [GEETA, RAVI, A]);
+    geetaMembership = (await q(`insert into memberships (user_id, school_id, role) values ($1, $2, 'teacher') returning membership_id`, [GEETA, A]))[0].membership_id;
+    await q(`insert into memberships (user_id, school_id, role) values ($1, $2, 'teacher')`, [RAVI, A]);
+    h.noAccount.add(GEETA);
+    h.noAccount.add(RAVI);
+  });
+
+  it('lists the school’s staff with no sign-in yet: no account, or no email', async () => {
+    const staff = await listNoLogin();
+    expect(staff).toEqual([
+      { userId: GEETA, name: 'Geeta Kulkarni', role: 'teacher', signIn: 'geeta@school-a.in' },
+      { userId: RAVI, name: 'Ravi Kapoor', role: 'teacher', signIn: null },
+    ]);
+  });
+
+  it('links the login to that record: the account takes its id, no second person or membership is made', async () => {
+    const people = async () => (await q(`select count(*)::int as n from memberships where school_id = $1`, [A]))[0].n;
+    const before = await people();
+    const res = await post(A, { role: 'teacher', name: 'Geeta Kulkarni', signIn: 'geeta.k', userId: GEETA });
+    expect(res.status).toBe(201);
+    const body = await res.json();
+    expect(body).toMatchObject({ userId: GEETA, membershipId: geetaMembership, name: 'Geeta Kulkarni', role: 'teacher', signIn: 'geeta.k' });
+    expect(h.made).toEqual([{ email: 'geeta.k@login.netcyberai.com', password: body.password, id: GEETA }]);
+    expect(await people()).toBe(before);
+    expect((await q(`select email from users where user_id = $1`, [GEETA]))[0].email).toBe('geeta.k@login.netcyberai.com');
+    expect(await q(`select count(*)::int as n from users where lower(display_name) = 'geeta kulkarni'`)).toEqual([{ n: 1 }]);
+    const [audit] = await q(`select after_state::text as after from audit_log where target_id = $1 and event_action = 'membership.login_created'`, [geetaMembership]);
+    expect(JSON.parse(audit.after)).toEqual({ role: 'teacher', targetUserId: GEETA, signInKind: 'username', existingPerson: true });
+  });
+
+  it('sets the email of a person who had none', async () => {
+    const res = await post(A, { role: 'teacher', name: 'Ravi Kapoor', signIn: 'ravi@school-a.in', userId: RAVI });
+    expect(res.status).toBe(201);
+    expect((await q(`select email from users where user_id = $1`, [RAVI]))[0].email).toBe('ravi@school-a.in');
+  });
+
+  it('a person of another school is not linked', async () => {
+    const res = await post(B, { role: 'teacher', name: 'Geeta Kulkarni', signIn: 'geeta.b', userId: GEETA });
+    expect(res.status).toBe(404);
+    expect(await res.json()).toMatchObject({ code: 'staff' });
+    expect(h.made).toHaveLength(0);
   });
 });

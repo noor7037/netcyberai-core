@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
+import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode } from 'react';
 
 type Props = {
   open: boolean;
@@ -11,6 +11,7 @@ type Props = {
   wide?: boolean;
 };
 
+const AUTOFOCUS_SELECTOR = '[data-autofocus]';
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
@@ -23,8 +24,13 @@ const FOCUSABLE_SELECTOR =
 // gap, not a hypothetical one. The manual keydown handler below closes
 // that gap outright: Tab/Shift+Tab cycle strictly within the dialog's
 // own focusable elements, every time, re-verified after adding it.
+//
+// A dialog opened over another (the step-up check over View as, W14-B) is its own showModal(): the later one sits
+// above in the top layer, takes the focus, and Escape closes only it. A field marked data-autofocus gets the focus
+// first; otherwise the first thing that can take it.
 export function Modal({ open, onClose, title, children, wide = false }: Props) {
   const ref = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
 
   useEffect(() => {
     const dialog = ref.current;
@@ -41,7 +47,8 @@ export function Modal({ open, onClose, title, children, wide = false }: Props) {
 
     if (open && !dialog.open) {
       dialog.showModal();
-      dialog.querySelector<HTMLElement>(FOCUSABLE_SELECTOR)?.focus();
+      const first: HTMLElement | null = dialog.querySelector(AUTOFOCUS_SELECTOR) ?? dialog.querySelector(FOCUSABLE_SELECTOR);
+      first?.focus();
     } else if (!open && dialog.open) {
       dialog.close();
     }
@@ -68,11 +75,11 @@ export function Modal({ open, onClose, title, children, wide = false }: Props) {
     <dialog
       ref={ref}
       className={`modal-dialog w-[calc(100%-2rem)] ${wide ? 'max-w-3xl' : 'max-w-md'} rounded-lg border border-slate/10 bg-white p-6 shadow-sm`}
-      aria-labelledby="modal-title"
+      aria-labelledby={titleId}
       onKeyDown={trapTab}
     >
       <div className="flex items-start justify-between gap-4">
-        <h2 id="modal-title" className="text-lg font-bold text-slate">
+        <h2 id={titleId} className="text-lg font-bold text-slate">
           {title}
         </h2>
         <button

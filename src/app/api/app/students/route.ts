@@ -4,11 +4,14 @@ import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { writeAuditLog } from '@/lib/audit/log';
 import { isForeignKeyViolation } from '@/lib/db/pg-errors';
+import { findRollClash, isRollClashViolation, ROLL_RACE_TEXT } from '@/lib/students/roll-clash';
 import { checkDate, checkText, validationError } from '@/lib/errors/catalogue';
 import { ruleError } from '@/lib/frameworks/route';
 import { mayRecordGender, readGender } from '@/lib/students/gender';
 
 const STUDENT_STATUSES = ['pending_consent', 'active', 'inactive', 'transferred'] as const;
+// `left` is the list's own word for the two states of a child no longer at the school (W14-H).
+const LEFT_STATUSES = ['inactive', 'transferred'];
 const LIST_LIMIT_DEFAULT = 50;
 const LIST_LIMIT_MAX = 200;
 
@@ -23,32 +26,41 @@ export async function GET(req: NextRequest) {
   const limit = Math.min(Number(searchParams.get('limit')) || LIST_LIMIT_DEFAULT, LIST_LIMIT_MAX);
   const offset = Math.max(Number(searchParams.get('offset')) || 0, 0);
 
-  if (status && !STUDENT_STATUSES.includes(status as (typeof STUDENT_STATUSES)[number])) {
-    return NextResponse.json({ error: `status must be one of ${STUDENT_STATUSES.join(', ')}` }, { status: 400 });
+  if (status && status !== 'left' && !STUDENT_STATUSES.includes(status as (typeof STUDENT_STATUSES)[number])) {
+    return NextResponse.json({ error: `status must be one of ${STUDENT_STATUSES.join(', ')}, left` }, { status: 400 });
   }
 
   try {
-    const { students, total } = await withTenantContext(guard.claims, async (client) => {
+    const { students, total, counts } = await withTenantContext(guard.claims, async (client) => {
       const params: unknown[] = [guard.claims.schoolId];
       const conditions = [`s.school_id = $${params.length}`];
       if (classId) {
         params.push(classId);
         conditions.push(`s.class_id = $${params.length}`);
       }
-      if (status) {
-        params.push(status);
-        conditions.push(`s.status = $${params.length}`);
-      }
       if (search) {
         params.push(`%${search}%`);
         conditions.push(`(s.name ilike $${params.length} or s.admission_no ilike $${params.length})`);
       }
-      const where = conditions.join(' and ');
-
+      // One query counts the students of each status for this class and search; the heading's numbers and the total
+      // come from it, so they cannot differ from the rows (W14-H).
       const { rows: countRows } = await client.query(
-        `select count(*)::int as n from students s where ${where}`,
+        `select s.status, count(*)::int as n from students s where ${conditions.join(' and ')} group by s.status`,
         params
       );
+      const counts = { active: 0, pending_consent: 0, left: 0, inactive: 0, transferred: 0 };
+      for (const r of countRows as { status: keyof typeof counts; n: number }[]) {
+        counts[r.status] = r.n;
+        if (LEFT_STATUSES.includes(r.status)) counts.left += r.n;
+      }
+      if (status === 'left') {
+        conditions.push(`s.status in ('inactive', 'transferred')`);
+      } else if (status) {
+        params.push(status);
+        conditions.push(`s.status = $${params.length}`);
+      }
+      const where = conditions.join(' and ');
+      const total = status ? counts[status as keyof typeof counts] : counts.active + counts.pending_consent + counts.left;
 
       params.push(limit, offset);
       const { rows } = await client.query(
@@ -61,11 +73,11 @@ export async function GET(req: NextRequest) {
          limit $${params.length - 1} offset $${params.length}`,
         params
       );
-      return { students: rows, total: countRows[0].n as number };
+      return { students: rows, total, counts };
     });
     // `office`: whether this person records a gender and opens the student data check (the principal and the school
     // admin), so the screen offers them only to the office (C224).
-    return NextResponse.json({ students, total, limit, offset, office: mayRecordGender(guard.claims.role) });
+    return NextResponse.json({ students, total, counts: { active: counts.active, pending_consent: counts.pending_consent, left: counts.left }, limit, offset, office: mayRecordGender(guard.claims.role) });
   } catch (err) {
     const resp = sessionErrorResponse(err);
     if (resp) return resp;
@@ -104,6 +116,9 @@ export async function POST(req: NextRequest) {
 
   try {
     const student = await withTenantContext(guard.claims, async (client) => {
+      // A roll number is one student's in a class (W14-H): say who has it.
+      const clash = await findRollClash(client, guard.claims.schoolId, classId, rollNo);
+      if (clash) return { clash };
       const { rows } = await client.query(
         `insert into students (school_id, admission_no, name, class_id, roll_no, dob, gender, status)
          values ($1, $2, $3, $4, $5, $6, $7, 'pending_consent')
@@ -124,8 +139,10 @@ export async function POST(req: NextRequest) {
       });
       return row;
     });
+    if ('clash' in student) return NextResponse.json({ error: `The roll number was not saved: ${student.clash}.` }, { status: 409 });
     return NextResponse.json({ student }, { status: 201 });
   } catch (err) {
+    if (isRollClashViolation(err)) return NextResponse.json({ error: ROLL_RACE_TEXT }, { status: 409 });
     if (isForeignKeyViolation(err)) {
       return NextResponse.json(validationError('class_not_in_school'), { status: 400 });
     }

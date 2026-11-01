@@ -47,6 +47,7 @@ SECRET_READERS = {
     "src/lib/documents/upload-ticket.ts",  # seals a pending record-document upload (C235-D2); mints nothing
     "src/lib/marking/report-links.ts",  # opens a sealed result-link reference into its key (C351, review of AM-5); mints nothing
     "src/lib/family/secret.ts",  # derives the Family app's hash keys: codes, the PIN's pepper, sealed items (C248); mints nothing
+    "src/lib/auth/refresh.ts",  # derives a refresh token's successor from the spent one (W14-A, C423); signs no access token, mints nothing a harness could use
 }
 SIGNER_USERS = {
     "src/lib/auth/jwt.ts",  # defines the three signers

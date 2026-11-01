@@ -11,7 +11,7 @@ import { indiaDate } from '@/lib/time/india';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
 import { examTypesOf } from '@/lib/exams/exam-types';
 import { groupByType, progressExams, progressWeighted, sessionFor } from '@/lib/exams/progress-report';
-import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
+import { checkedPaperIds, childrenSeeResults, examSchedule, reportCardExamIds } from './marking';
 
 // School Link (C230-AA; docs/family-app/03 §4): the only path from a Family app account to a school's records.
 //   1. Issue: the principal or a school admin makes a single-use, 7-day connect code for one guardian. Only its SHA-256
@@ -24,7 +24,7 @@ import { checkedPaperIds, childrenSeeResults, examSchedule } from './marking';
 
 type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
-export { readSchoolPaper, readSchoolPagePicture, PictureUnavailableError, type ReadAs } from './marking';
+export { readSchoolPaper, readSchoolPagePicture, readSchoolReportCard, PictureUnavailableError, ReportCardUnavailableError, type ReadAs } from './marking';
 import type { ReadAs } from './marking';
 
 // ---- the code ----------------------------------------------------------------------------------------------------------
@@ -267,6 +267,37 @@ export async function readSchoolNews(claims: Claims, linkId: string, studentIds:
   });
 }
 
+// The recent notices for these matched students, for the Family app's notifications feed (W14-J): each with the school's
+// name as the sender and the notice's own words. Read as the guardian, so the school's own rules and consent decide
+// every row (a withdrawn consent leaves no child, and so no notice); the join keeps each notice to a class of the
+// guardian's own matched children or the whole school.
+export type FeedNotice = { noticeId: string; schoolName: string; body: string; sentAt: string };
+export async function readSchoolNoticeFeed(claims: Claims, linkId: string, studentIds: readonly string[], days: number, limit = 5): Promise<FeedNotice[]> {
+  if (!studentIds.length) return [];
+  return withGuardianContext(claims, linkId, async (db) => {
+    const { rows } = await db.query(
+      `select distinct n.notice_id, sc.name as school_name, n.body, n.decided_at
+         from students s
+         join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+         join schools sc on sc.school_id = n.school_id
+        where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > now() - ($2::int * interval '1 day')
+        order by n.decided_at desc, n.notice_id
+        limit $3`,
+      [[...studentIds], days, limit]
+    );
+    return (rows as { notice_id: string; school_name: string; body: string; decided_at: Date }[]).map((r) => ({ noticeId: r.notice_id, schoolName: r.school_name, body: r.body, sentAt: new Date(r.decided_at).toISOString() }));
+  });
+}
+
+// Which of these guardians have the Family app linked, with the students their family matched to it (W14-J): the
+// school's own question, answered by one definer function for the caller's own school (the principal and the school
+// admin), which says no more than this. A notice's delivery log counts exactly these.
+export async function linkedChildrenForNotice(db: Sql, parentIds: readonly string[]): Promise<{ parentId: string; studentId: string }[]> {
+  if (!parentIds.length) return [];
+  const { rows } = await db.query(`select parent_id, student_id from family.linked_children_for_notice($1::uuid[])`, [[...parentIds]]);
+  return (rows as { parent_id: string; student_id: string }[]).map((r) => ({ parentId: r.parent_id, studentId: r.student_id }));
+}
+
 // The notices the principal approved in the last 30 days for one student's class or the whole school, newest first. In
 // the guardian's session the school's rules (school_link_notices_events.sql) let through only sent notices of the
 // guardian's own children's classes and the whole school; the class filter here keeps each child to their own class.
@@ -342,6 +373,7 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
     )
   ).rows as { exam_id: string; class_id: string; scheme: GradingScheme; published_on: string; name: string; term: string | null }[];
   const grade = (s: Shown) => (s.grade.kind === 'grade' ? s.grade.grade : null);
+  const cards = pubs.length ? await reportCardExamIds(db, studentId) : new Set<string>();
   const results: SchoolResult[] = [];
   for (const pub of pubs) {
     const papers = (
@@ -376,6 +408,8 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
       overall: { percent: result.overall.rounded, grade: grade(result.overall) },
       remark: remark?.remark ?? null,
       coScholastic: co,
+      examId: pub.exam_id,
+      reportCard: cards.has(pub.exam_id),
     });
   }
   return results;

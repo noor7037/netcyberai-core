@@ -40,7 +40,6 @@ import { GET as listLeave } from '@/app/api/app/staff/leave/route';
 import ProxyPage from '@/app/(school)/app/proxy/page';
 import TimetablePage from '@/app/(school)/app/timetable/page';
 import { LangProvider } from '@/components/app-shell/LangContext';
-import { ModuleComingPage } from '@/components/app-shell/ModuleComingPage';
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ProxyArranger, ProxyMine, ProxyView } from '@/components/proxy/ProxyView';
@@ -1359,7 +1358,8 @@ describe('on the real schema', () => {
       state.claims = claims(accountant);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const none: any = await ProxyPage({});
-      expect(none.type).toBe(ModuleComingPage);
+      // Not for an accountant: told so by the module's page (W14-A, moduleOffReason's role rule).
+      expect([none.type, none.props.reason]).toEqual([ModuleOffPage, 'role_not_allowed']);
     });
 
     it('Timetable shows a teacher their covers for today only when the school has Proxy Auto on, and asks nothing for anyone else', async () => {

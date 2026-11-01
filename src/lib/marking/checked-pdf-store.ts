@@ -62,9 +62,9 @@ export async function childrenWithPages(db: Sql, schoolId: string, examId: strin
   return new Set((rows as { student_id: string }[]).map((r) => r.student_id));
 }
 
-// The copies kept for a publication, by child.
+// The checked papers' copies kept for a publication, by child (a report card is another kind, W14-F).
 export async function keptPdfs(db: Sql, schoolId: string, publicationId: string): Promise<Map<string, string>> {
-  const { rows } = await db.query(`select student_id, pdf_id from result_pdfs where school_id = $1 and publication_id = $2 and deleted_at is null`, [schoolId, publicationId]);
+  const { rows } = await db.query(`select student_id, pdf_id from result_pdfs where school_id = $1 and publication_id = $2 and kind = 'checked' and deleted_at is null`, [schoolId, publicationId]);
   return new Map((rows as { student_id: string; pdf_id: string }[]).map((r) => [r.student_id, r.pdf_id]));
 }
 

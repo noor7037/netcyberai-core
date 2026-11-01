@@ -7,6 +7,7 @@ import { EXAM_READERS, EXAM_RUNNERS, papersOf, type Actor, type PaperSummary } f
 import { roundPercent } from './grading';
 import { ownRecognition, paperPercent, type EarlierExam, type OwnRecognition } from './own-progress';
 import { ON_ROLL, ROLL_ORDER, type Mark, type MarkKind, type PaperComponent } from './papers';
+import { queueReportCards, type EnqueueLike } from './report-card-queue';
 import type { CoScholastic, GradingScheme } from './scheme';
 import { schemeInForce } from './schemes';
 
@@ -229,7 +230,8 @@ export async function recognitionForClass(db: Sql, schoolId: string, examId: str
 // ---- writes ----------------------------------------------------------------------------------------------------
 
 export type PublishProblem = 'not_allowed' | 'not_found' | 'not_entered' | 'no_scheme' | 'published' | 'not_published' | 'reason' | 'remarks' | 'child' | 'remark' | 'scripts_changed';
-export type PublishResult = { ok: true; version: number } | { ok: false; reason: PublishProblem; at?: number };
+// `jobKeys`: the report-card jobs a publication queued (W14-F), to run at once after the request commits.
+export type PublishResult = { ok: true; version: number; jobKeys?: string[] } | { ok: false; reason: PublishProblem; at?: number };
 
 async function classPapers(db: Sql, actor: Actor, examId: string, classId: string): Promise<PaperSummary[] | null> {
   if (!isUuid(examId) || !isUuid(classId)) return null;
@@ -238,7 +240,8 @@ async function classPapers(db: Sql, actor: Actor, examId: string, classId: strin
 }
 
 // Publishes an exam for a class: the office or the coordinator, once every paper is entered and a scheme is saved.
-export async function publishClass(db: Sql, actor: Actor, examId: string, classId: string): Promise<PublishResult> {
+// With a queue, each child's report card is queued to be made as a file at once (W14-F, ./report-card-queue.ts).
+export async function publishClass(db: Sql, actor: Actor, examId: string, classId: string, queue?: EnqueueLike): Promise<PublishResult> {
   if (!REPORT_CARD_OFFICE.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   if (!isUuid(examId) || !isUuid(classId)) return { ok: false, reason: 'not_found' };
   // Marks, papers and remarks of this exam and class are written in turn with publishing (exam_class_lock_key): from
@@ -281,7 +284,9 @@ export async function publishClass(db: Sql, actor: Actor, examId: string, classI
     targetId: row.publication_id,
     afterState: { exam_id: examId, class_id: classId, version: Number(row.version), scheme_version: Number(row.scheme_version), papers: papers.length },
   });
-  return { ok: true, version: Number(row.version) };
+  if (!queue) return { ok: true, version: Number(row.version) };
+  const jobKeys = await queueReportCards(db, queue, actor.schoolId, examId, classId, { publicationId: row.publication_id, version: Number(row.version) });
+  return { ok: true, version: Number(row.version), jobKeys };
 }
 
 // The principal reopens a publication, with a reason: the class's marks can be corrected, and it is published again.
