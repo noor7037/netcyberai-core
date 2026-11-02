@@ -49,3 +49,10 @@ export async function planAnswer(ctx: PlanContext, call: PreparedText | null): P
 export function logPlan(p: Planned, passagesFound: boolean): void {
   log('info', 'family.plan', { questionType: p.plan.questionType, band: p.plan.band, depth: p.plan.depth, fromModel: p.fromModel, passages: passagesFound });
 }
+
+// One structured log line per marked working (Check my work, W18-Q3), beside the plan's, so family code logs through
+// this module as it does for the plan: where the verdicts came from (the model, our own arithmetic, or none), why the
+// model's verdicts were refused (a reason word, or "none") and how many blocks were held back. Never the working.
+export function logCheckVerdict(f: { from: 'model' | 'arithmetic' | 'none'; stepsRejected: string | null; held: number }): void {
+  log('info', 'family.check.verdict', { from: f.from, stepsRejected: f.stepsRejected ?? 'none', held: f.held });
+}

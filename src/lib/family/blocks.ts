@@ -529,10 +529,15 @@ function figureBlock(o: Record<string, unknown>): Figure | null {
   return { type: 'figure', title, kind: 'schematic', shape, labels };
 }
 
+const VERDICT_LABEL = /^\s*(step|चरण)\s*\d{1,2}\s*:/i;
+const verdictSteps = (items: unknown): boolean => Array.isArray(items) && items.length > 0 && items.every((x) => typeof (x as { label?: unknown } | null)?.label === 'string' && VERDICT_LABEL.test((x as { label: string }).label));
+
 function stripBlock(o: Record<string, unknown>): Steps | Timeline | null {
   const title = fits(o.title, VISUAL_TITLE_MAX);
   const steps = o.type === 'steps';
-  const raw = steps ? exactly(o.items, 3, 5) : exactly(o.items, 3, 8);
+  // A marked working (Check my work, W18-Q3) has one item per step of the child's own working, and a one-line sum has one
+  // step: verdict steps ("Step 2: wrong", "चरण 2: ग़लत") may be 1 to 5. A teaching strip stays 3 to 5.
+  const raw = steps ? (verdictSteps(o.items) ? exactly(o.items, 1, 5) : exactly(o.items, 3, 5)) : exactly(o.items, 3, 8);
   if (!title || !raw) return null;
   if (steps) {
     const items: Steps['items'] = [];

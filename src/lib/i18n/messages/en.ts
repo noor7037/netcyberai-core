@@ -8390,6 +8390,8 @@ export const en = {
   'fam.check.sent': 'Check my work',
   'fam.check.err.photo_only': 'Check my work needs a photo of your answer, not a PDF.',
   'fam.check.err.unreadable': 'The working in the photo could not be read, so it was not checked. Try a clearer photo in good light.',
+  'fam.check.err.noVerdict': 'I could not mark this working. Try a clearer photo, one sum per line.',
+  'fam.check.verdictTitle': 'Your working, marked',
   'fam.homework.err.not_for_class': 'The homework helper starts from Class 1.',
   'fam.consent.purpose.photo_input': 'Photos and files: the homework helper reads a photo of one question and does not keep it. A photo or PDF your child attaches in the tutor is kept, so the tutor can see it again, until you clear it in the Learning Vault (parent area)',
   'fam.consent.changed.photo_input': 'We changed what this says: files attached in the tutor are now kept until you clear them. Read it again and switch it on if you agree.',

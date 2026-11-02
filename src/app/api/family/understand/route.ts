@@ -19,6 +19,7 @@ import type { Persona } from '@/lib/family/persona';
 import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
+import { typedCheckReading } from '@/lib/family/check-work';
 import { photoGate } from '@/lib/family/photo-gate';
 import { isSubject } from '@/lib/family/subjects';
 import { fillVisuals } from '@/lib/family/visuals/fill';
@@ -43,7 +44,9 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 // W16-B2 (Check my work): `tutor.mode: 'check'` with exactly one photo of the child's own handwritten working. The photo
 // is read line by line (family.homework prompt v2, the same photo rules, day place and vision profile as any tutor
 // photo), the chapter is searched on the question the photo showed, and the answer is that working marked step by step
-// (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other.
+// (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other. W18-Q3: the same mode with no
+// file when the typed text is the working ("Check my work: 2+3×4=14"); the reading is built from the text, no photo is
+// read. The verdicts come first, and when the model's do not pass, our own arithmetic gives them (arithmetic-check.ts).
 //
 // The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
 // vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
@@ -78,8 +81,12 @@ export async function POST(req: NextRequest) {
   const tutorBody = input?.kind === 'question' && body.tutor && typeof body.tutor === 'object' && !Array.isArray(body.tutor) ? (body.tutor as Record<string, unknown>) : null;
   if (tutorBody && !isSubject(tutorBody.subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
+  // W18-Q3: or no file at all, when the typed text is itself the working ("Check my work: 2+3×4=14", check-work.ts): its
+  // reading is built here from the text, line by line, with no photo read and no vision call.
   const checkMode = tutorBody?.mode === 'check' && !followUp && !retry;
-  if (checkMode && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  const noFiles = !Array.isArray(tutorBody?.files) || (tutorBody!.files as unknown[]).length === 0;
+  const typedReading = checkMode && noFiles && input?.kind === 'question' ? typedCheckReading(input.text) : null;
+  if (checkMode && !typedReading && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
   let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
@@ -138,8 +145,9 @@ export async function POST(req: NextRequest) {
         return null;
       };
       try {
-        // 0. The files sent with a tutor question, read before it is asked (W4-1). Not for a follow-up or a retry.
-        let attached: string | undefined;
+        // 0. The files sent with a tutor question, read before it is asked (W4-1). Not for a follow-up or a retry. A typed
+        // check's working is its own text (W18-Q3): there is nothing to read.
+        let attached: string | undefined = typedReading ?? undefined;
         const fileIds = TUTOR_READS_FILES && tutorBody && !followUp && !retry && Array.isArray(tutorBody.files) && tutorBody.files.length > 0 ? tutorBody.files : null;
         if (fileIds) {
           const asked = await withFamilyContext(claims, async (db) => {
