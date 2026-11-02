@@ -1,4 +1,5 @@
 import { anthropicAdapter } from './anthropic';
+import { elevenlabsSpeechAdapter, elevenlabsStsAdapter, elevenlabsVoiceAdapter } from './elevenlabs';
 import { geminiAdapter } from './gemini';
 import { googleTtsAdapter } from './google-tts';
 import { nvidiaAdapter } from './nvidia';
@@ -67,7 +68,7 @@ export const standInSpeechAdapter: SpeechAdapter = {
   },
 };
 
-const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpeechAdapter];
+const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpeechAdapter, elevenlabsSpeechAdapter];
 
 // The speech adapter for a provider id, or null when the code has none (Anthropic and Gemini have no speech to text
 // here).
@@ -117,9 +118,9 @@ export const standInVoiceAdapter: VoiceAdapter = {
   },
 };
 
-const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter];
+const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter, elevenlabsVoiceAdapter];
 
-// The voice adapter for a provider id, or null when the code has none (only OpenAI and Google Cloud speak).
+// The voice adapter for a provider id, or null when the code has none (OpenAI, Google Cloud and ElevenLabs speak).
 export function voiceAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): VoiceAdapter | null {
   if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInVoiceAdapter : null;
   return REAL_VOICE.find((a) => a.providerId === providerId) ?? null;
@@ -137,7 +138,7 @@ export function realtimeAdapterFor(providerId: string): RealtimeAdapter | null {
 
 // ---- speech to speech (W17) --------------------------------------------------------------------------------------
 // No stand-in and no profile: Control's Try it is the only caller until a child feature needs it.
-const REAL_STS: readonly SpeechToSpeechAdapter[] = [];
+const REAL_STS: readonly SpeechToSpeechAdapter[] = [elevenlabsStsAdapter];
 export function stsAdapterFor(providerId: string): SpeechToSpeechAdapter | null {
   return REAL_STS.find((a) => a.providerId === providerId) ?? null;
 }
