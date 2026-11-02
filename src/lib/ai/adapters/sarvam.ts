@@ -43,6 +43,7 @@ async function send(path: string, init: { method: 'GET' | 'POST'; headers?: Reco
 // The saaras family; the model string is the one Control chose ("saaras:v3" by default, "saaras:v4" allowed).
 export const SARVAM_STT_DEFAULT_MODEL = 'saaras:v3';
 const STT_MODEL = /^saaras:v[0-9.]+$/;
+export const SARVAM_STT_MODELS: readonly string[] = ['saaras:v3', 'saaras:v4'];
 const EXTENSION: Record<SpeechMediaType, string> = { 'audio/webm': 'webm', 'audio/ogg': 'ogg', 'audio/mp4': 'mp4', 'audio/wav': 'wav' };
 
 // A multipart body built by hand: the guard sends bytes, and a FormData would not survive it. The recording goes with a
@@ -85,21 +86,26 @@ export const sarvamSpeechAdapter: SpeechAdapter = {
     // Nothing heard is an answer, not a failure: the caller asks the child to say it again.
     return { ok: true, text: answer.transcript, tokensIn: 0, tokensOut: 0 };
   },
-  // The key is proved by the voice call (the one cheap call the vendor has that needs no recording).
-  testConnection: (apiKey) => sarvamVoiceAdapter.testConnection!(apiKey),
+  // The key is proved by the voice call (the one cheap call the vendor has that needs no recording); the models are the
+  // speech ones, for the Voice questions picker.
+  async testConnection(apiKey): Promise<ConnectionTest> {
+    const got = await sarvamVoiceAdapter.testConnection!(apiKey);
+    return got.ok ? { ok: true, models: [...SARVAM_STT_MODELS] } : got;
+  },
 };
 
 // ---- text to speech -------------------------------------------------------------------------------------------------
 
-// Confirm against Sarvam's live voice list: the child voices are what the founder asked for and are kept even if one
-// turns out not to exist (a missing voice fails at the first try in Control, not for a child).
+// The lists were checked against Sarvam's own API error listing on 2 Nov 2026 and the key test was run live with a real key.
+// The child voices work on the fast model only. The sets differ by model, so each model has its own list; a speaker that
+// does not belong to the model is a 400 from Sarvam. A saved choice that points at a voice no longer listed fails at Try it.
 export const SARVAM_CHILD_SPEAKERS = ['nupur_en_kids', 'chhavi_hi_kids', 'kunal_hi_kids', 'ritu_hi_kids'] as const;
-export const SARVAM_SPEAKERS = ['anushka', 'manisha', 'vidya', 'arya', 'abhilash', 'karun', 'hitesh'] as const;
-// The child voices are offered on the fast model only; the other speakers on both.
+export const SARVAM_V4_SPEAKERS = ['ritu_en_edtech', 'ritu_hi_edtech', 'ishita_hi_edtech', 'shruti_hi_edtech', 'sanchita_hi_edtech', 'kalpit_en_edtech', 'shabana_en_edtech', 'aparna_en_edtech'] as const;
+export const SARVAM_V3_SPEAKERS = ['ritu', 'priya', 'neha', 'kavya', 'ishita', 'shreya', 'simran', 'pooja', 'rahul', 'rohan', 'amit', 'dev', 'aditya', 'shubh'] as const;
 export const SARVAM_VOICE_MODELS: readonly string[] = [
   ...SARVAM_CHILD_SPEAKERS.map((s) => `bulbul:v4-flash/${s}`),
-  ...SARVAM_SPEAKERS.map((s) => `bulbul:v4-flash/${s}`),
-  ...SARVAM_SPEAKERS.map((s) => `bulbul:v3/${s}`),
+  ...SARVAM_V4_SPEAKERS.map((s) => `bulbul:v4-flash/${s}`),
+  ...SARVAM_V3_SPEAKERS.map((s) => `bulbul:v3/${s}`),
 ];
 const VOICE_MODEL = /^bulbul:v[0-9a-z.-]+\/[a-z][a-z0-9_]{1,40}$/;
 
@@ -216,7 +222,9 @@ export const sarvamVoiceAdapter: VoiceAdapter = {
   // One word spoken: proves the key and that the voice service is on. The model list is fixed (the vendor has no free list
   // call that is confirmed), for Control's picker.
   async testConnection(apiKey): Promise<ConnectionTest> {
-    const got = await speakPiece(apiKey, 'Namaste', 'en', 'bulbul:v4-flash', 'anushka');
+    let got = await speakPiece(apiKey, 'Namaste', 'en', 'bulbul:v4-flash', SARVAM_CHILD_SPEAKERS[0]);
+    // Only a 400 (the model or speaker not accepted) tries the older model once; a refused key or a busy service does not.
+    if (!got.ok && got.status === 400) got = await speakPiece(apiKey, 'Namaste', 'en', 'bulbul:v3', 'ritu');
     return got.ok ? { ok: true, models: [...SARVAM_VOICE_MODELS] } : { ok: false, failure: got.failure, ...(got.status ? { status: got.status } : {}) };
   },
 };
@@ -255,9 +263,10 @@ export const sarvamAdapter: TextAdapter = {
     if (result.ok && result.text.trim() === '' && result.finish === 'length') return { ok: false, failure: 'cut_short' };
     return result;
   },
-  // No model-list call is confirmed, so the key is proved by the voice check; the one chat model is named.
+  // No model-list call is confirmed, so the key is proved by the voice check. Control keeps one list per provider and a key
+  // test takes the text adapter first, so this list also carries the speech and voice models for their pickers.
   async testConnection(apiKey): Promise<ConnectionTest> {
     const got = await sarvamVoiceAdapter.testConnection!(apiKey);
-    return got.ok ? { ok: true, models: ['sarvam-105b'] } : got;
+    return got.ok ? { ok: true, models: ['sarvam-105b', ...SARVAM_STT_MODELS, ...SARVAM_VOICE_MODELS] } : got;
   },
 };

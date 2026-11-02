@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { adapterFor, keyedProviderFor, nonTextProviderIds, providerCapabilities, speechAdapterFor, voiceAdapterFor } from '@/lib/ai/adapters';
 import { endpointNet, type Resolved } from '@/lib/ai/adapters/endpoint-guard';
-import { SARVAM_MIN_MAX_TOKENS, SARVAM_TTS_CHARS, SARVAM_VOICE_MODELS, joinWav, sarvamAdapter, sarvamSpeechAdapter, sarvamVoiceAdapter, splitForSpeech } from '@/lib/ai/adapters/sarvam';
+import { SARVAM_MIN_MAX_TOKENS, SARVAM_CHILD_SPEAKERS, SARVAM_STT_MODELS, SARVAM_TTS_CHARS, SARVAM_V3_SPEAKERS, SARVAM_V4_SPEAKERS, SARVAM_VOICE_MODELS, joinWav, sarvamAdapter, sarvamSpeechAdapter, sarvamVoiceAdapter, splitForSpeech } from '@/lib/ai/adapters/sarvam';
 import type { AdapterRequest, SpeechRequest, VoiceRequest } from '@/lib/ai/adapters/types';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
@@ -112,14 +112,14 @@ describe('text to speech', () => {
     expect(sent[0].init.headers['api-subscription-key']).toBe(KEY);
     expect(Object.keys(sent[0].init.headers).map((k) => k.toLowerCase())).not.toContain('authorization');
     expect(bodyJson(sent[0])).toEqual({ text: 'नमस्ते बच्चो।', target_language_code: 'hi-IN', speaker: 'chhavi_hi_kids', model: 'bulbul:v4-flash' });
-    await sarvamVoiceAdapter.synthesize(voice({ language: 'en', model: 'bulbul:v3/anushka', text: 'Hello' }));
-    expect(bodyJson(sent[1])).toEqual({ text: 'Hello', target_language_code: 'en-IN', speaker: 'anushka', model: 'bulbul:v3' });
+    await sarvamVoiceAdapter.synthesize(voice({ language: 'en', model: 'bulbul:v3/ritu', text: 'Hello' }));
+    expect(bodyJson(sent[1])).toEqual({ text: 'Hello', target_language_code: 'en-IN', speaker: 'ritu', model: 'bulbul:v3' });
   });
 
   it('checks the model string, and maps failures to their kind', async () => {
     expect(sarvamVoiceAdapter.modelLooksRight('bulbul:v4-flash/chhavi_hi_kids')).toBe(true);
-    expect(sarvamVoiceAdapter.modelLooksRight('bulbul:v3/anushka')).toBe(true);
-    for (const bad of ['bulbul:v3', 'bulbul:v3/', 'bulbul:v3/Anushka', 'sarvam-105b', 'bulbul:v3/a b', '']) expect(sarvamVoiceAdapter.modelLooksRight(bad), bad).toBe(false);
+    expect(sarvamVoiceAdapter.modelLooksRight('bulbul:v3/ritu')).toBe(true);
+    for (const bad of ['bulbul:v3', 'bulbul:v3/', 'bulbul:v3/Ritu', 'sarvam-105b', 'bulbul:v3/a b', '']) expect(sarvamVoiceAdapter.modelLooksRight(bad), bad).toBe(false);
     expect(await sarvamVoiceAdapter.synthesize(voice({ model: 'bulbul:v3' }))).toEqual({ ok: false, failure: 'http', status: 400 });
     expect(sent).toHaveLength(0);
     reply = () => new Response('{}', { status: 429 });
@@ -158,17 +158,48 @@ describe('text to speech', () => {
     expect(await sarvamVoiceAdapter.synthesize(voice({ language: 'en', text }))).toEqual({ ok: false, failure: 'http', status: 500 });
   });
 
-  it('testConnection speaks one word, returns the fixed model list (child voices first) and reports a refused key', async () => {
+  it('testConnection speaks one word with a child voice on the fast model, returns the fixed model list (child voices first) and reports a refused key', async () => {
     reply = () => audioReply(wav([1, 2]));
     const got = await sarvamVoiceAdapter.testConnection!(KEY);
-    expect(bodyJson(sent[0])).toEqual({ text: 'Namaste', target_language_code: 'en-IN', speaker: 'anushka', model: 'bulbul:v4-flash' });
+    expect(sent).toHaveLength(1);
+    expect(bodyJson(sent[0])).toEqual({ text: 'Namaste', target_language_code: 'en-IN', speaker: 'nupur_en_kids', model: 'bulbul:v4-flash' });
     expect(got).toEqual({ ok: true, models: [...SARVAM_VOICE_MODELS] });
     expect(got.ok && got.models!.slice(0, 4)).toEqual(['bulbul:v4-flash/nupur_en_kids', 'bulbul:v4-flash/chhavi_hi_kids', 'bulbul:v4-flash/kunal_hi_kids', 'bulbul:v4-flash/ritu_hi_kids']);
-    expect(got.ok && got.models!.slice(4, 11)).toEqual(['anushka', 'manisha', 'vidya', 'arya', 'abhilash', 'karun', 'hitesh'].map((s) => `bulbul:v4-flash/${s}`));
     expect(got.ok && got.models!.every((m) => sarvamVoiceAdapter.modelLooksRight(m))).toBe(true);
-    for (const status of [401, 403]) {
+    for (const status of [401, 403, 429]) {
+      sent = [];
       reply = () => new Response('{}', { status });
       expect(await sarvamVoiceAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status });
+      expect(sent).toHaveLength(1);
+    }
+  });
+
+  it('on a 400 only, testConnection retries once with bulbul:v3 and ritu, then passes or fails on that answer', async () => {
+    reply = (n) => (n === 0 ? new Response('{}', { status: 400 }) : audioReply(wav([1, 2])));
+    expect(await sarvamVoiceAdapter.testConnection!(KEY)).toEqual({ ok: true, models: [...SARVAM_VOICE_MODELS] });
+    expect(sent).toHaveLength(2);
+    expect(bodyJson(sent[0])).toMatchObject({ speaker: 'nupur_en_kids', model: 'bulbul:v4-flash' });
+    expect(bodyJson(sent[1])).toEqual({ text: 'Namaste', target_language_code: 'en-IN', speaker: 'ritu', model: 'bulbul:v3' });
+    sent = [];
+    reply = () => new Response('{}', { status: 400 });
+    expect(await sarvamVoiceAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 400 });
+    expect(sent).toHaveLength(2);
+  });
+
+  it('the voice lists match what Sarvam accepts: no retired speaker, each model only its own speakers', () => {
+    const retired = ['anushka', 'manisha', 'vidya', 'arya', 'abhilash', 'karun', 'hitesh'];
+    const v4 = new Set<string>([...SARVAM_CHILD_SPEAKERS, ...SARVAM_V4_SPEAKERS]);
+    const v3 = new Set<string>(SARVAM_V3_SPEAKERS);
+    expect(SARVAM_VOICE_MODELS).toHaveLength(SARVAM_CHILD_SPEAKERS.length + SARVAM_V4_SPEAKERS.length + SARVAM_V3_SPEAKERS.length);
+    expect(new Set(SARVAM_VOICE_MODELS).size).toBe(SARVAM_VOICE_MODELS.length);
+    for (const entry of SARVAM_VOICE_MODELS) {
+      const [model, speaker] = entry.split('/');
+      expect(retired, entry).not.toContain(speaker);
+      if (model === 'bulbul:v3') expect(v3.has(speaker), entry).toBe(true);
+      else {
+        expect(model, entry).toBe('bulbul:v4-flash');
+        expect(v4.has(speaker), entry).toBe(true);
+      }
     }
   });
 });
@@ -259,9 +290,16 @@ describe('text', () => {
     expect(await sarvamAdapter.streamText(chat(), () => {})).toMatchObject({ ok: true, text: 'Iron is', finish: 'length' });
   });
 
-  it('testConnection proves the key with the voice check and names the one chat model', async () => {
+  it('testConnection proves the key with the voice check and lists the chat, speech and voice models for the pickers', async () => {
     reply = () => audioReply(wav([1, 2]));
-    expect(await sarvamAdapter.testConnection!(KEY)).toEqual({ ok: true, models: ['sarvam-105b'] });
+    expect(await sarvamAdapter.testConnection!(KEY)).toEqual({ ok: true, models: ['sarvam-105b', ...SARVAM_STT_MODELS, ...SARVAM_VOICE_MODELS] });
+    expect(SARVAM_STT_MODELS).toEqual(['saaras:v3', 'saaras:v4']);
+    expect(await sarvamSpeechAdapter.testConnection!(KEY)).toEqual({ ok: true, models: ['saaras:v3', 'saaras:v4'] });
+    reply = () => new Response('{}', { status: 403 });
+    expect(await sarvamSpeechAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 403 });
+    reply = () => audioReply(wav([1, 2]));
+    sent = [];
+    await sarvamAdapter.testConnection!(KEY);
     expect(sent[0].url.pathname).toBe('/text-to-speech');
     reply = () => new Response('{}', { status: 403 });
     expect(await sarvamAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 403 });
