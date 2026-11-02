@@ -7,9 +7,10 @@ import * as v6 from './v6';
 import * as v7 from './v7';
 import * as v8 from './v8';
 import * as v9 from './v9';
+import * as v10 from './v10';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
-// (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v9 since W16). A typed
+// (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
 // question needs a version that names the subject (v2 and later), whatever Control chose: the server never takes the
 // subject from the screen. The library is keyed by the version actually used, so a response is never served under
 // another version's name.
@@ -18,7 +19,9 @@ import * as v9 from './v9';
 // never as the fallback, so adding it changes nothing until then.
 
 // v8's request is v3's with the optional plan, passages and chat memory; earlier versions read only v3's fields.
-export type { ResolverAsk, ResolverSubject, ChatMemory } from './v8';
+export type { ResolverSubject, ChatMemory } from './v8';
+// v10's request is v8's with the optional `sketch` flag (the student sent a drawing of their own).
+export type { ResolverAsk } from './v10';
 export type { ResolverMemory } from './v3';
 
 export type ResolverPrompt = {
@@ -28,8 +31,8 @@ export type ResolverPrompt = {
   // Whether the prompt is written from a teaching plan (v8 on, W9-B): the server plans the answer and keeps an
   // interactive block only where the plan names one.
   usesPlan?: boolean;
-  system: (a: v8.ResolverAsk) => string;
-  user: (a: v8.ResolverAsk) => string;
+  system: (a: v10.ResolverAsk) => string;
+  user: (a: v10.ResolverAsk) => string;
 };
 
 // v1 takes the subject as given; it is never chosen for a question whose subject is still to be named.
@@ -52,6 +55,11 @@ const V8: ResolverPrompt = { version: v8.RESOLVER_PROMPT_VERSION, namesSubject: 
 // were given, none otherwise) and the Class 8 Science simulations. The default since W16.
 const V9: ResolverPrompt = { version: v9.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v9.resolverSystem, user: v9.resolverUser };
 
+// v10 (W18-P2): v9 with the simulations for Science in Classes 6 to 10 (four new ones on electricity and magnets) and the
+// sketch rule, only when the ask is a sketch. Control keeps v9 until the founder switches, so v10 is the "code-only
+// fallback": the version used when the database row names no version the code has. No migration sets it.
+const V10: ResolverPrompt = { version: v10.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v10.resolverSystem, user: v10.resolverUser };
+
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
   { version: v2.RESOLVER_PROMPT_VERSION, namesSubject: true, system: (a) => v2.resolverSystem(asV2(a)), user: (a) => v2.resolverUser(asV2(a)) },
@@ -64,13 +72,14 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V7,
   V8,
   V9,
+  V10,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the
-// subject: v9 since W16 (v8 since W9-B, v7 since W8-AI; it was v3).
-export const LATEST_RESOLVER_PROMPT = V9.version;
+// subject: v10 since W18-P2 (v9 since W16, v8 since W9-B, v7 since W8-AI; it was v3).
+export const LATEST_RESOLVER_PROMPT = V10.version;
 
 export function resolverPrompt(chosen: string | null, needsSubjectNamed: boolean): ResolverPrompt {
-  const picked = RESOLVER_PROMPTS.find((p) => p.version === chosen) ?? V9;
-  return needsSubjectNamed && !picked.namesSubject ? V9 : picked;
+  const picked = RESOLVER_PROMPTS.find((p) => p.version === chosen) ?? V10;
+  return needsSubjectNamed && !picked.namesSubject ? V10 : picked;
 }

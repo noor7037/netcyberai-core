@@ -3,6 +3,8 @@
 // computed here, by our code. Nothing here is a third-party simulation (gate L7). Pure: no DOM, no network, no message
 // file, so the phone, the server and the tests share it.
 
+import type { SceneSim } from './visuals/sims';
+
 // ---- shared ----
 
 export const round = (x: number, places: number): number => {
@@ -156,6 +158,22 @@ export const SIM_WORDS: Record<SimKind, readonly string[]> = {
 export function simFits(sim: SimKind, text: string): boolean {
   const t = text.normalize('NFKC').toLowerCase();
   return SIM_WORDS[sim].some((w) => t.includes(w));
+}
+
+// The same gate for the Class 6 to 10 scene simulations (W18-P2, sims.ts): a scene's simulation shows only where the
+// question, its syllabus line or the scene's title carries one of these words. The three Class 8 ones (pressure,
+// friction, sound) are not gated here and stay as they were. English and Hindi (both spellings of चुंबक).
+export const SCENE_SIM_WORDS: Partial<Record<SceneSim, readonly string[]>> = {
+  circuit: ['circuit', 'current', 'bulb', 'series', 'parallel', 'battery', 'resistance', 'voltage', 'ampere', 'परिपथ', 'धारा', 'बल्ब', 'श्रेणी', 'समांतर', 'समानांतर', 'बैटरी', 'प्रतिरोध', 'वोल्ट'],
+  dc_motor: ['motor', 'fleming', 'left-hand rule', 'left hand rule', 'coil', 'armature', 'मोटर', 'फ्लेमिंग', 'कुंडली', 'कुण्डली', 'बाएँ हाथ', 'बाएं हाथ'],
+  electromagnet: ['electromagnet', 'electric magnet', 'coil', 'solenoid', 'paper clip', 'paperclip', 'विद्युत चुंबक', 'विद्युत चुम्बक', 'विद्युतचुंबक', 'कुंडली', 'कुण्डली', 'परिनालिका'],
+  magnet_field: ['magnet', 'field line', 'poles', 'attract', 'repel', 'compass', 'चुंबक', 'चुम्बक', 'ध्रुव', 'आकर्षण', 'प्रतिकर्षण', 'क्षेत्र रेखा', 'बल रेखा'],
+};
+export function sceneSimFits(sim: SceneSim, text: string): boolean {
+  const words = SCENE_SIM_WORDS[sim];
+  if (!words) return true;
+  const t = text.normalize('NFKC').toLowerCase();
+  return words.some((w) => t.includes(w));
 }
 
 // T = 2π√(L/g), seconds.
