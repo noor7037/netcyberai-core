@@ -20,7 +20,9 @@ const nextConfig = {
     // its own worker script in the first place. outputFileTracingIncludes
     // alone (below) controls which files get COPIED into the deployed
     // function; this controls whether the module is bundled at all.
-    serverComponentsExternalPackages: ['tesseract.js', 'tesseract.js-core'],
+    // pdfkit (src/lib/pdf/unicode-pdf.ts, W17-B5) is kept external for the same reason: it reads its own files by a
+    // __dirname-relative path, which a webpack bundle breaks.
+    serverComponentsExternalPackages: ['tesseract.js', 'tesseract.js-core', 'pdfkit'],
     outputFileTracingIncludes: {
       '/api/**/*': [
         './node_modules/tesseract.js/src/worker-script/**',
@@ -30,6 +32,8 @@ const nextConfig = {
         // The tutor reads a PDF's text on the server (W4-1, C385) with PDF.js loaded at run time, not bundled (it is not
         // listed as an external package: AI marking's page renderer bundles it for the browser).
         './node_modules/pdfjs-dist/legacy/build/**',
+        // Report cards with Hindi are drawn with these fonts, read at run time by a computed path (W17-B5).
+        './public/fonts/**',
       ],
     },
   },
