@@ -49,4 +49,6 @@ export type LedgerAttempt = {
   streamed: boolean;
   // Null: unknown (no price is configured).
   costUsd: number | null;
+  // W17-B1: a live request, the smoke test's or Control's Try it (made-up inputs). Absent in older fixtures: live.
+  source?: 'live' | 'smoke' | 'try_it';
 };
