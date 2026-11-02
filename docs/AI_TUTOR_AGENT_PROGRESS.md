@@ -48,7 +48,53 @@ Haiku for words and docs.
 | B | B1 quiz after session (sonnet) · B2 check my work (sonnet) · B3 weekly parent report + teacher doubts + 1,000 simulation (opus) · B4 metering dimensions (sonnet) · B5 Study chrome integration + Apps switches + screenshots (sonnet) | one PR |
 | C | readiness check, docs and words (haiku), full CI, the founder's key list | the report |
 
-### What needs you (keys and accounts), after the build
+### Module log (the proposal's template), 2 Nov 2026
+
+| Module | Status | Built | Reused | Tests | Decision freedom |
+|---|---|---|---|---|---|
+| M1 Study streaming, hang, memory | pass (before this programme) | nothing new | C410, C413, C421 | existing | the 3 s first-text bar is not met with the free models (first words 4–8 s on Scout); it is the speed tile's target and a key decision for the founder |
+| M2 Agent registry | pass | `src/lib/ai/agents/registry.ts`, four profiles | gateway profiles | `test/ai/agents.test.ts` | retrieve before plan (the planner reads passage titles) |
+| M3 Handoffs | pass | `orchestrator.ts`, `jobs.ts`, `events.ts`, the dev graph | job queue, understand route | same | thin tool calls, no framework (C434) |
+| M4 Syllabus-grounded tutor | pass, baseline pending | the citation chip, prompt v9, the Class 8 Science set | retrieval, bands, School Link syllabus | `w16-a2-board`, `lab-class8` | full-text search stays; the baseline waits on the founder's keys and one Lab run |
+| M5 Voice | pass with the phone's voice; server voice waits on a key | the call screen, the chain, the realtime slot and token route | voice input, caps, consent | `call.test.ts` | chain first, realtime later (C438) |
+| M6 Drawing and simulations | pass | the `board` block (11 commands), BoardView, three sims, SimView | figure, scene, steps | `w16-a2-board` (25) | a block, not a canvas (C436) |
+| M7 Quizzes | pass | `session_quizzes`, the job, the sweep, the cards, the player | chapter-test scorer | `quiz.test.ts` (11) | a pg_cron sweep, not the orchestrator hook (C440) |
+| M8 Photo doubts | pass | Check my work, homework v2 | attachments, photo gate, vision | `check-my-work` (12) | vision read then resolver marking (C441) |
+| M9 Parent reports | pass | `parent_reports`, the job, the feed and email, the class summary, the teacher's doubts | notices, School Link, email job | `parent-report` and the 1,000 run | per child in the app, no WhatsApp template (C442) |
+| M10 Metering | pass | the three dimensions, caps, tiles, the parent card, `ai_ops_daily` | ledger, daily cap, plans | `metering.test.ts` (15) | counts, not a wallet (C443) |
+| M11 Quality check | pass, eval baseline pending | the rules, `ai_qc_results`, the speed tiles | Quality Lab | `qc-rules`, `lab-class8` | always-on rules; sampled model QC later |
+| Tutor Hall (the founder's ask) | pass | `content.tutors`, `school_tutors`, the Hall, the school module, the persona | School Link | `tutors.test.ts` (14) | two homes for tutors (C437) |
+
+### Integration-readiness check (go / no-go), 2 Nov 2026
+
+| Item | State |
+|---|---|
+| M1–M11 bars | green on the harness; the two measured bars (first text ≤ 3 s, eval ≥ 90 %) wait on the founder's keys and are recorded as targets |
+| No rebuild of Control, school, teacher or Family shells | kept: every change is additive; the Study chrome gained one button and one chip |
+| Same Vercel project, same database, slow work only through `/api/jobs/run` | kept; three pg_cron schedules added (quiz sweep, daily ops, and the existing sweeper) |
+| Study hang fixed in the shipping branch | yes (C410, C421) |
+| Citations on; Class 8 Science path demoable | yes: the chip on every answer; 13 chapters in the library; the 50-question set in the Lab |
+| Voice smoke | the chain works with the phone's voice; a server voice and the realtime leg need keys (below) |
+| Live draw and one simulation demoable | yes (pictures in `docs/screenshots/w16-tutor`) |
+| Quiz after session; photo doubt fixture | yes |
+| Parent report through the existing path; 1,000 simulated | yes (about 18 s on the harness) |
+| Metering visible in Control; no accidental spend | yes; caps default to today's numbers |
+| Quality Lab baseline; QC on | QC on; the baseline needs one Lab run with the founder's keys |
+| Secrets: names only | kept |
+| Children: consent flows preserved; no new policy layer | kept; every new table carries the family's own-account policies |
+| Security review | one opus pass on every W16 migration and route (its result is in the next row of this file) |
+
+**Verdict:** GO for the test database and your phone test; the two measured bars are yours to confirm with the keys.
+
+### What needs you, in one go (keys and one run)
+
+1. **Text-to-speech key** in Control → AI → `family.text_to_speech` (OpenAI or Google): the call then speaks with a server voice instead of the phone's.
+2. **A stronger text model** for `family.resolver` if you want the 3 s first-word bar (Scout's first words are 4–8 s); Gemini Flash or GPT, set in Control → AI, cleared for children's words.
+3. **Run the eval set:** Control → AI → Lab → "Run only Class 8 Science (50 questions)" with two to four models; the speed tiles and the rules grade fill in.
+4. **Sarvam and a realtime provider** when you want Indian-language speech and the realtime call: slots, not blockers.
+5. **Set the tutor caps** in Control → Family (text turns, voice minutes, photo doubts a day, the Plus multiplier) if the defaults 40/20/5 and ×3 are not what you want.
+
+## What needs you (keys and accounts), after the build
 
 - A text-to-speech key (Google or OpenAI) in Control → AI for `family.text_to_speech`: today no provider is set, so the call speaks through the phone's own voice until then.
 - Sarvam (Indian-language speech) and a realtime provider key when you want the realtime call; both are slots, not blockers.
