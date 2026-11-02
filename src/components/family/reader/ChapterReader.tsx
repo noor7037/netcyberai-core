@@ -1,8 +1,9 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { NarrationLine } from '@/lib/family/blocks';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { sentences, type NarrationLine } from '@/lib/family/blocks';
+import { boardCursorFromSentence } from '@/lib/family/board';
 import type { PublicChapterTest, ReaderBlock } from '@/lib/family/chapter-test-shape';
 import type { VideoPick } from '@/lib/family/videos';
 import { fill, type Words } from '@/lib/family/fill';
@@ -10,7 +11,8 @@ import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, Sources
 import { MindMapView } from '../blocks/MindMapView';
 import { NO_VOICE_EVENT } from '../english/speech';
 import { speakLine, stopLine, type VoiceMode } from '../voice/lineVoice';
-import { SPEEDS, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
+import { SPEEDS, boardSentence, occurrence, progressPercent, rateOf, wordAt, type Speed } from './narration';
+import { findSentence, highlights } from '../voice/highlight';
 import { TableView } from './TableView';
 import { VideoList } from '../VideoPicks';
 import { useDataSaver } from '../useDataSaver';
@@ -33,6 +35,8 @@ const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then(
 // when the chapter has one; neither is part of the reader's first load.
 const Model3DView = dynamic(() => import('../blocks/Model3DView').then((m) => m.Model3DView));
 const ChapterTestView = dynamic(() => import('../blocks/ChapterTestView').then((m) => m.ChapterTestView));
+// W18-P1: a chapter's drawing board, its own chunk, only when the chapter has one; it moves with the narration.
+const BoardView = dynamic(() => import('../blocks/BoardView').then((m) => m.BoardView));
 
 // `tutor` (S2, C375): the doubt drawer, the shared tutor window over the chapter, for the chapter's subject; null hides it.
 type Props = {
@@ -56,28 +60,7 @@ type Props = {
 };
 
 // The CSS Custom Highlight API, where the browser has it (a phone without it still gets the block's ring and the
-// sentence shown in the controls).
-type HighlightRegistry = { set(name: string, h: unknown): void; delete(name: string): void };
-const highlights = (): { registry: HighlightRegistry; make: (...r: Range[]) => unknown } | null => {
-  if (typeof window === 'undefined') return null;
-  const registry = (globalThis.CSS as unknown as { highlights?: HighlightRegistry } | undefined)?.highlights;
-  const H = (window as unknown as { Highlight?: new (...r: Range[]) => unknown }).Highlight;
-  return registry && H ? { registry, make: (...r) => new H(...r) } : null;
-};
-
-// The sentence's place in the block's text: the `nth` time it appears, inside one text node (each field of a block is
-// one text node, and a sentence never crosses fields).
-function findSentence(root: HTMLElement, text: string, nth: number): { node: Text; at: number } | null {
-  const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-  let seen = 0;
-  for (let n = walk.nextNode() as Text | null; n; n = walk.nextNode() as Text | null) {
-    for (let at = n.data.indexOf(text); at >= 0; at = n.data.indexOf(text, at + 1)) {
-      if (seen === nth) return { node: n, at };
-      seen++;
-    }
-  }
-  return null;
-}
+// sentence shown in the controls): voice/highlight.ts, shared with an answer's "Teach me".
 
 const reduced = () => typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
@@ -97,6 +80,21 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
   const blockEls = useRef(new Map<string, HTMLElement>());
   const total = script.length;
   const line = script[index];
+  // W18-P1: each board's owner, the readable block just before it, and how many of its sentences come before its
+  // explanation (an explanation's title), so the board moves with the explanation's words (narration.ts boardSentence).
+  const boardOwners = useMemo(
+    () =>
+      blocks.map((b, i) => {
+        if (b.type !== 'board') return null;
+        for (let j = i - 1; j >= 0; j--) {
+          if (!script.some((l) => l.blockId === ids[j])) continue;
+          const o = blocks[j];
+          return { id: ids[j], skip: o.type === 'explanation' ? sentences(o.title).length : 0 };
+        }
+        return null;
+      }),
+    [blocks, ids, script]
+  );
 
   // Speaking: one sentence at a time; the next starts when it ends. Pausing, seeking or a new speed stops the sentence
   // being read (its end is then ignored) and, while playing, starts the new one.
@@ -262,7 +260,10 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
       )}
       {blocks.map((b, i) => {
         const id = ids[i];
-        const view = renderBlock(b, w, tone, { id, chapterKey });
+        const owner = boardOwners[i];
+        const spoken = b.type === 'board' && owner && started ? boardSentence(script, index, owner.id, owner.skip) : undefined;
+        const cursor = b.type === 'board' && spoken !== undefined ? boardCursorFromSentence(b.steps.map((s) => s.say), spoken) : undefined;
+        const view = renderBlock(b, w, tone, { id, chapterKey, cursor });
         if (!view) return null;
         return (
           <div
@@ -377,8 +378,11 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
 }
 
 // The block renderer's own views; a check or practice needs the server's sealed items and is not part of a chapter.
-function renderBlock(b: ReaderBlock, w: Words, tone: string, at: { id: string; chapterKey: string }): React.ReactNode {
+// `at.cursor` (W18-P1): a board's step from the narration (boardSentence); undefined, the child steps through it.
+function renderBlock(b: ReaderBlock, w: Words, tone: string, at: { id: string; chapterKey: string; cursor?: number }): React.ReactNode {
   switch (b.type) {
+    case 'board':
+      return <BoardView b={b} w={w} tone={tone} cursor={at.cursor} />;
     case 'explanation':
       return <ExplanationView b={b} w={w} tone={tone} />;
     case 'worked_example':

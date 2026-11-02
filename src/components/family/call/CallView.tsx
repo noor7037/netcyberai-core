@@ -93,7 +93,7 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
 
       <section aria-label={w['fam.call.board']} data-call-board-area className={`min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-2 lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:px-8 lg:py-8 ${call.blocks.length > 0 ? '' : 'flex flex-col justify-center'}`}>
         {call.blocks.length > 0 ? (
-          <CallBoard w={w} blocks={call.blocks} tone={subject} />
+          <CallBoard w={w} blocks={call.blocks} tone={subject} sentence={call.sentence} />
         ) : (
           <p data-call-board-empty className="fam-surface mx-auto max-w-md bg-white p-5 text-center text-base text-slate">
             {w['fam.call.boardEmpty']}
