@@ -68,6 +68,10 @@ export const WRITE_ROUTES: readonly (readonly [string, WriteModule, 'even-read-o
   // School Health Auditor (C208): switched off, nobody runs a check-up.
   ['school-auditor', 'school-auditor'],
   // p5-8i end
+  // w16-a3 begin
+  // AI Tutors: switched off, the office can neither add, change nor switch a tutor.
+  ['ai-tutors', 'ai-tutors'],
+  // w16-a3 end
   // p5-8j begin
   // Early Warning (C209): switched off, nobody runs the check or adds what was done about a flag.
   ['early-warning/**', 'early-warning'],
@@ -248,6 +252,10 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // The latest check-up and the last ones, for the principal and the school admin (C208).
   ['school-auditor', 'school-auditor'],
   // p5-8i end
+  // w16-a3 begin
+  // The platform's tutors with this school's switches, and the school's own tutors.
+  ['ai-tutors', 'ai-tutors'],
+  // w16-a3 end
   // p5-8j begin
   // The flags a person may read, with their reasons, evidence and what was done (C209).
   ['early-warning', 'early-warning'],

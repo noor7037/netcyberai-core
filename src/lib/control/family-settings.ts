@@ -93,3 +93,22 @@ export async function setVoiceAllowance(db: Sql, by: { userId: string }, raw: un
   });
   return { ok: true, chars: raw };
 }
+
+// W16-A3 begin
+// The platform's tutors, for Control → Family's read-only list (the Tutor Hall): the library's rows, as the platform role.
+// No editing yet.
+export type ControlTutor = { key: string; subject: Subject | null; nameEn: string; nameHi: string; styleEn: string; styleHi: string; language: 'en' | 'hi' | 'both'; enabled: boolean };
+export async function readPlatformTutors(db: Sql): Promise<ControlTutor[]> {
+  const { rows } = await db.query(`select key, subject, name_en, name_hi, style_en, style_hi, language, enabled from content.tutors order by sort, key`);
+  return (rows as { key: string; subject: string | null; name_en: string; name_hi: string; style_en: string; style_hi: string; language: 'en' | 'hi' | 'both'; enabled: boolean }[]).map((r) => ({
+    key: r.key,
+    subject: (SUBJECT_IDS as readonly string[]).includes(r.subject ?? '') ? (r.subject as Subject) : null,
+    nameEn: r.name_en,
+    nameHi: r.name_hi,
+    styleEn: r.style_en,
+    styleHi: r.style_hi,
+    language: r.language,
+    enabled: r.enabled,
+  }));
+}
+// w16-a3 end

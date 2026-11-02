@@ -24,7 +24,7 @@ export const PAGE_WORDS = {
   '/control/content/studio': [
     'ai.', 'control.studio.', 'fam.ai.', 'fam.block.', 'fam.check.', 'fam.class.', 'fam.ctest.', 'fam.dataSaver.', 'fam.err.', 'fam.followUp.',
     'fam.homework.', 'fam.label.', 'fam.model.', 'fam.offline.', 'fam.plan.', 'fam.reader.', 'fam.tutor.', 'fam.understand.', 'fam.video.',
-    'fam.voice.', 'fam.voiceOut.', 'fam.chat.', 'fam.subject.',
+    'fam.voice.', 'fam.voiceOut.', 'fam.chat.', 'fam.subject.', 'fam.tutors.chattingWith', 'fam.tutors.change',
   ],
   '/control/family': ['control.family.', 'fam.subject.'],
   '/control/family/people': ['control.apps.'],

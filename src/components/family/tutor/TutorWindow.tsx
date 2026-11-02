@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { Block, Explanation } from '@/lib/family/blocks';
@@ -41,6 +42,8 @@ type Props = {
   pinned?: 'dock' | 'sheet';
   // Study: the subject tab follows a question the server kept in another subject.
   follow?: boolean;
+  // W16-A3: the tutor chosen in the Tutor Hall; every question carries its key, and the window says who is answering.
+  tutor?: { key: string; name: string } | null;
   children?: ReactNode;
 };
 
@@ -89,11 +92,11 @@ export function answered(asks: FeedAsk[], n: number, chat: { chatId: string; sub
 const carry: { ask: FeedAsk | null } = { ask: null };
 
 // Where Study goes when the tab follows a moved question (null: it stays): the moved question's subject.
-export function followHref(ask: FeedAsk | undefined, follow: boolean): string | null {
-  return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}` : null;
+export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: string | null = null): string | null {
+  return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
@@ -153,13 +156,13 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       const next = answered(asksNow.current, n, { chatId: chat.chatId, subject: chat.subject });
       setAsks(next);
       const ask = next.find((a) => a.n === n);
-      const href = followHref(ask, follow);
+      const href = followHref(ask, follow, chosen?.key ?? null);
       if (ask && href) {
         carry.ask = ask;
         router.replace(href, { scroll: false });
       }
     },
-    [follow, router]
+    [follow, router, chosen]
   );
 
   const busy = attached.some((a) => a.state !== 'ready');
@@ -200,7 +203,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const send = () => {
     if (!canSend) return;
     const asked = text.trim();
-    const tutor = { subject, ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])) };
+    const tutor = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])) };
     const n = (asks.at(-1)?.n ?? 0) + 1;
     setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
     setText('');
@@ -218,6 +221,14 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       <h2 id={ids.title} className="sr-only">
         {w['fam.tutor.title']}
       </h2>
+      {chosen && (
+        <p data-tutor-chosen={chosen.key} className="flex flex-wrap items-center gap-x-3 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
+          <span>{fill(w['fam.tutors.chattingWith'], { name: chosen.name })}</span>
+          <Link href="/family/tutors" className="fam-press inline-flex min-h-[44px] items-center font-bold text-saffron-deep underline">
+            {w['fam.tutors.change']}
+          </Link>
+        </p>
+      )}
       {reader && (
         <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
           {fill(w['fam.tutor.doubtAbout'], { section: reader.section })}

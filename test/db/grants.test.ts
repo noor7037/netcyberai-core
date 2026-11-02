@@ -276,6 +276,9 @@ const APP_USER: Record<string, string> = {
   // aq-5 begin
   result_pdfs: 'INSERT,SELECT', // a child's checked papers as a PDF, kept until sent (C366): made by the office, never changed or removed
   // aq-5 end
+  // w16-a3 begin
+  school_tutors: 'INSERT,SELECT,UPDATE', // a school's own tutors and its switches of the platform's (W16-A3): the office writes, never removed; a family reads only school_tutors_for_guardian()
+  // w16-a3 end
   // aq-4 begin
   online_tests: 'DELETE,INSERT,SELECT,UPDATE', // an online test (C365): set, opened and closed by whoever may mark the paper
   online_attempts: 'SELECT', // written by the guardian's functions and the sweep only; UPDATE of state, voided_*, sheet_id is a column grant
@@ -473,6 +476,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // aq-5 begin
   result_pdfs: '', // the send-gate and the sweep reach it only through its definer functions (C366)
   // aq-5 end
+  // w16-a3 begin
+  school_tutors: '', // a school's own: the platform role reads nothing here (W16-A3)
+  // w16-a3 end
   // aq-4 begin
   online_tests: '', // a school's online tests and a child's answers are its own: the sweep reads through its definer function
   online_attempts: '',

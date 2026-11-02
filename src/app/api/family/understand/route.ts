@@ -12,6 +12,8 @@ import { SUBJECTS, type Subject } from '@/lib/family/modules';
 import { jsonBody, requireFamily } from '@/lib/family/request';
 import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Generated, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
+import { isTutorKey, resolvePersona } from '@/lib/family/tutors';
+import type { Persona } from '@/lib/family/persona';
 import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
@@ -73,14 +75,23 @@ export async function POST(req: NextRequest) {
   // subject, else the newest open one) and what the tutor is told of it (its summary and last turns). A new question in
   // a full chat is refused before anything is asked (409 chat_full); a follow-up still sees the chat.
   let chatId: string | null = null;
+  // W16-A3: the tutor chosen in the Tutor Hall (`tutor.tutorKey`), or the one the chat named by the window was started with;
+  // its persona is one line of the system prompt, and a new chat is kept with its tutor.
+  let persona: Persona | null = null;
+  let tutorKey: string | null = null;
   // W10 (C411): the chat the window named is kept whatever subject is decided; a chat with turns steers by its own subject.
   let pinned = false;
   let chatSubject: string | null = null;
   if (tutorBody && input?.kind === 'question' && !retry) {
     const chat = await withFamilyContext(claims, async (db) => {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
-      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId) : null;
+      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId, isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null) : null;
     }).catch(() => null);
+    const asked = chat ? chat.tutorKey : isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null;
+    if (asked) {
+      persona = await resolvePersona(claims, (fn) => withFamilyContext(claims, fn), session.accountId, asked).catch(() => null);
+      tutorKey = persona ? asked : null;
+    }
     if (chat?.full && !followUp) return NextResponse.json({ error: 'chat_full' }, { status: 409 });
     chatId = chat?.chatId ?? null;
     pinned = chat?.pinned ?? false;
@@ -201,6 +212,7 @@ export async function POST(req: NextRequest) {
               day: indiaDate(),
               refusalWords: words,
               claimSubject: (tx, subject) => claimSubject(tx, session.accountId, child.childId, subject),
+              ...(persona ? { persona } : {}),
             },
             target!,
             followUp,
@@ -253,7 +265,7 @@ export async function POST(req: NextRequest) {
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
           const same = subject === turn.windowSubject;
-          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage })).catch(() => null);
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey })).catch(() => null);
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
         if (last) send(last);

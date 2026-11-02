@@ -7,11 +7,12 @@ import { bottomNavItems, buildNavigation, chartAsTable, FREQUENT_TASKS, FREQUENT
 // The registry against docs/17_MODULE_CATALOG.md (C110).
 
 describe('module registry', () => {
-  it('has the 34 navigation items, the demo’s ids, each once', () => {
-    expect(MODULE_REGISTRY).toHaveLength(34);
-    expect(new Set(MODULE_REGISTRY.map((m) => m.id)).size).toBe(34);
+  it('has the 35 navigation items, the demo’s ids and the school-only ones, each once', () => {
+    expect(MODULE_REGISTRY).toHaveLength(35);
+    expect(new Set(MODULE_REGISTRY.map((m) => m.id)).size).toBe(35);
     expect(MODULE_REGISTRY.map((m) => m.id).sort()).toEqual([...MODULE_IDS].sort());
-    expect([...MODULE_IDS].sort()).toEqual(['dashboard', ...Object.keys(moduleStatus)].sort());
+    // W16-A3: AI Tutors is a school module the website demo does not show, so it has no demo status.
+    expect([...MODULE_IDS].sort()).toEqual(['dashboard', 'ai-tutors', ...Object.keys(moduleStatus)].sort());
   });
 
   it('puts every module in its 17 §2 group, groups in order', () => {
@@ -22,7 +23,7 @@ describe('module registry', () => {
       'parent-engagement': ['pulse', 'communication', 'ptm', 'events', 'complaints'],
       finance: ['fees', 'payroll'],
       'records-compliance': ['documents', 'compliance', 'reports'],
-      'ai-intelligence': ['early-warning', 'learning-genome', 'curriculum-gap', 'teacher-copilot', 'parent-ai', 'school-auditor', 'career', 'twin', 'automation'],
+      'ai-intelligence': ['early-warning', 'learning-genome', 'curriculum-gap', 'teacher-copilot', 'parent-ai', 'school-auditor', 'ai-tutors', 'career', 'twin', 'automation'],
       help: ['help-center', 'raise-ticket'],
     };
     for (const g of MODULE_GROUPS) expect(MODULE_REGISTRY.filter((m) => m.group === g.id).map((m) => m.id)).toEqual(expected[g.id]);
@@ -51,8 +52,8 @@ describe('module registry', () => {
   it('gives each role the 17 §5 groups', () => {
     const groupsOf = (role: SchoolRole) => new Set(MODULE_REGISTRY.filter((m) => m.roles.includes(role)).map((m) => m.group));
     const modulesOf = (role: SchoolRole) => MODULE_REGISTRY.filter((m) => m.roles.includes(role)).map((m) => m.id);
-    expect(modulesOf('principal')).toHaveLength(34);
-    expect(modulesOf('school_admin')).toHaveLength(34);
+    expect(modulesOf('principal')).toHaveLength(35);
+    expect(modulesOf('school_admin')).toHaveLength(35);
     expect([...groupsOf('teacher')].sort()).toEqual(['ai-intelligence', 'help', 'home', 'parent-engagement', 'teaching-learning']);
     expect(modulesOf('teacher').filter((id) => moduleById(id).group === 'ai-intelligence')).toEqual(['early-warning', 'learning-genome', 'curriculum-gap', 'teacher-copilot', 'parent-ai']);
     expect(moduleById('parent-ai').teacherScope).toBe('ownClassesOnly');

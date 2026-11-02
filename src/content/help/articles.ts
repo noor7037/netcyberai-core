@@ -1577,6 +1577,33 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['documents', 'papers', 'scan', 'certificate', 'transcript', 'id proof', 'upload', 'version', 'दस्तावेज़', 'प्रमाणपत्र', 'काग़ज़'],
   },
   // c235d end
+  // w16-a3 begin
+  {
+    slug: 'add-a-school-tutor',
+    category: 'daily',
+    audience: 'office',
+    title: { en: 'Add your school’s own tutor', hi: 'अपने स्कूल का अपना ट्यूटर जोड़ें' },
+    summary: {
+      en: 'AI Tutors lists NetCyberAI’s tutors, which you can switch on or off for your school, and lets you add tutors of your own. Both reach the Family app of a family linked to your school.',
+      hi: 'AI Tutors में NetCyberAI के ट्यूटर दिखते हैं, जिन्हें आप अपने स्कूल के लिए चालू या बंद कर सकते हैं, और आप अपने ट्यूटर भी जोड़ सकते हैं। दोनों आपके स्कूल से जुड़े परिवार के Family ऐप में पहुँचते हैं।',
+    },
+    steps: [
+      { en: 'Open “AI Tutors” from the menu.', hi: 'मेनू से “AI Tutors” खोलें।' },
+      { en: 'Under the platform’s tutors, switch a tutor off if you do not want families of your school to see it. Switch it on again at any time.', hi: 'प्लेटफ़ॉर्म के ट्यूटर में, किसी ट्यूटर को बंद करें अगर आप नहीं चाहते कि आपके स्कूल के परिवार उसे देखें। कभी भी उसे फिर चालू करें।' },
+      { en: 'Under your school’s tutors, press “Add a tutor”. Type a name, choose the subject, write one line on how this tutor teaches, and choose the language.', hi: 'अपने स्कूल के ट्यूटर में “Add a tutor” दबाएँ। नाम लिखें, विषय चुनें, एक पंक्ति में लिखें कि यह ट्यूटर कैसे पढ़ाता है, और भाषा चुनें।' },
+      { en: 'Press “Save”. The tutor shows in the Family app of a family that has linked to your school, under your school’s name.', hi: '“Save” दबाएँ। ट्यूटर आपके स्कूल से जुड़े परिवार के Family ऐप में आपके स्कूल के नाम के नीचे दिखता है।' },
+      { en: 'To change a tutor, press “Edit”. To stop showing it, switch it off: it stays in the list and can be switched on again.', hi: 'ट्यूटर बदलने के लिए “Edit” दबाएँ। उसे दिखाना रोकने के लिए बंद करें: वह सूची में रहता है और फिर चालू हो सकता है।' },
+    ],
+    tips: [
+      { en: 'Only the principal and the school admin change tutors. Every change is written to the audit trail.', hi: 'ट्यूटर सिर्फ़ प्रिंसिपल और स्कूल एडमिन बदलते हैं। हर बदलाव ऑडिट रिकॉर्ड में लिखा जाता है।' },
+      { en: 'A family sees your school’s tutors only after it has linked to your school with a code, and only while a child of theirs has your school’s consent.', hi: 'परिवार आपके स्कूल के ट्यूटर तभी देखता है जब वह कोड से आपके स्कूल से जुड़ चुका हो, और जब तक उनके बच्चे की आपके स्कूल में सहमति है।' },
+      { en: 'Keep the line on how the tutor teaches short and plain. The tutor still follows the same safety rules as every NetCyberAI tutor.', hi: 'ट्यूटर के पढ़ाने के तरीके की पंक्ति छोटी और सरल रखें। ट्यूटर वही सुरक्षा नियम मानता है जो NetCyberAI का हर ट्यूटर मानता है।' },
+    ],
+    start: { href: '/app/ai-tutors', label: { en: 'AI Tutors', hi: 'AI Tutors' } },
+    related: ['school-check-up', 'use-my-day'],
+    keywords: ['tutor', 'tutors', 'ai tutor', 'family app', 'school tutor', 'ट्यूटर', 'शिक्षक'],
+  },
+  // w16-a3 end
 ];
 
 export function helpArticle(slug: string): HelpArticle | null {

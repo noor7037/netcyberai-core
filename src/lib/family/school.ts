@@ -2,6 +2,7 @@ import type { FamilyClaims } from './db';
 import type { PoolClient } from 'pg';
 import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
+import type { SchoolTutors } from '@/lib/contracts/school-link';
 import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
 import {
   answerPulse,
@@ -16,6 +17,7 @@ import {
   readSchoolReportCard,
   ReportCardUnavailableError,
   readSchoolSyllabus,
+  readSchoolTutors,
   readSchoolToday,
   redeemConnectCode,
   requestFollowup,
@@ -406,4 +408,22 @@ export async function schoolReportCardFor(claims: Claims, links: readonly Family
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;
   }
+}
+
+// ---- the Tutor Hall's school part (W16-A3) ---------------------------------------------------------------------------------
+
+// What each of the family's linked schools adds to the Tutor Hall: its own tutors that are on, and the platform tutors it
+// switched off. As the guardian, so the school's rules and the consent for a child decide; a link the school closed
+// meanwhile adds nothing. One school at a time.
+export async function schoolTutorsFor(claims: Claims, links: readonly FamilySchoolLink[]): Promise<SchoolTutors[]> {
+  const out: SchoolTutors[] = [];
+  for (const l of links) {
+    try {
+      const got = await readSchoolTutors(claims, l.linkId);
+      if (got.tutors.length > 0 || got.hiddenPlatform.length > 0) out.push(got);
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out;
 }

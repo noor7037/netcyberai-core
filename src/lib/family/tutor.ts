@@ -101,11 +101,11 @@ const CHAT_COLUMNS = 'conversation_id, title, turn_count, status, last_at';
 const NEWEST = 'order by last_at desc, created_at desc';
 
 // A new chat in a subject; the chats listed beyond CHATS_KEPT (the least recently used) are archived.
-export async function newChat(db: Db, accountId: string, childId: string, subject: string): Promise<string> {
+export async function newChat(db: Db, accountId: string, childId: string, subject: string, tutorKey: string | null = null): Promise<string> {
   if (!isSubject(subject)) throw new Error('not a subject');
   const { rows } = await db.query(
-    `insert into family.tutor_conversations (account_id, child_id, subject, created_at, last_at) values ($1, $2, $3, clock_timestamp(), clock_timestamp()) returning conversation_id`,
-    [accountId, childId, subject]
+    `insert into family.tutor_conversations (account_id, child_id, subject, tutor_key, created_at, last_at) values ($1, $2, $3, $4, clock_timestamp(), clock_timestamp()) returning conversation_id`,
+    [accountId, childId, subject, tutorKey]
   );
   await archiveOverflow(db, accountId, childId, subject);
   return String(rows[0].conversation_id);
@@ -122,13 +122,14 @@ async function archiveOverflow(db: Db, accountId: string, childId: string, subje
 }
 
 // The newest open chat in a subject, or a new one.
-export async function openChat(db: Db, accountId: string, childId: string, subject: string): Promise<string> {
+// W16-A3: a chat is with one tutor (or none): the newest open chat is the one with the same tutor.
+export async function openChat(db: Db, accountId: string, childId: string, subject: string, tutorKey: string | null = null): Promise<string> {
   if (!isSubject(subject)) throw new Error('not a subject');
   const { rows } = await db.query(
-    `select conversation_id from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' ${NEWEST} limit 1`,
-    [accountId, childId, subject]
+    `select conversation_id from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' and tutor_key is not distinct from $4 ${NEWEST} limit 1`,
+    [accountId, childId, subject, tutorKey]
   );
-  return rows[0] ? String(rows[0].conversation_id) : newChat(db, accountId, childId, subject);
+  return rows[0] ? String(rows[0].conversation_id) : newChat(db, accountId, childId, subject, tutorKey);
 }
 
 // Where a file is filed when it is sent (S2's name): the subject's newest open chat. It joins its question's chat later.
@@ -187,13 +188,13 @@ export async function memoryFor(db: Db, chatId: string): Promise<ResolverMemory>
 }
 
 // One of the child's own listed chats in any subject, with its subject (W10, C411: the chat the window has open).
-async function pinnedChat(db: Db, accountId: string, childId: string, chatId: unknown): Promise<(TutorChat & { subject: string }) | null> {
+async function pinnedChat(db: Db, accountId: string, childId: string, chatId: unknown): Promise<(TutorChat & { subject: string; tutorKey: string | null }) | null> {
   if (!isUuid(chatId)) return null;
   const { rows } = await db.query(
-    `select ${CHAT_COLUMNS}, subject from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and status in ('open', 'full')`,
+    `select ${CHAT_COLUMNS}, subject, tutor_key from family.tutor_conversations where conversation_id = $1 and account_id = $2 and child_id = $3 and status in ('open', 'full')`,
     [chatId, accountId, childId]
   );
-  return rows[0] ? { ...chatOf(rows[0]), subject: String(rows[0].subject) } : null;
+  return rows[0] ? { ...chatOf(rows[0]), subject: String(rows[0].subject), tutorKey: (rows[0].tutor_key as string | null) ?? null } : null;
 }
 
 // The chat a tutor question is asked in: the one the screen names when it is this child's own, in whatever subject
@@ -205,21 +206,23 @@ export async function resolveChat(
   accountId: string,
   childId: string,
   subject: string,
-  requested: unknown
-): Promise<{ chatId: string; full: boolean; memory: ResolverMemory | null; pinned: boolean; subject: string } | null> {
+  requested: unknown,
+  tutorKey: string | null = null
+): Promise<{ chatId: string; full: boolean; memory: ResolverMemory | null; pinned: boolean; subject: string; tutorKey: string | null } | null> {
   if (!isSubject(subject)) return null;
   const pinned = await pinnedChat(db, accountId, childId, requested);
   let chat: TutorChat | null = pinned;
   if (!chat) {
     const { rows } = await db.query(
-      `select ${CHAT_COLUMNS} from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' ${NEWEST} limit 1`,
-      [accountId, childId, subject]
+      `select ${CHAT_COLUMNS} from family.tutor_conversations where account_id = $1 and child_id = $2 and subject = $3 and status = 'open' and tutor_key is not distinct from $4 ${NEWEST} limit 1`,
+      [accountId, childId, subject, tutorKey]
     );
     chat = rows[0] ? chatOf(rows[0]) : null;
   }
   if (!chat) return null;
   const memory = await memoryFor(db, chat.chatId);
-  return { chatId: chat.chatId, full: chat.status === 'full', memory: memory.summary || memory.turns.length ? memory : null, pinned: pinned !== null, subject: pinned?.subject ?? subject };
+  // W16-A3: a chat the window named keeps the tutor it was started with; otherwise the tutor asked for.
+  return { chatId: chat.chatId, full: chat.status === 'full', memory: memory.summary || memory.turns.length ? memory : null, pinned: pinned !== null, subject: pinned?.subject ?? subject, tutorKey: pinned ? pinned.tutorKey : tutorKey };
 }
 
 // A chat's turns, oldest first, with each child turn's ready files. With no chat named: the subject's most recently
@@ -340,7 +343,7 @@ export async function sendableFiles(db: Db, accountId: string, childId: string, 
 }
 
 // `storage`: where the files of turns the feed lets go are removed from (the route's bucket; none in a test).
-type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null };
+type TurnInput = { accountId: string; childId: string; subject: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; blocks: readonly Block[]; lang?: string; storage?: DirectUploadStorage | null; tutorKey?: string | null };
 
 // A turn: the child's words (and the reader's chapter and block, and the files sent with them), then the tutor's
 // answer as shown, without its check and practice items, in this child's chat. The chat's child turns go up by one, and
@@ -405,7 +408,7 @@ export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }
     if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount, subject: kept.subject };
     if (kept.error === 'empty') return null;
   }
-  const chatId = await openChat(db, t.accountId, t.childId, t.subject);
+  const chatId = await openChat(db, t.accountId, t.childId, t.subject, t.tutorKey ?? null);
   const kept = await appendTurn(db, { ...t, chatId });
   return kept.ok ? { chatId, turnCount: kept.turnCount, subject: kept.subject } : null;
 }

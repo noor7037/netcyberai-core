@@ -3,7 +3,7 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, withPlatformService, SchoolLinkGoneError, type FamilyClaims } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught, type SchoolTutors } from '@/lib/contracts/school-link';
 import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
 import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
 import type { GradingScheme } from '@/lib/exams/scheme';
@@ -543,3 +543,23 @@ export async function readSchoolSyllabus(claims: Claims, linkId: string, student
     return { subjects, tonight: await taughtToday(db, studentId, today) };
   });
 }
+
+// W16-A3 begin
+// The Tutor Hall's school part (W16-A3): the school's own tutors that are on, and the platform tutors it switched off, for
+// a guardian with at least one consented child. Read as the guardian through public.school_tutors_for_guardian(), which
+// decides every row; a link the school closed meanwhile is SchoolLinkGoneError. No voice, no author: name, subject,
+// style, language and tint only.
+export async function readSchoolTutors(claims: Claims, linkId: string): Promise<SchoolTutors> {
+  return withGuardianContext(claims, linkId, async (db) => {
+    const { rows } = await db.query(`select tutor_id, platform_key, name, subject, style, language, tint, enabled, school_name from public.school_tutors_for_guardian()`);
+    const all = rows as { tutor_id: string; platform_key: string | null; name: string | null; subject: string | null; style: string | null; language: 'en' | 'hi' | 'both' | null; tint: SchoolTutors['tutors'][number]['tint'] | null; enabled: boolean; school_name: string }[];
+    return {
+      schoolName: all[0]?.school_name ?? '',
+      tutors: all
+        .filter((r) => r.platform_key === null && r.enabled && r.name && r.style && r.language && r.tint)
+        .map((r) => ({ id: r.tutor_id, name: r.name as string, subject: r.subject, style: r.style as string, language: r.language as 'en' | 'hi' | 'both', tint: r.tint as SchoolTutors['tutors'][number]['tint'] })),
+      hiddenPlatform: all.filter((r) => r.platform_key !== null && !r.enabled).map((r) => r.platform_key as string),
+    };
+  });
+}
+// w16-a3 end
