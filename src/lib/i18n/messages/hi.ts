@@ -10050,7 +10050,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.use.quizzes': 'बनाई गई क्विज़',
   'control.ai.use.reports': 'भेजी गई रिपोर्ट',
   'control.ai.use.costTitle': 'आज की लागत, सेवा के अनुसार',
-  'control.ai.use.cost': 'US${usd}',
+  'control.ai.use.cost': 'लागत US${usd}',
   'control.ai.use.costNone': 'कीमत तय नहीं',
   'control.ai.use.costEmpty': 'आज अभी तक परिवार की किसी सेवा का उपयोग नहीं हुआ।',
   'fam.tutor.today.title': 'आज, {name}',

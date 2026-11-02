@@ -46,6 +46,7 @@ FAMILY_MAY_IMPORT = (
     "@/lib/ai/prompts/",  # prompt text lives in the repository (08 §7)
     "@/lib/ai/teaching/",  # the teaching plan and chapter retrieval (W9-B, docs/39): content.* reads, no family table
     "@/lib/ai/agents/orchestrator",  # the tutor turn's handoffs (W16-A1): no database, no vendor; the caller hands in the steps
+    "@/lib/ai/daily-cap",  # the gateway's cap helpers (W16-B4): testing mode and the uncapped marker, no family table
     "@/lib/storage/file-storage",  # the storage interface
 )
 # Platform services, each allowed to exactly one family file (the door it goes through).
@@ -101,6 +102,9 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
     "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz"},
+    # W16-B4: the gateway meters and caps a child's text turns by the family's cap numbers; Control's Family settings write them.
+    "src/lib/ai/platform.ts": {"@/lib/family/tutor-meter"},
+    "src/lib/control/family-settings.ts": {"@/lib/family/tutor-meter"},
     # The school's view of the tutor (W16-B3) names a chapter and a topic from the showcase chapters' titles (data only).
     "src/lib/parent-ai/doubts.ts": {"@/lib/family/chapters"},
     # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
@@ -152,7 +156,8 @@ TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+(?P<name>[a-z_][a-z0-9_]*
 # Any call of a family function, in any position (select family.f(...), from family.f(...)).
 FAMILY_CALL = re.compile(r"\bfamily\.(?P<fn>[a-z_][a-z0-9_]*)\s*\(", re.IGNORECASE)
 # Control's doors to the numbers (definer functions that return counts only, M1-7 and M2-11): any file may call them.
-NUMBER_DOORS = {"control_counts", "m2_counts"}
+# W16-B4: the day's tutor totals (counts only) for Control's tile row and the daily ops job.
+NUMBER_DOORS = {"control_counts", "m2_counts", "tutor_day_totals"}
 FAMILY_TABLE_REF = re.compile(r"\b(?:from|join|into|update)\s+family\.(?P<table>[a-z_][a-z0-9_]*)\s*(?P<call>\()?", re.IGNORECASE)
 SQL_WORDS = {"select", "set", "lateral", "unnest", "jsonb_array_elements", "jsonb_to_recordset", "generate_series", "jsonb_each", "jsonb_object_keys"}
 
