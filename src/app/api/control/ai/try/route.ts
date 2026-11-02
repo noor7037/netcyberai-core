@@ -3,11 +3,11 @@ import { withPlatformService } from '@/lib/auth/db';
 import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { writeAuditLog } from '@/lib/audit/log';
 import { prepareTryIt, profileById, type SentTry, type TryResult } from '@/lib/ai/platform';
-import { SMOKE_PHOTO_JPEG, SMOKE_SPEECH } from '@/demo-fixture/ai-smoke/inputs';
+import { SMOKE_PHOTO_JPEG, SMOKE_SPEECH } from '@/lib/ai/try-inputs';
 import { indiaDate } from '@/lib/time/india';
 
 // Control → AI → a feature's "Try it" (W17-B1). POST { profileId }: one live call of that feature's current route with
-// made-up inputs (src/lib/ai/try-inputs.ts, the smoke test's fixture photo and WAV recording), never a child's data,
+// made-up inputs (src/lib/ai/try-inputs.ts, which also hands on the smoke test's fixture photo and WAV recording), never a child's data,
 // and the answer shown on the card. The founder (super_admin) only. Not requireAiControl: Try it changes no setting, so
 // it does not ask for the authenticator again ("Confirm it is you"), as the key test's reading does not.
 // Three steps as every AI call: prepared in one transaction, sent with none held, recorded in the next (counts, ledger

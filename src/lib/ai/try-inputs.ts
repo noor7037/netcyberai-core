@@ -1,4 +1,7 @@
 import type { ProfileId } from './platform';
+// The smoke test's fixture inputs (a printed question's photo, a spoken question in each format a phone records, a
+// syllabus line), handed on so a route never reaches into the demo fixture itself.
+export { SMOKE_PHOTO_JPEG, SMOKE_SPEECH, SMOKE_TOPIC } from '@/demo-fixture/ai-smoke/inputs';
 
 // Control's Try it (W17-B1): the made-up input each AI feature is tried on. Fixed words about a magnet, so nothing a
 // child wrote, said or uploaded ever goes out: the photo and the recording are the smoke test's own fixtures

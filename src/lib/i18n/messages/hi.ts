@@ -9130,7 +9130,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.err.price': 'कीमत दस लाख टोकन पर अमेरिकी डॉलर में होती है, 0 से 1000 तक।',
   'control.ai.err.voice_model': 'सहेजा नहीं गया: भाषा के बिना आवाज़ चुनें (जैसे Standard-A)। en-IN या hi-IN ऐप खुद जोड़ता है।',
   'control.ai.profile.googleVoiceHint': 'en-IN-{voice} और hi-IN-{voice} के रूप में इस्तेमाल होती है',
-  'control.ai.provider.name.google_stt': 'Google Cloud Speech-to-Text',
+  'control.ai.provider.name.google_stt': 'Google Cloud Speech-to-Text (गूगल क्लाउड, बोली से लिखाई)',
   'control.ai.provider.about.gemini': 'मुफ़्त स्तर का डेटा Google अपने उत्पाद सुधारने में इस्तेमाल करता है: बच्चों के लिए इसे कभी मंज़ूर न करें।',
   'control.ai.overview.lab': 'गुणवत्ता जाँच में मॉडलों की तुलना करें',
   'control.ai.provider.probeOk': 'स्वास्थ्य जाँच: {date} पर उत्तर मिला।',
