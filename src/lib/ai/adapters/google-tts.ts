@@ -20,7 +20,10 @@ const URL = 'https://texttospeech.googleapis.com/v1/text:synthesize';
 const VOICES_URL = 'https://texttospeech.googleapis.com/v1/voices';
 export const GOOGLE_LANGUAGE: Record<'en' | 'hi', string> = { en: 'en-IN', hi: 'hi-IN' };
 const VOICE_SUFFIX = /^(default|[A-Z][A-Za-z0-9]{1,15}(-[A-Za-z0-9]{1,15}){1,3})$/;
-export const googleVoiceLooksRight = (model: string) => VOICE_SUFFIX.test(model);
+// A full voice id as Google's own list shows it ("hi-IN-Standard-A") is accepted too: the language is the app's to add, so
+// a leading en-IN- or hi-IN- is stripped (case as given), and the name is never prefixed twice.
+export const normaliseGoogleVoice = (model: string): string => model.replace(/^(en-IN|hi-IN)-/, '');
+export const googleVoiceLooksRight = (model: string) => VOICE_SUFFIX.test(normaliseGoogleVoice(model));
 
 // The voices that exist in both en-IN and hi-IN, by their suffix ("Neural2-A"), and "default".
 export function sharedVoices(body: unknown): string[] {
@@ -41,11 +44,12 @@ export const googleTtsAdapter: VoiceAdapter = {
   keyLooksRight: googleKeyLooksRight,
   modelLooksRight: googleVoiceLooksRight,
   async synthesize(request): Promise<VoiceResult> {
-    if (!VOICE_SUFFIX.test(request.model)) return { ok: false, failure: 'http', status: 400 };
+    const voice = normaliseGoogleVoice(request.model);
+    if (!VOICE_SUFFIX.test(voice)) return { ok: false, failure: 'http', status: 400 };
     const languageCode = GOOGLE_LANGUAGE[request.language];
     const body = {
       input: { text: request.text },
-      voice: { languageCode, ...(request.model === 'default' ? {} : { name: `${languageCode}-${request.model}` }) },
+      voice: { languageCode, ...(voice === 'default' ? {} : { name: `${languageCode}-${voice}` }) },
       audioConfig: { audioEncoding: 'MP3' },
     };
     let res: Response;

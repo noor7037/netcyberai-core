@@ -236,6 +236,13 @@ export function WorkloadCard({
                   t={t}
                   onChange={(slot) => setSlot(i, slot)}
                 />
+                {s.provider === "google_tts" && (
+                  <p data-ai-google-voice-hint className="pt-1 text-xs text-slate/80">
+                    {t("control.ai.profile.googleVoiceHint", {
+                      voice: s.model.replace(/^(en-IN|hi-IN)-/, "") || "…",
+                    })}
+                  </p>
+                )}
               </div>
               <span className="flex min-h-[48px] items-center gap-2">
                 {st && (

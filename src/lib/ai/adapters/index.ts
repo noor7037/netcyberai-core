@@ -1,5 +1,7 @@
 import { anthropicAdapter } from './anthropic';
 import { geminiAdapter } from './gemini';
+import { geminiRealtimeAdapter, geminiSpeechAdapter, geminiVoiceAdapter } from './gemini-audio';
+import { googleSttAdapter } from './google-stt';
 import { googleTtsAdapter } from './google-tts';
 import { nvidiaAdapter } from './nvidia';
 import { openaiAdapter, openaiSpeechAdapter, openaiVoiceAdapter } from './openai';
@@ -67,7 +69,7 @@ export const standInSpeechAdapter: SpeechAdapter = {
   },
 };
 
-const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpeechAdapter];
+const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpeechAdapter, geminiSpeechAdapter, googleSttAdapter];
 
 // The speech adapter for a provider id, or null when the code has none (Anthropic and Gemini have no speech to text
 // here).
@@ -117,7 +119,7 @@ export const standInVoiceAdapter: VoiceAdapter = {
   },
 };
 
-const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter];
+const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter, geminiVoiceAdapter];
 
 // The voice adapter for a provider id, or null when the code has none (only OpenAI and Google Cloud speak).
 export function voiceAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): VoiceAdapter | null {
@@ -129,7 +131,7 @@ export function voiceAdapterFor(providerId: string, env: Record<string, string |
 
 // No stand-in: a realtime session is a live connection to a vendor, so there is nothing to stand in for. Until a provider
 // is chosen in Control for family.voice_call (and a key exists) the call uses the listen, answer, speak chain.
-const REAL_REALTIME: readonly RealtimeAdapter[] = [openaiRealtimeAdapter];
+const REAL_REALTIME: readonly RealtimeAdapter[] = [openaiRealtimeAdapter, geminiRealtimeAdapter];
 
 export function realtimeAdapterFor(providerId: string): RealtimeAdapter | null {
   return REAL_REALTIME.find((a) => a.providerId === providerId) ?? null;

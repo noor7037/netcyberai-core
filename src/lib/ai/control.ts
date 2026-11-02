@@ -50,6 +50,8 @@ export type ChangeError =
   | 'in_use'
   | 'profile'
   | 'model'
+  // W17: a Google Cloud voice that is not a voice name even without its language (a voice has a letter or number after its family).
+  | 'voice_model'
   | 'prompt_version'
   | 'incomplete'
   | 'not_cleared_for_minors'
@@ -513,7 +515,10 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   // A Vertex AI model id becomes part of its address (adapters/vertex-ai.ts): any other shape is refused here too.
   if (links.some((l) => l.provider === 'vertex_ai' && (l.model === null || !vertexModelLooksRight(l.model)))) return { ok: false, code: 'model' };
   // The server voice (C386): a voice's model id may become part of the vendor's voice name (Google: "Neural2-A").
-  if (profile.capability === 'text_to_speech' && links.some((l) => l.provider !== null && l.model !== null && voiceAdapterFor(l.provider)?.modelLooksRight(l.model) === false)) return { ok: false, code: 'model' };
+  if (profile.capability === 'text_to_speech' && links.some((l) => l.provider !== null && l.model !== null && voiceAdapterFor(l.provider)?.modelLooksRight(l.model) === false)) {
+    // Google's voices take the app's own language prefix, so a wrong one gets its own words (W17).
+    return { ok: false, code: links.some((l) => l.provider === 'google_tts') ? 'voice_model' : 'model' };
+  }
   // G1 (C369): every provider in the chain must declare what the profile needs (photos for AI marking, for example).
   if (providers.some((p) => missingCapabilities(profile.id, p).length > 0)) return { ok: false, code: 'capability' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };
