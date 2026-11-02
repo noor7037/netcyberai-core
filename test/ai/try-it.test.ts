@@ -27,7 +27,7 @@ import { POST } from '@/app/api/control/ai/try/route';
 import { prepareSmokeTest, type TryResult } from '@/lib/ai/platform';
 import { STAND_IN_AUDIO } from '@/lib/ai/adapters';
 import { SMOKE_PHOTO_JPEG, SMOKE_SPEECH, SMOKE_TOPIC } from '@/demo-fixture/ai-smoke/inputs';
-import { TRY_SAMPLES } from '@/lib/ai/try-samples';
+import { TRY_INPUTS } from '@/lib/ai/try-inputs';
 import { PROFILES } from '@/lib/ai/platform';
 import { indiaDate } from '@/lib/time/india';
 
@@ -90,7 +90,7 @@ beforeEach(async () => {
 
 describe('Try it: one live call of the current route, on made-up inputs', () => {
   it('every profile in the registry has a sample', () => {
-    expect(Object.keys(TRY_SAMPLES).sort()).toEqual(PROFILES.map((p) => p.id).sort());
+    expect(Object.keys(TRY_INPUTS).sort()).toEqual(PROFILES.map((p) => p.id).sort());
   });
 
   it('a text feature: the answer as text, who answered and how long, counted, one ledger row marked try_it, one audit row', async () => {

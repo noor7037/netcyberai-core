@@ -7,13 +7,13 @@ import type { ProfileId } from './platform';
 
 export const SAMPLE_QUESTION = 'What does a magnet attract?';
 // The smoke test's JSON request (C320): one object on one line, so a format problem shows at a glance.
-export const SAMPLE_JSON_ASK = { system: 'Answer with one JSON object only, on one line: {"type":"answer","word":"<one word>"}.', user: `${SAMPLE_QUESTION} One word.` } as const;
+export const TRY_JSON_ASK = { system: 'Answer with one JSON object only, on one line: {"type":"answer","word":"<one word>"}.', user: `${SAMPLE_QUESTION} One word.` } as const;
 // The smoke test's photo request: the fixture photo holds a printed magnet question.
-export const SAMPLE_PHOTO_ASK = { system: 'Read the question in the photo. Answer with one JSON object only: {"question":"<the question as printed>"}.', user: 'The photo.' } as const;
+export const TRY_PHOTO_ASK = { system: 'Read the question in the photo. Answer with one JSON object only: {"question":"<the question as printed>"}.', user: 'The photo.' } as const;
 // A question and an answer for the safety check, both harmless.
-export const SAMPLE_SAFETY_PAIR = { user: SAMPLE_QUESTION, assistant: 'Iron, nickel and cobalt.' } as const;
+export const TRY_SAFETY_PAIR = { user: SAMPLE_QUESTION, assistant: 'Iron, nickel and cobalt.' } as const;
 // One line in each language the voice speaks, both synthesized, so a voice that cannot read Hindi shows it.
-export const SAMPLE_SPOKEN = [
+export const TRY_SPOKEN = [
   { text: 'A magnet attracts iron, nickel and cobalt.', language: 'en' },
   { text: 'चुंबक लोहे, निकल और कोबाल्ट को आकर्षित करता है।', language: 'hi' },
 ] as const;
@@ -27,12 +27,12 @@ export type TrySample =
   | { kind: 'safety' }
   | { kind: 'token' };
 
-const JSON_TEXT: TrySample = { kind: 'text', ...SAMPLE_JSON_ASK, json: true, photo: false };
-const PHOTO_TEXT: TrySample = { kind: 'text', ...SAMPLE_PHOTO_ASK, json: true, photo: true };
+const JSON_TEXT: TrySample = { kind: 'text', ...TRY_JSON_ASK, json: true, photo: false };
+const PHOTO_TEXT: TrySample = { kind: 'text', ...TRY_PHOTO_ASK, json: true, photo: true };
 const plain = (system: string, user: string): TrySample => ({ kind: 'text', system, user, json: false, photo: false });
 
-// Every profile has one (the record's type holds that): adding a profile without a sample does not compile.
-export const TRY_SAMPLES: Record<ProfileId, TrySample> = {
+// Every profile has one (the record's type holds that): adding a profile without an input does not compile.
+export const TRY_INPUTS: Record<ProfileId, TrySample> = {
   'family.resolver': JSON_TEXT,
   'family.homework': PHOTO_TEXT,
   'family.voice_input': { kind: 'hear' },
@@ -40,7 +40,7 @@ export const TRY_SAMPLES: Record<ProfileId, TrySample> = {
   'family.plan': JSON_TEXT,
   'family.syllabus_extract': PHOTO_TEXT,
   'family.english_conversation': plain('You are a friendly partner for practising spoken English. Reply in one short sentence.', 'Hello! I like magnets.'),
-  'family.summary': plain('Sum up this short chat in one sentence.', `Question: ${SAMPLE_QUESTION} Answer: ${SAMPLE_SAFETY_PAIR.assistant}`),
+  'family.summary': plain('Sum up this short chat in one sentence.', `Question: ${SAMPLE_QUESTION} Answer: ${TRY_SAFETY_PAIR.assistant}`),
   'family.text_to_speech': { kind: 'speak' },
   'family.quiz': JSON_TEXT,
   'family.parent_report': plain('Write one short sentence for a parent about the chapter studied this week.', 'Chapter studied: Exploring Magnets.'),

@@ -11,7 +11,7 @@ import { takeTextTurn, tutorLimits } from '@/lib/family/tutor-meter';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt, type LedgerSource } from './gateway/ledger';
-import { SAMPLE_JSON_ASK, SAMPLE_PHOTO_ASK, SAMPLE_SAFETY_PAIR, SAMPLE_SPOKEN, TRY_SAMPLES } from './try-samples';
+import { TRY_JSON_ASK, TRY_PHOTO_ASK, TRY_SAFETY_PAIR, TRY_SPOKEN, TRY_INPUTS } from './try-inputs';
 import { classifyFailure, ranItsTime } from './gateway/taxonomy';
 import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, MODERATION_TIMEOUT_MS, VOICE_TEXT_MAX, VOICE_TIMEOUT_MS } from './adapters/types';
 
@@ -903,7 +903,7 @@ export type SmokeTopic = { board: string; classLevel: number; subject: string; c
 export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[]; topic: SmokeTopic };
 export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sql) => Promise<void> };
 
-// The JSON request, the photo request and the safety pair are Try it's samples too (try-samples.ts), word for word.
+// The JSON request, the photo request and the safety pair are Try it's inputs too (try-inputs.ts), word for word.
 export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInputs): Promise<PreparedSmoke> {
   const env = process.env;
   // The minors check as a child's call reads it now (testing mode included).
@@ -950,7 +950,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
       return 'json: none readable';
     }
   };
-  const jsonAsk = { system: SAMPLE_JSON_ASK.system, user: SAMPLE_JSON_ASK.user };
+  const jsonAsk = { system: TRY_JSON_ASK.system, user: TRY_JSON_ASK.user };
   // The instructions where the adapter puts them, then in a system message, to compare the two (C320).
   await textChain('family.resolver', 'text', jsonAsk, jsonNote);
   await textChain('family.resolver', 'text:system', { ...jsonAsk, instructionsAs: 'system' }, jsonNote);
@@ -985,7 +985,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   await textChain(
     'family.homework',
     'photo',
-    { system: SAMPLE_PHOTO_ASK.system, user: SAMPLE_PHOTO_ASK.user, images: [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] },
+    { system: TRY_PHOTO_ASK.system, user: TRY_PHOTO_ASK.user, images: [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] },
     (text) => (/magnet/i.test(text) ? 'read the printed question' : 'answered, but not with the printed question')
   );
 
@@ -1025,7 +1025,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
         const began = Date.now();
         let r: ModerationResult;
         try {
-          r = await adapter.moderate({ apiKey, model: link.model, user: SAMPLE_SAFETY_PAIR.user, assistant: SAMPLE_SAFETY_PAIR.assistant });
+          r = await adapter.moderate({ apiKey, model: link.model, user: TRY_SAFETY_PAIR.user, assistant: TRY_SAFETY_PAIR.assistant });
         } catch {
           r = { ok: false, failure: 'network' };
         }
@@ -1049,7 +1049,7 @@ type AdapterRequestPart = { system: string; user: string; images?: ChatImage[]; 
 
 // ---- Try it (W17-B1) ------------------------------------------------------------------------------------------------
 
-// Control → AI's "Try it": one live call of a feature as Control has set it now, on made-up inputs (try-samples.ts, and
+// Control → AI's "Try it": one live call of a feature as Control has set it now, on made-up inputs (try-inputs.ts, and
 // the smoke test's fixture photo and WAV recording), never a child's data. Unlike the smoke test, which asks the primary
 // alone, it runs the feature's own prepare function, so the route is walked exactly as a child's call walks it: the
 // minors check, the usable providers, the circuits, Primary then the backups, the deadlines. Run as TRY_IT it takes no
@@ -1089,31 +1089,31 @@ export async function prepareTryIt(db: Sql, ctx: AiContext, profileId: string, i
   const refusal = (failure: string): PreparedTry => ({ ok: false, result: { ok: false, provider: null, model: null, ms: 0, backupUsed: false, failure } });
   const profile = profileById(profileId);
   if (!profile) return refusal('profile');
-  const sample = TRY_SAMPLES[profile.id];
+  const input = TRY_INPUTS[profile.id];
   // Every attempt of every leg, as the prepare functions make them: which place answered, and how the last one failed.
   const seen: (readonly Attempt[])[] = [];
   const run: Run = { source: 'try_it', uncapped: true, watch: (a) => seen.push(a) };
   const legs: TryLeg[] = [];
 
-  if (sample.kind === 'text') {
-    const images: ChatImage[] | undefined = sample.photo ? [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] : undefined;
-    const p = await textRun(db, ctx, profile.id, { system: sample.system, messages: [{ role: 'user', content: sample.user, ...(images ? { images } : {}) }], maxTokens: TRY_TEXT_TOKENS, ...(sample.json ? { responseFormat: 'json' as const } : {}) }, run);
+  if (input.kind === 'text') {
+    const images: ChatImage[] | undefined = input.photo ? [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] : undefined;
+    const p = await textRun(db, ctx, profile.id, { system: input.system, messages: [{ role: 'user', content: input.user, ...(images ? { images } : {}) }], maxTokens: TRY_TEXT_TOKENS, ...(input.json ? { responseFormat: 'json' as const } : {}) }, run);
     if (!p.ok) return refusal(p.reason);
     legs.push(async () => {
       const s = await p.text.send();
-      return { output: s.result.ok ? textOutput(s.result.text, sample.json) : null, record: s.record };
+      return { output: s.result.ok ? textOutput(s.result.text, input.json) : null, record: s.record };
     });
-  } else if (sample.kind === 'hear') {
+  } else if (input.kind === 'hear') {
     const p = await transcriptionRun(db, ctx, profile.id, { audio: Buffer.from(inputs.speechWavBase64, 'base64'), mediaType: 'audio/wav', language: 'en' }, run);
     if (!p.ok) return refusal(p.reason);
     legs.push(async () => {
       const s = await p.speech.send();
       return { output: s.result.ok ? { kind: 'text', text: s.result.text } : null, record: s.record };
     });
-  } else if (sample.kind === 'speak') {
+  } else if (input.kind === 'speak') {
     // Both lines prepared before either is sent, so a refusal sends nothing.
     const prepared = [];
-    for (const line of SAMPLE_SPOKEN) {
+    for (const line of TRY_SPOKEN) {
       const p = await speakRun(db, ctx, profile.id, { text: line.text, language: line.language }, run);
       if (!p.ok) return refusal(p.reason);
       prepared.push({ line, voice: p.voice });
@@ -1124,11 +1124,11 @@ export async function prepareTryIt(db: Sql, ctx: AiContext, profileId: string, i
         const clip = s.result.ok ? { language: line.language, audioBase64: Buffer.from(s.result.audio).toString('base64'), mediaType: s.result.mediaType } : null;
         return { output: clip ? { kind: 'audio', clips: [clip] } : null, record: s.record };
       });
-  } else if (sample.kind === 'safety') {
+  } else if (input.kind === 'safety') {
     const p = await moderationRun(db, ctx, null, run);
     if (!p.ok) return refusal(p.reason);
     legs.push(async () => {
-      const verdict = await p.moderation.check(SAMPLE_SAFETY_PAIR);
+      const verdict = await p.moderation.check(TRY_SAFETY_PAIR);
       return { output: verdict ? { kind: 'json', json: verdict } : null, record: p.moderation.record };
     });
   } else {

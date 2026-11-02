@@ -50,15 +50,15 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
   const started = useRef(0);
   const meter = useRef<EnergyMeter | null>(null);
   const audioCtx = useRef<AudioContext | null>(null);
-  const sampler = useRef<ReturnType<typeof setInterval> | null>(null);
+  const meterTick = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const say = (code: string) => fill(w[ERROR_KEY[code] ?? `fam.voice.err.${code}`] ?? w['fam.err.network']);
 
   const release = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
-    if (sampler.current) clearInterval(sampler.current);
-    sampler.current = null;
+    if (meterTick.current) clearInterval(meterTick.current);
+    meterTick.current = null;
     void audioCtx.current?.close().catch(() => undefined);
     audioCtx.current = null;
     stream.current?.getTracks().forEach((t) => t.stop());
@@ -162,7 +162,7 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
         const m = new EnergyMeter();
         const buf = new Float32Array(analyser.fftSize);
         meter.current = m;
-        sampler.current = setInterval(() => {
+        meterTick.current = setInterval(() => {
           analyser.getFloatTimeDomainData(buf);
           m.add(buf);
         }, SAMPLE_MS);

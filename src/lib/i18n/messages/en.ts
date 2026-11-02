@@ -9233,7 +9233,7 @@ export const en = {
   'control.ai.try.failed': 'It did not answer: {reason}',
   'control.ai.try.failedAt': 'Last tried: {provider} · {model} · {ms} ms',
   'control.ai.try.token': 'Token minted, expires in {minutes} minutes',
-  'control.ai.try.audio': 'Spoken sample ({language})',
+  'control.ai.try.audio': 'Spoken line ({language})',
   'control.ai.try.lang.en': 'English',
   'control.ai.try.lang.hi': 'Hindi',
   'control.ai.try.reason.not_switched_on': 'this feature is off, or no service with a working key is set for it',

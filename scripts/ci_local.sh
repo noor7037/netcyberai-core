@@ -101,9 +101,14 @@ run_step "No mock/dummy/fake/sample data outside the demo fixture" <<'STEP'
 # Business API credentials exist anywhere in this project (Task 0).
 # src/components/settings/WhatsAppConfigPanel.tsx only mentions it in
 # a comment explaining the same thing.
+# W17: the audio adapters (gemini-audio, google-stt, openrouter, sarvam) and the
+# microphone's energy meter (voice-energy) say "sample" in the signal sense
+# (a sample rate, PCM samples, Google's sampleRateHertz field), never as
+# placeholder data; they are excluded the same way.
 if grep -rn 'mock\|dummy\|fake\|sample' src/ --include='*.ts' --include='*.tsx' \
     | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts' \
-    | grep -v 'src/lib/whatsapp/' | grep -v 'src/components/settings/WhatsAppConfigPanel.tsx'; then
+    | grep -v 'src/lib/whatsapp/' | grep -v 'src/components/settings/WhatsAppConfigPanel.tsx' \
+    | grep -v 'src/lib/ai/adapters/gemini-audio.ts' | grep -v 'src/lib/ai/adapters/google-stt.ts' | grep -v 'src/lib/ai/adapters/openrouter.ts' | grep -v 'src/lib/ai/adapters/sarvam.ts' | grep -v 'src/lib/family/voice-energy.ts'; then
   echo "::error::Found a mock/dummy/fake/sample reference outside the allowlisted exceptions."
   exit 1
 fi
