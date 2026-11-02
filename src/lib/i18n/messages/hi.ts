@@ -6999,6 +6999,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.noServerKey': 'सर्वर के पास AI keys को बंद करने वाली key (AI_CREDENTIALS_KEY) नहीं है, इसलिए अभी कोई AI key सेव नहीं की जा सकती।',
   'control.ai.providers.title': 'AI सेवाएँ',
   'control.ai.providers.how': 'किसी सेवा को बच्चों के शब्दों के लिए तभी मंज़ूरी दें जब आपने उसकी मौजूदा शर्तें पढ़ ली हों, और पढ़ा हुआ पेज यहाँ डालें।',
+  'control.ai.provider.name.openrouter': 'OpenRouter (कई मॉडल, मुफ़्त स्तर)',
   'control.ai.provider.noAdapter': 'ऐप अभी इस सेवा से बात नहीं कर सकता।',
   'control.ai.provider.cleared': '{date} को {name} ने बच्चों के शब्दों के लिए मंज़ूरी दी।',
   'control.ai.provider.terms': 'पढ़ी गई शर्तें: {url}',

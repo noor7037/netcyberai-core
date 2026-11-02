@@ -6,6 +6,7 @@ import { nvidiaAdapter } from './nvidia';
 import { openaiAdapter, openaiSpeechAdapter, openaiVoiceAdapter } from './openai';
 import { openaiCompatibleAdapter } from './openai-compatible';
 import { openaiRealtimeAdapter } from './openai-realtime';
+import { openrouterAdapter, openrouterSpeechAdapter, openrouterVoiceAdapter } from './openrouter';
 import { sarvamAdapter, sarvamSpeechAdapter, sarvamVoiceAdapter } from './sarvam';
 import { vertexAiAdapter } from './vertex-ai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
@@ -36,8 +37,8 @@ export const standInAdapter: TextAdapter = {
 
 // Every text adapter the code has. Which one serves a profile, and whether it may carry a child's words, is Control's
 // choice (C368); Gemini joined the list for the founder's testing (C230-AO); Vertex AI and the OpenAI-compatible adapter
-// at the founder's own address in G1 (C369); NVIDIA NIM in W8-AI.
-const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, nvidiaAdapter, openaiAdapter, openaiCompatibleAdapter, sarvamAdapter, vertexAiAdapter, workersAiAdapter];
+// at the founder's own address in G1 (C369); NVIDIA NIM in W8-AI; Sarvam and OpenRouter in W17.
+const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, nvidiaAdapter, openaiAdapter, openaiCompatibleAdapter, openrouterAdapter, sarvamAdapter, vertexAiAdapter, workersAiAdapter];
 
 // The build's own NODE_ENV is checked as well as the one passed, so no caller can switch the stand-in on in production.
 export function standInAllowed(env: Record<string, string | undefined> = process.env): boolean {
@@ -69,7 +70,7 @@ export const standInSpeechAdapter: SpeechAdapter = {
   },
 };
 
-const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, sarvamSpeechAdapter, workersAiSpeechAdapter, elevenlabsSpeechAdapter];
+const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, openrouterSpeechAdapter, sarvamSpeechAdapter, workersAiSpeechAdapter, elevenlabsSpeechAdapter];
 
 // The speech adapter for a provider id, or null when the code has none (Anthropic and Gemini have no speech to text
 // here).
@@ -119,7 +120,7 @@ export const standInVoiceAdapter: VoiceAdapter = {
   },
 };
 
-const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter, sarvamVoiceAdapter, elevenlabsVoiceAdapter];
+const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, openrouterVoiceAdapter, googleTtsAdapter, sarvamVoiceAdapter, elevenlabsVoiceAdapter];
 
 // The voice adapter for a provider id, or null when the code has none (OpenAI, Google Cloud and ElevenLabs speak).
 export function voiceAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): VoiceAdapter | null {
