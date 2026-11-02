@@ -5,6 +5,7 @@ import type { FamilyChild } from './children';
 import type { RequestStatus } from './chapter-request-types';
 import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolNoticesFor, schoolSubjectIs, schoolTodayFor } from './school';
 import { SUBJECT_IDS } from './subjects';
+import { latestReportFor } from './parent-report';
 import type { MessageKey } from '@/lib/i18n';
 
 // The family's notifications centre (H1): what the app already knows to tell this child's family, read-only and built
@@ -19,7 +20,9 @@ export type NotificationItem =
   | { id: string; kind: 'news'; news: 'homework' | 'notices' | 'results'; count: number; href: string }
   | { id: string; kind: 'notice'; school: string; body: string; href: string }
   | { id: string; kind: 'tonight'; subject: string; href: string }
-  | { id: string; kind: 'request'; status: RequestStatus; title: string; href: string };
+  | { id: string; kind: 'request'; status: RequestStatus; title: string; href: string }
+  // w16-b3: this child's weekly report (W16-B3), made in the last days; opens the parent area's Progress.
+  | { id: string; kind: 'report'; weekStart: string; href: string };
 
 export type NotificationInput = {
   news: { homework: number; notices: number; results: number } | null;
@@ -27,6 +30,8 @@ export type NotificationInput = {
   notices?: readonly { noticeId: string; schoolName: string; body: string }[];
   tonight: readonly string[];
   requests: readonly { requestId: string; subject: string; title: string; status: RequestStatus }[];
+  // w16-b3: the child's newest weekly report of the last days.
+  report?: { childId: string; weekStart: string } | null;
 };
 
 export const NEWS_TEXT: Record<'homework' | 'notices' | 'results', MessageKey> = { homework: 'fam.news.homework', notices: 'fam.news.notices', results: 'fam.news.results' };
@@ -45,6 +50,7 @@ export function buildNotifications(input: NotificationInput): NotificationItem[]
       if (input.news[k] > 0) out.push({ id: `news.${k}`, kind: 'news', news: k, count: input.news[k], href: '/family/parent' });
     }
   }
+  if (input.report) out.push({ id: `report.${input.report.weekStart}`, kind: 'report', weekStart: input.report.weekStart, href: `/family/parent/progress/${encodeURIComponent(input.report.childId)}` });
   for (const n of input.notices ?? []) out.push({ id: `notice.${n.noticeId}`, kind: 'notice', school: n.schoolName, body: n.body, href: '/family/parent' });
   for (const s of input.tonight) out.push({ id: `tonight.${s}`, kind: 'tonight', subject: s, href: `/family/study?subject=${encodeURIComponent(s)}` });
   for (const r of input.requests) {
@@ -82,5 +88,6 @@ export async function readNotifications(db: PoolClient, claims: FamilyClaims, ac
   const atSchool = off.includes('tonight') ? null : await schoolTodayFor(claims, links, child.childId);
   const tonight = atSchool ? SUBJECT_IDS.filter((s) => atSchool.tonight.some((t) => schoolSubjectIs(t.subject, s))) : [];
   const notices = mine.length ? await schoolNoticesFor(claims, mine, off) : [];
-  return buildNotifications({ news, notices, tonight, requests: await recentRequests(db, accountId, child.childId) });
+  const report = await guarded(db, 'notify_report', () => latestReportFor(db, accountId, child.childId), null);
+  return buildNotifications({ news, notices, tonight, requests: await recentRequests(db, accountId, child.childId), report: report ? { childId: child.childId, weekStart: report.weekStart } : null });
 }

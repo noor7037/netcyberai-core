@@ -487,6 +487,27 @@ export async function readSchoolToday(
   return { ...rest, myResults: hasResults && (await childrenSeeResults(schoolId)) };
 }
 
+// w16-b3 start
+// One matched student's week for the weekly parent report (W16-B3): the days marked present (or late) of the days
+// marked, and the results the school published for the student's class in those days, as the guardian, only while the
+// school holds the consent for the child's records; null otherwise. Counts and the exam's name only.
+export type SchoolWeek = { presentDays: number; markedDays: number; results: { exam: string; percent: number | null }[] };
+export async function readSchoolWeek(claims: Claims, linkId: string, studentId: string, from: string, to: string): Promise<SchoolWeek | null> {
+  return withGuardianContext(claims, linkId, async (db, link) => {
+    if (!(await consented(db, link.schoolId, studentId))) return null;
+    const days = (
+      await db.query(
+        `select (count(*) filter (where status::text in ('present', 'late')))::int as present, count(*)::int as marked
+           from attendance where student_id = $1 and date >= $2::date and date <= $3::date`,
+        [studentId, from, to]
+      )
+    ).rows[0] as { present: number; marked: number } | undefined;
+    const results = (await publishedResults(db, studentId)).filter((r) => r.publishedOn >= from && r.publishedOn <= to).map((r) => ({ exam: r.exam, percent: r.overall.percent }));
+    return { presentDays: Number(days?.present ?? 0), markedDays: Number(days?.marked ?? 0), results };
+  });
+}
+// w16-b3 end
+
 // Whether the child's own view has results or coming papers to show (C351): a result is published for the child's
 // class, or a paper is coming. Two small reads, as the guardian.
 async function hasOwnResults(db: Sql, studentId: string): Promise<boolean> {

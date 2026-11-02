@@ -7,6 +7,7 @@ import { EmptyState } from '@/components/family/ui/EmptyState';
 import { familyClaims } from '@/lib/family/db';
 import { fill } from '@/lib/family/fill';
 import { NEWS_TEXT, readNotifications, REQUEST_TEXT, type NotificationItem } from '@/lib/family/notifications';
+import { reportTitle } from '@/lib/family/parent-report';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -25,6 +26,7 @@ export default async function FamilyNotificationsPage() {
   const text = (i: NotificationItem): string => {
     if (i.kind === 'news') return t(lang, NEWS_TEXT[i.news], { n: i.count });
     if (i.kind === 'notice') return `${i.school}: ${i.body}`;
+    if (i.kind === 'report') return reportTitle(lang, child.firstName);
     if (i.kind === 'tonight') return fill(t(lang, 'fam.notify.center.tonight'), { subject: t(lang, `fam.subject.${i.subject}` as MessageKey) });
     return fill(t(lang, REQUEST_TEXT[i.status]), { title: i.title });
   };
@@ -41,7 +43,7 @@ export default async function FamilyNotificationsPage() {
               <li key={i.id} className="fam-rise" style={{ ['--d' as string]: `${n * 50}ms` } as React.CSSProperties}>
                 <Link href={i.href} data-notify-item={i.kind} className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4 text-base font-semibold text-slate">
                   <span aria-hidden="true" className="fam-chip-icon bg-ink text-white">
-                    <FamIcon name={i.kind === 'tonight' ? 'bulb' : i.kind === 'request' ? 'sheet' : 'bell'} className="h-5 w-5" />
+                    <FamIcon name={i.kind === 'tonight' ? 'bulb' : i.kind === 'request' || i.kind === 'report' ? 'sheet' : 'bell'} className="h-5 w-5" />
                   </span>
                   {i.kind === 'notice' ? (
                     <span className="min-w-0 flex-1">
