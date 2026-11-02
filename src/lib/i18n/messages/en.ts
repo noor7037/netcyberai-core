@@ -8004,6 +8004,8 @@ export const en = {
   'fam.tutor.loading': 'Loading the conversation…',
   'fam.tutor.you': 'You asked',
   'fam.tutor.tutorSaid': 'Tutor',
+  'fam.tutor.readAloud': 'Read this aloud',
+  'fam.tutor.stopAloud': 'Stop',
   'fam.tutor.fromReader': 'Asked while reading',
   'fam.tutor.doubt': 'Ask a doubt',
   'fam.tutor.doubtAbout': 'About this part: {section}',
