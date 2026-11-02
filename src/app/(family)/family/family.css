@@ -563,6 +563,21 @@
   color: #1e293b;
 }
 
+/* ---- the home screen's Tutors tile (W16-B5) ---------------------------------------------------------------------- */
+/* The tutors' names take a soft ink ring in turn, one every two seconds (six names, a twelve second round). Under
+   prefers-reduced-motion nothing moves: the list is simply there. */
+.fam-names li {
+  animation: fam-name-ring 12s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 2s);
+}
+@keyframes fam-name-ring {
+  0%, 18%, 100% { box-shadow: 0 0 0 0 rgb(28 27 26 / 0); }
+  4%, 14% { box-shadow: 0 0 0 2px rgb(28 27 26 / 0.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-names li { animation: none; }
+}
+
 /* ---- the lesson identity (W10-3, C412), on every Family screen since W10-4 (C413) ------------------------------ */
 /* The founder approved the preview (30 Oct). Its variables are on every Family page (`.fam-canvas`); the answer's own
    look is scoped to `.fam-lesson` (every UnderstandView, a typed question too, and a kept answer in the tutor's feed),
@@ -970,4 +985,5 @@ div.fam-lesson {
 .fam-lesson [data-direct-answer-card] .fam-lesson-eyebrow {
   margin-top: 0;
 }
+
 

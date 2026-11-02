@@ -19,7 +19,7 @@ const TINT: Record<LessonTint, { card: string; chip: string }> = {
 export const TUTOR_HALL_KEYS = ['fam.tutors.title', 'fam.tutors.lead', 'fam.tutors.platform', 'fam.tutors.fromSchool', 'fam.tutors.chat', 'fam.tutors.call', 'fam.tutors.chatWith', 'fam.tutors.callWith', 'fam.tutors.allSubjects', 'fam.tutors.lang.en', 'fam.tutors.lang.hi', 'fam.tutors.lang.both', 'fam.tutors.none'] as const;
 
 export const chatHref = (t: Pick<TutorCard, 'key' | 'subject'>) => `/family/study?${t.subject ? `subject=${encodeURIComponent(t.subject)}&` : ''}tutor=${encodeURIComponent(t.key)}`;
-export const callHref = (t: Pick<TutorCard, 'key'>) => `/family/call?tutor=${encodeURIComponent(t.key)}`;
+export const callHref = (t: Pick<TutorCard, 'key' | 'subject'>) => `/family/call?tutor=${encodeURIComponent(t.key)}${t.subject ? `&subject=${encodeURIComponent(t.subject)}` : ''}`;
 
 const SPARK = 'M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z';
 
@@ -37,7 +37,7 @@ function Face({ tutor }: { tutor: TutorCard }) {
   );
 }
 
-function Card({ tutor, w }: { tutor: TutorCard; w: Words }) {
+function Card({ tutor, w, call }: { tutor: TutorCard; w: Words; call: boolean }) {
   return (
     <li data-tutor={tutor.key} className={`fam-surface flex min-w-0 flex-col gap-3 p-4 text-ink ${TINT[tutor.tint].card}`}>
       <div className="flex items-start gap-3">
@@ -54,15 +54,18 @@ function Card({ tutor, w }: { tutor: TutorCard; w: Words }) {
         <Button href={chatHref(tutor)} data-tutor-chat aria-label={fill(w['fam.tutors.chatWith'], { name: tutor.name })} className="min-w-[120px] flex-1">
           {w['fam.tutors.chat']}
         </Button>
-        <Button href={callHref(tutor)} variant="outline" data-tutor-call aria-label={fill(w['fam.tutors.callWith'], { name: tutor.name })} className="min-w-[120px] flex-1">
-          {w['fam.tutors.call']}
-        </Button>
+        {call && (
+          <Button href={callHref(tutor)} variant="outline" data-tutor-call aria-label={fill(w['fam.tutors.callWith'], { name: tutor.name })} className="min-w-[120px] flex-1">
+            {w['fam.tutors.call']}
+          </Button>
+        )}
       </div>
     </li>
   );
 }
 
-export function TutorHall({ groups, w }: { groups: readonly TutorGroup[]; w: Words }) {
+// `call`: false while Control has the call switched off (W16-B5): the Hall then offers Chat alone.
+export function TutorHall({ groups, w, call = true }: { groups: readonly TutorGroup[]; w: Words; call?: boolean }) {
   if (groups.length === 0) {
     return (
       <p data-tutors-none className="fam-card bg-white p-4 text-base font-semibold text-slate">
@@ -77,7 +80,7 @@ export function TutorHall({ groups, w }: { groups: readonly TutorGroup[]; w: Wor
           <h2 className="fam-h2 text-ink">{g.school === null ? w['fam.tutors.platform'] : fill(w['fam.tutors.fromSchool'], { school: g.school })}</h2>
           <ul className="flex list-none flex-col gap-3 p-0">
             {g.tutors.map((t) => (
-              <Card key={t.key} tutor={t} w={w} />
+              <Card key={t.key} tutor={t} w={w} call={call} />
             ))}
           </ul>
         </section>

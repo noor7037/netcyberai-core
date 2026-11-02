@@ -18,6 +18,7 @@ import { VideoPicks } from './VideoPicks';
 import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
 import { boardCursorFromSentence } from '@/lib/family/board';
 import { citationOf } from '@/lib/family/citation';
+import { useTutorBoard } from './tutor/switches';
 import { CitationChip } from './blocks/CitationChip';
 import { SceneView } from './blocks/SceneView';
 import { ChartView } from './blocks/ChartView';
@@ -91,6 +92,8 @@ function showModel(root: HTMLElement | null) {
 // `sentence` (W16-A2): the explanation's sentence being spoken (the call screen); the board draws up to the step that
 // sentence reaches. Absent: the board starts at its first step and the child steps through it.
 export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number }) {
+  // W16-B5: with the Tutor's board switched off in Control, the drawing board and the simulations are left out.
+  const boardOn = useTutorBoard();
   switch (b.type) {
     case 'explanation':
       return <ExplanationView b={b} w={w} tone={tone} lead={lead} />;
@@ -117,6 +120,7 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       // A chapter is the chip at the top; the card only for links.
       return b.links.length > 0 ? <SourcesView b={b} w={w} tone={tone} /> : null;
     case 'board':
+      if (!boardOn) return null;
       return <BoardView b={b} w={w} tone={tone} cursor={sentence === undefined ? undefined : boardCursorFromSentence(b.steps.map((s) => s.say), sentence)} />;
     case 'figure':
       return <FigureView b={b} tone={tone} />;
@@ -125,7 +129,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
     case 'steps':
       return <StepsView b={b} w={w} tone={tone} />;
     case 'scene':
-      return isSimScene(b) ? <SimView b={b} w={w} tone={tone} /> : <SceneView b={b} w={w} tone={tone} />;
+      if (isSimScene(b)) return boardOn ? <SimView b={b} w={w} tone={tone} /> : null;
+      return <SceneView b={b} w={w} tone={tone} />;
     case 'chart':
       return <ChartView b={b} w={w} tone={tone} />;
     case 'timeline':

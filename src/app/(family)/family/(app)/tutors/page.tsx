@@ -7,6 +7,7 @@ import { familyClaims } from '@/lib/family/db';
 import { offMessage, readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { loadHall } from '@/lib/family/tutors';
+import { tutorParts } from '@/lib/family/tutor-parts';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -25,7 +26,7 @@ export default async function FamilyTutorsPage() {
   const lang = page.childLang;
   if (isPrePrimary(child.classLevel)) redirect('/family/study');
   const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
-  const on = switchOn(switches, 'tutors');
+  const on = switchOn(switches, 'tutor_hall');
   const groups = on ? await loadHall(familyClaims(page.session), (fn) => familyPageRead(page, fn), page.session.accountId, lang) : [];
   const w = familyWords(lang, [...TUTOR_HALL_KEYS, ...SUBJECT_IDS.map((s) => `fam.subject.${s}` as MessageKey)]);
   return (
@@ -35,11 +36,11 @@ export default async function FamilyTutorsPage() {
         {on ? (
           <>
             <p className="fam-note text-ink">{w['fam.tutors.lead']}</p>
-            <TutorHall groups={groups} w={w} />
+            <TutorHall groups={groups} w={w} call={tutorParts(switches).call} />
           </>
         ) : (
           <p data-tutors-off className="fam-card bg-white p-4 text-base font-semibold text-slate">
-            {offMessage(switches, 'tutors', lang) ?? t(lang, 'fam.tutors.off')}
+            {offMessage(switches, 'tutor_hall', lang) ?? t(lang, 'fam.tutors.off')}
           </p>
         )}
       </main>

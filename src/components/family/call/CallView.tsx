@@ -25,6 +25,8 @@ export type CallViewProps = {
   lang: 'en' | 'hi';
   subject: string;
   tutorName: string;
+  // The Tutor Hall's key of the tutor on the line (W16-B5), kept with the chat so the persona stays; null: the default tutor.
+  tutorKey?: string | null;
   // What the server says is left of today's speaking time, as for the composer's microphone.
   secondsLeft: number;
   // Where End goes: the subject's Study page.
@@ -33,8 +35,8 @@ export type CallViewProps = {
   realtime: boolean;
 };
 
-export function CallView({ w, lang, subject, tutorName, secondsLeft, endHref, realtime }: CallViewProps) {
-  const call = useCall({ w, subject, lang, secondsLeft });
+export function CallView({ w, lang, subject, tutorName, tutorKey = null, secondsLeft, endHref, realtime }: CallViewProps) {
+  const call = useCall({ w, subject, lang, secondsLeft, tutorKey });
   const { phase, recorder } = call;
 
   // The realtime leg: only asked for when a provider is set up; "not available" leaves the chain in charge.
@@ -77,7 +79,7 @@ export function CallView({ w, lang, subject, tutorName, secondsLeft, endHref, re
       <header className="flex items-center gap-3 px-4 pb-2 pt-4 lg:col-start-1 lg:row-start-1 lg:px-8 lg:pt-8">
         <TutorAvatar className="h-12 w-12 shrink-0" />
         <div className="min-w-0 flex-1">
-          <h1 className="fam-display text-xl font-extrabold leading-tight tracking-tight">{fill(w['fam.call.with'], { tutor: tutorName })}</h1>
+          <h1 className="fam-display text-xl font-extrabold leading-tight tracking-tight">{tutorKey ? fill(w['fam.call.with'], { tutor: tutorName }) : w['fam.call.withDefault']}</h1>
           {call.voice && (
             <p data-voice-in-use={call.voice} className="text-sm font-semibold text-slate">
               {w[call.voice === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}

@@ -39,7 +39,7 @@ type Turn = {
 
 const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
 
-export function useCall({ w, subject, lang, secondsLeft }: { w: Words; subject: string; lang: 'en' | 'hi'; secondsLeft: number }) {
+export function useCall({ w, subject, lang, secondsLeft, tutorKey = null }: { w: Words; subject: string; lang: 'en' | 'hi'; secondsLeft: number; tutorKey?: string | null }) {
   const [heard, setHeard] = useState('');
   const [lines, setLines] = useState<CallLine[]>([]);
   const [current, setCurrent] = useState(-1);
@@ -143,7 +143,7 @@ export function useCall({ w, subject, lang, secondsLeft }: { w: Words; subject: 
         const res = await fetch('/api/family/understand', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ kind: 'question', text, call: true, tutor: { subject, ...(t.chatId ? { chatId: t.chatId } : {}) } }),
+          body: JSON.stringify({ kind: 'question', text, call: true, tutor: { subject, ...(tutorKey ? { tutorKey } : {}), ...(t.chatId ? { chatId: t.chatId } : {}) } }),
           signal: controller.signal,
           credentials: 'same-origin',
         });
@@ -196,7 +196,7 @@ export function useCall({ w, subject, lang, secondsLeft }: { w: Words; subject: 
         pump(mine);
       }
     },
-    [cancel, pump, subject, w]
+    [cancel, pump, subject, tutorKey, w]
   );
 
   // The recorder hands its words to the newest `ask` (its own closure is from the render that began the recording).

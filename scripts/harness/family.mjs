@@ -186,6 +186,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-parent-chapter-request', '/family/parent#learning', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
   ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
+  // W16-B5: the home screen's Tutors tile (the platform tutors' names in a calm list; the names take a ring in turn with motion).
+  ['full', 'family-home-tutors', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutors-tile]' }],
   ['full', 'family-study', '/family/study', {}],
   // W16-A3: the Tutor Hall.
   ['full', 'family-tutors', '/family/tutors', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-group]' }],
@@ -245,8 +247,8 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
   // W16-A4: the call, waiting for the first question, and after one turn (the question heard, the answer on the board with its
   // captions, the phone's own voice reading because no server voice is set up). The turn is scripted (`call`).
-  ['full', 'family-call', '/family/call?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, settle: '[data-call-mic]' }],
-  ['full', 'family-call-answer', '/family/call?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, answer: callAnswer, settle: '[data-call-mic]', steps: [{ tap: '[data-call-mic]', wait: '[data-voice-state="recording"]' }, { pause: 1300 }, { tap: '[data-call-mic]', wait: '[data-call-caption]' }, { wait: '[data-call-board] [data-block="explanation"]' }, { wait: '[data-voice-in-use]' }] }],
+  ['full', 'family-call', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, settle: '[data-call-mic]' }],
+  ['full', 'family-call-answer', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, answer: callAnswer, settle: '[data-call-mic]', steps: [{ tap: '[data-call-mic]', wait: '[data-voice-state="recording"]' }, { pause: 1300 }, { tap: '[data-call-mic]', wait: '[data-call-caption]' }, { wait: '[data-call-board] [data-block="explanation"]' }, { wait: '[data-voice-in-use]' }] }],
   // C230-AP: a photo yes given on the older notice is asked again, and the row says why.
   ['full', 'family-parent-photo-notice', '/family/parent#privacy', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
   ['full', 'family-parent-area-voice', '/family/parent#privacy', { parent: true, settle: '[data-consent-voice]' }],

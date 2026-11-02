@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { HabitCard } from '@/components/family/HabitCard';
 import { PlanCard } from '@/components/family/PlanCard';
+import { TutorsTile } from '@/components/family/TutorsTile';
 import { FamIcon } from '@/components/family/FamIcon';
 import { Button } from '@/components/family/ui/Button';
 import { HomeAsk } from '@/components/family/ui/HomeAsk';
@@ -13,6 +14,7 @@ import { SubjectGrid } from '@/components/family/ui/SubjectGrid';
 import { classSubjects } from '@/lib/family/catalog';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { familyModuleOn } from '@/lib/family/flags';
+import { readPlatformTutors } from '@/lib/family/tutors';
 import { childHabit } from '@/lib/family/habit';
 import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { childProgress, openSubjects } from '@/lib/family/learning';
@@ -42,12 +44,14 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, tutors } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
     habit: (await familyModuleOn(db, 'habit', page.session.accountId)) ? await childHabit(db, page.session.accountId, child, indiaDate(), lang) : null,
     openToAll: await openSubjects(db),
+    // W16-B5: the Tutors tile, while the Tutor Hall is on: the platform tutors' names (the Hall itself adds a linked school's).
+    tutors: !isPrePrimary(child.classLevel) && (await familyModuleOn(db, 'tutor_hall', page.session.accountId)) ? (await readPlatformTutors(db, lang)).slice(0, 6) : [],
     links: await activeLinks(db, page.session.accountId),
     schoolOn: await familyModuleOn(db, 'school_today', page.session.accountId),
     // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
@@ -144,6 +148,7 @@ export default async function FamilyHomePage() {
             meter: (checked, done) => t(lang, 'fam.home.subjectMeter', { checked, mastered: done }),
           }}
         />
+        {tutors.length > 0 && <TutorsTile title={t(lang, 'fam.tutors.nav')} lead={t(lang, 'fam.tutors.homeLead')} names={tutors.map((x) => ({ key: x.key, name: x.name, tint: x.tint }))} />}
         {progress.length > 0 && (
           <section data-family-progress aria-labelledby="fam-progress" className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: '240ms' } as React.CSSProperties}>
             <div className="flex items-center gap-4">

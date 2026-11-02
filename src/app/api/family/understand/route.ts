@@ -100,7 +100,9 @@ export async function POST(req: NextRequest) {
       return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId, isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null) : null;
     }).catch(() => null);
     const asked = chat ? chat.tutorKey : isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null;
-    if (asked) {
+    // W16-B5: with the Tutor Hall switched off, no tutor is chosen: the question is answered without a persona.
+    const hallOn = asked ? await withFamilyContext(claims, (db) => familyModuleOn(db, 'tutor_hall', session.accountId)).catch(() => false) : false;
+    if (asked && hallOn) {
       persona = await resolvePersona(claims, (fn) => withFamilyContext(claims, fn), session.accountId, asked).catch(() => null);
       tutorKey = persona ? asked : null;
     }
@@ -197,6 +199,8 @@ export async function POST(req: NextRequest) {
           if (!(await consentState(db, session.accountId)).study_core) return stop({ t: 'refused', reason: 'not_found', message: words('fam.err.consent_required') });
           if (!(await familyModuleOn(db, 'understand', session.accountId))) return stop({ t: 'refused', reason: 'not_switched_on', message: words('fam.understand.off') });
           if (callMode) {
+            // W16-B5: the call's own switch in Control → Apps; the microphone in Study is voice_input's, not this.
+            if (!(await familyModuleOn(db, 'tutor_call', session.accountId))) return stop({ t: 'refused', reason: 'not_switched_on', message: words('fam.call.off') });
             const call = await callGate(db, session.accountId, chosen);
             if (!call.ok) return stop({ t: 'refused', reason: 'not_found', message: words(call.error === 'not_found' ? 'fam.understand.noChild' : `fam.voice.err.${call.error}`) });
             callChild = call.child.childId;
