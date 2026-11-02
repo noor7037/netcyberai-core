@@ -103,6 +103,7 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report"},
     # The school's view of the tutor (W16-B3) names a chapter and a topic from the showcase chapters' titles (data only).
     "src/lib/parent-ai/doubts.ts": {"@/lib/family/chapters"},
+    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/quiz"},
     # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
     # the reviewer's preview is the family's own reader (the same component, with its place-keeping off).
     "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},

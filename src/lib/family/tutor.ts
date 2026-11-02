@@ -11,7 +11,7 @@ import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './chi
 import { consentState } from './consent';
 import { photoGate } from './photo-gate';
 import { isSubject } from './subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
+import { explanationText, TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
 
 // The shared tutor window's history and files (S2, C375; docs/37 §4 Wave 2), on the family's own transaction (the
 // family_app role; every tutor table's policies keep each row to its own account, and on a child's own phone to that

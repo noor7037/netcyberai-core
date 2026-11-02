@@ -112,6 +112,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [fileError, setFileError] = useState<string | null>(null);
   const [turns, setTurns] = useState<FeedTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
+  // W16-B1: "Done for now" ends the session, so its quick quiz is made within minutes.
+  const [ended, setEnded] = useState<'idle' | 'sending' | 'done'>('idle');
   const feed = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, '');
   const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
@@ -228,6 +230,14 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
+  // The chat of the newest answer kept on this screen, else the feed's last turn.
+  const lastChat = [...asks].reverse().find((a) => a.chatId)?.chatId ?? [...(turns ?? [])].reverse().find((x) => x.chatId)?.chatId ?? null;
+  const finish = async () => {
+    if (!lastChat || ended !== 'idle') return;
+    setEnded('sending');
+    const res = await postJson('/api/family/tutor/done', { chatId: lastChat });
+    setEnded(res?.ok ? 'done' : 'idle');
+  };
 
   return (
     <section data-tutor-window data-subject={subject} data-listed={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
@@ -287,6 +297,24 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           </div>
         ))}
       </div>
+      {pinned === 'dock' && lastChat && !reader && (
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            data-session-done
+            disabled={ended !== 'idle'}
+            onClick={() => void finish()}
+            className="fam-press inline-flex min-h-[44px] items-center rounded-xl border-2 border-ink bg-paper px-5 text-base font-bold text-ink disabled:opacity-60"
+          >
+            {w['fam.quiz.done']}
+          </button>
+          {ended === 'done' && (
+            <p role="status" data-session-done-note className="text-sm font-semibold text-slate">
+              {w['fam.quiz.doneThanks']}
+            </p>
+          )}
+        </div>
+      )}
       {children}
       <Composer
         w={w}

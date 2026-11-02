@@ -8,6 +8,7 @@ import { AGENTS, TURN_STEPS, type AgentId } from '@/lib/ai/agents/registry';
 import { clearHandoffs, recentHandoffs, recordHandoff, RING_SIZE } from '@/lib/ai/agents/events';
 import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB } from '@/lib/ai/agents/jobs';
 import { quizJob, tutorTurn, type QualityRule, type TurnDeps, type Validator } from '@/lib/ai/agents/orchestrator';
+import { quizJobHandler } from '@/lib/family/quiz';
 import { productionHandlers } from '@/lib/jobs/handlers';
 import { createPgJobQueue } from '@/lib/jobs/pg-queue';
 import { LONG_JOB_TYPES, runJobs } from '@/lib/jobs/runner';
@@ -192,7 +193,9 @@ describe('the slow jobs on the one queue', () => {
     expect((await db.query(`select type, status, payload from jobs where type = $1`, [TUTOR_QUIZ_JOB])).rows).toEqual([{ type: TUTOR_QUIZ_JOB, status: 'pending', payload: { conversationId: CHAT, day: DAY } }]);
 
     await db.platform((q) => queue.enqueue(q, { type: TUTOR_PARENT_REPORT_JOB, payload: { childId: CHAT, week: DAY }, idempotencyKey: `report:${CHAT}` }));
-    const handlers = productionHandlers();
+    // W16-B1: the quiz job asks the family database whose conversation it is; this schema has none (and no such
+    // conversation), so it ends with nothing made.
+    const handlers = { ...productionHandlers(), [TUTOR_QUIZ_JOB]: quizJobHandler({ platform: (async () => ({ rows: [] })) as never }) };
     // A request's kick never starts the long parent report; the sweeper does.
     await runJobs({ handlers, queue, onlyKeys: [`report:${CHAT}`], limit: 1, budgetMs: 8_000 });
     expect((await db.query(`select status from jobs where type = $1`, [TUTOR_PARENT_REPORT_JOB])).rows[0].status).toBe('pending');

@@ -29,6 +29,8 @@ import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
 import { STUDY_STATUS_KEY, subjectStatus } from '@/lib/family/study-status';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
+import { QuizCards } from '@/components/family/QuizCards';
+import { quizCards } from '@/lib/family/quiz';
 import { TonightPractice } from '@/components/family/TonightPractice';
 import { TEST_LIST_KEYS, TestList } from '@/components/family/school-test/TestList';
 import { childOnlineTests } from '@/lib/family/online-tests';
@@ -121,6 +123,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
   const tone = subject;
+  // W16-B1: a Quick quiz made from this subject's last tutor session, a review due, or a taken quiz's score.
+  const quizzes = access.open ? await familyPageRead(page, (db) => quizCards(db, { accountId: page.session.accountId, childId: child.childId }, indiaDate(), { subject })) : [];
 
   const readerHref = (key: string) => `/family/study/chapter/${encodeURIComponent(key)}`;
   const readerLabel = t(lang, 'fam.study.openChapter');
@@ -215,6 +219,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           })}
         </nav>
         {!child.freeSubject && <p className="fam-rise flex items-center gap-2 rounded-2xl bg-sunshine/30 px-4 py-3 text-sm font-semibold text-slate"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-gold-deep" fill="currentColor"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" /></svg>{t(lang, 'fam.subject.firstIsFree')}</p>}
+        <QuizCards cards={quizzes} lang={lang} today={indiaDate()} />
         <TestList w={familyWords(lang, TEST_LIST_KEYS)} lang={lang} tests={tests} />
         {!access.open ? (
           <p data-family-locked className="fam-surface bg-white p-5 text-base text-slate">

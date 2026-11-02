@@ -74,6 +74,20 @@ const CHECK_CHAT = `
     '[{"type": "sources", "links": [], "chapter": "Linear Equations in One Variable", "unit": "Solving an equation"}, {"type": "steps", "title": "Your working, step by step", "items": [{"label": "Step 1: right", "text": "You wrote 3x + 5 = 20. That is the equation, copied correctly."}, {"label": "Step 2: wrong", "text": "You wrote 3x = 25. But 5 is added on the left, so take 5 away from 20."}, {"label": "Step 3: wrong", "text": "You wrote x = 25/3. It follows from the step before, so it is not right either."}]}, {"type": "worked_example", "problem": "Solve 3x + 5 = 20.", "steps": [{"text": "Take 5 away from both sides.", "expression": "20-5", "result": "15"}, {"text": "Divide both sides by 3.", "expression": "15/3", "result": "5"}], "answer": "x = 5"}]'::jsonb, now() - interval '1 minute');
 `;
 const CHECK_CHAT_GONE = `delete from family.tutor_messages where conversation_id = '${CHECK_CHAT_ID}'; delete from family.tutor_conversations where conversation_id = '${CHECK_CHAT_ID}';`;
+// W16-B1: a Quick quiz made from that Science chat (illustrative words only), for the Study feed's and the home's card.
+const QUIZ_ID = 'f0000000-0000-4000-8000-0000000fa302';
+const QUIZ_ITEMS = [
+  { kind: 'mcq', id: 'q1', question: 'What do green leaves need to make food?', options: ['Sunlight', 'Sand', 'Salt'], answer: 0, why: 'Leaves use sunlight to make food.' },
+  { kind: 'mcq', id: 'q2', question: 'Which gas do leaves take in?', options: ['Oxygen', 'Carbon dioxide', 'Helium'], answer: 1, why: 'Leaves take in carbon dioxide from the air.' },
+  { kind: 'mcq', id: 'q3', question: 'Where is food made in a plant?', options: ['Roots', 'Leaves', 'Seeds'], answer: 1, why: 'The leaves hold the green colour that works with sunlight.' },
+  { kind: 'mcq', id: 'q4', question: 'What is the green colour in leaves called?', options: ['Chlorophyll', 'Starch', 'Water'], answer: 0, why: 'Chlorophyll is the green colour in leaves.' },
+  { kind: 'written', id: 'q5', question: 'Say in a sentence why a plant in a dark cupboard turns pale.', rubric: ['It gets no sunlight to make food'] },
+];
+const QUIZ_CARD = `${FOLLOW_UP_CHAT}
+  insert into family.session_quizzes (quiz_id, account_id, child_id, conversation_id, session_day, subject, lang, title, items, review_due_on)
+  select '${QUIZ_ID}', account_id, child_id, conversation_id, (now() at time zone 'Asia/Kolkata')::date, 'science', 'en', 'Quick quiz', '${JSON.stringify(QUIZ_ITEMS).replace(/'/g, "''")}'::jsonb,
+         array[(now() at time zone 'Asia/Kolkata')::date + 1, (now() at time zone 'Asia/Kolkata')::date + 3, (now() at time zone 'Asia/Kolkata')::date + 7]
+    from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}' on conflict do nothing;`;
 const FOLLOW_UP_ANSWER = [
   { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
   { t: 'block', block: { type: 'explanation', title: 'Photosynthesis in a money plant', idea: 'The leaves we talked about make food the same way in a plant at home.', paragraphs: ['A money plant near a sunny window grows towards the light: its leaves use the sunlight, the water you pour in and the air around it to make sugar, as explained above.'], example: 'Keep one plant in the sun and one in a dark cupboard for a week: the one in the dark turns pale.', steps: [], terms: [] } },
@@ -189,6 +203,10 @@ export const FAMILY_SCREENS = [
   // W16-B5: the home screen's Tutors tile (the platform tutors' names in a calm list; the names take a ring in turn with motion).
   ['full', 'family-home-tutors', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutors-tile]' }],
   ['full', 'family-study', '/family/study', {}],
+  // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.
+  ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-quiz-card-home', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-quiz-play', `/family/study/quiz/${QUIZ_ID}`, { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-test-item]' }],
   // W16-A3: the Tutor Hall.
   ['full', 'family-tutors', '/family/tutors', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-group]' }],
   ['full', 'family-tutors-study', '/family/study?subject=mathematics&tutor=maths', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chosen]' }],

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { HabitCard } from '@/components/family/HabitCard';
+import { QuizCards } from '@/components/family/QuizCards';
 import { PlanCard } from '@/components/family/PlanCard';
 import { TutorsTile } from '@/components/family/TutorsTile';
 import { FamIcon } from '@/components/family/FamIcon';
@@ -20,6 +21,7 @@ import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { childProgress, openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { dayPlan } from '@/lib/family/plan';
+import { quizCards } from '@/lib/family/quiz';
 import { fill } from '@/lib/family/fill';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolSubjectIs, schoolTodayFor } from '@/lib/family/school';
@@ -45,6 +47,7 @@ export default async function FamilyHomePage() {
   const child = page.child!;
   const lang = page.childLang;
   const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, tutors } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, quizzes } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
@@ -55,6 +58,8 @@ export default async function FamilyHomePage() {
     links: await activeLinks(db, page.session.accountId),
     schoolOn: await familyModuleOn(db, 'school_today', page.session.accountId),
     // M3-7 (C337): tonight's night of the home plan after a parent-teacher meeting, with the module on and Plus open.
+    // W16-B1: the Quick quiz from a finished tutor session, or a review due.
+    quizzes: isPrePrimary(child.classLevel) ? [] : await quizCards(db, { accountId: page.session.accountId, childId: child.childId }, indiaDate(), { limit: 2 }),
     seen: await readSeen(db, page.session.accountId),
     off: await notifyOff(db, page.session.accountId),
     meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
@@ -77,6 +82,7 @@ export default async function FamilyHomePage() {
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} news={news?.total ?? 0} />
       <main className="fam-page">
         <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
+        <QuizCards cards={quizzes} lang={lang} today={indiaDate()} />
         {atSchool && (
           <section data-school-today className="fam-card fam-section fam-rise bg-white">
             <div className="flex items-center gap-3">

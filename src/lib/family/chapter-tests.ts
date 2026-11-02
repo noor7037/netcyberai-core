@@ -20,7 +20,7 @@ const MISSING_TABLE = '42P01';
 
 export type Sealing = { accountId: string; childId: string; chapterKey: string; subject: string };
 
-const publicItem = (item: TestItem, seal: Sealing): PublicTestItem => {
+export const publicItem = (item: TestItem, seal: Sealing): PublicTestItem => {
   if (item.kind !== 'mcq') return { kind: item.kind, id: item.id, question: item.question, rubric: item.rubric };
   const { token } = sealItem(
     { id: item.id, question: item.question, options: item.options, answer: item.answer, hint: '', why: item.why, wrong: item.options.map(() => item.why) },
@@ -76,7 +76,21 @@ export async function submitTest(
   const at = view.ids.indexOf(input.blockId);
   const block = at >= 0 ? view.blocks[at] : null;
   if (!block || block.type !== 'chapter_test') return { ok: false, reason: 'not_found' };
-  const sent = asSent(input.answers);
+  return submitBlock(db, who, { chapterKey: chapter.key, lang: view.lang, blockId: input.blockId, block }, input.answers, now);
+}
+
+// The scorer behind every test a child sends: a chapter's (above) and a session's quiz (quiz.ts, W16-B1), which
+// has no chapter but the same items and the same sealed tokens. The attempt is stored with `blockId`, so a session quiz's
+// takes are found by its id.
+export async function submitBlock(
+  db: Db,
+  who: { accountId: string; childId: string },
+  test: { chapterKey: string; lang: 'en' | 'hi'; blockId: string; block: ChapterTest },
+  answers: unknown,
+  now: number = Date.now()
+): Promise<Submitted> {
+  const { block } = test;
+  const sent = asSent(answers);
   if (!sent) return { ok: false, reason: 'bad_request' };
   const byId = new Map(block.items.map((i) => [i.id, i]));
   if (sent.some((s) => !byId.has(s.itemId))) return { ok: false, reason: 'bad_request' };
@@ -91,7 +105,7 @@ export async function submitTest(
       if (!s) return { ok: false, reason: 'incomplete' };
       const secret = openItem(s.token, who, now);
       if (!secret) return { ok: false, reason: 'item_expired' };
-      if (secret.kind !== 'test' || secret.k !== chapter.key || secret.i !== item.id) return { ok: false, reason: 'bad_request' };
+      if (secret.kind !== 'test' || secret.k !== test.chapterKey || secret.i !== item.id) return { ok: false, reason: 'bad_request' };
       if (!Number.isInteger(s.choice) || (s.choice as number) < 0 || (s.choice as number) >= secret.o.length) return { ok: false, reason: 'bad_request' };
       rows.push({ itemId: item.id, kind: 'mcq', question: secret.q, choice: s.choice, correct: s.choice === secret.a, why: secret.y });
     } else if (s) {
@@ -122,7 +136,7 @@ export async function submitTest(
   const mcqCorrect = mcq.filter((r) => r.correct === true).length;
   const attempt = await db.query(
     `insert into family.chapter_test_attempts (account_id, child_id, chapter_key, block_id, lang, mcq_total, mcq_correct) values ($1, $2, $3, $4, $5, $6, $7) returning attempt_id`,
-    [who.accountId, who.childId, chapter.key, input.blockId, view.lang, mcq.length, mcqCorrect]
+    [who.accountId, who.childId, test.chapterKey, test.blockId, test.lang, mcq.length, mcqCorrect]
   );
   const attemptId = String(attempt.rows[0].attempt_id);
   for (const r of rows) {
