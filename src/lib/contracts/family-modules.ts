@@ -45,6 +45,13 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'home_plan', tab: 'family', flag: 'home_plan', entitlement: 'plus', built: true, milestone: 'M3' },
   // m2b-1 (C305): the Focus Lock's server (status, lock health, the parent's notices). Off until Control switches it on.
   { id: 'focus_lock', tab: 'family', flag: 'focus_lock', entitlement: 'public', built: true, milestone: 'M2b', offByDefault: true },
-  // W16-A3: the Tutor Hall (subject tutors to chat with or call); on by default like the others.
-  { id: 'tutors', tab: 'study', flag: 'tutors', entitlement: 'public', built: true, milestone: 'W16' },
+  // W16 (A3, B5): each part of the Tutor programme has its own switch, on by default like the others (C398). Control → Apps
+  // lists them; a switched-off part hides its entry points and its route says "This part is switched off".
+  // The Tutor Hall (subject tutors to chat with or call); the call; the drawing board and the simulations; the short quiz
+  // after a session (B1); the weekly report (B3). The last two may be listed before their screens are.
+  { id: 'tutor_hall', tab: 'study', flag: 'tutor_hall', entitlement: 'public', built: true, milestone: 'W16' },
+  { id: 'tutor_call', tab: 'study', flag: 'tutor_call', entitlement: 'learning', built: true, milestone: 'W16' },
+  { id: 'tutor_board', tab: 'study', flag: 'tutor_board', entitlement: 'learning', built: true, milestone: 'W16' },
+  { id: 'tutor_quiz', tab: 'study', flag: 'tutor_quiz', entitlement: 'learning', built: true, milestone: 'W16' },
+  { id: 'tutor_reports', tab: 'family', flag: 'tutor_reports', entitlement: 'public', built: true, milestone: 'W16' },
 ];

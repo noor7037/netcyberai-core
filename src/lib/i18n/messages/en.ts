@@ -10091,7 +10091,7 @@ export const en = {
   'fam.tutors.change': 'Change tutor',
   'fam.tutors.off': 'The Tutor Hall is switched off for now.',
   'fam.tutors.none': 'No tutors are open right now.',
-  'control.apps.module.label.tutors': 'Tutor Hall',
+  'control.apps.module.label.tutor_hall': 'Tutor Hall',
   'control.family.tutors.title': 'Tutors',
   'control.family.tutors.lead': 'The tutors every family sees in the Tutor Hall. Read only.',
   'control.family.tutors.none': 'No tutors are set up yet.',
@@ -10117,4 +10117,14 @@ export const en = {
   'control.ai.profile.name.family.voice_call': 'Live voice call',
   'control.ai.profile.about.family.voice_call': 'The call’s live voice: the phone talks to the provider directly with a short-lived token the server makes, so no audio passes through NetCyberAI. Leave it empty and the call listens, answers and speaks sentence by sentence instead.',
   // w16-a4 end
+  // w16-b5 start
+  'control.apps.module.label.tutor_call': 'Tutor call (talk to a tutor)',
+  'control.apps.module.label.tutor_board': 'Tutor drawing board and simulations',
+  'control.apps.module.label.tutor_quiz': 'Short quiz after a tutor session',
+  'control.apps.module.label.tutor_reports': 'Weekly tutor report',
+  'fam.call.off': 'Calling a tutor is switched off for now.',
+  'fam.tutors.homeLead': 'Chat or call a tutor for each subject.',
+  'fam.tutor.askShort': 'Ask…',
+  'fam.call.withDefault': 'Talking with your tutor',
+  // w16-b5 end
 } as const;

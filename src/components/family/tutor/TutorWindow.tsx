@@ -44,6 +44,8 @@ type Props = {
   follow?: boolean;
   // W16-A3: the tutor chosen in the Tutor Hall; every question carries its key, and the window says who is answering.
   tutor?: { key: string; name: string } | null;
+  // W16-B5: the call affordance in the composer (Study, while the call is switched on and the child may speak).
+  call?: { href: string; label: string } | null;
   children?: ReactNode;
 };
 
@@ -96,7 +98,7 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
   return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
@@ -290,6 +292,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         onRemove={remove}
         fileError={fileError}
         voice={voice}
+        call={call}
         historyOpen={open && shown}
         historyFor={ids.feed}
         onHistory={() => {

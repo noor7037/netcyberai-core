@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { callGate } from '@/lib/family/call-gate';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
+import { familyModuleOn } from '@/lib/family/flags';
 import { liveAiContext } from '@/lib/family/english/live';
 import { requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -29,6 +30,7 @@ export async function POST(req: NextRequest) {
   const claims = familyClaims(session);
   try {
     const plan = await withFamilyContext(claims, async (db): Promise<Extract<PreparedRealtime, { ok: true }> | NextResponse> => {
+      if (!(await familyModuleOn(db, 'tutor_call', session.accountId))) return fail('off', 403);
       const call = await callGate(db, session.accountId, chosen);
       if (!call.ok) return fail(call.error, call.status);
       const day = await voiceDay(db, session.accountId, call.child.childId, indiaDate());

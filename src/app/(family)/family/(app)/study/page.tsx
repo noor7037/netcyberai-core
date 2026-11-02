@@ -35,6 +35,7 @@ import { childOnlineTests } from '@/lib/family/online-tests';
 import { activeLinks, schoolStudyFor } from '@/lib/family/school';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
+import { tutorParts } from '@/lib/family/tutor-parts';
 import { familyWords } from '@/lib/family/words';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -75,7 +76,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // W16-A3: the tutor chosen in the Tutor Hall (?tutor=), while its module is on; a subject tutor opens its own subject.
   const tutorParam = isTutorKey(searchParams.tutor) ? searchParams.tutor : null;
   const chosenTutor =
-    tutorParam && (await familyPageRead(page, (db) => familyModuleOn(db, 'tutors', page.session.accountId)))
+    tutorParam && (await familyPageRead(page, (db) => familyModuleOn(db, 'tutor_hall', page.session.accountId)))
       ? findTutor(await loadHall(familyClaims(page.session), (fn) => familyPageRead(page, fn), page.session.accountId, lang), tutorParam)
       : null;
   const requested = subjects.find((s) => s === searchParams.subject) ?? subjects.find((s) => s === chosenTutor?.subject);
@@ -166,12 +167,17 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // The tutor stays on the subject it teaches (every subject, for an all-subject tutor).
   const tutorHere = chosenTutor && (chosenTutor.subject === null || chosenTutor.subject === subject) ? { key: chosenTutor.key, name: chosenTutor.name } : null;
   const tabHref = (s: string) => `/family/study?subject=${s}${chosenTutor && (chosenTutor.subject === null || chosenTutor.subject === s) ? `&tutor=${encodeURIComponent(chosenTutor.key)}` : ''}`;
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.tutors.chattingWith', 'fam.tutors.change', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
+  const parts = tutorParts(switches);
+  // W16-B5: "Call <tutor>" in the composer: the call opens on this subject with the chosen tutor, and its End comes back here.
+  // Shown only when the call is switched on and the child may speak (the call screen checks the same rules and says why).
+  const callOn = voice !== null && parts.call;
+  const callHref = `/family/call?${tutorHere ? `tutor=${encodeURIComponent(tutorHere.key)}&` : ''}subject=${encodeURIComponent(subject)}`;
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.tutors.chattingWith', 'fam.tutors.change', 'fam.tutors.callWith', 'fam.call.tutorDefault', 'fam.tutor.askShort', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
       <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject}
         aside={
-          switchOn(switches, 'tutors') ? (
+          parts.hall ? (
             <Link href="/family/tutors" data-tutors-link className="fam-press inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/10">
               {t(lang, 'fam.tutors.nav')}
             </Link>
@@ -216,7 +222,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
-          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} follow tutor={tutorHere}>
+          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} follow tutor={tutorHere} call={callOn ? { href: callHref, label: fill(w['fam.tutors.callWith'], { name: tutorHere?.name ?? w['fam.call.tutorDefault'] }) } : null}>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}

@@ -33,6 +33,8 @@ type Props = {
   onRemove: (file: ComposerFile) => void;
   fileError: string | null;
   voice: { secondsLeft: number } | null;
+  // W16-B5: "Call <tutor>": the same composer, a second way in. Opens the call on this subject, keeping the chat.
+  call?: { href: string; label: string } | null;
   historyOpen: boolean;
   historyFor: string;
   onHistory: () => void;
@@ -224,7 +226,7 @@ export function Composer(p: Props) {
                 disabled={p.locked}
                 maxLength={TUTOR_TEXT_MAX}
                 value={p.value}
-                placeholder={w['fam.tutor.title']}
+                placeholder={p.call ? w['fam.tutor.askShort'] : w['fam.tutor.title']}
                 onChange={(e) => p.onChange(e.target.value)}
                 onFocus={keepInView}
                 onKeyDown={(e) => {
@@ -255,6 +257,13 @@ export function Composer(p: Props) {
                     </svg>
                   )}
                 </button>
+              )}
+              {p.call && !p.locked && (
+                <Link href={p.call.href} data-tutor-call-link aria-label={p.call.label} title={p.call.label} className={`${ROUND} text-ink hover:bg-off-white`}>
+                  <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
+                    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+                  </svg>
+                </Link>
               )}
               <button type="submit" disabled={!p.canSend} data-tutor-send aria-label={w['fam.tutor.send']} className={`${ROUND} fam-cta bg-saffron text-ink shadow-md disabled:opacity-50`}>
                 <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>

@@ -10077,7 +10077,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.tutors.change': 'ट्यूटर बदलें',
   'fam.tutors.off': 'ट्यूटर हॉल अभी बंद है।',
   'fam.tutors.none': 'अभी कोई ट्यूटर उपलब्ध नहीं है।',
-  'control.apps.module.label.tutors': 'ट्यूटर हॉल',
+  'control.apps.module.label.tutor_hall': 'ट्यूटर हॉल',
   'control.family.tutors.title': 'ट्यूटर',
   'control.family.tutors.lead': 'वे ट्यूटर जो हर परिवार को ट्यूटर हॉल में दिखते हैं। सिर्फ़ पढ़ने के लिए।',
   'control.family.tutors.none': 'अभी कोई ट्यूटर तय नहीं है।',
@@ -10103,4 +10103,14 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.profile.name.family.voice_call': 'सीधी आवाज़ वाली कॉल',
   'control.ai.profile.about.family.voice_call': 'कॉल की सीधी आवाज़: फ़ोन थोड़ी देर चलने वाले टोकन से सीधे प्रदाता से बात करता है, इसलिए कोई आवाज़ NetCyberAI से होकर नहीं जाती। खाली छोड़ने पर कॉल सुनती, जवाब देती और वाक्य-वाक्य बोलती है।',
   // w16-a4 end
+  // w16-b5 start
+  'control.apps.module.label.tutor_call': 'ट्यूटर कॉल (ट्यूटर से बोलकर पूछना)',
+  'control.apps.module.label.tutor_board': 'ट्यूटर का ड्रॉइंग बोर्ड और सिमुलेशन',
+  'control.apps.module.label.tutor_quiz': 'ट्यूटर सत्र के बाद छोटी क्विज़',
+  'control.apps.module.label.tutor_reports': 'साप्ताहिक ट्यूटर रिपोर्ट',
+  'fam.call.off': 'ट्यूटर को कॉल करना अभी बंद है।',
+  'fam.tutors.homeLead': 'हर विषय के लिए ट्यूटर से चैट करें या कॉल करें।',
+  'fam.tutor.askShort': 'पूछें…',
+  'fam.call.withDefault': 'आपके ट्यूटर से बात हो रही है',
+  // w16-b5 end
 };
