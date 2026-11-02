@@ -30,7 +30,9 @@ export const KICK_BUDGET_MS = 8_000;
 // An online test's script (online.mark, AQ-4) waits for the same marking AI on the child's typed answers.
 // papers.make (AQ-2, C362) is one too: it waits for the AI writing a paper's questions, in at most two rounds of its
 // profile's time, and ends within LONG_JOB_MAX_MS (src/lib/papers/make.ts).
-export const LONG_JOB_TYPES: readonly string[] = ['marking.read', 'marking.mark', 'papers.make', 'online.mark'];
+// tutor.parent_report (W16-A1, src/lib/ai/agents/jobs.ts) makes one AI call a child (family.parent_report, 30 s), more
+// than a short run's budget for a family with several children.
+export const LONG_JOB_TYPES: readonly string[] = ['marking.read', 'marking.mark', 'papers.make', 'online.mark', 'tutor.parent_report'];
 export const LONG_JOB_START_MS = 45_000;
 export const LONG_JOB_MAX_MS = 240_000;
 export const LONG_JOBS_AT_ONCE = 4;

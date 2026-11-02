@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
 import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
+import { tutorTurn } from '@/lib/ai/agents/orchestrator';
 import { activeChild, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
@@ -9,7 +10,7 @@ import { openItem } from '@/lib/family/items';
 import { claimSubject } from '@/lib/family/learning';
 import { SUBJECTS, type Subject } from '@/lib/family/modules';
 import { jsonBody, requireFamily } from '@/lib/family/request';
-import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
+import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Generated, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
 import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
@@ -144,8 +145,11 @@ export async function POST(req: NextRequest) {
           const lines = [t(asked.lang, 'fam.tutor.files.read', { read: String(outcome.read), total: String(reads.length) }), ...[...new Set(outcome.unreadable)].map((u) => t(asked.lang, UNREADABLE_WORDS[u]))];
           send({ t: 'files', message: lines.join(' ') });
         }
+        // W16-A1: the turn runs through the orchestrator (src/lib/ai/agents/orchestrator.ts), which calls the same three
+        // steps below in the same order and logs each handoff; nothing it sends or keeps differs. No queue is given: a
+        // family session enqueues no job.
         // 1. The checks and reads, and the AI platform's own checks (the daily cap taken), in one short transaction.
-        const pending = await withFamilyContext(claims, async (db): Promise<Pending | null> => {
+        const prepare = () => withFamilyContext(claims, async (db): Promise<Pending | null> => {
           const children = await listChildren(db, session.accountId);
           const child = activeChild(children, chosen);
           const words = (key: string, params?: Record<string, string>) => (isMessageKey(key) ? t(child?.language ?? 'en', key, params) : key);
@@ -204,26 +208,36 @@ export async function POST(req: NextRequest) {
             misconception
           );
         });
-        if (!pending) return;
         // 2. The AI answers, block by block, with no database connection held. A child with no free subject claims a
         // typed question's subject just before its first block is shown, in a short transaction of its own.
-        const childId = pending.ctx.child.childId;
-        const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
-        if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
+        const answer = async (pending: Pending) => {
+          const childId = pending.ctx.child.childId;
+          const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
+          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
+          return generated;
+        };
         // 3. The writes, in a second short transaction; the last event only once they are kept.
-        let last: ResolverEvent | null;
-        try {
-          last = await withFamilyContext(claims, (db) => keep(db, pending, generated));
-        } catch (err) {
-          // Signed out everywhere during the call: the check failed before anything was written, but the call
-          // happened, so it is still counted (once: nothing of the refused transaction ran).
-          if (err instanceof FamilySessionRevokedError)
-            await withFamilyGate(async (db) => {
-              await generated.sent.record(db as never);
-              await pending.moderation?.record(db as never);
-            }).catch(() => {});
-          throw err;
-        }
+        const write = async (pending: Pending, generated: Generated): Promise<ResolverEvent | null> => {
+          try {
+            return await withFamilyContext(claims, (db) => keep(db, pending, generated));
+          } catch (err) {
+            // Signed out everywhere during the call: the check failed before anything was written, but the call
+            // happened, so it is still counted (once: nothing of the refused transaction ran).
+            if (err instanceof FamilySessionRevokedError)
+              await withFamilyGate(async (db) => {
+                await generated.sent.record(db as never);
+                await pending.moderation?.record(db as never);
+              }).catch(() => {});
+            throw err;
+          }
+        };
+        const done = await tutorTurn(
+          { prepare, prepared: (p) => ({ passages: p.teach?.passages.length ?? 0, planAsked: p.teach?.call != null }), answer, keep: write },
+          { conversationId: chatId, day: indiaDate(), endsSession: false }
+        );
+        if (!done) return;
+        const { pending, generated } = done;
+        let last = done.last;
         if (generated.error !== null) throw generated.error;
         // The tutor's history (S2): an answered question and its teaching blocks, in a short transaction of its own.
         // The answer was already shown and metered: a history that cannot be written never takes it back. Files are
