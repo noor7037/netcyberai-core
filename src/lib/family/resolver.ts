@@ -6,9 +6,9 @@ import { checkMarkSystem, checkMarkUser, questionOfReading } from '@/lib/ai/prom
 import { logCheckVerdict, logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
 import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
 import { verdictsFromReading, verifyVerdicts } from './arithmetic-check';
-import { simFits } from './interactive';
+import { sceneSimFits, simFits } from './interactive';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
-import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -167,7 +167,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   const blocks = completeResponse(
     (cached.blocks as unknown[])
       .map((b) => parseStoredBlockLine(JSON.stringify(b)))
-      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title))),
+      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title)) && (!isSimScene(b) || sceneSimFits(b.sim, line.title))),
     core
   );
   if (!blocks) return null;
@@ -552,6 +552,8 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     if (plan && isInteractive(b.type) && !plan.blocks.some(isInteractiveBlock)) return;
     // A simulation only where the question, its syllabus line or the block's own title is about what it models (2 Nov).
     if (b.type === 'simulation' && !simFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
+    // The same for a scene simulation of Classes 6 to 10 (W18-P2): a circuit under a question about the heart is dropped.
+    if (isSimScene(b) && !sceneSimFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {

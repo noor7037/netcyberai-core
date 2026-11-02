@@ -248,10 +248,10 @@ describe('prompt v9', () => {
   const v8 = resolverPrompt('v8', false);
   const passages = [{ chapterKey: 'cbse.c8.science.force', title: 'Force and Pressure', text: 'Liquids exert pressure on the walls of the container.', score: 0.5 }];
 
-  it('is registered, plans like v8 and is the default', () => {
+  it('is registered and plans like v8 (the default is v10 since W18-P2)', () => {
     expect(RESOLVER_PROMPTS.find((p) => p.version === 'v9')?.usesPlan).toBe(true);
-    expect(LATEST_RESOLVER_PROMPT).toBe('v9');
-    expect(resolverPrompt(null, true).version).toBe('v9');
+    expect(LATEST_RESOLVER_PROMPT).toBe('v10');
+    expect(resolverPrompt(null, true).version).toBe('v10');
     expect(v9.user(base)).toBe(v8.user(base));
   });
 
