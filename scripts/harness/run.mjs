@@ -7105,6 +7105,37 @@ const g3PutBack = async () => {
   G3.attempts = [];
   G3.keys = [];
 };
+// w16-b4 begin
+// Control → AI → "Tutor use today" (W16-B4): a made-up family's day (7 questions, 3 minutes 10 seconds of speaking, 1 photo)
+// and a priced and an unpriced service in the ledger, shown on the row of tiles; removed afterwards.
+const W16B4 = { account: 'f1600000-0000-4000-8000-0000000000a9', child: 'f1600000-0000-4000-8000-0000000000c9' };
+const w16b4Use = async (page) => {
+  await db.pg.exec(`
+    insert into family.accounts (account_id, email) values ('${W16B4.account}', 'w16b4.harness@example.org');
+    insert into family.children (child_id, account_id, first_name, class_level, board_id, language, style, state_code) values ('${W16B4.child}', '${W16B4.account}', 'Asha', 7, 'CBSE', 'en', 'en', 'IN-UP');
+    insert into family.day_counts (account_id, child_id, day, text_turns, voice_seconds, photo_questions) values ('${W16B4.account}', '${W16B4.child}', (now() at time zone 'Asia/Kolkata')::date, 7, 190, 1);
+    insert into control.ai_usage_ledger (day, profile_id, provider_id, model, route_position, outcome, cost_usd) values
+      ((now() at time zone 'Asia/Kolkata')::date, 'family.resolver', 'anthropic', 'claude-sonnet-4-5', 0, 'ok', 0.42),
+      ((now() at time zone 'Asia/Kolkata')::date, 'family.homework', 'nvidia', 'harness-model', 0, 'ok', null);
+  `);
+  await page.reload({ waitUntil: 'networkidle' });
+  const row = page.locator('[data-ai-tutor-use]');
+  await row.waitFor({ timeout: 20000 });
+  const seen = await page.evaluate(() => Object.fromEntries([...document.querySelectorAll('[data-ai-tutor-use-tile]')].map((e) => [e.getAttribute('data-ai-tutor-use-tile'), e.querySelector('p')?.textContent ?? ''])));
+  const costs = await page.locator('[data-ai-tutor-use-cost]').count();
+  if (Object.keys(seen).length !== 6 || Number(seen.textTurns) < 7 || Number(seen.voiceMinutes) < 3.2 || Number(seen.photoDoubts) < 1 || costs < 2) throw new Error(`Tutor use today: ${JSON.stringify(seen)} ${costs}`);
+  await row.scrollIntoViewIfNeeded();
+};
+const w16b4Done = async () => {
+  await db.pg.exec(`
+    delete from family.day_counts where child_id = '${W16B4.child}';
+    delete from family.children where child_id = '${W16B4.child}';
+    delete from family.accounts where account_id = '${W16B4.account}';
+    set session_replication_role = replica; delete from control.ai_usage_ledger where provider_id in ('nvidia') and model = 'harness-model' or (profile_id = 'family.resolver' and cost_usd = 0.42); set session_replication_role = origin;
+  `);
+};
+// w16-b4 end
+
 const controlAi = (hindi) => async (page) => {
   await g3Seed();
   await page.reload({ waitUntil: 'networkidle' });
@@ -7487,6 +7518,9 @@ const SCREENS = [
   // and the recent requests from the ledger, in English and Hindi.
   ['founder', 'control-ai', '/control/ai', controlAi(false), g3PutBack],
   ['founder', 'control-ai-hindi', '/control/ai', controlAi(true), async (page) => { await g3PutBack(); await backToEnglish(page); }],
+  // w16-b4 begin
+  ['founder', 'control-ai-tutor-use', '/control/ai', w16b4Use, w16b4Done],
+  // w16-b4 end
   // C386: the server voice's card (Reading aloud), its route editor open: only OpenAI and Google Cloud Text-to-Speech
   // are offered; Google Cloud Text-to-Speech listed as a provider of its own.
   ['founder', 'control-ai-tts', '/control/ai', controlAiTts(false), async () => {}],

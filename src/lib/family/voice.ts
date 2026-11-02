@@ -1,4 +1,5 @@
 import { hideAadhaarNumbers } from '@/lib/privacy/aadhaar';
+import { tutorLimits } from './tutor-meter';
 
 // Voice input (M2-7, C281): a child may speak a question in Study instead of typing it. The recording is read once by
 // the family.voice_input profile (speech to text, a provider cleared for minors) and dropped: never stored, never
@@ -14,11 +15,10 @@ export const VOICE_SECONDS_SETTING = 'family.voice_input_seconds_per_day';
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
 
-// The day's limit as Control set it, and the seconds this child has used today.
+// The day's limit and the seconds this child has used today. The limit is the plan's voice minutes (W16-B4, Control →
+// Family; Plus times more), in seconds; until Control sets minutes the older family.voice_input_seconds_per_day holds.
 export async function voiceDay(db: Db, accountId: string, childId: string, day: string): Promise<{ limit: number; used: number; left: number }> {
-  const { rows: s } = await db.query(`select value from control.settings where key = $1`, [VOICE_SECONDS_SETTING]);
-  const v = Number(s[0]?.value);
-  const limit = Math.max(0, Math.round(Number.isFinite(v) && v >= 0 ? v : 120));
+  const limit = (await tutorLimits(db, accountId)).voiceSeconds;
   const { rows } = await db.query(`select voice_seconds from family.day_counts where account_id = $1 and child_id = $2 and day = $3`, [accountId, childId, day]);
   const used = Number(rows[0]?.voice_seconds ?? 0);
   return { limit, used, left: Math.max(0, limit - used) };

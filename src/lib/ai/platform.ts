@@ -7,6 +7,7 @@ import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { UNCAPPED_LEFT, countDailyRequest, countVoiceChars, dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, testingModeOn, voiceCharLimit, voiceCharsLeft } from './daily-cap';
+import { takeTextTurn, tutorLimits } from '@/lib/family/tutor-meter';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt } from './gateway/ledger';
@@ -172,6 +173,9 @@ export type AiContext = {
   childFirstNames: string[];
   parentEmail?: string;
   day: string; // the India date, YYYY-MM-DD
+  // W16-B4: the child a family text turn is for. With it, the tutor's answers (family.resolver) are metered and capped
+  // per child (text turns, src/lib/family/tutor-meter.ts); without it the family's daily requests cap holds as before.
+  childId?: string;
 };
 export type AiRequest = {
   system: string;
@@ -374,14 +378,32 @@ export async function dailyRequestsLeft(db: Sql, accountId: string, day: string)
   return Math.max(0, limit - (await dailyRequestsUsed(db, accountId, day)));
 }
 
+// w16-b4 start
+const isTutorTextTurn = (profile: AiProfile, ctx: AiContext): ctx is AiContext & { childId: string } => profile.id === 'family.resolver' && typeof ctx.childId === 'string' && UUID.test(ctx.childId);
+// w16-b4 end
+
 // 4. The family's daily cap, counted before the request leaves.
 async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, testing: boolean): Promise<boolean> {
   if (profile.audience !== 'family' || profile.besideCall) return true;
   // Testing mode: the request is counted, never refused.
   if (testing) {
     await countDailyRequest(db, ctx.accountId, ctx.day);
+    if (isTutorTextTurn(profile, ctx)) await takeTextTurn(db, ctx.accountId, ctx.childId, ctx.day, null);
     return true;
   }
+  // w16-b4 start
+  // A tutor answer for a known child takes one of that child's text turns (the plan's cap, Plus times more) in place of a
+  // place in the family's daily requests, which it still counts.
+  if (isTutorTextTurn(profile, ctx)) {
+    const limits = await tutorLimits(db, ctx.accountId);
+    if (!(await takeTextTurn(db, ctx.accountId, ctx.childId, ctx.day, limits.textTurns))) {
+      await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
+      return false;
+    }
+    await countDailyRequest(db, ctx.accountId, ctx.day);
+    return true;
+  }
+  // w16-b4 end
   const limit = await dailyLimit(db);
   if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });

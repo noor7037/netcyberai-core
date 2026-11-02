@@ -1,6 +1,7 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { VOICE_CHARS_SETTING, voiceCharLimit } from '@/lib/ai/daily-cap';
+import { CAP_MAX, MULTIPLIER_MAX, PHOTO_DOUBTS_SETTING, PLUS_MULTIPLIER_SETTING, TEXT_TURNS_SETTING, VOICE_MINUTES_SETTING, plusMultiplier, tutorBaseCaps, type TutorCaps } from '@/lib/family/tutor-meter';
 import { SUBJECT_IDS, SUBJECT_LIST_KEYS, subjectListOf, type Subject, type SubjectList } from '@/lib/contracts/subjects';
 
 // Control → Family's settings: two lists of subjects. `open` (C298): open to every child, whatever their free subject
@@ -112,3 +113,50 @@ export async function readPlatformTutors(db: Sql): Promise<ControlTutor[]> {
   }));
 }
 // w16-a3 end
+
+// w16-b4 start
+// The tutor's daily caps per child (Control → Family, W16-B4): text turns, voice minutes and photo doubts, and the
+// multiplier a family on Plus gets. What the screen shows is what applies (src/lib/family/tutor-meter.ts: the new setting,
+// else the older one, else the built-in number). A change needs a reason and is audited with the numbers before and after.
+export type TutorCapsView = TutorCaps & { plusMultiplier: number };
+export type TutorCapsInput = { textTurns: unknown; voiceMinutes: unknown; photoDoubts: unknown; plusMultiplier: unknown; reason: unknown };
+export const TUTOR_CAPS_REASON_MAX = 200;
+
+export async function readTutorCaps(db: Sql): Promise<TutorCapsView> {
+  return { ...(await tutorBaseCaps(db)), plusMultiplier: await plusMultiplier(db) };
+}
+
+const capOk = (v: unknown): v is number => typeof v === 'number' && Number.isInteger(v) && v >= 0 && v <= CAP_MAX;
+
+export async function setTutorCaps(db: Sql, by: { userId: string }, raw: TutorCapsInput): Promise<{ ok: true; caps: TutorCapsView } | { ok: false; code: 'bad_value' | 'reason_required' }> {
+  const reason = typeof raw.reason === 'string' ? raw.reason.trim() : '';
+  if (reason.length < 3 || reason.length > TUTOR_CAPS_REASON_MAX) return { ok: false, code: 'reason_required' };
+  const m = raw.plusMultiplier;
+  if (!capOk(raw.textTurns) || !capOk(raw.voiceMinutes) || !capOk(raw.photoDoubts) || typeof m !== 'number' || !Number.isFinite(m) || m < 1 || m > MULTIPLIER_MAX) return { ok: false, code: 'bad_value' };
+  const before = await readTutorCaps(db);
+  const next: TutorCapsView = { textTurns: raw.textTurns, voiceMinutes: raw.voiceMinutes, photoDoubts: raw.photoDoubts, plusMultiplier: m };
+  const rows: [string, number][] = [
+    [TEXT_TURNS_SETTING, next.textTurns],
+    [VOICE_MINUTES_SETTING, next.voiceMinutes],
+    [PHOTO_DOUBTS_SETTING, next.photoDoubts],
+    [PLUS_MULTIPLIER_SETTING, next.plusMultiplier],
+  ];
+  for (const [key, value] of rows) {
+    await db.query(
+      `insert into control.settings (key, value, updated_by) values ($1, $2::jsonb, $3) on conflict (key) do update set value = excluded.value, updated_at = now(), updated_by = excluded.updated_by`,
+      [key, JSON.stringify(value), by.userId]
+    );
+  }
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: by.userId,
+    actorRole: 'super_admin',
+    eventAction: 'family.tutor_caps_set',
+    targetType: 'control_setting',
+    targetId: TEXT_TURNS_SETTING,
+    beforeState: before,
+    afterState: { ...next, reason },
+  });
+  return { ok: true, caps: next };
+}
+// w16-b4 end

@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { AiControls } from '@/components/control/ai/AiControls';
 import { LatencyTiles } from '@/components/control/ai/LatencyTiles';
+import { TutorUseTiles } from '@/components/control/ai/TutorUseTiles';
+import { loadTutorUse } from '@/lib/ai/tutor-use';
 import { loadLatencyTiles } from '@/lib/ai/latency';
 import { loadAiOverview, loadAiRouting, providerChoices } from '@/lib/ai/control';
 import { withTenantContext } from '@/lib/auth/db';
@@ -24,8 +26,8 @@ export default async function AiControlPage() {
   const { lang } = getLang(session?.sub ?? '');
   const strong = session?.aal === 'aal2';
   // The layout has already refused anyone but the founder; this runs as nca_super.
-  const data = session && strong ? await withTenantContext(session, async (db) => ({ ...(await loadAiOverview(db)), routing: await loadAiRouting(db), latency: await loadLatencyTiles(db) })) : null;
-  const { latency, ...overview } = data ?? { latency: null };
+  const data = session && strong ? await withTenantContext(session, async (db) => ({ ...(await loadAiOverview(db)), routing: await loadAiRouting(db), latency: await loadLatencyTiles(db), tutorUse: await loadTutorUse(db) })) : null;
+  const { latency, tutorUse, ...overview } = data ?? { latency: null, tutorUse: null };
   return (
     <ModulePage
       title={t(lang, 'control.ai.title')}
@@ -49,8 +51,9 @@ export default async function AiControlPage() {
       }
     >
       <WordsProvider words={pageWords(lang, '/control/ai')}>
+      {tutorUse && <TutorUseTiles use={tutorUse} lang={lang} />}
       {latency && <LatencyTiles tiles={latency} lang={lang} />}
-      {data && <AiControls initial={{ ...(overview as Omit<typeof data, 'latency'>), providerChoices: providerChoices() }} />}
+      {data && <AiControls initial={{ ...(overview as Omit<typeof data, 'latency' | 'tutorUse'>), providerChoices: providerChoices() }} />}
       </WordsProvider>
     </ModulePage>
   );

@@ -14,6 +14,10 @@ export const SETTING_SCREENS: Readonly<Record<string, string>> = {
   'family.open_subjects': '/control/family',
   'family.reviewed_only_subjects': '/control/family',
   'family.plus_open': '/control/family',
+  'family.tutor.text_turns_per_day': '/control/family',
+  'family.tutor.voice_minutes_per_day': '/control/family',
+  'family.tutor.photo_doubts_per_day': '/control/family',
+  'family.plus.multiplier': '/control/family',
   'leads.auto_reply': '/control/leads',
   'content.pilot_scope': '/control/content',
 };

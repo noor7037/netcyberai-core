@@ -16,6 +16,7 @@ import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandle
 import { AI_HEALTH_PROBE_JOB, aiHealthProbeHandler } from '@/lib/ai/gateway/probe';
 import { AI_UPKEEP_JOB, aiUpkeepHandler } from '@/lib/ai/gateway/upkeep';
 import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB, tutorStubHandler } from '@/lib/ai/agents/jobs';
+import { aiOpsDailyHandler } from '@/lib/ai/ops-daily';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
 import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
@@ -92,7 +93,10 @@ export function productionHandlers(): Record<string, JobHandler> {
     // long job (./runner.ts).
     [TUTOR_QUIZ_JOB]: tutorStubHandler(TUTOR_QUIZ_JOB),
     [TUTOR_PARENT_REPORT_JOB]: tutorStubHandler(TUTOR_PARENT_REPORT_JOB),
-    [AI_OPS_DAILY_JOB]: tutorStubHandler(AI_OPS_DAILY_JOB),
+    // W16-B4: the daily look at the tutor's use (src/lib/ai/ops-daily.ts), each night after midnight in India. On a Sunday it
+    // also starts the week's parent reports: once W16-B3 is merged, pass `weeklyReports: enqueueWeeklyParentReports` here
+    // (its named export, imported at the top of this file).
+    [AI_OPS_DAILY_JOB]: aiOpsDailyHandler({ platform, queue: jobQueue }),
     // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
     [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),
     // Every ten minutes: a linked family's browsers hear of new homework, notices and results, and tonight's practice

@@ -396,7 +396,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     }
     return { system: ctx.persona ? `${prompt.system(a)}\n${personaLine(ctx.persona)}` : prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
-  const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day }, profileId, build(plan));
+  const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;

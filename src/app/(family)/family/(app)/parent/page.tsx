@@ -15,6 +15,9 @@ import { vapidPublicKey } from '@/lib/family/web-push';
 import { SchoolSection } from '@/components/family/SchoolSection';
 import { activeLinks, linkedSchool, notifyOff, schoolOverview } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
+import { TutorToday, type TutorTodayRow } from '@/components/family/TutorToday';
+import { tutorDay } from '@/lib/family/tutor-meter';
+import { UNCAPPED_LEFT } from '@/lib/ai/daily-cap';
 import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { listChildPhones } from '@/lib/family/child-phone';
 import { homePlan, plusOpen } from '@/lib/family/home-plan';
@@ -211,6 +214,24 @@ export default async function FamilyParentPage() {
           notices: focusRead.notices.map((n) => ({ noticeId: n.noticeId, deviceId: n.deviceId, kind: n.kind, time: focusTimeLabel(n.at, lang) })),
         }
       : null;
+  // w16-b4 start
+  // Today's use of the tutor against the plan, per child (counts only); left out while testing mode lifts every cap.
+  const tutorToday: TutorTodayRow[] = (
+    await familyPageRead(page, (db) => Promise.all(page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ c, day: await tutorDay(db, page.session.accountId, c.childId, indiaDate()) }))))
+  )
+    .filter(({ day }) => day.limits.textTurns < UNCAPPED_LEFT)
+    .map(({ c, day }) => ({
+      childId: c.childId,
+      firstName: c.firstName,
+      text: day.used.textTurns,
+      textMax: day.limits.textTurns,
+      voice: day.voiceMinutesUsed,
+      voiceMax: day.limits.voiceMinutes,
+      photo: day.used.photoDoubts,
+      photoMax: day.limits.photoDoubts,
+      multiplier: day.limits.plus ? day.limits.multiplier : 1,
+    }));
+  // w16-b4 end
   // What needs the parent now (W6-F): one line and one action each.
   const needs: ParentNeed[] = [];
   const declined = own.requests.filter((r) => r.status === 'declined').length;
@@ -240,6 +261,7 @@ export default async function FamilyParentPage() {
         slots={{
           overview: (
             <>
+            <TutorToday rows={tutorToday} lang={lang} />
             {/* S2 (C375): the Learning Vault, each child's questions to the tutor and their files, with a clear. */}
             {page.children.length > 0 && (
               <Link href="/family/parent/vault" data-vault-link className="fam-card fam-press flex min-h-[56px] items-center gap-3 bg-white p-4">

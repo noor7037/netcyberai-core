@@ -1,6 +1,7 @@
 import { prepareText, type AiContext, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { checkReadSystem, checkReadUser } from '@/lib/ai/prompts/family.homework';
 import { setting } from './learning';
+import { photoDoubtLimit } from './tutor-meter';
 import { TUTOR_FILES_PER_TURN, isTutorFileType, type TutorFileType } from './tutor-shape';
 
 // The tutor reads what is attached (W4-1, C230-AR; Decision Log C385). A file the child sent with a question is read
@@ -51,7 +52,7 @@ export async function filesToRead(db: Sql, accountId: string, childId: string, s
 
 // One photo place of the child's day (Control: family.photo_questions_per_day), as the homework helper takes it.
 export async function takePhotoPlace(db: Sql, accountId: string, childId: string, day: string): Promise<boolean> {
-  const limit = Math.max(0, Math.round(await setting(db as never, 'family.photo_questions_per_day', 3)));
+  const limit = await photoDoubtLimit(db as never, accountId);
   const { rows } = await db.query(
     `insert into family.day_counts as d (account_id, child_id, day, photo_questions) select $1, $2, $3, 1 where $4::int > 0
      on conflict (child_id, day) do update set photo_questions = d.photo_questions + 1 where d.photo_questions < $4::int

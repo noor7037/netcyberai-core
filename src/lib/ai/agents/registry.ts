@@ -116,8 +116,7 @@ export const AGENTS: readonly Agent[] = [
     mode: 'job',
     profileId: null,
     jobType: AI_OPS_DAILY_JOB,
-    implementedBy: 'pending',
-    wave: 'W16-B4',
+    implementedBy: 'src/lib/ai/ops-daily.ts',
   },
 ];
 
