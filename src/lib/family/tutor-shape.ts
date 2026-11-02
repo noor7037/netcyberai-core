@@ -46,3 +46,11 @@ export type FeedTurn = TutorTurn & { chatId: string; subject: string };
 
 // The kept part of an answer: every block but a check or practice.
 export const keptTutorBlocks = (blocks: readonly Block[]): Block[] => blocks.filter((b) => b.type !== 'check' && b.type !== 'practice');
+
+// What a stored tutor turn is remembered as: its explanation's paragraphs (the idea when it has none), nothing else.
+export function explanationText(blocks: unknown): string {
+  const b = (Array.isArray(blocks) ? blocks : []).find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
+  if (!b) return '';
+  const paragraphs = Array.isArray(b.paragraphs) ? b.paragraphs.filter((x): x is string => typeof x === 'string') : [];
+  return (paragraphs.length ? paragraphs.join(' ') : typeof b.idea === 'string' ? b.idea : '').replace(/\s+/g, ' ').trim();
+}

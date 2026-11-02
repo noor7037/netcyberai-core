@@ -532,6 +532,8 @@ ALLOWED_PERMISSIVE = (
         # S5 (C378): a child's chapter-test attempts and answers; own account only (restrictive twins below).
         ("family.chapter_test_attempts", "chapter_test_attempts_own"),
         ("family.chapter_test_answers", "chapter_test_answers_own"),
+        # W16-B1: a child's quick quizzes made from tutor sessions; own account only (restrictive twins below).
+        ("family.session_quizzes", "session_quizzes_own"),
         # E1 (C382): a child's live English practice sessions and turns; own account only (restrictive twins below).
         ("family.english_live_sessions", "english_live_sessions_own"),
         ("family.english_live_turns", "english_live_turns_own"),
@@ -1108,6 +1110,9 @@ REQUIRED_RESTRICTIVE = {
     ("family.tutor_attachments", "tutor_attachments_own_only"),
     ("family.chapter_test_attempts", "chapter_test_attempts_own_only"),
     ("family.chapter_test_answers", "chapter_test_answers_own_only"),
+    # W16-B1: own account, and on a child's own phone that one child.
+    ("family.session_quizzes", "session_quizzes_own_only"),
+    ("family.session_quizzes", "session_quizzes_one_child"),
     # E1 (C382): own account only.
     ("family.english_live_sessions", "english_live_sessions_own_only"),
     ("family.english_live_turns", "english_live_turns_own_only"),

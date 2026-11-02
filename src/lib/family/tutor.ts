@@ -11,7 +11,7 @@ import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './chi
 import { consentState } from './consent';
 import { photoGate } from './photo-gate';
 import { isSubject } from './subjects';
-import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
+import { explanationText, TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MAX, isTutorFileType, keptTutorBlocks, sniffTutorFile, type FeedTurn, type TutorFileType, type TutorTurn } from './tutor-shape';
 
 // The shared tutor window's history and files (S2, C375; docs/37 §4 Wave 2), on the family's own transaction (the
 // family_app role; every tutor table's policies keep each row to its own account, and on a child's own phone to that
@@ -162,13 +162,6 @@ export async function ownChat(db: Db, accountId: string, childId: string, subjec
   return rows[0] ? chatOf(rows[0]) : null;
 }
 
-// What a stored tutor turn is remembered as: its explanation's paragraphs (the idea when it has none), nothing else.
-function explanationText(blocks: unknown): string {
-  const b = (Array.isArray(blocks) ? blocks : []).find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
-  if (!b) return '';
-  const paragraphs = Array.isArray(b.paragraphs) ? b.paragraphs.filter((x): x is string => typeof x === 'string') : [];
-  return (paragraphs.length ? paragraphs.join(' ') : typeof b.idea === 'string' ? b.idea : '').replace(/\s+/g, ' ').trim();
-}
 const clip = (text: string, max: number) => (text.length <= max ? text : `${text.slice(0, max - 1).trimEnd()}…`);
 
 // The chat's last `n` messages as remembered turns, oldest first.

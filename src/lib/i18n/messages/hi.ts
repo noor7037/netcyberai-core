@@ -10103,4 +10103,20 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.profile.name.family.voice_call': 'सीधी आवाज़ वाली कॉल',
   'control.ai.profile.about.family.voice_call': 'कॉल की सीधी आवाज़: फ़ोन थोड़ी देर चलने वाले टोकन से सीधे प्रदाता से बात करता है, इसलिए कोई आवाज़ NetCyberAI से होकर नहीं जाती। खाली छोड़ने पर कॉल सुनती, जवाब देती और वाक्य-वाक्य बोलती है।',
   // w16-a4 end
+  // w16-b1 start
+  'fam.quiz.cardTitle': 'छोटी क्विज़',
+  'fam.quiz.ready': 'आज के {subject} से {n} सवाल',
+  'fam.quiz.readyEarlier': 'आपकी {subject} की पढ़ाई से {n} सवाल',
+  'fam.quiz.review': 'दोहराएँ: {n} सवाल',
+  'fam.quiz.scored': 'आपका स्कोर: {d} में से {n}',
+  'fam.quiz.start': 'क्विज़ शुरू करें',
+  'fam.quiz.startReview': 'दोहराना शुरू करें',
+  'fam.quiz.seeAgain': 'फिर से करें',
+  'fam.quiz.nextReview': 'अगली बार दोहराना: {date}',
+  'fam.quiz.done': 'अभी के लिए बस',
+  'fam.quiz.doneThanks': 'बहुत अच्छा। कुछ ही मिनटों में एक छोटी क्विज़ तैयार होगी।',
+  'fam.quiz.explain': 'समझाने वाले जवाब पर वापस जाएँ',
+  'fam.quiz.page': 'छोटी क्विज़',
+  'fam.quiz.missing': 'यह क्विज़ अब यहाँ नहीं है।',
+  // w16-b1 end
 };

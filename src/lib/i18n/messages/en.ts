@@ -10117,4 +10117,20 @@ export const en = {
   'control.ai.profile.name.family.voice_call': 'Live voice call',
   'control.ai.profile.about.family.voice_call': 'The call’s live voice: the phone talks to the provider directly with a short-lived token the server makes, so no audio passes through NetCyberAI. Leave it empty and the call listens, answers and speaks sentence by sentence instead.',
   // w16-a4 end
+  // w16-b1 start
+  'fam.quiz.cardTitle': 'Quick quiz',
+  'fam.quiz.ready': '{n} questions from today’s {subject}',
+  'fam.quiz.readyEarlier': '{n} questions from your {subject} study',
+  'fam.quiz.review': 'Review: {n} questions',
+  'fam.quiz.scored': 'Your score: {n} of {d}',
+  'fam.quiz.start': 'Start the quiz',
+  'fam.quiz.startReview': 'Start the review',
+  'fam.quiz.seeAgain': 'Try it again',
+  'fam.quiz.nextReview': 'Next review: {date}',
+  'fam.quiz.done': 'Done for now',
+  'fam.quiz.doneThanks': 'Good work. A quick quiz will be ready in a few minutes.',
+  'fam.quiz.explain': 'Go back to the explanation',
+  'fam.quiz.page': 'Quick quiz',
+  'fam.quiz.missing': 'This quiz is not here any more.',
+  // w16-b1 end
 } as const;

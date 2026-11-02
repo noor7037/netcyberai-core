@@ -3,7 +3,8 @@ import type { JobHandler } from '@/lib/jobs/types';
 
 // The Tutor's slow work (W16-A1, the proposal's M3): job types on the one job queue (src/lib/jobs), never a second
 // runner. A1 registers them as stubs that only say they ran; W16-B fills them:
-//   tutor.quiz           a short quiz made from a tutor session at its end, kept with review dates (B1)
+//   tutor.quiz           a short quiz made from a tutor session at its end, kept with review dates (B1, src/lib/family/quiz.ts;
+//                        enqueued by public.family_quiz_enqueue(), the sweep that finds sessions that ended)
 //   tutor.parent_report  a child's weekly report for the parent (B3): one AI call a child, so a long job
 //                        (src/lib/jobs/runner.ts LONG_JOB_TYPES), started only by the sweeper
 //   ai.ops_daily         the AI platform's daily look at latency, failures and spend (B4, A5)

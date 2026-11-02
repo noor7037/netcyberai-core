@@ -29,7 +29,9 @@ function sendToStore(url: string, file: File, contentType: string): Promise<bool
   });
 }
 
-export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { b: PublicChapterTest; blockId: string; chapterKey: string; subject: string; w: Words; tone: string }) {
+// `quiz` (W16-B1): a Quick quiz made from a tutor session. It is sent by its id to the quiz route (the same scorer, the same
+// sealed tokens); `explainHref`, when the session has an explanation to go back to, is offered under a wrong answer.
+export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone, quiz = null }: { b: PublicChapterTest; blockId: string; chapterKey: string; subject: string; w: Words; tone: string; quiz?: { quizId: string; explainHref: string | null } | null }) {
   const [choice, setChoice] = useState<Record<string, number>>({});
   const [text, setText] = useState<Record<string, string>>({});
   const [photo, setPhoto] = useState<Record<string, Photo>>({});
@@ -82,7 +84,7 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { 
       if (i.kind === 'written') return text[i.id]?.trim() ? [{ itemId: i.id, text: text[i.id].trim() }] : [];
       return photo[i.id]?.id ? [{ itemId: i.id, attachmentId: photo[i.id].id }] : [];
     });
-    const res = await postJson('/api/family/chapter-test', { chapterKey, blockId, answers });
+    const res = await postJson(quiz ? '/api/family/quiz' : '/api/family/chapter-test', quiz ? { quizId: quiz.quizId, answers } : { chapterKey, blockId, answers });
     setBusy(false);
     if (res?.ok) return setSent({ ok: true, result: (await res.json()) as TestResult });
     setSent({ ok: false, error: await errorOf(res) });
@@ -114,6 +116,11 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone }: { 
                     <div role="status" className={`flex flex-col gap-1 rounded-xl px-3 py-2 text-sm text-slate ${r.correct ? 'bg-emerald/10' : 'bg-coral/10'}`}>
                       <p className="font-bold">{r.correct ? w['fam.ctest.right'] : w['fam.ctest.notYet']}</p>
                       {r.why && <p>{r.why}</p>}
+                      {!r.correct && quiz?.explainHref && (
+                        <a href={quiz.explainHref} data-quiz-explain className="inline-flex min-h-[44px] items-center self-start font-bold text-ink underline underline-offset-4">
+                          {w['fam.quiz.explain']}
+                        </a>
+                      )}
                     </div>
                   )}
                 </fieldset>

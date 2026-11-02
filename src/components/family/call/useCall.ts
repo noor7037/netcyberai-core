@@ -220,6 +220,14 @@ export function useCall({ w, subject, lang, secondsLeft }: { w: Words; subject: 
     []
   );
 
+  // End call (W16-B1): the call stops, and the chat it was held in is marked as a session that ended, so its quick quiz is
+  // made within minutes. keepalive: the request outlives the page this button leaves.
+  const end = useCallback(() => {
+    cancel();
+    const chatId = turn.current.chatId;
+    if (chatId) void fetch('/api/family/tutor/done', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ chatId }), keepalive: true }).catch(() => null);
+  }, [cancel]);
+
   // The tap on the microphone: begin listening; if the tutor is thinking or speaking, stop it first (barge-in).
   const talk = useCallback(() => {
     if (recorder.state === 'recording') return recorder.stop();
@@ -230,5 +238,5 @@ export function useCall({ w, subject, lang, secondsLeft }: { w: Words; subject: 
   }, [busy, cancel, recorder]);
 
   const phase: CallPhase = recorder.state === 'recording' ? 'listening' : recorder.state === 'sending' ? 'hearing' : busy === 'speaking' ? 'speaking' : busy === 'thinking' ? 'thinking' : 'idle';
-  return { phase, heard, lines, current, blocks, refusal, voice, recorder, talk, end: cancel, setHeard };
+  return { phase, heard, lines, current, blocks, refusal, voice, recorder, talk, end, setHeard };
 }

@@ -75,8 +75,7 @@ export const AGENTS: readonly Agent[] = [
     mode: 'job',
     profileId: 'family.quiz',
     jobType: TUTOR_QUIZ_JOB,
-    implementedBy: 'pending',
-    wave: 'W16-B1',
+    implementedBy: 'src/lib/family/quiz.ts',
   },
   {
     id: 'photo_doubt',
