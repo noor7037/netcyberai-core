@@ -90,7 +90,7 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'gemini', 'google_tts', 'nvidia', 'openai', 'openai_compatible', 'openrouter', 'vertex_ai', 'workers-ai', 'youtube']);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'elevenlabs', 'gemini', 'google_tts', 'nvidia', 'openai', 'openai_compatible', 'openrouter', 'sarvam', 'vertex_ai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
       // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
       expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),

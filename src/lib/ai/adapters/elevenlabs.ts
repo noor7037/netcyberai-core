@@ -56,7 +56,9 @@ export function elevenlabsScopeMessage(status: number, body: unknown): ElevenLab
 async function failureOf(res: Response): Promise<{ ok: false; failure: AdapterFailure; status: number }> {
   if (res.status === 401) {
     const body = await res.json().catch(() => null);
-    return { ok: false, failure: isMissingPermission(401, body) ? 'refused' : 'http', status: 401 };
+    // A missing scope is a key problem (auth_failed in the taxonomy: the circuit stays neutral, nothing is retried), never
+    // a content rejection; Control words it with elevenlabsScopeMessage.
+    return { ok: false, failure: 'http', status: 401 };
   }
   await res.body?.cancel().catch(() => {});
   return { ok: false, failure: 'http', status: res.status };

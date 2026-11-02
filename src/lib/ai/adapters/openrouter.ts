@@ -21,12 +21,14 @@ const authHeaders = (apiKey: string): Record<string, string> => ({ authorization
 
 // A free key ($0 of credit) reaches text; the audio models answer 402 (needs credit) or 403 (not offered by API). They
 // are told apart so Control can word each: 402 stays an `http` failure (the platform reads it as a spent quota and moves
-// to the next provider), 403 is `refused` (the vendor declined this call; nothing to retry on this key).
+// to the next provider), 403 is the same kind of failure (not offered on this key; nothing to retry).
 export function openrouterFailureCode(status: number | undefined): 'needs_credit' | 'not_available_by_api' | null {
   return status === 402 ? 'needs_credit' : status === 403 ? 'not_available_by_api' : null;
 }
-type HttpFailure = { ok: false; failure: 'http' | 'refused'; status: number };
-const failedWith = (status: number): HttpFailure => (status === 403 ? { ok: false, failure: 'refused', status } : { ok: false, failure: 'http', status });
+type HttpFailure = { ok: false; failure: 'http'; status: number };
+// Both are key or availability problems, never a content rejection: `http` with the status, so the taxonomy reads 402 and
+// 403 as auth_failed (circuit neutral, not retried) and Control words them with openrouterFailureCode.
+const failedWith = (status: number): HttpFailure => ({ ok: false, failure: 'http', status });
 
 // ---- text and photos ----------------------------------------------------------------------------------------------
 
@@ -49,13 +51,18 @@ export const openrouterAdapter: TextAdapter = {
       includeUsage: true,
       send: (init) => fetch(url, { method: 'POST', ...init, headers: { ...init.headers, ...APP_HEADERS }, redirect: 'error' }),
     });
-    return !r.ok && r.failure === 'http' && r.status === 403 ? failedWith(403) : r;
+    return r;
   },
   // GET /models: lists every model OpenRouter offers. The free ones ("...:free") come first so they survive the
   // picker's cap (OpenRouter lists more models than Control keeps); ids stay exactly as the vendor lists them.
   async testConnection(apiKey): Promise<ConnectionTest> {
+    // GET /models is public, so it proves nothing about the key: GET /key (the key's own label and limits) is asked
+    // first and must answer 200; only then the list.
     let res: Response;
     try {
+      const own = await fetch(`${OPENROUTER_BASE_URL}/key`, { method: 'GET', headers: authHeaders(apiKey), redirect: 'error', signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
+      await own.body?.cancel().catch(() => {});
+      if (!own.ok) return failedWith(own.status);
       res = await fetch(`${OPENROUTER_BASE_URL}/models`, { method: 'GET', headers: authHeaders(apiKey), redirect: 'error', signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
     } catch {
       return { ok: false, failure: 'network' };

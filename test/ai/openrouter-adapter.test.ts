@@ -94,11 +94,12 @@ describe('OpenRouter: text and photos', () => {
 });
 
 describe('OpenRouter: the key test', () => {
-  it('is a GET to /models with the key; ids as listed, the free ones first, cleaned and once each', async () => {
+  it('proves the key with GET /key, then lists /models; ids as listed, the free ones first, cleaned and once each', async () => {
     reply = () => new Response(JSON.stringify({ data: [{ id: 'vendor-b/model-two' }, { id: 'nvidia/made-up-ultra:free' }, { id: 'vendor-a/model-1' }, { id: 'vendor-a/model-1' }, { id: 'bad id' }, { id: 4 }, { id: 'a/z:free' }] }), { status: 200 });
     const r = await openrouterAdapter.testConnection!(KEY);
-    expect(calls[0]).toMatchObject({ url: 'https://openrouter.ai/api/v1/models', method: 'GET', redirect: 'error' });
-    expect(calls[0].headers).toMatchObject({ authorization: `Bearer ${KEY}`, 'X-Title': 'NetCyberAI' });
+    expect(calls[0]).toMatchObject({ url: 'https://openrouter.ai/api/v1/key', method: 'GET', redirect: 'error' });
+    expect(calls[1]).toMatchObject({ url: 'https://openrouter.ai/api/v1/models', method: 'GET', redirect: 'error' });
+    expect(calls[1].headers).toMatchObject({ authorization: `Bearer ${KEY}`, 'X-Title': 'NetCyberAI' });
     expect(r).toEqual({ ok: true, models: ['a/z:free', 'nvidia/made-up-ultra:free', 'vendor-a/model-1', 'vendor-b/model-two'] });
   });
 
@@ -119,7 +120,7 @@ describe('OpenRouter: the key test', () => {
     reply = () => new Response(JSON.stringify({ data: [{ id: 'a/b' }] }), { status: 200 });
     expect(await openrouterSpeechAdapter.testConnection!(KEY)).toEqual({ ok: true, models: ['a/b'] });
     expect(await openrouterVoiceAdapter.testConnection!(KEY)).toEqual({ ok: true, models: ['a/b'] });
-    expect(calls.map((c) => c.url)).toEqual(['https://openrouter.ai/api/v1/models', 'https://openrouter.ai/api/v1/models']);
+    expect(calls.map((c) => c.url)).toEqual(['https://openrouter.ai/api/v1/key', 'https://openrouter.ai/api/v1/models', 'https://openrouter.ai/api/v1/key', 'https://openrouter.ai/api/v1/models']);
   });
 });
 
@@ -226,7 +227,7 @@ describe('pcmToWav', () => {
 });
 
 describe('OpenRouter: a free key and the audio models (402, 403)', () => {
-  it('maps 402 to an http failure and 403 to a refusal in all three adapters, with a code Control can word', async () => {
+  it('maps 402 and 403 to http failures in all three adapters, with a code Control can word', async () => {
     const calls3 = [
       () => openrouterAdapter.streamText(textRequest(), () => {}),
       () => openrouterSpeechAdapter.transcribe(speechRequest()),
@@ -239,7 +240,7 @@ describe('OpenRouter: a free key and the audio models (402, 403)', () => {
       expect(credit).toEqual({ ok: false, failure: 'http', status: 402 });
       reply = () => new Response(JSON.stringify({ error: { message: `not offered ${KEY}` } }), { status: 403 });
       const api = await run();
-      expect(api).toEqual({ ok: false, failure: 'refused', status: 403 });
+      expect(api).toEqual({ ok: false, failure: 'http', status: 403 });
       expect(seen(credit, api, logged)).not.toContain(KEY);
     }
     expect([openrouterFailureCode(402), openrouterFailureCode(403), openrouterFailureCode(401), openrouterFailureCode(undefined)]).toEqual(['needs_credit', 'not_available_by_api', null, null]);

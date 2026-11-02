@@ -117,13 +117,13 @@ describe('text to speech', () => {
     expect(JSON.stringify(r)).not.toContain('Rachel');
   });
 
-  it('maps a missing scope to refused/401 and any other failure to http', async () => {
+  it('maps a missing scope to http/401 (a key problem, never a content rejection) and any other failure to http', async () => {
     reply = () => missing();
-    expect(await elevenlabsVoiceAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'refused', status: 401 });
-    expect(await elevenlabsVoiceAdapter.synthesize({ apiKey: KEY, model: `eleven_flash_v2_5/${VOICE}`, text: 'x', language: 'en' })).toEqual({ ok: false, failure: 'refused', status: 401 });
+    expect(await elevenlabsVoiceAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 401 });
+    expect(await elevenlabsVoiceAdapter.synthesize({ apiKey: KEY, model: `eleven_flash_v2_5/${VOICE}`, text: 'x', language: 'en' })).toEqual({ ok: false, failure: 'http', status: 401 });
     // A message naming a permission counts even without the status code word.
     reply = () => new Response(JSON.stringify({ detail: { message: 'Missing permission for this key' } }), { status: 401 });
-    expect(await elevenlabsVoiceAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'refused', status: 401 });
+    expect(await elevenlabsVoiceAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 401 });
     // A wrong key, a 429 and a 500 are plain http failures; the vendor's body is never carried.
     reply = () => new Response(JSON.stringify({ detail: { status: 'invalid_api_key', message: `bad ${KEY}` } }), { status: 401 });
     const bad = await elevenlabsVoiceAdapter.testConnection!(KEY);
@@ -173,7 +173,7 @@ describe('speech to text', () => {
     expect(await hear({ model: 'whisper-1' })).toEqual({ ok: false, failure: 'http', status: 400 });
     expect(calls.length).toBe(0);
     reply = () => missing('The key is missing the permission speech_to_text.');
-    expect(await hear()).toEqual({ ok: false, failure: 'refused', status: 401 });
+    expect(await hear()).toEqual({ ok: false, failure: 'http', status: 401 });
     reply = () => new Response('{"nothing":1}', { status: 200 });
     expect(await hear()).toEqual({ ok: false, failure: 'bad_stream' });
     reply = () => new Response('{}', { status: 422 });
@@ -199,7 +199,7 @@ describe('speech to speech', () => {
     expect(await run('eleven_flash_v2_5/' + VOICE)).toEqual({ ok: false, failure: 'http', status: 400 });
     expect(calls.length).toBe(0);
     reply = () => missing('The key is missing the permission speech_to_speech.');
-    expect(await run()).toEqual({ ok: false, failure: 'refused', status: 401 });
+    expect(await run()).toEqual({ ok: false, failure: 'http', status: 401 });
     reply = () => new Response('{}', { status: 500 });
     expect(await run()).toEqual({ ok: false, failure: 'http', status: 500 });
   });
