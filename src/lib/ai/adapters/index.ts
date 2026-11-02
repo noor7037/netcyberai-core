@@ -1,16 +1,21 @@
 import { anthropicAdapter } from './anthropic';
+import { elevenlabsSpeechAdapter, elevenlabsStsAdapter, elevenlabsVoiceAdapter } from './elevenlabs';
 import { geminiAdapter } from './gemini';
+import { geminiRealtimeAdapter, geminiSpeechAdapter, geminiVoiceAdapter } from './gemini-audio';
+import { googleSttAdapter } from './google-stt';
 import { googleTtsAdapter } from './google-tts';
 import { nvidiaAdapter } from './nvidia';
 import { openaiAdapter, openaiSpeechAdapter, openaiVoiceAdapter } from './openai';
 import { openaiCompatibleAdapter } from './openai-compatible';
 import { openaiRealtimeAdapter } from './openai-realtime';
+import { openrouterAdapter, openrouterSpeechAdapter, openrouterVoiceAdapter } from './openrouter';
+import { sarvamAdapter, sarvamSpeechAdapter, sarvamVoiceAdapter } from './sarvam';
 import { vertexAiAdapter } from './vertex-ai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
-import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type RealtimeAdapter, type SpeechAdapter, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
+import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type RealtimeAdapter, type SpeechAdapter, type SpeechResult, type SpeechToSpeechAdapter, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
 
-export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, RealtimeAdapter, RealtimeResult, RealtimeToken, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter, VoiceAdapter, VoiceMediaType, VoiceResult } from './types';
+export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, RealtimeAdapter, RealtimeResult, RealtimeToken, SpeechAdapter, SpeechToSpeechAdapter, SpeechToSpeechRequest, SpeechMediaType, SpeechResult, TermsNote, TextAdapter, VoiceAdapter, VoiceMediaType, VoiceResult } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, clearance,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -34,8 +39,8 @@ export const standInAdapter: TextAdapter = {
 
 // Every text adapter the code has. Which one serves a profile, and whether it may carry a child's words, is Control's
 // choice (C368); Gemini joined the list for the founder's testing (C230-AO); Vertex AI and the OpenAI-compatible adapter
-// at the founder's own address in G1 (C369); NVIDIA NIM in W8-AI.
-const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, nvidiaAdapter, openaiAdapter, openaiCompatibleAdapter, vertexAiAdapter, workersAiAdapter];
+// at the founder's own address in G1 (C369); NVIDIA NIM in W8-AI; Sarvam and OpenRouter in W17.
+const REAL: readonly TextAdapter[] = [anthropicAdapter, geminiAdapter, nvidiaAdapter, openaiAdapter, openaiCompatibleAdapter, openrouterAdapter, sarvamAdapter, vertexAiAdapter, workersAiAdapter];
 
 // The build's own NODE_ENV is checked as well as the one passed, so no caller can switch the stand-in on in production.
 export function standInAllowed(env: Record<string, string | undefined> = process.env): boolean {
@@ -67,7 +72,7 @@ export const standInSpeechAdapter: SpeechAdapter = {
   },
 };
 
-const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, workersAiSpeechAdapter];
+const REAL_SPEECH: readonly SpeechAdapter[] = [openaiSpeechAdapter, openrouterSpeechAdapter, sarvamSpeechAdapter, workersAiSpeechAdapter, elevenlabsSpeechAdapter, geminiSpeechAdapter, googleSttAdapter];
 
 // The speech adapter for a provider id, or null when the code has none (Anthropic and Gemini have no speech to text
 // here).
@@ -117,9 +122,9 @@ export const standInVoiceAdapter: VoiceAdapter = {
   },
 };
 
-const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, googleTtsAdapter];
+const REAL_VOICE: readonly VoiceAdapter[] = [openaiVoiceAdapter, openrouterVoiceAdapter, googleTtsAdapter, sarvamVoiceAdapter, elevenlabsVoiceAdapter, geminiVoiceAdapter];
 
-// The voice adapter for a provider id, or null when the code has none (only OpenAI and Google Cloud speak).
+// The voice adapter for a provider id, or null when the code has none (OpenAI, Google Cloud and ElevenLabs speak).
 export function voiceAdapterFor(providerId: string, env: Record<string, string | undefined> = process.env): VoiceAdapter | null {
   if (providerId === STAND_IN_PROVIDER) return standInAllowed(env) ? standInVoiceAdapter : null;
   return REAL_VOICE.find((a) => a.providerId === providerId) ?? null;
@@ -129,20 +134,38 @@ export function voiceAdapterFor(providerId: string, env: Record<string, string |
 
 // No stand-in: a realtime session is a live connection to a vendor, so there is nothing to stand in for. Until a provider
 // is chosen in Control for family.voice_call (and a key exists) the call uses the listen, answer, speak chain.
-const REAL_REALTIME: readonly RealtimeAdapter[] = [openaiRealtimeAdapter];
+const REAL_REALTIME: readonly RealtimeAdapter[] = [openaiRealtimeAdapter, geminiRealtimeAdapter];
 
 export function realtimeAdapterFor(providerId: string): RealtimeAdapter | null {
   return REAL_REALTIME.find((a) => a.providerId === providerId) ?? null;
 }
 
+// ---- speech to speech (W17) --------------------------------------------------------------------------------------
+// No stand-in and no profile: Control's Try it is the only caller until a child feature needs it.
+const REAL_STS: readonly SpeechToSpeechAdapter[] = [elevenlabsStsAdapter];
+export function stsAdapterFor(providerId: string): SpeechToSpeechAdapter | null {
+  return REAL_STS.find((a) => a.providerId === providerId) ?? null;
+}
+
 // Providers whose key Control → AI keeps: every text adapter, a voice-only provider (Google Cloud Text-to-Speech, C386),
 // and the content adapters that are not text models (the video finder's YouTube, M2-5). A content adapter is never
 // returned by adapterFor(), so no AI profile can choose it.
-export type KeyedProvider = { providerId: string; capability: 'text' | 'video' | 'text_to_speech'; needsKey: boolean; keyLooksRight: (key: string) => boolean };
+export type KeyedProvider = { providerId: string; capability: 'text' | 'video' | 'text_to_speech' | 'speech_to_text' | 'speech_to_speech'; needsKey: boolean; keyLooksRight: (key: string) => boolean };
+// W17: a speech-only provider with its own key (keyLooksRight declared) is keyed through its speech adapter.
+const keyedSpeech = (providerId: string, env: Record<string, string | undefined>): KeyedProvider | null => {
+  const a = providerId === STAND_IN_PROVIDER ? null : speechAdapterFor(providerId, env);
+  return a && typeof a.keyLooksRight === 'function' ? { providerId: a.providerId, capability: 'speech_to_text', needsKey: a.needsKey, keyLooksRight: a.keyLooksRight.bind(a) } : null;
+};
 const CONTENT: readonly KeyedProvider[] = [youtubeAdapter];
 
 export function keyedProviderFor(providerId: string, env: Record<string, string | undefined> = process.env): KeyedProvider | null {
-  return adapterFor(providerId, env) ?? (providerId === STAND_IN_PROVIDER ? null : voiceAdapterFor(providerId, env)) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
+  return adapterFor(providerId, env) ?? (providerId === STAND_IN_PROVIDER ? null : voiceAdapterFor(providerId, env)) ?? keyedSpeech(providerId, env) ?? stsAdapterFor(providerId) ?? CONTENT.find((a) => a.providerId === providerId) ?? null;
+}
+
+// W17: the providers an AI feature can choose that have no text adapter (a voice, a speech or a realtime adapter only).
+export function nonTextProviderIds(): string[] {
+  const ids = [...REAL_VOICE, ...REAL_SPEECH, ...REAL_REALTIME].map((a) => a.providerId);
+  return [...new Set(ids)].filter((id) => !REAL.some((a) => a.providerId === id));
 }
 
 // ---- capabilities (G1, C369) -----------------------------------------------------------------------------------------
@@ -150,7 +173,7 @@ export function keyedProviderFor(providerId: string, env: Record<string, string 
 // Everything a provider's adapters declare between them (its text, speech, safety-check and voice adapters), for Control to
 // show beside the provider. A feature is checked against the one adapter of its own capability (platform.ts), not this.
 export function providerCapabilities(providerId: string, env: Record<string, string | undefined> = process.env): Capabilities | null {
-  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env), voiceAdapterFor(providerId, env), realtimeAdapterFor(providerId)].filter((a) => a !== null);
+  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env), voiceAdapterFor(providerId, env), realtimeAdapterFor(providerId), stsAdapterFor(providerId)].filter((a) => a !== null);
   if (found.length === 0) return null;
   return capabilities(CAPABILITIES.filter((c: Capability) => found.some((a) => a.capabilities[c])));
 }

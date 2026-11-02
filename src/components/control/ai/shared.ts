@@ -39,6 +39,7 @@ export const TERMS_NOTE: Record<TermsNote, MessageKey> = {
   no_under_13: "control.ai.provider.termsNote.no_under_13",
   adults_only: "control.ai.provider.termsNote.adults_only",
   no_bar_found: "control.ai.provider.termsNote.no_bar_found",
+  paid_plan_for_commercial_use: "control.ai.provider.termsNote.paid_plan_for_commercial_use",
 };
 
 // What an adapter declares it can do (G1, C369), in the founder's words.
@@ -49,6 +50,7 @@ export const CAPABILITY_WORDS: Record<Capability, MessageKey> = {
   json: "control.ai.capability.json",
   stt: "control.ai.capability.stt",
   tts: "control.ai.capability.tts",
+  sts: "control.ai.capability.sts",
   realtime: "control.ai.capability.realtime",
 };
 

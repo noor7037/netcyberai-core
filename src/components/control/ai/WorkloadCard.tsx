@@ -11,6 +11,7 @@ import type { ProviderStateResult } from "@/lib/ai/provider-state";
 import type { RouteRevision } from "@/lib/contracts/ai-gateway";
 import type { MessageKey } from "@/lib/i18n";
 import { ModelSelect } from "./ModelSelect";
+import { TryIt } from "./TryIt";
 import {
   CAPABILITY_WORDS,
   PRIMARY,
@@ -236,6 +237,13 @@ export function WorkloadCard({
                   t={t}
                   onChange={(slot) => setSlot(i, slot)}
                 />
+                {s.provider === "google_tts" && (
+                  <p data-ai-google-voice-hint className="pt-1 text-xs text-slate/80">
+                    {t("control.ai.profile.googleVoiceHint", {
+                      voice: s.model.replace(/^(en-IN|hi-IN)-/, "") || "…",
+                    })}
+                  </p>
+                )}
               </div>
               <span className="flex min-h-[48px] items-center gap-2">
                 {st && (
@@ -292,6 +300,9 @@ export function WorkloadCard({
           {t("control.ai.route.rollback")}
         </button>
       </div>
+
+      {/* W17-B1: one live call of the route as saved, on made-up inputs; the answer shows here. */}
+      <TryIt profileId={p.profileId} t={t} />
 
       {/* The switch and the prompt version, saved with the route. */}
       <details data-ai-settings className="rounded-lg border border-slate/10">

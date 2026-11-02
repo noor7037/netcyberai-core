@@ -26,10 +26,12 @@ export function previewBlocks(blocks: readonly Block[]): ReaderBlock[] {
 }
 
 // The result the server gives after a test is sent. A multiple-choice item says whether it was right and why; a written or
-// photo item only that it was kept for the parent or teacher: no score, no marking by the app.
+// photo item only that it was kept for the parent or teacher: no score, no marking by the app. A Quick quiz's written
+// item (W17-B3) is marked by the AI: it carries `correct`, a `verdict` and a short kind `note`, or `verdict: 'unmarked'`
+// with neither when the marking could not be done. The score line (mcqCorrect of mcqTotal) never counts it.
 export type TestResult = {
   attemptId: string;
   mcqTotal: number;
   mcqCorrect: number;
-  items: { id: string; kind: 'mcq' | 'written' | 'photo'; correct?: boolean; why?: string }[];
+  items: { id: string; kind: 'mcq' | 'written' | 'photo'; correct?: boolean; why?: string; verdict?: 'right' | 'partly' | 'wrong' | 'unmarked'; note?: string }[];
 };

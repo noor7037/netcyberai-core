@@ -10,7 +10,8 @@ import { UNCAPPED_LEFT, countDailyRequest, countVoiceChars, dailyLimit, dailyReq
 import { takeTextTurn, tutorLimits } from '@/lib/family/tutor-meter';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
-import { recordAttempts, type Attempt } from './gateway/ledger';
+import { recordAttempts, type Attempt, type LedgerSource } from './gateway/ledger';
+import { TRY_JSON_ASK, TRY_PHOTO_ASK, TRY_SAFETY_PAIR, TRY_SPOKEN, TRY_INPUTS } from './try-inputs';
 import { classifyFailure, ranItsTime } from './gateway/taxonomy';
 import { CALL_TIMEOUT_MS, SPEECH_TIMEOUT_MS, MODERATION_TIMEOUT_MS, VOICE_TEXT_MAX, VOICE_TIMEOUT_MS } from './adapters/types';
 
@@ -449,8 +450,18 @@ export function chainShareMs(a: { left: number; behind: number; reserveMs: numbe
   return Math.min(a.left, Math.max(a.reserveMs, a.left - hold));
 }
 
+// Who a call is for (W17-B1). LIVE: a child's or staff member's own request, every step as above. TRY_IT: Control's
+// Try it, the same chain walked the same way on made-up inputs, but it takes no family's daily place (no family asked)
+// and its ledger rows say 'try_it'. `watch` is handed each send's attempts as they are made, so Try it can say which
+// place in the route answered and how the last one failed. Only this file builds a non-live run.
+type Run = { source: LedgerSource; uncapped: boolean; watch?: (attempts: readonly Attempt[]) => void };
+const LIVE: Run = { source: 'live', uncapped: false };
+
 // 1–5: every check, the daily cap taken, the key opened and the request cleaned, in the caller's transaction.
 export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest): Promise<Prepared> {
+  return textRun(db, ctx, profileId, request, LIVE);
+}
+async function textRun(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, run: Run): Promise<Prepared> {
   const env = process.env;
   const testing = await testingModeOn(db);
   const checked = await checkProfile(db, ctx, profileId, 'text', env, testing);
@@ -465,12 +476,12 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
   // Every provider of the route has its circuit open: nothing is sent and no cap place is taken.
   const { admitted: ready, skipped } = await gateLinks(db, usable);
   if (ready.length === 0) {
-    await recordAttempts(db, ledger, skipped);
+    await recordAttempts(db, ledger, skipped, run.source);
     return { ok: false, reason: 'failed' };
   }
 
   // 4. The family's daily cap (a school or Control profile's limit is checked by its caller).
-  if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
+  if (!run.uncapped && !(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
 
   // 5. Nothing that names a child leaves the server (a request given at send time is cleaned there, the same way).
   const cleanOf = (r: AiRequest) => scrubRequest(r, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail });
@@ -482,9 +493,10 @@ export async function prepareText(db: Sql, ctx: AiContext, profileId: ProfileId,
   const send = async (onDelta: (text: string) => void = () => {}, late?: AiRequest): Promise<SentText> => {
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
+    run.watch?.(attempts);
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
-      await recordAttempts(tx, ledger, attempts);
+      await recordAttempts(tx, ledger, attempts, run.source);
     };
     // One cap place, one request: a prepared call never goes out twice.
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
@@ -582,6 +594,9 @@ export type PreparedTranscription = { ok: true; speech: PreparedSpeech } | { ok:
 // the family's. 6 (send, no database) and 7 (record: counts and tokens only) as for text. The recording lives only in
 // the prepared call's closure and is never stored or logged; the words that come back are the caller's to check.
 export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeechInput): Promise<PreparedTranscription> {
+  return transcriptionRun(db, ctx, profileId, input, LIVE);
+}
+async function transcriptionRun(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeechInput, run: Run): Promise<PreparedTranscription> {
   const env = process.env;
   const testing = await testingModeOn(db);
   const checked = await checkProfile(db, ctx, profileId, 'speech_to_text', env, testing);
@@ -594,20 +609,21 @@ export async function prepareTranscription(db: Sql, ctx: AiContext, profileId: P
   const ledger = ledgerOf(ctx, profile, row);
   const { admitted: ready, skipped } = await gateLinks(db, usable);
   if (ready.length === 0) {
-    await recordAttempts(db, ledger, skipped);
+    await recordAttempts(db, ledger, skipped, run.source);
     return { ok: false, reason: 'failed' };
   }
 
   // 4. The family's daily cap.
-  if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
+  if (!run.uncapped && !(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
 
   let sent = false;
   const send = async (): Promise<SentTranscript> => {
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
+    run.watch?.(attempts);
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
-      await recordAttempts(tx, ledger, attempts);
+      await recordAttempts(tx, ledger, attempts, run.source);
     };
     if (sent) return { result: { ok: false, reason: 'failed' }, record };
     sent = true;
@@ -659,6 +675,9 @@ export type PreparedSpeak = { ok: true; voice: PreparedVoice } | { ok: false; re
 // ledger, with the characters spoken as "tokens in". A line longer than VOICE_TEXT_MAX, or empty, is refused before
 // anything is taken. The caller passes only text the server holds; the audio is returned, never stored or logged.
 export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeakInput): Promise<PreparedSpeak> {
+  return speakRun(db, ctx, profileId, input, LIVE);
+}
+async function speakRun(db: Sql, ctx: AiContext, profileId: ProfileId, input: SpeakInput, run: Run): Promise<PreparedSpeak> {
   const env = process.env;
   const text = typeof input.text === 'string' ? input.text.trim() : '';
   if (!text || text.length > VOICE_TEXT_MAX || (input.language !== 'en' && input.language !== 'hi')) return { ok: false, reason: 'failed' };
@@ -673,12 +692,12 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
   const ledger = ledgerOf(ctx, profile, row);
   const { admitted: ready, skipped } = await gateLinks(db, usable);
   if (ready.length === 0) {
-    await recordAttempts(db, ledger, skipped);
+    await recordAttempts(db, ledger, skipped, run.source);
     return { ok: false, reason: 'failed' };
   }
 
   // 4. The family's daily voice allowance, in characters (C388), not the daily requests: a line takes its length.
-  if (!(await takeVoiceCap(db, ctx, profile, ready[0].link, text.length, testing))) return { ok: false, reason: 'cap_reached' };
+  if (!run.uncapped && !(await takeVoiceCap(db, ctx, profile, ready[0].link, text.length, testing))) return { ok: false, reason: 'cap_reached' };
 
   // 5. Nothing that names a child leaves the server.
   const clean = scrubRequest({ system: '', messages: [{ role: 'user', content: text }] }, { childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail }).messages[0].content;
@@ -687,12 +706,13 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
   const send = async (): Promise<SentVoice> => {
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
+    run.watch?.(attempts);
     let spoke = false;
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
-      await recordAttempts(tx, ledger, attempts);
+      await recordAttempts(tx, ledger, attempts, run.source);
       // Nothing spoken: the line's characters go back to the family's day.
-      if (!spoke && profile.audience === 'family') await giveVoiceCharsBack(tx, ctx.accountId, ctx.day, text.length);
+      if (!spoke && profile.audience === 'family' && !run.uncapped) await giveVoiceCharsBack(tx, ctx.accountId, ctx.day, text.length);
     };
     if (sent) return { result: { ok: false, reason: 'failed' }, record: async () => {} };
     sent = true;
@@ -738,6 +758,9 @@ export type PreparedRealtime = { ok: true; session: { send: () => Promise<SentRe
 // provider's connect details go back; the audio never touches this server. A profile with no provider answers
 // 'not_switched_on' before anything is taken, and the call then uses the chain.
 export async function prepareRealtimeToken(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi' }): Promise<PreparedRealtime> {
+  return realtimeRun(db, ctx, profileId, input, LIVE);
+}
+async function realtimeRun(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi' }, run: Run): Promise<PreparedRealtime> {
   const env = process.env;
   if (input.language !== 'en' && input.language !== 'hi') return { ok: false, reason: 'failed' };
   const testing = await testingModeOn(db);
@@ -749,18 +772,19 @@ export async function prepareRealtimeToken(db: Sql, ctx: AiContext, profileId: P
   const ledger = ledgerOf(ctx, profile, row);
   const { admitted: ready, skipped } = await gateLinks(db, usable);
   if (ready.length === 0) {
-    await recordAttempts(db, ledger, skipped);
+    await recordAttempts(db, ledger, skipped, run.source);
     return { ok: false, reason: 'failed' };
   }
-  if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
+  if (!run.uncapped && !(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
 
   let sent = false;
   const send = async (): Promise<SentRealtime> => {
     const usage: { link: Link; counts: Counts }[] = [];
     const attempts: Attempt[] = [];
+    run.watch?.(attempts);
     const record = async (tx: Sql) => {
       for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
-      await recordAttempts(tx, ledger, attempts);
+      await recordAttempts(tx, ledger, attempts, run.source);
     };
     if (sent) return { result: { ok: false, reason: 'failed' }, record: async () => {} };
     sent = true;
@@ -802,10 +826,15 @@ export type ModerationReady = { ok: true; moderation: PreparedModeration } | { o
 // on every check: the child's names and the parent's email are removed from the words before they leave. 6 (check, no
 // database) tries the chain in order; 7 (record) counts requests, failures and tokens only. The words are never stored.
 export async function prepareModeration(db: Sql, ctx: AiContext, replyProfile: ProfileId | null = null): Promise<ModerationReady> {
+  return moderationRun(db, ctx, replyProfile, LIVE);
+}
+async function moderationRun(db: Sql, ctx: AiContext, replyProfile: ProfileId | null, run: Run): Promise<ModerationReady> {
   const env = process.env;
-  // Testing mode skips the safety pre-check: nothing is sent, nothing is counted, every check reads as safe.
-  if (await testingModeOn(db)) return { ok: true, moderation: { check: async () => ({ safe: true, categories: [] }), record: async () => {} } };
-  const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env);
+  const testing = await testingModeOn(db);
+  // Testing mode skips the safety pre-check: nothing is sent, nothing is counted, every check reads as safe. Try it
+  // still calls the provider (the founder asked to see it answer), with the minors check read as testing reads it.
+  if (testing && run.source === 'live') return { ok: true, moderation: { check: async () => ({ safe: true, categories: [] }), record: async () => {} } };
+  const checked = await checkProfile(db, ctx, 'family.moderation', 'moderation', env, testing);
   if (!checked.ok) return checked;
   const { profile, row, chain, providers } = checked;
   const usable = await usableLinks(db, chain, providers, env, (p) => moderationAdapterFor(p, env));
@@ -813,12 +842,13 @@ export async function prepareModeration(db: Sql, ctx: AiContext, replyProfile: P
   const ledger = ledgerOf(ctx, profile, row);
   const { admitted: ready, skipped } = await gateLinks(db, usable);
   if (ready.length === 0) {
-    await recordAttempts(db, ledger, skipped);
+    await recordAttempts(db, ledger, skipped, run.source);
     return { ok: false, reason: 'failed' };
   }
 
   const usage: { link: Link; counts: Counts }[] = [];
   const attempts: Attempt[] = [...skipped];
+  run.watch?.(attempts);
   let checks = 0;
   const check = async (turns: { user: string; assistant?: string }): Promise<ModerationVerdict | null> => {
     checks += 1;
@@ -850,9 +880,10 @@ export async function prepareModeration(db: Sql, ctx: AiContext, replyProfile: P
   };
   const record = async (tx: Sql) => {
     for (const u of usage.splice(0)) await count(tx, ctx.day, profile.id, u.link, u.counts);
-    await recordAttempts(tx, ledger, attempts.splice(0));
-    // C390: how many checks this reply took, one row per reply, so the Quality Lab shows the cost of checking.
-    if (checks > 0) await tx.query(`select control.record_reply_checks($1::date, $2::text, $3::int)`, [ctx.day, replyProfile, checks]);
+    await recordAttempts(tx, ledger, attempts.splice(0), run.source);
+    // C390: how many checks this reply took, one row per reply, so the Quality Lab shows the cost of checking. Try it
+    // checks no reply, so it adds none.
+    if (checks > 0 && run.source === 'live') await tx.query(`select control.record_reply_checks($1::date, $2::text, $3::int)`, [ctx.day, replyProfile, checks]);
     checks = 0;
   };
   return { ok: true, moderation: { check, record } };
@@ -872,12 +903,18 @@ export type SmokeTopic = { board: string; classLevel: number; subject: string; c
 export type SmokeInputs = { photoJpegBase64: string; speech: readonly { mediaType: SpeechMediaType; base64: string }[]; topic: SmokeTopic };
 export type PreparedSmoke = { send: () => Promise<SmokeCheck[]>; record: (db: Sql) => Promise<void> };
 
-const SMOKE_QUESTION = 'What does a magnet attract?';
+// The JSON request, the photo request and the safety pair are Try it's inputs too (try-inputs.ts), word for word.
 export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInputs): Promise<PreparedSmoke> {
   const env = process.env;
   // The minors check as a child's call reads it now (testing mode included).
   const testing = await testingModeOn(db);
   const usage: { profile: ProfileId; link: Link; counts: Counts }[] = [];
+  // W17-B1: each vendor call is also one ledger row marked 'smoke', so Control sees it beside live use and Try it. Its
+  // circuit effect is 'none': the smoke test asks the primary alone, outside the route's walk, and moves no circuit, as
+  // before it was in the ledger. The transport probes stay counts only (they are not a feature's call).
+  const ledgered: { ledger: LedgerOf; attempt: Attempt }[] = [];
+  const ledger = (c: { profile: AiProfile; row: ProfileRow }, r: { link: Link; position: number }, result: { ok: true; tokensIn: number; tokensOut: number } | { ok: false; failure: string; status?: number }, began: number, limitMs: number) =>
+    ledgered.push({ ledger: ledgerOf(ctx, c.profile, c.row), attempt: { ...attemptOf(r, result, { streamed: false, elapsedMs: Date.now() - began, limitMs }).attempt, circuit: 'none' } });
   type Step = () => Promise<SmokeCheck[]>;
   const steps: Step[] = [];
   const refused = (check: string, profile: ProfileId, reason: string): Step => async () => [{ check, profile, ok: false, failure: reason }];
@@ -899,6 +936,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
         r = { ok: false, failure: 'network' };
       }
       usage.push({ profile, link, counts: r.ok ? { requests: 1, tokensIn: r.tokensIn, tokensOut: r.tokensOut } : { requests: 1, failures: 1 } });
+      ledger(c, ready[0], r, began, CALL_TIMEOUT_MS);
       return [{ check, profile, ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: judge(r.text, r.finish), start: r.text.replace(/\s+/g, ' ').trim().slice(0, 160) } : { failure: r.failure, status: r.status }) }];
     });
   };
@@ -912,7 +950,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
       return 'json: none readable';
     }
   };
-  const jsonAsk = { system: 'Answer with one JSON object only, on one line: {"type":"answer","word":"<one word>"}.', user: `${SMOKE_QUESTION} One word.` };
+  const jsonAsk = { system: TRY_JSON_ASK.system, user: TRY_JSON_ASK.user };
   // The instructions where the adapter puts them, then in a system message, to compare the two (C320).
   await textChain('family.resolver', 'text', jsonAsk, jsonNote);
   await textChain('family.resolver', 'text:system', { ...jsonAsk, instructionsAs: 'system' }, jsonNote);
@@ -947,7 +985,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
   await textChain(
     'family.homework',
     'photo',
-    { system: 'Read the question in the photo. Answer with one JSON object only: {"question":"<the question as printed>"}.', user: 'The photo.', images: [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] },
+    { system: TRY_PHOTO_ASK.system, user: TRY_PHOTO_ASK.user, images: [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] },
     (text) => (/magnet/i.test(text) ? 'read the printed question' : 'answered, but not with the printed question')
   );
 
@@ -968,6 +1006,7 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
             r = { ok: false, failure: 'network' };
           }
           usage.push({ profile: 'family.voice_input', link, counts: r.ok ? { requests: 1 } : { requests: 1, failures: 1 } });
+          ledger(voice, ready[0], r, began, SPEECH_TIMEOUT_MS);
           const check = `voice:${s.mediaType.slice(6)}`;
           return [{ check, profile: 'family.voice_input', ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: /magnet/i.test(r.text) ? 'heard the question' : 'heard something else' } : { failure: r.failure, status: r.status }) }];
         });
@@ -986,11 +1025,12 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
         const began = Date.now();
         let r: ModerationResult;
         try {
-          r = await adapter.moderate({ apiKey, model: link.model, user: SMOKE_QUESTION, assistant: 'Iron, nickel and cobalt.' });
+          r = await adapter.moderate({ apiKey, model: link.model, user: TRY_SAFETY_PAIR.user, assistant: TRY_SAFETY_PAIR.assistant });
         } catch {
           r = { ok: false, failure: 'network' };
         }
         usage.push({ profile: 'family.moderation', link, counts: r.ok ? { requests: 1, tokensIn: r.tokensIn, tokensOut: r.tokensOut } : { requests: 1, failures: 1 } });
+        ledger(guard, ready[0], r, began, MODERATION_TIMEOUT_MS);
         return [{ check: 'safety', profile: 'family.moderation', ok: r.ok, provider: link.provider, model: link.model, ms: Date.now() - began, ...(r.ok ? { note: `${r.safe ? 'safe' : 'unsafe'}; answered as ${r.form ?? 'unknown'}` } : { failure: r.failure, status: r.status }) }];
       });
     }
@@ -1000,11 +1040,130 @@ export async function prepareSmokeTest(db: Sql, ctx: AiContext, inputs: SmokeInp
     send: async () => (await Promise.all(steps.map((s) => s()))).flat(),
     record: async (tx) => {
       for (const u of usage.splice(0)) await count(tx, ctx.day, u.profile, u.link, u.counts);
+      for (const l of ledgered.splice(0)) await recordAttempts(tx, l.ledger, [l.attempt], 'smoke');
     },
   };
 }
 // `fullLength`: the profile's own output limit instead of the smoke test's short one.
 type AdapterRequestPart = { system: string; user: string; images?: ChatImage[]; instructionsAs?: 'system' | 'user'; fullLength?: boolean };
+
+// ---- Try it (W17-B1) ------------------------------------------------------------------------------------------------
+
+// Control → AI's "Try it": one live call of a feature as Control has set it now, on made-up inputs (try-inputs.ts, and
+// the smoke test's fixture photo and WAV recording), never a child's data. Unlike the smoke test, which asks the primary
+// alone, it runs the feature's own prepare function, so the route is walked exactly as a child's call walks it: the
+// minors check, the usable providers, the circuits, Primary then the backups, the deadlines. Run as TRY_IT it takes no
+// family's daily place, and its ledger rows say 'try_it' (the counts are added as for any call). Prepared in the
+// caller's transaction, sent with no database, recorded in the next. The answer goes back to Control's screen only,
+// never stored or logged; a realtime token is reported by its expiry alone and never leaves this function.
+export type TryInputs = { photoJpegBase64: string; speechWavBase64: string };
+export type TryClip = { language: 'en' | 'hi'; audioBase64: string; mediaType: string };
+export type TryOutput = { kind: 'text'; text: string } | { kind: 'json'; json: unknown } | { kind: 'audio'; clips: TryClip[] } | { kind: 'token'; expiresAt: string };
+// `backupUsed`: a place after Primary answered. `failure`: a refusal before anything was sent (not_switched_on,
+// not_cleared_for_minors, not_capable, failed), or the class of the last attempt that failed (auth_failed, rate_limited…).
+export type TryResult = { ok: boolean; provider: string | null; model: string | null; ms: number; backupUsed: boolean; output?: TryOutput; failure?: string };
+export type SentTry = { result: TryResult; record: (db: Sql) => Promise<void> };
+export type PreparedTry = { ok: true; send: () => Promise<SentTry> } | { ok: false; result: TryResult };
+
+// The same short answer the smoke test asks for: enough to see the feature answer and its format.
+const TRY_TEXT_TOKENS = 300;
+type TryLeg = () => Promise<{ output: TryOutput | null; record: (db: Sql) => Promise<void> }>;
+
+// A JSON feature's answer shown parsed (the first object in it); text that holds no readable object is shown as text.
+function textOutput(text: string, json: boolean): TryOutput {
+  if (json) {
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start >= 0 && end > start) {
+      try {
+        return { kind: 'json', json: JSON.parse(text.slice(start, end + 1)) };
+      } catch {
+        // Not readable as JSON: shown as the text it is, which is what the founder needs to see.
+      }
+    }
+  }
+  return { kind: 'text', text };
+}
+
+export async function prepareTryIt(db: Sql, ctx: AiContext, profileId: string, inputs: TryInputs): Promise<PreparedTry> {
+  const refusal = (failure: string): PreparedTry => ({ ok: false, result: { ok: false, provider: null, model: null, ms: 0, backupUsed: false, failure } });
+  const profile = profileById(profileId);
+  if (!profile) return refusal('profile');
+  const input = TRY_INPUTS[profile.id];
+  // Every attempt of every leg, as the prepare functions make them: which place answered, and how the last one failed.
+  const seen: (readonly Attempt[])[] = [];
+  const run: Run = { source: 'try_it', uncapped: true, watch: (a) => seen.push(a) };
+  const legs: TryLeg[] = [];
+
+  if (input.kind === 'text') {
+    const images: ChatImage[] | undefined = input.photo ? [{ mediaType: 'image/jpeg', base64: inputs.photoJpegBase64 }] : undefined;
+    const p = await textRun(db, ctx, profile.id, { system: input.system, messages: [{ role: 'user', content: input.user, ...(images ? { images } : {}) }], maxTokens: TRY_TEXT_TOKENS, ...(input.json ? { responseFormat: 'json' as const } : {}) }, run);
+    if (!p.ok) return refusal(p.reason);
+    legs.push(async () => {
+      const s = await p.text.send();
+      return { output: s.result.ok ? textOutput(s.result.text, input.json) : null, record: s.record };
+    });
+  } else if (input.kind === 'hear') {
+    const p = await transcriptionRun(db, ctx, profile.id, { audio: Buffer.from(inputs.speechWavBase64, 'base64'), mediaType: 'audio/wav', language: 'en' }, run);
+    if (!p.ok) return refusal(p.reason);
+    legs.push(async () => {
+      const s = await p.speech.send();
+      return { output: s.result.ok ? { kind: 'text', text: s.result.text } : null, record: s.record };
+    });
+  } else if (input.kind === 'speak') {
+    // Both lines prepared before either is sent, so a refusal sends nothing.
+    const prepared = [];
+    for (const line of TRY_SPOKEN) {
+      const p = await speakRun(db, ctx, profile.id, { text: line.text, language: line.language }, run);
+      if (!p.ok) return refusal(p.reason);
+      prepared.push({ line, voice: p.voice });
+    }
+    for (const { line, voice } of prepared)
+      legs.push(async () => {
+        const s = await voice.send();
+        const clip = s.result.ok ? { language: line.language, audioBase64: Buffer.from(s.result.audio).toString('base64'), mediaType: s.result.mediaType } : null;
+        return { output: clip ? { kind: 'audio', clips: [clip] } : null, record: s.record };
+      });
+  } else if (input.kind === 'safety') {
+    const p = await moderationRun(db, ctx, null, run);
+    if (!p.ok) return refusal(p.reason);
+    legs.push(async () => {
+      const verdict = await p.moderation.check(TRY_SAFETY_PAIR);
+      return { output: verdict ? { kind: 'json', json: verdict } : null, record: p.moderation.record };
+    });
+  } else {
+    const p = await realtimeRun(db, ctx, profile.id, { language: 'en' }, run);
+    if (!p.ok) return refusal(p.reason);
+    legs.push(async () => {
+      const s = await p.session.send();
+      // Only when it expires: the token and its connect address stay here.
+      return { output: s.result.ok ? { kind: 'token', expiresAt: new Date(s.result.grant.expiresAt).toISOString() } : null, record: s.record };
+    });
+  }
+
+  return {
+    ok: true,
+    send: async () => {
+      const began = Date.now();
+      const done = await Promise.all(legs.map((leg) => leg()));
+      const ms = Date.now() - began;
+      const attempts = seen.flat();
+      const answered = attempts.filter((a) => a.outcome === 'ok');
+      const failed = attempts.filter((a) => a.outcome !== 'ok');
+      const outputs = done.map((d) => d.output);
+      const ok = outputs.every((o) => o !== null);
+      const by = answered[0] ?? failed[failed.length - 1] ?? null;
+      const output: TryOutput | undefined = !ok ? undefined : outputs.length > 1 ? { kind: 'audio', clips: outputs.flatMap((o) => (o?.kind === 'audio' ? o.clips : [])) } : (outputs[0] ?? undefined);
+      const result: TryResult = { ok, provider: by?.provider ?? null, model: by?.model ?? null, ms, backupUsed: answered.some((a) => a.position > 0), ...(output ? { output } : { failure: failed[failed.length - 1]?.outcome ?? 'failed' }) };
+      return {
+        result,
+        record: async (tx) => {
+          for (const d of done) await d.record(tx);
+        },
+      };
+    },
+  };
+}
 
 // The three steps on one client: for a caller with nothing to do between them.
 export async function streamText(db: Sql, ctx: AiContext, profileId: ProfileId, request: AiRequest, onDelta: (text: string) => void = () => {}): Promise<AiResult> {

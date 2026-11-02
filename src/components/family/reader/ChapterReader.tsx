@@ -370,7 +370,7 @@ export function ChapterReader({ chapterKey, lang, blocks, ids, script, start, re
         </section>
       )}
       {tutor && doubt && (
-        <TutorDrawer open onClose={() => setDoubt(null)} w={w} subject={tutor.subject} tone={tone} reader={doubt} voice={tutor.voice} files={tutor.files} homework={tutor.homework} />
+        <TutorDrawer open onClose={() => setDoubt(null)} w={w} subject={tutor.subject} tone={tone} reader={doubt} voice={tutor.voice} files={tutor.files} homework={tutor.homework} serverVoice={serverVoice && !preview} />
       )}
     </div>
   );

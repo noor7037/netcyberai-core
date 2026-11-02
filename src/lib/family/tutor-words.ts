@@ -14,6 +14,8 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.chat.feed', 'fam.chat.kept', 'fam.chat.moved', 'fam.chat.full',
   // W16-B1: "Done for now" ends the session and its quick quiz is made.
   'fam.quiz.done', 'fam.quiz.doneThanks', 'fam.quiz.doneNoQuiz',
+  // W17-B2: read a tutor's answer aloud, and which voice reads it.
+  'fam.tutor.readAloud', 'fam.tutor.stopAloud', 'fam.voiceOut.server', 'fam.voiceOut.phone',
   ...SUBJECT_IDS.map((s) => `fam.subject.${s}` as MessageKey),
 ];
 

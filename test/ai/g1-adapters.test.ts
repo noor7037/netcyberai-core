@@ -49,19 +49,19 @@ afterEach(() => {
 const seen = (...v: unknown[]) => JSON.stringify(v);
 
 describe('capabilities: declared by each adapter', () => {
-  it('every adapter carries a typed record of all six, and nothing declares speech out (tts) yet', () => {
+  it('every adapter carries a typed record of every capability', () => {
     for (const a of textAdapters()) {
       expect(Object.keys(a.capabilities).sort(), a.providerId).toEqual([...CAPABILITIES].sort());
       expect(a.capabilities.text, a.providerId).toBe(true);
       expect(a.capabilities.tts, a.providerId).toBe(false);
       expect(Object.isFrozen(a.capabilities)).toBe(true);
     }
-    expect(vertexAiAdapter.capabilities).toEqual({ text: true, vision: true, stream: true, json: true, stt: false, tts: false, realtime: false });
-    expect(openaiCompatibleAdapter.capabilities).toEqual({ text: true, vision: false, stream: true, json: false, stt: false, tts: false, realtime: false });
+    expect(vertexAiAdapter.capabilities).toEqual({ text: true, vision: true, stream: true, json: true, stt: false, tts: false, sts: false, realtime: false });
+    expect(openaiCompatibleAdapter.capabilities).toEqual({ text: true, vision: false, stream: true, json: false, stt: false, tts: false, sts: false, realtime: false });
   });
 
   it('a provider shows what its adapters declare between them', () => {
-    expect(providerCapabilities('workers-ai')).toEqual({ text: true, vision: true, stream: false, json: false, stt: true, tts: false, realtime: false });
+    expect(providerCapabilities('workers-ai')).toEqual({ text: true, vision: true, stream: false, json: false, stt: true, tts: false, sts: false, realtime: false });
     expect(providerCapabilities('anthropic')).toMatchObject({ vision: true, json: false, stt: false });
     expect(providerCapabilities('youtube')).toBeNull();
   });
@@ -143,7 +143,7 @@ describe('the OpenAI-compatible adapter, at the founder’s address', () => {
     expect(url.href).toBe(`${BASE}/chat/completions`);
     expect(to).toEqual({ address: '8.8.4.4', family: 4 });
     expect(init.headers.authorization).toBe(`Bearer ${COMPAT_KEY}`);
-    const body = JSON.parse(init.body!);
+    const body = JSON.parse(String(init.body));
     // No JSON mode is declared, so none is sent: the instructions ask for it.
     expect(body.response_format).toBeUndefined();
     expect(body.messages[0].content).toContain('one JSON object');

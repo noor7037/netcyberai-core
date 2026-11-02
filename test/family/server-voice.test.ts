@@ -12,7 +12,12 @@ import { LIVE_SENTENCE_MAX, LIVE_SENTENCE_MIN, LIVE_VERBATIM, sentenceBuffer } f
 import { LIVE_KEYS } from '@/lib/family/english/words';
 import { READER_KEYS } from '@/lib/family/reader-words';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
-import { openLine, sealLine } from '@/lib/family/voice-out';
+import { openLine, sealLine, speakAsk } from '@/lib/family/voice-out';
+import { KeptAnswer } from '@/components/family/tutor/TutorWindow';
+import { TUTOR_KEYS } from '@/lib/family/tutor-words';
+import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
+import { ANSWER_SPOKEN_MAX, spokenAnswer } from '@/lib/family/call';
+import type { Block } from '@/lib/family/blocks';
 import { familyWords } from '@/lib/family/words';
 
 // C386 (Wave 4 slice 2): the server voice. On the real migrations (PGlite) and the real AI platform, with the vendors
@@ -323,6 +328,90 @@ describe('live English: streamed, checked sentence by sentence, spoken by the se
     const off = (await liveGet()).body;
     const html = renderToStaticMarkup(h(LivePractice, { w: familyWords('en', [...LIVE_KEYS, ...VOICE_KEYS, 'fam.english.consentButton']), initial: { state: off } }));
     expect(html).toContain('Voice: this phone’s voice');
+  });
+});
+
+describe('a tutor’s answer read aloud (W17-B2)', () => {
+  const TITLE = 'TITLE never spoken';
+  const IDEA = 'Equal fractions name the same part of a whole.';
+  const PARA = 'Half of a pizza and two quarters of it are the same amount.';
+  const EXAMPLE = 'So one half equals two quarters.';
+  const explanation = { type: 'explanation', title: TITLE, idea: IDEA, paragraphs: [PARA], example: EXAMPLE, steps: ['STEP never spoken', 'STEP two never spoken'], terms: [] } as Block;
+  const points = { type: 'key_points', points: ['POINT never spoken'] } as Block;
+  let tutorMsg = '';
+  let hindiMsg = '';
+  let childMsg = '';
+  let longMsg = '';
+  const conv = async (account: string, child: string) => String((await q(`insert into family.tutor_conversations (account_id, child_id, subject, created_at, last_at) values ($1, $2, 'mathematics', now(), now()) returning conversation_id`, [account, child]))[0].conversation_id);
+  const message = async (c: string, account: string, child: string, role: 'child' | 'tutor', body: string, blocks: Block[], lang = 'en') =>
+    String((await q(`insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, blocks, lang, created_at) values ($1, $2, $3, $4, $5, $6::jsonb, $7, clock_timestamp()) returning message_id`, [c, account, child, role, role === 'child' ? body : null, role === 'tutor' ? JSON.stringify(blocks) : null, lang]))[0].message_id);
+
+  beforeAll(async () => {
+    await voiceOn();
+    const mine = await conv(ACCOUNT, CHILD);
+    childMsg = await message(mine, ACCOUNT, CHILD, 'child', 'What are equal fractions? CHILD never spoken', []);
+    tutorMsg = await message(mine, ACCOUNT, CHILD, 'tutor', '', [explanation, points]);
+    hindiMsg = await message(mine, ACCOUNT, CHILD, 'tutor', '', [{ ...explanation, idea: 'बराबर भिन्न पूरे का एक ही हिस्सा बताते हैं।', paragraphs: [], example: 'आधा और दो चौथाई बराबर हैं।' } as Block], 'hi');
+    const sentence = 'This is one whole sentence that is fairly long to fill the space.';
+    longMsg = await message(mine, ACCOUNT, CHILD, 'tutor', '', [{ ...explanation, idea: sentence, paragraphs: [Array.from({ length: 15 }, () => sentence).join(' '), Array.from({ length: 5 }, () => sentence).join(' ')], example: sentence } as Block]);
+  });
+
+  it('the request is checked for shape: a message id that is a uuid', () => {
+    expect(speakAsk({ kind: 'tutor_answer', messageId: tutorMsg })).toEqual({ kind: 'tutor_answer', messageId: tutorMsg });
+    expect(speakAsk({ kind: 'tutor_answer', messageId: 'not-a-uuid' })).toBeNull();
+    expect(speakAsk({ kind: 'tutor_answer' })).toBeNull();
+  });
+
+  it('speaks the teaching text only: no title, no step or points, no question; and the answer’s own language', async () => {
+    const r = await speak({ kind: 'tutor_answer', messageId: tutorMsg });
+    expect(r.status).toBe(200);
+    expect(spoken[spoken.length - 1]).toBe(`${IDEA} ${PARA} ${EXAMPLE}`);
+    expect(spoken[spoken.length - 1]).not.toMatch(/never spoken/);
+    const requests = vi.mocked(standInVoiceAdapter.synthesize).mock.calls;
+    expect(requests[requests.length - 1][0].language).toBe('en');
+    expect((await speak({ kind: 'tutor_answer', messageId: hindiMsg })).status).toBe(200);
+    expect(vi.mocked(standInVoiceAdapter.synthesize).mock.calls.at(-1)![0].language).toBe('hi');
+  });
+
+  it('is cut at a whole sentence within the voice limit', async () => {
+    expect((await speak({ kind: 'tutor_answer', messageId: longMsg })).status).toBe(200);
+    const said = spoken[spoken.length - 1];
+    expect(said.length).toBeLessThanOrEqual(600);
+    expect(said.endsWith('space.')).toBe(true);
+  });
+
+  it('refuses the child’s own question, a sibling’s view, another family and an unknown message (404, nothing spoken)', async () => {
+    const n = spoken.length;
+    expect((await speak({ kind: 'tutor_answer', messageId: childMsg })).status).toBe(404);
+    expect((await speak({ kind: 'tutor_answer', messageId: tutorMsg }, ACCOUNT, SIBLING)).status).toBe(404);
+    expect((await speak({ kind: 'tutor_answer', messageId: tutorMsg }, OTHER, OTHER_CHILD)).status).toBe(404);
+    expect((await speak({ kind: 'tutor_answer', messageId: 'f9e20000-0000-4000-8000-0000000000ff' })).status).toBe(404);
+    expect((await speak({ kind: 'tutor_answer', messageId: 'nope' })).status).toBe(400);
+    expect(spoken.length).toBe(n);
+  });
+
+  it('follows the Study gate: without the parent’s yes to learning it is refused', async () => {
+    await q(`update family.consents set granted = false where account_id = $1 and purpose = 'study_core'`, [ACCOUNT]);
+    expect((await speak({ kind: 'tutor_answer', messageId: tutorMsg })).status).toBe(403);
+    await q(`update family.consents set granted = true where account_id = $1 and purpose = 'study_core'`, [ACCOUNT]);
+  });
+
+  it('spokenAnswer reads the same words on the phone (pure), within the voice’s own limit', async () => {
+    expect(ANSWER_SPOKEN_MAX).toBe((await import('@/lib/ai/adapters/types')).VOICE_TEXT_MAX);
+    expect(spokenAnswer([explanation, points], 600)).toBe(`${IDEA} ${PARA} ${EXAMPLE}`);
+    expect(spokenAnswer([points], 600)).toBe('');
+  });
+
+  it('a kept tutor turn draws the speaker button with its label and message id; a picture-only answer has none', () => {
+    const w = familyWords('en', [...UNDERSTAND_KEYS, ...TUTOR_KEYS]);
+    const html = renderToStaticMarkup(h(KeptAnswer, { b: [explanation], w, tone: 'mathematics', lang: 'en', speak: { id: tutorMsg, serverVoice: true } }));
+    expect(html).toContain(`data-answer-speaker="${tutorMsg}"`);
+    expect(html).toContain('aria-label="Read this aloud"');
+    expect(html).toContain('data-voice-in-use="server"');
+    expect(html).toContain('h-11');
+    const phone = renderToStaticMarkup(h(KeptAnswer, { b: [explanation], w, tone: 'mathematics', lang: 'en', speak: { id: tutorMsg, serverVoice: false } }));
+    expect(phone).toContain('data-voice-in-use="phone"');
+    expect(renderToStaticMarkup(h(KeptAnswer, { b: [points], w, tone: 'mathematics', lang: 'en', speak: { id: tutorMsg, serverVoice: true } }))).not.toContain('data-answer-speaker');
   });
 });
 

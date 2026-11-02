@@ -31,12 +31,12 @@ const MODEL = {
     { kind: 'mcq', question: 'Which gas do leaves take in?', options: ['Oxygen', 'Carbon dioxide', 'Helium'], answer: 1, why: 'Leaves take in carbon dioxide.' },
     { kind: 'mcq', question: 'Where is food made in a plant?', options: ['Roots', 'Leaves', 'Seeds'], answer: 1, why: 'The leaves hold the green colour that works with sunlight.' },
     { kind: 'mcq', question: 'What is the green colour in leaves called?', options: ['Chlorophyll', 'Starch', 'Water'], answer: 0, why: 'Chlorophyll is the green colour.' },
-    { kind: 'mcq', question: 'Why does a plant in a dark cupboard turn pale?', options: ['Too much water', 'No sunlight to make food', 'Too much air'], answer: 1, why: 'Without sunlight it cannot make food.' },
-    // A written item is dropped (2 Nov): every item of the quiz marks itself.
+    // A written item comes back (W17-B3): the AI marks it when the quiz is sent.
     { kind: 'written', question: 'Say in a sentence why a plant in a dark cupboard turns pale.', points: ['It gets no sunlight to make food'] },
   ],
 };
-const RIGHT = [0, 1, 1, 0, 1];
+const RIGHT = [0, 1, 1, 0];
+const MARKS = (verdict: string, note: string) => JSON.stringify({ items: [{ id: 'q5', verdict, note }] });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
@@ -224,25 +224,36 @@ describe('the job', () => {
     const read = (await fam((c) => quiz.loadQuiz(c, who, quizId)))!;
     const pub = quiz.publicQuiz(read, who);
     expect(JSON.stringify(pub)).not.toMatch(/"answer"|"why"|Plants use sunlight to make food/);
-    expect(pub.items.filter((i) => i.kind === 'mcq')).toHaveLength(5);
-    expect(pub.items.filter((i) => i.kind === 'written')).toHaveLength(0);
+    expect(pub.items.filter((i) => i.kind === 'mcq')).toHaveLength(4);
+    expect(pub.items.filter((i) => i.kind === 'written')).toHaveLength(1);
 
     // Ready before any take.
     expect(await fam((c) => quiz.quizCards(c, who, today))).toMatchObject([{ quizId, state: 'ready', questions: 5, score: null }]);
 
-    // Four right, one wrong.
+    // Three right, one wrong, one written (marked "partly" by the AI: scripted as the second reply).
     const mcq = pub.items.filter((i) => i.kind === 'mcq') as { id: string; token: string }[];
-    const answers = mcq.map((i, n) => ({ itemId: i.id, token: i.token, choice: n === 3 ? 2 : RIGHT[n] }));
+    const answers = [...mcq.map((i, n) => ({ itemId: i.id, token: i.token, choice: n === 3 ? 2 : RIGHT[n] })), { itemId: pub.items[4].id, text: 'It gets no sunlight.' }];
+    replies.push(() => openaiOk([MARKS('partly', 'Right that it gets no sunlight. A full answer adds that it cannot make food.')]));
+    calls = [];
     const sent = await fam((c) => quiz.submitQuiz(c, who, quizId, answers));
     expect(sent.ok).toBe(true);
     if (!sent.ok) return;
-    expect(sent.result).toMatchObject({ mcqTotal: 5, mcqCorrect: 4 });
-    expect(sent.result.items.map((i) => i.correct)).toEqual([true, true, true, false, true]);
+    // The choice score counts choice items only; the written item is not in it, whatever its verdict.
+    expect(sent.result).toMatchObject({ mcqTotal: 4, mcqCorrect: 3 });
+    expect(sent.result.items.map((i) => i.correct)).toEqual([true, true, true, false, false]);
     expect(sent.result.items[3].why).toBe('Chlorophyll is the green colour.');
-    expect(await q(`select block_id, chapter_key, mcq_total, mcq_correct from family.chapter_test_attempts where child_id = $1`, [CHILD])).toEqual([{ block_id: quizId, chapter_key: 'session-quiz', mcq_total: 5, mcq_correct: 4 }]);
+    expect(sent.result.items[4]).toMatchObject({ kind: 'written', correct: false, verdict: 'partly', note: 'Right that it gets no sunlight. A full answer adds that it cannot make food.' });
+    // One marking call, through the gateway: the child's words and the points go, no name and no answer key of the choice items.
+    expect(calls).toHaveLength(1);
+    expect(calls[0].body).toMatch(/It gets no sunlight\./);
+    expect(calls[0].body).toMatch(/Points of a good answer/);
+    expect(calls[0].body).not.toMatch(/Asha|Ravi|quiz\.a@example\.org|Chlorophyll is the green colour/);
+    expect(await q(`select block_id, chapter_key, mcq_total, mcq_correct from family.chapter_test_attempts where child_id = $1`, [CHILD])).toEqual([{ block_id: quizId, chapter_key: 'session-quiz', mcq_total: 4, mcq_correct: 3 }]);
+    expect(await q(`select item_id, kind, correct, body, note from family.chapter_test_answers where kind = 'written'`)).toEqual([{ item_id: 'q5', kind: 'written', correct: false, body: 'It gets no sunlight.', note: 'Right that it gets no sunlight. A full answer adds that it cannot make food.' }]);
+    expect(await q(`select item_id from family.chapter_test_answers where kind = 'mcq' and note is not null`)).toHaveLength(0);
 
-    // Taken: the card shows the score, with the next review in view; another child's token is refused.
-    expect(await fam((c) => quiz.quizCards(c, who, today))).toMatchObject([{ state: 'scored', score: { correct: 4, total: 5 } }]);
+    // Taken: the card shows the score (choice items only), with the next review in view; another child's token is refused.
+    expect(await fam((c) => quiz.quizCards(c, who, today))).toMatchObject([{ state: 'scored', score: { correct: 3, total: 4 } }]);
     const stolen = await fam((c) => quiz.submitQuiz(c, { accountId: A, childId: SIBLING }, quizId, answers));
     expect(stolen).toEqual({ ok: false, reason: 'not_found' });
     // A token for one quiz is not another's: a take with the wrong ids is refused whole.
@@ -261,6 +272,70 @@ describe('the job', () => {
     // A review due today is a card that says so, from the stored dates and the attempts.
     expect(await fam((c) => quiz.quizCards(c, who, dueOn[0]))).toMatchObject([{ state: 'review', questions: 5 }]);
     expect(await fam((c) => quiz.quizCards(c, who, today, { subject: 'mathematics' }))).toEqual([]);
+  });
+
+  it('a marker reply that is not JSON, or that fails the strict read, leaves the written item unmarked and the quiz still scored; nothing is retried', async () => {
+    const quiz = { ...(await import('@/lib/family/quiz')), ...(await import('@/lib/family/quiz-play')) };
+    const who = { accountId: A, childId: CHILD };
+    const pub = quiz.publicQuiz((await fam((c) => quiz.loadQuiz(c, who, quizId)))!, who);
+    const mcq = pub.items.filter((i) => i.kind === 'mcq') as { id: string; token: string }[];
+    const take = (text: string) => [...mcq.map((i, n) => ({ itemId: i.id, token: i.token, choice: RIGHT[n] })), { itemId: 'q5', text }];
+    const replies_ = [
+      'Sorry, I cannot mark that.',
+      MARKS('excellent', 'A verdict that is not one of the three.'),
+      MARKS('right', 'x'.repeat(301)),
+      JSON.stringify({ items: [{ id: 'q1', verdict: 'right', note: 'An id that is not a written one.' }] }),
+    ];
+    for (const reply of replies_) {
+      replies.push(() => openaiOk([reply]));
+      calls = [];
+      const sent = await fam((c) => quiz.submitQuiz(c, who, quizId, take('It gets no sunlight, so no food.')));
+      expect(sent.ok).toBe(true);
+      if (!sent.ok) return;
+      // Scored as always; the written item says it was not marked and carries no note and no correct.
+      expect(sent.result).toMatchObject({ mcqTotal: 4, mcqCorrect: 4 });
+      expect(sent.result.items[4]).toEqual({ id: 'q5', kind: 'written', verdict: 'unmarked' });
+      expect(calls).toHaveLength(1);
+    }
+    expect(await q(`select correct, note from family.chapter_test_answers where kind = 'written' and body = 'It gets no sunlight, so no food.'`)).toEqual(Array(4).fill({ correct: null, note: null }));
+    // A call that fails outright (the provider answers 500) is the same: no retry, a scored quiz.
+    replies.push(() => new Response('{"error":"boom"}', { status: 500 }));
+    calls = [];
+    const down = await fam((c) => quiz.submitQuiz(c, who, quizId, take('Another try.')));
+    expect(down.ok && down.result.items[4]).toMatchObject({ verdict: 'unmarked' });
+    expect(down.ok && down.result.mcqCorrect).toBe(4);
+    expect(calls.length).toBeGreaterThanOrEqual(1);
+    // A quiz sent with no written answer asks the marker nothing.
+    calls = [];
+    const choiceOnly = await fam((c) => quiz.submitQuiz(c, who, quizId, mcq.map((i, n) => ({ itemId: i.id, token: i.token, choice: RIGHT[n] }))));
+    expect(choiceOnly.ok && choiceOnly.result.items.map((i) => i.kind)).toEqual(['mcq', 'mcq', 'mcq', 'mcq']);
+    expect(calls).toHaveLength(0);
+  });
+
+  it('the marker’s reply is read strictly: ids, verdicts, a note of 1 to 300 plain characters; markup is taken out', async () => {
+    const { parseMarks } = await import('@/lib/family/quiz-play');
+    const ok = parseMarks(`Here: ${MARKS('right', 'Well **done**. <b>It</b> needs no sunlight? No: it needs it.')}`, ['q5']);
+    expect(ok?.get('q5')).toEqual({ verdict: 'right', note: 'Well done. It needs no sunlight? No: it needs it.' });
+    expect(parseMarks(MARKS('wrong', 'x'.repeat(300)), ['q5'])?.get('q5')?.verdict).toBe('wrong');
+    expect(parseMarks(MARKS('wrong', 'x'.repeat(301)), ['q5'])).toBeNull();
+    expect(parseMarks(MARKS('wrong', '   '), ['q5'])).toBeNull();
+    expect(parseMarks(MARKS('Right', 'n'), ['q5'])).toBeNull();
+    expect(parseMarks(MARKS('right', 'n'), ['q4'])).toBeNull();
+    expect(parseMarks(JSON.stringify({ items: [{ id: 'q5', verdict: 'right', note: 'a' }, { id: 'q5', verdict: 'wrong', note: 'b' }] }), ['q5', 'q4'])).toBeNull();
+    expect(parseMarks(JSON.stringify({ items: [{ id: 'q5', verdict: 'right', note: 'a', score: 9 }] }), ['q5', 'q4'])?.size).toBe(1);
+    expect(parseMarks('{"items":[]}', ['q5'])).toBeNull();
+    expect(parseMarks('no json', ['q5'])).toBeNull();
+  });
+
+  it('the table lets a written row carry a mark and a note and nothing else changes: a choice or photo row has no note, a photo has no mark', async () => {
+    const attempt = String((await q(`select attempt_id from family.chapter_test_attempts where child_id = $1 order by submitted_at limit 1`, [CHILD]))[0].attempt_id);
+    const row = (kind: string, cols: string) => q(`insert into family.chapter_test_answers (attempt_id, account_id, child_id, item_id, kind, question, ${cols}) select $1, $2, $3, $4, $5, 'q', ${cols.split(', ').map((c) => ({ choice: '1', correct: 'true', body: "'b'", rubric: `'["r"]'::jsonb`, note: "'n'" })[c] ?? 'null').join(', ')}`, [attempt, A, CHILD, `t-${kind}-${cols.length}`, kind]);
+    await row('written', 'body, rubric, correct, note');
+    await expect(row('written', 'body, rubric, correct, note, choice')).rejects.toThrow(/chapter_test_answers_check/);
+    await expect(row('mcq', 'choice, correct, note')).rejects.toThrow(/chapter_test_answers_note_kind_check/);
+    await expect(row('photo', 'rubric, correct')).rejects.toThrow(/chapter_test_answers_check/);
+    await expect(q(`update family.chapter_test_answers set note = '' where kind = 'written' and note = 'n'`)).rejects.toThrow(/note_check/);
+    await expect(q(`update family.chapter_test_answers set note = $1 where kind = 'written' and note = 'n'`, ['y'.repeat(301)])).rejects.toThrow(/note_check/);
   });
 
   it('the log line and the stored attempt hold no child’s words; the payload was ids and a day', async () => {
@@ -299,11 +374,12 @@ describe('the job', () => {
     expect(parseQuiz(JSON.stringify(MODEL), 'hi')).toBeNull();
     const twin = { ...MODEL, items: [{ ...MODEL.items[0], options: ['Sunlight', 'sunlight', 'Salt'] }, ...MODEL.items.slice(1)] };
     expect(parseQuiz(JSON.stringify(twin), 'en')?.items).toHaveLength(4);
-    // No written item at all (every item marks itself), and five items in all.
-    const many = { items: [MODEL.items[5], ...MODEL.items, MODEL.items[5], MODEL.items[0]] };
+    // At most two written items, and five items in all.
+    const many = { items: [...MODEL.items, MODEL.items[4], MODEL.items[4], MODEL.items[0]] };
     const kept = parseQuiz(JSON.stringify(many), 'en')!;
     expect(kept.items).toHaveLength(5);
-    expect(kept.items.filter((i) => i.kind === 'written')).toHaveLength(0);
+    expect(kept.items.filter((i) => i.kind === 'written').length).toBeLessThanOrEqual(2);
+    expect(parseQuiz(JSON.stringify({ items: [MODEL.items[4], MODEL.items[4], MODEL.items[4], MODEL.items[0], MODEL.items[1], MODEL.items[2]] }), 'en')!.items.filter((i) => i.kind === 'written')).toHaveLength(2);
 
     const stuck = await session(A, SIBLING, 12);
     const stuckDay = String((await q(`select to_char((last_at at time zone 'Asia/Kolkata')::date, 'YYYY-MM-DD') as d from family.tutor_conversations where conversation_id = $1`, [stuck]))[0].d);

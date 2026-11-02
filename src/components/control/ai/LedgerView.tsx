@@ -4,6 +4,7 @@ import { InfoTip } from "@/components/app-ui/InfoTip";
 import { StatusPill } from "@/components/app-ui/StatusPill";
 import { groupRequests, summariseByProvider } from "@/lib/ai/ledger-view";
 import type { LedgerAttempt } from "@/lib/contracts/ai-gateway";
+import type { MessageKey } from "@/lib/i18n";
 import {
   CARD,
   INNER,
@@ -122,6 +123,12 @@ export function LedgerView({ ledger, t }: { ledger: LedgerAttempt[]; t: T }) {
                         {a.providerId} · {a.model}
                       </span>
                       <span>· {outcomeWords(t, a.outcome)}</span>
+                      {/* W17-B1: a made-up call (the smoke test or Try it), not a live request. */}
+                      {(a.source === "try_it" || a.source === "smoke") && (
+                        <span data-ai-attempt-source={a.source} className="text-xs font-semibold text-slate/80">
+                          · {t(`control.ai.ledger.source.${a.source}` as MessageKey)}
+                        </span>
+                      )}
                       {a.latencyMs !== null && (
                         <span>· {duration(t, a.latencyMs)}</span>
                       )}

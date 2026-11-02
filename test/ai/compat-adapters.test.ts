@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { anthropicAdapter } from '@/lib/ai/adapters/anthropic';
 import { geminiAdapter } from '@/lib/ai/adapters/gemini';
+import { geminiSpeechAdapter } from '@/lib/ai/adapters/gemini-audio';
 import { openaiAdapter, openaiSpeechAdapter } from '@/lib/ai/adapters/openai';
 import { splitWorkersKey, workersAiAdapter, workersAiSpeechAdapter, workersModelLooksRight } from '@/lib/ai/adapters/workers-ai';
 import { adapterFor, speechAdapterFor } from '@/lib/ai/adapters';
@@ -56,8 +57,8 @@ describe('what each vendor’s terms say (C368: a note beside Control’s switch
     expect(capableAdapter('copilot.draft', 'workers-ai')?.capability).toBe('text');
     expect(adapterFor('gemini')).toBe(geminiAdapter);
     expect(capableAdapter('exams.read_pages', 'gemini')).toBe(geminiAdapter);
-    // Gemini has no speech to text here: it cannot be chosen for voice input.
-    expect([speechAdapterFor('gemini'), capableAdapter('family.voice_input', 'gemini')]).toEqual([null, null]);
+    // W17-A4: Gemini hears (wav and ogg only; webm and mp4 answer 415 so the chain moves on), so voice input can choose it.
+    expect([speechAdapterFor('gemini'), capableAdapter('family.voice_input', 'gemini')]).toEqual([geminiSpeechAdapter, geminiSpeechAdapter]);
   });
 });
 

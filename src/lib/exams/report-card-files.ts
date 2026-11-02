@@ -7,6 +7,7 @@ import { t, type Lang } from '@/lib/i18n';
 import { PermanentJobError, type JobHandler, type Sql } from '@/lib/jobs/types';
 import { pdfFileName } from '@/lib/marking/checked-pdf-shape';
 import { textPdf } from '@/lib/pdf/text-pdf';
+import { needsUnicode, unicodePdf } from '@/lib/pdf/unicode-pdf';
 import type { FileStorage } from '@/lib/storage/file-storage';
 import type { Actor } from './exams';
 import { roundPercent } from './grading';
@@ -76,7 +77,10 @@ export async function makeReportCardFile(db: Sql, storage: Pick<FileStorage, 'pu
   const r = await reportCards(db, { schoolId, userId: NO_PERSON, role: 'principal' }, p.examId, p.classId, p.studentId);
   if (!r.ok || !r.set.cards[0]) return 'superseded';
   const card = r.set.cards[0];
-  const bytes = textPdf([reportCardBlocks(r.set, card, FILE_LANG)], { title: `${r.set.exam.name} ${r.set.className}` });
+  // A card with a Hindi name, subject or remark is drawn with a shaping engine and an embedded font; a Latin one keeps the small writer.
+  const docs = [reportCardBlocks(r.set, card, FILE_LANG)];
+  const title = `${r.set.exam.name} ${r.set.className}`;
+  const bytes = needsUnicode(docs) ? await unicodePdf(docs, { title }) : textPdf(docs, { title });
   if (bytes.length > MAX_BYTES) throw new PermanentJobError(`${REPORT_CARD_JOB}: the card is too large`);
   const madeBy = (await db.query(`select published_by from exam_publications where school_id = $1 and publication_id = $2`, [schoolId, p.publicationId])).rows[0]?.published_by as string | undefined;
   if (!madeBy) return 'superseded';

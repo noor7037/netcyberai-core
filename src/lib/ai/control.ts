@@ -1,7 +1,7 @@
 import { writeAuditLog } from '@/lib/audit/log';
 import type { Sql } from '@/lib/jobs/types';
 import { indiaDate } from '@/lib/time/india';
-import { adapterFor, keyedProviderFor, providerCapabilities, speechAdapterFor, moderationAdapterFor, voiceAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type Capabilities, type Capability, type TermsNote } from './adapters';
+import { adapterFor, keyedProviderFor, nonTextProviderIds, type KeyedProvider, providerCapabilities, speechAdapterFor, moderationAdapterFor, voiceAdapterFor, standInAllowed, textAdapters, STAND_IN_PROVIDER, type Capabilities, type Capability, type TermsNote } from './adapters';
 import { checkEndpoint, checkEndpointShape, type EndpointError } from './adapters/endpoint-guard';
 import { vertexModelLooksRight } from './adapters/vertex-ai';
 import { cleanWorkersAccount, cleanWorkersToken, workersAccountLooksRight, workersModelLooksRight, workersTokenLooksRight } from './adapters/workers-ai';
@@ -50,6 +50,8 @@ export type ChangeError =
   | 'in_use'
   | 'profile'
   | 'model'
+  // W17: a Google Cloud voice that is not a voice name even without its language (a voice has a letter or number after its family).
+  | 'voice_model'
   | 'prompt_version'
   | 'incomplete'
   | 'not_cleared_for_minors'
@@ -83,7 +85,7 @@ export type AiOverview = {
     needsKey: boolean;
     // 'video': a content provider (the video finder's YouTube, M2-5): a key and a test, never a profile's choice.
     // 'text_to_speech': a voice-only provider (Google Cloud Text-to-Speech, C386).
-    capability: 'text' | 'video' | 'text_to_speech' | null;
+    capability: KeyedProvider['capability'] | null;
     // What the provider's adapters declare (G1, C369), shown beside it; null for a content provider or none.
     capabilities: Capabilities | null;
     // The founder's address, for the adapter whose address is his (G1); needsBaseUrl says the box is shown.
@@ -215,7 +217,7 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
         capabilities: keyed?.capability === 'video' ? null : providerCapabilities(r.provider_id),
         needsBaseUrl: text?.needsBaseUrl === true,
         baseUrl: r.base_url ?? null,
-        testable: keyed?.capability === 'video' || typeof text?.testConnection === 'function' || typeof voice?.testConnection === 'function',
+        testable: keyed?.capability === 'video' || typeof text?.testConnection === 'function' || typeof voice?.testConnection === 'function' || typeof speechAdapterFor(r.provider_id)?.testConnection === 'function',
         termsNote: adapter?.termsNote ?? null,
         clearedForMinors: r.cleared_for_minors === true,
         termsUrl: r.cleared_terms_url ?? null,
@@ -270,8 +272,9 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
 // The adapters the code has, for the screen's choices (the stand-in only where it may run): every text provider and a
 // voice-only one (C386). Each feature's card offers only the providers whose adapters declare what it needs.
 export function providerChoices(): string[] {
-  const voiceOnly = ['google_tts'].filter((p) => voiceAdapterFor(p) !== null && adapterFor(p) === null);
-  return [...textAdapters().map((a) => a.providerId), ...voiceOnly, ...(standInAllowed() ? [STAND_IN_PROVIDER] : [])];
+  // W17: every provider with a voice, speech or realtime adapter and no text adapter (Google Cloud Text-to-Speech, C386;
+  // then Sarvam, ElevenLabs, Google Cloud Speech-to-Text), so a voice feature can choose it.
+  return [...textAdapters().map((a) => a.providerId), ...nonTextProviderIds(), ...(standInAllowed() ? [STAND_IN_PROVIDER] : [])];
 }
 
 // ---- changes -------------------------------------------------------------------------------------------------------
@@ -323,7 +326,9 @@ export async function prepareKeyTest(db: Sql, providerId: string): Promise<KeyTe
   const text = adapterFor(providerId);
   // C386: a voice-only provider (Google Cloud Text-to-Speech) is tested by its own free check.
   const voice = voiceAdapterFor(providerId);
-  const connect = text?.testConnection?.bind(text) ?? voice?.testConnection?.bind(voice);
+  // W17: a speech-only provider with its own key (Google Cloud Speech-to-Text) tests through its speech adapter.
+  const speech = speechAdapterFor(providerId);
+  const connect = text?.testConnection?.bind(text) ?? voice?.testConnection?.bind(voice) ?? speech?.testConnection?.bind(speech);
   if (keyedProviderFor(providerId)?.capability !== 'video' && !connect) return { ok: false, code: 'not_testable' };
   let baseUrl: string | undefined;
   if (text?.needsBaseUrl) {
@@ -510,7 +515,10 @@ async function writeProfile(db: Sql, by: By, profileId: string, next: ProfileSet
   // A Vertex AI model id becomes part of its address (adapters/vertex-ai.ts): any other shape is refused here too.
   if (links.some((l) => l.provider === 'vertex_ai' && (l.model === null || !vertexModelLooksRight(l.model)))) return { ok: false, code: 'model' };
   // The server voice (C386): a voice's model id may become part of the vendor's voice name (Google: "Neural2-A").
-  if (profile.capability === 'text_to_speech' && links.some((l) => l.provider !== null && l.model !== null && voiceAdapterFor(l.provider)?.modelLooksRight(l.model) === false)) return { ok: false, code: 'model' };
+  if (profile.capability === 'text_to_speech' && links.some((l) => l.provider !== null && l.model !== null && voiceAdapterFor(l.provider)?.modelLooksRight(l.model) === false)) {
+    // Google's voices take the app's own language prefix, so a wrong one gets its own words (W17).
+    return { ok: false, code: links.some((l) => l.provider === 'google_tts') ? 'voice_model' : 'model' };
+  }
   // G1 (C369): every provider in the chain must declare what the profile needs (photos for AI marking, for example).
   if (providers.some((p) => missingCapabilities(profile.id, p).length > 0)) return { ok: false, code: 'capability' };
   if (!PROMPT_VERSION.test(next.promptVersion)) return { ok: false, code: 'prompt_version' };

@@ -43,10 +43,11 @@ type Row = { profile_id: unknown; kind: unknown; n: unknown; p50: unknown; p95: 
 // every service it watches.
 export async function loadLatencyTiles(db: Sql, extra: Record<string, TargetOverride> = {}): Promise<LatencyTile[]> {
   const hasQc = (await db.query(`select to_regclass('control.ai_qc_results') as t`)).rows[0]?.t != null;
+  // W17-B1: live requests only; a smoke test's or Try it's made-up call is not what a child waits for.
   const whole = `select profile_id, 'whole' as kind, count(*)::int as n,
                         percentile_cont(0.5) within group (order by latency_ms) as p50, percentile_cont(0.95) within group (order by latency_ms) as p95
                    from control.ai_usage_ledger
-                  where at > now() - interval '24 hours' and outcome = 'ok' and latency_ms is not null group by profile_id`;
+                  where at > now() - interval '24 hours' and outcome = 'ok' and latency_ms is not null and source = 'live' group by profile_id`;
   const first = `select profile_id, 'first' as kind, count(*)::int as n,
                         percentile_cont(0.5) within group (order by first_text_ms) as p50, percentile_cont(0.95) within group (order by first_text_ms) as p95
                    from control.ai_qc_results

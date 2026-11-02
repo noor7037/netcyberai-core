@@ -21,10 +21,14 @@ export type Attempt = {
   streamed: boolean;
 };
 
-export async function recordAttempts(db: Sql, a: { day: string; profileId: string; revisionId: string | null }, attempts: readonly Attempt[]): Promise<void> {
+// W17-B1: what made the call. 'live' is a child's or staff member's own request; 'smoke' the smoke test (C316) and
+// 'try_it' Control's Try it, both on made-up inputs, kept apart so their times and outcomes never read as live use.
+export type LedgerSource = 'live' | 'smoke' | 'try_it';
+
+export async function recordAttempts(db: Sql, a: { day: string; profileId: string; revisionId: string | null }, attempts: readonly Attempt[], origin: LedgerSource = 'live'): Promise<void> {
   for (const t of attempts) {
     await db.query(
-      `select control.record_ai_attempt($1::date, $2::text, $3::text, $4::text, $5::bigint, $6::int, $7::text, $8::int, $9::bigint, $10::bigint, $11::boolean, $12::text, $13::int)`,
+      `select control.record_ai_attempt($1::date, $2::text, $3::text, $4::text, $5::bigint, $6::int, $7::text, $8::int, $9::bigint, $10::bigint, $11::boolean, $12::text, $13::int, $14::text)`,
       [
         a.day,
         a.profileId,
@@ -39,6 +43,7 @@ export async function recordAttempts(db: Sql, a: { day: string; profileId: strin
         t.streamed,
         t.circuit,
         CIRCUIT_OPEN_AFTER,
+        origin,
       ]
     );
   }
@@ -51,7 +56,7 @@ const DAY = /^\d{4}-\d{2}-\d{2}$/;
 export async function loadUsageLedger(db: Sql, f: { day?: string; profileId?: string; limit?: number } = {}): Promise<LedgerAttempt[]> {
   const limit = Math.min(500, Math.max(1, Math.floor(f.limit ?? 100)));
   const { rows } = await db.query(
-    `select attempt_id, at, day::text as day, profile_id, provider_id, model, revision_id, route_position, outcome, latency_ms, tokens_in, tokens_out, streamed, cost_usd
+    `select attempt_id, at, day::text as day, profile_id, provider_id, model, revision_id, route_position, outcome, latency_ms, tokens_in, tokens_out, streamed, cost_usd, source
        from control.ai_usage_ledger
       where ($1::date is null or day = $1::date) and ($2::text is null or profile_id = $2)
       order by attempt_id desc limit $3`,
@@ -72,6 +77,7 @@ export async function loadUsageLedger(db: Sql, f: { day?: string; profileId?: st
     tokensOut: Number(r.tokens_out ?? 0),
     streamed: r.streamed === true,
     costUsd: r.cost_usd === null || r.cost_usd === undefined ? null : Number(r.cost_usd),
+    source: r.source === 'smoke' || r.source === 'try_it' ? r.source : 'live',
   }));
 }
 

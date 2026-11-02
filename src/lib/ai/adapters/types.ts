@@ -47,7 +47,8 @@ export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOu
 // object (elsewhere only the instructions ask for it). stt: speech to text. tts: text to speech (C386: OpenAI and Google Cloud).
 // realtime (W16-A4): a live two-way voice leg the phone opens straight to the provider with a short-lived token the
 // server mints; the media never passes through this server.
-export const CAPABILITIES = ['text', 'vision', 'stream', 'json', 'stt', 'tts', 'realtime'] as const;
+// sts (W17): speech to speech, a voice changed into another voice; no child feature uses it yet (Control's Try it only).
+export const CAPABILITIES = ['text', 'vision', 'stream', 'json', 'stt', 'tts', 'sts', 'realtime'] as const;
 export type Capability = (typeof CAPABILITIES)[number];
 export type Capabilities = Readonly<Record<Capability, boolean>>;
 export const capabilities = (has: readonly Capability[]): Capabilities => Object.freeze(Object.fromEntries(CAPABILITIES.map((c) => [c, has.includes(c)])) as Record<Capability, boolean>);
@@ -74,7 +75,8 @@ export interface TextAdapter {
 // 2026-10-22), shown in Control beside the provider's switch as advice (C368). It never blocks: the one gate for a
 // child's words is the founder's clearance in Control (control.ai_providers.cleared_for_minors, with the terms page,
 // who and when), and the person who clears a provider carries that decision. Null: nothing to say (the stand-in).
-export const TERMS_NOTES = ['minors_with_safeguards', 'no_under_13', 'adults_only', 'no_bar_found'] as const;
+// paid_plan_for_commercial_use (W17): the vendor's free plan is not licensed for commercial use (ElevenLabs).
+export const TERMS_NOTES = ['minors_with_safeguards', 'no_under_13', 'adults_only', 'no_bar_found', 'paid_plan_for_commercial_use'] as const;
 export type TermsNote = (typeof TERMS_NOTES)[number];
 
 export const JSON_ONLY = 'Answer with one JSON object only, and nothing outside it.';
@@ -114,6 +116,24 @@ export interface SpeechAdapter {
   readonly needsKey: boolean;
   readonly capabilities: Capabilities;
   transcribe(request: SpeechRequest): Promise<SpeechResult>;
+  // W17: a speech-only provider (Sarvam, Google Cloud Speech-to-Text) keeps its own key in Control, so it says what a
+  // key looks like and how to test one; a provider whose text adapter holds the key leaves both out.
+  keyLooksRight?(key: string): boolean;
+  testConnection?(apiKey: string): Promise<ConnectionTest>;
+}
+
+// ---- speech to speech (W17) --------------------------------------------------------------------------------------
+// A recording spoken again in another voice (ElevenLabs). No child feature uses it: Control's Try it only, until one does.
+export type SpeechToSpeechRequest = { apiKey: string; model: string; audio: Uint8Array; mediaType: SpeechMediaType; language: 'en' | 'hi' };
+export interface SpeechToSpeechAdapter {
+  readonly providerId: string;
+  readonly capability: 'speech_to_speech';
+  readonly termsNote: TermsNote | null;
+  readonly needsKey: boolean;
+  readonly capabilities: Capabilities;
+  keyLooksRight(key: string): boolean;
+  modelLooksRight(model: string): boolean;
+  convert(request: SpeechToSpeechRequest): Promise<VoiceResult>;
 }
 
 // ---- moderation (W2, C314: Llama Guard on a child's words and on answers) -------------------------------------------
@@ -149,7 +169,7 @@ export const VOICE_TIMEOUT_MS = 15_000;
 // The most characters one request may speak (the platform refuses more before anything leaves).
 export const VOICE_TEXT_MAX = 600;
 
-export type VoiceMediaType = 'audio/mpeg' | 'audio/ogg';
+export type VoiceMediaType = 'audio/mpeg' | 'audio/ogg' | 'audio/wav';
 // `language`: the line's language; an adapter picks its voice for it (Google: en-IN or hi-IN; OpenAI: one voice that
 // reads either, the language being in the text itself). The text is the server's own (a chapter's narration or a
 // checked reply), read inside the call and dropped, never stored or logged.
