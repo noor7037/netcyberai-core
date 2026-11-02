@@ -98,6 +98,14 @@ const ALLOWED: Record<string, Record<string, string>> = {
   // C253: Control → Apps' platform rows: an app flag, version setting, banner or preview account before and after, so a
   // change can be undone in one step. The founder's reason for the change and a banner's public notice text are kept with
   // it; nothing about a family, a child or a school's people.
+  // W16: a school's own AI tutors (ai_tutors.*) and the founder's tutor caps (family.tutor_caps_set). A tutor is a
+  // product persona the school wrote, never a person; its style (typed words) is not audited at all.
+  'src/lib/ai-tutors/index.ts': { 'key:name': 'a school’s own tutor’s display name (Maths Tutor), a product word the school chose; never a person’s name' },
+  'src/lib/control/family-settings.ts': {
+    'opaque:before': 'the four tutor caps as they were: three daily counts and a multiplier, numbers',
+    'key:textTurns': 'a count: text turns a child may send a day, checked as an integer',
+    'key:reason': 'the founder’s own reason for a Control change, written in Control (required by 10 §7), as apps.ts',
+  },
   'src/lib/control/apps.ts': {
     'opaque:before': 'a flag, version, banner or preview row as it was: codes, numbers, dates, ids',
     'opaque:after': 'the same row after the change',

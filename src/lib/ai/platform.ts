@@ -1,12 +1,13 @@
 import { withPlatformService } from '@/lib/auth/db';
 import type { Sql } from '@/lib/jobs/types';
 import type { MessageKey } from '@/lib/i18n';
-import { adapterFor, moderationAdapterFor, speechAdapterFor, voiceAdapterFor, type AdapterResult, type Capability as AdapterCapability, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceMediaType, type VoiceResult } from './adapters';
+import { adapterFor, moderationAdapterFor, realtimeAdapterFor, speechAdapterFor, voiceAdapterFor, type AdapterResult, type Capability as AdapterCapability, type ChatImage, type ChatMessage, type ModerationAdapter, type ModerationResult, type RealtimeAdapter, type RealtimeToken, type SpeechAdapter, type SpeechMediaType, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceMediaType, type VoiceResult } from './adapters';
 import { probeWorkersTransports } from './adapters/workers-ai';
 import { resolverPrompt } from './prompts/family.resolver';
 import { searchVideoIds, videoDetails, type VideoCandidate, type VideoKind } from './adapters/youtube';
 import { aiEncryptionKey, unsealAiKey, type SealedRow } from './credentials';
 import { UNCAPPED_LEFT, countDailyRequest, countVoiceChars, dailyLimit, dailyRequestsUsed, giveVoiceCharsBack, takeDailyRequest, takeVoiceChars, testingModeOn, voiceCharLimit, voiceCharsLeft } from './daily-cap';
+import { takeTextTurn, tutorLimits } from '@/lib/family/tutor-meter';
 import { scrubRequest } from './preprocess';
 import { admit, type Admission } from './gateway/circuit';
 import { recordAttempts, type Attempt } from './gateway/ledger';
@@ -51,6 +52,10 @@ export type ProfileId =
   | 'family.english_conversation'
   | 'family.summary'
   | 'family.text_to_speech'
+  | 'family.quiz'
+  | 'family.parent_report'
+  | 'family.qc'
+  | 'family.voice_call'
   | 'copilot.draft'
   | 'parent_ai.home_help'
   | 'content.syllabus_extract'
@@ -58,7 +63,7 @@ export type ProfileId =
   | 'exams.read_pages'
   | 'exams.mark'
   | 'exams.write_questions';
-export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech';
+export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech' | 'realtime';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
 // control profile runs only for Control's staff.
@@ -102,6 +107,17 @@ export const PROFILES: readonly AiProfile[] = [
   // provider cleared for minors in Control may speak, as for every such profile. It speaks only text the server holds
   // (src/lib/family/voice-out.ts), never text a phone sends.
   { id: 'family.text_to_speech', carriesChildWords: true, capability: 'text_to_speech', audience: 'family' },
+  // W16-A1 (the Tutor's agent registry, src/lib/ai/agents/registry.ts). The quiz made from a session at its end (a job,
+  // W16-B1) reads the session's questions and answers. The weekly parent report (a job, W16-B3) is written from counts
+  // and chapter names only, never a child's words. The quality check (W16-A5) reads the answer beside the child's
+  // question, beside the answer's call. The voice call's profile is below (W16-A4).
+  { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000 },
+  { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000 },
+  { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, besideCall: true },
+  // W16-A4: the call's realtime leg, a live two-way voice the phone opens straight to the provider with a token the
+  // server mints (src/app/api/family/voice/call/token). The child's voice goes to that provider, so only one cleared for
+  // minors may serve it. No provider today: the call then uses the chain (listen, answer, speak) and says nothing of it.
+  { id: 'family.voice_call', carriesChildWords: true, capability: 'realtime', audience: 'family' },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -127,9 +143,10 @@ export const PROFILES: readonly AiProfile[] = [
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none
 // (a provider without a speech adapter cannot serve voice input). Control checks a choice against it; the platform
 // skips a provider without one.
-export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | ModerationAdapter | VoiceAdapter | null {
+export function capableAdapter(profileId: string, providerId: string, env: Record<string, string | undefined> = process.env): TextAdapter | SpeechAdapter | ModerationAdapter | VoiceAdapter | RealtimeAdapter | null {
   const profile = profileById(profileId);
   if (!profile) return null;
+  if (profile.capability === 'realtime') return realtimeAdapterFor(providerId);
   if (profile.capability === 'moderation') return moderationAdapterFor(providerId, env);
   if (profile.capability === 'text_to_speech') return voiceAdapterFor(providerId, env);
   return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
@@ -137,7 +154,7 @@ export function capableAdapter(profileId: string, providerId: string, env: Recor
 
 // Everything a profile needs its adapter to declare (G1, C369): its capability's own (text; stt for voice input; text
 // for the safety check; tts for the server voice, C386) and the profile's `needs`.
-const OWN_NEED: Record<Capability, AdapterCapability> = { text: 'text', speech_to_text: 'stt', moderation: 'text', text_to_speech: 'tts' };
+const OWN_NEED: Record<Capability, AdapterCapability> = { text: 'text', speech_to_text: 'stt', moderation: 'text', text_to_speech: 'tts', realtime: 'realtime' };
 export function profileNeeds(profile: AiProfile): AdapterCapability[] {
   return [OWN_NEED[profile.capability], ...(profile.needs ?? [])];
 }
@@ -156,6 +173,9 @@ export type AiContext = {
   childFirstNames: string[];
   parentEmail?: string;
   day: string; // the India date, YYYY-MM-DD
+  // W16-B4: the child a family text turn is for. With it, the tutor's answers (family.resolver) are metered and capped
+  // per child (text turns, src/lib/family/tutor-meter.ts); without it the family's daily requests cap holds as before.
+  childId?: string;
 };
 export type AiRequest = {
   system: string;
@@ -358,14 +378,32 @@ export async function dailyRequestsLeft(db: Sql, accountId: string, day: string)
   return Math.max(0, limit - (await dailyRequestsUsed(db, accountId, day)));
 }
 
+// w16-b4 start
+const isTutorTextTurn = (profile: AiProfile, ctx: AiContext): ctx is AiContext & { childId: string } => profile.id === 'family.resolver' && typeof ctx.childId === 'string' && UUID.test(ctx.childId);
+// w16-b4 end
+
 // 4. The family's daily cap, counted before the request leaves.
 async function takeCap(db: Sql, ctx: AiContext, profile: AiProfile, first: Link, testing: boolean): Promise<boolean> {
   if (profile.audience !== 'family' || profile.besideCall) return true;
   // Testing mode: the request is counted, never refused.
   if (testing) {
     await countDailyRequest(db, ctx.accountId, ctx.day);
+    if (isTutorTextTurn(profile, ctx)) await takeTextTurn(db, ctx.accountId, ctx.childId, ctx.day, null);
     return true;
   }
+  // w16-b4 start
+  // A tutor answer for a known child takes one of that child's text turns (the plan's cap, Plus times more) in place of a
+  // place in the family's daily requests, which it still counts.
+  if (isTutorTextTurn(profile, ctx)) {
+    const limits = await tutorLimits(db, ctx.accountId);
+    if (!(await takeTextTurn(db, ctx.accountId, ctx.childId, ctx.day, limits.textTurns))) {
+      await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
+      return false;
+    }
+    await countDailyRequest(db, ctx.accountId, ctx.day);
+    return true;
+  }
+  // w16-b4 end
   const limit = await dailyLimit(db);
   if (limit === null || !(await takeDailyRequest(db, ctx.accountId, ctx.day, limit))) {
     await count(db, ctx.day, profile.id, first, { capRefusals: 1 });
@@ -679,6 +717,68 @@ export async function prepareSpeak(db: Sql, ctx: AiContext, profileId: ProfileId
     return { result: { ok: false, reason: 'failed' }, record };
   };
   return { ok: true, voice: { send } };
+}
+
+// ---- realtime voice (W16-A4) ----------------------------------------------------------------------------------------
+
+export type RealtimeGrant = RealtimeToken & { provider: string };
+export type SentRealtime = { result: { ok: true; grant: RealtimeGrant } | { ok: false; reason: AiRefusal }; record: (db: Sql) => Promise<void> };
+export type PreparedRealtime = { ok: true; session: { send: () => Promise<SentRealtime> } } | { ok: false; reason: AiRefusal };
+
+// The same seven steps for one short-lived client token: 1–4 in the caller's transaction (the profile, the minors check
+// on the whole chain, a provider with a realtime adapter and a key, one place from the family's daily requests, as a
+// session is a request); 6 (mint, no database) down the chain; 7 (record) counts and the ledger. Only the token and the
+// provider's connect details go back; the audio never touches this server. A profile with no provider answers
+// 'not_switched_on' before anything is taken, and the call then uses the chain.
+export async function prepareRealtimeToken(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi' }): Promise<PreparedRealtime> {
+  const env = process.env;
+  if (input.language !== 'en' && input.language !== 'hi') return { ok: false, reason: 'failed' };
+  const testing = await testingModeOn(db);
+  const checked = await checkProfile(db, ctx, profileId, 'realtime', env, testing);
+  if (!checked.ok) return checked;
+  const { profile, row, chain, providers } = checked;
+  const usable = await usableLinks(db, chain, providers, env, (p) => realtimeAdapterFor(p));
+  if (usable.length === 0) return { ok: false, reason: 'not_switched_on' };
+  const ledger = ledgerOf(ctx, profile, row);
+  const { admitted: ready, skipped } = await gateLinks(db, usable);
+  if (ready.length === 0) {
+    await recordAttempts(db, ledger, skipped);
+    return { ok: false, reason: 'failed' };
+  }
+  if (!(await takeCap(db, ctx, profile, ready[0].link, testing))) return { ok: false, reason: 'cap_reached' };
+
+  let sent = false;
+  const send = async (): Promise<SentRealtime> => {
+    const usage: { link: Link; counts: Counts }[] = [];
+    const attempts: Attempt[] = [];
+    const record = async (tx: Sql) => {
+      for (const u of usage) await count(tx, ctx.day, profile.id, u.link, u.counts);
+      await recordAttempts(tx, ledger, attempts);
+    };
+    if (sent) return { result: { ok: false, reason: 'failed' }, record: async () => {} };
+    sent = true;
+    attempts.push(...skipped);
+    for (const r of ready) {
+      const { link, adapter, apiKey } = r;
+      const start = Date.now();
+      let minted: Awaited<ReturnType<RealtimeAdapter['mintToken']>>;
+      try {
+        minted = await adapter.mintToken({ apiKey, model: link.model, language: input.language });
+      } catch {
+        minted = { ok: false, failure: 'network' };
+      }
+      const tried = attemptOf(r, minted.ok ? { ok: true, tokensIn: 0, tokensOut: 0 } : minted, { streamed: false, elapsedMs: Date.now() - start, limitMs: 8_000 });
+      attempts.push(tried.attempt);
+      if (minted.ok) {
+        usage.push({ link, counts: { requests: 1 } });
+        return { result: { ok: true, grant: { provider: link.provider, token: minted.token, expiresAt: minted.expiresAt, url: minted.url, model: minted.model } }, record };
+      }
+      usage.push({ link, counts: { requests: 1, failures: 1 } });
+      if (!tried.retryable) break;
+    }
+    return { result: { ok: false, reason: 'failed' }, record };
+  };
+  return { ok: true, session: { send } };
 }
 
 // ---- moderation (W2, C314) -------------------------------------------------------------------------------------------

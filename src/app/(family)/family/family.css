@@ -510,6 +510,32 @@
   }
 }
 
+/* ---- the drawing board (W16-A2, docs/39 §6) ------------------------------------------------------------------------ */
+/* The newest step fades in and its lines draw themselves (pathLength 1). None of it under prefers-reduced-motion,
+   where BoardView draws every step at once anyway. */
+.fam-board-in {
+  animation: fam-board-in 420ms ease-out both;
+}
+.fam-board-draw {
+  stroke-dasharray: 1;
+  animation: fam-board-draw 700ms ease-out both;
+}
+@keyframes fam-board-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fam-board-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-board-in,
+  .fam-board-draw {
+    animation: none !important;
+    stroke-dasharray: none;
+  }
+}
+
 /* ---- loading (C230-Y) ----------------------------------------------------------------------------------------------- */
 
 .fam-skeleton {
@@ -535,6 +561,21 @@
 ::highlight(nc-word) {
   background-color: #ff7a1a;
   color: #1e293b;
+}
+
+/* ---- the home screen's Tutors tile (W16-B5) ---------------------------------------------------------------------- */
+/* The tutors' names take a soft ink ring in turn, one every two seconds (six names, a twelve second round). Under
+   prefers-reduced-motion nothing moves: the list is simply there. */
+.fam-names li {
+  animation: fam-name-ring 12s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 2s);
+}
+@keyframes fam-name-ring {
+  0%, 18%, 100% { box-shadow: 0 0 0 0 rgb(28 27 26 / 0); }
+  4%, 14% { box-shadow: 0 0 0 2px rgb(28 27 26 / 0.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-names li { animation: none; }
 }
 
 /* ---- the lesson identity (W10-3, C412), on every Family screen since W10-4 (C413) ------------------------------ */
@@ -809,14 +850,14 @@ div.fam-lesson {
 }
 /* In a lilac section (a figure, a diagram) the drawing's second tone, teal, takes the plum accent as well, and its white
    fills the card surface, so the drawing sits in one family of colour. */
-.fam-lesson [data-tint='lilac'] svg [fill='#0F766E' i] {
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [fill='#0F766E' i] {
   fill: var(--fl-accent);
 }
-.fam-lesson [data-tint='lilac'] svg [stroke='#0F766E' i] {
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [stroke='#0F766E' i] {
   stroke: var(--fl-accent);
 }
-.fam-lesson [data-tint='lilac'] svg [fill='white' i],
-.fam-lesson [data-tint='lilac'] svg [fill='#ffffff' i] {
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [fill='white' i],
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [fill='#ffffff' i] {
   fill: var(--fl-card);
 }
 
@@ -944,3 +985,5 @@ div.fam-lesson {
 .fam-lesson [data-direct-answer-card] .fam-lesson-eyebrow {
   margin-top: 0;
 }
+
+

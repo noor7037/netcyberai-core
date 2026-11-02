@@ -15,7 +15,11 @@ import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
-import { placeBlock, unfilled } from '@/lib/family/blocks';
+import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
+import { boardCursorFromSentence } from '@/lib/family/board';
+import { citationOf } from '@/lib/family/citation';
+import { useTutorBoard } from './tutor/switches';
+import { CitationChip } from './blocks/CitationChip';
 import { SceneView } from './blocks/SceneView';
 import { ChartView } from './blocks/ChartView';
 import { StepsView } from './blocks/StepsView';
@@ -30,6 +34,9 @@ const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.Fig
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
+// W16-A2: the drawing board and the Class 8 Science simulations, each its own chunk, only when an answer carries one.
+const BoardView = dynamic(() => import('./blocks/BoardView').then((m) => m.BoardView));
+const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView));
 
 // Understand (M1-5, C251): asks the server, and draws each checked block as it arrives. Follow-ups stay on the topic
 // ("simpler", "another example", "explain differently", "practise more"); this is not an open chat. Every response
@@ -41,7 +48,7 @@ const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.M
 // A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
 // window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
 // answered turn in the child's conversation.
-export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[] };
+export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[]; mode?: 'check' };
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;
@@ -80,7 +87,64 @@ function showModel(root: HTMLElement | null) {
   model.focus({ preventScroll: true });
 }
 
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void }) {
+// W16-A4: one block of an answer, drawn. The lesson page (`draw`) and the call's board (call/CallBoard.tsx) draw their
+// blocks with this one switch, so a figure, a chart or a worked example looks the same in both.
+// `sentence` (W16-A2): the explanation's sentence being spoken (the call screen); the board draws up to the step that
+// sentence reaches. Absent: the board starts at its first step and the child steps through it.
+export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number }) {
+  // W16-B5: with the Tutor's board switched off in Control, the drawing board and the simulations are left out.
+  const boardOn = useTutorBoard();
+  switch (b.type) {
+    case 'explanation':
+      return <ExplanationView b={b} w={w} tone={tone} lead={lead} />;
+    case 'worked_example':
+      return <WorkedExampleView b={b} w={w} tone={tone} />;
+    case 'key_points':
+      return <KeyPointsView b={b} w={w} tone={tone} />;
+    case 'diagram':
+      return <DiagramView b={b} tone={tone} />;
+    case 'mind_map':
+      return <MindMapView b={b} w={w} tone={tone} />;
+    case 'graph':
+    case 'number_line':
+    case 'fraction_model':
+    case 'geometry':
+    case 'simulation':
+      return <InteractiveView b={b} w={w} tone={tone} />;
+    case 'check':
+    case 'practice':
+      return <QuizView kind={b.type} items={b.items} w={w} tone={tone} onRetry={onRetry} onOffline={onOffline} />;
+    case 'english_moment':
+      return <EnglishMomentView b={b} w={w} tone={tone} />;
+    case 'sources':
+      // A chapter is the chip at the top; the card only for links.
+      return b.links.length > 0 ? <SourcesView b={b} w={w} tone={tone} /> : null;
+    case 'board':
+      if (!boardOn) return null;
+      return <BoardView b={b} w={w} tone={tone} cursor={sentence === undefined ? undefined : boardCursorFromSentence(b.steps.map((s) => s.say), sentence)} />;
+    case 'figure':
+      return <FigureView b={b} tone={tone} />;
+    case 'model_3d':
+      return <Model3DView b={b} w={w} tone={tone} />;
+    case 'steps':
+      return <StepsView b={b} w={w} tone={tone} />;
+    case 'scene':
+      if (isSimScene(b)) return boardOn ? <SimView b={b} w={w} tone={tone} /> : null;
+      return <SceneView b={b} w={w} tone={tone} />;
+    case 'chart':
+      return <ChartView b={b} w={w} tone={tone} />;
+    case 'timeline':
+      return <TimelineView b={b} tone={tone} />;
+    case 'image':
+      return <ImageView b={b} w={w} tone={tone} />;
+    case 'videos':
+      return <VideosView b={b} w={w} />;
+    default:
+      return null;
+  }
+}
+
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number }) {
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -100,6 +164,9 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const drawn = dataSaverBlocks(shown, saving);
   const lead = drawn.find((b): b is ExplanationBlock => b.type === 'explanation');
   const model = drawn.some((b) => b.type === 'model_3d');
+  // W16-A2: where the answer comes from, first: its chapter as soon as the sources block names it, else, once complete,
+  // general knowledge.
+  const citation = citationOf(shown, state === 'done' || state === 'incomplete');
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
   const current = useRef<AbortController | null>(null);
@@ -192,52 +259,10 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     void run(ask);
   };
 
+  // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
   const draw = (b: PublicBlock) => {
-    // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
     const i = blocks.indexOf(b);
-    switch (b.type) {
-      case 'explanation':
-        return <ExplanationView key={i} b={b} w={w} tone={tone} lead={b === lead} />;
-      case 'worked_example':
-        return <WorkedExampleView key={i} b={b} w={w} tone={tone} />;
-      case 'key_points':
-        return <KeyPointsView key={i} b={b} w={w} tone={tone} />;
-      case 'diagram':
-        return <DiagramView key={i} b={b} tone={tone} />;
-      case 'mind_map':
-        return <MindMapView key={i} b={b} w={w} tone={tone} />;
-      case 'graph':
-      case 'number_line':
-      case 'fraction_model':
-      case 'geometry':
-      case 'simulation':
-        return <InteractiveView key={i} b={b} w={w} tone={tone} />;
-      case 'check':
-      case 'practice':
-        return <QuizView key={i} kind={b.type} items={b.items} w={w} tone={tone} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} />;
-      case 'english_moment':
-        return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
-      case 'sources':
-        return <SourcesView key={i} b={b} w={w} tone={tone} />;
-      case 'figure':
-        return <FigureView key={i} b={b} tone={tone} />;
-      case 'model_3d':
-        return <Model3DView key={i} b={b} w={w} tone={tone} />;
-      case 'steps':
-        return <StepsView key={i} b={b} w={w} tone={tone} />;
-      case 'scene':
-        return <SceneView key={i} b={b} w={w} tone={tone} />;
-      case 'chart':
-        return <ChartView key={i} b={b} w={w} tone={tone} />;
-      case 'timeline':
-        return <TimelineView key={i} b={b} tone={tone} />;
-      case 'image':
-        return <ImageView key={i} b={b} w={w} tone={tone} />;
-      case 'videos':
-        return <VideosView key={i} b={b} w={w} />;
-      default:
-        return null;
-    }
+    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence} />;
   };
 
   return (
@@ -279,6 +304,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           {fill(w['fam.dataSaver.skipped'], { n: droppedCount(shown, true) })}
         </p>
       )}
+      {citation && <CitationChip w={w} c={citation} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {model && (
         <button type="button" data-show-model onClick={() => showModel(top.current)} className="fam-press fam-lesson-chip min-h-[44px] self-start rounded-full bg-white px-4 text-sm font-bold text-ink">

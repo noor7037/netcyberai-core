@@ -1,5 +1,7 @@
 import { prepareText, type AiContext, type PreparedText, type SentText } from '@/lib/ai/platform';
+import { checkReadSystem, checkReadUser } from '@/lib/ai/prompts/family.homework';
 import { setting } from './learning';
+import { photoDoubtLimit } from './tutor-meter';
 import { TUTOR_FILES_PER_TURN, isTutorFileType, type TutorFileType } from './tutor-shape';
 
 // The tutor reads what is attached (W4-1, C230-AR; Decision Log C385). A file the child sent with a question is read
@@ -50,7 +52,7 @@ export async function filesToRead(db: Sql, accountId: string, childId: string, s
 
 // One photo place of the child's day (Control: family.photo_questions_per_day), as the homework helper takes it.
 export async function takePhotoPlace(db: Sql, accountId: string, childId: string, day: string): Promise<boolean> {
-  const limit = Math.max(0, Math.round(await setting(db as never, 'family.photo_questions_per_day', 3)));
+  const limit = await photoDoubtLimit(db as never, accountId);
   const { rows } = await db.query(
     `insert into family.day_counts as d (account_id, child_id, day, photo_questions) select $1, $2, $3, 1 where $4::int > 0
      on conflict (child_id, day) do update set photo_questions = d.photo_questions + 1 where d.photo_questions < $4::int
@@ -71,6 +73,15 @@ export const photoRequest = (mediaType: Exclude<TutorFileType, 'application/pdf'
   system: READ_SYSTEM,
   messages: [{ role: 'user' as const, content: 'Write out what this picture says.', images: [{ mediaType, base64 }] }],
   maxTokens: 800,
+});
+
+// W16-B2 (Check my work): the same photo read, but asked for the question and each line of the child's own working as
+// written (family.homework prompt v2), so what was read can be shown and marked. The class and board only; no name.
+export type CheckRead = { classLevel: number; board: string };
+export const checkPhotoRequest = (mediaType: Exclude<TutorFileType, 'application/pdf'>, base64: string, c: CheckRead) => ({
+  system: checkReadSystem(c),
+  messages: [{ role: 'user' as const, content: checkReadUser(), images: [{ mediaType, base64 }] }],
+  maxTokens: 1000,
 });
 
 export type Fetched = { file: FileToRead; bytes: Uint8Array | null };
@@ -94,7 +105,7 @@ export type PhotoCall = { attachmentId: string; prepared: PreparedText } | { att
 
 // Step 3 (in the caller's transaction): each photo's day place, then its read through the vision profile with every
 // platform check (minors gate, key, daily cap); a place is given back when the read cannot be asked.
-export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string, fetched: readonly Fetched[]): Promise<PhotoCall[]> {
+export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string, fetched: readonly Fetched[], check?: CheckRead): Promise<PhotoCall[]> {
   const calls: PhotoCall[] = [];
   for (const { file, bytes } of fetched) {
     if (file.mime === 'application/pdf' || !bytes) continue;
@@ -103,7 +114,8 @@ export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string
       calls.push({ attachmentId: file.attachmentId, unreadable: 'photo_limit' });
       continue;
     }
-    const prepared = await prepareText(db as never, ctx, 'family.homework', photoRequest(mime, Buffer.from(bytes).toString('base64')));
+    const b64 = Buffer.from(bytes).toString('base64');
+    const prepared = await prepareText(db as never, ctx, 'family.homework', check ? checkPhotoRequest(mime, b64, check) : photoRequest(mime, b64));
     if (!prepared.ok) {
       await givePhotoPlaceBack(db, ctx.accountId, childId, ctx.day);
       calls.push({ attachmentId: file.attachmentId, unreadable: 'not_set_up' });

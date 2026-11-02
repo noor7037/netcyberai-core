@@ -139,3 +139,11 @@ export type SchoolTaught = { subject: string; topic: string; chapter: string | n
 // A connect code as the office reads it once: eight letters and digits in two groups of four, no 0/O/1/I.
 export const CONNECT_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 export const CONNECT_CODE_DAYS = 7;
+
+// W16-A3 begin
+// A school's own tutor as a linked family reads it (the Tutor Hall): name, subject, style, language and tint only. `id` is
+// the school's tutor id; the Family app keys it as `school:<id>`. `subject` is the app's subject id, or null for all.
+export type SchoolTutor = { id: string; name: string; subject: string | null; style: string; language: 'en' | 'hi' | 'both'; tint: 'mint' | 'butter' | 'lilac' | 'blush' | 'sky' };
+// What one linked school adds to the Tutor Hall: its own tutors, and the keys of the platform tutors it switched off.
+export type SchoolTutors = { schoolName: string; tutors: SchoolTutor[]; hiddenPlatform: string[] };
+// w16-a3 end

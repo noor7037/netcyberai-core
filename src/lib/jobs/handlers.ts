@@ -15,8 +15,13 @@ import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
 import { AI_HEALTH_PROBE_JOB, aiHealthProbeHandler } from '@/lib/ai/gateway/probe';
 import { AI_UPKEEP_JOB, aiUpkeepHandler } from '@/lib/ai/gateway/upkeep';
+import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB, tutorStubHandler } from '@/lib/ai/agents/jobs';
+import { aiOpsDailyHandler } from '@/lib/ai/ops-daily';
+import { enqueueWeeklyReports, parentReportHandler } from '@/lib/family/parent-report';
+import { log } from '@/lib/observability/log';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
+import { quizJobHandler } from '@/lib/family/quiz';
 import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
 import { MARKING_GROUP_JOB, MARKING_MARK_JOB, MARKING_READ_JOB } from '@/lib/marking/queue';
 import { PICTURES_SWEEP_JOB, picturesSweepHandler } from '@/lib/marking/retention';
@@ -87,6 +92,15 @@ export function productionHandlers(): Record<string, JobHandler> {
     // W5-7 (C394): each hour, the AI spend alert to the founders and the ledger's 90-day retention.
     [AI_UPKEEP_JOB]: aiUpkeepHandler({ platform, queue: jobQueue }),
     [CONTENT_PREPARE_JOB]: contentPrepareHandler({ platform, queue: jobQueue }),
+    // W16-A1: the Tutor's slow work (src/lib/ai/agents/jobs.ts); the parent report is a long job (./runner.ts).
+    // W16-B3: the weekly parent report, one job an account, in the family's own session (src/lib/family/parent-report.ts).
+    [TUTOR_PARENT_REPORT_JOB]: parentReportHandler({ platform, queue: jobQueue }),
+    // W16-B4: the daily look at the tutor's use (src/lib/ai/ops-daily.ts), each night after midnight in India. On a Sunday
+    // it also queues the week's parent reports (W16-B3's enqueueWeeklyReports), after its own work.
+    [AI_OPS_DAILY_JOB]: aiOpsDailyHandler({ platform, queue: jobQueue, weeklyReports: (db, queue, week) => enqueueWeeklyReports({ platform: async (fn) => fn(db), queue }, week) }),
+    // W16-B1: a quiz from a session at its end, in the conversation's own family session (src/lib/family/quiz.ts). The log
+    // line holds the outcome and the attempt, nothing of the child's.
+    [TUTOR_QUIZ_JOB]: quizJobHandler({ platform, note: (facts) => log('info', 'tutor.quiz', facts) }),
     // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
     [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),
     // Every ten minutes: a linked family's browsers hear of new homework, notices and results, and tonight's practice

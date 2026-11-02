@@ -5,8 +5,8 @@ import { displayPhone, whatsappLink } from '@/lib/site-config';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice'];
+export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice' | 'family_weekly_report';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice', 'family_weekly_report'];
 
 // The founder signs the first reply to every lead (W12-F).
 export const FOUNDER_NAME = 'Noor';
@@ -120,6 +120,25 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
         text: `${head}\n\n${body}\n\n${school}\n${after}`,
       };
     }
+    // w16-b3 start
+    // A child's weekly report to the family's own address (W16-B3): the four sentences the Family app shows, written from
+    // counts and chapter names only, in the family's language, signed by the app.
+    case 'family_weekly_report': {
+      const lang: Lang = data.lang === 'hi' ? 'hi' : 'en';
+      const child = str(data, 'childName');
+      const week = str(data, 'weekStart');
+      const sentences = str(data, 'sentences').split('\n').map((x) => x.trim()).filter(Boolean);
+      const head = t(lang, 'fam.report.title', { child });
+      const when = t(lang, 'fam.report.weekOf', { date: new Date(`${week}T00:00:00Z`).toLocaleDateString(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) });
+      const open = t(lang, 'fam.report.email.open');
+      const after = t(lang, 'fam.report.email.after');
+      return {
+        subject: `${head} · ${when}`,
+        html: wrap(`<p><strong>${escapeHtml(head)}</strong><br><span style="color:#64748b">${escapeHtml(when)}</span></p><p>${escapeHtml(sentences.join(' '))}</p><p>${escapeHtml(open)}</p><p>NetCyberAI</p><p style="color:#64748b">${escapeHtml(after)}</p>`),
+        text: `${head}\n${when}\n\n${sentences.join(' ')}\n\n${open}\n\nNetCyberAI\n${after}`,
+      };
+    }
+    // w16-b3 end
     case 'application_verified': {
       const school = str(data, 'schoolName');
       const city = str(data, 'city');

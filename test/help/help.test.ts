@@ -109,6 +109,9 @@ describe('the guides', () => {
       // c235d begin
       'attach-documents',
       // c235d end
+      // w16-a3 begin
+      'add-a-school-tutor',
+      // w16-a3 end
     ]);
     expect(new Set(HELP_ARTICLES.map((a) => a.slug)).size).toBe(HELP_ARTICLES.length);
     expect(HELP_ARTICLES.every((a) => /^[a-z][a-z0-9-]+$/.test(a.slug) && a.slug !== 'ticket')).toBe(true); // /app/help/ticket is Raise Ticket

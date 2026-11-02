@@ -6,9 +6,10 @@ import * as v5 from './v5';
 import * as v6 from './v6';
 import * as v7 from './v7';
 import * as v8 from './v8';
+import * as v9 from './v9';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
-// (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v8 since W9-B). A typed
+// (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v9 since W16). A typed
 // question needs a version that names the subject (v2 and later), whatever Control chose: the server never takes the
 // subject from the screen. The library is keyed by the version actually used, so a response is never served under
 // another version's name.
@@ -47,6 +48,9 @@ const V7: ResolverPrompt = { version: v7.RESOLVER_PROMPT_VERSION, namesSubject: 
 // v8 (W9-B, docs/39 §3): the planned answer: only the blocks the teaching plan names, in the class band's length, the
 // chapter's passages quoted, and the chat's earlier turns when given. The default.
 const V8: ResolverPrompt = { version: v8.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v8.resolverSystem, user: v8.resolverUser };
+// v9 (W16-A2, docs/39 §6): v8 with the drawing board, the citation (one sources block naming the chapter when passages
+// were given, none otherwise) and the Class 8 Science simulations. The default since W16.
+const V9: ResolverPrompt = { version: v9.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v9.resolverSystem, user: v9.resolverUser };
 
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
@@ -59,13 +63,14 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v6.RESOLVER_PROMPT_VERSION, namesSubject: true, system: v6.resolverSystem, user: v6.resolverUser },
   V7,
   V8,
+  V9,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the
-// subject: v8 since W9-B (v7 since W8-AI; it was v3).
-export const LATEST_RESOLVER_PROMPT = V8.version;
+// subject: v9 since W16 (v8 since W9-B, v7 since W8-AI; it was v3).
+export const LATEST_RESOLVER_PROMPT = V9.version;
 
 export function resolverPrompt(chosen: string | null, needsSubjectNamed: boolean): ResolverPrompt {
-  const picked = RESOLVER_PROMPTS.find((p) => p.version === chosen) ?? V8;
-  return needsSubjectNamed && !picked.namesSubject ? V8 : picked;
+  const picked = RESOLVER_PROMPTS.find((p) => p.version === chosen) ?? V9;
+  return needsSubjectNamed && !picked.namesSubject ? V9 : picked;
 }

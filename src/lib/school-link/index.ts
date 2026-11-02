@@ -3,7 +3,7 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, withPlatformService, SchoolLinkGoneError, type FamilyClaims } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught, type SchoolTutors } from '@/lib/contracts/school-link';
 import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
 import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
 import type { GradingScheme } from '@/lib/exams/scheme';
@@ -487,6 +487,27 @@ export async function readSchoolToday(
   return { ...rest, myResults: hasResults && (await childrenSeeResults(schoolId)) };
 }
 
+// w16-b3 start
+// One matched student's week for the weekly parent report (W16-B3): the days marked present (or late) of the days
+// marked, and the results the school published for the student's class in those days, as the guardian, only while the
+// school holds the consent for the child's records; null otherwise. Counts and the exam's name only.
+export type SchoolWeek = { presentDays: number; markedDays: number; results: { exam: string; percent: number | null }[] };
+export async function readSchoolWeek(claims: Claims, linkId: string, studentId: string, from: string, to: string): Promise<SchoolWeek | null> {
+  return withGuardianContext(claims, linkId, async (db, link) => {
+    if (!(await consented(db, link.schoolId, studentId))) return null;
+    const days = (
+      await db.query(
+        `select (count(*) filter (where status::text in ('present', 'late')))::int as present, count(*)::int as marked
+           from attendance where student_id = $1 and date >= $2::date and date <= $3::date`,
+        [studentId, from, to]
+      )
+    ).rows[0] as { present: number; marked: number } | undefined;
+    const results = (await publishedResults(db, studentId)).filter((r) => r.publishedOn >= from && r.publishedOn <= to).map((r) => ({ exam: r.exam, percent: r.overall.percent }));
+    return { presentDays: Number(days?.present ?? 0), markedDays: Number(days?.marked ?? 0), results };
+  });
+}
+// w16-b3 end
+
 // Whether the child's own view has results or coming papers to show (C351): a result is published for the child's
 // class, or a paper is coming. Two small reads, as the guardian.
 async function hasOwnResults(db: Sql, studentId: string): Promise<boolean> {
@@ -543,3 +564,23 @@ export async function readSchoolSyllabus(claims: Claims, linkId: string, student
     return { subjects, tonight: await taughtToday(db, studentId, today) };
   });
 }
+
+// W16-A3 begin
+// The Tutor Hall's school part (W16-A3): the school's own tutors that are on, and the platform tutors it switched off, for
+// a guardian with at least one consented child. Read as the guardian through public.school_tutors_for_guardian(), which
+// decides every row; a link the school closed meanwhile is SchoolLinkGoneError. No voice, no author: name, subject,
+// style, language and tint only.
+export async function readSchoolTutors(claims: Claims, linkId: string): Promise<SchoolTutors> {
+  return withGuardianContext(claims, linkId, async (db) => {
+    const { rows } = await db.query(`select tutor_id, platform_key, name, subject, style, language, tint, enabled, school_name from public.school_tutors_for_guardian()`);
+    const all = rows as { tutor_id: string; platform_key: string | null; name: string | null; subject: string | null; style: string | null; language: 'en' | 'hi' | 'both' | null; tint: SchoolTutors['tutors'][number]['tint'] | null; enabled: boolean; school_name: string }[];
+    return {
+      schoolName: all[0]?.school_name ?? '',
+      tutors: all
+        .filter((r) => r.platform_key === null && r.enabled && r.name && r.style && r.language && r.tint)
+        .map((r) => ({ id: r.tutor_id, name: r.name as string, subject: r.subject, style: r.style as string, language: r.language as 'en' | 'hi' | 'both', tint: r.tint as SchoolTutors['tutors'][number]['tint'] })),
+      hiddenPlatform: all.filter((r) => r.platform_key !== null && !r.enabled).map((r) => r.platform_key as string),
+    };
+  });
+}
+// w16-a3 end

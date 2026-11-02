@@ -4,7 +4,7 @@ import { SUBJECT_IDS } from './subjects';
 // The words the shared tutor window and the Learning Vault need on the phone (S2, C375), picked on the server.
 export const TUTOR_KEYS: MessageKey[] = [
   'fam.tutor.title', 'fam.tutor.tabConversation', 'fam.tutor.question', 'fam.tutor.send', 'fam.tutor.attachMenu', 'fam.homework.studyLink', 'fam.homework.studyLead',
-  'fam.tutor.attach', 'fam.tutor.filePhoto', 'fam.tutor.filePdf', 'fam.tutor.fileSending', 'fam.tutor.fileChecking',
+  'fam.check.menu', 'fam.check.menuLead', 'fam.check.sent', 'fam.check.err.photo_only', 'fam.tutor.attach', 'fam.tutor.filePhoto', 'fam.tutor.filePdf', 'fam.tutor.fileSending', 'fam.tutor.fileChecking',
   'fam.tutor.removeFile', 'fam.tutor.openFile', 'fam.tutor.err.file_too_large', 'fam.tutor.err.file_type', 'fam.tutor.err.file_empty',
   'fam.tutor.err.too_many_files', 'fam.tutor.err.upload_aadhaar_number', 'fam.tutor.err.upload_aadhaar_card', 'fam.tutor.err.upload_unreadable',
   'fam.tutor.err.photo_consent',
@@ -12,6 +12,8 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.tutor.fromReader', 'fam.tutor.doubt', 'fam.tutor.doubtAbout', 'fam.tutor.close', 'fam.err.network',
   // W9-A (C406), W10-4 (C413): the subject's feed, named with the subject's own word.
   'fam.chat.feed', 'fam.chat.kept', 'fam.chat.moved', 'fam.chat.full',
+  // W16-B1: "Done for now" ends the session and its quick quiz is made.
+  'fam.quiz.done', 'fam.quiz.doneThanks',
   ...SUBJECT_IDS.map((s) => `fam.subject.${s}` as MessageKey),
 ];
 

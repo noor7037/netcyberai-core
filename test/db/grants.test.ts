@@ -276,6 +276,9 @@ const APP_USER: Record<string, string> = {
   // aq-5 begin
   result_pdfs: 'INSERT,SELECT', // a child's checked papers as a PDF, kept until sent (C366): made by the office, never changed or removed
   // aq-5 end
+  // w16-a3 begin
+  school_tutors: 'INSERT,SELECT,UPDATE', // a school's own tutors and its switches of the platform's (W16-A3): the office writes, never removed; a family reads only school_tutors_for_guardian()
+  // w16-a3 end
   // aq-4 begin
   online_tests: 'DELETE,INSERT,SELECT,UPDATE', // an online test (C365): set, opened and closed by whoever may mark the paper
   online_attempts: 'SELECT', // written by the guardian's functions and the sweep only; UPDATE of state, voided_*, sheet_id is a column grant
@@ -473,6 +476,9 @@ const NCA_SUPER_DIFFERS: Record<string, string> = {
   // aq-5 begin
   result_pdfs: '', // the send-gate and the sweep reach it only through its definer functions (C366)
   // aq-5 end
+  // w16-a3 begin
+  school_tutors: '', // a school's own: the platform role reads nothing here (W16-A3)
+  // w16-a3 end
   // aq-4 begin
   online_tests: '', // a school's online tests and a child's answers are its own: the sweep reads through its definer function
   online_attempts: '',
@@ -588,3 +594,34 @@ describe('rights on schema public', () => {
     expect(standIns).toMatch(/alter default privileges in schema public grant all on tables to anon, authenticated, service_role;/);
   });
 });
+
+// w16-b3 start
+// The weekly parent report (W16-B3) lives in schema family: the family's own role reads and writes its rows (insert and
+// update, no delete: a child's removal cascades), nobody else holds anything; its three functions are each callable by
+// exactly one role, and the daily enqueue by none of them.
+describe('rights on the weekly parent report (W16-B3)', () => {
+  it('family.parent_reports: the family role only, and the functions each by one role', async () => {
+    const held = await rows(
+      `select pg_get_userbyid(a.grantee) as role, string_agg(a.privilege_type, ',' order by a.privilege_type) as rights
+         from pg_class c, aclexplode(c.relacl) a
+        where c.oid = 'family.parent_reports'::regclass and a.grantee <> c.relowner group by 1 order by 1`
+    );
+    expect(held).toEqual([{ role: 'family_app', rights: 'INSERT,SELECT,UPDATE' }]);
+    const fns = await rows(
+      `select p.proname as f, string_agg(r.rolname, ',' order by r.rolname) as roles
+         from pg_proc p cross join (select rolname from pg_roles where rolname in ('anon', 'authenticated', 'service_role', 'app_user', 'family_app', 'nca_super')) r
+        where ((p.pronamespace = 'family'::regnamespace and p.proname in ('report_accounts', 'doubts_for_class', 'class_week_summary'))
+               or (p.pronamespace = 'public'::regnamespace and p.proname = 'ai_ops_daily_enqueue'))
+          and has_function_privilege(r.rolname, p.oid, 'EXECUTE')
+        group by 1 order by 1`
+    );
+    // ai_ops_daily_enqueue: none of these roles; the scheduler runs it as its owner, as ai_upkeep_enqueue.
+    expect((await rows(`select 1 from pg_proc where proname = 'ai_ops_daily_enqueue'`)).length).toBe(1);
+    expect(fns).toEqual([
+      { f: 'class_week_summary', roles: 'app_user' },
+      { f: 'doubts_for_class', roles: 'app_user' },
+      { f: 'report_accounts', roles: 'nca_super' },
+    ]);
+  });
+});
+// w16-b3 end

@@ -5,7 +5,8 @@ import { classSubjects } from '@/lib/family/catalog';
 import { activeChild, listChildren, syllabusBoardOf } from '@/lib/family/children';
 import { FamilySessionRevokedError, withFamilyContext, familyClaims } from '@/lib/family/db';
 import { newLadder, parseRead, PHOTO_MAX_BYTES, screenPhoto, sealLadder, viewOf } from '@/lib/family/homework';
-import { claimSubject, setting } from '@/lib/family/learning';
+import { claimSubject } from '@/lib/family/learning';
+import { photoDoubtLimit } from '@/lib/family/tutor-meter';
 import type { Subject } from '@/lib/family/modules';
 import { requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
@@ -50,7 +51,7 @@ export async function POST(req: NextRequest) {
       // The photo rules, the same as a tutor photo's (C389): Class 1 up, both consents, the helper's switch.
       const refused = await photoGate(db, session.accountId, child);
       if (refused) return NextResponse.json({ error: refused }, { status: 403 });
-      const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
+      const limit = await photoDoubtLimit(db, session.accountId);
       const used = await db.query(`select photo_questions from family.day_counts where account_id = $1 and child_id = $2 and day = $3`, [session.accountId, child.childId, indiaDate()]);
       if (Number(used.rows[0]?.photo_questions ?? 0) >= limit) return NextResponse.json({ error: 'photo_cap', limit }, { status: 429 });
       return null;
@@ -69,7 +70,7 @@ export async function POST(req: NextRequest) {
       const refused = await photoGate(db, session.accountId, child);
       if (refused) return NextResponse.json({ error: refused }, { status: 403 });
       const day = indiaDate();
-      const limit = Math.max(0, Math.round(await setting(db, 'family.photo_questions_per_day', 3)));
+      const limit = await photoDoubtLimit(db, session.accountId);
       const taken = await db.query(
         `insert into family.day_counts as d (account_id, child_id, day, photo_questions) select $1, $2, $3, 1 where $4::int > 0
          on conflict (child_id, day) do update set photo_questions = d.photo_questions + 1 where d.photo_questions < $4::int

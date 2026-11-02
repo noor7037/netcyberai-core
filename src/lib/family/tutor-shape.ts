@@ -46,3 +46,18 @@ export type FeedTurn = TutorTurn & { chatId: string; subject: string };
 
 // The kept part of an answer: every block but a check or practice.
 export const keptTutorBlocks = (blocks: readonly Block[]): Block[] => blocks.filter((b) => b.type !== 'check' && b.type !== 'practice');
+
+// What a stored tutor turn is remembered as: its explanation's paragraphs (the idea when it has none), nothing else.
+export function explanationText(blocks: unknown): string {
+  const list = Array.isArray(blocks) ? blocks : [];
+  const b = list.find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
+  // W16-B2: a marked working (Check my work) has no explanation: it is remembered by its verdicts, so a follow-up such as
+  // "why was step 2 wrong?" sees what was said.
+  if (!b) {
+    const steps = list.find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'steps') as { items?: unknown } | undefined;
+    const items = Array.isArray(steps?.items) ? (steps!.items as { label?: unknown; text?: unknown }[]) : [];
+    return items.map((i) => `${typeof i?.label === 'string' ? i.label : ''}: ${typeof i?.text === 'string' ? i.text : ''}`).join(' ').replace(/\s+/g, ' ').trim();
+  }
+  const paragraphs = Array.isArray(b.paragraphs) ? b.paragraphs.filter((x): x is string => typeof x === 'string') : [];
+  return (paragraphs.length ? paragraphs.join(' ') : typeof b.idea === 'string' ? b.idea : '').replace(/\s+/g, ' ').trim();
+}

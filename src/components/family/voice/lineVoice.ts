@@ -8,7 +8,7 @@ import { speak, stopSpeaking } from '../english/speech';
 // response is never cached. When the server voice is not set up, or the family's turns are used up, the rest of the
 // visit uses the phone's voice and the screen says so; a single failure reads that one line with the phone's voice.
 
-export type LineSource = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number };
+export type LineSource = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string };
 export type VoiceMode = 'server' | 'phone';
 export type Spoken = { cancelled: boolean; mode: VoiceMode };
 
@@ -32,7 +32,7 @@ export function stopLine() {
 
 type Played = 'played' | 'off' | 'failed' | 'cancelled';
 
-async function playServer(source: LineSource, rate: number, mine: number): Promise<Played> {
+async function playServer(source: LineSource, rate: number, mine: number, onPlaying?: () => void): Promise<Played> {
   let res: Response;
   try {
     res = await fetch('/api/family/voice/speak', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(source), credentials: 'same-origin', cache: 'no-store' });
@@ -57,6 +57,8 @@ async function playServer(source: LineSource, rate: number, mine: number): Promi
       if (playing?.audio === audio) drop();
       resolve(generation === mine ? how : 'cancelled');
     };
+    // W16-A4: the call measures the time to the first sound.
+    audio.onplaying = () => onPlaying?.();
     audio.onended = () => end('played');
     // A phone that cannot decode the audio, or will not play it without a tap, would refuse every line the same way:
     // the rest of the visit uses its own voice, so no further line is asked for (each one takes a daily place).
@@ -70,16 +72,18 @@ async function playServer(source: LineSource, rate: number, mine: number): Promi
 
 // Reads one line: with the server voice when `mode` is 'server', else (or when it cannot) with the phone's own.
 // Resolves when the line ends, with the voice to use for the next line; `cancelled` when stopLine() came first.
-export async function speakLine(mode: VoiceMode, source: LineSource, phone: { text: string; lang: 'en' | 'hi'; rate: number; onWord?: (charIndex: number) => void }): Promise<Spoken> {
+export async function speakLine(mode: VoiceMode, source: LineSource, phone: { text: string; lang: 'en' | 'hi'; rate: number; onWord?: (charIndex: number) => void; onPlaying?: () => void }): Promise<Spoken> {
   stopLine();
   const mine = generation;
   let next: VoiceMode = mode;
   if (mode === 'server') {
-    const played = await playServer(source, phone.rate, mine);
+    const played = await playServer(source, phone.rate, mine, phone.onPlaying);
     if (played === 'played') return { cancelled: false, mode };
     if (played === 'cancelled') return { cancelled: true, mode };
     if (played === 'off') next = 'phone';
   }
+  // The phone's own voice starts at once (the engine queues it); the call counts that as the first sound.
+  phone.onPlaying?.();
   await speak(phone.text, phone.lang, phone.rate, phone.onWord);
   return { cancelled: generation !== mine, mode: next };
 }

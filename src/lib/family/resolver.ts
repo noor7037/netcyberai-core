@@ -1,5 +1,8 @@
+import { type Persona, withPersona } from './persona';
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type AiRequest, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
+import { checkSearchQuery } from './check-work';
+import { checkMarkSystem, checkMarkUser, questionOfReading } from '@/lib/ai/prompts/family.homework';
 import { logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
 import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
@@ -51,9 +54,13 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // A question asked in the tutor window (W9-B) may carry the reader's open chapter and the window's subject: both only
 // steer the library's passages and the teaching plan; the answer's subject is still decided on the server. `memory`
 // (9A): the chat's summary and last turns, for the prompt's "Earlier in this chat".
+// `check` (W16-B2, "Check my work"): the attached photo is the child's own handwritten working, already read line by line
+// (tutor-read.ts); the answer is that working marked step by step (family.homework prompt v2). The library's passages
+// are searched on the question the photo showed (the first line of the reading), not on the child's words, and no
+// planning call is made.
 export type ResolveInput =
   | { kind: 'topic' | 'chapter'; key: string }
-  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory };
+  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -67,6 +74,9 @@ export type ResolverEvent =
   | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject } }
   // W4-1 (C385): what became of the files sent with a tutor question, said before the answer.
   | { t: 'files'; message: string }
+  // W16-A4: only in a call's answer (`call: true`): the sentences of the block just sent that are spoken, each with the
+  // seal the server voice reads it from (src/lib/family/call-say.ts). The words are the block's own, cleaned.
+  | { t: 'say'; lines: { text: string; token: string }[] }
   | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string } };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
@@ -86,6 +96,8 @@ export type ResolverContext = {
   // provider and prompt version, and no family's daily cap; the response is marked prepared, so no child sees it
   // before a person has checked it.
   preparing?: { versionId: string };
+  // W16-A3: the tutor the child chose in the Tutor Hall; one line in the system prompt (src/lib/family/persona.ts).
+  persona?: Persona;
 };
 
 // Whom the sealed items are for.
@@ -212,7 +224,13 @@ export type Pending = {
   // call and the passages, the prompt rebuilt from the plan once it comes (null: the default plan stands).
   plan: Plan | null;
   teach: Teach | null;
+  // W16-B2: the answer is a child's own working marked (ResolveInput.check); its core blocks are CHECK_CORE.
+  check?: true;
 };
+
+// The core blocks of a marked working: the verdicts and the similar question to try. The corrected working is added
+// only when a step was wrong, and the chapter's name only when passages were found.
+export const CHECK_CORE: readonly BlockType[] = ['steps', 'check'];
 
 // The planning call (null: no route, the default plan), the library's passages, and the answer's request written from
 // a plan.
@@ -349,7 +367,8 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
 
   // W9-B (docs/39 §3): the library's passages and the planning call, for a live answer under a prompt that takes a plan.
   // Neither ever refuses: no passage is a general answer, no planner is the band's default plan.
-  const teach = prompt.usesPlan && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception) : null;
+  const isCheck = input.kind === 'question' && input.check === true;
+  const teach = (prompt.usesPlan || isCheck) && !ctx.preparing ? await prepareTeach(db, ctx, input, line, known, misconception) : null;
   // 3. The AI platform's checks (profile, minors, key, daily cap) and the cleaned request, still in this transaction.
   const ask: ResolverAsk = {
     board: boardNameOf(child),
@@ -368,19 +387,23 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
   };
   // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
-  const plan = prompt.usesPlan ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;
+  const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;
   const build = (p: Plan | null): AiRequest => {
     const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
-    return { system: prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    if (isCheck) {
+      const system = checkMarkSystem(a);
+      return { system: withPersona(system, ctx.persona), messages: [{ role: 'user', content: checkMarkUser(a) }], responseFormat: undefined };
+    }
+    return { system: withPersona(prompt.system(a), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
-  const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day }, profileId, build(plan));
+  const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {
     emit({ t: 'refused', reason: prepared.reason, message: ctx.refusalWords(REFUSAL_MESSAGE[prepared.reason]) });
     return null;
   }
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, plan, teach: teach ? { ...teach, build } : null };
+  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const } : {}) };
 }
 
 // The planner reads the question and the start of what attached files say: enough to plan, not to answer.
@@ -401,8 +424,11 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
       [child.childId, hint]
     )
   ).rows.map((r) => String(r.title));
+  // "Check my work": the chapter is searched on the question the photo showed (the reading's first line), so the passages
+  // match the chapter the working belongs to (its content words, check-work.ts); none when the reading has no question line.
+  const checkQuestion = input.kind === 'question' && input.check ? questionOfReading(input.attached ?? '') : null;
   const passages = await retrievePassages(db, {
-    question: input.kind === 'question' ? input.text : (line?.topicEn ?? line?.chapterEn ?? ''),
+    question: input.kind === 'question' ? (input.check ? checkSearchQuery(checkQuestion ?? '') : input.text) : (line?.topicEn ?? line?.chapterEn ?? ''),
     subject: hint,
     classLevel: child.classLevel,
     boardId: syllabusBoardOf(child),
@@ -412,7 +438,7 @@ async function prepareTeach(db: Db, ctx: ResolverContext, input: ResolveInput, l
     childId: child.childId,
   });
   const ai = { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day };
-  const call = input.kind === 'question' && misconception === null ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
+  const call = input.kind === 'question' && !input.check && misconception === null ? await preparePlan(db as never, ai, { ...planCtx, board: boardNameOf(child), chapter: input.about ?? null, passageTitles: passages.map((p) => p.title) }, withAttached(input.text, input.attached).slice(0, PLAN_QUESTION_MAX)) : null;
   return { ctx: planCtx, call, passages };
 }
 
@@ -544,7 +570,7 @@ export async function keep(db: Db, p: Pending, g: Generated): Promise<ResolverEv
   const result = g.sent.result;
   // W10 (C411): the core blocks this answer's plan asked for (all three under a prompt that takes no plan), and those
   // that never came. The notice names them; an answer missing none and not cut shows none.
-  const core = coreBlocks(g.plan?.blocks ?? null);
+  const core = p.check ? [...CHECK_CORE] : coreBlocks(g.plan?.blocks ?? null);
   const missing = core.filter((t) => !g.kept.some((k) => k.type === t));
   // W10-4 (C413): `cut` says the child's answer stopped inside a block (the scanner ended in an object that never
   // closed), never how the call ended. A call that fails after its last block closed (the route's deadline reached by a

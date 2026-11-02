@@ -63,6 +63,7 @@ const paths: Record<string, string> = {
   career: 'M12 21a9 9 0 100-18 9 9 0 000 18zM15.5 8.5l-2 5-5 2 2-5z',
   twin: 'M4 9h10v10H4zM10 9V5h10v10h-6',
   automation: 'M13 3L5 13h6l-1 8 8-10h-6z',
+  tutor: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-3.5 2.7-5.5 6-5.5s6 2 6 5.5M16 5h5v6h-2l-2 2v-2h-1z',
   ticket: 'M4 7h16v3a2 2 0 000 4v3H4v-3a2 2 0 000-4zM14 7v10',
   search: 'M11 18a7 7 0 100-14 7 7 0 000 14zM16 16l5 5',
   plus: 'M12 5v14M5 12h14',

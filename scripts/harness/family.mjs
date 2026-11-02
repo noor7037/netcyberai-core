@@ -60,6 +60,34 @@ const FOLLOW_UP_CHAT = `
     '[{"type":"explanation","title":"How leaves make food","idea":"Green leaves make food from sunlight, water and air.","paragraphs":["Leaves take in carbon dioxide from the air and water from the roots, and use sunlight to make sugar."],"example":"","steps":[],"terms":[]}]'::jsonb, now() - interval '1 minute');
 `;
 const FOLLOW_UP_CHAT_GONE = `delete from family.tutor_messages where conversation_id = '${FOLLOW_CHAT_ID}'; delete from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}';`;
+// W16-B2 (Check my work): a Mathematics chat of one marked working, kept like any other tutor message (the question the
+// child sent with the photo, and the answer's stored blocks: the chapter, the verdicts, the corrected working).
+const CHECK_CHAT_ID = 'f0000000-0000-4000-8000-0000000fa302';
+const CHECK_CHAT = `
+  insert into family.tutor_conversations (conversation_id, account_id, child_id, subject, title, turn_count, status, updated_at, last_at)
+  values ('${CHECK_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'mathematics', 'Check my work', 1, 'open', now(), now())
+  on conflict do nothing;
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, created_at)
+  values ('${CHECK_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'child', 'Check my work', now() - interval '2 minutes');
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, created_at)
+  values ('${CHECK_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'tutor',
+    '[{"type": "sources", "links": [], "chapter": "Linear Equations in One Variable", "unit": "Solving an equation"}, {"type": "steps", "title": "Your working, step by step", "items": [{"label": "Step 1: right", "text": "You wrote 3x + 5 = 20. That is the equation, copied correctly."}, {"label": "Step 2: wrong", "text": "You wrote 3x = 25. But 5 is added on the left, so take 5 away from 20."}, {"label": "Step 3: wrong", "text": "You wrote x = 25/3. It follows from the step before, so it is not right either."}]}, {"type": "worked_example", "problem": "Solve 3x + 5 = 20.", "steps": [{"text": "Take 5 away from both sides.", "expression": "20-5", "result": "15"}, {"text": "Divide both sides by 3.", "expression": "15/3", "result": "5"}], "answer": "x = 5"}]'::jsonb, now() - interval '1 minute');
+`;
+const CHECK_CHAT_GONE = `delete from family.tutor_messages where conversation_id = '${CHECK_CHAT_ID}'; delete from family.tutor_conversations where conversation_id = '${CHECK_CHAT_ID}';`;
+// W16-B1: a Quick quiz made from that Science chat (illustrative words only), for the Study feed's and the home's card.
+const QUIZ_ID = 'f0000000-0000-4000-8000-0000000fa302';
+const QUIZ_ITEMS = [
+  { kind: 'mcq', id: 'q1', question: 'What do green leaves need to make food?', options: ['Sunlight', 'Sand', 'Salt'], answer: 0, why: 'Leaves use sunlight to make food.' },
+  { kind: 'mcq', id: 'q2', question: 'Which gas do leaves take in?', options: ['Oxygen', 'Carbon dioxide', 'Helium'], answer: 1, why: 'Leaves take in carbon dioxide from the air.' },
+  { kind: 'mcq', id: 'q3', question: 'Where is food made in a plant?', options: ['Roots', 'Leaves', 'Seeds'], answer: 1, why: 'The leaves hold the green colour that works with sunlight.' },
+  { kind: 'mcq', id: 'q4', question: 'What is the green colour in leaves called?', options: ['Chlorophyll', 'Starch', 'Water'], answer: 0, why: 'Chlorophyll is the green colour in leaves.' },
+  { kind: 'written', id: 'q5', question: 'Say in a sentence why a plant in a dark cupboard turns pale.', rubric: ['It gets no sunlight to make food'] },
+];
+const QUIZ_CARD = `${FOLLOW_UP_CHAT}
+  insert into family.session_quizzes (quiz_id, account_id, child_id, conversation_id, session_day, subject, lang, title, items, review_due_on)
+  select '${QUIZ_ID}', account_id, child_id, conversation_id, (now() at time zone 'Asia/Kolkata')::date, 'science', 'en', 'Quick quiz', '${JSON.stringify(QUIZ_ITEMS).replace(/'/g, "''")}'::jsonb,
+         array[(now() at time zone 'Asia/Kolkata')::date + 1, (now() at time zone 'Asia/Kolkata')::date + 3, (now() at time zone 'Asia/Kolkata')::date + 7]
+    from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}' on conflict do nothing;`;
 const FOLLOW_UP_ANSWER = [
   { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
   { t: 'block', block: { type: 'explanation', title: 'Photosynthesis in a money plant', idea: 'The leaves we talked about make food the same way in a plant at home.', paragraphs: ['A money plant near a sunny window grows towards the light: its leaves use the sunlight, the water you pour in and the air around it to make sugar, as explained above.'], example: 'Keep one plant in the sun and one in a dark cupboard for a week: the one in the dark turns pale.', steps: [], terms: [] } },
@@ -67,6 +95,35 @@ const FOLLOW_UP_ANSWER = [
 ]
   .map((e) => `${JSON.stringify(e)}\n`)
   .join('');
+// W16-A4 (the call): a scripted turn of the call, in the child's language. The voice route "hears" a question, the
+// understand route answers it with a checked block and its spoken sentences (illustrative words, made-up seals), and the
+// speak route answers like a family whose server voice is not set up yet, so the phone's own voice reads (see `call`).
+const CALL_WORDS = {
+  en: {
+    heard: 'What are equal fractions?',
+    idea: 'Equal fractions name the same part of a whole.',
+    paragraphs: ['Half of a roti is the same as two quarters. Cut it again and nothing is lost!'],
+    example: '1/2 is the same as 2/4, and it is also the same as 3/6.',
+  },
+  hi: {
+    heard: 'बराबर भिन्न क्या होती हैं?',
+    idea: 'बराबर भिन्न पूरे का एक ही हिस्सा बताती हैं।',
+    paragraphs: ['आधी रोटी और दो चौथाई रोटी बराबर होती हैं। इसे और काटने पर भी कुछ कम नहीं होता!'],
+    example: '1/2 और 2/4 बराबर हैं, और 3/6 भी बराबर है।',
+  },
+};
+const callAnswer = (lang) => {
+  const c = CALL_WORDS[lang];
+  const lines = [c.idea, ...c.paragraphs[0].split(/(?<=[.!?।])\s+/), c.example].map((text, i) => ({ text, token: `harness-seal-${i}` }));
+  return [
+    { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'mathematics', topicKey: null },
+    { t: 'block', block: { type: 'explanation', title: lang === 'hi' ? 'बराबर भिन्न' : 'Equal parts', idea: c.idea, paragraphs: c.paragraphs, example: c.example, steps: [], terms: [] } },
+    { t: 'say', lines },
+    { t: 'done', complete: true, missing: [], cut: false },
+  ]
+    .map((e) => `${JSON.stringify(e)}\n`)
+    .join('');
+};
 const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 
 // `ai`: for this picture, a made-up Workers AI key sealed with this run's own key, the provider cleared for children
@@ -143,7 +200,16 @@ export const FAMILY_SCREENS = [
   ['full', 'family-parent-chapter-request', '/family/parent#learning', { parent: true, settle: '[data-chapter-request] [data-request-list]' }],
   ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
+  // W16-B5: the home screen's Tutors tile (the platform tutors' names in a calm list; the names take a ring in turn with motion).
+  ['full', 'family-home-tutors', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutors-tile]' }],
   ['full', 'family-study', '/family/study', {}],
+  // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.
+  ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-quiz-card-home', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],
+  ['full', 'family-quiz-play', `/family/study/quiz/${QUIZ_ID}`, { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-test-item]' }],
+  // W16-A3: the Tutor Hall.
+  ['full', 'family-tutors', '/family/tutors', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-group]' }],
+  ['full', 'family-tutors-study', '/family/study?subject=mathematics&tutor=maths', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chosen]' }],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
@@ -155,6 +221,10 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand-scene-motor', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t09', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="scene"]', steps: [{ tap: '[data-scene-part="coil"]', wait: '[data-scene-text]' }] }],
   ['full', 'family-understand-scene-heart', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t10', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="scene"]' }],
   ['full', 'family-understand-chart', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t11', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="chart"]' }],
+  // W16-A2: the drawing board (every step drawn under reduced motion; step 1 and its controls with motion) under the
+  // citation chip naming the chapter, and the pressure simulation (the 4 m depth tapped) under the general chip.
+  ['full', 'family-understand-board', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t12', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-board-svg]' }],
+  ['full', 'family-understand-sim', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t13', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-sim="pressure_depth"]', steps: [{ tap: '[data-sim-choice="d4"]', wait: '[data-sim-choice="d4"][aria-checked="true"]' }] }],
   // S1 (C374): the chapter reader, its blocks and the sticky read-aloud controls.
   ['full', 'family-chapter-reader', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-controls]' }],
   // C386: the reader with the server voice set up (its controls say the NetCyberAI voice reads).
@@ -187,9 +257,16 @@ export const FAMILY_SCREENS = [
   ['full', 'family-homework', '/family/study/homework', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-start]' }],
   // W6-A (C395): the homework helper's link is in the composer's Attach menu.
   ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-homework-link]' }] }],
+  // W16-B2: the Attach menu's two photo actions (Ask about this, Check my work), and a marked working kept in the feed.
+  ['full', 'family-study-check-menu', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-check-pick]' }] }],
+  ['full', 'family-check-my-work', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: CHECK_CHAT, reset: CHECK_CHAT_GONE, settle: '[data-feed-answer] [data-steps]' }],
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
   ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
+  // W16-A4: the call, waiting for the first question, and after one turn (the question heard, the answer on the board with its
+  // captions, the phone's own voice reading because no server voice is set up). The turn is scripted (`call`).
+  ['full', 'family-call', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, settle: '[data-call-mic]' }],
+  ['full', 'family-call-answer', '/family/call?tutor=maths&subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, answer: callAnswer, settle: '[data-call-mic]', steps: [{ tap: '[data-call-mic]', wait: '[data-voice-state="recording"]' }, { pause: 1300 }, { tap: '[data-call-mic]', wait: '[data-call-caption]' }, { wait: '[data-call-board] [data-block="explanation"]' }, { wait: '[data-voice-in-use]' }] }],
   // C230-AP: a photo yes given on the older notice is asked again, and the row says why.
   ['full', 'family-parent-photo-notice', '/family/parent#privacy', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
   ['full', 'family-parent-area-voice', '/family/parent#privacy', { parent: true, settle: '[data-consent-voice]' }],
@@ -390,7 +467,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           const voiceOff = opts.voice ? await serverVoiceOn(db, aiKey) : null;
           for (const [module, on] of Object.entries(opts.flags ?? {}))
             await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
-          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
+          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic || opts.call ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
@@ -400,12 +477,19 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.pictures) await routeScriptPictures(context);
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
           // NDJSON stream is answered here; what follows it (the chats read again) is the app's own.
-          if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: opts.answer }));
+          if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: typeof opts.answer === 'function' ? opts.answer(lang) : opts.answer }));
+          // `call` (W16-A4): the call's hearing and speaking, scripted: the recording "hears" the scripted question, the speak
+          // route says the server voice is not set up (so the phone's own voice reads), and the marks are taken without a log.
+          if (opts.call) {
+            await context.route('**/api/family/voice', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ text: CALL_WORDS[lang].heard, left: 100, maxSeconds: 30 }) }));
+            await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_set_up' }) }));
+            await context.route('**/api/family/voice/call/marks', (r) => r.fulfill({ status: 204 }));
+          }
           const page = await context.newPage();
           const errors = [];
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
           page.on('response', (r) => {
-            if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
+            if (r.url().includes('/api/') && r.status() >= 400 && !(opts.call && r.url().endsWith('/api/family/voice/speak'))) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
           });
           // The report link's language is in its address (the WhatsApp message carries the guardian's).
           const address = opts.langQuery && lang === 'hi' ? `${route}?lang=hi` : route;
@@ -425,6 +509,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
+            if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
             if (step.choose) {
               const field = page.locator(step.choose.field).first();

@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
+import { callGate } from '@/lib/family/call-gate';
+import { sayEvent, type SayBudget } from '@/lib/family/call-say';
 import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
-import { activeChild, listChildren } from '@/lib/family/children';
+import { tutorTurn } from '@/lib/ai/agents/orchestrator';
+import { activeChild, boardNameOf, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
@@ -9,8 +12,10 @@ import { openItem } from '@/lib/family/items';
 import { claimSubject } from '@/lib/family/learning';
 import { SUBJECTS, type Subject } from '@/lib/family/modules';
 import { jsonBody, requireFamily } from '@/lib/family/request';
-import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
+import { FOLLOW_UPS, generate, keep, prepareResolve, type FollowUp, type Generated, type Pending, type ResolveInput, type ResolverEvent } from '@/lib/family/resolver';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
+import { isTutorKey, resolvePersona } from '@/lib/family/tutors';
+import type { Persona } from '@/lib/family/persona';
 import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
@@ -32,6 +37,13 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 // path answers it (consent, the module switch, moderation, the daily cap); once answered, the question and the answer's
 // teaching blocks are kept in the child's conversation of the subject the server decided (src/lib/family/tutor.ts).
 // A follow-up or a retry is not kept again. The child is always the one this phone has chosen, never one the body names.
+// W16-A4 (the call): `call: true` beside a tutor question answers a spoken turn. The gate is the voice input's own
+// (call-gate.ts) and after each checked block a `say` line carries its spoken sentences, sealed for the speak route.
+//
+// W16-B2 (Check my work): `tutor.mode: 'check'` with exactly one photo of the child's own handwritten working. The photo
+// is read line by line (family.homework prompt v2, the same photo rules, day place and vision profile as any tutor
+// photo), the chapter is searched on the question the photo showed, and the answer is that working marked step by step
+// (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other.
 //
 // The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
 // vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
@@ -65,6 +77,9 @@ export async function POST(req: NextRequest) {
   if (!input && !retry) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   const tutorBody = input?.kind === 'question' && body.tutor && typeof body.tutor === 'object' && !Array.isArray(body.tutor) ? (body.tutor as Record<string, unknown>) : null;
   if (tutorBody && !isSubject(tutorBody.subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
+  const checkMode = tutorBody?.mode === 'check' && !followUp && !retry;
+  if (checkMode && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
   let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
@@ -72,14 +87,25 @@ export async function POST(req: NextRequest) {
   // subject, else the newest open one) and what the tutor is told of it (its summary and last turns). A new question in
   // a full chat is refused before anything is asked (409 chat_full); a follow-up still sees the chat.
   let chatId: string | null = null;
+  // W16-A3: the tutor chosen in the Tutor Hall (`tutor.tutorKey`), or the one the chat named by the window was started with;
+  // its persona is one line of the system prompt, and a new chat is kept with its tutor.
+  let persona: Persona | null = null;
+  let tutorKey: string | null = null;
   // W10 (C411): the chat the window named is kept whatever subject is decided; a chat with turns steers by its own subject.
   let pinned = false;
   let chatSubject: string | null = null;
   if (tutorBody && input?.kind === 'question' && !retry) {
     const chat = await withFamilyContext(claims, async (db) => {
       const child = activeChild(await listChildren(db, session.accountId), chosen);
-      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId) : null;
+      return child ? resolveChat(db, session.accountId, child.childId, String(tutorBody.subject), tutorBody.chatId, isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null) : null;
     }).catch(() => null);
+    const asked = chat ? chat.tutorKey : isTutorKey(tutorBody.tutorKey) ? tutorBody.tutorKey : null;
+    // W16-B5: with the Tutor Hall switched off, no tutor is chosen: the question is answered without a persona.
+    const hallOn = asked ? await withFamilyContext(claims, (db) => familyModuleOn(db, 'tutor_hall', session.accountId)).catch(() => false) : false;
+    if (asked && hallOn) {
+      persona = await resolvePersona(claims, (fn) => withFamilyContext(claims, fn), session.accountId, asked).catch(() => null);
+      tutorKey = persona ? asked : null;
+    }
     if (chat?.full && !followUp) return NextResponse.json({ error: 'chat_full' }, { status: 409 });
     chatId = chat?.chatId ?? null;
     pinned = chat?.pinned ?? false;
@@ -89,10 +115,24 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // W16-A4: a call's turn (`call: true` beside a tutor question): the same answer, and after each checked block the
+  // sentences of it that are spoken, sealed for the speak route (call-say.ts). Behind the voice input's own gate, read
+  // again in the first transaction below; `callChild` is the child it was sealed for.
+  const callMode = body.call === true && tutorBody !== null && !followUp && !retry;
+  let callChild: string | null = null;
+  const spoken: SayBudget = { used: 0 };
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const send = (e: ResolverEvent) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
+      const write = (e: ResolverEvent) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
+      const send = (e: ResolverEvent) => {
+        write(e);
+        if (callChild && e.t === 'block') {
+          const say = sayEvent(e.block, { accountId: session.accountId, childId: callChild }, spoken);
+          if (say) write(say);
+        }
+      };
       const stop = (e: ResolverEvent): null => {
         send(e);
         return null;
@@ -117,6 +157,7 @@ export async function POST(req: NextRequest) {
             if (!(await familyModuleOn(db, 'understand', session.accountId))) return { refused: t(lang, 'fam.understand.off') };
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
+            if (checkMode && files.some((f) => f.mime === 'application/pdf')) return { refused: t(lang, 'fam.check.err.photo_only') };
             // W4-1 review: whatever would refuse the question is checked before any photo leaves, so a question that will
             // not be answered never sends a photo or spends a place: the reader's chapter and section, the safety check
             // ready (C314, as the homework helper does), and room in the family's day for every photo read and the answer.
@@ -126,11 +167,11 @@ export async function POST(req: NextRequest) {
             if (!(await prepareModeration(db, ai)).ok) return { refused: t(lang, 'fam.understand.safetyOff') };
             const photos = files.filter((f) => f.mime !== 'application/pdf').length;
             if (photos > 0 && (await dailyRequestsLeft(db, session.accountId, ai.day)) < photos + 1) return { refused: t(lang, 'ai.cap_reached') };
-            return { files, lang, childId: child.childId, ai };
+            return { files, lang, childId: child.childId, ai, check: { classLevel: child.classLevel, board: boardNameOf(child) } };
           });
           if ('refused' in asked) return void send({ t: 'refused', reason: 'not_found', message: asked.refused! });
           const fetched = await fetchFiles(asked.files, (key) => tutorStorage.get(key));
-          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched));
+          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched, checkMode ? asked.check : undefined));
           const { reads, sent } = await readFetched(fetched, calls);
           await withFamilyContext(claims, async (db) => {
             for (const s of sent) {
@@ -143,15 +184,27 @@ export async function POST(req: NextRequest) {
           attached = outcome.attached ?? undefined;
           const lines = [t(asked.lang, 'fam.tutor.files.read', { read: String(outcome.read), total: String(reads.length) }), ...[...new Set(outcome.unreadable)].map((u) => t(asked.lang, UNREADABLE_WORDS[u]))];
           send({ t: 'files', message: lines.join(' ') });
+          // Check my work with a photo that could not be read: there is no working to mark, and the line above says why.
+          if (checkMode && !attached) return void send({ t: 'refused', reason: 'not_found', message: t(asked.lang, 'fam.check.err.unreadable') });
         }
+        // W16-A1: the turn runs through the orchestrator (src/lib/ai/agents/orchestrator.ts), which calls the same three
+        // steps below in the same order and logs each handoff; nothing it sends or keeps differs. No queue is given: a
+        // family session enqueues no job.
         // 1. The checks and reads, and the AI platform's own checks (the daily cap taken), in one short transaction.
-        const pending = await withFamilyContext(claims, async (db): Promise<Pending | null> => {
+        const prepare = () => withFamilyContext(claims, async (db): Promise<Pending | null> => {
           const children = await listChildren(db, session.accountId);
           const child = activeChild(children, chosen);
           const words = (key: string, params?: Record<string, string>) => (isMessageKey(key) ? t(child?.language ?? 'en', key, params) : key);
           if (!child) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.noChild') });
           if (!(await consentState(db, session.accountId)).study_core) return stop({ t: 'refused', reason: 'not_found', message: words('fam.err.consent_required') });
           if (!(await familyModuleOn(db, 'understand', session.accountId))) return stop({ t: 'refused', reason: 'not_switched_on', message: words('fam.understand.off') });
+          if (callMode) {
+            // W16-B5: the call's own switch in Control → Apps; the microphone in Study is voice_input's, not this.
+            if (!(await familyModuleOn(db, 'tutor_call', session.accountId))) return stop({ t: 'refused', reason: 'not_switched_on', message: words('fam.call.off') });
+            const call = await callGate(db, session.accountId, chosen);
+            if (!call.ok) return stop({ t: 'refused', reason: 'not_found', message: words(call.error === 'not_found' ? 'fam.understand.noChild' : `fam.voice.err.${call.error}`) });
+            callChild = call.child.childId;
+          }
           let target = input;
           if (tutorBody && target?.kind === 'question') {
             const subject = String(tutorBody.subject);
@@ -166,7 +219,7 @@ export async function POST(req: NextRequest) {
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
             target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
-            if (attached && target?.kind === 'question') target = { ...target, attached };
+            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
             if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: reader?.chapterKey ?? null, blockId: reader?.blockId ?? null, files, windowSubject: subject, lang: child.language };
@@ -197,6 +250,7 @@ export async function POST(req: NextRequest) {
               day: indiaDate(),
               refusalWords: words,
               claimSubject: (tx, subject) => claimSubject(tx, session.accountId, child.childId, subject),
+              ...(persona ? { persona } : {}),
             },
             target!,
             followUp,
@@ -204,26 +258,36 @@ export async function POST(req: NextRequest) {
             misconception
           );
         });
-        if (!pending) return;
         // 2. The AI answers, block by block, with no database connection held. A child with no free subject claims a
         // typed question's subject just before its first block is shown, in a short transaction of its own.
-        const childId = pending.ctx.child.childId;
-        const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
-        if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
+        const answer = async (pending: Pending) => {
+          const childId = pending.ctx.child.childId;
+          const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
+          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
+          return generated;
+        };
         // 3. The writes, in a second short transaction; the last event only once they are kept.
-        let last: ResolverEvent | null;
-        try {
-          last = await withFamilyContext(claims, (db) => keep(db, pending, generated));
-        } catch (err) {
-          // Signed out everywhere during the call: the check failed before anything was written, but the call
-          // happened, so it is still counted (once: nothing of the refused transaction ran).
-          if (err instanceof FamilySessionRevokedError)
-            await withFamilyGate(async (db) => {
-              await generated.sent.record(db as never);
-              await pending.moderation?.record(db as never);
-            }).catch(() => {});
-          throw err;
-        }
+        const write = async (pending: Pending, generated: Generated): Promise<ResolverEvent | null> => {
+          try {
+            return await withFamilyContext(claims, (db) => keep(db, pending, generated));
+          } catch (err) {
+            // Signed out everywhere during the call: the check failed before anything was written, but the call
+            // happened, so it is still counted (once: nothing of the refused transaction ran).
+            if (err instanceof FamilySessionRevokedError)
+              await withFamilyGate(async (db) => {
+                await generated.sent.record(db as never);
+                await pending.moderation?.record(db as never);
+              }).catch(() => {});
+            throw err;
+          }
+        };
+        const done = await tutorTurn(
+          { prepare, prepared: (p) => ({ passages: p.teach?.passages.length ?? 0, planAsked: p.teach?.call != null }), answer, keep: write },
+          { conversationId: chatId, day: indiaDate(), endsSession: false }
+        );
+        if (!done) return;
+        const { pending, generated } = done;
+        let last = done.last;
         if (generated.error !== null) throw generated.error;
         // The tutor's history (S2): an answered question and its teaching blocks, in a short transaction of its own.
         // The answer was already shown and metered: a history that cannot be written never takes it back. Files are
@@ -239,7 +303,7 @@ export async function POST(req: NextRequest) {
         if (turn && last?.t === 'done' && generated.subject && generated.kept.length > 0) {
           const subject = generated.subject;
           const same = subject === turn.windowSubject;
-          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage })).catch(() => null);
+          kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey })).catch(() => null);
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
         if (last) send(last);

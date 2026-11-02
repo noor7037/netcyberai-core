@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { Block, Explanation } from '@/lib/family/blocks';
@@ -8,6 +9,9 @@ import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
+import { StepsView } from '../blocks/StepsView';
+import { CitationChip } from '../blocks/CitationChip';
+import { citationOf } from '@/lib/family/citation';
 import { MindMapView } from '../blocks/MindMapView';
 import { DirectAnswerCard, UnderstandView, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
@@ -41,6 +45,10 @@ type Props = {
   pinned?: 'dock' | 'sheet';
   // Study: the subject tab follows a question the server kept in another subject.
   follow?: boolean;
+  // W16-A3: the tutor chosen in the Tutor Hall; every question carries its key, and the window says who is answering.
+  tutor?: { key: string; name: string } | null;
+  // W16-B5: the call affordance in the composer (Study, while the call is switched on and the child may speak).
+  call?: { href: string; label: string } | null;
   children?: ReactNode;
 };
 
@@ -89,19 +97,23 @@ export function answered(asks: FeedAsk[], n: number, chat: { chatId: string; sub
 const carry: { ask: FeedAsk | null } = { ask: null };
 
 // Where Study goes when the tab follows a moved question (null: it stays): the moved question's subject.
-export function followHref(ask: FeedAsk | undefined, follow: boolean): string | null {
-  return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}` : null;
+export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: string | null = null): string | null {
+  return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
   const [asks, setAsks] = useState<FeedAsk[]>([]);
   const [attached, setAttached] = useState<Attached[]>([]);
+  // W16-B2: the attached photo is the child's own working, to be checked ("Check my work"), not asked about.
+  const [checking, setChecking] = useState(false);
   const [fileError, setFileError] = useState<string | null>(null);
   const [turns, setTurns] = useState<FeedTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
+  // W16-B1: "Done for now" ends the session, so its quick quiz is made within minutes.
+  const [ended, setEnded] = useState<'idle' | 'sending' | 'done'>('idle');
   const feed = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, '');
   const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
@@ -153,21 +165,22 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
       const next = answered(asksNow.current, n, { chatId: chat.chatId, subject: chat.subject });
       setAsks(next);
       const ask = next.find((a) => a.n === n);
-      const href = followHref(ask, follow);
+      const href = followHref(ask, follow, chosen?.key ?? null);
       if (ask && href) {
         carry.ask = ask;
         router.replace(href, { scroll: false });
       }
     },
-    [follow, router]
+    [follow, router, chosen]
   );
 
   const busy = attached.some((a) => a.state !== 'ready');
-  const canSend = text.trim().length >= TUTOR_TEXT_MIN && !busy;
+  // Check my work needs only the photo: the words are optional.
+  const canSend = !busy && (checking ? attached.length === 1 : text.trim().length >= TUTOR_TEXT_MIN);
 
-  const attach = async (file: File) => {
+  const attach = async (file: File, check = false) => {
     setFileError(null);
-    if (attached.length >= TUTOR_FILES_PER_TURN) return setFileError(w['fam.tutor.err.too_many_files']);
+    if (attached.length >= TUTOR_FILES_PER_TURN || (check && attached.length > 0) || checking) return setFileError(w['fam.tutor.err.too_many_files']);
     if (file.size === 0) return setFileError(w['fam.tutor.err.file_empty']);
     if (file.size > TUTOR_FILE_MAX_BYTES) return setFileError(w['fam.tutor.err.file_too_large']);
     const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
@@ -175,9 +188,12 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     const key = `${Date.now()}-${Math.random()}`;
     const update = (patch: Partial<Attached>) => setAttached((list) => list.map((a) => (a.key === key ? { ...a, ...patch } : a)));
     const drop = (code: string) => {
+      if (check) setChecking(false);
       setAttached((list) => list.filter((a) => a.key !== key));
       setFileError(w[`fam.tutor.err.${code}`] ?? w['fam.err.network']);
     };
+    if (check && mime === 'application/pdf') return setFileError(w['fam.check.err.photo_only']);
+    if (check) setChecking(true);
     setAttached((list) => [...list, { key, name: file.name, mime, state: 'sending', id: null }]);
     const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
     if (!askRes?.ok) return drop(await errorOf(askRes));
@@ -193,18 +209,20 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
 
   const remove = (a: Attached) => {
     setAttached((list) => list.filter((x) => x.key !== a.key));
+    setChecking(false);
     if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
   };
 
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
   const send = () => {
     if (!canSend) return;
-    const asked = text.trim();
-    const tutor = { subject, ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])) };
+    const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
+    const tutor = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking ? { mode: 'check' as const } : {}) };
     const n = (asks.at(-1)?.n ?? 0) + 1;
     setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
     setText('');
     setAttached([]);
+    setChecking(false);
     setFileError(null);
     setOpen(true);
     // The new question at the top of the feed box, its answer drawing below it.
@@ -212,12 +230,28 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
+  // The chat of the newest answer kept on this screen, else the feed's last turn.
+  const lastChat = [...asks].reverse().find((a) => a.chatId)?.chatId ?? [...(turns ?? [])].reverse().find((x) => x.chatId)?.chatId ?? null;
+  const finish = async () => {
+    if (!lastChat || ended !== 'idle') return;
+    setEnded('sending');
+    const res = await postJson('/api/family/tutor/done', { chatId: lastChat });
+    setEnded(res?.ok ? 'done' : 'idle');
+  };
 
   return (
     <section data-tutor-window data-subject={subject} data-listed={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
       <h2 id={ids.title} className="sr-only">
         {w['fam.tutor.title']}
       </h2>
+      {chosen && (
+        <p data-tutor-chosen={chosen.key} className="flex flex-wrap items-center gap-x-3 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
+          <span>{fill(w['fam.tutors.chattingWith'], { name: chosen.name })}</span>
+          <Link href="/family/tutors" className="fam-press inline-flex min-h-[44px] items-center font-bold text-saffron-deep underline">
+            {w['fam.tutors.change']}
+          </Link>
+        </p>
+      )}
       {reader && (
         <p data-tutor-context className="self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
           {fill(w['fam.tutor.doubtAbout'], { section: reader.section })}
@@ -263,6 +297,24 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           </div>
         ))}
       </div>
+      {pinned === 'dock' && lastChat && !reader && (
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            data-session-done
+            disabled={ended !== 'idle'}
+            onClick={() => void finish()}
+            className="fam-press inline-flex min-h-[44px] items-center rounded-xl border-2 border-ink bg-paper px-5 text-base font-bold text-ink disabled:opacity-60"
+          >
+            {w['fam.quiz.done']}
+          </button>
+          {ended === 'done' && (
+            <p role="status" data-session-done-note className="text-sm font-semibold text-slate">
+              {w['fam.quiz.doneThanks']}
+            </p>
+          )}
+        </div>
+      )}
       {children}
       <Composer
         w={w}
@@ -276,9 +328,12 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         homework={homework}
         attached={attached}
         onAttach={(f) => void attach(f)}
+        onCheck={(f) => void attach(f, true)}
+        checking={checking}
         onRemove={remove}
         fileError={fileError}
         voice={voice}
+        call={call}
         historyOpen={open && shown}
         historyFor={ids.feed}
         onHistory={() => {
@@ -319,8 +374,11 @@ function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words;
 // sections, numbered.
 function KeptAnswer({ b, w, tone, lang }: { b: Block[]; w: Words; tone: string; lang: string }) {
   const lead = b.find((x): x is Explanation => x.type === 'explanation');
+  // W16-B2: a marked working names its chapter in a chip first (a general answer says nothing here).
+  const cited = citationOf(b, false);
   return (
     <div lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
+      {cited && <CitationChip w={w} c={cited} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {b.map((x, i) => (
         <TurnBlock key={i} b={x} w={w} tone={tone} lead={x === lead} />
@@ -351,7 +409,10 @@ function TurnBlock({ b, w, tone, lead = false }: { b: Block; w: Words; tone: str
     case 'english_moment':
       return <EnglishMomentView b={b} w={w} tone={tone} />;
     case 'sources':
-      return <SourcesView b={b} w={w} tone={tone} />;
+      return b.links.length > 0 ? <SourcesView b={b} w={w} tone={tone} /> : null;
+    case 'steps':
+      // W16-B2: a marked working's verdicts, kept with the message.
+      return <StepsView b={b} w={w} tone={tone} />;
     default:
       return null;
   }

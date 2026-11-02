@@ -12,7 +12,9 @@ import { useKeyboardInset } from './useKeyboardInset';
 // decides with photoGate, the server checks again), the microphone (only with the parent's voice consent and the
 // module on; the day's seconds still cap it) and Send on the right. Beside it, Conversation opens the earlier
 // questions. No helper paragraphs: a limit (a file too big, the day's speaking time used up) is one short line, shown
-// only when it is hit. The textarea grows with the question; Enter sends on a keyboard with a mouse, and makes a new
+// only when it is hit. With homework on, the photo action in the Attach menu offers two things: "Ask about this" (a photo
+// of a question, hints first; the homework helper) and "Check my work" (W16-B2: a photo of the child's own answer,
+// marked step by step). The textarea grows with the question; Enter sends on a keyboard with a mouse, and makes a new
 // line on a phone. Pinned above the tab dock on Study, at the drawer's foot in the reader.
 
 export type ComposerFile = { key: string; name: string; mime: TutorFileType; state: 'sending' | 'checking' | 'ready'; id: string | null };
@@ -30,9 +32,15 @@ type Props = {
   homework: boolean;
   attached: ComposerFile[];
   onAttach: (file: File) => void;
+  // W16-B2: "Check my work" in the attach menu: a photo of the child's own working, marked step by step. `checking`: the
+  // attached photo is going to be checked, not asked about.
+  onCheck: (file: File) => void;
+  checking: boolean;
   onRemove: (file: ComposerFile) => void;
   fileError: string | null;
   voice: { secondsLeft: number } | null;
+  // W16-B5: "Call <tutor>": the same composer, a second way in. Opens the call on this subject, keeping the chat.
+  call?: { href: string; label: string } | null;
   historyOpen: boolean;
   historyFor: string;
   onHistory: () => void;
@@ -49,6 +57,7 @@ export function Composer(p: Props) {
   const { w, id } = p;
   const box = useRef<HTMLTextAreaElement>(null);
   const fileInput = useRef<HTMLInputElement>(null);
+  const checkInput = useRef<HTMLInputElement>(null);
   const menuWrap = useRef<HTMLDivElement>(null);
   const clip = useRef<HTMLButtonElement>(null);
   const [menu, setMenu] = useState(false);
@@ -90,6 +99,10 @@ export function Composer(p: Props) {
   const pick = () => {
     setMenu(false);
     fileInput.current?.click();
+  };
+  const pickCheck = () => {
+    setMenu(false);
+    checkInput.current?.click();
   };
   const full = p.attached.length >= TUTOR_FILES_PER_TURN;
 
@@ -138,8 +151,8 @@ export function Composer(p: Props) {
             {p.attached.length > 0 && (
               <ul data-tutor-files className="flex flex-wrap gap-1.5 px-2 pt-2">
                 {p.attached.map((a) => (
-                  <li key={a.key} data-tutor-file={a.state} className="flex min-h-[44px] max-w-full items-center gap-1 rounded-xl bg-off-white pl-3 text-sm text-slate">
-                    <span className="font-bold">{a.mime === 'application/pdf' ? w['fam.tutor.filePdf'] : w['fam.tutor.filePhoto']}</span>
+                  <li key={a.key} data-tutor-file={a.state} data-tutor-check={p.checking || undefined} className="flex min-h-[44px] max-w-full items-center gap-1 rounded-xl bg-off-white pl-3 text-sm text-slate">
+                    <span className="font-bold">{p.checking ? w['fam.check.menu'] : a.mime === 'application/pdf' ? w['fam.tutor.filePdf'] : w['fam.tutor.filePhoto']}</span>
                     <span className="min-w-0 max-w-[9rem] truncate">{a.state === 'sending' ? w['fam.tutor.fileSending'] : a.state === 'checking' ? w['fam.tutor.fileChecking'] : a.name}</span>
                     <button type="button" onClick={() => p.onRemove(a)} aria-label={w['fam.tutor.removeFile']} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-slate hover:bg-white">
                       <svg aria-hidden="true" className="h-4 w-4" {...ICON} strokeWidth={2.5}>
@@ -172,6 +185,20 @@ export function Composer(p: Props) {
                       if (f) p.onAttach(f);
                     }}
                   />
+                  <input
+                    ref={checkInput}
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                    className="sr-only"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    data-tutor-check-input
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      e.target.value = '';
+                      if (f) p.onCheck(f);
+                    }}
+                  />
                   <button
                     ref={clip}
                     type="button"
@@ -197,6 +224,18 @@ export function Composer(p: Props) {
                           </svg>
                         </span>
                         {w['fam.tutor.attach']}
+                      </button>
+                      <button type="button" onClick={pickCheck} disabled={p.attached.length > 0} data-tutor-check-pick className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-1.5 text-left hover:bg-off-white disabled:opacity-50">
+                        <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald/15 text-ink">
+                          <svg className="h-5 w-5" {...ICON}>
+                            <path d="M4 5h16v14H4z" />
+                            <path d="M8 12l3 3 5-6" />
+                          </svg>
+                        </span>
+                        <span className="flex min-w-0 flex-col">
+                          <span className="text-base font-bold text-slate">{w['fam.check.menu']}</span>
+                          <span className="text-xs text-slate">{w['fam.check.menuLead']}</span>
+                        </span>
                       </button>
                       <Link href="/family/study/homework" data-homework-link onClick={() => setMenu(false)} className="flex min-h-[48px] items-center gap-3 rounded-xl px-3 py-1.5 text-left hover:bg-off-white">
                         <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sunshine/30 text-gold-deep">
@@ -224,7 +263,7 @@ export function Composer(p: Props) {
                 disabled={p.locked}
                 maxLength={TUTOR_TEXT_MAX}
                 value={p.value}
-                placeholder={w['fam.tutor.title']}
+                placeholder={p.call ? w['fam.tutor.askShort'] : w['fam.tutor.title']}
                 onChange={(e) => p.onChange(e.target.value)}
                 onFocus={keepInView}
                 onKeyDown={(e) => {
@@ -255,6 +294,13 @@ export function Composer(p: Props) {
                     </svg>
                   )}
                 </button>
+              )}
+              {p.call && !p.locked && (
+                <Link href={p.call.href} data-tutor-call-link aria-label={p.call.label} title={p.call.label} className={`${ROUND} text-ink hover:bg-off-white`}>
+                  <svg aria-hidden="true" className="h-[22px] w-[22px]" {...ICON}>
+                    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />
+                  </svg>
+                </Link>
               )}
               <button type="submit" disabled={!p.canSend} data-tutor-send aria-label={w['fam.tutor.send']} className={`${ROUND} fam-cta bg-saffron text-ink shadow-md disabled:opacity-50`}>
                 <svg aria-hidden="true" className="h-5 w-5" {...ICON} strokeWidth={2.5}>

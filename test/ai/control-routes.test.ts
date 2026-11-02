@@ -106,8 +106,13 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.homework', carriesChildWords: true, providerId: null, enabled: true }),
       // The safety check (C314): chosen by the founder after clearing Workers AI.
       expect.objectContaining({ profileId: 'family.moderation', carriesChildWords: true, providerId: null, enabled: true }),
+      // W16-A1: the weekly parent report (counts and chapter names only); no provider until Control routes it.
+      expect.objectContaining({ profileId: 'family.parent_report', carriesChildWords: false, providerId: null, enabled: true, usesPrompt: true }),
       // The teaching plan (W9-B): reads the child's question; starts on the resolver's route (none here), prompt v1.
       expect.objectContaining({ profileId: 'family.plan', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
+      // W16-A1: the answer's quality check and the session quiz read a child's words; no provider yet.
+      expect.objectContaining({ profileId: 'family.qc', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
+      expect.objectContaining({ profileId: 'family.quiz', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
       expect.objectContaining({ profileId: 'family.resolver', carriesChildWords: true, providerId: null, enabled: true }),
       // A tutor chat's running summary (W9-A, C406): the child's questions; no provider until Control routes it.
       expect.objectContaining({ profileId: 'family.summary', carriesChildWords: true, providerId: null, enabled: true, usesPrompt: true }),
@@ -115,6 +120,8 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
       // The server voice (C386): reads a child's partner's replies, so a children's-words profile; no provider yet, no prompt.
       expect.objectContaining({ profileId: 'family.text_to_speech', carriesChildWords: true, needs: ['tts'], providerId: null, enabled: true, usesPrompt: false }),
+      // The call's realtime voice (W16-A4): a child's voice goes to the provider, so a children's-words profile; no provider yet.
+      expect.objectContaining({ profileId: 'family.voice_call', carriesChildWords: true, needs: ['realtime'], providerId: null, enabled: true, usesPrompt: false }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
     ]);

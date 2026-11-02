@@ -473,6 +473,7 @@ ALLOWED_PERMISSIVE = (
         ("content.topics", "topics_family_read"),
         ("content.responses", "responses_family_read"),
         ("content.responses", "responses_family_add"),
+        ("content.tutors", "tutors_family_read"),  # w16-a3
         ("control.settings", "settings_family_read"),
         ("control.app_flags", "app_flags_family_read"),
         ("control.app_banners", "app_banners_family_read"),
@@ -528,9 +529,13 @@ ALLOWED_PERMISSIVE = (
         ("family.tutor_conversations", "tutor_conversations_own"),
         ("family.tutor_messages", "tutor_messages_own"),
         ("family.tutor_attachments", "tutor_attachments_own"),
+        # w16-b3: a child's weekly parent report; own account only (restrictive twins below).
+        ("family.parent_reports", "parent_reports_own"),
         # S5 (C378): a child's chapter-test attempts and answers; own account only (restrictive twins below).
         ("family.chapter_test_attempts", "chapter_test_attempts_own"),
         ("family.chapter_test_answers", "chapter_test_answers_own"),
+        # W16-B1: a child's quick quizzes made from tutor sessions; own account only (restrictive twins below).
+        ("family.session_quizzes", "session_quizzes_own"),
         # E1 (C382): a child's live English practice sessions and turns; own account only (restrictive twins below).
         ("family.english_live_sessions", "english_live_sessions_own"),
         ("family.english_live_turns", "english_live_turns_own"),
@@ -590,6 +595,10 @@ ALLOWED_PERMISSIVE = (
         # policies required below.
         ("result_pdfs", "result_pdfs_tenant_isolation"),
         # aq-5 end
+        # w16-a3 begin
+        # W16-A3 (the Tutor Hall): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("school_tutors", "school_tutors_tenant_isolation"),
+        # w16-a3 end
         # aq-4 begin
         # AQ-4 (C365, online tests): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("online_tests", "online_tests_tenant_isolation"),
@@ -1051,6 +1060,7 @@ REQUIRED_RESTRICTIVE = {
     ("content.chapters", "chapters_family_only"),
     ("content.topics", "topics_family_only"),
     ("content.responses", "responses_family_only"),
+    ("content.tutors", "tutors_family_only"),  # w16-a3
     ("control.preview_accounts", "preview_family_only"),
     # m1 end
     # wb1 begin
@@ -1100,8 +1110,14 @@ REQUIRED_RESTRICTIVE = {
     ("family.tutor_conversations", "tutor_conversations_own_only"),
     ("family.tutor_messages", "tutor_messages_own_only"),
     ("family.tutor_attachments", "tutor_attachments_own_only"),
+    # w16-b3: the weekly parent report, own account only, and on a child's own phone that child only.
+    ("family.parent_reports", "parent_reports_own_only"),
+    ("family.parent_reports", "parent_reports_one_child"),
     ("family.chapter_test_attempts", "chapter_test_attempts_own_only"),
     ("family.chapter_test_answers", "chapter_test_answers_own_only"),
+    # W16-B1: own account, and on a child's own phone that one child.
+    ("family.session_quizzes", "session_quizzes_own_only"),
+    ("family.session_quizzes", "session_quizzes_one_child"),
     # E1 (C382): own account only.
     ("family.english_live_sessions", "english_live_sessions_own_only"),
     ("family.english_live_turns", "english_live_turns_own_only"),
@@ -1203,6 +1219,11 @@ REQUIRED_RESTRICTIVE = {
     ("result_pdfs", "result_pdfs_never_removed"),
     ("result_pdfs", "result_pdfs_no_parent"),
     # aq-5 end
+    # w16-a3 begin
+    ("school_tutors", "school_tutors_office"),
+    ("school_tutors", "school_tutors_never_removed"),
+    ("school_tutors", "school_tutors_no_parent"),
+    # w16-a3 end
     # aq-4 begin
     ("online_tests", "online_tests_readers"),
     ("online_tests", "online_tests_writers"),

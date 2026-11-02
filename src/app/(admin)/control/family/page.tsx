@@ -4,7 +4,9 @@ import { FamilyCountsView } from '@/components/control/apps/FamilyCountsView';
 import { PlusOpenForm } from '@/components/control/apps/PlusOpenForm';
 import { VoiceAllowanceForm } from '@/components/control/apps/VoiceAllowanceForm';
 import { SubjectListForm } from '@/components/control/apps/SubjectListForm';
-import { readPlusOpen, readSubjectList, readVoiceAllowance } from '@/lib/control/family-settings';
+import { readPlatformTutors, readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance } from '@/lib/control/family-settings';
+import { TutorCapsForm } from '@/components/control/apps/TutorCapsForm';
+import { TutorsPanel } from '@/components/control/apps/TutorsPanel';
 import { SUBJECT_IDS } from '@/lib/contracts/subjects';
 import { withTenantContext } from '@/lib/auth/db';
 import { getServerSession } from '@/lib/auth/server-session';
@@ -27,10 +29,11 @@ export default async function ControlFamilyPage() {
   const { lang } = getLang(session?.sub ?? '');
   // One transaction as the signed-in founder (the layout has already refused anyone else).
   const data = session
-    ? await withTenantContext(session, async (db) => ({ counts: await loadFamilyCounts(db), lists: { open: await readSubjectList(db, 'open'), reviewed: await readSubjectList(db, 'reviewed_only'), plusOpen: await readPlusOpen(db), voiceChars: await readVoiceAllowance(db) } }))
+    ? await withTenantContext(session, async (db) => ({ counts: await loadFamilyCounts(db), lists: { open: await readSubjectList(db, 'open'), reviewed: await readSubjectList(db, 'reviewed_only'), plusOpen: await readPlusOpen(db), voiceChars: await readVoiceAllowance(db), tutorCaps: await readTutorCaps(db) }, tutors: await readPlatformTutors(db) }))
     : null;
   const counts = data?.counts ?? null;
   const lists = data?.lists ?? null;
+  const tutors = data?.tutors ?? null;
   return (
     <ModulePage title={t(lang, 'control.family.title')} purpose={t(lang, 'control.family.purpose')} about={t(lang, 'control.family.about')} icon="users" tone="turquoise" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       <p className="mb-4">
@@ -39,6 +42,11 @@ export default async function ControlFamilyPage() {
         </Link>
       </p>
       {counts && <FamilyCountsView counts={counts} lang={lang} />}
+      {tutors && (
+        <div className="mt-6">
+          <TutorsPanel tutors={tutors} lang={lang} />
+        </div>
+      )}
       {lists && (
         // The forms' words, picked here (C401): the page never carries the whole message table.
         <WordsProvider words={pageWords(lang, '/control/family')}>
@@ -47,6 +55,7 @@ export default async function ControlFamilyPage() {
           <SubjectListForm list="reviewed_only" subjects={SUBJECT_IDS} initial={lists.reviewed} />
           <PlusOpenForm initial={lists.plusOpen} />
           <VoiceAllowanceForm initial={lists.voiceChars} />
+          <TutorCapsForm initial={lists.tutorCaps} />
         </div>
         </WordsProvider>
       )}

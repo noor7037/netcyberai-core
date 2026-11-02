@@ -1,0 +1,89 @@
+import type { PublicBlock } from './resolver';
+
+// The call (W16-A4): a child talks to a tutor and hears the answer. Pure helpers, safe for the phone (no database, no
+// message file): how an answer is cut into the sentences that are spoken one at a time, and which blocks of an answer
+// are said aloud at all. The chain today is listen (voice input), answer (the understand route), speak (the server
+// voice, or the phone's own); the sentences are cut on the server, which seals each for the server voice
+// (call-say.ts), so the speak route never speaks a word a phone sent.
+
+// A sentence is spoken as soon as it is at least this long (a shorter one rides with the next), so the first words come
+// quickly without the voice stumbling over three-word scraps.
+export const CALL_SENTENCE_MIN = 20;
+// A sentence with no end in sight is cut at a space after this many characters.
+export const CALL_SENTENCE_MAX = 220;
+// The most characters one answer speaks: a call is a conversation, not a lecture (the board holds the rest).
+export const CALL_SPOKEN_MAX = 900;
+
+const END = /(?<=[.!?।]["'’”)\]]*)\s+|\n+/;
+
+function hardCut(piece: string): string[] {
+  const out: string[] = [];
+  let rest = piece;
+  while (rest.length > CALL_SENTENCE_MAX) {
+    const at = rest.lastIndexOf(' ', CALL_SENTENCE_MAX);
+    const end = at > CALL_SENTENCE_MIN ? at : CALL_SENTENCE_MAX;
+    out.push(rest.slice(0, end).trim());
+    rest = rest.slice(end).trim();
+  }
+  if (rest) out.push(rest);
+  return out;
+}
+
+// The sentences of a text for speaking, in order: cut after . ! ? or the Devanagari danda (।) when a space follows
+// (so "3.5" stays whole) and at every new line; pieces shorter than CALL_SENTENCE_MIN join the next one, and a short
+// last piece joins the one before it. Empty pieces and pieces with no letter or number are dropped.
+export function splitSpeech(text: string): string[] {
+  const pieces = text
+    .split(END)
+    .map((s) => s.replace(/\s+/g, ' ').trim())
+    .filter((s) => /[\p{L}\p{N}]/u.test(s));
+  const out: string[] = [];
+  let carry = '';
+  for (const piece of pieces) {
+    const joined = carry ? `${carry} ${piece}` : piece;
+    if (joined.length >= CALL_SENTENCE_MIN) {
+      out.push(...hardCut(joined));
+      carry = '';
+    } else carry = joined;
+  }
+  if (carry) {
+    if (out.length > 0 && out[out.length - 1].length + carry.length + 1 <= CALL_SENTENCE_MAX) out[out.length - 1] = `${out[out.length - 1]} ${carry}`;
+    else out.push(carry);
+  }
+  return out;
+}
+
+// What a block says aloud on a call: the explanation's idea, its paragraphs and its example; a worked example's problem,
+// its steps and its answer. The title, a formula, the terms list, key points (they repeat what was said), the quiz
+// questions and every picture-like block are shown on the board and never spoken.
+export function callSpeech(block: PublicBlock): string[] {
+  switch (block.type) {
+    case 'explanation':
+      return [block.idea, ...(block.paragraphs ?? []), block.example].filter((t) => typeof t === 'string' && t.trim().length > 0);
+    case 'worked_example':
+      return [block.problem, ...block.steps.map((s) => s.text), block.answer].filter((t) => typeof t === 'string' && t.trim().length > 0);
+    default:
+      return [];
+  }
+}
+
+// The blocks the board draws on a call: the teaching ones. Questions to answer, the video list and the source list
+// belong to the lesson page; on a call the child answers by speaking.
+export const BOARD_HIDDEN: readonly PublicBlock['type'][] = ['check', 'practice', 'videos', 'sources'];
+
+// The marks one turn takes, in milliseconds from the moment the child stopped speaking: to the first words of the
+// answer arriving, and to the first sound played (the phone's own voice counts the same as the server's).
+export type CallMarks = { turn: number; textMs: number | null; audioMs: number | null; voice: 'server' | 'phone' | 'none' };
+
+export const MARK_LIMIT_MS = 120_000;
+
+// A mark from a phone, checked for shape and range; null when it is not one.
+export function cleanMarks(body: Record<string, unknown>): CallMarks | null {
+  const ms = (v: unknown): number | null | undefined => (v === null ? null : typeof v === 'number' && Number.isFinite(v) && v >= 0 && v <= MARK_LIMIT_MS ? Math.round(v) : undefined);
+  const textMs = ms(body.textMs);
+  const audioMs = ms(body.audioMs);
+  const turn = Number(body.turn);
+  const voice = body.voice === 'server' || body.voice === 'phone' || body.voice === 'none' ? body.voice : null;
+  if (textMs === undefined || audioMs === undefined || !voice || !Number.isInteger(turn) || turn < 1 || turn > 200) return null;
+  return { turn, textMs, audioMs, voice };
+}
