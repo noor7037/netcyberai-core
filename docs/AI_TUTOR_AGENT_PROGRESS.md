@@ -274,3 +274,11 @@ taken as facts; prompt v10 registered in code, no migration.
 | Q2 | Gemini Live: `bidiGenerateContentSetup` with the shared child-safety text, the constrained v1alpha socket, Try it showing the status | sonnet |
 | Q3 | Check my work: a verdict guaranteed in check mode, a whole-expression evaluator (precedence, fractions, Indian commas), typed "check my work" routed to check mode | opus |
 | R | Integration by the lead: merges, the Decision Log, one CI run, the PR | supervisor |
+
+### W18 status (2 Nov 2026, end of the build)
+
+Built and merged on the branch: P1 board ↔ voice with one renderer and "Teach me", P2 four physics simulations and prompt
+v10, P3 the sketch pad and the timeline reveal, Q1 Sarvam, Q2 Gemini Live, Q3 Check my work (Decision Log C457–C463).
+No migration. Control keeps prompt v9 until the founder switches "Tutor answers" to v10 (Control → AI → the card's prompt
+version); v10 is the code's fallback. Unverified by the builders: the drawing pad and the new simulation pictures on a
+real phone; the Hindi labels of the simulations by a native speaker.
