@@ -4,6 +4,56 @@
 re-tests, item by item, and the plan for what is not built yet. **Rule:** updated with every PR that answers a re-test;
 the Decision Log holds the reasons, this file holds the status.
 
+## Programme W16: the NetCyberAI Tutor (2 Nov 2026, the supervisor's plan)
+
+**Written by:** the supervisor, for Noor. **Delivers:** the plan for the founder's proposal ("NetCyberAI Claude Code Build
+Instructions", 31 Oct), what it keeps, what it changes, and the waves that build it. **Rule:** additive on the codebase;
+no rebuild of Control, the school app or the Family shell; one gateway, one job queue, one block schema; migrations
+TEST-first; everything on by default (C398); Opus for children's data, RLS and schema, Sonnet for screens and routes,
+Haiku for words and docs.
+
+### What the proposal asked for, and what already exists
+
+| Proposal module | Already in the codebase | Gap this programme builds |
+|---|---|---|
+| M1 Study streaming, hang, memory | Done: first-text deadlines and the time share (C410, C421), chat memory and feed (C406, C413) | A latency tile per profile in Control (M11) |
+| M2 Ten-agent registry | The pieces exist as functions (planner, retrieval, resolver, visuals, moderation, Lab) | A typed registry that names each agent, its profile, inputs, outputs and live-or-job (A1) |
+| M3 Handoffs, slow work | The gateway, the pg job queue, `LONG_JOB_TYPES` | An orchestrator that calls the specialists as tools and enqueues the slow ones; one event line per handoff (A1) |
+| M4 Syllabus-grounded tutor | Retrieval by full-text search over the library (C407), "From your chapter" quoting in v8, bands, school syllabus through School Link | A citation chip on every grounded answer, a chapter map the quizzes and reports share, a Class 8 Science eval set with a measured baseline (A2, A5) |
+| M5 Voice | Voice input (Whisper on Workers AI), server voice route, caps, consent | A **call**: listen → answer → speak, sentence by sentence, with captions and barge-in; a realtime slot for a provider key later (A4) |
+| M6 Live drawing, simulations | figure, steps (animated), timeline, scene, chart, mind map (C408, C414) | A `board` block: numbered drawing commands drawn in step with the words or the voice; three Class 8 Science simulations (A2) |
+| M7 Quizzes | Chapter tests with sealed answers | A short quiz made from the session at its end, kept with review dates (B1) |
+| M8 Photo doubts | Tutor attachments, photo gate, vision homework helper | "Check my work": a photo of the child's own answer marked step by step, grounded (B2) |
+| M9 Parent reports | Notices with principal approval, the Family notifications feed and email (C432) | A weekly report per child in the Family app and by email, a class summary to the school, a teacher's list of recent doubts, a 1,000-guardian simulation (B3) |
+| M10 Metering | The usage ledger, daily caps, billing plans, per-school limits (C433) | Tutor dimensions (text turns, voice minutes, photo doubts) on the Control AI dashboard and in the Family plan caps (B4) |
+| M11 Quality check | Quality Lab, eval cases, reply checks | Rules on the hot path (citation present, blocks valid, board commands valid, hang detector), the eval set run and stored, latency targets watched (A5) |
+| Tutors (the founder's ask) | Nothing | **Tutor Hall:** platform tutors per subject (name, voice, language, teaching style) a child calls or chats with; a school adds its own tutors, which appear in the Family app after School Link pairing (A3) |
+
+### Decisions (recorded as C434–C446 when each wave lands)
+
+1. **No agent framework.** Thin tool calls on the existing gateway, not LangGraph or an Agents SDK: one provider system, one place that cleans children's data before it leaves, no second runtime. The proposal's own verdict ("only the Orchestrator is live") needs nothing more.
+2. **Search stays full-text.** No pgvector now: the planner plus full-text retrieval already finds the chapter; vectors are a second index to keep in step, for a gain the eval set has not yet shown is needed. The eval baseline decides (A5); the retrieval module keeps one door so vectors can be added behind it.
+3. **A call is a chain, not a realtime stream, today.** Listen (Whisper) → answer (the resolver, streamed) → speak each sentence as it completes. It works with the keys we have and with Sarvam for Indian languages later. A realtime provider (OpenAI Realtime, Gemini Live) gets a profile slot and a token-mint route, built but idle until a key exists; media never goes through Vercel.
+4. **The board is a block, not a canvas library.** `board` joins the docs/39 schema: numbered commands (shape, label, arrow, text, equation, graph, axis, point, highlight, erase, step) the renderer draws progressively, synced to the sentence being spoken. tldraw would cost the Family bundle budget and a second visual language.
+5. **Tutors live in two places.** Platform tutors in `content.tutors` (subject, language, voice, style, avatar colour), school tutors in `school_tutors` under the school's own RLS, read by the family as the guardian through School Link. One persona line enters the resolver's system prompt; the teaching engine is unchanged.
+6. **Parent reports are per child in the Family app and by email,** which needs no WhatsApp template (the PoC's open product decision is closed this way); the school gets a class summary through the existing notice with the principal's approval.
+7. **Integrated now, behind switches.** The founder asked for end to end; every new surface sits behind a Control → Apps switch (on by default, C398), and the readiness check at the end says go or no-go per item.
+8. **Metering packaging:** text turns, voice minutes and photo doubts per child per day, capped by the Family plan; the founder sets numbers in Control; no new billing system; Razorpay untouched.
+
+### Waves
+
+| Wave | Agents (model) | Lands as |
+|---|---|---|
+| A | A1 registry + orchestrator + job types (opus) · A2 board block + citation chip + 3 sims + prompt v9 (opus) · A3 Tutor Hall (sonnet) · A4 the call (sonnet) · A5 QC rules + Class 8 Science eval set + latency tiles (sonnet) | one PR |
+| B | B1 quiz after session (sonnet) · B2 check my work (sonnet) · B3 weekly parent report + teacher doubts + 1,000 simulation (opus) · B4 metering dimensions (sonnet) · B5 Study chrome integration + Apps switches + screenshots (sonnet) | one PR |
+| C | readiness check, docs and words (haiku), full CI, the founder's key list | the report |
+
+### What needs you (keys and accounts), after the build
+
+- A text-to-speech key (Google or OpenAI) in Control → AI for `family.text_to_speech`: today no provider is set, so the call speaks through the phone's own voice until then.
+- Sarvam (Indian-language speech) and a realtime provider key when you want the realtime call; both are slots, not blockers.
+- A stronger vision model key for photo doubts if NVIDIA's reading of handwriting proves weak in your test.
+
 ## 1 Nov 2026, evening: your verification of PR #395 (C433)
 
 | Your finding | What changed | Status |
