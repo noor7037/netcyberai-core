@@ -143,7 +143,7 @@ describe('the OpenAI-compatible adapter, at the founder’s address', () => {
     expect(url.href).toBe(`${BASE}/chat/completions`);
     expect(to).toEqual({ address: '8.8.4.4', family: 4 });
     expect(init.headers.authorization).toBe(`Bearer ${COMPAT_KEY}`);
-    const body = JSON.parse(init.body!);
+    const body = JSON.parse(String(init.body));
     // No JSON mode is declared, so none is sent: the instructions ask for it.
     expect(body.response_format).toBeUndefined();
     expect(body.messages[0].content).toContain('one JSON object');

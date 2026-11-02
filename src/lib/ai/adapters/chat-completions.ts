@@ -29,6 +29,8 @@ export type ChatCompletionsOptions = {
   send?: (init: { headers: Record<string, string>; body: string; signal: AbortSignal }) => Promise<Response | null>;
   // Vendor fields added to the body as they are (W10: NVIDIA's chat_template_kwargs, thinking off).
   extraBody?: Record<string, unknown>;
+  // Headers sent instead of the Bearer token, for a vendor with its own key header (Sarvam's api-subscription-key).
+  headers?: Record<string, string>;
 };
 
 export async function streamChatCompletions(url: string, token: string, request: AdapterRequest, onDelta: (text: string) => void, opts: ChatCompletionsOptions): Promise<AdapterResult> {
@@ -56,7 +58,7 @@ export async function streamChatCompletions(url: string, token: string, request:
   let res: Response;
   try {
     const init = {
-      headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
+      headers: { 'content-type': 'application/json', ...(opts.headers ?? { authorization: `Bearer ${token}` }) },
       body: JSON.stringify(body),
       signal: withAbort(request.signal, AbortSignal.timeout(callTimeoutMs(request, stream ? CALL_TIMEOUT_MS : WHOLE_ANSWER_TIMEOUT_MS))),
     };

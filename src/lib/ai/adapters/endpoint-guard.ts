@@ -17,7 +17,7 @@ import { Readable } from 'stream';
 export type EndpointError = 'not_https' | 'credentials' | 'query' | 'port' | 'host' | 'private_address' | 'dns' | 'redirect' | 'too_long';
 export type Resolved = { address: string; family: 4 | 6 };
 export type Lookup = (host: string) => Promise<Resolved[]>;
-export type SendInit = { method: 'GET' | 'POST'; headers: Record<string, string>; body?: string; signal?: AbortSignal };
+export type SendInit = { method: 'GET' | 'POST'; headers: Record<string, string>; body?: string | Uint8Array; signal?: AbortSignal };
 export type Send = (url: URL, to: Resolved, init: SendInit) => Promise<Response>;
 
 const MAX_URL = 500;
