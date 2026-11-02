@@ -23,7 +23,7 @@ const TTS_MODELS = ['eleven_flash_v2_5', 'eleven_multilingual_v2'] as const;
 const VOICE_ID = /^[A-Za-z0-9]{10,40}$/;
 const STS_MODEL = 'eleven_multilingual_sts_v2';
 const STT_MODEL = /^scribe_v[0-9a-z_]+$/;
-// Keys are letters and digits and often start with `sk_`.
+// Keys are letters and digits and often begin with a short vendor prefix.
 const KEY = /^[A-Za-z0-9_]{20,200}$/;
 const keyLooksRight = (key: string) => KEY.test(key);
 
