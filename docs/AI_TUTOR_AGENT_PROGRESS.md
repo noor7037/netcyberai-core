@@ -253,3 +253,24 @@ Migrations on TEST: all six (the four provider rows, the quiz's written mark, th
 the function drop on 2 Nov, 17:04 UTC), each recorded under its version with a matching md5. PR #399 can be deployed.
 Keys (Sarvam, ElevenLabs, OpenRouter, Google Cloud Speech-to-Text) go into Control → AI → AI services; "Test the key"
 fills each picker; Try it on a feature card shows what the chosen chain answers.
+
+## Programme W18: the tutor teaches like a tutor; three live-verified fixes (2 Nov 2026, the supervisor's plan)
+
+**Written by:** the supervisor, for Noor. **Delivers:** your brief of 2 Nov evening: the board in step with the voice,
+history keeping every visual, a sketch pad, physics simulations for Classes 6–10, a timeline that reveals, a "Teach me"
+autoplay; and the three fixes you verified live (Sarvam's speakers and key test, Gemini Live's token body, socket and
+safety text, Check my work always giving a verdict). **Rule:** one renderer for answers (UnderstandView's AnswerBlock);
+every simulation computed in our code; a child's sketch goes through the existing file door; your live findings are
+taken as facts; prompt v10 registered in code, no migration.
+
+### Waves (Decision Log C457–C463 reserved)
+
+| Slice | What | Model |
+|---|---|---|
+| P1 | Board ↔ voice: the call, read-aloud and the chapter reader pass the spoken sentence to the board; one renderer for saved answers; the speaker button without a reload; "Teach me" autoplay with pause and replay | opus |
+| P2 | Physics simulations (circuit, dc_motor, electromagnet, magnet_field) typed and computed in code, Classes 6–10; prompt v10 (sims and the sketch rule) | sonnet |
+| P3 | The child's sketch pad (pen, three colours, eraser, undo, clear) through the tutor's file door, the tutor annotating it on the board; the timeline revealing step by step | sonnet |
+| Q1 | Sarvam: the key test with a child voice, the speaker lists as the API accepts them | sonnet |
+| Q2 | Gemini Live: `bidiGenerateContentSetup` with the shared child-safety text, the constrained v1alpha socket, Try it showing the status | sonnet |
+| Q3 | Check my work: a verdict guaranteed in check mode, a whole-expression evaluator (precedence, fractions, Indian commas), typed "check my work" routed to check mode | opus |
+| R | Integration by the lead: merges, the Decision Log, one CI run, the PR | supervisor |
