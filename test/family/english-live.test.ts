@@ -30,7 +30,7 @@ const OTHER_CHILD = 'f9e10000-0000-4000-8000-0000000000c3';
 const NO_VOICE_CHILD = 'f9e10000-0000-4000-8000-0000000000c4';
 const DEVICE = 'f9e10000-0000-4000-8000-0000000000d2';
 const FOUNDER = 'f9e10000-0000-4000-8000-0000000000f1';
-const AUDIO = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.from('LIVE-VOICE-SAMPLE')]).toString('base64');
+const AUDIO = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.from('LIVE-VOICE-SAMPLE'), Buffer.alloc(2500, 7)]).toString('base64');
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;

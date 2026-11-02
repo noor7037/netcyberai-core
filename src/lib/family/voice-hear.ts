@@ -4,7 +4,8 @@ import type { FamilyChild } from '@/lib/family/children';
 import { FamilySessionRevokedError, withFamilyContext, familyClaims } from '@/lib/family/db';
 import { requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
-import { cleanTranscript, countedSeconds, giveBackVoiceSeconds, leastSeconds, sniffAudio, takeVoiceSeconds, voiceDay, VOICE_MAX_BYTES, VOICE_MAX_SECONDS } from '@/lib/family/voice';
+import { heardNothing } from '@/lib/family/call-heard';
+import { cleanTranscript, countedSeconds, giveBackVoiceSeconds, leastSeconds, sniffAudio, takeVoiceSeconds, voiceDay, VOICE_MAX_BYTES, VOICE_MAX_SECONDS, VOICE_MIN_BYTES, VOICE_MIN_SECONDS } from '@/lib/family/voice';
 import { prepareTranscription, type PreparedSpeech } from '@/lib/ai/platform';
 import { indiaDate } from '@/lib/time/india';
 
@@ -24,7 +25,13 @@ export type VoiceGate = (db: Db, accountId: string, chosen: string | undefined) 
 
 const capped = (limit: number, left: number) => NextResponse.json({ error: 'voice_cap', limit, left, maxSeconds: Math.min(VOICE_MAX_SECONDS, left) }, { status: 429 });
 
-export async function hearVoice(req: NextRequest, refusal: VoiceGate): Promise<NextResponse> {
+// Nothing was heard (a recording too small or too short to hold speech, or words that are only what a quiet room is
+// transcribed as): 422, the day's seconds as they stand after the refusal, like every other refusal here.
+const nothingHeard = (left: number) => NextResponse.json({ error: 'nothing_heard', left, maxSeconds: Math.min(VOICE_MAX_SECONDS, left) }, { status: 422 });
+
+// `silenceNet`: also drop a transcript that is a known silence phrase ("Thank you.", "you", "okay"). Study and the call
+// want it (a question is never one of those); the live English tutor does not, where "Yes." or "Okay." is a real answer.
+export async function hearVoice(req: NextRequest, refusal: VoiceGate, { silenceNet = true }: { silenceNet?: boolean } = {}): Promise<NextResponse> {
   const g = await requireFamily(req);
   if (g.error) return g.error;
   const session = g.session;
@@ -45,17 +52,20 @@ export async function hearVoice(req: NextRequest, refusal: VoiceGate): Promise<N
 
   try {
     // 0. The cheap refusals first, in a short read, before the recording is even decoded.
-    const early = await withFamilyContext(claims, async (db): Promise<NextResponse | null> => {
+    const early = await withFamilyContext(claims, async (db): Promise<NextResponse | number> => {
       const r = await refusal(db, session.accountId, chosen);
       if (r instanceof NextResponse) return r;
       const d = await voiceDay(db, session.accountId, r.child.childId, indiaDate());
-      return d.left < 1 ? capped(d.limit, 0) : null;
+      return d.left < 1 ? capped(d.limit, 0) : d.left;
     });
-    if (early) return early;
+    if (early instanceof NextResponse) return early;
 
     const bytes = new Uint8Array(Buffer.from(b64, 'base64'));
     const mediaType = sniffAudio(bytes);
     if (!mediaType) return NextResponse.json({ error: 'not_audio' }, { status: 400 });
+    // The floor: too small or too short to hold speech. No provider is called and no seconds are taken (so none to give back).
+    const claimed = typeof body?.seconds === 'number' ? body.seconds : null;
+    if (bytes.length < VOICE_MIN_BYTES || (claimed !== null && claimed < VOICE_MIN_SECONDS)) return nothingHeard(early);
     const seconds = Math.max(countedSeconds(body?.seconds), leastSeconds(bytes, mediaType));
 
     // 1. The checks again, the seconds counted and the AI platform's own checks, in one short transaction.
@@ -93,6 +103,10 @@ export async function hearVoice(req: NextRequest, refusal: VoiceGate): Promise<N
         await giveBackVoiceSeconds(db, session.accountId, first.childId, first.day, first.seconds);
         const left = first.left + first.seconds;
         return NextResponse.json({ error: sent.result.ok ? 'not_heard' : 'ai_failed', left, maxSeconds: Math.min(VOICE_MAX_SECONDS, left) }, { status: sent.result.ok ? 422 : 503 });
+      }
+      if (silenceNet && heardNothing(text)) {
+        await giveBackVoiceSeconds(db, session.accountId, first.childId, first.day, first.seconds);
+        return nothingHeard(first.left + first.seconds);
       }
       return NextResponse.json({ text, left: first.left, maxSeconds: Math.min(VOICE_MAX_SECONDS, first.left) });
     });

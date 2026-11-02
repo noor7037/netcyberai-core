@@ -20,7 +20,7 @@ const gate: VoiceGate = async (db, accountId, chosen) => {
 
 export async function POST(req: NextRequest) {
   try {
-    return await hearVoice(req, gate);
+    return await hearVoice(req, gate, { silenceNet: false });
   } catch {
     return NextResponse.json({ error: 'failed' }, { status: 503 });
   }
