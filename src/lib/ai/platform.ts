@@ -51,6 +51,10 @@ export type ProfileId =
   | 'family.english_conversation'
   | 'family.summary'
   | 'family.text_to_speech'
+  | 'family.quiz'
+  | 'family.parent_report'
+  | 'family.qc'
+  | 'family.voice_call'
   | 'copilot.draft'
   | 'parent_ai.home_help'
   | 'content.syllabus_extract'
@@ -58,7 +62,9 @@ export type ProfileId =
   | 'exams.read_pages'
   | 'exams.mark'
   | 'exams.write_questions';
-export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech';
+// `speech_realtime` (W16-A1): a live two-way voice call. A slot only: no adapter in the code serves it yet, so no provider
+// can be chosen for it in Control (capableAdapter answers null) and nothing calls it.
+export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech' | 'speech_realtime';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
 // control profile runs only for Control's staff.
@@ -102,6 +108,14 @@ export const PROFILES: readonly AiProfile[] = [
   // provider cleared for minors in Control may speak, as for every such profile. It speaks only text the server holds
   // (src/lib/family/voice-out.ts), never text a phone sends.
   { id: 'family.text_to_speech', carriesChildWords: true, capability: 'text_to_speech', audience: 'family' },
+  // W16-A1 (the Tutor's agent registry, src/lib/ai/agents/registry.ts). The quiz made from a session at its end (a job,
+  // W16-B1) reads the session's questions and answers. The weekly parent report (a job, W16-B3) is written from counts
+  // and chapter names only, never a child's words. The quality check (W16-A5) reads the answer beside the child's
+  // question, beside the answer's call. The voice call is a realtime slot (decision 3): no provider today.
+  { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000 },
+  { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000 },
+  { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, besideCall: true },
+  { id: 'family.voice_call', carriesChildWords: true, capability: 'speech_realtime', audience: 'family', needs: ['tts'] },
   // M2-10 (C284): Copilot and Parent AI. Their requests name a class level, subject and topic, never a person.
   { id: 'copilot.draft', carriesChildWords: false, capability: 'text', audience: 'school' },
   { id: 'parent_ai.home_help', carriesChildWords: false, capability: 'text', audience: 'school' },
@@ -132,12 +146,14 @@ export function capableAdapter(profileId: string, providerId: string, env: Recor
   if (!profile) return null;
   if (profile.capability === 'moderation') return moderationAdapterFor(providerId, env);
   if (profile.capability === 'text_to_speech') return voiceAdapterFor(providerId, env);
+  if (profile.capability === 'speech_realtime') return null;
   return profile.capability === 'speech_to_text' ? speechAdapterFor(providerId, env) : adapterFor(providerId, env);
 }
 
 // Everything a profile needs its adapter to declare (G1, C369): its capability's own (text; stt for voice input; text
 // for the safety check; tts for the server voice, C386) and the profile's `needs`.
-const OWN_NEED: Record<Capability, AdapterCapability> = { text: 'text', speech_to_text: 'stt', moderation: 'text', text_to_speech: 'tts' };
+// A realtime call hears (stt here) and speaks (its profile's `needs`).
+const OWN_NEED: Record<Capability, AdapterCapability> = { text: 'text', speech_to_text: 'stt', moderation: 'text', text_to_speech: 'tts', speech_realtime: 'stt' };
 export function profileNeeds(profile: AiProfile): AdapterCapability[] {
   return [OWN_NEED[profile.capability], ...(profile.needs ?? [])];
 }

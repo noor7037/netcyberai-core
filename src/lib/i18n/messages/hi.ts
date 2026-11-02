@@ -9317,6 +9317,10 @@ export const hi: Record<keyof typeof en, string> = {
   // e1 begin
   'control.ai.profile.name.family.english_conversation': 'अंग्रेज़ी बोलने का लाइव अभ्यास (साथी के उत्तर)',
   'control.ai.profile.name.family.summary': 'ट्यूटर चैट का सारांश (चैट की याद)',
+  'control.ai.profile.name.family.quiz': 'सत्र क्विज़ (ट्यूटर सत्र के अंत में एक छोटा क्विज़)',
+  'control.ai.profile.name.family.parent_report': 'अभिभावक के लिए साप्ताहिक रिपोर्ट',
+  'control.ai.profile.name.family.qc': 'उत्तर की गुणवत्ता जाँच',
+  'control.ai.profile.name.family.voice_call': 'ट्यूटर वॉइस कॉल (रियलटाइम, अभी उपलब्ध नहीं)',
   'fam.english.live.title': 'अंग्रेज़ी में बात करें',
   'fam.english.live.kicker': 'बोलने का अभ्यास',
   'fam.english.live.entry': 'अपने अंग्रेज़ी साथी से बात करें',

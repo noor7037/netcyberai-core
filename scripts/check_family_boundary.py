@@ -45,6 +45,7 @@ FAMILY_MAY_IMPORT = (
     "@/lib/ai/platform",  # the AI platform's public interface (03 §7)
     "@/lib/ai/prompts/",  # prompt text lives in the repository (08 §7)
     "@/lib/ai/teaching/",  # the teaching plan and chapter retrieval (W9-B, docs/39): content.* reads, no family table
+    "@/lib/ai/agents/orchestrator",  # the tutor turn's handoffs (W16-A1): no database, no vendor; the caller hands in the steps
     "@/lib/storage/file-storage",  # the storage interface
 )
 # Platform services, each allowed to exactly one family file (the door it goes through).

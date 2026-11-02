@@ -15,6 +15,7 @@ import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
 import { AI_SMOKE_JOB, CONTENT_PREPARE_JOB, aiSmokeHandler, contentPrepareHandler } from './ai-jobs';
 import { AI_HEALTH_PROBE_JOB, aiHealthProbeHandler } from '@/lib/ai/gateway/probe';
 import { AI_UPKEEP_JOB, aiUpkeepHandler } from '@/lib/ai/gateway/upkeep';
+import { AI_OPS_DAILY_JOB, TUTOR_PARENT_REPORT_JOB, TUTOR_QUIZ_JOB, tutorStubHandler } from '@/lib/ai/agents/jobs';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
 import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
@@ -87,6 +88,11 @@ export function productionHandlers(): Record<string, JobHandler> {
     // W5-7 (C394): each hour, the AI spend alert to the founders and the ledger's 90-day retention.
     [AI_UPKEEP_JOB]: aiUpkeepHandler({ platform, queue: jobQueue }),
     [CONTENT_PREPARE_JOB]: contentPrepareHandler({ platform, queue: jobQueue }),
+    // W16-A1: the Tutor's slow work (src/lib/ai/agents/jobs.ts), stubs until W16-B fills them. The parent report is a
+    // long job (./runner.ts).
+    [TUTOR_QUIZ_JOB]: tutorStubHandler(TUTOR_QUIZ_JOB),
+    [TUTOR_PARENT_REPORT_JOB]: tutorStubHandler(TUTOR_PARENT_REPORT_JOB),
+    [AI_OPS_DAILY_JOB]: tutorStubHandler(AI_OPS_DAILY_JOB),
     // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
     [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),
     // Every ten minutes: a linked family's browsers hear of new homework, notices and results, and tonight's practice
