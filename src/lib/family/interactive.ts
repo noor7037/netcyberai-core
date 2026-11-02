@@ -167,7 +167,7 @@ export const SCENE_SIM_WORDS: Partial<Record<SceneSim, readonly string[]>> = {
   circuit: ['circuit', 'current', 'bulb', 'series', 'parallel', 'battery', 'resistance', 'voltage', 'ampere', 'परिपथ', 'धारा', 'बल्ब', 'श्रेणी', 'समांतर', 'समानांतर', 'बैटरी', 'प्रतिरोध', 'वोल्ट'],
   dc_motor: ['motor', 'fleming', 'left-hand rule', 'left hand rule', 'coil', 'armature', 'मोटर', 'फ्लेमिंग', 'कुंडली', 'कुण्डली', 'बाएँ हाथ', 'बाएं हाथ'],
   electromagnet: ['electromagnet', 'electric magnet', 'coil', 'solenoid', 'paper clip', 'paperclip', 'विद्युत चुंबक', 'विद्युत चुम्बक', 'विद्युतचुंबक', 'कुंडली', 'कुण्डली', 'परिनालिका'],
-  magnet_field: ['magnet', 'field line', 'poles', 'attract', 'repel', 'compass', 'चुंबक', 'चुम्बक', 'ध्रुव', 'आकर्षण', 'प्रतिकर्षण', 'क्षेत्र रेखा', 'बल रेखा'],
+  magnet_field: ['magnet', 'field line', 'poles', 'attract', 'repel', 'चुंबक', 'चुम्बक', 'ध्रुव', 'आकर्षण', 'प्रतिकर्षण', 'क्षेत्र रेखा', 'बल रेखा'],
 };
 export function sceneSimFits(sim: SceneSim, text: string): boolean {
   const words = SCENE_SIM_WORDS[sim];
