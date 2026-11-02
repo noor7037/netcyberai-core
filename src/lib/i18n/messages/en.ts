@@ -7007,6 +7007,7 @@ export const en = {
   'control.ai.noServerKey': 'The server has no key to lock AI keys with (AI_CREDENTIALS_KEY), so no AI key can be saved yet.',
   'control.ai.providers.title': 'AI services',
   'control.ai.providers.how': 'Clear a service for children’s words only after reading its current terms, and paste the page you read.',
+  'control.ai.provider.name.openrouter': 'OpenRouter (many models, free tiers)',
   'control.ai.provider.noAdapter': 'The app cannot talk to this service yet.',
   'control.ai.provider.cleared': 'Cleared for children’s words on {date} by {name}.',
   'control.ai.provider.terms': 'Terms read: {url}',
