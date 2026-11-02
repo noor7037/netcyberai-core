@@ -199,6 +199,8 @@ export interface VoiceAdapter {
 // connects to the provider itself: the audio never goes through this server (or Vercel). `url` and `model` are the
 // connect details the phone needs; the token is the only secret and it expires in about a minute.
 export type RealtimeRequest = { apiKey: string; model: string; language: 'en' | 'hi' };
+// `url` is the vendor's connect address. For Gemini the phone must append `?access_token=<token>` (the minted token's
+// name) and never the API key; OpenAI's uses the token as a bearer instead.
 export type RealtimeToken = { token: string; expiresAt: number; url: string; model: string };
 export type RealtimeResult = ({ ok: true } & RealtimeToken) | { ok: false; failure: AdapterFailure; status?: number };
 

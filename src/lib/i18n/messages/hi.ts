@@ -9217,6 +9217,7 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.try.answeredBy': 'उत्तर दिया: {provider} · {model} · {ms} ms',
   'control.ai.try.backupUsed': 'बैकअप इस्तेमाल हुआ',
   'control.ai.try.failed': 'उत्तर नहीं मिला: {reason}',
+  'control.ai.try.failedStatus': 'सेवा ने मना कर दिया (HTTP {status})',
   'control.ai.try.failedAt': 'आख़िरी कोशिश: {provider} · {model} · {ms} ms',
   'control.ai.try.token': 'टोकन बना, {minutes} मिनट में समाप्त होगा',
   'control.ai.try.audio': 'बोला गया नमूना ({language})',
