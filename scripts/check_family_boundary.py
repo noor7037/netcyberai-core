@@ -100,10 +100,9 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
-    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report"},
+    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz"},
     # The school's view of the tutor (W16-B3) names a chapter and a topic from the showcase chapters' titles (data only).
     "src/lib/parent-ai/doubts.ts": {"@/lib/family/chapters"},
-    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/quiz"},
     # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
     # the reviewer's preview is the family's own reader (the same component, with its place-keeping off).
     "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},

@@ -92,9 +92,7 @@ export function productionHandlers(): Record<string, JobHandler> {
     // W5-7 (C394): each hour, the AI spend alert to the founders and the ledger's 90-day retention.
     [AI_UPKEEP_JOB]: aiUpkeepHandler({ platform, queue: jobQueue }),
     [CONTENT_PREPARE_JOB]: contentPrepareHandler({ platform, queue: jobQueue }),
-    // W16-A1: the Tutor's slow work (src/lib/ai/agents/jobs.ts), stubs until W16-B fills them. The parent report is a
-    // long job (./runner.ts).
-    [TUTOR_QUIZ_JOB]: tutorStubHandler(TUTOR_QUIZ_JOB),
+    // W16-A1: the Tutor's slow work (src/lib/ai/agents/jobs.ts); the parent report is a long job (./runner.ts).
     // W16-B3: the weekly parent report, one job an account, in the family's own session (src/lib/family/parent-report.ts).
     [TUTOR_PARENT_REPORT_JOB]: parentReportHandler({ platform, queue: jobQueue }),
     // W16-B4: the daily look at the tutor's use (src/lib/ai/ops-daily.ts), each night after midnight in India. On a Sunday
@@ -103,8 +101,6 @@ export function productionHandlers(): Record<string, JobHandler> {
     // W16-B1: a quiz from a session at its end, in the conversation's own family session (src/lib/family/quiz.ts). The log
     // line holds the outcome and the attempt, nothing of the child's.
     [TUTOR_QUIZ_JOB]: quizJobHandler({ platform, note: (facts) => log('info', 'tutor.quiz', facts) }),
-    [TUTOR_PARENT_REPORT_JOB]: tutorStubHandler(TUTOR_PARENT_REPORT_JOB),
-    [AI_OPS_DAILY_JOB]: tutorStubHandler(AI_OPS_DAILY_JOB),
     // W2 item 1 (C324): the internal demo pilot's school on the test database, built through the app's own functions.
     [DEMO_SETUP_JOB]: demoSetupHandler({ platform, queue: jobQueue }),
     // Every ten minutes: a linked family's browsers hear of new homework, notices and results, and tonight's practice
