@@ -1,5 +1,7 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
@@ -11,9 +13,12 @@ import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
-import { AnswerSpeaker, TeachMe } from '../voice/AnswerSpeaker';
+
 import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
 import { typedCheckIntentLight } from '@/lib/family/check-intent';
+// The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
+const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
+const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
 
 // The shared tutor window (S2, C375; docs/37 §4 Wave 2): one window for every question a child types, on the Study page
 // and in the chapter reader's doubt drawer. W6-A (C395): one composer (Composer.tsx) pinned at the foot. Study passes

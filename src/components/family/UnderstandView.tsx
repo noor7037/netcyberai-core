@@ -18,7 +18,7 @@ import { VideoPicks } from './VideoPicks';
 import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
 import { boardCursorFromSentence } from '@/lib/family/board';
 import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
-import { AnswerSpeaker, TeachMe } from './voice/AnswerSpeaker';
+
 import { citationOf } from '@/lib/family/citation';
 import { useTutorBoard } from './tutor/switches';
 import { CitationChip } from './blocks/CitationChip';
@@ -28,6 +28,9 @@ import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
 import { VideosView } from './blocks/VideosView';
+// The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
+const AnswerSpeaker = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
+const TeachMe = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.TeachMe));
 
 // W9-C: the drawn figure comes as its own chunk, only when a response carries one.
 const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.FigureView));

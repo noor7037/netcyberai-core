@@ -2,6 +2,17 @@ import { NextRequest } from 'next/server';
 import { createElement as h } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+
+// The speaker and Teach me are lazy (the family budget, W18): their module is resolved to the real components here, so a
+// static render shows the button; every other lazy view (board, figure, 3D model, simulation) renders as a stub.
+vi.mock('next/dynamic', () => ({
+  default: (loader: () => Promise<unknown>) => {
+    const src = String(loader);
+    if (src.includes('AnswerSpeaker')) return (props: Record<string, unknown>) => h(src.includes('TeachMe') ? speakerModule.TeachMe : speakerModule.AnswerSpeaker, props as never);
+    return (props: { b?: { type?: string } }) => h('i', { 'data-lazy-block': props.b?.type ?? '' });
+  },
+}));
+const speakerModule = await import('@/components/family/voice/AnswerSpeaker');
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { STAND_IN_AUDIO, standInAdapter, standInModerationAdapter, standInVoiceAdapter, type AdapterRequest } from '@/lib/ai/adapters';

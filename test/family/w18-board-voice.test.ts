@@ -11,10 +11,17 @@ import { UNDERSTAND_KEYS } from '@/lib/family/understand-words';
 
 // The lazy views (board, figure, 3D model, simulations) are drawn here as a stub that names the block it was given and the
 // step it was told to draw, so a static render shows which renderer a saved answer's block went to.
+// The speaker and Teach me are lazy too (the family budget, W18) but are what these tests look at, so their module is
+// resolved to the real components (the loader's source names it); every other lazy view stays the stub.
 vi.mock('next/dynamic', () => ({
-  default: () => (props: { b?: { type?: string }; cursor?: number }) => h('i', { 'data-lazy-block': props.b?.type ?? '', 'data-lazy-cursor': props.cursor === undefined ? 'none' : String(props.cursor) }),
+  default: (loader: () => Promise<unknown>) => {
+    const src = String(loader);
+    if (src.includes('AnswerSpeaker')) return (props: Record<string, unknown>) => h(src.includes('TeachMe') ? speakerModule.TeachMe : speakerModule.AnswerSpeaker, props as never);
+    return (props: { b?: { type?: string }; cursor?: number }) => h('i', { 'data-lazy-block': props.b?.type ?? '', 'data-lazy-cursor': props.cursor === undefined ? 'none' : String(props.cursor) });
+  },
 }));
 
+const speakerModule = await import('@/components/family/voice/AnswerSpeaker');
 const { KeptAnswer } = await import('@/components/family/tutor/TutorWindow');
 
 const w = familyWords('en', [...UNDERSTAND_KEYS, ...TUTOR_KEYS]);
