@@ -195,10 +195,11 @@ export async function savePlatformTutor(db: Sql, by: { userId: string }, raw: Pl
   const key = raw.key === undefined || raw.key === null ? null : typeof raw.key === 'string' && /^[a-z][a-z0-9_]{1,39}$/.test(raw.key) ? raw.key : undefined;
   if (key === undefined) return { ok: false, code: 'bad_value' };
 
-  let was: { key: string; subject: string | null; language: string; enabled: boolean; name_en: string; name_hi: string } | null = null;
+  type TutorRow = { key: string; subject: string | null; language: string; enabled: boolean; name_en: string; name_hi: string };
+  let was: TutorRow | null = null;
   let saved: string;
   if (key) {
-    const row = (await db.query(`select key, subject, language, enabled, name_en, name_hi from content.tutors where key = $1 for update`, [key])).rows[0] as typeof was;
+    const row = (await db.query(`select key, subject, language, enabled, name_en, name_hi from content.tutors where key = $1 for update`, [key])).rows[0] as TutorRow | undefined;
     if (!row) return { ok: false, code: 'not_found' };
     was = row;
     await db.query(
