@@ -21,6 +21,7 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
 
 // @ts-expect-error -- a plain .mjs development script, no types
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
+import { aiEncryptionKey, sealAiKey } from '@/lib/ai/credentials';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
 import { POST } from '@/app/api/control/ai/try/route';
@@ -173,6 +174,24 @@ describe('Try it: one live call of the current route, on made-up inputs', () => 
     expect(fetched).toBe(0);
     const [audit] = await q(`select after_state from audit_log where event_action = 'ai.try_it' and target_id = 'exams.mark' order by created_at desc limit 1`);
     expect(audit.after_state).toMatchObject({ ok: false, failure: 'not_switched_on' });
+  });
+
+  it('a refused mint shows the vendor’s HTTP status, for the Try it result only (the ledger keeps the class)', async () => {
+    const k = aiEncryptionKey()!;
+    const sealed = sealAiKey(k, 'gemini', `AIza${'G'.repeat(35)}`);
+    await q(`update control.ai_providers set cleared_for_minors = true, cleared_terms_url = 'https://example.org/terms', cleared_at = now(), cleared_by = $1 where provider_id = 'gemini'`, [FOUNDER]);
+    await q(`insert into control.ai_credentials (provider_id, ciphertext, iv, tag, key_version, key_last4, set_by) values ('gemini', $1, $2, $3, $4, 'KEYG', $5)`, [sealed.ciphertext, sealed.iv, sealed.tag, sealed.keyVersion, FOUNDER]);
+    await route('family.voice_call', [{ provider: 'gemini', model: 'gemini-live-2.5-flash-preview' }]);
+    vi.stubGlobal('fetch', vi.fn(async () => new Response('{"error":{"message":"Unknown name"}}', { status: 400, headers: { 'content-type': 'application/json' } })));
+    try {
+      const got = await tryIt('family.voice_call');
+      expect(got.body).toMatchObject({ ok: false, provider: 'gemini', failure: 'invalid_request', status: 400 });
+      expect(JSON.stringify(await ledger('family.voice_call'))).not.toContain('400');
+    } finally {
+      await q(`delete from control.ai_credentials where provider_id = 'gemini'`);
+      await route('family.voice_call', []);
+      await q(`update control.ai_providers set cleared_for_minors = false, cleared_terms_url = null, cleared_at = null, cleared_by = null where provider_id = 'gemini'`);
+    }
   });
 
   it('the realtime call with no provider: not switched on, no token minted', async () => {

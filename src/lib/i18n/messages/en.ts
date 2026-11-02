@@ -9231,6 +9231,7 @@ export const en = {
   'control.ai.try.answeredBy': 'Answered by {provider} · {model} · {ms} ms',
   'control.ai.try.backupUsed': 'Backup used',
   'control.ai.try.failed': 'It did not answer: {reason}',
+  'control.ai.try.failedStatus': 'Refused by the service (HTTP {status})',
   'control.ai.try.failedAt': 'Last tried: {provider} · {model} · {ms} ms',
   'control.ai.try.token': 'Token minted, expires in {minutes} minutes',
   'control.ai.try.audio': 'Spoken line ({language})',
