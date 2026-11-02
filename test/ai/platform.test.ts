@@ -135,6 +135,30 @@ describe('not switched on', () => {
   });
 });
 
+describe('a profile with no service of its own follows the tutor’s chain (chainFrom, 2 Nov)', () => {
+  const quiz = (ctx: AiContext = ctxA) => asFamily(ctx.accountId, (tx) => streamText(tx as never, ctx, 'family.quiz', ask()));
+  it('the quiz runs on family.resolver’s providers and models until a service is set for it; its own switch still holds', async () => {
+    await clear('anthropic');
+    await useProfile('anthropic', 'test-model-a');
+    await sealInto('anthropic', ANTHROPIC_KEY);
+    expect(await q(`select provider_id from control.ai_profiles where profile_id = 'family.quiz'`)).toEqual([{ provider_id: null }]);
+    replies.push(() => anthropicOk(['ok']));
+    const r = await quiz();
+    expect(r.ok).toBe(true);
+    expect(calls).toHaveLength(1);
+    expect(calls[0].headers['x-api-key'] ?? calls[0].headers['X-Api-Key']).toBe(ANTHROPIC_KEY);
+    expect(JSON.parse(calls[0].body).model).toBe('test-model-a');
+    // Switched off itself: refused, whatever the tutor's chain holds.
+    await q(`update control.ai_profiles set enabled = false where profile_id = 'family.quiz'`);
+    expect(await quiz()).toEqual({ ok: false, reason: 'not_switched_on' });
+    await q(`update control.ai_profiles set enabled = true where profile_id = 'family.quiz'`);
+    // The tutor's chain empty too: nothing to follow.
+    await useProfile(null, null);
+    expect(await quiz()).toEqual({ ok: false, reason: 'not_switched_on' });
+    expect(calls).toHaveLength(1);
+  });
+});
+
 describe('allow: a cleared provider with a key streams', () => {
   beforeEach(async () => {
     await clear('anthropic');

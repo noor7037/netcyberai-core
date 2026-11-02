@@ -10,6 +10,8 @@ export const PERSONA_STYLE_MAX = 140;
 const oneLine = (v: string, max: number): string =>
   v
     // eslint-disable-next-line no-control-regex
+    .replace(/<[^>]*>/g, ' ')
+    // eslint-disable-next-line no-control-regex
     .replace(/[\u0000-\u001f\u007f<>`]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()

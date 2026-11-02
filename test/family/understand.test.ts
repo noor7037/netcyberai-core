@@ -311,7 +311,10 @@ describe('a typed question’s subject, decided on the server', () => {
   it('another school subject, not school study, or no subject named: said plainly, nothing shown', async () => {
     const { en } = await import('@/lib/i18n/messages/en');
     ai.lines = [named('history'), ...GOOD.map((g) => JSON.stringify(g))];
-    expect(await ask('Who built the Red Fort?', jar, 'mathematics')).toEqual([{ t: 'refused', reason: 'other_subject', message: en['fam.understand.otherSubject'] }]);
+    // The refusal names the class's own subjects (2 Nov), never "Mathematics or Science" alone.
+    const other = await ask('Who built the Red Fort?', jar, 'mathematics');
+    expect(other).toEqual([{ t: 'refused', reason: 'other_subject', message: expect.stringMatching(/^This question is not about a subject your tutor teaches in your class \(.+\)\. Ask about one of those\.$/) }]);
+    expect((other[0] as { message: string }).message).toContain(en['fam.subject.mathematics']);
     ai.lines = ['{"type":"refuse"}'];
     expect(await ask('Tell me a joke about cricket', jar, 'mathematics')).toEqual([{ t: 'refused', reason: 'not_school_study', message: en['fam.understand.notStudy'] }]);
     // Blocks without the subject line first are never shown.
@@ -324,7 +327,9 @@ describe('a typed question’s subject, decided on the server', () => {
     await db.pg.query(`update family.children set language = 'hi' where child_id = $1`, [OTHER_CHILD]);
     expect(await freeSubject(OTHER_CHILD)).toBeNull();
     ai.lines = [named('other')];
-    expect(await ask('Ramayana kisne likhi?', otherJar, 'mathematics')).toEqual([{ t: 'refused', reason: 'other_subject', message: hi['fam.understand.otherSubject'] }]);
+    const otherHi = await ask('Ramayana kisne likhi?', otherJar, 'mathematics');
+    expect(otherHi).toEqual([{ t: 'refused', reason: 'other_subject', message: expect.stringMatching(/^यह सवाल आपकी कक्षा के किसी विषय \(.+\) का नहीं है।/) }]);
+    expect((otherHi[0] as { message: string }).message).toContain(hi['fam.subject.mathematics']);
     // Before a free subject is claimed, every subject of the class is open (C264: Class 9's school subjects).
     expect(ai.calls.at(-1)!.system).toContain('may be answered only in: mathematics or science or social_science or english or hindi.');
     expect(await freeSubject(OTHER_CHILD)).toBeNull();

@@ -64,11 +64,15 @@ export function sourcesLines(a: ResolverAsk): string[] {
   ];
 }
 
+// A sum asked is a sum answered (browser test of 2 Nov 2026: "12 x 15" got its steps and never the 180).
+export const SUM_LINE =
+  'When the question is a sum or a calculation to work out (12 × 15, 3/4 + 1/8, 20 N over 4 m²), the steps end by stating the result plainly, as "12 × 15 = 180": never leave the answer for the student to finish.';
+
 export function resolverSystem(a: ResolverAsk): string {
   const base = v8System(a);
   // After v8's block list and before its closing rules, so the block list still reads as the answer's order.
   const at = base.indexOf('\nRules: ');
-  const extra = ['Besides those blocks, only these:', ...boardLines(), ...simLines(a), ...sourcesLines(a)].join('\n');
+  const extra = ['Besides those blocks, only these:', ...boardLines(), ...simLines(a), ...sourcesLines(a), SUM_LINE].join('\n');
   return at < 0 ? `${base}\n${extra}` : `${base.slice(0, at)}\n${extra}${base.slice(at)}`;
 }
 

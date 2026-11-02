@@ -20,7 +20,9 @@ export type TutorsView = { platform: PlatformTutorRow[]; own: OwnTutorRow[] };
 
 // One line, no markup or control characters (the database refuses them too).
 // eslint-disable-next-line no-control-regex
-const oneLine = (v: unknown): string => (typeof v === 'string' ? v.replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim() : '');
+// A tag is removed whole ("<b>x</b>" is "x", not "b x /b"; 2 Nov), then any stray bracket and control character.
+// eslint-disable-next-line no-control-regex
+const oneLine = (v: unknown): string => (typeof v === 'string' ? v.replace(/<[^>]*>/g, ' ').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim() : '');
 
 export type TutorInput = { name: string; subject: string | null; style: string; language: TutorLanguage };
 export type TutorFault = 'name' | 'style' | 'subject' | 'language';

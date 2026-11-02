@@ -42,15 +42,11 @@ export default async function ControlFamilyPage() {
         </Link>
       </p>
       {counts && <FamilyCountsView counts={counts} lang={lang} />}
-      {tutors && (
-        <div className="mt-6">
-          <TutorsPanel tutors={tutors} lang={lang} />
-        </div>
-      )}
       {lists && (
         // The forms' words, picked here (C401): the page never carries the whole message table.
         <WordsProvider words={pageWords(lang, '/control/family')}>
         <div className="mt-6 flex flex-col gap-6">
+          {tutors && <TutorsPanel initial={tutors} lang={lang} />}
           <SubjectListForm list="open_subjects" subjects={SUBJECT_IDS} initial={lists.open} />
           <SubjectListForm list="reviewed_only" subjects={SUBJECT_IDS} initial={lists.reviewed} />
           <PlusOpenForm initial={lists.plusOpen} />

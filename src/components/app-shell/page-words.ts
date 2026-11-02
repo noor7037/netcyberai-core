@@ -26,7 +26,7 @@ export const PAGE_WORDS = {
     'fam.homework.', 'fam.label.', 'fam.model.', 'fam.offline.', 'fam.plan.', 'fam.reader.', 'fam.tutor.', 'fam.understand.', 'fam.video.',
     'fam.voice.', 'fam.voiceOut.', 'fam.chat.', 'fam.subject.', 'fam.tutors.chattingWith', 'fam.tutors.change', 'fam.board.', 'fam.cite.', 'fam.sim.', 'fam.quiz.',
   ],
-  '/control/family': ['control.family.', 'fam.subject.'],
+  '/control/family': ['control.family.', 'fam.subject.', 'aitutors.lang.'],
   '/control/family/people': ['control.apps.'],
   '/control/messaging-cost': ['cost.'],
   '/control/monitoring': ['monitoring.jobs.'],

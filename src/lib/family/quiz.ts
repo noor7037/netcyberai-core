@@ -34,7 +34,8 @@ export const SESSION_QUIZ_KEY = 'session-quiz';
 const TURN_TEXT = 600;
 const CHILD_TURNS_READ = 12;
 const MIN_ITEMS = 3;
-const MAX_WRITTEN = 2;
+// Every item marks itself (2 Nov: a written item stood unmarked beside a 3 of 3 score), so none is written.
+const MAX_WRITTEN = 0;
 const DEVANAGARI = /[ऀ-ॿ]/;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -65,7 +66,7 @@ export type ParsedQuiz = { title: string | null; items: TestItem[] };
 
 // The model's JSON to checked items. Each item goes through the one block checker (as a chapter test of one item), so a
 // multiple-choice item with a wrong key or an empty reason is dropped, never repaired. At least MIN_ITEMS must remain,
-// at most QUIZ_ITEMS are kept, and at most MAX_WRITTEN of them written. A Hindi quiz must be in Devanagari.
+// at most QUIZ_ITEMS are kept, and at most MAX_WRITTEN of them written (none, so the score covers the whole quiz). A Hindi quiz must be in Devanagari.
 export function parseQuiz(text: string, lang: 'en' | 'hi'): ParsedQuiz | null {
   const start = text.indexOf('{');
   const end = text.lastIndexOf('}');

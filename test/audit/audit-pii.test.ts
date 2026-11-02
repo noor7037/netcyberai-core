@@ -105,6 +105,8 @@ const ALLOWED: Record<string, Record<string, string>> = {
     'opaque:before': 'the four tutor caps as they were: three daily counts and a multiplier, numbers',
     'key:textTurns': 'a count: text turns a child may send a day, checked as an integer',
     'key:reason': 'the founder’s own reason for a Control change, written in Control (required by 10 §7), as apps.ts',
+    'key:name_en': 'a platform tutor’s display name (Maths Tutor), a product word the founder chose; never a person’s name',
+    'key:name_hi': 'the same tutor’s name in Hindi',
   },
   'src/lib/control/apps.ts': {
     'opaque:before': 'a flag, version, banner or preview row as it was: codes, numbers, dates, ids',

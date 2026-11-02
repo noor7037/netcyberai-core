@@ -55,6 +55,7 @@ export function AiTutorsView() {
 
   const save = async () => {
     if (!draft) return;
+    if (!draft.name.trim() || !draft.style.trim()) return setNote({ ok: false, text: t('aitutors.needWords') });
     const words = { name: draft.name, subject: draft.subject === '' ? null : draft.subject, style: draft.style, language: draft.language };
     const done = draft.tutorId ? await send('PATCH', { tutorId: draft.tutorId, ...words }) : await send('POST', words);
     if (done) setDraft(null);

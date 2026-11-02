@@ -5,6 +5,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import { placeBlock } from '@/lib/family/blocks';
 import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import { useVoiceRecorder } from '../voice/useVoiceRecorder';
+import { heardNothing } from '@/lib/family/call-heard';
 import { speakLine, stopLine, type VoiceMode } from '../voice/lineVoice';
 
 // The call's logic (W16-A4): listen, answer, speak, one turn at a time.
@@ -119,6 +120,15 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null }: { w:
   const ask = useCallback(
     async (text: string, retried = false) => {
       const t = turn.current;
+      // A quiet room transcribed ("Thank you.") is no question: nothing is sent or counted; the child is asked again.
+      if (!retried && heardNothing(text)) {
+        cancel();
+        setLines([]);
+        setBlocks([]);
+        setHeard('');
+        setRefusal(w['fam.call.notHeard'] ?? '');
+        return;
+      }
       if (!retried) {
         cancel();
         t.n++;

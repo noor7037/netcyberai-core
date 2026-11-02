@@ -144,6 +144,20 @@ export const SIM_INPUTS: Record<SimKind, Record<string, { min: number; max: numb
   refraction: { n1: { min: 1, max: 2.5, step: 0.01 }, n2: { min: 1, max: 2.5, step: 0.01 }, incidence: { min: 0, max: 89, step: 1 } },
 };
 
+// Where each simulation belongs (browser test of 2 Nov 2026: older Science answers showed a pendulum under "Healthy
+// habits" and "Heart rate"): the words the question, its syllabus line or the block's own title must carry for the
+// simulation to be shown at all. None of them → the block is dropped, whatever the model wrote.
+export const SIM_WORDS: Record<SimKind, readonly string[]> = {
+  pendulum: ['pendulum', 'swing', 'oscillat', 'period', 'bob', 'लोलक', 'दोलन', 'आवर्त', 'झूल'],
+  projectile: ['projectile', 'thrown', 'throw', 'launch', 'trajectory', 'cannon', 'ball', 'प्रक्षेप', 'फेंक', 'गेंद', 'उछाल'],
+  ohms_law: ['ohm', 'current', 'voltage', 'resistance', 'circuit', 'ampere', 'volt', 'ओम', 'धारा', 'वोल्ट', 'प्रतिरोध', 'परिपथ'],
+  refraction: ['refract', 'bend', 'bent', 'pencil', 'straw', 'lens', 'prism', 'light', 'glass', 'snell', 'अपवर्तन', 'प्रकाश', 'लेंस', 'प्रिज़्म', 'मुड़', 'पेंसिल'],
+};
+export function simFits(sim: SimKind, text: string): boolean {
+  const t = text.normalize('NFKC').toLowerCase();
+  return SIM_WORDS[sim].some((w) => t.includes(w));
+}
+
 // T = 2π√(L/g), seconds.
 export const pendulumPeriod = (length: number) => 2 * Math.PI * Math.sqrt(length / G);
 
