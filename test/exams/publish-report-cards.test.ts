@@ -104,7 +104,7 @@ beforeAll(async () => {
     insert into classes (class_id, school_id, name, grade, section, class_teacher_id) values ('${C6A}', '${A}', '6-A', '6', 'A', '${T_CLASS}');
     insert into subjects (subject_id, school_id, name) values ('${MATHS}', '${A}', 'Mathematics'), ('${ENGLISH}', '${A}', 'English');
     insert into students (student_id, school_id, admission_no, name, class_id, roll_no, status) values
-      ('${S2}', '${A}', 'A-2', 'Bela Madeup', '${C6A}', '2', 'active'), ('${S1}', '${A}', 'A-1', 'Aarav Madeup', '${C6A}', '1', 'active'), ('${S3}', '${A}', 'A-3', 'Chirag Madeup', '${C6A}', '3', 'active');
+      ('${S2}', '${A}', 'A-2', 'Bela Madeup', '${C6A}', '2', 'active'), ('${S1}', '${A}', 'A-1', 'Aarav Madeup', '${C6A}', '1', 'active'), ('${S3}', '${A}', 'A-3', 'चिराग Madeup', '${C6A}', '3', 'active');
     insert into school_module_entitlements (school_id, module_id, enabled, source) values ('${A}', 'exams', true, 'plan') on conflict (school_id, module_id) do update set enabled = true;
     insert into grading_schemes (school_id, version, scheme, made_by) values ('${A}', 1, '${JSON.stringify(SCHEME)}'::jsonb, '${PRINCIPAL}');
     insert into exams (exam_id, school_id, name, term, created_by) values ('${X1}', '${A}', 'AI Marking Retest', 'Term 1', '${PRINCIPAL}');
@@ -222,6 +222,13 @@ describe('report cards made on publish (W14-F)', () => {
     expect(await as(principal, (c) => reportCardFiles(c, actor(principal), X1, C6A))).toMatchObject({ ready: 2, waiting: 1, failed: 0 });
     await runPending();
     expect(await as(principal, (c) => reportCardFiles(c, actor(principal), X1, C6A))).toMatchObject({ total: 3, ready: 3, waiting: 0, failed: 0, missing: 0 });
+    // W17-B5: the child with a Hindi name gets the shaped, embedded-font writer; the English cards keep Helvetica.
+    const key = String((await cardRows()).find((r) => r.student_id === S3)!.storage_key);
+    const hindi = Buffer.from(STORED.get(key)!).toString('latin1');
+    expect(hindi.startsWith('%PDF-')).toBe(true);
+    expect(hindi).toContain('NotoSansDevanagari');
+    const english = Buffer.from(STORED.get(String((await cardRows()).find((r) => r.student_id === S1)!.storage_key))!).toString('latin1');
+    expect(english).not.toContain('NotoSansDevanagari');
   });
 
   it('“Get every report card” is every kept card in roll order, for the office and the class teacher', async () => {
