@@ -9,7 +9,7 @@ import { listChildren } from './children';
 import { loadQuiz, sealKey, type SessionQuiz } from './quiz';
 
 // Playing a Quick quiz (W16-B1): the quiz in the form the phone gets, and sending it. Apart from quiz.ts so the job that
-// makes quizzes (registered with every other job) does not load the chapter test's scorer and the tutor's file store.
+// makes quizzes (registered with every other job) does not load the scorer of the chapter test and the file store of the tutor.
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[]; rowCount?: number | null }> };
 
 // The quiz as the phone gets it: the questions and options with sealed tokens, no answer, no reason.
@@ -25,7 +25,7 @@ export type Mark = { verdict: Verdict; note: string };
 const VERDICTS: readonly string[] = ['right', 'partly', 'wrong'];
 const NOTE_MAX = 300;
 
-// The marker's JSON, read strictly: every id must be one of the written answers sent, once; a verdict is one of the three
+// The JSON from the marker, read strictly: every id must be one of the written answers sent, once; a verdict is one of the three
 // words; a note is 1 to 300 characters of plain text (markup taken out, a longer one refused, never cut). Anything else
 // and the whole reply is refused (null), so a half-understood answer marks nothing. An id the model left out stays unmarked.
 export function parseMarks(text: string, ids: readonly string[]): Map<string, Mark> | null {
@@ -49,7 +49,7 @@ export function parseMarks(text: string, ids: readonly string[]): Map<string, Ma
     const note = x.note
       .replace(/<[^>]*>/g, ' ')
       .replace(/[<>]/g, ' ')
-      .replace(/\*\*|__|`+|^#{1,6}\s+/gm, '')
+      .replace(/\*\*|__|\x60+|^#{1,6}\s+/gm, '')
       .replace(/\s+/g, ' ')
       .trim();
     if (note.length < 1) return null;
@@ -58,7 +58,7 @@ export function parseMarks(text: string, ids: readonly string[]): Map<string, Ma
   return marks;
 }
 
-// One call marks every written answer of the attempt, through the gateway with the quiz's own profile (the child's words
+// One call marks every written answer of the attempt, through the gateway with the profile of the quiz (the words of the child
 // carry the same cleaning, minors check, daily cap and ledger as the quiz that was made). Stored: `correct` (true only for
 // "right"; "partly" is false) and the note, on the answer row. A quiz is a quick check, not a record: a refusal, a failed
 // call or a reply that cannot be read stores nothing and the items come back "unmarked"; nothing is retried, and the
@@ -70,11 +70,11 @@ async function markWritten(db: Db, who: { accountId: string; childId: string }, 
   const marks = await askMarks(db, who, q, scored.attemptId, ids);
   if (!marks || marks.size === 0) return unmarked();
   // The marks go in under a savepoint: before the migration that allows them is applied the write is refused, and the
-  // child's quiz must still show (42703 no column, 23514 the old check, 42501 no update right).
+  // quiz of the child must still show (42703 no column, 23514 the old check, 42501 no update right).
   await db.query('savepoint quiz_mark');
   try {
     for (const [id, m] of marks) {
-      await db.query(`update family.chapter_test_answers set correct = $1, note = $2 where attempt_id = $3 and account_id = $4 and child_id = $5 and item_id = $6 and kind = 'written'`, [m.verdict === 'right', m.note, scored.attemptId, who.accountId, who.childId, id]);
+      await db.query(`update family.chapter_test_answers set correct = $1, note = $2 where attempt_id = $3 and account_id = $4 and child_id = $5 and item_id = $6 and kind = $7`, [m.verdict === 'right', m.note, scored.attemptId, who.accountId, who.childId, id, 'written']);
     }
     await db.query('release savepoint quiz_mark');
   } catch (err) {
@@ -94,7 +94,7 @@ async function markWritten(db: Db, who: { accountId: string; childId: string }, 
 }
 
 async function askMarks(db: Db, who: { accountId: string; childId: string }, q: SessionQuiz, attemptId: string, ids: string[]): Promise<Map<string, Mark> | null> {
-  const given = (await db.query(`select item_id, question, body, rubric from family.chapter_test_answers where attempt_id = $1 and account_id = $2 and child_id = $3 and kind = 'written'`, [attemptId, who.accountId, who.childId])).rows;
+  const given = (await db.query(`select item_id, question, body, rubric from family.chapter_test_answers where attempt_id = $1 and account_id = $2 and child_id = $3 and kind = $4`, [attemptId, who.accountId, who.childId, 'written'])).rows;
   const items = given.filter((r) => ids.includes(String(r.item_id))).map((r) => ({ id: String(r.item_id), question: String(r.question), points: (r.rubric as string[]) ?? [], answer: String(r.body ?? '') }));
   if (items.length === 0) return null;
   const children = await listChildren(db as never, who.accountId);

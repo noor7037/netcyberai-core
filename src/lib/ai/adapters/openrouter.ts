@@ -19,7 +19,7 @@ const APP_HEADERS = { 'HTTP-Referer': 'https://www.netcyberai.com', 'X-Title': '
 
 const authHeaders = (apiKey: string): Record<string, string> => ({ authorization: `Bearer ${apiKey}`, ...APP_HEADERS });
 
-// A free key ($0 of credit) reaches text; the audio models answer 402 (needs credit) or 403 (not offered by API). They
+// A free key (no credit on it) reaches text; the audio models answer 402 (needs credit) or 403 (not offered by API). They
 // are told apart so Control can word each: 402 stays an `http` failure (the platform reads it as a spent quota and moves
 // to the next provider), 403 is the same kind of failure (not offered on this key; nothing to retry).
 export function openrouterFailureCode(status: number | undefined): 'needs_credit' | 'not_available_by_api' | null {
