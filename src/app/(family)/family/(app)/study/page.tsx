@@ -22,6 +22,7 @@ import { subjectAccess } from '@/lib/family/modules';
 import { familyModuleOn, readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { photoGate } from '@/lib/family/photo-gate';
 import { voiceDay } from '@/lib/family/voice';
+import { serverVoiceReady } from '@/lib/family/voice-out';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
 import { indiaDate } from '@/lib/time/india';
 import { OFFLINE_KEYS } from '@/lib/family/offline-words';
@@ -113,6 +114,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const files = access.open && TUTOR_READS_FILES && (await familyPageRead(page, (db) => photoGate(db, page.session.accountId, child))) === null;
   // Voice input (M2-7, C281): the microphone shows only with the parent's voice consent and the module on, with the
   // seconds left of the child's day.
+  // W17-B2: whether a tutor answer's speaker button uses the server voice (one read, only where the tutor shows).
+  const serverVoice = access.open && (await familyPageRead(page, (db) => serverVoiceReady(db, page.session.accountId)));
   const voice =
     page.consents.voice_practice && switchOn(switches, 'voice_input') ? { secondsLeft: (await familyPageRead(page, (db) => voiceDay(db, page.session.accountId, child.childId, indiaDate()))).left } : null;
   // M2-9 (C283): a pack downloads only for the child's free subject, with the parent's consent (the pack route checks
@@ -227,7 +230,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
-          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} follow tutor={tutorHere} call={callOn ? { href: callHref, label: fill(w['fam.tutors.callWith'], { name: tutorHere?.name ?? w['fam.call.tutorDefault'] }) } : null}>
+          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} serverVoice={serverVoice} follow tutor={tutorHere} call={callOn ? { href: callHref, label: fill(w['fam.tutors.callWith'], { name: tutorHere?.name ?? w['fam.call.tutorDefault'] }) } : null}>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}

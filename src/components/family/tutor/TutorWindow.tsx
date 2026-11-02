@@ -15,6 +15,8 @@ import { citationOf } from '@/lib/family/citation';
 import { MindMapView } from '../blocks/MindMapView';
 import { DirectAnswerCard, UnderstandView, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
+import { AnswerSpeaker } from '../voice/AnswerSpeaker';
+import { ANSWER_SPOKEN_MAX, spokenAnswer } from '@/lib/family/call';
 
 // The shared tutor window (S2, C375; docs/37 §4 Wave 2): one window for every question a child types, on the Study page
 // and in the chapter reader's doubt drawer. W6-A (C395): one composer (Composer.tsx) pinned at the foot. Study passes
@@ -49,6 +51,8 @@ type Props = {
   tutor?: { key: string; name: string } | null;
   // W16-B5: the call affordance in the composer (Study, while the call is switched on and the child may speak).
   call?: { href: string; label: string } | null;
+  // W17-B2: the server voice is set up, so a tutor answer's speaker button uses it (else the phone's own voice).
+  serverVoice?: boolean;
   children?: ReactNode;
 };
 
@@ -101,7 +105,7 @@ export function followHref(ask: FeedAsk | undefined, follow: boolean, tutorKey: 
   return follow && ask?.moved ? `/family/study?subject=${encodeURIComponent(ask.moved)}${tutorKey ? `&tutor=${encodeURIComponent(tutorKey)}` : ''}` : null;
 }
 
-export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, children }: Props) {
+export function TutorWindow({ w, subject, tone, voice = null, files = false, homework = false, reader = null, idPrefix = 'fam-tutor', pinned = 'dock', follow = false, tutor: chosen = null, call = null, serverVoice = false, children }: Props) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
   const [text, setText] = useState('');
@@ -281,7 +285,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
             <ol data-tutor-turns className="flex flex-col gap-4">
               {turns.map((t) => (
                 <li key={t.id} data-turn={t.role} data-chat={t.chatId} className="flex flex-col">
-                  {t.role === 'child' ? <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} /> : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} />}
+                  {t.role === 'child' ? <Question w={w} text={t.text} lang={t.lang} fromReader={!!t.chapterKey} files={t.files} /> : <KeptAnswer b={t.blocks} w={w} tone={tone} lang={t.lang} speak={{ id: t.id, serverVoice }} />}
                 </li>
               ))}
             </ol>
@@ -374,10 +378,12 @@ function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words;
 
 // A kept answer in the feed, in the lesson look (W10-4): the direct answer first, under its heading, then its
 // sections, numbered.
-function KeptAnswer({ b, w, tone, lang }: { b: Block[]; w: Words; tone: string; lang: string }) {
+export function KeptAnswer({ b, w, tone, lang, speak }: { b: Block[]; w: Words; tone: string; lang: string; speak: { id: string; serverVoice: boolean } }) {
   const lead = b.find((x): x is Explanation => x.type === 'explanation');
   // W16-B2: a marked working names its chapter in a chip first (a general answer says nothing here).
   const cited = citationOf(b, false);
+  // The same words the server voice speaks; an answer with nothing to say aloud (a picture alone) has no button.
+  const spoken = spokenAnswer(b, ANSWER_SPOKEN_MAX);
   return (
     <div lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
       {cited && <CitationChip w={w} c={cited} />}
@@ -385,6 +391,7 @@ function KeptAnswer({ b, w, tone, lang }: { b: Block[]; w: Words; tone: string; 
       {b.map((x, i) => (
         <TurnBlock key={i} b={x} w={w} tone={tone} lead={x === lead} />
       ))}
+      {spoken && <AnswerSpeaker w={w} messageId={speak.id} text={spoken} lang={lang === 'hi' ? 'hi' : 'en'} serverVoice={speak.serverVoice} />}
     </div>
   );
 }

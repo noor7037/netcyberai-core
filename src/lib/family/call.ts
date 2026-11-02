@@ -67,6 +67,23 @@ export function callSpeech(block: PublicBlock): string[] {
   }
 }
 
+// The voice's limit for one request (the family app may not import the adapters; a test holds the two equal).
+export const ANSWER_SPOKEN_MAX = 600;
+
+// The words read aloud for a kept tutor answer (W17-B2): what a call would say, whole sentences only, within `max`
+// characters. One helper for the server (what the voice speaks) and the phone (what its own voice reads when the server
+// voice is off), so both read the same words.
+export function spokenAnswer(blocks: readonly { type: string }[], max: number): string {
+  const pieces = splitSpeech(blocks.flatMap((b) => callSpeech(b as PublicBlock)).join(' '));
+  let out = '';
+  for (const p of pieces) {
+    const next = out ? `${out} ${p}` : p;
+    if (next.length > max) break;
+    out = next;
+  }
+  return out;
+}
+
 // The blocks the board draws on a call: the teaching ones. Questions to answer, the video list and the source list
 // belong to the lesson page; on a call the child answers by speaking.
 export const BOARD_HIDDEN: readonly PublicBlock['type'][] = ['check', 'practice', 'videos', 'sources'];

@@ -24,9 +24,10 @@ type Props = {
   voice?: { secondsLeft: number } | null;
   files?: boolean;
   homework?: boolean;
+  serverVoice?: boolean;
 };
 
-export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = null, files = false, homework = false }: Props) {
+export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = null, files = false, homework = false, serverVoice = false }: Props) {
   const closeButton = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -81,7 +82,7 @@ export function TutorDrawer({ open, onClose, w, subject, tone, reader, voice = n
             {w['fam.tutor.close']}
           </button>
         </div>
-        <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homework} reader={reader} idPrefix="fam-doubt" pinned="sheet" />
+        <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homework} serverVoice={serverVoice} reader={reader} idPrefix="fam-doubt" pinned="sheet" />
       </div>
     </div>
   );

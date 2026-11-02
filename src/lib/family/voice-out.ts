@@ -1,9 +1,11 @@
 import { createCipheriv, createDecipheriv, randomBytes, randomUUID } from 'crypto';
-import { profileReady, voiceCharsLeft, type AiContext } from '@/lib/ai/platform';
+import { VOICE_TEXT_MAX, profileReady, voiceCharsLeft, type AiContext } from '@/lib/ai/platform';
 import { guarded, loadChapter } from './chapter-store';
 import { chapterView } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
 import { callGate } from './call-gate';
+import { spokenAnswer } from './call';
+import { parseBlockLine, type Block } from './blocks';
 import { consentState } from './consent';
 import { LIVE_REPLY_MAX, isUuid, liveChild } from './english/live';
 import { familyHashKey } from './secret';
@@ -17,6 +19,7 @@ import { indiaDate } from '@/lib/time/india';
 //   - a live English reply's sentence while it streams (not kept yet): the live route seals each checked sentence for
 //     this account, child and session (AES-256-GCM, a key derived for this purpose only, fifteen minutes), and the
 //     speak route opens the seal. A phone can neither read nor make one, nor use another child's.
+//   - a tutor's kept answer (W17-B2): by its message id, for the child it was written to; the teaching text of its blocks;
 //   - a call's sentence (W16-A4): the understand route, answering a call, seals each sentence of the answer it checked,
 //     for this account and child (a marked seal, so it opens only as a call line), and the speak route opens it.
 // Each comes with the gate of the screen it belongs to: the reader's (the parent's yes to learning, Class 1 up), live
@@ -81,7 +84,7 @@ export function openCallLine(token: unknown, ctx: { accountId: string; childId: 
 
 // ---- what may be spoken ----------------------------------------------------------------------------------------------
 
-export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string };
+export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string } | { kind: 'tutor_answer'; messageId: string };
 
 // The request's body, checked for shape only (what it names is checked against the database below).
 export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
@@ -89,6 +92,7 @@ export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
     return { kind: 'chapter', chapterKey: body.chapterKey, blockId: body.blockId, sentence: body.sentence as number };
   if (body.kind === 'live_line' && typeof body.token === 'string') return { kind: 'live_line', token: body.token };
   if (body.kind === 'call_line' && typeof body.token === 'string') return { kind: 'call_line', token: body.token };
+  if (body.kind === 'tutor_answer' && isUuid(body.messageId)) return { kind: 'tutor_answer', messageId: body.messageId };
   if (body.kind === 'live_turn' && isUuid(body.sessionId) && Number.isInteger(body.position) && (body.position as number) >= 1) return { kind: 'live_turn', sessionId: body.sessionId, position: body.position as number };
   return null;
 }
@@ -117,6 +121,26 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
     const line = view.script.find((l) => l.blockId === ask.blockId && l.sentence === ask.sentence);
     if (!line) return { ok: false, status: 404, error: 'not_found' };
     return { ok: true, child, children, text: line.text, language: view.lang };
+  }
+  if (ask.kind === 'tutor_answer') {
+    // W17-B2: the tutor's own answer to this child (Study's gate: a child Class 1 up and the parent's yes to learning),
+    // by its message id. Only a tutor message of this family and this child; a child's own question is never read.
+    const children = await listChildren(db as never, accountId);
+    const child = activeChild(children, chosen);
+    if (!child || isPrePrimary(child.classLevel)) return { ok: false, status: 404, error: 'not_found' };
+    if (!(await consentState(db as never, accountId)).study_core) return { ok: false, status: 403, error: 'consent_needed' };
+    const { rows } = await db.query(
+      `select m.blocks, m.lang from family.tutor_messages m join family.tutor_conversations c on c.conversation_id = m.conversation_id
+        where m.message_id = $1 and m.account_id = $2 and m.child_id = $3 and m.role = 'tutor' and c.child_id = $3`,
+      [ask.messageId, accountId, child.childId]
+    );
+    if (!rows[0]) return { ok: false, status: 404, error: 'not_found' };
+    // Read back through the block checks, as the feed does; only the teaching text is spoken (never a title, a formula
+    // or a question), cut at a sentence to the voice's limit.
+    const blocks = (Array.isArray(rows[0].blocks) ? rows[0].blocks : []).map((b: unknown) => parseBlockLine(JSON.stringify(b))).filter((b: Block | null): b is Block => b !== null);
+    const text = spokenAnswer(blocks, VOICE_TEXT_MAX);
+    if (!text) return { ok: false, status: 404, error: 'not_found' };
+    return { ok: true, child, children, text, language: rows[0].lang === 'hi' ? 'hi' : 'en' };
   }
   if (ask.kind === 'call_line') {
     // W16-A4: a call's sentence, behind the voice input's own gate, for the child this phone has chosen.
