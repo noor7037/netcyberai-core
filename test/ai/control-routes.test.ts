@@ -90,7 +90,7 @@ describe('who is let in', () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.keyReady).toBe(true);
-    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'elevenlabs', 'gemini', 'google_tts', 'nvidia', 'openai', 'openai_compatible', 'openrouter', 'sarvam', 'vertex_ai', 'workers-ai', 'youtube']);
+    expect(body.providers.map((p: { providerId: string }) => p.providerId)).toEqual(['anthropic', 'elevenlabs', 'gemini', 'google_stt', 'google_tts', 'nvidia', 'openai', 'openai_compatible', 'openrouter', 'sarvam', 'vertex_ai', 'workers-ai', 'youtube']);
     expect(body.profiles).toEqual([
       // Control's two staff tools start on Workers AI (C313); nothing runs until its key is entered.
       expect.objectContaining({ profileId: 'content.prepare', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
@@ -447,7 +447,10 @@ describe('the server voice in Control (C386)', () => {
     expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'not_cleared_for_minors' }) });
     expect(await post({ action: 'clearance', providerId: 'google_tts', cleared: true, termsUrl: 'https://example.org/cloud-terms-read' })).toEqual({ status: 200, body: { ok: true } });
     // A voice id that could become something else in the vendor's voice name is refused where the founder sees it.
-    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A/../x', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'model' }) });
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A/../x', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'voice_model' }) });
+    // W17: a voice still wrong once its language is stripped has its own words; a full id from Google's list is accepted.
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'hi-IN-Standard', promptVersion: 'v1', enabled: true })).toEqual({ status: 400, body: expect.objectContaining({ code: 'voice_model' }) });
+    expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'hi-IN-Standard-A', promptVersion: 'v1', enabled: true })).toEqual({ status: 200, body: { ok: true } });
     expect(await post({ action: 'profile', profileId: 'family.text_to_speech', providerId: 'google_tts', model: 'Neural2-A', promptVersion: 'v1', enabled: true })).toEqual({ status: 200, body: { ok: true } });
     const page = await (await GET(req(undefined, founder))).json();
     const google = page.providers.find((p: { providerId: string }) => p.providerId === 'google_tts');

@@ -11,6 +11,7 @@ import {
   workersAccountLooksRight,
   workersTokenLooksRight,
 } from "@/lib/ai/adapters/workers-key";
+import type { MessageKey } from "@/lib/i18n";
 import type { ProviderStateResult } from "@/lib/ai/provider-state";
 import type { LedgerAttempt } from "@/lib/contracts/ai-gateway";
 import {
@@ -44,6 +45,10 @@ type Props = {
   // Each provider's newest attempt in the ledger, when it has one.
   lastAttempt: Record<string, LedgerAttempt>;
 };
+
+// Providers whose id alone does not say what they are, and those with a line of caution beside them (W17).
+const NAMED = ["google_stt"];
+const ABOUT = ["gemini"];
 
 export function ProviderList({
   data,
@@ -90,7 +95,12 @@ export function ProviderList({
               className={INNER}
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="break-all font-bold">{p.providerId}</p>
+                <p className="break-all font-bold">
+                  {p.providerId}
+                  {NAMED.includes(p.providerId) && (
+                    <span className="font-normal"> · {t(`control.ai.provider.name.${p.providerId}` as MessageKey)}</span>
+                  )}
+                </p>
                 {s && p.capability !== "video" && (
                   <span data-ai-provider-state={s.state}>
                     <StatusPill tone={STATE_TONE[s.state]}>
@@ -123,6 +133,7 @@ export function ProviderList({
                   </p>
                 ) : null;
               })()}
+              {ABOUT.includes(p.providerId) && <p data-ai-provider-about>{t(`control.ai.provider.about.${p.providerId}` as MessageKey)}</p>}
               {!p.hasAdapter && <p>{t("control.ai.provider.noAdapter")}</p>}
               {p.capability === "video" && (
                 <p data-ai-video-provider>{t("control.video.ai.provider")}</p>

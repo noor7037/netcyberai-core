@@ -48,6 +48,7 @@ const ERRORS = [
   "in_use",
   "profile",
   "model",
+  "voice_model",
   "prompt_version",
   "incomplete",
   "not_cleared_for_minors",
