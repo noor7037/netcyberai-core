@@ -27,3 +27,20 @@ export function occurrence(script: readonly NarrationLine[], index: number): num
 
 // Reading progress, as a whole percent of the narration's sentences reached (the line being read counts).
 export const progressPercent = (index: number, total: number) => (total <= 0 ? 0 : Math.min(100, Math.round(((index + 1) / total) * 100)));
+
+// W18-P1: a chapter's board follows the narration of the readable block just before it (the explanation it draws), as a
+// call's board follows the answer's spoken sentences. `owner` is that block's id and `skip` the sentences it reads before
+// its explanation (its title), so the board's first step comes with the explanation's first sentence. While the owner is
+// read: the sentence's place among its explanation's sentences; once the narration has passed it: past the end (the whole
+// board); before it, or with no owner: undefined (the child steps through the board).
+export const PAST_THE_END = 1_000_000;
+export function boardSentence(script: readonly NarrationLine[], index: number, owner: string | null, skip = 0): number | undefined {
+  const line = script[index];
+  if (!owner || !line) return undefined;
+  if (line.blockId === owner) return Math.max(0, line.sentence - skip);
+  let last = -1;
+  script.forEach((l, i) => {
+    if (l.blockId === owner) last = i;
+  });
+  return last >= 0 && index > last ? PAST_THE_END : undefined;
+}

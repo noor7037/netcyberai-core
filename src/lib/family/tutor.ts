@@ -346,7 +346,7 @@ type TurnInput = { accountId: string; childId: string; subject: string; text: st
 // written when refused. W10 (C411): `subject` is the one the server decided; a chat's first answer moves the
 // chat to it (a chat opened in Mathematics whose first question is about photosynthesis becomes a Science chat); a later
 // turn stays in the chat, whatever subject it was decided in. Returns the chat's subject after the turn.
-export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Promise<{ ok: true; turnCount: number; subject: string } | { ok: false; error: 'chat_full' | 'not_found' | 'empty' }> {
+export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Promise<{ ok: true; turnCount: number; subject: string; messageId: string } | { ok: false; error: 'chat_full' | 'not_found' | 'empty' }> {
   const text = t.text.trim().slice(0, TUTOR_TEXT_MAX);
   const blocks = keptTutorBlocks(t.blocks);
   if (!text || blocks.length === 0) return { ok: false, error: 'empty' };
@@ -378,8 +378,9 @@ export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Pro
     );
   }
   // The answer's tutor turn is a moment later than the question, so the two always read back in order.
-  await db.query(
-    `insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, lang, created_at) values ($1, $2, $3, 'tutor', $4::jsonb, $5, clock_timestamp())`,
+  // W18-P1: its id goes back to the screen that asked (the done line), so the answer can be read aloud at once.
+  const answer = await db.query(
+    `insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, lang, created_at) values ($1, $2, $3, 'tutor', $4::jsonb, $5, clock_timestamp()) returning message_id`,
     [conversationId, t.accountId, t.childId, JSON.stringify(blocks), lang]
   );
   const { rows } = await db.query(
@@ -390,21 +391,22 @@ export async function appendTurn(db: Db, t: TurnInput & { chatId: string }): Pro
   );
   if (moved) await archiveOverflow(db, t.accountId, t.childId, chatSubject);
   await trimFeed(db, t.accountId, t.childId, chatSubject, t.storage ?? null);
-  return { ok: true, turnCount: Number(rows[0].turn_count), subject: chatSubject };
+  return { ok: true, turnCount: Number(rows[0].turn_count), subject: chatSubject, messageId: String(answer.rows[0].message_id) };
 }
 
 // An answered tutor question kept: in the chat the screen asked in while it is open (`chatId`, already checked to be
 // this child's own), else in the decided subject's newest open chat (a new one when there is none, or when the named
-// chat filled up meanwhile). Returns the chat, its subject and its child turns, or null when nothing was kept.
-export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }): Promise<{ chatId: string; turnCount: number; subject: string } | null> {
+// chat filled up meanwhile). Returns the chat, its subject, its child turns and the kept answer's message id, or null
+// when nothing was kept.
+export async function saveTurn(db: Db, t: TurnInput & { chatId?: string | null }): Promise<{ chatId: string; turnCount: number; subject: string; messageId: string } | null> {
   if (t.chatId) {
     const kept = await appendTurn(db, { ...t, chatId: t.chatId });
-    if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount, subject: kept.subject };
+    if (kept.ok) return { chatId: t.chatId, turnCount: kept.turnCount, subject: kept.subject, messageId: kept.messageId };
     if (kept.error === 'empty') return null;
   }
   const chatId = await openChat(db, t.accountId, t.childId, t.subject, t.tutorKey ?? null);
   const kept = await appendTurn(db, { ...t, chatId });
-  return kept.ok ? { chatId, turnCount: kept.turnCount, subject: kept.subject } : null;
+  return kept.ok ? { chatId, turnCount: kept.turnCount, subject: kept.subject, messageId: kept.messageId } : null;
 }
 
 // ---- the running summary (family.summary) ----------------------------------------------------------------------------

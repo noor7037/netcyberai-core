@@ -122,7 +122,7 @@ describe('chats (C406)', () => {
     const t = await import('@/lib/family/tutor');
     const chat = await fam((c) => t.newChat(c, ACCOUNT, CHILD, 'science'));
     await fam(async (c) => {
-      for (let n = 1; n <= 30; n++) expect(await t.appendTurn(c, turnInput(chat, n))).toEqual({ ok: true, turnCount: n, subject: 'science' });
+      for (let n = 1; n <= 30; n++) expect(await t.appendTurn(c, turnInput(chat, n))).toEqual({ ok: true, turnCount: n, subject: 'science', messageId: expect.any(String) });
     });
     expect(await q(`select title, turn_count, status from family.tutor_conversations where conversation_id = $1`, [chat])).toEqual([{ title: 'Question 1?', turn_count: 30, status: 'open' }]);
     await q(`update family.tutor_conversations set status = 'full' where conversation_id = $1`, [chat]);
@@ -163,7 +163,7 @@ describe('the route sends the chat to the tutor (C406)', () => {
   it('a third question is asked with the earlier turns in its prompt, and the summary is rewritten at the fifth', async () => {
     ai.lines = ANSWER;
     const first = await events(await ask(CHILD, 'Why is 1/2 the same as 2/4?', { subject: 'mathematics' }));
-    expect(first.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId: expect.any(String), subject: 'mathematics' } });
+    expect(first.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId: expect.any(String), subject: 'mathematics' }, messageId: expect.any(String) });
     const [chat] = await q(`select conversation_id from family.tutor_conversations where child_id = $1 and subject = 'mathematics'`, [CHILD]);
     const chatId = String(chat.conversation_id);
     await events(await ask(CHILD, 'Can you show it with a roti?', { subject: 'mathematics', chatId }));
@@ -238,7 +238,7 @@ describe('the chat keeps its subject and the follow-up stays in it (W10, C411)',
     ai.lines = SCIENCE;
     const first = await events(await ask(CHILD, 'What is photosynthesis?', { subject: 'mathematics', chatId }));
     // The answer names the chat and its new subject, so the window lists it under Science.
-    expect(first.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId, subject: 'science' } });
+    expect(first.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId, subject: 'science' }, messageId: expect.any(String) });
     expect(await q(`select subject, turn_count from family.tutor_conversations where conversation_id = $1`, [chatId])).toEqual([{ subject: 'science', turn_count: 1 }]);
 
     // The follow-up typed with the Mathematics tab still selected goes to that chat, with its turns in the prompt, and

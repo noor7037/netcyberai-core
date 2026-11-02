@@ -75,7 +75,9 @@ export type ResolverEvent =
   // W10 (C411): `missing`, the core blocks the plan asked for that never came (coreBlocks); `cut`, the answer ended
   // early (the call failed or timed out after some blocks, or the model stopped inside a block). `complete`: neither.
   // `chat`: the tutor chat the answer was kept in, and that chat's subject (the tutor window lists it there).
-  | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject } }
+  // W18-P1: `messageId`, the kept tutor answer's own message id (this child's, just written), so the window's read-aloud
+  // and "Teach me" can ask the server voice for it without a reload.
+  | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject }; messageId?: string }
   // W4-1 (C385): what became of the files sent with a tutor question, said before the answer.
   | { t: 'files'; message: string }
   // W16-A4: only in a call's answer (`call: true`): the sentences of the block just sent that are spoken, each with the

@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import type { Board, BoardAxis, BoardColour, BoardLeaf } from '@/lib/family/blocks';
-import { BOARD_TEXT, boardAxes, boardBox, boardFrame, boardItems, onAxis, targetBox, type BoardItem } from '@/lib/family/board';
+import { BOARD_TEXT, boardAxes, boardBox, boardFrame, boardItems, boardStepOnSpoken, onAxis, targetBox, type BoardItem } from '@/lib/family/board';
 import { lessonColors, lessonTints } from '@/lib/design-tokens';
 import { fill, type Words } from '@/lib/family/fill';
 import { Card } from './BlockViews';
@@ -152,9 +152,19 @@ export function BoardView({ b, w, tone, cursor, still }: { b: Board; w: Words; t
   const roomy = useRoomy();
   const last = b.steps.length;
   const [at, setAt] = useState(() => Math.min(last, Math.max(1, cursor ?? 1)));
-  // The step being spoken moves the board; a tap moves it too, until the next sentence.
+  // The step being spoken moves the board; a tap moves it too (board.ts boardStepOnSpoken: a Next ahead of the voice
+  // stays, a Back holds until the voice's next step). The voice stopping (no cursor) leaves the board where it is, and
+  // the next start draws from the voice's own step.
+  const spoken = useRef<number | undefined>(undefined);
   useEffect(() => {
-    if (cursor !== undefined) setAt(Math.min(last, Math.max(1, Math.round(cursor))));
+    if (cursor === undefined) {
+      spoken.current = undefined;
+      return;
+    }
+    const step = Math.min(last, Math.max(1, Math.round(cursor)));
+    const before = spoken.current;
+    spoken.current = step;
+    if (step !== before) setAt((n) => boardStepOnSpoken(n, before, step));
   }, [cursor, last]);
   const head = useId().replace(/[^a-zA-Z0-9]/g, '');
   const shown = quiet ? last : at;

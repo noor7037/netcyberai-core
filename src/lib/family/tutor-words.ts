@@ -19,6 +19,8 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.sketch.colour.ink', 'fam.sketch.colour.blue', 'fam.sketch.colour.coral',
   // W17-B2: read a tutor's answer aloud, and which voice reads it.
   'fam.tutor.readAloud', 'fam.tutor.stopAloud', 'fam.voiceOut.server', 'fam.voiceOut.phone',
+  // W18-P1: "Teach me" on an answer (the board's words come with UNDERSTAND_KEYS on every page that has the window).
+  'fam.tutor.teachMe', 'fam.tutor.pause', 'fam.tutor.replay',
   ...SUBJECT_IDS.map((s) => `fam.subject.${s}` as MessageKey),
 ];
 

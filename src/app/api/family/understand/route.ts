@@ -322,6 +322,9 @@ export async function POST(req: NextRequest) {
           kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey })).catch(() => null);
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
+        // W18-P1: the answer's own message id, just written for this child, so the window can read it aloud without a reload.
+        // Nothing else of the turn leaves the server.
+        if (last?.t === 'done' && kept) last = { ...last, messageId: kept.messageId };
         if (last) send(last);
         if (kept) await refreshChatSummary((fn) => withFamilyContext(claims, fn), pending.ctx, kept.chatId, kept.turnCount).catch(() => false);
       } catch (err) {

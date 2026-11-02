@@ -74,14 +74,36 @@ export const ANSWER_SPOKEN_MAX = 600;
 // characters. One helper for the server (what the voice speaks) and the phone (what its own voice reads when the server
 // voice is off), so both read the same words.
 export function spokenAnswer(blocks: readonly { type: string }[], max: number): string {
+  return spokenSentences(blocks, max).join(' ');
+}
+
+// The same words as spokenAnswer, sentence by sentence (W18-P1): the read-aloud and "Teach me" find the sentence being
+// spoken in this list, and the board its step from that sentence's place (board.ts boardCursorFromSentence).
+export function spokenSentences(blocks: readonly { type: string }[], max: number): string[] {
   const pieces = splitSpeech(blocks.flatMap((b) => callSpeech(b as PublicBlock)).join(' '));
-  let out = '';
+  const out: string[] = [];
+  let length = -1;
   for (const p of pieces) {
-    const next = out ? `${out} ${p}` : p;
-    if (next.length > max) break;
-    out = next;
+    if (length + 1 + p.length > max) break;
+    out.push(p);
+    length += 1 + p.length;
   }
   return out;
+}
+
+// Which sentence a character of the spoken text (the sentences joined by one space, as spokenAnswer joins them) falls in,
+// from 0. A voice says where it is by character: the phone's word boundaries, or, for the server voice, which reports
+// none, how much of the audio has played turned into a character by the caller. The space after a sentence belongs to
+// it. Past the end, the last sentence; no sentences, -1.
+export function sentenceAtChar(sentences: readonly string[], charIndex: number): number {
+  if (sentences.length === 0) return -1;
+  const at = Number.isFinite(charIndex) ? Math.max(0, charIndex) : 0;
+  let end = 0;
+  for (let i = 0; i < sentences.length; i++) {
+    end += sentences[i].length + 1;
+    if (at < end) return i;
+  }
+  return sentences.length - 1;
 }
 
 // The blocks the board draws on a call: the teaching ones. Questions to answer, the video list and the source list

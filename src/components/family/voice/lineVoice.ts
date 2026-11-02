@@ -32,7 +32,7 @@ export function stopLine() {
 
 type Played = 'played' | 'off' | 'failed' | 'cancelled';
 
-async function playServer(source: LineSource, rate: number, mine: number, onPlaying?: () => void): Promise<Played> {
+async function playServer(source: LineSource, rate: number, mine: number, onPlaying?: () => void, onProgress?: (played: number) => void): Promise<Played> {
   let res: Response;
   try {
     res = await fetch('/api/family/voice/speak', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(source), credentials: 'same-origin', cache: 'no-store' });
@@ -59,6 +59,11 @@ async function playServer(source: LineSource, rate: number, mine: number, onPlay
     };
     // W16-A4: the call measures the time to the first sound.
     audio.onplaying = () => onPlaying?.();
+    // W18-P1: how much of the line has played (0 to 1), for a screen that follows the voice (the server voice reports no
+    // word boundaries, so an answer read as one line finds its sentence by this share of its text).
+    audio.ontimeupdate = () => {
+      if (onProgress && Number.isFinite(audio.duration) && audio.duration > 0) onProgress(Math.min(1, audio.currentTime / audio.duration));
+    };
     audio.onended = () => end('played');
     // A phone that cannot decode the audio, or will not play it without a tap, would refuse every line the same way:
     // the rest of the visit uses its own voice, so no further line is asked for (each one takes a daily place).
@@ -72,12 +77,12 @@ async function playServer(source: LineSource, rate: number, mine: number, onPlay
 
 // Reads one line: with the server voice when `mode` is 'server', else (or when it cannot) with the phone's own.
 // Resolves when the line ends, with the voice to use for the next line; `cancelled` when stopLine() came first.
-export async function speakLine(mode: VoiceMode, source: LineSource, phone: { text: string; lang: 'en' | 'hi'; rate: number; onWord?: (charIndex: number) => void; onPlaying?: () => void }): Promise<Spoken> {
+export async function speakLine(mode: VoiceMode, source: LineSource, phone: { text: string; lang: 'en' | 'hi'; rate: number; onWord?: (charIndex: number) => void; onPlaying?: () => void; onProgress?: (played: number) => void }): Promise<Spoken> {
   stopLine();
   const mine = generation;
   let next: VoiceMode = mode;
   if (mode === 'server') {
-    const played = await playServer(source, phone.rate, mine, phone.onPlaying);
+    const played = await playServer(source, phone.rate, mine, phone.onPlaying, phone.onProgress);
     if (played === 'played') return { cancelled: false, mode };
     if (played === 'cancelled') return { cancelled: true, mode };
     if (played === 'off') next = 'phone';

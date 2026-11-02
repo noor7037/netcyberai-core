@@ -17,6 +17,8 @@ import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
 import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
 import { boardCursorFromSentence } from '@/lib/family/board';
+import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
+import { AnswerSpeaker, TeachMe } from './voice/AnswerSpeaker';
 import { citationOf } from '@/lib/family/citation';
 import { useTutorBoard } from './tutor/switches';
 import { CitationChip } from './blocks/CitationChip';
@@ -144,7 +146,11 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
   }
 }
 
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number }) {
+// `speak` (W18-P1, the tutor window): once the answer is kept (the done line names its message id), "Teach me" and the
+// read-aloud button appear under it at once, without a reload, and its boards follow their voice.
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean } }) {
+  const [messageId, setMessageId] = useState<string | null>(null);
+  const [spokenAt, setSpokenAt] = useState<number | undefined>(undefined);
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -186,6 +192,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     setRefusal('');
     setGoTo(null);
     setNoInternet(false);
+    setMessageId(null);
+    setSpokenAt(undefined);
     if (offline && navigator.onLine === false) {
       setNoInternet(true);
       return setState('refused');
@@ -232,6 +240,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
             const missing = Array.isArray(e.missing) ? e.missing.filter((b) => GAP_PARTS.includes(b)) : [];
             setGap({ missing, cut: e.cut === true });
             setState(missing.length > 0 || e.cut === true ? 'incomplete' : 'done');
+            if (typeof e.messageId === 'string') setMessageId(e.messageId);
             answered.current?.(e.chat);
           }
           else if (e.t === 'refused') {
@@ -259,10 +268,15 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     void run(ask);
   };
 
+  // W18-P1: the kept answer's voice: the same words the server voice speaks for that message (call.ts spokenSentences),
+  // only once the answer is complete and kept. An answer with nothing to say aloud has no buttons.
+  const sentences = speak && messageId && (state === 'done' || state === 'incomplete') ? spokenSentences(shown, ANSWER_SPOKEN_MAX) : [];
+  const voice = speak && messageId && sentences.length > 0 ? { messageId, sentences, serverVoice: speak.serverVoice, onSentence: setSpokenAt } : null;
+
   // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
   const draw = (b: PublicBlock) => {
     const i = blocks.indexOf(b);
-    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence} />;
+    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} />;
   };
 
   return (
@@ -306,12 +320,14 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       )}
       {citation && <CitationChip w={w} c={citation} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
+      {voice && <TeachMe w={w} {...voice} root={top} />}
       {model && (
         <button type="button" data-show-model onClick={() => showModel(top.current)} className="fam-press fam-lesson-chip min-h-[44px] self-start rounded-full bg-white px-4 text-sm font-bold text-ink">
           {w['fam.understand.show3d']}
         </button>
       )}
       {drawn.filter((b) => b.type !== 'videos').map((b) => draw(b))}
+      {voice && <AnswerSpeaker w={w} {...voice} />}
       {(state === 'loading' || state === 'streaming') && (
         <div className="flex flex-col gap-3" aria-hidden="true">
           <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
