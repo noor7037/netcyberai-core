@@ -536,6 +536,27 @@
   }
 }
 
+/* ---- the timeline's reveal (W18-P3) -------------------------------------------------------------------------------- */
+/* The events wait invisible until the block scrolls into view, then fade and slide in 150 ms apart (--i is the event's
+   place). Under prefers-reduced-motion every event is simply there, whatever the script decided. */
+.fam-timeline[data-reveal='wait'] > li {
+  opacity: 0;
+}
+.fam-timeline[data-reveal='run'] > li {
+  animation: fam-timeline-in 260ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 150ms);
+}
+@keyframes fam-timeline-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-timeline > li {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
 /* ---- loading (C230-Y) ----------------------------------------------------------------------------------------------- */
 
 .fam-skeleton {

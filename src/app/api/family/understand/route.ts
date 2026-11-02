@@ -45,6 +45,9 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 // photo), the chapter is searched on the question the photo showed, and the answer is that working marked step by step
 // (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other.
 //
+// W18-P3 (the sketch pad): `tutor.sketch: true` with exactly one PNG or JPEG the child drew; it reaches the prompt as
+// `ResolverAsk.sketch`, so the tutor marks up the drawing. The file door and the photo rules are the same as any photo.
+//
 // The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
 // vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
 // answer. That reading has its own short transactions around the fetch and the vision calls.
@@ -80,6 +83,10 @@ export async function POST(req: NextRequest) {
   // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
   const checkMode = tutorBody?.mode === 'check' && !followUp && !retry;
   if (checkMode && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // W18-P3 (the sketch pad): `tutor.sketch: true` only with exactly one attached file, never beside Check my work, a follow-up
+  // or a retry; the file's type (PNG or JPEG) is checked below, once the stored file is known.
+  const sketchMode = tutorBody?.sketch === true && !followUp && !retry;
+  if (sketchMode && (checkMode || !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1))) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
   let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
@@ -158,6 +165,7 @@ export async function POST(req: NextRequest) {
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
             if (checkMode && files.some((f) => f.mime === 'application/pdf')) return { refused: t(lang, 'fam.check.err.photo_only') };
+            if (sketchMode && files.some((f) => f.mime !== 'image/png' && f.mime !== 'image/jpeg')) return { refused: t(lang, 'fam.sketch.err.picture_only') };
             // W4-1 review: whatever would refuse the question is checked before any photo leaves, so a question that will
             // not be answered never sends a photo or spends a place: the reader's chapter and section, the safety check
             // ready (C314, as the homework helper does), and room in the family's day for every photo read and the answer.
@@ -219,7 +227,7 @@ export async function POST(req: NextRequest) {
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
             target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
-            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}) };
+            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
             if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: reader?.chapterKey ?? null, blockId: reader?.blockId ?? null, files, windowSubject: subject, lang: child.language };
