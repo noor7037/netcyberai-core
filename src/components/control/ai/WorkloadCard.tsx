@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/Input";
 import { Switch } from "@/components/ui/Switch";
 import type { ModelList } from "@/lib/ai/control";
 import { promote, type Slot } from "@/lib/ai/ledger-view";
-import { hasDuplicate, validModel } from "@/lib/ai/model-options";
+import { hasDuplicate, validModel, type Need } from "@/lib/ai/model-options";
 import type { ProviderStateResult } from "@/lib/ai/provider-state";
 import type { RouteRevision } from "@/lib/contracts/ai-gateway";
 import type { MessageKey } from "@/lib/i18n";
@@ -35,6 +35,9 @@ import {
 type Profile = Data["profiles"][number];
 type Draft = { slots: Slot[]; promptVersion: string; enabled: boolean };
 const SLOTS = 3;
+
+// The feature's own need, for the picker's filter: the first of its needs that names a model's shape.
+const needOf = (needs: readonly string[]): Need | null => (needs.includes('tts') ? 'tts' : needs.includes('stt') ? 'stt' : needs.includes('realtime') ? 'realtime' : needs.includes('text') ? 'text' : null);
 
 const routeOf = (p: {
   providerId: string | null;
@@ -234,6 +237,7 @@ export function WorkloadCard({
                   taken={d.slots.filter((_, k) => k !== i)}
                   none={t("control.ai.route.slotEmpty")}
                   disabled={busy}
+                  need={needOf(p.needs)}
                   t={t}
                   onChange={(slot) => setSlot(i, slot)}
                 />

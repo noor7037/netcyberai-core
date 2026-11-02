@@ -3,7 +3,7 @@ import type { Counts, ModelList } from '@/lib/ai/control';
 import { flatRows, nextSort, sortRows, type FlatRow } from '@/lib/ai/lab/rows';
 import type { LabResult } from '@/lib/ai/lab/store';
 import { labTable } from '@/lib/ai/lab/table';
-import { groupsFor, hasDuplicate, optionValue, otherValue, parseOption, selectedValue, validModel } from '@/lib/ai/model-options';
+import { fitsNeed, groupsFor, hasDuplicate, optionValue, otherValue, parseOption, selectedValue, validModel } from '@/lib/ai/model-options';
 import { splitUsage, totals } from '@/lib/ai/usage-view';
 import { en } from '@/lib/i18n/messages/en';
 import { hi } from '@/lib/i18n/messages/hi';
@@ -150,5 +150,22 @@ describe('the words', () => {
     const keys = Object.keys(en).filter((k) => /^control\.ai\.(stat|pick|lab\.col)\./.test(k) || ['control.ai.slot.duplicate', 'control.ai.route.rollback', 'control.ai.card.settings', 'control.ai.usage.none', 'control.ai.usage.noneNames', 'control.ai.usage.total'].includes(k));
     expect(keys.length).toBeGreaterThan(25);
     for (const k of keys) expect((hi as Record<string, string>)[k], k).toBeTruthy();
+  });
+});
+
+describe('a picker keeps the ids shaped for its feature (W18)', () => {
+  it('Sarvam: voices to Reading aloud, saaras to Voice questions, the chat model to text; an unlisted provider shows all', () => {
+    const models = ['sarvam-105b', 'saaras:v3', 'saaras:v4', 'bulbul:v4-flash/nupur_en_kids', 'bulbul:v3/ritu'];
+    const lists = { sarvam: { models, ok: true, fetchedAt: '2026-11-02T00:00:00Z' } };
+    expect(groupsFor(['sarvam'], lists, [], 'tts')[0].models).toEqual(['bulbul:v4-flash/nupur_en_kids', 'bulbul:v3/ritu']);
+    expect(groupsFor(['sarvam'], lists, [], 'stt')[0].models).toEqual(['saaras:v3', 'saaras:v4']);
+    expect(groupsFor(['sarvam'], lists, [], 'text')[0].models).toEqual(['sarvam-105b']);
+    expect(groupsFor(['sarvam'], lists, [], null)[0].models).toEqual(models);
+    expect(fitsNeed('workers-ai', 'tts', '@cf/anything')).toBe(true);
+    expect(fitsNeed('elevenlabs', 'tts', 'eleven_flash_v2_5/abc123DEF456')).toBe(true);
+    expect(fitsNeed('elevenlabs', 'tts', 'scribe_v1')).toBe(false);
+    expect(fitsNeed('gemini', 'realtime', 'gemini-3.8-live')).toBe(true);
+    expect(fitsNeed('gemini', 'text', 'gemini-3.8-live')).toBe(false);
+    expect(fitsNeed('gemini', 'text', 'gemini-3.8-flash')).toBe(true);
   });
 });

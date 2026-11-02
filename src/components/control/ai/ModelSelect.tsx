@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import type { ModelList } from "@/lib/ai/control";
-import { groupsFor, optionValue, otherValue, parseOption, selectedValue, validModel } from "@/lib/ai/model-options";
+import { groupsFor, optionValue, otherValue, parseOption, selectedValue, validModel, type Need } from '@/lib/ai/model-options';
 import type { MessageKey } from "@/lib/i18n";
 
 // The model picker (G6, C379; one drop-down since W6-C, C397): a single "provider · model" select built from the
@@ -25,6 +25,7 @@ export function ModelSelect({
   taken = [],
   none,
   disabled,
+  need,
   t,
 }: {
   id: string;
@@ -37,10 +38,12 @@ export function ModelSelect({
   taken?: Choice[];
   none?: string;
   disabled?: boolean;
+  // The feature's own need (text, stt, tts, realtime): the list shows only the ids shaped for it (model-options.ts).
+  need?: Need | null;
   t: T;
 }) {
   const [typing, setTyping] = useState(false);
-  const groups = groupsFor(providers, lists, [value.provider]);
+  const groups = groupsFor(providers, lists, [value.provider], need ?? null);
   const shown = selectedValue(groups, value, typing);
   const other = parseOption(shown)?.model === null;
   const list = lists[value.provider];
