@@ -16,7 +16,7 @@
 --    (children, sessions, questions, quizzes, average quiz score, the three chapters asked about most), for classes with
 --    at least three such children, so no count is one child's. They become draft notices only through writeNotice in a
 --    person's own session; the principal's approval decides delivery.
--- 5. ai.ops_daily is queued once a day at 19:13 in India (13:43 UTC); on a Sunday it queues the week's parent reports.
+-- 5. ai.ops_daily (the W16-B4 migration schedules it) queues the week's parent reports on a Sunday in India.
 
 create table family.parent_reports (
   report_id uuid primary key default gen_random_uuid(),
@@ -155,20 +155,5 @@ $$;
 revoke all on function family.class_week_summary(date) from public, anon, authenticated, family_app, nca_super, service_role;
 grant execute on function family.class_week_summary(date) to app_user;
 
--- 5. Today's ai.ops_daily, once (the idempotency key is the India date), only once the deployed runner can run it.
-create or replace function public.ai_ops_daily_enqueue() returns void
-language sql security definer set search_path = public, pg_temp as $$
-  insert into jobs (type, payload, idempotency_key, max_attempts)
-  select 'ai.ops_daily', jsonb_build_object('date', t.d), 'ai.ops_daily:' || t.d, 3
-    from (select to_char((now() at time zone 'Asia/Kolkata')::date, 'YYYY-MM-DD') as d) t
-   where exists (select 1 from platform_settings p where p.key = 'jobs.handlers' and jsonb_typeof(p.value) = 'array' and p.value ? 'ai.ops_daily')
-  on conflict (idempotency_key) do nothing
-$$;
-revoke all on function public.ai_ops_daily_enqueue() from public, anon, authenticated, service_role;
-
-do $$
-begin
-  if exists (select 1 from pg_extension where extname = 'pg_cron') then
-    perform cron.schedule('ai-ops-daily', '43 13 * * *', 'select public.ai_ops_daily_enqueue()');
-  end if;
-end $$;
+-- 5. The daily ai.ops_daily job and its scheduler live in the W16-B4 migration (public.ai_ops_daily_enqueue, cron
+--    'ai-ops-daily'); on a Sunday that job queues the week's parent reports (src/lib/jobs/handlers.ts).
