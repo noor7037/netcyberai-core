@@ -1,4 +1,4 @@
-import { personaLine, type Persona } from './persona';
+import { type Persona, withPersona } from './persona';
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type AiRequest, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
 import { checkSearchQuery } from './check-work';
@@ -392,9 +392,9 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
     if (isCheck) {
       const system = checkMarkSystem(a);
-      return { system: ctx.persona ? `${system}\n${personaLine(ctx.persona)}` : system, messages: [{ role: 'user', content: checkMarkUser(a) }], responseFormat: undefined };
+      return { system: withPersona(system, ctx.persona), messages: [{ role: 'user', content: checkMarkUser(a) }], responseFormat: undefined };
     }
-    return { system: ctx.persona ? `${prompt.system(a)}\n${personaLine(ctx.persona)}` : prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: withPersona(prompt.system(a), ctx.persona), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day, childId: ctx.child.childId }, profileId, build(plan)); // w16-b4
   if (!prepared.ok) {

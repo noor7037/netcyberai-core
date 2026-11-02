@@ -172,3 +172,10 @@ so nothing is written twice. Three waves, in your order.
 | 15 | School tabs Profile, Users, Pulse & Engagement, Recognition, Teacher Impact, Capture & Documents, Compliance, Integrations, Usage, Billing, Reports, Audit | PRs open 5–7 Nov |
 
 Each wave is one batch for you to merge by hand, as now, until GitHub Actions is back.
+
+## Security review (2026-11-02, before the PR)
+
+One `opus` pass over the gateway, the Tutor Hall, the call and the parent reports. No high finding. Three medium findings,
+all fixed in the batch (Decision Log C445): the school-written persona is framed as data, not an instruction; the
+realtime voice session carries the safety rules from the first word, and `family.voice_call` keeps no provider until a
+moderation path for realtime answers exists; the teacher's doubts need three linked children, like the class summary.

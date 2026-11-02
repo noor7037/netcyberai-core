@@ -282,7 +282,7 @@ describe('the school’s side: counts only', () => {
     expect(await as(teacher1, (c) => c.query(`select * from family.class_week_summary($1::date)`, [WEEK]).then((r: { rows: unknown[] }) => r.rows))).toEqual([]);
   });
 
-  it('the teacher’s doubts: subject, chapter, topic and a count for their own class; nothing for a class they do not teach', async () => {
+  it('the teacher’s doubts: subject, chapter, topic and a count for their own class (three linked children or more); nothing for a class they do not teach', async () => {
     const { readRecentDoubts } = await import('@/lib/parent-ai/doubts');
     const mine = await as(teacher1, (c) => readRecentDoubts(c, actor(teacher1), 'en'));
     expect(mine.map((c) => c.className)).toEqual(['6-A']);
@@ -297,8 +297,10 @@ describe('the school’s side: counts only', () => {
     expect(Object.keys(raw[0]).sort()).toEqual(['chapter_key', 'doubts', 'subject', 'title_en', 'title_hi', 'topic_key']);
     expect(JSON.stringify(raw)).not.toMatch(/Asha|Bela|Dev|ZEBRA|fb30/);
     expect(await as(teacher1, (c) => c.query(`select * from family.doubts_for_class($1::uuid, 14)`, [C6B]).then((r: { rows: unknown[] }) => r.rows))).toEqual([]);
-    expect((await as(teacher2, (c) => readRecentDoubts(c, actor(teacher2), 'en'))).map((c) => [c.className, c.doubts.map((d) => d.count)])).toEqual([['6-B', [1]]]);
-    expect((await as(principal, (c) => readRecentDoubts(c, actor(principal), 'en'))).map((c) => c.className)).toEqual(['6-A', '6-B']);
+    // 6-B has one linked child who asked: fewer than three, so the teacher sees nothing of that one child (security review of W16).
+    expect(await as(teacher2, (c) => readRecentDoubts(c, actor(teacher2), 'en'))).toEqual([]);
+    expect(await as(teacher2, (c) => c.query(`select * from family.doubts_for_class($1::uuid, 14)`, [C6B]).then((r: { rows: unknown[] }) => r.rows))).toEqual([]);
+    expect((await as(principal, (c) => readRecentDoubts(c, actor(principal), 'en'))).map((c) => c.className)).toEqual(['6-A']);
     // The platform and a family cannot call it.
     await expect(db.pg.transaction(async (tx: { query: (s: string, p?: unknown[]) => Promise<unknown> }) => {
       await tx.query('set local role family_app');
