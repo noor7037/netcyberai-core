@@ -179,3 +179,20 @@ One `opus` pass over the gateway, the Tutor Hall, the call and the parent report
 all fixed in the batch (Decision Log C445): the school-written persona is framed as data, not an instruction; the
 realtime voice session carries the safety rules from the first word, and `family.voice_call` keeps no provider until a
 moderation path for realtime answers exists; the teacher's doubts need three linked children, like the class summary.
+
+## Browser test of PR #397 (2 Nov 2026), every observation and what changed (Decision Log C446)
+
+| # | What the test saw | What changed |
+|---|---|---|
+| F2 | Older Science answers showed "A pendulum 1 m long" under Healthy Habits, Heart Rate, Protein Folding | A simulation is shown only where the question, its syllabus line or its own title is about what it models; a kept answer that fails this is made afresh |
+| F2 | "12 x 15" explained step by step, 180 never said | The tutor prompt's last rule: a sum asked ends by stating its result |
+| F2 | "3/4 + 1/8" and "adding fractions" failed twice | Not code: the ledger shows the tutor's primary service (Workers AI, llama-4-scout) timing out at 28 s three times and the backup (Gemini) refusing its key. **Founder:** fix the Gemini key or make the OpenRouter service Backup 1 of "Tutor answers" in Control → AI |
+| F3 | Silence transcribed as "Thank you." was answered "not about Mathematics or Science" | A quiet room is no question: the call says "I did not catch that" and sends nothing; the off-subject line now names the class's own subjects |
+| F4 | No quiz after "Done for now" (no service set for Session quiz) | The quiz and the weekly report run on the tutor's services until one of their own is set; "Done for now" promises a quiz only when one can be made |
+| F4 | A written quiz item unmarked beside "3 of 3" | Every quiz item is multiple choice; the score covers the whole quiz |
+| F5 | "45 x 2 = 90" marked wrong; a "missing" step invented | A verdict that restates a plain sum is settled by our own arithmetic; the prompt says a right one-line sum has no missing step |
+| F7 | No tutor section in the parent area | Shown in testing mode too: the counts, with "no limits while NetCyberAI is testing" |
+| 8 | "<b>x</b>" saved as "b x /b"; an empty save said nothing | A tag is removed whole; an empty save says what is needed |
+| 9 | Control lists the platform's tutors read-only | Control → Family → Tutors: add, change, switch, with a reason, audited |
+
+Not changed, by design: a failed question is not kept in the history; the checked-paper PDF has no text layer (the in-browser view prints Hindi); the realtime voice leg waits for a key.

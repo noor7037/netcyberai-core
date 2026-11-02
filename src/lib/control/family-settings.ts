@@ -3,6 +3,7 @@ import type { Sql } from '@/lib/jobs/types';
 import { VOICE_CHARS_SETTING, voiceCharLimit } from '@/lib/ai/daily-cap';
 import { CAP_MAX, MULTIPLIER_MAX, PHOTO_DOUBTS_SETTING, PLUS_MULTIPLIER_SETTING, TEXT_TURNS_SETTING, VOICE_MINUTES_SETTING, plusMultiplier, tutorBaseCaps, type TutorCaps } from '@/lib/family/tutor-meter';
 import { SUBJECT_IDS, SUBJECT_LIST_KEYS, subjectListOf, type Subject, type SubjectList } from '@/lib/contracts/subjects';
+import { tintFor } from '@/lib/ai-tutors/index';
 
 // Control → Family's settings: two lists of subjects. `open` (C298): open to every child, whatever their free subject
 // is. `reviewed_only` (C300): a chapter or topic shows only an explanation NetCyberAI has checked. The first pilot sets
@@ -160,3 +161,73 @@ export async function setTutorCaps(db: Sql, by: { userId: string }, raw: TutorCa
   return { ok: true, caps: next };
 }
 // w16-b4 end
+
+// ---- the platform's tutors (2 Nov 2026: Control could read them but not add or change one) ---------------------------
+// The founder adds a tutor every family sees in the Tutor Hall, changes its words or switches it off, with a reason; each
+// change is one audit row with the tutor's name, subject, language and switch before and after (never its style, the
+// typed line, which stays on the row). The key is made from the English name once and never changes.
+
+export type PlatformTutorInput = { key?: unknown; subject?: unknown; nameEn?: unknown; nameHi?: unknown; styleEn?: unknown; styleHi?: unknown; language?: unknown; enabled?: unknown; reason?: unknown };
+export type PlatformTutorResult = { ok: true; tutor: ControlTutor } | { ok: false; code: 'bad_value' | 'reason_required' | 'not_found' };
+const TUTOR_REASON_MAX = 200;
+// eslint-disable-next-line no-control-regex
+const line = (v: unknown, max: number): string | null => {
+  if (typeof v !== 'string') return null;
+  const s = v.replace(/<[^>]*>/g, ' ').replace(/[\u0000-\u001f\u007f<>]/g, ' ').replace(/\s+/g, ' ').trim();
+  return s.length >= 1 && s.length <= max ? s : null;
+};
+const keyFrom = (nameEn: string): string => {
+  const base = nameEn.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 36);
+  return /^[a-z]/.test(base) && base.length >= 2 ? base : `tutor_${base}`.slice(0, 36);
+};
+
+export async function savePlatformTutor(db: Sql, by: { userId: string }, raw: PlatformTutorInput): Promise<PlatformTutorResult> {
+  const reason = typeof raw.reason === 'string' ? raw.reason.trim() : '';
+  if (reason.length < 3 || reason.length > TUTOR_REASON_MAX) return { ok: false, code: 'reason_required' };
+  const nameEn = line(raw.nameEn, 40);
+  const nameHi = line(raw.nameHi, 40);
+  const styleEn = line(raw.styleEn, 140);
+  const styleHi = line(raw.styleHi, 140);
+  const subject = raw.subject === null || raw.subject === '' || raw.subject === undefined ? null : (SUBJECT_IDS as readonly string[]).includes(String(raw.subject)) ? (raw.subject as Subject) : undefined;
+  const language = raw.language === undefined ? 'both' : raw.language === 'en' || raw.language === 'hi' || raw.language === 'both' ? raw.language : undefined;
+  const enabled = raw.enabled === undefined ? true : typeof raw.enabled === 'boolean' ? raw.enabled : undefined;
+  if (!nameEn || !nameHi || !styleEn || !styleHi || subject === undefined || language === undefined || enabled === undefined) return { ok: false, code: 'bad_value' };
+  const key = raw.key === undefined || raw.key === null ? null : typeof raw.key === 'string' && /^[a-z][a-z0-9_]{1,39}$/.test(raw.key) ? raw.key : undefined;
+  if (key === undefined) return { ok: false, code: 'bad_value' };
+
+  let was: { key: string; subject: string | null; language: string; enabled: boolean; name_en: string; name_hi: string } | null = null;
+  let saved: string;
+  if (key) {
+    const row = (await db.query(`select key, subject, language, enabled, name_en, name_hi from content.tutors where key = $1 for update`, [key])).rows[0] as typeof was;
+    if (!row) return { ok: false, code: 'not_found' };
+    was = row;
+    await db.query(
+      `update content.tutors set subject = $2, name_en = $3, name_hi = $4, style_en = $5, style_hi = $6, language = $7, tint = $8, enabled = $9, updated_at = now() where key = $1`,
+      [key, subject, nameEn, nameHi, styleEn, styleHi, language, tintFor(subject), enabled]
+    );
+    saved = key;
+  } else {
+    // A key of its own: the English name, then _2, _3 … while that one is taken.
+    const base = keyFrom(nameEn);
+    const taken = new Set((await db.query(`select key from content.tutors where key = $1 or key like $2`, [base, `${base}\\_%`])).rows.map((r) => String((r as { key: string }).key)));
+    saved = base;
+    for (let n = 2; taken.has(saved); n += 1) saved = `${base}_${n}`;
+    await db.query(
+      `insert into content.tutors (key, subject, name_en, name_hi, style_en, style_hi, language, tint, avatar_key, enabled, sort)
+         values ($1, $2, $3, $4, $5, $6, $7, $8, $1, $9, 100 + (select count(*) from content.tutors))`,
+      [saved, subject, nameEn, nameHi, styleEn, styleHi, language, tintFor(subject), enabled]
+    );
+  }
+  const after = { key: saved, subject, language, enabled, name_en: nameEn, name_hi: nameHi };
+  await writeAuditLog(db, {
+    schoolId: null,
+    actorUserId: by.userId,
+    actorRole: 'super_admin',
+    eventAction: was ? 'family.tutor_changed' : 'family.tutor_added',
+    targetType: 'content_tutor',
+    targetId: saved,
+    beforeState: was ? { key: was.key, subject: was.subject, language: was.language, enabled: was.enabled, name_en: was.name_en, name_hi: was.name_hi } : undefined,
+    afterState: { ...after, reason },
+  });
+  return { ok: true, tutor: { key: saved, subject, nameEn, nameHi, styleEn, styleHi, language, enabled } };
+}

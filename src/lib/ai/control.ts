@@ -101,7 +101,7 @@ export type AiOverview = {
   }[];
   // usesPrompt: only a text profile reads a prompt version; speech and the safety check have none to choose (C314).
   // needs: what the profile's provider must declare (G1).
-  profiles: { profileId: string; carriesChildWords: boolean; needs: Capability[]; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; usesPrompt: boolean; enabled: boolean }[];
+  profiles: { profileId: string; carriesChildWords: boolean; needs: Capability[]; providerId: string | null; model: string | null; fallback: Link[]; promptVersion: string; usesPrompt: boolean; enabled: boolean; chainFrom: string | null }[];
   usage: { profileId: string; today: Counts; month: Counts }[];
   cap: number | null;
   // W5-7 (C394): the daily spend alert in US dollars (null: off), and today's known cost against it.
@@ -239,6 +239,8 @@ export async function loadAiOverview(db: Sql): Promise<AiOverview> {
       promptVersion: r.prompt_version,
       usesPrompt: profileById(r.profile_id)?.capability === 'text',
       enabled: r.enabled === true,
+      // The profile whose services this one runs on while it has none of its own (platform.ts chainFrom; 2 Nov).
+      chainFrom: profileById(r.profile_id)?.chainFrom ?? null,
     })),
     usage: Array.from(byProfile, ([profileId, c]) => ({ profileId, ...c })),
     cap: typeof capValue === 'number' ? capValue : null,

@@ -31,10 +31,12 @@ const MODEL = {
     { kind: 'mcq', question: 'Which gas do leaves take in?', options: ['Oxygen', 'Carbon dioxide', 'Helium'], answer: 1, why: 'Leaves take in carbon dioxide.' },
     { kind: 'mcq', question: 'Where is food made in a plant?', options: ['Roots', 'Leaves', 'Seeds'], answer: 1, why: 'The leaves hold the green colour that works with sunlight.' },
     { kind: 'mcq', question: 'What is the green colour in leaves called?', options: ['Chlorophyll', 'Starch', 'Water'], answer: 0, why: 'Chlorophyll is the green colour.' },
+    { kind: 'mcq', question: 'Why does a plant in a dark cupboard turn pale?', options: ['Too much water', 'No sunlight to make food', 'Too much air'], answer: 1, why: 'Without sunlight it cannot make food.' },
+    // A written item is dropped (2 Nov): every item of the quiz marks itself.
     { kind: 'written', question: 'Say in a sentence why a plant in a dark cupboard turns pale.', points: ['It gets no sunlight to make food'] },
   ],
 };
-const RIGHT = [0, 1, 1, 0];
+const RIGHT = [0, 1, 1, 0, 1];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let db: any;
@@ -222,24 +224,25 @@ describe('the job', () => {
     const read = (await fam((c) => quiz.loadQuiz(c, who, quizId)))!;
     const pub = quiz.publicQuiz(read, who);
     expect(JSON.stringify(pub)).not.toMatch(/"answer"|"why"|Plants use sunlight to make food/);
-    expect(pub.items.filter((i) => i.kind === 'mcq')).toHaveLength(4);
+    expect(pub.items.filter((i) => i.kind === 'mcq')).toHaveLength(5);
+    expect(pub.items.filter((i) => i.kind === 'written')).toHaveLength(0);
 
     // Ready before any take.
     expect(await fam((c) => quiz.quizCards(c, who, today))).toMatchObject([{ quizId, state: 'ready', questions: 5, score: null }]);
 
-    // Three right, one wrong, one written.
+    // Four right, one wrong.
     const mcq = pub.items.filter((i) => i.kind === 'mcq') as { id: string; token: string }[];
-    const answers = [...mcq.map((i, n) => ({ itemId: i.id, token: i.token, choice: n === 3 ? 2 : RIGHT[n] })), { itemId: pub.items[4].id, text: 'It gets no sunlight, so it cannot make food.' }];
+    const answers = mcq.map((i, n) => ({ itemId: i.id, token: i.token, choice: n === 3 ? 2 : RIGHT[n] }));
     const sent = await fam((c) => quiz.submitQuiz(c, who, quizId, answers));
     expect(sent.ok).toBe(true);
     if (!sent.ok) return;
-    expect(sent.result).toMatchObject({ mcqTotal: 4, mcqCorrect: 3 });
-    expect(sent.result.items.map((i) => i.correct)).toEqual([true, true, true, false, undefined]);
+    expect(sent.result).toMatchObject({ mcqTotal: 5, mcqCorrect: 4 });
+    expect(sent.result.items.map((i) => i.correct)).toEqual([true, true, true, false, true]);
     expect(sent.result.items[3].why).toBe('Chlorophyll is the green colour.');
-    expect(await q(`select block_id, chapter_key, mcq_total, mcq_correct from family.chapter_test_attempts where child_id = $1`, [CHILD])).toEqual([{ block_id: quizId, chapter_key: 'session-quiz', mcq_total: 4, mcq_correct: 3 }]);
+    expect(await q(`select block_id, chapter_key, mcq_total, mcq_correct from family.chapter_test_attempts where child_id = $1`, [CHILD])).toEqual([{ block_id: quizId, chapter_key: 'session-quiz', mcq_total: 5, mcq_correct: 4 }]);
 
     // Taken: the card shows the score, with the next review in view; another child's token is refused.
-    expect(await fam((c) => quiz.quizCards(c, who, today))).toMatchObject([{ state: 'scored', score: { correct: 3, total: 4 } }]);
+    expect(await fam((c) => quiz.quizCards(c, who, today))).toMatchObject([{ state: 'scored', score: { correct: 4, total: 5 } }]);
     const stolen = await fam((c) => quiz.submitQuiz(c, { accountId: A, childId: SIBLING }, quizId, answers));
     expect(stolen).toEqual({ ok: false, reason: 'not_found' });
     // A token for one quiz is not another's: a take with the wrong ids is refused whole.
@@ -296,11 +299,11 @@ describe('the job', () => {
     expect(parseQuiz(JSON.stringify(MODEL), 'hi')).toBeNull();
     const twin = { ...MODEL, items: [{ ...MODEL.items[0], options: ['Sunlight', 'sunlight', 'Salt'] }, ...MODEL.items.slice(1)] };
     expect(parseQuiz(JSON.stringify(twin), 'en')?.items).toHaveLength(4);
-    // At most two written items, and five items in all.
-    const many = { items: [...MODEL.items, MODEL.items[4], MODEL.items[4], MODEL.items[0]] };
+    // No written item at all (every item marks itself), and five items in all.
+    const many = { items: [MODEL.items[5], ...MODEL.items, MODEL.items[5], MODEL.items[0]] };
     const kept = parseQuiz(JSON.stringify(many), 'en')!;
     expect(kept.items).toHaveLength(5);
-    expect(kept.items.filter((i) => i.kind === 'written').length).toBeLessThanOrEqual(2);
+    expect(kept.items.filter((i) => i.kind === 'written')).toHaveLength(0);
 
     const stuck = await session(A, SIBLING, 12);
     const stuckDay = String((await q(`select to_char((last_at at time zone 'Asia/Kolkata')::date, 'YYYY-MM-DD') as d from family.tutor_conversations where conversation_id = $1`, [stuck]))[0].d);

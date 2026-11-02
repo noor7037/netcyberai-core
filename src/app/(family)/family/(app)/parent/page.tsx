@@ -215,12 +215,12 @@ export default async function FamilyParentPage() {
         }
       : null;
   // w16-b4 start
-  // Today's use of the tutor against the plan, per child (counts only); left out while testing mode lifts every cap.
+  // Today's use of the tutor against the plan, per child (counts only); while testing mode lifts every cap, the counts alone.
   const tutorToday: TutorTodayRow[] = (
     await familyPageRead(page, (db) => Promise.all(page.children.filter((c) => !isPrePrimary(c.classLevel)).map(async (c) => ({ c, day: await tutorDay(db, page.session.accountId, c.childId, indiaDate()) }))))
   )
-    .filter(({ day }) => day.limits.textTurns < UNCAPPED_LEFT)
     .map(({ c, day }) => ({
+      uncapped: day.limits.textTurns >= UNCAPPED_LEFT,
       childId: c.childId,
       firstName: c.firstName,
       text: day.used.textTurns,

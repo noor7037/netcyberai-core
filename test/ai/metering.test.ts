@@ -227,11 +227,15 @@ describe('Control and the parent area', () => {
     await takePhoto();
     const day = await asFamily(A, (tx) => tutorDay(tx as never, A, KID, DAY));
     expect([day.used.textTurns, day.limits.textTurns, day.voiceMinutesUsed, day.limits.voiceMinutes, day.used.photoDoubts, day.limits.photoDoubts]).toEqual([7, 40, 3, 20, 1, 5]);
-    const row = { childId: KID, firstName: 'Asha', text: 7, textMax: 40, voice: 3, voiceMax: 20, photo: 1, photoMax: 5, multiplier: 1 };
+    const row = { childId: KID, firstName: 'Asha', text: 7, textMax: 40, voice: 3, voiceMax: 20, photo: 1, photoMax: 5, multiplier: 1, uncapped: false };
     expect(renderToStaticMarkup(createElement(TutorToday, { rows: [row], lang: 'en' }))).toContain('Today: 7 of 40 questions, 3 of 20 voice minutes, 1 of 5 photos');
     const hindi = renderToStaticMarkup(createElement(TutorToday, { rows: [{ ...row, multiplier: 3 }], lang: 'hi' }));
     expect(hindi).toContain('40 में से 7 प्रश्न');
     expect(hindi).toContain('3 गुना');
+    // Testing mode lifts every cap: the counts alone, and no Plus line (2 Nov: the section was missing then).
+    const free = renderToStaticMarkup(createElement(TutorToday, { rows: [{ ...row, multiplier: 3, uncapped: true }], lang: 'en' }));
+    expect(free).toContain('Today: 7 questions, 3 voice minutes, 1 photos. No limits while NetCyberAI is testing.');
+    expect(free).not.toContain('3 times');
   });
 
   it('the Control tile row counts what the children used, and the cost the ledger gives per service', async () => {

@@ -76,7 +76,7 @@ export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_spe
 // `firstTextMs` (W10, latency): a person is waiting, so a streaming provider that has sent no answer text this long
 // after the call went out (thinking does not count) is given up as a timeout and the next provider is tried. It needs
 // `callMs`, which then holds the whole chain.
-export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; firstTextMs?: number; needs?: readonly AdapterCapability[]; besideCall?: boolean };
+export type AiProfile = { id: ProfileId; carriesChildWords: boolean; capability: Capability; audience: 'family' | 'school' | 'control'; callMs?: number; firstTextMs?: number; chainFrom?: ProfileId; needs?: readonly AdapterCapability[]; besideCall?: boolean };
 
 // Code-defined: which profiles exist, whether a child's words may pass, and which capability each one uses. Control
 // sets each one's provider, model, prompt version and on switch; never this list. M2 (C275): the homework helper reads a
@@ -111,8 +111,10 @@ export const PROFILES: readonly AiProfile[] = [
   // W16-B1) reads the session's questions and answers. The weekly parent report (a job, W16-B3) is written from counts
   // and chapter names only, never a child's words. The quality check (W16-A5) reads the answer beside the child's
   // question, beside the answer's call. The voice call's profile is below (W16-A4).
-  { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000 },
-  { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000 },
+  // chainFrom (2 Nov): with no service of its own, the quiz and the weekly report follow the tutor's chain (family.resolver),
+  // so they work the moment the tutor does; each keeps its own switch, prompt and limits, and a service set here wins.
+  { id: 'family.quiz', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 20_000, chainFrom: 'family.resolver' },
+  { id: 'family.parent_report', carriesChildWords: false, capability: 'text', audience: 'family', callMs: 30_000, chainFrom: 'family.resolver' },
   { id: 'family.qc', carriesChildWords: true, capability: 'text', audience: 'family', callMs: 10_000, besideCall: true },
   // W16-A4: the call's realtime leg, a live two-way voice the phone opens straight to the provider with a token the
   // server mints (src/app/api/family/voice/call/token). The child's voice goes to that provider, so only one cleared for
@@ -332,7 +334,12 @@ async function checkProfile(db: Sql, ctx: AiContext, profileId: ProfileId, capab
 
   // 1. Switched on?
   const row = await profileRow(db, profile.id);
-  const chain = row ? chainOf(row) : null;
+  let chain = row ? chainOf(row) : null;
+  // No service of its own: a profile that follows another's chain (chainFrom) runs on that one's providers and models.
+  if (row && !chain && profile.chainFrom) {
+    const from = await profileRow(db, profile.chainFrom);
+    chain = from ? chainOf(from) : null;
+  }
   if (!row || !row.enabled || !chain) return { ok: false, reason: 'not_switched_on' };
 
   // 2. The minors check, on the whole chain, before anything else is looked at.

@@ -3,7 +3,7 @@ import { requireSuperAdmin } from '@/lib/auth/require-super-admin';
 import { withTenantContext } from '@/lib/auth/db';
 import { sessionErrorResponse } from '@/lib/auth/session-error-response';
 import { loadFamilyCounts } from '@/lib/control/family-counts';
-import { readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance, setPlusOpen, setSubjectList, setTutorCaps, setVoiceAllowance } from '@/lib/control/family-settings';
+import { readPlatformTutors, readPlusOpen, readSubjectList, readTutorCaps, readVoiceAllowance, savePlatformTutor, setPlusOpen, setSubjectList, setTutorCaps, setVoiceAllowance } from '@/lib/control/family-settings';
 import { requireAiControl } from '@/lib/ai/control-guard';
 
 // Control → Family: counts only, through family.control_counts(). The founder only.
@@ -42,6 +42,21 @@ export async function POST(req: NextRequest) {
           ? await withTenantContext(guard.claims, (db) => setPlusOpen(db, { userId: guard.claims.sub }, b.open))
           : await withTenantContext(guard.claims, (db) => setVoiceAllowance(db, { userId: guard.claims.sub }, b.chars));
       return result.ok ? NextResponse.json(result) : NextResponse.json({ error: result.code }, { status: 400 });
+    } catch (err) {
+      const res = sessionErrorResponse(err);
+      if (res) return res;
+      throw err;
+    }
+  }
+  //   POST { action: 'tutor_save', key?, nameEn, nameHi, styleEn, styleHi, subject, language, enabled, reason }  a platform tutor
+  //         added (no key) or changed (its key); the same way; answers the whole list (2 Nov)
+  if (b?.action === 'tutor_save') {
+    try {
+      const result = await withTenantContext(guard.claims, async (db) => {
+        const r = await savePlatformTutor(db, { userId: guard.claims.sub }, b);
+        return r.ok ? { ok: true as const, tutor: r.tutor, tutors: await readPlatformTutors(db) } : r;
+      });
+      return result.ok ? NextResponse.json(result) : NextResponse.json({ error: result.code }, { status: result.code === 'not_found' ? 404 : 400 });
     } catch (err) {
       const res = sessionErrorResponse(err);
       if (res) return res;

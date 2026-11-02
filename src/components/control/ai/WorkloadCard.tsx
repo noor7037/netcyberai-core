@@ -199,6 +199,11 @@ export function WorkloadCard({
       {p.carriesChildWords && (
         <p className="text-xs text-slate/80">{t("control.ai.profile.childWords")}</p>
       )}
+      {!p.providerId && p.chainFrom && (
+        <p data-ai-profile-follows className="text-xs text-slate/80">
+          {t("control.ai.profile.follows", { profile: t(`control.ai.profile.name.${p.chainFrom}` as MessageKey) })}
+        </p>
+      )}
       {p.needs.length > 0 && (
         <p data-ai-profile-needs className="text-xs text-slate/80">
           {t("control.ai.profile.needs", {

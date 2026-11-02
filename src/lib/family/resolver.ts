@@ -5,6 +5,8 @@ import { checkSearchQuery } from './check-work';
 import { checkMarkSystem, checkMarkUser, questionOfReading } from '@/lib/ai/prompts/family.homework';
 import { logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
 import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
+import { verifyVerdicts } from './arithmetic-check';
+import { simFits } from './interactive';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
@@ -159,7 +161,13 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   if (!cached || !Array.isArray(cached.blocks)) return null;
   // A kept response is complete for the class's whole plan (a Class 1 one has no practice by design, W10 C411).
   const core = coreBlocks(defaultPlan({ classLevel: child.classLevel, subject: line.subject, lang: child.language === 'hi' ? 'hi' : 'en' }, 'full').blocks);
-  const blocks = completeResponse((cached.blocks as unknown[]).map((b) => parseStoredBlockLine(JSON.stringify(b))).filter((b): b is Block => b !== null), core);
+  // A kept simulation shows only where its syllabus line is about what it models (simFits); without it the answer is incomplete and made afresh.
+  const blocks = completeResponse(
+    (cached.blocks as unknown[])
+      .map((b) => parseStoredBlockLine(JSON.stringify(b)))
+      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title))),
+    core
+  );
   if (!blocks) return null;
   // One serving, counted for Control's review queue, most asked first (M2-12, C286), in this same transaction. Only the
   // count changes; a fresh AI answer is never counted here.
@@ -483,7 +491,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       if (named === null) return;
       if (named === 'other' || !p.classSubjects.includes(named)) {
         stopped = true;
-        emit({ t: 'refused', reason: 'other_subject', message: words('fam.understand.otherSubject') });
+        emit({ t: 'refused', reason: 'other_subject', message: words('fam.understand.otherSubject', { subjects: p.classSubjects.map((x) => words(`fam.subject.${x}`)).join(', ') }) });
         return;
       }
       if (!p.open.includes(named)) return refuseSubject(named);
@@ -491,16 +499,20 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       return;
     }
     const s: Subject = subject;
-    const b = parseBlockLine(text);
+    const parsedBlock = parseBlockLine(text);
     objects += 1;
-    if (!b) {
+    if (!parsedBlock) {
       rejected.push(typeOf(text));
       return;
     }
+    // A marked working (Check my work): a verdict that restates a plain sum is settled by our own arithmetic (2 Nov).
+    const b = p.check && parsedBlock.type === 'steps' ? verifyVerdicts(parsedBlock, ctx.child.language === 'hi' ? 'hi' : 'en') : parsedBlock;
     // One block of each type, and at most one interactive block (M2-8): the first that passed. Under a plan (W9-B), an
     // interactive block only where the plan names one: a biology answer never shows a pendulum, whatever the model wrote.
     if (seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
     if (plan && isInteractive(b.type) && !plan.blocks.some(isInteractiveBlock)) return;
+    // A simulation only where the question, its syllabus line or the block's own title is about what it models (2 Nov).
+    if (b.type === 'simulation' && !simFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {

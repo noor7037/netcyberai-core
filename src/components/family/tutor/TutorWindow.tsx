@@ -113,7 +113,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [turns, setTurns] = useState<FeedTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
   // W16-B1: "Done for now" ends the session, so its quick quiz is made within minutes.
-  const [ended, setEnded] = useState<'idle' | 'sending' | 'done'>('idle');
+  const [ended, setEnded] = useState<'idle' | 'sending' | 'done' | 'done_no_quiz'>('idle');
   const feed = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, '');
   const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
@@ -236,7 +236,9 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (!lastChat || ended !== 'idle') return;
     setEnded('sending');
     const res = await postJson('/api/family/tutor/done', { chatId: lastChat });
-    setEnded(res?.ok ? 'done' : 'idle');
+    const body = res?.ok ? ((await res.json().catch(() => null)) as { quiz?: boolean } | null) : null;
+    // The quiz is promised only when its AI profile can make one now (2 Nov).
+    setEnded(res?.ok ? (body?.quiz === false ? 'done_no_quiz' : 'done') : 'idle');
   };
 
   return (
@@ -308,9 +310,9 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           >
             {w['fam.quiz.done']}
           </button>
-          {ended === 'done' && (
+          {(ended === 'done' || ended === 'done_no_quiz') && (
             <p role="status" data-session-done-note className="text-sm font-semibold text-slate">
-              {w['fam.quiz.doneThanks']}
+              {ended === 'done' ? w['fam.quiz.doneThanks'] : w['fam.quiz.doneNoQuiz']}
             </p>
           )}
         </div>

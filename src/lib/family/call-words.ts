@@ -6,7 +6,7 @@ import { VOICE_KEYS } from './voice-words';
 // are the same ones, in the same words), which voice speaks, and what the board's blocks draw with.
 export const CALL_KEYS: MessageKey[] = [
   'fam.call.title', 'fam.call.with', 'fam.call.withDefault', 'fam.call.tutorDefault', 'fam.call.end', 'fam.call.mic.talk', 'fam.call.mic.done', 'fam.call.mic.thinking',
-  'fam.call.mic.speaking', 'fam.call.you', 'fam.call.captions', 'fam.call.board', 'fam.call.empty', 'fam.call.boardEmpty', 'fam.call.hold',
+  'fam.call.mic.speaking', 'fam.call.you', 'fam.call.captions', 'fam.call.board', 'fam.call.empty', 'fam.call.boardEmpty', 'fam.call.hold', 'fam.call.notHeard',
   'fam.chat.full', 'fam.voiceOut.server', 'fam.voiceOut.phone',
   ...VOICE_KEYS,
   ...UNDERSTAND_KEYS,
