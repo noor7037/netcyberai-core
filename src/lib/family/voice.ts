@@ -11,6 +11,12 @@ export const VOICE_MAX_SECONDS = 30;
 // About a megabyte: 30 seconds of the phone's compressed recording is far smaller; a 16 kHz WAV just fits.
 export const VOICE_MAX_BYTES = 1_000_000;
 export const VOICE_TEXT_MAX = 500;
+// The floor under a recording worth hearing (W17-B4): a recording of a quiet room is a few hundred bytes of near-silent
+// frames, and Whisper turns silence into words ("Thank you."). Under 2 kB (about half a second of the phone's opus) or
+// under 1 second by the phone's own timer, no provider is called and nothing is counted. The phone checks the energy
+// of the sound first; this is the server's own line for a phone that did not.
+export const VOICE_MIN_BYTES = 2000;
+export const VOICE_MIN_SECONDS = 1;
 export const VOICE_SECONDS_SETTING = 'family.voice_input_seconds_per_day';
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };

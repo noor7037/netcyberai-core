@@ -26,7 +26,8 @@ const WHISPER = '@cf/openai/whisper-large-v3-turbo';
 const RUN_URL = `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/ai/run/${WHISPER}`;
 // A WebM header, then a marker that must never be found anywhere afterwards.
 const MARK = 'VOICE-SAMPLE-7f3a9c';
-const AUDIO = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.from(MARK)]);
+// Padded past the server's 2 kB floor under which a recording is taken for silence (VOICE_MIN_BYTES).
+const AUDIO = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.from(MARK), Buffer.alloc(2500, 7)]);
 const B64 = AUDIO.toString('base64');
 
 describe('reading a recording', () => {
@@ -236,6 +237,29 @@ describe('the voice route', () => {
     reply = heard('  2345 6789 0123 ');
     expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'not_heard', left: 120, maxSeconds: 30 } });
     expect(await seconds()).toBe(0);
+  });
+
+  it('W17-B4: a recording under the 2 kB floor, or timed under 1 second, is refused nothing_heard before any provider is called', async () => {
+    const tiny = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.alloc(1000 - 8, 7)]);
+    expect(tiny.length).toBe(1000);
+    expect(await post({ audio: tiny.toString('base64'), seconds: 5 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 30 } });
+    expect(await post({ audio: B64, seconds: 0.4 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 30 } });
+    expect(calls).toHaveLength(0);
+    expect(await seconds()).toBe(0);
+    // The seconds already used today are reported as they stand.
+    expect((await post({ audio: B64, seconds: 10 })).status).toBe(200);
+    expect(await post({ audio: tiny.toString('base64'), seconds: 5 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 110, maxSeconds: 30 } });
+    expect(calls).toHaveLength(1);
+    expect(await seconds()).toBe(10);
+  });
+
+  it('W17-B4: a transcript that is only what a quiet room is written as ("Thank you.") is nothing_heard and the seconds go back', async () => {
+    reply = heard('Thank you.');
+    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 30 } });
+    expect(calls).toHaveLength(1);
+    expect(await seconds()).toBe(0);
+    reply = heard('What is photosynthesis?');
+    expect((await post({ audio: B64, seconds: 9 })).body).toMatchObject({ text: 'What is photosynthesis?' });
   });
 
   it("a long recording claimed as 1 second is charged for what its size can hold", async () => {

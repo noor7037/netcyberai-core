@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
+import { EnergyMeter } from '@/lib/family/voice-energy';
 import { familyApi } from '../client';
 
 // Voice input's logic (M2-7, C281), shared by VoiceInput (the English course's talk) and the tutor composer's
@@ -19,7 +20,13 @@ const ERROR_KEY: Record<string, string> = {
   ai_not_capable: 'ai.not_capable',
   ai_failed: 'ai.failed',
   too_big: 'fam.voice.err.not_audio',
+  nothing_heard: 'fam.voice.nothingHeard',
 };
+
+// Shorter than this is a tap, not a question (W17-B4).
+const MIN_RECORDING_MS = 600;
+// How often the sound is measured while recording.
+const SAMPLE_MS = 100;
 
 async function toBase64(blob: Blob): Promise<string> {
   const bytes = new Uint8Array(await blob.arrayBuffer());
@@ -41,12 +48,19 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
   const stream = useRef<MediaStream | null>(null);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const started = useRef(0);
+  const meter = useRef<EnergyMeter | null>(null);
+  const audioCtx = useRef<AudioContext | null>(null);
+  const sampler = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const say = (code: string) => fill(w[ERROR_KEY[code] ?? `fam.voice.err.${code}`] ?? w['fam.err.network']);
 
   const release = () => {
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
+    if (sampler.current) clearInterval(sampler.current);
+    sampler.current = null;
+    void audioCtx.current?.close().catch(() => undefined);
+    audioCtx.current = null;
     stream.current?.getTracks().forEach((t) => t.stop());
     stream.current = null;
   };
@@ -114,15 +128,49 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
       if (e.data.size > 0) chunks.push(e.data);
     };
     rec.onstop = () => {
-      const seconds = Math.max(1, Math.ceil((Date.now() - started.current) / 1000));
+      const ms = Date.now() - started.current;
+      const seconds = Math.max(1, Math.ceil(ms / 1000));
+      // Without a Web Audio API (an old web view) there is no meter and the recording goes as it always did.
+      // A context the phone left suspended (iOS can) measured nothing, so its silence proves nothing either.
+      const quiet = meter.current !== null && audioCtx.current?.state === 'running' && !meter.current.heardSpeech();
       release();
       recorder.current = null;
+      meter.current = null;
+      // No voice in the sound, or a tap: nothing is sent or counted, and the microphone is already released.
+      if (quiet || ms < MIN_RECORDING_MS) {
+        chunks.length = 0;
+        busy.current = false;
+        setState('idle');
+        return setError(say('nothing_heard'));
+      }
       const blob = new Blob(chunks, { type: rec.mimeType || mimeType || 'audio/webm' });
       chunks.length = 0;
       // Never more than the time this recording was allowed (the timer may stop it a moment late).
       void send(blob, Math.min(seconds, max));
     };
     recorder.current = rec;
+    meter.current = null;
+    try {
+      const Ctx = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+      if (Ctx) {
+        const ctx = new Ctx();
+        audioCtx.current = ctx;
+        void ctx.resume().catch(() => undefined);
+        const analyser = ctx.createAnalyser();
+        analyser.fftSize = 2048;
+        ctx.createMediaStreamSource(stream.current).connect(analyser);
+        const m = new EnergyMeter();
+        const buf = new Float32Array(analyser.fftSize);
+        meter.current = m;
+        sampler.current = setInterval(() => {
+          analyser.getFloatTimeDomainData(buf);
+          m.add(buf);
+        }, SAMPLE_MS);
+      }
+    } catch {
+      // The check is a saving, never a gate that can break recording: without it the recording is sent as before.
+      meter.current = null;
+    }
     started.current = Date.now();
     setElapsed(0);
     try {

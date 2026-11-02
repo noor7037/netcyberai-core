@@ -8405,6 +8405,7 @@ export const en = {
   'fam.voice.err.unsupported': 'Recording does not work here. Type your question instead.',
   'fam.voice.err.voice_cap': "That's all the speaking time for today. Type your question, or speak again tomorrow.",
   'fam.voice.err.not_heard': 'No words were heard. Try again, a little closer to the phone.',
+  'fam.voice.nothingHeard': 'I did not hear anything. Hold the phone closer and say it again.',
   'fam.voice.err.not_audio': 'That recording could not be used. Try again.',
   'fam.voice.err.consent_required': 'Speaking a question needs a grown-up to say yes in the parent area.',
   'fam.voice.err.off': 'Speaking a question is not switched on yet.',
