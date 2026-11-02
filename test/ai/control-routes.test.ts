@@ -115,6 +115,8 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.syllabus_extract', carriesChildWords: false, providerId: 'workers-ai', model: '@cf/meta/llama-4-scout-17b-16e-instruct', enabled: true }),
       // The server voice (C386): reads a child's partner's replies, so a children's-words profile; no provider yet, no prompt.
       expect.objectContaining({ profileId: 'family.text_to_speech', carriesChildWords: true, needs: ['tts'], providerId: null, enabled: true, usesPrompt: false }),
+      // The call's realtime voice (W16-A4): a child's voice goes to the provider, so a children's-words profile; no provider yet.
+      expect.objectContaining({ profileId: 'family.voice_call', carriesChildWords: true, needs: ['realtime'], providerId: null, enabled: true, usesPrompt: false }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
     ]);

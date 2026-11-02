@@ -9,7 +9,9 @@ import { prepareSpeak, type PreparedVoice } from '@/lib/ai/platform';
 // The server voice (C386): POST one of
 //   { kind: 'chapter', chapterKey, blockId, sentence }   a sentence of the chapter reader's narration;
 //   { kind: 'live_line', token }                          a live English reply's checked sentence, sealed by the live route;
-//   { kind: 'live_turn', sessionId, position }            a kept live English reply of the child's own session.
+//   { kind: 'live_turn', sessionId, position }            a kept live English reply of the child's own session;
+//   { kind: 'call_line', token }                          W16-A4: a sentence of a call's answer, sealed by the understand
+//                                                          route, behind the voice input's gate (call-gate.ts).
 // It speaks only text the server holds (src/lib/family/voice-out.ts), for the child this phone has chosen, behind the
 // gate of the screen it belongs to. The answer is the audio itself (mp3), never cached and never stored. A voice that
 // is not set up answers 503 "not_set_up" and a family whose voice allowance for the day is used up (C388: characters,

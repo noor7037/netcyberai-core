@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { activeChild, isPrePrimary, listChildren } from '@/lib/family/children';
-import { consentState } from '@/lib/family/consent';
-import { familyModuleOn } from '@/lib/family/flags';
+import type { listChildren } from '@/lib/family/children';
+import { callGate } from '@/lib/family/call-gate';
 import { hearVoice, type VoiceAllowed } from '@/lib/family/voice-hear';
 
 // Voice input (M2-7, C281): POST { audio: <base64 of a WebM, Ogg, MP4 or WAV recording>, seconds: <the phone's timer> }.
@@ -17,14 +16,10 @@ export const maxDuration = 60;
 
 // The refusals that need no recording read: the same in the quick look and in the counting transaction.
 async function refusal(db: Parameters<typeof listChildren>[0], accountId: string, chosen: string | undefined): Promise<NextResponse | VoiceAllowed> {
-  const children = await listChildren(db, accountId);
-  const child = activeChild(children, chosen);
-  if (!child) return NextResponse.json({ error: 'not_found' }, { status: 404 });
-  if (isPrePrimary(child.classLevel)) return NextResponse.json({ error: 'not_for_class' }, { status: 403 });
-  const consents = await consentState(db, accountId);
-  if (!consents.study_core || !consents.voice_practice) return NextResponse.json({ error: 'consent_required' }, { status: 403 });
-  if (!(await familyModuleOn(db, 'voice_input', accountId))) return NextResponse.json({ error: 'off' }, { status: 403 });
-  return { child, children, language: child.language === 'hi' ? 'hi' : 'en' };
+  // W16-A4: the call asks the same gate (src/lib/family/call-gate.ts), so a call refuses the same way with the same words.
+  const g = await callGate(db, accountId, chosen);
+  if (!g.ok) return NextResponse.json({ error: g.error }, { status: g.status });
+  return { child: g.child, children: g.children, language: g.language };
 }
 
 export async function POST(req: NextRequest) {

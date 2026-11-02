@@ -4,12 +4,13 @@ import { googleTtsAdapter } from './google-tts';
 import { nvidiaAdapter } from './nvidia';
 import { openaiAdapter, openaiSpeechAdapter, openaiVoiceAdapter } from './openai';
 import { openaiCompatibleAdapter } from './openai-compatible';
+import { openaiRealtimeAdapter } from './openai-realtime';
 import { vertexAiAdapter } from './vertex-ai';
 import { workersAiAdapter, workersAiModerationAdapter, workersAiSpeechAdapter } from './workers-ai';
 import { youtubeAdapter } from './youtube';
-import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type SpeechAdapter, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
+import { CAPABILITIES, capabilities, type AdapterResult, type Capabilities, type Capability, type ModerationAdapter, type ModerationResult, type RealtimeAdapter, type SpeechAdapter, type SpeechResult, type TextAdapter, type VoiceAdapter, type VoiceResult } from './types';
 
-export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter, VoiceAdapter, VoiceMediaType, VoiceResult } from './types';
+export type { AdapterRequest, AdapterResult, Capabilities, Capability, ChatImage, ChatMessage, ModerationAdapter, ModerationResult, RealtimeAdapter, RealtimeResult, RealtimeToken, SpeechAdapter, SpeechMediaType, SpeechResult, TermsNote, TextAdapter, VoiceAdapter, VoiceMediaType, VoiceResult } from './types';
 
 // The stand-in: answers from the request alone and sends nothing anywhere, so the whole flow (profile, clearance,
 // cap, metering) can be built and tested before any key exists. Like configuredProvider's stand-in in ../provider.ts
@@ -124,6 +125,16 @@ export function voiceAdapterFor(providerId: string, env: Record<string, string |
   return REAL_VOICE.find((a) => a.providerId === providerId) ?? null;
 }
 
+// ---- realtime voice (W16-A4: the call's later leg) ------------------------------------------------------------------
+
+// No stand-in: a realtime session is a live connection to a vendor, so there is nothing to stand in for. Until a provider
+// is chosen in Control for family.voice_call (and a key exists) the call uses the listen, answer, speak chain.
+const REAL_REALTIME: readonly RealtimeAdapter[] = [openaiRealtimeAdapter];
+
+export function realtimeAdapterFor(providerId: string): RealtimeAdapter | null {
+  return REAL_REALTIME.find((a) => a.providerId === providerId) ?? null;
+}
+
 // Providers whose key Control → AI keeps: every text adapter, a voice-only provider (Google Cloud Text-to-Speech, C386),
 // and the content adapters that are not text models (the video finder's YouTube, M2-5). A content adapter is never
 // returned by adapterFor(), so no AI profile can choose it.
@@ -139,7 +150,7 @@ export function keyedProviderFor(providerId: string, env: Record<string, string 
 // Everything a provider's adapters declare between them (its text, speech, safety-check and voice adapters), for Control to
 // show beside the provider. A feature is checked against the one adapter of its own capability (platform.ts), not this.
 export function providerCapabilities(providerId: string, env: Record<string, string | undefined> = process.env): Capabilities | null {
-  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env), voiceAdapterFor(providerId, env)].filter((a) => a !== null);
+  const found = [adapterFor(providerId, env), speechAdapterFor(providerId, env), moderationAdapterFor(providerId, env), voiceAdapterFor(providerId, env), realtimeAdapterFor(providerId)].filter((a) => a !== null);
   if (found.length === 0) return null;
   return capabilities(CAPABILITIES.filter((c: Capability) => found.some((a) => a.capabilities[c])));
 }

@@ -49,6 +49,7 @@ export const CAPABILITY_WORDS: Record<Capability, MessageKey> = {
   json: "control.ai.capability.json",
   stt: "control.ai.capability.stt",
   tts: "control.ai.capability.tts",
+  realtime: "control.ai.capability.realtime",
 };
 
 // A provider's state (src/lib/ai/provider-state.ts): its colour only repeats the words.

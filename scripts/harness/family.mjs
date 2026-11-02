@@ -67,6 +67,35 @@ const FOLLOW_UP_ANSWER = [
 ]
   .map((e) => `${JSON.stringify(e)}\n`)
   .join('');
+// W16-A4 (the call): a scripted turn of the call, in the child's language. The voice route "hears" a question, the
+// understand route answers it with a checked block and its spoken sentences (illustrative words, made-up seals), and the
+// speak route answers like a family whose server voice is not set up yet, so the phone's own voice reads (see `call`).
+const CALL_WORDS = {
+  en: {
+    heard: 'What are equal fractions?',
+    idea: 'Equal fractions name the same part of a whole.',
+    paragraphs: ['Half of a roti is the same as two quarters. Cut it again and nothing is lost!'],
+    example: '1/2 is the same as 2/4, and it is also the same as 3/6.',
+  },
+  hi: {
+    heard: 'बराबर भिन्न क्या होती हैं?',
+    idea: 'बराबर भिन्न पूरे का एक ही हिस्सा बताती हैं।',
+    paragraphs: ['आधी रोटी और दो चौथाई रोटी बराबर होती हैं। इसे और काटने पर भी कुछ कम नहीं होता!'],
+    example: '1/2 और 2/4 बराबर हैं, और 3/6 भी बराबर है।',
+  },
+};
+const callAnswer = (lang) => {
+  const c = CALL_WORDS[lang];
+  const lines = [c.idea, ...c.paragraphs[0].split(/(?<=[.!?।])\s+/), c.example].map((text, i) => ({ text, token: `harness-seal-${i}` }));
+  return [
+    { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'mathematics', topicKey: null },
+    { t: 'block', block: { type: 'explanation', title: lang === 'hi' ? 'बराबर भिन्न' : 'Equal parts', idea: c.idea, paragraphs: c.paragraphs, example: c.example, steps: [], terms: [] } },
+    { t: 'say', lines },
+    { t: 'done', complete: true, missing: [], cut: false },
+  ]
+    .map((e) => `${JSON.stringify(e)}\n`)
+    .join('');
+};
 const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 
 // `ai`: for this picture, a made-up Workers AI key sealed with this run's own key, the provider cleared for children
@@ -190,6 +219,10 @@ export const FAMILY_SCREENS = [
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
   ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],
+  // W16-A4: the call, waiting for the first question, and after one turn (the question heard, the answer on the board with its
+  // captions, the phone's own voice reading because no server voice is set up). The turn is scripted (`call`).
+  ['full', 'family-call', '/family/call?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, settle: '[data-call-mic]' }],
+  ['full', 'family-call-answer', '/family/call?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', call: true, answer: callAnswer, settle: '[data-call-mic]', steps: [{ tap: '[data-call-mic]', wait: '[data-voice-state="recording"]' }, { pause: 1300 }, { tap: '[data-call-mic]', wait: '[data-call-caption]' }, { wait: '[data-call-board] [data-block="explanation"]' }, { wait: '[data-voice-in-use]' }] }],
   // C230-AP: a photo yes given on the older notice is asked again, and the row says why.
   ['full', 'family-parent-photo-notice', '/family/parent#privacy', { parent: true, settle: '[data-consent-changed="photo_input"]', prep: "insert into family.consents (account_id, purpose, granted, verification_method, notice_version, created_at) values ('f0000000-0000-4000-8000-0000000f0004', 'photo_input', true, 'parent_tap', 'fam-notice-2', now() + interval '1 day')", reset: "delete from family.consents where notice_version = 'fam-notice-2'" }],
   ['full', 'family-parent-area-voice', '/family/parent#privacy', { parent: true, settle: '[data-consent-voice]' }],
@@ -390,7 +423,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           const voiceOff = opts.voice ? await serverVoiceOn(db, aiKey) : null;
           for (const [module, on] of Object.entries(opts.flags ?? {}))
             await db.pg.query(`insert into control.app_flags (app, module, enabled, reason) values ('family', $1, $2, 'harness screen') on conflict (app, module) do nothing`, [module, on]);
-          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic ? { permissions: ['microphone'] } : {}) });
+          const context = await browser.newContext({ viewport: { width, height: width < 768 ? 800 : 900 }, reducedMotion: motion, deviceScaleFactor: 1, ...(opts.mic || opts.call ? { permissions: ['microphone'] } : {}) });
           const cookies = who ? await familyCookies(FAMILY[who], opts.parent, secret, opts.child) : [];
           cookies.push({ name: 'ncf_lang', value: lang });
           await context.addCookies(cookies.map((c) => ({ ...c, domain: '127.0.0.1', path: '/', httpOnly: true, sameSite: 'Lax' })));
@@ -400,12 +433,19 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           if (opts.pictures) await routeScriptPictures(context);
           // `answer`: the tutor's answer, scripted (W10, C411): the harness calls no model, so a typed question's
           // NDJSON stream is answered here; what follows it (the chats read again) is the app's own.
-          if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: opts.answer }));
+          if (opts.answer) await context.route('**/api/family/understand', (r) => r.fulfill({ status: 200, contentType: 'application/x-ndjson; charset=utf-8', body: typeof opts.answer === 'function' ? opts.answer(lang) : opts.answer }));
+          // `call` (W16-A4): the call's hearing and speaking, scripted: the recording "hears" the scripted question, the speak
+          // route says the server voice is not set up (so the phone's own voice reads), and the marks are taken without a log.
+          if (opts.call) {
+            await context.route('**/api/family/voice', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ text: CALL_WORDS[lang].heard, left: 100, maxSeconds: 30 }) }));
+            await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_set_up' }) }));
+            await context.route('**/api/family/voice/call/marks', (r) => r.fulfill({ status: 204 }));
+          }
           const page = await context.newPage();
           const errors = [];
           page.on('pageerror', (e) => errors.push(e.message.slice(0, 160)));
           page.on('response', (r) => {
-            if (r.url().includes('/api/') && r.status() >= 400) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
+            if (r.url().includes('/api/') && r.status() >= 400 && !(opts.call && r.url().endsWith('/api/family/voice/speak'))) errors.push(`${r.request().method()} ${new URL(r.url()).pathname} answered ${r.status()}`);
           });
           // The report link's language is in its address (the WhatsApp message carries the guardian's).
           const address = opts.langQuery && lang === 'hi' ? `${route}?lang=hi` : route;
@@ -425,6 +465,7 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
             if (step.fill) await page.locator(step.fill.field).first().fill(step.fill.value).catch(() => errors.push(`${step.fill.field} could not be filled`));
             if (step.select) await page.locator(step.select.field).first().selectOption(step.select.value).catch(() => errors.push(`${step.select.field} could not be chosen`));
             if (step.tap) await page.locator(step.tap).first().click().catch(() => errors.push(`${step.tap} could not be tapped`));
+            if (step.pause) await page.waitForTimeout(step.pause);
             // `choose`: a value in a drop-down when it shows (a phone), else a tap on the wide screen's own control (W9-A).
             if (step.choose) {
               const field = page.locator(step.choose.field).first();
