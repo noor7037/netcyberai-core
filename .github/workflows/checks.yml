@@ -36,6 +36,10 @@ jobs:
           # Business API credentials exist anywhere in this project (Task 0).
           # src/components/settings/WhatsAppConfigPanel.tsx only mentions it in
           # a comment explaining the same thing.
+          # W17: the audio adapters (gemini-audio, google-stt, openrouter, sarvam) and the
+          # microphone's energy meter (voice-energy) say "sample" in the signal sense
+          # (a sample rate, PCM samples, Google's sampleRateHertz field), never as
+          # placeholder data; they are excluded the same way.
           if grep -rn 'mock\|dummy\|fake\|sample' src/ --include='*.ts' --include='*.tsx' \
               | grep -v 'src/demo-fixture/' | grep -v 'src/lib/recognition.ts' \
               | grep -v 'src/lib/whatsapp/' | grep -v 'src/components/settings/WhatsAppConfigPanel.tsx' \
