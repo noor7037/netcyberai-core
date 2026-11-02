@@ -8,7 +8,9 @@ import { Card, SUBJECT_TONE } from './BlockViews';
 
 // A chapter test at the end of a chapter (S5, C378). Multiple-choice answers are checked on the server when the whole test is
 // sent (the phone holds only sealed tokens); written answers and photos are kept for the parent or teacher, who read them
-// against the rubric shown under each question. The app never marks those and shows no score for them. A photo goes
+// against the rubric shown under each question. The app never marks those and shows no score for them (a Quick quiz's
+// written answers are the exception, W17-B3: the AI marks them on the server and the verdict and note are drawn under the
+// answer, never counted in the score). A photo goes
 // through the tutor's private upload door (the same three steps as the tutor window), and is kept for this test.
 
 type Photo = { state: 'sending' | 'checking' | 'ready'; id: string | null };
@@ -137,6 +139,12 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone, quiz
                       ))}
                     </ul>
                   </div>
+                  {item.kind === 'written' && r?.verdict && (
+                    <div role="status" data-quiz-verdict={r.verdict} className={`flex flex-col gap-1 rounded-xl px-3 py-2 text-sm text-slate ${r.verdict === 'right' ? 'bg-emerald/10' : r.verdict === 'unmarked' ? 'bg-white ring-1 ring-slate/15' : 'bg-coral/10'}`}>
+                      <p className="font-bold">{w[`fam.quiz.verdict.${r.verdict}`]}</p>
+                      {r.note && <p>{r.note}</p>}
+                    </div>
+                  )}
                   {item.kind === 'written' ? (
                     <label className="flex flex-col gap-1 text-sm font-bold text-slate">
                       <span>{w['fam.ctest.written']}</span>
@@ -215,7 +223,7 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone, quiz
         <div role="status" data-test-result className="flex flex-col gap-1 rounded-2xl bg-white p-3 text-base text-slate ring-1 ring-slate/10">
           <p className="font-bold">{w['fam.ctest.sent']}</p>
           {result.mcqTotal > 0 && <p>{fill(w['fam.ctest.score'], { n: result.mcqCorrect, d: result.mcqTotal })}</p>}
-          {result.items.some((x) => x.kind !== 'mcq') && <p className="text-sm">{w['fam.ctest.kept']}</p>}
+          {result.items.some((x) => x.kind !== 'mcq' && !x.verdict) && <p className="text-sm">{w['fam.ctest.kept']}</p>}
         </div>
       )}
     </Card>

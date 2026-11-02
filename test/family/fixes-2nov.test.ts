@@ -11,7 +11,8 @@ import { hi } from '@/lib/i18n/messages/hi';
 //   F2  older Science answers showed a pendulum under "Healthy habits": a simulation only where it fits (simFits);
 //       "12 x 15" never said 180: the prompt's sum line;
 //   F3  a quiet room transcribed as "Thank you." was answered as off-subject: heardNothing;
-//   F4  a written quiz item stood unmarked beside the score: the quiz asks for choice items only;
+//   F4  a written quiz item stood unmarked beside the score: written items were removed on 2 Nov and came back in W17-B3,
+//       now marked by the AI at submit and marked as such;
 //   F5  "45 x 2 = 90" marked wrong: a verdict that restates a plain sum is settled by arithmetic (verifyVerdicts).
 
 describe('a simulation only where it belongs (F2)', () => {
@@ -45,10 +46,11 @@ describe('a quiet room is not a question (F3)', () => {
   });
 });
 
-describe('every quiz item marks itself (F4)', () => {
-  it('the quiz prompt asks for choice items only', () => {
-    expect(quizSystem()).toContain('every one "mcq"');
-    expect(quizSystem()).not.toContain('{"kind":"written"');
+describe('written quiz items come back, marked (F4, reversed in W17-B3)', () => {
+  it('the quiz prompt asks for three or four choice items and one or two written ones with their points', () => {
+    expect(quizSystem()).toContain('three or four "mcq"');
+    expect(quizSystem()).toContain('one or two "written"');
+    expect(quizSystem()).toContain('"points"');
   });
 });
 

@@ -7,8 +7,8 @@ import { tutorChild } from '@/lib/family/tutor';
 // A Quick quiz made from a tutor session (W16-B1). The child is the one this phone chose, never one the body names.
 //   POST { quizId, answers: [{ itemId, token, choice } | { itemId, text }] } sends the whole quiz. The server opens every sealed
 //        token (the phone never holds an answer), scores the choice questions with the chapter test's own scorer and keeps the
-//        take as an attempt under the quiz's id; a written answer is kept for the parent, never marked. The same answers as a
-//        chapter test, so the same results. Needs the parent's study consent.
+//        take as an attempt under the quiz's id; a written answer is marked by the AI at once (one call through the gateway; a verdict and a kind
+//        note come back, or "unmarked" when it could not be done) and kept with its mark. The same answers as a chapter test. Needs the parent's study consent.
 export const dynamic = 'force-dynamic';
 
 const STATUS = { bad_request: 400, not_found: 404, incomplete: 422, item_expired: 410, text_unsuitable: 422, photo_not_ready: 409 } as const;

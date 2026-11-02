@@ -10267,6 +10267,10 @@ export const en = {
   'fam.quiz.explain': 'Go back to the explanation',
   'fam.quiz.page': 'Quick quiz',
   'fam.quiz.missing': 'This quiz is not here any more.',
+  'fam.quiz.verdict.right': 'Right',
+  'fam.quiz.verdict.partly': 'Partly right',
+  'fam.quiz.verdict.wrong': 'Not yet',
+  'fam.quiz.verdict.unmarked': 'Could not be marked just now',
   // w16-b1 end
   'control.ai.provider.name.sarvam': 'Sarvam (India: speech and voices)',
   'control.ai.provider.about.sarvam': 'Its chat model is slow (6 to 9 seconds an answer), so it is not for live child chat. Use it for the child voices and for Hindi speech to text.',

@@ -10253,6 +10253,10 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.quiz.explain': 'समझाने वाले जवाब पर वापस जाएँ',
   'fam.quiz.page': 'छोटी क्विज़',
   'fam.quiz.missing': 'यह क्विज़ अब यहाँ नहीं है।',
+  'fam.quiz.verdict.right': 'सही',
+  'fam.quiz.verdict.partly': 'आंशिक रूप से सही',
+  'fam.quiz.verdict.wrong': 'अभी नहीं',
+  'fam.quiz.verdict.unmarked': 'अभी इसकी जाँच नहीं हो सकी',
   // w16-b1 end
   'control.ai.provider.name.sarvam': 'सर्वम (भारत: बोली और आवाज़ें)',
   'control.ai.provider.about.sarvam': 'इसका चैट मॉडल धीमा है (हर जवाब में 6 से 9 सेकंड), इसलिए बच्चों की सीधी चैट के लिए नहीं है। यह बच्चों की आवाज़ों और हिंदी बोली को टेक्स्ट में बदलने के लिए है।',
