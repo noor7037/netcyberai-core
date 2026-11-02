@@ -104,6 +104,8 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
     # the reviewer's preview is the family's own reader (the same component, with its place-keeping off).
     "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},
+    # The quality-check rules (W16-A5) judge an answer by the family's one block schema (types only; no data, no SQL).
+    "src/lib/ai/qc/rules.ts": {"@/lib/family/blocks"},
     "src/app/(admin)/control/content/studio/page.tsx": {
         "@/components/family/reader/ChapterReader",
         "@/lib/family/chapter-test-shape",

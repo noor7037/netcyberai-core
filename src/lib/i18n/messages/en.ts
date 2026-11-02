@@ -9334,7 +9334,6 @@ export const en = {
   'control.ai.profile.name.family.quiz': 'Session quiz (a short quiz when a tutor session ends)',
   'control.ai.profile.name.family.parent_report': 'Weekly parent report',
   'control.ai.profile.name.family.qc': 'Answer quality check',
-  'control.ai.profile.name.family.voice_call': 'Tutor voice call (realtime, not available yet)',
   'fam.english.live.title': 'Talk in English',
   'fam.english.live.kicker': 'Live practice',
   'fam.english.live.entry': 'Talk with your English partner',

@@ -42,10 +42,11 @@ describe('the agent registry', () => {
     expect(of('family.quiz')).toMatchObject({ capability: 'text', carriesChildWords: true, callMs: 20_000 });
     expect(of('family.parent_report')).toMatchObject({ capability: 'text', carriesChildWords: false, callMs: 30_000 });
     expect(of('family.qc')).toMatchObject({ capability: 'text', carriesChildWords: true, callMs: 10_000 });
-    expect(of('family.voice_call')).toMatchObject({ capability: 'speech_realtime', carriesChildWords: true });
+    expect(of('family.voice_call')).toMatchObject({ capability: 'realtime', carriesChildWords: true });
     // The realtime call is a slot: no provider has an adapter for it, so none can be saved for it in Control.
-    for (const provider of ['openai', 'google', 'nvidia', 'workers-ai', 'anthropic']) expect(capableAdapter('family.voice_call', provider)).toBeNull();
-    expect(profileNeeds(of('family.voice_call')!)).toEqual(['stt', 'tts']);
+    // W16-A4 gave the slot its first adapter (OpenAI's realtime); every other provider still has none.
+    for (const provider of ['google', 'nvidia', 'workers-ai', 'anthropic']) expect(capableAdapter('family.voice_call', provider)).toBeNull();
+    expect(profileNeeds(of('family.voice_call')!)).toEqual(['realtime']);
   });
 
   it('every job agent’s jobType has a handler on the job runner; the parent report is a long job', () => {

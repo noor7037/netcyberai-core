@@ -289,7 +289,7 @@ describe('prompt v9', () => {
   });
 
   it('moves family.resolver from v8 to v9 in one migration', () => {
-    const sql = readFileSync('supabase/migrations/29999999999992_w16_a2_resolver_v9.sql', 'utf8');
+    const sql = readFileSync('supabase/migrations/20261102070257_w16_a2_resolver_v9.sql', 'utf8');
     expect(sql).toContain("update control.ai_profiles set prompt_version = 'v9' where profile_id = 'family.resolver' and prompt_version = 'v8';");
   });
 });
