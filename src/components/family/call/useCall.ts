@@ -248,5 +248,8 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null }: { w:
   }, [busy, cancel, recorder]);
 
   const phase: CallPhase = recorder.state === 'recording' ? 'listening' : recorder.state === 'sending' ? 'hearing' : busy === 'speaking' ? 'speaking' : busy === 'thinking' ? 'thinking' : 'idle';
-  return { phase, heard, lines, current, blocks, refusal, voice, recorder, talk, end, setHeard };
+  // W18-P1: the sentence being spoken, by its place in the turn's say lines (either voice: both play through the one
+  // queue); the board draws up to the step it reaches. Undefined while nothing is spoken: the board stays where it is.
+  const sentence = current >= 0 ? current : undefined;
+  return { phase, heard, lines, current, sentence, blocks, refusal, voice, recorder, talk, end, setHeard };
 }

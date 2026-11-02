@@ -20,10 +20,10 @@ const ALL_TYPES = ['explanation', 'worked_example', 'diagram', 'mind_map', 'key_
 const asked = (s: string) => ALL_TYPES.filter((t) => s.includes(`"type":"${t}"`));
 
 describe('prompt v8', () => {
-  it('is registered (the default until W16, now v9); v7 stays chosen by name', () => {
-    expect(LATEST_RESOLVER_PROMPT).toBe('v9');
+  it('is registered (the default until W16, then v9, now v10); v7 stays chosen by name', () => {
+    expect(LATEST_RESOLVER_PROMPT).toBe('v10');
     expect(resolverPrompt('v8', false).version).toBe('v8');
-    expect(resolverPrompt('v99', false).version).toBe('v9');
+    expect(resolverPrompt('v99', false).version).toBe('v10');
     expect(resolverPrompt('v7', false).version).toBe('v7');
     expect(RESOLVER_PROMPTS.find((p) => p.version === 'v8')?.usesPlan).toBe(true);
     expect(RESOLVER_PROMPTS.find((p) => p.version === 'v7')?.usesPlan).toBeUndefined();

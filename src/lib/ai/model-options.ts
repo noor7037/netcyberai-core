@@ -25,12 +25,30 @@ export type Group = { provider: string; models: string[] };
 // The groups to offer: the given providers in order, each with the model ids its latest list holds (none when the list
 // failed or was never fetched; nothing is guessed). A provider the slot already holds but the choices lack is added so
 // the saved route can always be shown.
-export function groupsFor(providers: string[], lists: Record<string, ModelList>, current: string[] = []): Group[] {
+export function groupsFor(providers: string[], lists: Record<string, ModelList>, current: string[] = [], need: Need | null = null): Group[] {
   const all = [...providers, ...current.filter((p) => p && !providers.includes(p))];
   return all.map((provider) => {
     const list = lists[provider];
-    return { provider, models: list?.ok ? [...list.models] : [] };
+    return { provider, models: list?.ok ? list.models.filter((m) => fitsNeed(provider, need, m)) : [] };
   });
+}
+
+// W18 (2 Nov): a provider's one model list serves every picker, but a vendor that sells voices, speech to text and text
+// under one key (Sarvam, ElevenLabs, Gemini, OpenRouter, OpenAI) would otherwise show a voice to the text picker and a chat
+// model to Reading aloud. Each picker keeps the ids shaped for its feature's own need; a provider not listed here, or a
+// need with no shape, shows its whole list. Shapes mirror the adapters' own model checks; a saved id the list lacks still
+// shows through "Other".
+export type Need = 'text' | 'stt' | 'tts' | 'realtime';
+const SHAPES: Record<string, Partial<Record<Need, RegExp>>> = {
+  sarvam: { tts: /^bulbul:/, stt: /^saaras:/, text: /^sarvam-/ },
+  elevenlabs: { tts: /^eleven_(multilingual_v2|flash_v2_5)\//, stt: /^scribe/ },
+  gemini: { tts: /tts|\//i, stt: /^(?!.*tts)(?!.*live)/i, realtime: /live/i, text: /^(?!.*tts)(?!.*live)/i },
+  openai: { tts: /tts/i, stt: /whisper|transcribe/i, realtime: /realtime/i, text: /^(?!.*(tts|whisper|transcribe|realtime))/i },
+  openrouter: { tts: /tts|speech|\|/i, stt: /whisper|transcri|stt/i, text: /^(?!.*(tts|whisper|transcri|\|))/i },
+};
+export function fitsNeed(provider: string, need: Need | null, model: string): boolean {
+  const shape = need ? SHAPES[provider]?.[need] : undefined;
+  return shape ? shape.test(model) : true;
 }
 
 // What the select shows for a slot: the matching list item, "Other…" (typing, or a model the list does not hold), or

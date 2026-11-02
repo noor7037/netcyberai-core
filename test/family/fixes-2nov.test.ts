@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { firstSum, sumRight, verifyVerdicts } from '@/lib/family/arithmetic-check';
+import { equationIn, verifyVerdicts } from '@/lib/family/arithmetic-check';
 import { heardNothing } from '@/lib/family/call-heard';
 import { SIM_KINDS, simFits } from '@/lib/family/interactive';
 import { SUM_LINE, resolverSystem } from '@/lib/ai/prompts/family.resolver/v9';
@@ -55,16 +55,18 @@ describe('written quiz items come back, marked (F4, reversed in W17-B3)', () => 
 });
 
 describe('a verdict that restates a plain sum is settled by arithmetic (F5)', () => {
-  it('reads the first sum of a text, with ×, x, *, ÷ and /, and decimals', () => {
-    expect(firstSum('You wrote 45 x 2 = 90, but 45 is incorrect.')).toMatchObject({ a: 45, op: '×', b: 2, c: 90 });
-    expect(firstSum('23 + 19 = 32. It should be 23 + 19 = 42.')).toMatchObject({ a: 23, op: '+', b: 19, c: 32 });
-    expect(firstSum('20 / 4 = 5 Pa')).toMatchObject({ a: 20, op: '÷', b: 4, c: 5 });
-    expect(firstSum('2.5 × 4 = 10')).toMatchObject({ a: 2.5, op: '×', b: 4, c: 10 });
-    expect(firstSum('P = F / A')).toBeNull();
-    expect(firstSum('6 ÷ 0 = 0')).toBeNull();
-    expect(sumRight(firstSum('45 x 2 = 90')!)).toBe(true);
-    expect(sumRight(firstSum('23 + 19 = 32')!)).toBe(false);
-    expect(sumRight(firstSum('1 / 3 = 0.333')!)).toBe(false);
+  it('reads the first equation of a text, whole, with ×, x, *, ÷ and /, and decimals', () => {
+    expect(equationIn('You wrote 45 x 2 = 90, but 45 is incorrect.')).toMatchObject({ right: true, shown: '45 × 2', stated: '90' });
+    expect(equationIn('23 + 19 = 32. It should be 23 + 19 = 42.')).toMatchObject({ right: false, shown: '23 + 19', stated: '32', expected: '42' });
+    expect(equationIn('20 / 4 = 5 Pa')).toMatchObject({ right: true });
+    expect(equationIn('2.5 × 4 = 10')).toMatchObject({ right: true });
+    expect(equationIn('P = F / A')).toBeNull();
+    expect(equationIn('6 ÷ 0 = 0')).toBeNull();
+    expect(equationIn('45 x 2 = 90')?.right).toBe(true);
+    expect(equationIn('23 + 19 = 32')?.right).toBe(false);
+    // W18-Q3: a value with no finite decimal, correctly rounded to the places written, is right in school.
+    expect(equationIn('1 / 3 = 0.333')?.right).toBe(true);
+    expect(equationIn('1 / 3 = 0.334')?.right).toBe(false);
   });
 
   it('a right sum marked wrong becomes right; a wrong sum marked right becomes wrong, with the value said; the rest stays', () => {

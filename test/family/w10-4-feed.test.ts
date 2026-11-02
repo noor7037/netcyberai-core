@@ -84,7 +84,7 @@ describe('the rolling feed (W10-4)', () => {
 
     const removed: string[] = [];
     const kept = await fam((c) => t.appendTurn(c, turn(newest, 31, 'english', { remove: async (k) => void removed.push(k) })));
-    expect(kept).toEqual({ ok: true, turnCount: 30, subject: 'english' });
+    expect(kept).toEqual({ ok: true, turnCount: 30, subject: 'english', messageId: expect.any(String) });
     expect(await count()).toBe(30);
     // The oldest question and its answer are gone, the archived chat with them, and the file left the bucket.
     expect(await q(`select 1 from family.tutor_conversations where conversation_id = $1`, [older])).toEqual([]);

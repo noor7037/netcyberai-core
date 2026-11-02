@@ -304,12 +304,17 @@ function skippedAttempt(r: { link: Link; position: number }, outcome: 'skipped_o
 // The ledger's ids for a call: the day, the profile and the route revision it ran on.
 type LedgerOf = { day: string; profileId: string; revisionId: string | null };
 const ledgerOf = (ctx: AiContext, profile: AiProfile, row: ProfileRow): LedgerOf => ({ day: ctx.day, profileId: profile.id, revisionId: row.revision_id === null || row.revision_id === undefined ? null : String(row.revision_id) });
+// The vendor's HTTP status of a failed attempt, kept beside the attempt and not in it: the ledger stores no vendor status,
+// but Try it shows it, so that a 400 (a request shape we got wrong) is told apart from 401/403 (the key) and 429 (the quota).
+const vendorStatus = new WeakMap<Attempt, number>();
 // One attempt that came back: an answer, or a failure in its class.
 function attemptOf(r: { link: Link; position: number }, result: { ok: true; tokensIn: number; tokensOut: number } | { ok: false; failure: string; status?: number }, at: { streamed: boolean; elapsedMs: number; limitMs: number }): { attempt: Attempt; retryable: boolean } {
   const base = { provider: r.link.provider, model: r.link.model, position: r.position, latencyMs: at.elapsedMs, streamed: at.streamed };
   if (result.ok) return { attempt: { ...base, outcome: 'ok', circuit: 'success', tokensIn: result.tokensIn, tokensOut: result.tokensOut }, retryable: false };
   const c = classifyFailure(result, { streamed: at.streamed, timedOut: ranItsTime(at.elapsedMs, at.limitMs) });
-  return { attempt: { ...base, outcome: c.outcome, circuit: c.circuit, tokensIn: 0, tokensOut: 0 }, retryable: c.retryable };
+  const attempt: Attempt = { ...base, outcome: c.outcome, circuit: c.circuit, tokensIn: 0, tokensOut: 0 };
+  if (typeof result.status === 'number') vendorStatus.set(attempt, result.status);
+  return { attempt, retryable: c.retryable };
 }
 
 // Usage to add to Control's counts once the call is over (counts and tokens only).
@@ -1061,7 +1066,7 @@ export type TryClip = { language: 'en' | 'hi'; audioBase64: string; mediaType: s
 export type TryOutput = { kind: 'text'; text: string } | { kind: 'json'; json: unknown } | { kind: 'audio'; clips: TryClip[] } | { kind: 'token'; expiresAt: string };
 // `backupUsed`: a place after Primary answered. `failure`: a refusal before anything was sent (not_switched_on,
 // not_cleared_for_minors, not_capable, failed), or the class of the last attempt that failed (auth_failed, rate_limited…).
-export type TryResult = { ok: boolean; provider: string | null; model: string | null; ms: number; backupUsed: boolean; output?: TryOutput; failure?: string };
+export type TryResult = { ok: boolean; provider: string | null; model: string | null; ms: number; backupUsed: boolean; output?: TryOutput; failure?: string; status?: number };
 export type SentTry = { result: TryResult; record: (db: Sql) => Promise<void> };
 export type PreparedTry = { ok: true; send: () => Promise<SentTry> } | { ok: false; result: TryResult };
 
@@ -1154,7 +1159,9 @@ export async function prepareTryIt(db: Sql, ctx: AiContext, profileId: string, i
       const ok = outputs.every((o) => o !== null);
       const by = answered[0] ?? failed[failed.length - 1] ?? null;
       const output: TryOutput | undefined = !ok ? undefined : outputs.length > 1 ? { kind: 'audio', clips: outputs.flatMap((o) => (o?.kind === 'audio' ? o.clips : [])) } : (outputs[0] ?? undefined);
-      const result: TryResult = { ok, provider: by?.provider ?? null, model: by?.model ?? null, ms, backupUsed: answered.some((a) => a.position > 0), ...(output ? { output } : { failure: failed[failed.length - 1]?.outcome ?? 'failed' }) };
+      const last = failed[failed.length - 1];
+      const status = last ? vendorStatus.get(last) : undefined;
+      const result: TryResult = { ok, provider: by?.provider ?? null, model: by?.model ?? null, ms, backupUsed: answered.some((a) => a.position > 0), ...(output ? { output } : { failure: last?.outcome ?? 'failed', ...(status !== undefined ? { status } : {}) }) };
       return {
         result,
         record: async (tx) => {

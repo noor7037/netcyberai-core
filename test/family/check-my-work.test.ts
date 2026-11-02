@@ -125,7 +125,7 @@ beforeAll(async () => {
     await q(`insert into family.tutor_attachments (attachment_id, conversation_id, account_id, child_id, status, mime, size_bytes, storage_key) values ($1, $2, $3, $4, 'ready', $5, $6, $7)`, [id(n), CONV, ACCOUNT, CHILD, mime, bytes.length, `${ACCOUNT}/${CHILD}/${id(n)}.${ext}`]);
     store.files.set(`${ACCOUNT}/${CHILD}/${id(n)}.${ext}`, bytes);
   };
-  for (const n of [1, 2, 3, 4, 5, 6]) await file(n, PNG);
+  for (const n of [1, 2, 3, 4, 5, 6, 8, 9, 10, 11]) await file(n, PNG);
   await file(7, new TextEncoder().encode('%PDF-1.4\n%%EOF'), 'application/pdf', 'pdf');
   const { signFamilySession } = await import('@/lib/family/session');
   cookie = `ncf_session=${await signFamilySession({ accountId: ACCOUNT, tokenVersion: 0, sessionId: 's1' })}; ncf_child=${CHILD}`;
@@ -214,7 +214,6 @@ describe('a photo of a Class 8 Science numerical with one wrong step', () => {
 
   it('one photo only, and a photo that cannot be read marks nothing', async () => {
     expect((await ask([id(1), id(2)])).status).toBe(400);
-    expect((await ask([])).status).toBe(400);
     expect(ai.asked).toEqual([]);
     const pdf = await ask([id(7)]);
     expect(pdf.events).toEqual([expect.objectContaining({ t: 'refused', message: expect.stringContaining('not a PDF') })]);
@@ -224,6 +223,83 @@ describe('a photo of a Class 8 Science numerical with one wrong step', () => {
     expect(blank.events.some((e) => e.t === 'block')).toBe(false);
     expect(blank.events.at(-1)).toMatchObject({ t: 'refused', message: expect.stringContaining('could not be read') });
     expect(ai.asked.some((a) => a.profile === 'family.resolver')).toBe(false);
+    // No file and no typed sum: the words are answered as the ordinary question they are (W18), never a bad request.
+    expect((await ask([])).status).toBe(200);
+  });
+});
+
+// W18-Q3: Check my work always gives a verdict. When the model's verdicts are missing or refused by our checks, our own
+// arithmetic marks the reading's equation lines, first; with nothing to mark the child is told so, and no lesson shows.
+describe('a verdict is guaranteed', () => {
+  const SUMS = ['Question: Multiply.', 'Line 1: 5 × 6 = 32', 'Line 2: 45 x 2 = 90', 'Answer: 32'].join('\n');
+  const SUBJECT = JSON.stringify({ type: 'subject', subject: 'science' });
+  const WORKED = MARKING.find((l) => l.includes('"worked_example"'))!;
+  const CHECK = MARKING.find((l) => l.includes('"type":"check"'))!;
+  const blocksOf = (events: { t: string; block?: { type: string } }[]) => events.filter((e) => e.t === 'block').map((e) => e.block!);
+  const verdictLog = (spy: { mock: { calls: unknown[][] } }) =>
+    spy.mock.calls.map((c) => String(c[0])).filter((l) => l.includes('"family.check.verdict"')).map((l) => JSON.parse(l) as Record<string, unknown>);
+
+  it('the model sends no steps line: the verdicts come from the reading, before the corrected working', async () => {
+    ai.reading = SUMS;
+    // The worked example first, as a model that skips the verdicts would write it.
+    ai.marking = [SUBJECT, WORKED, CHECK];
+    const spy = vi.spyOn(console, 'info');
+    const { events } = await ask([id(8)]);
+    const blocks = blocksOf(events);
+    expect(blocks.map((b) => b.type)).toEqual(['steps', 'worked_example', 'check']);
+    expect((blocks[0] as unknown as { items: unknown[] }).items).toEqual([
+      { label: 'Step 1: wrong', text: '5 × 6 = 30, not 32.' },
+      { label: 'Step 2: right', text: '45 × 2 = 90 is correct.' },
+    ]);
+    expect(events.find((e) => e.t === 'done')).toMatchObject({ complete: true, missing: [] });
+    expect(verdictLog(spy).at(-1)).toMatchObject({ from: 'arithmetic', stepsRejected: 'none' });
+    spy.mockRestore();
+  });
+
+  it('the model sends a steps line our checks refuse: it is counted with its reason, and the verdicts still come first', async () => {
+    ai.reading = SUMS;
+    const six = { type: 'steps', title: 'Your working', items: Array.from({ length: 6 }, (_, i) => ({ label: `Step ${i + 1}: right`, text: 'Fine.' })) };
+    ai.marking = [SUBJECT, WORKED, JSON.stringify(six), CHECK];
+    const spy = vi.spyOn(console, 'info');
+    const { events } = await ask([id(9)]);
+    expect(blocksOf(events).map((b) => b.type)).toEqual(['steps', 'worked_example', 'check']);
+    expect(JSON.stringify(blocksOf(events)[0])).toContain('5 × 6 = 30, not 32.');
+    const logged = verdictLog(spy).at(-1)!;
+    expect(logged).toMatchObject({ from: 'arithmetic', stepsRejected: 'too_many_items' });
+    // A count and a reason: none of the child's working is in the log.
+    expect(JSON.stringify(logged)).not.toContain('32');
+    spy.mockRestore();
+  });
+
+  it('the model’s own verdicts arrive after its worked example: the verdicts are still shown first', async () => {
+    ai.marking = [SUBJECT, WORKED, MARKING.find((l) => l.includes('"steps"'))!, CHECK];
+    const { events } = await ask([id(10)]);
+    expect(blocksOf(events).map((b) => b.type)).toEqual(['steps', 'worked_example', 'check']);
+  });
+
+  it('nothing to mark and no verdicts from the model: the child is told so, and no lesson is shown', async () => {
+    ai.reading = ['Question: Who built the Red Fort?', 'Line 1: Shah Jahan', 'Answer: Shah Jahan'].join('\n');
+    ai.marking = [SUBJECT, JSON.stringify({ type: 'explanation', title: 'Red Fort', idea: 'An idea.', example: 'An example.', steps: ['One.'], terms: [] }), WORKED, CHECK];
+    const { events } = await ask([id(11)]);
+    expect(blocksOf(events)).toEqual([]);
+    expect(events.at(-1)).toEqual({ t: 'refused', reason: 'not_found', message: 'I could not mark this working. Try a clearer photo, one sum per line.' });
+  });
+
+  it('typed "Check my work: 2+3×4=14": no photo is read, the working is marked, and no lesson is given', async () => {
+    ai.marking = [SUBJECT, JSON.stringify({ type: 'explanation', title: 'Order of operations', idea: 'An idea.', example: 'An example.', steps: ['One.'], terms: [] }), CHECK];
+    const { status, events } = await ask([], {}, 'Check my work: 2+3×4=14');
+    expect(status).toBe(200);
+    // No vision call: the reading is the typed text, line by line.
+    expect(ai.asked.some((a) => a.profile === 'family.homework')).toBe(false);
+    expect(marking()!.content).toContain('Line 1: 2+3×4=14');
+    expect(marking()!.system).toContain('marking a Class 8 student');
+    const blocks = blocksOf(events);
+    expect(blocks.map((b) => b.type)).toEqual(['steps', 'check']);
+    expect((blocks[0] as unknown as { items: unknown[] }).items).toEqual([{ label: 'Step 1: right', text: '2+3×4 = 14 is correct.' }]);
+    expect(events.some((e) => e.t === 'files')).toBe(false);
+    expect(events.find((e) => e.t === 'done')).toMatchObject({ complete: true });
+    // Typed words that open like a check but hold nothing our arithmetic can mark are answered as an ordinary question.
+    expect((await ask([], {}, 'Check my work: x + 2 = 5')).status).toBe(200);
   });
 });
 

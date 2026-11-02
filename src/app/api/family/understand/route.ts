@@ -19,6 +19,7 @@ import type { Persona } from '@/lib/family/persona';
 import { readerContext, refreshChatSummary, resolveChat, saveTurn, sendableFiles, tutorStorage } from '@/lib/family/tutor';
 import { attachedText, fetchFiles, filesToRead, givePhotoPlaceBack, preparePhotoReads, readFetched, type Unreadable } from '@/lib/family/tutor-read';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
+import { typedCheckReading } from '@/lib/family/check-work';
 import { photoGate } from '@/lib/family/photo-gate';
 import { isSubject } from '@/lib/family/subjects';
 import { fillVisuals } from '@/lib/family/visuals/fill';
@@ -43,7 +44,12 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 // W16-B2 (Check my work): `tutor.mode: 'check'` with exactly one photo of the child's own handwritten working. The photo
 // is read line by line (family.homework prompt v2, the same photo rules, day place and vision profile as any tutor
 // photo), the chapter is searched on the question the photo showed, and the answer is that working marked step by step
-// (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other.
+// (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other. W18-Q3: the same mode with no
+// file when the typed text is the working ("Check my work: 2+3×4=14"); the reading is built from the text, no photo is
+// read. The verdicts come first, and when the model's do not pass, our own arithmetic gives them (arithmetic-check.ts).
+//
+// W18-P3 (the sketch pad): `tutor.sketch: true` with exactly one PNG or JPEG the child drew; it reaches the prompt as
+// `ResolverAsk.sketch`, so the tutor marks up the drawing. The file door and the photo rules are the same as any photo.
 //
 // The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
 // vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
@@ -78,8 +84,19 @@ export async function POST(req: NextRequest) {
   const tutorBody = input?.kind === 'question' && body.tutor && typeof body.tutor === 'object' && !Array.isArray(body.tutor) ? (body.tutor as Record<string, unknown>) : null;
   if (tutorBody && !isSubject(tutorBody.subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
-  const checkMode = tutorBody?.mode === 'check' && !followUp && !retry;
-  if (checkMode && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // W18-Q3: or no file at all, when the typed text is itself the working ("Check my work: 2+3×4=14", check-work.ts): its
+  // reading is built here from the text, line by line, with no photo read and no vision call.
+  const asksCheck = tutorBody?.mode === 'check' && !followUp && !retry;
+  const noFiles = !Array.isArray(tutorBody?.files) || (tutorBody!.files as unknown[]).length === 0;
+  const typedReading = asksCheck && noFiles && input?.kind === 'question' ? typedCheckReading(input.text) : null;
+  // Typed words that open like a check but hold nothing our arithmetic can mark (the phone's lighter test said "check") are
+  // answered as the ordinary question they are; a check with files needs exactly one.
+  const checkMode = asksCheck && (typedReading !== null || !noFiles);
+  if (checkMode && !typedReading && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // W18-P3 (the sketch pad): `tutor.sketch: true` only with exactly one attached file, never beside Check my work, a follow-up
+  // or a retry; the file's type (PNG or JPEG) is checked below, once the stored file is known.
+  const sketchMode = tutorBody?.sketch === true && !followUp && !retry;
+  if (sketchMode && (checkMode || !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1))) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
   let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
@@ -138,8 +155,9 @@ export async function POST(req: NextRequest) {
         return null;
       };
       try {
-        // 0. The files sent with a tutor question, read before it is asked (W4-1). Not for a follow-up or a retry.
-        let attached: string | undefined;
+        // 0. The files sent with a tutor question, read before it is asked (W4-1). Not for a follow-up or a retry. A typed
+        // check's working is its own text (W18-Q3): there is nothing to read.
+        let attached: string | undefined = typedReading ?? undefined;
         const fileIds = TUTOR_READS_FILES && tutorBody && !followUp && !retry && Array.isArray(tutorBody.files) && tutorBody.files.length > 0 ? tutorBody.files : null;
         if (fileIds) {
           const asked = await withFamilyContext(claims, async (db) => {
@@ -158,6 +176,7 @@ export async function POST(req: NextRequest) {
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
             if (checkMode && files.some((f) => f.mime === 'application/pdf')) return { refused: t(lang, 'fam.check.err.photo_only') };
+            if (sketchMode && files.some((f) => f.mime !== 'image/png' && f.mime !== 'image/jpeg')) return { refused: t(lang, 'fam.sketch.err.picture_only') };
             // W4-1 review: whatever would refuse the question is checked before any photo leaves, so a question that will
             // not be answered never sends a photo or spends a place: the reader's chapter and section, the safety check
             // ready (C314, as the homework helper does), and room in the family's day for every photo read and the answer.
@@ -219,7 +238,7 @@ export async function POST(req: NextRequest) {
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
             target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
-            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}) };
+            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}), ...(sketchMode ? { sketch: true as const } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
             if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: reader?.chapterKey ?? null, blockId: reader?.blockId ?? null, files, windowSubject: subject, lang: child.language };
@@ -306,6 +325,9 @@ export async function POST(req: NextRequest) {
           kept = await withFamilyContext(claims, (db) => saveTurn(db, { accountId: session.accountId, childId: turn.childId, chatId: same || pinned ? chatId : null, subject, text: turn.text, chapterKey: turn.chapterKey, blockId: turn.blockId, lang: turn.lang, files: same ? turn.files : [], blocks: generated.kept, storage: tutorStorage, tutorKey })).catch(() => null);
         }
         if (last?.t === 'done' && kept && isSubject(kept.subject)) last = { ...last, chat: { chatId: kept.chatId, subject: kept.subject } };
+        // W18-P1: the answer's own message id, just written for this child, so the window can read it aloud without a reload.
+        // Nothing else of the turn leaves the server.
+        if (last?.t === 'done' && kept) last = { ...last, messageId: kept.messageId };
         if (last) send(last);
         if (kept) await refreshChatSummary((fn) => withFamilyContext(claims, fn), pending.ctx, kept.chatId, kept.turnCount).catch(() => false);
       } catch (err) {

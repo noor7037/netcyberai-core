@@ -109,6 +109,16 @@ export function boardCursorFromSentence(say: readonly (string | undefined | null
   return end + 1;
 }
 
+// The step the board shows when the voice reaches a new step (W18-P1). `at` is the step on screen (the voice's or the
+// child's tap), `before` the voice's previous step (undefined: the voice had not started), `spoken` its new one.
+//   - The voice starting, or starting over (Replay: a lower step than before), draws from its step.
+//   - Otherwise the further of the two: a Next tapped ahead of the voice stays until the voice passes it, and a Back holds
+//     only until the voice reaches its next step.
+export function boardStepOnSpoken(at: number, before: number | undefined, spoken: number): number {
+  if (before === undefined || spoken < before) return spoken;
+  return Math.max(at, spoken);
+}
+
 // The box round what an id names on the board drawn so far: one command, or every command of a group. null: nothing
 // with that id is on the board (it was erased, or is not drawn yet).
 export function targetBox(items: readonly BoardItem[], id: string, axes: Map<string, BoardAxis>): { x: number; y: number; w: number; h: number } | null {

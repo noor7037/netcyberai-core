@@ -1,22 +1,24 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import type { Block, Explanation } from '@/lib/family/blocks';
+import { unfilled, type Block, type Explanation } from '@/lib/family/blocks';
 import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
-import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
-import { StepsView } from '../blocks/StepsView';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
-import { MindMapView } from '../blocks/MindMapView';
-import { DirectAnswerCard, UnderstandView, type UnderstandInput } from '../UnderstandView';
+import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
-import { AnswerSpeaker } from '../voice/AnswerSpeaker';
-import { ANSWER_SPOKEN_MAX, spokenAnswer } from '@/lib/family/call';
+
+import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
+import { typedCheckIntentLight } from '@/lib/family/check-intent';
+// The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
+const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
+const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
 
 // The shared tutor window (S2, C375; docs/37 §4 Wave 2): one window for every question a child types, on the Study page
 // and in the chapter reader's doubt drawer. W6-A (C395): one composer (Composer.tsx) pinned at the foot. Study passes
@@ -29,8 +31,6 @@ import { ANSWER_SPOKEN_MAX, spokenAnswer } from '@/lib/family/call';
 // to Science") and, on Study (`follow`), the subject tab follows it.
 // A file goes straight to the private store (the server gives a link for it, then reads and checks what arrived); it is
 // shown only through the app's own address, which answers with a link that works for one minute.
-
-const InteractiveView = dynamic(() => import('../blocks/InteractiveViews').then((m) => m.InteractiveView));
 
 export type TutorReaderContext = { chapterKey: string; blockId: string; section: string };
 type Props = {
@@ -75,6 +75,22 @@ function sendToStore(url: string, file: File, contentType: string): Promise<bool
     xhr.onerror = xhr.onabort = xhr.ontimeout = () => resolve(false);
     xhr.send(file);
   });
+}
+
+// The file door's three steps (ask for a link, send the file to it, confirm): shared by Attach and the sketch pad, so both
+// meet the same checks on the server. `step` lets Attach show where it is. Resolves with the attachment's id, or the code
+// of what refused.
+async function uploadTutorFile(subject: string, file: File, mime: string, step?: { ticket?: (id: string) => void; stored?: () => void }): Promise<{ id: string } | { code: string }> {
+  const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
+  if (!askRes?.ok) return { code: await errorOf(askRes) };
+  const ticket = (await askRes.json().catch(() => null)) as { attachmentId?: string; uploadUrl?: string; contentType?: string } | null;
+  if (!ticket?.attachmentId || !ticket.uploadUrl) return { code: 'network' };
+  step?.ticket?.(ticket.attachmentId);
+  if (!(await sendToStore(ticket.uploadUrl, file, ticket.contentType ?? mime))) return { code: 'storage_unavailable' };
+  step?.stored?.();
+  const confirmed = await postJson(`/api/family/tutor/files/${encodeURIComponent(ticket.attachmentId)}`, {});
+  if (!confirmed?.ok) return { code: await errorOf(confirmed) };
+  return { id: ticket.attachmentId };
 }
 
 // The feed read from the server, less the turn a carried question already draws live (the question the tab followed:
@@ -199,15 +215,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (check && mime === 'application/pdf') return setFileError(w['fam.check.err.photo_only']);
     if (check) setChecking(true);
     setAttached((list) => [...list, { key, name: file.name, mime, state: 'sending', id: null }]);
-    const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
-    if (!askRes?.ok) return drop(await errorOf(askRes));
-    const ticket = (await askRes.json().catch(() => null)) as { attachmentId?: string; uploadUrl?: string; contentType?: string } | null;
-    if (!ticket?.attachmentId || !ticket.uploadUrl) return drop('network');
-    update({ id: ticket.attachmentId });
-    if (!(await sendToStore(ticket.uploadUrl, file, ticket.contentType ?? mime))) return drop('storage_unavailable');
-    update({ state: 'checking' });
-    const confirmed = await postJson(`/api/family/tutor/files/${encodeURIComponent(ticket.attachmentId)}`, {});
-    if (!confirmed?.ok) return drop(await errorOf(confirmed));
+    const up = await uploadTutorFile(subject, file, mime, { ticket: (id) => update({ id }), stored: () => update({ state: 'checking' }) });
+    if ('code' in up) return drop(up.code);
     update({ state: 'ready' });
   };
 
@@ -218,10 +227,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
-  const send = () => {
-    if (!canSend) return;
-    const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
-    const tutor = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking ? { mode: 'check' as const } : {}) };
+  const submit = (asked: string, tutor: TutorAsk) => {
     const n = (asks.at(-1)?.n ?? 0) + 1;
     setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
     setText('');
@@ -231,6 +237,29 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     setOpen(true);
     // The new question at the top of the feed box, its answer drawing below it.
     requestAnimationFrame(() => document.getElementById(`${ids.feed}-ask-${n}`)?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' }));
+  };
+  const base = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}) };
+  const send = () => {
+    if (!canSend) return;
+    const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
+    // W18-Q3: typed working ("Check my work: 2+3×4=14", no file) is marked, not taught: the same mode as the photo.
+    const typedCheck = !checking && attached.length === 0 && typedCheckIntentLight(asked);
+    submit(asked, { ...base, files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking || typedCheck ? { mode: 'check' as const } : {}) });
+  };
+
+  // W18-P3: the sketch pad's PNG goes through the same file door as Attach, then is asked about with `sketch: true`: the
+  // tutor answers with a board that marks up the drawing. The words are what the child typed, else a fixed line. Resolves
+  // with the words of an error to show in the pad, or null once asked.
+  const sendSketch = async (file: File): Promise<string | null> => {
+    if (attached.length > 0 || checking) return w['fam.tutor.err.too_many_files'];
+    if (file.size === 0) return w['fam.tutor.err.file_empty'];
+    if (file.size > TUTOR_FILE_MAX_BYTES) return w['fam.tutor.err.file_too_large'];
+    const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
+    if (mime !== 'image/png') return w['fam.tutor.err.file_type'];
+    const up = await uploadTutorFile(subject, file, mime);
+    if ('code' in up) return w[`fam.tutor.err.${up.code}`] ?? w['fam.err.network'];
+    submit(text.trim().length >= TUTOR_TEXT_MIN ? text.trim() : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
+    return null;
   };
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
@@ -299,7 +328,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
                 {fill(w['fam.chat.moved'], { subject: subjectName(a.moved) })}
               </p>
             )}
-            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} />
+            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} />
           </div>
         ))}
       </div>
@@ -335,6 +364,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         attached={attached}
         onAttach={(f) => void attach(f)}
         onCheck={(f) => void attach(f, true)}
+        onSketch={sendSketch}
         checking={checking}
         onRemove={remove}
         fileError={fileError}
@@ -377,52 +407,33 @@ function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words;
 }
 
 // A kept answer in the feed, in the lesson look (W10-4): the direct answer first, under its heading, then its
-// sections, numbered.
+// sections, numbered. W18-P1: each block is drawn by the lesson page's own renderer (UnderstandView's AnswerBlock), so a
+// saved answer keeps its board, scene, simulation, chart, timeline, figure, 3D model, image and videos exactly as when it
+// was fresh. A check or practice is never kept (tutor.ts keptTutorBlocks), and one that somehow is stays out, as before.
+// The answer owns which sentence its voice is speaking: the read-aloud button and "Teach me" report it, and its boards
+// draw up to the step that sentence reaches.
 export function KeptAnswer({ b, w, tone, lang, speak }: { b: Block[]; w: Words; tone: string; lang: string; speak: { id: string; serverVoice: boolean } }) {
+  const [sentence, setSentence] = useState<number | undefined>(undefined);
+  const root = useRef<HTMLDivElement>(null);
   const lead = b.find((x): x is Explanation => x.type === 'explanation');
   // W16-B2: a marked working names its chapter in a chip first (a general answer says nothing here).
   const cited = citationOf(b, false);
+  const shown = b.filter((x): x is Exclude<Block, { type: 'check' } | { type: 'practice' }> => x.type !== 'check' && x.type !== 'practice' && !unfilled(x));
   // The same words the server voice speaks; an answer with nothing to say aloud (a picture alone) has no button.
-  const spoken = spokenAnswer(b, ANSWER_SPOKEN_MAX);
+  const sentences = spokenSentences(b, ANSWER_SPOKEN_MAX);
+  const voice = { messageId: speak.id, sentences, lang: lang === 'hi' ? ('hi' as const) : ('en' as const), serverVoice: speak.serverVoice, onSentence: setSentence };
   return (
-    <div lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
+    <div ref={root} lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
       {cited && <CitationChip w={w} c={cited} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
-      {b.map((x, i) => (
-        <TurnBlock key={i} b={x} w={w} tone={tone} lead={x === lead} />
+      {sentences.length > 0 && <TeachMe w={w} {...voice} root={root} />}
+      {shown.map((x, i) => (
+        <AnswerBlock key={i} b={x} w={w} tone={tone} lead={x === lead} onRetry={noRetry} sentence={sentence} />
       ))}
-      {spoken && <AnswerSpeaker w={w} messageId={speak.id} text={spoken} lang={lang === 'hi' ? 'hi' : 'en'} serverVoice={speak.serverVoice} />}
+      {sentences.length > 0 && <AnswerSpeaker w={w} {...voice} />}
     </div>
   );
 }
 
-// A kept answer's block, drawn by the block renderer's own views (a check or practice is never kept).
-function TurnBlock({ b, w, tone, lead = false }: { b: Block; w: Words; tone: string; lead?: boolean }) {
-  switch (b.type) {
-    case 'explanation':
-      return <ExplanationView b={b} w={w} tone={tone} lead={lead} />;
-    case 'worked_example':
-      return <WorkedExampleView b={b} w={w} tone={tone} />;
-    case 'key_points':
-      return <KeyPointsView b={b} w={w} tone={tone} />;
-    case 'diagram':
-      return <DiagramView b={b} tone={tone} />;
-    case 'mind_map':
-      return <MindMapView b={b} w={w} tone={tone} />;
-    case 'graph':
-    case 'number_line':
-    case 'fraction_model':
-    case 'geometry':
-    case 'simulation':
-      return <InteractiveView b={b} w={w} tone={tone} />;
-    case 'english_moment':
-      return <EnglishMomentView b={b} w={w} tone={tone} />;
-    case 'sources':
-      return b.links.length > 0 ? <SourcesView b={b} w={w} tone={tone} /> : null;
-    case 'steps':
-      // W16-B2: a marked working's verdicts, kept with the message.
-      return <StepsView b={b} w={w} tone={tone} />;
-    default:
-      return null;
-  }
-}
+// A kept answer has no questions to answer again.
+const noRetry = () => {};

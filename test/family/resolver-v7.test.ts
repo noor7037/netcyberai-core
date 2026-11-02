@@ -21,8 +21,8 @@ const topic = { board: 'CBSE', classLevel: 7, subject: 'science', openSubjects: 
 describe('prompt v7', () => {
   const v7 = resolverPrompt('v7', false);
 
-  it('is chosen by name (v9 is the default since W16), and names every required block in order', () => {
-    expect(LATEST_RESOLVER_PROMPT).toBe('v9');
+  it('is chosen by name (v10 is the default since W18-P2), and names every required block in order', () => {
+    expect(LATEST_RESOLVER_PROMPT).toBe('v10');
     expect(resolverPrompt('v7', true).version).toBe('v7');
     const system = v7.system(topic as never);
     const at = (s: string) => {

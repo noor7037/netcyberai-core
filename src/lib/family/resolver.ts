@@ -3,12 +3,12 @@ import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, t
 import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
 import { checkSearchQuery } from './check-work';
 import { checkMarkSystem, checkMarkUser, questionOfReading } from '@/lib/ai/prompts/family.homework';
-import { logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
+import { logCheckVerdict, logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
 import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
-import { verifyVerdicts } from './arithmetic-check';
-import { simFits } from './interactive';
+import { verdictsFromReading, verifyVerdicts } from './arithmetic-check';
+import { sceneSimFits, simFits } from './interactive';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
-import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
+import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
 import { sealItem, type PublicItem } from './items';
 import { classSubjects } from './catalog';
@@ -60,9 +60,11 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // (tutor-read.ts); the answer is that working marked step by step (family.homework prompt v2). The library's passages
 // are searched on the question the photo showed (the first line of the reading), not on the child's words, and no
 // planning call is made.
+// `sketch` (W18-P3): the attached picture is a drawing the child made on the sketch pad (one PNG or JPEG, checked by the
+// route); it reaches the prompt as `ResolverAsk.sketch`, so the tutor answers with a board that marks up the drawing.
 export type ResolveInput =
   | { kind: 'topic' | 'chapter'; key: string }
-  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true };
+  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true; sketch?: true };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -73,7 +75,9 @@ export type ResolverEvent =
   // W10 (C411): `missing`, the core blocks the plan asked for that never came (coreBlocks); `cut`, the answer ended
   // early (the call failed or timed out after some blocks, or the model stopped inside a block). `complete`: neither.
   // `chat`: the tutor chat the answer was kept in, and that chat's subject (the tutor window lists it there).
-  | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject } }
+  // W18-P1: `messageId`, the kept tutor answer's own message id (this child's, just written), so the window's read-aloud
+  // and "Teach me" can ask the server voice for it without a reload.
+  | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject }; messageId?: string }
   // W4-1 (C385): what became of the files sent with a tutor question, said before the answer.
   | { t: 'files'; message: string }
   // W16-A4: only in a call's answer (`call: true`): the sentences of the block just sent that are spoken, each with the
@@ -165,7 +169,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   const blocks = completeResponse(
     (cached.blocks as unknown[])
       .map((b) => parseStoredBlockLine(JSON.stringify(b)))
-      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title))),
+      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title)) && (!isSimScene(b) || sceneSimFits(b.sim, line.title))),
     core
   );
   if (!blocks) return null;
@@ -234,11 +238,15 @@ export type Pending = {
   teach: Teach | null;
   // W16-B2: the answer is a child's own working marked (ResolveInput.check); its core blocks are CHECK_CORE.
   check?: true;
+  // W18-Q3: that working as read ("Line N: …"), for the verdicts our own arithmetic gives when the model's do not pass.
+  reading?: string;
 };
 
 // The core blocks of a marked working: the verdicts and the similar question to try. The corrected working is added
 // only when a step was wrong, and the chapter's name only when passages were found.
 export const CHECK_CORE: readonly BlockType[] = ['steps', 'check'];
+// Every block a marked working may show: the chapter, the verdicts, the corrected working and the similar question.
+const CHECK_TYPES: readonly BlockType[] = ['sources', 'steps', 'worked_example', 'check'];
 
 // The planning call (null: no route, the default plan), the library's passages, and the answer's request written from
 // a plan.
@@ -282,6 +290,24 @@ export function namedSubject(text: string): Subject | 'other' | null {
   } catch {
     return null;
   }
+}
+
+// Why a steps line was refused, in a word (W18-Q3's log): never its text.
+function stepsRejectReason(text: string): string {
+  let o: { title?: unknown; items?: unknown };
+  try {
+    o = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1)) as typeof o;
+  } catch {
+    return 'not_json';
+  }
+  if (typeof o.title !== 'string' || o.title.trim().length === 0 || o.title.length > 120) return 'title';
+  if (!Array.isArray(o.items)) return 'no_items';
+  if (o.items.length > 5) return 'too_many_items';
+  const items = o.items as { label?: unknown; text?: unknown }[];
+  if (items.some((i) => typeof i?.label !== 'string' || i.label.trim().length === 0 || i.label.length > 30)) return 'label';
+  if (items.some((i) => typeof i?.text !== 'string' || i.text.trim().length === 0 || i.text.length > 120)) return 'text';
+  if (o.items.length < 3) return 'too_few_items';
+  return 'other';
 }
 
 // The "type" a JSON object names, for staff diagnostics (C318); "unknown" when it names none it could be.
@@ -393,6 +419,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     misconception,
     ...(teach ? { passages: teach.passages } : {}),
     ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
+    ...(input.kind === 'question' && input.sketch ? { sketch: true } : {}),
   };
   // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
   const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;
@@ -411,7 +438,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   }
   const question = input.kind === 'question' ? withAttached(input.text, input.attached) : null;
   const asked = question ?? `Explain "${line?.topicEn ?? line?.chapterEn ?? ''}" to a Class ${child.classLevel} student.`;
-  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const } : {}) };
+  return { ctx, line, known, open, classSubjects: ofClass, cacheable, promptVersion: prompt.version, text: prepared.text, moderation, asked, question, plan, teach: teach ? { ...teach, build } : null, ...(isCheck ? { check: true as const, reading: input.kind === 'question' ? (input.attached ?? '') : '' } : {}) };
 }
 
 // The planner reads the question and the start of what attached files say: enough to plan, not to answer.
@@ -481,6 +508,16 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     const name = words(`fam.subject.${named}`);
     emit({ t: 'refused', reason: 'not_open', message: words('fam.understand.askInSubject', { subject: name }), goTo: { subject: named, label: words('fam.understand.goToSubject', { subject: name }) } });
   };
+  // Check my work (W18-Q3): blocks that came before the verdicts, held until they are shown; and why the model's verdicts
+  // were refused (a reason, never the words), for the log.
+  const held: Block[] = [];
+  let stepsRejected: string | null = null;
+  const show = (b: Block, s: Subject) => {
+    kept.push(b);
+    if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null });
+    // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
+    emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
+  };
   const take = async (text: string) => {
     if (stopped) return;
     // The model's own refusal is a whole block of type "refuse" (a nested field of that name is not).
@@ -502,17 +539,23 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     const parsedBlock = parseBlockLine(text);
     objects += 1;
     if (!parsedBlock) {
-      rejected.push(typeOf(text));
+      const type = typeOf(text);
+      rejected.push(type);
+      if (p.check && type === 'steps' && stepsRejected === null) stepsRejected = stepsRejectReason(text);
       return;
     }
     // A marked working (Check my work): a verdict that restates a plain sum is settled by our own arithmetic (2 Nov).
     const b = p.check && parsedBlock.type === 'steps' ? verifyVerdicts(parsedBlock, ctx.child.language === 'hi' ? 'hi' : 'en') : parsedBlock;
+    // A marked working is only what the marking prompt asks for (W18-Q3): a lesson the model adds is not shown.
+    if (p.check && !CHECK_TYPES.includes(b.type)) return;
     // One block of each type, and at most one interactive block (M2-8): the first that passed. Under a plan (W9-B), an
     // interactive block only where the plan names one: a biology answer never shows a pendulum, whatever the model wrote.
     if (seen.has(b.type) || (isInteractive(b.type) && kept.some((k) => isInteractive(k.type)))) return;
     if (plan && isInteractive(b.type) && !plan.blocks.some(isInteractiveBlock)) return;
     // A simulation only where the question, its syllabus line or the block's own title is about what it models (2 Nov).
     if (b.type === 'simulation' && !simFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
+    // The same for a scene simulation of Classes 6 to 10 (W18-P2): a circuit under a question about the heart is dropped.
+    if (isSimScene(b) && !sceneSimFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {
@@ -520,10 +563,50 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
       if (!(await claim(s))) return refuseSubject(s);
     }
     seen.add(b.type);
-    kept.push(b);
-    if (kept.length === 1) emit({ t: 'meta', label: 'ai_made', cached: false, title: line?.title ?? null, subject: s, topicKey: line?.key ?? null });
-    // Progress and the sealed items are keyed to the syllabus line; a typed question is kept against its subject.
-    emit({ t: 'block', block: toPublic(b, ctx, line?.key ?? questionKey(ctx.child, s), s) });
+    // A marked working shows its verdicts first (W18-Q3): the corrected working and the similar question wait for them.
+    if (p.check && b.type !== 'steps' && b.type !== 'sources' && !seen.has('steps')) {
+      held.push(b);
+      return;
+    }
+    show(b, s);
+    if (p.check && b.type === 'steps') for (const h of held.splice(0)) show(h, s);
+  };
+  // Check my work always gives a verdict (W18-Q3). When the model's verdicts never passed (no steps line, or one our checks
+  // refused), our own arithmetic marks every working line that is a plain equation, and that block is shown first. Its
+  // words are our arithmetic on the child's own lines, which already passed the safety check as the question, so it
+  // needs no second check. With no line we can mark, the child is told so plainly, and the lesson the model wrote
+  // instead is not shown: a check that teaches without marking is what this replaces.
+  const markWithoutModel = async () => {
+    if (stopped || error !== null || refusedByModel || !subject) return;
+    let from: 'model' | 'arithmetic' | 'none' = seen.has('steps') ? 'model' : 'none';
+    try {
+      if (!seen.has('steps')) {
+        const s: Subject = subject;
+        const built = verdictsFromReading(p.reading ?? '', ctx.child.language === 'hi' ? 'hi' : 'en', words('fam.check.verdictTitle'));
+        if (!built) {
+          stopped = true;
+          emit({ t: 'refused', reason: 'not_found', message: words('fam.check.err.noVerdict') });
+        } else {
+          // Shown first in this answer: a child with no free subject claims it now, as for the model's first block.
+          let claimed = true;
+          if (mustClaim && claim) {
+            mustClaim = false;
+            claimed = await claim(s);
+          }
+          if (!claimed) refuseSubject(s);
+          else {
+            from = 'arithmetic';
+            seen.add('steps');
+            show(built, s);
+            for (const h of held.splice(0)) show(h, s);
+          }
+        }
+      }
+    } catch (err) {
+      error = err;
+    }
+    // Counts and reasons only, never the child's words: how often the model's verdicts fail and why.
+    logCheckVerdict({ from, stepsRejected, held: held.length });
   };
   // Lines are checked one after another, in order; the model's stream never waits for them.
   let queue = Promise.resolve();
@@ -558,6 +641,7 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     for (const o of scan(delta)) enqueue(o);
   }, late);
   await queue;
+  if (p.check) await markWithoutModel();
   // The plan's call is metered with the answer's, in the same transaction.
   const both = planSent;
   const sent: SentText = both

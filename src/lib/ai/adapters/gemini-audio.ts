@@ -1,4 +1,5 @@
 import { googleKeyLooksRight } from './gemini';
+import { realtimeInstructions } from './realtime-safety';
 import { audioFromBase64 } from './voice-audio';
 import {
   SPEECH_TIMEOUT_MS,
@@ -147,15 +148,24 @@ export const geminiSpeechAdapter: SpeechAdapter = {
   },
 };
 
+// The Live model may be saved with or without the vendor's "models/" prefix.
+const LIVE_MODEL = /^(models\/)?[a-z0-9][a-z0-9.-]{1,60}$/;
+export const liveChildSafetyInstruction = (request: { language: 'en' | 'hi' }): string => realtimeInstructions(request.language);
+
 // ---- realtime (Live) token ---------------------------------------------------------------------------------------
 
-const LIVE_URL = 'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1beta.GenerativeService.BidiGenerateContent';
+const LIVE_URL = 'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained';
 
 // Gemini Live's ephemeral token, minted here so the phone can connect to Google directly (no audio through this server).
 // The phone's realtime leg is still the OpenAI-shaped stub, so today this only lets Control choose Gemini for "Live
-// voice call" and mint a token. Before the phone really uses it, the child-safety rules (as OpenAI's session carries in
-// openai-realtime.ts) must be locked into the token's config; they are not here because that field is unconfirmed.
-// Unconfirmed: the auth_tokens request fields and whether the model needs a "models/" prefix.
+// voice call" and mint a token. The child-safety rules are inside the token's setup (the same text OpenAI's session
+// carries, from realtime-safety.ts).
+// Verified live by the founder on 2 Nov 2026: auth_tokens refuses `liveConnectConstraints` (400 'Unknown name');
+// `bidiGenerateContentSetup { model, generationConfig: { responseModalities } }` is accepted (200), with or without the
+// "models/" prefix and with `systemInstruction`; inside it the key `config` is rejected, it must be `generationConfig`.
+// A minted token is refused by the v1beta BidiGenerateContent socket (1008 "unregistered callers") and accepted by the
+// v1alpha BidiGenerateContentConstrained socket, which is LIVE_URL.
+// Not set: `fieldMask` (to stop a client overriding systemInstruction); its exact semantics are not confirmed.
 export const geminiRealtimeAdapter: RealtimeAdapter = {
   providerId: 'gemini',
   capability: 'realtime',
@@ -163,11 +173,11 @@ export const geminiRealtimeAdapter: RealtimeAdapter = {
   needsKey: true,
   capabilities: capabilities(['realtime']),
   keyLooksRight: googleKeyLooksRight,
-  modelLooksRight: (model) => GEMINI_MODEL.test(model),
+  modelLooksRight: (model) => LIVE_MODEL.test(model),
   async mintToken(request): Promise<RealtimeResult> {
     // No key: this provider is not set up, and no token is ever minted for it.
     if (!request.apiKey) throw new Error('not_switched_on');
-    if (!GEMINI_MODEL.test(request.model)) return { ok: false, failure: 'http', status: 400 };
+    if (!LIVE_MODEL.test(request.model)) return { ok: false, failure: 'http', status: 400 };
     const now = Date.now();
     const newSessionExpireTime = new Date(now + 60_000).toISOString();
     let res: Response;
@@ -179,7 +189,12 @@ export const geminiRealtimeAdapter: RealtimeAdapter = {
           uses: 1,
           expireTime: new Date(now + 30 * 60_000).toISOString(),
           newSessionExpireTime,
-          liveConnectConstraints: { model: request.model, config: { responseModalities: ['AUDIO'] } },
+          bidiGenerateContentSetup: {
+            // The vendor accepts either spelling; the prefix is added only when missing so it appears exactly once.
+            model: request.model.startsWith('models/') ? request.model : `models/${request.model}`,
+            generationConfig: { responseModalities: ['AUDIO'] },
+            systemInstruction: { parts: [{ text: liveChildSafetyInstruction(request) }] },
+          },
         }),
         redirect: 'error',
         signal: AbortSignal.timeout(MINT_TIMEOUT_MS),

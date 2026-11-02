@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
@@ -37,6 +38,9 @@ type Props = {
   onCheck: (file: File) => void;
   checking: boolean;
   onRemove: (file: ComposerFile) => void;
+  // W18-P3: Draw: the sketch pad's picture goes to the tutor through the file door. Resolves with the words of an error, or
+  // null once sent. Absent: no Draw button.
+  onSketch?: (file: File) => Promise<string | null>;
   fileError: string | null;
   voice: { secondsLeft: number } | null;
   // W16-B5: "Call <tutor>": the same composer, a second way in. Opens the call on this subject, keeping the chat.
@@ -50,6 +54,9 @@ type Props = {
   notice?: ReactNode;
 };
 
+// W18-P3: the sketch pad is loaded only when a child opens it, so the Study bundle does not carry it.
+const SketchPad = dynamic(() => import('./SketchPad').then((m) => m.SketchPad), { ssr: false });
+
 const ICON = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
 const ROUND = 'fam-press flex h-11 w-11 shrink-0 items-center justify-center rounded-full';
 
@@ -61,6 +68,8 @@ export function Composer(p: Props) {
   const menuWrap = useRef<HTMLDivElement>(null);
   const clip = useRef<HTMLButtonElement>(null);
   const [menu, setMenu] = useState(false);
+  const [sketching, setSketching] = useState(false);
+  const drawButton = useRef<HTMLButtonElement>(null);
   const voice = useVoiceRecorder({
     w,
     secondsLeft: p.voice?.secondsLeft,
@@ -145,6 +154,23 @@ export function Composer(p: Props) {
             {voice.state === 'recording' && <span aria-hidden="true" className="h-2.5 w-2.5 shrink-0 animate-pulse rounded-full bg-coral-deep motion-reduce:animate-none" />}
             {line.text}
           </p>
+        )}
+        {p.files && p.onSketch && !p.locked && p.attached.length === 0 && (
+          <div className="mx-1 flex">
+            <button
+              ref={drawButton}
+              type="button"
+              data-sketch-open
+              aria-haspopup="dialog"
+              onClick={() => setSketching(true)}
+              className="fam-press flex min-h-[44px] items-center gap-2 rounded-full bg-white px-4 text-sm font-bold text-ink shadow-sm ring-1 ring-ink/15"
+            >
+              <svg aria-hidden="true" className="h-5 w-5" {...ICON}>
+                <path d="M4 20l1-4L16 5l3 3L8 19z" />
+              </svg>
+              {w['fam.sketch.open']}
+            </button>
+          </div>
         )}
         <div className="flex items-end gap-2">
           <div className="fam-composer flex min-w-0 flex-1 flex-col rounded-2xl bg-white">
@@ -325,6 +351,16 @@ export function Composer(p: Props) {
           </button>
         </div>
       </form>
+      {sketching && p.onSketch && (
+        <SketchPad
+          w={w}
+          onSend={p.onSketch}
+          onClose={() => {
+            setSketching(false);
+            requestAnimationFrame(() => drawButton.current?.focus());
+          }}
+        />
+      )}
     </div>
   );
 }

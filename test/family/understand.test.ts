@@ -249,14 +249,14 @@ describe('a typed question’s subject, decided on the server', () => {
   const ask = async (text: string, j: Record<string, string>, screenSubject: string) => events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text, subject: screenSubject }, j)));
   const freeSubject = async (child: string) => (await db.pg.query(`select free_subject from family.children where child_id = $1`, [child])).rows[0].free_subject;
 
-  it('the prompt names the subject first under the default version (v9 since W16), whatever Control chose; a topic keeps v1, word for word', async () => {
+  it('the prompt names the subject first under the default version (v10 since W18-P2), whatever Control chose; a topic keeps v1, word for word', async () => {
     const { resolverPrompt } = await import('@/lib/ai/prompts/family.resolver');
     const v1 = await import('@/lib/ai/prompts/family.resolver/v1');
-    expect(resolverPrompt('v1', true).version).toBe('v9');
+    expect(resolverPrompt('v1', true).version).toBe('v10');
     expect(resolverPrompt('v1', false).version).toBe('v1');
     expect(resolverPrompt('v2', true).version).toBe('v2');
-    expect(resolverPrompt('v99', false).version).toBe('v9');
-    expect(resolverPrompt(null, true).version).toBe('v9');
+    expect(resolverPrompt('v99', false).version).toBe('v10');
+    expect(resolverPrompt(null, true).version).toBe('v10');
     const topic = { board: 'CBSE', classLevel: 9, subject: 'mathematics', openSubjects: ['mathematics'], classSubjects: ['mathematics', 'science'], chapter: 'Number System', topic: 'Rational numbers', question: null, language: 'en' as const, style: 'en' as const, followUp: null, misconception: null };
     expect(resolverPrompt('v2', false).system(topic)).toBe(v1.resolverSystem({ ...topic, subject: 'mathematics' }));
     expect(resolverPrompt('v3', false).user(topic)).toBe(v1.resolverUser({ ...topic, subject: 'mathematics' }));
@@ -373,17 +373,24 @@ describe('the tutor window’s questions (C375)', () => {
     const v = chapterView(showcaseChapter('nc.showcase.equal-fractions')!, 'en');
     ai.lines = [named('mathematics'), ...GOOD.map((g) => JSON.stringify(g))];
     const ev = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', childId: SIBLING, tutor: { subject: 'mathematics', chapterKey: v.key, blockId: v.ids[0], childId: SIBLING } }, jar)));
-    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId: expect.any(String), subject: 'mathematics' } });
+    expect(ev.at(-1)).toEqual({ t: 'done', complete: true, missing: [], cut: false, chat: { chatId: expect.any(String), subject: 'mathematics' }, messageId: expect.any(String) });
     expect(ai.calls.at(-1)!.user).toContain(`asked while reading: ${v.title}`);
     const kept = await turns(CHILD);
     expect(kept).toEqual([
       { role: 'child', body: 'Why are these equal?', chapter_key: v.key, block_id: v.ids[0] },
       { role: 'tutor', body: null, chapter_key: null, block_id: null },
     ]);
+    // W18-P1: the done line names the kept answer: this family's own tutor message for the chosen child, never the
+    // sibling's the body named, never another family's.
+    const named_ = (ev.at(-1) as { messageId: string }).messageId;
+    expect((await db.pg.query(`select account_id, child_id, role from family.tutor_messages where message_id = $1`, [named_])).rows).toEqual([{ account_id: ACCOUNT, child_id: CHILD, role: 'tutor' }]);
+    expect(named_).not.toBe(String((await db.pg.query(`select message_id from family.tutor_messages where child_id = $1 and role = 'child'`, [CHILD])).rows[0].message_id));
+    expect((await db.pg.query(`select 1 from family.tutor_messages where message_id = $1 and account_id = $2`, [named_, OTHER])).rows).toEqual([]);
     expect(JSON.stringify((await db.pg.query(`select blocks from family.tutor_messages where child_id = $1 and role = 'tutor'`, [CHILD])).rows)).not.toMatch(/"type":"(check|practice)"|"options"/);
     expect(await turns(SIBLING)).toEqual([]);
-    // A follow-up is answered but not kept again.
-    await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', followUp: 'simpler', tutor: { subject: 'mathematics' } }, jar)));
+    // A follow-up is answered but not kept again, so its done line names no message.
+    const again = await events(await R.understand.POST(post('/api/family/understand', { kind: 'question', text: 'Why are these equal?', followUp: 'simpler', tutor: { subject: 'mathematics' } }, jar)));
+    expect(again.filter((e: { t: string }) => e.t === 'done' && 'messageId' in e)).toEqual([]);
     expect((await turns(CHILD)).length).toBe(2);
   });
   it('a reader context that is not ours, or a file that is not this child’s, is refused before the tutor is asked', async () => {

@@ -481,6 +481,14 @@ export async function runFamilyMatrix({ browser, base, db, secret, out, only, ai
           // `call` (W16-A4): the call's hearing and speaking, scripted: the recording "hears" the scripted question, the speak
           // route says the server voice is not set up (so the phone's own voice reads), and the marks are taken without a log.
           if (opts.call) {
+            // W18: the recorder measures the microphone before sending (voice-energy.ts) and Chromium's fake device is
+            // near silent, so the analyser is told a steady voice-level signal here; the product code is untouched.
+            await context.addInitScript(() => {
+              const loud = (arr) => {
+                for (let i = 0; i < arr.length; i++) arr[i] = 0.2 * Math.sin(i / 7);
+              };
+              if (typeof AnalyserNode !== 'undefined') AnalyserNode.prototype.getFloatTimeDomainData = function (arr) { loud(arr); };
+            });
             await context.route('**/api/family/voice', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ text: CALL_WORDS[lang].heard, left: 100, maxSeconds: 30 }) }));
             await context.route('**/api/family/voice/speak', (r) => r.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: 'not_set_up' }) }));
             await context.route('**/api/family/voice/call/marks', (r) => r.fulfill({ status: 204 }));

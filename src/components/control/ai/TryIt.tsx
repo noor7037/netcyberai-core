@@ -68,7 +68,9 @@ export function TryIt({ profileId, t }: { profileId: string; t: T }) {
           {!got.ok && (
             <>
               <p data-ai-try-failed className="text-sm font-semibold text-red-800">
-                {t("control.ai.try.failed", { reason: failureWords(t, got.failure ?? "failed") })}
+                {typeof got.status === "number"
+                  ? t("control.ai.try.failedStatus", { status: got.status })
+                  : t("control.ai.try.failed", { reason: failureWords(t, got.failure ?? "failed") })}
               </p>
               {got.provider && (
                 <p className="break-all text-xs text-slate/80">
