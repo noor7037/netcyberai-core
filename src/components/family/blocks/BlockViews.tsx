@@ -42,6 +42,8 @@ export const BLOCK_TONE: Record<string, { bar: string; head: string; dot: string
   model_3d: INTERACTIVE_TONE,
   // W9-C: the figure with the diagrams (lilac), steps and the timeline blue, the photograph teal, the videos coral.
   figure: LILAC_TONE,
+  // W16-A2: the drawing board wears the figure's lilac.
+  board: LILAC_TONE,
   steps: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
   timeline: { bar: 'border-l-azure', head: 'bg-azure/10', dot: 'bg-azure' },
   image: { bar: 'border-l-emerald', head: 'bg-emerald/10', dot: 'bg-emerald' },

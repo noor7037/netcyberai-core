@@ -8,6 +8,11 @@ export const UNDERSTAND_KEYS: MessageKey[] = [
   'fam.block.practice', 'fam.check.hint', 'fam.check.hintLabel', 'fam.check.right', 'fam.check.notYet', 'fam.check.notThis', 'fam.check.correct', 'fam.check.explainAgain', 'fam.block.mindMap', 'fam.block.photo', 'fam.block.photoCredit',
   // W10-6: the scene, the chart and the steps' replay.
   'fam.block.sceneTap', 'fam.block.chartCaption', 'fam.block.chartUnit', 'fam.block.chartTable', 'fam.block.replay',
+  // W16-A2: the drawing board, the citation chip and the Class 8 Science simulations.
+  'fam.board.prev', 'fam.board.next', 'fam.board.all', 'fam.board.step', 'fam.board.picture', 'fam.cite.chapter', 'fam.cite.chapterUnit', 'fam.cite.general',
+  'fam.sim.pressure_depth.depth', 'fam.sim.pressure_depth.readout', 'fam.sim.pressure_depth.formula', 'fam.sim.pressure_depth.note', 'fam.sim.pressure_depth.picture',
+  'fam.sim.friction_surface.surface', 'fam.sim.friction_surface.speed', 'fam.sim.friction_surface.dry', 'fam.sim.friction_surface.wet', 'fam.sim.friction_surface.ice', 'fam.sim.friction_surface.readout', 'fam.sim.friction_surface.formula', 'fam.sim.friction_surface.note', 'fam.sim.friction_surface.picture',
+  'fam.sim.sound_wave.frequency', 'fam.sim.sound_wave.amplitude', 'fam.sim.sound_wave.readoutPitch', 'fam.sim.sound_wave.readoutLoud', 'fam.sim.sound_wave.note', 'fam.sim.sound_wave.picture',
   'fam.understand.loading', 'fam.understand.missing', 'fam.understand.cut', 'fam.understand.part.explanation', 'fam.understand.part.check', 'fam.understand.part.practice', 'fam.understand.and', 'fam.understand.followUps', 'fam.understand.directAnswer', 'fam.understand.show3d', 'fam.followUp.simpler', 'fam.followUp.another_example',
   'fam.followUp.differently', 'fam.followUp.practise_more', 'fam.err.network', 'fam.plan.comesBack',
   ...INTERACTIVE_KEYS,

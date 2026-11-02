@@ -510,6 +510,32 @@
   }
 }
 
+/* ---- the drawing board (W16-A2, docs/39 §6) ------------------------------------------------------------------------ */
+/* The newest step fades in and its lines draw themselves (pathLength 1). None of it under prefers-reduced-motion,
+   where BoardView draws every step at once anyway. */
+.fam-board-in {
+  animation: fam-board-in 420ms ease-out both;
+}
+.fam-board-draw {
+  stroke-dasharray: 1;
+  animation: fam-board-draw 700ms ease-out both;
+}
+@keyframes fam-board-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fam-board-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fam-board-in,
+  .fam-board-draw {
+    animation: none !important;
+    stroke-dasharray: none;
+  }
+}
+
 /* ---- loading (C230-Y) ----------------------------------------------------------------------------------------------- */
 
 .fam-skeleton {
@@ -809,14 +835,14 @@ div.fam-lesson {
 }
 /* In a lilac section (a figure, a diagram) the drawing's second tone, teal, takes the plum accent as well, and its white
    fills the card surface, so the drawing sits in one family of colour. */
-.fam-lesson [data-tint='lilac'] svg [fill='#0F766E' i] {
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [fill='#0F766E' i] {
   fill: var(--fl-accent);
 }
-.fam-lesson [data-tint='lilac'] svg [stroke='#0F766E' i] {
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [stroke='#0F766E' i] {
   stroke: var(--fl-accent);
 }
-.fam-lesson [data-tint='lilac'] svg [fill='white' i],
-.fam-lesson [data-tint='lilac'] svg [fill='#ffffff' i] {
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [fill='white' i],
+.fam-lesson [data-tint='lilac']:not([data-block='board']) svg [fill='#ffffff' i] {
   fill: var(--fl-card);
 }
 
@@ -944,3 +970,4 @@ div.fam-lesson {
 .fam-lesson [data-direct-answer-card] .fam-lesson-eyebrow {
   margin-top: 0;
 }
+
