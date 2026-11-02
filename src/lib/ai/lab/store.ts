@@ -149,12 +149,15 @@ export type LabResult = {
   score: number | null;
   notes: string | null;
   createdAt: string;
+  // W16-A5: the rules grade (0 to 100) of a case graded by rules, and what it found wanting; null otherwise.
+  rulesScore?: number | null;
+  rulesProblems?: string[] | null;
   // G5 (C373): what the answer cost at today's price for its provider and model (control.ai_model_prices); null when no
   // price is set. Worked out when read, never stored with the answer.
   costUsd: number | null;
 };
 
-const RESULT_COLUMNS = `result_id, case_id, provider_id, model, output_text, latency_ms, first_token_ms, tokens_in, tokens_out, json_valid, check_passed, error_class, score, notes, created_at`;
+const RESULT_COLUMNS = `result_id, case_id, provider_id, model, output_text, latency_ms, first_token_ms, tokens_in, tokens_out, json_valid, check_passed, error_class, score, notes, created_at, rules_score, rules_problems`;
 const resultOf = (r: Record<string, unknown>): LabResult => ({
   resultId: String(r.result_id),
   caseId: String(r.case_id),
@@ -171,6 +174,8 @@ const resultOf = (r: Record<string, unknown>): LabResult => ({
   score: r.score === null || r.score === undefined ? null : Number(r.score),
   notes: (r.notes as string | null) ?? null,
   createdAt: new Date(r.created_at as string).toISOString(),
+  rulesScore: r.rules_score === null || r.rules_score === undefined ? null : Number(r.rules_score),
+  rulesProblems: Array.isArray(r.rules_problems) ? (r.rules_problems as string[]) : null,
   costUsd: null,
 });
 
@@ -184,13 +189,13 @@ const priced = (r: LabResult, prices: Prices): LabResult => ({ ...r, costUsd: co
 // Step 3, in the caller's second transaction. Running a cell again replaces its answer and clears its score.
 export async function saveLabResult(db: Sql, runId: string, caseId: string, link: LabLink, o: LabOutcome): Promise<LabResult> {
   const { rows } = await db.query(
-    `insert into control.ai_eval_results (run_id, case_id, provider_id, model, output_text, latency_ms, first_token_ms, tokens_in, tokens_out, json_valid, check_passed, error_class)
-     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    `insert into control.ai_eval_results (run_id, case_id, provider_id, model, output_text, latency_ms, first_token_ms, tokens_in, tokens_out, json_valid, check_passed, error_class, rules_score, rules_problems)
+     values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
      on conflict (run_id, case_id, provider_id, model) do update set output_text = excluded.output_text, latency_ms = excluded.latency_ms,
        first_token_ms = excluded.first_token_ms, tokens_in = excluded.tokens_in, tokens_out = excluded.tokens_out, json_valid = excluded.json_valid,
-       check_passed = excluded.check_passed, error_class = excluded.error_class, score = null, notes = null, scored_by = null, scored_at = null, created_at = now()
+       check_passed = excluded.check_passed, error_class = excluded.error_class, rules_score = excluded.rules_score, rules_problems = excluded.rules_problems, score = null, notes = null, scored_by = null, scored_at = null, created_at = now()
      returning ${RESULT_COLUMNS}`,
-    [runId, caseId, link.provider, link.model, o.outputText, o.latencyMs, o.firstTokenMs, o.tokensIn, o.tokensOut, o.jsonValid, o.checkPassed, o.errorClass]
+    [runId, caseId, link.provider, link.model, o.outputText, o.latencyMs, o.firstTokenMs, o.tokensIn, o.tokensOut, o.jsonValid, o.checkPassed, o.errorClass, o.rulesScore ?? null, o.rulesProblems ?? null]
   );
   return priced(resultOf(rows[0]), await pricesOf(db));
 }

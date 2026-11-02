@@ -9984,4 +9984,26 @@ export const en = {
   'school.aiPages.set': 'Set for this school',
   'school.aiPages.usePlan': 'Use the plan’s limit',
   // w15-d end
+  // w16-a5 start
+  'control.ai.latency.title': 'Speed of answers, last 24 hours',
+  'control.ai.latency.lead': 'How long a child waits for each service. First words is the time until the first text shows; whole answer is the time until it ends. Each shows the typical time (half of the answers are faster) and the slow end (9 in 10 are faster), against its target.',
+  'control.ai.latency.firstText': 'First words',
+  'control.ai.latency.whole': 'Whole answer',
+  'control.ai.latency.spread': 'Typical {p50} s, slow end {p95} s ({count} answers)',
+  'control.ai.latency.target': 'Target: {value} s or less',
+  'control.ai.latency.targetNone': 'Target: not set yet',
+  'control.ai.latency.firstTextEmpty': 'Not measured yet. First-word times appear once answers are quality-checked.',
+  'control.ai.latency.wholeEmpty': 'No answers in the last 24 hours.',
+  'control.ai.latency.status.ok': 'On target',
+  'control.ai.latency.status.slow': 'Slow end over target',
+  'control.ai.latency.status.over': 'Over target',
+  'control.ai.latency.status.none': 'Nothing to compare',
+  'control.ai.lab.area.class8_science': 'Class 8 Science (graded by rules)',
+  'control.ai.lab.class8.only': 'Run only Class 8 Science ({count} questions)',
+  'control.ai.lab.class8.score': 'Rules grade {score} of 100',
+  'control.ai.lab.class8.problem.no_citation': 'No chapter named at the end',
+  'control.ai.lab.class8.problem.wrong_chapter': 'Named the wrong chapter',
+  'control.ai.lab.class8.problem.key_phrases': 'Fewer than two of the key words',
+  'control.ai.lab.class8.problem.off_band': 'Too short, too long or too hard for Class 8',
+  // w16-a5 end
 } as const;

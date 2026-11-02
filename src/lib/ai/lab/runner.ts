@@ -1,5 +1,6 @@
 import { CALL_TIMEOUT_MS, type AdapterResult, type TextAdapter } from '../adapters/types';
 import type { LabCase } from './cases';
+import { RULES_PASS, gradeByRules } from './class8-science';
 
 // One lab call (G4, C372): a case sent to one provider and model, with no database connection held. The key was opened
 // by the caller's short transaction (store.ts) and is handed in; nothing here keeps or logs it, the prompt or the
@@ -33,6 +34,9 @@ export type LabOutcome = {
   jsonValid: boolean | null;
   checkPassed: boolean | null;
   errorClass: LabErrorClass | null;
+  // W16-A5: the rules grade (0 to 100) and what it found wanting, for a case graded by rules; null for any other.
+  rulesScore?: number | null;
+  rulesProblems?: string[] | null;
 };
 
 // The longest answer kept for the table: enough to score, bounded for the database.
@@ -108,6 +112,8 @@ export async function runLabCall(adapter: TextAdapter, apiKey: string, model: st
     return { outputText: '', latencyMs, firstTokenMs: first, tokensIn: 0, tokensOut: 0, jsonValid: null, checkPassed: null, errorClass: errorClassOf(r, latencyMs, limitMs) };
   }
   const jsonValid = c.expect === 'json' ? jsonValidFor(r.text, c.jsonKeys) : null;
+  // A case graded by rules (the Class 8 Science set) is scored here, with no second model: the check passes at RULES_PASS.
+  const graded = c.grade ? gradeByRules(c.grade, r.text) : null;
   return {
     outputText: r.text.slice(0, LAB_OUTPUT_MAX),
     latencyMs,
@@ -115,7 +121,9 @@ export async function runLabCall(adapter: TextAdapter, apiKey: string, model: st
     tokensIn: Math.max(0, Math.round(r.tokensIn)),
     tokensOut: Math.max(0, Math.round(r.tokensOut)),
     jsonValid,
-    checkPassed: checkPassedFor(r.text, c.mustContain),
+    checkPassed: graded ? graded.score >= RULES_PASS : checkPassedFor(r.text, c.mustContain),
     errorClass: jsonValid === false ? 'output_schema_invalid' : null,
+    rulesScore: graded ? graded.score : null,
+    rulesProblems: graded ? graded.problems : null,
   };
 }

@@ -22,7 +22,7 @@ import type { MessageKey } from '@/lib/i18n';
 
 export type LabData = LabSetup & { cases: LabCaseSummary[]; runs: LabRunSummary[]; curriculumTotal?: number; scopes?: Scope[] };
 
-const AREAS: LabCaseArea[] = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge', 'curriculum'];
+const AREAS: LabCaseArea[] = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge', 'curriculum', 'class8_science'];
 // A run takes at most 200 cases (the route's limit). The cases built from the syllabus are many, so a run takes the
 // hand-written ones chosen first and then curriculum cases spread evenly across what is listed.
 const RUN_MAX = 200;
@@ -37,7 +37,7 @@ const day = (v: string) => new Date(v).toLocaleString('en-IN', { day: 'numeric',
 export function QualityLab({ initial }: { initial: LabData }) {
   const { t } = useWords();
   const [data, setData] = useState<LabData>(initial);
-  const [areas, setAreas] = useState<Set<LabCaseArea>>(() => new Set(AREAS.filter((a) => a !== 'curriculum')));
+  const [areas, setAreas] = useState<Set<LabCaseArea>>(() => new Set(AREAS.filter((a) => a !== 'curriculum' && a !== 'class8_science')));
   const first = initial.suggestions;
   const [models, setModels] = useState<LabLink[]>(() => {
     const pick = (i: number): LabLink => first[i] ?? { provider: initial.providers[Math.min(i, initial.providers.length - 1)] ?? '', model: '' };
@@ -173,6 +173,11 @@ export function QualityLab({ initial }: { initial: LabData }) {
           <button type="button" className={TAP} disabled={busy} onClick={() => setAreas(new Set())}>
             {t('control.ai.lab.cases.none')}
           </button>
+          {/* w16-a5 start */}
+          <button type="button" data-lab-class8-only className={TAP} disabled={busy} onClick={() => setAreas(new Set<LabCaseArea>(['class8_science']))}>
+            {t('control.ai.lab.class8.only', { count: data.cases.filter((c) => c.area === 'class8_science').length })}
+          </button>
+          {/* w16-a5 end */}
         </div>
         <div className="grid gap-2 sm:grid-cols-2">
           {AREAS.map((a) => {
@@ -443,7 +448,16 @@ function Row({ cell, draft, busy, onDraft, onSave, onAgain }: { cell: LabResult;
         {cell.costUsd === null ? t('control.ai.lab.col.costUnknown') : t('control.ai.stat.usd', { value: cell.costUsd.toFixed(6) })}
       </td>
       <td className="px-2 py-2">{yes(cell.jsonValid, 'json')}</td>
-      <td className="px-2 py-2">{yes(cell.checkPassed, 'check')}</td>
+      <td className="px-2 py-2">
+        {yes(cell.checkPassed, 'check')}
+        {/* w16-a5 start */}
+        {cell.rulesScore != null && (
+          <span data-lab-rules-score className="block whitespace-nowrap text-xs text-slate/80" title={(cell.rulesProblems ?? []).map((p) => t(`control.ai.lab.class8.problem.${p}` as MessageKey)).join(', ') || undefined}>
+            {t('control.ai.lab.class8.score', { score: cell.rulesScore })}
+          </span>
+        )}
+        {/* w16-a5 end */}
+      </td>
       <td className="px-2 py-2">
         <select aria-label={t('control.ai.lab.table.score')} id={`score-${cell.resultId}`} className={`${FIELD} w-32`} value={d.score} onChange={(e) => onDraft({ ...d, score: e.target.value })}>
           <option value="">{t('control.ai.lab.table.scoreNone')}</option>

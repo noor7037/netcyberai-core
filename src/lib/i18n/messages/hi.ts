@@ -9970,4 +9970,26 @@ export const hi: Record<keyof typeof en, string> = {
   'school.aiPages.set': 'इस स्कूल के लिए तय करें',
   'school.aiPages.usePlan': 'प्लान की सीमा लगाएँ',
   // w15-d end
+  // w16-a5 start
+  'control.ai.latency.title': 'जवाबों की रफ़्तार, पिछले 24 घंटे',
+  'control.ai.latency.lead': 'हर सेवा के लिए बच्चे को कितना इंतज़ार करना पड़ा। पहले शब्द वह समय है जब तक पहला लिखा हुआ अंश दिखता है; पूरा जवाब वह समय है जब तक जवाब पूरा होता है। हर एक में सामान्य समय (आधे जवाब इससे तेज़) और धीमा सिरा (10 में से 9 जवाब इससे तेज़) लक्ष्य के सामने दिखता है।',
+  'control.ai.latency.firstText': 'पहले शब्द',
+  'control.ai.latency.whole': 'पूरा जवाब',
+  'control.ai.latency.spread': 'सामान्य {p50} सेकंड, धीमा सिरा {p95} सेकंड ({count} जवाब)',
+  'control.ai.latency.target': 'लक्ष्य: {value} सेकंड या कम',
+  'control.ai.latency.targetNone': 'लक्ष्य: अभी तय नहीं',
+  'control.ai.latency.firstTextEmpty': 'अभी नापा नहीं गया। पहले शब्दों का समय तब दिखेगा जब जवाबों की गुणवत्ता जाँच होगी।',
+  'control.ai.latency.wholeEmpty': 'पिछले 24 घंटे में कोई जवाब नहीं।',
+  'control.ai.latency.status.ok': 'लक्ष्य के भीतर',
+  'control.ai.latency.status.slow': 'धीमा सिरा लक्ष्य से ऊपर',
+  'control.ai.latency.status.over': 'लक्ष्य से ऊपर',
+  'control.ai.latency.status.none': 'तुलना के लिए कुछ नहीं',
+  'control.ai.lab.area.class8_science': 'कक्षा 8 विज्ञान (नियमों से जाँचा गया)',
+  'control.ai.lab.class8.only': 'सिर्फ़ कक्षा 8 विज्ञान चलाएँ ({count} प्रश्न)',
+  'control.ai.lab.class8.score': 'नियमों से ग्रेड {score} में से 100',
+  'control.ai.lab.class8.problem.no_citation': 'अंत में अध्याय का नाम नहीं',
+  'control.ai.lab.class8.problem.wrong_chapter': 'गलत अध्याय का नाम',
+  'control.ai.lab.class8.problem.key_phrases': 'मुख्य शब्दों में से दो से कम',
+  'control.ai.lab.class8.problem.off_band': 'कक्षा 8 के लिए बहुत छोटा, बहुत लंबा या बहुत कठिन',
+  // w16-a5 end
 };

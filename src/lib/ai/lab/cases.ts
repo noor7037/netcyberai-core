@@ -6,6 +6,7 @@ import hindi from '../../../../data/ai-lab/hindi.json';
 import englishRoleplay from '../../../../data/ai-lab/english-roleplay.json';
 import multiTurn from '../../../../data/ai-lab/multi-turn.json';
 import edge from '../../../../data/ai-lab/edge.json';
+import { class8LabCases, type RulesGrade } from './class8-science';
 
 // The Quality Lab's cases (G4, C372): NetCyber-authored, made-up questions and personas, kept in the repository
 // (data/ai-lab/*.json) and never in the database. Each is a system prompt, the conversation so far, what kind of answer
@@ -17,7 +18,8 @@ import edge from '../../../../data/ai-lab/edge.json';
 export const LAB_AREAS = ['maths', 'science', 'humanities', 'hindi', 'english_roleplay', 'multi_turn', 'edge'] as const;
 export type LabArea = (typeof LAB_AREAS)[number];
 // The cases built from the syllabus (W9-D, curriculum-cases.ts) are a further area; they live in the database.
-export type LabCaseArea = LabArea | 'curriculum';
+// The Class 8 Science set (W16-A5, class8-science.ts) is a further one, written in the code and graded by rules.
+export type LabCaseArea = LabArea | 'curriculum' | 'class8_science';
 export type LabCaseTags = { board: string; classLevel: number; subject: string; unit: string; type: string; band: string };
 
 export type LabCase = {
@@ -33,6 +35,8 @@ export type LabCase = {
   timeoutMs?: number;
   rubric: string[];
   tags?: LabCaseTags;
+  // A case graded by rules alone (W16-A5): the chapter named, the key phrases and the depth for the band; no second model.
+  grade?: RulesGrade;
 };
 
 const CASE_ID = /^[a-z][a-z0-9-]{2,40}$/;
@@ -84,7 +88,7 @@ let cached: { cases: LabCase[]; version: string } | null = null;
 
 export function labDataset(): { cases: LabCase[]; version: string } {
   if (cached) return cached;
-  const cases = FILES.flatMap(parseCaseFile);
+  const cases = [...FILES.flatMap(parseCaseFile), ...class8LabCases()];
   const ids = new Set<string>();
   for (const c of cases) {
     if (ids.has(c.id)) throw new Error(`lab case ${c.id} appears twice`);
