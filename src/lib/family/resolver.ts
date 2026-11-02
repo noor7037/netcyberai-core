@@ -68,6 +68,9 @@ export type ResolverEvent =
   | { t: 'done'; complete: boolean; missing: BlockType[]; cut: boolean; chat?: { chatId: string; subject: Subject } }
   // W4-1 (C385): what became of the files sent with a tutor question, said before the answer.
   | { t: 'files'; message: string }
+  // W16-A4: only in a call's answer (`call: true`): the sentences of the block just sent that are spoken, each with the
+  // seal the server voice reads it from (src/lib/family/call-say.ts). The words are the block's own, cleaned.
+  | { t: 'say'; lines: { text: string; token: string }[] }
   | { t: 'refused'; reason: AiRefusal | 'not_found' | 'not_school_study' | 'not_open' | 'other_subject' | 'not_ready' | 'unsafe'; message: string; goTo?: { subject: Subject; label: string } };
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };

@@ -21,6 +21,9 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   // close button and its Next button where the tabs would be.
   if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check')) return null;
   const active = (t: DockTab) => (t === 'home' ? path === '/family' : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
+  // close button and its Next button where the tabs would be. The call (W16-A4) is a full-screen task too.
+  if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call')) return null;
+  const active = (t: DockTab) => (t === 'home' ? path === '/family' : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') : path.startsWith(HREF[t]));
   // D1 (C230-Q): a floating dock above the phone's home bar; the open tab sits on a coloured pill that pops in.
   return (
     <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[calc(var(--fam-bottom,0px)+0.5rem)]">

@@ -122,6 +122,8 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.text_to_speech', carriesChildWords: true, needs: ['tts'], providerId: null, enabled: true, usesPrompt: false }),
       // W16-A1: the realtime voice call, a slot: no adapter, no prompt; it hears and speaks.
       expect.objectContaining({ profileId: 'family.voice_call', carriesChildWords: true, needs: ['stt', 'tts'], providerId: null, enabled: true, usesPrompt: false }),
+      // The call's realtime voice (W16-A4): a child's voice goes to the provider, so a children's-words profile; no provider yet.
+      expect.objectContaining({ profileId: 'family.voice_call', carriesChildWords: true, needs: ['realtime'], providerId: null, enabled: true, usesPrompt: false }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
     ]);

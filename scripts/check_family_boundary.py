@@ -86,6 +86,8 @@ FAMILY_DOORS = {
     # from the paper the family is already shown. It draws only; it reads nothing but the page pictures the caller
     # fetches through the family's own route.
     "@/lib/marking/checked-pdf": {"src/components/family/CheckedPaperPdf.tsx"},
+    # The call's latency marks (W16-A4): one structured log line of numbers, from this one route; no account, child or words.
+    "@/lib/observability/log": {"src/app/api/family/voice/call/marks/route.ts"},
 }
 # Packages and the framework, allowed everywhere.
 # pdfjs-dist (W4-1, C385): the tutor reads an attached PDF's text layer on the server. A file parser, not a vendor: no

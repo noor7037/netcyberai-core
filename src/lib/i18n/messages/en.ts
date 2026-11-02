@@ -10099,4 +10099,23 @@ export const en = {
   'control.family.tutors.off': 'Off',
   'control.family.tutors.all': 'All subjects',
   // w16-a3 end
+  // w16-a4 start
+  'fam.call.title': 'Talk to your tutor',
+  'fam.call.with': 'Talking with {tutor}',
+  'fam.call.tutorDefault': 'Your tutor',
+  'fam.call.end': 'End call',
+  'fam.call.mic.talk': 'Tap to talk',
+  'fam.call.mic.done': 'Tap when you are done',
+  'fam.call.mic.thinking': 'Thinking…',
+  'fam.call.mic.speaking': 'Tap to talk instead',
+  'fam.call.you': 'You said',
+  'fam.call.captions': 'Captions',
+  'fam.call.board': 'Board',
+  'fam.call.empty': 'Tap the button and ask your question out loud.',
+  'fam.call.boardEmpty': 'Pictures and steps appear here as your tutor explains.',
+  'fam.call.hold': 'You can also press and hold the button while you talk.',
+  'control.ai.capability.realtime': 'live two-way voice',
+  'control.ai.profile.name.family.voice_call': 'Live voice call',
+  'control.ai.profile.about.family.voice_call': 'The call’s live voice: the phone talks to the provider directly with a short-lived token the server makes, so no audio passes through NetCyberAI. Leave it empty and the call listens, answers and speaks sentence by sentence instead.',
+  // w16-a4 end
 } as const;

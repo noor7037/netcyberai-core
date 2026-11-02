@@ -1,8 +1,9 @@
-import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
+import { createCipheriv, createDecipheriv, randomBytes, randomUUID } from 'crypto';
 import { profileReady, voiceCharsLeft, type AiContext } from '@/lib/ai/platform';
 import { guarded, loadChapter } from './chapter-store';
 import { chapterView } from './chapters';
 import { activeChild, isPrePrimary, listChildren, type FamilyChild } from './children';
+import { callGate } from './call-gate';
 import { consentState } from './consent';
 import { LIVE_REPLY_MAX, isUuid, liveChild } from './english/live';
 import { familyHashKey } from './secret';
@@ -16,8 +17,10 @@ import { indiaDate } from '@/lib/time/india';
 //   - a live English reply's sentence while it streams (not kept yet): the live route seals each checked sentence for
 //     this account, child and session (AES-256-GCM, a key derived for this purpose only, fifteen minutes), and the
 //     speak route opens the seal. A phone can neither read nor make one, nor use another child's.
-// Each comes with the gate of the screen it belongs to: the reader's (the parent's yes to learning, Class 1 up), or
-// live English's (liveChild: the switches and all three consents).
+//   - a call's sentence (W16-A4): the understand route, answering a call, seals each sentence of the answer it checked,
+//     for this account and child (a marked seal, so it opens only as a call line), and the speak route opens it.
+// Each comes with the gate of the screen it belongs to: the reader's (the parent's yes to learning, Class 1 up), live
+// English's (liveChild: the switches and all three consents), or the call's (callGate: the voice input's own).
 
 type Db = { query: (sql: string, params?: unknown[]) => Promise<{ rows: Record<string, unknown>[]; rowCount?: number | null }> };
 
@@ -26,18 +29,26 @@ const LINE_LIFE_MS = 15 * 60 * 1000;
 
 // ---- the live sentences' seal ----------------------------------------------------------------------------------------
 
-type LineSecret = { acct: string; c: string; sid: string; text: string; exp: number };
+// `k`: 'call' marks a sentence sealed for a call; an unmarked one is a live English sentence. Neither opens as the other.
+type LineSecret = { acct: string; c: string; sid: string; text: string; exp: number; k?: 'call' };
 
-export function sealLine(ctx: { accountId: string; childId: string; sessionId: string }, text: string, now = Date.now()): string {
-  const secret: LineSecret = { acct: ctx.accountId, c: ctx.childId, sid: ctx.sessionId, text, exp: now + LINE_LIFE_MS };
+function sealSecret(secret: LineSecret): string {
   const iv = randomBytes(12);
   const cipher = createCipheriv('aes-256-gcm', familyHashKey('voice-lines.v1'), iv);
   const body = Buffer.concat([cipher.update(JSON.stringify(secret), 'utf8'), cipher.final()]);
   return [iv, cipher.getAuthTag(), body].map((b) => b.toString('base64url')).join('.');
 }
 
-// The sealed sentence, when the seal is whole, unexpired and this account's child's; null otherwise.
-export function openLine(token: unknown, ctx: { accountId: string; childId: string }, now = Date.now()): { sessionId: string; text: string } | null {
+export function sealLine(ctx: { accountId: string; childId: string; sessionId: string }, text: string, now = Date.now()): string {
+  return sealSecret({ acct: ctx.accountId, c: ctx.childId, sid: ctx.sessionId, text, exp: now + LINE_LIFE_MS });
+}
+
+// A call's sentence (W16-A4), sealed by the understand route for this account and child.
+export function sealCallLine(ctx: { accountId: string; childId: string }, text: string, now = Date.now()): string {
+  return sealSecret({ acct: ctx.accountId, c: ctx.childId, sid: randomUUID(), text, exp: now + LINE_LIFE_MS, k: 'call' });
+}
+
+function openSecret(token: unknown, ctx: { accountId: string; childId: string }, now: number): LineSecret | null {
   if (typeof token !== 'string' || token.length > 4000) return null;
   const parts = token.split('.');
   if (parts.length !== 3) return null;
@@ -50,21 +61,34 @@ export function openLine(token: unknown, ctx: { accountId: string; childId: stri
     const s = JSON.parse(Buffer.concat([decipher.update(body), decipher.final()]).toString('utf8')) as LineSecret;
     if (s.acct !== ctx.accountId || s.c !== ctx.childId || !(s.exp > now) || !(s.exp - now <= LINE_LIFE_MS)) return null;
     if (typeof s.text !== 'string' || !s.text || s.text.length > LIVE_REPLY_MAX || !isUuid(s.sid)) return null;
-    return { sessionId: s.sid, text: s.text };
+    return s;
   } catch {
     return null;
   }
 }
 
+// The sealed sentence, when the seal is whole, unexpired and this account's child's; null otherwise.
+export function openLine(token: unknown, ctx: { accountId: string; childId: string }, now = Date.now()): { sessionId: string; text: string } | null {
+  const s = openSecret(token, ctx, now);
+  return s && s.k === undefined ? { sessionId: s.sid, text: s.text } : null;
+}
+
+// A call's sentence, when the seal is whole, unexpired, a call's, and this account's child's; null otherwise.
+export function openCallLine(token: unknown, ctx: { accountId: string; childId: string }, now = Date.now()): { text: string } | null {
+  const s = openSecret(token, ctx, now);
+  return s && s.k === 'call' ? { text: s.text } : null;
+}
+
 // ---- what may be spoken ----------------------------------------------------------------------------------------------
 
-export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number };
+export type SpeakAsk = { kind: 'chapter'; chapterKey: string; blockId: string; sentence: number } | { kind: 'live_line'; token: string } | { kind: 'live_turn'; sessionId: string; position: number } | { kind: 'call_line'; token: string };
 
 // The request's body, checked for shape only (what it names is checked against the database below).
 export function speakAsk(body: Record<string, unknown>): SpeakAsk | null {
   if (body.kind === 'chapter' && typeof body.chapterKey === 'string' && body.chapterKey.length <= 200 && typeof body.blockId === 'string' && body.blockId.length <= 100 && Number.isInteger(body.sentence) && (body.sentence as number) >= 0)
     return { kind: 'chapter', chapterKey: body.chapterKey, blockId: body.blockId, sentence: body.sentence as number };
   if (body.kind === 'live_line' && typeof body.token === 'string') return { kind: 'live_line', token: body.token };
+  if (body.kind === 'call_line' && typeof body.token === 'string') return { kind: 'call_line', token: body.token };
   if (body.kind === 'live_turn' && isUuid(body.sessionId) && Number.isInteger(body.position) && (body.position as number) >= 1) return { kind: 'live_turn', sessionId: body.sessionId, position: body.position as number };
   return null;
 }
@@ -94,6 +118,14 @@ export async function speakLine(db: Db, accountId: string, chosen: string | unde
     if (!line) return { ok: false, status: 404, error: 'not_found' };
     return { ok: true, child, children, text: line.text, language: view.lang };
   }
+  if (ask.kind === 'call_line') {
+    // W16-A4: a call's sentence, behind the voice input's own gate, for the child this phone has chosen.
+    const call = await callGate(db as never, accountId, chosen);
+    if (!call.ok) return call;
+    const line = openCallLine(ask.token, { accountId, childId: call.child.childId });
+    if (!line) return { ok: false, status: 404, error: 'not_found' };
+    return { ok: true, child: call.child, children: call.children, text: line.text, language: call.language };
+  }
   const gate = await liveChild(db, accountId, chosen);
   if (!gate.ok) return gate;
   const child = gate.child;
@@ -117,4 +149,11 @@ export async function serverVoiceReady(db: Db, accountId: string): Promise<boole
   const ctx: AiContext = { accountId, childFirstNames: [], day: indiaDate() };
   if ((await profileReady(db as never, ctx, VOICE_PROFILE)) !== 'ready') return false;
   return (await voiceCharsLeft(db as never, accountId, ctx.day)) > 0;
+}
+
+// Whether a realtime provider is set up for the call (W16-A4), without taking anything or minting a token: for the call
+// screen to know whether to ask for the realtime leg at all. False today (family.voice_call has no provider).
+export async function realtimeReady(db: Db, accountId: string): Promise<boolean> {
+  const ctx: AiContext = { accountId, childFirstNames: [], day: indiaDate() };
+  return (await profileReady(db as never, ctx, 'family.voice_call')) === 'ready';
 }

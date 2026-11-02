@@ -45,7 +45,9 @@ export type AdapterResult = { ok: true; text: string; tokensIn: number; tokensOu
 // fail. text: words in, words out. vision: a message may carry photos (ChatMessage.images); a call with photos skips a
 // provider that cannot. stream: the answer arrives piece by piece. json: the vendor itself holds the answer to one JSON
 // object (elsewhere only the instructions ask for it). stt: speech to text. tts: text to speech (C386: OpenAI and Google Cloud).
-export const CAPABILITIES = ['text', 'vision', 'stream', 'json', 'stt', 'tts'] as const;
+// realtime (W16-A4): a live two-way voice leg the phone opens straight to the provider with a short-lived token the
+// server mints; the media never passes through this server.
+export const CAPABILITIES = ['text', 'vision', 'stream', 'json', 'stt', 'tts', 'realtime'] as const;
 export type Capability = (typeof CAPABILITIES)[number];
 export type Capabilities = Readonly<Record<Capability, boolean>>;
 export const capabilities = (has: readonly Capability[]): Capabilities => Object.freeze(Object.fromEntries(CAPABILITIES.map((c) => [c, has.includes(c)])) as Record<Capability, boolean>);
@@ -169,4 +171,27 @@ export interface VoiceAdapter {
   modelLooksRight(model: string): boolean;
   synthesize(request: VoiceRequest): Promise<VoiceResult>;
   testConnection?(apiKey: string): Promise<ConnectionTest>;
+}
+
+// ---- realtime voice (W16-A4: the call's later leg) -----------------------------------------------------------------
+
+// A short-lived client token for a provider's realtime voice, minted on the server and handed to the phone, which then
+// connects to the provider itself: the audio never goes through this server (or Vercel). `url` and `model` are the
+// connect details the phone needs; the token is the only secret and it expires in about a minute.
+export type RealtimeRequest = { apiKey: string; model: string; language: 'en' | 'hi' };
+export type RealtimeToken = { token: string; expiresAt: number; url: string; model: string };
+export type RealtimeResult = ({ ok: true } & RealtimeToken) | { ok: false; failure: AdapterFailure; status?: number };
+
+// The realtime capability, beside the others and under the same rules: the key is opened by the platform and handed in;
+// nothing is kept, logged or thrown but one case: `mintToken` throws `not_switched_on` when it is handed no key, so a
+// caller can never mint a token for a provider that is not set up.
+export interface RealtimeAdapter {
+  readonly providerId: string;
+  readonly capability: 'realtime';
+  readonly termsNote: TermsNote | null;
+  readonly needsKey: boolean;
+  readonly capabilities: Capabilities;
+  keyLooksRight(key: string): boolean;
+  modelLooksRight(model: string): boolean;
+  mintToken(request: RealtimeRequest): Promise<RealtimeResult>;
 }

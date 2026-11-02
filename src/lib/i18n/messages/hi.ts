@@ -10085,4 +10085,23 @@ export const hi: Record<keyof typeof en, string> = {
   'control.family.tutors.off': 'बंद',
   'control.family.tutors.all': 'सभी विषय',
   // w16-a3 end
+  // w16-a4 start
+  'fam.call.title': 'अपने ट्यूटर से बात करें',
+  'fam.call.with': '{tutor} से बात हो रही है',
+  'fam.call.tutorDefault': 'आपका ट्यूटर',
+  'fam.call.end': 'कॉल खत्म करें',
+  'fam.call.mic.talk': 'बोलने के लिए दबाएँ',
+  'fam.call.mic.done': 'बोल लें तो दबाएँ',
+  'fam.call.mic.thinking': 'सोच रहे हैं…',
+  'fam.call.mic.speaking': 'खुद बोलने के लिए दबाएँ',
+  'fam.call.you': 'आपने कहा',
+  'fam.call.captions': 'लिखे हुए शब्द',
+  'fam.call.board': 'बोर्ड',
+  'fam.call.empty': 'बटन दबाएँ और अपना सवाल बोलकर पूछें।',
+  'fam.call.boardEmpty': 'ट्यूटर के समझाते ही चित्र और कदम यहाँ दिखेंगे।',
+  'fam.call.hold': 'बोलते समय बटन को दबाकर भी रख सकते हैं।',
+  'control.ai.capability.realtime': 'सीधी दोतरफ़ा आवाज़',
+  'control.ai.profile.name.family.voice_call': 'सीधी आवाज़ वाली कॉल',
+  'control.ai.profile.about.family.voice_call': 'कॉल की सीधी आवाज़: फ़ोन थोड़ी देर चलने वाले टोकन से सीधे प्रदाता से बात करता है, इसलिए कोई आवाज़ NetCyberAI से होकर नहीं जाती। खाली छोड़ने पर कॉल सुनती, जवाब देती और वाक्य-वाक्य बोलती है।',
+  // w16-a4 end
 };

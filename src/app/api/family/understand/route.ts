@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { accountSummary } from '@/lib/family/account';
+import { callGate } from '@/lib/family/call-gate';
+import { sayEvent, type SayBudget } from '@/lib/family/call-say';
 import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
 import { tutorTurn } from '@/lib/ai/agents/orchestrator';
 import { activeChild, listChildren } from '@/lib/family/children';
@@ -35,6 +37,8 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 // path answers it (consent, the module switch, moderation, the daily cap); once answered, the question and the answer's
 // teaching blocks are kept in the child's conversation of the subject the server decided (src/lib/family/tutor.ts).
 // A follow-up or a retry is not kept again. The child is always the one this phone has chosen, never one the body names.
+// W16-A4 (the call): `call: true` beside a tutor question answers a spoken turn. The gate is the voice input's own
+// (call-gate.ts) and after each checked block a `say` line carries its spoken sentences, sealed for the speak route.
 //
 // The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
 // vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
@@ -101,10 +105,24 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // W16-A4: a call's turn (`call: true` beside a tutor question): the same answer, and after each checked block the
+  // sentences of it that are spoken, sealed for the speak route (call-say.ts). Behind the voice input's own gate, read
+  // again in the first transaction below; `callChild` is the child it was sealed for.
+  const callMode = body.call === true && tutorBody !== null && !followUp && !retry;
+  let callChild: string | null = null;
+  const spoken: SayBudget = { used: 0 };
+
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const send = (e: ResolverEvent) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
+      const write = (e: ResolverEvent) => controller.enqueue(encoder.encode(`${JSON.stringify(e)}\n`));
+      const send = (e: ResolverEvent) => {
+        write(e);
+        if (callChild && e.t === 'block') {
+          const say = sayEvent(e.block, { accountId: session.accountId, childId: callChild }, spoken);
+          if (say) write(say);
+        }
+      };
       const stop = (e: ResolverEvent): null => {
         send(e);
         return null;
@@ -167,6 +185,11 @@ export async function POST(req: NextRequest) {
           if (!child) return stop({ t: 'refused', reason: 'not_found', message: words('fam.understand.noChild') });
           if (!(await consentState(db, session.accountId)).study_core) return stop({ t: 'refused', reason: 'not_found', message: words('fam.err.consent_required') });
           if (!(await familyModuleOn(db, 'understand', session.accountId))) return stop({ t: 'refused', reason: 'not_switched_on', message: words('fam.understand.off') });
+          if (callMode) {
+            const call = await callGate(db, session.accountId, chosen);
+            if (!call.ok) return stop({ t: 'refused', reason: 'not_found', message: words(call.error === 'not_found' ? 'fam.understand.noChild' : `fam.voice.err.${call.error}`) });
+            callChild = call.child.childId;
+          }
           let target = input;
           if (tutorBody && target?.kind === 'question') {
             const subject = String(tutorBody.subject);

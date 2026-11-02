@@ -47,14 +47,14 @@ describe('declared and registered', () => {
   it('both declare text to speech only; Control and the platform find them', () => {
     for (const a of [openaiVoiceAdapter, googleTtsAdapter]) {
       expect(Object.keys(a.capabilities).sort()).toEqual([...CAPABILITIES].sort());
-      expect(a.capabilities).toEqual({ text: false, vision: false, stream: false, json: false, stt: false, tts: true });
+      expect(a.capabilities).toEqual({ text: false, vision: false, stream: false, json: false, stt: false, tts: true, realtime: false });
       expect(Object.isFrozen(a.capabilities)).toBe(true);
     }
     expect(voiceAdapterFor('openai')).toBe(openaiVoiceAdapter);
     expect(voiceAdapterFor('google_tts')).toBe(googleTtsAdapter);
     expect(voiceAdapterFor('workers-ai')).toBeNull();
-    expect(providerCapabilities('google_tts')).toEqual({ text: false, vision: false, stream: false, json: false, stt: false, tts: true });
-    expect(providerCapabilities('openai')).toMatchObject({ text: true, stt: true, tts: true });
+    expect(providerCapabilities('google_tts')).toEqual({ text: false, vision: false, stream: false, json: false, stt: false, tts: true, realtime: false });
+    expect(providerCapabilities('openai')).toMatchObject({ text: true, stt: true, tts: true, realtime: true });
     // A voice-only provider's key is kept by Control, checked for a Google key's shape.
     expect(keyedProviderFor('google_tts')?.keyLooksRight(GOOGLE_KEY)).toBe(true);
     expect(keyedProviderFor('google_tts')?.keyLooksRight(OPENAI_KEY)).toBe(false);

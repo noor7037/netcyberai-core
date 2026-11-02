@@ -89,6 +89,55 @@ function showModel(root: HTMLElement | null) {
 // `sentence` (W16-A2): the explanation's sentence being spoken (the call screen, W16-A4); the board draws up to the step
 // that sentence reaches. Absent: the board starts at its first step and the child steps through it.
 export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number }) {
+// W16-A4: one block of an answer, drawn. The lesson page (`draw`) and the call's board (call/CallBoard.tsx) draw their
+// blocks with this one switch, so a figure, a chart or a worked example looks the same in both.
+export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer }) {
+  switch (b.type) {
+    case 'explanation':
+      return <ExplanationView b={b} w={w} tone={tone} lead={lead} />;
+    case 'worked_example':
+      return <WorkedExampleView b={b} w={w} tone={tone} />;
+    case 'key_points':
+      return <KeyPointsView b={b} w={w} tone={tone} />;
+    case 'diagram':
+      return <DiagramView b={b} tone={tone} />;
+    case 'mind_map':
+      return <MindMapView b={b} w={w} tone={tone} />;
+    case 'graph':
+    case 'number_line':
+    case 'fraction_model':
+    case 'geometry':
+    case 'simulation':
+      return <InteractiveView b={b} w={w} tone={tone} />;
+    case 'check':
+    case 'practice':
+      return <QuizView kind={b.type} items={b.items} w={w} tone={tone} onRetry={onRetry} onOffline={onOffline} />;
+    case 'english_moment':
+      return <EnglishMomentView b={b} w={w} tone={tone} />;
+    case 'sources':
+      return <SourcesView b={b} w={w} tone={tone} />;
+    case 'figure':
+      return <FigureView b={b} tone={tone} />;
+    case 'model_3d':
+      return <Model3DView b={b} w={w} tone={tone} />;
+    case 'steps':
+      return <StepsView b={b} w={w} tone={tone} />;
+    case 'scene':
+      return <SceneView b={b} w={w} tone={tone} />;
+    case 'chart':
+      return <ChartView b={b} w={w} tone={tone} />;
+    case 'timeline':
+      return <TimelineView b={b} tone={tone} />;
+    case 'image':
+      return <ImageView b={b} w={w} tone={tone} />;
+    case 'videos':
+      return <VideosView b={b} w={w} />;
+    default:
+      return null;
+  }
+}
+
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void }) {
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -203,8 +252,8 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     void run(ask);
   };
 
+  // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
   const draw = (b: PublicBlock) => {
-    // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
     const i = blocks.indexOf(b);
     switch (b.type) {
       case 'explanation':
@@ -252,6 +301,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       default:
         return null;
     }
+    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} />;
   };
 
   return (
