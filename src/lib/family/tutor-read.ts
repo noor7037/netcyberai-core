@@ -1,4 +1,5 @@
 import { prepareText, type AiContext, type PreparedText, type SentText } from '@/lib/ai/platform';
+import { checkReadSystem, checkReadUser } from '@/lib/ai/prompts/family.homework';
 import { setting } from './learning';
 import { TUTOR_FILES_PER_TURN, isTutorFileType, type TutorFileType } from './tutor-shape';
 
@@ -73,6 +74,15 @@ export const photoRequest = (mediaType: Exclude<TutorFileType, 'application/pdf'
   maxTokens: 800,
 });
 
+// W16-B2 (Check my work): the same photo read, but asked for the question and each line of the child's own working as
+// written (family.homework prompt v2), so what was read can be shown and marked. The class and board only; no name.
+export type CheckRead = { classLevel: number; board: string };
+export const checkPhotoRequest = (mediaType: Exclude<TutorFileType, 'application/pdf'>, base64: string, c: CheckRead) => ({
+  system: checkReadSystem(c),
+  messages: [{ role: 'user' as const, content: checkReadUser(), images: [{ mediaType, base64 }] }],
+  maxTokens: 1000,
+});
+
 export type Fetched = { file: FileToRead; bytes: Uint8Array | null };
 
 // Step 2 (no transaction): each file's bytes from the private bucket; a file that cannot be fetched is null.
@@ -94,7 +104,7 @@ export type PhotoCall = { attachmentId: string; prepared: PreparedText } | { att
 
 // Step 3 (in the caller's transaction): each photo's day place, then its read through the vision profile with every
 // platform check (minors gate, key, daily cap); a place is given back when the read cannot be asked.
-export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string, fetched: readonly Fetched[]): Promise<PhotoCall[]> {
+export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string, fetched: readonly Fetched[], check?: CheckRead): Promise<PhotoCall[]> {
   const calls: PhotoCall[] = [];
   for (const { file, bytes } of fetched) {
     if (file.mime === 'application/pdf' || !bytes) continue;
@@ -103,7 +113,8 @@ export async function preparePhotoReads(db: Sql, ctx: AiContext, childId: string
       calls.push({ attachmentId: file.attachmentId, unreadable: 'photo_limit' });
       continue;
     }
-    const prepared = await prepareText(db as never, ctx, 'family.homework', photoRequest(mime, Buffer.from(bytes).toString('base64')));
+    const b64 = Buffer.from(bytes).toString('base64');
+    const prepared = await prepareText(db as never, ctx, 'family.homework', check ? checkPhotoRequest(mime, b64, check) : photoRequest(mime, b64));
     if (!prepared.ok) {
       await givePhotoPlaceBack(db, ctx.accountId, childId, ctx.day);
       calls.push({ attachmentId: file.attachmentId, unreadable: 'not_set_up' });

@@ -4,7 +4,7 @@ import { callGate } from '@/lib/family/call-gate';
 import { sayEvent, type SayBudget } from '@/lib/family/call-say';
 import { dailyRequestsLeft, prepareModeration } from '@/lib/ai/platform';
 import { tutorTurn } from '@/lib/ai/agents/orchestrator';
-import { activeChild, listChildren } from '@/lib/family/children';
+import { activeChild, boardNameOf, listChildren } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { FamilySessionRevokedError, withFamilyContext, withFamilyGate, familyClaims } from '@/lib/family/db';
 import { familyModuleOn } from '@/lib/family/flags';
@@ -40,6 +40,11 @@ import { isMessageKey, t, type MessageKey } from '@/lib/i18n';
 // W16-A4 (the call): `call: true` beside a tutor question answers a spoken turn. The gate is the voice input's own
 // (call-gate.ts) and after each checked block a `say` line carries its spoken sentences, sealed for the speak route.
 //
+// W16-B2 (Check my work): `tutor.mode: 'check'` with exactly one photo of the child's own handwritten working. The photo
+// is read line by line (family.homework prompt v2, the same photo rules, day place and vision profile as any tutor
+// photo), the chapter is searched on the question the photo showed, and the answer is that working marked step by step
+// (src/lib/family/resolver.ts, `check`). It is kept as a tutor message like any other.
+//
 // The files are read first (W4-1, C385; src/lib/family/tutor-read.ts): a PDF's text on the server, a photo through the
 // vision profile; what they say joins the question, and what could not be read is said in a `files` line before the
 // answer. That reading has its own short transactions around the fetch and the vision calls.
@@ -72,6 +77,9 @@ export async function POST(req: NextRequest) {
   if (!input && !retry) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   const tutorBody = input?.kind === 'question' && body.tutor && typeof body.tutor === 'object' && !Array.isArray(body.tutor) ? (body.tutor as Record<string, unknown>) : null;
   if (tutorBody && !isSubject(tutorBody.subject)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
+  const checkMode = tutorBody?.mode === 'check' && !followUp && !retry;
+  if (checkMode && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // What is kept once answered (null: nothing): filled in the first transaction, for the child it chose.
   let keepTurn: { childId: string; text: string; chapterKey: string | null; blockId: string | null; files: string[]; windowSubject: string; lang: string } | null = null;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
@@ -147,6 +155,7 @@ export async function POST(req: NextRequest) {
             if (!(await familyModuleOn(db, 'understand', session.accountId))) return { refused: t(lang, 'fam.understand.off') };
             const files = await filesToRead(db, session.accountId, child.childId, String(tutorBody!.subject), fileIds);
             if (!files) return { refused: t(lang, 'fam.tutor.fileGone') };
+            if (checkMode && files.some((f) => f.mime === 'application/pdf')) return { refused: t(lang, 'fam.check.err.photo_only') };
             // W4-1 review: whatever would refuse the question is checked before any photo leaves, so a question that will
             // not be answered never sends a photo or spends a place: the reader's chapter and section, the safety check
             // ready (C314, as the homework helper does), and room in the family's day for every photo read and the answer.
@@ -156,11 +165,11 @@ export async function POST(req: NextRequest) {
             if (!(await prepareModeration(db, ai)).ok) return { refused: t(lang, 'fam.understand.safetyOff') };
             const photos = files.filter((f) => f.mime !== 'application/pdf').length;
             if (photos > 0 && (await dailyRequestsLeft(db, session.accountId, ai.day)) < photos + 1) return { refused: t(lang, 'ai.cap_reached') };
-            return { files, lang, childId: child.childId, ai };
+            return { files, lang, childId: child.childId, ai, check: { classLevel: child.classLevel, board: boardNameOf(child) } };
           });
           if ('refused' in asked) return void send({ t: 'refused', reason: 'not_found', message: asked.refused! });
           const fetched = await fetchFiles(asked.files, (key) => tutorStorage.get(key));
-          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched));
+          const calls = await withFamilyContext(claims, (db) => preparePhotoReads(db, asked.ai, asked.childId, fetched, checkMode ? asked.check : undefined));
           const { reads, sent } = await readFetched(fetched, calls);
           await withFamilyContext(claims, async (db) => {
             for (const s of sent) {
@@ -173,6 +182,8 @@ export async function POST(req: NextRequest) {
           attached = outcome.attached ?? undefined;
           const lines = [t(asked.lang, 'fam.tutor.files.read', { read: String(outcome.read), total: String(reads.length) }), ...[...new Set(outcome.unreadable)].map((u) => t(asked.lang, UNREADABLE_WORDS[u]))];
           send({ t: 'files', message: lines.join(' ') });
+          // Check my work with a photo that could not be read: there is no working to mark, and the line above says why.
+          if (checkMode && !attached) return void send({ t: 'refused', reason: 'not_found', message: t(asked.lang, 'fam.check.err.unreadable') });
         }
         // W16-A1: the turn runs through the orchestrator (src/lib/ai/agents/orchestrator.ts), which calls the same three
         // steps below in the same order and logs each handoff; nothing it sends or keeps differs. No queue is given: a
@@ -204,7 +215,7 @@ export async function POST(req: NextRequest) {
             // decide the answer's subject. W10 (C411): in a chat with turns, the chat's own subject steers them (a follow-up
             // in a Science chat opened from the Mathematics tab is taught from Science passages).
             target = { ...target, windowSubject: chatSubject ?? subject, ...(reader ? { chapterKey: reader.chapterKey } : {}) };
-            if (attached && target?.kind === 'question') target = { ...target, attached };
+            if (attached && target?.kind === 'question') target = { ...target, attached, ...(checkMode ? { check: true as const } : {}) };
             const files = await sendableFiles(db, session.accountId, child.childId, subject, tutorBody.files);
             if (!files) return stop({ t: 'refused', reason: 'not_found', message: words('fam.tutor.fileGone') });
             if (!followUp && !retry) keepTurn = { childId: child.childId, text: target.text, chapterKey: reader?.chapterKey ?? null, blockId: reader?.blockId ?? null, files, windowSubject: subject, lang: child.language };

@@ -60,6 +60,20 @@ const FOLLOW_UP_CHAT = `
     '[{"type":"explanation","title":"How leaves make food","idea":"Green leaves make food from sunlight, water and air.","paragraphs":["Leaves take in carbon dioxide from the air and water from the roots, and use sunlight to make sugar."],"example":"","steps":[],"terms":[]}]'::jsonb, now() - interval '1 minute');
 `;
 const FOLLOW_UP_CHAT_GONE = `delete from family.tutor_messages where conversation_id = '${FOLLOW_CHAT_ID}'; delete from family.tutor_conversations where conversation_id = '${FOLLOW_CHAT_ID}';`;
+// W16-B2 (Check my work): a Mathematics chat of one marked working, kept like any other tutor message (the question the
+// child sent with the photo, and the answer's stored blocks: the chapter, the verdicts, the corrected working).
+const CHECK_CHAT_ID = 'f0000000-0000-4000-8000-0000000fa302';
+const CHECK_CHAT = `
+  insert into family.tutor_conversations (conversation_id, account_id, child_id, subject, title, turn_count, status, updated_at, last_at)
+  values ('${CHECK_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'mathematics', 'Check my work', 1, 'open', now(), now())
+  on conflict do nothing;
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, body, created_at)
+  values ('${CHECK_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'child', 'Check my work', now() - interval '2 minutes');
+  insert into family.tutor_messages (conversation_id, account_id, child_id, role, blocks, created_at)
+  values ('${CHECK_CHAT_ID}', 'f0000000-0000-4000-8000-0000000f0004', 'f0000000-0000-4000-8000-0000000fc002', 'tutor',
+    '[{"type": "sources", "links": [], "chapter": "Linear Equations in One Variable", "unit": "Solving an equation"}, {"type": "steps", "title": "Your working, step by step", "items": [{"label": "Step 1: right", "text": "You wrote 3x + 5 = 20. That is the equation, copied correctly."}, {"label": "Step 2: wrong", "text": "You wrote 3x = 25. But 5 is added on the left, so take 5 away from 20."}, {"label": "Step 3: wrong", "text": "You wrote x = 25/3. It follows from the step before, so it is not right either."}]}, {"type": "worked_example", "problem": "Solve 3x + 5 = 20.", "steps": [{"text": "Take 5 away from both sides.", "expression": "20-5", "result": "15"}, {"text": "Divide both sides by 3.", "expression": "15/3", "result": "5"}], "answer": "x = 5"}]'::jsonb, now() - interval '1 minute');
+`;
+const CHECK_CHAT_GONE = `delete from family.tutor_messages where conversation_id = '${CHECK_CHAT_ID}'; delete from family.tutor_conversations where conversation_id = '${CHECK_CHAT_ID}';`;
 const FOLLOW_UP_ANSWER = [
   { t: 'meta', label: 'ai_made', cached: false, title: null, subject: 'science', topicKey: null },
   { t: 'block', block: { type: 'explanation', title: 'Photosynthesis in a money plant', idea: 'The leaves we talked about make food the same way in a plant at home.', paragraphs: ['A money plant near a sunny window grows towards the light: its leaves use the sunlight, the water you pour in and the air around it to make sugar, as explained above.'], example: 'Keep one plant in the sun and one in a dark cupboard for a week: the one in the dark turns pale.', steps: [], terms: [] } },
@@ -223,6 +237,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-homework', '/family/study/homework', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-homework-start]' }],
   // W6-A (C395): the homework helper's link is in the composer's Attach menu.
   ['full', 'family-study-homework-link', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-homework-link]' }] }],
+  // W16-B2: the Attach menu's two photo actions (Ask about this, Check my work), and a marked working kept in the feed.
+  ['full', 'family-study-check-menu', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-attach]', steps: [{ tap: '[data-tutor-attach]', wait: '[data-tutor-check-pick]' }] }],
+  ['full', 'family-check-my-work', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: CHECK_CHAT, reset: CHECK_CHAT_GONE, settle: '[data-feed-answer] [data-steps]' }],
   // m2-7: the microphone beside the typed question, and the recording state (C281; a fake microphone, see `mic`).
   ['full', 'family-study-voice', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]' }],
   ['full', 'family-study-voice-recording', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-voice-input]', mic: true }],

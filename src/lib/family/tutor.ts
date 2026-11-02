@@ -162,10 +162,17 @@ export async function ownChat(db: Db, accountId: string, childId: string, subjec
   return rows[0] ? chatOf(rows[0]) : null;
 }
 
-// What a stored tutor turn is remembered as: its explanation's paragraphs (the idea when it has none), nothing else.
+// What a stored tutor turn is remembered as: its explanation's paragraphs (the idea when it has none), or a marked working's verdicts.
 function explanationText(blocks: unknown): string {
-  const b = (Array.isArray(blocks) ? blocks : []).find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
-  if (!b) return '';
+  const list = Array.isArray(blocks) ? blocks : [];
+  const b = list.find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'explanation') as { idea?: unknown; paragraphs?: unknown } | undefined;
+  // W16-B2: a marked working (Check my work) has no explanation: it is remembered by its verdicts, so a follow-up such as
+  // "why was step 2 wrong?" sees what was said.
+  if (!b) {
+    const steps = list.find((x) => x && typeof x === 'object' && (x as { type?: unknown }).type === 'steps') as { items?: unknown } | undefined;
+    const items = Array.isArray(steps?.items) ? (steps!.items as { label?: unknown; text?: unknown }[]) : [];
+    return items.map((i) => `${typeof i?.label === 'string' ? i.label : ''}: ${typeof i?.text === 'string' ? i.text : ''}`).join(' ').replace(/\s+/g, ' ').trim();
+  }
   const paragraphs = Array.isArray(b.paragraphs) ? b.paragraphs.filter((x): x is string => typeof x === 'string') : [];
   return (paragraphs.length ? paragraphs.join(' ') : typeof b.idea === 'string' ? b.idea : '').replace(/\s+/g, ' ').trim();
 }

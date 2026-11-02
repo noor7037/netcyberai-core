@@ -47,7 +47,7 @@ const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView))
 // A typed question carries no subject: the server decides it (F1-3). From the tutor window (S2, C375) it carries the
 // window's subject, the reader's chapter and block, and the files sent with it; the server checks each and keeps the
 // answered turn in the child's conversation.
-export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[] };
+export type TutorAsk = { subject: string; chatId?: string; chapterKey?: string; blockId?: string; files?: string[]; mode?: 'check' };
 export type UnderstandInput = { kind: 'topic' | 'chapter'; key: string } | { kind: 'question'; text: string; tutor?: TutorAsk };
 type Meta = Extract<ResolverEvent, { t: 'meta' }>;
 type GoTo = NonNullable<Extract<ResolverEvent, { t: 'refused' }>['goTo']>;

@@ -9,6 +9,9 @@ import { fill, type Words } from '@/lib/family/fill';
 import { isSubject, type Subject } from '@/lib/family/subjects';
 import { TUTOR_FILE_MAX_BYTES, TUTOR_FILES_PER_TURN, TUTOR_TEXT_MIN, sniffTutorFile, type FeedTurn, type TutorFile } from '@/lib/family/tutor-shape';
 import { DiagramView, EnglishMomentView, ExplanationView, KeyPointsView, SourcesView, WorkedExampleView } from '../blocks/BlockViews';
+import { StepsView } from '../blocks/StepsView';
+import { CitationChip } from '../blocks/CitationChip';
+import { citationOf } from '@/lib/family/citation';
 import { MindMapView } from '../blocks/MindMapView';
 import { DirectAnswerCard, UnderstandView, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
@@ -102,6 +105,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [text, setText] = useState('');
   const [asks, setAsks] = useState<FeedAsk[]>([]);
   const [attached, setAttached] = useState<Attached[]>([]);
+  // W16-B2: the attached photo is the child's own working, to be checked ("Check my work"), not asked about.
+  const [checking, setChecking] = useState(false);
   const [fileError, setFileError] = useState<string | null>(null);
   const [turns, setTurns] = useState<FeedTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
@@ -166,11 +171,12 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   );
 
   const busy = attached.some((a) => a.state !== 'ready');
-  const canSend = text.trim().length >= TUTOR_TEXT_MIN && !busy;
+  // Check my work needs only the photo: the words are optional.
+  const canSend = !busy && (checking ? attached.length === 1 : text.trim().length >= TUTOR_TEXT_MIN);
 
-  const attach = async (file: File) => {
+  const attach = async (file: File, check = false) => {
     setFileError(null);
-    if (attached.length >= TUTOR_FILES_PER_TURN) return setFileError(w['fam.tutor.err.too_many_files']);
+    if (attached.length >= TUTOR_FILES_PER_TURN || (check && attached.length > 0) || checking) return setFileError(w['fam.tutor.err.too_many_files']);
     if (file.size === 0) return setFileError(w['fam.tutor.err.file_empty']);
     if (file.size > TUTOR_FILE_MAX_BYTES) return setFileError(w['fam.tutor.err.file_too_large']);
     const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
@@ -178,9 +184,12 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     const key = `${Date.now()}-${Math.random()}`;
     const update = (patch: Partial<Attached>) => setAttached((list) => list.map((a) => (a.key === key ? { ...a, ...patch } : a)));
     const drop = (code: string) => {
+      if (check) setChecking(false);
       setAttached((list) => list.filter((a) => a.key !== key));
       setFileError(w[`fam.tutor.err.${code}`] ?? w['fam.err.network']);
     };
+    if (check && mime === 'application/pdf') return setFileError(w['fam.check.err.photo_only']);
+    if (check) setChecking(true);
     setAttached((list) => [...list, { key, name: file.name, mime, state: 'sending', id: null }]);
     const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
     if (!askRes?.ok) return drop(await errorOf(askRes));
@@ -196,18 +205,20 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
 
   const remove = (a: Attached) => {
     setAttached((list) => list.filter((x) => x.key !== a.key));
+    setChecking(false);
     if (a.id) void fetch(`/api/family/tutor/files/${encodeURIComponent(a.id)}`, { method: 'DELETE', credentials: 'same-origin' }).catch(() => null);
   };
 
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
   const send = () => {
     if (!canSend) return;
-    const asked = text.trim();
-    const tutor = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])) };
+    const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
+    const tutor = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking ? { mode: 'check' as const } : {}) };
     const n = (asks.at(-1)?.n ?? 0) + 1;
     setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
     setText('');
     setAttached([]);
+    setChecking(false);
     setFileError(null);
     setOpen(true);
     // The new question at the top of the feed box, its answer drawing below it.
@@ -287,6 +298,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         homework={homework}
         attached={attached}
         onAttach={(f) => void attach(f)}
+        onCheck={(f) => void attach(f, true)}
+        checking={checking}
         onRemove={remove}
         fileError={fileError}
         voice={voice}
@@ -330,8 +343,11 @@ function Question({ w, text, lang, fromReader = false, files = [] }: { w: Words;
 // sections, numbered.
 function KeptAnswer({ b, w, tone, lang }: { b: Block[]; w: Words; tone: string; lang: string }) {
   const lead = b.find((x): x is Explanation => x.type === 'explanation');
+  // W16-B2: a marked working names its chapter in a chip first (a general answer says nothing here).
+  const cited = citationOf(b, false);
   return (
     <div lang={lang} data-feed-answer className="fam-lesson flex flex-col gap-3">
+      {cited && <CitationChip w={w} c={cited} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {b.map((x, i) => (
         <TurnBlock key={i} b={x} w={w} tone={tone} lead={x === lead} />
@@ -362,7 +378,10 @@ function TurnBlock({ b, w, tone, lead = false }: { b: Block; w: Words; tone: str
     case 'english_moment':
       return <EnglishMomentView b={b} w={w} tone={tone} />;
     case 'sources':
-      return <SourcesView b={b} w={w} tone={tone} />;
+      return b.links.length > 0 ? <SourcesView b={b} w={w} tone={tone} /> : null;
+    case 'steps':
+      // W16-B2: a marked working's verdicts, kept with the message.
+      return <StepsView b={b} w={w} tone={tone} />;
     default:
       return null;
   }
