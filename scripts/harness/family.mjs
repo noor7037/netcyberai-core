@@ -155,6 +155,10 @@ export const FAMILY_SCREENS = [
   ['full', 'family-understand-scene-motor', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t09', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="scene"]', steps: [{ tap: '[data-scene-part="coil"]', wait: '[data-scene-text]' }] }],
   ['full', 'family-understand-scene-heart', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t10', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="scene"]' }],
   ['full', 'family-understand-chart', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t11', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="chart"]' }],
+  // W16-A2: the drawing board (every step drawn under reduced motion; step 1 and its controls with motion) under the
+  // citation chip naming the chapter, and the pressure simulation (the 4 m depth tapped) under the general chip.
+  ['full', 'family-understand-board', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t12', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-board-svg]' }],
+  ['full', 'family-understand-sim', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t13', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-sim="pressure_depth"]', steps: [{ tap: '[data-sim-choice="d4"]', wait: '[data-sim-choice="d4"][aria-checked="true"]' }] }],
   // S1 (C374): the chapter reader, its blocks and the sticky read-aloud controls.
   ['full', 'family-chapter-reader', '/family/study/chapter/nc.showcase.equal-fractions', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-reader-controls]' }],
   // C386: the reader with the server voice set up (its controls say the NetCyberAI voice reads).

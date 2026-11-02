@@ -121,6 +121,7 @@ export const LESSON_TINT_OF: Record<string, LessonTint> = {
   key_points: 'butter',
   english_moment: 'butter',
   figure: 'lilac',
+  board: 'lilac',
   diagram: 'lilac',
   mind_map: 'lilac',
   timeline: 'lilac',

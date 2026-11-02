@@ -15,7 +15,10 @@ import dynamic from 'next/dynamic';
 import { QuizView } from './blocks/QuizView';
 import { MindMapView } from './blocks/MindMapView';
 import { VideoPicks } from './VideoPicks';
-import { placeBlock, unfilled } from '@/lib/family/blocks';
+import { isSimScene, placeBlock, unfilled } from '@/lib/family/blocks';
+import { boardCursorFromSentence } from '@/lib/family/board';
+import { citationOf } from '@/lib/family/citation';
+import { CitationChip } from './blocks/CitationChip';
 import { SceneView } from './blocks/SceneView';
 import { ChartView } from './blocks/ChartView';
 import { StepsView } from './blocks/StepsView';
@@ -30,6 +33,9 @@ const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.Fig
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
+// W16-A2: the drawing board and the Class 8 Science simulations, each its own chunk, only when an answer carries one.
+const BoardView = dynamic(() => import('./blocks/BoardView').then((m) => m.BoardView));
+const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView));
 
 // Understand (M1-5, C251): asks the server, and draws each checked block as it arrives. Follow-ups stay on the topic
 // ("simpler", "another example", "explain differently", "practise more"); this is not an open chat. Every response
@@ -80,7 +86,9 @@ function showModel(root: HTMLElement | null) {
   model.focus({ preventScroll: true });
 }
 
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void }) {
+// `sentence` (W16-A2): the explanation's sentence being spoken (the call screen, W16-A4); the board draws up to the step
+// that sentence reaches. Absent: the board starts at its first step and the child steps through it.
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number }) {
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
   const [blocks, setBlocks] = useState<PublicBlock[]>(() => (initial ?? []).flatMap((e) => (e.t === 'block' ? [e.block] : [])));
   const [state, setState] = useState<'loading' | 'streaming' | 'done' | 'incomplete' | 'refused'>(initial ? 'done' : 'loading');
@@ -100,6 +108,9 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   const drawn = dataSaverBlocks(shown, saving);
   const lead = drawn.find((b): b is ExplanationBlock => b.type === 'explanation');
   const model = drawn.some((b) => b.type === 'model_3d');
+  // W16-A2: where the answer comes from, first: its chapter as soon as the sources block names it, else, once complete,
+  // general knowledge.
+  const citation = citationOf(shown, state === 'done' || state === 'incomplete');
   // Only the latest request may draw: an earlier one (a follow-up tapped twice, React's double run in development) is
   // aborted and anything it still sends is ignored.
   const current = useRef<AbortController | null>(null);
@@ -218,7 +229,10 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       case 'english_moment':
         return <EnglishMomentView key={i} b={b} w={w} tone={tone} />;
       case 'sources':
-        return <SourcesView key={i} b={b} w={w} tone={tone} />;
+        // A chapter is the chip at the top; the card only for links.
+        return b.links.length > 0 ? <SourcesView key={i} b={b} w={w} tone={tone} /> : null;
+      case 'board':
+        return <BoardView key={i} b={b} w={w} tone={tone} cursor={sentence === undefined ? undefined : boardCursorFromSentence(b.steps.map((s) => s.say), sentence)} />;
       case 'figure':
         return <FigureView key={i} b={b} tone={tone} />;
       case 'model_3d':
@@ -226,7 +240,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       case 'steps':
         return <StepsView key={i} b={b} w={w} tone={tone} />;
       case 'scene':
-        return <SceneView key={i} b={b} w={w} tone={tone} />;
+        return isSimScene(b) ? <SimView key={i} b={b} w={w} tone={tone} /> : <SceneView key={i} b={b} w={w} tone={tone} />;
       case 'chart':
         return <ChartView key={i} b={b} w={w} tone={tone} />;
       case 'timeline':
@@ -279,6 +293,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
           {fill(w['fam.dataSaver.skipped'], { n: droppedCount(shown, true) })}
         </p>
       )}
+      {citation && <CitationChip w={w} c={citation} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {model && (
         <button type="button" data-show-model onClick={() => showModel(top.current)} className="fam-press fam-lesson-chip min-h-[44px] self-start rounded-full bg-white px-4 text-sm font-bold text-ink">

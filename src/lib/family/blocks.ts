@@ -22,6 +22,7 @@
 
 import { FRACTION_MAX_DENOMINATOR, GRAPH_FNS, GRAPH_PARAMS, PARAM_LIMIT, SIM_INPUTS, SIM_KINDS, X_LIMIT, isTriangle, type Fraction, type GraphFn, type SimKind } from './interactive';
 import { SOLID_INPUTS, SOLID_KINDS, type SolidKind } from './solids';
+import { SCENE_SIMS, simStart, type SceneSim } from './visuals/sims';
 
 export const BLOCK_SCHEMA_VERSION = 1;
 
@@ -38,7 +39,9 @@ export type QuizItem = { id: string; question: string; options: string[]; answer
 export type Check = { type: 'check'; items: QuizItem[] };
 export type Practice = { type: 'practice'; items: QuizItem[] };
 export type EnglishMoment = { type: 'english_moment'; words: { en: string; meaning: string }[]; sentence: string; pattern: string; sayIt: string };
-export type Sources = { type: 'sources'; links: { label: string; url: string }[] };
+// W16-A2 (docs/39 §6): `chapter` (and its `unit`) names the child's chapter the answer was taught from, shown first as one
+// chip line; links (official hosts only) are then optional. Without a chapter, at least one link, as before.
+export type Sources = { type: 'sources'; links: { label: string; url: string }[]; chapter?: string; unit?: string };
 // The interactive blocks (M2-8): the model fills these numbers; our code draws them and computes every value shown.
 export type GraphSlider = { param: string; min: number; max: number; step: number };
 export type Graph = { type: 'graph'; title: string; fn: GraphFn; params: Record<string, number>; sliders: GraphSlider[]; xFrom: number; xTo: number };
@@ -97,6 +100,10 @@ export type SceneAnimation = (typeof SCENE_ANIMATIONS)[number];
 export type ScenePart = { id: string; label: string; text: string; shape: SceneShape; colour: number };
 export type SceneLink = { from: string; to: string; kind: SceneLinkKind; label?: string };
 export type Scene = { type: 'scene'; title: string; layout: SceneLayout; parts: ScenePart[]; links: SceneLink[]; animate: SceneAnimation };
+// W16-A2 (docs/39 §6): a scene may instead name one of the Class 8 Science simulations by key (./visuals/sims.ts); its
+// choices and every number it shows are ours. `start`: the choice shown first for each input (one of the template's).
+export type SimScene = { type: 'scene'; title: string; sim: SceneSim; start: Record<string, number> };
+export const isSimScene = (b: { type: string }): b is SimScene => b.type === 'scene' && typeof (b as { sim?: unknown }).sim === 'string';
 export const CHART_KINDS = ['bar', 'line', 'pie'] as const;
 export type ChartKind = (typeof CHART_KINDS)[number];
 export type Chart = { type: 'chart'; title: string; kind: ChartKind; unit: string; labels: string[]; series: { label: string; values: number[] }[] };
@@ -109,13 +116,53 @@ export const PHOTO_PAGE_HOST = 'commons.wikimedia.org';
 // The licences a photograph may carry, any version (and a port such as "de"): CC0, CC BY, CC BY-SA, public domain.
 export const PHOTO_LICENCE = /^(?:CC0(?: 1\.0)?|CC BY(?:-SA)?(?: \d\.\d)?(?: [A-Za-z]{2,3})?|Public domain)$/i;
 
+// W16-A2 (docs/39 §6, decision 4 of Programme W16): the live drawing board. Numbered steps of drawing commands on a
+// 100 by 100 grid (x from the left, y from the top), drawn step by step by our own code (BoardView), in step with the
+// sentence being read or spoken (`say`). No canvas library, no markup, no picture from the model.
+export const BOARD_COLOURS = ['ink', 'saffron', 'teal', 'plum'] as const;
+export type BoardColour = (typeof BOARD_COLOURS)[number];
+export const BOARD_SHAPES = ['rect', 'circle', 'ellipse', 'triangle', 'line'] as const;
+export type BoardShapeKind = (typeof BOARD_SHAPES)[number];
+export const BOARD_KINDS = ['shape', 'arrow', 'label', 'text', 'equation', 'axis', 'graph', 'point', 'highlight', 'erase', 'group'] as const;
+export type BoardKind = (typeof BOARD_KINDS)[number];
+export type BoardPoint = [number, number];
+type BoardBase = { id?: string; colour?: BoardColour };
+export type BoardShape =
+  | (BoardBase & { kind: 'shape'; shape: 'rect'; at: BoardPoint; w: number; h: number; fill?: true })
+  | (BoardBase & { kind: 'shape'; shape: 'circle'; at: BoardPoint; r: number; fill?: true })
+  | (BoardBase & { kind: 'shape'; shape: 'ellipse'; at: BoardPoint; rx: number; ry: number; fill?: true })
+  | (BoardBase & { kind: 'shape'; shape: 'triangle'; points: [BoardPoint, BoardPoint, BoardPoint]; fill?: true })
+  | (BoardBase & { kind: 'shape'; shape: 'line'; from: BoardPoint; to: BoardPoint; dashed?: true });
+// An axis: its origin `at` (bottom left, on the grid), `w` to the right and `h` upwards, and the numbers it runs over.
+export type BoardAxis = BoardBase & { kind: 'axis'; at: BoardPoint; w: number; h: number; x: [number, number]; y: [number, number]; xLabel?: string; yLabel?: string };
+export type BoardLeaf =
+  | BoardShape
+  | (BoardBase & { kind: 'arrow'; from: BoardPoint; to: BoardPoint })
+  | (BoardBase & { kind: 'label'; at: BoardPoint; text: string })
+  | (BoardBase & { kind: 'text'; at: BoardPoint; text: string; size?: 'small' | 'big' })
+  | (BoardBase & { kind: 'equation'; at: BoardPoint; text: string })
+  | BoardAxis
+  // A graph's points are in its axis' own numbers (the axis it names, or the last one drawn before it).
+  | (BoardBase & { kind: 'graph'; axis: string; points: BoardPoint[]; dots?: true })
+  | (BoardBase & { kind: 'point'; at: BoardPoint; label?: string })
+  // A highlight rings an earlier command (by id) or a box; an erase takes an earlier command away from its step on.
+  | (BoardBase & { kind: 'highlight'; target?: string; at?: BoardPoint; w?: number; h?: number })
+  | { kind: 'erase'; target: string };
+export type BoardGroup = BoardBase & { kind: 'group'; commands: BoardLeaf[] };
+export type BoardCommand = BoardLeaf | BoardGroup;
+export type BoardStep = { n: number; say?: string; commands: BoardCommand[] };
+export type Board = { type: 'board'; title: string; width?: 'wide' | 'tall'; steps: BoardStep[] };
+export const BOARD_STEPS_MAX = 12;
+export const BOARD_COMMANDS_MAX = 60;
+export const BOARD_SAY_MAX = 240;
+
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | Chart) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board'];
 // The blocks the server fills before they are kept (W9-C): a photograph and the videos.
 export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
@@ -404,12 +451,20 @@ function blockBody(o: Record<string, unknown>): Block | null {
       return words && sentence && pattern && sayIt ? { type: 'english_moment', words, sentence, pattern, sayIt } : null;
     }
     case 'sources': {
-      const links = list(o.links, 1, 4, (x) => {
-        const l = (x ?? {}) as Record<string, unknown>;
-        const label = plain(l.label, 120);
-        return label && typeof l.url === 'string' && allowedSource(l.url) ? { label, url: new URL(l.url).toString() } : null;
-      });
-      return links ? { type: 'sources', links } : null;
+      // W16-A2: the chapter (up to 120 characters) and its unit (up to 60) fit as written, or the block is dropped.
+      const chapter = o.chapter === undefined ? undefined : fits(o.chapter, 120);
+      const unit = o.unit === undefined || o.unit === '' ? undefined : fits(o.unit, 60);
+      if (chapter === null || unit === null || (unit && !chapter)) return null;
+      const links =
+        o.links === undefined && chapter
+          ? []
+          : list(o.links, chapter ? 0 : 1, 4, (x) => {
+              const l = (x ?? {}) as Record<string, unknown>;
+              const label = plain(l.label, 120);
+              return label && typeof l.url === 'string' && allowedSource(l.url) ? { label, url: new URL(l.url).toString() } : null;
+            });
+      if (!links) return null;
+      return chapter ? { type: 'sources', links, chapter, ...(unit ? { unit } : {}) } : { type: 'sources', links };
     }
     case 'table': {
       const title = plain(o.title, 120);
@@ -442,9 +497,11 @@ function blockBody(o: Record<string, unknown>): Block | null {
     case 'timeline':
       return stripBlock(o);
     case 'scene':
-      return sceneBlock(o);
+      return o.sim !== undefined ? simSceneBlock(o) : sceneBlock(o);
     case 'chart':
       return chartBlock(o);
+    case 'board':
+      return boardBlock(o);
     default:
       return null;
   }
@@ -532,6 +589,280 @@ function sceneBlock(o: Record<string, unknown>): Scene | null {
     links.push({ from: l.from as string, to: l.to as string, kind, ...(label ? { label } : {}) });
   }
   return { type: 'scene', title, layout, parts, links, animate };
+}
+
+// A simulation scene (W16-A2): a known key and a title; a starting value that is not one of the template's choices
+// falls back to the template's own.
+function simSceneBlock(o: Record<string, unknown>): SimScene | null {
+  const title = fits(o.title, 60);
+  const sim = SCENE_SIMS.find((k) => k === o.sim);
+  if (!title || !sim) return null;
+  return { type: 'scene', title, sim, start: simStart(sim, record(o.start)) };
+}
+
+// ---- the board (W16-A2, docs/39 §6) ----
+// Lenient where a child loses nothing: a number off the grid is clamped onto it, a command that cannot be read is
+// dropped (the rest of its step kept), a step left with nothing to draw is dropped, steps past 12 and commands past 60
+// are dropped. Strict where a picture could mislead: a label or text that does not fit is dropped, never cut short; an
+// erase or highlight names only an id drawn before it. The board is dropped only with no title or no step left.
+// Steps are put in the order of their numbers and numbered again 1, 2, 3 (the same number twice is one step).
+// `notes` (boardProblems) collects what was clamped or dropped, for the quality checks; the parse is the same.
+
+const BOARD_ID = /^[A-Za-z0-9_-]{1,20}$/;
+const clampTo = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
+type BoardNotes = { out: string[]; at: string };
+const note = (n: BoardNotes | undefined, what: string) => {
+  n?.out.push(`${n.at}: ${what}`);
+};
+
+// A finite number, clamped into [lo, hi] (noted when it was outside); null when it is not a number.
+function gridNumber(v: unknown, lo: number, hi: number, n?: BoardNotes): number | null {
+  if (typeof v !== 'number' || !Number.isFinite(v)) return null;
+  if (v < lo || v > hi) note(n, `${v} clamped to ${lo}..${hi}`);
+  return Math.round(clampTo(v, lo, hi) * 100) / 100;
+}
+// [x, y] (or {x, y}) on the grid.
+function gridPoint(v: unknown, n?: BoardNotes): BoardPoint | null {
+  const o = record(v);
+  const pair = Array.isArray(v) && v.length === 2 ? v : 'x' in o && 'y' in o ? [o.x, o.y] : null;
+  if (!pair) return null;
+  const x = gridNumber(pair[0], 0, 100, n);
+  const y = gridNumber(pair[1], 0, 100, n);
+  return x === null || y === null ? null : [x, y];
+}
+const DATA_LIMIT = 1e6;
+function dataPoint(v: unknown): BoardPoint | null {
+  if (!Array.isArray(v) || v.length !== 2) return null;
+  const [x, y] = v;
+  return typeof x === 'number' && typeof y === 'number' && Number.isFinite(x) && Number.isFinite(y) && Math.abs(x) <= DATA_LIMIT && Math.abs(y) <= DATA_LIMIT ? [x, y] : null;
+}
+function dataRange(v: unknown, fallback: [number, number]): [number, number] | null {
+  if (v === undefined) return fallback;
+  const p = dataPoint(v);
+  return p && p[0] < p[1] ? p : null;
+}
+
+// What the commands read so far have drawn: their ids, the axes (by id, or by place when unnamed) and the count.
+type BoardScope = { ids: Set<string>; axes: Map<string, BoardAxis>; lastAxis: string | null; count: number };
+
+function boardLeaf(raw: unknown, scope: BoardScope, n?: BoardNotes): BoardLeaf | null {
+  const c = record(raw);
+  const base: BoardBase = {};
+  if (c.id !== undefined) {
+    if (typeof c.id !== 'string' || !BOARD_ID.test(c.id) || scope.ids.has(c.id)) return null;
+    base.id = c.id;
+  }
+  if (c.colour !== undefined) {
+    const colour = BOARD_COLOURS.find((k) => k === c.colour);
+    if (colour) base.colour = colour;
+    else note(n, `colour ${String(c.colour)} not known, ink used`);
+  }
+  const fill = c.fill === true ? { fill: true as const } : {};
+  switch (c.kind) {
+    case 'shape': {
+      switch (c.shape) {
+        case 'rect': {
+          const at = gridPoint(c.at, n);
+          const w = gridNumber(c.w, 1, 100, n);
+          const h = gridNumber(c.h, 1, 100, n);
+          return at && w !== null && h !== null ? { ...base, kind: 'shape', shape: 'rect', at, w, h, ...fill } : null;
+        }
+        case 'circle': {
+          const at = gridPoint(c.at, n);
+          const r = gridNumber(c.r, 0.5, 50, n);
+          return at && r !== null ? { ...base, kind: 'shape', shape: 'circle', at, r, ...fill } : null;
+        }
+        case 'ellipse': {
+          const at = gridPoint(c.at, n);
+          const rx = gridNumber(c.rx, 0.5, 50, n);
+          const ry = gridNumber(c.ry, 0.5, 50, n);
+          return at && rx !== null && ry !== null ? { ...base, kind: 'shape', shape: 'ellipse', at, rx, ry, ...fill } : null;
+        }
+        case 'triangle': {
+          const pts = Array.isArray(c.points) && c.points.length === 3 ? c.points.map((p) => gridPoint(p, n)) : null;
+          return pts && pts.every(Boolean) ? { ...base, kind: 'shape', shape: 'triangle', points: pts as [BoardPoint, BoardPoint, BoardPoint], ...fill } : null;
+        }
+        case 'line': {
+          const from = gridPoint(c.from, n);
+          const to = gridPoint(c.to, n);
+          return from && to ? { ...base, kind: 'shape', shape: 'line', from, to, ...(c.dashed === true ? { dashed: true as const } : {}) } : null;
+        }
+        default:
+          return null;
+      }
+    }
+    case 'arrow': {
+      const from = gridPoint(c.from, n);
+      const to = gridPoint(c.to, n);
+      return from && to && (from[0] !== to[0] || from[1] !== to[1]) ? { ...base, kind: 'arrow', from, to } : null;
+    }
+    case 'label':
+    case 'equation': {
+      const at = gridPoint(c.at, n);
+      const text = fits(c.text, c.kind === 'label' ? 40 : 80);
+      return at && text ? { ...base, kind: c.kind, at, text } : null;
+    }
+    case 'text': {
+      const at = gridPoint(c.at, n);
+      const text = fits(c.text, 160);
+      const size = c.size === 'small' || c.size === 'big' ? { size: c.size as 'small' | 'big' } : {};
+      return at && text ? { ...base, kind: 'text', at, text, ...size } : null;
+    }
+    case 'axis': {
+      const at = gridPoint(c.at, n);
+      const w = gridNumber(c.w, 10, 100, n);
+      const h = gridNumber(c.h, 10, 100, n);
+      const x = dataRange(c.x, [0, 10]);
+      const y = dataRange(c.y, [0, 10]);
+      const xLabel = c.xLabel === undefined ? undefined : fits(c.xLabel, 20);
+      const yLabel = c.yLabel === undefined ? undefined : fits(c.yLabel, 20);
+      if (!at || w === null || h === null || !x || !y || xLabel === null || yLabel === null) return null;
+      const axis: BoardAxis = { ...base, kind: 'axis', at, w, h, x, y, ...(xLabel ? { xLabel } : {}), ...(yLabel ? { yLabel } : {}) };
+      // An unnamed axis is named by its place, so a graph after it still finds it.
+      const key = base.id ?? `axis-${scope.count + 1}`;
+      if (!base.id) axis.id = key;
+      scope.axes.set(key, axis);
+      scope.lastAxis = key;
+      return axis;
+    }
+    case 'graph': {
+      const key = typeof c.axis === 'string' ? c.axis : scope.lastAxis;
+      const axis = key ? scope.axes.get(key) : undefined;
+      if (!key || !axis) return null;
+      const raw = Array.isArray(c.points) ? c.points.slice(0, 24) : [];
+      const points = raw
+        .map(dataPoint)
+        .filter((p): p is BoardPoint => p !== null)
+        .map((p): BoardPoint => [clampTo(p[0], axis.x[0], axis.x[1]), clampTo(p[1], axis.y[0], axis.y[1])]);
+      if (points.length < raw.length) note(n, 'a graph point could not be read');
+      return points.length >= 1 ? { ...base, kind: 'graph', axis: key, points, ...(c.dots === true ? { dots: true as const } : {}) } : null;
+    }
+    case 'point': {
+      const at = gridPoint(c.at, n);
+      const label = c.label === undefined ? undefined : fits(c.label, 20);
+      return at && label !== null ? { ...base, kind: 'point', at, ...(label ? { label } : {}) } : null;
+    }
+    case 'highlight': {
+      if (c.target !== undefined) return typeof c.target === 'string' && scope.ids.has(c.target) ? { ...base, kind: 'highlight', target: c.target } : null;
+      const at = gridPoint(c.at, n);
+      const w = gridNumber(c.w, 1, 100, n);
+      const h = gridNumber(c.h, 1, 100, n);
+      return at && w !== null && h !== null ? { ...base, kind: 'highlight', at, w, h } : null;
+    }
+    case 'erase':
+      return typeof c.target === 'string' && scope.ids.has(c.target) ? { kind: 'erase', target: c.target } : null;
+    default:
+      return null;
+  }
+}
+
+// One command; a group holds drawing commands only (no group inside a group), and each of them counts to the cap.
+function boardCommand(raw: unknown, scope: BoardScope, n?: BoardNotes): BoardCommand | null {
+  const c = record(raw);
+  if (c.kind !== 'group') {
+    const leaf = boardLeaf(raw, scope, n);
+    if (leaf) {
+      scope.count += 1;
+      if ('id' in leaf && leaf.id) scope.ids.add(leaf.id);
+    }
+    return leaf;
+  }
+  if (c.id !== undefined && (typeof c.id !== 'string' || !BOARD_ID.test(c.id) || scope.ids.has(c.id))) return null;
+  const id = typeof c.id === 'string' ? c.id : undefined;
+  const colour = BOARD_COLOURS.find((k) => k === c.colour);
+  const commands: BoardLeaf[] = [];
+  for (const [k, x] of (Array.isArray(c.commands) ? c.commands : []).entries()) {
+    if (scope.count >= BOARD_COMMANDS_MAX) {
+      note(n, `commands past ${BOARD_COMMANDS_MAX} are not drawn`);
+      break;
+    }
+    const leaf = record(x).kind === 'group' ? null : boardLeaf(x, scope, n);
+    if (!leaf) {
+      note(n, `command ${k + 1} in a group (${String(record(x).kind)}) could not be read`);
+      continue;
+    }
+    scope.count += 1;
+    if ('id' in leaf && leaf.id) scope.ids.add(leaf.id);
+    commands.push(leaf);
+  }
+  if (commands.length === 0) return null;
+  if (id) scope.ids.add(id);
+  return { kind: 'group', ...(id ? { id } : {}), ...(colour ? { colour } : {}), commands };
+}
+
+function boardBlock(o: Record<string, unknown>, notes?: string[]): Board | null {
+  const title = fits(o.title, 60);
+  if (!title) {
+    notes?.push('the board has no title that fits (60 characters)');
+    return null;
+  }
+  const width = o.width === 'wide' || o.width === 'tall' ? o.width : undefined;
+  const rawSteps = Array.isArray(o.steps) ? o.steps : [];
+  // In the order of their numbers (a step without a number keeps its place after the numbered ones).
+  const LAST = Number.MAX_SAFE_INTEGER;
+  const sorted = rawSteps
+    .map((x, i) => {
+      const s = record(x);
+      return { s, i, n: typeof s.n === 'number' && Number.isFinite(s.n) ? s.n : LAST };
+    })
+    .sort((a, b) => a.n - b.n || a.i - b.i);
+  const merged: { n: number; parts: Record<string, unknown>[] }[] = [];
+  for (const x of sorted) {
+    const last = merged[merged.length - 1];
+    if (last && last.n === x.n && x.n !== LAST) {
+      notes?.push(`step ${x.n} is given twice: drawn as one step`);
+      last.parts.push(x.s);
+    } else merged.push({ n: x.n, parts: [x.s] });
+  }
+  if (merged.length > BOARD_STEPS_MAX) notes?.push(`${merged.length} steps: only the first ${BOARD_STEPS_MAX} are drawn`);
+  const scope: BoardScope = { ids: new Set(), axes: new Map(), lastAxis: null, count: 0 };
+  const steps: BoardStep[] = [];
+  for (const m of merged.slice(0, BOARD_STEPS_MAX)) {
+    const n: BoardNotes | undefined = notes ? { out: notes, at: `step ${steps.length + 1}` } : undefined;
+    let say: string | undefined;
+    const commands: BoardCommand[] = [];
+    for (const part of m.parts) {
+      if (say === undefined && part.say !== undefined) {
+        const s = fits(part.say, BOARD_SAY_MAX);
+        if (s) say = s;
+        else note(n, `its say line does not fit (${BOARD_SAY_MAX} characters)`);
+      }
+      for (const [k, x] of (Array.isArray(part.commands) ? part.commands : []).entries()) {
+        if (scope.count >= BOARD_COMMANDS_MAX) {
+          note(n, `commands past ${BOARD_COMMANDS_MAX} are not drawn`);
+          break;
+        }
+        const cmd = boardCommand(x, scope, n);
+        if (cmd) commands.push(cmd);
+        else note(n, `command ${k + 1} (${String(record(x).kind)}) could not be read`);
+      }
+    }
+    if (commands.length === 0) {
+      note(n, 'nothing in it could be drawn: left out');
+      continue;
+    }
+    steps.push({ n: steps.length + 1, ...(say ? { say } : {}), commands });
+  }
+  if (steps.length === 0) {
+    notes?.push('no step could be drawn');
+    return null;
+  }
+  return { type: 'board', title, ...(width ? { width } : {}), steps };
+}
+
+// The quality checks' view of a board (W16-A2; the orchestrator's validators list calls it): what the parser had to
+// clamp or drop, and where the board falls outside what prompt v9 asks for (3 to 8 steps, each with its say line).
+// Empty: nothing to say. Takes what the model wrote, or a board already checked.
+export function boardProblems(raw: unknown): string[] {
+  const o = record(raw);
+  if (o.type !== 'board') return ['not a board block'];
+  const notes: string[] = [];
+  const b = boardBlock(o, notes);
+  if (!b) return notes.length ? notes : ['the board could not be read'];
+  if (b.steps.length < 3 || b.steps.length > 8) notes.push(`${b.steps.length} steps (3 to 8 asked)`);
+  for (const s of b.steps) if (!s.say) notes.push(`step ${s.n} has no say line`);
+  return notes;
 }
 
 // A chart (W10-6, docs/39 §5): 2 to 12 points (labels up to 12 characters), 1 to 3 series (a label up to 20, one finite
@@ -939,8 +1270,9 @@ function parsed(line: string, stored: boolean): Block | null {
 // (`core`: REQUIRED_BLOCKS, or the plan's coreBlocks) is missing (the response is then not complete and never cached).
 // At most one interactive block: the first that passed.
 // W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
-// videos last. W10-6: the scene after the figure, the chart after the key points.
-const ORDER: BlockType[] = ['explanation', 'figure', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
+// videos last. W10-6: the scene after the figure, the chart after the key points. W16-A2: a board where a figure goes,
+// right after it.
+const ORDER: BlockType[] = ['explanation', 'figure', 'board', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
 export function completeResponse(blocks: Block[], core: readonly BlockType[] = REQUIRED_BLOCKS): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;
