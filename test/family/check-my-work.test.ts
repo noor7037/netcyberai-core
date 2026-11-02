@@ -321,7 +321,7 @@ describe('the prompt (family.homework v2)', () => {
   });
 
   it('the migration moves family.homework to v2 the way W16-A2’s moved the resolver, and can be rolled back', () => {
-    const file = 'supabase/migrations/29999999999992_w16_b2_homework_v2.sql';
+    const file = 'supabase/migrations/20261102074040_w16_b2_homework_v2.sql';
     expect(existsSync(file)).toBe(true);
     const sql = readFileSync(file, 'utf8');
     expect(sql).toMatch(/update control\.ai_profiles set prompt_version = 'v2' where profile_id = 'family\.homework' and prompt_version = 'v1';/);
