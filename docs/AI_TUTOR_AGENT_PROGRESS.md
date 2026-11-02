@@ -249,8 +249,7 @@ only through the gateway; the founder's minors switch stays the one gate for eve
 
 Built and merged on the branch: A1 Sarvam, A2 ElevenLabs, A3 OpenRouter, A4 Google voice and speech, B1 Try it, B2 read
 aloud on answers, B3 marked written quiz items, B4 the silence check, B5 Hindi report-card PDFs (Decision Log C447–C456).
-Migrations on TEST: the four provider rows and the quiz's written mark. **Waiting on the founder:** the Try it migration
-(`w17_b1_try_it`) drops and recreates `control.record_ai_attempt`, a destructive statement the database tool asks the
-founder to confirm; until it is applied the PR must not be deployed (the new ledger writer passes fourteen arguments).
+Migrations on TEST: all six (the four provider rows, the quiz's written mark, the Try it ledger source; the founder confirmed
+the function drop on 2 Nov, 17:04 UTC), each recorded under its version with a matching md5. PR #399 can be deployed.
 Keys (Sarvam, ElevenLabs, OpenRouter, Google Cloud Speech-to-Text) go into Control → AI → AI services; "Test the key"
 fills each picker; Try it on a feature card shows what the chosen chain answers.
