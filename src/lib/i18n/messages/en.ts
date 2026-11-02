@@ -8405,6 +8405,8 @@ export const en = {
   'fam.sketch.colour.coral': 'Orange-red',
   'fam.sketch.err.picture_only': 'A drawing is sent as one picture (PNG or JPEG).',
   'fam.timeline.showAll': 'Show all',
+  'fam.check.err.noVerdict': 'I could not mark this working. Try a clearer photo, one sum per line.',
+  'fam.check.verdictTitle': 'Your working, marked',
   'fam.homework.err.not_for_class': 'The homework helper starts from Class 1.',
   'fam.consent.purpose.photo_input': 'Photos and files: the homework helper reads a photo of one question and does not keep it. A photo or PDF your child attaches in the tutor is kept, so the tutor can see it again, until you clear it in the Learning Vault (parent area)',
   'fam.consent.changed.photo_input': 'We changed what this says: files attached in the tutor are now kept until you clear them. Read it again and switch it on if you agree.',

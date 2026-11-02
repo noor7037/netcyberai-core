@@ -1,3 +1,5 @@
+import { evaluateEquation } from './arithmetic-check';
+
 // Check my work (W16-B2): the chapter search for the question a photo of the child's own working showed.
 //
 // Chapter retrieval (src/lib/ai/teaching/retrieve.ts) reads its question as a web search: every word must be in the
@@ -25,4 +27,34 @@ export function checkSearchQuery(question: string): string {
     if (seen.size >= MAX_WORDS) break;
   }
   return [...seen].join(' or ');
+}
+
+// W18-Q3, typed Check my work: a child who types "Check my work: 2+3×4=14" (or "is this right", "मेरा काम जाँचो",
+// "क्या यह सही है") wants that working marked, not a lesson on it. Shared by the tutor window (it sends mode 'check') and
+// the understand route (it accepts that mode with no photo only for text of this shape, and builds the reading itself).
+const TYPED_CHECK = /^\s*(?:check\s+my\s+work|is\s+this\s+right|is\s+this\s+correct|मेरा\s+काम\s+जा[ँं]चो|मेरा\s+काम\s+जा[ँं]च\s+दो|क्या\s+(?:यह|ये)\s+सही\s+है)\s*[?।]?\s*[:\-–—]?/iu;
+const SEGMENT = /\r?\n|;|,\s+/;
+const WORKING_MAX = 8;
+
+// The working lines of a typed check, as typed: every segment after the opening words that our arithmetic can judge.
+// [] when the text does not open with those words or holds no equation we can mark (it is then an ordinary question).
+export function typedCheckWorking(text: string): string[] {
+  const m = TYPED_CHECK.exec(text.normalize('NFC'));
+  if (!m) return [];
+  return text
+    .normalize('NFC')
+    .slice(m[0].length)
+    .split(SEGMENT)
+    .map((x) => x.replace(/[\s.;:!?,।]+$/u, '').trim())
+    .filter((x) => x.length > 0 && evaluateEquation(x) !== null)
+    .slice(0, WORKING_MAX);
+}
+
+export const typedCheckIntent = (text: string): boolean => typedCheckWorking(text).length > 0;
+
+// The reading a photo's read would give ("Line 1: …"), built from the typed working: no photo, no vision call. null when
+// the text is not a typed check.
+export function typedCheckReading(text: string): string | null {
+  const lines = typedCheckWorking(text);
+  return lines.length > 0 ? lines.map((l, i) => `Line ${i + 1}: ${l}`).join('\n') : null;
 }

@@ -17,6 +17,7 @@ import { DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput }
 import { Composer, type ComposerFile } from './Composer';
 import { AnswerSpeaker } from '../voice/AnswerSpeaker';
 import { ANSWER_SPOKEN_MAX, spokenAnswer } from '@/lib/family/call';
+import { typedCheckIntent } from '@/lib/family/check-work';
 
 // The shared tutor window (S2, C375; docs/37 §4 Wave 2): one window for every question a child types, on the Study page
 // and in the chapter reader's doubt drawer. W6-A (C395): one composer (Composer.tsx) pinned at the foot. Study passes
@@ -242,7 +243,9 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const send = () => {
     if (!canSend) return;
     const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
-    submit(asked, { ...base, files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking ? { mode: 'check' as const } : {}) });
+    // W18-Q3: typed working ("Check my work: 2+3×4=14", no file) is marked, not taught: the same mode as the photo.
+    const typedCheck = !checking && attached.length === 0 && typedCheckIntent(asked);
+    submit(asked, { ...base, files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking || typedCheck ? { mode: 'check' as const } : {}) });
   };
 
   // W18-P3: the sketch pad's PNG goes through the same file door as Attach, then is asked about with `sketch: true`: the
