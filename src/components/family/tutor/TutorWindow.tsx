@@ -13,7 +13,7 @@ import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type Unde
 import { Composer, type ComposerFile } from './Composer';
 import { AnswerSpeaker, TeachMe } from '../voice/AnswerSpeaker';
 import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
-import { typedCheckIntent } from '@/lib/family/check-work';
+import { typedCheckIntentLight } from '@/lib/family/check-intent';
 
 // The shared tutor window (S2, C375; docs/37 §4 Wave 2): one window for every question a child types, on the Study page
 // and in the chapter reader's doubt drawer. W6-A (C395): one composer (Composer.tsx) pinned at the foot. Study passes
@@ -238,7 +238,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (!canSend) return;
     const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
     // W18-Q3: typed working ("Check my work: 2+3×4=14", no file) is marked, not taught: the same mode as the photo.
-    const typedCheck = !checking && attached.length === 0 && typedCheckIntent(asked);
+    const typedCheck = !checking && attached.length === 0 && typedCheckIntentLight(asked);
     submit(asked, { ...base, files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking || typedCheck ? { mode: 'check' as const } : {}) });
   };
 

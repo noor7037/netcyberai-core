@@ -1,4 +1,5 @@
 import { evaluateEquation } from './arithmetic-check';
+import { SEGMENT, TYPED_CHECK } from './check-intent';
 
 // Check my work (W16-B2): the chapter search for the question a photo of the child's own working showed.
 //
@@ -32,8 +33,7 @@ export function checkSearchQuery(question: string): string {
 // W18-Q3, typed Check my work: a child who types "Check my work: 2+3×4=14" (or "is this right", "मेरा काम जाँचो",
 // "क्या यह सही है") wants that working marked, not a lesson on it. Shared by the tutor window (it sends mode 'check') and
 // the understand route (it accepts that mode with no photo only for text of this shape, and builds the reading itself).
-const TYPED_CHECK = /^\s*(?:check\s+my\s+work|is\s+this\s+right|is\s+this\s+correct|मेरा\s+काम\s+जा[ँं]चो|मेरा\s+काम\s+जा[ँं]च\s+दो|क्या\s+(?:यह|ये)\s+सही\s+है)\s*[?।]?\s*[:\-–—]?/iu;
-const SEGMENT = /\r?\n|;|,\s+/;
+
 const WORKING_MAX = 8;
 
 // The working lines of a typed check, as typed: every segment after the opening words that our arithmetic can judge.

@@ -86,9 +86,12 @@ export async function POST(req: NextRequest) {
   // Check my work: one photo, no follow-up, no retry; anything else is a bad request before anything is read.
   // W18-Q3: or no file at all, when the typed text is itself the working ("Check my work: 2+3×4=14", check-work.ts): its
   // reading is built here from the text, line by line, with no photo read and no vision call.
-  const checkMode = tutorBody?.mode === 'check' && !followUp && !retry;
+  const asksCheck = tutorBody?.mode === 'check' && !followUp && !retry;
   const noFiles = !Array.isArray(tutorBody?.files) || (tutorBody!.files as unknown[]).length === 0;
-  const typedReading = checkMode && noFiles && input?.kind === 'question' ? typedCheckReading(input.text) : null;
+  const typedReading = asksCheck && noFiles && input?.kind === 'question' ? typedCheckReading(input.text) : null;
+  // Typed words that open like a check but hold nothing our arithmetic can mark (the phone's lighter test said "check") are
+  // answered as the ordinary question they are; a check with files needs exactly one.
+  const checkMode = asksCheck && (typedReading !== null || !noFiles);
   if (checkMode && !typedReading && !(Array.isArray(tutorBody!.files) && tutorBody!.files.length === 1)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   // W18-P3 (the sketch pad): `tutor.sketch: true` only with exactly one attached file, never beside Check my work, a follow-up
   // or a retry; the file's type (PNG or JPEG) is checked below, once the stored file is known.

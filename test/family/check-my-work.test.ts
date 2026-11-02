@@ -214,7 +214,6 @@ describe('a photo of a Class 8 Science numerical with one wrong step', () => {
 
   it('one photo only, and a photo that cannot be read marks nothing', async () => {
     expect((await ask([id(1), id(2)])).status).toBe(400);
-    expect((await ask([])).status).toBe(400);
     expect(ai.asked).toEqual([]);
     const pdf = await ask([id(7)]);
     expect(pdf.events).toEqual([expect.objectContaining({ t: 'refused', message: expect.stringContaining('not a PDF') })]);
@@ -224,6 +223,8 @@ describe('a photo of a Class 8 Science numerical with one wrong step', () => {
     expect(blank.events.some((e) => e.t === 'block')).toBe(false);
     expect(blank.events.at(-1)).toMatchObject({ t: 'refused', message: expect.stringContaining('could not be read') });
     expect(ai.asked.some((a) => a.profile === 'family.resolver')).toBe(false);
+    // No file and no typed sum: the words are answered as the ordinary question they are (W18), never a bad request.
+    expect((await ask([])).status).toBe(200);
   });
 });
 
@@ -297,8 +298,8 @@ describe('a verdict is guaranteed', () => {
     expect((blocks[0] as unknown as { items: unknown[] }).items).toEqual([{ label: 'Step 1: right', text: '2+3×4 = 14 is correct.' }]);
     expect(events.some((e) => e.t === 'files')).toBe(false);
     expect(events.find((e) => e.t === 'done')).toMatchObject({ complete: true });
-    // Typed text that is not working stays a bad request in this mode.
-    expect((await ask([], {}, 'Check my work: x + 2 = 5')).status).toBe(400);
+    // Typed words that open like a check but hold nothing our arithmetic can mark are answered as an ordinary question.
+    expect((await ask([], {}, 'Check my work: x + 2 = 5')).status).toBe(200);
   });
 });
 

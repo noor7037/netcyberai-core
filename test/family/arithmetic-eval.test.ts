@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { equationIn, evaluateEquation, verdictsFromReading, verifyVerdicts } from '@/lib/family/arithmetic-check';
 import { typedCheckIntent, typedCheckReading, typedCheckWorking } from '@/lib/family/check-work';
+import { looksLikeSum, typedCheckIntentLight } from '@/lib/family/check-intent';
 import { checkBlock } from '@/lib/family/blocks';
 
 // W18-Q3: Check my work's own arithmetic. The whole equation is evaluated (precedence, brackets, exact fractions,
@@ -156,5 +157,16 @@ describe('typed Check my work', () => {
     expect(typedCheckWorking('Check my work: 5 × 6 = 32, 45 x 2 = 90; 1,000 + 2 = 1,002.')).toEqual(['5 × 6 = 32', '45 x 2 = 90', '1,000 + 2 = 1,002']);
     expect(typedCheckReading('Check my work: 2+3×4=14')).toBe('Line 1: 2+3×4=14');
     expect(typedCheckReading('Explain fractions')).toBeNull();
+  });
+});
+
+describe('the phone\'s lighter intent test (check-intent.ts, no evaluator in the Study bundle)', () => {
+  it('says check for the opening words plus a line shaped like a sum, and not otherwise', () => {
+    for (const t of ['Check my work: 2+3×4=14', 'check my work - 5 × 6 = 32', 'Is this right? 45 x 2 = 90', 'मेरा काम जाँचो: 5 × 6 = 30', 'Check my work: 3/4 + 1/8 = 7/8', 'Check my work: 1,00,000 + 1 = 1,00,001'])
+      expect(typedCheckIntentLight(t), t).toBe(true);
+    for (const t of ['Check my work', 'Check my work: x + 2 = 5', 'What is 2+3×4=14?', 'Check my work: 20 N / 4 m2 = 5 Pa', 'Explain fractions'])
+      expect(typedCheckIntentLight(t), t).toBe(false);
+    expect(looksLikeSum('45 x 2 = 90')).toBe(true);
+    expect(looksLikeSum('x + 2 = 5')).toBe(false);
   });
 });
