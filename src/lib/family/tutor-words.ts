@@ -14,6 +14,9 @@ export const TUTOR_KEYS: MessageKey[] = [
   'fam.chat.feed', 'fam.chat.kept', 'fam.chat.moved', 'fam.chat.full',
   // W16-B1: "Done for now" ends the session and its quick quiz is made.
   'fam.quiz.done', 'fam.quiz.doneThanks', 'fam.quiz.doneNoQuiz',
+  // W18-P3: the sketch pad.
+  'fam.sketch.open', 'fam.sketch.pen', 'fam.sketch.eraser', 'fam.sketch.undo', 'fam.sketch.clear', 'fam.sketch.clearSure', 'fam.sketch.send', 'fam.sketch.cancel', 'fam.sketch.ask',
+  'fam.sketch.colour.ink', 'fam.sketch.colour.blue', 'fam.sketch.colour.coral',
   // W17-B2: read a tutor's answer aloud, and which voice reads it.
   'fam.tutor.readAloud', 'fam.tutor.stopAloud', 'fam.voiceOut.server', 'fam.voiceOut.phone',
   ...SUBJECT_IDS.map((s) => `fam.subject.${s}` as MessageKey),

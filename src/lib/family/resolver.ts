@@ -60,9 +60,11 @@ export const FOLLOW_UPS: readonly FollowUp[] = ['simpler', 'another_example', 'd
 // (tutor-read.ts); the answer is that working marked step by step (family.homework prompt v2). The library's passages
 // are searched on the question the photo showed (the first line of the reading), not on the child's words, and no
 // planning call is made.
+// `sketch` (W18-P3): the attached picture is a drawing the child made on the sketch pad (one PNG or JPEG, checked by the
+// route); it reaches the prompt as `ResolverAsk.sketch`, so the tutor answers with a board that marks up the drawing.
 export type ResolveInput =
   | { kind: 'topic' | 'chapter'; key: string }
-  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true };
+  | { kind: 'question'; text: string; subject: Subject | null; about?: string; attached?: string; chapterKey?: string; windowSubject?: string; memory?: ChatMemory; check?: true; sketch?: true };
 
 const withAttached = (text: string, attached: string | undefined) => (attached ? `${text}\n\nThe student attached files. What they say:\n${attached}` : text);
 
@@ -393,6 +395,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
     misconception,
     ...(teach ? { passages: teach.passages } : {}),
     ...(input.kind === 'question' && input.memory ? { memory: input.memory } : {}),
+    ...(input.kind === 'question' && input.sketch ? { sketch: true } : {}),
   };
   // The default plan (v8's own rule: a question at medium depth, a chapter or topic whole) until the planner answers.
   const plan = prompt.usesPlan || isCheck ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;

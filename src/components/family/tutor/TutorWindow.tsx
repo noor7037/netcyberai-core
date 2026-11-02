@@ -13,7 +13,7 @@ import { StepsView } from '../blocks/StepsView';
 import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { MindMapView } from '../blocks/MindMapView';
-import { DirectAnswerCard, UnderstandView, type UnderstandInput } from '../UnderstandView';
+import { DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
 import { AnswerSpeaker } from '../voice/AnswerSpeaker';
 import { ANSWER_SPOKEN_MAX, spokenAnswer } from '@/lib/family/call';
@@ -75,6 +75,22 @@ function sendToStore(url: string, file: File, contentType: string): Promise<bool
     xhr.onerror = xhr.onabort = xhr.ontimeout = () => resolve(false);
     xhr.send(file);
   });
+}
+
+// The file door's three steps (ask for a link, send the file to it, confirm): shared by Attach and the sketch pad, so both
+// meet the same checks on the server. `step` lets Attach show where it is. Resolves with the attachment's id, or the code
+// of what refused.
+async function uploadTutorFile(subject: string, file: File, mime: string, step?: { ticket?: (id: string) => void; stored?: () => void }): Promise<{ id: string } | { code: string }> {
+  const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
+  if (!askRes?.ok) return { code: await errorOf(askRes) };
+  const ticket = (await askRes.json().catch(() => null)) as { attachmentId?: string; uploadUrl?: string; contentType?: string } | null;
+  if (!ticket?.attachmentId || !ticket.uploadUrl) return { code: 'network' };
+  step?.ticket?.(ticket.attachmentId);
+  if (!(await sendToStore(ticket.uploadUrl, file, ticket.contentType ?? mime))) return { code: 'storage_unavailable' };
+  step?.stored?.();
+  const confirmed = await postJson(`/api/family/tutor/files/${encodeURIComponent(ticket.attachmentId)}`, {});
+  if (!confirmed?.ok) return { code: await errorOf(confirmed) };
+  return { id: ticket.attachmentId };
 }
 
 // The feed read from the server, less the turn a carried question already draws live (the question the tab followed:
@@ -199,15 +215,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (check && mime === 'application/pdf') return setFileError(w['fam.check.err.photo_only']);
     if (check) setChecking(true);
     setAttached((list) => [...list, { key, name: file.name, mime, state: 'sending', id: null }]);
-    const askRes = await postJson('/api/family/tutor/files', { subject, mime, size: file.size, name: file.name });
-    if (!askRes?.ok) return drop(await errorOf(askRes));
-    const ticket = (await askRes.json().catch(() => null)) as { attachmentId?: string; uploadUrl?: string; contentType?: string } | null;
-    if (!ticket?.attachmentId || !ticket.uploadUrl) return drop('network');
-    update({ id: ticket.attachmentId });
-    if (!(await sendToStore(ticket.uploadUrl, file, ticket.contentType ?? mime))) return drop('storage_unavailable');
-    update({ state: 'checking' });
-    const confirmed = await postJson(`/api/family/tutor/files/${encodeURIComponent(ticket.attachmentId)}`, {});
-    if (!confirmed?.ok) return drop(await errorOf(confirmed));
+    const up = await uploadTutorFile(subject, file, mime, { ticket: (id) => update({ id }), stored: () => update({ state: 'checking' }) });
+    if ('code' in up) return drop(up.code);
     update({ state: 'ready' });
   };
 
@@ -218,10 +227,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   // A question continues the subject's newest open chat (the server finds it; the first answer opens one).
-  const send = () => {
-    if (!canSend) return;
-    const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
-    const tutor = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}), files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking ? { mode: 'check' as const } : {}) };
+  const submit = (asked: string, tutor: TutorAsk) => {
     const n = (asks.at(-1)?.n ?? 0) + 1;
     setAsks((list) => [...list, { n, subject, text: asked, input: { kind: 'question', text: asked, tutor }, moved: null, chatId: null }]);
     setText('');
@@ -231,6 +237,27 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     setOpen(true);
     // The new question at the top of the feed box, its answer drawing below it.
     requestAnimationFrame(() => document.getElementById(`${ids.feed}-ask-${n}`)?.scrollIntoView({ block: 'start', behavior: stillMotion() ? 'auto' : 'smooth' }));
+  };
+  const base = { subject, ...(chosen ? { tutorKey: chosen.key } : {}), ...(reader ? { chapterKey: reader.chapterKey, blockId: reader.blockId } : {}) };
+  const send = () => {
+    if (!canSend) return;
+    const asked = checking && text.trim().length < TUTOR_TEXT_MIN ? w['fam.check.sent'] : text.trim();
+    submit(asked, { ...base, files: attached.flatMap((a) => (a.id ? [a.id] : [])), ...(checking ? { mode: 'check' as const } : {}) });
+  };
+
+  // W18-P3: the sketch pad's PNG goes through the same file door as Attach, then is asked about with `sketch: true`: the
+  // tutor answers with a board that marks up the drawing. The words are what the child typed, else a fixed line. Resolves
+  // with the words of an error to show in the pad, or null once asked.
+  const sendSketch = async (file: File): Promise<string | null> => {
+    if (attached.length > 0 || checking) return w['fam.tutor.err.too_many_files'];
+    if (file.size === 0) return w['fam.tutor.err.file_empty'];
+    if (file.size > TUTOR_FILE_MAX_BYTES) return w['fam.tutor.err.file_too_large'];
+    const mime = sniffTutorFile(new Uint8Array(await file.slice(0, 16).arrayBuffer()));
+    if (mime !== 'image/png') return w['fam.tutor.err.file_type'];
+    const up = await uploadTutorFile(subject, file, mime);
+    if ('code' in up) return w[`fam.tutor.err.${up.code}`] ?? w['fam.err.network'];
+    submit(text.trim().length >= TUTOR_TEXT_MIN ? text.trim() : w['fam.sketch.ask'], { ...base, files: [up.id], sketch: true });
+    return null;
   };
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
@@ -335,6 +362,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         attached={attached}
         onAttach={(f) => void attach(f)}
         onCheck={(f) => void attach(f, true)}
+        onSketch={sendSketch}
         checking={checking}
         onRemove={remove}
         fileError={fileError}

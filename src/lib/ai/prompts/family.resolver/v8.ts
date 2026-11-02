@@ -36,6 +36,9 @@ export type ResolverAsk = V3Ask & {
   passages?: Passage[];
   // The chat so far (9A): its summary and last turns.
   memory?: ChatMemory;
+  // W18-P3: the attached picture is the child's own drawing from the sketch pad. Declared here so the request can carry it;
+  // the prompt version that reads it (v10) owns the rule. Earlier versions ignore it.
+  sketch?: boolean;
 };
 
 const STYLE: Record<V3Ask['style'], string> = {
