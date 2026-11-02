@@ -66,6 +66,9 @@ export const TOURS = {
   // p5-8h end
   // p5-8i begin
   'school-auditor': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  // w16-a3 begin
+  'ai-tutors': { steps: [{ slot: 'body' }, { slot: 'body' }] },
+  // w16-a3 end
   // p5-8i end
   // p5-8j begin
   'early-warning': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },

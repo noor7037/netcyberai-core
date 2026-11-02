@@ -473,6 +473,7 @@ ALLOWED_PERMISSIVE = (
         ("content.topics", "topics_family_read"),
         ("content.responses", "responses_family_read"),
         ("content.responses", "responses_family_add"),
+        ("content.tutors", "tutors_family_read"),  # w16-a3
         ("control.settings", "settings_family_read"),
         ("control.app_flags", "app_flags_family_read"),
         ("control.app_banners", "app_banners_family_read"),
@@ -590,6 +591,10 @@ ALLOWED_PERMISSIVE = (
         # policies required below.
         ("result_pdfs", "result_pdfs_tenant_isolation"),
         # aq-5 end
+        # w16-a3 begin
+        # W16-A3 (the Tutor Hall): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("school_tutors", "school_tutors_tenant_isolation"),
+        # w16-a3 end
         # aq-4 begin
         # AQ-4 (C365, online tests): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
         ("online_tests", "online_tests_tenant_isolation"),
@@ -1051,6 +1056,7 @@ REQUIRED_RESTRICTIVE = {
     ("content.chapters", "chapters_family_only"),
     ("content.topics", "topics_family_only"),
     ("content.responses", "responses_family_only"),
+    ("content.tutors", "tutors_family_only"),  # w16-a3
     ("control.preview_accounts", "preview_family_only"),
     # m1 end
     # wb1 begin
@@ -1203,6 +1209,11 @@ REQUIRED_RESTRICTIVE = {
     ("result_pdfs", "result_pdfs_never_removed"),
     ("result_pdfs", "result_pdfs_no_parent"),
     # aq-5 end
+    # w16-a3 begin
+    ("school_tutors", "school_tutors_office"),
+    ("school_tutors", "school_tutors_never_removed"),
+    ("school_tutors", "school_tutors_no_parent"),
+    # w16-a3 end
     # aq-4 begin
     ("online_tests", "online_tests_readers"),
     ("online_tests", "online_tests_writers"),

@@ -1,3 +1,4 @@
+import { personaLine, type Persona } from './persona';
 import { REFUSAL_MESSAGE, activePromptVersion, prepareModeration, prepareText, type AiRefusal, type AiRequest, type PreparedModeration, type PreparedText, type SentText } from '@/lib/ai/platform';
 import { resolverPrompt, type ChatMemory, type ResolverAsk } from '@/lib/ai/prompts/family.resolver';
 import { logPlan, planAnswer, preparePlan } from '@/lib/ai/teaching/plan';
@@ -86,6 +87,8 @@ export type ResolverContext = {
   // provider and prompt version, and no family's daily cap; the response is marked prepared, so no child sees it
   // before a person has checked it.
   preparing?: { versionId: string };
+  // W16-A3: the tutor the child chose in the Tutor Hall; one line in the system prompt (src/lib/family/persona.ts).
+  persona?: Persona;
 };
 
 // Whom the sealed items are for.
@@ -371,7 +374,7 @@ export async function prepareResolve(db: Db, ctx: ResolverContext, input: Resolv
   const plan = prompt.usesPlan ? defaultPlan({ classLevel: child.classLevel, subject: teach?.ctx.subject ?? known, lang: child.language }, input.kind === 'question' ? 'medium' : 'full') : null;
   const build = (p: Plan | null): AiRequest => {
     const a: ResolverAsk = p ? { ...ask, plan: p } : ask;
-    return { system: prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
+    return { system: ctx.persona ? `${prompt.system(a)}\n${personaLine(ctx.persona)}` : prompt.system(a), messages: [{ role: 'user', content: prompt.user(a) }], responseFormat: undefined };
   };
   const prepared = await prepareText(db as never, { accountId: ctx.accountId, childFirstNames: ctx.childFirstNames, parentEmail: ctx.parentEmail, day: ctx.day }, profileId, build(plan));
   if (!prepared.ok) {

@@ -144,6 +144,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-study-requests', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-chapter-requests]' }],
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-study', '/family/study', {}],
+  // W16-A3: the Tutor Hall.
+  ['full', 'family-tutors', '/family/tutors', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-group]' }],
+  ['full', 'family-tutors-study', '/family/study?subject=mathematics&tutor=maths', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chosen]' }],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.

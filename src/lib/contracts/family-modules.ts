@@ -45,4 +45,6 @@ export const FAMILY_MODULES: readonly FamilyModule[] = [
   { id: 'home_plan', tab: 'family', flag: 'home_plan', entitlement: 'plus', built: true, milestone: 'M3' },
   // m2b-1 (C305): the Focus Lock's server (status, lock health, the parent's notices). Off until Control switches it on.
   { id: 'focus_lock', tab: 'family', flag: 'focus_lock', entitlement: 'public', built: true, milestone: 'M2b', offByDefault: true },
+  // W16-A3: the Tutor Hall (subject tutors to chat with or call); on by default like the others.
+  { id: 'tutors', tab: 'study', flag: 'tutors', entitlement: 'public', built: true, milestone: 'W16' },
 ];

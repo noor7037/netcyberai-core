@@ -16,7 +16,7 @@ export const MODULE_IDS = [
   'pulse', 'communication', 'ptm', 'events', 'complaints',
   'fees', 'payroll',
   'documents', 'compliance', 'reports',
-  'early-warning', 'learning-genome', 'curriculum-gap', 'teacher-copilot', 'parent-ai', 'school-auditor', 'career', 'twin', 'automation',
+  'early-warning', 'learning-genome', 'curriculum-gap', 'teacher-copilot', 'parent-ai', 'school-auditor', 'ai-tutors', 'career', 'twin', 'automation',
   'help-center', 'raise-ticket',
 ] as const;
 export type ModuleId = (typeof MODULE_IDS)[number];
@@ -163,6 +163,10 @@ const ROWS: readonly Row[] = [
     capabilities: ['Weekly “what to do at home” per child', 'In the family’s language', 'Teacher-reviewed templates'] },
   { id: 'school-auditor', label: 'School Health Auditor', group: 'ai-intelligence', icon: 'auditor', roles: OFFICE, phase: 'P5', phaseNote: 'Twelve checks by fixed rules, each passing, needing attention with a count and the screen that fixes it, or not set up; "N of M checks pass" and a dated record of each check-up are live. Rules only: no AI model', status: 'partial',
     capabilities: ['Checks across attendance, timetable, fees, communication, complaints and staff, never a score', 'Why each check says what it says', 'Fix list'] },
+  // W16-A3 begin
+  { id: 'ai-tutors', label: 'AI Tutors', group: 'ai-intelligence', icon: 'tutor', roles: OFFICE, phase: 'P7', phaseNote: 'The platform’s tutors (switch each on or off for this school) and the school’s own tutors (add, edit, switch off) are live; they reach the Family app of a linked family', status: 'live',
+    capabilities: ['Platform tutors, switched on or off for the school', 'The school’s own tutors', 'Shown in the Family app after School Link pairing'] },
+  // W16-A3 end
   { id: 'career', label: 'Career Graph', group: 'ai-intelligence', icon: 'career', roles: OFFICE, phase: 'P7', status: 'spec-v0',
     capabilities: ['From class 9', 'Interests and subject performance → career clusters', 'Stream guidance', 'Counsellor notes'] },
   { id: 'twin', label: 'Digital Twin', group: 'ai-intelligence', icon: 'twin', roles: OFFICE, phase: 'P7', status: 'spec-v0',

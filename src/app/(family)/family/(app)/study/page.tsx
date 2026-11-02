@@ -1,4 +1,5 @@
 import { familyClaims } from '@/lib/family/db';
+import { findTutor, isTutorKey, loadHall } from '@/lib/family/tutors';
 import Link from 'next/link';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { redirect } from 'next/navigation';
@@ -18,7 +19,7 @@ import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
 import { openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
-import { readFamilySwitches, switchOn } from '@/lib/family/flags';
+import { familyModuleOn, readFamilySwitches, switchOn } from '@/lib/family/flags';
 import { photoGate } from '@/lib/family/photo-gate';
 import { voiceDay } from '@/lib/family/voice';
 import { VOICE_KEYS } from '@/lib/family/voice-words';
@@ -48,7 +49,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 // The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
 // holds for the class, the free one first once claimed.
 
-export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string } }) {
+export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string; tutor?: string } }) {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
   const next = firstStepsNext(page);
@@ -71,7 +72,13 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   const board = syllabusBoardOf(child);
   // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
   const [subjects, openToAll, published] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel, stream: child.stream }), openSubjects(db), publishedSubjects(db, { board, classLevel: child.classLevel })]));
-  const requested = subjects.find((s) => s === searchParams.subject);
+  // W16-A3: the tutor chosen in the Tutor Hall (?tutor=), while its module is on; a subject tutor opens its own subject.
+  const tutorParam = isTutorKey(searchParams.tutor) ? searchParams.tutor : null;
+  const chosenTutor =
+    tutorParam && (await familyPageRead(page, (db) => familyModuleOn(db, 'tutors', page.session.accountId)))
+      ? findTutor(await loadHall(familyClaims(page.session), (fn) => familyPageRead(page, fn), page.session.accountId, lang), tutorParam)
+      : null;
+  const requested = subjects.find((s) => s === searchParams.subject) ?? subjects.find((s) => s === chosenTutor?.subject);
   const subject = requested ?? (child.freeSubject && subjects.includes(child.freeSubject) ? child.freeSubject : subjects[0]);
   const access = subjectAccess(child, subject, openToAll);
   // S3 (C376): the parent's choice of source for this subject (none: every source shown), the child's chapter requests
@@ -156,10 +163,21 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
       };
     }),
   ];
-  const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
+  // The tutor stays on the subject it teaches (every subject, for an all-subject tutor).
+  const tutorHere = chosenTutor && (chosenTutor.subject === null || chosenTutor.subject === subject) ? { key: chosenTutor.key, name: chosenTutor.name } : null;
+  const tabHref = (s: string) => `/family/study?subject=${s}${chosenTutor && (chosenTutor.subject === null || chosenTutor.subject === s) ? `&tutor=${encodeURIComponent(chosenTutor.key)}` : ''}`;
+  const w = familyWords(lang, [...UNDERSTAND_KEYS, ...TUTOR_KEYS, 'fam.tutors.chattingWith', 'fam.tutors.change', 'fam.school.syllabusTitle', 'fam.school.syllabusAsk', 'fam.school.tonightTitle', 'fam.school.tonightLead', 'fam.school.tonightAsk', ...(voice ? VOICE_KEYS : [])] as MessageKey[]);
   return (
     <div lang={lang} className="flex min-h-screen flex-col">
-      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject} />
+      <SubPageHeader back="/family" backLabel={t(lang, 'fam.nav.home')} kicker={kicker} title={t(lang, 'fam.study.title')} subject={subject}
+        aside={
+          switchOn(switches, 'tutors') ? (
+            <Link href="/family/tutors" data-tutors-link className="fam-press inline-flex min-h-[44px] items-center rounded-full bg-white px-4 text-sm font-bold text-ink ring-1 ring-ink/10">
+              {t(lang, 'fam.tutors.nav')}
+            </Link>
+          ) : undefined
+        }
+      />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
         <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-surface relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
           {subjects.map((s) => {
@@ -170,7 +188,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
             return (
               <Link
                 key={s}
-                href={`/family/study?subject=${s}`}
+                href={tabHref(s)}
                 aria-current={on ? 'page' : undefined}
                 className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-xl px-3 text-base font-bold ${on ? 'bg-ink text-white shadow-md' : 'bg-white text-slate hover:bg-off-white'}`}
               >
@@ -198,7 +216,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           </p>
         ) : (
           // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
-          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} follow>
+          <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} follow tutor={tutorHere}>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
             {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
