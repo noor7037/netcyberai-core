@@ -196,3 +196,51 @@ moderation path for realtime answers exists; the teacher's doubts need three lin
 | 9 | Control lists the platform's tutors read-only | Control → Family → Tutors: add, change, switch, with a reason, audited |
 
 Not changed, by design: a failed question is not kept in the history; the checked-paper PDF has no text layer (the in-browser view prints Hindi); the realtime voice leg waits for a key.
+
+## Programme W17: voices for India, Try it, and the rest of the 2 Nov findings (2 Nov 2026, the supervisor's plan)
+
+**Written by:** the supervisor, for Noor. **Delivers:** the plan for your 2 Nov brief (Sarvam, ElevenLabs, OpenRouter's
+free audio, Try it on every feature, Gemini and Google Cloud for voice, read-aloud on tutor answers, and the bugs), what
+it keeps, what it changes, and the waves. **Rule:** one gateway and one adapter registry; a child's words leave the server
+only through the gateway; the founder's minors switch stays the one gate for every new voice; migrations TEST-first.
+
+### Where I changed the brief, and why
+
+1. **OpenRouter is its own service, not a switch on `openai_compatible`.** The generic service is the door for any
+   text vendor with a chat endpoint; audio routes, voices and PCM wrapping are one vendor's own shape. A named `openrouter`
+   adapter (text with photos, speech to text, voice) needs no schema change and no per-service switches; `openai_compatible`
+   stays as it is.
+2. **A Sarvam or ElevenLabs voice is chosen as one model string**, `<model>/<voice>` (`bulbul:v4-flash/chhavi_hi_kids`,
+   `eleven_flash_v2_5/<voice_id>`), as Google's voice already is, so the profile table, the route revisions, the rollback
+   and the model picker all work unchanged; "Test the key" fills the picker with the vendor's live list.
+3. **Languages stay English and Hindi.** The app speaks those two; a Bengali or Tamil voice setting with no Bengali
+   content would be a dead switch. Sarvam's `target_language_code` follows the child's language (hi-IN, en-IN).
+4. **Sarvam's translation (mayura) is not wired.** No feature consumes a translation, and your own test shows it
+   mistranslating a curriculum term. It comes back with the feature that needs it.
+5. **Gemini is offered for voice but cannot be cleared for children on the free tier**: Google says free-tier data is
+   used to improve its products. Control's minors switch stays off for it; Try it and your own tests may use it.
+6. **Written quiz items come back and are marked by the AI** with a kind note, which reverses C446's choice-only quiz:
+   your call, recorded as C454. The score line counts the choice items; each written item shows its verdict and note.
+7. **The Hindi report-card PDF needs a text shaper, not only a font.** Devanagari conjuncts and matras are drawn by a
+   shaping engine; a font embedded into our hand-written PDF alone prints them broken. The card is written with pdfkit
+   (fontkit shapes Indic text) and Noto Sans Devanagari, bundled in the repo.
+8. **Already fixed in PR #398:** fractions failing (not code: the primary timed out and the backup's key fails; yours to
+   set), "12 × 15" without 180, the pendulum under other titles, the wrong "45 × 2" verdict, the empty tutor name, the
+   "Thank you." silence (now also an energy check before any request, this programme).
+9. **The call's board is not empty by a bug.** The one call of the test was refused (silence read as off-subject), so
+   nothing was drawn; an answered call draws its blocks there (test/family/call.test.ts). The silence fix covers it.
+
+### Waves (Decision Log C447–C456 reserved)
+
+| Slice | What | Model |
+|---|---|---|
+| A1 | `sarvam`: speech to text (saaras), voice (bulbul, child voices, chunked at the vendor's limit, WAV), chat (sarvam-105b: max_tokens ≥ 1,500, reasoning stripped, empty-with-length is a failure, "slow" note) | sonnet |
+| A2 | `elevenlabs`: voice (multilingual v2, flash v2.5, voice list), speech to text (scribe), speech to speech (`sts`, Try it only), the paid-plan badge, scope errors | sonnet |
+| A3 | `openrouter`: text with photos, speech to text, voice (PCM to WAV, mp3 as is), 402/403 as "needs credit"/"not by API" | sonnet |
+| A4 | Google: `gemini` voice and speech to text (the formats it takes), a Live token mint; `google_stt` (Cloud Speech-to-Text); `google_tts` voice ids normalised, a `voice_model` error, the "used as" hint | sonnet |
+| B1 | Try it on every feature card: one live call of the feature's chain with made-up inputs, inline output, provider, model, time, backup used; usage marked `try_it`; audited; founder without the step-up | opus |
+| B2 | Read aloud on tutor answers: `tutor_answer` line source, a speaker button on every answer, the voice named | sonnet |
+| B3 | The quiz's written items marked with a kind note (migration), shown to the child | sonnet |
+| B4 | The microphone's energy check: silence never reaches speech to text; a tiny recording refused server-side | sonnet |
+| B5 | Report-card PDFs in Hindi: pdfkit with Noto Sans Devanagari | sonnet |
+| C | Integration by the lead: the registry, Control's menus for every voice feature, the call passing the child's language (already does), migrations on TEST, the Decision Log, one CI run, the PR | supervisor |

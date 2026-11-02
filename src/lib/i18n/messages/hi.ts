@@ -10152,6 +10152,8 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.call.boardEmpty': 'ट्यूटर के समझाते ही चित्र और कदम यहाँ दिखेंगे।',
   'fam.call.hold': 'बोलते समय बटन को दबाकर भी रख सकते हैं।',
   'fam.call.notHeard': 'मैं सुन नहीं पाया। बटन दबाकर फिर से कहें।',
+  'control.ai.capability.sts': 'आवाज़ से आवाज़ (आवाज़ बदली हुई)',
+  'control.ai.provider.termsNote.paid_plan_for_commercial_use': 'मुफ़्त योजना व्यावसायिक उपयोग के लिए नहीं है। बच्चों को यह आवाज़ सुनाने से पहले सशुल्क योजना लें।',
   'control.ai.capability.realtime': 'सीधी दोतरफ़ा आवाज़',
   'control.ai.profile.name.family.voice_call': 'सीधी आवाज़ वाली कॉल',
   'control.ai.profile.about.family.voice_call': 'कॉल की सीधी आवाज़: फ़ोन थोड़ी देर चलने वाले टोकन से सीधे प्रदाता से बात करता है, इसलिए कोई आवाज़ NetCyberAI से होकर नहीं जाती। खाली छोड़ने पर कॉल सुनती, जवाब देती और वाक्य-वाक्य बोलती है।',

@@ -10167,6 +10167,8 @@ export const en = {
   'fam.call.hold': 'You can also press and hold the button while you talk.',
   'fam.call.notHeard': 'I did not catch that. Tap the button and say it again.',
   'control.ai.capability.realtime': 'live two-way voice',
+  'control.ai.capability.sts': 'speech to speech (a voice changed)',
+  'control.ai.provider.termsNote.paid_plan_for_commercial_use': 'Free plan is not for commercial use. Use a paid plan before children hear this voice.',
   'control.ai.profile.name.family.voice_call': 'Live voice call',
   'control.ai.profile.about.family.voice_call': 'The call’s live voice: the phone talks to the provider directly with a short-lived token the server makes, so no audio passes through NetCyberAI. Leave it empty and the call listens, answers and speaks sentence by sentence instead.',
   // w16-a4 end
