@@ -244,3 +244,13 @@ only through the gateway; the founder's minors switch stays the one gate for eve
 | B4 | The microphone's energy check: silence never reaches speech to text; a tiny recording refused server-side | sonnet |
 | B5 | Report-card PDFs in Hindi: pdfkit with Noto Sans Devanagari | sonnet |
 | C | Integration by the lead: the registry, Control's menus for every voice feature, the call passing the child's language (already does), migrations on TEST, the Decision Log, one CI run, the PR | supervisor |
+
+### W17 status (2 Nov 2026, end of the build)
+
+Built and merged on the branch: A1 Sarvam, A2 ElevenLabs, A3 OpenRouter, A4 Google voice and speech, B1 Try it, B2 read
+aloud on answers, B3 marked written quiz items, B4 the silence check, B5 Hindi report-card PDFs (Decision Log C447–C456).
+Migrations on TEST: the four provider rows and the quiz's written mark. **Waiting on the founder:** the Try it migration
+(`w17_b1_try_it`) drops and recreates `control.record_ai_attempt`, a destructive statement the database tool asks the
+founder to confirm; until it is applied the PR must not be deployed (the new ledger writer passes fourteen arguments).
+Keys (Sarvam, ElevenLabs, OpenRouter, Google Cloud Speech-to-Text) go into Control → AI → AI services; "Test the key"
+fills each picker; Try it on a feature card shows what the chosen chain answers.
