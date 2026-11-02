@@ -10226,5 +10226,9 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.quiz.explain': 'समझाने वाले जवाब पर वापस जाएँ',
   'fam.quiz.page': 'छोटी क्विज़',
   'fam.quiz.missing': 'यह क्विज़ अब यहाँ नहीं है।',
+  'fam.quiz.verdict.right': 'सही',
+  'fam.quiz.verdict.partly': 'आंशिक रूप से सही',
+  'fam.quiz.verdict.wrong': 'अभी नहीं',
+  'fam.quiz.verdict.unmarked': 'अभी इसकी जाँच नहीं हो सकी',
   // w16-b1 end
 };
