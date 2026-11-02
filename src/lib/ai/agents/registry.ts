@@ -95,8 +95,7 @@ export const AGENTS: readonly Agent[] = [
     mode: 'job',
     profileId: 'family.parent_report',
     jobType: TUTOR_PARENT_REPORT_JOB,
-    implementedBy: 'pending',
-    wave: 'W16-B3',
+    implementedBy: 'src/lib/family/parent-report.ts',
   },
   {
     id: 'quality_check',

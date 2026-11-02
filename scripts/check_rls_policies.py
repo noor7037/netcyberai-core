@@ -529,6 +529,8 @@ ALLOWED_PERMISSIVE = (
         ("family.tutor_conversations", "tutor_conversations_own"),
         ("family.tutor_messages", "tutor_messages_own"),
         ("family.tutor_attachments", "tutor_attachments_own"),
+        # w16-b3: a child's weekly parent report; own account only (restrictive twins below).
+        ("family.parent_reports", "parent_reports_own"),
         # S5 (C378): a child's chapter-test attempts and answers; own account only (restrictive twins below).
         ("family.chapter_test_attempts", "chapter_test_attempts_own"),
         ("family.chapter_test_answers", "chapter_test_answers_own"),
@@ -1106,6 +1108,9 @@ REQUIRED_RESTRICTIVE = {
     ("family.tutor_conversations", "tutor_conversations_own_only"),
     ("family.tutor_messages", "tutor_messages_own_only"),
     ("family.tutor_attachments", "tutor_attachments_own_only"),
+    # w16-b3: the weekly parent report, own account only, and on a child's own phone that child only.
+    ("family.parent_reports", "parent_reports_own_only"),
+    ("family.parent_reports", "parent_reports_one_child"),
     ("family.chapter_test_attempts", "chapter_test_attempts_own_only"),
     ("family.chapter_test_answers", "chapter_test_answers_own_only"),
     # E1 (C382): own account only.

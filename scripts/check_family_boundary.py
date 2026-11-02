@@ -100,7 +100,9 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
-    "src/lib/jobs/handlers.ts": {"@/lib/family/push"},
+    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report"},
+    # The school's view of the tutor (W16-B3) names a chapter and a topic from the showcase chapters' titles (data only).
+    "src/lib/parent-ai/doubts.ts": {"@/lib/family/chapters"},
     # The content studio (S3, C376): chapters are the family's one block schema, checked by the family's own checker, and
     # the reviewer's preview is the family's own reader (the same component, with its place-keeping off).
     "src/lib/content/chapter-studio.ts": {"@/lib/family/blocks", "@/lib/family/chapters"},
@@ -126,6 +128,9 @@ OUTSIDE_MAY_NAME_FAMILY_TABLE = {
     "src/lib/auth/db.ts": {"accounts", "school_links", "child_devices", "child_links"},
     # The school's office disconnects a guardian's Family app through this one definer function (C230-AA).
     "src/lib/school-link/index.ts": {"revoke_school_links_for_guardian", "linked_children_for_notice"},
+    # W16-B3: a school's teacher and office read the tutor's recent doubts and the week's class counts through these two
+    # definer functions, which return subjects, chapter keys and counts only, for the caller's own school and classes.
+    "src/lib/parent-ai/doubts.ts": {"doubts_for_class", "class_week_summary"},
     # The AI platform's daily cap counts a family's requests in that family's own transaction (C249).
     "src/lib/ai/daily-cap.ts": {"ai_daily"},
     # Control's door to the people (C230-V) returns parents' emails and children's names: only its one reader, which

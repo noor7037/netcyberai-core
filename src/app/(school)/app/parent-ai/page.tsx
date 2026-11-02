@@ -1,6 +1,7 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { ParentAiShown } from '@/components/parent-ai/ParentAiShown';
+import { ParentAiTutor } from '@/components/parent-ai/ParentAiTutor';
 import { ParentAiView } from '@/components/parent-ai/ParentAiView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
@@ -21,6 +22,8 @@ export default async function ParentAiPage({ searchParams = {} }: { searchParams
     <ModulePage moduleId="parent-ai" help="what-to-do-at-home" tour="parent-ai" title={t(lang, 'pai.page.title')} purpose={t(lang, 'pai.page.purpose')}>
       {shown && <ParentAiShown />}
       <ParentAiView shownAbove={shown} />
+      {/* W16-B3: the Family app's tutor as counts: recent doubts, and the week's class summaries. */}
+      <ParentAiTutor />
     </ModulePage>
   );
 }

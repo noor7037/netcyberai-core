@@ -19,6 +19,7 @@ import {
   readSchoolSyllabus,
   readSchoolTutors,
   readSchoolToday,
+  readSchoolWeek,
   redeemConnectCode,
   requestFollowup,
   SchoolLinkGoneError,
@@ -27,6 +28,7 @@ import {
   type PulseAnswerResult,
   type SchoolNews,
   type SchoolNewsKind,
+  type SchoolWeek,
 } from '@/lib/school-link';
 
 // The family's side of School Link (C230-AA; docs/family-app/03 §4): the links an account holds and which family child
@@ -257,7 +259,7 @@ export const NEWS_KINDS: readonly SchoolNewsKind[] = ['homework', 'notices', 're
 // The kinds a parent can turn off: the school's three, and tonight's practice and plan (pushed in M3-8b).
 export const NOTIFY_KINDS = ['homework', 'notices', 'results', 'tonight'] as const;
 export type NotifyKind = (typeof NOTIFY_KINDS)[number];
-export type { SchoolNews };
+export type { SchoolNews, SchoolWeek };
 
 export async function notifyOff(db: Sql, accountId: string): Promise<NotifyKind[]> {
   const { rows } = await db.query(`select kind from family.notify_off where account_id = $1`, [accountId]);
@@ -363,6 +365,21 @@ export async function childResultsFor(claims: Claims, links: readonly FamilyScho
     throw e;
   }
 }
+
+// w16-b3 start
+// A family child's school week for the weekly parent report (W16-B3): attendance days and the results published, as the
+// guardian; null when the child is not matched, the link is gone or the school holds no consent.
+export async function schoolWeekFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, from: string, to: string): Promise<SchoolWeek | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readSchoolWeek(claims, m.linkId, m.studentId, from, to);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+// w16-b3 end
 
 // A family child's progress report (AJ-5) in the parent area (parentView) or the child's own view, which also needs the
 // school to let children see their results: the child's published exams of the current session whose report cards and
