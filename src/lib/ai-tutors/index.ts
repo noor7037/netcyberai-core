@@ -75,7 +75,13 @@ export async function changeTutor(db: Sql, who: Who, tutorId: string, input: Tut
   if (!before) return null;
   const next = { ...before, ...(input ?? {}), enabled: enabled ?? before.enabled };
   await db.query(`update school_tutors set name = $2, subject = $3, style = $4, language = $5, tint = $6, enabled = $7 where tutor_id = $1`, [tutorId, next.name, next.subject, next.style, next.language, tintFor(next.subject), next.enabled]);
-  await audit(db, who, enabled !== null && input === null ? 'ai_tutors.switched' : 'ai_tutors.changed', tutorId, next, before);
+  // The audit row holds the tutor's display name, its subject and language codes and the switch, before and after; the
+  // style (the school's typed words) stays on the tutor's own row, which a deletion can reach (test/audit/audit-pii).
+  await audit(
+    db, who, enabled !== null && input === null ? 'ai_tutors.switched' : 'ai_tutors.changed', tutorId,
+    { name: next.name, subject: next.subject, language: next.language, enabled: next.enabled },
+    { name: before.name, subject: before.subject, language: before.language, enabled: before.enabled }
+  );
   return { tutorId, ...next };
 }
 
