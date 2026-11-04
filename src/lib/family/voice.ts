@@ -10,6 +10,9 @@ import { tutorLimits } from './tutor-meter';
 // W19-B: 60 seconds, since the microphone now stops by itself when the child stops speaking (endpointer.ts), so the
 // cap is only for a child who talks on; the day's seconds allowance and its checks are unchanged.
 export const VOICE_MAX_SECONDS = 60;
+// The live call (W19-B, the security review of 4 Nov): a token is prepaid with a block of the child's day, taken at the
+// mint, and lives only that long; the phone mints the next block when it ends. Nothing is counted by the phone.
+export const LIVE_GRANT_SECONDS = 180;
 // About two megabytes: 60 seconds of the phone's compressed recording is far smaller; a 16 kHz WAV just fits.
 export const VOICE_MAX_BYTES = 2_000_000;
 export const VOICE_TEXT_MAX = 500;

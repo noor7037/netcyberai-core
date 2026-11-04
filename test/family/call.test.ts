@@ -66,7 +66,6 @@ const ROUTES = {
   voice: () => import('@/app/api/family/voice/route'),
   'voice/call/token': () => import('@/app/api/family/voice/call/token/route'),
   'voice/call/marks': () => import('@/app/api/family/voice/call/marks/route'),
-  'voice/call/seconds': () => import('@/app/api/family/voice/call/seconds/route'),
 };
 const post = async (path: string, route: keyof typeof ROUTES, body: unknown, account = ACCOUNT, child = CHILD) => {
   const { POST } = await ROUTES[route]();
@@ -263,21 +262,6 @@ describe('the gates and caps are the microphone’s own', () => {
     await q(`update family.day_counts set voice_seconds = 0 where child_id = $1`, [CHILD]);
   });
 
-  it('W19-B: the live call’s seconds come off the same day: a piece at a time, the last ones spent, then voice_cap', async () => {
-    const day = (await q(`select (now() at time zone 'Asia/Kolkata')::date::text as d`))[0].d as string;
-    await q(`insert into family.day_counts (account_id, child_id, day, voice_seconds) values ($1, $2, $3, 100) on conflict (child_id, day) do update set voice_seconds = 100`, [ACCOUNT, CHILD, day]);
-    expect((await post('voice/call/seconds', 'voice/call/seconds', { seconds: 31 })).status).toBe(400);
-    expect((await post('voice/call/seconds', 'voice/call/seconds', { seconds: 0 })).status).toBe(400);
-    const a = await post('voice/call/seconds', 'voice/call/seconds', { seconds: 15 });
-    expect([a.status, await a.json()]).toEqual([200, { left: 5 }]);
-    const b = await post('voice/call/seconds', 'voice/call/seconds', { seconds: 15 });
-    expect([b.status, await b.json()]).toEqual([200, { left: 0 }]);
-    const c = await post('voice/call/seconds', 'voice/call/seconds', { seconds: 1 });
-    expect([c.status, await c.json()]).toEqual([429, { error: 'voice_cap', left: 0 }]);
-    expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1`, [CHILD]))[0].voice_seconds)).toBe(120);
-    expect((await post('voice/call/seconds', 'voice/call/seconds', { seconds: 5 }, NO_VOICE, NO_VOICE_CHILD)).status).toBe(403);
-    await q(`update family.day_counts set voice_seconds = 0 where child_id = $1`, [CHILD]);
-  });
 });
 
 describe('nothing is stored of the audio', () => {
@@ -336,17 +320,31 @@ describe('the realtime slot', () => {
     const expiresAt = Date.now() + 60_000;
     const mint = vi.spyOn(openaiRealtimeAdapter, 'mintToken').mockResolvedValue({ ok: true, token: 'ek_test_token', expiresAt, url: 'https://realtime.example.invalid/v1', model: 'gpt-realtime-test' });
     const used = Number((await q(`select coalesce(sum(requests), 0)::int as n from family.ai_daily where account_id = $1`, [ACCOUNT]))[0].n);
+    const day = (await q(`select (now() at time zone 'Asia/Kolkata')::date::text as d`))[0].d as string;
+    await q(`update family.day_counts set voice_seconds = 0 where child_id = $1 and day = $2`, [CHILD, day]);
     const r = await post('voice/call/token', 'voice/call/token', {});
     expect(r.status).toBe(200);
     expect(r.headers.get('cache-control')).toBe('no-store, private');
-    expect(await r.json()).toEqual({ provider: 'openai', token: 'ek_test_token', expiresAt, url: 'https://realtime.example.invalid/v1', model: 'gpt-realtime-test' });
-    expect(mint).toHaveBeenCalledWith({ apiKey: `sk-${'T'.repeat(40)}`, model: 'gpt-realtime-test', language: 'en' });
+    // W19-B (the security review of 4 Nov): the token is prepaid with a block of the day (120 s limit → 120 taken, 0 left),
+    // taken before the mint, and the provider is told how long the token may live.
+    expect(await r.json()).toEqual({ provider: 'openai', token: 'ek_test_token', expiresAt, url: 'https://realtime.example.invalid/v1', model: 'gpt-realtime-test', grantSeconds: 120, left: 0 });
+    expect(mint).toHaveBeenCalledWith({ apiKey: `sk-${'T'.repeat(40)}`, model: 'gpt-realtime-test', language: 'en', maxSeconds: 120 });
+    expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1 and day = $2`, [CHILD, day]))[0].voice_seconds)).toBe(120);
+    // The day is spent: the next block is refused, and nothing more is minted.
+    const again = await post('voice/call/token', 'voice/call/token', {});
+    expect(again.status).toBe(429);
+    expect((await again.json()).error).toBe('voice_cap');
+    expect(mint).toHaveBeenCalledTimes(1);
     expect(Number((await q(`select coalesce(sum(requests), 0)::int as n from family.ai_daily where account_id = $1`, [ACCOUNT]))[0].n)).toBe(used + 1);
     expect(await q(`select profile_id, provider_id, outcome from control.ai_usage_ledger where profile_id = 'family.voice_call'`)).toEqual([{ profile_id: 'family.voice_call', provider_id: 'openai', outcome: 'ok' }]);
     const { realtimeReady } = await import('@/lib/family/voice-out');
     expect(await realtimeReady(db.pg as never, ACCOUNT)).toBe(true);
+    // A mint the provider refuses gives the block back to the day (100 before, 100 after).
+    await q(`update family.day_counts set voice_seconds = 100 where child_id = $1 and day = $2`, [CHILD, day]);
     mint.mockResolvedValue({ ok: false, failure: 'http', status: 401 });
     expect((await post('voice/call/token', 'voice/call/token', {})).status).toBe(503);
+    expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1 and day = $2`, [CHILD, day]))[0].voice_seconds)).toBe(100);
+    await q(`update family.day_counts set voice_seconds = 0 where child_id = $1 and day = $2`, [CHILD, day]);
     mint.mockRestore();
     await q(`update control.ai_profiles set provider_id = null, model = null, fallback = '[]' where profile_id = 'family.voice_call'`);
   });

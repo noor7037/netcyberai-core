@@ -147,9 +147,7 @@ export function base64ToBytes(b64: string): Uint8Array {
   return out;
 }
 
-// Seconds of a call counted against the child's day: whole seconds, rounded up, from the milliseconds the microphone
-// was open on the live socket. The phone posts them in pieces (at most LIVE_SECONDS_PIECE each) as the call goes.
-export const LIVE_SECONDS_PIECE = 30;
+// Whole seconds, rounded up, from milliseconds (the call's own clock).
 export function wholeSeconds(ms: number): number {
   return ms > 0 && Number.isFinite(ms) ? Math.ceil(ms / 1000) : 0;
 }

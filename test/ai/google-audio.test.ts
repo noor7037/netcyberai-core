@@ -207,8 +207,8 @@ describe('Gemini Live token', () => {
     const short = await geminiRealtimeAdapter.mintToken({ apiKey: KEY, model: 'gemini-live-2.5-flash-preview', language: 'en', maxSeconds: 120 });
     expect(short.ok).toBe(true);
     const shortBody = calls[0]!.body;
-    expect(Date.parse(shortBody.expireTime) - before).toBeGreaterThan(200_000);
-    expect(Date.parse(shortBody.expireTime) - before).toBeLessThan(215_000);
+    expect(Date.parse(shortBody.expireTime) - before).toBeGreaterThan(185_000);
+    expect(Date.parse(shortBody.expireTime) - before).toBeLessThan(195_000);
     expect(shortBody.uses).toBe(1);
     expect(Date.parse(body.newSessionExpireTime) - before).toBeGreaterThan(55_000);
     expect(Date.parse(body.newSessionExpireTime) - before).toBeLessThan(65_000);

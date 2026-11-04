@@ -180,7 +180,7 @@ export const geminiRealtimeAdapter: RealtimeAdapter = {
     const now = Date.now();
     const newSessionExpireTime = new Date(now + 60_000).toISOString();
     // The token dies with the child's speaking time (plus the minute to connect and a short grace), 30 minutes at most.
-    const lifeMs = Math.min(30 * 60_000, 60_000 + 30_000 + 1000 * Math.max(1, Math.floor(request.maxSeconds ?? 30 * 60)));
+    const lifeMs = Math.min(30 * 60_000, 60_000 + 10_000 + 1000 * Math.max(1, Math.floor(request.maxSeconds ?? 30 * 60)));
     let res: Response;
     try {
       res = await fetch(`${BASE}/v1alpha/auth_tokens`, {

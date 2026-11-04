@@ -1,6 +1,6 @@
 'use client';
 
-import { audioEndMessage, audioMessage, base64ToBytes, bytesToBase64, fromPcm16, LIVE_SECONDS_PIECE, liveSocketUrl, parseLiveFrame, setupMessage, toPcm16, wholeSeconds, type LiveEvent } from '@/lib/family/realtime-frames';
+import { audioEndMessage, audioMessage, base64ToBytes, bytesToBase64, fromPcm16, liveSocketUrl, parseLiveFrame, setupMessage, toPcm16, type LiveEvent } from '@/lib/family/realtime-frames';
 
 // The call's realtime leg (W16-A4, built in W19-B as B2): a live two-way voice straight between the phone and the
 // provider Control chose for `family.voice_call` (Gemini Live today). The server mints a short-lived, single-use token
@@ -11,11 +11,12 @@ import { audioEndMessage, audioMessage, base64ToBytes, bytesToBase64, fromPcm16,
 //   server audio (24 kHz PCM16) → a gapless queue on the AudioContext; `interrupted` flushes it (the child talked over)
 //   transcriptions → the captions; `turnComplete` → listening again; `goAway` or a dropped socket → ONE reconnect with a
 //   fresh token, then the chain (listen, answer, speak) takes over and the child is told only that the voice changed.
-// The seconds the microphone is open while the tutor is not speaking are posted to /api/family/voice/call/seconds and
-// taken from the child's day like the chain's recordings; when the day's seconds run out the live voice closes.
+// The child's day is spent in prepaid blocks (the security review of 4 Nov): each token is minted with a block of seconds
+// already taken from the day and lives only that long; when the block ends the leg mints the next one (a planned renewal,
+// not a failure), and a mint refused with voice_cap ends the live voice. The phone counts nothing.
 // Nothing is kept: the token is dropped once the socket opens, and no sound is stored.
 
-export type RealtimeGrant = { provider: string; token: string; expiresAt: number; url: string; model: string };
+export type RealtimeGrant = { provider: string; token: string; expiresAt: number; url: string; model: string; grantSeconds: number; left: number };
 export type RealtimeLeg = { available: true; grant: RealtimeGrant } | { available: false; reason: 'not_switched_on' | 'not_built' | 'voice_cap' | 'failed' };
 
 export async function openRealtimeLeg(): Promise<RealtimeLeg> {
@@ -34,7 +35,7 @@ export async function openRealtimeLeg(): Promise<RealtimeLeg> {
   // Only the Gemini Live socket is built; another provider's token is left unused and the chain keeps the call.
   // The address is the adapter's own (the server sends it with the token); only a secure socket is opened.
   if (body.provider !== 'gemini' || !body.url.startsWith('wss://')) return { available: false, reason: 'not_built' };
-  return { available: true, grant: { provider: body.provider, token: body.token, expiresAt: Number(body.expiresAt) || 0, url: body.url, model: body.model } };
+  return { available: true, grant: { provider: body.provider, token: body.token, expiresAt: Number(body.expiresAt) || 0, url: body.url, model: body.model, grantSeconds: Math.max(1, Number(body.grantSeconds) || 1), left: Math.max(0, Number(body.left) || 0) } };
 }
 
 export type LivePhase = 'connecting' | 'listening' | 'speaking' | 'paused';
@@ -57,7 +58,8 @@ const TAP = `class NcaTap extends AudioWorkletProcessor { process(inputs) { cons
 
 const READY_MS = 8000;
 const CHUNK_SECONDS = 0.1;
-const POST_EVERY_S = 15;
+// The next block is minted this long before the current one ends, so the voice does not drop mid-word.
+const RENEW_EARLY_MS = 2500;
 
 type Ctor = typeof AudioContext;
 
@@ -75,10 +77,7 @@ export class LiveLeg {
   private playHead = 0;
   private sources = new Set<AudioBufferSourceNode>();
   private turnDone = true;
-  private tick: ReturnType<typeof setInterval> | null = null;
-  private lastTick = 0;
-  private openMs = 0;
-  private posting = false;
+  private renewal: ReturnType<typeof setTimeout> | null = null;
 
   constructor(private grant: RealtimeGrant, private cb: LiveCallbacks) {}
 
@@ -105,9 +104,28 @@ export class LiveLeg {
       this.teardown();
       return false;
     }
-    this.lastTick = Date.now();
-    this.tick = setInterval(() => this.count(), 1000);
+    this.armRenewal(this.grant);
+    this.cb.secondsLeft(this.grant.left);
     return true;
+  }
+
+  // The block's clock: just before it ends, the next block is minted (planned, so it never spends the one reconnect).
+  private armRenewal(grant: RealtimeGrant) {
+    if (this.renewal) clearTimeout(this.renewal);
+    this.renewal = setTimeout(() => void this.renew(), Math.max(1000, grant.grantSeconds * 1000 - RENEW_EARLY_MS));
+  }
+
+  private async renew() {
+    this.renewal = null;
+    if (this.closed || !this.ws) return;
+    const ws = this.ws;
+    ws.onclose = null;
+    this.ws = null;
+    this.ready = false;
+    try {
+      ws.close(1000);
+    } catch {}
+    await this.lost(true);
   }
 
   setMuted(muted: boolean) {
@@ -122,18 +140,16 @@ export class LiveLeg {
     } else this.cb.phase(this.sources.size > 0 ? 'speaking' : 'listening');
   }
 
-  // Ends the live voice for good (End call, or leaving the screen); the seconds counted so far are posted.
+  // Ends the live voice for good (End call, or leaving the screen). The rest of the block stays spent: it was the day's.
   close() {
     if (this.closed) return;
     this.closed = true;
-    this.count();
-    void this.post(true);
     this.teardown();
   }
 
   private teardown() {
-    if (this.tick) clearInterval(this.tick);
-    this.tick = null;
+    if (this.renewal) clearTimeout(this.renewal);
+    this.renewal = null;
     const ws = this.ws;
     this.ws = null;
     if (ws) {
@@ -255,11 +271,14 @@ export class LiveLeg {
     });
   }
 
-  // The socket ended under the call (goAway, a network drop): one reconnect with a fresh token, then the chain.
-  private async lost() {
+  // The socket ended under the call (goAway, a network drop): one reconnect with a fresh token, then the chain. A
+  // planned renewal (the block ended) mints the next block and spends no reconnect.
+  private async lost(planned = false) {
     if (this.closed) return;
-    if (this.reconnected) return this.giveUp('failed');
-    this.reconnected = true;
+    if (!planned) {
+      if (this.reconnected) return this.giveUp('failed');
+      this.reconnected = true;
+    }
     this.flush();
     this.cb.phase('connecting');
     const leg = await openRealtimeLeg();
@@ -267,6 +286,8 @@ export class LiveLeg {
     if (!leg.available) return this.giveUp(leg.reason === 'voice_cap' ? 'voice_cap' : 'failed');
     this.grant = leg.grant;
     if (!(await this.connect(leg.grant))) return this.giveUp('failed');
+    this.armRenewal(leg.grant);
+    this.cb.secondsLeft(leg.grant.left);
   }
 
   private giveUp(reason: 'failed' | 'voice_cap') {
@@ -354,49 +375,4 @@ export class LiveLeg {
     this.playHead = 0;
   }
 
-  // The child's seconds: the microphone open on a ready socket while the tutor is not speaking (the chain's
-  // recording time), posted in pieces.
-  private count() {
-    const now = Date.now();
-    const gap = Math.min(now - this.lastTick, 5000);
-    this.lastTick = now;
-    if (this.ready && !this.muted && this.sources.size === 0) this.openMs += gap;
-    if (!this.closed && this.openMs >= POST_EVERY_S * 1000) void this.post(false);
-  }
-
-  private async post(last: boolean) {
-    if (this.posting && !last) return;
-    let seconds = wholeSeconds(this.openMs);
-    if (seconds < 1) return;
-    this.posting = true;
-    this.openMs = 0;
-    try {
-      while (seconds > 0) {
-        const piece = Math.min(seconds, LIVE_SECONDS_PIECE);
-        const res = await fetch('/api/family/voice/call/seconds', { method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'same-origin', body: JSON.stringify({ seconds: piece }), keepalive: last });
-        const body = (await res.json().catch(() => null)) as { left?: unknown } | null;
-        if (res.status >= 500) throw new Error('not counted');
-        seconds -= piece;
-        if (res.status === 429) {
-          this.cb.secondsLeft(0);
-          if (!last) this.giveUp('voice_cap');
-          return;
-        }
-        // Refused (the call switched off, the consent withdrawn): the live voice stops.
-        if (!res.ok) {
-          if (!last) this.giveUp('failed');
-          return;
-        }
-        if (typeof body?.left === 'number') {
-          this.cb.secondsLeft(body.left);
-          if (body.left < 1 && !last) return this.giveUp('voice_cap');
-        }
-      }
-    } catch {
-      // A count that did not arrive goes again with the next piece.
-      this.openMs += seconds * 1000;
-    } finally {
-      this.posting = false;
-    }
-  }
 }
