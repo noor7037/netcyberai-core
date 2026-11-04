@@ -93,7 +93,8 @@ FAMILY_DOORS = {
 # Packages and the framework, allowed everywhere.
 # pdfjs-dist (W4-1, C385): the tutor reads an attached PDF's text layer on the server. A file parser, not a vendor: no
 # network, nothing leaves the server.
-EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:|pdfjs-dist/)")
+# three.js (W19-D): the 3D model view, a lazy chunk (components/family/blocks/model-three.ts, lib/family/models/procedural.ts).
+EXTERNAL_OK = re.compile(r"^(react|react-dom|next|jose|crypto|util|pg$|node:|pdfjs-dist/|three$|three/examples/jsm/)")
 
 # Outside the family area, these files may import exactly these family modules.
 OUTSIDE_MAY_IMPORT_FAMILY = {
