@@ -41,6 +41,8 @@ const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.Fig
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
+// W19-D: the model block's own small wrapper; the viewer and three.js are chunks it fetches when a model is shown.
+const ModelBlockView = dynamic(() => import('./blocks/ModelBlockView').then((m) => m.ModelBlockView));
 // W16-A2: the drawing board and the Class 8 Science simulations, each its own chunk, only when an answer carries one.
 const BoardView = dynamic(() => import('./blocks/BoardView').then((m) => m.BoardView));
 const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView));
@@ -98,7 +100,8 @@ function showModel(root: HTMLElement | null) {
 // blocks with this one switch, so a figure, a chart or a worked example looks the same in both.
 // `sentence` (W16-A2): the explanation's sentence being spoken (the call screen); the board draws up to the step that
 // sentence reaches. Absent: the board starts at its first step and the child steps through it.
-export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number }) {
+// `sentences` (W19-D): the answer's spoken sentences, so a model lights the part the sentence `sentence` names.
+export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence, sentences }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number; sentences?: readonly string[] }) {
   // W16-B5: with the Tutor's board switched off in Control, the drawing board and the simulations are left out.
   const boardOn = useTutorBoard();
   switch (b.type) {
@@ -133,6 +136,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       return <FigureView b={b} tone={tone} />;
     case 'model_3d':
       return <Model3DView b={b} w={w} tone={tone} />;
+    case 'model':
+      return <ModelBlockView b={b} w={w} tone={tone} sentence={sentence} sentences={sentences} />;
     case 'steps':
       return <StepsView b={b} w={w} tone={tone} />;
     case 'scene':
@@ -296,7 +301,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
   const draw = (b: PublicBlock) => {
     const i = blocks.indexOf(b);
-    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} />;
+    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} sentences={sentences} />;
   };
 
   return (

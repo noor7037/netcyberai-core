@@ -436,7 +436,7 @@ export function KeptAnswer({ b, w, tone, lang, speak }: { b: Block[]; w: Words; 
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {sentences.length > 0 && <TeachMe w={w} {...voice} root={root} />}
       {shown.map((x, i) => (
-        <AnswerBlock key={i} b={x} w={w} tone={tone} lead={x === lead} onRetry={noRetry} sentence={sentence} />
+        <AnswerBlock key={i} b={x} w={w} tone={tone} lead={x === lead} onRetry={noRetry} sentence={sentence} sentences={sentences} />
       ))}
       {sentences.length > 0 && <AnswerSpeaker w={w} {...voice} />}
     </div>
