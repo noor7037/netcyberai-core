@@ -13,6 +13,8 @@ import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
+import { TutorFace } from '../avatar/TutorFace';
+import { setAvatarMood } from '@/lib/family/avatar-state';
 
 import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
 import { typedCheckIntentLight } from '@/lib/family/check-intent';
@@ -263,6 +265,11 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
+  // W19-A: the window closed or left, the tutor rests.
+  useEffect(() => {
+    if (!open) setAvatarMood('idle');
+  }, [open]);
+  useEffect(() => () => setAvatarMood('idle'), []);
   // The chat of the newest answer kept on this screen, else the feed's last turn.
   const lastChat = [...asks].reverse().find((a) => a.chatId)?.chatId ?? [...(turns ?? [])].reverse().find((x) => x.chatId)?.chatId ?? null;
   const finish = async () => {
@@ -280,7 +287,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         {w['fam.tutor.title']}
       </h2>
       {chosen && (
-        <p data-tutor-chosen={chosen.key} className="flex flex-wrap items-center gap-x-3 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
+        <p data-tutor-chosen={chosen.key} className="flex flex-wrap items-center gap-x-3 self-start rounded-3xl bg-white px-3 py-1.5 text-sm font-semibold text-ink ring-1 ring-ink/10">
+          <TutorFace size="sm" tutorKey={chosen.key} subject={subject} />
           <span>{fill(w['fam.tutors.chattingWith'], { name: chosen.name })}</span>
           <Link href="/family/tutors" className="fam-press inline-flex min-h-[44px] items-center font-bold text-saffron-deep underline">
             {w['fam.tutors.change']}
@@ -328,7 +336,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
                 {fill(w['fam.chat.moved'], { subject: subjectName(a.moved) })}
               </p>
             )}
-            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} />
+            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} />
           </div>
         ))}
       </div>

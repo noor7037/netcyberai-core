@@ -1,6 +1,7 @@
 'use client';
 
 import { speak, stopSpeaking } from '../english/speech';
+import { avatarState, setAvatarLevel, setAvatarMood } from '@/lib/family/avatar-state';
 
 // Which voice reads a line aloud (C386): the server voice when Control has set one up, else the phone's own (speech.ts).
 // The server voice reads only a line the server holds, named here by where it comes from (src/lib/family/voice-out.ts);
@@ -15,7 +16,84 @@ export type Spoken = { cancelled: boolean; mode: VoiceMode };
 let generation = 0;
 let playing: { audio: HTMLAudioElement; url: string } | null = null;
 
+// W19-A: the tutor's mouth follows the voice. The server voice is measured: one AudioContext and AnalyserNode for the
+// visit (made on the first line, resumed on each), each line's <audio> routed through it, and the loudness (RMS) handed
+// to the avatar every frame. The audio is routed only once the context runs, so a web view that will not start it plays
+// as before. The phone's voice cannot be measured: each spoken word is a short pulse, and an engine that reports no
+// words (or a context that will not run) gets a soft babble so the mouth still moves. Nothing here may break a line.
+type Meter = { ctx: AudioContext; an: AnalyserNode; buf: Uint8Array };
+let meter: Meter | null | undefined;
+let frame = 0;
+let word = -1e9;
+const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
+const nextFrame = (f: () => void) => (typeof requestAnimationFrame === 'function' ? requestAnimationFrame(f) : (setTimeout(f, 16) as unknown as number));
+const cancelFrame = (id: number) => (typeof cancelAnimationFrame === 'function' ? cancelAnimationFrame(id) : clearTimeout(id));
+
+function getMeter(): Meter | null {
+  if (meter !== undefined) return meter;
+  meter = null;
+  try {
+    const C = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (C) {
+      const ctx = new C();
+      const an = ctx.createAnalyser();
+      an.fftSize = 512;
+      an.connect(ctx.destination);
+      meter = { ctx, an, buf: new Uint8Array(an.fftSize) };
+    }
+  } catch {
+    meter = null;
+  }
+  return meter;
+}
+
+async function route(audio: HTMLAudioElement): Promise<Meter | null> {
+  const m = getMeter();
+  if (!m) return null;
+  try {
+    if (m.ctx.state !== 'running') await m.ctx.resume();
+    if (m.ctx.state !== 'running') return null;
+    m.ctx.createMediaElementSource(audio).connect(m.an);
+    return m;
+  } catch {
+    return null;
+  }
+}
+
+const rms = (m: Meter) => {
+  m.an.getByteTimeDomainData(m.buf);
+  let sum = 0;
+  for (const b of m.buf) sum += ((b - 128) / 128) ** 2;
+  return Math.min(1, Math.sqrt(sum / m.buf.length) * 4);
+};
+// A word's pulse (0.6, fading over ~150 ms); with no word for a while, a babble of syllables.
+const synth = () => {
+  const t = now();
+  const since = t - word;
+  return since < 700 ? 0.6 * Math.exp(-since / 150) : 0.2 + 0.25 * Math.abs(Math.sin(t / 95));
+};
+
+function drive(read: () => number) {
+  cancelFrame(frame);
+  setAvatarMood('speaking');
+  let smooth = 0;
+  const tick = () => {
+    smooth = smooth * 0.55 + read() * 0.45;
+    setAvatarLevel(smooth);
+    frame = nextFrame(tick);
+  };
+  frame = nextFrame(tick);
+}
+
+function quiet() {
+  cancelFrame(frame);
+  frame = 0;
+  setAvatarLevel(0);
+  if (avatarState().mood === 'speaking') setAvatarMood('reading');
+}
+
 function drop() {
+  quiet();
   if (!playing) return;
   playing.audio.pause();
   playing.audio.removeAttribute('src');
@@ -58,7 +136,12 @@ async function playServer(source: LineSource, rate: number, mine: number, onPlay
       resolve(generation === mine ? how : 'cancelled');
     };
     // W16-A4: the call measures the time to the first sound.
-    audio.onplaying = () => onPlaying?.();
+    audio.onplaying = () => {
+      onPlaying?.();
+      void route(audio).then((m) => {
+        if (playing?.audio === audio && !audio.paused) drive(m ? () => rms(m) : synth);
+      });
+    };
     // W18-P1: how much of the line has played (0 to 1), for a screen that follows the voice (the server voice reports no
     // word boundaries, so an answer read as one line finds its sentence by this share of its text).
     audio.ontimeupdate = () => {
@@ -89,6 +172,12 @@ export async function speakLine(mode: VoiceMode, source: LineSource, phone: { te
   }
   // The phone's own voice starts at once (the engine queues it); the call counts that as the first sound.
   phone.onPlaying?.();
-  await speak(phone.text, phone.lang, phone.rate, phone.onWord);
+  word = -1e9;
+  drive(synth);
+  await speak(phone.text, phone.lang, phone.rate, (c) => {
+    word = now();
+    phone.onWord?.(c);
+  });
+  if (generation === mine) quiet();
   return { cancelled: generation !== mine, mode: next };
 }

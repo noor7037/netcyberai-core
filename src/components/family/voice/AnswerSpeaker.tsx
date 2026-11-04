@@ -5,6 +5,7 @@ import type { Words } from '@/lib/family/fill';
 import { sentenceAtChar } from '@/lib/family/call';
 import type { VoiceMode } from './lineVoice';
 import { markSentence } from './highlight';
+import { TutorFace } from '../avatar/TutorFace';
 
 // W17-B2: a speaker button on a tutor's kept answer. It asks the server voice for the answer by its message id (the
 // words never leave the server), or, when the server voice is not set up, reads the same spoken text with the phone's
@@ -137,12 +138,14 @@ export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSe
 // W18-P1: "Teach me": the answer read aloud with the sentence being spoken highlighted in its text (the chapter reader's
 // highlight) and the board moving with it. One button: Teach me, then Pause while it speaks (the voice stops; the board
 // and the highlight stay where they were), then Replay from the start. No animation.
-export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence, root }: { w: Words } & Omit<VoiceInput, 'highlight'>) {
+export function TeachMe({ w, messageId, sentences, lang, serverVoice, onSentence, root, tutorKey = null }: { w: Words; tutorKey?: string | null } & Omit<VoiceInput, 'highlight'>) {
   const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, highlight: true });
   const [used, setUsed] = useState(false);
   const label = v.speaking ? w['fam.tutor.pause'] : used ? w['fam.tutor.replay'] : w['fam.tutor.teachMe'];
   return (
-    <div ref={v.el} className="flex">
+    <div ref={v.el} className="flex flex-col items-start gap-2">
+      {/* W19-A: once Teach me is used, the tutor's face teaches: its mouth moves with the voice (lineVoice.ts). */}
+      {used && <TutorFace size="lg" tutorKey={tutorKey} className="self-center" />}
       <button
         type="button"
         data-teach-me={messageId}
