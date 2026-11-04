@@ -313,3 +313,14 @@ leg are lazy chunks).
 | C | The look of the two pictures: home, the Study hub, a Progress screen from real data, the dark dock, a mascot drawn in code, a child Settings screen (voice, face, motion, hands-free, speed, language) | opus |
 | D | 3D models with named parts (`model` block): a three.js viewer as a lazy chunk, a catalogue of models (assets open-licensed from GitHub with licence recorded, or built in code), the tutor's answer naming the part to highlight, tap a part to ask, voice sync to the highlight, 2D fallback | opus |
 | E | Integration by the lead: merges, the route change for the founder, the Decision Log, one CI run, the PR | supervisor |
+
+### W19 status (4 Nov 2026, end of the build)
+
+Built and merged on the branch: A the face, B the conversation turn and the Gemini Live leg (prepaid blocks after the
+security review), C the look of the pictures, the progress and settings screens, D the 3D models (Decision Log
+C464–C470). One migration, `20261104143710_w19_child_settings`, applied to the test database. The Study hub's tutor
+window loads as its own chunk so the hub stays under its budget with the face, the voice and the models' part keys.
+Unverified by the builders and the lead: everything on a real phone (the animations, the analyser-driven mouth, WebGL and
+its speed, the Live socket against Google, the endpointing on a real microphone); the Hindi part names and the new Hindi
+words by a native speaker; the 360/768/1024 widths of the new screens. Control keeps prompt v10 until the founder picks
+v11 (models) on "Tutor answers".

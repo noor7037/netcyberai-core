@@ -6,6 +6,7 @@ import { placeBlock } from '@/lib/family/blocks';
 import type { PublicBlock, ResolverEvent } from '@/lib/family/resolver';
 import { setAvatarMood } from '@/lib/family/avatar-state';
 import { heardNothing } from '@/lib/family/call-heard';
+import { readChildSettings } from '@/lib/family/child-settings';
 import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
 import { speakLine, stopLine, type VoiceMode } from '../voice/lineVoice';
 import { LiveLeg, openRealtimeLeg, type LivePhase } from './RealtimeLeg';
@@ -69,6 +70,17 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null, realti
   pausedRef.current = paused;
   // Set when a turn ends with the tutor having spoken: the microphone opens again once the call is idle.
   const reopen = useRef(false);
+  // W19-C: the child's own switches: hands-free listening after the tutor speaks, and the voice's speed.
+  const prefs = useRef({ handsFree: true, rate: 0.95 });
+  useEffect(() => {
+    let live = true;
+    void readChildSettings().then((s) => {
+      if (live) prefs.current = { handsFree: s.handsFree, rate: s.voiceSpeed === 'slow' ? 0.8 : 0.95 };
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
   // The live leg: the call's mode, the leg's own phase, and a notice when the voice changes under the call.
   const [mode, setMode] = useState<CallMode>(realtime ? 'connecting' : 'chain');
   const [livePhase, setLivePhase] = useState<LivePhase>('connecting');
@@ -101,7 +113,7 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null, realti
         // Nothing waiting: the turn is over once the answer has finished too.
         if (t.streamDone) {
           // Hands-free: a turn the tutor answered aloud opens the microphone again.
-          if (t.started > 0) reopen.current = true;
+          if (t.started > 0 && prefs.current.handsFree) reopen.current = true;
           setBusy('idle');
           setCurrent(-1);
           postMarks(t.audioMs === null ? 'none' : t.mode);
@@ -115,7 +127,7 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null, realti
       void speakLine(t.mode, { kind: 'call_line', token: line.token }, {
         text: line.text,
         lang,
-        rate: 0.95,
+        rate: prefs.current.rate,
         onPlaying: () => {
           if (t.gen !== mine || t.audioMs !== null) return;
           t.audioMs = Math.round(now() - t.heardAt);
@@ -419,6 +431,6 @@ export function useCall({ w, subject, lang, secondsLeft, tutorKey = null, realti
   // queue); the board draws up to the step it reaches. Undefined while nothing is spoken: the board stays where it is.
   const sentence = current >= 0 ? current : undefined;
   // Hands-free is on once a turn has been answered (or the live voice is open), until the child pauses.
-  const handsFree = !paused && (mode === 'live' || turn.current.n > 0);
+  const handsFree = !paused && (mode === 'live' || (turn.current.n > 0 && prefs.current.handsFree));
   return { phase, heard, lines, current, sentence, blocks, refusal, voice, recorder, talk, end, setHeard, ack, pause, paused, handsFree, mode, notice, liveLeft };
 }

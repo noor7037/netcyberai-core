@@ -77,6 +77,16 @@
     transform: translate(8px, -16px);
   }
 }
+/* W19 (the lead): the child's own Movement switch off (data-fam-motion="off" on the app's wrapper) keeps the face as
+   still as the phone's reduced motion does. */
+[data-fam-motion='off'] .tf-breathe,
+[data-fam-motion='off'] .tf-bounce,
+[data-fam-motion='off'] .tf-nod,
+[data-fam-motion='off'] .tf-read,
+[data-fam-motion='off'] .tf-dot,
+[data-fam-motion='off'] .tf-z {
+  animation: none !important;
+}
 @media (prefers-reduced-motion: reduce) {
   .tf-breathe,
   .tf-bounce,

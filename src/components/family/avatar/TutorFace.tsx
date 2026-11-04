@@ -6,6 +6,7 @@ import { avatarState, setAvatarMood, type AvatarMood } from '@/lib/family/avatar
 import { useAvatar } from './useAvatar';
 import { Confetti } from './Confetti';
 import './tutor-face.css';
+import { readChildSettings } from '@/lib/family/child-settings';
 
 // The tutor's face (W19-A): a rounded character drawn here in SVG (no stock art), lit by gradients and a soft shadow, that
 // reacts to the mood store (avatar-state.ts): it breathes and blinks, leans in to listen, looks up to think, moves its
@@ -121,7 +122,7 @@ export function FaceArt({ mood, level, look, still, blink = false, glance = 0, u
           <stop offset="0" stopColor={C.card} />
           <stop offset="1" stopColor={L.tint} />
         </radialGradient>
-        <filter id={id('s')} x="-20%" y="-20%" width="140%" height="150%">
+        <filter id={id('s')} x="-0.2" y="-0.2" width="1.4" height="1.5">
           <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor={C.ink} floodOpacity=".25" />
         </filter>
       </defs>
@@ -201,6 +202,17 @@ export function TutorFace({ size = 'md', tutorKey = null, subject = null, name, 
   const uid = useId().replace(/:/g, '');
   const [blink, setBlink] = useState(false);
   const [glance, setGlance] = useState(0);
+  // W19-C: the child's own switch "The tutor's face" off hides it everywhere.
+  const [shown, setShown] = useState(true);
+  useEffect(() => {
+    let live = true;
+    void readChildSettings().then((s) => {
+      if (live) setShown(s.tutorFace);
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
 
   // Blinks every 3 to 6 s, and now and then a glance to one side.
   useEffect(() => {
@@ -231,6 +243,7 @@ export function TutorFace({ size = 'md', tutorKey = null, subject = null, name, 
     return () => document.removeEventListener('visibilitychange', seen);
   }, []);
 
+  if (!shown) return null;
   return (
     <span role={name ? 'img' : undefined} aria-label={name} aria-hidden={name ? undefined : true} data-tutor-face={lookOf(tutorKey, subject)} data-mood={mood} data-size={size} className={`relative inline-block shrink-0 ${PX[size]} ${className}`}>
       <FaceArt mood={mood} level={level} look={lookOf(tutorKey, subject)} still={still} blink={blink} glance={glance} uid={uid} />

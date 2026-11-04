@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState, type RefObject } from 'react';
+import { readChildSettings } from '@/lib/family/child-settings';
 import type { Words } from '@/lib/family/fill';
 import { sentenceAtChar } from '@/lib/family/call';
 import type { VoiceMode } from './lineVoice';
@@ -32,6 +33,20 @@ function langOf(given: 'en' | 'hi' | undefined, el: HTMLElement | null): 'en' | 
 // Android app's).
 function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, root, highlight = false }: VoiceInput) {
   const [speaking, setSpeaking] = useState(false);
+  // W19-C: the child's own switches: read aloud off hides the buttons; slow halves the pace.
+  const [on, setOn] = useState(true);
+  const prefs = useRef({ rate: 0.9 });
+  useEffect(() => {
+    let live = true;
+    void readChildSettings().then((s) => {
+      if (!live) return;
+      setOn(s.readAloud);
+      prefs.current = { rate: s.voiceSpeed === 'slow' ? 0.75 : 0.9 };
+    });
+    return () => {
+      live = false;
+    };
+  }, []);
   const [mode, setMode] = useState<VoiceMode>(serverVoice ? 'server' : 'phone');
   const run = useRef(0);
   const me = `${messageId}:${useId()}`;
@@ -84,7 +99,7 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
       const spoken = await voice.speakLine('server', { kind: 'tutor_answer', messageId }, {
         text,
         lang: words,
-        rate: 0.9,
+        rate: prefs.current.rate,
         onProgress: (played) => run.current === mine && reach(sentenceAtChar(sentences, played * text.length)),
         onWord: (c) => run.current === mine && reach(sentenceAtChar(sentences, c)),
       });
@@ -93,7 +108,7 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     } else {
       for (let i = 0; i < sentences.length; i++) {
         reach(i);
-        const spoken = await voice.speakLine('phone', { kind: 'tutor_answer', messageId }, { text: sentences[i], lang: words, rate: 0.9 });
+        const spoken = await voice.speakLine('phone', { kind: 'tutor_answer', messageId }, { text: sentences[i], lang: words, rate: prefs.current.rate });
         if (run.current !== mine || spoken.cancelled) return;
       }
     }
@@ -103,11 +118,12 @@ function useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence, r
     if (highlight) markSentence(null, null);
   };
 
-  return { speaking, mode, start, stop, el };
+  return { speaking, mode, start, stop, el, on };
 }
 
 export function AnswerSpeaker({ w, messageId, sentences, lang, serverVoice, onSentence }: { w: Words } & Omit<VoiceInput, 'root' | 'highlight'>) {
   const v = useAnswerVoice({ messageId, sentences, lang, serverVoice, onSentence });
+  if (!v.on) return null;
   return (
     <div ref={v.el} data-answer-speaker={messageId} className="flex flex-wrap items-center gap-x-3 gap-y-1">
       <button

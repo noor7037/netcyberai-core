@@ -18,6 +18,8 @@ import { setAvatarMood } from '@/lib/family/avatar-state';
 
 import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
 import { typedCheckIntentLight } from '@/lib/family/check-intent';
+import { readChildSettings } from '@/lib/family/child-settings';
+import { speakLine } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
@@ -377,6 +379,21 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         onRemove={remove}
         fileError={fileError}
         voice={voice}
+        // W19-B (the lead): a spoken question is answered like a person answers: the tutor's sealed acknowledgement
+        // ("You asked about X, let's look at it") is spoken at once with the server voice, when read-aloud is on, and the
+        // question goes without a tap. The phone's own voice is not used for the ack: the ack is a sealed server line.
+        onHeard={(heard, ack) => {
+          if (ack && serverVoice) {
+            void readChildSettings().then((s) => {
+              if (!s.readAloud) return;
+              const lang = typeof document !== 'undefined' && document.documentElement.lang === 'hi' ? 'hi' : 'en';
+              void speakLine('server', { kind: 'call_line', token: ack.token }, { text: ack.text, lang, rate: s.voiceSpeed === 'slow' ? 0.8 : 0.95 });
+            });
+          }
+          const asked = heard.trim();
+          if (asked.length === 0 || checking || attached.length > 0) return;
+          submit(asked, { ...base, ...(typedCheckIntentLight(asked) ? { mode: 'check' as const } : {}) });
+        }}
         call={call}
         historyOpen={open && shown}
         historyFor={ids.feed}
