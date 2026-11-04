@@ -157,8 +157,7 @@ export const liveChildSafetyInstruction = (request: { language: 'en' | 'hi' }): 
 const LIVE_URL = 'wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained';
 
 // Gemini Live's ephemeral token, minted here so the phone can connect to Google directly (no audio through this server).
-// The phone's realtime leg is still the OpenAI-shaped stub, so today this only lets Control choose Gemini for "Live
-// voice call" and mint a token. The child-safety rules are inside the token's setup (the same text OpenAI's session
+// The phone's realtime leg (W19-B, src/components/family/call/RealtimeLeg.ts) opens LIVE_URL with this token. The child-safety rules are inside the token's setup (the same text OpenAI's session
 // carries, from realtime-safety.ts).
 // Verified live by the founder on 2 Nov 2026: auth_tokens refuses `liveConnectConstraints` (400 'Unknown name');
 // `bidiGenerateContentSetup { model, generationConfig: { responseModalities } }` is accepted (200), with or without the
@@ -194,6 +193,11 @@ export const geminiRealtimeAdapter: RealtimeAdapter = {
             model: request.model.startsWith('models/') ? request.model : `models/${request.model}`,
             generationConfig: { responseModalities: ['AUDIO'] },
             systemInstruction: { parts: [{ text: liveChildSafetyInstruction(request) }] },
+            // W19-B: the words of both sides, for the call's captions. Locked here with the rest of the setup, because
+            // the phone's own setup names only the model. Top-level setup fields in the Live reference (not inside
+            // generationConfig); unverified against auth_tokens: a 400 here means the mint fails and the chain keeps the call.
+            inputAudioTranscription: {},
+            outputAudioTranscription: {},
           },
         }),
         redirect: 'error',

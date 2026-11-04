@@ -1,11 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useRef, type PointerEvent } from 'react';
+import { useRef, type PointerEvent } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { Button } from '../ui/Button';
 import { TutorAvatar } from '../TutorAvatar';
-import { openRealtimeLeg } from './RealtimeLeg';
 import { useCall } from './useCall';
 
 // The call (W16-A4): a full-screen, calm screen where a child talks to a tutor and hears the answer, with captions of
@@ -13,6 +12,9 @@ import { useCall } from './useCall';
 // speaks stops the voice at once and listens again. The answer's blocks gather on the board as they arrive, drawn by the
 // lesson page's own renderer, loaded only when the first one comes. The voice is the server's when Control has set one up,
 // else the phone's own; the screen says which, once a sentence has been spoken. The logic is useCall.ts.
+// W19-B: the microphone stops by itself when the child stops speaking, the tutor's acknowledgement is the first caption,
+// and after each answer the microphone opens again by itself ("Listening…", with a Pause button) until the child pauses.
+// With a realtime provider the call is live (RealtimeLeg.ts): the board then shows the tutor's words as it speaks them.
 
 // The board is its own chunk: the figures, charts and models come only when an answer carries them.
 const CallBoard = dynamic(() => import('./CallBoard'), { ssr: false });
@@ -31,18 +33,14 @@ export type CallViewProps = {
   secondsLeft: number;
   // Where End goes: the subject's Study page.
   endHref: string;
-  // Whether a realtime provider is set up (the server reads it without taking anything); false today.
+  // Whether a realtime provider is set up (the server reads it without taking anything); the live leg is tried then.
   realtime: boolean;
 };
 
 export function CallView({ w, lang, subject, tutorName, tutorKey = null, secondsLeft, endHref, realtime }: CallViewProps) {
-  const call = useCall({ w, subject, lang, secondsLeft, tutorKey });
+  const call = useCall({ w, subject, lang, secondsLeft, tutorKey, realtime });
   const { phase, recorder } = call;
-
-  // The realtime leg: only asked for when a provider is set up; "not available" leaves the chain in charge.
-  useEffect(() => {
-    if (realtime) void openRealtimeLeg();
-  }, [realtime]);
+  const live = call.mode === 'live';
 
   // Hold to talk, or tap once to start and tap again to finish. A press starts at once; letting go after a hold finishes;
   // a short press leaves the microphone open. `swallow` keeps the click that follows a press from acting twice; a
@@ -58,7 +56,7 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
   const onUp = () => {
     const p = press.current;
     press.current = null;
-    if (p?.began && Date.now() - p.at > HOLD_MS) call.talk();
+    if (p?.began && !live && Date.now() - p.at > HOLD_MS) call.talk();
   };
   const onClick = () => {
     if (swallow.current) {
@@ -68,11 +66,27 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
     call.talk();
   };
 
-  const label =
-    phase === 'listening' ? fill(w['fam.voice.recording'], { s: recorder.elapsed, max: recorder.max }) : phase === 'hearing' ? w['fam.voice.sending'] : phase === 'thinking' ? w['fam.call.mic.thinking'] : phase === 'speaking' ? w['fam.call.mic.speaking'] : w['fam.call.mic.talk'];
-  const action = phase === 'listening' ? w['fam.call.mic.done'] : phase === 'speaking' ? w['fam.call.mic.speaking'] : w['fam.call.mic.talk'];
-  const capped = recorder.limit < 1 && phase === 'idle';
+  const connecting = call.mode === 'connecting';
+  const label = connecting
+    ? w['fam.call.connecting']
+    : phase === 'listening'
+      ? live || call.handsFree
+        ? w['fam.call.listening']
+        : fill(w['fam.voice.recording'], { s: recorder.elapsed, max: recorder.max })
+      : phase === 'hearing'
+        ? w['fam.voice.sending']
+        : phase === 'thinking'
+          ? w['fam.call.mic.thinking']
+          : phase === 'speaking'
+            ? w[live ? 'fam.call.live.speaking' : 'fam.call.mic.speaking']
+            : call.paused
+              ? w['fam.call.paused']
+              : w['fam.call.mic.talk'];
+  const action = live ? w[call.paused ? 'fam.call.resume' : 'fam.call.pause'] : phase === 'listening' ? w['fam.call.mic.done'] : phase === 'speaking' ? w['fam.call.mic.speaking'] : w['fam.call.mic.talk'];
+  const capped = (recorder.limit < 1 || call.liveLeft === 0) && phase === 'idle' && !live;
   const problem = recorder.error ?? (capped ? recorder.say('voice_cap') : call.refusal || null);
+  // Pause: shown while the call listens by itself (hands-free, or live), so the child can stop it without ending the call.
+  const showPause = !live && call.handsFree && phase === 'listening';
 
   return (
     <div data-call data-call-phase={phase} lang={lang} className="fixed inset-0 z-40 flex flex-col overflow-hidden bg-paper text-ink lg:grid lg:grid-cols-[minmax(22rem,26rem)_1fr] lg:grid-rows-[auto_1fr_auto]">
@@ -80,10 +94,16 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
         <TutorAvatar className="h-12 w-12 shrink-0" />
         <div className="min-w-0 flex-1">
           <h1 className="fam-display text-xl font-extrabold leading-tight tracking-tight">{tutorKey ? fill(w['fam.call.with'], { tutor: tutorName }) : w['fam.call.withDefault']}</h1>
-          {call.voice && (
-            <p data-voice-in-use={call.voice} className="text-sm font-semibold text-slate">
-              {w[call.voice === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}
+          {live ? (
+            <p data-voice-in-use="live" className="text-sm font-semibold text-slate">
+              {w['fam.call.live']}
             </p>
+          ) : (
+            call.voice && (
+              <p data-voice-in-use={call.voice} className="text-sm font-semibold text-slate">
+                {w[call.voice === 'server' ? 'fam.voiceOut.server' : 'fam.voiceOut.phone']}
+              </p>
+            )
           )}
         </div>
         <Button href={endHref} variant="outline" onClick={() => call.end()} data-call-end>
@@ -91,8 +111,15 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
         </Button>
       </header>
 
-      <section aria-label={w['fam.call.board']} data-call-board-area className={`min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-2 lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:px-8 lg:py-8 ${call.blocks.length > 0 ? '' : 'flex flex-col justify-center'}`}>
-        {call.blocks.length > 0 ? (
+      <section aria-label={w['fam.call.board']} data-call-board-area className={`min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-2 lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:px-8 lg:py-8 ${call.blocks.length > 0 || (live && call.lines.length > 0) ? '' : 'flex flex-col justify-center'}`}>
+        {live && call.lines.length > 0 ? (
+          // The live voice brings no teaching blocks: the board shows the tutor's words as it says them.
+          <div data-call-board data-call-live-board className="fam-surface mx-auto max-w-2xl bg-white p-5 text-lg leading-relaxed">
+            {call.lines.map((l, i) => (
+              <p key={i}>{l.text}</p>
+            ))}
+          </div>
+        ) : call.blocks.length > 0 ? (
           <CallBoard w={w} blocks={call.blocks} tone={subject} sentence={call.sentence} />
         ) : (
           <p data-call-board-empty className="fam-surface mx-auto max-w-md bg-white p-5 text-center text-base text-slate">
@@ -113,6 +140,11 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
               {w['fam.call.empty']}
             </p>
           )}
+          {call.ack && (
+            <p data-call-ack className="text-lg font-semibold leading-snug">
+              {call.ack}
+            </p>
+          )}
           {call.lines.length > 0 && (
             <p data-call-caption className="text-lg leading-snug">
               {call.lines.map((l, i) => (
@@ -123,6 +155,12 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
             </p>
           )}
         </section>
+
+        {call.notice && (
+          <p role="status" data-call-notice className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-ink/10">
+            {call.notice}
+          </p>
+        )}
 
         {problem && (
           <p role="alert" data-call-problem className="rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate ring-1 ring-ink/10">
@@ -136,7 +174,7 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
             data-call-mic
             aria-label={action}
             aria-pressed={phase === 'listening'}
-            disabled={capped || phase === 'hearing'}
+            disabled={capped || phase === 'hearing' || connecting}
             onPointerDown={onDown}
             onPointerUp={onUp}
             onPointerCancel={() => (press.current = null)}
@@ -152,7 +190,12 @@ export function CallView({ w, lang, subject, tutorName, tutorKey = null, seconds
           <p role="status" data-call-status className="min-h-[1.5rem] text-center text-base font-bold">
             {label}
           </p>
-          {phase === 'idle' && !call.heard && <p className="text-center text-sm text-slate">{w['fam.call.hold']}</p>}
+          {showPause && (
+            <button type="button" data-call-pause onClick={() => call.pause()} className="fam-press min-h-[44px] min-w-[44px] rounded-full bg-white px-5 text-base font-bold text-ink ring-1 ring-ink/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink">
+              {w['fam.call.pause']}
+            </button>
+          )}
+          {phase === 'idle' && !call.heard && !live && <p className="text-center text-sm text-slate">{w['fam.call.hold']}</p>}
         </div>
       </div>
     </div>

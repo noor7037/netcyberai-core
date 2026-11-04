@@ -66,6 +66,7 @@ const ROUTES = {
   voice: () => import('@/app/api/family/voice/route'),
   'voice/call/token': () => import('@/app/api/family/voice/call/token/route'),
   'voice/call/marks': () => import('@/app/api/family/voice/call/marks/route'),
+  'voice/call/seconds': () => import('@/app/api/family/voice/call/seconds/route'),
 };
 const post = async (path: string, route: keyof typeof ROUTES, body: unknown, account = ACCOUNT, child = CHILD) => {
   const { POST } = await ROUTES[route]();
@@ -261,6 +262,22 @@ describe('the gates and caps are the microphone’s own', () => {
     expect((await token.json()).error).toBe('voice_cap');
     await q(`update family.day_counts set voice_seconds = 0 where child_id = $1`, [CHILD]);
   });
+
+  it('W19-B: the live call’s seconds come off the same day: a piece at a time, the last ones spent, then voice_cap', async () => {
+    const day = (await q(`select (now() at time zone 'Asia/Kolkata')::date::text as d`))[0].d as string;
+    await q(`insert into family.day_counts (account_id, child_id, day, voice_seconds) values ($1, $2, $3, 100) on conflict (child_id, day) do update set voice_seconds = 100`, [ACCOUNT, CHILD, day]);
+    expect((await post('voice/call/seconds', 'voice/call/seconds', { seconds: 31 })).status).toBe(400);
+    expect((await post('voice/call/seconds', 'voice/call/seconds', { seconds: 0 })).status).toBe(400);
+    const a = await post('voice/call/seconds', 'voice/call/seconds', { seconds: 15 });
+    expect([a.status, await a.json()]).toEqual([200, { left: 5 }]);
+    const b = await post('voice/call/seconds', 'voice/call/seconds', { seconds: 15 });
+    expect([b.status, await b.json()]).toEqual([200, { left: 0 }]);
+    const c = await post('voice/call/seconds', 'voice/call/seconds', { seconds: 1 });
+    expect([c.status, await c.json()]).toEqual([429, { error: 'voice_cap', left: 0 }]);
+    expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1`, [CHILD]))[0].voice_seconds)).toBe(120);
+    expect((await post('voice/call/seconds', 'voice/call/seconds', { seconds: 5 }, NO_VOICE, NO_VOICE_CHILD)).status).toBe(403);
+    await q(`update family.day_counts set voice_seconds = 0 where child_id = $1`, [CHILD]);
+  });
 });
 
 describe('nothing is stored of the audio', () => {
@@ -273,8 +290,13 @@ describe('nothing is stored of the audio', () => {
     wav.write(marker, 100, 'ascii');
     const res = await post('voice', 'voice', { audio: wav.toString('base64'), seconds: 2 });
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ text: 'What is photosynthesis?', left: 118, maxSeconds: 30 });
+    expect(await res.json()).toEqual({ text: 'What is photosynthesis?', left: 118, maxSeconds: 60, ack: { text: expect.stringContaining('photosynthesis'), token: expect.any(String) } });
     expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1`, [CHILD]))[0].voice_seconds)).toBe(2);
+    // W19-B: the acknowledgement the voice route sealed is a call line the speak route accepts for this child only.
+    const { ack } = (await (await post('voice', 'voice', { audio: wav.toString('base64'), seconds: 2 })).json()) as { ack: { text: string; token: string } };
+    expect(ack.text).toMatch(/photosynthesis/);
+    expect((await speak({ kind: 'call_line', token: ack.token })).body).toEqual({ error: 'not_set_up' });
+    await q(`update family.day_counts set voice_seconds = 2 where child_id = $1`, [CHILD]);
     const tables = await q(`select table_schema as s, table_name as t from information_schema.tables where table_type = 'BASE TABLE' and table_schema in ('family', 'control')`);
     const b64 = wav.subarray(96, 130).toString('base64').slice(4, 30);
     for (const { s, t } of tables) {
