@@ -8,6 +8,7 @@ import * as v7 from './v7';
 import * as v8 from './v8';
 import * as v9 from './v9';
 import * as v10 from './v10';
+import * as v11 from './v11';
 
 // The family.resolver prompt versions in this repository (docs/family-app/08 §7). Control chooses the active version
 // (control.ai_profiles.prompt_version); a version the code does not have falls back to the default (v10 since W18-P2, v9 since W16). A typed
@@ -59,6 +60,9 @@ const V9: ResolverPrompt = { version: v9.RESOLVER_PROMPT_VERSION, namesSubject: 
 // sketch rule, only when the ask is a sketch. Control keeps v9 until the founder switches, so v10 is the "code-only
 // fallback": the version used when the database row names no version the code has. No migration sets it.
 const V10: ResolverPrompt = { version: v10.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v10.resolverSystem, user: v10.resolverUser };
+// v11 (W19-D): v10 with the 3D models line for Science (the catalogue's model keys and their parts). Chosen by Control by
+// name; v10 stays the code-only fallback until the founder switches.
+const V11: ResolverPrompt = { version: v11.RESOLVER_PROMPT_VERSION, namesSubject: true, usesPlan: true, system: v11.resolverSystem, user: v11.resolverUser };
 
 export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   { version: v1.RESOLVER_PROMPT_VERSION, namesSubject: false, system: (a) => v1.resolverSystem(withSubject(a)), user: (a) => v1.resolverUser(withSubject(a)) },
@@ -73,6 +77,7 @@ export const RESOLVER_PROMPTS: readonly ResolverPrompt[] = [
   V8,
   V9,
   V10,
+  V11,
 ];
 
 // The fallback for a version the code does not have, and for a typed question under a version that cannot name the

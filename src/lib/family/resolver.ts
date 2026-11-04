@@ -7,6 +7,7 @@ import { logCheckVerdict, logPlan, planAnswer, preparePlan } from '@/lib/ai/teac
 import { defaultPlan, isInteractiveBlock, type Plan, type PlanContext } from '@/lib/ai/teaching/plan-shape';
 import { verdictsFromReading, verifyVerdicts } from './arithmetic-check';
 import { sceneSimFits, simFits } from './interactive';
+import { modelFits } from './models/fit';
 import { retrievePassages, type Passage } from '@/lib/ai/teaching/retrieve';
 import { BLOCK_SCHEMA_VERSION, completeResponse, coreBlocks, isInteractive, isSimScene, jsonObjectScanner, parseBlockLine, parseStoredBlockLine, type Block, type BlockType } from './blocks';
 import { boardNameOf, isPrePrimary, syllabusBoardOf, type FamilyChild } from './children';
@@ -169,7 +170,7 @@ async function libraryEvents(db: Db, ctx: Seal, line: Line, promptVersion: strin
   const blocks = completeResponse(
     (cached.blocks as unknown[])
       .map((b) => parseStoredBlockLine(JSON.stringify(b)))
-      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title)) && (!isSimScene(b) || sceneSimFits(b.sim, line.title))),
+      .filter((b): b is Block => b !== null && (b.type !== 'simulation' || simFits(b.sim, line.title)) && (!isSimScene(b) || sceneSimFits(b.sim, line.title)) && (b.type !== 'model' || modelFits(b.model, line.title))),
     core
   );
   if (!blocks) return null;
@@ -556,6 +557,9 @@ export async function generate(p: Pending, emit: (e: ResolverEvent) => void, cla
     if (b.type === 'simulation' && !simFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
     // The same for a scene simulation of Classes 6 to 10 (W18-P2): a circuit under a question about the heart is dropped.
     if (isSimScene(b) && !sceneSimFits(b.sim, `${p.asked} ${line?.title ?? ''} ${b.title}`)) return;
+    // A 3D model only where the question or its syllabus line is about that thing (W19-D): a heart under a question about
+    // friction is dropped. Not the block's own title, which always names the model.
+    if (b.type === 'model' && !modelFits(b.model, `${p.asked} ${line?.title ?? ''}`)) return;
     // The safety check, before the block is shown or a subject is claimed (C314).
     if (p.moderation && !(await safe({ user: p.asked, assistant: blockText(b) }))) return;
     if (mustClaim && claim) {

@@ -54,6 +54,8 @@ const EVERY: Record<string, unknown> = {
   scene: { type: 'scene', title: MARK('scene'), layout: 'row', parts: [{ id: 'a', label: 'One', text: MARK('scene'), shape: 'circle', colour: 1 }, { id: 'b', label: 'Two', text: 'Two.', shape: 'rect', colour: 2 }], links: [], animate: 'none' },
   chart: { type: 'chart', title: MARK('chart'), kind: 'bar', unit: '', labels: ['One', 'Two'], series: [{ label: 'Values', values: [1, 2] }] },
   board: { type: 'board', title: MARK('board'), steps: [{ n: 1, say: `${MARK('board')} say.`, commands: [{ kind: 'label', at: [10, 10], text: MARK('board') }] }] },
+  // W19-D: the 3D model is silent as well.
+  model: { type: 'model', title: MARK('model'), model: 'brain', focus: ['cerebellum'], caption: `${MARK('model')} caption.` },
 };
 
 describe('narration reads only teaching text (C374)', () => {
