@@ -536,6 +536,8 @@ ALLOWED_PERMISSIVE = (
         ("family.chapter_test_answers", "chapter_test_answers_own"),
         # W16-B1: a child's quick quizzes made from tutor sessions; own account only (restrictive twins below).
         ("family.session_quizzes", "session_quizzes_own"),
+        # W19-C: a child's own settings (switches and a voice speed); own account only (restrictive twins below).
+        ("family.child_settings", "child_settings_own"),
         # E1 (C382): a child's live English practice sessions and turns; own account only (restrictive twins below).
         ("family.english_live_sessions", "english_live_sessions_own"),
         ("family.english_live_turns", "english_live_turns_own"),
@@ -1118,6 +1120,9 @@ REQUIRED_RESTRICTIVE = {
     # W16-B1: own account, and on a child's own phone that one child.
     ("family.session_quizzes", "session_quizzes_own_only"),
     ("family.session_quizzes", "session_quizzes_one_child"),
+    # W19-C: own account, and on a child's own phone that one child.
+    ("family.child_settings", "child_settings_own_only"),
+    ("family.child_settings", "child_settings_one_child"),
     # E1 (C382): own account only.
     ("family.english_live_sessions", "english_live_sessions_own_only"),
     ("family.english_live_turns", "english_live_turns_own_only"),

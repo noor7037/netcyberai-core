@@ -8,6 +8,7 @@ import { errorWords, familyApi } from './client';
 import type { BoardOption } from '@/lib/family/children';
 import { ChildForm } from './ChildForm';
 import { GateFrame } from './GateFrame';
+import { Mascot } from './mascot/Mascot';
 import { PinFields } from './PinFields';
 
 // The parent's first steps after the first sign-in (M1-2, C248): agree to study_core with an explicit tap, set the
@@ -19,7 +20,7 @@ export function ConsentStep({ w }: { w: Words }) {
   const [error, setError] = useState('');
   const items = ['fam.consent.item.child', 'fam.consent.item.answers', 'fam.consent.item.ai', 'fam.consent.item.never', 'fam.consent.item.control'];
   return (
-    <GateFrame app={w['fam.app.name']} title={w['fam.consent.title']} lead={w['fam.consent.lead']}>
+    <GateFrame app={w['fam.app.name']} title={w['fam.consent.title']} lead={w['fam.consent.lead']} art={<Mascot id="welcome" className="h-28 w-32 shrink-0 sm:h-36 sm:w-44" />}>
       <ul className="flex flex-col gap-2">
         {items.map((k) => (
           <li key={k} className="fam-row items-start bg-off-white text-base text-slate">

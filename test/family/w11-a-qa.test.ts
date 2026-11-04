@@ -11,11 +11,10 @@ vi.mock('next/navigation', () => ({
 }));
 
 describe('the guessed parent-area addresses', () => {
-  it('/family/children opens the parent area on Children, /family/progress on Overview', async () => {
+  // W19-C: /family/progress is now the child's own Progress screen (test/family/w19-c-look.test.ts).
+  it('/family/children opens the parent area on Children', async () => {
     const children = (await import('@/app/(family)/family/(app)/children/page')).default;
-    const progress = (await import('@/app/(family)/family/(app)/progress/page')).default;
     expect(() => children()).toThrow('redirect:/family/parent#children');
-    expect(() => progress()).toThrow('redirect:/family/parent#overview');
   });
 });
 
