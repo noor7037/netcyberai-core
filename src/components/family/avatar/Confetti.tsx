@@ -49,5 +49,5 @@ export function Confetti() {
     raf = requestAnimationFrame(draw);
     return () => cancelAnimationFrame(raf);
   }, []);
-  return gone ? null : <canvas ref={ref} data-confetti aria-hidden="true" className="pointer-events-none absolute -inset-1/2 h-[200%] w-[200%]" />;
+  return gone ? null : <canvas ref={ref} data-confetti aria-hidden="true" className="pointer-events-none absolute -inset-1/2 h-[calc(2*100%)] w-[calc(2*100%)]" />;
 }
