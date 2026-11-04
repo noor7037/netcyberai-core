@@ -196,6 +196,8 @@ describe('Gemini Live token', () => {
       model: 'models/gemini-live-2.5-flash-preview',
       generationConfig: { responseModalities: ['AUDIO'] },
       systemInstruction: { parts: [{ text: realtimeInstructions('en') }] },
+      inputAudioTranscription: {},
+      outputAudioTranscription: {},
     });
     expect(body.bidiGenerateContentSetup).not.toHaveProperty('config');
     expect(Date.parse(body.expireTime) - before).toBeGreaterThan(29 * 60_000);

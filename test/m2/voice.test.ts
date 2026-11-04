@@ -39,13 +39,13 @@ describe('reading a recording', () => {
     expect(sniffAudio(Buffer.from('not audio at all'))).toBeNull();
     expect(sniffAudio(Buffer.from([0xff, 0xd8, 0xff, 0xe0]))).toBeNull();
   });
-  it('counts 1 to 30 seconds, and a missing timer as 30', () => {
-    expect([countedSeconds(0.2), countedSeconds(12.1), countedSeconds(400), countedSeconds(undefined), countedSeconds('5'), countedSeconds(NaN)]).toEqual([1, 13, 30, 30, 30, 30]);
+  it('counts 1 to 60 seconds, and a missing timer as 60', () => {
+    expect([countedSeconds(0.2), countedSeconds(12.1), countedSeconds(400), countedSeconds(undefined), countedSeconds('5'), countedSeconds(NaN)]).toEqual([1, 13, 60, 60, 60, 60]);
   });
   it('charges a recording at least what its size can hold', () => {
     expect(leastSeconds(new Uint8Array(100), 'audio/webm')).toBe(1);
     expect(leastSeconds(new Uint8Array(320_000), 'audio/webm')).toBe(10);
-    expect(leastSeconds(new Uint8Array(5_000_000), 'audio/ogg')).toBe(30);
+    expect(leastSeconds(new Uint8Array(5_000_000), 'audio/ogg')).toBe(60);
     // A 16 kHz mono 16-bit WAV: 32,000 bytes a second, by its own header.
     const wav = new Uint8Array(44 + 32_000 * 4);
     new DataView(wav.buffer).setUint32(28, 32_000, true);
@@ -172,13 +172,13 @@ describe('the voice route', () => {
   it('something that is not a recording: refused before any call', async () => {
     expect((await post({ audio: Buffer.from('plain text, not audio').toString('base64'), seconds: 5 })).body.error).toBe('not_audio');
     expect((await post({ audio: 'not base64 !!', seconds: 5 })).body.error).toBe('not_audio');
-    expect((await post({ audio: Buffer.alloc(1_100_000, 1).toString('base64'), seconds: 5 })).status).toBe(413);
+    expect((await post({ audio: Buffer.alloc(2_100_000, 1).toString('base64'), seconds: 5 })).status).toBe(413);
     expect([calls.length, await seconds()]).toEqual([0, 0]);
   });
 
   it('returns only the words; the request carries the recording, the task and the language, and no name', async () => {
     const r = await post({ audio: B64, seconds: 7.4 });
-    expect(r).toEqual({ status: 200, body: { text: 'What is photosynthesis?', left: 112, maxSeconds: 30 } });
+    expect(r).toEqual({ status: 200, body: { text: 'What is photosynthesis?', left: 112, maxSeconds: 60, ack: { text: expect.stringContaining('photosynthesis'), token: expect.any(String) } } });
     expect(calls).toHaveLength(1);
     const call = calls[0];
     expect(call.url).toBe(RUN_URL);
@@ -228,34 +228,34 @@ describe('the voice route', () => {
 
   it('a failed call gives the seconds back', async () => {
     reply = () => new Response('{}', { status: 500 });
-    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 503, body: { error: 'ai_failed', left: 120, maxSeconds: 30 } });
+    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 503, body: { error: 'ai_failed', left: 120, maxSeconds: 60 } });
     expect(await seconds()).toBe(0);
     expect(await q(`select requests, failures from control.ai_usage`)).toEqual([{ requests: 1, failures: 1 }]);
   });
 
   it('no words heard (or only an ID number): the seconds are given back', async () => {
     reply = heard('  2345 6789 0123 ');
-    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'not_heard', left: 120, maxSeconds: 30 } });
+    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'not_heard', left: 120, maxSeconds: 60 } });
     expect(await seconds()).toBe(0);
   });
 
   it('W17-B4: a recording under the 2 kB floor, or timed under 1 second, is refused nothing_heard before any provider is called', async () => {
     const tiny = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3, 0x9f, 0x42, 0x86, 0x81]), Buffer.alloc(1000 - 8, 7)]);
     expect(tiny.length).toBe(1000);
-    expect(await post({ audio: tiny.toString('base64'), seconds: 5 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 30 } });
-    expect(await post({ audio: B64, seconds: 0.4 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 30 } });
+    expect(await post({ audio: tiny.toString('base64'), seconds: 5 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 60 } });
+    expect(await post({ audio: B64, seconds: 0.4 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 60 } });
     expect(calls).toHaveLength(0);
     expect(await seconds()).toBe(0);
     // The seconds already used today are reported as they stand.
     expect((await post({ audio: B64, seconds: 10 })).status).toBe(200);
-    expect(await post({ audio: tiny.toString('base64'), seconds: 5 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 110, maxSeconds: 30 } });
+    expect(await post({ audio: tiny.toString('base64'), seconds: 5 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 110, maxSeconds: 60 } });
     expect(calls).toHaveLength(1);
     expect(await seconds()).toBe(10);
   });
 
   it('W17-B4: a transcript that is only what a quiet room is written as ("Thank you.") is nothing_heard and the seconds go back', async () => {
     reply = heard('Thank you.');
-    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 30 } });
+    expect(await post({ audio: B64, seconds: 9 })).toEqual({ status: 422, body: { error: 'nothing_heard', left: 120, maxSeconds: 60 } });
     expect(calls).toHaveLength(1);
     expect(await seconds()).toBe(0);
     reply = heard('What is photosynthesis?');
@@ -269,7 +269,7 @@ describe('the voice route', () => {
   });
 
   it('a body larger than any recording is refused before it is read', async () => {
-    expect((await post({ audio: B64, seconds: 2, pad: 'x'.repeat(1_400_000) })).status).toBe(413);
+    expect((await post({ audio: B64, seconds: 2, pad: 'x'.repeat(2_800_000) })).status).toBe(413);
     expect(calls).toHaveLength(0);
   });
 

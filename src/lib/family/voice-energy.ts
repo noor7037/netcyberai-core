@@ -19,10 +19,12 @@ export function rms(samples: Float32Array): number {
 export class EnergyMeter {
   private top = 0;
   private loud = 0;
-  add(samples: Float32Array): void {
+  // The frame's loudness, returned too, so the endpointer (W19-B) reads the same number without measuring again.
+  add(samples: Float32Array): number {
     const r = rms(samples);
     if (r > this.top) this.top = r;
     if (r >= SPEECH_RMS) this.loud++;
+    return r;
   }
   get peak(): number {
     return this.top;
