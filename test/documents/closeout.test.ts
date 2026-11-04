@@ -296,7 +296,7 @@ describe('A4: a certificate carries the signature of the person who signed it', 
 describe('A5: Control never shows a family’s certificate link', () => {
   const key = 'abcdefghijABCDEFGHIJ0123456789_-';
   it('a link keeps its domain and “…”; the key never shows', () => {
-    expect(copyLinkUrl(key)).toBe(`https://netcyberai.com${COPY_PATH}${key}`);
+    expect(copyLinkUrl(key)).toBe(`https://www.netcyberai.com${COPY_PATH}${key}`);
     expect(maskLinks(`Parameter value ${copyLinkUrl(key)} is not valid`)).toBe('Parameter value netcyberai.com/… is not valid');
     expect(maskLinks(`netcyberai.com${COPY_PATH}${key}`)).toBe('netcyberai.com/…');
     expect(maskLinks(`path ${COPY_PATH}${key} refused`)).toBe(`path ${COPY_PATH}… refused`);

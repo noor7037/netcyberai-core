@@ -32,7 +32,7 @@ function Section({ title, children, action }: { title: string; children: ReactNo
   return (
     <section className="flex flex-col gap-2 rounded-xl border border-slate/10 bg-white p-3">
       <div className="flex items-center justify-between gap-2">
-        <h4 className="text-xs font-extrabold text-slate">{title}</h4>
+        <p className="text-xs font-extrabold text-slate">{title}</p>
         {action}
       </div>
       {children}

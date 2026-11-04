@@ -19,7 +19,10 @@ export const dynamicParams = false;
 export function generateMetadata({ params }: { params: { slug: string } }) {
   const r = findResource(params.slug);
   if (!r) return {};
-  return buildMetadata({ path: `/resources/${r.slug}`, title: r.title, description: r.description });
+  const meta = buildMetadata({ path: `/resources/${r.slug}`, title: r.title, description: r.description });
+  // A section that is not published yet says so and links on (C471): useful to a reader who lands here, too thin to
+  // index. It stays out of the sitemap and search until it has its content.
+  return r.status === 'coming' ? { ...meta, robots: { index: false, follow: true } } : meta;
 }
 
 export default function ResourcePage({ params }: { params: { slug: string } }) {

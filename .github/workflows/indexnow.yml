@@ -1,0 +1,52 @@
+# IndexNow (Decision Log C471): after a merge to main, wait until the live site serves that commit, then tell the
+# IndexNow engines (Bing and the others) which public pages changed. Only pages whose sitemap date moved are sent
+# (scripts/indexnow.mjs). Run by hand with "all" to submit every page once.
+name: indexnow
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: 'Submit every page in the sitemap (a first submission)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Wait for the live site to serve this commit
+        run: |
+          want="${GITHUB_SHA:0:7}"
+          for i in $(seq 1 60); do
+            got="$(curl -fsS --max-time 20 https://www.netcyberai.com/api/health | sed -n 's/.*"commit":"\([0-9a-f]*\)".*/\1/p' || true)"
+            if [ "$got" = "$want" ]; then echo "live on $got"; exit 0; fi
+            sleep 15
+          done
+          echo "::error::the live site did not reach $want within 15 minutes"
+          exit 1
+
+      - name: Submit the changed pages
+        env:
+          BEFORE: ${{ github.event.before }}
+          ALL: ${{ inputs.all }}
+        run: |
+          if [ "$ALL" = "true" ]; then
+            node scripts/indexnow.mjs --all
+          else
+            node scripts/indexnow.mjs "${BEFORE:-HEAD~1}" "$GITHUB_SHA"
+          fi

@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -22,6 +24,11 @@ jobs:
 
       - name: No fabricated numeric claims outside the demo fixture
         run: python3 scripts/check_claims.py
+
+      - name: Every public page's sitemap date is current
+        run: |
+          python3 scripts/page_dates.py --self-test
+          python3 scripts/page_dates.py --check
 
       - name: No mock/dummy/fake/sample data outside the demo fixture
         run: |

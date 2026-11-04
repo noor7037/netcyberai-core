@@ -201,7 +201,11 @@
   border-left: 0;
   border-right: 6px solid transparent;
 }
-.wa-phone .bubble h4 {
+.wa-phone .bubble .wa-title {
+  /* A demo message's title: bold like a heading, but not one: the phone is a picture on the page, not part of its
+     outline (C471). Outranks .bubble p. */
+  font-weight: 700;
+  color: inherit;
   font-size: 11.5px;
   margin: 0 0 5px;
   line-height: 1.35;
@@ -845,7 +849,9 @@
   padding: 12px;
   animation: wa-sheet 0.24s ease;
 }
-.wa-phone .sheet h4 {
+.wa-phone .sheet .wa-title {
+  font-weight: 700;
+  color: inherit;
   margin: 0;
   font-size: 11px;
 }
