@@ -4,15 +4,16 @@ import { redirect } from 'next/navigation';
 import { FamilyHeader } from '@/components/family/FamilyHeader';
 import { HabitCard } from '@/components/family/HabitCard';
 import { QuizCards } from '@/components/family/QuizCards';
-import { PlanCard } from '@/components/family/PlanCard';
+import { ActivityTiles, type ActivityTile } from '@/components/family/home/ActivityTiles';
+import { MissionCard } from '@/components/family/home/MissionCard';
 import { TutorsTile } from '@/components/family/TutorsTile';
 import { FamIcon } from '@/components/family/FamIcon';
 import { Button } from '@/components/family/ui/Button';
 import { HomeAsk } from '@/components/family/ui/HomeAsk';
 import { LinkRow } from '@/components/family/ui/LinkRow';
-import { ProgressRing } from '@/components/family/ui/ProgressRing';
 import { SubjectGrid } from '@/components/family/ui/SubjectGrid';
 import { classSubjects } from '@/lib/family/catalog';
+import { loadChildSettings } from '@/lib/family/child-settings';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { familyModuleOn } from '@/lib/family/flags';
 import { readPlatformTutors } from '@/lib/family/tutors';
@@ -37,7 +38,11 @@ import { indiaDate } from '@/lib/time/india';
 // (checked and mastered per subject, "free", a lock), and progress as a ring. Learning first: no streaks, no ranks.
 // M2-2 (C276): with the plan module on, today's plan follows the ask card (the learning-first routine).
 // M2-3 (C277): with the habit module on, the week, the badges and the jar follow the plan.
-const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.hub.entry', 'fam.notify.center.title', 'fam.profile.title', 'fam.home.whoIsLearning'];
+// W19-C (the founder's two reference pictures): today's plan as the hero "Today's mission" with a drawn picture and a
+// Start button (the ask card leads when the plan module is off, and follows the subjects otherwise), "Your activity"
+// tiles with the numbers the page already reads, each opening /family/progress (which now holds the topic list), and
+// the child's own Movement switch (/family/settings) honoured on this page.
+const KEYS: MessageKey[] = ['fam.app.name', 'fam.home.hello', 'fam.class.label', 'fam.class.nursery', 'fam.class.lkg', 'fam.class.ukg', 'fam.hub.entry', 'fam.notify.center.title', 'fam.profile.title', 'fam.home.whoIsLearning', 'fam.progress.title'];
 
 export default async function FamilyHomePage() {
   const page = await requireFamilyPage();
@@ -46,7 +51,7 @@ export default async function FamilyHomePage() {
   if (next) redirect(next);
   const child = page.child!;
   const lang = page.childLang;
-  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, tutors, quizzes } = await familyPageRead(page, async (db) => ({
+  const { progress, subjects, plan, habit, openToAll, links, schoolOn, meeting, seen, off, tutors, quizzes, settings } = await familyPageRead(page, async (db) => ({
     progress: await childProgress(db, page.session.accountId, child.childId, lang),
     subjects: isPrePrimary(child.classLevel) ? [] : await classSubjects(db, { board: syllabusBoardOf(child), classLevel: child.classLevel, stream: child.stream }),
     plan: (await familyModuleOn(db, 'plan', page.session.accountId)) ? await dayPlan(db, page.session.accountId, child, indiaDate(), lang) : null,
@@ -60,6 +65,7 @@ export default async function FamilyHomePage() {
     // W16-B1: the Quick quiz from a finished tutor session, or a review due.
     quizzes: isPrePrimary(child.classLevel) ? [] : await quizCards(db, { accountId: page.session.accountId, childId: child.childId }, indiaDate(), { limit: 2 }),
     seen: await readSeen(db, page.session.accountId),
+    settings: await loadChildSettings(db, page.session.accountId, child.childId),
     off: await notifyOff(db, page.session.accountId),
     meeting: (await familyModuleOn(db, 'home_plan', page.session.accountId)) && (await plusOpen(db, page.session.accountId)) ? (await homePlan(db, page.session.accountId, child, indiaDate(), lang))?.tonight ?? null : null,
   }));
@@ -76,11 +82,37 @@ export default async function FamilyHomePage() {
     const mine = progress.filter((p) => p.subject === s);
     return { subject: s, name: t(lang, `fam.subject.${s}` as MessageKey), open: subjectAccess(child, s, openToAll).open, free: child.freeSubject === s, checked: mine.length, mastered: mine.filter((p) => p.mastered).length };
   });
+  const activity: ActivityTile[] = [
+    { key: 'checked', title: t(lang, 'fam.w19.activity.checkedTitle'), value: progress.length, label: t(lang, 'fam.w19.activity.checked') },
+    habit
+      ? { key: 'days', title: t(lang, 'fam.w19.activity.daysTitle'), value: habit.doneDays, label: t(lang, 'fam.w19.activity.days') }
+      : { key: 'mastered', title: t(lang, 'fam.w19.activity.masteredTitle'), value: mastered, label: t(lang, 'fam.w19.activity.mastered') },
+  ];
+  const ask = <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />;
+  const planDone = plan ? plan.items.filter((i) => i.done).length : 0;
   return (
-    <div lang={lang} className="flex min-h-screen flex-col">
+    <div lang={lang} data-fam-motion={settings.motion ? undefined : 'off'} className="flex min-h-screen flex-col">
       <FamilyHeader w={familyWords(lang, KEYS)} child={child} children={page.children} news={news?.total ?? 0} />
       <main className="fam-page">
-        <HomeAsk title={t(lang, 'fam.home.askTitle')} lead={progress.length ? t(lang, 'fam.home.continueLead') : t(lang, 'fam.home.askLead')} cta={t(lang, 'fam.home.study')} />
+        {plan ? (
+          <MissionCard
+            plan={plan}
+            words={{
+              title: t(lang, 'fam.w19.mission.title'),
+              start: t(lang, 'fam.w19.mission.start'),
+              next: (topic) => t(lang, 'fam.w19.mission.next', { topic }),
+              progress: t(lang, 'fam.plan.progress', { done: planDone, total: plan.items.length }),
+              minutes: t(lang, 'fam.plan.minutes', { minutes: plan.minutes }),
+              complete: t(lang, 'fam.plan.complete'),
+              emptyLead: t(lang, 'fam.w19.mission.emptyLead'),
+              study: t(lang, 'fam.home.study'),
+              done: t(lang, 'fam.plan.done'),
+              todo: t(lang, 'fam.plan.todo'),
+            }}
+          />
+        ) : (
+          ask
+        )}
         <QuizCards cards={quizzes} lang={lang} today={indiaDate()} />
         {atSchool && (
           <section data-school-today className="fam-card fam-section fam-rise bg-white">
@@ -140,8 +172,7 @@ export default async function FamilyHomePage() {
             </LinkRow>
           </section>
         )}
-        {plan && <PlanCard plan={plan} lang={lang} />}
-        {habit && <HabitCard habit={habit} lang={lang} />}
+        <ActivityTiles title={t(lang, 'fam.w19.activity.title')} seeAll={t(lang, 'fam.w19.activity.seeAll')} open={t(lang, 'fam.w19.activity.open')} tiles={activity} />
         <SubjectGrid
           title={t(lang, 'fam.home.subjectsTitle')}
           tiles={tiles}
@@ -154,33 +185,8 @@ export default async function FamilyHomePage() {
           }}
         />
         {tutors.length > 0 && <TutorsTile title={t(lang, 'fam.tutors.nav')} lead={t(lang, 'fam.tutors.homeLead')} names={tutors.map((x) => ({ key: x.key, name: x.name, tint: x.tint }))} />}
-        {progress.length > 0 && (
-          <section data-family-progress aria-labelledby="fam-progress" className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: '240ms' } as React.CSSProperties}>
-            <div className="flex items-center gap-4">
-              <ProgressRing value={mastered} max={progress.length} size={72} stroke={8} track="text-leaf/20" arc="text-emerald">
-                <span className="fam-num text-lg text-slate">{mastered}</span>
-              </ProgressRing>
-              <div className="min-w-0">
-                <h2 id="fam-progress" className="fam-h2 text-slate">
-                  {t(lang, 'fam.progress.title')}
-                </h2>
-                <p className="mt-0.5 text-sm text-slate/80">{t(lang, 'fam.progress.summary', { topics: progress.length, mastered })}</p>
-              </div>
-            </div>
-            <ul className="flex flex-col gap-2">
-              {progress.slice(0, 6).map((p) => (
-                <li key={p.topicKey}>
-                  <Link href={`/family/understand?kind=${/\.t\d+$/.test(p.topicKey) ? 'topic' : 'chapter'}&key=${encodeURIComponent(p.topicKey)}`} className="fam-row fam-lift justify-between bg-off-white">
-                    <span className="min-w-0 text-sm font-semibold text-slate">{p.title}</span>
-                    <span className={`fam-pill shrink-0 ${p.mastered ? 'bg-emerald-text text-white' : 'bg-white text-slate ring-1 ring-slate/15'}`}>
-                      {p.mastered ? t(lang, 'fam.progress.mastered') : t(lang, 'fam.progress.rightOf', { right: p.correct, all: p.answered })}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+        {plan && ask}
+        {habit && <HabitCard habit={habit} lang={lang} />}
         {/* W14-G: a plain way out of child mode (H1 keeps the header free of it). The parent area asks for the PIN, and
             signing out stays behind it. */}
         <div className="flex justify-center pb-2">

@@ -28,6 +28,8 @@ import { StepsView } from './blocks/StepsView';
 import { TimelineView } from './blocks/TimelineView';
 import { ImageView } from './blocks/ImageView';
 import { VideosView } from './blocks/VideosView';
+import { TutorFace } from './avatar/TutorFace';
+import { avatarState, setAvatarMood } from '@/lib/family/avatar-state';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 const AnswerSpeaker = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('./voice/AnswerSpeaker').then((m) => m.TeachMe));
@@ -39,6 +41,8 @@ const FigureView = dynamic(() => import('./blocks/FigureView').then((m) => m.Fig
 const InteractiveView = dynamic(() => import('./blocks/InteractiveViews').then((m) => m.InteractiveView));
 // W10-4: a 3D model, its own chunk too, only when an answer carries one.
 const Model3DView = dynamic(() => import('./blocks/Model3DView').then((m) => m.Model3DView));
+// W19-D: the model block's own small wrapper; the viewer and three.js are chunks it fetches when a model is shown.
+const ModelBlockView = dynamic(() => import('./blocks/ModelBlockView').then((m) => m.ModelBlockView));
 // W16-A2: the drawing board and the Class 8 Science simulations, each its own chunk, only when an answer carries one.
 const BoardView = dynamic(() => import('./blocks/BoardView').then((m) => m.BoardView));
 const SimView = dynamic(() => import('./blocks/SimView').then((m) => m.SimView));
@@ -96,7 +100,8 @@ function showModel(root: HTMLElement | null) {
 // blocks with this one switch, so a figure, a chart or a worked example looks the same in both.
 // `sentence` (W16-A2): the explanation's sentence being spoken (the call screen); the board draws up to the step that
 // sentence reaches. Absent: the board starts at its first step and the child steps through it.
-export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number }) {
+// `sentences` (W19-D): the answer's spoken sentences, so a model lights the part the sentence `sentence` names.
+export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sentence, sentences }: { b: PublicBlock; w: Words; tone: string; lead?: boolean; onRetry: (token: string, choice: number) => void; onOffline?: typeof queueAnswer; sentence?: number; sentences?: readonly string[] }) {
   // W16-B5: with the Tutor's board switched off in Control, the drawing board and the simulations are left out.
   const boardOn = useTutorBoard();
   switch (b.type) {
@@ -131,6 +136,8 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
       return <FigureView b={b} tone={tone} />;
     case 'model_3d':
       return <Model3DView b={b} w={w} tone={tone} />;
+    case 'model':
+      return <ModelBlockView b={b} w={w} tone={tone} sentence={sentence} sentences={sentences} />;
     case 'steps':
       return <StepsView b={b} w={w} tone={tone} />;
     case 'scene':
@@ -151,7 +158,7 @@ export function AnswerBlock({ b, w, tone, lead = false, onRetry, onOffline, sent
 
 // `speak` (W18-P1, the tutor window): once the answer is kept (the done line names its message id), "Teach me" and the
 // read-aloud button appear under it at once, without a reload, and its boards follow their voice.
-export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean } }) {
+export function UnderstandView({ w, input, tone, initial = null, offline = false, onDone, sentence, speak, tutorKey = null }: { w: Words; input: UnderstandInput; tone: string; initial?: ResolverEvent[] | null; offline?: boolean; onDone?: (chat?: { chatId: string; subject: string }) => void; sentence?: number; speak?: { serverVoice: boolean }; tutorKey?: string | null }) {
   const [messageId, setMessageId] = useState<string | null>(null);
   const [spokenAt, setSpokenAt] = useState<number | undefined>(undefined);
   const [meta, setMeta] = useState<Meta | null>(() => initial?.find((e): e is Meta => e.t === 'meta') ?? null);
@@ -266,6 +273,21 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
     return () => current.current?.abort();
   }, [input, run, initial]);
 
+  // W19-A: the tutor thinks while the answer is made and reads along once it is in; leaving a thinking answer, it rests.
+  const was = useRef(state);
+  useEffect(() => {
+    const busy = (x: typeof state) => x === 'loading' || x === 'streaming';
+    if (busy(state)) setAvatarMood('thinking');
+    else if (busy(was.current)) setAvatarMood(state === 'refused' ? 'idle' : 'reading');
+    was.current = state;
+  }, [state]);
+  useEffect(
+    () => () => {
+      if (avatarState().mood === 'thinking') setAvatarMood('idle');
+    },
+    [],
+  );
+
   const again = (ask: Ask) => {
     top.current?.scrollIntoView({ block: 'start' });
     void run(ask);
@@ -279,7 +301,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
   // Keyed by the block's place in the response, so turning the data-saver on or off keeps each block's state.
   const draw = (b: PublicBlock) => {
     const i = blocks.indexOf(b);
-    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} />;
+    return <AnswerBlock key={i} b={b} w={w} tone={tone} lead={b === lead} onRetry={(token, choice) => again({ input, retry: { token, choice } })} onOffline={offline ? queueAnswer : undefined} sentence={sentence ?? spokenAt} sentences={sentences} />;
   };
 
   return (
@@ -323,7 +345,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       )}
       {citation && <CitationChip w={w} c={citation} />}
       {lead && <DirectAnswerCard w={w} b={lead} />}
-      {voice && <TeachMe w={w} {...voice} root={top} />}
+      {voice && <TeachMe w={w} {...voice} root={top} tutorKey={tutorKey} />}
       {model && (
         <button type="button" data-show-model onClick={() => showModel(top.current)} className="fam-press fam-lesson-chip min-h-[44px] self-start rounded-full bg-white px-4 text-sm font-bold text-ink">
           {w['fam.understand.show3d']}
@@ -333,6 +355,7 @@ export function UnderstandView({ w, input, tone, initial = null, offline = false
       {voice && <AnswerSpeaker w={w} {...voice} />}
       {(state === 'loading' || state === 'streaming') && (
         <div className="flex flex-col gap-3" aria-hidden="true">
+          <TutorFace size="md" tutorKey={tutorKey} className="self-center" />
           <div className="h-32 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
           <div className="h-20 animate-pulse rounded-3xl bg-white motion-reduce:animate-none" />
         </div>

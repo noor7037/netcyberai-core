@@ -156,13 +156,44 @@ export const BOARD_STEPS_MAX = 12;
 export const BOARD_COMMANDS_MAX = 60;
 export const BOARD_SAY_MAX = 240;
 
+// W19-D: a model of the thing the answer explains (the brain, the heart, a flower: ./models/catalog.ts), the parts it
+// explains in `focus`, in order (the first is lit when the model opens). An unknown model or part drops the block.
+// The model keys and their part keys (./models/catalog.ts holds the labels; test/family/models.test.ts keeps the two
+// equal). Kept in this module, not imported, so a screen that uses this file without checking blocks does not carry it.
+export const MODEL_BLOCK_PARTS = {
+  brain: ['frontal_lobe', 'parietal_lobe', 'temporal_lobe', 'occipital_lobe', 'cerebellum', 'midbrain', 'pons', 'medulla', 'hypothalamus', 'cerebrum', 'brain_stem'],
+  heart: ['right_atrium', 'left_atrium', 'right_ventricle', 'left_ventricle', 'aorta', 'pulmonary_artery', 'vena_cava', 'pulmonary_veins', 'valves', 'coronary_arteries'],
+  eye: ['cornea', 'iris', 'lens', 'sclera', 'retina', 'vitreous', 'optic_nerve'],
+  lungs: ['trachea', 'bronchi', 'right_lung', 'left_lung', 'epiglottis'],
+  digestive: ['mouth', 'salivary_glands', 'pharynx', 'oesophagus', 'stomach', 'liver', 'gallbladder', 'pancreas', 'small_intestine', 'large_intestine', 'appendix'],
+  excretory: ['kidneys', 'ureters', 'bladder', 'urethra'],
+  plant_cell: ['cell_wall', 'cell_membrane', 'cytoplasm', 'nucleus', 'vacuole', 'chloroplasts', 'mitochondria'],
+  animal_cell: ['cell_membrane', 'cytoplasm', 'nucleus', 'mitochondria', 'golgi', 'lysosomes', 'vacuole'],
+  flower: ['petals', 'sepals', 'filament', 'anther', 'stigma', 'style', 'ovary', 'receptacle', 'stalk', 'stamen', 'pistil'],
+  neuron: ['dendrites', 'cell_body', 'nucleus', 'axon', 'myelin', 'nerve_endings'],
+  dc_motor: ['magnet_n', 'magnet_s', 'coil', 'commutator', 'brushes', 'axle', 'battery', 'magnet'],
+  electromagnet: ['core', 'coil', 'battery', 'switch', 'clips'],
+  solar_system: ['sun', 'mercury', 'venus', 'earth', 'mars', 'asteroid_belt', 'jupiter', 'saturn', 'uranus', 'neptune'],
+  earth_layers: ['crust', 'mantle', 'outer_core', 'inner_core', 'core'],
+  atom: ['protons', 'neutrons', 'electrons', 'k_shell', 'l_shell', 'nucleus', 'shells'],
+  water_cycle: ['sun', 'sea', 'evaporation', 'clouds', 'rain', 'mountains', 'river'],
+  leaf: ['blade', 'midrib', 'veins', 'petiole', 'stomata', 'guard_cells'],
+} as const satisfies Record<string, readonly string[]>;
+
+export type ModelKey = keyof typeof MODEL_BLOCK_PARTS;
+const isModelKey = (v: unknown): v is ModelKey => typeof v === 'string' && Object.prototype.hasOwnProperty.call(MODEL_BLOCK_PARTS, v);
+const isModelPart = (model: ModelKey, part: unknown): boolean => typeof part === 'string' && (MODEL_BLOCK_PARTS[model] as readonly string[]).includes(part);
+export type ModelBlock = { type: 'model'; title: string; model: ModelKey; focus: string[]; caption?: string };
+export const MODEL_FOCUS_MAX = 6;
+export const MODEL_CAPTION_MAX = 160;
+
 export type BlockMeta = { id?: string; tts_read_aloud?: boolean };
 
-export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board) & BlockMeta;
+export type Block = (Explanation | WorkedExample | KeyPoints | Diagram | MindMap | Check | Practice | EnglishMoment | Sources | Table | Interactive | Slider | Model3D | ChapterTest | Figure | Steps | Timeline | ImageBlock | Videos | Scene | SimScene | Chart | Board | ModelBlock) & BlockMeta;
 export type BlockType = Block['type'];
 export const INTERACTIVE_TYPES: readonly BlockType[] = ['graph', 'number_line', 'fraction_model', 'geometry', 'simulation'];
 export const isInteractive = (t: BlockType) => INTERACTIVE_TYPES.includes(t);
-export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board'];
+export const BLOCK_TYPES: readonly BlockType[] = ['explanation', 'worked_example', 'key_points', 'diagram', 'mind_map', 'check', 'practice', 'english_moment', 'sources', 'table', ...INTERACTIVE_TYPES, 'slider', 'model_3d', 'chapter_test', 'figure', 'steps', 'timeline', 'image', 'videos', 'scene', 'chart', 'board', 'model'];
 // The blocks the server fills before they are kept (W9-C): a photograph and the videos.
 export const FILLED_TYPES: readonly BlockType[] = ['image', 'videos'];
 // Types only authored chapters carry; the model's answer never does.
@@ -502,6 +533,8 @@ function blockBody(o: Record<string, unknown>): Block | null {
       return chartBlock(o);
     case 'board':
       return boardBlock(o);
+    case 'model':
+      return modelBlock(o);
     default:
       return null;
   }
@@ -603,6 +636,23 @@ function simSceneBlock(o: Record<string, unknown>): SimScene | null {
   const sim = SCENE_SIMS.find((k) => k === o.sim);
   if (!title || !sim) return null;
   return { type: 'scene', title, sim, start: simStart(sim, record(o.start)) };
+}
+
+// A model (W19-D): a key from the catalogue, its title, up to six part keys of that model (none repeated), a caption
+// that fits. Anything else drops the whole block: a model is never shown with a part it does not have.
+function modelBlock(o: Record<string, unknown>): ModelBlock | null {
+  const title = fits(o.title, 60);
+  if (!title || !isModelKey(o.model)) return null;
+  const model = o.model;
+  const raw = o.focus === undefined ? [] : o.focus;
+  if (!Array.isArray(raw) || raw.length > MODEL_FOCUS_MAX || !raw.every((k) => isModelPart(model, k)) || new Set(raw).size !== raw.length) return null;
+  let caption: string | undefined;
+  if (o.caption !== undefined && o.caption !== '') {
+    const c = fits(o.caption, MODEL_CAPTION_MAX);
+    if (!c) return null;
+    caption = c;
+  }
+  return { type: 'model', title, model, focus: raw as string[], ...(caption ? { caption } : {}) };
 }
 
 // ---- the board (W16-A2, docs/39 §6) ----
@@ -1276,8 +1326,8 @@ function parsed(line: string, stored: boolean): Block | null {
 // At most one interactive block: the first that passed.
 // W9-C: a figure and steps after the explanation, the photograph after the figure, a timeline after the key points, the
 // videos last. W10-6: the scene after the figure, the chart after the key points. W16-A2: a board where a figure goes,
-// right after it.
-const ORDER: BlockType[] = ['explanation', 'figure', 'board', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
+// right after it. W19-D: a model after the board.
+const ORDER: BlockType[] = ['explanation', 'figure', 'board', 'model', 'scene', 'image', 'steps', 'worked_example', 'diagram', 'mind_map', ...INTERACTIVE_TYPES, 'key_points', 'chart', 'timeline', 'check', 'practice', 'english_moment', 'sources', 'videos'];
 export function completeResponse(blocks: Block[], core: readonly BlockType[] = REQUIRED_BLOCKS): Block[] | null {
   const first = new Map<BlockType, Block>();
   let interactive = false;

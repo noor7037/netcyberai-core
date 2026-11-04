@@ -1,0 +1,106 @@
+/* The tutor's face (W19-A): transform and opacity only, origins in the face's own 120-unit box. TutorFace leaves these
+   classes off under prefers-reduced-motion; the media query below is the second guard. */
+.tf-body,
+.tf-eyes,
+.tf-brows,
+.tf-aura {
+  transition: transform 0.35s ease, opacity 0.25s ease;
+  transform-origin: 60px 108px;
+}
+.tf-lids {
+  transform-origin: 60px 64px;
+  transition: transform 0.08s ease;
+}
+.tf-breathe {
+  animation: tf-breathe 3s ease-in-out infinite;
+  transform-origin: 60px 110px;
+}
+.tf-slow {
+  animation-duration: 5s;
+}
+.tf-bounce {
+  animation: tf-bounce 0.45s ease-out infinite alternate;
+}
+.tf-nod {
+  animation: tf-nod 0.6s ease-in-out 2;
+}
+.tf-read {
+  animation: tf-read 4s ease-in-out infinite alternate;
+}
+.tf-dot {
+  animation: tf-dot 1.2s ease-in-out infinite;
+}
+.tf-z {
+  animation: tf-z 3s ease-out infinite;
+  opacity: 0;
+}
+@keyframes tf-breathe {
+  50% {
+    transform: scale(1.02);
+  }
+}
+@keyframes tf-bounce {
+  to {
+    transform: translateY(-7px) scale(1.03);
+  }
+}
+@keyframes tf-nod {
+  50% {
+    transform: rotate(4deg) translateY(2px);
+  }
+}
+@keyframes tf-read {
+  from {
+    transform: translate(-3px, 2px);
+  }
+  to {
+    transform: translate(3px, 2px);
+  }
+}
+@keyframes tf-dot {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+@keyframes tf-z {
+  20% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(8px, -16px);
+  }
+}
+/* W19 (the lead): the child's own Movement switch off (data-fam-motion="off" on the app's wrapper) keeps the face as
+   still as the phone's reduced motion does. */
+[data-fam-motion='off'] .tf-breathe,
+[data-fam-motion='off'] .tf-bounce,
+[data-fam-motion='off'] .tf-nod,
+[data-fam-motion='off'] .tf-read,
+[data-fam-motion='off'] .tf-dot,
+[data-fam-motion='off'] .tf-z {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tf-breathe,
+  .tf-bounce,
+  .tf-nod,
+  .tf-read,
+  .tf-dot,
+  .tf-z {
+    animation: none !important;
+  }
+  .tf-body,
+  .tf-eyes,
+  .tf-brows,
+  .tf-aura,
+  .tf-lids {
+    transition: none !important;
+  }
+}

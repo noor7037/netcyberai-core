@@ -202,6 +202,9 @@ export const FAMILY_SCREENS = [
   ['full', 'family-home-progress', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
   // W16-B5: the home screen's Tutors tile (the platform tutors' names in a calm list; the names take a ring in turn with motion).
   ['full', 'family-home-tutors', '/family', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutors-tile]' }],
+  // W19-C: the child's own Progress and Settings.
+  ['full', 'family-progress', '/family/progress', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-week-chart]' }],
+  ['full', 'family-settings', '/family/settings', { settle: '[data-setting="readAloud"]' }],
   ['full', 'family-study', '/family/study', {}],
   // W16-B1: the Quick quiz card on the Study feed and on the home, and the quiz itself.
   ['full', 'family-quiz-card-study', '/family/study?subject=science', { child: 'f0000000-0000-4000-8000-0000000fc002', prep: QUIZ_CARD, reset: FOLLOW_UP_CHAT_GONE, settle: '[data-quiz-card]' }],

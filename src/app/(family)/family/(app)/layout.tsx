@@ -10,6 +10,8 @@ import { familyBanner, offMessage, readFamilySwitches, shellTooOld, shellVersion
 import { tutorParts } from '@/lib/family/tutor-parts';
 import { visibleTabs } from '@/lib/family/modules';
 import { familyPageRead, requireFamilyPage } from '@/lib/family/server';
+import { loadChildSettings } from '@/lib/family/child-settings';
+import { SettingsPrime } from '@/components/family/settings/SettingsPrime';
 import { t } from '@/lib/i18n';
 
 // Every Family app page that needs a session renders through this layout (M1-2, C248): no family session, no page.
@@ -23,7 +25,12 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
   const lang = page.childLang;
-  const switches = await familyPageRead(page, (db) => readFamilySwitches(db, page.session.accountId));
+  const { switches, settings } = await familyPageRead(page, async (db) => ({
+    switches: await readFamilySwitches(db, page.session.accountId),
+    // W19-C: the child's own settings, read once here for every screen (motion off marks the wrapper; the client cache
+    // is primed so no screen fetches them again).
+    settings: page.child ? await loadChildSettings(db, page.session.accountId, page.child.childId) : null,
+  }));
   if (!switchOn(switches, '*')) {
     return (
       <main lang={lang} data-family-off className="mx-auto flex min-h-screen w-full max-w-md flex-col justify-center gap-3 px-4">
@@ -54,7 +61,8 @@ export default async function FamilyAppLayout({ children }: { children: React.Re
       <FamilySessionKeeper />
       {/* M2-9 (C283): offline packs. The phone store's owner is a one-way tag of the account, never its id. */}
       <OfflineSync owner={createHash('sha256').update(`ncf-offline:${page.session.accountId}`).digest('hex').slice(0, 24)} childId={page.child?.childId ?? null} on={switchOn(switches, 'offline')} />
-      <div className="pb-28">
+      <SettingsPrime settings={settings} />
+      <div className="pb-28" data-family-settings data-fam-motion={settings && !settings.motion ? 'off' : undefined}>
         {/* W16-B5: the drawing board and the simulations follow Control → Apps (tutor_board) on every screen that draws an answer. */}
         <TutorSwitches board={tutorParts(switches).board}>{children}</TutorSwitches>
       </div>

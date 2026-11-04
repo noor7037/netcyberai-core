@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
 import { TUTOR_FILES_PER_TURN, TUTOR_FILE_TYPES, TUTOR_TEXT_MAX, type TutorFileType } from '@/lib/family/tutor-shape';
-import { useVoiceRecorder } from '../voice/useVoiceRecorder';
+import { useVoiceRecorder, type VoiceAck } from '../voice/useVoiceRecorder';
 import { useKeyboardInset } from './useKeyboardInset';
 
 // The tutor's composer (W6-A, C395): one rounded field for every question a child types, on Study and in the chapter
@@ -27,6 +27,9 @@ type Props = {
   onChange: (next: string | ((prev: string) => string)) => void;
   onSend: () => void;
   canSend: boolean;
+  // W19-B: the words the microphone heard, and the tutor's sealed acknowledgement of them, for a window that wants to
+  // react at once (speak the ack, or send the question without waiting for a tap). The words still fill the box.
+  onHeard?: (text: string, ack?: VoiceAck) => void;
   // `dock`: sticky above the Family tab dock (Study); `sheet`: sticky at the foot of the doubt drawer.
   pinned: 'dock' | 'sheet';
   files: boolean;
@@ -73,9 +76,10 @@ export function Composer(p: Props) {
   const voice = useVoiceRecorder({
     w,
     secondsLeft: p.voice?.secondsLeft,
-    onText: (heard) => {
+    onText: (heard, ack) => {
       p.onChange((prev) => (prev.trim() ? `${prev.trim()} ${heard}` : heard).slice(0, TUTOR_TEXT_MAX));
       box.current?.focus();
+      p.onHeard?.(heard, ack);
     },
   });
 

@@ -762,10 +762,10 @@ export type PreparedRealtime = { ok: true; session: { send: () => Promise<SentRe
 // session is a request); 6 (mint, no database) down the chain; 7 (record) counts and the ledger. Only the token and the
 // provider's connect details go back; the audio never touches this server. A profile with no provider answers
 // 'not_switched_on' before anything is taken, and the call then uses the chain.
-export async function prepareRealtimeToken(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi' }): Promise<PreparedRealtime> {
+export async function prepareRealtimeToken(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi'; maxSeconds?: number }): Promise<PreparedRealtime> {
   return realtimeRun(db, ctx, profileId, input, LIVE);
 }
-async function realtimeRun(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi' }, run: Run): Promise<PreparedRealtime> {
+async function realtimeRun(db: Sql, ctx: AiContext, profileId: ProfileId, input: { language: 'en' | 'hi'; maxSeconds?: number }, run: Run): Promise<PreparedRealtime> {
   const env = process.env;
   if (input.language !== 'en' && input.language !== 'hi') return { ok: false, reason: 'failed' };
   const testing = await testingModeOn(db);
@@ -799,7 +799,7 @@ async function realtimeRun(db: Sql, ctx: AiContext, profileId: ProfileId, input:
       const start = Date.now();
       let minted: Awaited<ReturnType<RealtimeAdapter['mintToken']>>;
       try {
-        minted = await adapter.mintToken({ apiKey, model: link.model, language: input.language });
+        minted = await adapter.mintToken({ apiKey, model: link.model, language: input.language, maxSeconds: input.maxSeconds });
       } catch {
         minted = { ok: false, failure: 'network' };
       }

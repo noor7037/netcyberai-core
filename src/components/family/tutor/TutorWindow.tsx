@@ -13,9 +13,13 @@ import { CitationChip } from '../blocks/CitationChip';
 import { citationOf } from '@/lib/family/citation';
 import { AnswerBlock, DirectAnswerCard, UnderstandView, type TutorAsk, type UnderstandInput } from '../UnderstandView';
 import { Composer, type ComposerFile } from './Composer';
+import { TutorFace } from '../avatar/TutorFace';
+import { setAvatarMood } from '@/lib/family/avatar-state';
 
 import { ANSWER_SPOKEN_MAX, spokenSentences } from '@/lib/family/call';
 import { typedCheckIntentLight } from '@/lib/family/check-intent';
+import { readChildSettings } from '@/lib/family/child-settings';
+import { speakLine } from '../voice/lineVoice';
 // The speaker and Teach me load with the first answer drawn, off the Study page's first load (the family budget, W18).
 const AnswerSpeaker = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.AnswerSpeaker));
 const TeachMe = dynamic(() => import('../voice/AnswerSpeaker').then((m) => m.TeachMe));
@@ -263,6 +267,11 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   };
 
   const shown = (turns?.length ?? 0) + asks.length > 0 || turnsError;
+  // W19-A: the window closed or left, the tutor rests.
+  useEffect(() => {
+    if (!open) setAvatarMood('idle');
+  }, [open]);
+  useEffect(() => () => setAvatarMood('idle'), []);
   // The chat of the newest answer kept on this screen, else the feed's last turn.
   const lastChat = [...asks].reverse().find((a) => a.chatId)?.chatId ?? [...(turns ?? [])].reverse().find((x) => x.chatId)?.chatId ?? null;
   const finish = async () => {
@@ -280,7 +289,8 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         {w['fam.tutor.title']}
       </h2>
       {chosen && (
-        <p data-tutor-chosen={chosen.key} className="flex flex-wrap items-center gap-x-3 self-start rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink ring-1 ring-ink/10">
+        <p data-tutor-chosen={chosen.key} className="flex flex-wrap items-center gap-x-3 self-start rounded-3xl bg-white px-3 py-1.5 text-sm font-semibold text-ink ring-1 ring-ink/10">
+          <TutorFace size="sm" tutorKey={chosen.key} subject={subject} />
           <span>{fill(w['fam.tutors.chattingWith'], { name: chosen.name })}</span>
           <Link href="/family/tutors" className="fam-press inline-flex min-h-[44px] items-center font-bold text-saffron-deep underline">
             {w['fam.tutors.change']}
@@ -328,7 +338,7 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
                 {fill(w['fam.chat.moved'], { subject: subjectName(a.moved) })}
               </p>
             )}
-            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} />
+            <UnderstandView w={w} input={a.input} tone={tone} onDone={(chat) => onAnswered(a.n, chat)} speak={{ serverVoice }} tutorKey={chosen?.key ?? null} />
           </div>
         ))}
       </div>
@@ -369,6 +379,21 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
         onRemove={remove}
         fileError={fileError}
         voice={voice}
+        // W19-B (the lead): a spoken question is answered like a person answers: the tutor's sealed acknowledgement
+        // ("You asked about X, let's look at it") is spoken at once with the server voice, when read-aloud is on, and the
+        // question goes without a tap. The phone's own voice is not used for the ack: the ack is a sealed server line.
+        onHeard={(heard, ack) => {
+          if (ack && serverVoice) {
+            void readChildSettings().then((s) => {
+              if (!s.readAloud) return;
+              const lang = typeof document !== 'undefined' && document.documentElement.lang === 'hi' ? 'hi' : 'en';
+              void speakLine('server', { kind: 'call_line', token: ack.token }, { text: ack.text, lang, rate: s.voiceSpeed === 'slow' ? 0.8 : 0.95 });
+            });
+          }
+          const asked = heard.trim();
+          if (asked.length === 0 || checking || attached.length > 0) return;
+          submit(asked, { ...base, ...(typedCheckIntentLight(asked) ? { mode: 'check' as const } : {}) });
+        }}
         call={call}
         historyOpen={open && shown}
         historyFor={ids.feed}
@@ -428,7 +453,7 @@ export function KeptAnswer({ b, w, tone, lang, speak }: { b: Block[]; w: Words; 
       {lead && <DirectAnswerCard w={w} b={lead} />}
       {sentences.length > 0 && <TeachMe w={w} {...voice} root={root} />}
       {shown.map((x, i) => (
-        <AnswerBlock key={i} b={x} w={w} tone={tone} lead={x === lead} onRetry={noRetry} sentence={sentence} />
+        <AnswerBlock key={i} b={x} w={w} tone={tone} lead={x === lead} onRetry={noRetry} sentence={sentence} sentences={sentences} />
       ))}
       {sentences.length > 0 && <AnswerSpeaker w={w} {...voice} />}
     </div>

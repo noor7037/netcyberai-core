@@ -3,7 +3,7 @@ import { findTutor, isTutorKey, loadHall } from '@/lib/family/tutors';
 import Link from 'next/link';
 import { TUTOR_READS_FILES } from '@/lib/family/tutor-shape';
 import { redirect } from 'next/navigation';
-import { TutorWindow } from '@/components/family/tutor/TutorWindow';
+import { TutorWindowLazy as TutorWindow } from '@/components/family/tutor/TutorWindowLazy';
 import { TUTOR_KEYS } from '@/lib/family/tutor-words';
 import { DataSaverSwitch } from '@/components/family/offline/DataSaverSwitch';
 import { PackButton } from '@/components/family/offline/PackButton';

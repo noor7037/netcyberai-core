@@ -5,7 +5,7 @@ import { familyModuleOn } from '@/lib/family/flags';
 import { liveAiContext } from '@/lib/family/english/live';
 import { requireFamily } from '@/lib/family/request';
 import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
-import { voiceDay } from '@/lib/family/voice';
+import { giveBackVoiceSeconds, LIVE_GRANT_SECONDS, takeVoiceSeconds, voiceDay } from '@/lib/family/voice';
 import { prepareRealtimeToken, type PreparedRealtime } from '@/lib/ai/platform';
 import { indiaDate } from '@/lib/time/india';
 
@@ -28,16 +28,30 @@ export async function POST(req: NextRequest) {
   const session = g.session;
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
   const claims = familyClaims(session);
+  let grant = 0;
+  let left = 0;
+  let childId = '';
+  // The block goes back to the day when the provider does not mint (nothing was spoken on it).
+  const refund = () => withFamilyContext(claims, (db) => giveBackVoiceSeconds(db, session.accountId, childId, indiaDate(), grant)).catch(() => undefined);
   try {
     const plan = await withFamilyContext(claims, async (db): Promise<Extract<PreparedRealtime, { ok: true }> | NextResponse> => {
       if (!(await familyModuleOn(db, 'tutor_call', session.accountId))) return fail('off', 403);
       const call = await callGate(db, session.accountId, chosen);
       if (!call.ok) return fail(call.error, call.status);
-      const day = await voiceDay(db, session.accountId, call.child.childId, indiaDate());
+      const today = indiaDate();
+      const day = await voiceDay(db, session.accountId, call.child.childId, today);
       if (day.left < 1) return fail('voice_cap', 429, { limit: day.limit, left: 0, maxSeconds: 0 });
+      // Prepaid (the security review of 4 Nov): the block is taken from the day here, before the mint, so a token can
+      // never outlive seconds the day has not spent, and minting again costs the next block.
+      grant = Math.min(day.left, LIVE_GRANT_SECONDS);
+      const used = await takeVoiceSeconds(db, session.accountId, call.child.childId, today, grant, day.limit);
+      if (used === null) return fail('voice_cap', 429, { limit: day.limit, left: 0, maxSeconds: 0 });
+      left = Math.max(0, day.limit - used);
+      childId = call.child.childId;
       const ctx = await liveAiContext(db, session.accountId, call.children.map((c) => c.firstName));
-      const prepared = await prepareRealtimeToken(db, ctx, 'family.voice_call', { language: call.language });
+      const prepared = await prepareRealtimeToken(db, ctx, 'family.voice_call', { language: call.language, maxSeconds: grant });
       if (prepared.ok) return prepared;
+      await giveBackVoiceSeconds(db, session.accountId, call.child.childId, today, grant);
       if (prepared.reason === 'cap_reached') return fail('ai_cap_reached', 429);
       // Not set up, not cleared, not capable: all one answer, and the phone uses the chain.
       return fail(prepared.reason === 'failed' ? 'failed' : 'not_switched_on', 503);
@@ -51,10 +65,14 @@ export async function POST(req: NextRequest) {
       await withFamilyGate((db) => sent.record(db as never)).catch(() => {});
       return fail('not_signed_in', 401);
     }
-    if (!sent.result.ok) return fail('failed', 503);
+    if (!sent.result.ok) {
+      await refund();
+      return fail('failed', 503);
+    }
     const { provider, token, expiresAt, url, model } = sent.result.grant;
-    return NextResponse.json({ provider, token, expiresAt, url, model }, { status: 200, headers: { 'Cache-Control': 'no-store, private' } });
+    return NextResponse.json({ provider, token, expiresAt, url, model, grantSeconds: grant, left }, { status: 200, headers: { 'Cache-Control': 'no-store, private' } });
   } catch (err) {
+    if (grant > 0 && childId) await refund();
     if (err instanceof FamilySessionRevokedError) return fail('not_signed_in', 401);
     return fail('failed', 503);
   }

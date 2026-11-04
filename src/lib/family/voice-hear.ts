@@ -19,7 +19,7 @@ import { indiaDate } from '@/lib/time/india';
 const MAX_BODY = Math.ceil((VOICE_MAX_BYTES * 4) / 3) + 1024;
 
 type Db = { query: (sql: string, p?: unknown[]) => Promise<{ rows: Record<string, unknown>[] }> };
-type Pending = { speech: PreparedSpeech; childId: string; day: string; seconds: number; left: number };
+type Pending = { speech: PreparedSpeech; childId: string; language: 'en' | 'hi'; day: string; seconds: number; left: number };
 export type VoiceAllowed = { child: FamilyChild; children: FamilyChild[]; language: 'en' | 'hi' };
 export type VoiceGate = (db: Db, accountId: string, chosen: string | undefined) => Promise<NextResponse | VoiceAllowed>;
 
@@ -31,7 +31,10 @@ const nothingHeard = (left: number) => NextResponse.json({ error: 'nothing_heard
 
 // `silenceNet`: also drop a transcript that is a known silence phrase ("Thank you.", "you", "okay"). Study and the call
 // want it (a question is never one of those); the live English tutor does not, where "Yes." or "Okay." is a real answer.
-export async function hearVoice(req: NextRequest, refusal: VoiceGate, { silenceNet = true }: { silenceNet?: boolean } = {}): Promise<NextResponse> {
+// `extra` (W19-B): more fields for a heard answer, made from the words on the server (Study's voice route adds the
+// tutor's sealed acknowledgement line, call-ack.ts).
+export type HeardExtra = (text: string, who: { accountId: string; childId: string; language: 'en' | 'hi' }) => Record<string, unknown>;
+export async function hearVoice(req: NextRequest, refusal: VoiceGate, { silenceNet = true, extra }: { silenceNet?: boolean; extra?: HeardExtra } = {}): Promise<NextResponse> {
   const g = await requireFamily(req);
   if (g.error) return g.error;
   const session = g.session;
@@ -87,7 +90,7 @@ export async function hearVoice(req: NextRequest, refusal: VoiceGate, { silenceN
         await giveBackVoiceSeconds(db, session.accountId, r.child.childId, day, seconds);
         return NextResponse.json({ error: `ai_${prepared.reason}` }, { status: 503 });
       }
-      return { speech: prepared.speech, childId: r.child.childId, day, seconds, left: Math.max(0, d.limit - used) };
+      return { speech: prepared.speech, childId: r.child.childId, language: r.language, day, seconds, left: Math.max(0, d.limit - used) };
     });
     if (first instanceof NextResponse) return first;
 
@@ -108,7 +111,8 @@ export async function hearVoice(req: NextRequest, refusal: VoiceGate, { silenceN
         await giveBackVoiceSeconds(db, session.accountId, first.childId, first.day, first.seconds);
         return nothingHeard(first.left + first.seconds);
       }
-      return NextResponse.json({ text, left: first.left, maxSeconds: Math.min(VOICE_MAX_SECONDS, first.left) });
+      const more = extra ? extra(text, { accountId: session.accountId, childId: first.childId, language: first.language }) : {};
+      return NextResponse.json({ text, left: first.left, maxSeconds: Math.min(VOICE_MAX_SECONDS, first.left), ...more });
     });
   } catch (err) {
     if (err instanceof FamilySessionRevokedError) return NextResponse.json({ error: 'not_signed_in' }, { status: 401 });

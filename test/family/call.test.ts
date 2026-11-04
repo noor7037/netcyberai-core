@@ -261,6 +261,7 @@ describe('the gates and caps are the microphone’s own', () => {
     expect((await token.json()).error).toBe('voice_cap');
     await q(`update family.day_counts set voice_seconds = 0 where child_id = $1`, [CHILD]);
   });
+
 });
 
 describe('nothing is stored of the audio', () => {
@@ -273,8 +274,13 @@ describe('nothing is stored of the audio', () => {
     wav.write(marker, 100, 'ascii');
     const res = await post('voice', 'voice', { audio: wav.toString('base64'), seconds: 2 });
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual({ text: 'What is photosynthesis?', left: 118, maxSeconds: 30 });
+    expect(await res.json()).toEqual({ text: 'What is photosynthesis?', left: 118, maxSeconds: 60, ack: { text: expect.stringContaining('photosynthesis'), token: expect.any(String) } });
     expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1`, [CHILD]))[0].voice_seconds)).toBe(2);
+    // W19-B: the acknowledgement the voice route sealed is a call line the speak route accepts for this child only.
+    const { ack } = (await (await post('voice', 'voice', { audio: wav.toString('base64'), seconds: 2 })).json()) as { ack: { text: string; token: string } };
+    expect(ack.text).toMatch(/photosynthesis/);
+    expect((await speak({ kind: 'call_line', token: ack.token })).body).toEqual({ error: 'not_set_up' });
+    await q(`update family.day_counts set voice_seconds = 2 where child_id = $1`, [CHILD]);
     const tables = await q(`select table_schema as s, table_name as t from information_schema.tables where table_type = 'BASE TABLE' and table_schema in ('family', 'control')`);
     const b64 = wav.subarray(96, 130).toString('base64').slice(4, 30);
     for (const { s, t } of tables) {
@@ -314,17 +320,31 @@ describe('the realtime slot', () => {
     const expiresAt = Date.now() + 60_000;
     const mint = vi.spyOn(openaiRealtimeAdapter, 'mintToken').mockResolvedValue({ ok: true, token: 'ek_test_token', expiresAt, url: 'https://realtime.example.invalid/v1', model: 'gpt-realtime-test' });
     const used = Number((await q(`select coalesce(sum(requests), 0)::int as n from family.ai_daily where account_id = $1`, [ACCOUNT]))[0].n);
+    const day = (await q(`select (now() at time zone 'Asia/Kolkata')::date::text as d`))[0].d as string;
+    await q(`update family.day_counts set voice_seconds = 0 where child_id = $1 and day = $2`, [CHILD, day]);
     const r = await post('voice/call/token', 'voice/call/token', {});
     expect(r.status).toBe(200);
     expect(r.headers.get('cache-control')).toBe('no-store, private');
-    expect(await r.json()).toEqual({ provider: 'openai', token: 'ek_test_token', expiresAt, url: 'https://realtime.example.invalid/v1', model: 'gpt-realtime-test' });
-    expect(mint).toHaveBeenCalledWith({ apiKey: `sk-${'T'.repeat(40)}`, model: 'gpt-realtime-test', language: 'en' });
+    // W19-B (the security review of 4 Nov): the token is prepaid with a block of the day (120 s limit → 120 taken, 0 left),
+    // taken before the mint, and the provider is told how long the token may live.
+    expect(await r.json()).toEqual({ provider: 'openai', token: 'ek_test_token', expiresAt, url: 'https://realtime.example.invalid/v1', model: 'gpt-realtime-test', grantSeconds: 120, left: 0 });
+    expect(mint).toHaveBeenCalledWith({ apiKey: `sk-${'T'.repeat(40)}`, model: 'gpt-realtime-test', language: 'en', maxSeconds: 120 });
+    expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1 and day = $2`, [CHILD, day]))[0].voice_seconds)).toBe(120);
+    // The day is spent: the next block is refused, and nothing more is minted.
+    const again = await post('voice/call/token', 'voice/call/token', {});
+    expect(again.status).toBe(429);
+    expect((await again.json()).error).toBe('voice_cap');
+    expect(mint).toHaveBeenCalledTimes(1);
     expect(Number((await q(`select coalesce(sum(requests), 0)::int as n from family.ai_daily where account_id = $1`, [ACCOUNT]))[0].n)).toBe(used + 1);
     expect(await q(`select profile_id, provider_id, outcome from control.ai_usage_ledger where profile_id = 'family.voice_call'`)).toEqual([{ profile_id: 'family.voice_call', provider_id: 'openai', outcome: 'ok' }]);
     const { realtimeReady } = await import('@/lib/family/voice-out');
     expect(await realtimeReady(db.pg as never, ACCOUNT)).toBe(true);
+    // A mint the provider refuses gives the block back to the day (100 before, 100 after).
+    await q(`update family.day_counts set voice_seconds = 100 where child_id = $1 and day = $2`, [CHILD, day]);
     mint.mockResolvedValue({ ok: false, failure: 'http', status: 401 });
     expect((await post('voice/call/token', 'voice/call/token', {})).status).toBe(503);
+    expect(Number((await q(`select voice_seconds from family.day_counts where child_id = $1 and day = $2`, [CHILD, day]))[0].voice_seconds)).toBe(100);
+    await q(`update family.day_counts set voice_seconds = 0 where child_id = $1 and day = $2`, [CHILD, day]);
     mint.mockRestore();
     await q(`update control.ai_profiles set provider_id = null, model = null, fallback = '[]' where profile_id = 'family.voice_call'`);
   });

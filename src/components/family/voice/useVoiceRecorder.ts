@@ -2,15 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { fill, type Words } from '@/lib/family/fill';
+import { Endpointer } from '@/lib/family/endpointer';
 import { EnergyMeter } from '@/lib/family/voice-energy';
 import { familyApi } from '../client';
 
 // Voice input's logic (M2-7, C281), shared by VoiceInput (the English course's talk) and the tutor composer's
-// microphone (W6-A, C395): tap, speak (30 seconds at most, never more than the seconds left of the child's day), tap
-// Stop. The recording goes once to the server and is dropped there; only the words come back. The page shows the
+// microphone (W6-A, C395): tap and speak; the recording stops by itself when the child stops speaking (W19-B: about a
+// second of quiet after the voice, endpointer.ts), or on a tap, or at 60 seconds (never more than the seconds left of
+// the child's day). The recording goes once to the server and is dropped there; only the words come back. The page shows the
 // microphone only with the parent's voice consent and the module on; the server checks both again.
 
-export const VOICE_MAX_SECONDS = 30;
+export const VOICE_MAX_SECONDS = 60;
 const TYPES = ['audio/webm;codecs=opus', 'audio/webm', 'audio/ogg;codecs=opus', 'audio/mp4'];
 
 const ERROR_KEY: Record<string, string> = {
@@ -36,8 +38,10 @@ async function toBase64(blob: Blob): Promise<string> {
 }
 
 export type VoiceState = 'idle' | 'recording' | 'sending';
+// The tutor's sealed acknowledgement of the words (W19-B), made by the voice route; spoken first on a call.
+export type VoiceAck = { text: string; token: string };
 
-export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, endpoint = '/api/family/voice' }: { w: Words; onText: (text: string) => void; secondsLeft?: number; endpoint?: string }) {
+export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, endpoint = '/api/family/voice' }: { w: Words; onText: (text: string, ack?: VoiceAck) => void; secondsLeft?: number; endpoint?: string }) {
   const [state, setState] = useState<VoiceState>('idle');
   const [elapsed, setElapsed] = useState(0);
   const [limit, setLimit] = useState(Math.max(0, Math.min(VOICE_MAX_SECONDS, secondsLeft)));
@@ -51,6 +55,8 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
   const meter = useRef<EnergyMeter | null>(null);
   const audioCtx = useRef<AudioContext | null>(null);
   const meterTick = useRef<ReturnType<typeof setInterval> | null>(null);
+  // Set by cancel(): the recording that is stopping is thrown away, not sent (the call's Pause).
+  const discard = useRef(false);
 
   const say = (code: string) => fill(w[ERROR_KEY[code] ?? `fam.voice.err.${code}`] ?? w['fam.err.network']);
 
@@ -78,13 +84,14 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
 
   const send = async (blob: Blob, seconds: number) => {
     setState('sending');
-    const r = await familyApi<{ text: string; maxSeconds: number }>(endpoint, 'POST', { audio: await toBase64(blob), seconds });
+    const r = await familyApi<{ text: string; maxSeconds: number; ack?: VoiceAck }>(endpoint, 'POST', { audio: await toBase64(blob), seconds });
     setState('idle');
     busy.current = false;
-    // The server says how long the next recording may be (the seconds left today, 30 at most).
+    // The server says how long the next recording may be (the seconds left today, 60 at most).
     if (typeof r.data.maxSeconds === 'number') setLimit(Math.max(0, Math.min(VOICE_MAX_SECONDS, r.data.maxSeconds)));
     if (!r.ok) return setError(say(r.error));
-    onText(r.data.text);
+    const ack = r.data.ack && typeof r.data.ack.text === 'string' && typeof r.data.ack.token === 'string' ? r.data.ack : undefined;
+    onText(r.data.text, ack);
     setHeard(true);
   };
 
@@ -92,6 +99,14 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
     if (timer.current) clearInterval(timer.current);
     timer.current = null;
     if (recorder.current && recorder.current.state !== 'inactive') recorder.current.stop();
+  };
+
+  // Stops listening and sends nothing: no seconds are counted and no error is shown.
+  const cancel = () => {
+    if (recorder.current && recorder.current.state !== 'inactive') {
+      discard.current = true;
+      stop();
+    }
   };
 
   const start = async () => {
@@ -136,6 +151,13 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
       release();
       recorder.current = null;
       meter.current = null;
+      if (discard.current) {
+        discard.current = false;
+        chunks.length = 0;
+        busy.current = false;
+        setState('idle');
+        return;
+      }
       // No voice in the sound, or a tap: nothing is sent or counted, and the microphone is already released.
       if (quiet || ms < MIN_RECORDING_MS) {
         chunks.length = 0;
@@ -160,11 +182,15 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
         analyser.fftSize = 2048;
         ctx.createMediaStreamSource(stream.current).connect(analyser);
         const m = new EnergyMeter();
+        const ep = new Endpointer({ frameMs: SAMPLE_MS, maxMs: max * 1000 });
         const buf = new Float32Array(analyser.fftSize);
         meter.current = m;
         meterTick.current = setInterval(() => {
           analyser.getFloatTimeDomainData(buf);
-          m.add(buf);
+          const level = m.add(buf);
+          // W19-B: the end of the question stops the recording by itself. Only while the context really runs: a
+          // suspended one measures silence that is not there, and then the tap and the timer stop it as before.
+          if (ctx.state === 'running' && ep.push(level) === 'done') stop();
         }, SAMPLE_MS);
       }
     } catch {
@@ -186,5 +212,5 @@ export function useVoiceRecorder({ w, onText, secondsLeft = VOICE_MAX_SECONDS, e
     }, 250);
   };
 
-  return { state, elapsed, limit, max: Math.max(1, limit), error, heard, start, stop, say, clearError: () => setError(null) };
+  return { state, elapsed, limit, max: Math.max(1, limit), error, heard, start, stop, cancel, say, clearError: () => setError(null) };
 }

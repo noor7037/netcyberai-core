@@ -282,3 +282,45 @@ v10, P3 the sketch pad and the timeline reveal, Q1 Sarvam, Q2 Gemini Live, Q3 Ch
 No migration. Control keeps prompt v9 until the founder switches "Tutor answers" to v10 (Control → AI → the card's prompt
 version); v10 is the code's fallback. Unverified by the builders: the drawing pad and the new simulation pictures on a
 real phone; the Hindi labels of the simulations by a native speaker.
+
+## Programme W19: the living tutor (4 Nov 2026, the supervisor's plan from the founder's two pictures)
+
+**Written by:** the supervisor, for Noor. **Delivers:** your brief of 4 Nov: the Family app looking like the two pictures
+you sent (cards, tints, big numbers, a dark dock, a mascot), a tutor with a face that listens, thinks, speaks, reads and
+celebrates, a conversation that answers the way a person does (an immediate "you asked about X" and then the answer,
+sentence by sentence, with no 30-second tap), the live voice leg built for real on Gemini Live, and 3D models with named
+parts the tutor highlights as it explains. **Rule:** logo tokens only (`design-tokens.ts`); no invented numbers on a
+screen; children's words leave the server only through the gateway; the live voice never touches our servers; every
+3D asset open-licensed with its licence recorded, or built in code; the Family first-load budget holds (3D and the live
+leg are lazy chunks).
+
+### What is true before the wave (from the live database, 4 Nov)
+
+- Read-aloud works: `family.text_to_speech` is Google TTS `Standard-A` (33 plays on 3 Nov, 0.9 s each). It is a plain
+  voice, not a child's: Sarvam's `bulbul` child speakers have a key but are on no feature. **Founder: Control → AI →
+  "Read aloud" → primary Sarvam bulbul:v4-flash / nupur_en_kids (Hindi: a Hindi speaker), Backup 1 Google TTS.**
+- Answers are slow because of the route, not the code: "Tutor answers" primary Workers AI llama-4-scout averages 10.7 s
+  and times out at 24 s (7 times on 2–3 Nov); its Backup 1 Gemini fails (auth, then quota); NVIDIA nemotron-3.5-super-vl
+  answered in 0.4–1.1 s whenever reached. **Founder: primary NVIDIA super-vl, Backup 1 Workers AI, Backup 2 OpenRouter.**
+- The live call's token mints (7 on 3 Nov, 0.6 s) and the phone never opens the socket: that is W19-B2.
+
+### Waves (Decision Log C464–C469 reserved)
+
+| Slice | What | Model |
+|---|---|---|
+| A | The tutor's face: an SVG character with moods (idle, listening, thinking, speaking, reading, celebrating, encouraging, sleeping) driven by one store (`avatar-state.ts`), the mouth on the real voice's loudness, confetti on a right answer, reduced motion honoured; wired into Study, the kept answers, the quiz and the speaker | opus |
+| B | The conversation: the microphone stops itself after the child stops (no 30-second tap; 60 s cap), hands-free turns in the call, an instant spoken acknowledgement of the question before the answer, sentences spoken as they stream; B2 the Gemini Live phone leg built (mic PCM in, audio out, transcription to the board, barge-in, fall back to the chain) | opus |
+| C | The look of the two pictures: home, the Study hub, a Progress screen from real data, the dark dock, a mascot drawn in code, a child Settings screen (voice, face, motion, hands-free, speed, language) | opus |
+| D | 3D models with named parts (`model` block): a three.js viewer as a lazy chunk, a catalogue of models (assets open-licensed from GitHub with licence recorded, or built in code), the tutor's answer naming the part to highlight, tap a part to ask, voice sync to the highlight, 2D fallback | opus |
+| E | Integration by the lead: merges, the route change for the founder, the Decision Log, one CI run, the PR | supervisor |
+
+### W19 status (4 Nov 2026, end of the build)
+
+Built and merged on the branch: A the face, B the conversation turn and the Gemini Live leg (prepaid blocks after the
+security review), C the look of the pictures, the progress and settings screens, D the 3D models (Decision Log
+C464–C470). One migration, `20261104143710_w19_child_settings`, applied to the test database. The Study hub's tutor
+window loads as its own chunk so the hub stays under its budget with the face, the voice and the models' part keys.
+Unverified by the builders and the lead: everything on a real phone (the animations, the analyser-driven mouth, WebGL and
+its speed, the Live socket against Google, the endpointing on a real microphone); the Hindi part names and the new Hindi
+words by a native speaker; the 360/768/1024 widths of the new screens. Control keeps prompt v10 until the founder picks
+v11 (models) on "Tutor answers".

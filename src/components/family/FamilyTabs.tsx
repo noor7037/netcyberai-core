@@ -7,12 +7,14 @@ import type { DockTab } from '@/lib/family/modules';
 // The four tabs (Home, Study, English, Future; C391 removed Family, its slot stays for Explore), each shown only when
 // its first module is live (M1-6, C252). Hidden during the parent's first steps. Fixed at the bottom, 44 px and more,
 // above the phone's home bar.
+// W19-C: the dark pill of the founder's reference: an ink dock, each tab a 56 px round button, the open tab on a lilac
+// circle with a saffron dot and its name beside it; the other names stay for screen readers (aria-current kept).
 const HREF: Record<DockTab, string> = { home: '/family', study: '/family/study', english: '/family/english', future: '/family/future' };
 const ICON: Record<DockTab, string> = {
-  home: 'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z',
-  study: 'M4 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H4zM20 5h-6a3 3 0 0 0-3 3',
-  english: 'M4 5h16v11H8l-4 4z',
-  future: 'M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z',
+  home: 'M4 10l8-6 8 6v10H4zM9 15q3 3 6 0',
+  study: 'M6 4h12v16H7a1 1 0 0 1-1-1zM6 17h12M10 8h5',
+  english: 'M4 5h16v11h-8l-5 4v-4H4zM9 13l3-6 3 6',
+  future: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM15.5 8.5l-2 5-5 2 2-5z',
 };
 
 export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels: Record<DockTab, string>; navLabel: string }) {
@@ -21,22 +23,21 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   // close button and its Next button where the tabs would be.
   // The call (W16-A4) is a full-screen task too.
   if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call')) return null;
-  const active = (t: DockTab) => (t === 'home' ? path === '/family' : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
-  // D1 (C230-Q): a floating dock above the phone's home bar; the open tab sits on a coloured pill that pops in.
+  const active = (t: DockTab) => (t === 'home' ? path === '/family' || path.startsWith('/family/progress') : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
   return (
-    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[calc(var(--fam-bottom,0px)+0.5rem)]">
-      <ul className="fam-dock mx-auto flex max-w-xl rounded-[1.75rem] bg-white p-1.5">
+    <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-4 pb-[calc(var(--fam-bottom,0px)+0.75rem)]">
+      <ul className="fam-dock mx-auto flex w-fit max-w-full items-center gap-1 rounded-full bg-ink p-1.5">
         {tabs.map((t) => {
           const on = active(t);
           return (
-            <li key={t} className="flex-1">
-              <Link href={HREF[t]} aria-current={on ? 'page' : undefined} className={`fam-press flex min-h-[56px] flex-col items-center justify-center gap-0.5 rounded-[1.25rem] text-xs font-bold ${on ? 'text-ink' : 'text-slate/80'}`}>
-                <span className={`flex h-8 w-12 items-center justify-center rounded-full ${on ? 'fam-tab-on bg-ink text-white shadow-md' : ''}`}>
-                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">
+            <li key={t}>
+              <Link href={HREF[t]} aria-current={on ? 'page' : undefined} className="fam-press fam-tab">
+                <span className="fam-tab-ico">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" strokeLinecap="round">
                     <path d={ICON[t]} />
                   </svg>
                 </span>
-                {labels[t]}
+                <span className={on ? undefined : 'sr-only'}>{labels[t]}</span>
               </Link>
             </li>
           );

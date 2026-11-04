@@ -7,9 +7,14 @@ import { tutorLimits } from './tutor-meter';
 // parent's voice_practice consent as well as study_core, and the voice_input module; capped in seconds a day per child
 // (Control: family.voice_input_seconds_per_day, family.day_counts.voice_seconds).
 
-export const VOICE_MAX_SECONDS = 30;
-// About a megabyte: 30 seconds of the phone's compressed recording is far smaller; a 16 kHz WAV just fits.
-export const VOICE_MAX_BYTES = 1_000_000;
+// W19-B: 60 seconds, since the microphone now stops by itself when the child stops speaking (endpointer.ts), so the
+// cap is only for a child who talks on; the day's seconds allowance and its checks are unchanged.
+export const VOICE_MAX_SECONDS = 60;
+// The live call (W19-B, the security review of 4 Nov): a token is prepaid with a block of the child's day, taken at the
+// mint, and lives only that long; the phone mints the next block when it ends. Nothing is counted by the phone.
+export const LIVE_GRANT_SECONDS = 180;
+// About two megabytes: 60 seconds of the phone's compressed recording is far smaller; a 16 kHz WAV just fits.
+export const VOICE_MAX_BYTES = 2_000_000;
 export const VOICE_TEXT_MAX = 500;
 // The floor under a recording worth hearing (W17-B4): a recording of a quiet room is a few hundred bytes of near-silent
 // frames, and Whisper turns silence into words ("Thank you."). Under 2 kB (about half a second of the phone's opus) or
@@ -58,7 +63,7 @@ export function sniffAudio(bytes: Uint8Array): AudioType | null {
   return null;
 }
 
-// The seconds counted against the day: the phone's own timer, rounded up, at least 1 and at most 30. A missing or
+// The seconds counted against the day: the phone's own timer, rounded up, at least 1 and at most 60. A missing or
 // strange value counts as the longest recording, so leaving it out never buys more time.
 export function countedSeconds(duration: unknown): number {
   const d = typeof duration === 'number' && Number.isFinite(duration) ? Math.ceil(duration) : VOICE_MAX_SECONDS;
