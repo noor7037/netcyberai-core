@@ -213,7 +213,7 @@ describe('the model view', () => {
     const { renderToStaticMarkup } = await import('react-dom/server');
     const { ModelView } = await import('@/components/family/blocks/ModelView');
     const b = checkBlock({ type: 'model', title: 'मस्तिष्क', model: 'brain', focus: ['cerebellum'] }) as ModelBlock;
-    const w = { 'fam.mdl.lang': 'hi', 'fam.mdl.parts': 'मॉडल के भाग', 'fam.mdl.aria': '{title} का मॉडल। {part}', 'fam.mdl.hint2d': 'छुओ', 'fam.mdl.ask': '{part} का काम क्या है?', 'fam.mdl.credit': 'BodyParts3D' } as never;
+    const w = { 'fam.mdl.parts': 'मॉडल के भाग', 'fam.mdl.aria': '{title} का मॉडल। {part}', 'fam.mdl.hint2d': 'छुओ', 'fam.mdl.ask': '{part} का काम क्या है?', 'fam.mdl.credit': 'BodyParts3D' } as never;
     const html = renderToStaticMarkup(h(ModelView, { b, w, tone: 'science', onAsk: () => undefined }));
     expect(html).toContain('data-model-2d');
     expect(html).toContain('data-model-label');

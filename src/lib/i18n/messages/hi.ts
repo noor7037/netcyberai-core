@@ -7920,8 +7920,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.model.surface': 'पृष्ठीय क्षेत्रफल',
   'fam.model.aria': '3D मॉडल: {title}',
   'fam.model.hint': 'मॉडल को खींचो, या तीर वाली कुंजियों से घुमाओ।',
-  // W19-D: the model of what the answer explains (blocks/ModelView.tsx). fam.mdl.lang: the language the part names are shown in.
-  'fam.mdl.lang': 'hi',
+  // W19-D: the model of what the answer explains (blocks/ModelView.tsx).
   'fam.mdl.parts': 'मॉडल के भाग',
   'fam.mdl.hint': 'उंगली से घुमाओ। किसी भाग को छुओ तो उसका नाम दिखेगा।',
   'fam.mdl.credit': 'मॉडल: BodyParts3D (DBCLS) और Z-Anatomy, CC BY-SA 4.0',

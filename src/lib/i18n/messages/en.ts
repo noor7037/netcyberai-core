@@ -7930,8 +7930,7 @@ export const en = {
   'fam.model.surface': 'Surface area',
   'fam.model.aria': '3D model: {title}',
   'fam.model.hint': 'Drag the model, or use the arrow keys, to turn it.',
-  // W19-D: the model of what the answer explains (blocks/ModelView.tsx). fam.mdl.lang: the language the part names are shown in.
-  'fam.mdl.lang': 'en',
+  // W19-D: the model of what the answer explains (blocks/ModelView.tsx).
   'fam.mdl.parts': 'Parts of the model',
   'fam.mdl.hint': 'Turn it with your finger. Tap a part to see its name.',
   'fam.mdl.credit': 'Model from BodyParts3D (DBCLS) and Z-Anatomy, CC BY-SA 4.0',

@@ -51,7 +51,8 @@ function Shape({ s, fillHex, lit, faded, onPick }: { s: SketchShape; fillHex: st
 
 export function ModelView({ b, w, tone, lang, spokenPart, said, onAsk }: { b: ModelBlock; w: Words; tone: string; lang?: ModelLang; spokenPart?: string | null; said?: string | null; onAsk?: (partKey: string, label: string) => void }) {
   const entry = MODELS[b.model];
-  const language: ModelLang = lang ?? (w['fam.mdl.lang'] === 'hi' ? 'hi' : 'en');
+  // The child's language from the words themselves (Hindi words are Devanagari), unless the screen says.
+  const language: ModelLang = lang ?? (/[\u0900-\u097F]/.test(w['fam.mdl.parts'] ?? '') ? 'hi' : 'en');
   const saver = useDataSaver();
   const [selected, setSelected] = useState<string | null>(b.focus[0] ?? null);
   const [glOk, setGlOk] = useState<boolean | null>(null);
