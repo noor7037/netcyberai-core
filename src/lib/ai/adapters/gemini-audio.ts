@@ -179,6 +179,8 @@ export const geminiRealtimeAdapter: RealtimeAdapter = {
     if (!LIVE_MODEL.test(request.model)) return { ok: false, failure: 'http', status: 400 };
     const now = Date.now();
     const newSessionExpireTime = new Date(now + 60_000).toISOString();
+    // The token dies with the child's speaking time (plus the minute to connect and a short grace), 30 minutes at most.
+    const lifeMs = Math.min(30 * 60_000, 60_000 + 30_000 + 1000 * Math.max(1, Math.floor(request.maxSeconds ?? 30 * 60)));
     let res: Response;
     try {
       res = await fetch(`${BASE}/v1alpha/auth_tokens`, {
@@ -186,7 +188,7 @@ export const geminiRealtimeAdapter: RealtimeAdapter = {
         headers: { 'content-type': 'application/json', 'x-goog-api-key': request.apiKey },
         body: JSON.stringify({
           uses: 1,
-          expireTime: new Date(now + 30 * 60_000).toISOString(),
+          expireTime: new Date(now + lifeMs).toISOString(),
           newSessionExpireTime,
           bidiGenerateContentSetup: {
             // The vendor accepts either spelling; the prefix is added only when missing so it appears exactly once.

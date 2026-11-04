@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       const day = await voiceDay(db, session.accountId, call.child.childId, indiaDate());
       if (day.left < 1) return fail('voice_cap', 429, { limit: day.limit, left: 0, maxSeconds: 0 });
       const ctx = await liveAiContext(db, session.accountId, call.children.map((c) => c.firstName));
-      const prepared = await prepareRealtimeToken(db, ctx, 'family.voice_call', { language: call.language });
+      const prepared = await prepareRealtimeToken(db, ctx, 'family.voice_call', { language: call.language, maxSeconds: day.left });
       if (prepared.ok) return prepared;
       if (prepared.reason === 'cap_reached') return fail('ai_cap_reached', 429);
       // Not set up, not cleared, not capable: all one answer, and the phone uses the chain.
