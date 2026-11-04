@@ -28,6 +28,9 @@ export default async function FamilyProfilePage() {
           </div>
         </section>
         <section className="fam-card fam-section fam-rise bg-white" style={{ ['--d' as string]: '80ms' } as React.CSSProperties}>
+          <LinkRow href="/family/settings" icon="pencil" data-settings-link="">
+            {t(lang, 'fam.w19.settings.title')}
+          </LinkRow>
           <LinkRow href="/family/notifications" icon="bell">
             {t(lang, 'fam.notify.center.title')}
           </LinkRow>
