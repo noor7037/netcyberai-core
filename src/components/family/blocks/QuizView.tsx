@@ -5,6 +5,8 @@ import type { PublicItem } from '@/lib/family/items';
 import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from '../client';
 import { Card, SUBJECT_TONE } from './BlockViews';
+import { avatarMoment } from '@/lib/family/avatar-state';
+import { TutorFace } from '../avatar/TutorFace';
 
 // A check or practice (M1-5, C251): the hint is there on asking; the server checks every answer (the phone never holds
 // the key). W8-AI: a wrong tap says "Not this one" and that option's own reason at once (what it gets wrong), leaves
@@ -14,6 +16,8 @@ import { Card, SUBJECT_TONE } from './BlockViews';
 export type Checked = { correct: boolean; explanation: string; revisitDay?: string | null };
 export type QuestionState = { picked: number | null; tries: number; hint: string | null; result: Checked | null; busy: boolean; kept?: boolean };
 type Offline = (token: string, choice: number) => Promise<boolean>;
+// W19-A: the tutor's face cheers a right answer and encourages a wrong one (a warm nod, never a frown).
+export const cheer = (correct: boolean) => avatarMoment(correct ? 'celebrating' : 'encouraging');
 export const FRESH: QuestionState = { picked: null, tries: 0, hint: null, result: null, busy: false };
 
 // The state after the server checked a tap: its answer is shown at once, right or wrong (W8-AI).
@@ -33,6 +37,7 @@ function Question({ item, w, tone, onRetry, onAnswered, onOffline }: { item: Pub
     if (!r.ok && r.status === 0 && onOffline && (await onOffline(item.token, choice))) return setS((x) => ({ ...x, busy: false, kept: true }));
     if (!r.ok) return setS((x) => ({ ...x, busy: false }));
     onAnswered?.(r.data.correct);
+    cheer(r.data.correct);
     setS(answered(s, choice, r.data));
   };
   return <QuestionBody item={item} s={s} w={w} tone={tone} onPick={(i) => void answer(i)} onHint={() => void askHint()} onRetry={onRetry} />;
@@ -74,7 +79,10 @@ export function QuestionBody({ item, s, w, tone, onPick, onHint, onRetry }: { it
       )}
       {s.result && (
         <div role="status" data-result={s.result.correct ? 'correct' : 'wrong'} className={`flex flex-col gap-2 rounded-xl border-l-4 px-3 py-2 text-sm text-slate ${s.result.correct ? 'border-emerald bg-emerald/10' : 'border-coral-deep bg-coral/10'}`}>
-          <p className="font-bold">{s.result.correct ? (w['fam.check.correct'] ?? w['fam.check.right']) : (w['fam.check.notThis'] ?? w['fam.check.notYet'])}</p>
+          <p className="flex items-center gap-2 font-bold">
+            <TutorFace size="sm" confetti={s.result.correct} />
+            {s.result.correct ? (w['fam.check.correct'] ?? w['fam.check.right']) : (w['fam.check.notThis'] ?? w['fam.check.notYet'])}
+          </p>
           <p>{s.result.explanation}</p>
           {!s.result.correct && s.result.revisitDay && <p data-revisit>{fill(w['fam.plan.comesBack'], { day: s.result.revisitDay })}</p>}
           {!s.result.correct && (

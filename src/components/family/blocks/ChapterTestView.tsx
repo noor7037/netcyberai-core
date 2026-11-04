@@ -5,6 +5,8 @@ import { fill, type Words } from '@/lib/family/fill';
 import { TEST_TEXT_MAX, type PublicChapterTest, type TestResult } from '@/lib/family/chapter-test-shape';
 import { sniffTutorFile, TUTOR_FILE_MAX_BYTES } from '@/lib/family/tutor-shape';
 import { Card, SUBJECT_TONE } from './BlockViews';
+import { avatarMoment } from '@/lib/family/avatar-state';
+import { TutorFace } from '../avatar/TutorFace';
 
 // A chapter test at the end of a chapter (S5, C378). Multiple-choice answers are checked on the server when the whole test is
 // sent (the phone holds only sealed tokens); written answers and photos are kept for the parent or teacher, who read them
@@ -88,7 +90,11 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone, quiz
     });
     const res = await postJson(quiz ? '/api/family/quiz' : '/api/family/chapter-test', quiz ? { quizId: quiz.quizId, answers } : { chapterKey, blockId, answers });
     setBusy(false);
-    if (res?.ok) return setSent({ ok: true, result: (await res.json()) as TestResult });
+    if (res?.ok) {
+      // W19-A: a finished test is celebrated, whatever the score.
+      avatarMoment('celebrating', 2400);
+      return setSent({ ok: true, result: (await res.json()) as TestResult });
+    }
     setSent({ ok: false, error: await errorOf(res) });
   };
 
@@ -221,7 +227,10 @@ export function ChapterTestView({ b, blockId, chapterKey, subject, w, tone, quiz
       )}
       {result && (
         <div role="status" data-test-result className="flex flex-col gap-1 rounded-2xl bg-white p-3 text-base text-slate ring-1 ring-slate/10">
-          <p className="font-bold">{w['fam.ctest.sent']}</p>
+          <p className="flex items-center gap-3 font-bold">
+            <TutorFace size="md" />
+            {w['fam.ctest.sent']}
+          </p>
           {result.mcqTotal > 0 && <p>{fill(w['fam.ctest.score'], { n: result.mcqCorrect, d: result.mcqTotal })}</p>}
           {result.items.some((x) => x.kind !== 'mcq' && !x.verdict) && <p className="text-sm">{w['fam.ctest.kept']}</p>}
         </div>
