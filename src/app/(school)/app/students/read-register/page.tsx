@@ -16,6 +16,7 @@ export default async function ReadRegisterPage() {
   return (
     <ModulePage
       moduleId="students"
+      help="read-a-register-page"
       title={t(lang, 'w21m5.page.title')}
       purpose={t(lang, 'w21m5.page.purpose')}
       about={t(lang, 'w21m5.page.about')}
