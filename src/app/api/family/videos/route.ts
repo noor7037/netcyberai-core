@@ -1,15 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prepareVideoSearch, videoChannels, type PreparedVideos } from '@/lib/ai/platform';
 import { activeChild, listChildren, type FamilyChild } from '@/lib/family/children';
 import { consentState } from '@/lib/family/consent';
 import { familyModuleOn } from '@/lib/family/flags';
-import { setting, openSubjects } from '@/lib/family/learning';
+import { openSubjects } from '@/lib/family/learning';
 import { subjectAccess } from '@/lib/family/modules';
 import { familyRead, requireFamily } from '@/lib/family/request';
 import { syllabusLine, type Line } from '@/lib/family/resolver';
-import { FAMILY_CHILD_COOKIE, type FamilySession } from '@/lib/family/session';
-import { noteSearch, rankVideos, readPicks, savePicks, searchedEmptyLately, videoPlan, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
-import { indiaDate } from '@/lib/time/india';
+import { FAMILY_CHILD_COOKIE } from '@/lib/family/session';
+import { topicVideos } from '@/lib/family/video-finder';
+import type { VideoPick } from '@/lib/family/videos';
 
 // The video finder (M2-5, C279): GET ?topic=<topic key> → { videos: [...] } for the child using the app now, at most
 // three. A video is extra: anything missing — the module off, no key, the day's searches spent, the provider down —
@@ -26,9 +25,6 @@ const TOPIC = /^[a-z0-9][a-z0-9._-]{2,119}$/;
 const NO_STORE = { 'Cache-Control': 'no-store' };
 const answer = (videos: VideoPick[]) => NextResponse.json({ videos }, { headers: NO_STORE });
 
-type Refresh = { line: Line; child: FamilyChild; language: VideoLanguage; days: number; perDay: number; wider: boolean; cached: VideoPick[]; staleAuto: number };
-type Found = { cached: VideoPick[] } | { refresh: Refresh };
-
 export async function GET(req: NextRequest) {
   const g = await requireFamily(req);
   if (g.error) return g.error;
@@ -37,52 +33,16 @@ export async function GET(req: NextRequest) {
   if (!TOPIC.test(topic)) return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   const chosen = req.cookies.get(FAMILY_CHILD_COOKIE)?.value;
 
-  // 1. Who, whether videos are on and open to this child, and the cached picks.
-  const found = await familyRead(session, async (db): Promise<Found | null> => {
+  // Who, whether videos are on and open to this child, and the topic line; then the finder's one path (video-finder.ts).
+  const found = await familyRead(session, async (db): Promise<{ line: Line; child: FamilyChild } | null> => {
     const child = activeChild(await listChildren(db, session.accountId), chosen);
     if (!child) return null;
     if (!(await consentState(db, session.accountId)).study_core) return null;
     if (!(await familyModuleOn(db, 'videos', session.accountId))) return null;
     const line = await syllabusLine(db, child, { kind: 'topic', key: topic });
     if (!line || !subjectAccess(child, line.subject, await openSubjects(db)).open) return null;
-    const language: VideoLanguage = child.language === 'hi' ? 'hi' : 'en';
-    const days = await setting(db, 'family.video_pick_days', 30);
-    const cached = await readPicks(db, line.key, language, days);
-    if (!cached.refreshDue || searchedEmptyLately(line.key, language)) return { cached: cached.picks };
-    const perDay = await setting(db, 'family.video_searches_per_day', 90);
-    // Videos from channels Control has not listed only when Control turns them on (C230-R; off unless set to 1).
-    const wider = (await setting(db, 'family.video_wider_catalogue', 0)) === 1;
-    return { refresh: { line, child, language, days, perDay, wider, cached: cached.picks, staleAuto: cached.staleAuto } };
+    return { line, child };
   });
   if (!found) return answer([]);
-  if ('cached' in found) return answer(found.cached);
-
-  // 2. A refresh: the channels Control listed, then the key and the day's searches.
-  const r = found.refresh;
-  const channels = await videoChannels();
-  const prepared = await familyRead(session, (db): Promise<PreparedVideos> => prepareVideoSearch(db, { day: indiaDate(), perDay: r.perDay, plan: videoPlan(r.line, r.child, channels) }));
-  if (!prepared?.ok) return answer(await dropStale(session, r));
-
-  // 3. The provider, with no connection held.
-  const result = await prepared.find();
-  if (!result.ok) {
-    noteSearch(r.line.key, r.language, { failed: true });
-    return answer(await dropStale(session, r));
-  }
-  const ranked = rankVideos(result.candidates, { topicTitles: [r.line.topicEn ?? '', r.line.title], language: r.language, channels, wider: r.wider });
-  noteSearch(r.line.key, r.language, { found: ranked.length });
-
-  // 4. Saved (a reviewer's pinned and rejected picks stay as they are) and read back as the family sees them.
-  const read = await familyRead(session, async (db) => {
-    await savePicks(db, r.line.key, r.language, ranked);
-    return readPicks(db, r.line.key, r.language, r.days);
-  });
-  return answer(read?.picks ?? []);
-}
-
-// No refresh could run (no key, the day's searches spent, the provider down): the pinned picks are still shown, and
-// automatic picks older than family.video_pick_days are dropped (the provider's storage rules), spending no search.
-async function dropStale(session: FamilySession, r: Refresh): Promise<VideoPick[]> {
-  if (r.staleAuto > 0) await familyRead(session, (db) => savePicks(db, r.line.key, r.language, []));
-  return r.cached;
+  return answer(await topicVideos((fn) => familyRead(session, fn) as ReturnType<typeof fn>, found.line, found.child));
 }

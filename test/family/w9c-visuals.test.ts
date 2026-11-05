@@ -6,6 +6,7 @@ import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { FIGURE_SHAPES, checkBlock, checkStoredBlock, completeResponse, parseBlockLine, parseStoredBlockLine, placeBlock, unfilled, type Block, type Figure, type ImageBlock, type Steps, type Timeline, type Videos } from '@/lib/family/blocks';
 import { allowedLicence, pickPhoto, searchCommons } from '@/lib/family/visuals/commons';
 import { fillVisuals, queryKey, type WithDb } from '@/lib/family/visuals/fill';
+import type { FamilyChild } from '@/lib/family/children';
 import { FigureView, placeFigure } from '@/components/family/blocks/FigureView';
 import { StepsView } from '@/components/family/blocks/StepsView';
 import { TimelineView } from '@/components/family/blocks/TimelineView';
@@ -182,6 +183,20 @@ afterAll(async () => {
 
 describe('fillVisuals', () => {
   const answerBlocks = () => [checkBlock({ type: 'explanation', title: 'Cells', idea: 'An idea.', example: 'An example.', steps: ['One.', 'Two.'], terms: [] }), checkBlock(FIGURE), checkBlock(IMAGE), checkBlock({ type: 'videos' })] as Block[];
+
+  // W19-F (C471): the question matched a syllabus topic and the model asked for no videos: the topic's picks follow the
+  // answer anyway, from the cache (a refresh needs the provider's key, which the harness has none of: nothing breaks).
+  it('a video follows an answer that never asked for one, when its question matched a topic and the module is on', async () => {
+    const line = { subject: 'science' as const, key: TOPIC, chapterEn: 'Nutrition in plants', topicEn: 'Cells', title: 'Cells' };
+    const child = { childId: 'f9c00000-0000-4000-8000-0000000000c1', classLevel: 7, language: 'en' } as unknown as FamilyChild;
+    const plain = [checkBlock({ type: 'explanation', title: 'Cells', idea: 'An idea.', example: 'An example.', steps: ['One.', 'Two.'], terms: [] }) as Block];
+    const out = await fillVisuals(asFamily, plain, { chapterKey: TOPIC, lang: 'en', videos: { line, child, accountId: ACCOUNT } });
+    expect(out.map((b) => b.type)).toEqual(['explanation', 'videos']);
+    expect((out[1] as Videos).items!.map((v) => v.videoId)).toEqual(['pinnedvid01', 'autovideo01', 'autovideo02', 'autovideo03']);
+    // Not for another topic's line, and not without the topic: the answer stays as it was.
+    expect(await fillVisuals(asFamily, plain, { chapterKey: 'cbse.c7.science.ch02.t02', lang: 'en', videos: { line, child, accountId: ACCOUNT } })).toEqual(plain);
+    expect(await fillVisuals(asFamily, plain, { chapterKey: null, lang: 'en' })).toEqual(plain);
+  });
 
   it('replaces an image block with its licensed photograph, keeps it for the next answer, and fills the videos', async () => {
     const fetcher = fetchOf(answer(page('Onion_cells.jpg')));

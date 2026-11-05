@@ -1,6 +1,10 @@
 import { FILLED_TYPES, checkStoredBlock, type Block, type ImagePhoto, type ImageQuery, type VideoItem, type Videos } from '@/lib/family/blocks';
 import { setting } from '@/lib/family/learning';
 import { searchCommons, type CommonsPhoto } from './commons';
+import type { FamilyChild } from '@/lib/family/children';
+import { familyModuleOn } from '@/lib/family/flags';
+import type { Line } from '@/lib/family/resolver';
+import { topicVideos } from '@/lib/family/video-finder';
 
 // The server's half of the visual blocks (W9-C, docs/39 §3), run once on an answer's checked blocks before they are
 // kept: an `image` block becomes its licensed photograph (content.image_picks, else one Commons search) or is dropped,
@@ -16,6 +20,10 @@ export type WithDb = <T>(fn: (db: Db) => Promise<T>) => Promise<T>;
 export type FillOptions = {
   chapterKey: string | null;
   lang: string;
+  // W19-F (C471): the matched syllabus topic and the child: a `videos` block follows the answer whether or not the model
+  // asked for one, from the topic's picks, refreshed from the provider when they are stale (video-finder.ts). Only with
+  // Control's `videos` module on for this family; never from a child's words (the search is the catalog line).
+  videos?: { line: Line; child: FamilyChild; accountId: string };
   emit?: (b: ImagePhoto | Videos) => void;
   search?: (query: string) => Promise<CommonsPhoto | null>;
 };
@@ -57,13 +65,24 @@ const withoutVisuals = (blocks: Block[]) => blocks.filter((b) => !FILLED_TYPES.i
 
 export async function fillVisuals(withDb: WithDb, blocks: Block[], opts: FillOptions): Promise<Block[]> {
   const image = blocks.find((b): b is ImageQuery & Block => b.type === 'image' && 'query' in b);
-  const wantsVideos = blocks.some((b) => b.type === 'videos');
-  if (!blocks.some((b) => FILLED_TYPES.includes(b.type))) return blocks;
+  const asked = blocks.some((b) => b.type === 'videos');
+  const follow = !!opts.videos && !asked && opts.videos.line.key === opts.chapterKey;
+  if (!blocks.some((b) => FILLED_TYPES.includes(b.type)) && !follow) return blocks;
   try {
     const language = opts.lang === 'hi' ? 'hi' : 'en';
     const key = image ? queryKey(image.query) : null;
-    const topic = wantsVideos && opts.chapterKey && TOPIC.test(opts.chapterKey) ? opts.chapterKey : null;
-    const first = await withDb(async (db) => ({ cached: key ? await readImagePick(db, key) : null, items: topic ? await readVideoItems(db, topic, language) : [] }));
+    const topic = (asked || follow) && opts.chapterKey && TOPIC.test(opts.chapterKey) ? opts.chapterKey : null;
+    const first = await withDb(async (db) => ({
+      cached: key ? await readImagePick(db, key) : null,
+      on: !!opts.videos && topic ? await familyModuleOn(db, 'videos', opts.videos.accountId) : false,
+      items: topic ? await readVideoItems(db, topic, language) : [],
+    }));
+    // No fresh picks for the topic yet: the finder refreshes them (a search from the day's quota), then they are read again.
+    if (topic && opts.videos && first.on && first.items.length === 0) {
+      // The fill's `withDb` opens the family's own transaction client, which is what the finder's provider step takes.
+      await topicVideos(withDb as unknown as Parameters<typeof topicVideos>[0], opts.videos.line, opts.videos.child).catch(() => []);
+      first.items = await withDb((db) => readVideoItems(db, topic, language));
+    }
     let photo = first.cached;
     if (image && key && !photo) {
       photo = await (opts.search ?? searchCommons)(image.query).catch(() => null);
@@ -72,7 +91,7 @@ export async function fillVisuals(withDb: WithDb, blocks: Block[], opts: FillOpt
       if (found) await withDb((db) => db.query(`select content.save_image_pick($1, $2, $3, $4, $5, $6)`, [key, found.url, found.pageUrl, found.author, found.licence, found.licenceUrl])).catch(() => {});
     }
     const filledImage = image && photo ? photoBlock(image, photo) : null;
-    const filledVideos = videosBlock(first.items);
+    const filledVideos = asked || (follow && first.on) ? videosBlock(first.items) : null;
     const out: Block[] = [];
     for (const b of blocks) {
       if (b.type === 'image') {
@@ -81,6 +100,8 @@ export async function fillVisuals(withDb: WithDb, blocks: Block[], opts: FillOpt
         if (filledVideos && !out.some((x) => x.type === 'videos')) out.push({ ...filledVideos, ...(b.id ? { id: b.id } : {}) });
       } else out.push(b);
     }
+    // The answer did not ask for videos: the topic's follow the last block.
+    if (follow && filledVideos) out.push(filledVideos);
     if (filledImage) opts.emit?.(filledImage);
     if (filledVideos) opts.emit?.(filledVideos);
     return out;

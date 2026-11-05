@@ -163,8 +163,9 @@ export function AiControls({ initial }: { initial: Data }) {
         ? { ok: true, text: t("control.video.ai.works") }
         : {
             ok: false,
+            // W19-F: a vendor that says the account has no credit (402) gets its own words: the key is fine.
             text: t(
-              video ? "control.video.ai.fails" : "control.ai.test.fails",
+              video ? "control.video.ai.fails" : got?.code === "http_402" ? "control.ai.test.noCredit" : "control.ai.test.fails",
               { code: String(got?.code ?? "") },
             ),
           },

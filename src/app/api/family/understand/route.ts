@@ -282,7 +282,7 @@ export async function POST(req: NextRequest) {
         const answer = async (pending: Pending) => {
           const childId = pending.ctx.child.childId;
           const generated = await generate(pending, send, (subject) => withFamilyContext(claims, (db) => claimSubject(db, session.accountId, childId, subject)));
-          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, emit: (block) => send({ t: 'block', block }) });
+          if (!generated.stopped && generated.error === null) generated.kept = await fillVisuals((fn) => withFamilyContext(claims, fn), generated.kept, { chapterKey: pending.line?.key ?? null, lang: pending.ctx.child.language, ...(pending.line && !checkMode && !sketchMode ? { videos: { line: pending.line, child: pending.ctx.child, accountId: session.accountId } } : {}), emit: (block) => send({ t: 'block', block }) });
           return generated;
         };
         // 3. The writes, in a second short transaction; the last event only once they are kept.
