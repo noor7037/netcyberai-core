@@ -169,9 +169,9 @@ describe('the dashboard on the whole schema', () => {
       }
     }
     expect(model.groups.map((g) => g.id)).toEqual(['today', 'money', 'learning', 'parents', 'running']);
-    expect(model.groups.reduce((n, g) => n + g.tiles.length, 0)).toBe(32);
+    expect(model.groups.reduce((n, g) => n + g.tiles.length, 0)).toBe(33);
     // Leave and covers sit with running the school, as three counts: who is away is never listed on the dashboard.
-    expect(model.groups.find((g) => g.id === 'running')!.tiles.map((f) => f.id)).toEqual(['students.active', 'students.waiting_consent', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open']);
+    expect(model.groups.find((g) => g.id === 'running')!.tiles.map((f) => f.id)).toEqual(['students.active', 'students.waiting_consent', 'admissions.conversion', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open']);
     for (const name of ['Tarun', 'Tara Teacher', 'Tina', 'Asif Admin']) expect(html, name).not.toContain(name);
     const tileOf = (id: string) => new RegExp(`<li data-fact="${id.replace('.', '\\.')}"[^>]*>(.*?)</li>`, 's').exec(html)?.[1] ?? '';
     expect([tileOf('staff.leave_waiting').includes('>2<'), tileOf('staff.on_leave_today').includes('>1<'), tileOf('proxy.uncovered_today').includes('>2 of 3<')]).toEqual([true, true, true]);

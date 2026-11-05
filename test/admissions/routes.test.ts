@@ -62,6 +62,7 @@ const call = async (w: Who, route: (req: NextRequest, ctx: { params: { enquiryId
 const enquiry = { childName: 'Zoya Example', guardianName: 'Nadia Example', phone: '9800000201', classId: C5A, source: 'whatsapp', ownerId: PRINCIPAL, followUp: null, nextStep: null, note: 'Asked on WhatsApp about class 5.' };
 
 beforeAll(async () => {
+  process.env.APP_SESSION_SECRET ??= "test-only-secret-for-admissions-routes-0123456789";
   db = await startHarnessDb({ port: 0 });
   await db.pg.exec(`
     insert into schools (school_id, name, jurisdiction, is_test_fixture) values ('${A}', 'School A', 'IN-HR', false);
@@ -156,11 +157,11 @@ describe('the routes', () => {
     expect((await call(principal, recordRoute, '/api/app/admissions', enquiry)).status).toBe(403);
     signIn(principal);
     // A plan without Admissions (C212 puts it in none yet) keeps the waiting list, "+ Add student" and "Import CSV".
-    const kept = (await AdmissionsPage()) as { type: unknown; props: { statusFilter: string } };
+    const kept = (await AdmissionsPage({ searchParams: {} })) as { type: unknown; props: { statusFilter: string } };
     expect([kept.type, kept.props.statusFilter]).toEqual([StudentsView, 'pending_consent']);
     expect(((await AdmissionsWaitingPage()) as { type: unknown }).type).toBe(StudentsView);
     await turn('students', false);
-    expect(await AdmissionsPage()).toMatchObject({ type: ModuleOffPage, props: { moduleId: 'students' } });
+    expect(await AdmissionsPage({ searchParams: {} })).toMatchObject({ type: ModuleOffPage, props: { moduleId: 'students' } });
     expect(await AdmissionsWaitingPage()).toMatchObject({ type: ModuleOffPage, props: { moduleId: 'students' } });
     await turn('students', true);
     await turn('admissions', true);
@@ -170,7 +171,7 @@ describe('the routes', () => {
 describe('the page', () => {
   it('the office gets the pipeline; a teacher is told enquiries are the office’s; both get the children waiting for consent they may see', async () => {
     signIn(principal);
-    const page = (await AdmissionsPage()) as { type: unknown; props: { office: boolean; children: { type: unknown } } };
+    const page = (await AdmissionsPage({ searchParams: {} })) as { type: unknown; props: { office: boolean; children: { type: unknown } } };
     expect([page.type, page.props.office, page.props.children.type]).toEqual([AdmissionsView, true, AdmissionsWaiting]);
     const office = renderToStaticMarkup((await AdmissionsWaiting())!);
     expect(office).toContain('Waiting for consent: 2');
@@ -178,7 +179,7 @@ describe('the page', () => {
     expect(office).toContain('Zoya Example');
     expect(office).toContain('href="/app/admissions/waiting"');
     signIn(tara);
-    expect(((await AdmissionsPage()) as { props: { office: boolean } }).props.office).toBe(false);
+    expect(((await AdmissionsPage({ searchParams: {} })) as { props: { office: boolean } }).props.office).toBe(false);
     // A teacher: the children of her own classes (5-A), not the one waiting in 6-A, and no way to add or import.
     const hers = renderToStaticMarkup((await AdmissionsWaiting())!);
     expect(hers).toContain('Zoya Example');

@@ -12,10 +12,10 @@ import { getLang } from '@/lib/i18n/server';
 // The admissions pipeline (docs/28 slice 10a, C221): the office's enquiries, "Follow up today", "Gone quiet" and
 // Admit. Under it, the children waiting for consent: where Admit leaves a child, and the list the dashboard's
 // number and the School Health Auditor's consent check open. Their full list, with "+ Add student" and
-// "Import CSV", is /app/admissions/waiting.
+// "Import CSV", is /app/admissions/waiting. ?show=conversion (the principal's tile, W21-M1) opens at the conversion table.
 // The children waiting for consent are the Students module's own: a school whose plan has no Admissions keeps
 // them here, with "+ Add student" and "Import CSV", as before the pipeline (lead, at integration of C221).
-export default async function AdmissionsPage() {
+export default async function AdmissionsPage({ searchParams }: { searchParams?: Record<string, string | string[] | undefined> }) {
   const off = await moduleOffReason('students', { roles: SCHOOL_ROLES });
   if (off) return <ModuleOffPage moduleId="students" reason={off} />;
   const session = await getServerSession();
@@ -24,7 +24,7 @@ export default async function AdmissionsPage() {
     return <StudentsView title={t(lang, 'adm.waitingPage.title')} description={t(lang, 'adm.waitingPage.purpose')} statusFilter="pending_consent" />;
   }
   return (
-    <AdmissionsView office={ADMISSIONS_OFFICE.includes(session?.role ?? '')}>
+    <AdmissionsView office={ADMISSIONS_OFFICE.includes(session?.role ?? '')} show={typeof searchParams?.show === 'string' ? searchParams.show : undefined}>
       <AdmissionsWaiting />
     </AdmissionsView>
   );

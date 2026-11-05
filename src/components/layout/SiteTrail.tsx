@@ -31,7 +31,7 @@ export function SiteTrail() {
     if (h1) setHeading({ path: pathname, text: h1 });
   }, [pathname]);
   // The same places the site header and footer are not drawn (components/layout/Header.tsx).
-  if (!pathname || pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/results/')) return null;
+  if (!pathname || pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/results/') || pathname.startsWith('/enquire/')) return null;
   if (pathname.startsWith('/free-tools/')) return null;
   const trail = siteTrail(pathname, (p) => nameOf(p) ?? (p === pathname && heading?.path === pathname ? heading.text : undefined));
   if (!trail) return null;
