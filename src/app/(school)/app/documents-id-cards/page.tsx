@@ -1,5 +1,6 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { ModulePage } from '@/components/app-ui/ModulePage';
+import { CertificateRequests } from '@/components/documents/CertificateRequests';
 import { CertificatesView } from '@/components/documents/CertificatesView';
 import { getServerSession } from '@/lib/auth/server-session';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
@@ -17,6 +18,7 @@ export default async function DocumentsIdCardsPage() {
   const { lang } = getLang(session?.sub ?? '');
   return (
     <ModulePage moduleId="documents" help="issue-certificates" tour="certificates" title={t(lang, 'crt.page.title')} purpose={t(lang, 'crt.page.purpose')} about={t(lang, 'crt.page.about')}>
+      <CertificateRequests />
       <CertificatesView />
     </ModulePage>
   );

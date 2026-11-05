@@ -591,3 +591,7 @@ export async function readSchoolTutors(claims: Claims, linkId: string): Promise<
 // Parent-teacher meetings from the Family app (H5), as the guardian: src/lib/school-link/ptm.ts.
 export { bookFamilySlot, cancelFamilyBooking, familyPtmFeed, familyPtmFor, type FamilyBookResult, type FamilyCancelResult, type GuardianPtm, type GuardianPtmBooked } from './ptm';
 // W20-E end
+// W21-M7 start
+// Certificate requests from the Family app, as the guardian: src/lib/school-link/certificates.ts.
+export { familyCertificateLink, familyCertificatesFeed, familyCertificatesFor, openFamilyCertificate, requestFamilyCertificate, type FamilyCertificateResult, type GuardianRequest, type OpenedFile } from './certificates';
+// W21-M7 end

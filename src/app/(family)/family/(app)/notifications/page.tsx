@@ -35,6 +35,7 @@ export default async function FamilyNotificationsPage() {
     if (i.kind === 'fee') return `${i.school}: ${fill(t(lang, 'fam.w20.fees.reminder'), { amount: rupees(i.amountMinor), date: dueDay(lang, i.dueDate) })}`;
     if (i.kind === 'report') return reportTitle(lang, child.firstName);
     if (i.kind === 'ptm') return fill(t(lang, i.remind ? 'fam.w20.ptm.feedReminder' : 'fam.w20.ptm.feedBooked'), { teacher: i.teacher, date: ptmDay(i.heldOn, lang), time: ptmTime(i.time, lang) });
+    if (i.kind === 'certificate') return fill(t(lang, 'fam.w21m7.cert.feedReady'), { kind: t(lang, `fam.w21m7.cert.kind.${i.certKind}` as MessageKey), number: i.number ?? '' });
     if (i.kind === 'tonight') return fill(t(lang, 'fam.notify.center.tonight'), { subject: t(lang, `fam.subject.${i.subject}` as MessageKey) });
     return fill(t(lang, REQUEST_TEXT[i.status]), { title: i.title });
   };

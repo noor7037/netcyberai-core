@@ -8,8 +8,16 @@ import {
   answerPulse,
   bookFamilySlot,
   cancelFamilyBooking,
+  familyCertificateLink,
+  familyCertificatesFeed,
+  familyCertificatesFor,
   familyPtmFeed,
   familyPtmFor,
+  openFamilyCertificate,
+  requestFamilyCertificate,
+  type FamilyCertificateResult,
+  type GuardianRequest,
+  type OpenedFile,
   claimFamilyPayment,
   readFamilyFees,
   readFeeReminderFeed,
@@ -569,3 +577,57 @@ export async function schoolFeeRemindersFor(claims: Claims, links: readonly Fami
   }
   return out.sort((a, b) => b.sentOn.localeCompare(a.sentOn)).slice(0, 3);
 }
+
+// W21-M7 start
+// ---- Certificate requests (docs/42, Documents) ---------------------------------------------------------------------------
+// A guardian asks for a certificate for their own child, sees where it stands, and downloads it by a signed, expiring,
+// once-only link, all as the guardian of one of the account's own links. null / not_found when the school closed the
+// link meanwhile.
+export type { FamilyCertificateResult, GuardianRequest, OpenedFile };
+
+export async function schoolCertificatesFor(claims: Claims, linkId: string, studentId: string): Promise<GuardianRequest[] | null> {
+  try {
+    return await familyCertificatesFor(claims, linkId, studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+export async function requestSchoolCertificate(claims: Claims, linkId: string, input: { studentId: string; kind: unknown; reason: unknown }): Promise<FamilyCertificateResult> {
+  try {
+    return await requestFamilyCertificate(claims, linkId, input);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return { ok: false, reason: 'not_found' };
+    throw e;
+  }
+}
+
+export async function schoolCertificateLink(claims: Claims, linkId: string, requestId: string): Promise<{ url: string; minutes: number } | null> {
+  try {
+    return await familyCertificateLink(claims, linkId, requestId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+export async function openSchoolCertificate(claims: Claims, token: unknown): Promise<OpenedFile | 'bad' | 'gone' | 'unavailable'> {
+  return openFamilyCertificate(claims, token);
+}
+
+// The family child's ready certificates, for the notifications feed (left out when the parent turned notices off).
+export async function schoolCertificateFeedFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<GuardianRequest[]> {
+  if (off.includes('notices')) return [];
+  const out: GuardianRequest[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await familyCertificatesFeed(claims, l.linkId, l.children.map((c) => c.studentId))));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out;
+}
+// W21-M7 end
