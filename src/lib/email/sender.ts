@@ -53,7 +53,7 @@ export class ResendEmailSender implements EmailSender {
     const reason = `email service answered ${res.status}${body.name ? ` ${body.name}` : ''}`;
     // 4xx other than 408/409/429 means the request itself is wrong (bad
     // address, unverified sender): retrying cannot help.
-    if (res.status >= 400 && res.status < 500 && ![408, 409, 429].includes(res.status)) throw new PermanentJobError(reason);
+    if (res.status >= 400 && res.status < 500 && ![408, 409, 429].includes(res.status)) throw new PermanentJobError(reason, /suppress|unsubscrib/i.test(`${body.name ?? ''} ${body.message ?? ''}`) ? 'unsubscribed' : 'bad_address');
     throw new Error(reason);
   }
 }
