@@ -571,7 +571,7 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
   // limit (Control) and Control's AI tasks decide whether the school may use it at all; these only narrow it.
   {
     moduleId: 'exams',
-    version: 4, // 2: script_days (C230-AG); 3: exam_types (C230-AJ); 4: paper_blueprints, paper_sections (C362)
+    version: 5, // 2: script_days (C230-AG); 3: exam_types (C230-AJ); 4: paper_blueprints, paper_sections (C362); 5: hpc_title (W21-M4)
     // AQ-2 (C362): a question paper blueprint's sections add up to its total, and each names a type with a blueprint.
     check: (v) => blueprintProblems(v.paper_blueprints, v.paper_sections),
     fields: [
@@ -655,6 +655,20 @@ export const SETTINGS_SCHEMAS: readonly ModuleSettingsSchema[] = [
         required: true,
         editableBy: OFFICE,
         affectsExistingRecords: true,
+      },
+      {
+        // W21-M4: the name printed on each child's Holistic Progress Card (src/lib/exams/hpc-title.ts). Left as it is, the
+        // card shows the standard name in the reader's language.
+        key: 'hpc_title',
+        label: 'Name of the Holistic Progress Card',
+        help: 'The name printed at the top of each child’s card for the session. Leave it as it is to show the standard name in English and Hindi.',
+        section: 'Families',
+        type: 'text' as const,
+        default: 'Holistic Progress Card',
+        pattern: '^[^\\s].{0,59}$',
+        required: true,
+        editableBy: OFFICE,
+        affectsExistingRecords: false,
       },
       {
         key: 'support_below',

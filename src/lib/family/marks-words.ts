@@ -30,6 +30,7 @@ export const MY_RESULTS_KEYS: MessageKey[] = [
   'fam.marks.myResults', 'fam.marks.none', 'fam.marks.open', 'fam.marks.openSubject', 'fam.tab.home',
   'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.schoolProgress.open', ...TIMETABLE_KEYS,
   'fam.rc.title', 'fam.rc.get', 'fam.rc.getFor', 'fam.rc.notYet',
+  'fam.w21m4.pb', 'fam.w21m4.mi',
 ];
 
 // The progress report (AJ-5): the child's own view and the parent's.
@@ -37,4 +38,5 @@ export const PROGRESS_KEYS: MessageKey[] = [
   'fam.schoolProgress.title', 'fam.schoolProgress.none', 'fam.schoolProgress.session',
   'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultNotComplete', 'fam.marks.backParent', 'fam.marks.myResults', 'fam.tab.home',
   'fam.schoolProgress.counted', 'fam.schoolProgress.countedHow', 'fam.schoolProgress.countedType', 'fam.schoolProgress.countedResult',
+  'fam.w21m4.hpc.title', 'fam.w21m4.hpc.how', 'fam.w21m4.hpc.get', 'fam.w21m4.hpc.getFor',
 ];

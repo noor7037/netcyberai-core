@@ -3729,6 +3729,42 @@ const rcFixture = async ({ earlier }) => {
   }
   await rcAs(PEOPLE.principal, `/api/app/exams/${RC_EARLIER}/classes/${X_5A}/report-cards`, { action: 'publish' });
 };
+// w21-m4 begin
+// W21-M4: Personal Best and Most Improved on the class result (the earlier exam and this one published through the app,
+// so each child's own history is real), and the Holistic Progress Card's entry screen with one child's words and card.
+// The harness session of the report-card screens is made the current one for the card, and put back after.
+let w21Current;
+const w21Setup = (screen) => async (page) => {
+  await rcFixture({ earlier: true });
+  await rcAs(PEOPLE.principal, `/api/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, { action: 'publish' });
+  if (screen === 'hpc') {
+    if (w21Current === undefined) w21Current = (await db.pg.query(`select session_id from academic_sessions where school_id = $1 and is_current`, [SCHOOL])).rows[0]?.session_id ?? null;
+    await db.pg.query(`update academic_sessions set is_current = false where school_id = $1`, [SCHOOL]);
+    await db.pg.query(`update academic_sessions set is_current = true where session_id = $1`, [RC_SESSION]);
+    await db.pg.query(`delete from hpc_entries where school_id = $1`, [SCHOOL]);
+    await db.pg.query(
+      `insert into hpc_entries (school_id, session_id, class_id, student_id, teacher_remark, health_note, self_assessment, parent_feedback, written_by) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [SCHOOL, RC_SESSION, X_5A, xKid(1), 'A careful reader who helps others.', 'Plays kho-kho at recess.', 'मुझे कहानियाँ पढ़ना अच्छा लगता है।', 'Reads with us every evening.', PEOPLE.principal.sub]
+    );
+  }
+  await page.reload({ waitUntil: 'networkidle' });
+  if (screen === 'hpc') {
+    await page.locator('[data-hpc-view]').waitFor({ timeout: 20000 });
+    await page.locator(`[data-hpc-child="${xKid(1)}"] [data-hpc-preview]`).click();
+    await page.locator(`[data-hpc-child="${xKid(1)}"] [data-rc-card]`).waitFor({ timeout: 20000 });
+  } else {
+    await page.locator('[data-result-recognition]').waitFor({ timeout: 20000 });
+  }
+};
+const w21Done = (screen) => async () => {
+  if (screen === 'hpc') {
+    await db.pg.query(`delete from hpc_entries where school_id = $1`, [SCHOOL]);
+    await db.pg.query(`update academic_sessions set is_current = false where school_id = $1`, [SCHOOL]);
+    if (w21Current) await db.pg.query(`update academic_sessions set is_current = true where session_id = $1`, [w21Current]);
+  }
+  await clearReportCards();
+};
+// w21-m4 end
 // A write through the app, as that person.
 const rcAs = async (person, route, body) => {
   const res = await fetch(`${base}${route}`, { method: 'POST', headers: { 'Content-Type': 'application/json', cookie: `nca_access=${await cookieFor(person, secret)}` }, body: JSON.stringify(body) });
@@ -7423,6 +7459,10 @@ const SCREENS = [
   // p6-9b end
   // p6-9c begin
   ['principal', 'app-exams-publish', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcPublish, rcPublishDone],
+  // w21-m4 begin
+  ['principal', 'w21m4-class-recognition', `/app/exams/${X_EXAM}/classes/${X_5A}`, w21Setup('class'), w21Done('class')],
+  ['principal', 'w21m4-hpc', `/app/exams/hpc/${X_5A}`, w21Setup('hpc'), w21Done('hpc')],
+  // w21-m4 end
   ['office', 'app-exams-report-card', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCard, rcCardDone],
   // p6-9c end
   // p6-9d begin

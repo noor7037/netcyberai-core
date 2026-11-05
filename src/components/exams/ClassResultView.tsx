@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useT } from '@/components/app-shell/LangContext';
 import { ResultCertificates } from '@/components/documents/ResultCertificates';
 import { InfoTip } from '@/components/app-ui/InfoTip';
+import type { ClassRecognition } from '@/lib/exams/class-recognition';
 import type { ClassResult, Shown } from '@/lib/exams/results';
 import type { WeightedNames } from '@/lib/exams/weighted-view';
 import { gradeWords, markWords, numberWords, percentWords as percentOf } from './exam-format';
@@ -16,14 +17,16 @@ import { TellParentsWhatsApp } from './TellParentsWhatsApp';
 // the server by percent() and grade(); absent and exempt are left out, never counted as zero. Never sorted by marks,
 // and no rank or position is shown (docs/27 section 3 rule 2). A phone shows one card a child; a wide screen a table.
 
+type Got = ClassResult & { weightedNames?: WeightedNames; recognition?: ClassRecognition | null };
+
 export function ClassResultView({ examId, classId }: { examId: string; classId: string }) {
   const { t, lang } = useT();
-  const [data, setData] = useState<(ClassResult & { weightedNames?: WeightedNames }) | null>(null);
+  const [data, setData] = useState<Got | null>(null);
   const [failed, setFailed] = useState(false);
 
   const load = useCallback(async () => {
     const res = await fetch(`/api/app/exams/${examId}/classes/${classId}`, { cache: 'no-store' }).catch(() => null);
-    const got = res?.ok ? ((await res.json().catch(() => null)) as (ClassResult & { weightedNames?: WeightedNames }) | null) : null;
+    const got = res?.ok ? ((await res.json().catch(() => null)) as Got | null) : null;
     setFailed(!got);
     if (got) setData(got);
   }, [examId, classId]);
@@ -57,6 +60,7 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         <div className="flex flex-wrap gap-2">
           {data.scheme === null && <a href="/app/exams/scheme" className={TAP}>{t('ex.make.openScheme')}</a>}
           <a href={`/app/exams/${examId}/classes/${classId}/report-cards`} data-result-report-cards className={TAP}>{t('rc.result.open')}</a>
+          <a href={`/app/exams/hpc/${classId}`} data-result-hpc className={TAP}>{t('w21m4.hpc.open')}</a>
           <a href="/app/exams" className={TAP}>{t('ex.allExams')}</a>
         </div>
       </section>
@@ -66,6 +70,7 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
           {t('wt.how', { types: weightWords })}
         </p>
       )}
+      {data.recognition && <OwnProgress recognition={data.recognition} roster={data.children} />}
       {data.publication && <ReportCardFiles examId={examId} classId={classId} />}
       {data.publication && <TellParentsWhatsApp examId={examId} classId={classId} mode="outputs" />}
       {data.publication && <ResultCertificates examId={examId} classId={classId} />}
@@ -130,6 +135,35 @@ export function ClassResultView({ examId, classId }: { examId: string; classId: 
         </table>
       </div>
     </div>
+  );
+}
+
+// Personal Best and Most Improved (W21-M4): each child's own lines as their report card prints them, in roll order. Each
+// child is compared only with their own earlier published exams; no rank, no order by marks, no class figure.
+function OwnProgress({ recognition, roster }: { recognition: ClassRecognition; roster: ClassResult['children'] }) {
+  const { t, lang } = useT();
+  const named = new Map(roster.map((c) => [c.studentId, c.rollNo ? t('ex.entry.child', { roll: c.rollNo, name: c.name }) : c.name]));
+  const shown = recognition.children.filter((c) => !c.first);
+  return (
+    <section data-result-recognition className={`${SECTION} border-l-4 border-l-gold`}>
+      <h2 className="text-base font-bold">{t('w21m4.class.title')}</h2>
+      <p>{t('w21m4.class.how')}</p>
+      {shown.length === 0 ? (
+        <p data-result-recognition-none className="rounded-md bg-off-white px-3 py-2">{t('w21m4.class.none')}</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {shown.map((c) => (
+            <li key={c.studentId} data-result-recognition-child={c.studentId} className="rounded-md bg-gold/15 px-3 py-2">
+              <p className="font-semibold">{named.get(c.studentId) ?? ''}</p>
+              {c.personalBest.map((b) => (
+                <p key={b.subject}>{t('w21m4.class.pb', { subject: b.subject, now: numberWords(b.now, lang), best: numberWords(b.best, lang) })}</p>
+              ))}
+              {c.mostImproved && <p>{t('w21m4.class.mi', { subject: c.mostImproved.subject, before: numberWords(c.mostImproved.before, lang), now: numberWords(c.mostImproved.now, lang) })}</p>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }
 

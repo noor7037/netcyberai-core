@@ -27,6 +27,7 @@ import {
   readSchoolPaper,
   readSchoolProgress,
   readSchoolReportCard,
+  readSchoolHpc,
   ReportCardUnavailableError,
   readSchoolSyllabus,
   readSchoolTutors,
@@ -433,6 +434,20 @@ export async function schoolReportCardFor(claims: Claims, links: readonly Family
   if (!m) return null;
   try {
     return await readSchoolReportCard(claims, m.linkId, m.studentId, examId, as);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// W21-M4: a family child's Holistic Progress Card of the school's current session, the file the school made when it
+// published the class's cards, read as the guardian for this family's own matched child only; in the child's own view,
+// only while the school lets children see their results. null when not matched, the link is gone, or there is none.
+export async function schoolHpcFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string, as: { childView: boolean }): Promise<{ bytes: Uint8Array; fileName: string } | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readSchoolHpc(claims, m.linkId, m.studentId, as);
   } catch (e) {
     if (e instanceof SchoolLinkGoneError) return null;
     throw e;

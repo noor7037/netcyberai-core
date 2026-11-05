@@ -33,7 +33,7 @@ export default async function FamilyParentProgressPage({ params }: { params: { c
       <SubPageHeader back="/family/parent" backLabel={w['fam.marks.backParent']} kicker={child?.firstName} title={w['fam.schoolProgress.title']} tone="ink" />
       <main className="fam-page" data-parent-progress>
         {child && <WeeklyReports reports={reports} w={w} lang={lang} />}
-        <SchoolProgressView progress={progress ?? { session: null, groups: [] }} w={w} lang={lang} />
+        <SchoolProgressView progress={progress ?? { session: null, groups: [] }} w={w} lang={lang} childId={child?.childId} />
       </main>
     </div>
   );

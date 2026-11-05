@@ -10,6 +10,7 @@ import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 import { ExamTimetable } from './ExamTimetable';
 import { SchoolText } from './SchoolText';
+import { OwnBest } from './SchoolProgress';
 import { SchoolPtm } from './SchoolPtm';
 import { SchoolFees } from './SchoolFees';
 import { sameInkOnBothSides } from '@/lib/family/day-text';
@@ -301,6 +302,7 @@ function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; ite
               <p className="font-semibold">
                 {w['fam.school.resultOverall']}: {scored(w, r.overall.percent, r.overall.grade)}
               </p>
+              <OwnBest r={r.recognition} w={w} />
               {r.coScholastic.length > 0 && <p>{r.coScholastic.map((c) => `${c.area}: ${c.grade}`).join(' · ')}</p>}
               {r.examId && childId && <ReportCardPart w={w} childId={childId} examId={r.examId} exam={r.exam} ready={!!r.reportCard} />}
               {r.remark && (

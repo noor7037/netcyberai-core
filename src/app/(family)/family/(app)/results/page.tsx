@@ -6,6 +6,7 @@ import { SchoolText } from '@/components/family/SchoolText';
 import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { LinkRow } from '@/components/family/ui/LinkRow';
 import { ReportCardPart } from '@/components/family/SchoolSection';
+import { OwnBest } from '@/components/family/SchoolProgress';
 import { fill } from '@/lib/family/fill';
 import { MY_RESULTS_KEYS } from '@/lib/family/marks-words';
 import { activeLinks, childResultsFor } from '@/lib/family/school';
@@ -73,6 +74,7 @@ export default async function FamilyMyResultsPage() {
                   </li>
                 ))}
               </ul>
+              <OwnBest r={r.recognition} w={w} />
               <p className="fam-row justify-between bg-ink text-base font-extrabold text-white">
                 <span>{w['fam.school.resultOverall']}</span>
                 <span className="fam-num text-lg">{scored(r.overall.percent, r.overall.grade)}</span>
