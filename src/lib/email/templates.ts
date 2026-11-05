@@ -1,12 +1,13 @@
 import { t, type Lang } from '@/lib/i18n';
+import { ptmDay, ptmTime } from '@/lib/time/ptm-words';
 import { PermanentJobError } from '@/lib/jobs/types';
 import { displayPhone, whatsappLink } from '@/lib/site-config';
 
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice' | 'family_weekly_report';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice', 'family_weekly_report'];
+export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice' | 'family_weekly_report' | 'ptm_family' | 'ptm_teacher_cancelled';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice', 'family_weekly_report', 'ptm_family', 'ptm_teacher_cancelled'];
 
 // The founder signs the first reply to every lead (W12-F).
 export const FOUNDER_NAME = 'Noor';
@@ -108,6 +109,26 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
     }
     // A notice the principal approved, to a guardian whose address the school holds (W14-J): the notice's words as written,
     // signed by the school. The class is named when the notice was for one class.
+    // W20-E: a parent-teacher meeting booked in the Family app: the confirmation, and the reminder the day before.
+    case 'ptm_family': {
+      const lang: Lang = data.lang === 'hi' ? 'hi' : 'en';
+      const params = { teacher: str(data, 'teacher'), date: ptmDay(str(data, 'date'), lang), time: ptmTime(str(data, 'time'), lang) };
+      const reminder = data.kind === 'reminder';
+      const head = t(lang, reminder ? 'fam.w20.ptm.feedReminder' : 'fam.w20.ptm.feedBooked', params);
+      const after = t(lang, 'fam.w20.ptm.email.after');
+      return {
+        subject: head,
+        html: wrap(`<p><strong>${escapeHtml(head)}</strong></p><p style="color:#64748b">${escapeHtml(after)}</p>`),
+        text: `${head}\n\n${after}`,
+      };
+    }
+    // W20-E: a parent cancelled their meeting time in the Family app; the teacher is told.
+    case 'ptm_teacher_cancelled': {
+      const guardian = str(data, 'guardian');
+      const when = `${ptmDay(str(data, 'date'), 'en')}, ${ptmTime(str(data, 'time'), 'en')}`;
+      const line = `${guardian} cancelled the parent-teacher meeting time ${when} in the Family app. The time is free again.`;
+      return { subject: `Meeting time cancelled: ${when}`, html: wrap(`<p>${escapeHtml(line)}</p>`), text: line };
+    }
     case 'school_notice': {
       const school = str(data, 'schoolName');
       const body = str(data, 'body');

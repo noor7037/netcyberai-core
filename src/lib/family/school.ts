@@ -6,6 +6,14 @@ import type { SchoolTutors } from '@/lib/contracts/school-link';
 import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
 import {
   answerPulse,
+  bookFamilySlot,
+  cancelFamilyBooking,
+  familyPtmFeed,
+  familyPtmFor,
+  type FamilyBookResult,
+  type FamilyCancelResult,
+  type GuardianPtm,
+  type GuardianPtmBooked,
   PictureUnavailableError,
   readChildSchoolResults,
   readLinkedSchool,
@@ -444,3 +452,59 @@ export async function schoolTutorsFor(claims: Claims, links: readonly FamilyScho
   }
   return out;
 }
+
+// W20-E start
+// ---- Parent-teacher meetings (H5) ---------------------------------------------------------------------------------------
+// The meetings of a school child's class that the guardian may book, a booking and its cancellation, as the guardian of
+// one of the account's own links (withGuardianContext checks the link is this account's and open). null / not_found when
+// the school closed the link meanwhile. The confirmation and the day-before reminder go to the account's own email.
+export type { GuardianPtm, GuardianPtmBooked, FamilyBookResult, FamilyCancelResult };
+
+export async function ptmNotifyFor(db: Sql, accountId: string): Promise<{ email: string | null; lang: 'en' | 'hi' }> {
+  const a = (await db.query(`select email, ui_language from family.accounts where account_id = $1`, [accountId])).rows[0] as { email: string | null; ui_language: string } | undefined;
+  const email = String(a?.email ?? '').trim();
+  return { email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null, lang: a?.ui_language === 'hi' ? 'hi' : 'en' };
+}
+
+export async function schoolPtmFor(claims: Claims, linkId: string, studentId: string): Promise<GuardianPtm[] | null> {
+  try {
+    return await familyPtmFor(claims, linkId, studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+export async function bookSchoolPtm(claims: Claims, linkId: string, input: { studentId: string; slotId: string }, notify: { email: string | null; lang: 'en' | 'hi' }): Promise<FamilyBookResult> {
+  try {
+    return await bookFamilySlot(claims, linkId, input, notify);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return { ok: false, reason: 'not_found' };
+    throw e;
+  }
+}
+
+export async function cancelSchoolPtm(claims: Claims, linkId: string, bookingId: string): Promise<FamilyCancelResult> {
+  try {
+    return await cancelFamilyBooking(claims, linkId, bookingId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return { ok: false, reason: 'not_found' };
+    throw e;
+  }
+}
+
+// The family child's bookings still to come, for the notifications feed (left out when the parent turned notices off).
+export async function schoolPtmFeedFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<GuardianPtmBooked[]> {
+  if (off.includes('notices')) return [];
+  const out: GuardianPtmBooked[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await familyPtmFeed(claims, l.linkId, l.children.map((c) => c.studentId))));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out;
+}
+// W20-E end
