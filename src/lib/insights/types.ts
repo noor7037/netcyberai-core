@@ -23,7 +23,7 @@ import type { ModuleId, SchoolRole } from '@/lib/contracts/modules';
 
 export const FACT_IDS = [
   'attendance.classes_marked', 'attendance.classes_unmarked', 'attendance.students_marked', 'attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave', 'attendance.present_rate',
-  'students.active', 'students.waiting_consent',
+  'students.active', 'students.waiting_consent', 'admissions.conversion',
   'fees.collected', 'fees.owed', 'fees.overdue', 'fees.promises_due', 'fees.upi_to_verify',
   'pulse.sent', 'pulse.understood', 'pulse.needs_help', 'followups.open',
   'homework.set', 'homework.checked', 'homework.not_done',

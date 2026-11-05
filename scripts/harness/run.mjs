@@ -3729,6 +3729,42 @@ const rcFixture = async ({ earlier }) => {
   }
   await rcAs(PEOPLE.principal, `/api/app/exams/${RC_EARLIER}/classes/${X_5A}/report-cards`, { action: 'publish' });
 };
+// w21-m4 begin
+// W21-M4: Personal Best and Most Improved on the class result (the earlier exam and this one published through the app,
+// so each child's own history is real), and the Holistic Progress Card's entry screen with one child's words and card.
+// The harness session of the report-card screens is made the current one for the card, and put back after.
+let w21Current;
+const w21Setup = (screen) => async (page) => {
+  await rcFixture({ earlier: true });
+  await rcAs(PEOPLE.principal, `/api/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, { action: 'publish' });
+  if (screen === 'hpc') {
+    if (w21Current === undefined) w21Current = (await db.pg.query(`select session_id from academic_sessions where school_id = $1 and is_current`, [SCHOOL])).rows[0]?.session_id ?? null;
+    await db.pg.query(`update academic_sessions set is_current = false where school_id = $1`, [SCHOOL]);
+    await db.pg.query(`update academic_sessions set is_current = true where session_id = $1`, [RC_SESSION]);
+    await db.pg.query(`delete from hpc_entries where school_id = $1`, [SCHOOL]);
+    await db.pg.query(
+      `insert into hpc_entries (school_id, session_id, class_id, student_id, teacher_remark, health_note, self_assessment, parent_feedback, written_by) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [SCHOOL, RC_SESSION, X_5A, xKid(1), 'A careful reader who helps others.', 'Plays kho-kho at recess.', 'मुझे कहानियाँ पढ़ना अच्छा लगता है।', 'Reads with us every evening.', PEOPLE.principal.sub]
+    );
+  }
+  await page.reload({ waitUntil: 'networkidle' });
+  if (screen === 'hpc') {
+    await page.locator('[data-hpc-view]').waitFor({ timeout: 20000 });
+    await page.locator(`[data-hpc-child="${xKid(1)}"] [data-hpc-preview]`).click();
+    await page.locator(`[data-hpc-child="${xKid(1)}"] [data-rc-card]`).waitFor({ timeout: 20000 });
+  } else {
+    await page.locator('[data-result-recognition]').waitFor({ timeout: 20000 });
+  }
+};
+const w21Done = (screen) => async () => {
+  if (screen === 'hpc') {
+    await db.pg.query(`delete from hpc_entries where school_id = $1`, [SCHOOL]);
+    await db.pg.query(`update academic_sessions set is_current = false where school_id = $1`, [SCHOOL]);
+    if (w21Current) await db.pg.query(`update academic_sessions set is_current = true where session_id = $1`, [w21Current]);
+  }
+  await clearReportCards();
+};
+// w21-m4 end
 // A write through the app, as that person.
 const rcAs = async (person, route, body) => {
   const res = await fetch(`${base}${route}`, { method: 'POST', headers: { 'Content-Type': 'application/json', cookie: `nca_access=${await cookieFor(person, secret)}` }, body: JSON.stringify(body) });
@@ -4873,6 +4909,7 @@ const CERT_WITHDRAW = 'Issued with the wrong reason for leaving.';
 const VERIFY_TOKEN = 'harness-10e-verify-token-0000001';
 const clearCertificates = async () => {
   await db.pg.exec(`set session_replication_role = replica;
+    delete from certificate_request_events; delete from certificate_requests;
     delete from certificate_copies; delete from certificates_issued; delete from certificate_marks;
     delete from certificate_signatures; delete from certificate_signatories; delete from certificate_numbering;
     delete from school_setting_changes where module_id = 'documents'; delete from school_settings where module_id = 'documents';
@@ -4943,6 +4980,27 @@ const certificatesScreen = async (page) => {
     withdrawn: tokens['TC/0001'] ? await verifyAsAStranger(page, tokens['TC/0001']) : null,
   };
   await page.evaluate(() => window.scrollTo(0, 0));
+};
+// W21-M7: the office's requests for certificates: a TC the family asked for in the Family app, held for fees, and a
+// bonafide the office asked for, waiting to be issued.
+const certificateRequestsScreen = async (page) => {
+  await clearCertificates();
+  const guardian = '00000000-0000-4000-8000-0000000e0001';
+  const as = (role, user, fn) =>
+    db.pg.transaction(async (tx) => {
+      for (const [k, v] of [['app.current_tenant_id', SCHOOL], ['app.current_role', role], ['app.current_user_id', user]]) await tx.query(`select set_config($1, $2, true)`, [k, v]);
+      return fn(tx);
+    });
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'documents', 1, '{"clearance_transfer": true}', 1)`, [SCHOOL]);
+  await as('parent', guardian, (tx) => tx.query(`insert into certificate_requests (school_id, student_id, cert_type, reason) values ($1, $2, 'transfer', 'Moving to another city')`, [SCHOOL, CERT_AARAV]));
+  await as('school_admin', PEOPLE.principal.sub, (tx) => tx.query(`insert into certificate_requests (school_id, student_id, cert_type, reason) values ($1, $2, 'bonafide', 'Opening a bank account')`, [SCHOOL, CERT_MEERA]));
+  await db.pg.query(`update certificate_requests set held_owed_minor = 450000 where school_id = $1 and student_id = $2`, [SCHOOL, CERT_AARAV]);
+  await db.pg.query(`insert into certificate_request_events (school_id, request_id, kind, actor) select school_id, cert_id, 'held', 'system' from certificate_requests where student_id = $1`, [CERT_AARAV]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-certificate-requests] [data-certificate-request]').first().waitFor({ timeout: 20000 });
+};
+const certificateRequestsScreenDone = async () => {
+  await clearCertificates();
 };
 const certificatesScreenDone = async () => {
   const { rows } = await db.pg.query(
@@ -5202,7 +5260,7 @@ const setupPageDone = async () => {
   const want = await setupExpected();
   if (!sameJson(setupSeen.shown, want.done) || setupSeen.counts.done !== want.count || setupSeen.counts.total !== want.total) throw new Error(`the checklist on the screen: ${JSON.stringify({ seen: setupSeen, want })}`);
   const hrefs = ['/app/setup/sessions', '/app/students?classes=1', '/app/setup/subjects', '/app/staff', '/app/staff', '/app/students', '/app/fees', '/app/timetable', '/app/settings'];
-  if (!sameJson(setupSeen.links, hrefs) || !sameJson(setupSeen.keep, ['/app/setup/sessions', '/app/setup/subjects'])) throw new Error(`the links of the checklist: ${JSON.stringify(setupSeen)}`);
+  if (!sameJson(setupSeen.links, hrefs) || !sameJson(setupSeen.keep, ['/app/setup/sessions', '/app/setup/subjects', '/app/setup/promotion'])) throw new Error(`the links of the checklist: ${JSON.stringify(setupSeen)}`);
 };
 
 // My Day (principal): one card while any step is open, "N of 9 setup steps done", counted from the same rows.
@@ -5227,6 +5285,39 @@ const setupInControl = async (page) => {
 const setupInControlDone = async () => {
   const want = await setupExpected();
   if (!sameJson(setupControl.shown, want.done) || setupControl.links !== 0) throw new Error(`the checklist in Control: ${JSON.stringify({ seen: setupControl, want })}`);
+};
+
+// Promotion to the next session (principal, W21-M2): the dry run only. A session after the current one is added for
+// the picture, the first class with students is opened, and the check reads that nothing moved (no promotion run, no
+// student changed class). The added session is taken away again.
+const PROMO_CUR = '00000000-0000-4000-8000-00000000e211';
+const PROMO_NEXT = '00000000-0000-4000-8000-00000000e212';
+let promoStudents = null;
+const setupPromotionScreen = async (page) => {
+  promoStudents = (await db.pg.query(`select student_id, class_id from students where school_id = $1 order by student_id`, [SCHOOL])).rows;
+  // The seeded school has no current session: one is added for the picture when it has none.
+  await db.pg.query(
+    `insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current)
+     select $1, $2, 'This year (harness W21-M2)', '2025-04-01', '2026-03-31', true where not exists (select 1 from academic_sessions where school_id = $2 and is_current)`,
+    [PROMO_CUR, SCHOOL]
+  );
+  await db.pg.query(
+    `insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current)
+     select $1, $2, 'Next (harness W21-M2)', end_date + 1, end_date + 365, false from academic_sessions where school_id = $2 and is_current on conflict (session_id) do nothing`,
+    [PROMO_NEXT, SCHOOL]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-promotion-summary]').waitFor({ timeout: 20000 });
+  const first = page.locator('[data-promotion-class] button[aria-expanded]:not([disabled])').first();
+  if (await first.count()) await first.click();
+};
+const setupPromotionDone = async () => {
+  try {
+    const after = (await db.pg.query(`select student_id, class_id from students where school_id = $1 order by student_id`, [SCHOOL])).rows;
+    if (!sameJson(after, promoStudents)) throw new Error('the dry run moved a student');
+  } finally {
+    await db.pg.query(`delete from academic_sessions where session_id = any ($1::uuid[])`, [[PROMO_NEXT, PROMO_CUR]]);
+  }
 };
 
 // Academic sessions (principal). A past session is already there; the principal adds 2026-27 with the form and
@@ -6320,6 +6411,55 @@ const openLead = async (page) => {
   // W12-F: the replies sent load after the panel opens.
   await page.locator('[data-lead-replies][data-loaded]').waitFor({ timeout: 10000 });
 };
+// W21-M5: a page of a paper admission register read into the import's checked rows. The picture is drawn in the
+// browser (made-up rows), the reading is stood in for (the AI is never called here), and the review shows the page
+// beside the rows with the unsure fields marked.
+const REGISTER_ROWS = [
+  ['R-201', 'Aarav Fictional', 'Mohan Fictional', '12/03/2016', '3', 'A', 'M', '9812345670', 'Ward 2, Panipat'],
+  ['R-202', 'Diya Specimen', 'Ramesh Specimen', '05/09/2016', '3', 'A', 'F', '9812345671', 'Sector 6, Panipat'],
+  ['R-203', 'Kabir Imaginary', null, '2016', '3', 'A', 'M', null, null],
+];
+const registerPage = async (page) => {
+  const cell = (value, confidence) => ({ value, confidence, low: value !== null && confidence < 0.8 });
+  const fields = ['admission_no', 'name', 'guardian_name', 'dob', 'class', 'section', 'gender', 'phone', 'address'];
+  const iso = (d) => (/^\d{2}\/\d{2}\/\d{4}$/.test(d ?? '') ? `${d.slice(6)}-${d.slice(3, 5)}-${d.slice(0, 2)}` : d);
+  const rows = REGISTER_ROWS.map((r, i) =>
+    Object.fromEntries(fields.map((f, k) => {
+      let v = r[k];
+      if (f === 'dob') v = iso(v);
+      if (f === 'gender') v = v === 'M' ? 'male' : v === 'F' ? 'female' : v;
+      const c = v === null ? 0 : i === 1 && f === 'name' ? 0.62 : f === 'dob' && i === 2 ? 0.95 : 0.96;
+      const out = cell(v, c);
+      if (f === 'dob' && i === 2) out.low = true;
+      return [f, out];
+    }))
+  );
+  await page.route('**/api/app/students/import/ocr', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ rows, floor: 0.8, pages: 1 }) }));
+  const png = await page.evaluate((lines) => {
+    const c = document.createElement('canvas');
+    c.width = 1200;
+    c.height = 800;
+    const g = c.getContext('2d');
+    g.fillStyle = '#fbf8ef';
+    g.fillRect(0, 0, c.width, c.height);
+    g.fillStyle = '#1e293b';
+    g.font = 'bold 34px serif';
+    g.fillText('Admission Register', 40, 60);
+    g.font = '24px serif';
+    lines.forEach((l, i) => {
+      g.fillText(l.filter(Boolean).slice(0, 7).join('   '), 40, 140 + i * 80);
+      g.fillRect(40, 160 + i * 80, 1120, 1);
+    });
+    return c.toDataURL('image/png').split(',')[1];
+  }, REGISTER_ROWS);
+  await page.locator('[data-register-file]').setInputFiles({ name: 'register-page.png', mimeType: 'image/png', buffer: Buffer.from(png, 'base64') });
+  await page.locator('[data-register-read]').click();
+  await page.locator('[data-register-row]').nth(2).waitFor({ timeout: 20000 });
+  const marked = await page.locator('[data-low="true"]').count();
+  if (marked !== 2) throw new Error(`the register review marks ${marked} fields, not 2`);
+  await page.waitForTimeout(300);
+};
+
 const typeInSearch = (text) => async (page) => {
   await page.getByRole('combobox', { name: /Search|खोजें/ }).fill(text);
   await page.getByRole('option').first().waitFor({ timeout: 15000 });
@@ -7213,6 +7353,7 @@ const SCREENS = [
   ['founder', 'control-templates', '/control/templates', messageTemplates, messageTemplatesDone],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
+  ['principal', 'app-students-read-register', '/app/students/read-register', registerPage],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],
   ['principal', 'app-student-id-card', `/app/students/${STUDENT}/id-card`],
   ['principal', 'app-admissions', '/app/admissions'],
@@ -7285,6 +7426,10 @@ const SCREENS = [
   ['founder', 'control-school-ai-pages', `/control/schools/${SCHOOL}`, controlSchoolAiPages, controlSchoolAiPagesDone],
   ['founder', 'control-audit-logs', '/control/audit-logs'],
   ['founder', 'control-system-settings', '/control/system-settings'],
+  // W21-M6: the three Control pages that were stubs, now acting.
+  ['founder', 'control-analytics', '/control/analytics'],
+  ['founder', 'control-compliance', '/control/compliance'],
+  ['founder', 'control-integrations', '/control/integrations'],
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],
   ['founder', 'control-users', '/control/users'],
   ['founder', 'control-onboarding', '/control/onboarding'],
@@ -7423,6 +7568,10 @@ const SCREENS = [
   // p6-9b end
   // p6-9c begin
   ['principal', 'app-exams-publish', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcPublish, rcPublishDone],
+  // w21-m4 begin
+  ['principal', 'w21m4-class-recognition', `/app/exams/${X_EXAM}/classes/${X_5A}`, w21Setup('class'), w21Done('class')],
+  ['principal', 'w21m4-hpc', `/app/exams/hpc/${X_5A}`, w21Setup('hpc'), w21Done('hpc')],
+  // w21-m4 end
   ['office', 'app-exams-report-card', `/app/exams/${X_EXAM}/classes/${X_5A}/report-cards`, rcCard, rcCardDone],
   // p6-9c end
   // p6-9d begin
@@ -7460,6 +7609,7 @@ const SCREENS = [
   ['principal', 'app-compliance-disclosure', '/app/compliance/desk/disclosure', disclosurePrint, disclosurePrintDone],
   // p7-10d end
   // p7-10e begin
+  ['principal', 'app-certificate-requests', '/app/documents-id-cards', certificateRequestsScreen, certificateRequestsScreenDone],
   ['principal', 'app-certificates', '/app/documents-id-cards', certificatesScreen, certificatesScreenDone],
   ['principal', 'verify-certificate', `/verify/${VERIFY_TOKEN}`, verifyScreen, verifyScreenDone],
   // p7-10e end
@@ -7472,6 +7622,7 @@ const SCREENS = [
   ['principal', 'app-setup-hindi', '/app/setup', speak('हिन्दी'), backToEnglish],
   ['principal', 'app-setup-sessions', '/app/setup/sessions', setupSessionsScreen, setupSessionsDone],
   ['principal', 'app-setup-subjects', '/app/setup/subjects', setupSubjectsScreen, setupSubjectsDone],
+  ['principal', 'app-setup-promotion', '/app/setup/promotion', setupPromotionScreen, setupPromotionDone],
   ['principal', 'app-my-day-setup', '/app/my-day', setupMyDay, setupMyDayDone],
   ['founder', 'control-school-setup', `/control/schools/${SCHOOL}`, setupInControl, setupInControlDone],
   ['principal', 'app-staff-teacher-subjects', '/app/staff', staffSubjects, staffSubjectsDone],

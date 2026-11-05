@@ -52,6 +52,10 @@ export const SOURCE_CODES = {
   Other: 'other',
 } as const satisfies Record<Source, string>;
 export type SourceCode = (typeof SOURCE_CODES)[Source];
+// A family's own enquiry from the school's online form (W21-M1, ./online.ts): never chosen by the office, and kept
+// as it came (correcting its details keeps the source).
+export const ONLINE_SOURCE = 'online' as const;
+export type EnquirySource = SourceCode | typeof ONLINE_SOURCE;
 
 export const STAGE_CODES = {
   Enquiry: 'enquiry',
@@ -71,7 +75,7 @@ export const CLOSED_STAGE_IDS: readonly StageCode[] = CLOSED_STAGES.map((s) => S
 // The stages a person moves an enquiry to by hand: every stage but "Admitted", which only Admit sets.
 export const MOVABLE_STAGE_IDS: readonly StageCode[] = STAGE_IDS.filter((s) => s !== 'admitted');
 const stageLabel = (code: string): Stage => STAGES.find((s) => STAGE_CODES[s] === code) ?? 'Enquiry';
-const sourceLabel = (code: string): Source => SOURCES.find((s) => SOURCE_CODES[s] === code) ?? 'Other';
+const sourceLabel = (code: string): Source => (code === ONLINE_SOURCE ? 'Website' : SOURCES.find((s) => SOURCE_CODES[s] === code) ?? 'Other');
 export const isSourceCode = (v: unknown): v is SourceCode => typeof v === 'string' && (SOURCE_IDS as readonly string[]).includes(v);
 export const isStageCode = (v: unknown): v is StageCode => typeof v === 'string' && (STAGE_IDS as readonly string[]).includes(v);
 export const isOpenStage = (s: string) => !(CLOSED_STAGE_IDS as readonly string[]).includes(s);
@@ -100,7 +104,7 @@ export type EnquiryRow = {
   phone: string | null;
   class_id: string;
   class_name: string;
-  source: SourceCode;
+  source: EnquirySource;
   stage: StageCode;
   owner_id: string;
   owner: string;
@@ -180,14 +184,15 @@ export async function followUpsDue(db: { query: (text: string, params?: unknown[
   return followUpLists(open, today, Number.MAX_SAFE_INTEGER).due.length;
 }
 
-export type Step = { kind: string; note: string | null; stage_from: StageCode | null; stage_to: StageCode | null; follow_up: string | null; next_step: string | null; owner: string | null; student_id: string | null; changed: string[] | null; by: string; at: string };
+// `by` is null for the one step nobody of the school wrote: a family's own online enquiry, recorded (W21-M1).
+export type Step = { kind: string; note: string | null; stage_from: StageCode | null; stage_to: StageCode | null; follow_up: string | null; next_step: string | null; owner: string | null; student_id: string | null; changed: string[] | null; by: string | null; at: string };
 
 export async function enquirySteps(db: Sql, schoolId: string, enquiryId: string): Promise<Step[] | null> {
   if (!(await db.query(`select 1 from admission_enquiries where school_id = $1 and enquiry_id = $2`, [schoolId, enquiryId])).rows[0]) return null;
   return (await db.query(
     `select v.kind, v.note, v.stage_from, v.stage_to, v.follow_up::text as follow_up, v.next_step, o.display_name as owner, v.student_id, v.changed, b.display_name as by, v.at
        from admission_events v
-       join users b on b.school_id = v.school_id and b.user_id = v.by_user
+       left join users b on b.school_id = v.school_id and b.user_id = v.by_user
        left join users o on o.school_id = v.school_id and o.user_id = v.owner_id
       where v.school_id = $1 and v.enquiry_id = $2
       order by v.n`,
@@ -283,10 +288,10 @@ export async function recordEnquiry(db: Sql, actor: Actor, input: NewEnquiry, to
 
 export type Outcome = { note: unknown; stage: unknown; nextStep: unknown; followUp: unknown; reason: unknown };
 
-type Locked = { stage: StageCode; class_id: string; child_name: string; owner_id: string; next_follow_up: string | null; next_step: string | null; closed_reason: string | null };
+type Locked = { stage: StageCode; source: EnquirySource; class_id: string; child_name: string; owner_id: string; next_follow_up: string | null; next_step: string | null; closed_reason: string | null };
 async function lockEnquiry(db: Sql, schoolId: string, enquiryId: string): Promise<Locked | null> {
   return ((await db.query(
-    `select stage, class_id, child_name, owner_id, next_follow_up::text as next_follow_up, next_step, closed_reason from admission_enquiries where school_id = $1 and enquiry_id = $2 for update`,
+    `select stage, source, class_id, child_name, owner_id, next_follow_up::text as next_follow_up, next_step, closed_reason from admission_enquiries where school_id = $1 and enquiry_id = $2 for update`,
     [schoolId, enquiryId]
   )).rows[0] as Locked | undefined) ?? null;
 }
@@ -351,7 +356,8 @@ export async function correctDetails(db: Sql, actor: Actor, enquiryId: string, d
   if (!guardian.ok) return guardian;
   const phone = typeof d.phone === 'string' && d.phone.length <= ENQUIRY_MAX.phone ? normalizePhone(d.phone) : null;
   if (!phone) return { ok: false, reason: 'phone' };
-  if (!isSourceCode(d.source)) return { ok: false, reason: 'source' };
+  // A family's own online enquiry stays one; no other enquiry becomes one.
+  if (before.source === ONLINE_SOURCE ? d.source !== ONLINE_SOURCE : !isSourceCode(d.source)) return { ok: false, reason: 'source' };
   if (!(await classOfSchool(db, actor.schoolId, d.classId))) return { ok: false, reason: 'class' };
   const changed = await db.query(
     `update admission_enquiries set child_name = $3, guardian_name = $4, phone = $5, class_id = $6, source = $7

@@ -407,6 +407,7 @@ ALLOWED_PERMISSIVE = (
         # C228: tenant isolation only; narrowed by the RESTRICTIVE policies required below (the office only).
         ("certificates_issued", "certificates_issued_tenant_isolation"),
         ("certificate_copies", "certificate_copies_tenant_isolation"),
+        ("certificate_request_events", "certificate_request_events_tenant_isolation"),  # W21-M7: the request timeline, restrictive rules beside it
         ("certificate_marks", "certificate_marks_tenant_isolation"),
         # p7-10e end
         # p7-10f begin
@@ -415,6 +416,8 @@ ALLOWED_PERMISSIVE = (
         ("timetable_unavailable", "timetable_unavailable_tenant_isolation"),
         ("timetable_proposals", "timetable_proposals_tenant_isolation"),
         ("timetable_versions", "timetable_versions_tenant_isolation"),
+        # W21-M3: timetable changes, tenant isolation narrowed by the RESTRICTIVE policies below.
+        ("timetable_changes", "timetable_changes_tenant_isolation"),
         # p7-10f end
         # p7-10g begin
         # C231: a teacher's proposal of a subject and class. Tenant isolation, narrowed by the RESTRICTIVE policies below.
@@ -613,6 +616,17 @@ ALLOWED_PERMISSIVE = (
         ("question_bank", "question_bank_tenant_isolation"),
         ("paper_generations", "paper_generations_tenant_isolation"),
         # aq-2 end
+        # w21-m2 begin
+        # W21-M2 (promotion to the next session): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("promotion_runs", "promotion_runs_tenant_isolation"),
+        ("promotion_events", "promotion_events_tenant_isolation"),
+        ("promotion_overrides", "promotion_overrides_tenant_isolation"),
+        # w21-m2 end
+        # w21-m4 begin
+        # W21-M4 (the Holistic Progress Card): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("hpc_entries", "hpc_entries_tenant_isolation"),
+        ("hpc_cards", "hpc_cards_tenant_isolation"),
+        # w21-m4 end
     }
 )
 
@@ -959,6 +973,8 @@ REQUIRED_RESTRICTIVE = {
     ("timetable_proposals", "timetable_proposals_decided_as_self"),
     ("timetable_versions", "timetable_versions_office"),
     ("timetable_versions", "timetable_versions_as_self"),
+    ("timetable_changes", "timetable_changes_read"),
+    ("timetable_changes", "timetable_changes_as_self"),
     ("audit_log", "audit_timetable_plan_rows_office_or_actor"),
     # p7-10f end
     # p7-10g begin
@@ -1260,6 +1276,38 @@ REQUIRED_RESTRICTIVE = {
     ("marking_transcripts", "marking_transcripts_writers"),
     ("marking_transcripts", "marking_transcripts_no_parent"),
     # w14-c end
+    # w21-m2 begin
+    # A promotion is read by the principal and the school admin and written by the principal, in their own name.
+    ("promotion_runs", "promotion_runs_office"),
+    ("promotion_runs", "promotion_runs_principal_writes"),
+    ("promotion_events", "promotion_events_office"),
+    ("promotion_events", "promotion_events_principal_writes"),
+    ("promotion_overrides", "promotion_overrides_office"),
+    ("promotion_overrides", "promotion_overrides_principal_sets"),
+    ("promotion_overrides", "promotion_overrides_principal_changes"),
+    ("promotion_overrides", "promotion_overrides_principal_clears"),
+    # w21-m2 end
+    # w21-m4 begin
+    # The card's words: read by the office and a teacher of the class, written by the office or the class teacher in their
+    # own name. The card's file: read by the office and the class teacher, published by the office in its own name.
+    ("hpc_entries", "hpc_entries_readers"),
+    ("hpc_entries", "hpc_entries_written"),
+    ("hpc_entries", "hpc_entries_changed"),
+    ("hpc_cards", "hpc_cards_readers"),
+    ("hpc_cards", "hpc_cards_published"),
+    ("hpc_cards", "hpc_cards_republished"),
+    # w21-m4 end
+    # w21-int begin
+    # C486: the wave's seven tables refuse a parent's school-app login outright (C230-D); the Family app reads through its
+    # own definer functions.
+    ("certificate_request_events", "certificate_request_events_no_parent"),
+    ("hpc_entries", "hpc_entries_no_parent"),
+    ("hpc_cards", "hpc_cards_no_parent"),
+    ("promotion_runs", "promotion_runs_no_parent"),
+    ("promotion_events", "promotion_events_no_parent"),
+    ("promotion_overrides", "promotion_overrides_no_parent"),
+    ("timetable_changes", "timetable_changes_no_parent"),
+    # w21-int end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

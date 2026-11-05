@@ -43,20 +43,6 @@ const MIGRATIONS = [
   '20261028134900_leads_contact_notes_import.sql',
 ];
 const W12F = '20261031121203_w12_f_lead_replies.sql';
-// control.settings comes from the Family app's migration, which needs far more than this small database has: the
-// table alone, exactly as 20261021094627_m1_family_content_control.sql creates it, with its platform-role grant.
-const CONTROL_SETTINGS = `
-  create schema control;
-  grant usage on schema control to nca_super;
-  create table control.settings (
-    key text primary key check (key ~ '^[a-z][a-z0-9_.]{2,79}$'),
-    value jsonb not null,
-    updated_at timestamptz not null default now(),
-    updated_by uuid
-  );
-  alter table control.settings enable row level security;
-  alter table control.settings force row level security;
-  grant select, insert, update on control.settings to nca_super;`;
 const FOUNDER = randomUUID();
 const PRINCIPAL = randomUUID();
 const SCHOOL = randomUUID();
@@ -113,7 +99,6 @@ beforeAll(async () => {
   process.env.LEADS_FROM_EMAIL = 'Noor <noor@made-up.test>';
   h.db = await createTestDb();
   for (const f of MIGRATIONS) await h.db.pg.exec(readFileSync(path.join(ROOT, 'supabase/migrations', f), 'utf8'));
-  await h.db.pg.exec(CONTROL_SETTINGS);
   await h.db.pg.exec(readFileSync(path.join(ROOT, 'supabase/migrations', W12F), 'utf8'));
   await h.db.platform(async (db) => {
     await db.query(`insert into schools (school_id, name, jurisdiction) values ($1, 'Made-up School', 'IN-HR')`, [SCHOOL]);

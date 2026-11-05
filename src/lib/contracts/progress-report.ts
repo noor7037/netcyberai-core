@@ -29,4 +29,7 @@ export type ProgressWeighted = {
 };
 
 // What the Family app shows of it: the session's label and the groups, read as the guardian.
-export type SchoolProgress = { session: string | null; groups: ProgressGroup[]; weighted?: ProgressWeighted };
+// W21-M4: the child's Holistic Progress Card of the session, when the school has published it (the Family app's "Get" link);
+// `title` is the school's own name for the card, null for the standard words.
+export type ProgressHpc = { title: string | null; publishedOn: string; version: number };
+export type SchoolProgress = { session: string | null; groups: ProgressGroup[]; weighted?: ProgressWeighted; hpc?: ProgressHpc };

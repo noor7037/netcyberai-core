@@ -10,7 +10,9 @@ import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 import { ExamTimetable } from './ExamTimetable';
 import { SchoolText } from './SchoolText';
+import { OwnBest } from './SchoolProgress';
 import { SchoolPtm } from './SchoolPtm';
+import { SchoolCertificates } from './SchoolCertificates';
 import { SchoolFees } from './SchoolFees';
 import { sameInkOnBothSides } from '@/lib/family/day-text';
 
@@ -301,6 +303,7 @@ function Results({ w, lang, items, childId }: { w: Words; lang: 'en' | 'hi'; ite
               <p className="font-semibold">
                 {w['fam.school.resultOverall']}: {scored(w, r.overall.percent, r.overall.grade)}
               </p>
+              <OwnBest r={r.recognition} w={w} />
               {r.coScholastic.length > 0 && <p>{r.coScholastic.map((c) => `${c.area}: ${c.grade}`).join(' · ')}</p>}
               {r.examId && childId && <ReportCardPart w={w} childId={childId} examId={r.examId} exam={r.exam} ready={!!r.reportCard} />}
               {r.remark && (
@@ -372,6 +375,7 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
               {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
               {c.events && <EventList w={w} lang={lang} items={c.events} />}
               <SchoolPtm w={w} lang={lang} linkId={link.linkId} studentId={c.studentId} />
+              <SchoolCertificates w={w} lang={lang} linkId={link.linkId} studentId={c.studentId} />
               {c.timetable && <Timetable w={w} lang={lang} periods={c.timetable} />}
               {c.examSchedule && <ExamTimetable w={w} lang={lang} papers={c.examSchedule} />}
               {c.results && <Results w={w} lang={lang} items={c.results} childId={link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? null} />}

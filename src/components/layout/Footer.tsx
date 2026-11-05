@@ -25,7 +25,7 @@ const COMPANY = [
 export function Footer() {
   const pathname = usePathname();
   // Nor below a family's private result link (C351): one child's page, with nothing else on it.
-  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/results/')) {
+  if (pathname.startsWith('/control') || pathname.startsWith('/app') || pathname === '/family' || pathname.startsWith('/family/') || pathname === '/parent' || pathname.startsWith('/parent/') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/results/') || pathname.startsWith('/enquire/')) {
     return null;
   }
 

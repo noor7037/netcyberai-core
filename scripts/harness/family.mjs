@@ -320,6 +320,8 @@ export const FAMILY_SCREENS = [
   ['linked', 'family-parent-school-results', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
   // W20-E: the parent-teacher meeting card, with a free and a taken time.
   ['linked', 'family-parent-school-ptm', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-school-ptm]' }],
+  // W21-M7: the certificate card, with a request ready to download and a TC held for fees.
+  ['linked', 'family-parent-school-certificates', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-school-certificates] [data-cert-download]' }],
   // W20-A: the matched child's school fees and "Pay by UPI" (the school's UPI ID, the family link's amount and the QR).
   ['linked', 'family-parent-school-fees', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-fees-pay]' }],
   ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
@@ -466,6 +468,32 @@ async function seedLinkedFamily(db) {
           and not exists (select 1 from payment_links k where k.token = 'harness-family-fees-link-token-000000000001')
         group by s.school_id, s.family_id, s.student_id`
     );
+  });
+  // W21-M7: certificate requests for Aarav: a bonafide the office has made ready to download, and a TC held for fees.
+  await db.pg.exec(`set session_replication_role = replica;
+    delete from certificate_request_events; delete from certificate_requests; delete from certificate_copies; delete from certificates_issued;
+    set session_replication_role = origin;`);
+  const asRole = (role, user, fn) =>
+    db.pg.transaction(async (tx) => {
+      for (const [k, v] of [['app.current_tenant_id', school], ['app.current_role', role], ['app.current_user_id', user]]) await tx.query(`select set_config($1, $2, true)`, [k, v]);
+      return fn(tx);
+    });
+  const guardian = '00000000-0000-4000-8000-0000000e0001';
+  const aarav = '00000000-0000-4000-8000-000000500001';
+  const ids = await asRole('parent', guardian, async (tx) => {
+    const a = (await tx.query(`insert into certificate_requests (school_id, student_id, cert_type, reason) values ($1, $2, 'bonafide', 'Opening a bank account') returning cert_id`, [school, aarav])).rows[0].cert_id;
+    const b = (await tx.query(`insert into certificate_requests (school_id, student_id, cert_type, reason) values ($1, $2, 'transfer', 'Moving to another city') returning cert_id`, [school, aarav])).rows[0].cert_id;
+    return { a, b };
+  });
+  await asRole('principal', principal, async (tx) => {
+    const cert = (await tx.query(`insert into certificates_issued (school_id, cert_type, student_id, issued_by, purpose, printed) values ($1, 'bonafide', $2, $3, 'Opening a bank account', '{"studentName": "Aarav Example A"}') returning certificate_id`, [school, aarav, principal])).rows[0].certificate_id;
+    await tx.query(`insert into certificate_copies (school_id, certificate_id, storage_key, size_bytes, made_by) values ($1, $2, $4, 1200, $3)`, [school, cert, principal, `${school}/certificates/${cert}/harness.pdf`]);
+    await tx.query(`update certificate_requests set stage = 'issued', certificate_id = $3 where school_id = $1 and cert_id = $2`, [school, ids.a, cert]);
+    await tx.query(`insert into certificate_request_events (school_id, request_id, kind, actor, actor_user_id) values ($1, $2, 'issued', 'office', $3)`, [school, ids.a, principal]);
+    await tx.query(`update certificate_requests set stage = 'ready' where school_id = $1 and cert_id = $2`, [school, ids.a]);
+    await tx.query(`insert into certificate_request_events (school_id, request_id, kind, actor, actor_user_id) values ($1, $2, 'ready', 'office', $3)`, [school, ids.a, principal]);
+    await tx.query(`update certificate_requests set held_owed_minor = 450000 where school_id = $1 and cert_id = $2`, [school, ids.b]);
+    await tx.query(`insert into certificate_request_events (school_id, request_id, kind, actor) values ($1, $2, 'held', 'system')`, [school, ids.b]);
   });
   // A coming exam with exam numbers, so the timetable has a paper and Aarav his number.
   const coming = '00000000-0000-4000-8000-0000000a9901';

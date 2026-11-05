@@ -56,4 +56,5 @@ export const TRY_INPUTS: Record<ProfileId, TrySample> = {
   'exams.read_pages': PHOTO_TEXT,
   'exams.mark': PHOTO_TEXT,
   'exams.write_questions': JSON_TEXT,
+  'students.register_ocr': PHOTO_TEXT,
 };

@@ -8,6 +8,7 @@ import { loadFeesSummary } from '@/lib/fees/overdue';
 import { collectedBetween } from '@/lib/fees/payments';
 import { promisesDue } from '@/lib/fees/recovery';
 import { coverageTable } from '@/lib/academics/coverage';
+import { CONVERSION_HREF, conversion } from '@/lib/admissions/conversion';
 import { countAssignmentsIn } from '@/lib/homework/homework';
 import { listAnswers } from '@/lib/parent-ai/answers';
 import { waitingReports } from '@/lib/payments/upi';
@@ -176,6 +177,18 @@ export const FACTS: readonly FactDefinition[] = [
     load: async (db, ctx) => {
       const s = await studentCounts(db, ctx);
       return s.records === 0 ? NOT_SET_UP : { value: s.pending, total: s.active + s.pending, href: screenFor.students('pending_consent'), attention: s.pending > 0 };
+    },
+  },
+  // Admitted over enquiries recorded this session, as a whole percent, out of the enquiries; the detail says how many
+  // were admitted (W21-M1). The conversion table on the Admissions screen is the same call.
+  {
+    id: 'admissions.conversion', moduleId: 'admissions', roles: OFFICE, unit: 'percent', period: 'now', drill: 'figure', version: 1, sources: ['admission_enquiries', 'admission_events', 'academic_sessions'],
+    load: async (db, ctx) => {
+      // The office's own numbers: nobody else of the school reads an enquiry (as row level security holds).
+      if (!OFFICE.includes(ctx.role)) return { ...NOT_SET_UP, href: CONVERSION_HREF };
+      const c = await conversion(db as never, ctx.schoolId, ctx.today);
+      if (c.rate === null) return { ...NOT_SET_UP, href: CONVERSION_HREF };
+      return { value: c.rate, total: c.total.enquiries, href: CONVERSION_HREF, parts: [{ key: 'admitted', value: c.total.admitted }] };
     },
   },
 

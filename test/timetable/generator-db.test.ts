@@ -332,6 +332,12 @@ describe('the proposal, the review and publishing', () => {
     const list = await as(coord, (c) => history(c, A));
     expect(list).toHaveLength(1);
     expect(list[0]).toMatchObject({ versionId: published!.versionId, publishedBy: PRINCIPAL, publishedByName: 'Priya Principal', classes: 2, added: published!.added, removed: published!.removed, changed: published!.changed });
+    // W21-M3: the same publish is in the timetable's change history, one row for each period that ended up different,
+    // each with the run (proposal) that made it.
+    const made = (await db.pg.query(`select kind, proposal_id, changed_by from timetable_changes where school_id = $1`, [A])).rows;
+    expect(made.length).toBeGreaterThan(0);
+    expect(made.every((r: { kind: string; changed_by: string }) => r.kind === 'generated' && r.changed_by === PRINCIPAL)).toBe(true);
+    expect(new Set(made.map((r: { proposal_id: string }) => r.proposal_id)).size).toBe(1);
     const detail = (await as(admin, (c) => versionDetail(c, A, published!.versionId)))!;
     sameSlots(detail.before, BEFORE);
     sameSlots(detail.after, await timetable());

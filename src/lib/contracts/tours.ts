@@ -152,6 +152,18 @@ export const TOURS = {
   // aj-5 begin
   'progress-report': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
   // aj-5 end
+  // w21-m4 begin
+  // A class's Holistic Progress Cards (W21-M4): the words, the preview, the publish.
+  hpc: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  // w21-m4 end
+  // w21-m2 begin
+  // Promotion to the next session (W21-M2): where each class goes, the exceptions, one press and 24 hours to undo.
+  promotion: { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  // w21-m2 end
+  // w21-m5 begin
+  // A page of the paper register read into the import (W21-M5): the photo, the marked fields, check then import.
+  'read-register': { steps: [{ slot: 'body' }, { slot: 'body' }, { slot: 'body' }] },
+  // w21-m5 end
 } as const satisfies Record<string, TourDefinition>;
 
 export type TourId = keyof typeof TOURS;

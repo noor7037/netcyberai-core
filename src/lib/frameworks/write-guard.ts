@@ -313,6 +313,7 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   // The certificates screen, the class's children with their fee clearance, the issue register and the certificates as
   // they print (C228). Switched off, none of them answers.
   ['documents/certificates', 'documents'],
+  ['documents/certificates/requests', 'documents'], // W21-M7
   // p7-10e end
   // p7-10f begin
   // The timetable generator's constraints and draft, and the timetable's change history (C229). Switched off with
@@ -329,6 +330,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['setup/checklist', 'setup'],
   ['setup/sessions', 'setup'],
   ['setup/subjects', 'setup'],
+  // The dry run of the promotion to the next session (W21-M2). Its writes are under 'setup/**'.
+  ['setup/promotion', 'setup'],
   // p7-10g end
   // c224 begin
   // c224 end

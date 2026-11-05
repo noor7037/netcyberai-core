@@ -76,6 +76,7 @@ APPEND_ONLY_TABLES.add("subscription_payments")  # P5 8e (C204): NetCyberAI's ow
 APPEND_ONLY_TABLES.add("early_warning_actions")  # P5 8j (C209): what a person did about a flag; a later outcome is a new row
 APPEND_ONLY_TABLES.add("rte_claim_receipts")  # C225: the state's payments on an RTE claim; a mistake is a reversing row
 APPEND_ONLY_TABLES.add("admission_events")  # C221: an enquiry's steps; only a definer function deletes them, with the enquiry (C224)
+APPEND_ONLY_TABLES.add("timetable_changes")  # W21-M3: every change of a period, kept
 APPEND_ONLY_TABLES.add("timetable_versions")  # C229: every publish of a timetable, kept
 APPEND_ONLY_TABLES.add("disclosure_entries")  # C227: every version of a disclosure item; a change is a new entry
 APPEND_ONLY_TABLES.add("family.consents")  # C247: a family's consent ledger; a withdrawal is a new row (erased only with the account)
@@ -83,6 +84,8 @@ APPEND_ONLY_TABLES.add("control.ai_route_revisions")  # C370: every activation o
 APPEND_ONLY_TABLES.add("control.ai_usage_ledger")  # C370: one row per AI attempt, written only through control.record_ai_attempt()
 APPEND_ONLY_TABLES.add("control.ai_reply_checks")  # C390: the safety checks per reply, written only through control.record_reply_checks()
 APPEND_ONLY_TABLES.add("control.ai_qc_results")  # W16-A5: the quality check each tutor answer took, written only through control.record_qc_result()
+APPEND_ONLY_TABLES.add("promotion_runs")  # W21-M2: every promotion and its undo; an undo is a new run
+APPEND_ONLY_TABLES.add("promotion_events")  # W21-M2: each student and class a promotion moved; an undo writes the reverse
 
 # "Non-privileged, app-facing": any role a real request -- ordinary or
 # this app's own super_admin bypass -- can run as, or any role

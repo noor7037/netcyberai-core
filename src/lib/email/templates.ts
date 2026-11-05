@@ -1,4 +1,4 @@
-import { t, type Lang } from '@/lib/i18n';
+import { t, type Lang, type MessageKey } from '@/lib/i18n';
 import { ptmDay, ptmTime } from '@/lib/time/ptm-words';
 import { PermanentJobError } from '@/lib/jobs/types';
 import { displayPhone, whatsappLink } from '@/lib/site-config';
@@ -6,8 +6,8 @@ import { displayPhone, whatsappLink } from '@/lib/site-config';
 // Emails the app sends itself (C97). Every value that came from a form is
 // HTML-escaped: a school name is data, never markup.
 
-export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice' | 'family_weekly_report' | 'ptm_family' | 'ptm_teacher_cancelled';
-export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice', 'family_weekly_report', 'ptm_family', 'ptm_teacher_cancelled'];
+export type EmailTemplate = 'application_code' | 'lead_received' | 'application_verified' | 'added_to_school' | 'ticket_raised' | 'upi_waiting' | 'fee_reminder' | 'focus_notice' | 'ai_spend_alert' | 'lead_first_reply' | 'lead_manual_reply' | 'school_notice' | 'family_weekly_report' | 'ptm_family' | 'ptm_teacher_cancelled' | 'certificate_ready';
+export const EMAIL_TEMPLATES: readonly EmailTemplate[] = ['application_code', 'lead_received', 'application_verified', 'added_to_school', 'ticket_raised', 'upi_waiting', 'fee_reminder', 'focus_notice', 'ai_spend_alert', 'lead_first_reply', 'lead_manual_reply', 'school_notice', 'family_weekly_report', 'ptm_family', 'ptm_teacher_cancelled', 'certificate_ready'];
 
 // The founder signs the first reply to every lead (W12-F).
 export const FOUNDER_NAME = 'Noor';
@@ -23,7 +23,7 @@ export function escapeHtml(value: string): string {
 
 type Rendered = { subject: string; html: string; text: string };
 
-const wrap = (inner: string) =>
+export const wrap = (inner: string) =>
   `<div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;padding:24px;color:#1e293b">` +
   `<p style="font-size:20px;font-weight:800;color:#0b1f4d;margin:0 0 16px">NetCyberAI</p>${inner}` +
   `<p style="font-size:12px;color:#64748b;margin-top:32px">NetCyberAI · Gurugram, Haryana, India</p></div>`;
@@ -109,6 +109,14 @@ export function renderEmail(template: string, data: Record<string, unknown>, sec
     }
     // A notice the principal approved, to a guardian whose address the school holds (W14-J): the notice's words as written,
     // signed by the school. The class is named when the notice was for one class.
+    // W21-M7: a certificate the school made ready: no name, only the kind and the number; the PDF is in the Family app.
+    case 'certificate_ready': {
+      const lang: Lang = data.lang === 'hi' ? 'hi' : 'en';
+      const kind = ['transfer', 'bonafide', 'character', 'study'].includes(str(data, 'kind')) ? str(data, 'kind') : 'bonafide';
+      const body = t(lang, 'fam.w21m7.cert.email.body', { kind: t(lang, `fam.w21m7.cert.kind.${kind}` as MessageKey), number: str(data, 'number') });
+      const subject = t(lang, 'fam.w21m7.cert.email.subject');
+      return { subject, html: wrap(`<p><strong>${escapeHtml(subject)}</strong></p><p>${escapeHtml(body)}</p>`), text: `${subject}\n\n${body}` };
+    }
     // W20-E: a parent-teacher meeting booked in the Family app: the confirmation, and the reminder the day before.
     case 'ptm_family': {
       const lang: Lang = data.lang === 'hi' ? 'hi' : 'en';

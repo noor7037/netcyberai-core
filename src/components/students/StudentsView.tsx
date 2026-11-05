@@ -599,6 +599,10 @@ export function StudentsView({ title, description, statusFilter, openNew = false
       >
         <form onSubmit={handleImport} className="flex flex-col gap-4">
           <p data-import-columns className="text-sm text-slate/70">{t('students.import.columns')}</p>
+          {/* W21-M5: a page of the paper register, read into the same import's checked rows. */}
+          <Link href="/app/students/read-register" data-register-link className="inline-flex min-h-[44px] items-center text-sm font-semibold text-sapphire underline">
+            {t('w21m5.link')}
+          </Link>
           <label htmlFor="csv-file" className="text-sm font-medium text-slate">
             CSV file
           </label>

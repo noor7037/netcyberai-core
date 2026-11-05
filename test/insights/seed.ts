@@ -138,6 +138,15 @@ export async function startSchool(): Promise<Db> {
       ('${u(501)}', '${A}', '${ASHA}', 'tokentokentokentokentokentoken0001', 100000, 'open', '${ACCOUNTANT}', '${at(-7)}', 'ABCDEFGH'), ('${u(502)}', '${A}', '${FARAH}', 'tokentokentokentokentokentoken0002', 100000, 'open', '${ACCOUNTANT}', '${at(-7)}', 'ABCDEFGJ');
     insert into payment_reports (school_id, link_id, utr, amount_minor, status, reported_at, decided_by, decided_at) values
       ('${A}', '${u(501)}', '123456789012', 100000, 'reported', '${at(0)}', null, null), ('${A}', '${u(502)}', '123456789013', 100000, 'not_found', '${at(3)}', '${ACCOUNTANT}', '${at(2)}');
+    -- Admissions (W21-M1): two enquiries this session, one admitted (Asha's, from a walk-in), one from the online form;
+    -- written as they were kept (the seed runs with the triggers paused).
+    insert into admission_enquiries (enquiry_id, school_id, child_name, guardian_name, phone, class_id, source, stage, owner_id, student_id, created_by, created_at) values
+      ('${u(730)}', '${A}', 'Asha', 'Anita Sharma', '+919000000001', '${C5A}', 'walk_in', 'admitted', '${PRINCIPAL}', '${ASHA}', '${PRINCIPAL}', '${at(20)}'),
+      ('${u(731)}', '${A}', 'Kiran', 'Kavita Example', '+919000000099', '${C6B}', 'online', 'enquiry', '${PRINCIPAL}', null, null, '${at(5)}');
+    insert into admission_events (school_id, enquiry_id, kind, stage_from, stage_to, student_id, by_user, at, n) values
+      ('${A}', '${u(730)}', 'recorded', null, 'enquiry', null, '${PRINCIPAL}', '${at(20)}', 1),
+      ('${A}', '${u(730)}', 'stage', 'enquiry', 'admitted', '${ASHA}', '${PRINCIPAL}', '${at(12)}', 2),
+      ('${A}', '${u(731)}', 'recorded', null, 'enquiry', null, null, '${at(5)}', 1);
     -- Syllabus (W20-D): 5-A Maths has four units, one taught (with a note); the school's current session is half gone.
     insert into teachers (teacher_id, school_id, user_id, name) values ('${u(700)}', '${A}', '${TARA}', 'Tara');
     insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ('${u(701)}', '${A}', 'This session', '${day(100)}', '${day(-100)}', true);

@@ -35,6 +35,8 @@ const EXAMPLES: Record<string, Record<TemplateLanguage, string>> = {
   times: { en: '10:00, 10:15, 11:00', hi: '10:00, 10:15, 11:00' },
   from: { en: '10:00', hi: '10:00' },
   to: { en: '13:00', hi: '13:00' },
+  period: { en: '3', hi: '3' },
+  subject: { en: 'Maths', hi: 'गणित' },
   title: { en: 'Annual Day', hi: 'वार्षिक उत्सव' },
   when: { en: '20-12-2026 at 5 pm', hi: '20-12-2026 शाम 5 बजे' },
 };

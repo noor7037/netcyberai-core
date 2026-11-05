@@ -102,7 +102,7 @@ OUTSIDE_MAY_IMPORT_FAMILY = {
     # The preparing job (C316) runs the prepare tool's step with no browser open; staff only, see the file.
     "src/lib/jobs/ai-jobs.ts": {"@/lib/family/prepare"},
     # The push job (M3-8b, C339) is registered with the others; it runs inside each account's own family session.
-    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz"},
+    "src/lib/jobs/handlers.ts": {"@/lib/family/push", "@/lib/family/parent-report", "@/lib/family/quiz", "@/lib/family/certificate-ready"},
     # W16-B4: the gateway meters and caps a child's text turns by the family's cap numbers; Control's Family settings write them.
     "src/lib/ai/platform.ts": {"@/lib/family/tutor-meter"},
     "src/lib/control/family-settings.ts": {"@/lib/family/tutor-meter"},

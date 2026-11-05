@@ -3,13 +3,14 @@ import type { PoolClient } from 'pg';
 import { withGuardianContext, withPlatformService, SchoolLinkGoneError, type FamilyClaims } from '@/lib/auth/db';
 import { writeAuditLog } from '@/lib/audit/log';
 import { loadFamilyHome } from '@/lib/parent-home/home';
-import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type SchoolSyllabus, type SchoolTaught, type SchoolTutors } from '@/lib/contracts/school-link';
+import { CONNECT_CODE_ALPHABET, CONNECT_CODE_DAYS, type LinkedSchool, type PulseAnswer, type SchoolDayMark, type SchoolEvent, type SchoolExamPaper, type SchoolHomework, type SchoolNotice, type SchoolPeriod, type SchoolPulse, type SchoolResult, type FamilyRecognition, type SchoolSyllabus, type SchoolTaught, type SchoolTutors } from '@/lib/contracts/school-link';
 import type { Mark, MarkKind, PaperComponent } from '@/lib/exams/papers';
 import { childResult, type ResultPaper, type Shown } from '@/lib/exams/results';
 import type { GradingScheme } from '@/lib/exams/scheme';
 import { indiaDate } from '@/lib/time/india';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
 import { examTypesOf } from '@/lib/exams/exam-types';
+import { hpcTitleOf } from '@/lib/exams/hpc-title';
 import { groupByType, progressExams, progressWeighted, sessionFor } from '@/lib/exams/progress-report';
 import { checkedPaperIds, childrenSeeResults, examSchedule, reportCardExamIds } from './marking';
 
@@ -24,7 +25,7 @@ import { checkedPaperIds, childrenSeeResults, examSchedule, reportCardExamIds } 
 
 type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
-export { readSchoolPaper, readSchoolPagePicture, readSchoolReportCard, PictureUnavailableError, ReportCardUnavailableError, type ReadAs } from './marking';
+export { readSchoolPaper, readSchoolPagePicture, readSchoolReportCard, readSchoolHpc, PictureUnavailableError, ReportCardUnavailableError, type ReadAs } from './marking';
 import type { ReadAs } from './marking';
 // W20-A: fees, read and paid as the guardian.
 export { claimFamilyPayment, readFamilyFees, readFeeReminderFeed, startFamilyPayment } from './fees';
@@ -377,6 +378,7 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
   ).rows as { exam_id: string; class_id: string; scheme: GradingScheme; published_on: string; name: string; term: string | null }[];
   const grade = (s: Shown) => (s.grade.kind === 'grade' ? s.grade.grade : null);
   const cards = pubs.length ? await reportCardExamIds(db, studentId) : new Set<string>();
+  const own = pubs.length ? await ownRecognitionOf(db, studentId) : new Map<string, FamilyRecognition>();
   const results: SchoolResult[] = [];
   for (const pub of pubs) {
     const papers = (
@@ -413,9 +415,31 @@ async function publishedResults(db: Sql, studentId: string): Promise<SchoolResul
       coScholastic: co,
       examId: pub.exam_id,
       reportCard: cards.has(pub.exam_id),
+      ...(own.has(pub.exam_id) ? { recognition: own.get(pub.exam_id) } : {}),
     });
   }
   return results;
+}
+
+// W21-M4: the child's own Personal Best and Most Improved of each publication in force, by exam, as the publication
+// kept them, through guardian_recognition() (the guardian's own consented child only; nothing while the school's plan
+// does not have the feature). Each child is compared only with their own earlier results.
+async function ownRecognitionOf(db: Sql, studentId: string): Promise<Map<string, FamilyRecognition>> {
+  const rows = (await db.query(`select exam_id, kind, subject, now_percent, then_percent from public.guardian_recognition() where student_id = $1 order by subject`, [studentId])).rows as {
+    exam_id: string;
+    kind: 'personal_best' | 'most_improved';
+    subject: string;
+    now_percent: string | number;
+    then_percent: string | number;
+  }[];
+  const out = new Map<string, FamilyRecognition>();
+  for (const r of rows) {
+    const got = out.get(r.exam_id) ?? { personalBest: [], mostImproved: null };
+    if (r.kind === 'personal_best') got.personalBest.push({ subject: r.subject, now: Number(r.now_percent) });
+    else got.mostImproved = { subject: r.subject, before: Number(r.then_percent), now: Number(r.now_percent) };
+    out.set(r.exam_id, got);
+  }
+  return out;
 }
 
 // The child's own view of their results (C351, child mode): the published results and the coming exam papers of one
@@ -440,13 +464,20 @@ export async function readSchoolProgress(claims: Claims, linkId: string, student
   const read = await withGuardianContext(claims, linkId, async (db, link) => {
     if (!(await consented(db, link.schoolId, studentId))) return null;
     const session = await sessionFor(db, link.schoolId, null);
-    return { schoolId: link.schoolId, session, data: await progressExams(db, { schoolId: link.schoolId, studentId, sessionId: session.sessionId, source: 'guardian' }) };
+    // W21-M4: the child's Holistic Progress Card of this session, when the school published it.
+    const hpc = session.sessionId
+      ? ((await db.query(`select version, (published_at at time zone 'Asia/Kolkata')::date::text as published_on from public.guardian_hpc_cards() where student_id = $1 and session_id = $2`, [studentId, session.sessionId])).rows[0] as
+          | { version: number; published_on: string }
+          | undefined)
+      : undefined;
+    return { schoolId: link.schoolId, session, hpc, data: await progressExams(db, { schoolId: link.schoolId, studentId, sessionId: session.sessionId, source: 'guardian' }) };
   });
   if (!read) return null;
   if (as.childView && !(await childrenSeeResults(read.schoolId))) return null;
   const types = await withPlatformService((db) => examTypesOf(db, read.schoolId));
   const weighted = progressWeighted(read.data.material, types);
-  return { session: read.session.label, groups: groupByType(read.data.exams, types), ...(weighted ? { weighted } : {}) };
+  const hpc = read.hpc ? { title: await withPlatformService((db) => hpcTitleOf(db, read.schoolId)), publishedOn: read.hpc.published_on, version: Number(read.hpc.version) } : null;
+  return { session: read.session.label, groups: groupByType(read.data.exams, types), ...(weighted ? { weighted } : {}), ...(hpc ? { hpc } : {}) };
 }
 
 // The school's consent for this student's core records, as loadFamilyHome applies it: the latest decision granted, or a
@@ -591,3 +622,7 @@ export async function readSchoolTutors(claims: Claims, linkId: string): Promise<
 // Parent-teacher meetings from the Family app (H5), as the guardian: src/lib/school-link/ptm.ts.
 export { bookFamilySlot, cancelFamilyBooking, familyPtmFeed, familyPtmFor, type FamilyBookResult, type FamilyCancelResult, type GuardianPtm, type GuardianPtmBooked } from './ptm';
 // W20-E end
+// W21-M7 start
+// Certificate requests from the Family app, as the guardian: src/lib/school-link/certificates.ts.
+export { familyCertificateLink, familyCertificatesFeed, familyCertificatesFor, openFamilyCertificate, requestFamilyCertificate, type FamilyCertificateResult, type GuardianRequest, type OpenedFile } from './certificates';
+// W21-M7 end

@@ -77,7 +77,7 @@ function hmac(purpose: string, value: string): string {
 }
 
 // Rate-limit keys: an IP address or email is never stored, only this.
-export function rateKey(kind: 'ip' | 'email', value: string): string {
+export function rateKey(kind: 'ip' | 'email' | 'school', value: string): string {
   return hmac(`rate-${kind}`, value.toLowerCase());
 }
 
@@ -107,6 +107,9 @@ export const RATE_LIMITS = {
   apply_ip: { limit: 5, windowSeconds: 60 * 60 },
   apply_email: { limit: 3, windowSeconds: 60 * 60 },
   verify_ip: { limit: 20, windowSeconds: 60 * 60 },
+  // A school's online enquiry form (W21-M1, src/lib/admissions/online.ts): per address and school, and per school.
+  enquiry_ip: { limit: 3, windowSeconds: 60 * 60 },
+  enquiry_school: { limit: 60, windowSeconds: 24 * 60 * 60 },
 } as const;
 export type RateBucket = keyof typeof RATE_LIMITS;
 

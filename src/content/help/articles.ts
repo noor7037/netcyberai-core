@@ -1604,6 +1604,30 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
     keywords: ['tutor', 'tutors', 'ai tutor', 'family app', 'school tutor', 'ट्यूटर', 'शिक्षक'],
   },
   // w16-a3 end
+  // w21-m5 begin
+  {
+    slug: 'read-a-register-page',
+    category: 'students',
+    audience: 'office',
+    title: { en: 'Read a page of your paper register', hi: 'अपने काग़ज़ी रजिस्टर का एक पन्ना पढ़ें' },
+    summary: { en: 'Photograph a page of the admission register; the app reads the rows into the student import for you to check.', hi: 'दाखिला रजिस्टर के एक पन्ने की फ़ोटो लें; ऐप उसकी पंक्तियाँ विद्यार्थी import में पढ़ लेता है, जिन्हें आप जाँचते हैं।' },
+    steps: [
+      { en: 'Create the classes first (“Students” → “Manage classes”), as for a CSV import: a row’s class must match an existing class.', hi: 'पहले कक्षाएँ बनाएँ (“Students” → “Manage classes”), जैसे CSV import के लिए: हर पंक्ति की कक्षा किसी मौजूदा कक्षा से मिलनी चाहिए।' },
+      { en: 'In “Students”, under “Import CSV”, press “Or read a page of your paper register”.', hi: '“Students” में, “Import CSV” के नीचे, “Or read a page of your paper register” दबाएँ।' },
+      { en: 'Choose a photo or a PDF scan of the page (up to three pages). Hold the phone straight over the page, in good light. Press “Read the page”.', hi: 'पन्ने की फ़ोटो या PDF स्कैन चुनें (ज़्यादा से ज़्यादा तीन पन्ने)। फ़ोन को पन्ने के ठीक ऊपर, अच्छी रोशनी में रखें। “Read the page” दबाएँ।' },
+      { en: 'Read every row beside the photo. A field marked “Check this against the photo” was read with less certainty: correct it. A field reading “Not read” was empty or unreadable: fill it in or leave it.', hi: 'फ़ोटो के बगल में हर पंक्ति पढ़ें। “Check this against the photo” से चिह्नित फ़ील्ड कम भरोसे से पढ़ा गया है: उसे ठीक करें। “Not read” वाला फ़ील्ड खाली या अपठनीय था: उसे भरें या छोड़ दें।' },
+      { en: 'A row that is not a student (a heading, a total, a crossed-out line)? Press “Remove this row”.', hi: 'कोई पंक्ति विद्यार्थी नहीं है (शीर्षक, योग, कटी हुई पंक्ति)? “Remove this row” दबाएँ।' },
+      { en: 'Press “Check the rows” first. It lists every row with a problem and imports nothing. Fix them, then press “Import the rows”.', hi: 'पहले “Check the rows” दबाएँ। यह गड़बड़ी वाली हर पंक्ति दिखाता है और कुछ भी import नहीं करता। उन्हें ठीक करें, फिर “Import the rows” दबाएँ।' },
+    ],
+    tips: [
+      { en: 'Nothing is saved until you import. The import saves every row or none, exactly as a CSV import does, and every imported student starts as “pending consent”.', hi: 'जब तक आप import नहीं करते, कुछ सेव नहीं होता। import हर पंक्ति सेव करता है या कोई नहीं, ठीक CSV import की तरह, और हर import किया गया विद्यार्थी “pending consent” से शुरू होता है।' },
+      { en: 'The page is read by the AI reading chain your school uses for exam papers. If reading is not set up for your school, you can still import a CSV file.', hi: 'पन्ना उसी AI पढ़ने की श्रृंखला से पढ़ा जाता है जो आपका स्कूल परीक्षा की कॉपियों के लिए उपयोग करता है। अगर आपके स्कूल के लिए पढ़ना सेट नहीं है, तो आप अब भी CSV फ़ाइल import कर सकते हैं।' },
+    ],
+    start: { href: '/app/students/read-register', label: { en: 'Read a register page', hi: 'Read a register page' } },
+    related: ['import-students-csv', 'add-a-student', 'student-data-check'],
+    keywords: ['register', 'paper register', 'admission register', 'photo', 'scan', 'ocr', 'read register', 'रजिस्टर', 'दाखिला रजिस्टर', 'फ़ोटो', 'स्कैन'],
+  },
+  // w21-m5 end
 ];
 
 export function helpArticle(slug: string): HelpArticle | null {

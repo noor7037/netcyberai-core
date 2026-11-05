@@ -146,7 +146,7 @@ describe('the rule for reads (C140)', () => {
       const get = handlers(readFileSync(file, 'utf8')).find((h) => h.method === 'GET');
       if (!get || own.has(rel)) continue;
       checked += 1;
-      expect(/\b(requireAppSession|appRoute|schoolTickets)\(\s*req\b/.test(get.body), rel).toBe(true);
+      expect(/\b(requireAppSession|appRoute|appRouteAfter|schoolTickets)\(\s*req\b/.test(get.body), rel).toBe(true);
     }
     expect(checked).toBeGreaterThanOrEqual(30);
     expect(readFileSync(path.join(__dirname, '../../src/lib/auth/require-app-session.ts'), 'utf8')).toMatch(/guardRead\(/);

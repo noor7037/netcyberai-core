@@ -74,7 +74,7 @@ describe('capabilities: declared by each adapter', () => {
     // No speech adapter at all is a different refusal (the provider is not a choice), so nothing is "missing" here.
     expect(speechAdapterFor('vertex_ai')).toBeNull();
     expect(missingCapabilities('family.voice_input', 'vertex_ai')).toEqual([]);
-    expect(PROFILES.filter((p) => p.needs?.includes('vision')).map((p) => p.id).sort()).toEqual(['exams.mark', 'exams.read_pages', 'family.homework', 'family.syllabus_extract']);
+    expect(PROFILES.filter((p) => p.needs?.includes('vision')).map((p) => p.id).sort()).toEqual(['exams.mark', 'exams.read_pages', 'family.homework', 'family.syllabus_extract', 'students.register_ocr']);
   });
 });
 

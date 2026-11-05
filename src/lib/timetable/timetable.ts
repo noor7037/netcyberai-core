@@ -7,6 +7,7 @@ import { INDIA_TODAY_SQL } from '@/lib/time/india';
 import { activeAssignments, assignedTeachers } from '@/lib/academics/teacher-subjects';
 import { assignedMap, lookupKey, notAssigned, notAssignedIn, parseTimetableCsv, periodsFromSetting, planImport, type ImportProblem, type Slot } from './plan';
 import { classOrderSql } from '@/lib/classes/class-order';
+import { recordChanges } from './changes';
 
 // The timetable in the database (docs/20 5c, C145). Every function runs in
 // the caller's own tenant transaction; RLS decides who reads what (a
@@ -87,7 +88,7 @@ export type PutResult =
 // the class's subject to teachers (teacher_subjects, C231), a teacher who is
 // not one of them is refused too ('not_assigned'); with no assignment for that
 // class and subject, any active teacher may take it, as before.
-export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promise<PutResult> {
+export async function putEntry(db: PoolClient, actor: Actor, slot: Slot, reason: string | null = null): Promise<PutResult> {
   if (slot.period > (await periodsPerDay(db, actor.schoolId))) return { ok: false, reason: 'bad_period' };
   const known = (await db.query(
     `select exists (select 1 from classes where school_id = $1 and class_id = $2) as class,
@@ -125,15 +126,17 @@ export async function putEntry(db: PoolClient, actor: Actor, slot: Slot): Promis
     if (isNotAssignedRefusal(err)) return { ok: false, reason: 'not_assigned' };
     throw err;
   }
+  await recordChanges(db, actor, [{ classId: slot.classId, weekday: slot.weekday, period: slot.period, kind: 'set', before: before ? { subjectId: before.subject_id, teacherUserId: before.teacher_user_id } : null, after: { subjectId: slot.subjectId, teacherUserId: slot.teacherUserId } }], { reason });
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.set', targetType: 'timetable_entries', targetId: entryId, beforeState: before, afterState: { classId: slot.classId, weekday: slot.weekday, period: slot.period, subjectId: slot.subjectId, teacherUserId: slot.teacherUserId } });
   const entry = (await db.query(`${ENTRY_SELECT} where e.school_id = $1 and e.entry_id = $2`, [actor.schoolId, entryId])).rows[0] as Entry;
   return { ok: true, entry };
 }
 
-export async function clearEntry(db: PoolClient, actor: Actor, at: { classId: string; weekday: number; period: number }): Promise<boolean> {
+export async function clearEntry(db: PoolClient, actor: Actor, at: { classId: string; weekday: number; period: number }, reason: string | null = null): Promise<boolean> {
   await sharePlanLock(db, actor.schoolId);
   const gone = await db.query(`delete from timetable_entries where school_id = $1 and class_id = $2 and weekday = $3 and period = $4 returning entry_id, subject_id, teacher_user_id`, [actor.schoolId, at.classId, at.weekday, at.period]);
   if (!gone.rows[0]) return false;
+  await recordChanges(db, actor, [{ classId: at.classId, weekday: at.weekday, period: at.period, kind: 'cleared', before: { subjectId: gone.rows[0].subject_id, teacherUserId: gone.rows[0].teacher_user_id }, after: null }], { reason });
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.clear', targetType: 'timetable_entries', targetId: gone.rows[0].entry_id, beforeState: { ...at, subjectId: gone.rows[0].subject_id, teacherUserId: gone.rows[0].teacher_user_id }, afterState: null });
   return true;
 }
@@ -190,6 +193,11 @@ export async function importTimetable(db: PoolClient, actor: Actor, csv: string)
     if (!refused.length) throw err;
     return { ok: false, problems: refused };
   }
+  const was = new Map(existing.map((e) => [`${e.classId}:${e.weekday}:${e.period}`, e]));
+  await recordChanges(db, actor, plan.slots.map((x) => {
+    const b = was.get(`${x.classId}:${x.weekday}:${x.period}`);
+    return { classId: x.classId, weekday: x.weekday, period: x.period, kind: 'imported' as const, before: b ? { subjectId: b.subjectId, teacherUserId: b.teacherUserId } : null, after: { subjectId: x.subjectId, teacherUserId: x.teacherUserId } };
+  }));
   await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.import', targetType: 'timetable_entries', beforeState: null, afterState: { periods: plan.slots.length } });
   return { ok: true, imported: plan.slots.length };
 }

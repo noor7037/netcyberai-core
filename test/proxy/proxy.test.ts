@@ -13,6 +13,10 @@ import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { workingModules } from '@/lib/frameworks/plans';
 import { readModuleFor, writeModuleFor } from '@/lib/frameworks/write-guard';
 import { t, tCount } from '@/lib/i18n';
+import { createPgJobQueue } from '@/lib/jobs/pg-queue';
+import { deliverQueued } from '@/lib/whatsapp/gate';
+import { StandInWhatsAppProvider } from '@/lib/whatsapp/provider';
+import { TEMPLATE_REGISTRY } from '@/lib/whatsapp/templates';
 import { assignCover, coversBetween, coversFor, coversReleasedBetween, coverWork, dayOff, isoWeek, isoWeekday, needsCover, periodsToCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, PROXY_ROLES, proxyDay, suggest, suggestFor, undoCover, type DayFacts, type ProxyDay } from '@/lib/proxy/proxy';
 import { addDays, askLeave, decideLeave, onLeave, recordLeave, withdrawLeave } from '@/lib/staff/leave';
 import { indiaDate } from '@/lib/time/india';
@@ -1138,7 +1142,14 @@ describe('on the real schema', () => {
       const unattended = code.filter((f) => /lib\/jobs\/|\/api\/jobs\/|\/api\/cron\/|\/api\/webhooks\/|lib\/whatsapp\//.test(f));
       expect(unattended.length).toBeGreaterThan(5);
       for (const f of unattended) expect(read(f), path.relative(src, f)).not.toMatch(/substitutions|lib\/proxy|assignCover/);
-      for (const f of files(path.join(src, 'lib/proxy')).concat(files(path.join(src, 'app/api/app/proxy')))) expect(read(f), path.relative(src, f)).not.toMatch(/jobQueue|enqueue|communication_log|whatsapp|sendTemplate/i);
+      // W21-M3: the one message the proxy code makes is the substitute's, through the send-gate, from assignCover alone
+      // (a person's tap): the files may name the gate and the job queue it is handed, and no other message or job code.
+      for (const f of files(path.join(src, 'lib/proxy')).concat(files(path.join(src, 'app/api/app/proxy')))) {
+        const named = ['lib/proxy/proxy.ts', 'lib/proxy/rules.ts', 'app/api/app/proxy/route.ts'].includes(path.relative(src, f));
+        if (!named) expect(read(f), path.relative(src, f)).not.toMatch(/jobQueue|enqueue|communication_log|whatsapp|sendTemplate/i);
+        else expect(read(f), path.relative(src, f)).not.toMatch(/communication_log|sendTemplate|insert into jobs|\.enqueue\(/i);
+      }
+      expect(rel(code.filter((f) => /queueWhatsAppMessage/.test(read(f)) && /substitutions/.test(read(f)) && !/lib\/whatsapp\//.test(f)))).toEqual(['lib/proxy/proxy.ts']);
       // And the migration adds no job type.
       expect(readFileSync(MIGRATION, 'utf8')).not.toMatch(/jobs_enqueue|insert into jobs/);
     });
@@ -1481,6 +1492,45 @@ describe('on the real schema', () => {
       expect(some).toContain('stay with the class’s own teacher and the office');
       expect(some).not.toMatch(/<button(?![^>]*data-info-tip)|undefined|\{\w+\}|px\./);
       expect(draw('hi', [cover(D, 2)])).toMatch(/[ऀ-ॿ]/);
+    });
+  });
+
+  // W21-M3: the substitute is also told on WhatsApp, through the send-gate; held while the school's WhatsApp is off.
+  describe('the substitute told on WhatsApp (W21-M3)', () => {
+    const queue = createPgJobQueue(platform);
+    const log = async (cover: string) => (await db.pg.query(`select status::text as status, staff_user_id, student_id, template_name, to_phone from communication_log where dedupe_key = $1`, ['cover:' + cover])).rows[0];
+    const stateOf = async (who: Who = principal) => {
+      const day = (await as(who, (c) => proxyDay(c, actor(who), D))) as ProxyDay;
+      return day.periods.flatMap((p) => (p.cover ? [p.cover.whatsapp] : []))[0];
+    };
+    const cover = async () => {
+      await scene();
+      const r = await as(principal, (c) => assignCover(c, actor(principal), { date: D, period: 1, classId: C5A, substituteUserId: FALAK }, D, queue));
+      if (!r.ok) throw new Error(r.reason);
+      return r.substitutionId;
+    };
+    it('is held while WhatsApp is off, and the page says held; the app still shows the cover', async () => {
+      await db.pg.exec(`update users set phone = '+919000000025' where user_id = '${FALAK}'`);
+      const id = await cover();
+      expect(await log(id)).toMatchObject({ status: 'blocked_pilot', staff_user_id: FALAK, student_id: null, template_name: 'cover_assigned' });
+      expect(await stateOf()).toBe('held');
+      expect(await stateOf(coordinator)).toBe('held');
+      expect(await as(falak, (c) => coversFor(c, A, FALAK, D))).toHaveLength(1);
+    });
+    it('is queued when WhatsApp is on, then told once delivered; a number-less substitute is not messaged', async () => {
+      await db.pg.exec(`update schools set is_pilot = false, pilot_allow_outbound = true, monthly_budget_paise = 100000, quiet_hours_start = '00:00', quiet_hours_end = '00:00' where school_id = '${A}'`);
+      const def = TEMPLATE_REGISTRY.find((x) => x.name === 'cover_assigned')!;
+      await db.pg.query(`insert into whatsapp_templates (school_id, template_name, version, language, body, variables, billing_category, stale_after_minutes, status) values (null, $1, 1, 'en', $2, $3, 'utility', $4, 'approved')`, [def.name, def.body.en, [...def.variables], def.staleAfterMinutes]);
+      const id = await cover();
+      expect(await log(id)).toMatchObject({ status: 'queued', staff_user_id: FALAK });
+      expect(await stateOf()).toBe('queued');
+      const logId = (await db.pg.query(`select log_id from communication_log where dedupe_key = $1`, ['cover:' + id])).rows[0].log_id;
+      expect(await deliverQueued({ platform, queue, now: () => new Date(Date.now() + 60_000), provider: new StandInWhatsAppProvider() }, logId)).toEqual({ status: 'sent' });
+      expect(await stateOf()).toBe('told');
+      await db.pg.exec(`update users set phone = null where user_id = '${FALAK}'`);
+      const id2 = await cover();
+      expect(await log(id2)).toBeUndefined();
+      expect(await stateOf()).toBe('none');
     });
   });
 });

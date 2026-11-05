@@ -1,16 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ADMISSIONS_OFFICE, loadPipeline, recordEnquiry } from '@/lib/admissions/admissions';
+import { conversion } from '@/lib/admissions/conversion';
+import { formUrlFor } from '@/lib/admissions/online';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 
 // The admissions pipeline (docs/28 slice 10a, C221). The office only.
 //   GET   the school's enquiries, "follow up today", "gone quiet" (the school's number of days), the classes and the
-//         office staff an enquiry can be given to
+//         office staff an enquiry can be given to; the conversion numbers of this session and the school's online
+//         enquiry form link (W21-M1)
 //   POST  { childName, guardianName, phone, classId, source, ownerId, followUp | null, nextStep | null, note | null }
 //         record an enquiry
 export async function GET(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     if (!ADMISSIONS_OFFICE.includes(claims.role)) return ruleError(403, 'not_allowed');
-    return NextResponse.json({ ...(await loadPipeline(db, claims.schoolId)), me: claims.sub }, { headers: { 'Cache-Control': 'no-store' } });
+    const pipeline = await loadPipeline(db, claims.schoolId);
+    return NextResponse.json({ ...pipeline, conversion: await conversion(db, claims.schoolId, pipeline.today), formUrl: formUrlFor(claims.schoolId), me: claims.sub }, { headers: { 'Cache-Control': 'no-store' } });
   });
 }
 

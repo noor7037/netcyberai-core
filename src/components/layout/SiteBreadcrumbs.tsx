@@ -15,7 +15,7 @@ const isUnder = (pathname: string, root: string) => pathname === root || pathnam
 export function SiteBreadcrumbs() {
   const pathname = usePathname() ?? '';
   const family = isUnder(pathname, '/family');
-  const app = family || isUnder(pathname, '/app') || isUnder(pathname, '/control') || isUnder(pathname, '/parent') || isUnder(pathname, '/results') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/free-tools/');
+  const app = family || isUnder(pathname, '/app') || isUnder(pathname, '/control') || isUnder(pathname, '/parent') || isUnder(pathname, '/results') || isUnder(pathname, '/enquire') || pathname.startsWith('/design-system/shell') || pathname.startsWith('/free-tools/');
   return (
     <>
       {!family && <NavDepthTracker />}

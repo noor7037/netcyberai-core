@@ -356,3 +356,29 @@ screen, D homework completion and syllabus coverage, E PTM booking in the Family
 migrations applied to the test database (B, E, A). Two security reviews (A and E): no findings. Unverified: everything on
 a real phone or a real school; the harness could not run in some worktrees, so B and D have no pictures; the Hindi words
 by a native speaker.
+
+## Programme W21: the medium tier of docs/42 (5 Nov 2026, the founder's "build medium tier now")
+
+**Written by:** the supervisor, for Noor. **Delivers:** the medium tier of `docs/42`, built before the high tier's live test
+on your word. **Rule:** no WhatsApp send is promised before Meta's payment method exists: every message goes through the
+existing send-gate and the Family app and email; children's data reaches an AI provider only through the gateway and
+only on the school side where it already does (AI marking); no spec-only module is touched.
+
+| Slice | What | Model | Decision |
+|---|---|---|---|
+| M1 | Admissions: the online enquiry form on the school's public page, the pipeline as a Kanban (enquiry → visit → offer → admitted / lost), conversion numbers | opus | C479 |
+| M2 | Setup: one-click promotion to the next session (classes rolled, students promoted, leavers marked, a dry run first) | opus | C480 |
+| M3 | Ops: retry on a failed send (email and WhatsApp queue), the substitute told on WhatsApp through the send-gate, a history of timetable changes | sonnet | C481 |
+| M4 | Exams: Personal Best and Most Improved on the report card and the class insights; the HPC card (CBSE Holistic Progress Card) | opus | C482 |
+| M5 | Students: OCR autofill of a scanned admission register into the CSV import's checked rows (the vision chain the AI marking already uses) | opus | C483 |
+| M6 | Control: the W13 read-only pages made to act (audit logs filters and export, analytics, compliance, integrations, system settings, templates, WhatsApp) | opus | C484 |
+| M7 | Documents: request → fee clearance → delivery for TC, bonafide, character and study certificates | sonnet | C485 |
+| M8 | Integration by the lead: merges, reviews where money or children's data move (M5), the Decision Log, one CI run, the PR | supervisor | C486 |
+
+### W21 status (5 Nov 2026, end of the build)
+
+Built and merged on the branch: M1 admissions, M2 promotion, M3 ops (retry, proxy on WhatsApp, timetable history), M4
+Personal Best and the HPC card, M5 the register reader, M6 the Control pages, M7 the certificate flow (Decision Log
+C479–C486). Seven migrations applied to the test database. Three security reviews (M1, M5, M7): no findings. Unverified:
+everything live; M3 has no pictures; the Meta error codes of the retry classifier; the vision model never called on a real
+register; the Control "Test" buttons and a released WhatsApp send against live providers.

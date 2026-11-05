@@ -58,6 +58,8 @@ import { GET as followupsRoute } from '@/app/api/app/followups/route';
 import { GET as proxyRoute } from '@/app/api/app/proxy/route';
 import { GET as studentsRoute } from '@/app/api/app/students/route';
 import { AdmissionsWaiting } from '@/components/admissions/AdmissionsWaiting';
+import { AdmissionsView } from '@/components/admissions/AdmissionsView';
+import { GET as admissionsRoute } from '@/app/api/app/admissions/route';
 import { AttendanceDays, AttendanceShown } from '@/components/attendance/AttendanceShown';
 import { CoverageTable } from '@/components/academics/CoverageTable';
 import { BudgetView } from '@/components/communication/BudgetView';
@@ -151,6 +153,11 @@ async function pageFor(w: Who, href: string): Promise<{ url: URL; page: any; lis
 
 async function open(w: Who, href: string): Promise<Opened> {
   const { url, page, lists } = await pageFor(w, href);
+  if (url.pathname === '/app/admissions' && page.type === AdmissionsView && page.props.show === 'conversion') {
+    // The conversion table (W21-M1) reads the Admissions route: the number is its rate over its enquiries.
+    const body = await get(admissionsRoute, '/api/app/admissions');
+    return { listed: 0, said: null, rows: [], text: '', figure: { value: body.conversion.rate, total: body.conversion.total.enquiries } };
+  }
   expect(lists.length, `${href}: at most one list of rows`).toBeLessThanOrEqual(1);
   if (lists[0]) {
     // The list the page put on the screen for this address, drawn as the page would draw it.
@@ -271,6 +278,7 @@ async function sameAsItsScreen(w: Who, range: RangeId): Promise<{ compared: Fact
 
 describe('school facts on the whole schema', () => {
   beforeAll(async () => {
+    process.env.APP_SESSION_SECRET ??= 'test-only-secret-for-w21-m1-insights-0123456789';
     db = await startSchool();
     vi.spyOn(console, 'error').mockImplementation(() => undefined);
   }, 180_000);
@@ -768,8 +776,9 @@ describe('school facts on the whole schema', () => {
       // run: as the platform they are left out and named, never answered with another school's rows.
       // Leave and covers the same: the platform role holds no right on staff_leave or substitutions and may not
       // ask staff_on_leave() or teachers_away_on() (leave is read by the person and the office, C201 and C202).
-      expect(asThePlatform.failed, range).toEqual(['fees.promises_due', 'fees.upi_to_verify', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today']);
-      expect(asThePlatform.facts, range).toHaveLength(FACT_IDS.length - 5);
+      // Admissions the same: the platform role holds no right on the enquiries (C221, W21-M1).
+      expect(asThePlatform.failed, range).toEqual(['admissions.conversion', 'fees.promises_due', 'fees.upi_to_verify', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today']);
+      expect(asThePlatform.facts, range).toHaveLength(FACT_IDS.length - 6);
       for (const f of asThePlatform.facts) expect([f.state, f.value, f.total, f.count, f.parts], `${f.id} (${range})`).toEqual([mine[f.id].state, mine[f.id].value, mine[f.id].total, mine[f.id].count, mine[f.id].parts]);
       const p = byId(asThePlatform.facts);
       expect([p['fees.overdue'].value, p['fees.overdue'].count, p['tickets.open'].value]).toEqual([250000, 2, 2]);
