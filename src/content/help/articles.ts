@@ -462,10 +462,10 @@ export const HELP_ARTICLES: readonly HelpArticle[] = [
       hi: 'Copilot आपके पाठ्यक्रम के नक्शे के विषय-बिंदु से पाठ-योजना, वर्कशीट या दिन के संदेश का पहला मसौदा लिखता है। आप उसे पढ़ते, बदलते और मंज़ूर करते हैं।',
     },
     steps: [
-      { en: 'Open “Teacher Copilot”. Under “What to draft”, choose “Lesson plan”, “Worksheet” or “Message to parents”.', hi: '“Teacher Copilot” खोलें। “What to draft” के नीचे “Lesson plan”, “Worksheet” या “Message to parents” चुनें।' },
-      { en: 'Choose the “Class and subject” and the “Topic”, then press “Write a draft”.', hi: '“Class and subject” और “Topic” चुनें, फिर “Write a draft” दबाएँ।' },
-      { en: 'Read the draft and change what is needed. A draft can be wrong.', hi: 'मसौदा पढ़ें और जो ज़रूरी हो बदलें। मसौदा ग़लत हो सकता है।' },
-      { en: 'Press “Approve and save” to keep it under your name, or “Discard”.', hi: 'अपने नाम से रखने के लिए “Approve and save” दबाएँ, या “Discard”।' },
+      { en: 'Open “Teacher Copilot”. Under “Taught today”, tap the lesson you taught; or open “Pick another topic” and choose the “Class and subject” and the “Topic”.', hi: '“Teacher Copilot” खोलें। “Taught today” के नीचे वह पाठ दबाएँ जो आपने पढ़ाया; या “Pick another topic” खोलकर “Class and subject” और “Topic” चुनें।' },
+      { en: 'Under “What to draft”, choose “Lesson plan”, “Worksheet” or “Message to parents”, then press “Write a draft”.', hi: '“What to draft” के नीचे “Lesson plan”, “Worksheet” या “Message to parents” चुनें, फिर “Write a draft” दबाएँ।' },
+      { en: 'Read the draft and change what is needed. A draft can be wrong. Then press “Approve these words”, or “Discard”.', hi: 'मसौदा पढ़ें और जो ज़रूरी हो बदलें। मसौदा ग़लत हो सकता है। फिर “Approve these words” दबाएँ, या “Discard”।' },
+      { en: 'Use it: “Keep as my lesson plan”; for a worksheet, “Set as homework” (check what to do, the due date and the sections, then “Set the homework”); for the message, “Send as today’s Pulse”, which opens today’s message with the words in, ready for you to save. Nothing is sent from Copilot.', hi: 'इसका उपयोग करें: “Keep as my lesson plan”; वर्कशीट के लिए “Set as homework” (क्या करना है, अंतिम तारीख और सेक्शन देखें, फिर “Set the homework”); संदेश के लिए “Send as today’s Pulse”, जो आज का संदेश इन शब्दों के साथ खोलता है, ताकि आप उसे सेव करें। Copilot से कुछ भी भेजा नहीं जाता।' },
     ],
     tips: [
       { en: 'Only the class level, the subject and the topic are sent to write a draft. Nothing about any student, parent or teacher is sent.', hi: 'मसौदा लिखने के लिए सिर्फ़ कक्षा का स्तर, विषय और विषय-बिंदु भेजे जाते हैं। किसी विद्यार्थी, अभिभावक या शिक्षक के बारे में कुछ नहीं भेजा जाता।' },

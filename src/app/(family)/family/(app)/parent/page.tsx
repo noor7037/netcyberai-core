@@ -13,6 +13,7 @@ import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanS
 import { NotifySection } from '@/components/family/NotifySection';
 import { vapidPublicKey } from '@/lib/family/web-push';
 import { SchoolSection } from '@/components/family/SchoolSection';
+import { SCHOOL_FEES_KEYS } from '@/lib/family/school-fees-words';
 import { activeLinks, linkedSchool, notifyOff, schoolOverview } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { TutorToday, type TutorTodayRow } from '@/components/family/TutorToday';
@@ -23,6 +24,7 @@ import { listChildPhones } from '@/lib/family/child-phone';
 import { homePlan, plusOpen } from '@/lib/family/home-plan';
 import { subjectAccess } from '@/lib/family/modules';
 import { CHILD_FORM_KEYS } from '@/lib/family/child-words';
+import { SCHOOL_PTM_KEYS } from '@/lib/family/school-ptm-keys';
 import { listSyllabi } from '@/lib/family/child-syllabus';
 import { isPrePrimary, listFamilyBoards, syllabusBoardOf } from '@/lib/family/children';
 import { SUBJECT_IDS } from '@/lib/family/subjects';
@@ -67,6 +69,7 @@ const AREA_KEYS: MessageKey[] = [
   'fam.parent.tabs', 'fam.parent.tab.overview', 'fam.parent.tab.children', 'fam.parent.tab.school', 'fam.parent.tab.learning', 'fam.parent.tab.privacy', 'fam.parent.tab.account',
   'fam.parent.needs.title', 'fam.parent.needs.none', 'fam.parent.needs.open', 'fam.parent.needs.requestsDeclined', 'fam.parent.needs.requestsOpen', 'fam.parent.needs.renew', 'fam.parent.needs.consent', 'fam.parent.needs.meeting',
   'fam.parent.learningEmpty', 'fam.parent.goChildren',
+  ...SCHOOL_PTM_KEYS,
   'fam.school.title', 'fam.school.lead', 'fam.school.code', 'fam.school.another', 'fam.school.codeHelp', 'fam.school.connect', 'fam.school.badCode', 'fam.school.tooMany', 'fam.school.connected', 'fam.school.noChildren', 'fam.school.today', 'fam.school.homework', 'fam.school.homeworkNone', 'fam.school.homeworkDue', 'fam.school.homeworkDone', 'fam.school.notices', 'fam.school.noticesNone', 'fam.school.noticeSent', 'fam.school.events', 'fam.school.eventsNone', 'fam.school.eventCancelled', 'fam.school.timetable', 'fam.school.timetableNone', 'fam.school.results', 'fam.school.resultsNone', 'fam.school.resultPublished', 'fam.school.resultOverall', 'fam.school.resultRemark', 'fam.school.resultNotComplete', 'fam.rc.title', 'fam.rc.get', 'fam.rc.getFor', 'fam.rc.notYet', 'fam.marks.open', 'fam.marks.openSubject', 'fam.schoolProgress.open', 'fam.marks.timetable', 'fam.marks.timetableNone', 'fam.marks.seat', 'fam.school.pulse', 'fam.school.pulseNone', 'fam.school.pulseFor', 'fam.school.pulseUnderstood', 'fam.school.pulseNeedsHelp', 'fam.school.pulseAnswered', 'fam.school.pulseHelpNote', 'fam.school.pulseReadOnly', 'fam.school.pulseClosed', 'fam.school.mark.present', 'fam.school.mark.absent', 'fam.school.mark.late', 'fam.school.mark.leave', 'fam.school.mark.none', 'fam.school.present', 'fam.school.due', 'fam.school.whichChild', 'fam.school.notLinked', 'fam.school.awaiting', 'fam.school.addChildFirst', 'fam.school.saveError', 'fam.school.saved', 'fam.school.save', 'fam.school.disconnect', 'fam.school.disconnectNote', 'fam.school.disconnectYes', 'fam.consent.more', 'fam.parent.withdrawNote',
   'fam.consent.short.study_core', 'fam.consent.short.english_programme', 'fam.consent.short.photo_input', 'fam.consent.short.voice_practice', 'fam.consent.short.offers',
   'fam.parent.language', 'fam.parent.signOutTitle', 'fam.parent.signOut', 'fam.parent.signOutAll', 'fam.parent.deleteAccount', 'fam.parent.deleteAccountLead',
@@ -291,7 +294,7 @@ export default async function FamilyParentPage() {
           ),
           school: (
             <>
-            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS, ...SCHOOL_FEES_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             </>

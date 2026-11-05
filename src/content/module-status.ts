@@ -42,7 +42,7 @@ export const moduleStatus: Record<ModuleId, { status: ModuleStatus; note: string
   reports: { status: 'partial', note: 'A fixed list of reports for each role, each for a date range with a total and a CSV of the same rows. A report builder, scheduled reports and PDF are not built yet.' },
   'learning-genome': { status: 'partial', note: 'Version 1, for staff: each child’s progress from their own marks, compared only with their own past, never with classmates.' },
   'early-warning': { status: 'partial', note: 'Version 2, for staff only: flags by rules from attendance, homework, “needs help” follow-ups and marks (a child compared only with themselves), each with its evidence, and a log of what a person did. It runs every night; nothing is sent to parents.' },
-  'teacher-copilot': { status: 'foundation', note: 'Version 1 is built and tested on a stand-in: drafts from the syllabus map, edited and approved by the teacher, metered per school. It is not switched on for any school, and no AI model is connected yet.' },
+  'teacher-copilot': { status: 'live', note: 'From what the teacher taught today: a lesson plan, a worksheet or the day’s message to families, drafted from the syllabus map, edited and approved by the teacher, then kept, set as homework or put into today’s Pulse. Metered per school; on for a school once its monthly limit is set.' },
   'school-auditor': { status: 'partial', note: 'Version 1: twelve checks by fixed rules (no AI), each passing, needing attention with a count and the screen that fixes it, or not set up, and a dated record of each check-up. It runs every week and whenever the office asks.' },
   'parent-ai': { status: 'foundation', note: 'An answer to “what can I do at home?” for one child, drafted from what was taught and the child’s own work, showing what it used, and sent only after a teacher approves it. It runs on a stand-in today; no AI model is connected yet.' },
   recovery: { status: 'partial', note: 'Version 1: lists students who missed several homeworks, suggests a catch-up plan and records the teacher’s approval; parents are not informed yet.' },
@@ -74,4 +74,5 @@ export const LIVE_EVIDENCE: Partial<Record<ModuleId, { route: string; api: strin
   attendance: { route: 'attendance', api: 'attendance', table: 'attendance' },
   'help-center': { route: 'help', api: null, table: null, why: 'The guides are files in src/content/help; no API serves them and nothing is stored.' },
   'raise-ticket': { route: 'help/ticket', api: 'tickets', table: 'support_tickets' },
+  'teacher-copilot': { route: 'teacher-copilot', api: 'copilot', table: 'teaching_notes' },
 };

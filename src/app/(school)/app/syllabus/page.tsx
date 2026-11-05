@@ -1,6 +1,7 @@
 import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { getServerSession } from '@/lib/auth/server-session';
+import { CoverageTable } from '@/components/academics/CoverageTable';
 import { SyllabusLibraryPanel } from '@/components/academics/SyllabusLibraryPanel';
 import { SyllabusView } from '@/components/academics/SyllabusView';
 import { ModulePage } from '@/components/app-ui/ModulePage';
@@ -14,6 +15,7 @@ export default async function SyllabusPage() {
   const { lang } = getLang(session?.sub ?? '');
   return (
     <ModulePage moduleId="academics" help="taught-today" tour="taught-today" title={t(lang, 'taught.page.title')} purpose={t(lang, 'taught.page.purpose')} about={t(lang, 'taught.page.about')}>
+      <CoverageTable />
       <SyllabusLibraryPanel />
       <SyllabusView isTeacher={session?.role === 'teacher'} />
     </ModulePage>

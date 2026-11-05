@@ -26,6 +26,8 @@ type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
 export { readSchoolPaper, readSchoolPagePicture, readSchoolReportCard, PictureUnavailableError, ReportCardUnavailableError, type ReadAs } from './marking';
 import type { ReadAs } from './marking';
+// W20-A: fees, read and paid as the guardian.
+export { claimFamilyPayment, readFamilyFees, readFeeReminderFeed, startFamilyPayment } from './fees';
 
 // ---- the code ----------------------------------------------------------------------------------------------------------
 
@@ -251,7 +253,7 @@ export async function readSchoolNews(claims: Claims, linkId: string, studentIds:
         since.homework
       ),
       notices: await one(
-        `select count(distinct n.notice_id) as n from students s join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+        `select count(distinct n.notice_id) as n from students s join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id) and (n.student_id is null or n.student_id = s.student_id)
           where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > $2::timestamptz`,
         since.notices
       ),
@@ -278,7 +280,7 @@ export async function readSchoolNoticeFeed(claims: Claims, linkId: string, stude
     const { rows } = await db.query(
       `select distinct n.notice_id, sc.name as school_name, n.body, n.decided_at
          from students s
-         join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+         join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id) and (n.student_id is null or n.student_id = s.student_id)
          join schools sc on sc.school_id = n.school_id
         where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > now() - ($2::int * interval '1 day')
         order by n.decided_at desc, n.notice_id
@@ -308,6 +310,7 @@ async function classNotices(db: Sql, studentId: string, today: string): Promise<
       where n.status = 'sent'
         and n.school_id = (select s.school_id from students s where s.student_id = $1)
         and (n.class_id is null or n.class_id = (select s.class_id from students s where s.student_id = $1))
+        and (n.student_id is null or n.student_id = $1)
         and n.decided_at >= $2::date - 30
       order by n.decided_at desc
       limit 5`,
@@ -584,3 +587,7 @@ export async function readSchoolTutors(claims: Claims, linkId: string): Promise<
   });
 }
 // w16-a3 end
+// W20-E start
+// Parent-teacher meetings from the Family app (H5), as the guardian: src/lib/school-link/ptm.ts.
+export { bookFamilySlot, cancelFamilyBooking, familyPtmFeed, familyPtmFor, type FamilyBookResult, type FamilyCancelResult, type GuardianPtm, type GuardianPtmBooked } from './ptm';
+// W20-E end

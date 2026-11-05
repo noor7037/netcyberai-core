@@ -7,6 +7,7 @@ import { listEvents } from '@/lib/events/events';
 import { loadFeesSummary } from '@/lib/fees/overdue';
 import { collectedBetween } from '@/lib/fees/payments';
 import { promisesDue } from '@/lib/fees/recovery';
+import { coverageTable } from '@/lib/academics/coverage';
 import { countAssignmentsIn } from '@/lib/homework/homework';
 import { listAnswers } from '@/lib/parent-ai/answers';
 import { waitingReports } from '@/lib/payments/upi';
@@ -245,6 +246,18 @@ export const FACTS: readonly FactDefinition[] = [
     },
   },
   { id: 'homework.not_done', moduleId: 'homework', roles: TEACHING, unit: 'count', period: 'range', drill: 'sum', version: 1, sources: ['homework_targets', 'homework_status', 'students'], load: async (db, ctx) => ({ value: (await homework(db, ctx)).notDoneMarks, href: screenFor.homework('not_done', ctx.range) }) },
+  // Taught units over planned units across every class and subject with a syllabus map; the detail says how many
+  // class-subjects are behind the session's elapsed share (W20-D). The table on the Syllabus screen is the same call.
+  {
+    id: 'syllabus.coverage', moduleId: 'academics', roles: OFFICE, unit: 'percent', period: 'now', drill: 'figure', version: 1, sources: ['syllabus_units', 'syllabus_progress', 'academic_sessions'],
+    load: async (db, ctx) => {
+      // A school-wide figure: only the office is answered, whatever the rows a narrower role could read (as leaveWaiting does).
+      if (!OFFICE.includes(ctx.role)) return { ...NOT_SET_UP, href: '/app/syllabus' };
+      const { total } = await coverageTable(db as never, ctx.schoolId, ctx.role, ctx.today);
+      if (total.percent === null) return { ...NOT_SET_UP, href: '/app/syllabus' };
+      return { value: total.percent, total: total.classSubjects, href: '/app/syllabus', parts: [{ key: 'behind', value: total.behind }] };
+    },
+  },
 
   // ---- Messages to parents and what they cost ---------------------------------
   {

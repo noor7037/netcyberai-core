@@ -8,7 +8,7 @@ import { COMPLAINT_ESCALATE_JOB, complaintEscalateHandler } from '@/lib/complain
 import { BILLING_NIGHTLY_JOB, billingNightlyHandler } from '@/lib/control/billing-nightly';
 import { EVENT_REMIND_JOB, eventRemindHandler } from '@/lib/events/events';
 import { feesNightlyHandler } from '@/lib/fees/nightly';
-import { PTM_REMIND_JOB, ptmRemindHandler } from '@/lib/ptm/ptm';
+import { PTM_APP_REMIND_JOB, PTM_REMIND_JOB, ptmAppRemindHandler, ptmRemindHandler } from '@/lib/ptm/ptm';
 import { bulkRunHandler } from '@/lib/frameworks/bulk-engine';
 import { ticketNotifyHandler } from '@/lib/support/tickets';
 import { whatsappSendHandler, WHATSAPP_SEND_JOB } from '@/lib/whatsapp/gate';
@@ -72,6 +72,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     'fees.nightly': feesNightlyHandler({ platform, queue: jobQueue }),
     // The day before a parent-teacher meeting: each booked parent is reminded (C193).
     [PTM_REMIND_JOB]: ptmRemindHandler({ platform: withPlatformService, queue: jobQueue }),
+    // W20-E: the Family app's email the day before, for a booking made in the app that still stands.
+    [PTM_APP_REMIND_JOB]: ptmAppRemindHandler({ platform: withPlatformService, queue: jobQueue }),
     // The day before a school event: everyone invited who did not say no (C194).
     [EVENT_REMIND_JOB]: eventRemindHandler({ platform: withPlatformService, queue: jobQueue }),
     // A complaint still open at its due time is passed to the principal (C195).

@@ -18,7 +18,7 @@ import type { MessageKey } from '@/lib/i18n';
 // time booked), that list is read again too.
 
 type Meeting = { ptm_id: string; title: string; held_on: string; starts_at: string; ends_at: string; slot_minutes: number; status: 'draft' | 'invited' | 'cancelled'; classes: string; slots: number; booked: number; attended: number };
-type Booking = { booking_id: string; parent_id: string; guardian: string; children: string; via: 'reply' | 'staff'; attended: boolean | null; note: string | null };
+type Booking = { booking_id: string; parent_id: string; guardian: string; children: string; via: 'reply' | 'staff' | 'app'; attended: boolean | null; note: string | null };
 type Detail = { ptm: Meeting; teachers: { teacher_id: string; teacher: string; slots: { slot_id: string; time: string; booking: Booking | null }[]; guardians: { parent_id: string; guardian: string; children: string }[] }[]; mayManage: boolean; hasBegun: boolean; isOver: boolean };
 type Data = { meetings: Meeting[]; classes: { class_id: string; name: string; teacher: string | null }[]; mayManage: boolean };
 const ERRORS = ['title', 'date', 'times', 'classes', 'no_teacher', 'too_many_slots', 'not_draft', 'past', 'nobody', 'already_cancelled', 'not_open', 'not_invited', 'taken', 'too_early', 'note'];
@@ -167,7 +167,7 @@ export function PtmView({ shownAbove = false }: { shownAbove?: boolean }) {
                       {s.booking ? (
                         <>
                           <span>{!s.booking.guardian ? t('ptm.slot.guardianHidden') : s.booking.children ? t('ptm.slot.with', { guardian: s.booking.guardian, children: s.booking.children }) : s.booking.guardian}</span>
-                          <span className="text-slate/70">{t(s.booking.via === 'reply' ? 'ptm.slot.byReply' : 'ptm.slot.byStaff')}</span>
+                          <span className="text-slate/70">{t(s.booking.via === 'reply' ? 'ptm.slot.byReply' : s.booking.via === 'app' ? 'ptm.slot.byApp' : 'ptm.slot.byStaff')}</span>
                           {s.booking.attended !== null && <Badge variant={s.booking.attended ? 'success' : 'warning'}>{t(s.booking.attended ? 'ptm.came' : 'ptm.didNotCome')}</Badge>}
                         </>
                       ) : (

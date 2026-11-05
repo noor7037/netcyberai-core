@@ -156,8 +156,9 @@ const ROWS: readonly Row[] = [
   // The office and the coordinator read every class; a teacher their own classes, which the database decides (C216).
   { id: 'curriculum-gap', label: 'Curriculum Gap Detector', group: 'ai-intelligence', icon: 'curriculumGap', roles: TEACHING, teacherScope: 'ownClassesOnly', phase: 'P6', phaseNote: 'For a class and subject, each unit of the syllabus map as taught and assessed, taught but not assessed, assessed before it was taught, skipped or not taught yet, with the days it rests on and a count of each, is live; rules only', status: 'partial',
     capabilities: ['Planned vs taught vs assessed', 'Flags untaught or unassessed chapters per class'] },
-  { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'copilot', roles: TEACHING, phase: 'P2', phaseNote: 'Built on a stand-in (v1); off for every school until the founder sets a key and a monthly limit', status: 'foundation',
-    capabilities: ['Drafts lesson plans, worksheets, Pulse messages and remarks', 'Teacher edits and approves', 'Usage metered'] },
+  // W20-C: the teacher's screen. Remarks about a student are not drafted, by decision (C153).
+  { id: 'teacher-copilot', label: 'Teacher Copilot', group: 'ai-intelligence', icon: 'copilot', roles: TEACHING, phase: 'P2', phaseNote: 'From what was taught today, a lesson plan, a worksheet or the day’s message to families, edited and approved by the teacher, then kept, set as homework or put into today’s Pulse, is live; on for a school once NetCyberAI sets its monthly limit', status: 'live',
+    capabilities: ['Drafts lesson plans, worksheets and the day’s message to families from the syllabus map', 'Teacher edits and approves, then sets homework or fills today’s Pulse', 'Usage metered per school'] },
   // Teachers review the suggestions for their own classes (C112).
   { id: 'parent-ai', label: 'Parent AI · What to Do?', group: 'ai-intelligence', icon: 'parentAi', roles: ENGAGEMENT, teacherScope: 'ownClassesOnly', phase: 'P4', phaseNote: 'An answer for one child, drafted from the school’s records and approved by a person, is live; a weekly answer for every child later', status: 'partial',
     capabilities: ['Weekly “what to do at home” per child', 'In the family’s language', 'Teacher-reviewed templates'] },

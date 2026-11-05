@@ -11,6 +11,7 @@ import { Modal } from '@/components/ui/Modal';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/Toast';
+import { HomeworkSections } from './HomeworkSections';
 import { HOMEWORK_CHECK, HOMEWORK_KEY, homeworkRosterKey, type HomeworkCheck } from '@/lib/offline/homework-sender';
 import type { Operation } from '@/lib/offline/outbox';
 import { explainError } from '@/lib/errors/catalogue';
@@ -48,6 +49,7 @@ export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
+  const [sectionsId, setSectionsId] = useState<string | null>(null);
   const [roster, setRoster] = useState<KeptRoster | null>(null);
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [waiting, setWaiting] = useState<Set<string>>(new Set());
@@ -285,10 +287,15 @@ export function HomeworkView({ shownAbove = false }: { shownAbove?: boolean }) {
               <button type="button" data-check className={`${TAP} border-sapphire text-sapphire`} aria-expanded={openId === a.target_id} onClick={() => void openAssignment(a)}>
                 {t(openId === a.target_id ? 'hw.check.close' : 'hw.check.open')}
               </button>
+              <button type="button" data-sections-open className={`${TAP} border-slate/20 text-slate`} aria-expanded={sectionsId === a.target_id} onClick={() => setSectionsId(sectionsId === a.target_id ? null : a.target_id)}>
+                {t(sectionsId === a.target_id ? 'hw.sections.close' : 'hw.sections.open')}
+              </button>
               <button type="button" className={`${TAP} border-slate/20 text-slate`} onClick={() => setEditing({ a, title: a.title, details: a.details ?? '', dueDate: a.due_date < data.today ? data.today : a.due_date, applyTo: [a.target_id] })}>
                 {t('hw.edit')}
               </button>
             </div>
+
+            {sectionsId === a.target_id && <HomeworkSections homeworkId={a.homework_id} onSent={() => void afterChange()} />}
 
             {openId === a.target_id && roster && (
               <div data-check-list className="flex flex-col gap-2 border-t border-slate/10 pt-3">

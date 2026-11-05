@@ -10,6 +10,8 @@ import { fill, type Words } from '@/lib/family/fill';
 import { familyApi } from './client';
 import { ExamTimetable } from './ExamTimetable';
 import { SchoolText } from './SchoolText';
+import { SchoolPtm } from './SchoolPtm';
+import { SchoolFees } from './SchoolFees';
 import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The parent area's "Your school" (C230-AA; docs/family-app/03 §4). A family uses the app on its own; when its school
@@ -369,9 +371,11 @@ function LinkCard({ w, lang, link, children }: { w: Words; lang: 'en' | 'hi'; li
               {c.homework && <HomeworkList w={w} lang={lang} items={c.homework} />}
               {c.notices && <NoticeList w={w} lang={lang} items={c.notices} />}
               {c.events && <EventList w={w} lang={lang} items={c.events} />}
+              <SchoolPtm w={w} lang={lang} linkId={link.linkId} studentId={c.studentId} />
               {c.timetable && <Timetable w={w} lang={lang} periods={c.timetable} />}
               {c.examSchedule && <ExamTimetable w={w} lang={lang} papers={c.examSchedule} />}
               {c.results && <Results w={w} lang={lang} items={c.results} childId={link.pairs.find((p) => p.studentId === c.studentId)?.childId ?? null} />}
+              {link.pairs.some((p) => p.studentId === c.studentId) && <SchoolFees w={w} lang={lang} childId={link.pairs.find((p) => p.studentId === c.studentId)!.childId} />}
               <label className="flex flex-col gap-1 text-sm font-semibold text-slate" htmlFor={`fam-school-pair-${c.studentId}`}>
                 {w['fam.school.whichChild']}
                 <select

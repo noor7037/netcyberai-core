@@ -2,10 +2,22 @@ import type { FamilyClaims } from './db';
 import type { PoolClient } from 'pg';
 import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
-import type { SchoolTutors } from '@/lib/contracts/school-link';
+import type { SchoolFeeClaimResult, SchoolFeePay, SchoolFeeReminder, SchoolFees, SchoolTutors } from '@/lib/contracts/school-link';
 import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
 import {
   answerPulse,
+  bookFamilySlot,
+  cancelFamilyBooking,
+  familyPtmFeed,
+  familyPtmFor,
+  claimFamilyPayment,
+  readFamilyFees,
+  readFeeReminderFeed,
+  startFamilyPayment,
+  type FamilyBookResult,
+  type FamilyCancelResult,
+  type GuardianPtm,
+  type GuardianPtmBooked,
   PictureUnavailableError,
   readChildSchoolResults,
   readLinkedSchool,
@@ -443,4 +455,117 @@ export async function schoolTutorsFor(claims: Claims, links: readonly FamilyScho
     }
   }
   return out;
+}
+
+// W20-E start
+// ---- Parent-teacher meetings (H5) ---------------------------------------------------------------------------------------
+// The meetings of a school child's class that the guardian may book, a booking and its cancellation, as the guardian of
+// one of the account's own links (withGuardianContext checks the link is this account's and open). null / not_found when
+// the school closed the link meanwhile. The confirmation and the day-before reminder go to the account's own email.
+export type { GuardianPtm, GuardianPtmBooked, FamilyBookResult, FamilyCancelResult };
+
+export async function ptmNotifyFor(db: Sql, accountId: string): Promise<{ email: string | null; lang: 'en' | 'hi' }> {
+  const a = (await db.query(`select email, ui_language from family.accounts where account_id = $1`, [accountId])).rows[0] as { email: string | null; ui_language: string } | undefined;
+  const email = String(a?.email ?? '').trim();
+  return { email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null, lang: a?.ui_language === 'hi' ? 'hi' : 'en' };
+}
+
+export async function schoolPtmFor(claims: Claims, linkId: string, studentId: string): Promise<GuardianPtm[] | null> {
+  try {
+    return await familyPtmFor(claims, linkId, studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+export async function bookSchoolPtm(claims: Claims, linkId: string, input: { studentId: string; slotId: string }, notify: { email: string | null; lang: 'en' | 'hi' }): Promise<FamilyBookResult> {
+  try {
+    return await bookFamilySlot(claims, linkId, input, notify);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return { ok: false, reason: 'not_found' };
+    throw e;
+  }
+}
+
+export async function cancelSchoolPtm(claims: Claims, linkId: string, bookingId: string): Promise<FamilyCancelResult> {
+  try {
+    return await cancelFamilyBooking(claims, linkId, bookingId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return { ok: false, reason: 'not_found' };
+    throw e;
+  }
+}
+
+// The family child's bookings still to come, for the notifications feed (left out when the parent turned notices off).
+export async function schoolPtmFeedFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<GuardianPtmBooked[]> {
+  if (off.includes('notices')) return [];
+  const out: GuardianPtmBooked[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await familyPtmFeed(claims, l.linkId, l.children.map((c) => c.studentId))));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out;
+}
+// W20-E end
+
+// ---- fees (W20-A, H1) --------------------------------------------------------------------------------------------------
+
+// A matched child's fees as the guardian: the dues with their concession, the receipts, and how to pay by UPI. null when
+// the child is not matched, the link is gone, or the school does not show the child to this guardian.
+export async function schoolFeesFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<SchoolFees | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readFamilyFees(claims, m.linkId, m.studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// "Pay by UPI" for a matched child: the family's payment link at the school (made when there is none). null as above,
+// or when the school does not take UPI to its own account, or nothing is owed.
+export async function schoolFeesPay(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<SchoolFeePay | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await startFamilyPayment(claims, m.linkId, m.studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// "I have paid" with the UPI reference: a claim the school checks in its own bank before anything is credited.
+export async function schoolFeesClaim(claims: Claims, links: readonly FamilySchoolLink[], childId: string, utr: string): Promise<SchoolFeeClaimResult> {
+  const m = matchedStudent(links, childId);
+  if (!m) return 'not_found';
+  try {
+    return await claimFamilyPayment(claims, m.linkId, m.studentId, utr);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return 'not_found';
+    throw e;
+  }
+}
+
+// The fee reminders the schools sent these matched children's families in the last days, for the feed (newest first).
+// Left out with the school's notices when the parent turned notices off.
+export const FEE_REMINDER_FEED_DAYS = 14;
+export async function schoolFeeRemindersFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<SchoolFeeReminder[]> {
+  if (off.includes('notices')) return [];
+  const out: SchoolFeeReminder[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await readFeeReminderFeed(claims, l.linkId, l.children.map((c) => c.studentId), FEE_REMINDER_FEED_DAYS)));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out.sort((a, b) => b.sentOn.localeCompare(a.sentOn)).slice(0, 3);
 }

@@ -85,7 +85,7 @@ const APP_USER: Record<string, string> = {
   parent_ai_answers: 'INSERT,SELECT,UPDATE', // a sent or discarded answer is never changed (trigger); never deleted
   event_replies: 'SELECT', // written by the platform role from the parent's reply
   ptm_slots: 'INSERT,SELECT',
-  ptm_bookings: 'INSERT,SELECT,UPDATE', // moved, never deleted
+  ptm_bookings: 'DELETE,INSERT,SELECT,UPDATE', // staff move, never delete; a guardian cancels their own app booking (W20-E, C477)
   message_threads: 'SELECT,UPDATE', // read, and marked read; written by the webhook as the platform role (C187)
   inbound_messages: 'SELECT',
   whatsapp_opt_outs: 'SELECT,UPDATE', // lifted by the office
@@ -294,6 +294,7 @@ const APP_USER: Record<string, string> = {
 // It bypasses row level security, so these rights are its only limit.
 const NCA_SUPER_DIFFERS: Record<string, string> = {
   entitlement_change_reasons: 'INSERT,SELECT', // the founder's reasons: written once
+  ptm_bookings: 'INSERT,SELECT,UPDATE', // the platform moves a booking, never deletes one; the delete is the guardian's own cancel (W20-E)
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
   payment_credentials: 'INSERT,SELECT,UPDATE',
   whatsapp_credentials: 'INSERT,SELECT,UPDATE',

@@ -157,12 +157,12 @@ describe('the three plans are data: per-student prices a month and a year, and t
     expect(listed.starter.module_ids).toEqual(expect.arrayContaining(['students', 'compliance']));
     expect(listed.starter.module_ids).not.toContain('admissions');
     // Modules a plan sells that are not built yet wait: applying Compass switches on only what works today. Exams
-    // (C213), Curriculum Gap (C216) and Learning Genome (C217) work now; Teacher Copilot waits.
+    // (C213), Curriculum Gap (C216), Learning Genome (C217) and, since W20-C (C475), Teacher Copilot work now: nothing waits.
     const compass = (await platform((c) => loadPlan(c, 'compass')))!;
-    expect(compass.waitingModuleIds.sort()).toEqual(['teacher-copilot']);
+    expect(compass.waitingModuleIds.sort()).toEqual([]);
     const on = (await rows(`select module_id from school_module_entitlements where school_id = $1 and enabled order by 1`, [P])).map((r: { module_id: string }) => r.module_id);
     expect(on).toEqual([...STARTER, ...GROWTH_ADDS, ...COMPASS_ADDS].filter((m) => workingModules().includes(m as never)).sort());
-    expect(on).not.toContain('teacher-copilot');
+    expect(on).toContain('teacher-copilot');
   });
 
   it('a plan’s own feature is read for the school’s own plan only: yes on Compass, no on Growth, nothing about another school', async () => {

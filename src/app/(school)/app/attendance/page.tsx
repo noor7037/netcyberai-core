@@ -2,6 +2,7 @@ import { ModuleOffPage } from '@/components/app-shell/ModuleOffPage';
 import { moduleOffReason } from '@/lib/frameworks/page-access';
 import { getServerSession } from '@/lib/auth/server-session';
 import { AttendanceView } from '@/components/attendance/AttendanceView';
+import { ChronicAbsence } from '@/components/attendance/ChronicAbsence';
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { AttendanceDays, AttendanceShown } from '@/components/attendance/AttendanceShown';
 import { isAttendanceShow } from '@/lib/attendance/day';
@@ -30,6 +31,7 @@ export default async function AttendancePage({ searchParams }: { searchParams: {
     <ModulePage moduleId="attendance" help="mark-attendance" tour="attendance" title="Attendance" purpose="Everyone starts present: tap who is absent or late, then submit.">
       {shown && <AttendanceShown show={shown} />}
       {days && <AttendanceDays range={days} />}
+      {(session?.role === 'principal' || session?.role === 'school_admin' || session?.role === 'teacher') && <ChronicAbsence />}
       <AttendanceView canManage={canManage} office={session?.role === 'school_admin' || session?.role === 'principal'} initialClassId={isUuid(searchParams.class) ? searchParams.class : undefined} shownAbove={shown !== null || days !== null} />
     </ModulePage>
   );

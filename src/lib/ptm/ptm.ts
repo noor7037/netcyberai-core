@@ -191,7 +191,7 @@ export async function listPtms(db: PoolClient, schoolId: string, comingFrom?: st
 
 export type PtmDetail = {
   ptm: PtmRow;
-  teachers: { teacher_id: string; teacher: string; slots: { slot_id: string; time: string; booking: null | { booking_id: string; parent_id: string; guardian: string; children: string; via: 'reply' | 'staff'; attended: boolean | null; note: string | null } }[]; guardians: { parent_id: string; guardian: string; children: string }[] }[];
+  teachers: { teacher_id: string; teacher: string; slots: { slot_id: string; time: string; booking: null | { booking_id: string; parent_id: string; guardian: string; children: string; via: 'reply' | 'staff' | 'app'; attended: boolean | null; note: string | null } }[]; guardians: { parent_id: string; guardian: string; children: string }[] }[];
   mayManage: boolean;
   hasBegun: boolean; // the day of the meeting or later: who came can be marked
   isOver: boolean;
@@ -246,10 +246,12 @@ export async function bookSlot(db: PoolClient, actor: Actor, input: { slotId: st
 
 // THE one place a slot is taken. The unique slot decides: the second to ask gets null. A savepoint keeps the
 // caller's transaction usable after the refusal.
-async function takeSlot(db: Sql, b: { schoolId: string; ptmId: string; slotId: string; teacherId: string; parentId: string; via: 'reply' | 'staff'; by: string | null }): Promise<{ bookingId: string; moved: boolean } | null> {
+// A booking made in the Family app (W20-E) is never moved: the guardian cancels and books again, and a second booking
+// with the same teacher is refused by the database like a taken time.
+async function takeSlot(db: Sql, b: { schoolId: string; ptmId: string; slotId: string; teacherId: string; parentId: string; via: 'reply' | 'staff' | 'app'; by: string | null }): Promise<{ bookingId: string; moved: boolean } | null> {
   await db.query('savepoint ptm_take');
   try {
-    const had = (await db.query(`select booking_id, slot_id from ptm_bookings where ptm_id = $1 and teacher_id = $2 and parent_id = $3 for update`, [b.ptmId, b.teacherId, b.parentId])).rows[0];
+    const had = b.via === 'app' ? undefined : (await db.query(`select booking_id, slot_id from ptm_bookings where ptm_id = $1 and teacher_id = $2 and parent_id = $3 for update`, [b.ptmId, b.teacherId, b.parentId])).rows[0];
     if (had?.slot_id === b.slotId) return { bookingId: had.booking_id, moved: false };
     const row = had
       ? await db.query(`update ptm_bookings set slot_id = $2, booked_via = $3, booked_by = $4, reminded_at = null where booking_id = $1 and attended is null returning booking_id`, [had.booking_id, b.slotId, b.via, b.by])
@@ -339,6 +341,164 @@ export function ptmRemindHandler(deps: { platform: Platform; queue: Queue; now?:
         await queueWhatsAppMessage(db, deps.queue, { schoolId, studentId: b.student_id, parentId: b.parent_id, purpose: 'operational_communication', toPhone: b.phone, templateName: 'ptm_reminder', templateParams: { date: sayDate(isoDay(e.held_on)), time: sayTime(b.time), teacher: b.teacher }, dedupeKey: `ptm:${ptmId}:remind:${b.booking_id}:${b.time}` });
         await db.query(`update ptm_bookings set reminded_at = now() where booking_id = $1`, [b.booking_id]);
       }
+    });
+  };
+}
+
+// ---- The Family app (W20-E, H5) ----------------------------------------------------------------------------------------
+// A guardian whose Family app is linked to the school sees the meetings of their child's class and books a time, in the
+// guardian's own session (School Link's withGuardianContext: role parent, the guardian as the user), so the school's
+// parent rules decide every row (29999999999993_w20_e_ptm_parent.sql): an invited meeting of the guardian's own child's
+// class, the times of the teachers they may meet (the class teacher; the timetable's teachers when the meeting includes
+// subject teachers), which of those are taken (never by whom), and their own bookings. The same unique slot as a reply
+// decides a race.
+
+export const PTM_APP_REMIND_JOB = 'ptm.remind_app';
+export type GuardianPtmSlot = { slotId: string; time: string; free: boolean };
+export type GuardianPtm = {
+  ptmId: string;
+  title: string;
+  heldOn: string;
+  startsAt: string;
+  endsAt: string;
+  slotMinutes: number;
+  teachers: { teacherId: string; teacher: string; classTeacher: boolean; slots: GuardianPtmSlot[]; booking: null | { bookingId: string; slotId: string; time: string; via: 'reply' | 'staff' | 'app' } }[];
+};
+
+type GuardianTeacher = { teacher_id: string; teacher: string; class_teacher: boolean };
+const guardianTeachers = async (db: Sql, ptmId: string, studentId: string): Promise<GuardianTeacher[]> =>
+  (await db.query(`select teacher_id, teacher, class_teacher from public.guardian_ptm_teachers($1) where student_id = $2 order by class_teacher desc, teacher, teacher_id`, [ptmId, studentId])).rows;
+
+// The meetings still to come of one of the guardian's children's class, soonest first; [] when the module is off.
+export async function guardianPtms(db: PoolClient, schoolId: string, studentId: string, today: string = indiaDate()): Promise<GuardianPtm[]> {
+  if (!(await ptmIsOn(db, schoolId))) return [];
+  const events = (await db.query(
+    `select e.ptm_id, e.title, e.held_on, e.starts_at, e.ends_at, e.slot_minutes from ptm_events e join students s on s.school_id = e.school_id and s.student_id = $1
+      where s.class_id = any (e.class_ids) and e.status = 'invited' and e.held_on >= $2::date order by e.held_on, e.ptm_id limit 3`,
+    [studentId, today]
+  )).rows;
+  const out: GuardianPtm[] = [];
+  for (const e of events) {
+    const teachers = await guardianTeachers(db, e.ptm_id, studentId);
+    if (!teachers.length) continue;
+    const slots = (await db.query(`select slot_id, teacher_id, starts_at from ptm_slots where ptm_id = $1 order by starts_at, slot_id`, [e.ptm_id])).rows;
+    const taken = new Set((await db.query(`select slot_id from public.guardian_ptm_taken($1)`, [e.ptm_id])).rows.map((r) => r.slot_id as string));
+    const mine = (await db.query(`select booking_id, slot_id, teacher_id, booked_via from ptm_bookings where ptm_id = $1`, [e.ptm_id])).rows;
+    out.push({
+      ptmId: e.ptm_id,
+      title: e.title,
+      heldOn: isoDay(e.held_on),
+      startsAt: hhmm(e.starts_at),
+      endsAt: hhmm(e.ends_at),
+      slotMinutes: e.slot_minutes,
+      teachers: teachers.map((t) => {
+        const own = slots.filter((s) => s.teacher_id === t.teacher_id);
+        const b = mine.find((m) => m.teacher_id === t.teacher_id);
+        const at = b ? own.find((s) => s.slot_id === b.slot_id) : undefined;
+        return {
+          teacherId: t.teacher_id,
+          teacher: t.teacher,
+          classTeacher: t.class_teacher,
+          slots: own.map((s) => ({ slotId: s.slot_id, time: hhmm(s.starts_at), free: !taken.has(s.slot_id) })),
+          booking: b && at ? { bookingId: b.booking_id, slotId: b.slot_id, time: hhmm(at.starts_at), via: b.booked_via } : null,
+        };
+      }),
+    });
+  }
+  return out;
+}
+
+export type GuardianBookResult =
+  | { ok: true; bookingId: string; ptmId: string; teacherId: string; teacher: string; title: string; heldOn: string; time: string }
+  | { ok: false; reason: 'not_found' | 'not_open' | 'taken' | 'already_booked' };
+// The guardian books one time with one teacher of their child, in a meeting still to come.
+export async function bookAsGuardian(db: PoolClient, g: { schoolId: string; parentId: string }, input: { studentId: string; slotId: string }, today: string = indiaDate()): Promise<GuardianBookResult> {
+  if (!(await ptmIsOn(db, g.schoolId))) return { ok: false, reason: 'not_found' };
+  const slot = (await db.query(`select s.ptm_id, s.teacher_id, s.starts_at, e.held_on, e.title from ptm_slots s join ptm_events e on e.school_id = s.school_id and e.ptm_id = s.ptm_id where s.slot_id = $1 and e.status = 'invited'`, [input.slotId])).rows[0];
+  if (!slot) return { ok: false, reason: 'not_found' };
+  const teacher = (await guardianTeachers(db, slot.ptm_id, input.studentId)).find((t) => t.teacher_id === slot.teacher_id);
+  if (!teacher) return { ok: false, reason: 'not_found' };
+  if (isoDay(slot.held_on) < today) return { ok: false, reason: 'not_open' };
+  const made = await takeSlot(db, { schoolId: g.schoolId, ptmId: slot.ptm_id, slotId: input.slotId, teacherId: slot.teacher_id, parentId: g.parentId, via: 'app', by: null });
+  if (!made) {
+    const had = (await db.query(`select 1 from ptm_bookings where ptm_id = $1 and teacher_id = $2`, [slot.ptm_id, slot.teacher_id])).rows[0];
+    return { ok: false, reason: had ? 'already_booked' : 'taken' };
+  }
+  return { ok: true, bookingId: made.bookingId, ptmId: slot.ptm_id, teacherId: slot.teacher_id, teacher: teacher.teacher, title: slot.title, heldOn: isoDay(slot.held_on), time: hhmm(slot.starts_at) };
+}
+
+export type GuardianCancelResult = { ok: true; ptmId: string; teacherId: string; heldOn: string; time: string; bookingId: string } | { ok: false; reason: 'not_found' };
+// The guardian cancels their own booking (by reply, the office or the app) before the meeting: the time is free again.
+// The parent rules decide: only their own, not yet marked, in a meeting still to come.
+export async function cancelAsGuardian(db: PoolClient, input: { bookingId: string }): Promise<GuardianCancelResult> {
+  const b = (await db.query(
+    `delete from ptm_bookings b using ptm_slots s, ptm_events e
+      where b.booking_id = $1 and s.slot_id = b.slot_id and e.ptm_id = b.ptm_id
+      returning b.booking_id, b.ptm_id, b.teacher_id, s.starts_at, e.held_on`,
+    [input.bookingId]
+  )).rows[0];
+  if (!b) return { ok: false, reason: 'not_found' };
+  return { ok: true, bookingId: b.booking_id, ptmId: b.ptm_id, teacherId: b.teacher_id, heldOn: isoDay(b.held_on), time: hhmm(b.starts_at) };
+}
+
+// The guardian's own bookings still to come with these children's teachers, for the Family app's notifications feed:
+// the confirmation, and the reminder from the day before.
+export type GuardianPtmBooked = { bookingId: string; title: string; heldOn: string; time: string; teacher: string; remind: boolean };
+export async function guardianPtmBookings(db: PoolClient, schoolId: string, studentIds: readonly string[], today: string = indiaDate()): Promise<GuardianPtmBooked[]> {
+  if (!studentIds.length || !(await ptmIsOn(db, schoolId))) return [];
+  const rows = (await db.query(
+    `select distinct b.booking_id, e.title, e.held_on, sl.starts_at, g.teacher
+       from ptm_bookings b join ptm_events e on e.ptm_id = b.ptm_id join ptm_slots sl on sl.slot_id = b.slot_id
+       join lateral public.guardian_ptm_teachers(b.ptm_id) g on g.teacher_id = b.teacher_id and g.student_id = any ($1::uuid[])
+      where e.status = 'invited' and e.held_on >= $2::date order by e.held_on, sl.starts_at, b.booking_id`,
+    [[...studentIds], today]
+  )).rows;
+  const tomorrow = new Date(Date.parse(`${today}T00:00:00Z`) + 86400_000).toISOString().slice(0, 10);
+  return rows.map((r) => ({ bookingId: r.booking_id, title: r.title, heldOn: isoDay(r.held_on), time: hhmm(r.starts_at), teacher: r.teacher, remind: isoDay(r.held_on) <= tomorrow }));
+}
+
+// After the guardian's own transaction, as the platform role: the audit row, and for a booking the confirmation email
+// at once and the day-before reminder (a job that checks the booking still stands when it runs); for a cancellation the
+// teacher's email. The family's address comes from the family's own account; nothing of it is kept in the school's rows.
+export async function noteGuardianBooking(
+  db: PoolClient,
+  queue: Queue,
+  b: { schoolId: string; parentId: string; bookingId: string; ptmId: string; teacher: string; heldOn: string; time: string; email: string | null; lang: 'en' | 'hi' },
+  now: Date = new Date()
+): Promise<void> {
+  await writeAuditLog(db, { schoolId: b.schoolId, actorUserId: null, actorRole: 'parent', eventAction: 'ptm.booked', targetType: 'ptm_bookings', targetId: b.bookingId, beforeState: undefined, afterState: { via: 'app', parentId: b.parentId, time: b.time } });
+  if (!b.email) return;
+  await queue.enqueue(db, { type: 'email.send', idempotencyKey: `email.send:ptm:booked:${b.bookingId}`, schoolId: b.schoolId, maxAttempts: 4, payload: { to: [b.email], template: 'ptm_family', data: { lang: b.lang, teacher: b.teacher, date: b.heldOn, time: b.time, kind: 'booked' } } });
+  const remindAt = new Date(new Date(`${b.heldOn}T17:00:00+05:30`).getTime() - 24 * 3600_000);
+  await queue.enqueue(db, { type: PTM_APP_REMIND_JOB, payload: { bookingId: b.bookingId, ptmId: b.ptmId, to: b.email, lang: b.lang }, idempotencyKey: `${PTM_APP_REMIND_JOB}:${b.bookingId}`, schoolId: b.schoolId, runAt: remindAt > now ? remindAt : now });
+}
+
+export async function noteGuardianCancel(db: PoolClient, queue: Queue, c: { schoolId: string; parentId: string; bookingId: string; ptmId: string; teacherId: string; heldOn: string; time: string }): Promise<void> {
+  await writeAuditLog(db, { schoolId: c.schoolId, actorUserId: null, actorRole: 'parent', eventAction: 'ptm.booking_cancelled', targetType: 'ptm_bookings', targetId: c.bookingId, beforeState: { time: c.time }, afterState: { via: 'app', parentId: c.parentId } });
+  const t = (await db.query(
+    `select u.email, p.name as guardian from users u join parents p on p.school_id = u.school_id and p.parent_id = $3 where u.school_id = $1 and u.user_id = $2 and u.is_active`,
+    [c.schoolId, c.teacherId, c.parentId]
+  )).rows[0] as { email: string | null; guardian: string } | undefined;
+  const email = String(t?.email ?? '').trim();
+  if (!t || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+  await queue.enqueue(db, { type: 'email.send', idempotencyKey: `email.send:ptm:cancelled:${c.bookingId}`, schoolId: c.schoolId, maxAttempts: 4, payload: { to: [email], template: 'ptm_teacher_cancelled', data: { guardian: t.guardian.split(/\s+/)[0] || t.guardian, date: c.heldOn, time: c.time } } });
+}
+
+// ptm.remind_app: the day before, the family's email for a booking made in the app, if it still stands.
+export function ptmAppRemindHandler(deps: { platform: Platform; queue: Queue; now?: () => Date }): JobHandler {
+  return async (job) => {
+    const { bookingId, ptmId, to, lang } = job.payload as Record<string, unknown>;
+    if (typeof bookingId !== 'string' || typeof ptmId !== 'string' || typeof to !== 'string' || !job.schoolId) throw new PermanentJobError('ptm.remind_app: bad payload');
+    const schoolId = job.schoolId;
+    await deps.platform(async (db) => {
+      if (!(await ptmIsOn(db, schoolId))) return;
+      const b = (await db.query(
+        `select e.held_on, sl.starts_at, u.display_name as teacher from ptm_bookings b join ptm_events e on e.ptm_id = b.ptm_id join ptm_slots sl on sl.slot_id = b.slot_id join users u on u.user_id = b.teacher_id
+          where b.school_id = $1 and b.booking_id = $2 and b.ptm_id = $3 and b.booked_via = 'app' and e.status = 'invited'`,
+        [schoolId, bookingId, ptmId]
+      )).rows[0];
+      if (!b || isoDay(b.held_on) < indiaDate((deps.now ?? (() => new Date()))())) return;
+      await deps.queue.enqueue(db, { type: 'email.send', idempotencyKey: `email.send:ptm:remind:${bookingId}`, schoolId, maxAttempts: 4, payload: { to: [to], template: 'ptm_family', data: { lang: lang === 'hi' ? 'hi' : 'en', teacher: b.teacher, date: isoDay(b.held_on), time: hhmm(b.starts_at), kind: 'reminder' } } });
     });
   };
 }
