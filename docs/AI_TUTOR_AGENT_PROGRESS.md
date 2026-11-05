@@ -331,3 +331,20 @@ Anthropic's no-credit 400 is read as 402 (the backups answer; Control says "buy 
 whose question matched a syllabus topic (the finder's path, shared); "Tutor answers" runs on NVIDIA super-vl with v11
 and "Study plan" on NVIDIA lightning (Decision Log C472). Anthropic becomes the primary once its key test passes:
 Control → AI → Tutor answers → primary anthropic claude-sonnet-5-5, Backup 1 NVIDIA super-vl, Backup 2 Workers AI.
+
+## Programme W20: the school reaches the family (5 Nov 2026, the supervisor's plan from docs/42)
+
+**Written by:** the supervisor, for Noor. **Delivers:** the high tier of `docs/42`: fees in the Family app, chronic absence
+told to the family, the Teacher Copilot screen, homework completion and syllabus coverage, PTM booking in the Family
+app. **Rule:** every message reaches the Family app's feed and email now and WhatsApp through the same send-gate when Meta
+is paid; a family reads a school only as its matched guardian (C230-AA); money and children's data get the one security
+review; no spec-only module is touched.
+
+| Slice | What | Model |
+|---|---|---|
+| A | Fees in the Family app (dues, receipts, UPI, reminders) | opus |
+| B | Chronic absence: detector, the principal's list, one tap to the family | sonnet |
+| C | Teacher Copilot: the teacher's drafts screen, used as homework and Pulse | opus |
+| D | Homework completion by section, copy to sections; syllabus coverage % and objectives met | sonnet |
+| E | PTM booking in the Family app, reminders, the teacher's list | opus |
+| F | Integration by the lead: merges, the security review of A and E, the Decision Log, one CI run, the PR | supervisor |
