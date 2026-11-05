@@ -42,6 +42,7 @@ import ComplaintsPage from '@/app/(school)/app/complaints/page';
 import EventsPage from '@/app/(school)/app/events/page';
 import FeesPage from '@/app/(school)/app/fees/page';
 import TicketsPage from '@/app/(school)/app/help/ticket/page';
+import SyllabusPage from '@/app/(school)/app/syllabus/page';
 import HomeworkPage from '@/app/(school)/app/homework/page';
 import ParentAiPage from '@/app/(school)/app/parent-ai/page';
 import ProxyPage from '@/app/(school)/app/proxy/page';
@@ -51,12 +52,14 @@ import StaffPage from '@/app/(school)/app/staff/page';
 import StudentsPage from '@/app/(school)/app/students/page';
 import { GET as budgetRoute } from '@/app/api/app/communication/budget/route';
 import { GET as messagesRoute } from '@/app/api/app/communication/messages/route';
+import { GET as coverageRoute } from '@/app/api/app/syllabus/coverage/route';
 import { GET as complaintsRoute } from '@/app/api/app/complaints/route';
 import { GET as followupsRoute } from '@/app/api/app/followups/route';
 import { GET as proxyRoute } from '@/app/api/app/proxy/route';
 import { GET as studentsRoute } from '@/app/api/app/students/route';
 import { AdmissionsWaiting } from '@/components/admissions/AdmissionsWaiting';
 import { AttendanceDays, AttendanceShown } from '@/components/attendance/AttendanceShown';
+import { CoverageTable } from '@/components/academics/CoverageTable';
 import { BudgetView } from '@/components/communication/BudgetView';
 import { MessagesView } from '@/components/communication/MessagesView';
 import { NoticesShown } from '@/components/communication/NoticesShown';
@@ -99,6 +102,7 @@ const PAGES: Record<string, (props: { searchParams: Record<string, string> }) =>
   '/app/admissions': AdmissionsPage as never,
   '/app/fees': FeesPage as never,
   '/app/homework': HomeworkPage as never,
+  '/app/syllabus': SyllabusPage as never,
   '/app/pulse': PulsePage as never,
   '/app/communication': CommunicationPage as never,
   '/app/events': EventsPage as never,
@@ -179,6 +183,11 @@ async function open(w: Who, href: string): Promise<Opened> {
   if (url.pathname === '/app/communication' && find(page, BudgetView)) {
     const body = await get(budgetRoute, '/api/app/communication/budget');
     return { listed: 0, said: null, rows: [], text: '', figure: { value: body.budgetPaise === null ? null : body.spentPaise, total: body.budgetPaise } };
+  }
+  if (url.pathname === '/app/syllabus' && find(page, CoverageTable)) {
+    // The coverage table reads its own route: the number is its school-wide percent over its class-subjects.
+    const body = await get(coverageRoute, '/api/app/syllabus/coverage');
+    return { listed: 0, said: null, rows: [], text: '', figure: { value: body.total.percent, total: body.total.classSubjects } };
   }
   const proxy = find(page, ProxyView);
   if (url.pathname === '/app/proxy' && proxy) {
@@ -354,7 +363,7 @@ describe('school facts on the whole schema', () => {
       // Two screens ARE the list as they stand and need no filter: the students waiting for consent and the
       // needs-help queue. The month's spend is a figure the Communication screen says itself. Proxy Auto as it
       // stands draws the covered periods too, so its number carries a filter like the rest.
-      const plainAddress: Partial<Record<FactId, string>> = { 'students.waiting_consent': '/app/admissions', 'followups.open': '/app/pulse', 'whatsapp.spend': '/app/communication' };
+      const plainAddress: Partial<Record<FactId, string>> = { 'students.waiting_consent': '/app/admissions', 'followups.open': '/app/pulse', 'whatsapp.spend': '/app/communication', 'syllabus.coverage': '/app/syllabus' };
       if (plainAddress[f.id]) expect(f.href, f.id).toBe(plainAddress[f.id]);
       else expect(f.href, f.id).toMatch(/\?(show|status|state|from)=/);
     }

@@ -169,7 +169,7 @@ describe('the dashboard on the whole schema', () => {
       }
     }
     expect(model.groups.map((g) => g.id)).toEqual(['today', 'money', 'learning', 'parents', 'running']);
-    expect(model.groups.reduce((n, g) => n + g.tiles.length, 0)).toBe(31);
+    expect(model.groups.reduce((n, g) => n + g.tiles.length, 0)).toBe(32);
     // Leave and covers sit with running the school, as three counts: who is away is never listed on the dashboard.
     expect(model.groups.find((g) => g.id === 'running')!.tiles.map((f) => f.id)).toEqual(['students.active', 'students.waiting_consent', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open']);
     for (const name of ['Tarun', 'Tara Teacher', 'Tina', 'Asif Admin']) expect(html, name).not.toContain(name);

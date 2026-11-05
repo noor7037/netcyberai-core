@@ -4,7 +4,7 @@ import type { StaffRole } from '@/lib/auth/types';
 import { refreshDraftsForHomework } from '@/lib/pulse/drafts';
 import { checkUpload, type UploadCheck, type UploadProblem } from '@/lib/privacy/upload-check';
 import { FileStorageUnavailableError, sniffImageType, type FileStorage } from '@/lib/storage/file-storage';
-import { classOrderSql, classSortKeySql } from '@/lib/classes/class-order';
+import { classOrderSql, classRank, classSortKeySql } from '@/lib/classes/class-order';
 
 // Homework (docs/20 5e, C150). The teacher writes it once and copies it to
 // the sections it is for. Each copy is an assignment of its own: its own
@@ -256,4 +256,75 @@ export async function addHomeworkFile(db: PoolClient, storage: FileStorage, acto
 export async function homeworkFileUrl(db: PoolClient, storage: FileStorage, schoolId: string, homeworkId: string, attachmentId: string): Promise<string | null> {
   const row = (await db.query(`select storage_key from homework_attachments where school_id = $1 and homework_id = $2 and attachment_id = $3`, [schoolId, homeworkId, attachmentId])).rows[0];
   return row ? storage.signedUrl(row.storage_key, SIGNED_LINK_SECONDS) : null;
+}
+
+// ---- Completion by section, and more sections (W20-D, H4) ---------------------------------------------------
+
+export type SectionCompletion = { target_id: string; class_id: string; class_name: string; students: number; done: number; notYet: string[] };
+export type SectionChoice = { class_id: string; name: string };
+
+// One homework, section by section: how many students of the section have done it, out of its roll, and the first
+// names of those who have not (not marked done, whether marked "not done" or not yet checked). Row level security
+// narrows a teacher to their own classes; the counts are the Homework screen's own (ASSIGNMENTS).
+export async function sectionCompletion(db: PoolClient, schoolId: string, homeworkId: string): Promise<SectionCompletion[]> {
+  const rows = (await db.query(`select a.target_id, a.class_id, a.class_name, a.students, a.done from (${ASSIGNMENTS} where t.school_id = $1 and t.homework_id = $2) a order by (select ${classSortKeySql('k')} from classes k where k.school_id = $1 and k.class_id = a.class_id), a.target_id`, [schoolId, homeworkId])).rows as Omit<SectionCompletion, 'notYet'>[];
+  if (rows.length === 0) return [];
+  const names = (await db.query(
+    `select t.target_id, split_part(btrim(st.name), ' ', 1) as first_name
+       from homework_targets t
+       join students st on st.school_id = t.school_id and st.class_id = t.class_id and st.status in ('active', 'pending_consent')
+       left join homework_status hs on hs.target_id = t.target_id and hs.student_id = st.student_id
+      where t.school_id = $1 and t.homework_id = $2 and coalesce(hs.done, false) = false
+      order by t.target_id, st.name, st.student_id`,
+    [schoolId, homeworkId]
+  )).rows as { target_id: string; first_name: string }[];
+  return rows.map((r) => ({ ...r, notYet: names.filter((n) => n.target_id === r.target_id).map((n) => n.first_name) }));
+}
+
+// The sections this homework can still be sent to: not yet a section of it, in the same class level as one that is,
+// and for a teacher a section they teach this subject in (their own section as class teacher, or a teaching row for
+// the homework's subject). The office may send to any section of that level.
+export async function eligibleSections(db: PoolClient, actor: Actor, homeworkId: string): Promise<SectionChoice[]> {
+  if (!STAFF.includes(actor.role)) return [];
+  const hw = (await db.query(`select subject_id from homework where school_id = $1 and homework_id = $2`, [actor.schoolId, homeworkId])).rows[0] as { subject_id: string } | undefined;
+  if (!hw) return [];
+  const used = (await db.query(`select c.class_id, c.name, c.grade from homework_targets t join classes c on c.school_id = t.school_id and c.class_id = t.class_id where t.school_id = $1 and t.homework_id = $2`, [actor.schoolId, homeworkId])).rows as { class_id: string; name: string; grade: string | null }[];
+  const levels = new Set(used.map((u) => classRank(u.grade, u.name)));
+  const taken = new Set(used.map((u) => u.class_id));
+  const all = (await db.query(
+    `select c.class_id, c.name, c.grade from classes c
+      where c.school_id = $1
+        and ($2::text <> 'teacher'
+             or c.class_teacher_id = $3
+             or exists (select 1 from teacher_subjects ts join teachers te on te.school_id = ts.school_id and te.teacher_id = ts.teacher_id
+                         where ts.school_id = c.school_id and ts.class_id = c.class_id and ts.subject_id = $4 and te.user_id = $3))
+      order by ${classOrderSql('c')}, c.class_id`,
+    [actor.schoolId, actor.role, actor.userId, hw.subject_id]
+  )).rows as { class_id: string; name: string; grade: string | null }[];
+  return all.filter((c) => !taken.has(c.class_id) && levels.has(classRank(c.grade, c.name))).map((c) => ({ class_id: c.class_id, name: c.name }));
+}
+
+export type AddSectionsResult = { ok: true; targetIds: string[] } | { ok: false; reason: 'not_allowed' | 'not_found' | 'no_sections' | 'not_eligible' | 'too_many' };
+
+// "Send to more sections": the same homework (its text, due date and files) given to other sections of the class
+// level. The copies carry the original's current text and due date; the files belong to the homework, so they go with it.
+export async function addSections(db: PoolClient, actor: Actor, homeworkId: string, classIds: readonly string[]): Promise<AddSectionsResult> {
+  if (!STAFF.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
+  const hw = (await db.query(`select subject_id, title, details, due_date::text as due_date from homework where school_id = $1 and homework_id = $2 for update`, [actor.schoolId, homeworkId])).rows[0];
+  if (!hw) return { ok: false, reason: 'not_found' };
+  const ids = [...new Set(classIds)];
+  if (ids.length === 0) return { ok: false, reason: 'no_sections' };
+  const allowed = new Set((await eligibleSections(db, actor, homeworkId)).map((c) => c.class_id));
+  if (ids.some((c) => !allowed.has(c))) return { ok: false, reason: 'not_eligible' };
+  const have = Number((await db.query(`select count(*) as n from homework_targets where school_id = $1 and homework_id = $2`, [actor.schoolId, homeworkId])).rows[0].n);
+  if (have + ids.length > MAX_SECTIONS) return { ok: false, reason: 'too_many' };
+  const made = await db.query(
+    `insert into homework_targets (school_id, homework_id, class_id, title, details, due_date)
+     select $1, $2, c, $4, $5, $6 from unnest($3::uuid[]) as c returning target_id`,
+    [actor.schoolId, homeworkId, ids, hw.title, hw.details, hw.due_date]
+  );
+  await writeAuditLog(db, { schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'homework.sections_added', targetType: 'homework', targetId: homeworkId, beforeState: undefined, afterState: { added: ids.length } });
+  const today = (await db.query(`select (now() at time zone 'Asia/Kolkata')::date::text as d`)).rows[0].d as string;
+  await refreshDraftsForHomework(db, actor.schoolId, hw.subject_id, ids, today);
+  return { ok: true, targetIds: made.rows.map((r) => r.target_id as string) };
 }
