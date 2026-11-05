@@ -5202,7 +5202,7 @@ const setupPageDone = async () => {
   const want = await setupExpected();
   if (!sameJson(setupSeen.shown, want.done) || setupSeen.counts.done !== want.count || setupSeen.counts.total !== want.total) throw new Error(`the checklist on the screen: ${JSON.stringify({ seen: setupSeen, want })}`);
   const hrefs = ['/app/setup/sessions', '/app/students?classes=1', '/app/setup/subjects', '/app/staff', '/app/staff', '/app/students', '/app/fees', '/app/timetable', '/app/settings'];
-  if (!sameJson(setupSeen.links, hrefs) || !sameJson(setupSeen.keep, ['/app/setup/sessions', '/app/setup/subjects'])) throw new Error(`the links of the checklist: ${JSON.stringify(setupSeen)}`);
+  if (!sameJson(setupSeen.links, hrefs) || !sameJson(setupSeen.keep, ['/app/setup/sessions', '/app/setup/subjects', '/app/setup/promotion'])) throw new Error(`the links of the checklist: ${JSON.stringify(setupSeen)}`);
 };
 
 // My Day (principal): one card while any step is open, "N of 9 setup steps done", counted from the same rows.
@@ -5227,6 +5227,39 @@ const setupInControl = async (page) => {
 const setupInControlDone = async () => {
   const want = await setupExpected();
   if (!sameJson(setupControl.shown, want.done) || setupControl.links !== 0) throw new Error(`the checklist in Control: ${JSON.stringify({ seen: setupControl, want })}`);
+};
+
+// Promotion to the next session (principal, W21-M2): the dry run only. A session after the current one is added for
+// the picture, the first class with students is opened, and the check reads that nothing moved (no promotion run, no
+// student changed class). The added session is taken away again.
+const PROMO_CUR = '00000000-0000-4000-8000-00000000e211';
+const PROMO_NEXT = '00000000-0000-4000-8000-00000000e212';
+let promoStudents = null;
+const setupPromotionScreen = async (page) => {
+  promoStudents = (await db.pg.query(`select student_id, class_id from students where school_id = $1 order by student_id`, [SCHOOL])).rows;
+  // The seeded school has no current session: one is added for the picture when it has none.
+  await db.pg.query(
+    `insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current)
+     select $1, $2, 'This year (harness W21-M2)', '2025-04-01', '2026-03-31', true where not exists (select 1 from academic_sessions where school_id = $2 and is_current)`,
+    [PROMO_CUR, SCHOOL]
+  );
+  await db.pg.query(
+    `insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current)
+     select $1, $2, 'Next (harness W21-M2)', end_date + 1, end_date + 365, false from academic_sessions where school_id = $2 and is_current on conflict (session_id) do nothing`,
+    [PROMO_NEXT, SCHOOL]
+  );
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-promotion-summary]').waitFor({ timeout: 20000 });
+  const first = page.locator('[data-promotion-class] button[aria-expanded]:not([disabled])').first();
+  if (await first.count()) await first.click();
+};
+const setupPromotionDone = async () => {
+  try {
+    const after = (await db.pg.query(`select student_id, class_id from students where school_id = $1 order by student_id`, [SCHOOL])).rows;
+    if (!sameJson(after, promoStudents)) throw new Error('the dry run moved a student');
+  } finally {
+    await db.pg.query(`delete from academic_sessions where session_id = any ($1::uuid[])`, [[PROMO_NEXT, PROMO_CUR]]);
+  }
 };
 
 // Academic sessions (principal). A past session is already there; the principal adds 2026-27 with the form and
@@ -7472,6 +7505,7 @@ const SCREENS = [
   ['principal', 'app-setup-hindi', '/app/setup', speak('हिन्दी'), backToEnglish],
   ['principal', 'app-setup-sessions', '/app/setup/sessions', setupSessionsScreen, setupSessionsDone],
   ['principal', 'app-setup-subjects', '/app/setup/subjects', setupSubjectsScreen, setupSubjectsDone],
+  ['principal', 'app-setup-promotion', '/app/setup/promotion', setupPromotionScreen, setupPromotionDone],
   ['principal', 'app-my-day-setup', '/app/my-day', setupMyDay, setupMyDayDone],
   ['founder', 'control-school-setup', `/control/schools/${SCHOOL}`, setupInControl, setupInControlDone],
   ['principal', 'app-staff-teacher-subjects', '/app/staff', staffSubjects, staffSubjectsDone],

@@ -613,6 +613,12 @@ ALLOWED_PERMISSIVE = (
         ("question_bank", "question_bank_tenant_isolation"),
         ("paper_generations", "paper_generations_tenant_isolation"),
         # aq-2 end
+        # w21-m2 begin
+        # W21-M2 (promotion to the next session): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("promotion_runs", "promotion_runs_tenant_isolation"),
+        ("promotion_events", "promotion_events_tenant_isolation"),
+        ("promotion_overrides", "promotion_overrides_tenant_isolation"),
+        # w21-m2 end
     }
 )
 
@@ -1260,6 +1266,17 @@ REQUIRED_RESTRICTIVE = {
     ("marking_transcripts", "marking_transcripts_writers"),
     ("marking_transcripts", "marking_transcripts_no_parent"),
     # w14-c end
+    # w21-m2 begin
+    # A promotion is read by the principal and the school admin and written by the principal, in their own name.
+    ("promotion_runs", "promotion_runs_office"),
+    ("promotion_runs", "promotion_runs_principal_writes"),
+    ("promotion_events", "promotion_events_office"),
+    ("promotion_events", "promotion_events_principal_writes"),
+    ("promotion_overrides", "promotion_overrides_office"),
+    ("promotion_overrides", "promotion_overrides_principal_sets"),
+    ("promotion_overrides", "promotion_overrides_principal_changes"),
+    ("promotion_overrides", "promotion_overrides_principal_clears"),
+    # w21-m2 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

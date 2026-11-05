@@ -329,6 +329,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['setup/checklist', 'setup'],
   ['setup/sessions', 'setup'],
   ['setup/subjects', 'setup'],
+  // The dry run of the promotion to the next session (W21-M2). Its writes are under 'setup/**'.
+  ['setup/promotion', 'setup'],
   // p7-10g end
   // c224 begin
   // c224 end
