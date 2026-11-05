@@ -19,7 +19,7 @@ export const DASHBOARD_GROUPS: readonly { id: 'today' | 'money' | 'learning' | '
   { id: 'learning', tone: 'azure', facts: ['attendance.present_rate', 'homework.set', 'homework.checked', 'homework.not_done', 'syllabus.coverage', 'followups.open'] },
   { id: 'parents', tone: 'cyan', facts: ['pulse.sent', 'pulse.understood', 'pulse.needs_help', 'messages.total', 'complaints.open', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts'] },
   // Staff leave and covers (8b, 8c) are here as counts for running the day: never a list of who, never an order of people.
-  { id: 'running', tone: 'sapphire', facts: ['students.active', 'students.waiting_consent', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open'] },
+  { id: 'running', tone: 'sapphire', facts: ['students.active', 'students.waiting_consent', 'admissions.conversion', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open'] },
 ];
 export type DashboardGroupId = (typeof DASHBOARD_GROUPS)[number]['id'];
 

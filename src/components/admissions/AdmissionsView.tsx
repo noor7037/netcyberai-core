@@ -11,6 +11,9 @@ import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import type { MessageKey } from '@/lib/i18n';
+import { AdmissionsBoard } from './AdmissionsBoard';
+import { AdmissionsConversion, type ConversionData } from './AdmissionsConversion';
+import { OnlineFormLink } from './OnlineFormLink';
 
 // The admissions pipeline (docs/28 slice 10a, C221): record an enquiry with who follows it up and when; "Follow up
 // today" and "Gone quiet" (the website tracker's own rule, worked out on the server); record what happened, which
@@ -21,11 +24,11 @@ import type { MessageKey } from '@/lib/i18n';
 // (a parent's erasure request, found by phone), each after a confirmation (C223-A answer 3, C224). An admitted
 // enquiry is the child's record: it is never deleted, and after the erasure of the child's data it shows no names.
 
-type SourceCode = 'walk_in' | 'phone_call' | 'whatsapp' | 'website' | 'referral' | 'newspaper' | 'other';
+type SourceCode = 'walk_in' | 'phone_call' | 'whatsapp' | 'website' | 'referral' | 'newspaper' | 'other' | 'online';
 type StageCode = 'enquiry' | 'visit_booked' | 'visited' | 'form_taken' | 'form_submitted' | 'admitted' | 'not_joining';
 type Row = { enquiry_id: string; child_name: string | null; guardian_name: string | null; phone: string | null; class_id: string; class_name: string; source: SourceCode; stage: StageCode; owner_id: string; owner: string; next_follow_up: string | null; next_step: string | null; closed_reason: string | null; student_id: string | null; created_on: string; last_contact_on: string; erased_on: string | null };
-type Data = { today: string; quietDays: number; enquiries: Row[]; lists: { due: { enquiryId: string; overdueDays: number }[]; quiet: { enquiryId: string; quietDays: number }[] }; classes: { class_id: string; name: string }[]; owners: { user_id: string; name: string }[]; me: string };
-type Step = { kind: string; note: string | null; stage_from: StageCode | null; stage_to: StageCode | null; follow_up: string | null; next_step: string | null; owner: string | null; student_id: string | null; changed: string[] | null; by: string; at: string };
+type Data = { today: string; quietDays: number; enquiries: Row[]; lists: { due: { enquiryId: string; overdueDays: number }[]; quiet: { enquiryId: string; quietDays: number }[] }; classes: { class_id: string; name: string }[]; owners: { user_id: string; name: string }[]; me: string; conversion: ConversionData; formUrl: string };
+type Step = { kind: string; note: string | null; stage_from: StageCode | null; stage_to: StageCode | null; follow_up: string | null; next_step: string | null; owner: string | null; student_id: string | null; changed: string[] | null; by: string | null; at: string };
 type Admitted = { studentId: string; className: string; fees: { academic_year: string; effective_from: string } | null; monthRaised: boolean };
 type Family = { phone: string; enquiries: { enquiry_id: string; child_name: string; class_name: string; stage: StageCode; created_on: string }[]; admitted: number };
 type Send = (url: string, payload: unknown, done: (got: Record<string, unknown>) => string, after?: () => void, method?: 'POST' | 'DELETE') => Promise<boolean>;
@@ -33,6 +36,8 @@ type Words = ReturnType<typeof useT>;
 
 // The tool's lists, in its order (src/lib/free-tools/admissions-tracker.ts; the tests hold these to it).
 const SOURCES: SourceCode[] = ['walk_in', 'phone_call', 'whatsapp', 'website', 'referral', 'newspaper', 'other'];
+// A family's own enquiry from the online form (W21-M1) keeps its source: the office never chooses it.
+const sourcesFor = (current: SourceCode): SourceCode[] => (current === 'online' ? ['online'] : SOURCES);
 const STAGES: StageCode[] = ['enquiry', 'visit_booked', 'visited', 'form_taken', 'form_submitted', 'admitted', 'not_joining'];
 const MOVABLE = STAGES.filter((s) => s !== 'admitted');
 const isOpen = (s: StageCode) => s !== 'admitted' && s !== 'not_joining';
@@ -53,7 +58,7 @@ const followUpLine = ({ t, tCount, lang }: Words, r: Row, today: string) => {
   return late > 0 ? tCount('adm.overdue', late) : late === 0 ? t('adm.dueToday') : t('adm.followUpOn', { date: dayIn(lang, r.next_follow_up) });
 };
 
-export function AdmissionsView({ office, children }: { office: boolean; children: ReactNode }) {
+export function AdmissionsView({ office, show, children }: { office: boolean; show?: string; children: ReactNode }) {
   const words = useT();
   const { t, tCount, lang } = words;
   const router = useRouter();
@@ -73,6 +78,11 @@ export function AdmissionsView({ office, children }: { office: boolean; children
   useEffect(() => {
     if (office) void load();
   }, [office, load]);
+  // The principal's tile opens the conversion table (?show=conversion).
+  const loaded = data !== null;
+  useEffect(() => {
+    if (loaded && show === 'conversion') document.getElementById('adm-conversion')?.scrollIntoView();
+  }, [loaded, show]);
 
   const send: Send = async (url, payload, done, after, method = 'POST') => {
     setBusy(true);
@@ -173,8 +183,18 @@ export function AdmissionsView({ office, children }: { office: boolean; children
           </section>
         )}
 
+        {office && data && <OnlineFormLink url={data.formUrl} />}
+
         {office && data && data.enquiries.length > 0 && (
           <>
+            <AdmissionsBoard
+              rows={data.enquiries}
+              busy={busy}
+              onMove={(r, stage, reason) =>
+                send(`/api/app/admissions/${r.enquiry_id}`, { action: 'outcome', note: '', stage, nextStep: stage === 'not_joining' ? '' : r.next_step ?? '', followUp: stage === 'not_joining' ? '' : r.next_follow_up ?? '', reason: reason ?? '' }, () => t('adm.board.moved', { child: r.child_name ?? '', stage: t(`adm.stage.${stage}` as MessageKey) }))
+              }
+            />
+            <AdmissionsConversion data={data.conversion} />
             <section data-adm-due data-count={due.length} className="flex flex-col gap-3 rounded-lg border border-slate/10 bg-white p-4">
               <h2 className="text-base font-bold">{t('adm.due.title', { count: due.length })}</h2>
               {due.length === 0 ? (
@@ -379,7 +399,7 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
             <Input id={`adm-fix-guardian-${r.enquiry_id}`} label={t('adm.form.guardian')} maxLength={60} value={fix.guardianName} onChange={(e) => setFix({ ...fix, guardianName: e.target.value })} />
             <Input id={`adm-fix-phone-${r.enquiry_id}`} type="tel" inputMode="tel" label={t('adm.form.phone')} maxLength={20} value={fix.phone} onChange={(e) => setFix({ ...fix, phone: e.target.value })} />
             <Select id={`adm-fix-source-${r.enquiry_id}`} label={t('adm.form.source')} value={fix.source} onChange={(e) => setFix({ ...fix, source: e.target.value as SourceCode })}>
-              {SOURCES.map((s) => (
+              {sourcesFor(r.source).map((s) => (
                 <option key={s} value={s}>{t(`adm.source.${s}` as MessageKey)}</option>
               ))}
             </Select>
@@ -421,7 +441,7 @@ function EnquiryCard({ r, data, busy, send, words }: { r: Row; data: Data; busy:
         <ul className="flex flex-col gap-1 border-l-2 border-slate/10 pl-3">
           {(steps ?? []).map((s, i) => (
             <li key={i} data-adm-step={s.kind} className="break-words">
-              <span className="font-semibold">{stepWords(s)}</span> <span className="text-slate/70">{t('adm.step.by', { by: s.by, at: when.format(new Date(s.at)) })}</span>
+              <span className="font-semibold">{stepWords(s)}</span> <span className="text-slate/70">{s.by === null ? t('adm.step.byFamily', { at: when.format(new Date(s.at)) }) : t('adm.step.by', { by: s.by, at: when.format(new Date(s.at)) })}</span>
             </li>
           ))}
         </ul>
