@@ -13,6 +13,7 @@ import { HomePlanSection, type PlanSubject } from '@/components/family/HomePlanS
 import { NotifySection } from '@/components/family/NotifySection';
 import { vapidPublicKey } from '@/lib/family/web-push';
 import { SchoolSection } from '@/components/family/SchoolSection';
+import { SCHOOL_FEES_KEYS } from '@/lib/family/school-fees-words';
 import { activeLinks, linkedSchool, notifyOff, schoolOverview } from '@/lib/family/school';
 import { PinGate } from '@/components/family/PinGate';
 import { TutorToday, type TutorTodayRow } from '@/components/family/TutorToday';
@@ -293,7 +294,7 @@ export default async function FamilyParentPage() {
           ),
           school: (
             <>
-            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
+            <SchoolSection w={familyWords(lang, [...AREA_KEYS, ...CHILD_FORM_KEYS, ...SCHOOL_FEES_KEYS])} lang={lang} links={schools} children={page.children.map((c) => ({ childId: c.childId, firstName: c.firstName }))} />
             {(schools.length > 0 || (plans && plans.length > 0)) && <NotifySection w={familyWords(lang, NOTIFY_KEYS)} off={off} publicKey={vapidPublicKey()} />}
             {plans && plans.length > 0 && <HomePlanSection w={familyWords(lang, PLAN_KEYS)} lang={lang} children={plans} />}
             </>

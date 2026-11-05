@@ -38,8 +38,9 @@ export async function remindersOn(db: Sql, schoolId: string): Promise<boolean> {
   return (await db.query(`select is_test_fixture from schools where school_id = $1`, [schoolId])).rows[0]?.is_test_fixture === false;
 }
 
-// The family's open link, or a new one for everything it owes, when the school takes UPI to its own account.
-async function linkFor(db: Sql, schoolId: string, payerId: string): Promise<{ linkId: string; token: string; made: boolean } | null> {
+// The family's open link, or a new one for everything it owes, when the school takes UPI to its own account. Made by no
+// person: the nightly reminder, or the Family app for a linked guardian (W20-A), both only as the platform role.
+export async function linkFor(db: Sql, schoolId: string, payerId: string, origin: 'reminder_job' | 'family_app' = 'reminder_job'): Promise<{ linkId: string; token: string; made: boolean } | null> {
   if (!(await db.query(`select 1 from payment_methods where school_id = $1 and method = 'direct_upi' and enabled`, [schoolId])).rows[0]) return null;
   await db.query(`select pg_advisory_xact_lock(hashtext($1))`, [`paylink:${schoolId}:${payerId}`]);
   await db.query(`update payment_links set status = 'expired', closed_at = now() where school_id = $1 and coalesce(family_id, student_id) = $2 and status = 'open' and expires_at <= now()`, [schoolId, payerId]);
@@ -58,9 +59,9 @@ async function linkFor(db: Sql, schoolId: string, payerId: string): Promise<{ li
   let linkId: string | undefined;
   for (let attempt = 0; attempt < 5 && !linkId; attempt += 1) {
     linkId = (await db.query(
-      `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, origin, expires_at, reference_code) values ($1, $2, $3, $4, $5, null, 'reminder_job', now() + make_interval(days => $6), $7)
+      `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, origin, expires_at, reference_code) values ($1, $2, $3, $4, $5, null, $8, now() + make_interval(days => $6), $7)
        on conflict (school_id, reference_code) where reference_code is not null do nothing returning link_id`,
-      [schoolId, dues[0].family_id, dues[0].student_id, token, owed, LINK_DAYS, newReferenceCode()]
+      [schoolId, dues[0].family_id, dues[0].student_id, token, owed, LINK_DAYS, newReferenceCode(), origin]
     )).rows[0]?.link_id as string | undefined;
   }
   if (!linkId) throw new Error('a payment link could not be given a reference code');

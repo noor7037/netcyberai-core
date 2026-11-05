@@ -15,6 +15,9 @@ import { t, type MessageKey } from '@/lib/i18n';
 // The notifications centre (H1, C230-AO): what the app already has to tell this child's family, read-only. It lists the
 // connected school's new homework, notices and results, tonight's practice and the state of the chapters asked for;
 // nothing else, and no new push. "Nothing new" when there is nothing.
+const rupees = (minor: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(minor / 100);
+const dueDay = (lang: string, iso: string) => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+
 export default async function FamilyNotificationsPage() {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
@@ -27,6 +30,7 @@ export default async function FamilyNotificationsPage() {
   const text = (i: NotificationItem): string => {
     if (i.kind === 'news') return t(lang, NEWS_TEXT[i.news], { n: i.count });
     if (i.kind === 'notice') return `${i.school}: ${i.body}`;
+    if (i.kind === 'fee') return `${i.school}: ${fill(t(lang, 'fam.w20.fees.reminder'), { amount: rupees(i.amountMinor), date: dueDay(lang, i.dueDate) })}`;
     if (i.kind === 'report') return reportTitle(lang, child.firstName);
     if (i.kind === 'ptm') return fill(t(lang, i.remind ? 'fam.w20.ptm.feedReminder' : 'fam.w20.ptm.feedBooked'), { teacher: i.teacher, date: ptmDay(i.heldOn, lang), time: ptmTime(i.time, lang) });
     if (i.kind === 'tonight') return fill(t(lang, 'fam.notify.center.tonight'), { subject: t(lang, `fam.subject.${i.subject}` as MessageKey) });
