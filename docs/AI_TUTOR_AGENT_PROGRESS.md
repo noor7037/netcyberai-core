@@ -348,3 +348,11 @@ review; no spec-only module is touched.
 | D | Homework completion by section, copy to sections; syllabus coverage % and objectives met | sonnet |
 | E | PTM booking in the Family app, reminders, the teacher's list | opus |
 | F | Integration by the lead: merges, the security review of A and E, the Decision Log, one CI run, the PR | supervisor |
+
+### W20 status (5 Nov 2026, end of the build)
+
+Built and merged on the branch: A fees in the Family app, B chronic absence told to the family, C the Teacher Copilot
+screen, D homework completion and syllabus coverage, E PTM booking in the Family app (Decision Log C473–C478). Three
+migrations applied to the test database (B, E, A). Two security reviews (A and E): no findings. Unverified: everything on
+a real phone or a real school; the harness could not run in some worktrees, so B and D have no pictures; the Hindi words
+by a native speaker.

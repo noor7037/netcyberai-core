@@ -10444,7 +10444,7 @@ export const hi: Record<keyof typeof en, string> = {
   'fam.w20.fees.failed': 'यह भेजा नहीं जा सका। कृपया फिर कोशिश करें।',
   'fam.w20.fees.notOffered': 'स्कूल अभी ऐप में UPI से फ़ीस नहीं लेता। कृपया स्कूल के दफ़्तर में फ़ीस दें।',
   'fam.w20.fees.method.cash': 'नकद',
-  'fam.w20.fees.method.upi': 'UPI',
+  'fam.w20.fees.method.upi': 'यूपीआई',
   'fam.w20.fees.method.cheque': 'चेक',
   'fam.w20.fees.method.card': 'कार्ड',
   'fam.w20.fees.method.netbanking': 'नेट बैंकिंग',
