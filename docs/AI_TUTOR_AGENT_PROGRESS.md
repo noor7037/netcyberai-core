@@ -374,3 +374,11 @@ only on the school side where it already does (AI marking); no spec-only module 
 | M6 | Control: the W13 read-only pages made to act (audit logs filters and export, analytics, compliance, integrations, system settings, templates, WhatsApp) | opus | C484 |
 | M7 | Documents: request → fee clearance → delivery for TC, bonafide, character and study certificates | sonnet | C485 |
 | M8 | Integration by the lead: merges, reviews where money or children's data move (M5), the Decision Log, one CI run, the PR | supervisor | C486 |
+
+### W21 status (5 Nov 2026, end of the build)
+
+Built and merged on the branch: M1 admissions, M2 promotion, M3 ops (retry, proxy on WhatsApp, timetable history), M4
+Personal Best and the HPC card, M5 the register reader, M6 the Control pages, M7 the certificate flow (Decision Log
+C479–C486). Seven migrations applied to the test database. Three security reviews (M1, M5, M7): no findings. Unverified:
+everything live; M3 has no pictures; the Meta error codes of the retry classifier; the vision model never called on a real
+register; the Control "Test" buttons and a released WhatsApp send against live providers.
