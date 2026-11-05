@@ -523,9 +523,9 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
       <div className="bubble ai" key={key}>
         <div className="ai-label">{m.label}</div>
         {m.title && (
-          <h4>
+          <p className="wa-title">
             <Rich text={m.title.en} />
-          </h4>
+          </p>
         )}
         {m.paras?.map((p, i) => <BiText key={i} bi={p} />)}
         {m.blocks?.map((b, i) => renderBlock(b, i))}
@@ -635,7 +635,7 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
               {overlay === 'share' && (
                 <div className="overlay" onClick={(e) => e.target === e.currentTarget && setOverlay(null)}>
                   <div className="sheet" role="dialog" aria-label={shareTitle}>
-                    <h4>{shareTitle}</h4>
+                    <p className="wa-title">{shareTitle}</p>
                     <p>Choose where to share this achievement. Sharing is always the family’s choice.</p>
                     <div className="share-options">
                       {[
@@ -699,7 +699,7 @@ export function WhatsAppPhone({ className = '', controls = true }: { className?:
               {overlay === 'menu' && (
                 <div className="overlay" onClick={(e) => e.target === e.currentTarget && setOverlay(null)}>
                   <div className="sheet" role="dialog" aria-label="School menu">
-                    <h4>Sunrise International · Menu</h4>
+                    <p className="wa-title">Sunrise International · Menu</p>
                     <p>Everything about Rahul, answered in this chat.</p>
                     <div className="menu-list">
                       {PARENT_MENU.map((m) => (

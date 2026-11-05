@@ -66,6 +66,17 @@ const nextConfig = {
   // same in its own responses.
   async headers() {
     return [
+      // Every response (C471): HTTPS only, for this host and its subdomains, for two years (not on the preload list:
+      // that is near impossible to undo, and nothing needs it yet); no content-type guessing; a referrer that names
+      // only this site to another one. Listed first, so a stricter rule below wins for its own paths.
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+        ],
+      },
       {
         source: '/results/:path*',
         headers: [
@@ -79,6 +90,8 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/demo', destination: '/product-tour', permanent: true },
+      // /security has no page of its own; its one page is the data-ownership page (C471).
+      { source: '/security', destination: '/security/data-ownership', permanent: true },
       { source: '/free-tools/attendance-calculator', destination: '/free-tools/attendance-recovery-planner', permanent: true },
       { source: '/free-tools/fee-reminder-message', destination: '/free-tools/fee-leakage-calculator', permanent: true },
       { source: '/free-tools/daily-pulse-message', destination: '/features/daily-learning-pulse-hinglish', permanent: true },

@@ -2,7 +2,10 @@ export const companyName = 'NetCyberAI';
 export const contactEmail = 'admin@netcyberai.com';
 export const companyAddress = 'Gurugram / Palwal, Haryana, India';
 
-export const siteUrl = 'https://netcyberai.com';
+// The one host the site is served on (C471). Vercel answers netcyberai.com with a 308 to www, and sign-in, the Android
+// shell, the jobs runner and the WhatsApp links already use www, so every canonical tag, sitemap entry, OG image and
+// link the site writes names www too: no URL it lists is a redirect.
+export const siteUrl = 'https://www.netcyberai.com';
 export const siteLanguage = 'en-IN';
 export const ogLocale = 'en_IN';
 export const siteTagline = 'WhatsApp-native parent engagement for Indian schools';

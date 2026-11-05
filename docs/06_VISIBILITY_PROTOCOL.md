@@ -81,6 +81,33 @@ CI now runs this on every push (`.github/workflows/checks.yml`), so
 
 ---
 
+### §2a. 2026-11-05 audit of the live site (Decision Log C471)
+
+Crawled all 102 sitemap pages of www.netcyberai.com. Already right: titles and descriptions unique and in length, one
+H1, alt text on every image, JSON-LD on every page, nothing noindex, AI crawlers allowed, `llms.txt`, Brotli, TTFB
+about 100–170 ms. Fixed in C471, and now held by `scripts/seo_audit.py`:
+
+- **One host.** The site is served on `www` (Vercel answers `netcyberai.com` with a 308), but every canonical tag,
+  sitemap entry and share card named `netcyberai.com`: each listed URL was a redirect. `siteUrl` is `www` now. `www`
+  stays the host, not the bare domain: sign-in, the Android shell, the jobs runner and the approved WhatsApp links
+  already use it, and search engines only need one.
+- **Honest `<lastmod>`** for every page, from git (`scripts/page_dates.py`, checked in CI); `Article.dateModified`
+  from the same day, never a moved date on unchanged content (§8).
+- **IndexNow**: the changed pages are sent after each deploy (`.github/workflows/indexnow.yml`).
+- **A share card per page** (`/og/...`), the page's own title, not one card for 71 pages.
+- **Headings**: the demo phones' titles are not headings (they made h2 → h4 skips).
+- **Not published yet** resource sections (webinars, videos, case studies, API docs) are `noindex` and out of the
+  sitemap until they have content; `/security` (a 404 a breadcrumb linked) redirects to its one page.
+- **Topic clusters**: each blog post links to its product page and the other posts on its subject
+  (`src/content/blog/clusters.ts`).
+- **Entities**: an article names the entities its text mentions (WhatsApp, UPI, CBSE, UDISE+, DPDP Act, Haryana,
+  CPI ...) with `sameAs` to Wikipedia and Wikidata.
+- **Search Console / Bing**: the verification tags are written from `GOOGLE_SITE_VERIFICATION` and
+  `BING_SITE_VERIFICATION` when set.
+
+Still not done, on purpose: `Person` schema (no named author yet, §5.2), any `Review`/rating schema (banned until
+real reviews exist), comparison pages naming competitors (need a founder-reviewed fact base first).
+
 ## §3. `/demo` — CORRECTED DECISION
 
 **Prior decision (Addendum §9):** `/demo` stays in sitemap and robots,

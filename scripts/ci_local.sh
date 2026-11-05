@@ -73,7 +73,7 @@ run_step() {
   fi
 }
 
-uses_step actions/checkout@v4
+uses_step actions/checkout@v4 fetch-depth=0
 
 uses_step actions/setup-node@v4 node-version=20 cache=npm
 
@@ -87,6 +87,11 @@ STEP
 
 run_step "No fabricated numeric claims outside the demo fixture" <<'STEP'
 python3 scripts/check_claims.py
+STEP
+
+run_step "Every public page's sitemap date is current" <<'STEP'
+python3 scripts/page_dates.py --self-test
+python3 scripts/page_dates.py --check
 STEP
 
 run_step "No mock/dummy/fake/sample data outside the demo fixture" <<'STEP'
@@ -196,7 +201,7 @@ run_step "Unit tests (kept regression suite, Decision Log C70)" <<'STEP'
 npm test
 STEP
 
-run_step "Build" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 <<'STEP'
+run_step "Build" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 NODE_OPTIONS=--max-old-space-size=6144 <<'STEP'
 npm run build
 STEP
 

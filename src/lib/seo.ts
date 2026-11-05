@@ -9,6 +9,7 @@ import {
   siteUrl,
 } from './site-config';
 import { plans } from '@/content/pricing';
+import pageDates from '@/content/page-dates.json';
 
 export const ogImageSize = { width: 1200, height: 630 } as const;
 
@@ -206,7 +207,8 @@ export function buildMetadata(
   const { path, title, description, absoluteTitle = false, type = 'website', publishedTime } = input;
   const url = absoluteUrl(path);
   const shared = { title, description, url, siteName: companyName, locale: ogLocale };
-  const card = path.startsWith('/features/') ? ogCards.feature : ogCards.site;
+  // The page's own card (C471): /og plus the page's path, drawn at build by src/app/og/[[...path]]/route.tsx.
+  const ogImage = { url: path === '/' ? '/og' : `/og${path}`, ...ogImageSize, alt: `${companyName}: ${title}` };
 
   // Every page gets the full openGraph/twitter objects: Next.js replaces
   // (not merges) these per segment, so partial objects would silently
@@ -216,15 +218,14 @@ export function buildMetadata(
   // `images: undefined` makes Next.js treat the key as an explicit
   // override and skip its automatic per-segment opengraph-image.tsx
   // file resolution, which is how each blog post gets its own card.
-  // Non-article pages have no such per-page file, so they name their
-  // shared card (site or feature) explicitly.
+  // Every other page names its own card under /og.
   const openGraph =
     type === 'article'
       ? { ...shared, type: 'article' as const, publishedTime }
       : {
           ...shared,
           type: 'website' as const,
-          images: [{ url: card.route, ...ogImageSize, alt: card.alt }],
+          images: [ogImage],
         };
 
   return {
@@ -383,24 +384,58 @@ export function faqPageJsonLd(items: { question: string; answer: string }[]): Js
   };
 }
 
+// The real-world things a page names (C471), each tied to its Wikipedia article and Wikidata item, so a search
+// engine or an answer engine reads "UPI" or "Form 6" as the entity it is, not as a string. Only entities with an
+// article that exists (checked when added); a page lists the ones its own text names.
+const ENTITIES: readonly { name: string; match: RegExp; wikipedia: string; wikidata: string }[] = [
+  { name: 'WhatsApp', match: /\bWhatsApp\b/, wikipedia: 'WhatsApp', wikidata: 'Q1049511' },
+  { name: 'Unified Payments Interface', match: /\bUPI\b/, wikipedia: 'Unified_Payments_Interface', wikidata: 'Q24949969' },
+  { name: 'Central Board of Secondary Education', match: /\bCBSE\b/, wikipedia: 'Central_Board_of_Secondary_Education', wikidata: 'Q3347350' },
+  { name: 'Council for the Indian School Certificate Examinations', match: /\b(ICSE|CISCE)\b/, wikipedia: 'Council_for_the_Indian_School_Certificate_Examinations', wikidata: 'Q5176336' },
+  { name: 'Unified District Information System for Education', match: /\bUDISE\b/, wikipedia: 'Unified_District_Information_System_for_Education', wikidata: 'Q18355614' },
+  { name: 'Digital Personal Data Protection Act, 2023', match: /\bDPDP\b/, wikipedia: 'Digital_Personal_Data_Protection_Act,_2023', wikidata: 'Q121754994' },
+  { name: 'Haryana', match: /\bHaryana\b/, wikipedia: 'Haryana', wikidata: 'Q1174' },
+  { name: 'Goods and Services Tax (India)', match: /\bGST\b/, wikipedia: 'Goods_and_Services_Tax_(India)', wikidata: 'Q27679782' },
+  { name: 'Consumer price index', match: /\bCPI\b|consumer price index/i, wikipedia: 'Consumer_price_index', wikidata: 'Q180687' },
+  { name: 'Right of Children to Free and Compulsory Education Act, 2009', match: /\bRTE\b|Right to Education/, wikipedia: 'Right_of_Children_to_Free_and_Compulsory_Education_Act,_2009', wikidata: 'Q3180893' },
+  { name: 'National Education Policy 2020', match: /\bNEP\b|National Education Policy/, wikipedia: 'National_Education_Policy_2020', wikidata: 'Q97888031' },
+  { name: 'Board examination', match: /\bboard exams?\b/i, wikipedia: 'Board_examination', wikidata: 'Q4931292' },
+];
+
+export function entityMentions(text: string): JsonLd[] {
+  return ENTITIES.filter((e) => e.match.test(text)).map((e) => ({
+    '@type': 'Thing',
+    name: e.name,
+    sameAs: [`https://en.wikipedia.org/wiki/${e.wikipedia}`, `https://www.wikidata.org/wiki/${e.wikidata}`],
+  }));
+}
+
+const DATES: Readonly<Record<string, string>> = pageDates;
+
 export function articleJsonLd(article: {
   path: string;
   title: string;
   description: string;
   publishedOn: string;
+  // The article's words, for the entities it names.
+  text?: string;
 }): JsonLd {
   const url = absoluteUrl(article.path);
+  const mentions = entityMentions(article.text ?? '');
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: article.title,
     description: article.description,
     datePublished: article.publishedOn,
-    dateModified: article.publishedOn,
+    // The day the article last changed (scripts/page_dates.py, from git), never earlier than it was published.
+    dateModified: [DATES[article.path], article.publishedOn].filter(Boolean).sort().pop(),
     inLanguage: siteLanguage,
     mainEntityOfPage: url,
     url,
+    image: absoluteUrl(`${article.path}/opengraph-image`),
     author: organizationRef,
     publisher: organizationRef,
+    ...(mentions.length ? { mentions } : {}),
   };
 }

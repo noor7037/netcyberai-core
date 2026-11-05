@@ -74,7 +74,7 @@ describe('the daily spend alert', () => {
       expect(e).toEqual({
         type: 'email.send',
         idempotencyKey: `email.send:ai_spend_alert:${TODAY}`,
-        payload: { to: 'founders', template: 'ai_spend_alert', data: { day: TODAY, spentUsd: '1.00', limitUsd: '1.00', unpriced: '1', url: 'https://netcyberai.com/control/ai' } },
+        payload: { to: 'founders', template: 'ai_spend_alert', data: { day: TODAY, spentUsd: '1.00', limitUsd: '1.00', unpriced: '1', url: 'https://www.netcyberai.com/control/ai' } },
         maxAttempts: 4,
       });
     }

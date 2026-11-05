@@ -38,7 +38,8 @@ export function buildTrail(input: { pathname: string | null | undefined; rootLab
   return { items, parent: ups.length ? (ups[ups.length - 1].href as string) : rootHref };
 }
 
-// The sections of the public site that have a page of their own: a trail links only these.
+// The sections of the public site that have a page of their own: a trail links only these. /security has none (its one
+// page is /security/data-ownership), so its crumb is a word, not a link to a page that answers 404 (C471).
 export const SITE_SECTIONS: Readonly<Record<string, string>> = {
   '/products': 'Products',
   '/solutions': 'Solutions',
@@ -50,7 +51,6 @@ export const SITE_SECTIONS: Readonly<Record<string, string>> = {
   '/about': 'About',
   '/contact': 'Contact',
   '/support': 'Support',
-  '/security': 'Security',
   '/privacy': 'Privacy',
   '/terms': 'Terms',
 };
