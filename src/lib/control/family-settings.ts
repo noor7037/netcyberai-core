@@ -71,6 +71,9 @@ export async function setPlusOpen(db: Sql, by: { userId: string }, raw: unknown)
 // one India day; spoken lines meter against it, not the AI requests. A whole number from 0 (the server voice off for
 // families) to VOICE_CHARS_MAX; audited.
 export const VOICE_CHARS_MAX = 1_000_000;
+// The tutor caps' ranges, for Control → System Settings (W21-M6), which may not read family code itself.
+export const TUTOR_CAP_MAX = CAP_MAX;
+export const TUTOR_MULTIPLIER_MAX = MULTIPLIER_MAX;
 
 export async function readVoiceAllowance(db: Sql): Promise<number | null> {
   return voiceCharLimit(db);

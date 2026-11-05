@@ -1,12 +1,14 @@
 import { ModulePage } from '@/components/app-ui/ModulePage';
 import { WhatsAppAccountPanel } from '@/components/control/WhatsAppAccountPanel';
+import { WhatsAppSchoolsPanel } from '@/components/control/WhatsAppSchoolsPanel';
 import { getServerSession } from '@/lib/auth/server-session';
 import { t } from '@/lib/i18n';
 import { getLang } from '@/lib/i18n/server';
 import { WordsProvider } from '@/components/app-shell/Words';
 import { pageWords } from '@/components/app-shell/page-words';
 
-// The platform's WhatsApp account (docs/25 slice 7e, C186). The layout has already refused anyone but the founder.
+// The platform's WhatsApp account (docs/25 slice 7e, C186), and each school's number, today's sends and the held queue
+// (W21-M6). The layout has already refused anyone but the founder.
 export const dynamic = 'force-dynamic';
 
 export default async function WhatsAppAccountPage() {
@@ -16,6 +18,7 @@ export default async function WhatsAppAccountPage() {
     <ModulePage title={t(lang, 'wa.title')} purpose={t(lang, 'wa.purpose')} about={t(lang, 'wa.how')} icon="chat" tone="cyan" eyebrow={t(lang, 'group.control')} headerLang={lang}>
       <WordsProvider words={pageWords(lang, '/control/whatsapp')}>
       <WhatsAppAccountPanel />
+      <WhatsAppSchoolsPanel />
       </WordsProvider>
     </ModulePage>
   );

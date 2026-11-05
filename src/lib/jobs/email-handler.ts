@@ -1,5 +1,6 @@
 import { EmailNotConfiguredError, type EmailSender } from '@/lib/email/sender';
 import { renderEmail } from '@/lib/email/templates';
+import { EDITABLE_EMAILS, readOverride, renderOverride } from '@/lib/email/template-overrides';
 import { PermanentJobError, type JobHandler, type Sql } from './types';
 
 // email.send (C97). Payload: { to: string[] | 'founders', template, data,
@@ -39,7 +40,9 @@ export function emailSendHandler(deps: EmailDeps): JobHandler {
           : null;
     if (!recipients) throw new PermanentJobError('email.send payload has no recipients');
     if (recipients.length === 0) throw new PermanentJobError('no founder email address is known');
-    const rendered = renderEmail(template, data as Record<string, unknown>, (secret as Record<string, unknown> | undefined) ?? {});
+    // The founder's own words for this email, when Control → Templates holds them (W21-M6); else the code's.
+    const override = EDITABLE_EMAILS[template] ? await deps.platform((db) => readOverride(db, template)) : null;
+    const rendered = override ? renderOverride(template, override, data as Record<string, unknown>) : renderEmail(template, data as Record<string, unknown>, (secret as Record<string, unknown> | undefined) ?? {});
     const sender = deps.sender();
     if (!sender) throw new EmailNotConfiguredError();
     await sender.send({ to: recipients, ...rendered, idempotencyKey: job.idempotencyKey });
