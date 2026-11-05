@@ -54,6 +54,7 @@ export function SetupChecklist() {
             [
               { href: '/app/setup/sessions', title: 'setup.home.sessions', hint: 'setup.home.sessions.hint', link: 'sessions' },
               { href: '/app/setup/subjects', title: 'setup.home.subjects', hint: 'setup.home.subjects.hint', link: 'subjects' },
+              { href: '/app/setup/promotion', title: 'promotion.home', hint: 'promotion.home.hint', link: 'promotion' },
             ] as const
           ).map((l) => (
             <Link key={l.href} href={l.href} data-setup-link={l.link} className={LINK}>
