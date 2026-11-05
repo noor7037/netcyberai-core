@@ -124,6 +124,9 @@ describe('who is let in', () => {
       expect.objectContaining({ profileId: 'family.voice_call', carriesChildWords: true, needs: ['realtime'], providerId: null, enabled: true, usesPrompt: false }),
       expect.objectContaining({ profileId: 'family.voice_input', carriesChildWords: true, providerId: null, enabled: true }),
       expect.objectContaining({ profileId: 'parent_ai.home_help', carriesChildWords: false, providerId: null, enabled: true }),
+      // W21-M5: a paper register page read into the student import: children's names; no service of its own, so it
+      // follows the marking page reader's chain.
+      expect.objectContaining({ profileId: 'students.register_ocr', carriesChildWords: true, needs: ['text', 'vision'], providerId: null, enabled: true, usesPrompt: true, chainFrom: 'exams.read_pages' }),
     ]);
     expect(body.cap).toBe(20);
   });
