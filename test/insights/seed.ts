@@ -138,6 +138,14 @@ export async function startSchool(): Promise<Db> {
       ('${u(501)}', '${A}', '${ASHA}', 'tokentokentokentokentokentoken0001', 100000, 'open', '${ACCOUNTANT}', '${at(-7)}', 'ABCDEFGH'), ('${u(502)}', '${A}', '${FARAH}', 'tokentokentokentokentokentoken0002', 100000, 'open', '${ACCOUNTANT}', '${at(-7)}', 'ABCDEFGJ');
     insert into payment_reports (school_id, link_id, utr, amount_minor, status, reported_at, decided_by, decided_at) values
       ('${A}', '${u(501)}', '123456789012', 100000, 'reported', '${at(0)}', null, null), ('${A}', '${u(502)}', '123456789013', 100000, 'not_found', '${at(3)}', '${ACCOUNTANT}', '${at(2)}');
+    -- Syllabus (W20-D): 5-A Maths has four units, one taught (with a note); the school's current session is half gone.
+    insert into teachers (teacher_id, school_id, user_id, name) values ('${u(700)}', '${A}', '${TARA}', 'Tara');
+    insert into academic_sessions (session_id, school_id, label, start_date, end_date, is_current) values ('${u(701)}', '${A}', 'This session', '${day(100)}', '${day(-100)}', true);
+    insert into syllabus_units (unit_id, school_id, class_id, subject_id, position, chapter, topic) values
+      ('${u(710)}', '${A}', '${C5A}', '${MATHS}', 1, 'Fractions', 'Halves'), ('${u(711)}', '${A}', '${C5A}', '${MATHS}', 2, 'Fractions', 'Quarters'),
+      ('${u(712)}', '${A}', '${C5A}', '${MATHS}', 3, 'Fractions', 'Thirds'), ('${u(713)}', '${A}', '${C5A}', '${MATHS}', 4, 'Fractions', 'Sums');
+    insert into syllabus_progress (school_id, teacher_id, class_id, subject_id, topic, status, date, unit_id, note) values
+      ('${A}', '${u(700)}', '${C5A}', '${MATHS}', 'Halves', 'taught', '${day(20)}', '${u(710)}', 'Children can halve a shape.');
     -- Daily Pulse: one sent today (5-A), one four days ago (6-B); a draft today; one sent 45 days ago.
     insert into pulse_messages (pulse_id, school_id, class_id, subject_id, topic, exception_state, body_en, body_hi, body_hinglish, sent_on, status, sent_by, sent_at) values
       ('${u(601)}', '${A}', '${C5A}', '${MATHS}', 'Fractions', 'taught', 'Today: fractions.', 'आज: भिन्न।', 'Aaj: fractions.', '${day(0)}', 'sent', '${TARA}', '${at(0)}'),

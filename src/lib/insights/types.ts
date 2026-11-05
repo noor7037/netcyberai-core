@@ -27,6 +27,7 @@ export const FACT_IDS = [
   'fees.collected', 'fees.owed', 'fees.overdue', 'fees.promises_due', 'fees.upi_to_verify',
   'pulse.sent', 'pulse.understood', 'pulse.needs_help', 'followups.open',
   'homework.set', 'homework.checked', 'homework.not_done',
+  'syllabus.coverage',
   'messages.total', 'messages.failed', 'messages.held', 'whatsapp.spend',
   'complaints.open', 'complaints.overdue', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts',
   'tickets.open', 'tickets.waiting',

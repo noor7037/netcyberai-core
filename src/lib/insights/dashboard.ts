@@ -16,7 +16,7 @@ import type { FactId, FactRange, FactResult, FactUnit } from './types';
 export const DASHBOARD_GROUPS: readonly { id: 'today' | 'money' | 'learning' | 'parents' | 'running'; tone: ColorToken; facts: readonly FactId[] }[] = [
   { id: 'today', tone: 'royal', facts: ['attendance.classes_marked', 'attendance.present', 'attendance.absent', 'attendance.late', 'attendance.leave'] },
   { id: 'money', tone: 'tangerine', facts: ['fees.collected', 'fees.overdue', 'fees.owed', 'fees.promises_due', 'fees.upi_to_verify'] },
-  { id: 'learning', tone: 'azure', facts: ['attendance.present_rate', 'homework.set', 'homework.checked', 'homework.not_done', 'followups.open'] },
+  { id: 'learning', tone: 'azure', facts: ['attendance.present_rate', 'homework.set', 'homework.checked', 'homework.not_done', 'syllabus.coverage', 'followups.open'] },
   { id: 'parents', tone: 'cyan', facts: ['pulse.sent', 'pulse.understood', 'pulse.needs_help', 'messages.total', 'complaints.open', 'notices.waiting', 'ptm.coming', 'events.coming', 'parent_ai.drafts'] },
   // Staff leave and covers (8b, 8c) are here as counts for running the day: never a list of who, never an order of people.
   { id: 'running', tone: 'sapphire', facts: ['students.active', 'students.waiting_consent', 'staff.leave_waiting', 'staff.on_leave_today', 'proxy.uncovered_today', 'whatsapp.spend', 'tickets.open'] },

@@ -362,6 +362,8 @@ export const READ_ROUTES: readonly (readonly [string, WriteModule])[] = [
   ['syllabus', 'academics'],
   // W14-I: the library's plan for the school's class-subjects, read on the Syllabus screen.
   ['syllabus/library', 'academics'],
+  // W20-D: coverage by class and subject, read on the Syllabus screen.
+  ['syllabus/coverage', 'academics'],
   ['compliance/**', 'compliance'],
   ['whatsapp-config', 'communication'],
   ['communication/**', 'communication'],
