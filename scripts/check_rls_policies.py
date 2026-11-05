@@ -407,6 +407,7 @@ ALLOWED_PERMISSIVE = (
         # C228: tenant isolation only; narrowed by the RESTRICTIVE policies required below (the office only).
         ("certificates_issued", "certificates_issued_tenant_isolation"),
         ("certificate_copies", "certificate_copies_tenant_isolation"),
+        ("certificate_request_events", "certificate_request_events_tenant_isolation"),  # W21-M7: the request timeline, restrictive rules beside it
         ("certificate_marks", "certificate_marks_tenant_isolation"),
         # p7-10e end
         # p7-10f begin

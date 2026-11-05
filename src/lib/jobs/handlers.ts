@@ -22,6 +22,7 @@ import { log } from '@/lib/observability/log';
 import { DEMO_SETUP_JOB, demoSetupHandler } from './demo-setup';
 import { PUSH_SCAN_JOB, pushScanHandler } from '@/lib/family/push';
 import { quizJobHandler } from '@/lib/family/quiz';
+import { CERTIFICATE_READY_JOB_TYPE, certificateReadyHandler } from '@/lib/family/certificate-ready';
 import { markingGroupHandler, markingMarkHandler, markingReadHandler } from '@/lib/marking/pipeline';
 import { MARKING_GROUP_JOB, MARKING_MARK_JOB, MARKING_READ_JOB } from '@/lib/marking/queue';
 import { PICTURES_SWEEP_JOB, picturesSweepHandler } from '@/lib/marking/retention';
@@ -72,6 +73,8 @@ export function productionHandlers(): Record<string, JobHandler> {
     'fees.nightly': feesNightlyHandler({ platform, queue: jobQueue }),
     // The day before a parent-teacher meeting: each booked parent is reminded (C193).
     [PTM_REMIND_JOB]: ptmRemindHandler({ platform: withPlatformService, queue: jobQueue }),
+    // W21-M7: a certificate made ready reaches the linked families by email (src/lib/family/certificate-ready.ts).
+    [CERTIFICATE_READY_JOB_TYPE]: certificateReadyHandler({ platform, queue: jobQueue }),
     // W20-E: the Family app's email the day before, for a booking made in the app that still stands.
     [PTM_APP_REMIND_JOB]: ptmAppRemindHandler({ platform: withPlatformService, queue: jobQueue }),
     // The day before a school event: everyone invited who did not say no (C194).

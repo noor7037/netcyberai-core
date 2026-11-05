@@ -4909,6 +4909,7 @@ const CERT_WITHDRAW = 'Issued with the wrong reason for leaving.';
 const VERIFY_TOKEN = 'harness-10e-verify-token-0000001';
 const clearCertificates = async () => {
   await db.pg.exec(`set session_replication_role = replica;
+    delete from certificate_request_events; delete from certificate_requests;
     delete from certificate_copies; delete from certificates_issued; delete from certificate_marks;
     delete from certificate_signatures; delete from certificate_signatories; delete from certificate_numbering;
     delete from school_setting_changes where module_id = 'documents'; delete from school_settings where module_id = 'documents';
@@ -4979,6 +4980,27 @@ const certificatesScreen = async (page) => {
     withdrawn: tokens['TC/0001'] ? await verifyAsAStranger(page, tokens['TC/0001']) : null,
   };
   await page.evaluate(() => window.scrollTo(0, 0));
+};
+// W21-M7: the office's requests for certificates: a TC the family asked for in the Family app, held for fees, and a
+// bonafide the office asked for, waiting to be issued.
+const certificateRequestsScreen = async (page) => {
+  await clearCertificates();
+  const guardian = '00000000-0000-4000-8000-0000000e0001';
+  const as = (role, user, fn) =>
+    db.pg.transaction(async (tx) => {
+      for (const [k, v] of [['app.current_tenant_id', SCHOOL], ['app.current_role', role], ['app.current_user_id', user]]) await tx.query(`select set_config($1, $2, true)`, [k, v]);
+      return fn(tx);
+    });
+  await db.pg.query(`insert into school_settings (school_id, module_id, schema_version, setting_values, revision) values ($1, 'documents', 1, '{"clearance_transfer": true}', 1)`, [SCHOOL]);
+  await as('parent', guardian, (tx) => tx.query(`insert into certificate_requests (school_id, student_id, cert_type, reason) values ($1, $2, 'transfer', 'Moving to another city')`, [SCHOOL, CERT_AARAV]));
+  await as('school_admin', PEOPLE.principal.sub, (tx) => tx.query(`insert into certificate_requests (school_id, student_id, cert_type, reason) values ($1, $2, 'bonafide', 'Opening a bank account')`, [SCHOOL, CERT_MEERA]));
+  await db.pg.query(`update certificate_requests set held_owed_minor = 450000 where school_id = $1 and student_id = $2`, [SCHOOL, CERT_AARAV]);
+  await db.pg.query(`insert into certificate_request_events (school_id, request_id, kind, actor) select school_id, cert_id, 'held', 'system' from certificate_requests where student_id = $1`, [CERT_AARAV]);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.locator('[data-certificate-requests] [data-certificate-request]').first().waitFor({ timeout: 20000 });
+};
+const certificateRequestsScreenDone = async () => {
+  await clearCertificates();
 };
 const certificatesScreenDone = async () => {
   const { rows } = await db.pg.query(
@@ -7583,6 +7605,7 @@ const SCREENS = [
   ['principal', 'app-compliance-disclosure', '/app/compliance/desk/disclosure', disclosurePrint, disclosurePrintDone],
   // p7-10d end
   // p7-10e begin
+  ['principal', 'app-certificate-requests', '/app/documents-id-cards', certificateRequestsScreen, certificateRequestsScreenDone],
   ['principal', 'app-certificates', '/app/documents-id-cards', certificatesScreen, certificatesScreenDone],
   ['principal', 'verify-certificate', `/verify/${VERIFY_TOKEN}`, verifyScreen, verifyScreenDone],
   // p7-10e end

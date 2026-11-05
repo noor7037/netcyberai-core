@@ -3,7 +3,7 @@ import type { FamilyClaims } from './db';
 import { guarded } from './chapter-store';
 import type { FamilyChild } from './children';
 import type { RequestStatus } from './chapter-request-types';
-import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolFeeRemindersFor, schoolNoticesFor, schoolPtmFeedFor, schoolSubjectIs, schoolTodayFor } from './school';
+import { activeLinks, notifyOff, readSeen, schoolNewsFor, schoolFeeRemindersFor, schoolNoticesFor, schoolCertificateFeedFor, schoolPtmFeedFor, schoolSubjectIs, schoolTodayFor } from './school';
 import { SUBJECT_IDS } from './subjects';
 import { latestReportFor } from './parent-report';
 import type { MessageKey } from '@/lib/i18n';
@@ -25,6 +25,8 @@ export type NotificationItem =
   | { id: string; kind: 'report'; weekStart: string; href: string }
   // W20-E: a parent-teacher meeting the parent booked (the confirmation), and from the day before, the reminder.
   | { id: string; kind: 'ptm'; remind: boolean; teacher: string; heldOn: string; time: string; href: string }
+  // W21-M7: a certificate the school made ready for this child (the PDF is in the parent area, School).
+  | { id: string; kind: 'certificate'; certKind: string; number: string | null; href: string }
   // W20-A: a fee reminder the school sent; what is still owed of it and by when. Opens the parent area's school part.
   | { id: string; kind: 'fee'; school: string; amountMinor: number; dueDate: string; href: string };
 
@@ -38,6 +40,8 @@ export type NotificationInput = {
   report?: { childId: string; weekStart: string } | null;
   // W20-E: the parent's meeting bookings still to come with this child's teachers.
   ptm?: readonly { bookingId: string; teacher: string; heldOn: string; time: string; remind: boolean }[];
+  // W21-M7: the child's certificates that are ready.
+  certificates?: readonly { requestId: string; kind: string; number: string | null }[];
   // W20-A: the school's fee reminders for this child's family (still owed, by when).
   fees?: readonly { id: string; schoolName: string; amountMinor: number; dueDate: string }[];
 };
@@ -59,6 +63,7 @@ export function buildNotifications(input: NotificationInput): NotificationItem[]
     }
   }
   for (const p of input.ptm ?? []) out.push({ id: `ptm.${p.bookingId}.${p.remind ? 'remind' : 'booked'}`, kind: 'ptm', remind: p.remind, teacher: p.teacher, heldOn: p.heldOn, time: p.time, href: '/family/parent' });
+  for (const c of input.certificates ?? []) out.push({ id: `certificate.${c.requestId}`, kind: 'certificate', certKind: c.kind, number: c.number, href: '/family/parent' });
   for (const f of input.fees ?? []) out.push({ id: `fee.${f.id}`, kind: 'fee', school: f.schoolName, amountMinor: f.amountMinor, dueDate: f.dueDate, href: '/family/parent' });
   if (input.report) out.push({ id: `report.${input.report.weekStart}`, kind: 'report', weekStart: input.report.weekStart, href: `/family/parent/progress/${encodeURIComponent(input.report.childId)}` });
   for (const n of input.notices ?? []) out.push({ id: `notice.${n.noticeId}`, kind: 'notice', school: n.schoolName, body: n.body, href: '/family/parent' });
@@ -100,6 +105,7 @@ export async function readNotifications(db: PoolClient, claims: FamilyClaims, ac
   const notices = mine.length ? await schoolNoticesFor(claims, mine, off) : [];
   const report = await guarded(db, 'notify_report', () => latestReportFor(db, accountId, child.childId), null);
   const ptm = mine.length ? await schoolPtmFeedFor(claims, mine, off) : [];
+  const certificates = mine.length ? (await schoolCertificateFeedFor(claims, mine, off)).map((c) => ({ requestId: c.requestId, kind: c.kind, number: c.number })) : [];
   const fees = mine.length ? await schoolFeeRemindersFor(claims, mine, off) : [];
-  return buildNotifications({ news, notices, fees, tonight, requests: await recentRequests(db, accountId, child.childId), report: report ? { childId: child.childId, weekStart: report.weekStart } : null, ptm });
+  return buildNotifications({ news, notices, fees, tonight, requests: await recentRequests(db, accountId, child.childId), report: report ? { childId: child.childId, weekStart: report.weekStart } : null, ptm, certificates });
 }
