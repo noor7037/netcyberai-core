@@ -201,7 +201,7 @@ run_step "Unit tests (kept regression suite, Decision Log C70)" <<'STEP'
 npm test
 STEP
 
-run_step "Build" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 <<'STEP'
+run_step "Build" NEXT_PUBLIC_WHATSAPP_NUMBER=919817707037 NODE_OPTIONS=--max-old-space-size=6144 <<'STEP'
 npm run build
 STEP
 
