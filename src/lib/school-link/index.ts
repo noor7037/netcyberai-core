@@ -585,3 +585,7 @@ export async function readSchoolTutors(claims: Claims, linkId: string): Promise<
   });
 }
 // w16-a3 end
+// W20-E start
+// Parent-teacher meetings from the Family app (H5), as the guardian: src/lib/school-link/ptm.ts.
+export { bookFamilySlot, cancelFamilyBooking, familyPtmFeed, familyPtmFor, type FamilyBookResult, type FamilyCancelResult, type GuardianPtm, type GuardianPtmBooked } from './ptm';
+// W20-E end

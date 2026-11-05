@@ -8,6 +8,7 @@ import { familyClaims } from '@/lib/family/db';
 import { fill } from '@/lib/family/fill';
 import { NEWS_TEXT, readNotifications, REQUEST_TEXT, type NotificationItem } from '@/lib/family/notifications';
 import { reportTitle } from '@/lib/family/parent-report';
+import { ptmDay, ptmTime } from '@/lib/time/ptm-words';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { t, type MessageKey } from '@/lib/i18n';
 
@@ -27,6 +28,7 @@ export default async function FamilyNotificationsPage() {
     if (i.kind === 'news') return t(lang, NEWS_TEXT[i.news], { n: i.count });
     if (i.kind === 'notice') return `${i.school}: ${i.body}`;
     if (i.kind === 'report') return reportTitle(lang, child.firstName);
+    if (i.kind === 'ptm') return fill(t(lang, i.remind ? 'fam.w20.ptm.feedReminder' : 'fam.w20.ptm.feedBooked'), { teacher: i.teacher, date: ptmDay(i.heldOn, lang), time: ptmTime(i.time, lang) });
     if (i.kind === 'tonight') return fill(t(lang, 'fam.notify.center.tonight'), { subject: t(lang, `fam.subject.${i.subject}` as MessageKey) });
     return fill(t(lang, REQUEST_TEXT[i.status]), { title: i.title });
   };

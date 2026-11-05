@@ -318,6 +318,8 @@ export const FAMILY_SCREENS = [
   // W14-G: the Overview of a family with a school connected: the school's numbers as tiles, the school named.
   ['linked', 'family-parent-area-overview-school', '/family/parent', { parent: true, child: LINKED_CHILD, settle: '[data-overview-school]' }],
   ['linked', 'family-parent-school-results', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
+  // W20-E: the parent-teacher meeting card, with a free and a taken time.
+  ['linked', 'family-parent-school-ptm', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-school-ptm]' }],
   ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
   ['linked', 'family-my-checked-paper', `/family/results/${MK.paper}`, { child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
   // AJ-5 (C230-AJ part 5): a child's progress report by exam type, in the parent area and the child's own view.
@@ -425,6 +427,27 @@ async function seedLinkedFamily(db) {
   const link = 'f0000000-0000-4000-8000-0000000fd101';
   await db.pg.query(`insert into family.school_links (link_id, account_id, school_id, parent_id) values ($1, $2, $3, '00000000-0000-4000-8000-0000000e0001') on conflict do nothing`, [link, FAMILY.linked, school]);
   await db.pg.query(`insert into family.child_links (child_id, link_id, account_id, student_id) values ($1, $2, $3, '00000000-0000-4000-8000-000000500001') on conflict do nothing`, [LINKED_CHILD, link, FAMILY.linked]);
+  // W20-E: 5-A's parent-teacher meeting in three days, invited, with the class teacher's times; one is already taken by
+  // another guardian of the class (booked by the office), so the parent sees a free and a taken chip.
+  const ptm = '00000000-0000-4000-8000-0000000b2001';
+  await db.pg.query(`delete from ptm_bookings where ptm_id = $1`, [ptm]);
+  await db.pg.query(`delete from ptm_slots where ptm_id = $1`, [ptm]);
+  await db.pg.query(`delete from ptm_events where ptm_id = $1`, [ptm]);
+  await db.pg.query(`insert into school_module_entitlements (school_id, module_id, enabled, source) values ($1, 'ptm', true, 'plan') on conflict (school_id, module_id) do update set enabled = true`, [school]);
+  await db.pg.query(
+    `insert into ptm_events (ptm_id, school_id, title, held_on, starts_at, ends_at, slot_minutes, class_ids, status, created_by, invited_by, invited_at)
+     values ($1, $2, 'Term 1 parent-teacher meeting', (now() at time zone 'Asia/Kolkata')::date + 3, '10:00', '10:40', 10, array['00000000-0000-4000-8000-0000000c0051']::uuid[], 'invited', $3, $3, now())`,
+    [ptm, school, principal]
+  );
+  await db.pg.query(`insert into ptm_slots (school_id, ptm_id, teacher_id, starts_at) select $1, $2, '00000000-0000-4000-8000-00000000a003', s::time from unnest(array['10:00', '10:10', '10:20', '10:30']) s`, [school, ptm]);
+  await db.pg.query(
+    `insert into ptm_bookings (school_id, ptm_id, slot_id, teacher_id, parent_id, booked_via, booked_by)
+     select $1, $2, sl.slot_id, sl.teacher_id, m.parent_id, 'staff', $3 from ptm_slots sl,
+       (select m.parent_id from parent_student_map m join students s on s.school_id = m.school_id and s.student_id = m.student_id
+         where s.class_id = '00000000-0000-4000-8000-0000000c0051' and m.parent_id <> '00000000-0000-4000-8000-0000000e0001' order by m.parent_id limit 1) m
+      where sl.ptm_id = $2 and sl.starts_at = '10:10'`,
+    [school, ptm, principal]
+  );
   // A coming exam with exam numbers, so the timetable has a paper and Aarav his number.
   const coming = '00000000-0000-4000-8000-0000000a9901';
   await db.pg.query(`delete from exam_seat_numbers where exam_id = $1`, [coming]);
