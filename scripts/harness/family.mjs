@@ -318,6 +318,8 @@ export const FAMILY_SCREENS = [
   // W14-G: the Overview of a family with a school connected: the school's numbers as tiles, the school named.
   ['linked', 'family-parent-area-overview-school', '/family/parent', { parent: true, child: LINKED_CHILD, settle: '[data-overview-school]' }],
   ['linked', 'family-parent-school-results', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-checked-paper-link]', pictures: true }],
+  // W20-A: the matched child's school fees and "Pay by UPI" (the school's UPI ID, the family link's amount and the QR).
+  ['linked', 'family-parent-school-fees', '/family/parent#school', { parent: true, child: LINKED_CHILD, settle: '[data-fees-pay]' }],
   ['linked', 'family-my-results', '/family/results', { child: LINKED_CHILD, settle: '[data-exam-timetable]', pictures: true }],
   ['linked', 'family-my-checked-paper', `/family/results/${MK.paper}`, { child: LINKED_CHILD, settle: '[data-marked-script] img', pictures: true }],
   // AJ-5 (C230-AJ part 5): a child's progress report by exam type, in the parent area and the child's own view.
@@ -425,6 +427,23 @@ async function seedLinkedFamily(db) {
   const link = 'f0000000-0000-4000-8000-0000000fd101';
   await db.pg.query(`insert into family.school_links (link_id, account_id, school_id, parent_id) values ($1, $2, $3, '00000000-0000-4000-8000-0000000e0001') on conflict do nothing`, [link, FAMILY.linked, school]);
   await db.pg.query(`insert into family.child_links (child_id, link_id, account_id, student_id) values ($1, $2, $3, '00000000-0000-4000-8000-000000500001') on conflict do nothing`, [LINKED_CHILD, link, FAMILY.linked]);
+  // W20-A: the illustrative school takes UPI to its own account (an example UPI ID), so the fees show "Pay by UPI".
+  await db.pg.query(
+    `insert into payment_methods (school_id, method, enabled, settings, updated_by) values ($1, 'direct_upi', true, $2, $3) on conflict (school_id, method) do nothing`,
+    [school, JSON.stringify({ upiId: 'example.school@okbank', payeeName: 'Example School', bankName: 'An Example Bank', accountLast4: '0000', ifsc: 'EXMP0000001', verifiers: ['accountant', 'principal'], principalLimitMinor: 0, notify: 'digest' }), principal]
+  );
+  // ...and the family's open payment link, as "Pay by UPI" makes it (origin family_app, as the platform role), for what Aarav owes.
+  await db.pg.transaction(async (tx) => {
+    await tx.query('set local role nca_super');
+    await tx.query(
+      `insert into payment_links (school_id, family_id, student_id, token, amount_minor, created_by, origin, expires_at, reference_code)
+       select s.school_id, s.family_id, s.student_id, 'harness-family-fees-link-token-000000000001', sum(l.amount_minor), null, 'family_app', now() + interval '7 days', 'HRNSS234'
+         from students s join fees_ledger l on l.school_id = s.school_id and l.student_id = s.student_id
+        where s.student_id = '00000000-0000-4000-8000-000000500001'
+          and not exists (select 1 from payment_links k where k.token = 'harness-family-fees-link-token-000000000001')
+        group by s.school_id, s.family_id, s.student_id`
+    );
+  });
   // A coming exam with exam numbers, so the timetable has a paper and Aarav his number.
   const coming = '00000000-0000-4000-8000-0000000a9901';
   await db.pg.query(`delete from exam_seat_numbers where exam_id = $1`, [coming]);

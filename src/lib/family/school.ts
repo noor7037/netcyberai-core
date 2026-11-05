@@ -2,7 +2,7 @@ import type { FamilyClaims } from './db';
 import type { PoolClient } from 'pg';
 import { SUBJECT_IDS, type Subject } from '@/lib/contracts/subjects';
 import type { SchoolProgress } from '@/lib/contracts/progress-report';
-import type { SchoolTutors } from '@/lib/contracts/school-link';
+import type { SchoolFeeClaimResult, SchoolFeePay, SchoolFeeReminder, SchoolFees, SchoolTutors } from '@/lib/contracts/school-link';
 import type { LinkedSchool, PulseAnswer, SchoolCheckedPaper, SchoolDayMark, SchoolExamPaper, SchoolResult, SchoolSyllabus, SchoolTaught } from '@/lib/contracts/school-link';
 import {
   answerPulse,
@@ -23,6 +23,10 @@ import {
   redeemConnectCode,
   requestFollowup,
   SchoolLinkGoneError,
+  claimFamilyPayment,
+  readFamilyFees,
+  readFeeReminderFeed,
+  startFamilyPayment,
   type FeedNotice,
   type FollowupRequestResult,
   type PulseAnswerResult,
@@ -443,4 +447,61 @@ export async function schoolTutorsFor(claims: Claims, links: readonly FamilyScho
     }
   }
   return out;
+}
+
+// ---- fees (W20-A, H1) --------------------------------------------------------------------------------------------------
+
+// A matched child's fees as the guardian: the dues with their concession, the receipts, and how to pay by UPI. null when
+// the child is not matched, the link is gone, or the school does not show the child to this guardian.
+export async function schoolFeesFor(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<SchoolFees | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await readFamilyFees(claims, m.linkId, m.studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// "Pay by UPI" for a matched child: the family's payment link at the school (made when there is none). null as above,
+// or when the school does not take UPI to its own account, or nothing is owed.
+export async function schoolFeesPay(claims: Claims, links: readonly FamilySchoolLink[], childId: string): Promise<SchoolFeePay | null> {
+  const m = matchedStudent(links, childId);
+  if (!m) return null;
+  try {
+    return await startFamilyPayment(claims, m.linkId, m.studentId);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return null;
+    throw e;
+  }
+}
+
+// "I have paid" with the UPI reference: a claim the school checks in its own bank before anything is credited.
+export async function schoolFeesClaim(claims: Claims, links: readonly FamilySchoolLink[], childId: string, utr: string): Promise<SchoolFeeClaimResult> {
+  const m = matchedStudent(links, childId);
+  if (!m) return 'not_found';
+  try {
+    return await claimFamilyPayment(claims, m.linkId, m.studentId, utr);
+  } catch (e) {
+    if (e instanceof SchoolLinkGoneError) return 'not_found';
+    throw e;
+  }
+}
+
+// The fee reminders the schools sent these matched children's families in the last days, for the feed (newest first).
+// Left out with the school's notices when the parent turned notices off.
+export const FEE_REMINDER_FEED_DAYS = 14;
+export async function schoolFeeRemindersFor(claims: Claims, links: readonly FamilySchoolLink[], off: readonly NotifyKind[]): Promise<SchoolFeeReminder[]> {
+  if (off.includes('notices')) return [];
+  const out: SchoolFeeReminder[] = [];
+  for (const l of links) {
+    if (!l.children.length) continue;
+    try {
+      out.push(...(await readFeeReminderFeed(claims, l.linkId, l.children.map((c) => c.studentId), FEE_REMINDER_FEED_DAYS)));
+    } catch (e) {
+      if (!(e instanceof SchoolLinkGoneError)) throw e;
+    }
+  }
+  return out.sort((a, b) => b.sentOn.localeCompare(a.sentOn)).slice(0, 3);
 }

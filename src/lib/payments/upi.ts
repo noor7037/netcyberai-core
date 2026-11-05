@@ -58,7 +58,7 @@ export function upiSettingsProblem(s: UpiSettings): 'upi_id' | 'payee' | 'bank' 
 }
 export const upiReady = (s: UpiSettings) => upiSettingsProblem(s) === null;
 
-async function schoolUpi(db: Sql, schoolId: string): Promise<{ enabled: boolean; settings: UpiSettings }> {
+export async function schoolUpi(db: Sql, schoolId: string): Promise<{ enabled: boolean; settings: UpiSettings }> {
   const row = (await db.query(`select enabled, settings from payment_methods where school_id = $1 and method = 'direct_upi'`, [schoolId])).rows[0];
   const settings = readUpiSettings(row?.settings);
   return { enabled: row?.enabled === true && upiReady(settings), settings };

@@ -147,3 +147,18 @@ export type SchoolTutor = { id: string; name: string; subject: string | null; st
 // What one linked school adds to the Tutor Hall: its own tutors, and the keys of the platform tutors it switched off.
 export type SchoolTutors = { schoolName: string; tutors: SchoolTutor[]; hiddenPlatform: string[] };
 // w16-a3 end
+
+// W20-A (H1): fees in the Family app, read as the guardian. Amounts are whole paise (docs/23 §3 rule 1).
+// One due still owed: the fee's name and period, what it was raised at, the concession taken off, what was paid, the balance.
+export type SchoolFeeDue = { feeId: string; head: string | null; period: string | null; lateFee: boolean; dueDate: string; overdue: boolean; grossMinor: number; concessionMinor: number; netMinor: number; paidMinor: number; balanceMinor: number };
+// A numbered receipt of money the school received for this child: the child's part of it, and whether it was reversed.
+export type SchoolFeeReceipt = { receiptNo: string; issuedAt: string; method: string; amountMinor: number; reversed: boolean };
+// Paying by UPI to the school's own account, as the school set it up: its UPI ID and name, the family's payment link's
+// amount and reference, the upi://pay link and its QR (an SVG drawn on the server). `claim`: the parent's last "I have paid".
+export type SchoolFeePay = { payeeName: string; upiId: string; amountMinor: number; reference: string; uri: string; qrSvg: string; claim: 'none' | 'being_verified' | 'not_found' };
+// `upi`: whether the school takes UPI to its own account; `pay`: the family's open payment link, when there is one.
+export type SchoolFees = { studentName: string; dues: SchoolFeeDue[]; totalMinor: number; receipts: SchoolFeeReceipt[]; upi: boolean; pay: SchoolFeePay | null };
+// A fee reminder the office's nightly run sent this family, for the Family app's feed: what is still owed of it, by when.
+export type SchoolFeeReminder = { id: string; schoolName: string; amountMinor: number; dueDate: string; sentOn: string };
+// The parent's "I have paid" with the UPI reference (the 12-digit UTR): recorded as a claim the school checks in its bank.
+export type SchoolFeeClaimResult = 'recorded' | 'utr' | 'not_open' | 'not_offered' | 'already_reported' | 'utr_used' | 'too_many' | 'not_found';

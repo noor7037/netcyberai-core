@@ -26,6 +26,8 @@ type Sql = Pick<PoolClient, 'query'>;
 export { SchoolLinkGoneError };
 export { readSchoolPaper, readSchoolPagePicture, readSchoolReportCard, PictureUnavailableError, ReportCardUnavailableError, type ReadAs } from './marking';
 import type { ReadAs } from './marking';
+// W20-A: fees, read and paid as the guardian.
+export { claimFamilyPayment, readFamilyFees, readFeeReminderFeed, startFamilyPayment } from './fees';
 
 // ---- the code ----------------------------------------------------------------------------------------------------------
 
