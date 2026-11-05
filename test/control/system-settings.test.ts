@@ -22,7 +22,7 @@ vi.mock('@/lib/auth/db', async (importOriginal) => {
 import { startHarnessDb } from '../../scripts/harness/db.mjs';
 import { signAccessToken } from '@/lib/auth/jwt';
 import { ACCESS_COOKIE } from '@/lib/auth/cookies';
-import { looksSecret } from '@/lib/control/system-settings';
+import { EDITABLE_SETTINGS, looksSecret } from '@/lib/control/system-settings';
 import { GET } from '@/app/api/control/system-settings/route';
 
 const FOUNDER = randomUUID();
@@ -65,8 +65,11 @@ describe('System Settings', () => {
     const res = await GET(req(founder));
     expect(res.status).toBe(200);
     const { settings } = (await res.json()) as { settings: { key: string; value: string | null; hidden: boolean; screen: string | null; updatedAt: string | null }[] };
-    const stored = (await q(`select count(*)::int as n from control.settings`))[0].n;
-    expect(settings).toHaveLength(stored as number);
+    // Every stored row, and (W21-M6) each editable setting not stored yet, which shows with no value.
+    const stored = (await q(`select key from control.settings`)).map((r) => r.key as string);
+    const unset = EDITABLE_SETTINGS.filter((s) => !stored.includes(s.key)).map((s) => s.key);
+    expect(settings).toHaveLength(stored.length + unset.length);
+    for (const key of unset) expect(settings.find((s) => s.key === key)).toMatchObject({ value: null, updatedAt: null });
     const by = Object.fromEntries(settings.map((s) => [s.key, s]));
     expect(by['ai.testing_mode']).toMatchObject({ value: '"on"', screen: '/control/ai', hidden: false });
     expect(by['leads.auto_reply'].screen).toBe('/control/leads');

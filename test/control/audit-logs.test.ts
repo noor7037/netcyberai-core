@@ -100,7 +100,7 @@ describe('what the founder reads', () => {
     expect((await get('?page=2')).body.page).toBe(2);
   });
 
-  it('the school filter narrows to that school; the action filter to that exact action', async () => {
+  it('the school filter narrows to that school; the action filter to actions that start with it (W21-M6)', async () => {
     const b = await get(`?schoolId=${B}`);
     expect(b.body.rows).toHaveLength(2);
     expect(b.body.rows.every((r: { schoolId: string }) => r.schoolId === B)).toBe(true);
@@ -109,7 +109,11 @@ describe('what the founder reads', () => {
     expect(a.body.hasMore).toBe(true);
     const one = await get('?action=test.newest_in_a');
     expect(one.body.rows).toHaveLength(1);
-    expect((await get('?action=test.newest')).body.rows).toEqual([]);
+    expect((await get('?action=test.newest')).body.rows).toHaveLength(1);
+    expect((await get('?action=test.in_b')).body.rows).toHaveLength(2);
+    expect((await get('?action=test.no_such')).body.rows).toEqual([]);
+    // A % or _ typed is a letter, never a wildcard.
+    expect((await get('?action=test%25')).body.rows).toEqual([]);
   });
 
   it('the day filters keep today and drop other days', async () => {
@@ -148,6 +152,6 @@ describe('the pure parts', () => {
     expect(previewState('z'.repeat(81))).toEqual({ preview: '', keysOnly: true });
   });
   it('parseAuditQuery defaults to page 1 with no filters', () => {
-    expect(parseAuditQuery(new URLSearchParams(''))).toEqual({ ok: true, query: { page: 1, schoolId: null, action: null, from: null, to: null } });
+    expect(parseAuditQuery(new URLSearchParams(''))).toEqual({ ok: true, query: { page: 1, schoolId: null, actor: null, action: null, from: null, to: null } });
   });
 });

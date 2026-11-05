@@ -23,7 +23,7 @@ export function escapeHtml(value: string): string {
 
 type Rendered = { subject: string; html: string; text: string };
 
-const wrap = (inner: string) =>
+export const wrap = (inner: string) =>
   `<div style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;padding:24px;color:#1e293b">` +
   `<p style="font-size:20px;font-weight:800;color:#0b1f4d;margin:0 0 16px">NetCyberAI</p>${inner}` +
   `<p style="font-size:12px;color:#64748b;margin-top:32px">NetCyberAI · Gurugram, Haryana, India</p></div>`;

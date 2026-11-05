@@ -7426,6 +7426,10 @@ const SCREENS = [
   ['founder', 'control-school-ai-pages', `/control/schools/${SCHOOL}`, controlSchoolAiPages, controlSchoolAiPagesDone],
   ['founder', 'control-audit-logs', '/control/audit-logs'],
   ['founder', 'control-system-settings', '/control/system-settings'],
+  // W21-M6: the three Control pages that were stubs, now acting.
+  ['founder', 'control-analytics', '/control/analytics'],
+  ['founder', 'control-compliance', '/control/compliance'],
+  ['founder', 'control-integrations', '/control/integrations'],
   ['founder', 'control-view-as', `/control/schools/${SCHOOL}`, viewAs, viewAsDone],
   ['founder', 'control-users', '/control/users'],
   ['founder', 'control-onboarding', '/control/onboarding'],

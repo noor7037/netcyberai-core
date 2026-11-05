@@ -2,6 +2,7 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
 import { describe, expect, it } from 'vitest';
+import { PERSONAL_WORDS } from '@/lib/audit/personal-words';
 
 // Audit rows hold no personal data (C56, C223-A answer 7, C224). audit_log is append-only: whatever a row holds stays
 // for good, out of reach of the erasure of a data request. So a row says WHAT happened with ids, codes, counts, dates
@@ -20,7 +21,7 @@ import { describe, expect, it } from 'vitest';
 
 const ROOT = path.resolve(__dirname, '../..');
 const WRITERS = new Set(['writeAuditLog', 'writeAuditLogs', 'writeEntitlementAudit', 'writeAttendanceAudit', 'writeImpersonationAudit']);
-const PERSONAL = new Set(['name', 'names', 'phone', 'phones', 'mobile', 'email', 'dob', 'birth', 'address', 'note', 'notes', 'reason', 'reasons', 'why', 'text', 'message', 'body', 'details', 'title', 'reference', 'comment', 'description', 'summary', 'remark', 'remarks', 'outcome', 'narration', 'utr', 'aadhaar']);
+const PERSONAL = PERSONAL_WORDS;
 
 // file -> problem -> why it is not personal data. Problems are "key:<key>", "value:<key>" or "opaque:<expression>".
 const ALLOWED: Record<string, Record<string, string>> = {
@@ -120,6 +121,12 @@ const ALLOWED: Record<string, Record<string, string>> = {
     'key:text_en': 'a banner’s public notice text, shown to every user of the app',
     'key:text_hi': 'the same notice in Hindi',
   },
+  // W21-M6: the Control pages made to act. Each platform row (school_id null) holds the founder's reason for a
+  // Control change beside codes, numbers and ids: a setting's key and value, an email template's name, its subject
+  // (product words) and its length, or a held message's id and school id. Never a parent, a child or their words.
+  'src/lib/control/system-settings.ts': { 'key:change_reason': 'the founder’s own reason for a Control change, written in Control (required by 10 §7), as apps.ts' },
+  'src/lib/control/whatsapp-schools.ts': { 'key:change_reason': 'the founder’s own reason for releasing a held message, written in Control, as apps.ts' },
+  'src/lib/email/template-overrides.ts': { 'key:change_reason': 'the founder’s own reason for changing an email template’s words, written in Control, as apps.ts' },
 };
 
 type Problem = { file: string; line: number; action: string; problem: string };
