@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   description: siteDescription,
   openGraph: { siteName: companyName, locale: ogLocale, type: 'website' },
   twitter: { card: 'summary_large_image' },
+  // Search Console and Bing Webmaster Tools ownership (C471): the codes each tool shows, set as Vercel settings at
+  // build. Public by design (they are printed on every page), not secrets; with none set, no tag is written.
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+    ...(process.env.BING_SITE_VERIFICATION ? { other: { 'msvalidate.01': process.env.BING_SITE_VERIFICATION } } : {}),
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

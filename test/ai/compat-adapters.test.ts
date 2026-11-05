@@ -234,7 +234,7 @@ describe('OpenAI keeps its own wire format on the shared core', () => {
   });
 });
 
-// W19-F (C471): Anthropic answers 400 when the organisation has no prepaid credit, on the models list as on a message.
+// W19-F (C472): Anthropic answers 400 when the organisation has no prepaid credit, on the models list as on a message.
 // The adapter reads that one case as 402, so the gateway counts it as quota (the backups answer) and Control says why.
 describe('Anthropic: a 400 that says the account has no credit is a 402', () => {
   const KEY = `sk-ant-${'K'.repeat(40)}`;

@@ -8,7 +8,7 @@ import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterRe
 const URL = 'https://api.anthropic.com/v1/messages';
 const MODELS_URL = 'https://api.anthropic.com/v1/models?limit=1000';
 
-// W19-F (C471): Anthropic answers 400 (not 402) when the organisation has no prepaid credit, on the models list as on a
+// W19-F (C472): Anthropic answers 400 (not 402) when the organisation has no prepaid credit, on the models list as on a
 // message, and the words say "credit balance". Read as 402 here, so the gateway counts it as quota (the backups answer
 // and the circuit opens) and Control's key test says what to do. Nothing the vendor said is kept: only the status.
 async function statusOf(res: Response): Promise<number> {

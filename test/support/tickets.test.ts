@@ -391,7 +391,7 @@ describe('the founder is told by email when a ticket is raised (C127)', () => {
     expect(sent).toHaveLength(1);
     expect(sent[0].to).toEqual(['founder@netcyberai.test']);
     expect(sent[0].subject).toBe('New support ticket: A School');
-    expect(sent[0].text).toBe(`New support ticket from A School: Plan or billing\nOpen: https://netcyberai.com/control/tickets/${r.value.ticketId}`);
+    expect(sent[0].text).toBe(`New support ticket from A School: Plan or billing\nOpen: https://www.netcyberai.com/control/tickets/${r.value.ticketId}`);
     expect(sent[0].html + sent[0].text + sent[0].subject).not.toMatch(/Secret|parent/);
   });
 

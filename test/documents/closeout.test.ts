@@ -296,8 +296,8 @@ describe('A4: a certificate carries the signature of the person who signed it', 
 describe('A5: Control never shows a family’s certificate link', () => {
   const key = 'abcdefghijABCDEFGHIJ0123456789_-';
   it('a link keeps its domain and “…”; the key never shows', () => {
-    expect(copyLinkUrl(key)).toBe(`https://netcyberai.com${COPY_PATH}${key}`);
-    expect(maskLinks(`Parameter value ${copyLinkUrl(key)} is not valid`)).toBe('Parameter value netcyberai.com/… is not valid');
+    expect(copyLinkUrl(key)).toBe(`https://www.netcyberai.com${COPY_PATH}${key}`);
+    expect(maskLinks(`Parameter value ${copyLinkUrl(key)} is not valid`)).toBe('Parameter value www.netcyberai.com/… is not valid');
     expect(maskLinks(`netcyberai.com${COPY_PATH}${key}`)).toBe('netcyberai.com/…');
     expect(maskLinks(`path ${COPY_PATH}${key} refused`)).toBe(`path ${COPY_PATH}… refused`);
     for (const text of [`Meta answered 400 (code 132000): Parameter value ${copyLinkUrl(key)} is not valid`, `link=${copyLinkUrl(key)}`, `the link (${copyLinkUrl(key)}) failed`, `${COPY_PATH}${key}`]) {
@@ -305,7 +305,7 @@ describe('A5: Control never shows a family’s certificate link', () => {
       expect(cut, text).not.toContain(key);
       expect(cut, text).not.toContain(key.slice(0, 10));
     }
-    expect(cutContacts(`Meta answered 400 (code 132000): Parameter value ${copyLinkUrl(key)} is not valid`)).toBe('Meta answered 400 (code 132000): Parameter value netcyberai.com/… is not valid');
+    expect(cutContacts(`Meta answered 400 (code 132000): Parameter value ${copyLinkUrl(key)} is not valid`)).toBe('Meta answered 400 (code 132000): Parameter value www.netcyberai.com/… is not valid');
     // The texts Control already showed are unchanged.
     expect(cutContacts(`current time falls within this school's quiet hours (21:00:00-07:00:00 Asia/Kolkata)`)).toBe(`current time falls within this school's quiet hours (21:00:00-07:00:00 Asia/Kolkata)`);
     expect(cutContacts('fees.nightly: 2 school(s) not done')).toBe('fees.nightly: 2 school(s) not done');

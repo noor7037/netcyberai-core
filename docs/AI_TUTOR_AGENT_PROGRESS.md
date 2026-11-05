@@ -329,5 +329,5 @@ v11 (models) on "Tutor answers".
 
 Anthropic's no-credit 400 is read as 402 (the backups answer; Control says "buy credit"); a video follows every answer
 whose question matched a syllabus topic (the finder's path, shared); "Tutor answers" runs on NVIDIA super-vl with v11
-and "Study plan" on NVIDIA lightning (Decision Log C471). Anthropic becomes the primary once its key test passes:
+and "Study plan" on NVIDIA lightning (Decision Log C472). Anthropic becomes the primary once its key test passes:
 Control → AI → Tutor answers → primary anthropic claude-sonnet-5-5, Backup 1 NVIDIA super-vl, Backup 2 Workers AI.

@@ -48,8 +48,10 @@ FETCH_TIMEOUT = 15
 # Non-page routes that legitimately exist in the build but must NOT be
 # in sitemap.xml (infrastructure routes, not content pages).
 NON_PAGE_ROUTE_SUFFIXES = ("/opengraph-image",)
+# Each page's share card (C471): /og, /og/pricing ... are images, not pages.
+NON_PAGE_ROUTE_PREFIXES = ("/og/",)
 # The school app's install manifest and its icons (C143) are files, not pages.
-NON_PAGE_ROUTES = {"/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg", "/manifest.webmanifest", "/icons/192", "/icons/512", "/icons/maskable"}
+NON_PAGE_ROUTES = {"/og", "/robots.txt", "/sitemap.xml", "/llms.txt", "/icon.svg", "/manifest.webmanifest", "/icons/192", "/icons/512", "/icons/maskable"}
 
 # Authenticated-only internal shells (src/app/sitemap.ts's own INTERNAL_ROOTS
 # exclusion: the /control admin panel, the /app tenant app, the /family
@@ -78,6 +80,11 @@ REQUIRED_CRAWLERS_DEMO_DISALLOWED = [
 ]
 
 FAQ_FIXED_ROUTES = {"/", "/pricing", "/security/data-ownership"}
+
+# The one host every canonical tag, share card and sitemap entry names (C471): src/lib/site-config.ts's siteUrl.
+SITE_HOST = urlparse(re.search(r"siteUrl = '([^']+)'", (REPO_ROOT / "src" / "lib" / "site-config.ts").read_text()).group(1)).netloc
+# Internal links not checked as pages: files, images and the app's own routes.
+LINK_SKIP_PREFIXES = ("/_next/", "/api/", "/og", "/icons/", "/brand/", "/fonts/", "/demo/", "/models/")
 BANNED_SCHEMA_STRINGS = ["aggregateRating", "reviewCount", "ratingValue", '"Review"']
 
 
@@ -262,6 +269,44 @@ def get_sitemap_routes(base_url: str) -> list[str] | None:
     return sorted(set(routes))
 
 
+def check_sitemap_entries(base_url: str) -> list[Problem]:
+    """Every <url> names the site's one host and carries a <lastmod> (C471)."""
+    result = fetch(urljoin(base_url, "/sitemap.xml"))
+    if result is None or result.status != 200:
+        return []
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    problems = []
+    for url in ET.fromstring(result.text).findall(".//sm:url", ns):
+        loc = url.findtext("sm:loc", default="", namespaces=ns)
+        if urlparse(loc).netloc != SITE_HOST:
+            problems.append(Problem(urlparse(loc).path or "/", "sitemap host", SITE_HOST, urlparse(loc).netloc))
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}(T.*)?", url.findtext("sm:lastmod", default="", namespaces=ns)):
+            problems.append(Problem(urlparse(loc).path or "/", "sitemap lastmod", "a date (scripts/page_dates.py)", "missing"))
+    return problems
+
+
+# Internal links seen on the pages checked (C471), each with one page that has it: fetched once each at the end.
+LINKS_SEEN: dict[str, str] = {}
+
+
+def check_internal_links(base_url: str) -> list[Problem]:
+    problems = []
+    for link, page in sorted(LINKS_SEEN.items()):
+        result = fetch(urljoin(base_url, link))
+        if result is None or result.status != 200:
+            problems.append(Problem(page, f"internal link {link}", "HTTP 200", f"HTTP {result.status if result else 'unreachable'}"))
+    return problems
+
+
+def is_noindex(base_url: str, route: str) -> bool:
+    result = fetch(urljoin(base_url, route))
+    if result is None or result.status != 200:
+        return False
+    p = PageParser()
+    p.feed(result.text)
+    return "noindex" in ",".join(meta_content(p.metas, name="robots")).lower()
+
+
 def get_built_routes() -> list[str] | None:
     """Ground truth for 'routes Next.js actually built', independent of
     sitemap.ts (which derives its own list by walking src/app -- using
@@ -274,7 +319,7 @@ def get_built_routes() -> list[str] | None:
     for route in manifest.get("routes", {}):
         if route in NON_PAGE_ROUTES:
             continue
-        if any(route.endswith(suf) for suf in NON_PAGE_ROUTE_SUFFIXES):
+        if any(route.endswith(suf) for suf in NON_PAGE_ROUTE_SUFFIXES) or any(route.startswith(p) for p in NON_PAGE_ROUTE_PREFIXES):
             continue
         if is_internal_route(route):
             continue
@@ -502,6 +547,38 @@ def analyze_page(base_url: str, route: str, html: str) -> list[Problem]:
         if w != ["1200"] or h != ["630"]:
             problems.append(Problem(route, "og:image declared dimensions", "width=1200 height=630", f"width={w} height={h}"))
 
+    # 2b. One host, and a card of the page's own (C471) -------------------
+    if canonical_href and urlparse(canonical_href).netloc != SITE_HOST:
+        problems.append(Problem(route, "canonical host", SITE_HOST, urlparse(canonical_href).netloc))
+    if canonical_href and (urlparse(canonical_href).path or "/") != route:
+        problems.append(Problem(route, "canonical names this page", route, urlparse(canonical_href).path or "/"))
+    if len(og_image_contents) == 1:
+        og = urlparse(og_image_contents[0])
+        if og.netloc != SITE_HOST:
+            problems.append(Problem(route, "og:image host", SITE_HOST, og.netloc))
+        own = {("/og" if route == "/" else f"/og{route}"), f"{route}/opengraph-image"}
+        if og.path not in own:
+            problems.append(Problem(route, "og:image is this page's own card", " or ".join(sorted(own)), og.path))
+
+    # 2c. One H1, and headings that never skip a level (C471) --------------
+    visible = re.sub(r"<(script|style)\b[^>]*>.*?</\1>", "", html, flags=re.S | re.I)
+    levels = [int(m) for m in re.findall(r"<h([1-6])[\s>]", visible, re.I)]
+    if levels.count(1) != 1:
+        problems.append(Problem(route, "H1 count", "exactly 1", str(levels.count(1))))
+    for before, after in zip(levels, levels[1:]):
+        if after > before + 1:
+            problems.append(Problem(route, "heading order", "no level skipped (h2 then h3, never h2 then h4)", f"h{before} then h{after}"))
+            break
+
+    for href in re.findall(r'<a\b[^>]*\bhref="(/[^"#?]*)', visible):
+        if not href.startswith(LINK_SKIP_PREFIXES) and not is_internal_route(href):
+            LINKS_SEEN.setdefault(href.rstrip("/") or "/", route)
+
+    # 2d. A page in the sitemap is indexable ------------------------------
+    robots_meta = ",".join(meta_content(p.metas, name="robots")).lower()
+    if "noindex" in robots_meta:
+        problems.append(Problem(route, "indexable (it is in sitemap.xml)", "no noindex", robots_meta))
+
     # 3. Locale ---------------------------------------------------------
     locale_contents = meta_content(p.metas, property="og:locale")
     if locale_contents != ["en_IN"]:
@@ -629,7 +706,8 @@ def main() -> int:
         )
     else:
         only_in_sitemap = sorted(set(sitemap_routes) - set(built_routes))
-        only_in_build = sorted(set(built_routes) - set(sitemap_routes))
+        # A page kept out of search on purpose (noindex: a section not published yet, C471) is rightly not listed.
+        only_in_build = sorted(r for r in set(built_routes) - set(sitemap_routes) if not is_noindex(base_url, r))
         for r in only_in_sitemap:
             all_problems.append(Problem(r, "route cross-check", "route exists in the Next.js build", "in sitemap.xml but NOT in the build manifest (404 risk)"))
         for r in only_in_build:
@@ -638,6 +716,7 @@ def main() -> int:
               f"{len(only_in_sitemap)} only-in-sitemap, {len(only_in_build)} only-in-build\n")
 
     # --- robots.txt / llms.txt -----------------------------------------
+    all_problems.extend(check_sitemap_entries(base_url))
     all_problems.extend(check_robots(base_url))
     all_problems.extend(check_llms_txt(base_url))
 
@@ -649,6 +728,9 @@ def main() -> int:
         pages_checked += 1
         status = "OK" if not page_problems else f"{len(page_problems)} problem(s)"
         print(f"  {route:60s} {status}")
+
+    all_problems.extend(check_internal_links(base_url))
+    print(f"Internal links checked: {len(LINKS_SEEN)}")
 
     # --- summary -----------------------------------------------------
     print()
@@ -713,7 +795,22 @@ def self_test() -> int:
         print(f"SELF-TEST FAILED: fabricated rating schema strings were not all caught, missing: {missing}")
         return 1
 
-    print("SELF-TEST PASSED: prose containing 'Review' is not flagged; real Review/rating JSON-LD schema still is.")
+    # C471: one host, one H1, no skipped heading, a card of the page's own, nothing noindex in the sitemap. A page
+    # that breaks each rule once is caught on each (fetching nothing: the og:image check needs no server to fail).
+    bad = (
+        '<html lang="en-IN"><head><title>t</title><link rel="canonical" href="https://netcyberai.com/x"/>'
+        '<meta name="robots" content="noindex"/><meta property="og:image" content="https://netcyberai.com/opengraph-image"/>'
+        '</head><body><h1>a</h1><h2>b</h2><h4>c</h4><h1>d</h1></body></html>'
+    )
+    checks = {p.check for p in analyze_page("http://127.0.0.1:9", "/x", bad)}
+    for must in ("canonical host", "og:image host", "og:image is this page's own card", "H1 count", "heading order", "indexable (it is in sitemap.xml)"):
+        if must not in checks:
+            print(f"SELF-TEST FAILED: a page breaking '{must}' was not caught: {sorted(checks)}")
+            return 1
+    LINKS_SEEN.clear()
+
+    print("SELF-TEST PASSED: prose containing 'Review' is not flagged; real Review/rating JSON-LD schema still is; "
+          "host, card, heading and noindex breaks are caught.")
     return 0
 
 

@@ -78,7 +78,7 @@ describe('the words and the rules', () => {
     const svg = certificateSvg(c, {});
     expect(svg).toContain('No.: BC/0003');
     expect(svg).toContain(qrMarkup(verifyUrl(token), 22, 243, 24));
-    expect(verifyUrl(token)).toBe(`https://netcyberai.com/verify/${token}`);
+    expect(verifyUrl(token)).toBe(`https://www.netcyberai.com/verify/${token}`);
     expect(svg).not.toContain(token); // the token is in the QR code's squares, not written out
   });
 });
@@ -333,7 +333,7 @@ describe('on the real schema', () => {
     expect(queued).toMatchObject({ ok: true, status: 'queued' });
     const params = (await db.pg.query(`select template_params from communication_log where dedupe_key like $1 and status = 'queued'`, [`certificate:${ids.ashaTc2}:%`])).rows[0].template_params;
     const key = (await db.pg.query(`select copy_key from certificate_copies where certificate_id = $1 order by made_at desc limit 1`, [ids.ashaTc2])).rows[0].copy_key;
-    expect(params).toEqual({ child: 'Asha Singh', certificate: 'Transfer Certificate', number: 'TC/0005', link: `https://netcyberai.com/api/public/certificates/copy/${key}` });
+    expect(params).toEqual({ child: 'Asha Singh', certificate: 'Transfer Certificate', number: 'TC/0005', link: `https://www.netcyberai.com/api/public/certificates/copy/${key}` });
     const audit = (await db.pg.query(`select after_state from audit_log where event_action = 'certificate.sent' order by audit_id desc limit 1`)).rows[0].after_state;
     expect(Object.keys(audit).sort()).toEqual(['copyId', 'parentId', 'sendState']);
     // The register shows the latest message's state.

@@ -8,6 +8,8 @@ import { AnswerFirst } from '@/components/content/AnswerFirst';
 import { FaqBlock } from '@/components/content/FaqBlock';
 import { SourceLink } from '@/components/content/SourceLink';
 import { blogPosts, getBlogPost } from '@/content/blog';
+import { clusterOf } from '@/content/blog/clusters';
+import { findProduct } from '@/content/catalog';
 import { whatsappLink } from '@/lib/site-config';
 import { articleJsonLd, breadcrumbListJsonLd, buildMetadata, howToJsonLd, serializeJsonLd } from '@/lib/seo';
 
@@ -66,9 +68,13 @@ function renderInline(text: string): ReactNode[] {
 export default function BlogPostPage({ params }: PageProps) {
   const post = getBlogPost(params.slug);
   if (!post) notFound();
+  const cluster = clusterOf(post.slug);
+  const pillar = cluster ? findProduct(cluster.pillar.split('/').pop() ?? '') : undefined;
+  const related = cluster ? blogPosts.filter((p) => p.slug !== post.slug && cluster.slugs.includes(p.slug)) : [];
 
   const path = `/blog/${post.slug}`;
-  const jsonLd = articleJsonLd({ path, title: post.title, description: post.description, publishedOn: post.publishedOn });
+  const text = [post.title, post.answerFirst, ...post.body.flatMap((b) => (b.type === 'list' ? b.items : [b.text])), ...post.faqs.flatMap((f) => [f.question, f.answer])].join(' ');
+  const jsonLd = articleJsonLd({ path, title: post.title, description: post.description, publishedOn: post.publishedOn, text });
   const breadcrumbs = breadcrumbListJsonLd({ path, title: post.title });
   // Only emitted when a post's own data includes ordered steps (see
   // contract.ts) — never inferred, so HowTo can't end up on a post that
@@ -140,6 +146,31 @@ export default function BlogPostPage({ params }: PageProps) {
           <FaqBlock items={post.faqs} />
         </div>
       </div>
+
+      {cluster && (
+        // The post's cluster (C471): its product page and the other posts on the same subject.
+        <nav aria-labelledby="more-on" data-blog-cluster={cluster.id} className="flex flex-col gap-3">
+          <h2 id="more-on" className="text-xl font-bold text-slate">
+            More on {cluster.title.toLowerCase()}
+          </h2>
+          <ul className="flex flex-col gap-2">
+            {pillar && (
+              <li>
+                <Link href={cluster.pillar} className="font-semibold text-sapphire underline">
+                  {pillar.title}
+                </Link>
+              </li>
+            )}
+            {related.map((p) => (
+              <li key={p.slug}>
+                <Link href={`/blog/${p.slug}`} className="text-sapphire underline">
+                  {p.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       <div className="rounded-lg bg-sapphire p-8 text-off-white">
         <h2 className="text-xl font-bold">Have a question about your school?</h2>

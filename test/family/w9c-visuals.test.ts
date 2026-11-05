@@ -184,7 +184,7 @@ afterAll(async () => {
 describe('fillVisuals', () => {
   const answerBlocks = () => [checkBlock({ type: 'explanation', title: 'Cells', idea: 'An idea.', example: 'An example.', steps: ['One.', 'Two.'], terms: [] }), checkBlock(FIGURE), checkBlock(IMAGE), checkBlock({ type: 'videos' })] as Block[];
 
-  // W19-F (C471): the question matched a syllabus topic and the model asked for no videos: the topic's picks follow the
+  // W19-F (C472): the question matched a syllabus topic and the model asked for no videos: the topic's picks follow the
   // answer anyway, from the cache (a refresh needs the provider's key, which the harness has none of: nothing breaks).
   it('a video follows an answer that never asked for one, when its question matched a topic and the module is on', async () => {
     const line = { subject: 'science' as const, key: TOPIC, chapterEn: 'Nutrition in plants', topicEn: 'Cells', title: 'Cells' };

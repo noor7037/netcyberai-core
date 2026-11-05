@@ -6,6 +6,7 @@ import { products, solutions } from '@/content/catalog';
 import { resourceSections } from '@/content/resources';
 import { freeTools } from '@/content/free-tools';
 import { absoluteUrl } from '@/lib/seo';
+import pageDates from '@/content/page-dates.json';
 
 export const dynamic = 'force-static';
 
@@ -36,22 +37,24 @@ function staticRoutes(dir: string, route: string): string[] {
   return found;
 }
 
+// The day each page last changed (C471): from git, by scripts/page_dates.py, which CI holds current. A page with no
+// recorded day is listed without one rather than with a made-up date.
+const DATES: Readonly<Record<string, string>> = pageDates;
+const entry = (route: string): MetadataRoute.Sitemap[number] => (DATES[route] ? { url: absoluteUrl(route), lastModified: DATES[route] } : { url: absoluteUrl(route) });
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = staticRoutes(path.join(process.cwd(), 'src/app'), '')
     .sort()
-    .map((route) => ({ url: absoluteUrl(route) }));
+    .map(entry);
 
-  const posts = blogPosts.map((post) => ({
-    url: absoluteUrl(`/blog/${post.slug}`),
-    lastModified: post.publishedOn,
-  }));
+  const posts = blogPosts.map((post) => entry(`/blog/${post.slug}`));
 
   const catalog = [
     ...products.map((p) => `/products/${p.slug}`),
     ...solutions.map((s) => `/solutions/${s.slug}`),
-    ...resourceSections.map((r) => `/resources/${r.slug}`),
+    ...resourceSections.filter((r) => r.status !== 'coming').map((r) => `/resources/${r.slug}`),
     ...freeTools.map((t) => `/free-tools/${t.slug}`),
-  ].map((route) => ({ url: absoluteUrl(route) }));
+  ].map(entry);
 
   return [...pages, ...catalog, ...posts];
 }

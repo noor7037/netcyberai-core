@@ -5,7 +5,7 @@ import type { Line } from '@/lib/family/resolver';
 import { noteSearch, rankVideos, readPicks, savePicks, searchedEmptyLately, videoPlan, type VideoLanguage, type VideoPick } from '@/lib/family/videos';
 import { indiaDate } from '@/lib/time/india';
 
-// The video finder's one path (M2-5, C279; W19-F, C471): the topic's picks while they are fresh, else a refresh from
+// The video finder's one path (M2-5, C279; W19-F, C472): the topic's picks while they are fresh, else a refresh from
 // the provider, searched with the catalog line only (never a child's words), ranked in code, saved and read back. Used
 // by the Study page's finder (/api/family/videos) and, since W19-F, by every tutor answer whose question matched a
 // syllabus topic, so a video follows the answer without the child opening the finder. No database connection is held

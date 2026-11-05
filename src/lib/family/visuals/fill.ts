@@ -20,7 +20,7 @@ export type WithDb = <T>(fn: (db: Db) => Promise<T>) => Promise<T>;
 export type FillOptions = {
   chapterKey: string | null;
   lang: string;
-  // W19-F (C471): the matched syllabus topic and the child: a `videos` block follows the answer whether or not the model
+  // W19-F (C472): the matched syllabus topic and the child: a `videos` block follows the answer whether or not the model
   // asked for one, from the topic's picks, refreshed from the provider when they are stale (video-finder.ts). Only with
   // Control's `videos` module on for this family; never from a child's words (the search is the catalog line).
   videos?: { line: Line; child: FamilyChild; accountId: string };
