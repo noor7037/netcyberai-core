@@ -1,12 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { useShownRefresh } from '@/components/dashboards/useShownRefresh';
 import { Badge } from '@/components/ui/Badge';
 import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/components/ui/Toast';
+import { takePulseFill } from '@/lib/copilot/use';
 import type { MessageKey } from '@/lib/i18n';
 
 // Today's Pulse messages (docs/20 5f, C151). Each is prepared by one tap
@@ -18,6 +19,9 @@ import type { MessageKey } from '@/lib/i18n';
 // `shownAbove` (C210): the page was opened from the dashboard's messages
 // sent, and those messages are drawn above this list. After a change made
 // here (a message sent above all), that list is read again too.
+//
+// `fill` (W20-C): Teacher Copilot opened this page with the teacher's approved words for one message. They are put
+// into that message's English box, unsaved: the teacher reads them and taps Save, as for any change made here.
 
 const LANGS = ['en', 'hi', 'hinglish'] as const;
 type BodyLang = (typeof LANGS)[number];
@@ -25,7 +29,7 @@ type Draft = { pulse_id: string; class_name: string; subject_name: string | null
 const TAP = 'min-h-[48px] rounded-md border px-4 text-sm font-semibold';
 const bodyOf = (d: Draft, l: BodyLang) => (l === 'en' ? d.body_en : l === 'hi' ? d.body_hi : d.body_hinglish);
 
-export function PulseDraftsView({ shownAbove = false }: { shownAbove?: boolean }) {
+export function PulseDraftsView({ shownAbove = false, fill }: { shownAbove?: boolean; fill?: string }) {
   const { t, tCount, lang } = useT();
   const refreshShown = useShownRefresh(shownAbove);
   const toast = useToast();
@@ -34,6 +38,7 @@ export function PulseDraftsView({ shownAbove = false }: { shownAbove?: boolean }
   const [shown, setShown] = useState<Record<string, BodyLang>>({});
   const [words, setWords] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState<string | null>(null);
+  const filled = useRef(false);
 
   const load = useCallback(async () => {
     try {
@@ -41,12 +46,19 @@ export function PulseDraftsView({ shownAbove = false }: { shownAbove?: boolean }
       const body = await res.json();
       if (!res.ok) throw new Error('not loaded');
       setDrafts(body.drafts);
-      setWords({});
+      const copied = !filled.current && fill && (body.drafts as Draft[]).some((d) => d.pulse_id === fill && d.status !== 'sent') ? takePulseFill(fill) : null;
+      filled.current = true;
+      setWords(copied ? { [`${fill}:en`]: copied } : {});
+      if (copied) {
+        setShown((s) => ({ ...s, [fill as string]: 'en' }));
+        toast.show(t('w20c.pulse.filled'), 'success');
+        requestAnimationFrame(() => document.getElementById(`pulse-words-${fill}`)?.scrollIntoView({ block: 'center' }));
+      }
       setState('ready');
     } catch {
       setState('failed');
     }
-  }, []);
+  }, [fill]); // eslint-disable-line react-hooks/exhaustive-deps -- the toast and the words are stable
   useEffect(() => {
     void load();
   }, [load]);
