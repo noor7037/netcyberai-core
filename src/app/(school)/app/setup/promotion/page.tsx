@@ -22,6 +22,7 @@ export default async function SetupPromotionPage() {
     <ModulePage
       moduleId="setup"
       help="set-up-your-school"
+      tour="promotion"
       title={t(lang, 'promotion.title')}
       purpose={t(lang, 'promotion.purpose')}
       about={t(lang, 'promotion.about')}

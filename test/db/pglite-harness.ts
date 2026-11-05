@@ -63,9 +63,28 @@ export type TestDb = {
 // `before`: SQL run as the owner just before the migration whose file name
 // contains `migration`, for tests of what a migration does to rows that
 // were already there.
+const CONTROL_SETTINGS = `
+create schema if not exists control;
+grant usage on schema control to nca_super;
+create table control.settings (
+  key text primary key check (key ~ '^[a-z][a-z0-9_.]{2,79}$'),
+  value jsonb not null,
+  updated_at timestamptz not null default now(),
+  updated_by uuid
+);
+alter table control.settings enable row level security;
+alter table control.settings force row level security;
+revoke all on control.settings from public, anon, authenticated, app_user;
+grant select, insert, update on control.settings to nca_super;
+`;
+
 export async function createTestDb(opts: { before?: { migration: string; sql: string } } = {}): Promise<TestDb> {
   const pg = new PGlite({ extensions: { pgcrypto, pg_trgm } });
   await pg.exec(readFileSync(path.join(__dirname, 'base-schema.sql'), 'utf8'));
+  // W21-M6: the email job reads control.settings for an edited template before it renders (email-handler.ts). The
+  // table as 20261021094627_m1_family_content_control.sql makes it, its rights for the platform role verbatim; the
+  // family role and the rest of the control schema are not in this small database.
+  await pg.exec(CONTROL_SETTINGS);
   for (const m of B2_MIGRATIONS) {
     if (opts.before && m.file.includes(opts.before.migration)) await pg.exec(opts.before.sql);
     await pg.exec(m.sql);

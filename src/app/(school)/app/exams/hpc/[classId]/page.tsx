@@ -20,7 +20,7 @@ export default async function HpcPage({ params }: { params: { classId: string } 
   const { lang } = getLang(session?.sub ?? '');
   const crumbs = [{ label: t(lang, 'w21m4.hpc.title') }];
   return (
-    <ModulePage moduleId="exams" crumbs={crumbs} help="enter-exam-marks" title={t(lang, 'w21m4.hpc.title')} purpose={t(lang, 'w21m4.hpc.purpose')}>
+    <ModulePage moduleId="exams" crumbs={crumbs} help="enter-exam-marks" tour="hpc" title={t(lang, 'w21m4.hpc.title')} purpose={t(lang, 'w21m4.hpc.purpose')}>
       <HpcView classId={params.classId} />
     </ModulePage>
   );

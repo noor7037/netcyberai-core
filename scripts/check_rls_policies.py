@@ -1297,6 +1297,17 @@ REQUIRED_RESTRICTIVE = {
     ("hpc_cards", "hpc_cards_published"),
     ("hpc_cards", "hpc_cards_republished"),
     # w21-m4 end
+    # w21-int begin
+    # C486: the wave's seven tables refuse a parent's school-app login outright (C230-D); the Family app reads through its
+    # own definer functions.
+    ("certificate_request_events", "certificate_request_events_no_parent"),
+    ("hpc_entries", "hpc_entries_no_parent"),
+    ("hpc_cards", "hpc_cards_no_parent"),
+    ("promotion_runs", "promotion_runs_no_parent"),
+    ("promotion_events", "promotion_events_no_parent"),
+    ("promotion_overrides", "promotion_overrides_no_parent"),
+    ("timetable_changes", "timetable_changes_no_parent"),
+    # w21-int end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

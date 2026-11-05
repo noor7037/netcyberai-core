@@ -30,6 +30,7 @@ const APP_USER: Record<string, string> = {
   bulk_runs: 'INSERT,SELECT,UPDATE',
   captured_documents: 'DELETE,INSERT,SELECT,UPDATE',
   certificate_requests: 'DELETE,INSERT,SELECT,UPDATE',
+  certificate_request_events: 'INSERT,SELECT', // the request's timeline, written once (W21-M7)
   classes: 'DELETE,INSERT,SELECT,UPDATE',
   client_operations: 'INSERT,SELECT,UPDATE',
   communication_log: 'INSERT,SELECT,UPDATE', // never deleted by the app (C190); erasure gets its own audited function
@@ -52,6 +53,8 @@ const APP_USER: Record<string, string> = {
   homework_attachments: 'INSERT,SELECT',
   homework_status: 'INSERT,SELECT,UPDATE',
   homework_targets: 'INSERT,SELECT,UPDATE',
+  hpc_cards: 'INSERT,SELECT,UPDATE', // a card is published, then republished; never deleted (W21-M4)
+  hpc_entries: 'INSERT,SELECT,UPDATE',
   impersonation_sessions: 'DELETE,INSERT,SELECT,UPDATE',
   intake_rate_events: '',
   jobs: 'INSERT',
@@ -66,6 +69,9 @@ const APP_USER: Record<string, string> = {
   parents: 'DELETE,INSERT,SELECT,UPDATE',
   payments: 'INSERT,SELECT',
   platform_settings: '',
+  promotion_events: 'INSERT,SELECT', // a promotion's record, written once (W21-M2)
+  promotion_overrides: 'DELETE,INSERT,SELECT,UPDATE',
+  promotion_runs: 'INSERT,SELECT',
   pulse_followups: 'INSERT,SELECT,UPDATE',
   pulse_messages: 'DELETE,INSERT,SELECT,UPDATE',
   pulse_response_log: 'DELETE,INSERT,SELECT,UPDATE',
@@ -129,6 +135,7 @@ const APP_USER: Record<string, string> = {
   teacher_subjects: 'DELETE,INSERT,SELECT,UPDATE',
   teachers: 'DELETE,INSERT,SELECT,UPDATE',
   teaching_notes: 'INSERT,SELECT',
+  timetable_changes: 'INSERT,SELECT', // the timetable's history, written once (W21-M3)
   timetable_entries: 'DELETE,INSERT,SELECT,UPDATE',
   trusted_devices: '', // F1-1 (C257): like sessions, reached only through app_backend's own grant
   usage_events: 'INSERT,SELECT',
@@ -293,6 +300,12 @@ const APP_USER: Record<string, string> = {
 // The platform role (nca_super) holds what the app's role holds, except here.
 // It bypasses row level security, so these rights are its only limit.
 const NCA_SUPER_DIFFERS: Record<string, string> = {
+  hpc_cards: '', // a school's cards and words are the school's alone (W21-M4)
+  hpc_entries: '',
+  timetable_changes: '', // the school's own history (W21-M3)
+  promotion_runs: 'SELECT', // the platform reads a promotion for support, never runs one (W21-M2)
+  promotion_events: 'SELECT',
+  promotion_overrides: 'SELECT',
   entitlement_change_reasons: 'INSERT,SELECT', // the founder's reasons: written once
   ptm_bookings: 'INSERT,SELECT,UPDATE', // the platform moves a booking, never deletes one; the delete is the guardian's own cancel (W20-E)
   fee_status_runs: 'INSERT,SELECT', // the nightly job writes a result once
