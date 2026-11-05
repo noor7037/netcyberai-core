@@ -286,6 +286,10 @@ export function ProxyArranger({ data, show, busy, note, onPick, onAssign, onUndo
                       <p data-proxy-cover className="font-semibold">
                         {t(p.cover.problem ? 'px.assignedTo' : 'px.coveredBy', { name: p.cover.substitute_name, by: p.cover.assigned_by, date: stamp(p.cover.assigned_at) })}
                       </p>
+                      <p data-proxy-told={p.cover.whatsapp ?? 'none'} className="text-slate/70">
+                        {t('w21m3.px.toldApp')}
+                        {p.cover.whatsapp && p.cover.whatsapp !== 'none' ? ` · ${t(`w21m3.px.wa.${p.cover.whatsapp}` as MessageKey)}` : ''}
+                      </p>
                       {p.cover.problem && (
                         <p data-proxy-problem={p.cover.problem} className="rounded-md border border-red-800/30 px-3 py-2 font-semibold text-red-800">
                           {t(`px.problem.${p.cover.problem}` as MessageKey, { name: p.cover.substitute_name })}

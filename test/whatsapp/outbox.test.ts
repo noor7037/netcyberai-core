@@ -131,13 +131,13 @@ describe('the outbox, on the real schema', () => {
     p.state.fail = 1;
     const q = await enqueue(india(4, '10:00'));
     const first = await deliver(q.logId, india(4, '10:00'), p.provider);
-    expect(first).toEqual({ status: 'queued', retryAt: india(4, '10:02'), reason: 'the provider did not answer' });
+    expect(first).toEqual({ status: 'queued', retryAt: india(4, '10:01'), reason: 'the provider did not answer' });
     expect(await row(q.logId)).toMatchObject({ status: 'queued', attempts: 1, sending_at: null });
-    expect((await jobs(q.logId)).map((j: { next_run_at: string }) => new Date(j.next_run_at))).toContainEqual(india(4, '10:02'));
+    expect((await jobs(q.logId)).map((j: { next_run_at: string }) => new Date(j.next_run_at))).toContainEqual(india(4, '10:01'));
     // The first job coming round again before the retry time changes nothing.
-    expect(await deliver(q.logId, india(4, '10:01'), p.provider)).toEqual({ status: 'queued', retryAt: india(4, '10:02') });
+    expect(await deliver(q.logId, india(4, '10:00'), p.provider)).toEqual({ status: 'queued', retryAt: india(4, '10:01') });
     expect(p.state.asked).toBe(1);
-    expect(await deliver(q.logId, india(4, '10:02'), p.provider)).toEqual({ status: 'sent' });
+    expect(await deliver(q.logId, india(4, '10:01'), p.provider)).toEqual({ status: 'sent' });
     expect(p.state.sent).toHaveLength(1);
     expect(await row(q.logId)).toMatchObject({ status: 'sent', attempts: 2 });
   });
@@ -148,7 +148,7 @@ describe('the outbox, on the real schema', () => {
     const q = await enqueue(india(5, '10:00'));
     let at = india(5, '10:00');
     for (let i = 1; i < MAX_SEND_ATTEMPTS; i += 1) at = (await deliver(q.logId, at, p.provider)).retryAt as Date;
-    expect(await deliver(q.logId, at, p.provider)).toEqual({ status: 'failed', reason: 'the provider did not answer' });
+    expect(await deliver(q.logId, at, p.provider)).toEqual({ status: 'failed', reason: 'Not sent after 4 tries: the service could not be reached. "Retry now" tries once more.' });
     expect(await deliver(q.logId, new Date(at.getTime() + 3_600_000), p.provider)).toMatchObject({ status: 'failed' });
     expect(p.state.asked).toBe(MAX_SEND_ATTEMPTS);
     expect(p.state.sent).toEqual([]);

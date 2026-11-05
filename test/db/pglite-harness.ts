@@ -28,6 +28,8 @@ export const B2_MIGRATIONS = [
   '20261006005858_ticket_notify_enqueue.sql',
   '20261008025513_users_ui_language.sql',
   '20261011080039_users_tours_seen.sql',
+  // W21-M3: the jobs' per-try record, which the job queue writes on every failure.
+  ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_w21_m3_jobs_attempt_log.sql')),
   // P5 8e (C204): plans are rows, so anything that applies a plan needs the table. Found by its name's ending, whatever its timestamp.
   ...readdirSync(path.join(ROOT, 'supabase/migrations')).filter((f) => f.endsWith('_p5_billing_plans.sql')),
   // C212: plans are priced per student and a school has terms; the code that reads a plan needs the new columns.

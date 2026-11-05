@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 import { openSealedParams } from './sealed-params';
 import type { PoolClient } from 'pg';
+import { SEND_MAX_ATTEMPTS, classifySendFailure, gaveUpReason, sendRetryDelaySeconds } from '@/lib/jobs/policy';
 import { isPurposeGranted, type ConsentPurpose } from '@/lib/consent/gate';
 import { hasDocumentHeader, missingVariables, placeholderOrder, templateToSend, type TemplateLanguage, type TemplateToSend } from '@/lib/whatsapp/templates';
 import { BUSY_WAIT_MS, DOCUMENT_PARAM, documentIdOf, documentSent, documentsGone, documentUploaded, readDocument, releaseDocument, takeDocument, type DocumentTake } from '@/lib/whatsapp/documents';
@@ -42,7 +43,11 @@ export type CommStatus =
 
 export interface SendWhatsAppMessageParams {
   schoolId: string;
-  studentId: string;
+  // null only for a message to a member of staff (`staffUserId`): a child's consent does not apply to it.
+  studentId: string | null;
+  // W21-M3: a message to a member of the school's own staff (the substitute). Their account must be active; every other
+  // rule of the gate (pilot, STOP, quiet hours, budget, Meta's approval) holds as for a family.
+  staffUserId?: string | null;
   purpose: ConsentPurpose;
   toPhone: string;
   templateName: string;
@@ -160,8 +165,8 @@ async function logAttempt(
   await client.query(
     `insert into communication_log
        (log_id, school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, rate_id, cost_basis,
-        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason, student_id, parent_id, purpose, provider, template_version, language, template_params)
-     values ($23, $1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22)`,
+        status, provider_message_id, dedupe_key, provider_used, fallback_reason, reason, student_id, parent_id, purpose, provider, template_version, language, template_params, staff_user_id)
+     values ($23, $1, $2, 'whatsapp', $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $24)`,
     [
       params.schoolId,
       params.toPhone,
@@ -186,6 +191,7 @@ async function logAttempt(
       extra.template?.language ?? null,
       extra.template && extra.filled ? JSON.stringify(extra.filled) : null,
       logId,
+      params.staffUserId ?? null,
     ]
   );
   return logId;
@@ -242,7 +248,9 @@ async function prepare(client: PoolClient, params: SendWhatsAppMessageParams, op
   }
 
   // 2. Consent -- live, not cached.
-  const granted = await isPurposeGranted(client, params.schoolId, params.studentId, params.purpose);
+  const granted = params.staffUserId
+    ? Boolean((await client.query(`select 1 from users where school_id = $1 and user_id = $2 and is_active`, [params.schoolId, params.staffUserId])).rows[0])
+    : params.studentId !== null && (await isPurposeGranted(client, params.schoolId, params.studentId, params.purpose));
   if (!granted) {
     return stop('consent', 'blocked_consent', `consent for purpose "${params.purpose}" is not currently granted`);
   }
@@ -442,8 +450,8 @@ export async function sendWhatsAppMessage(client: PoolClient, params: SendWhatsA
 //     went, so it is NOT sent again: it is recorded as failed, saying so.
 
 export const WHATSAPP_SEND_JOB = 'whatsapp.send';
-export const MAX_SEND_ATTEMPTS = 3;
-const RETRY_AFTER_MINUTES = [2, 10];
+// The first try and three more, 1 minute, 10 minutes and 1 hour apart (W21-M3): the one policy of src/lib/jobs/policy.ts.
+export const MAX_SEND_ATTEMPTS = SEND_MAX_ATTEMPTS;
 export type QueueLike = { enqueue: (db: Pick<PoolClient, 'query'>, spec: { type: string; payload: Record<string, unknown>; idempotencyKey: string; schoolId?: string | null; maxAttempts?: number; runAt?: Date }) => Promise<unknown> };
 const jobKey = (logId: string, n: number) => `${WHATSAPP_SEND_JOB}:${logId}:${n}`;
 
@@ -474,9 +482,9 @@ export async function queueWhatsAppMessage(client: PoolClient, queue: QueueLike,
   const notBefore = 'wait' in r ? r.until : now;
   const logId = randomUUID();
   await client.query(
-    `insert into communication_log (log_id, school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, student_id, parent_id, purpose, language, template_params, not_before, created_at)
-     values ($13, $1, $2, 'whatsapp', $3, $4, false, 0, 0, 'not_billable', 'queued', $5, $6, $7, $8, $9, $10, $11, $12)`,
-    [params.schoolId, params.toPhone, params.templateName, await templateCategory(client, params.schoolId, params.templateName), params.dedupeKey, params.studentId, params.parentId ?? null, params.purpose, params.language ?? 'en', JSON.stringify(params.templateParams), notBefore.toISOString(), now.toISOString(), logId]
+    `insert into communication_log (log_id, school_id, to_phone, channel, template_name, billing_category, billable, est_cost_paise, gst_paise, cost_basis, status, dedupe_key, student_id, parent_id, purpose, language, template_params, not_before, created_at, staff_user_id)
+     values ($13, $1, $2, 'whatsapp', $3, $4, false, 0, 0, 'not_billable', 'queued', $5, $6, $7, $8, $9, $10, $11, $12, $14)`,
+    [params.schoolId, params.toPhone, params.templateName, await templateCategory(client, params.schoolId, params.templateName), params.dedupeKey, params.studentId, params.parentId ?? null, params.purpose, params.language ?? 'en', JSON.stringify(params.templateParams), notBefore.toISOString(), now.toISOString(), logId, params.staffUserId ?? null]
   );
   await queue.enqueue(client, { type: WHATSAPP_SEND_JOB, idempotencyKey: jobKey(logId, 0), schoolId: params.schoolId, maxAttempts: 3, payload: { logId }, ...('wait' in r ? { runAt: r.until } : {}) });
   return { logId, status: 'queued', reason: null, idempotent: false, providerUsed: null, jobKey: jobKey(logId, 0) };
@@ -570,10 +578,10 @@ export async function deliverQueued(deps: DeliverDeps, logId: string): Promise<D
   };
   // 1. Decide, and mark it as being sent. Committed before the provider is asked.
   const first = await deps.platform(async (db): Promise<{ done: DeliverOutcome } | { params: SendWhatsAppMessageParams; ready: Ready; attempts: number; schoolId: string; text?: string; doc?: DocumentTake | null }> => {
-    const row = (await db.query(`select school_id, student_id, parent_id, purpose, to_phone, template_name, language, template_params, dedupe_key, status::text as status, created_at, attempts, sending_at, not_before, thread_id, body from communication_log where log_id = $1 for update`, [logId])).rows[0];
+    const row = (await db.query(`select school_id, student_id, staff_user_id, parent_id, purpose, to_phone, template_name, language, template_params, dedupe_key, status::text as status, created_at, attempts, sending_at, not_before, thread_id, body from communication_log where log_id = $1 for update`, [logId])).rows[0];
     if (!row || row.status !== 'queued') return { done: { status: (row?.status ?? 'gone') as CommStatus | 'gone' } };
     if (row.not_before && new Date(row.not_before).getTime() > now.getTime()) return { done: { status: 'queued' as const, retryAt: new Date(row.not_before) } }; // an earlier job for a message since put off
-    const params: SendWhatsAppMessageParams = { schoolId: row.school_id, studentId: row.student_id, parentId: row.parent_id, purpose: row.purpose, toPhone: row.to_phone, templateName: row.template_name, templateParams: row.template_params ?? {}, dedupeKey: row.dedupe_key, language: row.language ?? 'en', queuedLogId: logId };
+    const params: SendWhatsAppMessageParams = { schoolId: row.school_id, studentId: row.student_id, staffUserId: row.staff_user_id, parentId: row.parent_id, purpose: row.purpose, toPhone: row.to_phone, templateName: row.template_name, templateParams: row.template_params ?? {}, dedupeKey: row.dedupe_key, language: row.language ?? 'en', queuedLogId: logId };
     if (row.sending_at) {
       // UNCERTAIN, not failed (C190): nobody knows whether it went. It is never sent again, so that a parent is
       // never messaged twice; if the provider later says where a message to this number got to, that notice moves
@@ -663,13 +671,20 @@ export async function deliverQueued(deps: DeliverDeps, logId: string): Promise<D
       if (doc) sentFile = await documentSent(db, first.schoolId, doc.pdfId);
       return { status: comm_status_sent };
     }
-    if (first.attempts < MAX_SEND_ATTEMPTS) {
-      const at = new Date(now.getTime() + RETRY_AFTER_MINUTES[Math.min(first.attempts - 1, RETRY_AFTER_MINUTES.length - 1)] * 60_000);
+    // Each try is kept on the row with the kind of failure the provider gave (never its words: they can carry a number).
+    const failure = classifySendFailure(result.errorMessage ?? '');
+    const code = /code (\d+)/.exec(result.errorMessage ?? '')?.[1] ?? null;
+    const delay = failure.permanent ? null : sendRetryDelaySeconds(first.attempts);
+    await db.query(`update communication_log set attempt_log = attempt_log || $2::jsonb, failure_kind = $3 where log_id = $1 and status = 'queued'`, [logId, JSON.stringify([{ attempt: first.attempts, at: now.toISOString(), kind: failure.kind, ...(code ? { code } : {}) }]), failure.kind]);
+    if (delay !== null) {
+      const at = new Date(now.getTime() + delay * 1000);
       await later(db, first.schoolId, at, first.attempts);
       return { status: 'queued' as const, retryAt: at, reason: result.errorMessage };
     }
-    await logAttempt(db, first.params, comm_status_failed, result.errorMessage, loggedWith(first.ready, doc));
-    return { status: comm_status_failed, reason: result.errorMessage };
+    // Given up: for good, with the reason in plain words (a permanent failure is not tried again at all).
+    const gaveUp = gaveUpReason(failure, first.attempts);
+    await logAttempt(db, first.params, comm_status_failed, gaveUp, loggedWith(first.ready, doc));
+    return { status: comm_status_failed, reason: gaveUp };
   });
   if (sentFile && doc && deps.storage) {
     const key = sentFile;

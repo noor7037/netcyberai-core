@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { withPlatformService } from '@/lib/auth/db';
-import { DEFAULT_MAX_ATTEMPTS, LEASE_SECONDS, afterFailure, errorSummary, retryDelaySeconds } from './policy';
-import type { ClaimTypes, ClaimedJob, EnqueueResult, JobQueue, JobSpec, JobStatus, Sql } from './types';
+import { DEFAULT_MAX_ATTEMPTS, LEASE_SECONDS, SEND_MAX_ATTEMPTS, afterFailure, classifySendFailure, errorSummary, failureOfKind, gaveUpReason, isSendJob, retryDelayFor, type SendFailureKind } from './policy';
+import { PermanentJobError, type ClaimTypes, ClaimedJob, EnqueueResult, JobQueue, JobSpec, JobStatus, Sql } from './types';
 
 // The Postgres outbox behind JobQueue (C97). Statements are fixed and
 // parameterized; `jobs` is reachable only as nca_super (platform service),
@@ -43,7 +43,7 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
         `insert into jobs (job_id, type, payload, idempotency_key, school_id, max_attempts, next_run_at)
          values ($1, $2, $3, $4, $5, $6, coalesce($7::timestamptz, now()))
          on conflict do nothing`,
-        [jobId, spec.type, JSON.stringify(spec.payload), spec.idempotencyKey, spec.schoolId ?? null, spec.maxAttempts ?? DEFAULT_MAX_ATTEMPTS, spec.runAt ? spec.runAt.toISOString() : null]
+        [jobId, spec.type, JSON.stringify(spec.payload), spec.idempotencyKey, spec.schoolId ?? null, spec.maxAttempts ?? (isSendJob(spec.type) ? SEND_MAX_ATTEMPTS : DEFAULT_MAX_ATTEMPTS), spec.runAt ? spec.runAt.toISOString() : null]
       );
       return { jobId, created: (res.rowCount ?? 0) > 0 };
     },
@@ -90,21 +90,28 @@ export function createPgJobQueue(platform: Platform = withPlatformService as Pla
     },
 
     async fail(job: ClaimedJob, error: unknown, redact: string[] = []): Promise<'retry' | 'dead'> {
-      const decision = afterFailure({ attempts: job.attempts, maxAttempts: job.maxAttempts, error });
-      const summary = errorSummary(error);
+      // A send (W21-M3): a failure that trying again cannot mend ends at once, saying why in plain words.
+      const forced = error instanceof PermanentJobError && error.failureKind ? (error.failureKind as SendFailureKind) : null;
+      const failure = isSendJob(job.type) ? (forced ? failureOfKind(forced) : classifySendFailure(errorSummary(error))) : null;
+      const permanent = error instanceof PermanentJobError || failure?.permanent === true;
+      const decision = afterFailure({ attempts: job.attempts, maxAttempts: job.maxAttempts, error: permanent ? new PermanentJobError('permanent') : error });
+      const summary = failure && decision === 'dead' ? gaveUpReason(failure, job.attempts) : errorSummary(error);
+      // Each try is kept on the job: which, when, and the kind of failure the provider gave.
+      const kind = (error instanceof PermanentJobError && error.failureKind) || failure?.kind || 'other';
+      const tried = JSON.stringify([{ attempt: job.attempts, at: new Date().toISOString(), kind, note: summary.slice(0, 200) }]);
       await platform((db) =>
         decision === 'retry'
           ? db.query(
               `update jobs set status = 'pending', next_run_at = now() + make_interval(secs => $2),
-                      locked_until = null, last_error = $3, updated_at = now()
+                      locked_until = null, last_error = $3, attempt_log = attempt_log || $4::jsonb, updated_at = now()
                 where job_id = $1 and status = 'running'`,
-              [job.jobId, retryDelaySeconds(job.attempts, Math.random()), summary]
+              [job.jobId, retryDelayFor(job.type, job.attempts, Math.random()), summary, tried]
             )
           : db.query(
               `update jobs set status = 'dead', completed_at = now(), locked_until = null, last_error = $2,
-                      payload = payload - $3::text[], updated_at = now()
+                      attempt_log = attempt_log || $4::jsonb, payload = payload - $3::text[], updated_at = now()
                 where job_id = $1 and status = 'running'`,
-              [job.jobId, summary, redact]
+              [job.jobId, summary, redact, tried]
             )
       );
       return decision;

@@ -374,6 +374,20 @@ export const TEMPLATE_REGISTRY: readonly TemplateDefinition[] = [
       hi: 'स्कूल {{school}} की ओर से: {{child}} की {{exam}} की जाँची हुई उत्तर पुस्तिकाएँ इस PDF में हैं। परिणाम ऑनलाइन यहाँ देखें: {{link}} यह लिंक सिर्फ़ आपके परिवार के लिए है और 30 दिन तक चलेगा।',
     },
   },
+  {
+    // The substitute is told which period they cover (W21-M3). To a member of staff, not a family: the gate asks no
+    // consent of a child for it; the pilot switch, the number's STOP, quiet hours, the budget and Meta's approval hold.
+    name: 'cover_assigned',
+    version: 1,
+    category: 'utility',
+    purpose: 'operational_communication',
+    staleAfterMinutes: 240,
+    variables: ['school', 'date', 'period', 'class', 'subject'],
+    body: {
+      en: 'From {{school}}: You are asked to cover period {{period}} of class {{class}} ({{subject}}) on {{date}}. Please check Proxy in the school app.',
+      hi: 'स्कूल {{school}} की ओर से: आपको {{date}} को कक्षा {{class}} ({{subject}}) का पीरियड {{period}} सँभालना है। कृपया स्कूल ऐप में प्रॉक्सी देखें।',
+    },
+  },
 ];
 
 // Whether a template carries a document above its words (C366), by the code's own definition of it.

@@ -43,7 +43,7 @@ export type JobHandler = (job: ClaimedJob) => Promise<JobOutcome>;
 // only a person can resolve): the job goes straight to dead, where the
 // founder sees it and can retry once the cause is fixed.
 export class PermanentJobError extends Error {
-  constructor(message: string) {
+  constructor(message: string, readonly failureKind?: string) {
     super(message);
     this.name = 'PermanentJobError';
   }

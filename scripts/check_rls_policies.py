@@ -415,6 +415,8 @@ ALLOWED_PERMISSIVE = (
         ("timetable_unavailable", "timetable_unavailable_tenant_isolation"),
         ("timetable_proposals", "timetable_proposals_tenant_isolation"),
         ("timetable_versions", "timetable_versions_tenant_isolation"),
+        # W21-M3: timetable changes, tenant isolation narrowed by the RESTRICTIVE policies below.
+        ("timetable_changes", "timetable_changes_tenant_isolation"),
         # p7-10f end
         # p7-10g begin
         # C231: a teacher's proposal of a subject and class. Tenant isolation, narrowed by the RESTRICTIVE policies below.
@@ -965,6 +967,8 @@ REQUIRED_RESTRICTIVE = {
     ("timetable_proposals", "timetable_proposals_decided_as_self"),
     ("timetable_versions", "timetable_versions_office"),
     ("timetable_versions", "timetable_versions_as_self"),
+    ("timetable_changes", "timetable_changes_read"),
+    ("timetable_changes", "timetable_changes_as_self"),
     ("audit_log", "audit_timetable_plan_rows_office_or_actor"),
     # p7-10f end
     # p7-10g begin

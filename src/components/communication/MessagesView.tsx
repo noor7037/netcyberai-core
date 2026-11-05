@@ -9,12 +9,12 @@ import type { MessageKey } from '@/lib/i18n';
 // The school's WhatsApp messages and where each got to (docs/25 slice 7b, C183): sent, delivered, read, failed,
 // or held back with the reason. Counted from the log; nothing here is estimated.
 
-type Row = { log_id: string; created_at: string; not_before?: string | null; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null };
+type Row = { log_id: string; created_at: string; not_before?: string | null; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null; tries?: number; retried?: boolean; can_retry?: boolean };
 const STATES = ['queued', 'uncertain', 'sent', 'delivered', 'read', 'failed', 'held'] as const;
 type State = (typeof STATES)[number];
 const stateOf = (status: string): State => (status.startsWith('blocked_') ? 'held' : (STATES as readonly string[]).includes(status) ? (status as State) : 'sent');
 const VARIANT = { queued: 'neutral', uncertain: 'warning', sent: 'neutral', delivered: 'success', read: 'success', failed: 'danger', held: 'warning' } as const;
-const TEMPLATES = ['attendance_absence_notification', 'daily_pulse', 'class_notice', 'ptm_invitation', 'ptm_booked', 'ptm_time_not_free', 'ptm_reminder', 'ptm_cancelled', 'event_invitation', 'event_reminder', 'event_cancelled', 'complaint_received', 'complaint_escalated', 'complaint_escalated_office', 'complaint_closed', 'home_help'];
+const TEMPLATES = ['attendance_absence_notification', 'daily_pulse', 'class_notice', 'ptm_invitation', 'ptm_booked', 'ptm_time_not_free', 'ptm_reminder', 'ptm_cancelled', 'cover_assigned', 'event_invitation', 'event_reminder', 'event_cancelled', 'complaint_received', 'complaint_escalated', 'complaint_escalated_office', 'complaint_closed', 'home_help'];
 const HELD_REASONS = ['blocked_pilot', 'blocked_consent', 'blocked_budget', 'blocked_quiet_hours', 'blocked_no_template'];
 
 // `inState`: how many messages the chosen state holds over the same days (the number on its button), never cut.
@@ -31,6 +31,8 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
   const from = range?.from;
   const to = range?.to;
   const [failed, setFailed] = useState(false);
+  const [retrying, setRetrying] = useState<string | null>(null);
+  const [retryNote, setRetryNote] = useState<'ok' | 'no' | null>(null);
 
   const load = useCallback(async () => {
     const asked = new URLSearchParams();
@@ -48,6 +50,14 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
   useEffect(() => {
     if (mayRead) void load();
   }, [load, mayRead]);
+  // "Retry now" (W21-M3): the message is queued again at once; the list is read again.
+  const retry = async (logId: string) => {
+    setRetrying(logId);
+    const res = await fetch(`/api/app/communication/messages/${logId}/retry`, { method: 'POST' }).catch(() => null);
+    setRetryNote(res?.ok ? 'ok' : 'no');
+    setRetrying(null);
+    await load();
+  };
 
   if (!mayRead) return <p data-messages-office-only className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('msg.officeOnly')}</p>;
   if (failed) return <p role="alert" className="rounded-md bg-off-white px-3 py-2 text-sm text-slate">{t('msg.failed')}</p>;
@@ -90,6 +100,7 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
           </button>
         ))}
       </div>
+      {retryNote && <p role="status" data-retry-note={retryNote} className="rounded-md bg-off-white px-3 py-2 text-sm font-semibold text-slate">{t(retryNote === 'ok' ? 'w21m3.retryOk' : 'w21m3.retryNo')}</p>}
       {cut && data.messages.length > 0 && (
         <p role="status" data-messages-cut={data.messages.length} className="rounded-md bg-off-white px-3 py-2 text-sm font-semibold text-slate">
           {t('msg.cut', { shown: data.messages.length.toLocaleString('en-IN'), count: inState.toLocaleString('en-IN') })}
@@ -125,6 +136,14 @@ export function MessagesView({ mayRead, initialState, range, initial }: { mayRea
                 {s === 'queued' && <p className="text-slate/70">{t('msg.queuedWhy')}</p>}
                 {s === 'held' && <p className="font-semibold">{HELD_REASONS.includes(m.status) ? t(`msg.why.${m.status}` as MessageKey) : (m.reason ?? '')}</p>}
                 {s === 'failed' && <p className="font-semibold text-red-800">{t('msg.failedWhy')}</p>}
+                {s === 'failed' && m.reason && <p data-message-reason className="text-slate/80">{m.reason}</p>}
+                {s === 'failed' && (m.tries ?? 0) > 0 && <p data-message-tries className="text-slate/70">{t('w21m3.tries', { count: m.tries ?? 0 })}</p>}
+                {s === 'failed' && m.retried && <p data-message-retried className="text-slate/70">{t('w21m3.retried')}</p>}
+                {m.can_retry && (
+                  <button type="button" data-retry-now disabled={retrying === m.log_id} className="min-h-[44px] self-start rounded-md border border-midnight px-4 text-sm font-semibold text-midnight" onClick={() => void retry(m.log_id)}>
+                    {t('w21m3.retryNow')}
+                  </button>
+                )}
               </li>
               </Fragment>
             );

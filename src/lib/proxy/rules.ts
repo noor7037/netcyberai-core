@@ -84,7 +84,11 @@ export type Cover = {
   substitute_name: string;
   assigned_by: string;
   assigned_at: string;
+  // W21-M3: where the substitute's WhatsApp message got to, for the people who arrange cover (the app always shows
+  // the cover to the substitute): 'none' (no message was made: no number), 'told', 'queued', 'held', 'failed'.
+  whatsapp?: CoverWhatsApp;
 };
+export type CoverWhatsApp = 'none' | 'told' | 'queued' | 'held' | 'failed';
 
 // A cover as the teacher who holds it is given it: the day, the period, the class and the subject, and nothing
 // else. Not who is away: leave is read by the person and the office (docs/26 section 3 rule 4, section 5).

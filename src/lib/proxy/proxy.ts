@@ -5,7 +5,9 @@ import { classLabel } from '@/lib/frameworks/class-label';
 import { schoolCalendar, type WorkingCalendar } from '@/lib/payments/upi';
 import { addDays, isLeaveDate } from '@/lib/staff/leave-rules';
 import { indiaDate } from '@/lib/time/india';
-import { isoWeek, isoWeekday, needsCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, suggestFor, type Cover, type CoverProblem, type DayFacts, type DayOff, type MyCover, type PeriodToCover, type ProxyDay, type Suggestion } from './rules';
+import { queueWhatsAppMessage, type QueueLike } from '@/lib/whatsapp/gate';
+import { normalizePhone } from '@/lib/whatsapp/phone';
+import { isoWeek, isoWeekday, needsCover, PROXY_AHEAD_DAYS, PROXY_ARRANGERS, suggestFor, type Cover, type CoverProblem, type CoverWhatsApp, type DayFacts, type DayOff, type MyCover, type PeriodToCover, type ProxyDay, type Suggestion } from './rules';
 import { classOrderSql } from '@/lib/classes/class-order';
 
 export * from './rules';
@@ -199,6 +201,12 @@ export async function proxyDay(db: Sql, actor: Actor, date: string, today: strin
   // Suggestions only where a person can still act on them: a period with no cover. (A cover that cannot be taken
   // any more is undone first: a period is covered once.)
   const facts = periods.some((p) => !p.cover) ? await dayFacts(db, actor.schoolId, date, away) : null;
+  // Where each substitute's WhatsApp message got to (W21-M3), read through the one function that may say so.
+  const covers = [...periods.flatMap((p) => (p.cover ? [p.cover] : [])), ...noLongerNeeded];
+  if (covers.length) {
+    const states = new Map((await db.query(`select substitution_id, state from public.cover_whatsapp_state($1::uuid[])`, [covers.map((c) => c.substitution_id)])).rows.map((r) => [r.substitution_id as string, r.state as string]));
+    for (const c of covers) c.whatsapp = (states.get(c.substitution_id) ?? 'none') as CoverWhatsApp;
+  }
   return {
     date,
     weekday: isoWeekday(date),
@@ -224,7 +232,7 @@ const ofThisSchool = async (db: Sql, schoolId: string, userId: string) => Boolea
 // holds at this moment, whatever the screen showed when it was drawn. The insert runs behind a savepoint, so when
 // the database itself refuses it (the unique indexes: someone else tapped first; its trigger: leave or the
 // timetable changed in that instant) the answer is a plain reason and the caller's transaction goes on.
-export async function assignCover(db: Sql, actor: Actor, input: AssignInput, today: string = indiaDate()): Promise<AssignResult> {
+export async function assignCover(db: Sql, actor: Actor, input: AssignInput, today: string = indiaDate(), queue?: QueueLike): Promise<AssignResult> {
   if (!PROXY_ARRANGERS.includes(actor.role)) return { ok: false, reason: 'not_allowed' };
   if (!(await ofThisSchool(db, actor.schoolId, actor.userId))) return { ok: false, reason: 'elsewhere' };
   if (!isLeaveDate(input.date) || !isOpen(input.date, today) || !validPeriod(input.period)) return { ok: false, reason: 'date' };
@@ -261,8 +269,26 @@ export async function assignCover(db: Sql, actor: Actor, input: AssignInput, tod
     schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'cover.assigned', targetType: 'substitutions', targetId: substitutionId, beforeState: undefined,
     afterState: { date: input.date, period: input.period, classId: period.class_id, subjectId: period.subject_id, absentUserId: period.absent_user_id, substituteUserId: who },
   });
+  if (queue) await tellSubstitute(db as PoolClient, queue, actor.schoolId, substitutionId, { date: input.date, period: input.period, className: period.class_name, subject: period.subject_name, who });
   return { ok: true, substitutionId };
 }
+
+// The substitute is also told on WhatsApp (W21-M3), through the send-gate like every other message: queued when the
+// school's WhatsApp is on, held (and shown as held) when it is not, so nothing is promised before Meta's payment
+// method. The tap does not wait for it and does not fail for it. No number on file: nothing is made ('none').
+async function tellSubstitute(db: PoolClient, queue: QueueLike, schoolId: string, substitutionId: string, c: { date: string; period: number; className: string; subject: string; who: string }): Promise<void> {
+  const phone = normalizePhone(String((await db.query(`select phone from users where school_id = $1 and user_id = $2`, [schoolId, c.who])).rows[0]?.phone ?? ''));
+  if (!phone) return;
+  await db.query('savepoint proxy_tell');
+  try {
+    await queueWhatsAppMessage(db, queue, { schoolId, studentId: null, staffUserId: c.who, purpose: 'operational_communication', toPhone: phone, templateName: 'cover_assigned', templateParams: { date: sayCoverDate(c.date), period: String(c.period), class: c.className, subject: c.subject }, dedupeKey: `cover:${substitutionId}` });
+    await db.query('release savepoint proxy_tell');
+  } catch {
+    // The cover stands whatever the message does; it is simply not told on WhatsApp.
+    await db.query('rollback to savepoint proxy_tell');
+  }
+}
+const sayCoverDate = (iso: string) => new Intl.DateTimeFormat('en-IN', { timeZone: 'UTC', weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(`${iso}T00:00:00Z`));
 
 export type UndoResult = { ok: true } | { ok: false; reason: 'not_allowed' | 'elsewhere' | 'not_found' | 'undone' | 'past' };
 

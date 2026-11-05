@@ -1,5 +1,6 @@
 import type { PoolClient } from 'pg';
 import { writeAuditLog, writeAuditLogs } from '@/lib/audit/log';
+import { recordChanges } from './changes';
 import type { StaffRole } from '@/lib/auth/types';
 import { SETTINGS_SCHEMAS } from '@/lib/frameworks/settings-schemas';
 import { readSettings } from '@/lib/frameworks/settings-store';
@@ -433,6 +434,21 @@ export async function publishDraft(db: Sql, actor: Actor, proposalId: string, op
         schoolId: actor.schoolId, actorUserId: actor.userId, actorRole: actor.role, eventAction: 'timetable.set', targetType: 'timetable_entries', targetId: r.entry_id,
         beforeState: null, afterState: { classId: r.class_id, weekday: r.weekday, period: r.period, subjectId: r.subject_id, teacherUserId: r.teacher_user_id },
       }))
+    );
+    // The history of changes (W21-M3): one row for each period that ends up different, with the run that made it.
+    const slotKey = (x: { class_id: string; weekday: number; period: number }) => `${x.class_id}:${x.weekday}:${x.period}`;
+    const before = new Map(cleared.map((r) => [slotKey(r), r]));
+    const after = new Map(made.map((r) => [slotKey(r), r]));
+    await recordChanges(
+      db,
+      actor,
+      [...new Set([...before.keys(), ...after.keys()])].map((k) => {
+        const b = before.get(k);
+        const a = after.get(k);
+        const ref = (b ?? a)!;
+        return { classId: ref.class_id, weekday: ref.weekday, period: ref.period, kind: 'generated' as const, before: b ? { subjectId: b.subject_id, teacherUserId: b.teacher_user_id } : null, after: a ? { subjectId: a.subject_id, teacherUserId: a.teacher_user_id } : null };
+      }),
+      { proposalId }
     );
     const version = (
       await db.query(

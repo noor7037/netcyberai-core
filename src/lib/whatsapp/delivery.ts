@@ -5,6 +5,7 @@ import { log } from '@/lib/observability/log';
 import { messageCost, rateOnSendDate, templateCategory } from './gate';
 import { writtenForms } from './phone';
 import type { WhatsAppNotice, WhatsAppProvider } from './provider';
+import { mayRetry } from './retry';
 import { receiveInbound, type InboundJobs } from './replies';
 import { applyTemplateStatus } from './templates';
 
@@ -110,7 +111,7 @@ export async function applyNotices(db: Sql, provider: WhatsAppProvider, rawBody:
   return { status: 200, duplicate: false, ...out };
 }
 
-export type MessageRow = { log_id: string; created_at: string; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null };
+export type MessageRow = { log_id: string; created_at: string; child: string | null; guardian: string | null; phone_last4: string | null; template_name: string | null; status: string; reason: string | null; provider: string | null; delivered_at: string | null; read_at: string | null; failed_at: string | null; failure_kind?: string | null; tries?: number; retried?: boolean; to_staff?: boolean; can_retry?: boolean };
 export type MessageRange = { from: string; to: string };
 // `inState`: how many messages the chosen state holds over the same days (every state when none is chosen). It
 // is never cut short. When it is more than `messages` has rows, the list was cut at its limit and the screen says so.
@@ -152,7 +153,8 @@ export async function listMessages(db: Sql, schoolId: string, state: string | nu
   const counts = await countMessages(db, schoolId, range);
   const want = isMessageState(state) ? state : null;
   const { rows } = await db.query(
-    `select l.log_id, l.created_at, s.name as child, p.name as guardian, right(l.to_phone, 4) as phone_last4, l.template_name, l.status::text as status, l.reason, l.provider, l.delivered_at, l.read_at, l.failed_at
+    `select l.log_id, l.created_at, s.name as child, p.name as guardian, right(l.to_phone, 4) as phone_last4, l.template_name, l.status::text as status, l.reason, l.provider, l.delivered_at, l.read_at, l.failed_at, l.failure_kind, jsonb_array_length(l.attempt_log)::int as tries, (l.staff_user_id is not null) as to_staff,
+            exists (select 1 from communication_log x where x.school_id = l.school_id and x.dedupe_key like 'retry:' || l.log_id::text || ':%') as retried
        from communication_log l
        left join students s on s.school_id = l.school_id and s.student_id = l.student_id
        left join parents p on p.school_id = l.school_id and p.parent_id = l.parent_id
@@ -162,5 +164,5 @@ export async function listMessages(db: Sql, schoolId: string, state: string | nu
     [schoolId, ...between(range), want, limit]
   );
   const iso = (v: unknown) => (v ? new Date(v as string).toISOString() : null);
-  return { messages: rows.map((r) => ({ ...r, created_at: iso(r.created_at), delivered_at: iso(r.delivered_at), read_at: iso(r.read_at), failed_at: iso(r.failed_at) })) as MessageRow[], counts, days: RECENT_DAYS, ...(range ? { range } : {}), inState: want ? (counts[want] ?? 0) : messagesInAll(counts) };
+  return { messages: rows.map((r) => ({ ...r, can_retry: mayRetry(r as never), created_at: iso(r.created_at), delivered_at: iso(r.delivered_at), read_at: iso(r.read_at), failed_at: iso(r.failed_at) })) as MessageRow[], counts, days: RECENT_DAYS, ...(range ? { range } : {}), inState: want ? (counts[want] ?? 0) : messagesInAll(counts) };
 }
