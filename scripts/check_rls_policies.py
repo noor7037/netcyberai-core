@@ -621,6 +621,11 @@ ALLOWED_PERMISSIVE = (
         ("promotion_events", "promotion_events_tenant_isolation"),
         ("promotion_overrides", "promotion_overrides_tenant_isolation"),
         # w21-m2 end
+        # w21-m4 begin
+        # W21-M4 (the Holistic Progress Card): tenant isolation only; narrowed by the RESTRICTIVE policies required below.
+        ("hpc_entries", "hpc_entries_tenant_isolation"),
+        ("hpc_cards", "hpc_cards_tenant_isolation"),
+        # w21-m4 end
     }
 )
 
@@ -1281,6 +1286,16 @@ REQUIRED_RESTRICTIVE = {
     ("promotion_overrides", "promotion_overrides_principal_changes"),
     ("promotion_overrides", "promotion_overrides_principal_clears"),
     # w21-m2 end
+    # w21-m4 begin
+    # The card's words: read by the office and a teacher of the class, written by the office or the class teacher in their
+    # own name. The card's file: read by the office and the class teacher, published by the office in its own name.
+    ("hpc_entries", "hpc_entries_readers"),
+    ("hpc_entries", "hpc_entries_written"),
+    ("hpc_entries", "hpc_entries_changed"),
+    ("hpc_cards", "hpc_cards_readers"),
+    ("hpc_cards", "hpc_cards_published"),
+    ("hpc_cards", "hpc_cards_republished"),
+    # w21-m4 end
 }
 
 # A table outside public (the family, content and control schemas, C247) is named "<schema>.<table>"; a public table by

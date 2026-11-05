@@ -62,7 +62,11 @@ export type SchoolResult = {
   // W14-F: the exam, and whether the school's report card of it is ready for this child (the Family app's "Get report card").
   examId?: string;
   reportCard?: boolean;
+  // W21-M4: the child's own Personal Best and Most Improved of this exam, as the publication kept them (each child compared
+  // only with their own earlier results), only while the school's plan has the feature and there is a line to say.
+  recognition?: FamilyRecognition;
 };
+export type FamilyRecognition = { personalBest: { subject: string; now: number }[]; mostImproved: { subject: string; before: number; now: number } | null };
 
 // ---- A checked paper (AI answer-sheet marking, C351) -------------------------------------------------------------------
 // The child's own approved script of a published paper, as the school published it and only while the publication is

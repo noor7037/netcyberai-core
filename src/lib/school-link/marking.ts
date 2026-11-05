@@ -223,3 +223,38 @@ export async function readSchoolReportCard(
   }
   return bytes && bytes.length ? { bytes, fileName: read.row.file_name } : null;
 }
+
+// W21-M4: the Holistic Progress Card of the school's current session for one of the link's matched students: its row
+// read as the guardian (guardian_hpc_cards(): the guardian's own consented child), then its file from the store outside
+// the transaction. null when there is none this family may have. In the child's own view, only while the school lets
+// children see their results.
+export async function readSchoolHpc(
+  claims: Claims,
+  linkId: string,
+  studentId: string,
+  as: ReadAs,
+  storage: Pick<DirectUploadStorage, 'get'> = supabaseFileStorage
+): Promise<{ bytes: Uint8Array; fileName: string } | null> {
+  if (!isUuid(studentId)) return null;
+  const read = await withGuardianContext(claims, linkId, async (db, link) => {
+    const row = (
+      await db.query(
+        `select c.storage_key, c.file_name from public.guardian_hpc_cards() c
+           join academic_sessions a on a.session_id = c.session_id and a.school_id = $2 and a.is_current
+          where c.student_id = $1 limit 1`,
+        [studentId, link.schoolId]
+      )
+    ).rows[0] as { storage_key: string; file_name: string } | undefined;
+    // The key is the database's own (<school>/hpc/..., held by a check); never another school's.
+    return { schoolId: link.schoolId, row: row && row.storage_key.startsWith(`${link.schoolId}/hpc/`) ? row : null };
+  });
+  if (!read.row) return null;
+  if (as.childView && !(await childrenSeeResults(read.schoolId))) return null;
+  let bytes: Uint8Array | null;
+  try {
+    bytes = await storage.get(read.row.storage_key);
+  } catch {
+    throw new ReportCardUnavailableError('the file store could not be read');
+  }
+  return bytes && bytes.length ? { bytes, fileName: read.row.file_name } : null;
+}
