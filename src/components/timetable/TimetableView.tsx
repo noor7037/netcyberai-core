@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { TeachEmpty } from '@/components/app-ui/TeachEmpty';
 import { useT } from '@/components/app-shell/LangContext';
 import { Modal } from '@/components/ui/Modal';
+import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { Icon } from '@/components/visual/Icons';
@@ -12,6 +13,7 @@ import { useToast } from '@/components/ui/Toast';
 import type { MessageKey } from '@/lib/i18n';
 import { CSV_HEADER, WEEKDAYS, type ImportProblem } from '@/lib/timetable/plan';
 import { TeacherWorkload } from './TeacherWorkload';
+import { TimetableHistory } from './TimetableHistory';
 
 // The timetable screen (docs/20 5c, C145). The office picks a class and
 // fills its week one period at a time, or imports a CSV; a clash (a teacher
@@ -58,6 +60,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
   const [csv, setCsv] = useState('');
   const [problems, setProblems] = useState<ImportProblem[]>([]);
   const [busy, setBusy] = useState(false);
+  const [reason, setReason] = useState('');
   // A teacher sees their own week; everyone else picks a class.
   const mine = teacher;
   // A teacher's covers today sit above their week. Read from Proxy Auto, which answers a teacher with their own
@@ -120,7 +123,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
     setBusy(true);
     setClash(null);
     setNotAssigned(false);
-    const res = await fetch('/api/app/timetable', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ classId, weekday: editing.weekday, period: editing.period, subjectId: editing.subjectId, teacherUserId: editing.teacherUserId }) }).catch(() => null);
+    const res = await fetch('/api/app/timetable', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ classId, weekday: editing.weekday, period: editing.period, subjectId: editing.subjectId, teacherUserId: editing.teacherUserId, reason }) }).catch(() => null);
     const body = (await res?.json().catch(() => null)) ?? {};
     setBusy(false);
     if (res?.ok) {
@@ -139,7 +142,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
   async function clear() {
     if (!editing) return;
     setBusy(true);
-    const res = await fetch('/api/app/timetable', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ classId, weekday: editing.weekday, period: editing.period }) }).catch(() => null);
+    const res = await fetch('/api/app/timetable', { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ classId, weekday: editing.weekday, period: editing.period, reason }) }).catch(() => null);
     setBusy(false);
     if (!res?.ok) {
       toast.show(t('tt.save.failed'), 'danger');
@@ -237,6 +240,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
                     onClick={() => {
                       setClash(null);
                       setNotAssigned(false);
+                      setReason('');
                       setEditing({ weekday: d, period: p, subjectId: here[0]?.subject_id ?? '', teacherUserId: here[0]?.teacher_user_id ?? '', saved: here.length > 0 });
                     }}
                     className={`${TAP} ${here.length ? 'border-slate/20 font-semibold text-slate' : 'border-dashed border-slate/30 text-slate/70'} hover:bg-slate/5`}
@@ -263,6 +267,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
       )}
 
       {(office || mine) && state !== 'failed' && <TeacherWorkload mine={mine} />}
+      {(office || mine) && state !== 'failed' && <TimetableHistory office={office} />}
 
       {office && state !== 'failed' && (
         <details data-timetable-import className="rounded-xl border border-slate/10 bg-white p-3">
@@ -325,6 +330,7 @@ export function TimetableView({ office, teacher, covers: showCovers = false, gen
                 </option>
               ))}
             </Select>
+            <Input id="timetable-reason" label={t('w21m3.tt.reason')} value={reason} maxLength={200} onChange={(e) => setReason(e.target.value)} />
             {clash && (
               <p role="alert" data-clash className="rounded-md border border-red-800/30 p-3 text-sm text-red-800">
                 {t('tt.clash', { teacher: clash.teacher_name, class: clash.class_name, subject: clash.subject_name, day: t(dayKey(clash.weekday)), period: clash.period })}

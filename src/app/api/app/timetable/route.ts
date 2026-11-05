@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { isUuid } from '@/lib/frameworks/custom-fields';
 import { appRoute, jsonError, readJson, ruleError } from '@/lib/frameworks/route';
 import { schoolWeek } from '@/lib/timetable/generator-store';
+import { changeHistory, cleanReason } from '@/lib/timetable/changes';
 import { MAX_PERIODS } from '@/lib/timetable/plan';
 import { clearEntry, entriesForClass, entriesForTeacher, periodsPerDay, putEntry, teacherWorkload, timetableChoices } from '@/lib/timetable/timetable';
 
@@ -10,6 +11,8 @@ import { clearEntry, entriesForClass, entriesForTeacher, periodsPerDay, putEntry
 //   GET ?mine=1    the signed-in teacher's own week
 //   GET ?workload=1 periods a week per teacher, from the published timetable (C231): the office, every teacher; a
 //                  teacher, their own line; nobody else
+//   GET ?history=1[&classId=][&teacherUserId=]  the last 30 days of changes, newest first (W21-M3): the office, all of it; a
+//                  teacher, their own classes' (RLS)
 //   GET            what the office chooses from (classes, subjects, teachers)
 //   PUT            fill one period (office); a teacher clash answers 409 and names the other entry; a teacher Setup
 //                  does not assign to that class and subject answers 409 'not_assigned' (C231)
@@ -33,6 +36,13 @@ export async function GET(req: NextRequest) {
       const week = await schoolWeek(db, claims.schoolId);
       return NextResponse.json({ ...week, teachers: await teacherWorkload(db, claims.schoolId, { ...week, teacherUserId: mine ? claims.sub : undefined }) }, { headers: { 'Cache-Control': 'no-store' } });
     }
+    if (searchParams.get('history')) {
+      const classId = searchParams.get('classId');
+      const teacherUserId = searchParams.get('teacherUserId');
+      if ((classId !== null && !isUuid(classId)) || (teacherUserId !== null && !isUuid(teacherUserId))) return ruleError(400, 'not_sent_properly');
+      if (claims.role !== 'teacher' && !OFFICE.includes(claims.role)) return ruleError(403, 'not_allowed');
+      return NextResponse.json(await changeHistory(db, claims.schoolId, { classId, teacherUserId }), { headers: { 'Cache-Control': 'no-store' } });
+    }
     const periods = await periodsPerDay(db, claims.schoolId);
     if (searchParams.get('mine')) return NextResponse.json({ periods, entries: await entriesForTeacher(db, claims.schoolId, claims.sub) });
     const classId = searchParams.get('classId');
@@ -52,7 +62,7 @@ export async function PUT(req: NextRequest) {
     const body = await readJson(req);
     const at = slotOf(body);
     if (!at || !isUuid(body?.subjectId) || !isUuid(body?.teacherUserId)) return ruleError(400, 'not_sent_properly');
-    const result = await putEntry(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, { ...at, subjectId: body!.subjectId as string, teacherUserId: body!.teacherUserId as string });
+    const result = await putEntry(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, { ...at, subjectId: body!.subjectId as string, teacherUserId: body!.teacherUserId as string }, cleanReason(body?.reason));
     if (result.ok) return NextResponse.json({ entry: result.entry });
     if (result.reason === 'teacher_clash') return jsonError(409, 'this teacher is already teaching another class at that time', { code: 'teacher_clash', clash: result.clash });
     if (result.reason === 'not_assigned') return jsonError(409, 'Setup gives this subject in this class to other teachers', { code: 'not_assigned' });
@@ -63,8 +73,9 @@ export async function PUT(req: NextRequest) {
 export async function DELETE(req: NextRequest) {
   return appRoute(req, async ({ claims, db }) => {
     if (!OFFICE.includes(claims.role)) return ruleError(403, 'not_allowed');
-    const at = slotOf(await readJson(req));
+    const body = await readJson(req);
+    const at = slotOf(body);
     if (!at) return ruleError(400, 'not_sent_properly');
-    return NextResponse.json({ cleared: await clearEntry(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, at) });
+    return NextResponse.json({ cleared: await clearEntry(db, { schoolId: claims.schoolId, userId: claims.sub, role: claims.role }, at, cleanReason(body?.reason)) });
   });
 }
