@@ -272,16 +272,30 @@ const recoveryApprove = async (page) => {
   await clearHomework();
   if (rows.length !== 1 || rows[0].status !== 'approved' || rows[0].items !== 3 || grew !== 0) throw new Error(`expected one approved plan of 3 homeworks and nothing sent: ${JSON.stringify(rows)} sent ${grew}`);
 };
-// Teacher Copilot (C154) on the stand-in: a draft appears, the teacher
-// changes it and approves; one note is saved under the teacher's name and
-// one use is metered.
+// Teacher Copilot (C154; the teacher's hour, W20-C) on the stand-in: the teacher taps today's lesson, a draft appears,
+// the teacher changes it, approves it and keeps it as their lesson plan; one note is saved under the teacher's name and one use is metered.
+let copilotTaught = [];
 const copilotDraft = async (page) => {
   await db.pg.exec(`delete from teaching_notes; delete from ai_usage;`);
+  // The seed's lesson taught today (5-A Mathematics, a typed topic) recorded against its topic on the map, as one tap
+  // on "Taught today" records it; put back as it was after the screen.
+  copilotTaught = (await db.pg.query(
+    `update syllabus_progress p set unit_id = (select u.unit_id from syllabus_units u where u.school_id = p.school_id and u.class_id = p.class_id and u.subject_id = p.subject_id order by u.position limit 1)
+      where p.school_id = $1 and p.date = (now() at time zone 'Asia/Kolkata')::date and p.unit_id is null
+        and exists (select 1 from syllabus_units u where u.school_id = p.school_id and u.class_id = p.class_id and u.subject_id = p.subject_id)
+        and exists (select 1 from teacher_subjects ts join teachers t on t.teacher_id = ts.teacher_id where ts.class_id = p.class_id and ts.subject_id = p.subject_id and t.user_id = $2)
+     returning p.progress_id`,
+    [SCHOOL, PEOPLE.teacher.sub]
+  )).rows.map((r) => r.progress_id);
   await page.reload({ waitUntil: 'networkidle' });
-  await page.selectOption('#cp-pair', { index: 1 });
-  const pairs = await page.locator('#cp-pair option').allTextContents();
-  await page.selectOption('#cp-pair', { label: pairs.find((p) => p.includes('Mathematics')) });
-  await page.selectOption('#cp-topic', { index: 1 });
+  if (copilotTaught.length) await page.locator('[data-lesson]').first().click();
+  else {
+    // "Pick another topic" is folded away when the teacher taught something today.
+    if (!(await page.locator('#cp-pair').isVisible())) await page.locator('details:has(#cp-pair) > summary').click();
+    const pairs = await page.locator('#cp-pair option').allTextContents();
+    await page.selectOption('#cp-pair', { label: pairs.find((p) => p.includes('Mathematics')) });
+    await page.selectOption('#cp-topic', { index: 1 });
+  }
   await page.locator('[data-draft]').click();
   await page.locator('[data-copilot-draft] textarea').waitFor({ timeout: 15000 });
   if ((await db.pg.query(`select count(*)::int as n from teaching_notes`)).rows[0].n !== 0) throw new Error('a draft was saved before approval');
@@ -290,9 +304,12 @@ const copilotDraft = async (page) => {
 };
 const copilotApprove = async (page) => {
   await page.locator('[data-approve]').click();
+  if ((await db.pg.query(`select count(*)::int as n from teaching_notes`)).rows[0].n !== 0) throw new Error('approving the words kept a note before "Keep as my lesson plan"');
+  await page.locator('[data-keep]').click();
   await page.locator('[data-notes]').waitFor({ timeout: 15000 });
   const { rows } = await db.pg.query(`select (select count(*)::int from teaching_notes where ai_assisted and approved_by = $1 and body like '%(checked)%') as notes, (select count(*)::int from ai_usage where user_id = $1) as uses`, [PEOPLE.teacher.sub]);
   await db.pg.exec(`delete from teaching_notes; delete from ai_usage;`);
+  await db.pg.query(`update syllabus_progress set unit_id = null where progress_id = any($1::uuid[])`, [copilotTaught]);
   if (rows[0].notes !== 1 || rows[0].uses !== 1) throw new Error(`expected one approved note and one metered use: ${JSON.stringify(rows[0])}`);
 };
 // Fees (C157): the office adds a head and sets a class's structure; then a

@@ -41,7 +41,7 @@ describe('module registry', () => {
     expect(moduleById('fees').phaseNote).toContain('WhatsApp from P4');
     expect(moduleById('raise-ticket')).toMatchObject({ status: 'live', phase: 'P1' });
     // Homework Recovery (C152, confirmed C153) and Teacher Copilot (C154) left this list when their v1 was built.
-    expect(moduleById('teacher-copilot')).toMatchObject({ status: 'foundation', phase: 'P2' });
+    expect(moduleById('teacher-copilot')).toMatchObject({ status: 'live', phase: 'P2' });
     expect(moduleById('recovery')).toMatchObject({ status: 'partial', phase: 'P2' });
     expect(MODULE_REGISTRY.filter((m) => m.status === 'spec-v0').map((m) => m.id).sort()).toEqual(
       ['automation', 'career', 'payroll', 'twin'].sort()
