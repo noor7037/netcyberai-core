@@ -63,7 +63,8 @@ export type ProfileId =
   | 'content.prepare'
   | 'exams.read_pages'
   | 'exams.mark'
-  | 'exams.write_questions';
+  | 'exams.write_questions'
+  | 'students.register_ocr';
 export type Capability = 'text' | 'speech_to_text' | 'moderation' | 'text_to_speech' | 'realtime';
 // `audience`: a family profile counts against the family's daily cap; a school profile's limit is the school's own
 // monthly one, which its caller checks (src/lib/copilot/copilot.ts; AI marking's pages, src/app/api/app/marking); a
@@ -141,6 +142,12 @@ export const PROFILES: readonly AiProfile[] = [
   // marks and difficulty a plan names (src/lib/papers/scope.ts), with the paper's other questions to avoid; never a
   // child's name or words. It runs in the school's papers.make job (a long job), at most two rounds of this time.
   { id: 'exams.write_questions', carriesChildWords: false, capability: 'text', audience: 'school', callMs: 90_000 },
+  // W21-M5 (docs/42 Medium): a photographed page of a school's paper admission register, read into the office's student
+  // import as checked rows (src/lib/students/register-ocr.ts). It reads children's names, dates of birth and addresses,
+  // so only a provider cleared for children may serve it. With no service of its own it runs on the marking page
+  // reader's chain (a vision chain on the school side), and keeps its own switch, prompt and limits. The office reads
+  // it while waiting, so its chain gets the reader's time. Nothing it returns is saved until the office imports it.
+  { id: 'students.register_ocr', carriesChildWords: true, capability: 'text', audience: 'school', callMs: 90_000, chainFrom: 'exams.read_pages', needs: ['vision'] },
 ];
 
 // The adapter a profile would use for a provider: the one of the profile's capability, or null when the code has none

@@ -6320,6 +6320,55 @@ const openLead = async (page) => {
   // W12-F: the replies sent load after the panel opens.
   await page.locator('[data-lead-replies][data-loaded]').waitFor({ timeout: 10000 });
 };
+// W21-M5: a page of a paper admission register read into the import's checked rows. The picture is drawn in the
+// browser (made-up rows), the reading is stood in for (the AI is never called here), and the review shows the page
+// beside the rows with the unsure fields marked.
+const REGISTER_ROWS = [
+  ['R-201', 'Aarav Fictional', 'Mohan Fictional', '12/03/2016', '3', 'A', 'M', '9812345670', 'Ward 2, Panipat'],
+  ['R-202', 'Diya Specimen', 'Ramesh Specimen', '05/09/2016', '3', 'A', 'F', '9812345671', 'Sector 6, Panipat'],
+  ['R-203', 'Kabir Imaginary', null, '2016', '3', 'A', 'M', null, null],
+];
+const registerPage = async (page) => {
+  const cell = (value, confidence) => ({ value, confidence, low: value !== null && confidence < 0.8 });
+  const fields = ['admission_no', 'name', 'guardian_name', 'dob', 'class', 'section', 'gender', 'phone', 'address'];
+  const iso = (d) => (/^\d{2}\/\d{2}\/\d{4}$/.test(d ?? '') ? `${d.slice(6)}-${d.slice(3, 5)}-${d.slice(0, 2)}` : d);
+  const rows = REGISTER_ROWS.map((r, i) =>
+    Object.fromEntries(fields.map((f, k) => {
+      let v = r[k];
+      if (f === 'dob') v = iso(v);
+      if (f === 'gender') v = v === 'M' ? 'male' : v === 'F' ? 'female' : v;
+      const c = v === null ? 0 : i === 1 && f === 'name' ? 0.62 : f === 'dob' && i === 2 ? 0.95 : 0.96;
+      const out = cell(v, c);
+      if (f === 'dob' && i === 2) out.low = true;
+      return [f, out];
+    }))
+  );
+  await page.route('**/api/app/students/import/ocr', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ rows, floor: 0.8, pages: 1 }) }));
+  const png = await page.evaluate((lines) => {
+    const c = document.createElement('canvas');
+    c.width = 1200;
+    c.height = 800;
+    const g = c.getContext('2d');
+    g.fillStyle = '#fbf8ef';
+    g.fillRect(0, 0, c.width, c.height);
+    g.fillStyle = '#1e293b';
+    g.font = 'bold 34px serif';
+    g.fillText('Admission Register', 40, 60);
+    g.font = '24px serif';
+    lines.forEach((l, i) => {
+      g.fillText(l.filter(Boolean).slice(0, 7).join('   '), 40, 140 + i * 80);
+      g.fillRect(40, 160 + i * 80, 1120, 1);
+    });
+    return c.toDataURL('image/png').split(',')[1];
+  }, REGISTER_ROWS);
+  await page.locator('[data-register-file]').setInputFiles({ name: 'register-page.png', mimeType: 'image/png', buffer: Buffer.from(png, 'base64') });
+  await page.locator('[data-register-read]').click();
+  await page.locator('[data-register-row]').nth(2).waitFor({ timeout: 20000 });
+  const marked = await page.locator('[data-low="true"]').count();
+  if (marked !== 2) throw new Error(`the register review marks ${marked} fields, not 2`);
+  await page.waitForTimeout(300);
+};
+
 const typeInSearch = (text) => async (page) => {
   await page.getByRole('combobox', { name: /Search|खोजें/ }).fill(text);
   await page.getByRole('option').first().waitFor({ timeout: 15000 });
@@ -7213,6 +7262,7 @@ const SCREENS = [
   ['founder', 'control-templates', '/control/templates', messageTemplates, messageTemplatesDone],
   ['principal', 'app-dashboard', '/app/dashboard'],
   ['principal', 'app-students', '/app/students'],
+  ['principal', 'app-students-read-register', '/app/students/read-register', registerPage],
   ['principal', 'app-student-profile', `/app/students/${STUDENT}`],
   ['principal', 'app-student-id-card', `/app/students/${STUDENT}/id-card`],
   ['principal', 'app-admissions', '/app/admissions'],
