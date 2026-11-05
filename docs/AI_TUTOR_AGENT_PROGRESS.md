@@ -324,3 +324,10 @@ Unverified by the builders and the lead: everything on a real phone (the animati
 its speed, the Live socket against Google, the endpointing on a real microphone); the Hindi part names and the new Hindi
 words by a native speaker; the 360/768/1024 widths of the new screens. Control keeps prompt v10 until the founder picks
 v11 (models) on "Tutor answers".
+
+### W19-F (5 Nov 2026): the Anthropic key, videos with the answer, the live routes
+
+Anthropic's no-credit 400 is read as 402 (the backups answer; Control says "buy credit"); a video follows every answer
+whose question matched a syllabus topic (the finder's path, shared); "Tutor answers" runs on NVIDIA super-vl with v11
+and "Study plan" on NVIDIA lightning (Decision Log C472). Anthropic becomes the primary once its key test passes:
+Control → AI → Tutor answers → primary anthropic claude-sonnet-5-5, Backup 1 NVIDIA super-vl, Backup 2 Workers AI.

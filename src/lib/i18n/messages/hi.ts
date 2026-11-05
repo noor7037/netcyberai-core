@@ -7221,6 +7221,8 @@ export const hi: Record<keyof typeof en, string> = {
   'control.ai.endpoint.save': 'पता सेव करें',
   'control.ai.endpoint.clear': 'पता हटाएँ',
   'control.ai.test.fails': 'key काम नहीं कर रही ({code})। key और पता जाँचें, फिर दोबारा सेव करें।',
+  // W19-F: the key opens, the account has no credit.
+  'control.ai.test.noCredit': 'कुंजी सही है, पर सेवा कहती है कि खाते में क्रेडिट नहीं है ({code})। सेवा के बिलिंग पेज पर क्रेडिट ख़रीदें, फिर कुंजी फिर से जाँचें।',
   'ai.not_capable': 'समझाने की सुविधा अभी रुकी हुई है। थोड़ी देर बाद फिर कोशिश करें।',
   'control.import.err.ai_not_capable': 'चुना गया प्रदाता वह नहीं कर सकता जो इस प्रोफ़ाइल को चाहिए।',
   // m1-3 end

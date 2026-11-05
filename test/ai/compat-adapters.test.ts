@@ -233,3 +233,29 @@ describe('OpenAI keeps its own wire format on the shared core', () => {
     expect([body.max_completion_tokens, body.stream_options, body.response_format]).toEqual([900, { include_usage: true }, { type: 'json_object' }]);
   });
 });
+
+// W19-F (C472): Anthropic answers 400 when the organisation has no prepaid credit, on the models list as on a message.
+// The adapter reads that one case as 402, so the gateway counts it as quota (the backups answer) and Control says why.
+describe('Anthropic: a 400 that says the account has no credit is a 402', () => {
+  const KEY = `sk-ant-${'K'.repeat(40)}`;
+  const noCredit = () => new Response(JSON.stringify({ type: 'error', error: { type: 'invalid_request_error', message: 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.' } }), { status: 400 });
+  const otherBad = () => new Response(JSON.stringify({ type: 'error', error: { type: 'invalid_request_error', message: 'max_tokens: must be greater than 0' } }), { status: 400 });
+
+  it('on a message', async () => {
+    reply = noCredit;
+    expect(await anthropicAdapter.streamText(request({ apiKey: KEY, model: 'claude-sonnet-5-5' }), () => {})).toEqual({ ok: false, failure: 'http', status: 402 });
+    reply = otherBad;
+    expect(await anthropicAdapter.streamText(request({ apiKey: KEY, model: 'claude-sonnet-5-5' }), () => {})).toEqual({ ok: false, failure: 'http', status: 400 });
+  });
+
+  it('on the key test, which otherwise lists the models', async () => {
+    reply = noCredit;
+    expect(await anthropicAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 402 });
+    expect(calls[0]!.url).toBe('https://api.anthropic.com/v1/models?limit=1000');
+    expect(calls[0]!.headers['x-api-key']).toBe(KEY);
+    reply = () => new Response(JSON.stringify({ data: [{ id: 'claude-sonnet-5-5' }, { id: 'claude-haiku-5-5' }] }), { status: 200 });
+    expect(await anthropicAdapter.testConnection!(KEY)).toEqual({ ok: true, models: ['claude-haiku-5-5', 'claude-sonnet-5-5'] });
+    reply = () => new Response('no', { status: 401 });
+    expect(await anthropicAdapter.testConnection!(KEY)).toEqual({ ok: false, failure: 'http', status: 401 });
+  });
+});

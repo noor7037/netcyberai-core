@@ -1,4 +1,4 @@
-import { dataIds, freeCheck } from './connection';
+import { dataIds, modelIds } from './connection';
 import { sseData } from './sse';
 import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterResult, type ConnectionTest, type TextAdapter } from './types';
 
@@ -6,6 +6,19 @@ import { CALL_TIMEOUT_MS, JSON_ONLY, callTimeoutMs, capabilities, type AdapterRe
 // content_block_delta events (text_delta); the input token count comes with message_start, the output count with
 // message_delta. A stop_reason of "refusal" is a decline: the platform tries the next provider in the chain.
 const URL = 'https://api.anthropic.com/v1/messages';
+const MODELS_URL = 'https://api.anthropic.com/v1/models?limit=1000';
+
+// W19-F (C472): Anthropic answers 400 (not 402) when the organisation has no prepaid credit, on the models list as on a
+// message, and the words say "credit balance". Read as 402 here, so the gateway counts it as quota (the backups answer
+// and the circuit opens) and Control's key test says what to do. Nothing the vendor said is kept: only the status.
+async function statusOf(res: Response): Promise<number> {
+  if (res.status !== 400) {
+    await res.body?.cancel().catch(() => {});
+    return res.status;
+  }
+  const body = (await res.json().catch(() => null)) as { error?: { message?: unknown } } | null;
+  return typeof body?.error?.message === 'string' && /credit balance/i.test(body.error.message) ? 402 : 400;
+}
 
 export const anthropicAdapter: TextAdapter = {
   providerId: 'anthropic',
@@ -38,7 +51,7 @@ export const anthropicAdapter: TextAdapter = {
     } catch {
       return { ok: false, failure: 'network' };
     }
-    if (!res.ok || !res.body) return { ok: false, failure: 'http', status: res.status };
+    if (!res.ok || !res.body) return { ok: false, failure: 'http', status: await statusOf(res) };
     let text = '';
     let tokensIn = 0;
     let tokensOut = 0;
@@ -83,8 +96,16 @@ export const anthropicAdapter: TextAdapter = {
     return { ok: true, text, tokensIn, tokensOut };
   },
   // GET /v1/models: free, and answers only for a working key (G5); its ids fill Control's model picker (G6).
-  testConnection(apiKey): Promise<ConnectionTest> {
-    return freeCheck('https://api.anthropic.com/v1/models?limit=1000', { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }, dataIds);
+  async testConnection(apiKey): Promise<ConnectionTest> {
+    let res: Response;
+    try {
+      res = await fetch(MODELS_URL, { method: 'GET', headers: { 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' }, redirect: 'error', signal: AbortSignal.timeout(CALL_TIMEOUT_MS) });
+    } catch {
+      return { ok: false, failure: 'network' };
+    }
+    if (!res.ok) return { ok: false, failure: 'http', status: await statusOf(res) };
+    const body = await res.json().catch(() => null);
+    return body ? { ok: true, models: modelIds(dataIds(body)) } : { ok: true };
   },
 };
 

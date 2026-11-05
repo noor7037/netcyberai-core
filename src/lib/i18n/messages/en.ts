@@ -7229,6 +7229,8 @@ export const en = {
   'control.ai.endpoint.save': 'Save address',
   'control.ai.endpoint.clear': 'Remove address',
   'control.ai.test.fails': 'The key did not work ({code}). Check the key and the address, then save them again.',
+  // W19-F: the key opens, the account has no credit.
+  'control.ai.test.noCredit': 'The key is right, but the service says the account has no credit ({code}). Buy credit on the service’s billing page, then test the key again.',
   'ai.not_capable': 'Explanations are paused for now. Please try again later.',
   'control.import.err.ai_not_capable': 'The provider chosen cannot do what this profile needs.',
   // m1-3 end
