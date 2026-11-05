@@ -98,7 +98,7 @@ export async function decideNotice(
   opts: { whatsappLive?: boolean } = {}
 ): Promise<DecideResult> {
   if (actor.role !== 'principal') return { ok: false, reason: 'not_allowed' };
-  const notice = (await db.query(`select n.class_id, n.body, n.status, c.name as class_name from class_notices n left join classes c on c.school_id = n.school_id and c.class_id = n.class_id where n.school_id = $1 and n.notice_id = $2 for update of n`, [actor.schoolId, noticeId])).rows[0];
+  const notice = (await db.query(`select n.class_id, n.student_id, n.body, n.status, c.name as class_name from class_notices n left join classes c on c.school_id = n.school_id and c.class_id = n.class_id where n.school_id = $1 and n.notice_id = $2 for update of n`, [actor.schoolId, noticeId])).rows[0];
   if (!notice) return { ok: false, reason: 'not_found' };
   if (notice.status !== 'waiting') return { ok: false, reason: 'already_decided' };
   if (!decision.approve) {
@@ -117,8 +117,8 @@ export async function decideNotice(
        from students s join parent_student_map m on m.school_id = s.school_id and m.student_id = s.student_id
        join parents p on p.school_id = m.school_id and p.parent_id = m.parent_id
        join schools sc on sc.school_id = s.school_id
-      where s.school_id = $1 and s.status = 'active' and ($2::uuid is null or s.class_id = $2) order by s.name, s.student_id, p.created_at, p.parent_id`,
-    [actor.schoolId, notice.class_id]
+      where s.school_id = $1 and s.status = 'active' and ($2::uuid is null or s.class_id = $2) and ($3::uuid is null or s.student_id = $3) order by s.name, s.student_id, p.created_at, p.parent_id`,
+    [actor.schoolId, notice.class_id, notice.student_id]
   )).rows as { student_id: string; parent_id: string; phone: string | null; email: string | null; app_ok: boolean; comm_ok: boolean }[];
   const linked = new Set((await linkedChildrenForNotice(db, [...new Set(guardians.map((g) => g.parent_id))])).map((l) => `${l.parentId}:${l.studentId}`));
   const school = String((await db.query(`select name from schools where school_id = $1`, [actor.schoolId])).rows[0]?.name ?? '');

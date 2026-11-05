@@ -251,7 +251,7 @@ export async function readSchoolNews(claims: Claims, linkId: string, studentIds:
         since.homework
       ),
       notices: await one(
-        `select count(distinct n.notice_id) as n from students s join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+        `select count(distinct n.notice_id) as n from students s join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id) and (n.student_id is null or n.student_id = s.student_id)
           where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > $2::timestamptz`,
         since.notices
       ),
@@ -278,7 +278,7 @@ export async function readSchoolNoticeFeed(claims: Claims, linkId: string, stude
     const { rows } = await db.query(
       `select distinct n.notice_id, sc.name as school_name, n.body, n.decided_at
          from students s
-         join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id)
+         join class_notices n on n.school_id = s.school_id and (n.class_id is null or n.class_id = s.class_id) and (n.student_id is null or n.student_id = s.student_id)
          join schools sc on sc.school_id = n.school_id
         where s.student_id = any($1::uuid[]) and n.status = 'sent' and n.decided_at > now() - ($2::int * interval '1 day')
         order by n.decided_at desc, n.notice_id
@@ -308,6 +308,7 @@ async function classNotices(db: Sql, studentId: string, today: string): Promise<
       where n.status = 'sent'
         and n.school_id = (select s.school_id from students s where s.student_id = $1)
         and (n.class_id is null or n.class_id = (select s.class_id from students s where s.student_id = $1))
+        and (n.student_id is null or n.student_id = $1)
         and n.decided_at >= $2::date - 30
       order by n.decided_at desc
       limit 5`,
