@@ -11,12 +11,14 @@ import { reportTitle } from '@/lib/family/parent-report';
 import { ptmDay, ptmTime } from '@/lib/time/ptm-words';
 import { familyPageRead, firstStepsNext, requireFamilyPage } from '@/lib/family/server';
 import { t, type MessageKey } from '@/lib/i18n';
+import { sameInkOnBothSides } from '@/lib/family/day-text';
 
 // The notifications centre (H1, C230-AO): what the app already has to tell this child's family, read-only. It lists the
 // connected school's new homework, notices and results, tonight's practice and the state of the chapters asked for;
 // nothing else, and no new push. "Nothing new" when there is nothing.
 const rupees = (minor: number) => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(minor / 100);
-const dueDay = (lang: string, iso: string) => new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+const dueDay = (lang: string, iso: string) =>
+  sameInkOnBothSides(new Intl.DateTimeFormat(lang === 'hi' ? 'hi-IN' : 'en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`)));
 
 export default async function FamilyNotificationsPage() {
   const page = await requireFamilyPage();

@@ -46,6 +46,9 @@ const ALLOWED: Record<string, Record<string, string>> = {
   'src/lib/school/branding.ts': { 'key:nameChanged': 'true or false: whether the school’s name changed, never the name' },
   'src/lib/bank/match.ts': { 'key:outcome': 'a code: credited, seen_not_credited or needs_person' },
   'src/lib/payments/upi.ts': { 'key:outcome': 'a code: credited or seen_not_credited' },
+  // W20-B (C474): the chronic-absence tell: the rule's own words ("absent 4 of the last 10 school days") and whether an
+  // email went; never a name, a phone or free text anyone typed.
+  'src/lib/attendance/chronic.ts': { 'key:reasons': 'the rule’s own reason lines, fixed wording with counts', 'key:byEmail': 'true or false: whether the email went' },
   'src/lib/payments/apply.ts': { 'opaque:e.audit': 'the provider and its payment id, or nothing', 'key:reason': 'a code the provider check returns (fetch_status_404, status_failed)' },
   'src/lib/marking/report-links.ts': { 'key:why': 'one of END_REASONS (lost, forwarded, other), checked before the update; never typed text' },
   'src/lib/control/billing.ts': {

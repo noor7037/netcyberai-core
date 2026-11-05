@@ -45,7 +45,7 @@ function PayBox({ w, childId, pay }: { w: Words; childId: string; pay: SchoolFee
       {pay.claim === 'not_found' && <p className="rounded-lg bg-tangerine/10 px-3 py-2 text-sm text-slate">{w['fam.w20.fees.notFound']}</p>}
       <p className="text-sm text-slate">{fill(w['fam.w20.fees.payHow'], { amount: rupees(pay.amountMinor), name: pay.payeeName })}</p>
       <p className="text-sm text-slate">{w['fam.w20.fees.payFamily']}</p>
-      <a data-fees-upi href={pay.uri} className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-sapphire px-5 text-base font-semibold text-white">
+      <a data-fees-upi href={pay.uri} className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-ink px-5 text-base font-semibold text-white">
         {w['fam.w20.fees.openApp']}
       </a>
       {/* The school's QR of the same link, drawn on the server: no image from anywhere else. */}
