@@ -9,7 +9,8 @@
    "n": "3.1",
    "title": "Physical properties of metals and non-metals",
    "labs": [
-    "c10-science-jesc1-ch03-conductors"
+    "c10-science-jesc1-ch03-conductors",
+    "c10-science-jesc1-ch03-properties-uses"
    ],
    "why_no_lab": null
   },
@@ -34,14 +35,19 @@
   {
    "n": "3.4",
    "title": "Occurrence and extraction of metals; enrichment, reduction and refining",
-   "labs": [],
-   "why_no_lab": "Mining, roasting and refining happen in industry, so the ore photos and the electrolytic refining cutaway teach them better than a bench lab."
+   "labs": [
+    "c10-science-jesc1-ch03-ore-to-metal",
+    "c10-science-jesc1-ch03-extraction-methods"
+   ],
+   "why_no_lab": null
   },
   {
    "n": "3.5",
    "title": "Corrosion and its prevention",
-   "labs": [],
-   "why_no_lab": "Corrosion takes days to weeks, so the photo sequences of rusting and of painted and galvanised iron teach it better than a quick lab."
+   "labs": [
+    "c10-science-jesc1-ch03-rust-or-not"
+   ],
+   "why_no_lab": null
   }
  ],
  "labs": [
@@ -66,7 +72,7 @@
      "expect": "conducts",
      "say": {
       "en": "Tap the copper wire to put it in the gap of the tester.",
-      "hi": "ताँबे के तार पर टैप करके उसे परीक्षक के खाली स्थान में रखो।"
+      "hi": "कॉपर के तार पर टैप करके उसे टेस्टर के खाली स्थान में रखो।"
      }
     },
     {
@@ -82,7 +88,7 @@
      "kind": "predict",
      "say": {
       "en": "Graphite (pencil lead) is a form of carbon, a non-metal. Will the bulb glow with graphite?",
-      "hi": "ग्रेफ़ाइट (पेंसिल की लीड) कार्बन का एक रूप है, जो अधातु है। क्या ग्रेफ़ाइट के साथ बल्ब जलेगा?"
+      "hi": "ग्रेफ़ाइट (पेंसिल की लेड) कार्बन का एक रूप है, जो अधातु है। क्या ग्रेफ़ाइट के साथ बल्ब जलेगा?"
      },
      "options": [
       {
@@ -104,14 +110,14 @@
      "expect": "conducts",
      "say": {
       "en": "Test the graphite.",
-      "hi": "ग्रेफ़ाइट की जाँच करो।"
+      "hi": "ग्रेफ़ाइट को टेस्ट करो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Metals such as copper, iron and aluminium are good conductors: they let current pass. Most non-metals, such as sulphur, do not. Graphite is the one non-metal that conducts well. Wires are made of copper and covered with plastic, which does not conduct and keeps us safe.",
-      "hi": "ताँबा, लोहा और ऐलुमिनियम जैसी धातुएँ विद्युत की अच्छी चालक हैं: ये धारा को बहने देती हैं। सल्फ़र जैसे अधिकतर अधातु चालन नहीं करते। ग्रेफ़ाइट अकेला ऐसा अधातु है जो अच्छा चालन करता है। तार ताँबे के बनते हैं और उन पर प्लास्टिक चढ़ा होता है, जो चालन नहीं करता और हमें सुरक्षित रखता है।"
+      "hi": "कॉपर, आयरन और ऐलुमिनियम जैसी धातुएँ विद्युत की अच्छी चालक हैं: ये धारा को बहने देती हैं। सल्फ़र जैसे ज़्यादातर अधातु चालन नहीं करते। ग्रेफ़ाइट अकेला ऐसा अधातु है जो अच्छा चालन करता है। तार कॉपर के बनते हैं और उन पर प्लास्टिक चढ़ा होता है, जो चालन नहीं करता और हमें सुरक्षित रखता है।"
      }
     },
     {
@@ -156,20 +162,20 @@
       {
        "q": {
         "en": "Why are wires made of copper and covered with plastic?",
-        "hi": "तार ताँबे के क्यों बनते हैं और उन पर प्लास्टिक क्यों चढ़ा होता है?"
+        "hi": "तार कॉपर के क्यों बनते हैं और उन पर प्लास्टिक क्यों चढ़ा होता है?"
        },
        "options": [
         {
          "en": "Copper conducts well; plastic does not, so it protects us",
-         "hi": "ताँबा अच्छा चालक है; प्लास्टिक नहीं, इसलिए वह हमें बचाता है"
+         "hi": "कॉपर अच्छा चालक है; प्लास्टिक नहीं, इसलिए वह हमें बचाता है"
         },
         {
          "en": "Plastic conducts better than copper",
-         "hi": "प्लास्टिक ताँबे से अच्छा चालक है"
+         "hi": "प्लास्टिक कॉपर से अच्छा चालक है"
         },
         {
          "en": "Copper is a non-metal",
-         "hi": "ताँबा एक अधातु है"
+         "hi": "कॉपर एक अधातु है"
         }
        ],
        "answer": 0,
@@ -185,7 +191,7 @@
         },
         {
          "en": "Copper is a metal: shiny, ductile and a good conductor.",
-         "hi": "ताँबा धातु है: चमकीला, तन्य और अच्छा चालक।"
+         "hi": "कॉपर धातु है: चमकीला, तन्य और अच्छा चालक।"
         }
        ]
       }
@@ -195,7 +201,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: test the iron nail, the key, the coin, the eraser, wood and glass. Group the conductors and the insulators.",
-      "hi": "आज़माओ: लोहे की कील, चाबी, सिक्का, रबड़, लकड़ी और काँच की जाँच करो। चालकों और कुचालकों के समूह बनाओ।"
+      "hi": "आज़माओ: आयरन की कील, चाबी, सिक्का, रबड़, लकड़ी और काँच को टेस्ट करो। चालकों और कुचालकों के समूह बनाओ।"
      }
     }
    ]
@@ -403,7 +409,7 @@
      "expect": "pick:copperwire",
      "say": {
       "en": "Pick up the copper wire.",
-      "hi": "ताँबे का तार उठाओ।"
+      "hi": "कॉपर का तार उठाओ।"
      }
     },
     {
@@ -419,7 +425,7 @@
      "kind": "predict",
      "say": {
       "en": "You will pour dilute hydrochloric acid on the copper. What will you see?",
-      "hi": "तुम ताँबे पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। क्या दिखेगा?"
+      "hi": "तुम कॉपर पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। क्या दिखेगा?"
      },
      "options": [
       {
@@ -455,14 +461,14 @@
      "expect": "reacted",
      "say": {
       "en": "Pour it on the copper.",
-      "hi": "इसे ताँबे पर डालो।"
+      "hi": "इसे कॉपर पर डालो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Nothing happened. Copper is below hydrogen in the reactivity series, so it cannot push hydrogen out of the acid. Magnesium, aluminium, zinc and iron are above hydrogen: they give hydrogen gas and a salt, magnesium fastest of all.",
-      "hi": "कुछ नहीं हुआ। सक्रियता श्रेणी में ताँबा हाइड्रोजन से नीचे है, इसलिए वह अम्ल से हाइड्रोजन को नहीं हटा सकता। मैग्नीशियम, ऐलुमिनियम, ज़िंक और लोहा हाइड्रोजन से ऊपर हैं: ये हाइड्रोजन गैस और लवण देते हैं, सबसे तेज़ मैग्नीशियम।"
+      "hi": "कुछ नहीं हुआ। सक्रियता श्रेणी में कॉपर हाइड्रोजन से नीचे है, इसलिए वह अम्ल से हाइड्रोजन को नहीं हटा सकता। मैग्नीशियम, ऐलुमिनियम, ज़िंक और आयरन हाइड्रोजन से ऊपर हैं: ये हाइड्रोजन गैस और लवण देते हैं, सबसे तेज़ मैग्नीशियम।"
      }
     },
     {
@@ -480,34 +486,34 @@
         },
         {
          "en": "Iron",
-         "hi": "लोहा"
+         "hi": "आयरन"
         },
         {
          "en": "Copper",
-         "hi": "ताँबा"
+         "hi": "कॉपर"
         }
        ],
        "answer": 0,
        "why": {
         "en": "Magnesium is the most reactive of these, so it reacts fastest.",
-        "hi": "इनमें मैग्नीशियम सबसे अधिक अभिक्रियाशील है, इसलिए सबसे तेज़ अभिक्रिया करता है।"
+        "hi": "इनमें मैग्नीशियम सबसे ज़्यादा अभिक्रियाशील है, इसलिए सबसे तेज़ अभिक्रिया करता है।"
        },
        "wrong": [
         "",
         {
          "en": "Iron reacts, but slowly; it is lower in the series than magnesium.",
-         "hi": "लोहा अभिक्रिया करता है, पर धीरे; वह श्रेणी में मैग्नीशियम से नीचे है।"
+         "hi": "आयरन अभिक्रिया करता है, पर धीरे; वह श्रेणी में मैग्नीशियम से नीचे है।"
         },
         {
          "en": "Copper did not react at all.",
-         "hi": "ताँबे ने कोई अभिक्रिया नहीं की।"
+         "hi": "कॉपर ने कोई अभिक्रिया नहीं की।"
         }
        ]
       },
       {
        "q": {
         "en": "Why is curd not kept in a copper or brass pot?",
-        "hi": "दही ताँबे या पीतल के बर्तन में क्यों नहीं रखा जाता?"
+        "hi": "दही कॉपर या पीतल के बर्तन में क्यों नहीं रखा जाता?"
        },
        "options": [
         {
@@ -520,13 +526,13 @@
         },
         {
          "en": "Copper makes curd too sweet",
-         "hi": "ताँबा दही को बहुत मीठा कर देता है"
+         "hi": "कॉपर दही को बहुत मीठा कर देता है"
         }
        ],
        "answer": 0,
        "why": {
         "en": "Curd and other sour foods contain acids, which slowly react with copper and brass and make poisonous compounds.",
-        "hi": "दही और खट्टे भोजन में अम्ल होते हैं, जो ताँबे और पीतल से धीरे-धीरे अभिक्रिया करके विषैले यौगिक बनाते हैं।"
+        "hi": "दही और खट्टे भोजन में अम्ल होते हैं, जो कॉपर और पीतल से धीरे-धीरे अभिक्रिया करके विषैले यौगिक बनाते हैं।"
        },
        "wrong": [
         "",
@@ -536,7 +542,7 @@
         },
         {
          "en": "Copper adds no sweetness; the worry is a harmful reaction.",
-         "hi": "ताँबा मिठास नहीं देता; चिंता हानिकारक अभिक्रिया की है।"
+         "hi": "कॉपर मिठास नहीं देता; चिंता हानिकारक अभिक्रिया की है।"
         }
        ]
       }
@@ -593,13 +599,13 @@
      "kind": "predict",
      "say": {
       "en": "A copper wire goes into the silver nitrate solution. What will happen?",
-      "hi": "ताँबे का तार सिल्वर नाइट्रेट विलयन में डाला जाता है। क्या होगा?"
+      "hi": "कॉपर का तार सिल्वर नाइट्रेट विलयन में डाला जाता है। क्या होगा?"
      },
      "options": [
       {
        "id": "silver",
        "en": "Silver coats the wire and the liquid turns blue",
-       "hi": "तार पर चाँदी चढ़ेगी और द्रव नीला होगा"
+       "hi": "तार पर सिल्वर चढ़ेगी और द्रव नीला होगा"
       },
       {
        "id": "none",
@@ -620,7 +626,7 @@
      "expect": "pick:copperwire",
      "say": {
       "en": "Pick up the copper wire.",
-      "hi": "ताँबे का तार उठाओ।"
+      "hi": "कॉपर का तार उठाओ।"
      }
     },
     {
@@ -636,7 +642,7 @@
      "kind": "explain",
      "say": {
       "en": "Copper is more reactive than silver, so it pushed silver out: shiny silver coated the wire and blue copper nitrate formed. A more reactive metal displaces a less reactive metal from its salt solution. Tests like this give the reactivity series: K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Hg, Ag, Au.",
-      "hi": "ताँबा चाँदी से अधिक अभिक्रियाशील है, इसलिए उसने चाँदी को हटा दिया: तार पर चमकीली चाँदी चढ़ी और नीला कॉपर नाइट्रेट बना। अधिक अभिक्रियाशील धातु कम अभिक्रियाशील धातु को उसके लवण के विलयन से विस्थापित कर देती है। ऐसे प्रयोगों से सक्रियता श्रेणी बनती है: K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Hg, Ag, Au।"
+      "hi": "कॉपर सिल्वर से ज़्यादा अभिक्रियाशील है, इसलिए उसने सिल्वर को हटा दिया: तार पर चमकीली सिल्वर चढ़ी और नीला कॉपर नाइट्रेट बना। ज़्यादा अभिक्रियाशील धातु कम अभिक्रियाशील धातु को उसके लवण के विलयन से विस्थापित कर देती है। ऐसे प्रयोगों से सक्रियता श्रेणी बनती है: K, Na, Ca, Mg, Al, Zn, Fe, Pb, (H), Cu, Hg, Ag, Au।"
      }
     },
     {
@@ -645,7 +651,7 @@
       {
        "q": {
         "en": "A copper wire is put in zinc sulphate solution. What happens?",
-        "hi": "ताँबे का तार ज़िंक सल्फ़ेट विलयन में डाला जाता है। क्या होगा?"
+        "hi": "कॉपर का तार ज़िंक सल्फ़ेट विलयन में डाला जाता है। क्या होगा?"
        },
        "options": [
         {
@@ -664,17 +670,17 @@
        "answer": 0,
        "why": {
         "en": "Copper is less reactive than zinc, so it cannot displace zinc.",
-        "hi": "ताँबा ज़िंक से कम अभिक्रियाशील है, इसलिए ज़िंक को विस्थापित नहीं कर सकता।"
+        "hi": "कॉपर ज़िंक से कम अभिक्रियाशील है, इसलिए ज़िंक को विस्थापित नहीं कर सकता।"
        },
        "wrong": [
         "",
         {
          "en": "That would need copper to be more reactive than zinc; it is not.",
-         "hi": "इसके लिए ताँबे को ज़िंक से अधिक अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
+         "hi": "इसके लिए कॉपर को ज़िंक से ज़्यादा अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
         },
         {
          "en": "Blue copper sulphate forms only if copper reacts, and it does not.",
-         "hi": "नीला कॉपर सल्फ़ेट तभी बनेगा जब ताँबा अभिक्रिया करे, जो नहीं होती।"
+         "hi": "नीला कॉपर सल्फ़ेट तभी बनेगा जब कॉपर अभिक्रिया करे, जो नहीं होती।"
         }
        ]
       },
@@ -711,7 +717,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker, pour zinc sulphate and put in the copper wire. Then try zinc in copper sulphate. Which of the two metals is more reactive?",
-      "hi": "आज़माओ: बीकर साफ़ करो, ज़िंक सल्फ़ेट डालो और ताँबे का तार डालो। फिर कॉपर सल्फ़ेट में ज़िंक आज़माओ। दोनों में कौन-सी धातु अधिक अभिक्रियाशील है?"
+      "hi": "आज़माओ: बीकर साफ़ करो, ज़िंक सल्फ़ेट डालो और कॉपर का तार डालो। फिर कॉपर सल्फ़ेट में ज़िंक आज़माओ। दोनों में कौन-सी धातु ज़्यादा अभिक्रियाशील है?"
      }
     }
    ]
@@ -793,7 +799,7 @@
      "kind": "explain",
      "say": {
       "en": "Sodium lost one electron and became Na+; chlorine gained it and became Cl-. Both now have full outer shells. Opposite charges attract strongly: this is an ionic bond. Ionic compounds form hard crystals, have high melting points, dissolve in water and conduct electricity when melted or dissolved.",
-      "hi": "सोडियम ने एक इलेक्ट्रॉन खोया और Na+ बन गया; क्लोरीन ने उसे लिया और Cl- बन गई। अब दोनों के बाहरी कोश पूरे हैं। विपरीत आवेश एक-दूसरे को ज़ोर से खींचते हैं: यह आयनिक आबंध है। आयनिक यौगिक कठोर क्रिस्टल बनाते हैं, उनके गलनांक ऊँचे होते हैं, वे पानी में घुलते हैं और पिघलने या घुलने पर विद्युत का चालन करते हैं।"
+      "hi": "सोडियम ने एक इलेक्ट्रॉन खोया और Na+ बन गया; क्लोरीन ने उसे लिया और Cl- बन गई। अब दोनों के बाहरी कोश पूरे हैं। विपरीत आवेश एक-दूसरे को ज़ोर से खींचते हैं: यह आयनिक आबंध है। आयनिक यौगिक सख़्त क्रिस्टल बनाते हैं, उनके गलनांक ऊँचे होते हैं, वे पानी में घुलते हैं और पिघलने या घुलने पर विद्युत का चालन करते हैं।"
      }
     },
     {
@@ -842,7 +848,7 @@
         },
         {
          "en": "Water itself is a metal",
-         "hi": "पानी स्वयं धातु है"
+         "hi": "पानी ख़ुद धातु है"
         }
        ],
        "answer": 0,
@@ -869,6 +875,1085 @@
      "say": {
       "en": "Explore: tap 3D to see the salt crystal. Then start again with magnesium and chlorine: how many chlorine atoms does one magnesium need?",
       "hi": "आज़माओ: नमक का क्रिस्टल देखने के लिए 3D पर टैप करो। फिर मैग्नीशियम और क्लोरीन से दोबारा शुरू करो: एक मैग्नीशियम को कितने क्लोरीन परमाणु चाहिए?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-properties-uses",
+   "topic": "3.1",
+   "template": "match",
+   "title": {
+    "en": "Match each property to its use",
+    "hi": "हर गुण को उसके इस्तेमाल से मिलाओ"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "lustre",
+      "left": {
+       "en": "Lustre (shine)",
+       "hi": "चमक (Lustre)"
+      },
+      "right": {
+       "en": "Polished gold and silver jewellery",
+       "hi": "पॉलिश किए गोल्ड और सिल्वर के गहने"
+      },
+      "why": {
+       "en": "A clean metal surface shines, so jewellery looks bright.",
+       "hi": "साफ़ धातु की सतह चमकती है, इसलिए गहने चमकदार लगते हैं।"
+      }
+     },
+     {
+      "id": "malleable",
+      "left": {
+       "en": "Malleable",
+       "hi": "आघातवर्ध्य (Malleable)"
+      },
+      "right": {
+       "en": "Thin silver foil on sweets",
+       "hi": "मिठाई पर लगा सिल्वर का पतला वरक"
+      },
+      "why": {
+       "en": "Metal can be beaten into a very thin sheet without breaking.",
+       "hi": "धातु को पीटकर बिना टूटे बहुत पतली चादर बनाया जा सकता है।"
+      }
+     },
+     {
+      "id": "ductile",
+      "left": {
+       "en": "Ductile",
+       "hi": "तन्य (Ductile)"
+      },
+      "right": {
+       "en": "Copper wire for house wiring",
+       "hi": "घर की वायरिंग का कॉपर तार"
+      },
+      "why": {
+       "en": "Metal can be drawn into a long thin wire.",
+       "hi": "धातु को खींचकर लंबा पतला तार बनाया जा सकता है।"
+      }
+     },
+     {
+      "id": "sonorous",
+      "left": {
+       "en": "Sonorous",
+       "hi": "ध्वानिक (Sonorous)"
+      },
+      "right": {
+       "en": "A school bell that rings loudly",
+       "hi": "स्कूल की घंटी जो ज़ोर से बजती है"
+      },
+      "why": {
+       "en": "Metal rings when struck on a hard surface.",
+       "hi": "सख़्त सतह पर चोट पड़ने पर धातु बजती है।"
+      }
+     },
+     {
+      "id": "heat",
+      "left": {
+       "en": "Good conductor of heat",
+       "hi": "ऊष्मा का अच्छा चालक"
+      },
+      "right": {
+       "en": "An aluminium pan on the stove",
+       "hi": "चूल्हे पर रखा ऐलुमिनियम का तवा"
+      },
+      "why": {
+       "en": "Heat passes quickly through the metal to the food.",
+       "hi": "ऊष्मा धातु से तेज़ी से खाने तक पहुँचती है।"
+      }
+     },
+     {
+      "id": "current",
+      "left": {
+       "en": "Good conductor of current",
+       "hi": "करंट का अच्छा चालक"
+      },
+      "right": {
+       "en": "Power cables carrying electricity",
+       "hi": "बिजली ले जाने वाले केबल"
+      },
+      "why": {
+       "en": "Current passes easily through metal, so cables are made of it.",
+       "hi": "धातु से करंट आसानी से गुज़रता है, इसलिए केबल उसी के बनते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:lustre",
+     "expect": "matched:lustre",
+     "say": {
+      "en": "Tap \"Lustre\". Then tap the use that depends on shine.",
+      "hi": "\"चमक\" पर टैप करो। फिर वह इस्तेमाल चुनो जो चमक पर टिका है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Silver foil on a sweet is thinner than paper. Which property makes this possible?",
+      "hi": "मिठाई पर लगा सिल्वर का वरक काग़ज़ से भी पतला होता है। यह किस गुण से मुमकिन है?"
+     },
+     "options": [
+      {
+       "id": "mal",
+       "en": "Malleable: it can be beaten into thin sheets",
+       "hi": "आघातवर्ध्य: उसे पीटकर पतली चादर बनाया जा सकता है"
+      },
+      {
+       "id": "duc",
+       "en": "Ductile: it can be drawn into wires",
+       "hi": "तन्य: उसे खींचकर तार बनाया जा सकता है"
+      },
+      {
+       "id": "son",
+       "en": "Sonorous: it rings when struck",
+       "hi": "ध्वानिक: चोट करने पर बजती है"
+      }
+     ],
+     "answer": "mal"
+    },
+    {
+     "kind": "do",
+     "target": "left:malleable",
+     "expect": "matched:malleable",
+     "say": {
+      "en": "Now match \"Malleable\" with its use.",
+      "hi": "अब \"आघातवर्ध्य\" को उसके इस्तेमाल से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:ductile",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: ductile, sonorous and the two conductors.",
+      "hi": "बाकी भी मिलाओ: तन्य, ध्वानिक और दोनों चालक।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each use comes from one property. Shine makes jewellery bright. Beating a metal into sheets is malleability, and drawing it into wire is ductility. A bell rings because the metal is sonorous. Pans and cables work because metals conduct heat and current.",
+      "hi": "हर इस्तेमाल किसी एक गुण से आता है। चमक से गहने चमकते हैं। धातु को पीटकर चादर बनाना आघातवर्ध्यता है और खींचकर तार बनाना तन्यता। घंटी इसलिए बजती है क्योंकि धातु ध्वानिक है। तवे और केबल इसलिए चलते हैं क्योंकि धातुएँ ऊष्मा और करंट गुज़रने देती हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A metal can be drawn into thin wires. This property is called…",
+        "hi": "एक धातु को खींचकर पतले तार बनाए जा सकते हैं। इस गुण को कहते हैं…"
+       },
+       "options": [
+        {
+         "en": "Ductility",
+         "hi": "तन्यता"
+        },
+        {
+         "en": "Malleability",
+         "hi": "आघातवर्ध्यता"
+        },
+        {
+         "en": "Sonority",
+         "hi": "ध्वानिकता"
+        },
+        {
+         "en": "Lustre",
+         "hi": "चमक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Drawing into wires is ductility.",
+        "hi": "तार में खींचा जाना तन्यता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Malleability is about beating into sheets, not drawing into wire.",
+         "hi": "आघातवर्ध्यता पीटकर चादर बनाने की है, तार खींचने की नहीं।"
+        },
+        {
+         "en": "Sonority is ringing when struck. It has nothing to do with wires.",
+         "hi": "ध्वानिकता चोट पर बजना है। इसका तार से लेना-देना नहीं है।"
+        },
+        {
+         "en": "Lustre is shine. A shiny metal need not be ductile.",
+         "hi": "चमक का मतलब चमकना है। चमकने वाली धातु का तन्य होना ज़रूरी नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is a frying pan made of metal?",
+        "hi": "तवा या कड़ाही धातु की क्यों बनाई जाती है?"
+       },
+       "options": [
+        {
+         "en": "Metals conduct heat well",
+         "hi": "धातुएँ ऊष्मा को अच्छी तरह गुज़रने देती हैं"
+        },
+        {
+         "en": "Metals are sonorous",
+         "hi": "धातुएँ ध्वानिक होती हैं"
+        },
+        {
+         "en": "Metals are malleable only",
+         "hi": "धातुएँ सिर्फ़ आघातवर्ध्य होती हैं"
+        },
+        {
+         "en": "Metals are always heavy",
+         "hi": "धातुएँ हमेशा भारी होती हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The pan must pass heat from the flame to the food, and metals do that well.",
+        "hi": "पैन को लौ की ऊष्मा खाने तक पहुँचानी है, और धातुएँ यह अच्छी तरह करती हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ringing is a different property and does not cook food.",
+         "hi": "बजना अलग गुण है और इससे खाना नहीं पकता।"
+        },
+        {
+         "en": "Malleability helps in shaping the pan, but cooking needs heat to pass.",
+         "hi": "आघातवर्ध्यता से पैन को आकार मिलता है, पर पकाने के लिए ऊष्मा का गुज़रना ज़रूरी है।"
+        },
+        {
+         "en": "Not every metal is heavy: sodium floats on water.",
+         "hi": "हर धातु भारी नहीं होती: सोडियम पानी पर तैरता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of one more object in your home made of metal. Which property of metal does it use?",
+      "hi": "अपने घर की धातु की एक और चीज़ सोचो। वह धातु का कौन-सा गुण इस्तेमाल करती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-ore-to-metal",
+   "topic": "3.4",
+   "template": "sequence",
+   "title": {
+    "en": "From ore to pure metal",
+    "hi": "अयस्क से शुद्ध धातु तक"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "items": [
+     {
+      "id": "mine",
+      "text": {
+       "en": "Dig the ore out of the mine",
+       "hi": "खदान से अयस्क निकालो"
+      }
+     },
+     {
+      "id": "conc",
+      "text": {
+       "en": "Remove the gangue to concentrate the ore",
+       "hi": "गैंग हटाकर अयस्क को सांद्रित करो"
+      }
+     },
+     {
+      "id": "oxide",
+      "text": {
+       "en": "Roast or calcine the ore to get the oxide",
+       "hi": "भर्जन या निस्तापन करके ऑक्साइड बनाओ"
+      }
+     },
+     {
+      "id": "reduce",
+      "text": {
+       "en": "Reduce the oxide with carbon to get the metal",
+       "hi": "ऑक्साइड को कार्बन से अपचयित करके धातु निकालो"
+      }
+     },
+     {
+      "id": "refine",
+      "text": {
+       "en": "Refine the metal to make it pure",
+       "hi": "धातु को परिष्कृत करके शुद्ध बनाओ"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "item:mine",
+     "expect": "placed:mine",
+     "say": {
+      "en": "Which step comes first? Place it in the first spot.",
+      "hi": "सबसे पहले कौन-सा स्टेप आता है? उसे पहली जगह रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A zinc ore (a sulphide) has been concentrated. What must happen BEFORE carbon can be used?",
+      "hi": "ज़िंक का अयस्क (सल्फ़ाइड) सांद्रित हो चुका है। कार्बन इस्तेमाल करने से पहले क्या होना चाहिए?"
+     },
+     "options": [
+      {
+       "id": "oxide",
+       "en": "It must first be turned into the oxide",
+       "hi": "पहले उसे ऑक्साइड में बदलना होगा"
+      },
+      {
+       "id": "refine",
+       "en": "It must first be refined",
+       "hi": "पहले उसे परिष्कृत करना होगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing: carbon works on a sulphide",
+       "hi": "कुछ नहीं: कार्बन सल्फ़ाइड पर भी काम करता है"
+      }
+     ],
+     "answer": "oxide"
+    },
+    {
+     "kind": "do",
+     "target": "item:conc",
+     "expect": "placed:conc",
+     "say": {
+      "en": "Place the step that removes soil and sand from the ore.",
+      "hi": "वह स्टेप रखो जिसमें अयस्क से मिट्टी और रेत हटती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "ordered",
+     "say": {
+      "en": "Put the other steps in order. Then tap Check.",
+      "hi": "बाकी स्टेप भी क्रम में लगाओ। फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Ores come out of the mine mixed with soil and sand, so enrichment comes first. Carbon reduces oxides, not sulphides or carbonates, so those are roasted or calcined into oxides next. Reduction gives the metal, and refining removes the last impurities.",
+      "hi": "अयस्क खदान से मिट्टी और रेत के साथ मिला निकलता है, इसलिए सबसे पहले सांद्रण होता है। कार्बन ऑक्साइड को अपचयित करता है, सल्फ़ाइड या कार्बोनेट को नहीं, इसलिए उन्हें पहले भर्जन या निस्तापन से ऑक्साइड बनाते हैं। अपचयन से धातु मिलती है और परिष्करण आख़िरी अशुद्धियाँ हटाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Heating a carbonate ore in limited air to get the oxide is called…",
+        "hi": "कार्बोनेट अयस्क को कम हवा में गर्म करके ऑक्साइड बनाना कहलाता है…"
+       },
+       "options": [
+        {
+         "en": "Calcination",
+         "hi": "निस्तापन"
+        },
+        {
+         "en": "Roasting",
+         "hi": "भर्जन"
+        },
+        {
+         "en": "Refining",
+         "hi": "परिष्करण"
+        },
+        {
+         "en": "Enrichment",
+         "hi": "सांद्रण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Calcination is for carbonate ores in limited air.",
+        "hi": "निस्तापन कार्बोनेट अयस्कों के लिए है, कम हवा में।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Roasting is for sulphide ores in excess air.",
+         "hi": "भर्जन सल्फ़ाइड अयस्कों के लिए है, ज़्यादा हवा में।"
+        },
+        {
+         "en": "Refining purifies a metal that is already made.",
+         "hi": "परिष्करण बन चुकी धातु को शुद्ध करता है।"
+        },
+        {
+         "en": "Enrichment only removes gangue and does not change the ore.",
+         "hi": "सांद्रण सिर्फ़ गैंग हटाता है, अयस्क को बदलता नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which step makes the metal from its oxide?",
+        "hi": "ऑक्साइड से धातु कौन-सा स्टेप बनाता है?"
+       },
+       "options": [
+        {
+         "en": "Reduction with carbon",
+         "hi": "कार्बन से अपचयन"
+        },
+        {
+         "en": "Mining",
+         "hi": "खदान से निकालना"
+        },
+        {
+         "en": "Concentration",
+         "hi": "सांद्रण"
+        },
+        {
+         "en": "Roasting",
+         "hi": "भर्जन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon takes the oxygen away and leaves the metal.",
+        "hi": "कार्बन ऑक्सीजन हटा लेता है और धातु बच जाती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Mining only brings the ore up.",
+         "hi": "खदान से सिर्फ़ अयस्क ऊपर आता है।"
+        },
+        {
+         "en": "Concentration removes gangue, the metal is not made yet.",
+         "hi": "सांद्रण गैंग हटाता है, धातु अभी बनी नहीं होती।"
+        },
+        {
+         "en": "Roasting gives an oxide, not the metal.",
+         "hi": "भर्जन से ऑक्साइड बनता है, धातु नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Swap two steps and press Check again. Which swap breaks the chemistry most?",
+      "hi": "दो स्टेप आपस में बदलो और फिर जाँचो पर टैप करो। कौन-सी अदला-बदली केमिस्ट्री को सबसे ज़्यादा बिगाड़ती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-extraction-methods",
+   "topic": "3.4",
+   "template": "sort",
+   "title": {
+    "en": "Which method for which metal?",
+    "hi": "कौन-सी धातु, कौन-सा तरीक़ा?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "free",
+      "label": {
+       "en": "Found free, or heat alone",
+       "hi": "मुक्त मिलती है, या सिर्फ़ गर्म करना"
+      }
+     },
+     {
+      "id": "carbon",
+      "label": {
+       "en": "Roast or calcine, then carbon",
+       "hi": "भर्जन या निस्तापन, फिर कार्बन"
+      }
+     },
+     {
+      "id": "elec",
+      "label": {
+       "en": "Electrolysis of the molten compound",
+       "hi": "गलित यौगिक का विद्युत अपघटन"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "au",
+      "bin": "free",
+      "text": {
+       "en": "Gold (Au)",
+       "hi": "गोल्ड (Au)"
+      },
+      "why": {
+       "en": "Gold is so unreactive that it is found as a metal.",
+       "hi": "गोल्ड इतना कम अभिक्रियाशील है कि धातु के रूप में ही मिलता है।"
+      }
+     },
+     {
+      "id": "hg",
+      "bin": "free",
+      "text": {
+       "en": "Mercury from cinnabar (HgS)",
+       "hi": "सिनेबार (HgS) से मरकरी"
+      },
+      "why": {
+       "en": "Heating the ore gives the oxide, and more heat gives mercury.",
+       "hi": "अयस्क को गर्म करने से ऑक्साइड बनता है और और गर्म करने से मरकरी मिलता है।"
+      }
+     },
+     {
+      "id": "cu",
+      "bin": "free",
+      "text": {
+       "en": "Copper from Cu₂S ore",
+       "hi": "Cu₂S अयस्क से कॉपर"
+      },
+      "why": {
+       "en": "Copper is low in the series, so heating in air is enough.",
+       "hi": "कॉपर सक्रियता श्रेणी में नीचे है, इसलिए हवा में गर्म करना काफ़ी है।"
+      }
+     },
+     {
+      "id": "zn",
+      "bin": "carbon",
+      "text": {
+       "en": "Zinc from zinc blende (ZnS)",
+       "hi": "ज़िंक ब्लेंड (ZnS) से ज़िंक"
+      },
+      "why": {
+       "en": "Zinc is in the middle: roast the sulphide, then reduce with carbon.",
+       "hi": "ज़िंक बीच में है: सल्फ़ाइड का भर्जन करो, फिर कार्बन से अपचयन।"
+      }
+     },
+     {
+      "id": "fe",
+      "bin": "carbon",
+      "text": {
+       "en": "Iron from haematite (Fe₂O₃)",
+       "hi": "हेमेटाइट (Fe₂O₃) से आयरन"
+      },
+      "why": {
+       "en": "Iron is in the middle and its ore is an oxide, so carbon reduces it.",
+       "hi": "आयरन बीच में है और उसका अयस्क ऑक्साइड है, इसलिए कार्बन उसे अपचयित करता है।"
+      }
+     },
+     {
+      "id": "pb",
+      "bin": "carbon",
+      "text": {
+       "en": "Lead from galena (PbS)",
+       "hi": "गैलेना (PbS) से लेड"
+      },
+      "why": {
+       "en": "Lead is in the middle: roast the sulphide, then use carbon.",
+       "hi": "लेड बीच में है: सल्फ़ाइड का भर्जन करो, फिर कार्बन इस्तेमाल करो।"
+      }
+     },
+     {
+      "id": "na",
+      "bin": "elec",
+      "text": {
+       "en": "Sodium from molten NaCl",
+       "hi": "गलित NaCl से सोडियम"
+      },
+      "why": {
+       "en": "Sodium is very reactive, so carbon cannot reduce its compound.",
+       "hi": "सोडियम बहुत अभिक्रियाशील है, इसलिए कार्बन उसके यौगिक को अपचयित नहीं कर पाता।"
+      }
+     },
+     {
+      "id": "ca",
+      "bin": "elec",
+      "text": {
+       "en": "Calcium from molten CaCl₂",
+       "hi": "गलित CaCl₂ से कैल्सियम"
+      },
+      "why": {
+       "en": "Calcium holds oxygen too strongly for carbon.",
+       "hi": "कैल्सियम ऑक्सीजन को कार्बन के लिए बहुत मज़बूती से पकड़ता है।"
+      }
+     },
+     {
+      "id": "mg",
+      "bin": "elec",
+      "text": {
+       "en": "Magnesium from molten MgCl₂",
+       "hi": "गलित MgCl₂ से मैग्नीशियम"
+      },
+      "why": {
+       "en": "Magnesium is above carbon in reactivity, so use electricity.",
+       "hi": "मैग्नीशियम अभिक्रियाशीलता में कार्बन से ऊपर है, इसलिए बिजली इस्तेमाल होती है।"
+      }
+     },
+     {
+      "id": "al",
+      "bin": "elec",
+      "text": {
+       "en": "Aluminium from molten Al₂O₃",
+       "hi": "गलित Al₂O₃ से ऐलुमिनियम"
+      },
+      "why": {
+       "en": "Aluminium is very reactive, so its oxide is split by electrolysis.",
+       "hi": "ऐलुमिनियम बहुत अभिक्रियाशील है, इसलिए उसका ऑक्साइड विद्युत अपघटन से तोड़ा जाता है।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:na",
+     "expect": "placed:na",
+     "say": {
+      "en": "Pick the sodium card and put it in the group you think fits.",
+      "hi": "सोडियम वाला कार्ड उठाओ और उसे उस समूह में रखो जो तुम्हें सही लगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Carbon cannot take oxygen from Al₂O₃. Which method will aluminium need?",
+      "hi": "कार्बन Al₂O₃ से ऑक्सीजन नहीं हटा सकता। ऐलुमिनियम को कौन-सा तरीक़ा चाहिए होगा?"
+     },
+     "options": [
+      {
+       "id": "elec",
+       "en": "Electrolysis of the molten oxide",
+       "hi": "गलित ऑक्साइड का विद्युत अपघटन"
+      },
+      {
+       "id": "heat",
+       "en": "Heating alone",
+       "hi": "सिर्फ़ गर्म करना"
+      },
+      {
+       "id": "carbon",
+       "en": "Roasting, then carbon",
+       "hi": "भर्जन, फिर कार्बन"
+      }
+     ],
+     "answer": "elec"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then tap Check.",
+      "hi": "सारे कार्ड छाँटो, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The position of a metal in the reactivity series decides the method. Metals at the bottom give up oxygen easily, so heat is enough or they are found free. Metals in the middle need carbon, after roasting or calcination. Metals at the top hold oxygen too strongly, so only electrolysis of the molten compound works.",
+      "hi": "सक्रियता श्रेणी में धातु की जगह तरीक़ा तय करती है। नीचे की धातुएँ ऑक्सीजन आसानी से छोड़ देती हैं, इसलिए गर्म करना काफ़ी है या वे मुक्त मिलती हैं। बीच की धातुओं के लिए भर्जन या निस्तापन के बाद कार्बन चाहिए। सबसे ऊपर की धातुएँ ऑक्सीजन को बहुत मज़बूती से पकड़ती हैं, इसलिए सिर्फ़ गलित यौगिक का विद्युत अपघटन काम करता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why is calcium not extracted by heating its oxide with carbon?",
+        "hi": "कैल्सियम का ऑक्साइड कार्बन के साथ गर्म करके कैल्सियम क्यों नहीं निकाला जाता?"
+       },
+       "options": [
+        {
+         "en": "Calcium is more reactive than carbon",
+         "hi": "कैल्सियम कार्बन से ज़्यादा अभिक्रियाशील है"
+        },
+        {
+         "en": "Calcium is found free",
+         "hi": "कैल्सियम मुक्त मिलता है"
+        },
+        {
+         "en": "Carbon is too costly",
+         "hi": "कार्बन बहुत महँगा है"
+        },
+        {
+         "en": "Calcium oxide is a gas",
+         "hi": "कैल्सियम ऑक्साइड गैस है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon cannot pull oxygen away from a metal that holds it more strongly.",
+        "hi": "जो धातु ऑक्सीजन को ज़्यादा मज़बूती से पकड़ती है, उससे कार्बन ऑक्सीजन नहीं हटा सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Calcium is reactive, so it is never found free.",
+         "hi": "कैल्सियम अभिक्रियाशील है, इसलिए कभी मुक्त नहीं मिलता।"
+        },
+        {
+         "en": "The cost of carbon is not the reason; the chemistry is.",
+         "hi": "वजह कार्बन की क़ीमत नहीं, केमिस्ट्री है।"
+        },
+        {
+         "en": "Calcium oxide is a solid.",
+         "hi": "कैल्सियम ऑक्साइड ठोस है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which metal is usually found as a free metal in nature?",
+        "hi": "कौन-सी धातु आमतौर पर प्रकृति में मुक्त अवस्था में मिलती है?"
+       },
+       "options": [
+        {
+         "en": "Gold",
+         "hi": "गोल्ड"
+        },
+        {
+         "en": "Sodium",
+         "hi": "सोडियम"
+        },
+        {
+         "en": "Aluminium",
+         "hi": "ऐलुमिनियम"
+        },
+        {
+         "en": "Zinc",
+         "hi": "ज़िंक"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Gold is very low in the series and does not react with air or water.",
+        "hi": "गोल्ड श्रेणी में बहुत नीचे है और हवा या पानी से अभिक्रिया नहीं करता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Sodium is so reactive that it is always found as compounds.",
+         "hi": "सोडियम इतना अभिक्रियाशील है कि हमेशा यौगिकों के रूप में मिलता है।"
+        },
+        {
+         "en": "Aluminium is found as bauxite, an oxide.",
+         "hi": "ऐलुमिनियम बॉक्साइट के रूप में मिलता है, जो ऑक्साइड है।"
+        },
+        {
+         "en": "Zinc is found as sulphide and carbonate ores.",
+         "hi": "ज़िंक सल्फ़ाइड और कार्बोनेट अयस्कों में मिलता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move the aluminium card to another group and tap Check. What reason does the card give?",
+      "hi": "ऐलुमिनियम का कार्ड किसी दूसरे समूह में रखो और जाँचो पर टैप करो। कार्ड क्या कारण बताता है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch03-rust-or-not",
+   "topic": "3.5",
+   "template": "sort",
+   "title": {
+    "en": "Will it rust?",
+    "hi": "क्या इसे जंग लगेगी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rust",
+      "label": {
+       "en": "Rusts",
+       "hi": "जंग लगती है"
+      }
+     },
+     {
+      "id": "safe",
+      "label": {
+       "en": "Does not rust",
+       "hi": "जंग नहीं लगती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "tap",
+      "bin": "rust",
+      "text": {
+       "en": "Iron nail in tap water, open to air",
+       "hi": "खुली हवा में नल के पानी में आयरन की कील"
+      },
+      "why": {
+       "en": "It has both air and water, so it rusts.",
+       "hi": "इसे हवा और पानी दोनों मिलते हैं, इसलिए जंग लगती है।"
+      }
+     },
+     {
+      "id": "sea",
+      "bin": "rust",
+      "text": {
+       "en": "Iron nail in salty sea water",
+       "hi": "खारे समुद्री पानी में आयरन की कील"
+      },
+      "why": {
+       "en": "Air and water are there, and salt makes rusting faster.",
+       "hi": "हवा और पानी हैं, और नमक जंग को और तेज़ कर देता है।"
+      }
+     },
+     {
+      "id": "gate",
+      "bin": "rust",
+      "text": {
+       "en": "Painted iron gate with a deep scratch",
+       "hi": "गहरी खरोंच वाला पेंट किया हुआ आयरन का गेट"
+      },
+      "why": {
+       "en": "At the scratch, air and water reach the iron.",
+       "hi": "खरोंच पर हवा और पानी आयरन तक पहुँच जाते हैं।"
+      }
+     },
+     {
+      "id": "monsoon",
+      "bin": "rust",
+      "text": {
+       "en": "Bare iron grill outdoors in the monsoon",
+       "hi": "मानसून में बाहर लगी खुली आयरन की ग्रिल"
+      },
+      "why": {
+       "en": "Rain and air together rust bare iron.",
+       "hi": "बारिश और हवा मिलकर खुले आयरन को जंग लगा देती हैं।"
+      }
+     },
+     {
+      "id": "oil",
+      "bin": "safe",
+      "text": {
+       "en": "Iron nail in boiled water under oil",
+       "hi": "उबले पानी में तेल की परत के नीचे आयरन की कील"
+      },
+      "why": {
+       "en": "Boiling removes air and oil keeps new air out.",
+       "hi": "उबालने से हवा निकल जाती है और तेल नई हवा को आने नहीं देता।"
+      }
+     },
+     {
+      "id": "dry",
+      "bin": "safe",
+      "text": {
+       "en": "Iron nail in dry air with CaCl₂",
+       "hi": "CaCl₂ के साथ सूखी हवा में आयरन की कील"
+      },
+      "why": {
+       "en": "CaCl₂ soaks up moisture, so there is no water.",
+       "hi": "CaCl₂ नमी सोख लेता है, इसलिए पानी नहीं है।"
+      }
+     },
+     {
+      "id": "galv",
+      "bin": "safe",
+      "text": {
+       "en": "Galvanised bucket with a scratch",
+       "hi": "खरोंच वाली गैल्वनीकृत बाल्टी"
+      },
+      "why": {
+       "en": "Zinc is more reactive, so it corrodes first and protects the iron.",
+       "hi": "ज़िंक ज़्यादा अभिक्रियाशील है, इसलिए पहले वही गलता है और आयरन को बचाता है।"
+      }
+     },
+     {
+      "id": "grease",
+      "bin": "safe",
+      "text": {
+       "en": "Greased iron chain kept in a dry shed",
+       "hi": "सूखे शेड में रखी ग्रीस लगी आयरन की चेन"
+      },
+      "why": {
+       "en": "Grease keeps out water and air.",
+       "hi": "ग्रीस पानी और हवा को दूर रखती है।"
+      }
+     },
+     {
+      "id": "steel",
+      "bin": "safe",
+      "text": {
+       "en": "Stainless steel spoon in water",
+       "hi": "पानी में रखा स्टेनलेस स्टील का चम्मच"
+      },
+      "why": {
+       "en": "Stainless steel is an alloy that does not rust.",
+       "hi": "स्टेनलेस स्टील ऐसा मिश्रातु है जिसे जंग नहीं लगती।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:tap",
+     "expect": "placed:tap",
+     "say": {
+      "en": "Pick the nail in tap water and decide: rusts or not?",
+      "hi": "नल के पानी वाली कील उठाओ और तय करो: जंग लगेगी या नहीं?"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "A painted gate is scratched deeply. What will happen at the scratch?",
+      "hi": "पेंट किए हुए गेट पर गहरी खरोंच लग गई है। खरोंच वाली जगह पर क्या होगा?"
+     },
+     "options": [
+      {
+       "id": "rust",
+       "en": "Rust starts there",
+       "hi": "वहाँ जंग लगना शुरू हो जाएगा"
+      },
+      {
+       "id": "none",
+       "en": "Nothing, paint protects it everywhere",
+       "hi": "कुछ नहीं, पेंट हर जगह बचाता है"
+      },
+      {
+       "id": "zinc",
+       "en": "Zinc takes over",
+       "hi": "ज़िंक बचा लेगा"
+      }
+     ],
+     "answer": "rust"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then tap Check.",
+      "hi": "सारे कार्ड छाँटो, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Iron rusts only when air and water are both present. Remove one of them with oil, a drying agent or grease, or cover the iron with paint, and the rust stops. A scratched paint coat fails, but zinc keeps protecting a scratched galvanised surface. An alloy such as stainless steel does not rust at all.",
+      "hi": "आयरन को जंग तभी लगती है जब हवा और पानी दोनों हों। तेल, नमी सोखने वाले पदार्थ या ग्रीस से इनमें से एक हटा दो, या आयरन पर पेंट कर दो, तो जंग रुक जाती है। खरोंच लगने पर पेंट का कोट बेकार हो जाता है, पर खरोंच वाली गैल्वनीकृत सतह को ज़िंक बचाता रहता है। स्टेनलेस स्टील जैसे मिश्रातु को जंग बिल्कुल नहीं लगती।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a scratched galvanised bucket not rust at the scratch?",
+        "hi": "खरोंच लगी गैल्वनीकृत बाल्टी पर खरोंच वाली जगह जंग क्यों नहीं लगती?"
+       },
+       "options": [
+        {
+         "en": "Zinc is more reactive than iron and corrodes first",
+         "hi": "ज़िंक आयरन से ज़्यादा अभिक्रियाशील है और पहले वही गलता है"
+        },
+        {
+         "en": "Iron is more reactive than zinc",
+         "hi": "आयरन ज़िंक से ज़्यादा अभिक्रियाशील है"
+        },
+        {
+         "en": "Zinc is heavier",
+         "hi": "ज़िंक ज़्यादा भारी है"
+        },
+        {
+         "en": "The scratch seals itself",
+         "hi": "खरोंच अपने-आप भर जाती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zinc gives itself up first, so the iron stays safe.",
+        "hi": "ज़िंक पहले ख़ुद को गला देता है, इसलिए आयरन सुरक्षित रहता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If iron were more reactive it would be eaten first, which is the opposite.",
+         "hi": "अगर आयरन ज़्यादा अभिक्रियाशील होता तो वही पहले गलता, जबकि यहाँ उलटा है।"
+        },
+        {
+         "en": "Weight does not protect a metal.",
+         "hi": "वज़न से धातु नहीं बचती।"
+        },
+        {
+         "en": "Scratches do not heal; the zinc does the work.",
+         "hi": "खरोंच अपने-आप नहीं भरती; काम ज़िंक करता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which nail rusts?",
+        "hi": "किस कील को जंग लगेगी?"
+       },
+       "options": [
+        {
+         "en": "One in moist open air",
+         "hi": "खुली और नम हवा में रखी कील"
+        },
+        {
+         "en": "One in boiled water under oil",
+         "hi": "उबले पानी में तेल के नीचे रखी कील"
+        },
+        {
+         "en": "One in dry air with CaCl₂",
+         "hi": "CaCl₂ वाली सूखी हवा में रखी कील"
+        },
+        {
+         "en": "One coated with grease",
+         "hi": "ग्रीस लगी कील"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the first has both air and water.",
+        "hi": "सिर्फ़ पहली के पास हवा और पानी दोनों हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Boiled water has no air and oil keeps air out.",
+         "hi": "उबले पानी में हवा नहीं होती और तेल हवा को दूर रखता है।"
+        },
+        {
+         "en": "CaCl₂ removes moisture, so there is no water.",
+         "hi": "CaCl₂ नमी हटा देता है, इसलिए पानी नहीं है।"
+        },
+        {
+         "en": "Grease keeps out both air and water.",
+         "hi": "ग्रीस हवा और पानी दोनों को दूर रखती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Move one card to the other group and tap Check. Read why it does not fit.",
+      "hi": "कोई एक कार्ड दूसरे समूह में रखो और जाँचो पर टैप करो। पढ़ो कि वह वहाँ क्यों फ़िट नहीं होता।"
      }
     }
    ]

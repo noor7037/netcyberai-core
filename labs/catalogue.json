@@ -309,6 +309,20 @@
       "targets": ["card:<id>", "link", "sun", "bin:<green|blue>", "play", "answer"], "events": ["linked", "energy", "sorted", "balanced", "cycle-done", "answered:right", "answered:wrong"],
       "notes": "10 per cent energy rule; organisms placed at true trophic levels; Indian species." },
 
+    { "id": "balance", "colour": "#C2410C", "tier": "medium",
+      "name": { "en": "Balance the equation", "hi": "समीकरण बैलेंस करो" }, "about": { "en": "Change coefficients with − and +; an atom counter turns green when both sides match.", "hi": "− और + से गुणांक बदलो; दोनों तरफ़ परमाणु बराबर होने पर काउंटर हरा हो जाता है।" },
+      "subjects": "chemistry (Classes 9–12)",
+      "config": "{ equations: [{ id, left: [formula], right: [formula], name?: {en,hi} }] (1–8) }",
+      "targets": ["eq:<id>", "inc:<n>", "dec:<n>", "reset"], "events": ["picked:<id>", "balanced:<id>", "changed", "balanced", "smallest"],
+      "notes": "Never balances for the child; names the atom that is still off; asks for the smallest whole numbers." },
+
+    { "id": "scatter", "colour": "#0369A1", "tier": "easy",
+      "name": { "en": "Light scattering", "hi": "प्रकाश का बिखरना" }, "about": { "en": "Tyndall effect in a dark room, and why the sky is blue and the sunset red.", "hi": "अँधेरे कमरे में टिंडल प्रभाव, और आसमान नीला व सूर्यास्त लाल क्यों।" },
+      "subjects": "physics, chemistry (Classes 9–12)",
+      "config": "{ mode: 'tyndall', liquids?: [water|salt|sugar|copper-sulphate|milk|soap|starch|muddy] (2–6) } | { mode: 'sky' }",
+      "targets": ["liquid:<id>", "liquid:*", "torch", "noon", "sunset", "sun"], "events": ["shone:<id>", "beam-seen", "beam-hidden", "picked", "noon", "sunset", "moved"],
+      "notes": "Particle size, not colour, decides whether the beam's path shows." },
+
     { "id": "sort", "colour": "#0891B2", "tier": "easy",
       "name": { "en": "Sort it", "hi": "छाँटो" }, "about": { "en": "Drag cards into the right groups; every card explains itself.", "hi": "कार्डों को सही समूह में खींचो; हर कार्ड अपना कारण बताता है।" },
       "subjects": "every subject",

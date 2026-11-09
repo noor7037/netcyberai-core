@@ -31,36 +31,36 @@
   const U = {
     eyebrow: { en: 'NetCyberAI', hi: 'NetCyberAI' },
     hero: { en: 'Touch it. See it. <span>Get it.</span>', hi: 'छुओ, देखो, <span>समझो</span>' },
-    tagline: { en: 'Real experiments and hands-on labs for every class from 1 to 12, guided step by step, in English or Hindi.', hi: 'कक्षा 1 से 12 तक हर कक्षा के लिए असली प्रयोग और करके सीखने वाली लैब, क़दम-दर-क़दम, अंग्रेज़ी या हिंदी में।' },
-    loop: [{ en: 'Guide', hi: 'मार्गदर्शन' }, { en: 'Predict', hi: 'अनुमान' }, { en: 'Run', hi: 'प्रयोग' }, { en: 'Explain', hi: 'समझो' }, { en: 'Check', hi: 'जाँचो' }, { en: 'Explore', hi: 'खोजो' }],
-    cls: { en: 'Class', hi: 'कक्षा' }, all: { en: 'All', hi: 'सभी' }, allClasses: { en: 'All classes', hi: 'सभी कक्षाएँ' }, subject: { en: 'Subject', hi: 'विषय' },
-    search: { en: 'Search labs, chapters, topics', hi: 'लैब, अध्याय, विषय खोजो' }, found: { en: '{n} labs', hi: '{n} लैब' }, more: { en: 'Show more', hi: 'और दिखाओ' },
+    tagline: { en: 'Real experiments and hands-on labs for every class from 1 to 12, guided step by step, in English or Hindi.', hi: 'क्लास 1 से 12 तक हर क्लास के लिए असली एक्सपेरिमेंट और करके सीखने वाली लैब, स्टेप बाय स्टेप, अंग्रेज़ी या हिंदी में।' },
+    loop: [{ en: 'Guide', hi: 'गाइडेड' }, { en: 'Predict', hi: 'अनुमान' }, { en: 'Run', hi: 'एक्सपेरिमेंट' }, { en: 'Explain', hi: 'समझो' }, { en: 'Check', hi: 'जाँचो' }, { en: 'Explore', hi: 'खोजो' }],
+    cls: { en: 'Class', hi: 'क्लास' }, all: { en: 'All', hi: 'सभी' }, allClasses: { en: 'All classes', hi: 'सारी क्लास' }, subject: { en: 'Subject', hi: 'विषय' },
+    search: { en: 'Search labs, chapters, topics', hi: 'लैब, चैप्टर, टॉपिक खोजो' }, found: { en: '{n} labs', hi: '{n} लैब' }, more: { en: 'Show more', hi: 'और दिखाओ' },
     open: { en: 'Open the lab', hi: 'लैब खोलो' }, min: { en: 'min', hi: 'मिनट' }, stretch: { en: 'For the curious', hi: 'जिज्ञासुओं के लिए' },
     tplHead: { en: 'Templates, built once', hi: 'टेम्पलेट, एक बार बने' },
     tplSub: { en: 'Every lab is one of these templates with its own settings. A new chapter adds settings, not code.', hi: 'हर लैब इन्हीं टेम्पलेट में से एक है, अपनी सेटिंग के साथ। नया अध्याय केवल सेटिंग जोड़ता है, कोड नहीं।' },
     uses: { en: 'labs', hi: 'लैब' },
-    back: { en: 'All labs', hi: 'सभी लैब' }, guided: { en: 'Guided', hi: 'मार्गदर्शन' }, explore: { en: 'Explore', hi: 'खोजो' }, tutor: { en: 'Ask the tutor', hi: 'ट्यूटर से पूछो' },
-    stepOf: { en: 'Step {a} of {b}', hi: 'चरण {a} / {b}' },
+    back: { en: 'All labs', hi: 'सारी लैब' }, guided: { en: 'Guided', hi: 'गाइडेड' }, explore: { en: 'Explore', hi: 'खोजो' }, tutor: { en: 'Ask the tutor', hi: 'ट्यूटर से पूछो' },
+    stepOf: { en: 'Step {a} of {b}', hi: 'स्टेप {a} / {b}' },
     kinds: { do: { en: 'Do this', hi: 'यह करो' }, predict: { en: 'Predict', hi: 'अनुमान लगाओ' }, explain: { en: 'Why it happened', hi: 'ऐसा क्यों हुआ' }, check: { en: 'Check', hi: 'जाँचो' }, explore: { en: 'Explore', hi: 'खोजो' } },
     showMe: { en: 'Show me where', hi: 'मुझे दिखाओ' }, listen: { en: 'Listen', hi: 'सुनो' }, gotIt: { en: 'Got it', hi: 'समझ गया' },
-    saved: { en: 'Your guess is saved. Now let us find out.', hi: 'तुम्हारा अनुमान सहेज लिया। अब पता करते हैं।' },
+    saved: { en: 'Your guess is saved. Now let us find out.', hi: 'तुम्हारा अनुमान सेव हो गया। अब पता करते हैं।' },
     youGuessed: { en: 'You guessed: ', hi: 'तुम्हारा अनुमान: ' }, guessRight: { en: 'Spot on!', hi: 'बिल्कुल सही!' }, guessWrong: { en: 'Now you know what really happens.', hi: 'अब तुम जानते हो कि असल में क्या होता है।' },
     right: { en: 'Right.', hi: 'सही।' }, notQuite: { en: 'Not quite. Here is why.', hi: 'पूरी तरह सही नहीं। इसका कारण:' }, tryAgain: { en: 'Try once more.', hi: 'एक बार और कोशिश करो।' }, answerIs: { en: 'The answer is: ', hi: 'सही उत्तर: ' }, next: { en: 'Next', hi: 'आगे' },
     finish: { en: 'Finish the lab', hi: 'लैब पूरी करो' }, complete: { en: 'Lab complete', hi: 'लैब पूरी हुई' },
     guesses: { en: 'guess right', hi: 'सही अनुमान' }, checks: { en: 'checks right', hi: 'सही उत्तर' }, minutes: { en: 'minutes', hi: 'मिनट' },
-    again: { en: 'Do it again', hi: 'फिर से करो' }, toChapter: { en: 'Back to the chapter', hi: 'अध्याय पर लौटो' }, another: { en: 'Try another lab', hi: 'दूसरी लैब आज़माओ' },
-    chapterNote: { en: 'In the app, this returns to the exact step of the lesson the lab was opened from.', hi: 'ऐप में यह पाठ के उसी चरण पर लौटाता है जहाँ से लैब खोली गई थी।' },
-    exploreHead: { en: 'Explore freely', hi: 'खुलकर खोजो' }, exploreNote: { en: 'Every control works now. Change one thing at a time and watch what happens.', hi: 'अब हर बटन काम करता है। एक बार में एक चीज़ बदलो और देखो क्या होता है।' }, backGuided: { en: 'Back to the guided steps', hi: 'मार्गदर्शन पर लौटो' },
-    follow: { en: 'Follow the glowing step first.', hi: 'पहले चमकते हुए चरण का पालन करो।' }, answerFirst: { en: 'Answer in the guide first.', hi: 'पहले गाइड में उत्तर दो।' },
-    knows: { en: 'The tutor sees which lab you are in, the step, your guess and what you did, so it can answer about your experiment.', hi: 'ट्यूटर देखता है कि तुम किस लैब में हो, कौन-सा चरण है, तुम्हारा अनुमान और तुमने क्या किया, ताकि वह तुम्हारे प्रयोग के बारे में बता सके।' },
-    tHead: { en: 'Ask the tutor', hi: 'ट्यूटर से पूछो' }, tLab: { en: 'Lab', hi: 'लैब' }, tChapter: { en: 'Chapter', hi: 'अध्याय' }, tStep: { en: 'Step now', hi: 'अभी का चरण' }, tGuess: { en: 'Your guess', hi: 'तुम्हारा अनुमान' }, tDid: { en: 'What you did', hi: 'तुमने क्या किया' }, tNone: { en: 'Nothing yet', hi: 'अभी कुछ नहीं' },
+    again: { en: 'Do it again', hi: 'फिर से करो' }, toChapter: { en: 'Back to the chapter', hi: 'चैप्टर पर लौटो' }, another: { en: 'Try another lab', hi: 'दूसरी लैब आज़माओ' },
+    chapterNote: { en: 'In the app, this returns to the exact step of the lesson the lab was opened from.', hi: 'ऐप में यह लेसन के उसी स्टेप पर ले जाता है जहाँ से लैब खोली गई थी।' },
+    exploreHead: { en: 'Explore freely', hi: 'खुलकर खोजो' }, exploreNote: { en: 'Every control works now. Change one thing at a time and watch what happens.', hi: 'अब हर बटन काम करता है। एक बार में एक चीज़ बदलो और देखो क्या होता है।' }, backGuided: { en: 'Back to the guided steps', hi: 'गाइडेड पर लौटो' },
+    follow: { en: 'Follow the glowing step first.', hi: 'पहले चमकते हुए स्टेप को फ़ॉलो करो।' }, answerFirst: { en: 'Answer in the guide first.', hi: 'पहले गाइड में जवाब दो।' },
+    knows: { en: 'The tutor sees which lab you are in, the step, your guess and what you did, so it can answer about your experiment.', hi: 'ट्यूटर देखता है कि तुम किस लैब में हो, कौन-सा स्टेप है, तुम्हारा अनुमान और तुमने क्या किया, ताकि वह तुम्हारे एक्सपेरिमेंट के बारे में बता सके।' },
+    tHead: { en: 'Ask the tutor', hi: 'ट्यूटर से पूछो' }, tLab: { en: 'Lab', hi: 'लैब' }, tChapter: { en: 'Chapter', hi: 'चैप्टर' }, tStep: { en: 'Step now', hi: 'अभी का स्टेप' }, tGuess: { en: 'Your guess', hi: 'तुम्हारा अनुमान' }, tDid: { en: 'What you did', hi: 'तुमने क्या किया' }, tNone: { en: 'Nothing yet', hi: 'अभी कुछ नहीं' },
     tAsk: { en: 'Your question', hi: 'तुम्हारा सवाल' }, tSend: { en: 'Send', hi: 'भेजो' }, tClose: { en: 'Close', hi: 'बंद करो' },
     tProto: { en: 'Preview: nothing is sent from this page. In the app, your question goes to the tutor with everything listed above, in your language.', hi: 'प्रीव्यू: इस पेज से कुछ नहीं भेजा जाता। ऐप में तुम्हारा सवाल ऊपर दी गई सारी जानकारी के साथ, तुम्हारी भाषा में, ट्यूटर तक जाता है।' },
     notSent: { en: 'Not sent: this is the preview.', hi: 'नहीं भेजा गया: यह प्रीव्यू है।' },
     loading: { en: 'Opening the lab…', hi: 'लैब खुल रही है…' }, failed: { en: 'This lab could not be opened. Go back and try another; we will fix this one.', hi: 'यह लैब नहीं खुल सकी। वापस जाकर दूसरी आज़माओ; इसे हम ठीक करेंगे।' },
   };
   const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
-  const SUBJ = { english: { en: 'English', hi: 'अंग्रेज़ी' }, hindi: { en: 'Hindi', hi: 'हिंदी' }, sanskrit: { en: 'Sanskrit', hi: 'संस्कृत' }, mathematics: { en: 'Maths', hi: 'गणित' }, evs: { en: 'EVS', hi: 'पर्यावरण' }, science: { en: 'Science', hi: 'विज्ञान' }, social_science: { en: 'Social Science', hi: 'सामाजिक विज्ञान' }, physics: { en: 'Physics', hi: 'भौतिकी' }, chemistry: { en: 'Chemistry', hi: 'रसायन' }, biology: { en: 'Biology', hi: 'जीव विज्ञान' }, accountancy: { en: 'Accountancy', hi: 'लेखाशास्त्र' }, business_studies: { en: 'Business Studies', hi: 'व्यवसाय अध्ययन' }, economics: { en: 'Economics', hi: 'अर्थशास्त्र' }, history: { en: 'History', hi: 'इतिहास' }, geography: { en: 'Geography', hi: 'भूगोल' }, political_science: { en: 'Political Science', hi: 'राजनीति विज्ञान' }, sociology: { en: 'Sociology', hi: 'समाजशास्त्र' }, psychology: { en: 'Psychology', hi: 'मनोविज्ञान' }, computer_science: { en: 'Computer Science', hi: 'कंप्यूटर विज्ञान' }, informatics_practices: { en: 'Informatics Practices', hi: 'सूचना विज्ञान अभ्यास' } };
+  const SUBJ = { english: { en: 'English', hi: 'अंग्रेज़ी' }, hindi: { en: 'Hindi', hi: 'हिंदी' }, sanskrit: { en: 'Sanskrit', hi: 'संस्कृत' }, mathematics: { en: 'Maths', hi: 'गणित' }, evs: { en: 'EVS', hi: 'पर्यावरण' }, science: { en: 'Science', hi: 'विज्ञान' }, social_science: { en: 'Social Science', hi: 'सामाजिक विज्ञान' }, physics: { en: 'Physics', hi: 'फ़िज़िक्स' }, chemistry: { en: 'Chemistry', hi: 'केमिस्ट्री' }, biology: { en: 'Biology', hi: 'बायोलॉजी' }, accountancy: { en: 'Accountancy', hi: 'लेखाशास्त्र' }, business_studies: { en: 'Business Studies', hi: 'व्यवसाय अध्ययन' }, economics: { en: 'Economics', hi: 'अर्थशास्त्र' }, history: { en: 'History', hi: 'इतिहास' }, geography: { en: 'Geography', hi: 'भूगोल' }, political_science: { en: 'Political Science', hi: 'राजनीति विज्ञान' }, sociology: { en: 'Sociology', hi: 'समाजशास्त्र' }, psychology: { en: 'Psychology', hi: 'मनोविज्ञान' }, computer_science: { en: 'Computer Science', hi: 'कंप्यूटर साइंस' }, informatics_practices: { en: 'Informatics Practices', hi: 'सूचना विज्ञान अभ्यास' } };
 
   // ---- speech ----
   const canSpeak = 'speechSynthesis' in window;
@@ -321,7 +321,7 @@
           fb.innerHTML = `<div class="fb no"><b>${esc(t(U.notQuite))}</b>${esc(why)}</div><div class="fb ok" style="margin-top:8px"><b>${esc(t(U.answerIs))}${esc(t(it.options[it.answer]))}</b>${esc(t(it.why))}</div>${nextBtn}`;
         }
         speak(why);
-        S.log.push(t({ en: 'Check answer was wrong: ', hi: 'जाँच का उत्तर ग़लत: ' }) + t(it.options[k]));
+        S.log.push(t({ en: 'Check answer was wrong: ', hi: 'चेक का जवाब ग़लत: ' }) + t(it.options[k]));
       }
     });
   }

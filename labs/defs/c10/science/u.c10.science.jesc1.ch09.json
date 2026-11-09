@@ -1,985 +1,1624 @@
 {
- "chapter_key": "u.c10.science.jesc1.ch09",
- "class": 10,
- "subject_id": "science",
- "title": "Light – Reflection and Refraction",
- "source": "https://ncert.nic.in/textbook/pdf/jesc109.pdf",
- "topics": [
-  {
-   "n": "9.1",
-   "title": "Reflection of light",
-   "labs": [
-    "c10-science-jesc1-ch09-plane-mirror"
-   ],
-   "why_no_lab": null
-  },
-  {
-   "n": "9.2",
-   "title": "Spherical mirrors: image formation, ray diagrams, uses, sign convention, mirror formula and magnification",
-   "labs": [
-    "c10-science-jesc1-ch09-concave-mirror",
-    "c10-science-jesc1-ch09-convex-mirror"
-   ],
-   "why_no_lab": null
-  },
-  {
-   "n": "9.3",
-   "title": "Refraction of light: glass slab, refractive index, spherical lenses, image formation, sign convention, lens formula, magnification, power of a lens",
-   "labs": [
-    "c10-science-jesc1-ch09-glass-slab",
-    "c10-science-jesc1-ch09-convex-lens",
-    "c10-science-jesc1-ch09-concave-lens"
-   ],
-   "why_no_lab": null
-  }
- ],
- "labs": [
-  {
-   "id": "c10-science-jesc1-ch09-plane-mirror",
-   "topic": "9.1",
-   "template": "optics",
-   "title": {
-    "en": "A plane mirror",
-    "hi": "समतल दर्पण"
-   },
-   "minutes": 4,
-   "level": "core",
-   "config": {
-    "element": "plane",
-    "object": 20
-   },
-   "steps": [
+  "chapter_key": "u.c10.science.jesc1.ch09",
+  "class": 10,
+  "subject_id": "science",
+  "title": "Light – Reflection and Refraction",
+  "source": "https://ncert.nic.in/textbook/pdf/jesc109.pdf",
+  "topics": [
     {
-     "kind": "do",
-     "target": "toggle:rays",
-     "expect": "moved",
-     "say": {
-      "en": "Tap Rays to show the light rays from the candle.",
-      "hi": "मोमबत्ती से आती प्रकाश किरणें दिखाने के लिए किरणें पर टैप करो।"
-     }
+      "n": "9.1",
+      "title": "Reflection of light",
+      "labs": [
+        "c10-science-jesc1-ch09-plane-mirror"
+      ],
+      "why_no_lab": null
     },
     {
-     "kind": "predict",
-     "say": {
-      "en": "You will move the candle closer to the mirror. What happens to its image?",
-      "hi": "तुम मोमबत्ती को दर्पण के पास लाओगे। उसके प्रतिबिंब का क्या होगा?"
-     },
-     "options": [
-      {
-       "id": "closer",
-       "en": "It also comes closer and stays the same size",
-       "hi": "वह भी पास आएगा और उसी आकार का रहेगा"
-      },
-      {
-       "id": "bigger",
-       "en": "It grows bigger",
-       "hi": "वह बड़ा हो जाएगा"
-      },
-      {
-       "id": "real",
-       "en": "It moves in front of the mirror",
-       "hi": "वह दर्पण के सामने आ जाएगा"
-      }
-     ],
-     "answer": "closer"
+      "n": "9.2",
+      "title": "Spherical mirrors: image formation, ray diagrams, uses, sign convention, mirror formula and magnification",
+      "labs": [
+        "c10-science-jesc1-ch09-concave-mirror",
+        "c10-science-jesc1-ch09-convex-mirror",
+        "c10-science-jesc1-ch09-mirror-focus",
+        "c10-science-jesc1-ch09-mirror-formula"
+      ],
+      "why_no_lab": null
     },
     {
-     "kind": "do",
-     "target": "slider:object",
-     "expect": "image:virtual",
-     "say": {
-      "en": "Drag the object slider to bring the candle closer.",
-      "hi": "मोमबत्ती को पास लाने के लिए वस्तु का स्लाइडर खिसकाओ।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "Light from the candle bounces off the mirror so that the angle of reflection equals the angle of incidence. The image is as far behind the mirror as the candle is in front, the same size, upright and virtual: it cannot be caught on a screen. It is also laterally inverted, so left and right swap.",
-      "hi": "मोमबत्ती का प्रकाश दर्पण से ऐसे लौटता है कि परावर्तन कोण आपतन कोण के बराबर होता है। प्रतिबिंब दर्पण के पीछे उतनी ही दूरी पर बनता है जितनी दूर मोमबत्ती सामने है; वह उसी आकार का, सीधा और आभासी होता है: उसे पर्दे पर नहीं लिया जा सकता। उसमें पार्श्व उत्क्रमण भी होता है, यानी बायाँ और दायाँ बदल जाते हैं।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "A ray hits a plane mirror at 30° to the normal. At what angle does it reflect?",
-        "hi": "एक किरण समतल दर्पण पर अभिलंब से 30° पर पड़ती है। वह किस कोण पर परावर्तित होगी?"
-       },
-       "options": [
-        "30°",
-        "60°",
-        "90°"
-       ],
-       "answer": 0,
-       "why": {
-        "en": "The angle of reflection always equals the angle of incidence.",
-        "hi": "परावर्तन कोण हमेशा आपतन कोण के बराबर होता है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "60° is the angle with the mirror surface, not with the normal.",
-         "hi": "60° दर्पण की सतह से कोण है, अभिलंब से नहीं।"
-        },
-        {
-         "en": "90° would send the ray along the mirror.",
-         "hi": "90° पर किरण दर्पण के साथ-साथ चली जाएगी।"
-        }
-       ]
-      },
-      {
-       "q": {
-        "en": "You stand 2 m in front of a mirror. How far are you from your image?",
-        "hi": "तुम दर्पण से 2 m सामने खड़े हो। तुम अपने प्रतिबिंब से कितनी दूर हो?"
-       },
-       "options": [
-        "4 m",
-        "2 m",
-        "1 m"
-       ],
-       "answer": 0,
-       "why": {
-        "en": "The image is 2 m behind the mirror, so 2 + 2 = 4 m from you.",
-        "hi": "प्रतिबिंब दर्पण से 2 m पीछे है, इसलिए तुमसे 2 + 2 = 4 m दूर।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "2 m is the distance from the mirror to the image, not from you.",
-         "hi": "2 m दर्पण से प्रतिबिंब की दूरी है, तुमसे नहीं।"
-        },
-        {
-         "en": "The image is never closer than the mirror itself.",
-         "hi": "प्रतिबिंब कभी दर्पण से पास नहीं होता।"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: move the candle near and far. Does the image ever change size or come in front of the mirror?",
-      "hi": "आज़माओ: मोमबत्ती को पास और दूर ले जाओ। क्या प्रतिबिंब कभी आकार बदलता है या दर्पण के सामने आता है?"
-     }
+      "n": "9.3",
+      "title": "Refraction of light: glass slab, refractive index, spherical lenses, image formation, sign convention, lens formula, magnification, power of a lens",
+      "labs": [
+        "c10-science-jesc1-ch09-glass-slab",
+        "c10-science-jesc1-ch09-convex-lens",
+        "c10-science-jesc1-ch09-concave-lens",
+        "c10-science-jesc1-ch09-refractive-index",
+        "c10-science-jesc1-ch09-lens-power"
+      ],
+      "why_no_lab": null
     }
-   ]
-  },
-  {
-   "id": "c10-science-jesc1-ch09-concave-mirror",
-   "topic": "9.2",
-   "template": "optics",
-   "title": {
-    "en": "Images in a concave mirror",
-    "hi": "अवतल दर्पण में प्रतिबिंब"
-   },
-   "minutes": 6,
-   "level": "core",
-   "config": {
-    "element": "concave-mirror",
-    "f": 15,
-    "object": 40
-   },
-   "steps": [
+  ],
+  "labs": [
     {
-     "kind": "do",
-     "target": "screen",
-     "expect": "image:sharp",
-     "say": {
-      "en": "The candle is 40 cm from a concave mirror with f = 15 cm. Drag the screen until the image is sharp.",
-      "hi": "मोमबत्ती 15 cm फ़ोकस दूरी वाले अवतल दर्पण से 40 cm दूर है। पर्दे को तब तक खिसकाओ जब तक प्रतिबिंब साफ़ न हो।"
-     }
-    },
-    {
-     "kind": "do",
-     "target": "toggle:rays",
-     "expect": "moved",
-     "say": {
-      "en": "Tap Rays to see how the image forms.",
-      "hi": "प्रतिबिंब कैसे बनता है, यह देखने के लिए किरणें पर टैप करो।"
-     }
-    },
-    {
-     "kind": "predict",
-     "say": {
-      "en": "Now bring the candle closer than the focus, less than 15 cm away. What image will you get?",
-      "hi": "अब मोमबत्ती को फ़ोकस से भी पास, 15 cm से कम दूरी पर लाओ। कैसा प्रतिबिंब बनेगा?"
-     },
-     "options": [
-      {
-       "id": "virtual",
-       "en": "Upright, magnified and behind the mirror",
-       "hi": "सीधा, बड़ा और दर्पण के पीछे"
+      "id": "c10-science-jesc1-ch09-plane-mirror",
+      "topic": "9.1",
+      "template": "optics",
+      "title": {
+        "en": "A plane mirror",
+        "hi": "समतल दर्पण"
       },
-      {
-       "id": "real",
-       "en": "Inverted and on the screen",
-       "hi": "उलटा और पर्दे पर"
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "element": "plane",
+        "object": 20
       },
-      {
-       "id": "none",
-       "en": "No image at all",
-       "hi": "कोई प्रतिबिंब नहीं"
-      }
-     ],
-     "answer": "virtual"
-    },
-    {
-     "kind": "do",
-     "target": "slider:object",
-     "expect": "image:virtual",
-     "say": {
-      "en": "Drag the object slider below 15 cm.",
-      "hi": "वस्तु का स्लाइडर 15 cm से नीचे खिसकाओ।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "Beyond the focus, a concave mirror makes a real, inverted image that a screen can catch; here it was at about 24 cm (the mirror formula in topic 5 gives this number). Closer than the focus, the rays spread out and the image is virtual, upright and magnified, behind the mirror. That is why concave mirrors are used for shaving and by dentists, and in torches to make a strong beam.",
-      "hi": "फ़ोकस से आगे रखी वस्तु का अवतल दर्पण वास्तविक, उलटा प्रतिबिंब बनाता है जिसे पर्दे पर लिया जा सकता है; यहाँ यह लगभग 24 cm पर था (विषय 5 का दर्पण सूत्र यही संख्या देता है)। फ़ोकस से पास रखने पर किरणें फैलती हैं और प्रतिबिंब दर्पण के पीछे आभासी, सीधा और बड़ा बनता है। इसीलिए अवतल दर्पण दाढ़ी बनाने, दंत चिकित्सकों और टॉर्च की तेज़ रोशनी में काम आते हैं।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "The candle stands exactly at C, 30 cm from a mirror with f = 15 cm. What image forms?",
-        "hi": "मोमबत्ती ठीक C पर, f = 15 cm वाले दर्पण से 30 cm दूर है। कैसा प्रतिबिंब बनता है?"
-       },
-       "options": [
+      "steps": [
         {
-         "en": "Real, inverted, same size, at C",
-         "hi": "वास्तविक, उलटा, समान आकार का, C पर"
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "Tap Rays to show the light rays from the candle.",
+            "hi": "मोमबत्ती से आती प्रकाश किरणें दिखाने के लिए किरणें पर टैप करो।"
+          }
         },
         {
-         "en": "Virtual, erect and magnified, behind the mirror",
-         "hi": "आभासी, सीधा और आवर्धित, दर्पण के पीछे"
+          "kind": "predict",
+          "say": {
+            "en": "You will move the candle closer to the mirror. What happens to its image?",
+            "hi": "तुम मोमबत्ती को दर्पण के पास लाओगे। उसके प्रतिबिंब का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "closer",
+              "en": "It also comes closer and stays the same size",
+              "hi": "वह भी पास आएगा और उसी आकार का रहेगा"
+            },
+            {
+              "id": "bigger",
+              "en": "It grows bigger",
+              "hi": "वह बड़ा हो जाएगा"
+            },
+            {
+              "id": "real",
+              "en": "It moves in front of the mirror",
+              "hi": "वह दर्पण के सामने आ जाएगा"
+            }
+          ],
+          "answer": "closer"
         },
         {
-         "en": "Real, inverted and magnified, beyond C",
-         "hi": "वास्तविक, उलटा और आवर्धित, C से आगे"
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Drag the object slider to bring the candle closer.",
+            "hi": "मोमबत्ती को पास लाने के लिए वस्तु का स्लाइडर खिसकाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Light from the candle bounces off the mirror so that the angle of reflection equals the angle of incidence. The image is as far behind the mirror as the candle is in front, the same size, upright and virtual: it cannot be caught on a screen. It is also laterally inverted, so left and right swap.",
+            "hi": "मोमबत्ती का प्रकाश दर्पण से ऐसे लौटता है कि परावर्तन कोण आपतन कोण के बराबर होता है। प्रतिबिंब दर्पण के पीछे उतनी ही दूरी पर बनता है जितनी दूर मोमबत्ती सामने है; वह उसी आकार का, सीधा और आभासी होता है: उसे पर्दे पर नहीं लिया जा सकता। उसमें पार्श्व उत्क्रमण भी होता है, यानी बायाँ और दायाँ बदल जाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A ray hits a plane mirror at 30° to the normal. At what angle does it reflect?",
+                "hi": "एक किरण समतल दर्पण पर अभिलंब से 30° पर पड़ती है। वह किस कोण पर परावर्तित होगी?"
+              },
+              "options": [
+                "30°",
+                "60°",
+                "90°"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The angle of reflection always equals the angle of incidence.",
+                "hi": "परावर्तन कोण हमेशा आपतन कोण के बराबर होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "60° is the angle with the mirror surface, not with the normal.",
+                  "hi": "60° दर्पण की सतह से कोण है, अभिलंब से नहीं।"
+                },
+                {
+                  "en": "90° would send the ray along the mirror.",
+                  "hi": "90° पर किरण दर्पण के साथ-साथ चली जाएगी।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "You stand 2 m in front of a mirror. How far are you from your image?",
+                "hi": "तुम दर्पण से 2 m सामने खड़े हो। तुम अपने प्रतिबिंब से कितनी दूर हो?"
+              },
+              "options": [
+                "4 m",
+                "2 m",
+                "1 m"
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The image is 2 m behind the mirror, so 2 + 2 = 4 m from you.",
+                "hi": "प्रतिबिंब दर्पण से 2 m पीछे है, इसलिए तुमसे 2 + 2 = 4 m दूर।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "2 m is the distance from the mirror to the image, not from you.",
+                  "hi": "2 m दर्पण से प्रतिबिंब की दूरी है, तुमसे नहीं।"
+                },
+                {
+                  "en": "The image is never closer than the mirror itself.",
+                  "hi": "प्रतिबिंब कभी दर्पण से पास नहीं होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: move the candle near and far. Does the image ever change size or come in front of the mirror?",
+            "hi": "आज़माओ: मोमबत्ती को पास और दूर ले जाओ। क्या प्रतिबिंब कभी आकार बदलता है या दर्पण के सामने आता है?"
+          }
         }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "An object at C has its image at C, the same size, real and inverted.",
-        "hi": "C पर रखी वस्तु का प्रतिबिंब C पर, समान आकार का, वास्तविक और उलटा बनता है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "A virtual, magnified image needs the candle inside the focus, closer than 15 cm.",
-         "hi": "आभासी, आवर्धित प्रतिबिंब के लिए मोमबत्ती फ़ोकस के अंदर, 15 cm से पास, चाहिए।"
-        },
-        {
-         "en": "A magnified image beyond C comes when the candle is between C and F, not at C.",
-         "hi": "C से आगे आवर्धित प्रतिबिंब तब बनता है जब मोमबत्ती C और F के बीच हो, C पर नहीं।"
-        }
-       ]
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-concave-mirror",
+      "topic": "9.2",
+      "template": "optics",
+      "title": {
+        "en": "Images in a concave mirror",
+        "hi": "अवतल दर्पण में प्रतिबिंब"
       },
-      {
-       "q": {
-        "en": "Why is a concave mirror used behind a torch bulb?",
-        "hi": "टॉर्च के बल्ब के पीछे अवतल दर्पण क्यों लगाया जाता है?"
-       },
-       "options": [
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "element": "concave-mirror",
+        "f": 15,
+        "object": 40
+      },
+      "steps": [
         {
-         "en": "A bulb at the focus gives a strong parallel beam",
-         "hi": "फ़ोकस पर रखा बल्ब तेज़ समांतर किरण पुंज देता है"
+          "kind": "do",
+          "target": "screen",
+          "expect": "image:sharp",
+          "say": {
+            "en": "The candle is 40 cm from a concave mirror with f = 15 cm. Drag the screen until the image is sharp.",
+            "hi": "मोमबत्ती 15 cm फ़ोकस दूरी वाले अवतल दर्पण से 40 cm दूर है। पर्दे को तब तक खिसकाओ जब तक प्रतिबिंब साफ़ न हो।"
+          }
         },
         {
-         "en": "It makes the bulb look smaller",
-         "hi": "यह बल्ब को छोटा दिखाता है"
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "Tap Rays to see how the image forms.",
+            "hi": "प्रतिबिंब कैसे बनता है, यह देखने के लिए किरणें पर टैप करो।"
+          }
         },
         {
-         "en": "It shows a wide view of the road",
-         "hi": "यह सड़क का चौड़ा दृश्य दिखाता है"
+          "kind": "predict",
+          "say": {
+            "en": "Now bring the candle closer than the focus, less than 15 cm away. What image will you get?",
+            "hi": "अब मोमबत्ती को फ़ोकस से भी पास, 15 cm से कम दूरी पर लाओ। कैसा प्रतिबिंब बनेगा?"
+          },
+          "options": [
+            {
+              "id": "virtual",
+              "en": "Upright, magnified and behind the mirror",
+              "hi": "सीधा, बड़ा और दर्पण के पीछे"
+            },
+            {
+              "id": "real",
+              "en": "Inverted and on the screen",
+              "hi": "उलटा और पर्दे पर"
+            },
+            {
+              "id": "none",
+              "en": "No image at all",
+              "hi": "कोई प्रतिबिंब नहीं"
+            }
+          ],
+          "answer": "virtual"
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Drag the object slider below 15 cm.",
+            "hi": "वस्तु का स्लाइडर 15 cm से नीचे खिसकाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Beyond the focus, a concave mirror makes a real, inverted image that a screen can catch; here it was at about 24 cm (the mirror formula in topic 5 gives this number). Closer than the focus, the rays spread out and the image is virtual, upright and magnified, behind the mirror. That is why concave mirrors are used for shaving and by dentists, and in torches to make a strong beam.",
+            "hi": "फ़ोकस से आगे रखी वस्तु का अवतल दर्पण वास्तविक, उलटा प्रतिबिंब बनाता है जिसे पर्दे पर लिया जा सकता है; यहाँ यह लगभग 24 cm पर था (टॉपिक 5 का दर्पण सूत्र यही संख्या देता है)। फ़ोकस से पास रखने पर किरणें फैलती हैं और प्रतिबिंब दर्पण के पीछे आभासी, सीधा और बड़ा बनता है। इसीलिए अवतल दर्पण दाढ़ी बनाने, डेंटिस्ट और टॉर्च की तेज़ रोशनी में काम आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "The candle stands exactly at C, 30 cm from a mirror with f = 15 cm. What image forms?",
+                "hi": "मोमबत्ती ठीक C पर, f = 15 cm वाले दर्पण से 30 cm दूर है। कैसा प्रतिबिंब बनता है?"
+              },
+              "options": [
+                {
+                  "en": "Real, inverted, same size, at C",
+                  "hi": "वास्तविक, उलटा, समान आकार का, C पर"
+                },
+                {
+                  "en": "Virtual, erect and magnified, behind the mirror",
+                  "hi": "आभासी, सीधा और आवर्धित, दर्पण के पीछे"
+                },
+                {
+                  "en": "Real, inverted and magnified, beyond C",
+                  "hi": "वास्तविक, उलटा और आवर्धित, C से आगे"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "An object at C has its image at C, the same size, real and inverted.",
+                "hi": "C पर रखी वस्तु का प्रतिबिंब C पर, समान आकार का, वास्तविक और उलटा बनता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A virtual, magnified image needs the candle inside the focus, closer than 15 cm.",
+                  "hi": "आभासी, आवर्धित प्रतिबिंब के लिए मोमबत्ती फ़ोकस के अंदर, 15 cm से पास, चाहिए।"
+                },
+                {
+                  "en": "A magnified image beyond C comes when the candle is between C and F, not at C.",
+                  "hi": "C से आगे आवर्धित प्रतिबिंब तब बनता है जब मोमबत्ती C और F के बीच हो, C पर नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is a concave mirror used behind a torch bulb?",
+                "hi": "टॉर्च के बल्ब के पीछे अवतल दर्पण क्यों लगाया जाता है?"
+              },
+              "options": [
+                {
+                  "en": "A bulb at the focus gives a strong parallel beam",
+                  "hi": "फ़ोकस पर रखा बल्ब तेज़ समांतर बीम देता है"
+                },
+                {
+                  "en": "It makes the bulb look smaller",
+                  "hi": "यह बल्ब को छोटा दिखाता है"
+                },
+                {
+                  "en": "It shows a wide view of the road",
+                  "hi": "यह सड़क का चौड़ा दृश्य दिखाता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Rays from the focus reflect parallel to the axis.",
+                "hi": "फ़ोकस से निकली किरणें अक्ष के समांतर परावर्तित होती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The aim is the beam, not the look of the bulb.",
+                  "hi": "मक़सद बीम है, बल्ब का आकार नहीं।"
+                },
+                {
+                  "en": "A wide view comes from a convex mirror, like a rear-view mirror.",
+                  "hi": "चौड़ा दृश्य उत्तल दर्पण से मिलता है, जैसे पीछे देखने वाला दर्पण।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: put the candle at 30 cm, at 15 cm and at 20 cm and find the image each time. Change f with its slider.",
+            "hi": "आज़माओ: मोमबत्ती को 30 cm, 15 cm और 20 cm पर रखो और हर बार प्रतिबिंब ढूँढो। f को उसके स्लाइडर से बदलो।"
+          }
         }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "Rays from the focus reflect parallel to the axis.",
-        "hi": "फ़ोकस से निकली किरणें अक्ष के समांतर परावर्तित होती हैं।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "The aim is the beam, not the look of the bulb.",
-         "hi": "उद्देश्य किरण पुंज है, बल्ब का आकार नहीं।"
-        },
-        {
-         "en": "A wide view comes from a convex mirror, like a rear-view mirror.",
-         "hi": "चौड़ा दृश्य उत्तल दर्पण से मिलता है, जैसे पीछे देखने वाला दर्पण।"
-        }
-       ]
-      }
-     ]
+      ]
     },
     {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: put the candle at 30 cm, at 15 cm and at 20 cm and find the image each time. Change f with its slider.",
-      "hi": "आज़माओ: मोमबत्ती को 30 cm, 15 cm और 20 cm पर रखो और हर बार प्रतिबिंब ढूँढो। f को उसके स्लाइडर से बदलो।"
-     }
+      "id": "c10-science-jesc1-ch09-convex-mirror",
+      "topic": "9.2",
+      "template": "optics",
+      "title": {
+        "en": "A convex mirror: the rear-view mirror",
+        "hi": "उत्तल दर्पण: पीछे देखने वाला दर्पण"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "element": "convex-mirror",
+        "f": 15,
+        "object": 30
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "Tap Rays to see the light from the candle.",
+            "hi": "मोमबत्ती का प्रकाश देखने के लिए किरणें पर टैप करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Is there anywhere you can put the candle to get a real image from a convex mirror?",
+            "hi": "क्या मोमबत्ती को कहीं भी रखकर उत्तल दर्पण से वास्तविक प्रतिबिंब मिल सकता है?"
+          },
+          "options": [
+            {
+              "id": "never",
+              "en": "No, it is always virtual and smaller",
+              "hi": "नहीं, यह हमेशा आभासी और छोटा होता है"
+            },
+            {
+              "id": "far",
+              "en": "Yes, if it is far away",
+              "hi": "हाँ, अगर वह दूर हो"
+            },
+            {
+              "id": "near",
+              "en": "Yes, if it is very close",
+              "hi": "हाँ, अगर वह बहुत पास हो"
+            }
+          ],
+          "answer": "never"
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Drag the object slider and watch the image.",
+            "hi": "वस्तु का स्लाइडर खिसकाओ और प्रतिबिंब देखो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A convex mirror bulges out, so the reflected rays always spread apart. The image is always behind the mirror, virtual, upright and smaller, between the pole and the focus. Because it shows a small, upright picture of a wide area, it is used as the rear-view mirror of cars, buses and autos.",
+            "hi": "उत्तल दर्पण बाहर की ओर उभरा होता है, इसलिए परावर्तित किरणें हमेशा फैलती हैं। प्रतिबिंब हमेशा दर्पण के पीछे, ध्रुव और फ़ोकस के बीच, आभासी, सीधा और छोटा बनता है। क्योंकि यह बड़े क्षेत्र का छोटा, सीधा चित्र दिखाता है, इसलिए यह कार, बस और ऑटो में पीछे देखने वाले दर्पण के रूप में लगता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do vehicles use convex mirrors to see behind?",
+                "hi": "गाड़ियों में पीछे देखने के लिए उत्तल दर्पण क्यों लगते हैं?"
+              },
+              "options": [
+                {
+                  "en": "They show a wider area with upright images",
+                  "hi": "ये सीधे प्रतिबिंबों के साथ बड़ा क्षेत्र दिखाते हैं"
+                },
+                {
+                  "en": "They make cars look bigger",
+                  "hi": "ये गाड़ियों को बड़ा दिखाते हैं"
+                },
+                {
+                  "en": "They make real images",
+                  "hi": "ये वास्तविक प्रतिबिंब बनाते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A small, upright image lets the driver see a wide field of view.",
+                "hi": "छोटा, सीधा प्रतिबिंब ड्राइवर को बड़ा दृश्य-क्षेत्र दिखाता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Images in a convex mirror are always smaller, not bigger.",
+                  "hi": "उत्तल दर्पण के प्रतिबिंब हमेशा छोटे होते हैं, बड़े नहीं।"
+                },
+                {
+                  "en": "A convex mirror never makes a real image.",
+                  "hi": "उत्तल दर्पण कभी वास्तविक प्रतिबिंब नहीं बनाता।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where does the image of a candle form in a convex mirror?",
+                "hi": "उत्तल दर्पण में मोमबत्ती का प्रतिबिंब कहाँ बनता है?"
+              },
+              "options": [
+                {
+                  "en": "Behind the mirror, between the pole and the focus",
+                  "hi": "दर्पण के पीछे, ध्रुव और फ़ोकस के बीच"
+                },
+                {
+                  "en": "In front of the mirror, between F and C",
+                  "hi": "दर्पण के सामने, F और C के बीच"
+                },
+                {
+                  "en": "On a screen in front of the mirror",
+                  "hi": "दर्पण के सामने पर्दे पर"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The reflected rays spread out and only seem to meet behind the mirror, so the image is virtual and lies between P and F.",
+                "hi": "परावर्तित किरणें फैल जाती हैं और सिर्फ़ दर्पण के पीछे मिलती लगती हैं, इसलिए प्रतिबिंब आभासी है और P और F के बीच बनता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A convex mirror never forms an image in front of it.",
+                  "hi": "उत्तल दर्पण अपने सामने प्रतिबिंब नहीं बनाता।"
+                },
+                {
+                  "en": "A screen catches only real images; a convex mirror makes none.",
+                  "hi": "पर्दा सिर्फ़ वास्तविक प्रतिबिंब पकड़ता है; उत्तल दर्पण वास्तविक प्रतिबिंब नहीं बनाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: change f with its slider. Does a more curved mirror (smaller f) make the image smaller?",
+            "hi": "आज़माओ: f को उसके स्लाइडर से बदलो। क्या ज़्यादा वक्र दर्पण (छोटी f) प्रतिबिंब को और छोटा करता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-glass-slab",
+      "topic": "9.3",
+      "template": "optics",
+      "title": {
+        "en": "Light bends in a glass slab",
+        "hi": "काँच के स्लैब में प्रकाश मुड़ता है"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "element": "slab",
+        "n": 1.5,
+        "angle": 40
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "Tap Rays to show the normals and angles.",
+            "hi": "अभिलंब और कोण दिखाने के लिए किरणें पर टैप करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Light goes from air into glass. Which way will it bend?",
+            "hi": "प्रकाश हवा से काँच में जाता है। वह किस ओर मुड़ेगा?"
+          },
+          "options": [
+            {
+              "id": "towards",
+              "en": "Towards the normal",
+              "hi": "अभिलंब की ओर"
+            },
+            {
+              "id": "away",
+              "en": "Away from the normal",
+              "hi": "अभिलंब से दूर"
+            },
+            {
+              "id": "none",
+              "en": "It goes straight on",
+              "hi": "वह सीधा चला जाएगा"
+            }
+          ],
+          "answer": "towards"
+        },
+        {
+          "kind": "do",
+          "target": "slider:angle",
+          "expect": "refracted",
+          "say": {
+            "en": "Drag the angle slider to change the angle of incidence.",
+            "hi": "आपतन कोण बदलने के लिए कोण का स्लाइडर खिसकाओ।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:n",
+          "expect": "refracted",
+          "say": {
+            "en": "Now drag the refractive index slider up, from glass towards diamond.",
+            "hi": "अब अपवर्तनांक का स्लाइडर ऊपर खिसकाओ, काँच से हीरे की ओर।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Light slows down in glass, so it bends towards the normal as it enters, and away from the normal as it leaves. It comes out parallel to the ray that went in, shifted sideways. The refractive index n = sin i / sin r = speed in air / speed in the medium; a bigger n bends light more. Glass is about 1.5, water 1.33 and diamond 2.42.",
+            "hi": "काँच में प्रकाश धीमा हो जाता है, इसलिए प्रवेश करते समय वह अभिलंब की ओर और निकलते समय अभिलंब से दूर मुड़ता है। निकलने वाली किरण अंदर जाने वाली किरण के समांतर होती है, बस थोड़ी खिसकी हुई। अपवर्तनांक n = sin i / sin r = हवा में चाल / माध्यम में चाल; बड़ा n प्रकाश को ज़्यादा मोड़ता है। काँच का लगभग 1.5, पानी का 1.33 और हीरे का 2.42 है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In which medium does light travel slowest?",
+                "hi": "प्रकाश किस माध्यम में सबसे धीमा चलता है?"
+              },
+              "options": [
+                {
+                  "en": "Diamond (n = 2.42)",
+                  "hi": "हीरा (n = 2.42)"
+                },
+                {
+                  "en": "Water (n = 1.33)",
+                  "hi": "पानी (n = 1.33)"
+                },
+                {
+                  "en": "Air (n = 1.0003)",
+                  "hi": "हवा (n = 1.0003)"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The higher the refractive index, the slower the light.",
+                "hi": "अपवर्तनांक जितना ज़्यादा, प्रकाश उतना धीमा।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Water has a lower n than diamond, so light is faster in water.",
+                  "hi": "पानी का n हीरे से कम है, इसलिए पानी में प्रकाश तेज़ है।"
+                },
+                {
+                  "en": "Air has the lowest n here, so light is fastest in air.",
+                  "hi": "यहाँ हवा का n सबसे कम है, इसलिए हवा में प्रकाश सबसे तेज़ है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A coin in a bucket of water looks raised. Why?",
+                "hi": "पानी की बाल्टी में रखा सिक्का ऊपर उठा हुआ दिखता है। क्यों?"
+              },
+              "options": [
+                {
+                  "en": "Light from the coin bends away from the normal as it leaves water",
+                  "hi": "सिक्के का प्रकाश पानी से निकलते समय अभिलंब से दूर मुड़ता है"
+                },
+                {
+                  "en": "Water pushes the coin up",
+                  "hi": "पानी सिक्के को ऊपर धकेलता है"
+                },
+                {
+                  "en": "The coin floats",
+                  "hi": "सिक्का तैरता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Our eyes trace the bent rays back to a point above the real coin.",
+                "hi": "हमारी आँखें मुड़ी किरणों को पीछे की ओर असली सिक्के से ऊपर एक बिंदु तक मान लेती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The coin stays on the bottom; only its image seems higher.",
+                  "hi": "सिक्का तली पर ही रहता है; सिर्फ़ उसका प्रतिबिंब ऊपर लगता है।"
+                },
+                {
+                  "en": "A metal coin sinks in water.",
+                  "hi": "धातु का सिक्का पानी में डूब जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: set the angle to 0°. Does the ray bend when it hits the glass straight on?",
+            "hi": "आज़माओ: कोण 0° करो। जब किरण काँच पर सीधी पड़ती है तो क्या वह मुड़ती है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-convex-lens",
+      "topic": "9.3",
+      "template": "optics",
+      "title": {
+        "en": "A convex lens makes real and virtual images",
+        "hi": "उत्तल लेंस से वास्तविक और आभासी प्रतिबिंब"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "element": "convex-lens",
+        "f": 10,
+        "object": 30
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "screen",
+          "expect": "image:sharp",
+          "say": {
+            "en": "The candle is 30 cm from a convex lens with f = 10 cm. Drag the screen until the image is sharp.",
+            "hi": "मोमबत्ती 10 cm फ़ोकस दूरी वाले उत्तल लेंस से 30 cm दूर है। पर्दे को तब तक खिसकाओ जब तक प्रतिबिंब साफ़ न हो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Now move the candle closer than 10 cm. What happens to the image?",
+            "hi": "अब मोमबत्ती को 10 cm से पास लाओ। प्रतिबिंब का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "virtual",
+              "en": "It becomes upright, magnified and virtual, like a magnifying glass",
+              "hi": "वह सीधा, बड़ा और आभासी हो जाएगा, आवर्धक लेंस की तरह"
+            },
+            {
+              "id": "smaller",
+              "en": "It becomes smaller on the screen",
+              "hi": "पर्दे पर छोटा हो जाएगा"
+            },
+            {
+              "id": "same",
+              "en": "It stays the same",
+              "hi": "वैसा ही रहेगा"
+            }
+          ],
+          "answer": "virtual"
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Drag the object slider below 10 cm.",
+            "hi": "वस्तु का स्लाइडर 10 cm से नीचे खिसकाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "With the candle beyond the focus, the convex lens bends the rays together into a real, inverted image on the screen: here at 15 cm (topic 9 shows how to calculate it). Inside the focus the rays still spread after the lens, so you see an upright, magnified, virtual image: this is how a magnifying glass works.",
+            "hi": "मोमबत्ती फ़ोकस से आगे हो तो उत्तल लेंस किरणों को मोड़कर पर्दे पर वास्तविक, उलटा प्रतिबिंब बनाता है: यहाँ 15 cm पर (टॉपिक 9 में इसे निकालना सीखोगे)। फ़ोकस के अंदर किरणें लेंस के बाद भी फैलती हैं, इसलिए सीधा, बड़ा, आभासी प्रतिबिंब दिखता है: आवर्धक लेंस ऐसे ही काम करता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A candle is held between a convex lens and its focus. What do you see through the lens?",
+                "hi": "मोमबत्ती उत्तल लेंस और उसके फ़ोकस के बीच पकड़ी है। लेंस में से क्या दिखता है?"
+              },
+              "options": [
+                {
+                  "en": "An upright, magnified, virtual image on the candle's side of the lens",
+                  "hi": "लेंस की उसी ओर, जिधर मोमबत्ती है, सीधा, आवर्धित, आभासी प्रतिबिंब"
+                },
+                {
+                  "en": "An inverted real image on a screen",
+                  "hi": "पर्दे पर उलटा वास्तविक प्रतिबिंब"
+                },
+                {
+                  "en": "No image at all",
+                  "hi": "कोई प्रतिबिंब नहीं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Inside the focus the rays still spread after the lens, so they seem to come from a bigger, upright image on the object's side: a magnifying glass.",
+                "hi": "फ़ोकस के अंदर लेंस के बाद भी किरणें फैली रहती हैं, इसलिए वे वस्तु की ओर के बड़े, सीधे प्रतिबिंब से आती लगती हैं: आवर्धक काँच।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A real image on a screen needs the candle beyond the focus.",
+                  "hi": "पर्दे पर वास्तविक प्रतिबिंब के लिए मोमबत्ती फ़ोकस से आगे चाहिए।"
+                },
+                {
+                  "en": "An image always forms; here it is virtual.",
+                  "hi": "प्रतिबिंब हमेशा बनता है; यहाँ वह आभासी है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Where must an object be to get a real image of the same size from a convex lens?",
+                "hi": "उत्तल लेंस से उसी आकार का वास्तविक प्रतिबिंब पाने के लिए वस्तु कहाँ होनी चाहिए?"
+              },
+              "options": [
+                {
+                  "en": "At 2F (twice the focal length)",
+                  "hi": "2F पर (फ़ोकस दूरी का दुगुना)"
+                },
+                {
+                  "en": "At F",
+                  "hi": "F पर"
+                },
+                {
+                  "en": "Between F and the lens",
+                  "hi": "F और लेंस के बीच"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "An object at 2F gives an inverted image of the same size at 2F on the other side.",
+                "hi": "2F पर रखी वस्तु दूसरी ओर 2F पर उसी आकार का उलटा प्रतिबिंब देती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "At F the rays come out parallel and the image is at infinity.",
+                  "hi": "F पर किरणें समांतर निकलती हैं और प्रतिबिंब अनंत पर बनता है।"
+                },
+                {
+                  "en": "Between F and the lens the image is virtual and magnified.",
+                  "hi": "F और लेंस के बीच प्रतिबिंब आभासी और बड़ा होता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: put the candle at 20 cm (2F) and find the image with the screen. Then try 15 cm and 50 cm.",
+            "hi": "आज़माओ: मोमबत्ती को 20 cm (2F) पर रखकर पर्दे से प्रतिबिंब ढूँढो। फिर 15 cm और 50 cm आज़माओ।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-concave-lens",
+      "topic": "9.3",
+      "template": "optics",
+      "title": {
+        "en": "A concave lens spreads light",
+        "hi": "अवतल लेंस प्रकाश को फैलाता है"
+      },
+      "minutes": 4,
+      "level": "core",
+      "config": {
+        "element": "concave-lens",
+        "f": 15,
+        "object": 30
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "Tap Rays to see the rays pass through the concave lens.",
+            "hi": "अवतल लेंस से गुज़रती किरणें देखने के लिए किरणें पर टैप करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Can a concave lens ever form an image on a screen?",
+            "hi": "क्या अवतल लेंस कभी पर्दे पर प्रतिबिंब बना सकता है?"
+          },
+          "options": [
+            {
+              "id": "never",
+              "en": "No, its image is always virtual",
+              "hi": "नहीं, इसका प्रतिबिंब हमेशा आभासी होता है"
+            },
+            {
+              "id": "far",
+              "en": "Yes, when the object is far",
+              "hi": "हाँ, जब वस्तु दूर हो"
+            },
+            {
+              "id": "near",
+              "en": "Yes, when the object is near",
+              "hi": "हाँ, जब वस्तु पास हो"
+            }
+          ],
+          "answer": "never"
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Drag the object slider near and far.",
+            "hi": "वस्तु का स्लाइडर पास और दूर खिसकाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A concave lens is thinner in the middle, so it spreads rays apart. The image is always virtual, upright and smaller, on the same side as the object, between the focus and the lens. Its focal length is taken as negative. Concave lenses correct short sight.",
+            "hi": "अवतल लेंस बीच में पतला होता है, इसलिए वह किरणों को फैला देता है। प्रतिबिंब हमेशा आभासी, सीधा और छोटा होता है, वस्तु की ही ओर, फ़ोकस और लेंस के बीच। इसकी फ़ोकस दूरी ऋण मानी जाती है। अवतल लेंस निकट दृष्टि दोष ठीक करते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A candle is placed far from a concave lens. What is true of its image?",
+                "hi": "मोमबत्ती अवतल लेंस से दूर रखी है। उसके प्रतिबिंब के बारे में क्या सही है?"
+              },
+              "options": [
+                {
+                  "en": "Virtual, erect and smaller",
+                  "hi": "आभासी, सीधा और छोटा"
+                },
+                {
+                  "en": "Real, inverted and enlarged",
+                  "hi": "वास्तविक, उलटा और आवर्धित"
+                },
+                {
+                  "en": "Real, inverted and the same size",
+                  "hi": "वास्तविक, उलटा और समान आकार का"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A concave lens only spreads the rays, so its image is always virtual, erect and diminished.",
+                "hi": "अवतल लेंस किरणों को सिर्फ़ फैलाता है, इसलिए उसका प्रतिबिंब हमेशा आभासी, सीधा और छोटा होता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A concave lens never forms a real image.",
+                  "hi": "अवतल लेंस कभी वास्तविक प्रतिबिंब नहीं बनाता।"
+                },
+                {
+                  "en": "A same-size real image belongs to a convex lens with the object at 2F.",
+                  "hi": "समान आकार का वास्तविक प्रतिबिंब उत्तल लेंस का है, जब वस्तु 2F पर हो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: change f with its slider and watch where the image sits. Does it ever cross the focus?",
+            "hi": "आज़माओ: f को स्लाइडर से बदलो और देखो प्रतिबिंब कहाँ बनता है। क्या वह कभी फ़ोकस के पार जाता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-mirror-focus",
+      "topic": "9.2",
+      "template": "optics",
+      "title": {
+        "en": "Find the focus of a concave mirror",
+        "hi": "अवतल दर्पण का फ़ोकस ढूँढो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "element": "concave-mirror",
+        "f": 10,
+        "object": 100
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "A far-away candle sends almost parallel rays, like the Sun. Tap Rays to see them reach the concave mirror.",
+            "hi": "दूर रखी मोमबत्ती से लगभग समांतर किरणें आती हैं, जैसे सूरज से। किरणें पर टैप करो और देखो कि वे अवतल दर्पण तक कैसे पहुँचती हैं।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "screen",
+          "expect": "image:sharp",
+          "say": {
+            "en": "The candle is 100 cm from a mirror with f = 10 cm. Drag the screen until the image is sharp, then read how far the image is from the mirror.",
+            "hi": "मोमबत्ती f = 10 cm वाले दर्पण से 100 cm दूर है। पर्दे को खिसकाओ जब तक प्रतिबिंब साफ़ न हो, फिर देखो कि प्रतिबिंब दर्पण से कितनी दूर है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Now bring the candle closer, from 100 cm to 30 cm. What happens to the sharp image?",
+            "hi": "अब मोमबत्ती को पास लाओ, 100 cm से 30 cm पर। साफ़ प्रतिबिंब का क्या होगा?"
+          },
+          "options": [
+            {
+              "id": "away",
+              "en": "It moves away from the mirror, past F",
+              "hi": "वह दर्पण से दूर खिसकेगा, F से आगे"
+            },
+            {
+              "id": "closer",
+              "en": "It moves closer to the mirror",
+              "hi": "वह दर्पण के पास आएगा"
+            },
+            {
+              "id": "stay",
+              "en": "It stays exactly at F",
+              "hi": "वह ठीक F पर ही रहेगा"
+            }
+          ],
+          "answer": "away"
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "moved",
+          "say": {
+            "en": "Drag the object slider down to 30 cm and find the sharp image again.",
+            "hi": "वस्तु का स्लाइडर 30 cm तक नीचे खिसकाओ और साफ़ प्रतिबिंब फिर से ढूँढो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A far-away object sends parallel rays, and they meet very close to F. The Sun is so far away that its bright spot forms exactly at F, so the distance from the mirror to that spot is the focal length f. The centre of curvature C is twice as far: R = 2f. When the candle comes closer, the image moves away from the mirror: at 30 cm it forms at 15 cm.",
+            "hi": "दूर रखी चीज़ से समांतर किरणें आती हैं और वे F के बहुत पास मिलती हैं। सूरज इतना दूर है कि उसका चमकीला धब्बा ठीक F पर बनता है, इसलिए दर्पण से उस धब्बे तक की दूरी ही फ़ोकस दूरी f है। वक्रता केंद्र C उससे दुगुनी दूरी पर है: R = 2f। मोमबत्ती पास आती है तो प्रतिबिंब दर्पण से दूर खिसकता है: 30 cm पर वह 15 cm पर बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "On a sunny day the bright spot of a concave mirror is sharpest 12 cm from the mirror. What is the radius of curvature R?",
+                "hi": "धूप वाले दिन अवतल दर्पण का चमकीला धब्बा दर्पण से 12 cm पर सबसे साफ़ बनता है। वक्रता त्रिज्या R कितनी है?"
+              },
+              "options": [
+                {
+                  "en": "R is 24 cm",
+                  "hi": "R = 24 cm है"
+                },
+                {
+                  "en": "R is 12 cm",
+                  "hi": "R = 12 cm है"
+                },
+                {
+                  "en": "R is 6 cm",
+                  "hi": "R = 6 cm है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The spot is at F, so f = 12 cm and R = 2f = 24 cm.",
+                "hi": "धब्बा F पर है, इसलिए f = 12 cm और R = 2f = 24 cm।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "12 cm is the focal length f, not the radius R.",
+                  "hi": "12 cm फ़ोकस दूरी f है, त्रिज्या R नहीं।"
+                },
+                {
+                  "en": "6 cm halves the distance, but R is double f.",
+                  "hi": "6 cm में दूरी आधी कर दी गई, जबकि R तो f का दुगुना है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why does the Sun's spot form exactly at F?",
+                "hi": "सूरज का धब्बा ठीक F पर क्यों बनता है?"
+              },
+              "options": [
+                {
+                  "en": "The Sun is so far away that its rays arrive parallel to the axis",
+                  "hi": "सूरज इतना दूर है कि उसकी किरणें अक्ष के समांतर आती हैं"
+                },
+                {
+                  "en": "The Sun is placed at C",
+                  "hi": "सूरज C पर रखा होता है"
+                },
+                {
+                  "en": "A concave mirror always focuses light at its pole",
+                  "hi": "अवतल दर्पण हमेशा प्रकाश को अपने ध्रुव पर इकट्ठा करता है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Parallel rays meet at the principal focus.",
+                "hi": "समांतर किरणें मुख्य फ़ोकस पर मिलती हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The Sun is much farther than C; C is only 2f from the mirror.",
+                  "hi": "सूरज C से कहीं ज़्यादा दूर है; C तो दर्पण से सिर्फ़ 2f दूरी पर है।"
+                },
+                {
+                  "en": "The pole is just the centre of the mirror; rays meet at F, halfway to C.",
+                  "hi": "ध्रुव तो बस दर्पण का बीच का बिंदु है; किरणें F पर मिलती हैं, जो C का आधा रास्ता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: change f to 20 cm with its slider. Where does the sharp image of the far candle form now? Is it near F again?",
+            "hi": "आज़माओ: f के स्लाइडर से f को 20 cm करो। दूर वाली मोमबत्ती का साफ़ प्रतिबिंब अब कहाँ बनता है? क्या वह फिर F के पास है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-mirror-formula",
+      "topic": "9.2",
+      "template": "optics",
+      "title": {
+        "en": "The mirror formula with numbers",
+        "hi": "दर्पण सूत्र, संख्याओं के साथ"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "element": "concave-mirror",
+        "f": 15,
+        "object": 45
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "moved",
+          "say": {
+            "en": "A concave mirror has f = 15 cm and the candle is 45 cm away. Drag the object slider a little and watch the image distance and m in the box below.",
+            "hi": "अवतल दर्पण की f = 15 cm है और मोमबत्ती 45 cm दूर है। वस्तु का स्लाइडर थोड़ा खिसकाओ और नीचे के बॉक्स में प्रतिबिंब की दूरी और m देखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Use 1/v + 1/u = 1/f with f = −15 cm and u = −45 cm. What is v?",
+            "hi": "1/v + 1/u = 1/f में f = −15 cm और u = −45 cm रखो। v कितना आता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "v is −22.5 cm (real, in front)",
+              "hi": "v = −22.5 cm है (वास्तविक, सामने)"
+            },
+            {
+              "id": "b",
+              "en": "v is +22.5 cm (behind the mirror)",
+              "hi": "v = +22.5 cm है (दर्पण के पीछे)"
+            },
+            {
+              "id": "c",
+              "en": "v is −30 cm",
+              "hi": "v = −30 cm है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Now drag the object slider below 15 cm, inside the focus. The image distance turns positive: the image is behind the mirror.",
+            "hi": "अब वस्तु का स्लाइडर 15 cm से नीचे, फ़ोकस के अंदर खिसकाओ। प्रतिबिंब की दूरी धन हो जाती है: प्रतिबिंब दर्पण के पीछे बनता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Measure every distance from P and give the signs: in front of the mirror is negative. For u = −45 cm and f = −15 cm, 1/v = −1/15 + 1/45 = −2/45, so v = −22.5 cm. The minus sign says the image is real, in front. m = −v/u = −0.5: the minus says inverted, and 0.5 says half the size. Inside the focus v turns positive (virtual, behind the mirror) and m becomes positive (erect).",
+            "hi": "हर दूरी P से नापो और चिह्न के साथ लिखो: दर्पण के सामने की दूरी ऋण होती है। u = −45 cm और f = −15 cm के लिए 1/v = −1/15 + 1/45 = −2/45, यानी v = −22.5 cm। ऋण का मतलब है प्रतिबिंब वास्तविक है और सामने बना है। m = −v/u = −0.5: ऋण का मतलब उलटा, और 0.5 का मतलब आधे साइज़ का। फ़ोकस के अंदर v धन हो जाता है (आभासी, दर्पण के पीछे) और m भी धन (सीधा)।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A concave mirror has f = −20 cm. An object is at u = −30 cm. What is v?",
+                "hi": "अवतल दर्पण की f = −20 cm है और वस्तु u = −30 cm पर है। v कितना है?"
+              },
+              "options": [
+                {
+                  "en": "v is −60 cm",
+                  "hi": "v = −60 cm है"
+                },
+                {
+                  "en": "v is −12 cm",
+                  "hi": "v = −12 cm है"
+                },
+                {
+                  "en": "v is +60 cm",
+                  "hi": "v = +60 cm है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1/v = 1/f − 1/u = −1/20 + 1/30 = −1/60, so v = −60 cm (real, in front).",
+                "hi": "1/v = 1/f − 1/u = −1/20 + 1/30 = −1/60, इसलिए v = −60 cm (वास्तविक, सामने)।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "−12 cm comes from adding 1/20 and 1/30 with the same sign.",
+                  "hi": "−12 cm तब आता है जब 1/20 और 1/30 को एक ही चिह्न से जोड़ दो।"
+                },
+                {
+                  "en": "A positive v would put the image behind the mirror, which only happens inside the focus.",
+                  "hi": "धन v का मतलब प्रतिबिंब दर्पण के पीछे होता, जो सिर्फ़ फ़ोकस के अंदर होता है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "The box shows m = −0.5. What does that tell you about the image?",
+                "hi": "बॉक्स में m = −0.5 दिखता है। प्रतिबिंब के बारे में यह क्या बताता है?"
+              },
+              "options": [
+                {
+                  "en": "It is inverted and half the size of the object",
+                  "hi": "वह उलटा है और वस्तु से आधे साइज़ का है"
+                },
+                {
+                  "en": "It is erect and half the size of the object",
+                  "hi": "वह सीधा है और वस्तु से आधे साइज़ का है"
+                },
+                {
+                  "en": "It is inverted and twice the size of the object",
+                  "hi": "वह उलटा है और वस्तु से दुगुने साइज़ का है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The minus sign means inverted; the size 0.5 means half.",
+                "hi": "ऋण चिह्न का मतलब उलटा; 0.5 का मतलब आधा साइज़।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Erect images have a positive m.",
+                  "hi": "सीधे प्रतिबिंब का m धन होता है।"
+                },
+                {
+                  "en": "Twice the size would be m = −2.",
+                  "hi": "दुगुना साइज़ होता तो m = −2 होता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: put the candle at 30 cm (u = −2f). Is v equal to u? Then try 20 cm, and read what m says.",
+            "hi": "आज़माओ: मोमबत्ती को 30 cm (u = −2f) पर रखो। क्या v और u बराबर हैं? फिर 20 cm आज़माओ और देखो m क्या कहता है।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-refractive-index",
+      "topic": "9.3",
+      "template": "optics",
+      "title": {
+        "en": "Snell's law and refractive index",
+        "hi": "स्नेल का नियम और अपवर्तनांक"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "element": "slab",
+        "n": 1.5,
+        "angle": 50
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "toggle:rays",
+          "expect": "moved",
+          "say": {
+            "en": "Tap Rays to show the normals and the angles. Read i and r in the box below.",
+            "hi": "अभिलंब और कोण दिखाने के लिए किरणें पर टैप करो। नीचे के बॉक्स में i और r पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The glass has n = 1.5 and i = 50°. Using sin i / sin r = n, about how big is r?",
+            "hi": "काँच का n = 1.5 है और i = 50°। sin i / sin r = n से r लगभग कितना होगा?"
+          },
+          "options": [
+            {
+              "id": "31",
+              "en": "About 31°",
+              "hi": "लगभग 31°"
+            },
+            {
+              "id": "50",
+              "en": "About 50°",
+              "hi": "लगभग 50°"
+            },
+            {
+              "id": "75",
+              "en": "About 75°",
+              "hi": "लगभग 75°"
+            }
+          ],
+          "answer": "31"
+        },
+        {
+          "kind": "do",
+          "target": "slider:n",
+          "expect": "refracted",
+          "say": {
+            "en": "Drag the refractive index slider down to 1.33, like water. Read the new r.",
+            "hi": "अपवर्तनांक का स्लाइडर 1.33 तक नीचे खिसकाओ, जैसे पानी। नया r पढ़ो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:angle",
+          "expect": "refracted",
+          "say": {
+            "en": "Now change the angle of incidence. Both i and r change, but sin i / sin r stays equal to n.",
+            "hi": "अब आपतन कोण बदलो। i और r दोनों बदलते हैं, पर sin i / sin r का मान n के बराबर ही रहता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Snell's law: for two given media, sin i / sin r is a constant, and that constant is the refractive index n = c / v. For air to glass, sin 50° / sin r = 1.5 gives r = 30.7°. For water (n = 1.33) the ray bends less: r = 35.2°. A bigger n means slower light, a more optically dense medium and more bending.",
+            "hi": "स्नेल का नियम: दो दिए माध्यमों के लिए sin i / sin r नियतांक होता है, और यही नियतांक अपवर्तनांक n = c / v है। हवा से काँच के लिए sin 50° / sin r = 1.5 से r = 30.7° आता है। पानी (n = 1.33) में किरण कम मुड़ती है: r = 35.2°। n बड़ा हो तो प्रकाश धीमा, माध्यम प्रकाशिक रूप से ज़्यादा सघन और मोड़ ज़्यादा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Light travels at 2 × 10⁸ m/s in a medium. What is its refractive index? (c = 3 × 10⁸ m/s)",
+                "hi": "किसी माध्यम में प्रकाश 2 × 10⁸ m/s की चाल से चलता है। उसका अपवर्तनांक कितना है? (c = 3 × 10⁸ m/s)"
+              },
+              "options": [
+                {
+                  "en": "n is 1.5",
+                  "hi": "n = 1.5 है"
+                },
+                {
+                  "en": "n is 0.67",
+                  "hi": "n = 0.67 है"
+                },
+                {
+                  "en": "n is 6",
+                  "hi": "n = 6 है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "n = c / v = 3 × 10⁸ / 2 × 10⁸ = 1.5.",
+                "hi": "n = c / v = 3 × 10⁸ / 2 × 10⁸ = 1.5।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "0.67 is v / c, the upside-down ratio; n cannot be below 1.",
+                  "hi": "0.67 तो v / c है, यानी उलटा अनुपात; n कभी 1 से कम नहीं होता।"
+                },
+                {
+                  "en": "6 multiplies the two numbers instead of dividing.",
+                  "hi": "6 में दोनों संख्याओं को भाग देने की जगह गुणा कर दिया गया।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "For the same angle of incidence, which medium bends the ray more towards the normal?",
+                "hi": "आपतन कोण वही हो तो कौन-सा माध्यम किरण को अभिलंब की तरफ़ ज़्यादा मोड़ता है?"
+              },
+              "options": [
+                {
+                  "en": "n = 1.5 (glass)",
+                  "hi": "n = 1.5 (काँच)"
+                },
+                {
+                  "en": "n = 1.33 (water)",
+                  "hi": "n = 1.33 (पानी)"
+                },
+                {
+                  "en": "Both bend it equally",
+                  "hi": "दोनों बराबर मोड़ते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "A bigger n gives a smaller r, so a bigger bend.",
+                "hi": "बड़ा n छोटा r देता है, यानी ज़्यादा मोड़।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Water has the smaller n, so it bends less.",
+                  "hi": "पानी का n छोटा है, इसलिए वह कम मोड़ता है।"
+                },
+                {
+                  "en": "Different n gives a different r for the same i.",
+                  "hi": "अलग n हो तो एक ही i पर r अलग आता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: set the angle to 0°. Does the ray bend when it goes along the normal, whatever n is?",
+            "hi": "आज़माओ: कोण 0° करो। अभिलंब के साथ चलती किरण क्या मुड़ती है, n कुछ भी हो?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch09-lens-power",
+      "topic": "9.3",
+      "template": "optics",
+      "title": {
+        "en": "Lens formula and power",
+        "hi": "लेंस सूत्र और क्षमता"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "element": "convex-lens",
+        "f": 20,
+        "object": 60
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "moved",
+          "say": {
+            "en": "A convex lens has f = 20 cm and the candle is 60 cm away. Drag the object slider a little and read the image distance, m and the power P in the box below.",
+            "hi": "उत्तल लेंस की f = 20 cm है और मोमबत्ती 60 cm दूर है। वस्तु का स्लाइडर थोड़ा खिसकाओ और नीचे के बॉक्स में प्रतिबिंब की दूरी, m और क्षमता P पढ़ो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Use 1/v − 1/u = 1/f with f = +20 cm and u = −60 cm. What is v?",
+            "hi": "1/v − 1/u = 1/f में f = +20 cm और u = −60 cm रखो। v कितना आता है?"
+          },
+          "options": [
+            {
+              "id": "a",
+              "en": "v is +30 cm",
+              "hi": "v = +30 cm है"
+            },
+            {
+              "id": "b",
+              "en": "v is −30 cm",
+              "hi": "v = −30 cm है"
+            },
+            {
+              "id": "c",
+              "en": "v is +15 cm",
+              "hi": "v = +15 cm है"
+            }
+          ],
+          "answer": "a"
+        },
+        {
+          "kind": "do",
+          "target": "slider:f",
+          "expect": "moved",
+          "say": {
+            "en": "Drag the f slider down to 10 cm. Watch the power P = 1/f: a shorter f gives a bigger power.",
+            "hi": "f का स्लाइडर 10 cm तक नीचे खिसकाओ। क्षमता P = 1/f देखो: f छोटी तो क्षमता ज़्यादा।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "slider:object",
+          "expect": "image:virtual",
+          "say": {
+            "en": "Now bring the candle closer than f. The image becomes virtual and erect.",
+            "hi": "अब मोमबत्ती को f से पास लाओ। प्रतिबिंब आभासी और सीधा हो जाता है।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "For a lens, 1/v − 1/u = 1/f. With f = +20 cm and u = −60 cm, 1/v = 1/20 − 1/60 = 2/60, so v = +30 cm: real, on the far side. m = v/u = −0.5: inverted and half the size. The power is P = 1/f with f in metres: f = 0.2 m gives +5 D, and f = 0.1 m gives +10 D. A concave lens has negative power.",
+            "hi": "लेंस के लिए 1/v − 1/u = 1/f। f = +20 cm और u = −60 cm से 1/v = 1/20 − 1/60 = 2/60, यानी v = +30 cm: वास्तविक, दूसरी तरफ़। m = v/u = −0.5: उलटा और आधे साइज़ का। क्षमता P = 1/f है, f m में: f = 0.2 m से +5 D और f = 0.1 m से +10 D। अवतल लेंस की क्षमता ऋण होती है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "A convex lens has f = 25 cm. What is its power?",
+                "hi": "उत्तल लेंस की f = 25 cm है। उसकी क्षमता कितनी है?"
+              },
+              "options": [
+                {
+                  "en": "P is +4 D",
+                  "hi": "P = +4 D है"
+                },
+                {
+                  "en": "P is +0.04 D",
+                  "hi": "P = +0.04 D है"
+                },
+                {
+                  "en": "P is +25 D",
+                  "hi": "P = +25 D है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "P = 1/f with f = 0.25 m gives +4 D.",
+                "hi": "P = 1/f में f = 0.25 m रखने पर +4 D मिलता है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "+0.04 D uses f = 25 m; change cm to m first.",
+                  "hi": "+0.04 D में f = 25 m ले लिया गया; पहले cm को m में बदलो।"
+                },
+                {
+                  "en": "+25 D uses the number of centimetres as the power.",
+                  "hi": "+25 D में cm की संख्या को ही क्षमता मान लिया गया।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A convex lens has f = 15 cm. An object is at u = −30 cm. What is v?",
+                "hi": "उत्तल लेंस की f = 15 cm है और वस्तु u = −30 cm पर है। v कितना है?"
+              },
+              "options": [
+                {
+                  "en": "v is +30 cm",
+                  "hi": "v = +30 cm है"
+                },
+                {
+                  "en": "v is −30 cm",
+                  "hi": "v = −30 cm है"
+                },
+                {
+                  "en": "v is +10 cm",
+                  "hi": "v = +10 cm है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "1/v = 1/15 − 1/30 = 1/30, so v = +30 cm (the object is at 2f, so the image is at 2f).",
+                "hi": "1/v = 1/15 − 1/30 = 1/30, इसलिए v = +30 cm (वस्तु 2f पर है, इसलिए प्रतिबिंब भी 2f पर)।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "A negative v would put the image on the object side; here it is real, on the far side.",
+                  "hi": "ऋण v का मतलब प्रतिबिंब वस्तु वाली तरफ़ होता; यहाँ वह वास्तविक है और दूसरी तरफ़ बनता है।"
+                },
+                {
+                  "en": "+10 cm comes from adding 1/15 and 1/30 instead of subtracting.",
+                  "hi": "+10 cm तब आता है जब 1/15 में से 1/30 घटाने की जगह जोड़ दो।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: set f = 40 cm. What is the power now? Try the shortest and the longest f and compare the powers.",
+            "hi": "आज़माओ: f = 40 cm करो। अब क्षमता कितनी है? सबसे छोटी और सबसे बड़ी f आज़माओ और क्षमताओं की तुलना करो।"
+          }
+        }
+      ]
     }
-   ]
-  },
-  {
-   "id": "c10-science-jesc1-ch09-convex-mirror",
-   "topic": "9.2",
-   "template": "optics",
-   "title": {
-    "en": "A convex mirror: the rear-view mirror",
-    "hi": "उत्तल दर्पण: पीछे देखने वाला दर्पण"
-   },
-   "minutes": 4,
-   "level": "core",
-   "config": {
-    "element": "convex-mirror",
-    "f": 15,
-    "object": 30
-   },
-   "steps": [
+  ],
+  "images": [
     {
-     "kind": "do",
-     "target": "toggle:rays",
-     "expect": "moved",
-     "say": {
-      "en": "Tap Rays to see the light from the candle.",
-      "hi": "मोमबत्ती का प्रकाश देखने के लिए किरणें पर टैप करो।"
-     }
+      "n": 1,
+      "kind": "SEQ",
+      "topic": "9.3",
+      "use": "Hook: the bent spoon",
+      "shows": "A steel spoon in a glass of water seen from the side, looking broken at the surface; the same spoon out of the water, straight",
+      "view": "Eye level, two frames",
+      "right": "Apparent break exactly at the water surface",
+      "avoid": "Coloured drinks"
     },
     {
-     "kind": "predict",
-     "say": {
-      "en": "Is there anywhere you can put the candle to get a real image from a convex mirror?",
-      "hi": "क्या मोमबत्ती को कहीं भी रखकर उत्तल दर्पण से वास्तविक प्रतिबिंब मिल सकता है?"
-     },
-     "options": [
-      {
-       "id": "never",
-       "en": "No, it is always virtual and smaller",
-       "hi": "नहीं, यह हमेशा आभासी और छोटा होता है"
-      },
-      {
-       "id": "far",
-       "en": "Yes, if it is far away",
-       "hi": "हाँ, अगर वह दूर हो"
-      },
-      {
-       "id": "near",
-       "en": "Yes, if it is very close",
-       "hi": "हाँ, अगर वह बहुत पास हो"
-      }
-     ],
-     "answer": "never"
+      "n": 2,
+      "kind": "SEQ",
+      "topic": "9.2",
+      "use": "A spoon as two mirrors",
+      "shows": "Reflection of a child's toy (not a face) in the inner side of a shiny spoon (inverted) and in the back side (upright, small)",
+      "view": "Close-up, two frames",
+      "right": "Inner side shows inverted image; back side upright and diminished",
+      "avoid": "Faces"
     },
     {
-     "kind": "do",
-     "target": "slider:object",
-     "expect": "image:virtual",
-     "say": {
-      "en": "Drag the object slider and watch the image.",
-      "hi": "वस्तु का स्लाइडर खिसकाओ और प्रतिबिंब देखो।"
-     }
+      "n": 3,
+      "kind": "SCN",
+      "topic": "9.2",
+      "use": "Uses of mirrors",
+      "shows": "Separate photos: a convex rear-view mirror on an auto-rickshaw or car, a dentist's concave mirror, a solar concave cooker, the reflector of a torch",
+      "view": "Each a clear single subject",
+      "right": "Rear-view mirror shows a wide, small view",
+      "avoid": "Brands, number plates"
     },
     {
-     "kind": "explain",
-     "say": {
-      "en": "A convex mirror bulges out, so the reflected rays always spread apart. The image is always behind the mirror, virtual, upright and smaller, between the pole and the focus. Because it shows a small, upright picture of a wide area, it is used as the rear-view mirror of cars, buses and autos.",
-      "hi": "उत्तल दर्पण बाहर की ओर उभरा होता है, इसलिए परावर्तित किरणें हमेशा फैलती हैं। प्रतिबिंब हमेशा दर्पण के पीछे, ध्रुव और फ़ोकस के बीच, आभासी, सीधा और छोटा बनता है। क्योंकि यह बड़े क्षेत्र का छोटा, सीधा चित्र दिखाता है, इसलिए यह कार, बस और ऑटो में पीछे देखने वाले दर्पण के रूप में लगता है।"
-     }
+      "n": 4,
+      "kind": "SEQ",
+      "topic": "9.3.3",
+      "use": "Focus of a convex lens",
+      "shows": "An adult holding a convex lens focusing sunlight to a bright point on paper; a small burnt hole forming",
+      "view": "Side view, two frames",
+      "right": "Smallest, brightest spot at the focus",
+      "avoid": "A child doing it"
     },
     {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "Why do vehicles use convex mirrors to see behind?",
-        "hi": "वाहनों में पीछे देखने के लिए उत्तल दर्पण क्यों लगते हैं?"
-       },
-       "options": [
-        {
-         "en": "They show a wider area with upright images",
-         "hi": "ये सीधे प्रतिबिंबों के साथ बड़ा क्षेत्र दिखाते हैं"
-        },
-        {
-         "en": "They make cars look bigger",
-         "hi": "ये गाड़ियों को बड़ा दिखाते हैं"
-        },
-        {
-         "en": "They make real images",
-         "hi": "ये वास्तविक प्रतिबिंब बनाते हैं"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "A small, upright image lets the driver see a wide field of view.",
-        "hi": "छोटा, सीधा प्रतिबिंब चालक को बड़ा दृश्य-क्षेत्र दिखाता है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "Images in a convex mirror are always smaller, not bigger.",
-         "hi": "उत्तल दर्पण के प्रतिबिंब हमेशा छोटे होते हैं, बड़े नहीं।"
-        },
-        {
-         "en": "A convex mirror never makes a real image.",
-         "hi": "उत्तल दर्पण कभी वास्तविक प्रतिबिंब नहीं बनाता।"
-        }
-       ]
-      },
-      {
-       "q": {
-        "en": "Where does the image of a candle form in a convex mirror?",
-        "hi": "उत्तल दर्पण में मोमबत्ती का प्रतिबिंब कहाँ बनता है?"
-       },
-       "options": [
-        {
-         "en": "Behind the mirror, between the pole and the focus",
-         "hi": "दर्पण के पीछे, ध्रुव और फ़ोकस के बीच"
-        },
-        {
-         "en": "In front of the mirror, between F and C",
-         "hi": "दर्पण के सामने, F और C के बीच"
-        },
-        {
-         "en": "On a screen in front of the mirror",
-         "hi": "दर्पण के सामने पर्दे पर"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "The reflected rays spread out and only seem to meet behind the mirror, so the image is virtual and lies between P and F.",
-        "hi": "परावर्तित किरणें फैल जाती हैं और केवल दर्पण के पीछे मिलती प्रतीत होती हैं, इसलिए प्रतिबिंब आभासी है और P और F के बीच बनता है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "A convex mirror never forms an image in front of it.",
-         "hi": "उत्तल दर्पण अपने सामने प्रतिबिंब नहीं बनाता।"
-        },
-        {
-         "en": "A screen catches only real images; a convex mirror makes none.",
-         "hi": "पर्दा केवल वास्तविक प्रतिबिंब पकड़ता है; उत्तल दर्पण वास्तविक प्रतिबिंब नहीं बनाता।"
-        }
-       ]
-      }
-     ]
+      "n": 5,
+      "kind": "SCN",
+      "topic": "9.3.1",
+      "use": "Refraction in a glass slab",
+      "shows": "A laser beam entering a rectangular glass slab at an angle, bending inside, and leaving parallel to its first direction",
+      "view": "From above, dark room, beam visible",
+      "right": "Emerging ray parallel to incident ray, shifted sideways",
+      "avoid": "Text"
     },
     {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: change f with its slider. Does a more curved mirror (smaller f) make the image smaller?",
-      "hi": "आज़माओ: f को उसके स्लाइडर से बदलो। क्या ज़्यादा वक्र दर्पण (छोटी f) प्रतिबिंब को और छोटा करता है?"
-     }
+      "n": 6,
+      "kind": "SCN",
+      "topic": "9.3.4",
+      "use": "A real image",
+      "shows": "A convex lens on a stand forming a sharp, inverted image of a distant window on a white screen",
+      "view": "Side view, dim room",
+      "right": "Image inverted and smaller",
+      "avoid": "People"
+    },
+    {
+      "n": 7,
+      "kind": "SCN",
+      "topic": "9.3",
+      "use": "A pool looks shallower",
+      "shows": "A clear swimming pool or a village pond with the bottom visible, looking shallower than it is",
+      "view": "Looking down at an angle",
+      "right": "Clear water, visible bottom",
+      "avoid": "People swimming"
     }
-   ]
-  },
-  {
-   "id": "c10-science-jesc1-ch09-glass-slab",
-   "topic": "9.3",
-   "template": "optics",
-   "title": {
-    "en": "Light bends in a glass slab",
-    "hi": "काँच के स्लैब में प्रकाश मुड़ता है"
-   },
-   "minutes": 5,
-   "level": "core",
-   "config": {
-    "element": "slab",
-    "n": 1.5,
-    "angle": 40
-   },
-   "steps": [
-    {
-     "kind": "do",
-     "target": "toggle:rays",
-     "expect": "moved",
-     "say": {
-      "en": "Tap Rays to show the normals and angles.",
-      "hi": "अभिलंब और कोण दिखाने के लिए किरणें पर टैप करो।"
-     }
-    },
-    {
-     "kind": "predict",
-     "say": {
-      "en": "Light goes from air into glass. Which way will it bend?",
-      "hi": "प्रकाश हवा से काँच में जाता है। वह किस ओर मुड़ेगा?"
-     },
-     "options": [
-      {
-       "id": "towards",
-       "en": "Towards the normal",
-       "hi": "अभिलंब की ओर"
-      },
-      {
-       "id": "away",
-       "en": "Away from the normal",
-       "hi": "अभिलंब से दूर"
-      },
-      {
-       "id": "none",
-       "en": "It goes straight on",
-       "hi": "वह सीधा चला जाएगा"
-      }
-     ],
-     "answer": "towards"
-    },
-    {
-     "kind": "do",
-     "target": "slider:angle",
-     "expect": "refracted",
-     "say": {
-      "en": "Drag the angle slider to change the angle of incidence.",
-      "hi": "आपतन कोण बदलने के लिए कोण का स्लाइडर खिसकाओ।"
-     }
-    },
-    {
-     "kind": "do",
-     "target": "slider:n",
-     "expect": "refracted",
-     "say": {
-      "en": "Now drag the refractive index slider up, from glass towards diamond.",
-      "hi": "अब अपवर्तनांक का स्लाइडर ऊपर खिसकाओ, काँच से हीरे की ओर।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "Light slows down in glass, so it bends towards the normal as it enters, and away from the normal as it leaves. It comes out parallel to the ray that went in, shifted sideways. The refractive index n = sin i / sin r = speed in air / speed in the medium; a bigger n bends light more. Glass is about 1.5, water 1.33 and diamond 2.42.",
-      "hi": "काँच में प्रकाश धीमा हो जाता है, इसलिए प्रवेश करते समय वह अभिलंब की ओर और निकलते समय अभिलंब से दूर मुड़ता है। निकलने वाली किरण अंदर जाने वाली किरण के समांतर होती है, बस थोड़ी खिसकी हुई। अपवर्तनांक n = sin i / sin r = हवा में चाल / माध्यम में चाल; बड़ा n प्रकाश को ज़्यादा मोड़ता है। काँच का लगभग 1.5, पानी का 1.33 और हीरे का 2.42 है।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "In which medium does light travel slowest?",
-        "hi": "प्रकाश किस माध्यम में सबसे धीमा चलता है?"
-       },
-       "options": [
-        {
-         "en": "Diamond (n = 2.42)",
-         "hi": "हीरा (n = 2.42)"
-        },
-        {
-         "en": "Water (n = 1.33)",
-         "hi": "पानी (n = 1.33)"
-        },
-        {
-         "en": "Air (n = 1.0003)",
-         "hi": "हवा (n = 1.0003)"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "The higher the refractive index, the slower the light.",
-        "hi": "अपवर्तनांक जितना ज़्यादा, प्रकाश उतना धीमा।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "Water has a lower n than diamond, so light is faster in water.",
-         "hi": "पानी का n हीरे से कम है, इसलिए पानी में प्रकाश तेज़ है।"
-        },
-        {
-         "en": "Air has the lowest n here, so light is fastest in air.",
-         "hi": "यहाँ हवा का n सबसे कम है, इसलिए हवा में प्रकाश सबसे तेज़ है।"
-        }
-       ]
-      },
-      {
-       "q": {
-        "en": "A coin in a bucket of water looks raised. Why?",
-        "hi": "पानी की बाल्टी में रखा सिक्का ऊपर उठा हुआ दिखता है। क्यों?"
-       },
-       "options": [
-        {
-         "en": "Light from the coin bends away from the normal as it leaves water",
-         "hi": "सिक्के का प्रकाश पानी से निकलते समय अभिलंब से दूर मुड़ता है"
-        },
-        {
-         "en": "Water pushes the coin up",
-         "hi": "पानी सिक्के को ऊपर धकेलता है"
-        },
-        {
-         "en": "The coin floats",
-         "hi": "सिक्का तैरता है"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "Our eyes trace the bent rays back to a point above the real coin.",
-        "hi": "हमारी आँखें मुड़ी किरणों को पीछे की ओर असली सिक्के से ऊपर एक बिंदु तक मान लेती हैं।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "The coin stays on the bottom; only its image seems higher.",
-         "hi": "सिक्का तली पर ही रहता है; केवल उसका प्रतिबिंब ऊपर लगता है।"
-        },
-        {
-         "en": "A metal coin sinks in water.",
-         "hi": "धातु का सिक्का पानी में डूब जाता है।"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: set the angle to 0°. Does the ray bend when it hits the glass straight on?",
-      "hi": "आज़माओ: कोण 0° करो। जब किरण काँच पर सीधी पड़ती है तो क्या वह मुड़ती है?"
-     }
-    }
-   ]
-  },
-  {
-   "id": "c10-science-jesc1-ch09-convex-lens",
-   "topic": "9.3",
-   "template": "optics",
-   "title": {
-    "en": "A convex lens makes real and virtual images",
-    "hi": "उत्तल लेंस से वास्तविक और आभासी प्रतिबिंब"
-   },
-   "minutes": 6,
-   "level": "core",
-   "config": {
-    "element": "convex-lens",
-    "f": 10,
-    "object": 30
-   },
-   "steps": [
-    {
-     "kind": "do",
-     "target": "screen",
-     "expect": "image:sharp",
-     "say": {
-      "en": "The candle is 30 cm from a convex lens with f = 10 cm. Drag the screen until the image is sharp.",
-      "hi": "मोमबत्ती 10 cm फ़ोकस दूरी वाले उत्तल लेंस से 30 cm दूर है। पर्दे को तब तक खिसकाओ जब तक प्रतिबिंब साफ़ न हो।"
-     }
-    },
-    {
-     "kind": "predict",
-     "say": {
-      "en": "Now move the candle closer than 10 cm. What happens to the image?",
-      "hi": "अब मोमबत्ती को 10 cm से पास लाओ। प्रतिबिंब का क्या होगा?"
-     },
-     "options": [
-      {
-       "id": "virtual",
-       "en": "It becomes upright, magnified and virtual, like a magnifying glass",
-       "hi": "वह सीधा, बड़ा और आभासी हो जाएगा, आवर्धक लेंस की तरह"
-      },
-      {
-       "id": "smaller",
-       "en": "It becomes smaller on the screen",
-       "hi": "पर्दे पर छोटा हो जाएगा"
-      },
-      {
-       "id": "same",
-       "en": "It stays the same",
-       "hi": "वैसा ही रहेगा"
-      }
-     ],
-     "answer": "virtual"
-    },
-    {
-     "kind": "do",
-     "target": "slider:object",
-     "expect": "image:virtual",
-     "say": {
-      "en": "Drag the object slider below 10 cm.",
-      "hi": "वस्तु का स्लाइडर 10 cm से नीचे खिसकाओ।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "With the candle beyond the focus, the convex lens bends the rays together into a real, inverted image on the screen: here at 15 cm (topic 9 shows how to calculate it). Inside the focus the rays still spread after the lens, so you see an upright, magnified, virtual image: this is how a magnifying glass works.",
-      "hi": "मोमबत्ती फ़ोकस से आगे हो तो उत्तल लेंस किरणों को मोड़कर पर्दे पर वास्तविक, उलटा प्रतिबिंब बनाता है: यहाँ 15 cm पर (विषय 9 में इसे निकालना सीखोगे)। फ़ोकस के अंदर किरणें लेंस के बाद भी फैलती हैं, इसलिए सीधा, बड़ा, आभासी प्रतिबिंब दिखता है: आवर्धक लेंस ऐसे ही काम करता है।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "A candle is held between a convex lens and its focus. What do you see through the lens?",
-        "hi": "मोमबत्ती उत्तल लेंस और उसके फ़ोकस के बीच पकड़ी है। लेंस में से क्या दिखता है?"
-       },
-       "options": [
-        {
-         "en": "An upright, magnified, virtual image on the candle's side of the lens",
-         "hi": "लेंस की उसी ओर, जिधर मोमबत्ती है, सीधा, आवर्धित, आभासी प्रतिबिंब"
-        },
-        {
-         "en": "An inverted real image on a screen",
-         "hi": "पर्दे पर उलटा वास्तविक प्रतिबिंब"
-        },
-        {
-         "en": "No image at all",
-         "hi": "कोई प्रतिबिंब नहीं"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "Inside the focus the rays still spread after the lens, so they seem to come from a bigger, upright image on the object's side: a magnifying glass.",
-        "hi": "फ़ोकस के अंदर लेंस के बाद भी किरणें फैली रहती हैं, इसलिए वे वस्तु की ओर के बड़े, सीधे प्रतिबिंब से आती प्रतीत होती हैं: आवर्धक काँच।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "A real image on a screen needs the candle beyond the focus.",
-         "hi": "पर्दे पर वास्तविक प्रतिबिंब के लिए मोमबत्ती फ़ोकस से आगे चाहिए।"
-        },
-        {
-         "en": "An image always forms; here it is virtual.",
-         "hi": "प्रतिबिंब हमेशा बनता है; यहाँ वह आभासी है।"
-        }
-       ]
-      },
-      {
-       "q": {
-        "en": "Where must an object be to get a real image of the same size from a convex lens?",
-        "hi": "उत्तल लेंस से उसी आकार का वास्तविक प्रतिबिंब पाने के लिए वस्तु कहाँ होनी चाहिए?"
-       },
-       "options": [
-        {
-         "en": "At 2F (twice the focal length)",
-         "hi": "2F पर (फ़ोकस दूरी का दुगुना)"
-        },
-        {
-         "en": "At F",
-         "hi": "F पर"
-        },
-        {
-         "en": "Between F and the lens",
-         "hi": "F और लेंस के बीच"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "An object at 2F gives an inverted image of the same size at 2F on the other side.",
-        "hi": "2F पर रखी वस्तु दूसरी ओर 2F पर उसी आकार का उलटा प्रतिबिंब देती है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "At F the rays come out parallel and the image is at infinity.",
-         "hi": "F पर किरणें समांतर निकलती हैं और प्रतिबिंब अनंत पर बनता है।"
-        },
-        {
-         "en": "Between F and the lens the image is virtual and magnified.",
-         "hi": "F और लेंस के बीच प्रतिबिंब आभासी और बड़ा होता है।"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: put the candle at 20 cm (2F) and find the image with the screen. Then try 15 cm and 50 cm.",
-      "hi": "आज़माओ: मोमबत्ती को 20 cm (2F) पर रखकर पर्दे से प्रतिबिंब ढूँढो। फिर 15 cm और 50 cm आज़माओ।"
-     }
-    }
-   ]
-  },
-  {
-   "id": "c10-science-jesc1-ch09-concave-lens",
-   "topic": "9.3",
-   "template": "optics",
-   "title": {
-    "en": "A concave lens spreads light",
-    "hi": "अवतल लेंस प्रकाश को फैलाता है"
-   },
-   "minutes": 4,
-   "level": "core",
-   "config": {
-    "element": "concave-lens",
-    "f": 15,
-    "object": 30
-   },
-   "steps": [
-    {
-     "kind": "do",
-     "target": "toggle:rays",
-     "expect": "moved",
-     "say": {
-      "en": "Tap Rays to see the rays pass through the concave lens.",
-      "hi": "अवतल लेंस से गुज़रती किरणें देखने के लिए किरणें पर टैप करो।"
-     }
-    },
-    {
-     "kind": "predict",
-     "say": {
-      "en": "Can a concave lens ever form an image on a screen?",
-      "hi": "क्या अवतल लेंस कभी पर्दे पर प्रतिबिंब बना सकता है?"
-     },
-     "options": [
-      {
-       "id": "never",
-       "en": "No, its image is always virtual",
-       "hi": "नहीं, इसका प्रतिबिंब हमेशा आभासी होता है"
-      },
-      {
-       "id": "far",
-       "en": "Yes, when the object is far",
-       "hi": "हाँ, जब वस्तु दूर हो"
-      },
-      {
-       "id": "near",
-       "en": "Yes, when the object is near",
-       "hi": "हाँ, जब वस्तु पास हो"
-      }
-     ],
-     "answer": "never"
-    },
-    {
-     "kind": "do",
-     "target": "slider:object",
-     "expect": "image:virtual",
-     "say": {
-      "en": "Drag the object slider near and far.",
-      "hi": "वस्तु का स्लाइडर पास और दूर खिसकाओ।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "A concave lens is thinner in the middle, so it spreads rays apart. The image is always virtual, upright and smaller, on the same side as the object, between the focus and the lens. Its focal length is taken as negative. Concave lenses correct short sight.",
-      "hi": "अवतल लेंस बीच में पतला होता है, इसलिए वह किरणों को फैला देता है। प्रतिबिंब हमेशा आभासी, सीधा और छोटा होता है, वस्तु की ही ओर, फ़ोकस और लेंस के बीच। इसकी फ़ोकस दूरी ऋणात्मक मानी जाती है। अवतल लेंस निकट दृष्टि दोष ठीक करते हैं।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "A candle is placed far from a concave lens. What is true of its image?",
-        "hi": "मोमबत्ती अवतल लेंस से दूर रखी है। उसके प्रतिबिंब के बारे में क्या सही है?"
-       },
-       "options": [
-        {
-         "en": "Virtual, erect and smaller",
-         "hi": "आभासी, सीधा और छोटा"
-        },
-        {
-         "en": "Real, inverted and enlarged",
-         "hi": "वास्तविक, उलटा और आवर्धित"
-        },
-        {
-         "en": "Real, inverted and the same size",
-         "hi": "वास्तविक, उलटा और समान आकार का"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "A concave lens only spreads the rays, so its image is always virtual, erect and diminished.",
-        "hi": "अवतल लेंस किरणों को केवल फैलाता है, इसलिए उसका प्रतिबिंब सदा आभासी, सीधा और छोटा होता है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "A concave lens never forms a real image.",
-         "hi": "अवतल लेंस कभी वास्तविक प्रतिबिंब नहीं बनाता।"
-        },
-        {
-         "en": "A same-size real image belongs to a convex lens with the object at 2F.",
-         "hi": "समान आकार का वास्तविक प्रतिबिंब उत्तल लेंस का है, जब वस्तु 2F पर हो।"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: change f with its slider and watch where the image sits. Does it ever cross the focus?",
-      "hi": "आज़माओ: f को स्लाइडर से बदलो और देखो प्रतिबिंब कहाँ बनता है। क्या वह कभी फ़ोकस के पार जाता है?"
-     }
-    }
-   ]
-  }
- ],
- "images": [
-  {
-   "n": 1,
-   "kind": "SEQ",
-   "topic": "9.3",
-   "use": "Hook: the bent spoon",
-   "shows": "A steel spoon in a glass of water seen from the side, looking broken at the surface; the same spoon out of the water, straight",
-   "view": "Eye level, two frames",
-   "right": "Apparent break exactly at the water surface",
-   "avoid": "Coloured drinks"
-  },
-  {
-   "n": 2,
-   "kind": "SEQ",
-   "topic": "9.2",
-   "use": "A spoon as two mirrors",
-   "shows": "Reflection of a child's toy (not a face) in the inner side of a shiny spoon (inverted) and in the back side (upright, small)",
-   "view": "Close-up, two frames",
-   "right": "Inner side shows inverted image; back side upright and diminished",
-   "avoid": "Faces"
-  },
-  {
-   "n": 3,
-   "kind": "SCN",
-   "topic": "9.2",
-   "use": "Uses of mirrors",
-   "shows": "Separate photos: a convex rear-view mirror on an auto-rickshaw or car, a dentist's concave mirror, a solar concave cooker, the reflector of a torch",
-   "view": "Each a clear single subject",
-   "right": "Rear-view mirror shows a wide, small view",
-   "avoid": "Brands, number plates"
-  },
-  {
-   "n": 4,
-   "kind": "SEQ",
-   "topic": "9.3.3",
-   "use": "Focus of a convex lens",
-   "shows": "An adult holding a convex lens focusing sunlight to a bright point on paper; a small burnt hole forming",
-   "view": "Side view, two frames",
-   "right": "Smallest, brightest spot at the focus",
-   "avoid": "A child doing it"
-  },
-  {
-   "n": 5,
-   "kind": "SCN",
-   "topic": "9.3.1",
-   "use": "Refraction in a glass slab",
-   "shows": "A laser beam entering a rectangular glass slab at an angle, bending inside, and leaving parallel to its first direction",
-   "view": "From above, dark room, beam visible",
-   "right": "Emerging ray parallel to incident ray, shifted sideways",
-   "avoid": "Text"
-  },
-  {
-   "n": 6,
-   "kind": "SCN",
-   "topic": "9.3.4",
-   "use": "A real image",
-   "shows": "A convex lens on a stand forming a sharp, inverted image of a distant window on a white screen",
-   "view": "Side view, dim room",
-   "right": "Image inverted and smaller",
-   "avoid": "People"
-  },
-  {
-   "n": 7,
-   "kind": "SCN",
-   "topic": "9.3",
-   "use": "A pool looks shallower",
-   "shows": "A clear swimming pool or a village pond with the bottom visible, looking shallower than it is",
-   "view": "Looking down at an angle",
-   "right": "Clear water, visible bottom",
-   "avoid": "People swimming"
-  }
- ]
+  ]
 }

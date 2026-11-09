@@ -9,7 +9,10 @@
    "n": "1.1",
    "title": "Chemical equations: recognising a reaction, writing and balancing equations",
    "labs": [
-    "c10-science-jesc1-ch01-signs"
+    "c10-science-jesc1-ch01-signs",
+    "c10-science-jesc1-ch01-write",
+    "c10-science-jesc1-ch01-balance-check",
+    "c10-science-jesc1-ch01-balancer"
    ],
    "why_no_lab": null
   },
@@ -32,8 +35,10 @@
   {
    "n": "1.3",
    "title": "Effects of oxidation in everyday life: corrosion and rancidity",
-   "labs": [],
-   "why_no_lab": "Taught best by the rusting photo sequence and the reader; a beaker cannot show weeks of rusting."
+   "labs": [
+    "c10-science-jesc1-ch01-rust"
+   ],
+   "why_no_lab": null
   }
  ],
  "labs": [
@@ -43,7 +48,7 @@
    "template": "beaker",
    "title": {
     "en": "Signs of a chemical reaction",
-    "hi": "रासायनिक अभिक्रिया के लक्षण"
+    "hi": "रासायनिक अभिक्रिया के संकेत"
    },
    "minutes": 5,
    "level": "core",
@@ -63,7 +68,7 @@
      "expect": "pick:zinc",
      "say": {
       "en": "Tap the zinc granules to pick them up.",
-      "hi": "जस्ते के दानों पर टैप करके उन्हें उठाओ।"
+      "hi": "ज़िंक के दानों पर टैप करके उन्हें उठाओ।"
      }
     },
     {
@@ -72,14 +77,14 @@
      "expect": "add:zinc",
      "say": {
       "en": "Now tap the beaker to drop the zinc in.",
-      "hi": "अब बीकर पर टैप करके जस्ता उसमें डालो।"
+      "hi": "अब बीकर पर टैप करके ज़िंक उसमें डालो।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "Next you will pour dilute hydrochloric acid on the zinc. What do you think you will see?",
-      "hi": "अब तुम जस्ते पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। तुम्हें क्या लगता है, क्या दिखेगा?"
+      "hi": "अब तुम ज़िंक पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। तुम्हें क्या लगता है, क्या दिखेगा?"
      },
      "options": [
       {
@@ -122,7 +127,7 @@
      "kind": "explain",
      "say": {
       "en": "The bubbles are hydrogen gas. The thermometer rose, so heat was given out. A new substance, zinc chloride, is now dissolved in the liquid. Gas and a change in temperature are two signs of a chemical reaction.",
-      "hi": "बुलबुले हाइड्रोजन गैस के हैं। थर्मामीटर ऊपर चढ़ा, यानी ऊष्मा निकली। अब द्रव में एक नया पदार्थ, ज़िंक क्लोराइड, घुला है। गैस निकलना और तापमान बदलना रासायनिक अभिक्रिया के दो लक्षण हैं।"
+      "hi": "बुलबुले हाइड्रोजन गैस के हैं। थर्मामीटर ऊपर चढ़ा, यानी ऊष्मा निकली। अब द्रव में एक नया पदार्थ, ज़िंक क्लोराइड, घुला है। गैस निकलना और तापमान बदलना रासायनिक अभिक्रिया के दो संकेत हैं।"
      }
     },
     {
@@ -131,7 +136,7 @@
       {
        "q": {
         "en": "Which two signs did you see?",
-        "hi": "तुमने कौन-से दो लक्षण देखे?"
+        "hi": "तुमने कौन-से दो संकेत देखे?"
        },
        "options": [
         {
@@ -185,8 +190,8 @@
        ],
        "answer": 1,
        "why": {
-        "en": "Zinc takes the place of hydrogen in the acid, so hydrogen gas is set free: Zn + 2HCl gives ZnCl2 + H2.",
-        "hi": "जस्ता अम्ल में हाइड्रोजन की जगह ले लेता है, इसलिए हाइड्रोजन गैस निकलती है।"
+        "en": "Zinc takes the place of hydrogen in the acid, so hydrogen gas is set free. In words: zinc + hydrochloric acid → zinc chloride + hydrogen.",
+        "hi": "ज़िंक अम्ल में हाइड्रोजन की जगह ले लेता है, इसलिए हाइड्रोजन गैस निकलती है। शब्दों में: ज़िंक + हाइड्रोक्लोरिक अम्ल → ज़िंक क्लोराइड + हाइड्रोजन।"
        },
        "wrong": [
         {
@@ -206,7 +211,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore on your own. Clean the beaker, then mix lead nitrate with potassium iodide. Which sign do you see this time?",
-      "hi": "अब ख़ुद आज़माओ। बीकर साफ़ करो, फिर लेड नाइट्रेट में पोटैशियम आयोडाइड मिलाओ। इस बार कौन-सा लक्षण दिखता है?"
+      "hi": "ख़ुद खोजो। बीकर साफ़ करो, फिर लेड नाइट्रेट में पोटैशियम आयोडाइड मिलाओ। इस बार कौन-सा संकेत दिखता है?"
      }
     }
    ]
@@ -217,7 +222,7 @@
    "template": "beaker",
    "title": {
     "en": "Iron and copper sulphate: displacement",
-    "hi": "लोहा और कॉपर सल्फेट: विस्थापन"
+    "hi": "आयरन और कॉपर सल्फ़ेट: विस्थापन"
    },
    "minutes": 5,
    "level": "core",
@@ -236,7 +241,7 @@
      "expect": "pick:cuso4",
      "say": {
       "en": "Pick up the blue copper sulphate solution.",
-      "hi": "नीला कॉपर सल्फेट विलयन उठाओ।"
+      "hi": "नीला कॉपर सल्फ़ेट विलयन उठाओ।"
      }
     },
     {
@@ -252,7 +257,7 @@
      "kind": "predict",
      "say": {
       "en": "You will drop an iron nail into it. What do you think will happen?",
-      "hi": "तुम इसमें लोहे की कील डालोगे। तुम्हें क्या लगता है, क्या होगा?"
+      "hi": "तुम इसमें आयरन (लोहा) की कील डालोगे। तुम्हें क्या लगता है, क्या होगा?"
      },
      "options": [
       {
@@ -268,7 +273,7 @@
       {
        "id": "gas",
        "en": "It fizzes",
-       "hi": "झाग बनेगा"
+       "hi": "बुलबुले उठेंगे"
       }
      ],
      "answer": "coat"
@@ -279,7 +284,7 @@
      "expect": "pick:nail",
      "say": {
       "en": "Pick up the iron nail.",
-      "hi": "लोहे की कील उठाओ।"
+      "hi": "आयरन की कील उठाओ।"
      }
     },
     {
@@ -295,7 +300,7 @@
      "kind": "explain",
      "say": {
       "en": "Iron is more reactive than copper, so it pushes copper out of copper sulphate. The copper coats the nail, reddish-brown. The solution becomes pale green iron sulphate. This is a displacement reaction.",
-      "hi": "लोहा ताँबे से अधिक अभिक्रियाशील है, इसलिए वह कॉपर सल्फेट से ताँबे को हटा देता है। ताँबा कील पर लाल-भूरी परत बनकर चढ़ जाता है। विलयन हल्का हरा आयरन सल्फेट बन जाता है। यह विस्थापन अभिक्रिया है।"
+      "hi": "आयरन, कॉपर (ताँबा) से अधिक अभिक्रियाशील है, इसलिए वह कॉपर सल्फ़ेट से कॉपर को हटा देता है। कॉपर कील पर लाल-भूरी परत बनकर चढ़ जाता है। विलयन हल्का हरा आयरन सल्फ़ेट बन जाता है। यह विस्थापन अभिक्रिया है।"
      }
     },
     {
@@ -304,12 +309,12 @@
       {
        "q": {
         "en": "A copper wire is put in iron sulphate solution. What happens?",
-        "hi": "आयरन सल्फेट विलयन में ताँबे का तार डाला जाता है। क्या होगा?"
+        "hi": "आयरन सल्फ़ेट विलयन में कॉपर का तार डाला जाता है। क्या होगा?"
        },
        "options": [
         {
          "en": "Iron coats the wire",
-         "hi": "तार पर लोहा चढ़ जाएगा"
+         "hi": "तार पर आयरन चढ़ जाएगा"
         },
         {
          "en": "Nothing happens",
@@ -323,17 +328,17 @@
        "answer": 1,
        "why": {
         "en": "Copper is less reactive than iron, so it cannot push iron out. Try it in Explore.",
-        "hi": "ताँबा लोहे से कम अभिक्रियाशील है, इसलिए लोहे को नहीं हटा सकता। एक्सप्लोर में आज़माकर देखो।"
+        "hi": "कॉपर आयरन से कम अभिक्रियाशील है, इसलिए आयरन को नहीं हटा सकता। खोजो वाले स्टेप में आज़माकर देखो।"
        },
        "wrong": [
         {
          "en": "That would need copper to be more reactive than iron; it is not.",
-         "hi": "इसके लिए ताँबे को लोहे से अधिक अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
+         "hi": "इसके लिए कॉपर को आयरन से अधिक अभिक्रियाशील होना चाहिए; ऐसा नहीं है।"
         },
         "",
         {
          "en": "Blue copper sulphate forms only if copper reacts, and it does not.",
-         "hi": "नीला कॉपर सल्फेट तभी बनेगा जब ताँबा अभिक्रिया करे, और ऐसा नहीं होता।"
+         "hi": "नीला कॉपर सल्फ़ेट तभी बनेगा जब कॉपर अभिक्रिया करे, और ऐसा नहीं होता।"
         }
        ]
       }
@@ -343,7 +348,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker, pour iron sulphate, and drop in the copper wire. Does anything happen?",
-      "hi": "आज़माओ: बीकर साफ़ करो, आयरन सल्फेट डालो और ताँबे का तार डालो। क्या कुछ होता है?"
+      "hi": "खोजो: बीकर साफ़ करो, आयरन सल्फ़ेट डालो और कॉपर का तार डालो। क्या कुछ होता है?"
      }
     }
    ]
@@ -425,7 +430,7 @@
      "kind": "explain",
      "say": {
       "en": "First a few drops of water appear: the crystals lose their water. Then the green solid turns reddish-brown and a smell of burning sulphur comes out. One substance broke into three: ferric oxide, sulphur dioxide and sulphur trioxide. Breaking down by heat is thermal decomposition.",
-      "hi": "पहले पानी की कुछ बूँदें दिखती हैं: क्रिस्टल अपना जल खो देते हैं। फिर हरा ठोस लाल-भूरा हो जाता है और जलती गंधक जैसी गंध आती है। एक पदार्थ टूटकर तीन बन गया: फ़ेरिक ऑक्साइड, सल्फ़र डाइऑक्साइड और सल्फ़र ट्राइऑक्साइड। ऊष्मा से टूटना ऊष्मीय वियोजन कहलाता है।"
+      "hi": "पहले पानी की कुछ बूँदें दिखती हैं: क्रिस्टल अपना जल खो देते हैं। फिर हरा ठोस लाल-भूरा हो जाता है और जलते सल्फ़र जैसी गंध आती है। एक पदार्थ टूटकर तीन बन गया: फ़ेरिक ऑक्साइड, सल्फ़र डाइऑक्साइड और सल्फ़र ट्राइऑक्साइड। ऊष्मा से टूटना ऊष्मीय वियोजन कहलाता है।"
      }
     },
     {
@@ -495,7 +500,7 @@
         "",
         {
          "en": "Sunlight breaks silver chloride, but here a flame was used.",
-         "hi": "सूर्य का प्रकाश सिल्वर क्लोराइड को तोड़ता है, पर यहाँ लौ का उपयोग हुआ।"
+         "hi": "सूर्य का प्रकाश सिल्वर क्लोराइड को तोड़ता है, पर यहाँ लौ का इस्तेमाल हुआ।"
         },
         {
          "en": "No current was passed through the beaker.",
@@ -509,7 +514,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker and heat lead nitrate powder. Brown fumes rise: another thermal decomposition. (It is poisonous, so only a teacher does it, in a fume cupboard.)",
-      "hi": "आज़माओ: बीकर साफ़ करो और लेड नाइट्रेट चूर्ण गर्म करो। भूरा धुआँ उठता है: यह भी ऊष्मीय वियोजन है। (यह विषैला है, इसलिए असल में केवल शिक्षक इसे धुआँ-कक्ष में करते हैं।)"
+      "hi": "खोजो: बीकर साफ़ करो और लेड नाइट्रेट पाउडर गर्म करो। भूरा धुआँ उठता है: यह भी ऊष्मीय वियोजन है। (यह ज़हरीला है, इसलिए असल में केवल शिक्षक इसे फ़्यूम कपबोर्ड में करते हैं।)"
      }
     }
    ]
@@ -520,7 +525,7 @@
    "template": "beaker",
    "title": {
     "en": "Breaking water with electricity",
-    "hi": "जल का विद्युत अपघटन"
+    "hi": "पानी का विद्युत अपघटन"
    },
    "minutes": 6,
    "level": "core",
@@ -581,12 +586,12 @@
       {
        "id": "twice",
        "en": "One tube gets twice as much gas",
-       "hi": "एक नली में दुगुनी गैस होगी"
+       "hi": "एक टेस्ट ट्यूब में दुगुनी गैस होगी"
       },
       {
        "id": "equal",
        "en": "Both tubes get the same",
-       "hi": "दोनों नलियों में बराबर गैस होगी"
+       "hi": "दोनों टेस्ट ट्यूबों में बराबर गैस होगी"
       },
       {
        "id": "none",
@@ -611,14 +616,14 @@
      "expect": "tested:splint",
      "say": {
       "en": "Now test both gases with the splint.",
-      "hi": "अब दोनों गैसों की जाँच तीली से करो।"
+      "hi": "अब दोनों गैसों को तीली से टेस्ट करो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Electricity broke water into hydrogen and oxygen. Hydrogen collects at the negative electrode and oxygen at the positive one, and there is twice as much hydrogen, because water is H2O. Hydrogen burns with a pop; oxygen relights a glowing splint. This is decomposition by electricity.",
-      "hi": "विद्युत ने पानी को हाइड्रोजन और ऑक्सीजन में तोड़ दिया। हाइड्रोजन ऋण इलेक्ट्रोड पर और ऑक्सीजन धन इलेक्ट्रोड पर जमा होती है, और हाइड्रोजन दुगुनी होती है, क्योंकि पानी H2O है। हाइड्रोजन पॉप की आवाज़ से जलती है; ऑक्सीजन सुलगती तीली को फिर जला देती है। यह विद्युत द्वारा वियोजन है।"
+      "hi": "विद्युत ने पानी को हाइड्रोजन और ऑक्सीजन में तोड़ दिया। हाइड्रोजन ऋण इलेक्ट्रोड पर और ऑक्सीजन धन इलेक्ट्रोड पर जमा होती है, और हाइड्रोजन दुगुनी होती है, क्योंकि पानी H2O है। हाइड्रोजन पॉप की आवाज़ से जलती है; ऑक्सीजन सुलगती तीली को फिर जला देती है। यह विद्युत अपघटन है।"
      }
     },
     {
@@ -627,7 +632,7 @@
       {
        "q": {
         "en": "Which gas filled the tube with more gas?",
-        "hi": "जिस नली में ज़्यादा गैस थी, उसमें कौन-सी गैस थी?"
+        "hi": "जिस टेस्ट ट्यूब में ज़्यादा गैस थी, उसमें कौन-सी गैस थी?"
        },
        "options": [
         {
@@ -652,7 +657,7 @@
         "",
         {
          "en": "Oxygen is in the smaller tube: water has only one oxygen atom for two hydrogen atoms.",
-         "hi": "ऑक्सीजन छोटी नली में है: पानी में दो हाइड्रोजन परमाणुओं के साथ केवल एक ऑक्सीजन परमाणु है।"
+         "hi": "ऑक्सीजन छोटी टेस्ट ट्यूब में है: पानी में दो हाइड्रोजन परमाणुओं के साथ केवल एक ऑक्सीजन परमाणु है।"
         },
         {
          "en": "Water has no carbon, so it cannot give carbon dioxide.",
@@ -702,7 +707,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker, pour only water and pass the current. Does the bulb glow this time?",
-      "hi": "आज़माओ: बीकर साफ़ करो, केवल पानी डालो और धारा बहाओ। क्या इस बार बल्ब जलता है?"
+      "hi": "खोजो: बीकर साफ़ करो, केवल पानी डालो और धारा बहाओ। क्या इस बार बल्ब जलता है?"
      }
     }
    ]
@@ -867,7 +872,7 @@
         },
         {
          "en": "Precipitation means an insoluble solid forms; that is not about heat.",
-         "hi": "अवक्षेपण में अघुलनशील ठोस बनता है; इसका ऊष्मा से संबंध नहीं।"
+         "hi": "अवक्षेपण में अघुलनशील ठोस बनता है; इसका ऊष्मा से लेना-देना नहीं।"
         }
        ]
       }
@@ -877,7 +882,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker, put in the magnesium ribbon and heat it. It burns with a dazzling flame into white magnesium oxide: another combination. (For real, only a teacher does this, with tongs.)",
-      "hi": "आज़माओ: बीकर साफ़ करो, मैग्नीशियम रिबन डालो और गर्म करो। यह चमकीली लौ के साथ जलकर सफ़ेद मैग्नीशियम ऑक्साइड बनता है: यह भी संयोजन है। (असल में केवल शिक्षक चिमटे से ऐसा करते हैं।)"
+      "hi": "खोजो: बीकर साफ़ करो, मैग्नीशियम रिबन डालो और गर्म करो। यह चमकीली लौ के साथ जलकर सफ़ेद मैग्नीशियम ऑक्साइड बनता है: यह भी संयोजन है। (असल में केवल शिक्षक चिमटे से ऐसा करते हैं।)"
      }
     }
    ]
@@ -994,7 +999,7 @@
        "answer": 0,
        "why": {
         "en": "Both reactants are compounds and they exchange parts: double displacement.",
-        "hi": "दोनों अभिकारक यौगिक हैं और भाग बदलते हैं: द्विविस्थापन।"
+        "hi": "दोनों अभिकारक यौगिक हैं और हिस्से बदलते हैं: द्विविस्थापन।"
        },
        "wrong": [
         "",
@@ -1050,7 +1055,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker and mix lead nitrate with potassium iodide. What colour is this precipitate? (Lead is poisonous; for real only a teacher does this.)",
-      "hi": "आज़माओ: बीकर साफ़ करो और लेड नाइट्रेट में पोटैशियम आयोडाइड मिलाओ। इस अवक्षेप का रंग क्या है? (लेड विषैला है; असल में केवल शिक्षक ऐसा करते हैं।)"
+      "hi": "खोजो: बीकर साफ़ करो और लेड नाइट्रेट में पोटैशियम आयोडाइड मिलाओ। इस अवक्षेप का रंग क्या है? (लेड ज़हरीला है; असल में केवल शिक्षक ऐसा करते हैं।)"
      }
     }
    ]
@@ -1061,7 +1066,7 @@
    "template": "beaker",
    "title": {
     "en": "Copper in a flame: oxidation and reduction",
-    "hi": "लौ में ताँबा: उपचयन और अपचयन"
+    "hi": "लौ में कॉपर: उपचयन और अपचयन"
    },
    "minutes": 5,
    "level": "stretch",
@@ -1082,7 +1087,7 @@
      "expect": "pick:copperwire",
      "say": {
       "en": "Pick up the shiny brown copper wire.",
-      "hi": "चमकीला भूरा ताँबे का तार उठाओ।"
+      "hi": "चमकीला भूरा कॉपर (ताँबा) का तार उठाओ।"
      }
     },
     {
@@ -1098,7 +1103,7 @@
      "kind": "predict",
      "say": {
       "en": "You will heat the copper in air. What will you see?",
-      "hi": "तुम ताँबे को हवा में गर्म करोगे। क्या दिखेगा?"
+      "hi": "तुम कॉपर को हवा में गर्म करोगे। क्या दिखेगा?"
      },
      "options": [
       {
@@ -1132,7 +1137,7 @@
      "kind": "explain",
      "say": {
       "en": "Copper joined with oxygen from the air and made black copper oxide. Gaining oxygen is oxidation. If hot hydrogen is passed over this black powder, it loses its oxygen and turns brown copper again: losing oxygen is reduction. When one substance is oxidised and another reduced together, it is a redox reaction.",
-      "hi": "ताँबे ने हवा की ऑक्सीजन से जुड़कर काला कॉपर ऑक्साइड बनाया। ऑक्सीजन का जुड़ना उपचयन है। अगर इस काले चूर्ण पर गर्म हाइड्रोजन गुज़ारी जाए, तो यह ऑक्सीजन खोकर फिर भूरा ताँबा बन जाता है: ऑक्सीजन का हटना अपचयन है। जब एक पदार्थ का उपचयन और दूसरे का अपचयन साथ हो, तो वह रेडॉक्स अभिक्रिया है।"
+      "hi": "कॉपर ने हवा की ऑक्सीजन से जुड़कर काला कॉपर ऑक्साइड बनाया। ऑक्सीजन का जुड़ना उपचयन है। अगर इस काले पाउडर पर गर्म हाइड्रोजन गुज़ारी जाए, तो यह ऑक्सीजन खोकर फिर भूरा कॉपर बन जाता है: ऑक्सीजन का हटना अपचयन है। जब एक पदार्थ का उपचयन और दूसरे का अपचयन साथ हो, तो वह अपचयोपचय (रेडॉक्स) अभिक्रिया है।"
      }
     },
     {
@@ -1141,7 +1146,7 @@
       {
        "q": {
         "en": "In 2Cu + O2 → 2CuO, what happens to copper?",
-        "hi": "2Cu + O2 → 2CuO में ताँबे का क्या होता है?"
+        "hi": "2Cu + O2 → 2CuO में कॉपर का क्या होता है?"
        },
        "options": [
         {
@@ -1160,13 +1165,13 @@
        "answer": 0,
        "why": {
         "en": "Copper gains oxygen, so it is oxidised.",
-        "hi": "ताँबा ऑक्सीजन लेता है, इसलिए उसका उपचयन होता है।"
+        "hi": "कॉपर ऑक्सीजन लेता है, इसलिए उसका उपचयन होता है।"
        },
        "wrong": [
         "",
         {
          "en": "Reduction is losing oxygen; copper gained it.",
-         "hi": "अपचयन में ऑक्सीजन हटती है; ताँबे ने ऑक्सीजन ली।"
+         "hi": "अपचयन में ऑक्सीजन हटती है; कॉपर ने ऑक्सीजन ली।"
         },
         {
          "en": "A new black substance formed, so a reaction happened.",
@@ -1190,7 +1195,7 @@
         },
         {
          "en": "Copper",
-         "hi": "ताँबा"
+         "hi": "कॉपर"
         }
        ],
        "answer": 0,
@@ -1206,7 +1211,7 @@
         },
         {
          "en": "Copper is the product left after reduction; it gains no oxygen.",
-         "hi": "ताँबा अपचयन के बाद बचा उत्पाद है; वह ऑक्सीजन नहीं लेता।"
+         "hi": "कॉपर अपचयन के बाद बचा उत्पाद है; वह ऑक्सीजन नहीं लेता।"
         }
        ]
       }
@@ -1216,7 +1221,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: clean the beaker, put in copper oxide powder and pour dilute hydrochloric acid. The black powder dissolves into a blue-green liquid. You will meet this in the next chapter.",
-      "hi": "आज़माओ: बीकर साफ़ करो, कॉपर ऑक्साइड चूर्ण डालो और तनु हाइड्रोक्लोरिक अम्ल डालो। काला चूर्ण घुलकर नीला-हरा द्रव बनता है। यह तुम अगले अध्याय में पढ़ोगे।"
+      "hi": "खोजो: बीकर साफ़ करो, कॉपर ऑक्साइड पाउडर डालो और तनु हाइड्रोक्लोरिक अम्ल डालो। काला पाउडर घुलकर नीला-हरा द्रव बनता है। यह तुम अगले चैप्टर में पढ़ोगे।"
      }
     }
    ]
@@ -1227,7 +1232,7 @@
    "template": "beaker",
    "title": {
     "en": "Copper in iron sulphate: does it work the other way?",
-    "hi": "आयरन सल्फेट में ताँबा: क्या उलटा भी होता है?"
+    "hi": "आयरन सल्फ़ेट में कॉपर: क्या उलटा भी होता है?"
    },
    "minutes": 4,
    "level": "core",
@@ -1246,7 +1251,7 @@
      "expect": "pick:feso4",
      "say": {
       "en": "Pick up the pale green iron sulphate solution.",
-      "hi": "हल्के हरे आयरन सल्फेट विलयन को उठाओ।"
+      "hi": "हल्के हरे आयरन सल्फ़ेट विलयन को उठाओ।"
      }
     },
     {
@@ -1262,13 +1267,13 @@
      "kind": "predict",
      "say": {
       "en": "Iron pushed copper out of copper sulphate. Now you will put a copper wire into iron sulphate. What will happen?",
-      "hi": "आयरन ने कॉपर सल्फेट से ताँबा बाहर निकाला था। अब तुम आयरन सल्फेट में ताँबे का तार डालोगे। क्या होगा?"
+      "hi": "आयरन (लोहा) ने कॉपर सल्फ़ेट से कॉपर (ताँबा) बाहर निकाला था। अब तुम आयरन सल्फ़ेट में कॉपर का तार डालोगे। क्या होगा?"
      },
      "options": [
       {
        "id": "coat",
        "en": "Copper pushes iron out and the wire gets a grey coat",
-       "hi": "ताँबा लोहे को बाहर निकालेगा और तार पर धूसर परत चढ़ेगी"
+       "hi": "कॉपर आयरन को बाहर निकालेगा और तार पर ग्रे परत चढ़ेगी"
       },
       {
        "id": "none",
@@ -1289,7 +1294,7 @@
      "expect": "pick:copperwire",
      "say": {
       "en": "Pick up the copper wire.",
-      "hi": "ताँबे का तार उठाओ।"
+      "hi": "कॉपर का तार उठाओ।"
      }
     },
     {
@@ -1298,14 +1303,14 @@
      "expect": "add:copperwire",
      "say": {
       "en": "Dip it into the iron sulphate and watch for a few seconds.",
-      "hi": "इसे आयरन सल्फेट में डुबाओ और कुछ क्षण देखो।"
+      "hi": "इसे आयरन सल्फ़ेट में डुबाओ और कुछ पल देखो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Nothing changed: the wire stayed brown and the solution stayed pale green. Copper is less reactive than iron, so it cannot take iron's place in the compound. A displacement reaction runs only one way: a more reactive metal pushes out a less reactive one, never the reverse.",
-      "hi": "कुछ नहीं बदला: तार भूरा ही रहा और विलयन हल्का हरा ही रहा। ताँबा लोहे से कम अभिक्रियाशील है, इसलिए वह यौगिक में लोहे की जगह नहीं ले सकता। विस्थापन अभिक्रिया एक ही दिशा में होती है: अधिक अभिक्रियाशील धातु कम अभिक्रियाशील धातु को हटाती है, उलटा कभी नहीं।"
+      "hi": "कुछ नहीं बदला: तार भूरा ही रहा और विलयन हल्का हरा ही रहा। कॉपर आयरन से कम अभिक्रियाशील है, इसलिए वह यौगिक में आयरन की जगह नहीं ले सकता। विस्थापन अभिक्रिया एक ही दिशा में होती है: अधिक अभिक्रियाशील धातु कम अभिक्रियाशील धातु को हटाती है, उलटा कभी नहीं।"
      }
     },
     {
@@ -1319,7 +1324,7 @@
        "options": [
         {
          "en": "Copper is less reactive than iron",
-         "hi": "ताँबा लोहे से कम अभिक्रियाशील है"
+         "hi": "कॉपर आयरन से कम अभिक्रियाशील है"
         },
         {
          "en": "The wire was too small",
@@ -1327,13 +1332,13 @@
         },
         {
          "en": "Iron sulphate is not a salt",
-         "hi": "आयरन सल्फेट लवण नहीं है"
+         "hi": "आयरन सल्फ़ेट लवण नहीं है"
         }
        ],
        "answer": 0,
        "why": {
         "en": "A metal can displace only a less reactive metal from its salt, and copper is below iron.",
-        "hi": "कोई धातु केवल अपने से कम अभिक्रियाशील धातु को उसके लवण से हटा सकती है, और ताँबा लोहे से नीचे है।"
+        "hi": "कोई धातु केवल अपने से कम अभिक्रियाशील धातु को उसके लवण से हटा सकती है, और कॉपर आयरन से नीचे है।"
        },
        "wrong": [
         "",
@@ -1343,7 +1348,7 @@
         },
         {
          "en": "Iron sulphate is a salt; the issue is the order of reactivity.",
-         "hi": "आयरन सल्फेट एक लवण है; मुद्दा अभिक्रियाशीलता के क्रम का है।"
+         "hi": "आयरन सल्फ़ेट एक लवण है; मुद्दा अभिक्रियाशीलता के क्रम का है।"
         }
        ]
       },
@@ -1355,31 +1360,31 @@
        "options": [
         {
          "en": "Copper wire in zinc sulphate",
-         "hi": "ज़िंक सल्फेट में ताँबे का तार"
+         "hi": "ज़िंक सल्फ़ेट में कॉपर का तार"
         },
         {
          "en": "Iron nail in copper sulphate",
-         "hi": "कॉपर सल्फेट में लोहे की कील"
+         "hi": "कॉपर सल्फ़ेट में आयरन की कील"
         },
         {
          "en": "Copper wire in iron sulphate",
-         "hi": "आयरन सल्फेट में ताँबे का तार"
+         "hi": "आयरन सल्फ़ेट में कॉपर का तार"
         }
        ],
        "answer": 1,
        "why": {
         "en": "Iron is more reactive than copper, so it pushes copper out.",
-        "hi": "लोहा ताँबे से अधिक अभिक्रियाशील है, इसलिए वह ताँबे को बाहर निकालता है।"
+        "hi": "आयरन कॉपर से अधिक अभिक्रियाशील है, इसलिए वह कॉपर को बाहर निकालता है।"
        },
        "wrong": [
         {
          "en": "Copper is less reactive than zinc, so nothing happens.",
-         "hi": "ताँबा ज़िंक से कम अभिक्रियाशील है, इसलिए कुछ नहीं होता।"
+         "hi": "कॉपर ज़िंक से कम अभिक्रियाशील है, इसलिए कुछ नहीं होता।"
         },
         "",
         {
          "en": "You just saw this one do nothing.",
-         "hi": "यह जोड़ा तुमने अभी कुछ न करते देखा।"
+         "hi": "इस जोड़े में तुमने अभी देखा कि कुछ नहीं हुआ।"
         }
        ]
       }
@@ -1389,7 +1394,7 @@
      "kind": "explore",
      "say": {
       "en": "Clean the beaker, pour copper sulphate and drop in the iron nail to see the forward reaction again. Then try the iron nail in iron sulphate: why does nothing happen there too?",
-      "hi": "बीकर साफ़ करो, कॉपर सल्फेट डालो और लोहे की कील डालकर सीधी अभिक्रिया फिर देखो। फिर आयरन सल्फेट में लोहे की कील डालो: वहाँ भी कुछ क्यों नहीं होता?"
+      "hi": "बीकर साफ़ करो, कॉपर सल्फ़ेट डालो और आयरन की कील डालकर सीधी अभिक्रिया फिर देखो। फिर आयरन सल्फ़ेट में आयरन की कील डालो: वहाँ भी कुछ क्यों नहीं होता?"
      }
     }
    ]
@@ -1419,7 +1424,7 @@
      "expect": "pick:pbno3s",
      "say": {
       "en": "Pick up the white lead nitrate powder.",
-      "hi": "सफ़ेद लेड नाइट्रेट चूर्ण को उठाओ।"
+      "hi": "सफ़ेद लेड नाइट्रेट पाउडर को उठाओ।"
      }
     },
     {
@@ -1428,14 +1433,14 @@
      "expect": "add:pbno3s",
      "say": {
       "en": "Put it in the beaker (a boiling tube in a real lab).",
-      "hi": "इसे बीकर में डालो (असली प्रयोगशाला में परखनली में)।"
+      "hi": "इसे बीकर में डालो (असली लैब में बॉइलिंग ट्यूब में)।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "You will heat the white powder. What will you see?",
-      "hi": "तुम सफ़ेद चूर्ण को गर्म करोगे। क्या दिखेगा?"
+      "hi": "तुम सफ़ेद पाउडर को गर्म करोगे। क्या दिखेगा?"
      },
      "options": [
       {
@@ -1446,7 +1451,7 @@
       {
        "id": "melt",
        "en": "It only melts and cools back to the same powder",
-       "hi": "यह केवल पिघलेगा और ठंडा होकर वही चूर्ण बन जाएगा"
+       "hi": "यह केवल पिघलेगा और ठंडा होकर वही पाउडर बन जाएगा"
       },
       {
        "id": "none",
@@ -1469,7 +1474,7 @@
      "kind": "explain",
      "say": {
       "en": "Lead nitrate broke down into lead oxide (a yellowish solid), brown nitrogen dioxide gas and oxygen. One compound split into three new substances, and heat caused it: a thermal decomposition. The brown gas is poisonous, so in a real lab only a teacher does this, in a fume cupboard.",
-      "hi": "लेड नाइट्रेट टूटकर लेड ऑक्साइड (पीला-सा ठोस), भूरी नाइट्रोजन डाइऑक्साइड गैस और ऑक्सीजन में बँट गया। एक यौगिक से तीन नए पदार्थ बने और कारण ऊष्मा थी: यह ऊष्मीय वियोजन है। भूरी गैस ज़हरीली है, इसलिए असली प्रयोगशाला में इसे केवल शिक्षक धूम-कक्ष में करते हैं।"
+      "hi": "लेड नाइट्रेट टूटकर लेड ऑक्साइड (पीला-सा ठोस), भूरी नाइट्रोजन डाइऑक्साइड गैस और ऑक्सीजन में बँट गया। एक यौगिक से तीन नए पदार्थ बने और कारण ऊष्मा थी: यह ऊष्मीय वियोजन है। भूरी गैस ज़हरीली है, इसलिए असली लैब में इसे केवल शिक्षक फ़्यूम कपबोर्ड में करते हैं।"
      }
     },
     {
@@ -1478,7 +1483,7 @@
       {
        "q": {
         "en": "Which sign told you a new substance formed?",
-        "hi": "किस लक्षण ने बताया कि नया पदार्थ बना?"
+        "hi": "किस संकेत ने बताया कि नया पदार्थ बना?"
        },
        "options": [
         {
@@ -1487,7 +1492,7 @@
         },
         {
          "en": "The powder got hot",
-         "hi": "चूर्ण गर्म हो गया"
+         "hi": "पाउडर गर्म हो गया"
         },
         {
          "en": "The beaker got smaller",
@@ -1497,13 +1502,13 @@
        "answer": 0,
        "why": {
         "en": "A brown gas that the white powder did not have before is a new substance, nitrogen dioxide.",
-        "hi": "भूरी गैस, जो सफ़ेद चूर्ण में पहले नहीं थी, एक नया पदार्थ नाइट्रोजन डाइऑक्साइड है।"
+        "hi": "भूरी गैस, जो सफ़ेद पाउडर में पहले नहीं थी, एक नया पदार्थ नाइट्रोजन डाइऑक्साइड है।"
        },
        "wrong": [
         "",
         {
          "en": "Heating makes things hot in physical changes too; warmth alone proves nothing.",
-         "hi": "भौतिक परिवर्तन में भी गर्म करने पर चीज़ें गर्म होती हैं; केवल गर्मी कुछ सिद्ध नहीं करती।"
+         "hi": "भौतिक परिवर्तन में भी गर्म करने पर चीज़ें गर्म होती हैं; केवल गर्मी कुछ साबित नहीं करती।"
         },
         {
          "en": "The beaker does not change size; the products are gases and a solid.",
@@ -1553,7 +1558,7 @@
      "kind": "explore",
      "say": {
       "en": "Clean the beaker and heat the ferrous sulphate crystals from the other lab. Which colour is the gas this time, and which solid is left?",
-      "hi": "बीकर साफ़ करो और दूसरी प्रयोगशाला के फ़ेरस सल्फ़ेट क्रिस्टल गर्म करो। इस बार गैस का रंग क्या है और कौन-सा ठोस बचता है?"
+      "hi": "बीकर साफ़ करो और दूसरी लैब के फ़ेरस सल्फ़ेट क्रिस्टल गर्म करो। इस बार गैस का रंग क्या है और कौन-सा ठोस बचता है?"
      }
     }
    ]
@@ -1664,24 +1669,24 @@
       "id": "agcl",
       "text": {
        "en": "Silver chloride turns grey in sunlight",
-       "hi": "सिल्वर क्लोराइड धूप में धूसर हो जाता है"
+       "hi": "सिल्वर क्लोराइड धूप में ग्रे हो जाता है"
       },
       "bin": "dec",
       "why": {
        "en": "Light breaks it into silver and chlorine.",
-       "hi": "प्रकाश उसे चाँदी और क्लोरीन में तोड़ता है।"
+       "hi": "प्रकाश उसे सिल्वर और क्लोरीन में तोड़ता है।"
       }
      },
      {
       "id": "nail",
       "text": {
        "en": "An iron nail in copper sulphate gets a copper coat",
-       "hi": "कॉपर सल्फेट में लोहे की कील पर ताँबे की परत चढ़ती है"
+       "hi": "कॉपर सल्फ़ेट में आयरन की कील पर कॉपर की परत चढ़ती है"
       },
       "bin": "disp",
       "why": {
        "en": "Iron takes copper's place in the compound.",
-       "hi": "लोहा यौगिक में ताँबे की जगह ले लेता है।"
+       "hi": "आयरन यौगिक में कॉपर की जगह ले लेता है।"
       }
      },
      {
@@ -1700,7 +1705,7 @@
       "id": "znag",
       "text": {
        "en": "Zinc pushes silver out of silver nitrate",
-       "hi": "ज़िंक सिल्वर नाइट्रेट से चाँदी को बाहर निकालता है"
+       "hi": "ज़िंक सिल्वर नाइट्रेट से सिल्वर को बाहर निकालता है"
       },
       "bin": "disp",
       "why": {
@@ -1712,7 +1717,7 @@
       "id": "ba",
       "text": {
        "en": "Sodium sulphate + barium chloride: white solid",
-       "hi": "सोडियम सल्फेट + बेरियम क्लोराइड: सफ़ेद ठोस बनता है"
+       "hi": "सोडियम सल्फ़ेट + बेरियम क्लोराइड: सफ़ेद ठोस बनता है"
       },
       "bin": "dbl",
       "why": {
@@ -1741,7 +1746,7 @@
       "bin": "dbl",
       "why": {
        "en": "Two compounds swap parts: sodium joins chloride and hydrogen joins hydroxide.",
-       "hi": "दो यौगिक भाग बदलते हैं: सोडियम क्लोराइड से और हाइड्रोजन हाइड्रॉक्साइड से जुड़ता है।"
+       "hi": "दो यौगिक हिस्से बदलते हैं: सोडियम क्लोराइड से और हाइड्रोजन हाइड्रॉक्साइड से जुड़ता है।"
       }
      }
     ]
@@ -1787,7 +1792,7 @@
      "expect": "sorted",
      "say": {
       "en": "Sort all the cards, then press check.",
-      "hi": "सारे कार्ड छाँटो, फिर जाँच दबाओ।"
+      "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" बटन दबाओ।"
      }
     },
     {
@@ -1826,7 +1831,7 @@
        "answer": 2,
        "why": {
         "en": "Free iron takes the place of copper in the compound.",
-        "hi": "मुक्त लोहा यौगिक में ताँबे की जगह लेता है।"
+        "hi": "मुक्त आयरन (लोहा) यौगिक में कॉपर (ताँबा) की जगह लेता है।"
        },
        "wrong": [
         {
@@ -1840,7 +1845,7 @@
         "",
         {
          "en": "Only one reactant is a compound; iron is a free element.",
-         "hi": "केवल एक अभिकारक यौगिक है; लोहा मुक्त तत्व है।"
+         "hi": "केवल एक अभिकारक यौगिक है; आयरन मुक्त तत्व है।"
         }
        ]
       },
@@ -1886,7 +1891,1010 @@
      "kind": "explore",
      "say": {
       "en": "Which cards could fit two groups? Think about quicklime and water: it is a combination, but is it also releasing heat?",
-      "hi": "कौन-से कार्ड दो समूहों में आ सकते हैं? बिना बुझे चूने और पानी को सोचो: यह संयोजन है, पर क्या यह ऊष्मा भी छोड़ती है?"
+      "hi": "कौन-से कार्ड दो समूहों में आ सकते हैं? बिना बुझे चूने और पानी को सोचो: यह संयोजन है, पर क्या इसमें ऊष्मा भी निकलती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-write",
+   "topic": "1.1",
+   "template": "match",
+   "title": {
+    "en": "Words to symbols: write the equation",
+    "hi": "शब्दों से सूत्र: समीकरण लिखो"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "mg",
+      "left": {
+       "en": "Magnesium",
+       "hi": "मैग्नीशियम"
+      },
+      "right": {
+       "en": "Mg",
+       "hi": "Mg"
+      },
+      "why": {
+       "en": "A metal element is written with its symbol.",
+       "hi": "धातु तत्व को उसके संकेत से लिखते हैं।"
+      }
+     },
+     {
+      "id": "o2",
+      "left": {
+       "en": "Oxygen gas",
+       "hi": "ऑक्सीजन गैस"
+      },
+      "right": {
+       "en": "O₂",
+       "hi": "O₂"
+      },
+      "why": {
+       "en": "Oxygen gas is a pair of atoms, so it is O₂ and not O.",
+       "hi": "ऑक्सीजन गैस परमाणुओं का जोड़ा है, इसलिए O₂ लिखते हैं, O नहीं।"
+      }
+     },
+     {
+      "id": "mgo",
+      "left": {
+       "en": "Magnesium oxide",
+       "hi": "मैग्नीशियम ऑक्साइड"
+      },
+      "right": {
+       "en": "MgO",
+       "hi": "MgO"
+      },
+      "why": {
+       "en": "One Mg and one O make MgO.",
+       "hi": "एक Mg और एक O से MgO बनता है।"
+      }
+     },
+     {
+      "id": "h2o",
+      "left": {
+       "en": "Water",
+       "hi": "पानी"
+      },
+      "right": {
+       "en": "H₂O",
+       "hi": "H₂O"
+      },
+      "why": {
+       "en": "Two hydrogen atoms and one oxygen atom.",
+       "hi": "हाइड्रोजन के 2 परमाणु और ऑक्सीजन का 1 परमाणु।"
+      }
+     },
+     {
+      "id": "co2",
+      "left": {
+       "en": "Carbon dioxide",
+       "hi": "कार्बन डाइऑक्साइड"
+      },
+      "right": {
+       "en": "CO₂",
+       "hi": "CO₂"
+      },
+      "why": {
+       "en": "\"Di\" means two, so there are two oxygen atoms.",
+       "hi": "\"डाइ\" का मतलब दो है, इसलिए ऑक्सीजन के दो परमाणु हैं।"
+      }
+     },
+     {
+      "id": "s",
+      "left": {
+       "en": "Solid",
+       "hi": "ठोस"
+      },
+      "right": {
+       "en": "(s)",
+       "hi": "(s)"
+      },
+      "why": {
+       "en": "(s) comes from the word solid.",
+       "hi": "(s) अंग्रेज़ी के solid से आया है।"
+      }
+     },
+     {
+      "id": "g",
+      "left": {
+       "en": "Gas",
+       "hi": "गैस"
+      },
+      "right": {
+       "en": "(g)",
+       "hi": "(g)"
+      },
+      "why": {
+       "en": "(g) comes from the word gas.",
+       "hi": "(g) अंग्रेज़ी के gas से आया है।"
+      }
+     },
+     {
+      "id": "aq",
+      "left": {
+       "en": "Dissolved in water",
+       "hi": "पानी में घुला"
+      },
+      "right": {
+       "en": "(aq)",
+       "hi": "(aq)"
+      },
+      "why": {
+       "en": "(aq) means aqueous: dissolved in water.",
+       "hi": "(aq) यानी aqueous: पानी में घुला हुआ।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:mg",
+     "expect": "matched:mg",
+     "say": {
+      "en": "Tap Magnesium, then tap its symbol.",
+      "hi": "मैग्नीशियम पर टैप करो, फिर उसके संकेत पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Oxygen in the air is written O₂, not O. Why?",
+      "hi": "हवा की ऑक्सीजन को O₂ लिखते हैं, O नहीं। क्यों?"
+     },
+     "options": [
+      {
+       "id": "pair",
+       "en": "Its atoms stay together in pairs",
+       "hi": "इसके परमाणु जोड़ों में रहते हैं"
+      },
+      {
+       "id": "two",
+       "en": "There are two kinds of oxygen",
+       "hi": "ऑक्सीजन दो तरह की होती है"
+      },
+      {
+       "id": "rule",
+       "en": "It is just a rule with no reason",
+       "hi": "यह बस एक नियम है, इसका कोई कारण नहीं"
+      }
+     ],
+     "answer": "pair"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match every pair, then press check.",
+      "hi": "हर जोड़ी मिलाओ, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "An equation is built in order. First the word equation: magnesium + oxygen → magnesium oxide. Then each name becomes its formula: Mg + O₂ → MgO. State symbols (s), (l), (g), (aq) go after each formula. Gases such as oxygen, hydrogen, nitrogen and chlorine travel as pairs of atoms, so they are written O₂, H₂, N₂ and Cl₂.",
+      "hi": "समीकरण क्रम से बनता है। पहले शब्द-समीकरण: मैग्नीशियम + ऑक्सीजन → मैग्नीशियम ऑक्साइड। फिर हर नाम की जगह उसका सूत्र: Mg + O₂ → MgO। अवस्था-संकेत (s), (l), (g), (aq) हर सूत्र के बाद लगते हैं। ऑक्सीजन, हाइड्रोजन, नाइट्रोजन और क्लोरीन जैसी गैसें परमाणुओं के जोड़े में रहती हैं, इसलिए उन्हें O₂, H₂, N₂ और Cl₂ लिखते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which is the correct formula for hydrogen gas?",
+        "hi": "हाइड्रोजन गैस का सही सूत्र कौन-सा है?"
+       },
+       "options": [
+        {
+         "en": "H (one atom)",
+         "hi": "H (एक परमाणु)"
+        },
+        {
+         "en": "H₂ (a pair of atoms)",
+         "hi": "H₂ (परमाणुओं का जोड़ा)"
+        },
+        {
+         "en": "H₂O (water)",
+         "hi": "H₂O (पानी)"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Hydrogen gas is a pair of atoms, H₂.",
+        "hi": "हाइड्रोजन गैस परमाणुओं का जोड़ा है, H₂।"
+       },
+       "wrong": [
+        {
+         "en": "A single H is one atom, but the gas is a pair of atoms.",
+         "hi": "अकेला H एक परमाणु है, पर गैस जोड़े में रहती है।"
+        },
+        "",
+        {
+         "en": "H₂O is water, not hydrogen gas.",
+         "hi": "H₂O पानी है, हाइड्रोजन गैस नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does (aq) after a formula tell you?",
+        "hi": "सूत्र के बाद (aq) क्या बताता है?"
+       },
+       "options": [
+        {
+         "en": "It is a gas",
+         "hi": "वह गैस है"
+        },
+        {
+         "en": "It is a solid",
+         "hi": "वह ठोस है"
+        },
+        {
+         "en": "It is dissolved in water",
+         "hi": "वह पानी में घुला है"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "(aq) means the substance is dissolved in water.",
+        "hi": "(aq) का मतलब है कि पदार्थ पानी में घुला है।"
+       },
+       "wrong": [
+        {
+         "en": "A gas is marked (g).",
+         "hi": "गैस को (g) से दिखाते हैं।"
+        },
+        {
+         "en": "A solid is marked (s).",
+         "hi": "ठोस को (s) से दिखाते हैं।"
+        },
+        ""
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of baking soda or salt in a glass of water. Which state symbol would you put after it?",
+      "hi": "पानी के गिलास में घुले नमक या बेकिंग सोडा के बारे में सोचो। उसके बाद कौन-सा अवस्था-संकेत लगाओगे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-balance-check",
+   "topic": "1.1",
+   "template": "sort",
+   "title": {
+    "en": "Balanced or not? Count the atoms",
+    "hi": "संतुलित है या नहीं? परमाणु गिनो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "bal",
+      "label": {
+       "en": "Balanced",
+       "hi": "संतुलित"
+      }
+     },
+     {
+      "id": "unb",
+      "label": {
+       "en": "Not balanced",
+       "hi": "संतुलित नहीं"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mg1",
+      "text": {
+       "en": "Mg + O₂ → MgO",
+       "hi": "Mg + O₂ → MgO"
+      },
+      "bin": "unb",
+      "why": {
+       "en": "O: 2 on the left, 1 on the right.",
+       "hi": "O: बाईं तरफ़ 2, दाईं तरफ़ 1।"
+      }
+     },
+     {
+      "id": "mg2",
+      "text": {
+       "en": "2Mg + O₂ → 2MgO",
+       "hi": "2Mg + O₂ → 2MgO"
+      },
+      "bin": "bal",
+      "why": {
+       "en": "Mg 2 = 2 and O 2 = 2.",
+       "hi": "Mg 2 = 2 और O 2 = 2।"
+      }
+     },
+     {
+      "id": "h1",
+      "text": {
+       "en": "H₂ + O₂ → H₂O",
+       "hi": "H₂ + O₂ → H₂O"
+      },
+      "bin": "unb",
+      "why": {
+       "en": "O: 2 on the left, 1 on the right.",
+       "hi": "O: बाईं तरफ़ 2, दाईं तरफ़ 1।"
+      }
+     },
+     {
+      "id": "h2",
+      "text": {
+       "en": "2H₂ + O₂ → 2H₂O",
+       "hi": "2H₂ + O₂ → 2H₂O"
+      },
+      "bin": "bal",
+      "why": {
+       "en": "H 4 = 4 and O 2 = 2.",
+       "hi": "H 4 = 4 और O 2 = 2।"
+      }
+     },
+     {
+      "id": "zn",
+      "text": {
+       "en": "Zn + 2HCl → ZnCl₂ + H₂",
+       "hi": "Zn + 2HCl → ZnCl₂ + H₂"
+      },
+      "bin": "bal",
+      "why": {
+       "en": "Zn 1 = 1, H 2 = 2, Cl 2 = 2.",
+       "hi": "Zn 1 = 1, H 2 = 2, Cl 2 = 2।"
+      }
+     },
+     {
+      "id": "al",
+      "text": {
+       "en": "Al + O₂ → Al₂O₃",
+       "hi": "Al + O₂ → Al₂O₃"
+      },
+      "bin": "unb",
+      "why": {
+       "en": "Al: 1 and 2; O: 2 and 3.",
+       "hi": "Al: 1 और 2; O: 2 और 3।"
+      }
+     },
+     {
+      "id": "ch4",
+      "text": {
+       "en": "CH₄ + 2O₂ → CO₂ + 2H₂O",
+       "hi": "CH₄ + 2O₂ → CO₂ + 2H₂O"
+      },
+      "bin": "bal",
+      "why": {
+       "en": "C 1 = 1, H 4 = 4, O 4 = 4.",
+       "hi": "C 1 = 1, H 4 = 4, O 4 = 4।"
+      }
+     },
+     {
+      "id": "hcl",
+      "text": {
+       "en": "H₂ + Cl₂ → HCl",
+       "hi": "H₂ + Cl₂ → HCl"
+      },
+      "bin": "unb",
+      "why": {
+       "en": "H: 2 and 1; Cl: 2 and 1.",
+       "hi": "H: 2 और 1; Cl: 2 और 1।"
+      }
+     },
+     {
+      "id": "n2",
+      "text": {
+       "en": "N₂ + 3H₂ → 2NH₃",
+       "hi": "N₂ + 3H₂ → 2NH₃"
+      },
+      "bin": "bal",
+      "why": {
+       "en": "N 2 = 2 and H 6 = 6.",
+       "hi": "N 2 = 2 और H 6 = 6।"
+      }
+     },
+     {
+      "id": "fe",
+      "text": {
+       "en": "Fe + H₂O → Fe₃O₄ + H₂",
+       "hi": "Fe + H₂O → Fe₃O₄ + H₂"
+      },
+      "bin": "unb",
+      "why": {
+       "en": "Fe: 1 and 3; O: 1 and 4.",
+       "hi": "Fe: 1 और 3; O: 1 और 4।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:mg1",
+     "expect": "placed:mg1",
+     "say": {
+      "en": "Tap the first card and put it in a group.",
+      "hi": "पहला कार्ड चुनो और उसे किसी समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What is the fastest way to know if an equation is balanced?",
+      "hi": "कैसे सबसे जल्दी पता चलेगा कि समीकरण संतुलित है या नहीं?"
+     },
+     "options": [
+      {
+       "id": "count",
+       "en": "Count each kind of atom on both sides",
+       "hi": "दोनों तरफ़ हर तरह के परमाणु गिनो"
+      },
+      {
+       "id": "coef",
+       "en": "Check that the coefficients are all 1",
+       "hi": "देखो कि सारे गुणांक 1 हैं"
+      },
+      {
+       "id": "len",
+       "en": "Check that both sides are equally long",
+       "hi": "देखो कि दोनों तरफ़ बराबर लंबाई है"
+      }
+     ],
+     "answer": "count"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then press check.",
+      "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A balanced equation has the same number of each kind of atom on both sides. Count every element, and remember the small number inside a formula multiplies only that element, while the big number in front multiplies everything after it. If any count differs, change a coefficient and count again. Never change a small number.",
+      "hi": "संतुलित समीकरण में दोनों तरफ़ हर तरह के परमाणु बराबर होते हैं। हर तत्व गिनो। सूत्र के अंदर की छोटी संख्या सिर्फ़ उसी तत्व को गुणा करती है, और आगे की बड़ी संख्या पूरे सूत्र को। गिनती अलग निकले तो गुणांक बदलो और दोबारा गिनो। छोटी संख्या कभी मत बदलो।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "How many oxygen atoms are in 2Al₂O₃?",
+        "hi": "2Al₂O₃ में ऑक्सीजन के कितने परमाणु हैं?"
+       },
+       "options": [
+        {
+         "en": "3 atoms",
+         "hi": "3 परमाणु"
+        },
+        {
+         "en": "5 atoms",
+         "hi": "5 परमाणु"
+        },
+        {
+         "en": "6 atoms",
+         "hi": "6 परमाणु"
+        }
+       ],
+       "answer": 2,
+       "why": {
+        "en": "The coefficient 2 times the subscript 3 gives 6 oxygen atoms.",
+        "hi": "गुणांक 2 को सबस्क्रिप्ट 3 से गुणा करो: ऑक्सीजन के 6 परमाणु।"
+       },
+       "wrong": [
+        {
+         "en": "3 is the count for one Al₂O₃ only; the coefficient 2 doubles it.",
+         "hi": "3 सिर्फ़ एक Al₂O₃ में हैं; गुणांक 2 उन्हें दुगुना कर देता है।"
+        },
+        {
+         "en": "Adding 2 and 3 is wrong; you multiply them.",
+         "hi": "2 और 3 को जोड़ना ग़लत है; इन्हें गुणा करते हैं।"
+        },
+        ""
+       ]
+      },
+      {
+       "q": {
+        "en": "To balance H₂ + Cl₂ → HCl, what do you change?",
+        "hi": "H₂ + Cl₂ → HCl को संतुलित करने के लिए क्या बदलोगे?"
+       },
+       "options": [
+        {
+         "en": "Write 2 in front of HCl",
+         "hi": "HCl के आगे 2 लिखो"
+        },
+        {
+         "en": "Change HCl to H₂Cl₂",
+         "hi": "HCl को H₂Cl₂ कर दो"
+        },
+        {
+         "en": "Remove one Cl₂",
+         "hi": "एक Cl₂ हटा दो"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "2HCl has 2 H and 2 Cl, matching the left side.",
+        "hi": "2HCl में 2 H और 2 Cl हैं, जो बाईं तरफ़ से मेल खाते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Changing a subscript makes a different substance, not HCl.",
+         "hi": "सबस्क्रिप्ट बदलने से दूसरा पदार्थ बन जाता है, HCl नहीं रहता।"
+        },
+        {
+         "en": "Removing a reactant changes the reaction itself.",
+         "hi": "अभिकारक हटाने से अभिक्रिया ही बदल जाती है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Pick any card you called \"not balanced\" and balance it in your notebook with coefficients.",
+      "hi": "कोई भी \"संतुलित नहीं\" वाला कार्ड लो और कॉपी में गुणांक लगाकर उसे संतुलित करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-rust",
+   "topic": "1.3",
+   "template": "sort",
+   "title": {
+    "en": "Will it rust?",
+    "hi": "क्या इसमें जंग लगेगी?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "rusts",
+      "label": {
+       "en": "Rusts",
+       "hi": "जंग लगती है"
+      }
+     },
+     {
+      "id": "safe",
+      "label": {
+       "en": "Does not rust",
+       "hi": "जंग नहीं लगती"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "open",
+      "text": {
+       "en": "Nail in tap water, open to air",
+       "hi": "खुली हवा में नल के पानी में कील"
+      },
+      "bin": "rusts",
+      "why": {
+       "en": "It has both oxygen and moisture.",
+       "hi": "इसे ऑक्सीजन और नमी दोनों मिलते हैं।"
+      }
+     },
+     {
+      "id": "oil",
+      "text": {
+       "en": "Nail in boiled water under an oil layer",
+       "hi": "तेल की परत वाले उबले पानी में कील"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Boiling removes air and oil keeps it out.",
+       "hi": "उबालने से हवा निकल जाती है और तेल उसे अंदर आने नहीं देता।"
+      }
+     },
+     {
+      "id": "dry",
+      "text": {
+       "en": "Nail in dry air with a drying agent",
+       "hi": "सुखाने वाले पदार्थ के साथ सूखी हवा में कील"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "There is oxygen but no moisture.",
+       "hi": "ऑक्सीजन है, पर नमी नहीं है।"
+      }
+     },
+     {
+      "id": "salt",
+      "text": {
+       "en": "Nail in salty water",
+       "hi": "नमकीन पानी में कील"
+      },
+      "bin": "rusts",
+      "why": {
+       "en": "Water and air are there, and salt makes rusting faster.",
+       "hi": "पानी और हवा हैं, और नमक से जंग जल्दी लगती है।"
+      }
+     },
+     {
+      "id": "paint",
+      "text": {
+       "en": "Painted gate with no scratch",
+       "hi": "बिना खरोंच वाला पेंट किया गेट"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Paint keeps air and water away from the iron.",
+       "hi": "पेंट आयरन को हवा और पानी से दूर रखता है।"
+      }
+     },
+     {
+      "id": "scratch",
+      "text": {
+       "en": "Painted gate with a deep scratch in the rain",
+       "hi": "बारिश में गहरी खरोंच वाला पेंट किया गेट"
+      },
+      "bin": "rusts",
+      "why": {
+       "en": "The scratch lets air and water reach the iron.",
+       "hi": "खरोंच से हवा और पानी आयरन तक पहुँच जाते हैं।"
+      }
+     },
+     {
+      "id": "zinc",
+      "text": {
+       "en": "Galvanised (zinc-coated) nail in water",
+       "hi": "पानी में गैल्वनीकृत (ज़िंक चढ़ी) कील"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "Zinc corrodes first and protects the iron.",
+       "hi": "ज़िंक पहले गलता है और आयरन को बचाता है।"
+      }
+     },
+     {
+      "id": "steel",
+      "text": {
+       "en": "Stainless steel spoon in water",
+       "hi": "पानी में स्टेनलेस स्टील का चम्मच"
+      },
+      "bin": "safe",
+      "why": {
+       "en": "The alloy of iron with chromium and nickel does not rust.",
+       "hi": "आयरन का क्रोमियम और निकल वाला मिश्रातु जंग नहीं खाता।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:open",
+     "expect": "placed:open",
+     "say": {
+      "en": "Tap the first card and put it in a group.",
+      "hi": "पहला कार्ड चुनो और उसे किसी समूह में रखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "What must be present for iron to rust?",
+      "hi": "आयरन (लोहा) में जंग लगने के लिए क्या होना ज़रूरी है?"
+     },
+     "options": [
+      {
+       "id": "both",
+       "en": "Both oxygen and moisture",
+       "hi": "ऑक्सीजन और नमी दोनों"
+      },
+      {
+       "id": "oxy",
+       "en": "Only oxygen",
+       "hi": "सिर्फ़ ऑक्सीजन"
+      },
+      {
+       "id": "wat",
+       "en": "Only water",
+       "hi": "सिर्फ़ पानी"
+      }
+     ],
+     "answer": "both"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then press check.",
+      "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" दबाओ।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Iron rusts only where it meets oxygen and moisture together. Take either one away, with a drying agent, boiled water and oil, paint or a zinc coat, and rusting stops. A scratch in paint lets air and water in, so rust starts there. Zinc is more reactive than iron, so it is used up first and the iron stays safe.",
+      "hi": "आयरन में जंग तभी लगती है जब उसे ऑक्सीजन और नमी साथ-साथ मिलते हैं। इनमें से एक भी हटा दो, सुखाने वाले पदार्थ, उबले पानी और तेल, पेंट या ज़िंक की परत से, तो जंग रुक जाती है। पेंट में खरोंच से हवा और पानी अंदर आते हैं, इसलिए जंग वहीं से शुरू होती है। ज़िंक आयरन से ज़्यादा अभिक्रियाशील है, इसलिए वह पहले ख़र्च होता है और आयरन बचा रहता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does a galvanised nail not rust quickly even when scratched?",
+        "hi": "गैल्वनीकृत कील पर खरोंच लगने पर भी जंग जल्दी क्यों नहीं लगती?"
+       },
+       "options": [
+        {
+         "en": "Zinc is more reactive, so it corrodes first",
+         "hi": "ज़िंक ज़्यादा अभिक्रियाशील है, इसलिए वह पहले गलता है"
+        },
+        {
+         "en": "Zinc is heavier than iron",
+         "hi": "ज़िंक आयरन से भारी है"
+        },
+        {
+         "en": "Zinc keeps the nail dry",
+         "hi": "ज़िंक कील को सूखा रखता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Zinc is used up first, so the iron underneath is saved.",
+        "hi": "ज़िंक पहले ख़र्च होता है, इसलिए नीचे का आयरन बच जाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Weight does not decide rusting.",
+         "hi": "वज़न से जंग तय नहीं होती।"
+        },
+        {
+         "en": "Zinc does not dry anything; it protects by reacting first.",
+         "hi": "ज़िंक कुछ सुखाता नहीं; वह पहले अभिक्रिया करके बचाता है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Which one will NOT rust?",
+        "hi": "इनमें से किसमें जंग नहीं लगेगी?"
+       },
+       "options": [
+        {
+         "en": "Nail in salty water",
+         "hi": "नमकीन पानी में कील"
+        },
+        {
+         "en": "Nail in boiled water under oil",
+         "hi": "तेल के नीचे उबले पानी में कील"
+        },
+        {
+         "en": "Nail left out in the monsoon",
+         "hi": "मानसून में बाहर छोड़ी कील"
+        }
+       ],
+       "answer": 1,
+       "why": {
+        "en": "Boiled water has no air in it and the oil stops new air getting in.",
+        "hi": "उबले पानी में हवा नहीं होती और तेल नई हवा को आने नहीं देता।"
+       },
+       "wrong": [
+        {
+         "en": "Salty water has both air and moisture, and salt speeds up rusting.",
+         "hi": "नमकीन पानी में हवा और नमी दोनों हैं, और नमक जंग को तेज़ करता है।"
+        },
+        "",
+        {
+         "en": "The monsoon gives both oxygen and moisture.",
+         "hi": "मानसून में ऑक्सीजन और नमी दोनों मिलते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Think of a bicycle chain. Which card from this game would protect it best, and why?",
+      "hi": "साइकिल की चेन के बारे में सोचो। इस गेम का कौन-सा कार्ड उसे सबसे अच्छी तरह बचाएगा, और क्यों?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch01-balancer",
+   "topic": "1.1",
+   "template": "balance",
+   "title": {
+    "en": "Balance it yourself",
+    "hi": "ख़ुद बैलेंस करो"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "equations": [
+     {
+      "id": "water",
+      "left": [
+       "H2",
+       "O2"
+      ],
+      "right": [
+       "H2O"
+      ]
+     },
+     {
+      "id": "magnesium",
+      "left": [
+       "Mg",
+       "O2"
+      ],
+      "right": [
+       "MgO"
+      ]
+     },
+     {
+      "id": "iron-steam",
+      "left": [
+       "Fe",
+       "H2O"
+      ],
+      "right": [
+       "Fe3O4",
+       "H2"
+      ]
+     },
+     {
+      "id": "methane",
+      "left": [
+       "CH4",
+       "O2"
+      ],
+      "right": [
+       "CO2",
+       "H2O"
+      ]
+     },
+     {
+      "id": "lime",
+      "left": [
+       "Ca(OH)2",
+       "CO2"
+      ],
+      "right": [
+       "CaCO3",
+       "H2O"
+      ]
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Hydrogen burns in oxygen to make water: H2 + O2 → H2O. Count the oxygen atoms on each side. Is it balanced now?",
+      "hi": "हाइड्रोजन ऑक्सीजन में जलकर पानी बनाती है: H2 + O2 → H2O। दोनों तरफ़ ऑक्सीजन के परमाणु गिनो। क्या यह अभी बैलेंस है?"
+     },
+     "options": [
+      {
+       "id": "no",
+       "en": "No: 2 oxygen atoms on the left, 1 on the right",
+       "hi": "नहीं: बाईं तरफ़ ऑक्सीजन के 2 परमाणु, दाईं तरफ़ 1"
+      },
+      {
+       "id": "yes",
+       "en": "Yes, it is already balanced",
+       "hi": "हाँ, यह पहले से बैलेंस है"
+      }
+     ],
+     "answer": "no"
+    },
+    {
+     "kind": "do",
+     "target": "inc:2",
+     "expect": "changed",
+     "say": {
+      "en": "Oxygen is short on the right. Tap + next to H2O to make it 2H2O.",
+      "hi": "दाईं तरफ़ ऑक्सीजन कम है। H2O के पास + पर टैप करके इसे 2H2O बनाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "inc:0",
+     "expect": "balanced:water",
+     "say": {
+      "en": "Now hydrogen is 2 on the left and 4 on the right. Tap + next to H2 until the counter turns green.",
+      "hi": "अब हाइड्रोजन बाईं तरफ़ 2 और दाईं तरफ़ 4 है। H2 के पास + पर टैप करो, जब तक काउंटर हरा न हो जाए।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "2H2 + O2 → 2H2O. Every atom is counted on both sides: 4 hydrogen and 2 oxygen. You changed only the big numbers in front (coefficients). Changing the small number inside H2O would make a different substance.",
+      "hi": "2H2 + O2 → 2H2O। दोनों तरफ़ हर परमाणु गिना गया: 4 हाइड्रोजन और 2 ऑक्सीजन। तुमने सिर्फ़ आगे लिखी बड़ी संख्याएँ (गुणांक) बदलीं। H2O के अंदर की छोटी संख्या बदलने से पदार्थ ही बदल जाता।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "eq:magnesium",
+     "expect": "picked:magnesium",
+     "say": {
+      "en": "Now pick Mg + O2 → MgO.",
+      "hi": "अब Mg + O2 → MgO चुनो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "inc:*",
+     "expect": "balanced:magnesium",
+     "say": {
+      "en": "Balance it on your own with the + buttons. The counter turns green when it is right.",
+      "hi": "+ बटनों से इसे ख़ुद बैलेंस करो। सही होने पर काउंटर हरा हो जाएगा।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why may you not write H2O2 to balance the oxygen in H2 + O2 → H2O?",
+        "hi": "H2 + O2 → H2O में ऑक्सीजन बैलेंस करने के लिए H2O2 क्यों नहीं लिख सकते?"
+       },
+       "options": [
+        {
+         "en": "H2O2 is a different substance (hydrogen peroxide), not water",
+         "hi": "H2O2 एक अलग पदार्थ (हाइड्रोजन पेरॉक्साइड) है, पानी नहीं"
+        },
+        {
+         "en": "Because it makes the equation too long",
+         "hi": "क्योंकि इससे समीकरण बहुत लंबा हो जाता है"
+        },
+        {
+         "en": "Because oxygen cannot be counted",
+         "hi": "क्योंकि ऑक्सीजन गिनी नहीं जा सकती"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The small numbers (subscripts) fix what the substance is. Only the coefficients in front may change when you balance.",
+        "hi": "छोटी संख्याएँ (सबस्क्रिप्ट) तय करती हैं कि पदार्थ कौन-सा है। बैलेंस करते समय सिर्फ़ आगे के गुणांक बदल सकते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Length is not the problem; the formula of water would change.",
+         "hi": "लंबाई की दिक़्क़त नहीं है; पानी का फ़ॉर्मूला ही बदल जाता।"
+        },
+        {
+         "en": "Oxygen atoms can be counted like any others.",
+         "hi": "ऑक्सीजन के परमाणु भी बाक़ी परमाणुओं की तरह गिने जा सकते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try iron with steam, methane burning and lime water with carbon dioxide. Always end with the smallest whole numbers.",
+      "hi": "आयरन (लोहा) और भाप, मीथेन का जलना और चूने के पानी के साथ कार्बन डाइऑक्साइड भी आज़माओ। हमेशा सबसे छोटी पूरी संख्याओं पर ख़त्म करो।"
      }
     }
    ]

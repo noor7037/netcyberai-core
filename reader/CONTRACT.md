@@ -77,7 +77,11 @@ digits after an element or `)` become subscripts, a leading number is a coeffici
 **The platform is not a textbook (founder, 9 Nov 2026, feedback part 1).** No topic is text-only:
 - Every topic has at least one `diagram` step: a full-topic visual a Class 10 child could explain the WHOLE topic from
   with the text covered (process, cause and effect, before → after, the whole apparatus, the whole cycle). Photos
-  (`figure`) add the real thing; the `diagram` explains the idea. It must read at 360 px.
+  (`figure`) add the real thing; the `diagram` explains the idea. It must read at 360 px. **Everything is defined and
+  everything is visual** (founder, 9 Nov 2026): after seeing the topic's diagrams, anyone understands the complete
+  topic — every key term of the topic appears in a diagram with its short meaning, every step of a process is drawn,
+  every cause has its effect. Use more than one `diagram` when one cannot carry the whole topic, and animate what moves
+  (rays, current, particles, blood, energy). The checker requires every `terms[].en` to appear in the topic's diagrams.
 - Every topic has a `lab` step when it has an NCERT activity, a natural experiment or a simulation; otherwise it has
   `why_no_lab`: one line saying why no lab helps here.
 
