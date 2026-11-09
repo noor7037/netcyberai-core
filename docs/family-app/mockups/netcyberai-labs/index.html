@@ -1,0 +1,615 @@
+<title>NetCyberAI Labs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Mukta:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a gallery of labs, and a lab player with the experiment on a stage and a guide panel beside it (below it
+   on a phone). Every lab uses one engine and one of four templates. Colours: NetCyberAI's logo tokens. */
+:root {
+  --bg: #F2F5FC; --surface: #FFFFFF; --sunk: #E8EDF8; --line: #D4DCEE; --ink: #1E293B; --ink-2: #4A5772;
+  --night: #061233; --night-2: #12245E; --royal: #1D4ED8; --royal-t: #E3EAFE; --grape: #6D28D9; --grape-t: #EFE6FF;
+  --cyan: #02CFF9; --action: #FF7A1A; --on-action: #1E293B; --good: #0F766E; --good-t: #DFF5F0; --bad: #B42318; --bad-t: #FDEBE8;
+  --sun: #FFD23F; --sun-t: #FFF6D2; --stage: #EEF2F9;
+  --font-display: "Baloo 2", "Mukta", system-ui, sans-serif;
+  --font-body: "Mukta", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #080E22; --surface: #10183A; --sunk: #0C1430; --line: #25325A; --ink: #E8EDF8; --ink-2: #AAB6D0; --royal: #8EA9FF; --royal-t: #18245A; --grape: #C4A5FF; --grape-t: #231845; --good: #5EE0C9; --good-t: #0E2E2B; --bad: #FF9C90; --bad-t: #3A1614; --sun-t: #2E2911; --stage: #0D1533; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #080E22; --surface: #10183A; --sunk: #0C1430; --line: #25325A; --ink: #E8EDF8; --ink-2: #AAB6D0; --royal: #8EA9FF; --royal-t: #18245A; --grape: #C4A5FF; --grape-t: #231845; --good: #5EE0C9; --good-t: #0E2E2B; --bad: #FF9C90; --bad-t: #3A1614; --sun-t: #2E2911; --stage: #0D1533; color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night); }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; text-wrap: balance; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--cyan); outline-offset: 2px; border-radius: 8px; }
+sub { font-size: .72em; line-height: 0; }
+.muted { color: var(--ink-2); }
+.wrap { max-width: 1400px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--night); color: #F1F5FF; border-bottom: 1px solid rgba(255,255,255,.08); }
+.top .wrap { display: flex; align-items: center; gap: 12px; min-height: 60px; padding-block: 8px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; background: none; border: 0; color: inherit; padding: 0; min-height: 44px; }
+.brand svg { width: 30px; height: 30px; }
+.brand small { font-family: var(--font-body); font-weight: 600; color: #9FB6FF; font-size: .8rem; letter-spacing: 1.4px; text-transform: uppercase; }
+.seg { margin-left: auto; display: inline-flex; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 3px; }
+.seg button { border: 0; background: transparent; color: #DCE5FF; border-radius: 9px; min-height: 38px; padding: 0 14px; font-weight: 700; }
+.seg button[aria-pressed="true"] { background: #F1F5FF; color: #061233; }
+
+/* gallery */
+.hero { background: radial-gradient(90% 120% at 85% -10%, #2A3FA8 0%, transparent 55%), radial-gradient(60% 90% at 10% 110%, #5B21B6 0%, transparent 60%), var(--night); color: #F1F5FF; overflow: hidden; position: relative; }
+.hero .wrap { padding-block: 40px 44px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.hero .eyebrow { color: #7FE6FF; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; font-size: .8rem; }
+.hero h1 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); font-weight: 800; margin-top: 6px; }
+.hero h1 span { background: linear-gradient(90deg, #7FE6FF, #FFD23F 60%, #FF9B57); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero p { color: #C9D5F5; max-width: 56ch; font-size: 1.08rem; margin: 12px 0 0; }
+.loop { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding: 0; list-style: none; }
+.loop li { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 4px 12px; font-weight: 600; font-size: .92rem; }
+.loop b { font-family: var(--font-display); color: #FFD23F; }
+.orbit { position: relative; aspect-ratio: 1.2; max-width: 100%; }
+.orbit svg { width: 100%; height: 100%; }
+.orbit .spin { transform-origin: 250px 200px; animation: spin 24s linear infinite; }
+.orbit .spin2 { transform-origin: 250px 200px; animation: spin 40s linear infinite reverse; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding-block: 22px 10px; }
+.filters .lbl { font-weight: 700; color: var(--ink-2); margin-right: 4px; }
+.chip { border: 1.5px solid var(--line); background: var(--surface); border-radius: 999px; min-height: 40px; padding: 0 14px; font-weight: 600; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; padding-bottom: 28px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; text-align: left; padding: 0; transition: transform .2s ease, box-shadow .2s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(6,18,51,.14); }
+.card .art { aspect-ratio: 16 / 9; display: block; width: 100%; }
+.card .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.card h3 { font-size: 1.2rem; }
+.card .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { border-radius: 999px; padding: 1px 10px; font-size: .8rem; font-weight: 700; background: var(--sunk); color: var(--ink-2); }
+.tag.t { color: #fff; }
+.card .fits { font-size: .88rem; color: var(--ink-2); margin: 0; }
+.card .go { margin-top: auto; font-weight: 700; color: var(--royal); display: flex; align-items: center; gap: 6px; padding-top: 6px; }
+.tpls { padding-block: 8px 48px; }
+.tpls h2 { font-size: 1.6rem; }
+.tpls > p { color: var(--ink-2); margin: 4px 0 14px; max-width: 70ch; }
+.tplrow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.tpl { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.tpl .sw { width: 36px; height: 6px; border-radius: 99px; }
+.tpl b { font-family: var(--font-display); font-size: 1.1rem; }
+.tpl small { color: var(--ink-2); }
+.tpl .uses { font-size: .85rem; font-weight: 600; }
+
+/* lab player */
+.labtop { padding-block: 18px 10px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.back { border: 1px solid var(--line); background: var(--surface); border-radius: 12px; min-height: 44px; padding: 0 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+.labtop h1 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 800; }
+.labtop .sub2 { color: var(--ink-2); font-size: .92rem; }
+.labtop .right { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.mode { display: inline-flex; background: var(--sunk); border-radius: 12px; padding: 3px; }
+.mode button { border: 0; background: transparent; border-radius: 9px; min-height: 40px; padding: 0 14px; font-weight: 700; color: var(--ink-2); }
+.mode button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(6,18,51,.15); }
+.tutorbtn { border: 0; border-radius: 12px; min-height: 44px; padding: 0 16px; font-weight: 700; background: linear-gradient(90deg, #6D28D9, #1D4ED8); color: #fff; display: inline-flex; align-items: center; gap: 8px; }
+.player { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 18px; align-items: start; padding-bottom: 40px; }
+.stagewrap { position: relative; background: var(--stage); border: 1px solid var(--line); border-radius: 20px; padding: 14px; min-width: 0; }
+.cue { display: flex; align-items: center; gap: 10px; background: var(--night); color: #F1F5FF; border-radius: 12px; padding: 8px 12px; margin-bottom: 12px; font-weight: 600; }
+.cue .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 0 rgba(255,210,63,.7); animation: ping 1.4s infinite; flex: none; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(255,210,63,.7); } 70% { box-shadow: 0 0 0 10px rgba(255,210,63,0); } 100% { box-shadow: 0 0 0 0 rgba(255,210,63,0); } }
+.spot { position: absolute; pointer-events: none; border: 3px solid var(--sun); border-radius: 18px; box-shadow: 0 0 0 4px rgba(255,210,63,.25), 0 0 24px rgba(255,210,63,.55); animation: spot 1.4s ease-in-out infinite; transition: left .3s ease, top .3s ease, width .3s ease, height .3s ease; z-index: 3; }
+@keyframes spot { 50% { box-shadow: 0 0 0 10px rgba(255,210,63,.12), 0 0 34px rgba(255,210,63,.75); } }
+.spot.loud { animation: loud .5s ease 3; }
+@keyframes loud { 50% { transform: scale(1.08); } }
+[data-glow] { filter: drop-shadow(0 0 8px rgba(255,190,30,.95)); }
+.toast { position: absolute; left: 50%; top: 64px; transform: translateX(-50%); background: var(--ink); color: var(--bg); border-radius: 12px; padding: 8px 14px; font-weight: 600; z-index: 5; box-shadow: 0 8px 20px rgba(0,0,0,.2); max-width: calc(100% - 32px); text-align: center; animation: toast .25s ease; }
+@keyframes toast { from { opacity: 0; transform: translate(-50%, -6px); } }
+.spark { position: absolute; width: 10px; height: 10px; border-radius: 3px; pointer-events: none; z-index: 6; animation: spark .9s ease-out forwards; }
+@keyframes spark { to { transform: translate(var(--dx), var(--dy)) rotate(260deg); opacity: 0; } }
+
+.guide { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 14px; position: sticky; top: calc(72px + env(safe-area-inset-top, 0px)); }
+.stepper { display: flex; gap: 4px; }
+.stepper i { flex: 1; height: 8px; border-radius: 99px; background: var(--sunk); }
+.stepper i.done { background: var(--good); }
+.stepper i.now { background: var(--sun); }
+.kind { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: .9rem; color: var(--ink-2); }
+.kind .k { border-radius: 999px; padding: 2px 10px; color: #fff; font-size: .8rem; letter-spacing: .4px; text-transform: uppercase; }
+.k.do { background: #1D4ED8; } .k.predict { background: #C2410C; } .k.explain { background: #0F766E; } .k.check { background: #6D28D9; } .k.explore { background: #061233; } .k.done { background: #0F766E; }
+:root[data-theme="dark"] .k.explore { background: #2A3FA8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .k.explore { background: #2A3FA8; } }
+.say { font-size: 1.15rem; font-weight: 600; margin: 0; }
+.say[lang="hi"] { font-size: 1.2rem; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.btn-go, .btn { border: 0; border-radius: 12px; min-height: 48px; padding: 0 18px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
+.btn-go { background: var(--action); color: var(--on-action); }
+.btn { background: var(--sunk); color: var(--ink); }
+.ghost { border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 12px; min-height: 44px; padding: 0 14px; font-weight: 700; }
+.ghost.big { min-height: 52px; font-size: 1.1rem; }
+.opts { display: grid; gap: 8px; }
+.opt { text-align: left; border: 1.5px solid var(--line); background: var(--surface); border-radius: 12px; min-height: 50px; padding: 10px 14px; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+.opt:hover:not(:disabled) { border-color: var(--royal); }
+.opt.picked { border-color: var(--action); background: var(--sun-t); }
+.opt.right { border-color: var(--good); background: var(--good-t); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-t); }
+.opt:disabled { cursor: default; }
+.fb { border-radius: 12px; padding: 10px 14px; }
+.fb.ok { background: var(--good-t); }
+.fb.no { background: var(--bad-t); }
+.fb b { display: block; }
+.fb.ok b { color: var(--good); }
+.fb.no b { color: var(--bad); }
+.guess { border-radius: 12px; padding: 10px 14px; background: var(--sun-t); }
+.knows { border-top: 1px solid var(--line); padding-top: 10px; font-size: .86rem; color: var(--ink-2); }
+.complete { text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.complete .medal { width: 84px; height: 84px; }
+.complete h3 { font-size: 1.5rem; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; width: 100%; }
+.stats div { background: var(--sunk); border-radius: 12px; padding: 8px; font-variant-numeric: tabular-nums; }
+.stats b { display: block; font-family: var(--font-display); font-size: 1.5rem; }
+
+/* tutor drawer */
+.drawer { position: fixed; inset: 0; z-index: 20; display: flex; justify-content: flex-end; background: rgba(6,18,51,.45); }
+.drawer .pane { width: min(440px, 100%); height: 100%; background: var(--surface); padding: 20px; padding-top: calc(20px + env(safe-area-inset-top, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); overflow-y: auto; display: flex; flex-direction: column; gap: 12px; animation: slide .25s ease; }
+@keyframes slide { from { transform: translateX(30px); opacity: .4; } }
+.drawer dl { margin: 0; display: grid; gap: 8px; }
+.drawer dt { font-weight: 700; font-size: .85rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: .8px; }
+.drawer dd { margin: 0; }
+.drawer ol { margin: 0; padding-left: 20px; }
+.drawer textarea { width: 100%; min-height: 80px; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px; font: inherit; background: var(--bg); color: var(--ink); }
+
+/* template: beaker bench */
+.bk-svg { width: 100%; height: auto; display: block; border-radius: 14px; background: #E9EEF7; }
+.bk-item, .bk-beaker { cursor: pointer; transition: filter .2s; }
+.bk-item:hover { filter: brightness(1.04) drop-shadow(0 4px 8px rgba(6,18,51,.18)); }
+.bk-item.sel { filter: drop-shadow(0 0 10px rgba(139,61,255,.6)); }
+.bk-name { font: 600 13px var(--font-body); fill: #1E293B; }
+.bk-formula { font: 700 15px var(--font-display); fill: #1E3A8A; }
+.bk-temp { font: 700 12px var(--font-body); fill: #B42318; }
+.bk-under { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.obs-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.obs { border-radius: 999px; padding: 4px 12px; font-weight: 700; font-size: .88rem; background: var(--surface); border: 1.5px dashed var(--line); color: var(--ink-2); transition: all .3s; }
+.obs.on { background: var(--good); border: 1.5px solid var(--good); color: #fff; transform: scale(1.04); }
+:root[data-theme="dark"] .obs.on { color: #08201D; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .obs.on { color: #08201D; } }
+.obs.on.none { background: var(--ink-2); border-color: var(--ink-2); }
+.bk-result { background: var(--surface); border-radius: 12px; padding: 10px 14px; border: 1px solid var(--line); min-height: 52px; }
+.bk-result p { margin: 0; }
+.eq { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; overflow-x: auto; white-space: nowrap; color: var(--royal); }
+.eq-st { font-family: var(--font-body); font-size: .7em; color: var(--ink-2); font-weight: 500; }
+.eq-arrow { margin: 0 6px; }
+.bk-tools { display: flex; gap: 8px; }
+
+/* template: fraction kitchen */
+.fr { display: flex; flex-direction: column; gap: 14px; }
+.fr-bar { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.fr-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.fr-big { display: inline-flex; flex-direction: column; align-items: center; font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; line-height: 1; min-width: 44px; color: var(--grape); }
+.fr-num { border-bottom: 3px solid currentColor; padding: 0 6px 2px; }
+.fr-den { padding-top: 2px; }
+.fr-say { font-weight: 600; flex: 1; min-width: 160px; }
+.stepper { }
+.fr .stepper, .fr-head .stepper { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.fr-head .stepper button { border: 0; background: var(--sunk); width: 46px; height: 46px; font-size: 1.4rem; font-weight: 800; }
+.fr-head .stepper output { min-width: 40px; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; }
+.pill-s { border-radius: 999px; padding: 2px 10px; background: var(--sunk); font-weight: 700; font-size: .85rem; color: var(--ink-2); }
+.fr-svg { width: 100%; height: auto; display: block; margin-top: 6px; }
+.fr-svg.roti { max-width: 420px; margin-inline: auto; }
+.fr-p { fill: transparent; stroke: #7A4A1E; stroke-width: 2; stroke-dasharray: 6 5; cursor: pointer; transition: fill .25s; }
+.fr-p:hover { fill: rgba(255,255,255,.18); }
+.fr-p.on { fill: rgba(109,40,217,.5); stroke: #6D28D9; stroke-dasharray: none; }
+.fr-p.choc { fill: #5A321E; stroke: #2A140A; stroke-dasharray: none; }
+.fr-p.choc:hover { fill: #6B3D25; }
+.fr-p.choc.on { fill: #FF9B3D; stroke: #C2410C; }
+.fr-tick { font: 700 14px var(--font-display); fill: var(--ink-2); }
+.fr-mark { font: 800 15px var(--font-display); fill: #6D28D9; }
+.fr-marker { transition: transform .35s ease; }
+
+/* template: word builder */
+.wb, .mt { display: flex; flex-direction: column; gap: 16px; align-items: center; padding: 10px 0; }
+.wb-card { display: flex; align-items: center; gap: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; }
+.wb-pic { width: 140px; }
+.wb-pic svg { width: 100%; height: auto; display: block; }
+.wb-slots { display: flex; gap: 10px; }
+.slot { width: 64px; height: 72px; border-radius: 14px; border: 3px dashed var(--line); display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 2.4rem; background: var(--surface); }
+.slot.full { border-style: solid; border-color: var(--good); color: var(--good); animation: pop .3s ease; }
+.slot.next { border-color: var(--sun); box-shadow: 0 0 0 4px rgba(255,210,63,.25); }
+.wb-tiles, .mt-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 560px; }
+.tile { width: 58px; height: 58px; border-radius: 14px; border: 0; background: linear-gradient(180deg, #2563EB, #1D4ED8); color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; box-shadow: 0 4px 0 #1E3A8A; transition: transform .1s; }
+.tile:active { transform: translateY(3px); box-shadow: 0 1px 0 #1E3A8A; }
+.tile.big { width: 72px; height: 72px; font-size: 2.2rem; background: linear-gradient(180deg, #0F9A8E, #0F766E); box-shadow: 0 4px 0 #0B4F4A; }
+.tile.big.on { background: linear-gradient(180deg, #FFB547, #FF7A1A); color: #1E293B; box-shadow: 0 4px 0 #C2410C; }
+.mt-row .tile:not(.big) { background: linear-gradient(180deg, #8B3DFF, #6D28D9); box-shadow: 0 4px 0 #4C1D95; }
+.shake { animation: shake .45s ease; }
+@keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+@keyframes pop { from { transform: scale(.6); } 70% { transform: scale(1.12); } to { transform: none; } }
+.wb-foot { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; min-height: 48px; }
+.wb-done { font-size: 1.2rem; }
+.wb-done b { font-family: var(--font-display); font-size: 1.6rem; color: var(--good); }
+.mt-eq { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 800; font-size: clamp(2.4rem, 8vw, 3.6rem); background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 8px 22px; }
+.mt-op { color: var(--ink-2); font-size: .7em; }
+.mt-m { color: var(--grape); }
+.mt-r { color: var(--good); min-width: 1.4em; text-align: center; }
+.mt-r.pop { animation: pop .4s ease; }
+.mt-ex { font-size: 1.3rem; min-height: 1.6em; }
+
+/* template: sky */
+.sky { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 14px; }
+.sky-space { background: #050816; border-radius: 14px; overflow: hidden; min-height: 240px; display: grid; place-items: center; }
+.sky-space canvas { width: 100% !important; height: auto !important; display: block; }
+.sky-loading { color: #9FB6FF; }
+.sky-side { background: #0B1230; color: #E8EDF8; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.sky-view canvas { width: 100%; max-width: 220px; height: auto; display: block; margin: 0 auto; border-radius: 50%; }
+.sky-cap { text-align: center; color: #9FB6FF; font-size: .85rem; margin-top: 6px; }
+.sky-phase { text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: #FFD23F; min-height: 1.4em; }
+.sky-lbl { font-weight: 600; }
+.sky-side input[type=range] { width: 100%; accent-color: #FFD23F; min-height: 32px; }
+.sky-side .btn-go { justify-content: center; }
+
+@media (max-width: 1080px) {
+  .player { grid-template-columns: minmax(0, 1fr); }
+  .guide { position: static; }
+  .tplrow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 28px; }
+  .orbit { max-width: 320px; }
+  .sky { grid-template-columns: minmax(0, 1fr); }
+  .labtop .right { margin-left: 0; }
+  .wb-card { flex-direction: column; }
+  .slot { width: 54px; height: 62px; font-size: 2rem; }
+}
+@media (max-width: 480px) { .tplrow { grid-template-columns: minmax(0, 1fr); } .tile { width: 52px; height: 52px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <button class="brand" type="button" id="home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M12 4h8M13 4v8L6 25a2 2 0 0 0 1.8 3h16.4a2 2 0 0 0 1.8-3L19 12V4" fill="none" stroke="#02CFF9" stroke-width="2.4" stroke-linejoin="round"/><path d="M9.5 20h13" stroke="#FFD23F" stroke-width="2.4" stroke-linecap="round"/><circle cx="14" cy="23.5" r="1.4" fill="#FFD23F"/><circle cx="18.5" cy="22.5" r="1" fill="#FFD23F"/></svg><span>NetCyberAI Labs</span></button>
+    <div class="seg" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">English</button><button type="button" data-lang="hi" aria-pressed="false" lang="hi">हिंदी</button></div>
+  </div>
+</header>
+<main id="app"></main>
+
+<script src="templates.js"></script>
+<script src="labs.js"></script>
+<script>
+(() => {
+  const TPL = window.NCA_TEMPLATES, LABS = window.NCA_LABS, NCA = window.NCA;
+  const esc = NCA.esc;
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const app = document.getElementById('app');
+  const S = { lang: 'en', filter: { subject: 'all', band: 'all' }, lab: null, mode: 'guided', step: 0, guess: null, guessRight: null, checksRight: 0, checksTotal: 0, log: [], inst: null, done: false };
+  try { const v = localStorage.getItem('nca.labs.lang'); if (v === 'hi' || v === 'en') S.lang = v; } catch (e) {}
+  const t = (x) => (x == null ? '' : typeof x === 'string' ? x : x[S.lang] || x.en);
+  const U = {
+    tagline: { en: 'Real experiments, guided step by step, in your language. One lab, reused in every class and chapter that needs it.', hi: 'असली प्रयोग, क़दम-दर-क़दम, तुम्हारी भाषा में। एक लैब, हर उस कक्षा और अध्याय में जिसे इसकी ज़रूरत है।' },
+    loop: [{ en: 'Guide', hi: 'मार्गदर्शन' }, { en: 'Predict', hi: 'अनुमान' }, { en: 'Run', hi: 'प्रयोग' }, { en: 'Explain', hi: 'समझो' }, { en: 'Check', hi: 'जाँचो' }, { en: 'Explore', hi: 'खोजो' }],
+    subject: { en: 'Subject', hi: 'विषय' }, classes: { en: 'Class', hi: 'कक्षा' }, all: { en: 'All', hi: 'सभी' },
+    subj: { science: { en: 'Science', hi: 'विज्ञान' }, maths: { en: 'Maths', hi: 'गणित' }, english: { en: 'English', hi: 'अंग्रेज़ी' }, hindi: { en: 'Hindi', hi: 'हिंदी' } },
+    open: { en: 'Open the lab', hi: 'लैब खोलो' }, min: { en: 'min', hi: 'मिनट' }, cls: { en: 'Class', hi: 'कक्षा' },
+    tplHead: { en: 'Four templates, built once', hi: 'चार टेम्पलेट, एक बार बने' },
+    tplSub: { en: 'Every lab above is one of these templates with its own settings. A new chapter adds settings, not code.', hi: 'ऊपर की हर लैब इन्हीं टेम्पलेट में से एक है, अपनी सेटिंग के साथ। नया अध्याय केवल सेटिंग जोड़ता है, कोड नहीं।' },
+    uses: { en: 'labs use it', hi: 'लैब इसका उपयोग करती हैं' },
+    back: { en: 'All labs', hi: 'सभी लैब' }, guided: { en: 'Guided', hi: 'मार्गदर्शन' }, explore: { en: 'Explore', hi: 'खोजो' }, tutor: { en: 'Ask the tutor', hi: 'ट्यूटर से पूछो' },
+    stepOf: { en: 'Step {a} of {b}', hi: 'चरण {a} / {b}' },
+    kinds: { do: { en: 'Do this', hi: 'यह करो' }, predict: { en: 'Predict', hi: 'अनुमान लगाओ' }, explain: { en: 'Why it happened', hi: 'ऐसा क्यों हुआ' }, check: { en: 'Check', hi: 'जाँचो' }, explore: { en: 'Explore', hi: 'खोजो' } },
+    showMe: { en: 'Show me where', hi: 'मुझे दिखाओ' }, listen: { en: 'Listen', hi: 'सुनो' }, gotIt: { en: 'Got it', hi: 'समझ गया' },
+    saved: { en: 'Your guess is saved. Now let us find out.', hi: 'तुम्हारा अनुमान सहेज लिया। अब पता करते हैं।' },
+    youGuessed: { en: 'You guessed: ', hi: 'तुम्हारा अनुमान: ' }, guessRight: { en: 'Spot on!', hi: 'बिल्कुल सही!' }, guessWrong: { en: 'Now you know what really happens.', hi: 'अब तुम जानते हो कि असल में क्या होता है।' },
+    right: { en: 'Right.', hi: 'सही।' }, notQuite: { en: 'Not quite. Here is why.', hi: 'पूरी तरह सही नहीं। इसका कारण:' }, tryAgain: { en: 'Try once more.', hi: 'एक बार और कोशिश करो।' }, answerIs: { en: 'The answer is: ', hi: 'सही उत्तर: ' }, next: { en: 'Next', hi: 'आगे' },
+    finish: { en: 'Finish the lab', hi: 'लैब पूरी करो' }, complete: { en: 'Lab complete', hi: 'लैब पूरी हुई' },
+    guesses: { en: 'guess right', hi: 'सही अनुमान' }, checks: { en: 'checks right', hi: 'सही उत्तर' }, minutes: { en: 'minutes', hi: 'मिनट' },
+    again: { en: 'Do it again', hi: 'फिर से करो' }, toChapter: { en: 'Back to the chapter', hi: 'अध्याय पर लौटो' }, another: { en: 'Try another lab', hi: 'दूसरी लैब आज़माओ' },
+    chapterNote: { en: 'In the app, this returns to the exact step of the lesson the lab was opened from.', hi: 'ऐप में यह पाठ के उसी चरण पर लौटाता है जहाँ से लैब खोली गई थी।' },
+    exploreHead: { en: 'Explore freely', hi: 'खुलकर खोजो' }, exploreNote: { en: 'Every control works now. Change one thing at a time and watch what happens.', hi: 'अब हर बटन काम करता है। एक बार में एक चीज़ बदलो और देखो क्या होता है।' }, backGuided: { en: 'Back to the guided steps', hi: 'मार्गदर्शन पर लौटो' },
+    follow: { en: 'Follow the glowing step first.', hi: 'पहले चमकते हुए चरण का पालन करो।' }, answerFirst: { en: 'Answer in the guide first.', hi: 'पहले गाइड में उत्तर दो।' },
+    knows: { en: 'The tutor sees which lab you are in, the step, your guess and what you did, so it can answer about your experiment.', hi: 'ट्यूटर देखता है कि तुम किस लैब में हो, कौन-सा चरण है, तुम्हारा अनुमान और तुमने क्या किया, ताकि वह तुम्हारे प्रयोग के बारे में बता सके।' },
+    tHead: { en: 'Ask the tutor', hi: 'ट्यूटर से पूछो' }, tLab: { en: 'Lab', hi: 'लैब' }, tChapter: { en: 'Fits the chapter', hi: 'अध्याय' }, tStep: { en: 'Step now', hi: 'अभी का चरण' }, tGuess: { en: 'Your guess', hi: 'तुम्हारा अनुमान' }, tDid: { en: 'What you did', hi: 'तुमने क्या किया' }, tNone: { en: 'Nothing yet', hi: 'अभी कुछ नहीं' },
+    tAsk: { en: 'Your question', hi: 'तुम्हारा सवाल' }, tSend: { en: 'Send', hi: 'भेजो' }, tClose: { en: 'Close', hi: 'बंद करो' },
+    tProto: { en: 'Preview: nothing is sent from this page. In the app, your question goes to the tutor with everything listed above, in your language.', hi: 'प्रीव्यू: इस पेज से कुछ नहीं भेजा जाता। ऐप में तुम्हारा सवाल ऊपर दी गई सारी जानकारी के साथ, तुम्हारी भाषा में, ट्यूटर तक जाता है।' },
+    notSent: { en: 'Not sent: this is the preview.', hi: 'नहीं भेजा गया: यह प्रीव्यू है।' },
+  };
+  const fill = (s, o) => s.replace(/\{(\w+)\}/g, (_, k) => o[k]);
+
+  // ---- speech ----
+  const canSpeak = 'speechSynthesis' in window;
+  function speak(text, lang) {
+    if (!canSpeak || !text) return;
+    const L = lang || S.lang;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(String(text).replace(/->/g, ' gives '));
+    const vs = speechSynthesis.getVoices();
+    const v = L === 'hi' ? vs.find((x) => /^hi/i.test(x.lang)) : vs.find((x) => x.lang === 'en-IN') || vs.find((x) => /^en/i.test(x.lang));
+    if (v) u.voice = v;
+    u.lang = L === 'hi' ? 'hi-IN' : 'en-IN';
+    u.rate = 0.92;
+    speechSynthesis.speak(u);
+  }
+
+  // ---- card art (one drawing per template) ----
+  const ART = {
+    beaker: '<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1D4ED8"/><stop offset="1" stop-color="#02CFF9"/></linearGradient></defs><rect width="320" height="180" fill="url(#ga)"/><path d="M128 40h64M134 40v40l-34 70a8 8 0 0 0 7 12h106a8 8 0 0 0 7-12l-34-70V40" fill="rgba(255,255,255,.18)" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><path d="M114 126h92l12 24a8 8 0 0 1-7 12H109a8 8 0 0 1-7-12z" fill="#FFD23F"/><circle cx="140" cy="140" r="5" fill="#fff"/><circle cx="168" cy="118" r="4" fill="#fff"/><circle cx="182" cy="98" r="3" fill="#fff"/><circle cx="158" cy="80" r="4" fill="#fff" opacity=".8"/></svg>',
+    fractions: '<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A1A"/><stop offset="1" stop-color="#FFD23F"/></linearGradient><radialGradient id="gr" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#F6DFA9"/><stop offset="1" stop-color="#C8924C"/></radialGradient></defs><rect width="320" height="180" fill="url(#gb)"/><circle cx="160" cy="90" r="66" fill="url(#gr)"/><path d="M160 90V24A66 66 0 0 1 226 90z" fill="#6D28D9" opacity=".75"/><path d="M160 24v132M94 90h132" stroke="#7A4A1E" stroke-width="3" stroke-dasharray="6 5"/><text x="246" y="70" font-family="Baloo 2, sans-serif" font-weight="800" font-size="34" fill="#061233">1</text><path d="M240 80h30" stroke="#061233" stroke-width="4"/><text x="246" y="114" font-family="Baloo 2, sans-serif" font-weight="800" font-size="34" fill="#061233">4</text></svg>',
+    words: '<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F766E"/><stop offset="1" stop-color="#22C55E"/></linearGradient></defs><rect width="320" height="180" fill="url(#gc)"/>' + [['c', 54], ['a', 122], ['t', 190]].map(([c, x]) => `<rect x="${x}" y="60" width="58" height="62" rx="12" fill="#fff"/><text x="${x + 29}" y="106" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="40" fill="#1D4ED8">${c}</text>`).join('') + '<text x="264" y="56" font-family="Mukta, sans-serif" font-weight="700" font-size="30" fill="#FFD23F">का</text></svg>',
+    sky: '<svg class="art" viewBox="0 0 320 180" aria-hidden="true"><defs><radialGradient id="gd" cx=".1" cy=".5" r="1"><stop offset="0" stop-color="#3B2A8A"/><stop offset="1" stop-color="#050816"/></radialGradient></defs><rect width="320" height="180" fill="url(#gd)"/>' + Array.from({ length: 30 }, (_, i) => `<circle cx="${(i * 73) % 320}" cy="${(i * 41) % 180}" r="${(i % 3) * 0.6 + 0.6}" fill="#fff" opacity=".7"/>`).join('') + '<circle cx="20" cy="90" r="40" fill="#FFD23F" opacity=".9"/><ellipse cx="190" cy="92" rx="90" ry="34" fill="none" stroke="#8EA9FF" stroke-opacity=".5" stroke-width="2"/><circle cx="190" cy="92" r="24" fill="#1F5FBF"/><path d="M182 84c6-4 12 2 10 8" stroke="#3E9B4F" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="268" cy="104" r="11" fill="#2A2E38"/><path d="M268 93a11 11 0 0 0 0 22z" fill="#EDE8D8"/></svg>',
+  };
+  const BANDS = { all: null, '1-2': [1, 2], '3-5': [3, 5], '6-8': [6, 8], '9-12': [9, 12] };
+
+  // ---- gallery ----
+  function gallery() {
+    stopLab();
+    const list = LABS.filter((l) => (S.filter.subject === 'all' || l.subject === S.filter.subject) && (S.filter.band === 'all' || l.classes.some((c) => c >= BANDS[S.filter.band][0] && c <= BANDS[S.filter.band][1])));
+    app.innerHTML = `
+      <section class="hero"><div class="wrap">
+        <div>
+          <div class="eyebrow">NetCyberAI</div>
+          <h1>${S.lang === 'hi' ? 'छुओ, देखो, <span>समझो</span>' : 'Touch it. See it. <span>Get it.</span>'}</h1>
+          <p>${esc(t(U.tagline))}</p>
+          <ol class="loop">${U.loop.map((x, i) => `<li><b>${i + 1}</b>${esc(t(x))}</li>`).join('')}</ol>
+        </div>
+        <div class="orbit" aria-hidden="true"><svg viewBox="0 0 500 400">
+          <defs><radialGradient id="core" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE27A"/><stop offset="1" stop-color="#FF7A1A"/></radialGradient></defs>
+          <circle cx="250" cy="200" r="150" fill="none" stroke="rgba(127,230,255,.25)" stroke-width="2" stroke-dasharray="4 8"/>
+          <circle cx="250" cy="200" r="95" fill="none" stroke="rgba(255,210,63,.25)" stroke-width="2"/>
+          <circle cx="250" cy="200" r="46" fill="url(#core)"/>
+          <g class="spin"><circle cx="400" cy="200" r="22" fill="#1D4ED8"/><path d="M392 192h16M394 192v8l-6 12h24l-6-12v-8" fill="none" stroke="#fff" stroke-width="3"/><circle cx="100" cy="200" r="22" fill="#0F766E"/><text x="100" y="209" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="24" fill="#fff">a</text></g>
+          <g class="spin2"><circle cx="250" cy="105" r="18" fill="#6D28D9"/><circle cx="250" cy="105" r="7" fill="#EDE8D8"/><circle cx="250" cy="295" r="18" fill="#FF7A1A"/><text x="250" y="302" text-anchor="middle" font-family="Baloo 2" font-weight="800" font-size="16" fill="#061233">½</text></g>
+        </svg></div>
+      </div></section>
+      <div class="wrap">
+        <div class="filters" role="group" aria-label="${esc(t(U.subject))}"><span class="lbl">${esc(t(U.subject))}</span>${['all', 'science', 'maths', 'english', 'hindi'].map((s) => `<button type="button" class="chip" data-fs="${s}" aria-pressed="${S.filter.subject === s}">${esc(s === 'all' ? t(U.all) : t(U.subj[s]))}</button>`).join('')}
+          <span class="lbl" style="margin-left:12px">${esc(t(U.classes))}</span>${Object.keys(BANDS).map((b) => `<button type="button" class="chip" data-fb="${b}" aria-pressed="${S.filter.band === b}">${esc(b === 'all' ? t(U.all) : b)}</button>`).join('')}</div>
+        <div class="grid">${list.map((l) => `<button type="button" class="card" data-open="${l.id}">${ART[l.template]}<span class="body">
+          <span class="meta"><span class="tag t" style="background:${TPL[l.template].colour}">${esc(t(U.subj[l.subject]))}</span><span class="tag">${esc(t(U.cls))} ${l.classes.join(', ')}</span><span class="tag">${l.minutes} ${esc(t(U.min))}</span></span>
+          <h3>${esc(t(l.title))}</h3>
+          <p class="fits">${l.fits.map((f) => esc(t(f))).join('<br>')}</p>
+          <span class="go">${esc(t(U.open))} →</span></span></button>`).join('')}</div>
+        <section class="tpls"><h2>${esc(t(U.tplHead))}</h2><p>${esc(t(U.tplSub))}</p>
+          <div class="tplrow">${Object.keys(TPL).map((k) => { const n = LABS.filter((l) => l.template === k); const cls = [...new Set(n.flatMap((l) => l.classes))].sort((a, b) => a - b); return `<div class="tpl"><span class="sw" style="background:${TPL[k].colour}"></span><b>${esc(t(TPL[k].name))}</b><small>${esc(t(TPL[k].about))}</small><span class="uses">${n.length} ${esc(t(U.uses))} · ${esc(t(U.cls))} ${cls.join(', ')}</span></div>`; }).join('')}</div>
+        </section>
+      </div>`;
+  }
+
+  // ---- lab player ----
+  let spotTimer = 0;
+  function stopLab() {
+    clearInterval(spotTimer);
+    if (S.inst && S.inst.destroy) S.inst.destroy();
+    S.inst = null;
+    if (canSpeak) speechSynthesis.cancel();
+  }
+  function openLab(id, keepLang) {
+    const lab = LABS.find((l) => l.id === id);
+    if (!lab) return gallery();
+    stopLab();
+    // A lab written in one language (the Hindi matra lab) opens in it; the chosen language comes back on leaving.
+    if (!keepLang && lab.lang && lab.lang !== S.lang) { S.prevLang = S.lang; S.lang = lab.lang; }
+    syncLang();
+    Object.assign(S, { lab, mode: 'guided', step: 0, guess: null, guessRight: null, checksRight: 0, checksTotal: 0, log: [], done: false, started: Date.now() });
+    ci = 0; tries = 0;
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    app.innerHTML = `<div class="wrap">
+      <div class="labtop">
+        <button type="button" class="back" id="back">← ${esc(t(U.back))}</button>
+        <div><h1 id="labtitle">${esc(t(lab.title))}</h1><div class="sub2">${lab.fits.map((f) => esc(t(f))).join(' · ')}</div></div>
+        <div class="right"><div class="mode" role="group" aria-label="Mode"><button type="button" data-mode="guided" aria-pressed="true">${esc(t(U.guided))}</button><button type="button" data-mode="explore" aria-pressed="false">${esc(t(U.explore))}</button></div>
+        <button type="button" class="tutorbtn" id="tutor"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>${esc(t(U.tutor))}</button></div>
+      </div>
+      <div class="player">
+        <section class="stagewrap" id="stagewrap"><div class="cue" id="cue" hidden><span class="dot"></span><span id="cuetext"></span></div><div id="stage"></div><div class="spot" id="spot" hidden></div></section>
+        <aside class="guide" id="guide" aria-live="polite"></aside>
+      </div></div>`;
+    const stage = document.getElementById('stage');
+    S.inst = NCA.templates[lab.template](stage, lab.config, api);
+    renderGuide();
+    spotTimer = setInterval(placeSpot, 300);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+  const cur = () => S.lab && S.lab.steps[S.step];
+  const api = {
+    t, lang: () => S.lang,
+    allowed(key) {
+      if (S.mode === 'explore' || S.done) return true;
+      const s = cur();
+      if (!s) return true;
+      if (s.kind === 'explore') return true;
+      return s.kind === 'do' && s.target === key;
+    },
+    nudge(key) { const s = cur(); toast(s && s.kind !== 'do' ? U.answerFirst : U.follow); const sp = document.getElementById('spot'); if (sp) { sp.classList.remove('loud'); void sp.offsetWidth; sp.classList.add('loud'); } },
+    emit(evt) {
+      const s = cur();
+      if (S.mode !== 'guided' || S.done || !s || s.kind !== 'do' || s.expect !== evt) return;
+      celebrate();
+      setTimeout(() => advance(), reduced() ? 0 : 750);
+    },
+    speak, record(line) { S.log.push(line); if (S.log.length > 30) S.log.shift(); },
+    toast, celebrate,
+  };
+  function advance() { if (S.step < S.lab.steps.length - 1) S.step++; renderGuide(); const s = cur(); if (s && s.kind !== 'check') speak(t(s.say)); }
+  function toast(x) {
+    const w = document.getElementById('stagewrap');
+    if (!w) return;
+    w.querySelector('.toast')?.remove();
+    const el = document.createElement('div');
+    el.className = 'toast'; el.textContent = t(x);
+    w.appendChild(el);
+    setTimeout(() => el.remove(), 2200);
+  }
+  function celebrate() {
+    if (reduced()) return;
+    const w = document.getElementById('stagewrap');
+    if (!w) return;
+    const cols = ['#FFD23F', '#02CFF9', '#FF7A1A', '#8B3DFF', '#22C55E'];
+    const r = w.getBoundingClientRect();
+    for (let i = 0; i < 18; i++) {
+      const s = document.createElement('span');
+      s.className = 'spark';
+      s.style.background = cols[i % cols.length];
+      s.style.left = r.width / 2 + 'px'; s.style.top = '40%';
+      const a = (i / 18) * 2 * Math.PI;
+      s.style.setProperty('--dx', Math.cos(a) * (80 + (i % 4) * 30) + 'px');
+      s.style.setProperty('--dy', Math.sin(a) * (60 + (i % 3) * 30) + 'px');
+      w.appendChild(s);
+      setTimeout(() => s.remove(), 950);
+    }
+  }
+  function placeSpot() {
+    const w = document.getElementById('stagewrap'), sp = document.getElementById('spot'), cue = document.getElementById('cue');
+    if (!w || !sp) return;
+    document.querySelectorAll('[data-glow]').forEach((e) => e.removeAttribute('data-glow'));
+    const s = cur();
+    const on = S.mode === 'guided' && !S.done && s && s.kind === 'do';
+    cue.hidden = !on;
+    if (on) document.getElementById('cuetext').textContent = t(s.say);
+    const el = on && w.querySelector(`[data-key="${CSS.escape(s.target)}"]`);
+    if (!el) { sp.hidden = true; return; }
+    el.setAttribute('data-glow', '');
+    const a = el.getBoundingClientRect(), b = w.getBoundingClientRect();
+    sp.hidden = false;
+    const pad = 8;
+    sp.style.left = a.left - b.left - pad + 'px'; sp.style.top = a.top - b.top - pad + 'px';
+    sp.style.width = a.width + pad * 2 + 'px'; sp.style.height = a.height + pad * 2 + 'px';
+  }
+
+  function stepperHTML() { return `<div class="stepper" aria-hidden="true">${S.lab.steps.map((_, i) => `<i class="${i < S.step || S.done ? 'done' : i === S.step ? 'now' : ''}"></i>`).join('')}</div>`; }
+  function renderGuide() {
+    const g = document.getElementById('guide');
+    if (!g) return;
+    const lab = S.lab, s = cur();
+    if (S.mode === 'explore') {
+      g.innerHTML = `<div class="kind"><span class="k explore">${esc(t(U.exploreHead))}</span></div><p class="say" lang="${S.lang}">${esc(t(U.exploreNote))}</p><p class="muted">${esc(t(lab.steps[lab.steps.length - 1].say))}</p><div class="row"><button type="button" class="btn" data-mode="guided">${esc(t(U.backGuided))}</button></div>`;
+      return;
+    }
+    if (S.done) {
+      const mins = Math.max(1, Math.round((Date.now() - S.started) / 60000));
+      g.innerHTML = `${stepperHTML()}<div class="complete">
+        <svg class="medal" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="38" fill="#FFD23F" stroke="#F5B90A" stroke-width="4"/><path d="M26 43l11 11 21-23" fill="none" stroke="#061233" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>${esc(t(U.complete))}</h3>
+        <div class="stats"><div><b>${S.guessRight === null ? '–' : S.guessRight ? '1/1' : '0/1'}</b>${esc(t(U.guesses))}</div><div><b>${S.checksRight}/${S.checksTotal}</b>${esc(t(U.checks))}</div><div><b>${mins}</b>${esc(t(U.minutes))}</div></div>
+        <div class="row" style="justify-content:center"><button type="button" class="btn-go" id="tochapter">${esc(t(U.toChapter))}</button><button type="button" class="btn" data-again>${esc(t(U.again))}</button><button type="button" class="btn" id="another">${esc(t(U.another))}</button></div>
+        <p class="knows" id="chapnote" hidden>${esc(t(U.chapterNote))}</p></div>`;
+      return;
+    }
+    const head = `${stepperHTML()}<div class="kind"><span class="k ${s.kind}">${esc(t(U.kinds[s.kind]))}</span>${esc(fill(t(U.stepOf), { a: S.step + 1, b: lab.steps.length }))}</div>`;
+    const sayP = `<p class="say" lang="${S.lang}">${esc(t(s.say || ''))}</p>`;
+    const listen = canSpeak ? `<button type="button" class="ghost" data-say>${esc(t(U.listen))}</button>` : '';
+    let body = '';
+    if (s.kind === 'do') body = `${sayP}<div class="row"><button type="button" class="btn-go" data-show>${esc(t(U.showMe))}</button>${listen}</div>`;
+    else if (s.kind === 'predict') body = `${sayP}<div class="opts" data-predict>${s.options.map((o) => `<button type="button" class="opt" data-o="${esc(o.id)}">${esc(t(o))}</button>`).join('')}</div>${listen ? `<div class="row">${listen}</div>` : ''}`;
+    else if (s.kind === 'explain') {
+      const pr = lab.steps.find((x) => x.kind === 'predict');
+      const guessLine = S.guess && pr ? `<div class="guess"><b>${esc(t(U.youGuessed))}${esc(t(pr.options.find((o) => o.id === S.guess)))}</b> ${esc(t(S.guessRight ? U.guessRight : U.guessWrong))}</div>` : '';
+      body = `${guessLine}${sayP}<div class="row"><button type="button" class="btn-go" data-next>${esc(t(U.gotIt))}</button>${listen}</div>`;
+    } else if (s.kind === 'check') body = checkHTML(s);
+    else if (s.kind === 'explore') body = `${sayP}<div class="row"><button type="button" class="btn-go" data-finish>${esc(t(U.finish))}</button>${listen}</div>`;
+    g.innerHTML = head + body + `<p class="knows">${esc(t(U.knows))}</p>`;
+    if (s.kind === 'check') wireCheck(g, s);
+  }
+  let ci = 0, tries = 0;
+  function checkHTML(s) {
+    const it = s.items[ci];
+    return `<p class="say" lang="${S.lang}">${esc(t(it.q))}</p><div class="opts" data-check>${it.options.map((o, i) => `<button type="button" class="opt" data-c="${i}">${esc(t(o))}</button>`).join('')}</div><div id="cfb"></div>`;
+  }
+  function wireCheck(g, s) {
+    const it = s.items[ci];
+    g.querySelector('[data-check]').addEventListener('click', (e) => {
+      const b = e.target.closest('[data-c]');
+      if (!b || b.disabled) return;
+      const k = +b.dataset.c;
+      const fb = g.querySelector('#cfb');
+      if (k === it.answer) {
+        if (tries === 0) S.checksRight++;
+        S.checksTotal++;
+        b.classList.add('right');
+        g.querySelectorAll('[data-c]').forEach((x) => (x.disabled = true));
+        fb.innerHTML = `<div class="fb ok"><b>${esc(t(U.right))}</b>${esc(t(it.why))}</div><div class="row" style="margin-top:8px"><button type="button" class="btn-go" data-cnext>${esc(t(U.next))} →</button></div>`;
+        celebrate();
+        speak(t(it.why));
+      } else {
+        tries++;
+        b.classList.add('wrong'); b.disabled = true;
+        if (tries === 1) fb.innerHTML = `<div class="fb no"><b>${esc(t(U.notQuite))}</b>${esc(t(it.wrong[k]))}</div><p class="muted">${esc(t(U.tryAgain))}</p>`;
+        else {
+          S.checksTotal++;
+          g.querySelectorAll('[data-c]').forEach((x) => (x.disabled = true));
+          g.querySelector(`[data-c="${it.answer}"]`).classList.add('right');
+          fb.innerHTML = `<div class="fb no"><b>${esc(t(U.notQuite))}</b>${esc(t(it.wrong[k]))}</div><div class="fb ok" style="margin-top:8px"><b>${esc(t(U.answerIs))}${esc(t(it.options[it.answer]))}</b>${esc(t(it.why))}</div><div class="row" style="margin-top:8px"><button type="button" class="btn-go" data-cnext>${esc(t(U.next))} →</button></div>`;
+        }
+        speak(t(it.wrong[k]));
+        S.log.push(t({ en: 'Check answer was wrong: ', hi: 'जाँच का उत्तर ग़लत: ' }) + t(it.options[k]));
+      }
+    });
+  }
+
+  // ---- tutor drawer ----
+  function tutor() {
+    const s = cur();
+    const pr = S.lab.steps.find((x) => x.kind === 'predict');
+    const d = document.createElement('div');
+    d.className = 'drawer';
+    d.innerHTML = `<div class="pane" role="dialog" aria-modal="true" aria-labelledby="th">
+      <h2 id="th">${esc(t(U.tHead))}</h2>
+      <dl>
+        <dt>${esc(t(U.tLab))}</dt><dd>${esc(t(S.lab.title))}</dd>
+        <dt>${esc(t(U.tChapter))}</dt><dd>${S.lab.fits.map((f) => esc(t(f))).join('<br>')}</dd>
+        <dt>${esc(t(U.tStep))}</dt><dd>${S.mode === 'explore' ? esc(t(U.exploreHead)) : S.done ? esc(t(U.complete)) : `${S.step + 1}. ${esc(t(s.say || (s.items && s.items[0].q)))}`}</dd>
+        <dt>${esc(t(U.tGuess))}</dt><dd>${S.guess && pr ? esc(t(pr.options.find((o) => o.id === S.guess))) : esc(t(U.tNone))}</dd>
+        <dt>${esc(t(U.tDid))}</dt><dd>${S.log.length ? `<ol>${S.log.map((l) => `<li>${esc(l)}</li>`).join('')}</ol>` : esc(t(U.tNone))}</dd>
+      </dl>
+      <label for="q"><b>${esc(t(U.tAsk))}</b></label>
+      <textarea id="q" lang="${S.lang}" placeholder="${esc(S.lang === 'hi' ? 'जैसे: बुलबुले क्यों बने?' : 'For example: why did bubbles form?')}"></textarea>
+      <div class="row"><button type="button" class="btn-go" id="tsend">${esc(t(U.tSend))}</button><button type="button" class="btn" id="tclose">${esc(t(U.tClose))}</button></div>
+      <p class="muted" id="tmsg">${esc(t(U.tProto))}</p></div>`;
+    document.body.appendChild(d);
+    const close = () => { d.remove(); document.getElementById('tutor')?.focus(); };
+    d.addEventListener('click', (e) => { if (e.target === d || e.target.id === 'tclose') close(); if (e.target.id === 'tsend') d.querySelector('#tmsg').textContent = t(U.notSent); });
+    d.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    d.querySelector('#q').focus();
+  }
+
+  // ---- events ----
+  function syncLang() {
+    document.documentElement.lang = S.lang;
+    document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === S.lang)));
+    try { localStorage.setItem('nca.labs.lang', S.lang); } catch (e) {}
+  }
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    if (b.dataset.lang) {
+      S.lang = b.dataset.lang; S.prevLang = null; syncLang();
+      // In a lab, the language changes in place: the guide redraws now, the bench's labels on its next change, and
+      // the experiment keeps its state.
+      if (S.lab && document.getElementById('guide')) {
+        document.getElementById('labtitle').textContent = t(S.lab.title);
+        document.querySelectorAll('.mode [data-mode]').forEach((x) => (x.textContent = t(x.dataset.mode === 'guided' ? U.guided : U.explore)));
+        renderGuide();
+      } else gallery();
+    } else if (b.id === 'home' || b.id === 'back' || b.id === 'another') { S.lab = null; if (S.prevLang) { S.lang = S.prevLang; S.prevLang = null; syncLang(); } try { history.replaceState(null, '', location.pathname + location.search); } catch (err) {} gallery(); window.scrollTo({ top: 0 }); }
+    else if (b.dataset.open) openLab(b.dataset.open);
+    else if (b.dataset.fs) { S.filter.subject = b.dataset.fs; gallery(); }
+    else if (b.dataset.fb) { S.filter.band = b.dataset.fb; gallery(); }
+    else if (b.dataset.mode) { S.mode = b.dataset.mode; document.querySelectorAll('.mode [data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.mode === S.mode))); renderGuide(); }
+    else if (b.id === 'tutor') tutor();
+    else if (b.hasAttribute('data-show')) { const sp = document.getElementById('spot'); document.getElementById('stagewrap').scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'start' }); placeSpot(); if (sp) { sp.classList.remove('loud'); void sp.offsetWidth; sp.classList.add('loud'); } }
+    else if (b.hasAttribute('data-say')) { const s = cur(); speak(t(s.say)); }
+    else if (b.dataset.o !== undefined && b.closest('[data-predict]')) {
+      const s = cur();
+      S.guess = b.dataset.o; S.guessRight = S.guess === s.answer;
+      b.closest('[data-predict]').querySelectorAll('.opt').forEach((x) => (x.disabled = true));
+      b.classList.add('picked');
+      S.log.push(t({ en: 'Guessed: ', hi: 'अनुमान: ' }) + b.textContent);
+      b.closest('.guide').insertAdjacentHTML('beforeend', `<div class="fb ok"><b>${esc(t(U.saved))}</b></div>`);
+      setTimeout(advance, reduced() ? 0 : 900);
+    }
+    else if (b.hasAttribute('data-next')) advance();
+    else if (b.hasAttribute('data-cnext')) { const s = cur(); tries = 0; if (ci < s.items.length - 1) { ci++; renderGuide(); } else { ci = 0; advance(); } }
+    else if (b.hasAttribute('data-finish')) { S.done = true; renderGuide(); celebrate(); }
+    else if (b.hasAttribute('data-again')) { ci = 0; tries = 0; openLab(S.lab.id, true); }
+    else if (b.id === 'tochapter') { const n = document.getElementById('chapnote'); if (n) n.hidden = false; }
+  });
+  window.addEventListener('resize', () => placeSpot());
+
+  syncLang();
+  const h = location.hash.slice(1);
+  if (h && LABS.some((l) => l.id === h)) openLab(h); else gallery();
+})();
+</script>
