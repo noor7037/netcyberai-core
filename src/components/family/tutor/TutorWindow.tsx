@@ -136,8 +136,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
   const [fileError, setFileError] = useState<string | null>(null);
   const [turns, setTurns] = useState<FeedTurn[] | null>(null);
   const [turnsError, setTurnsError] = useState(false);
-  // W16-B1: "Done for now" ends the session, so its quick quiz is made within minutes.
-  const [ended, setEnded] = useState<'idle' | 'sending' | 'done' | 'done_no_quiz'>('idle');
   const feed = useRef<HTMLDivElement>(null);
   const uid = useId().replace(/:/g, '');
   const ids = { title: `${idPrefix}-${uid}-title`, feed: `${idPrefix}-${uid}-feed`, q: `${idPrefix}-${uid}-q` };
@@ -272,17 +270,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
     if (!open) setAvatarMood('idle');
   }, [open]);
   useEffect(() => () => setAvatarMood('idle'), []);
-  // The chat of the newest answer kept on this screen, else the feed's last turn.
-  const lastChat = [...asks].reverse().find((a) => a.chatId)?.chatId ?? [...(turns ?? [])].reverse().find((x) => x.chatId)?.chatId ?? null;
-  const finish = async () => {
-    if (!lastChat || ended !== 'idle') return;
-    setEnded('sending');
-    const res = await postJson('/api/family/tutor/done', { chatId: lastChat });
-    const body = res?.ok ? ((await res.json().catch(() => null)) as { quiz?: boolean } | null) : null;
-    // The quiz is promised only when its AI profile can make one now (2 Nov).
-    setEnded(res?.ok ? (body?.quiz === false ? 'done_no_quiz' : 'done') : 'idle');
-  };
-
   return (
     <section data-tutor-window data-subject={subject} data-listed={subject} aria-labelledby={ids.title} className="flex flex-col gap-4">
       <h2 id={ids.title} className="sr-only">
@@ -342,24 +329,6 @@ export function TutorWindow({ w, subject, tone, voice = null, files = false, hom
           </div>
         ))}
       </div>
-      {pinned === 'dock' && lastChat && !reader && (
-        <div className="flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            data-session-done
-            disabled={ended !== 'idle'}
-            onClick={() => void finish()}
-            className="fam-press inline-flex min-h-[44px] items-center rounded-xl border-2 border-ink bg-paper px-5 text-base font-bold text-ink disabled:opacity-60"
-          >
-            {w['fam.quiz.done']}
-          </button>
-          {(ended === 'done' || ended === 'done_no_quiz') && (
-            <p role="status" data-session-done-note className="text-sm font-semibold text-slate">
-              {ended === 'done' ? w['fam.quiz.doneThanks'] : w['fam.quiz.doneNoQuiz']}
-            </p>
-          )}
-        </div>
-      )}
       {children}
       <Composer
         w={w}

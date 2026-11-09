@@ -247,7 +247,8 @@ const CARD_DAYS = 21;
 export const sealKey = (q: Pick<SessionQuiz, 'chapterKey'>) => q.chapterKey ?? SESSION_QUIZ_KEY;
 
 // The child's quizzes of the last weeks, newest first: ready and due ones first. `subject`: only that subject's (Study).
-export async function quizCards(db: Db, who: { accountId: string; childId: string }, today: string, opts: { subject?: string; limit?: number } = {}): Promise<QuizCard[]> {
+// `all`: every quiz of the window (up to 100), for the quizzes page and the per-subject counts.
+export async function quizCards(db: Db, who: { accountId: string; childId: string }, today: string, opts: { subject?: string; limit?: number; all?: boolean } = {}): Promise<QuizCard[]> {
   await db.query('savepoint quiz_read');
   try {
     const { rows } = await db.query(
@@ -257,8 +258,8 @@ export async function quizCards(db: Db, who: { accountId: string; childId: strin
                 where a.account_id = q.account_id and a.child_id = q.child_id and a.block_id = q.quiz_id::text order by a.submitted_at desc limit 1) as last
          from family.session_quizzes q
         where q.account_id = $1 and q.child_id = $2 and q.created_at > now() - make_interval(days => $3) and ($4::text is null or q.subject = $4)
-        order by q.created_at desc limit 12`,
-      [who.accountId, who.childId, CARD_DAYS, opts.subject ?? null]
+        order by q.created_at desc limit $5`,
+      [who.accountId, who.childId, CARD_DAYS, opts.subject ?? null, opts.all ? 100 : 12]
     );
     await db.query('release savepoint quiz_read');
     const cards = rows.map((r): QuizCard => {
@@ -267,7 +268,7 @@ export async function quizCards(db: Db, who: { accountId: string; childId: strin
       return { quizId: String(r.quiz_id), subject: String(r.subject), title: String(r.title), lang: r.lang === 'hi' ? 'hi' : 'en', state: s.state, day: String(r.day), questions: Number(r.questions), score: last && last.total > 0 ? { correct: Number(last.correct), total: Number(last.total) } : null, due: s.due };
     });
     const rank = { review: 0, ready: 1, scored: 2 } as const;
-    return cards.sort((a, b) => rank[a.state] - rank[b.state]).slice(0, opts.limit ?? 3);
+    return cards.sort((a, b) => rank[a.state] - rank[b.state]).slice(0, opts.all ? 100 : (opts.limit ?? 3));
   } catch (err) {
     // The tables are made by a migration: before it is applied there are none to show.
     if ((err as { code?: string }).code !== '42P01') throw err;
@@ -297,4 +298,12 @@ export async function loadQuiz(db: Db, who: { accountId: string; childId: string
     items: r.items as TestItem[],
     reviewDueOn: (r.due as string[]) ?? [],
   };
+}
+
+// W22-S1: the quizzes waiting for the child in each subject: a quiz never taken (ready) or whose review day has come
+// (review). A scored quiz waits for nothing. Subjects with none are left out.
+export function waitingBySubject(cards: readonly Pick<QuizCard, 'subject' | 'state'>[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const c of cards) if (c.state !== 'scored') out[c.subject] = (out[c.subject] ?? 0) + 1;
+  return out;
 }

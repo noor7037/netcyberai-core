@@ -11,9 +11,9 @@ import { SubPageHeader } from '@/components/family/SubPageHeader';
 import { SyllabusList, type SyllabusListChapter } from '@/components/family/SyllabusList';
 import { StatusBadge } from '@/components/family/StatusBadge';
 import { SubjectGlyph } from '@/components/family/ui/SubjectGlyph';
-import { classSubjects, publishedSubjects, readFamilyCatalog } from '@/lib/family/catalog';
+import { classSubjects, readFamilyCatalog } from '@/lib/family/catalog';
 import { readableChapters } from '@/lib/family/chapter-store';
-import { listRequests, queueStatusOf, readSourceModes, requestStudyStatus, sourceShown } from '@/lib/family/chapter-requests';
+import { listRequests, readSourceModes, requestStudyStatus, sourceShown } from '@/lib/family/chapter-requests';
 import { readOwnSyllabus } from '@/lib/family/child-syllabus';
 import { isPrePrimary, syllabusBoardOf } from '@/lib/family/children';
 import { classText, fill } from '@/lib/family/fill';
@@ -28,10 +28,12 @@ import { indiaDate } from '@/lib/time/india';
 import { OFFLINE_KEYS } from '@/lib/family/offline-words';
 import { chapterPacks } from '@/lib/family/pack';
 import { subjectTheme } from '@/lib/family/subject-theme';
-import { STUDY_STATUS_KEY, subjectStatus } from '@/lib/family/study-status';
+import { STUDY_STATUS_KEY } from '@/lib/family/study-status';
 import { SchoolSyllabus } from '@/components/family/SchoolSyllabus';
-import { QuizCards } from '@/components/family/QuizCards';
-import { quizCards } from '@/lib/family/quiz';
+import { QuizBadge } from '@/components/family/QuizBadge';
+import { StudySearch } from '@/components/family/StudySearch';
+import { SEARCH_KEYS } from '@/lib/family/search-words';
+import { quizCards, waitingBySubject } from '@/lib/family/quiz';
 import { TonightPractice } from '@/components/family/TonightPractice';
 import { TEST_LIST_KEYS, TestList } from '@/components/family/school-test/TestList';
 import { childOnlineTests } from '@/lib/family/online-tests';
@@ -54,7 +56,7 @@ import { t, type MessageKey } from '@/lib/i18n';
 // The subject tabs are the subjects of the child's class (C264): the stage's school subjects and whatever the catalog
 // holds for the class, the free one first once claimed.
 
-export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string; tutor?: string } }) {
+export default async function FamilyStudyPage({ searchParams }: { searchParams: { subject?: string; tutor?: string; chapter?: string } }) {
   const page = await requireFamilyPage();
   if (!page) redirect('/family/sign-in');
   const next = firstStepsNext(page);
@@ -76,7 +78,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   }
   const board = syllabusBoardOf(child);
   // C298: subjects Control opens to every child (the pilot's EVS) stay open whatever the free subject is.
-  const [subjects, openToAll, published] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel, stream: child.stream }), openSubjects(db), publishedSubjects(db, { board, classLevel: child.classLevel })]));
+  const [subjects, openToAll] = await familyPageRead(page, (db) => Promise.all([classSubjects(db, { board, classLevel: child.classLevel, stream: child.stream }), openSubjects(db)]));
   // W16-A3: the tutor chosen in the Tutor Hall (?tutor=), while its module is on; a subject tutor opens its own subject.
   const tutorParam = isTutorKey(searchParams.tutor) ? searchParams.tutor : null;
   const chosenTutor =
@@ -127,8 +129,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
   // M2-4 (C278): a Worksheet action per topic while the module is switched on.
   const worksheets = access.open && switchOn(switches, 'worksheets');
   const tone = subject;
-  // W16-B1: a Quick quiz made from this subject's last tutor session, a review due, or a taken quiz's score.
-  const quizzes = access.open ? await familyPageRead(page, (db) => quizCards(db, { accountId: page.session.accountId, childId: child.childId }, indiaDate(), { subject })) : [];
+  // W22-S1: the quizzes waiting in each subject (never taken, or a review due), shown as a badge on the subject's chip.
+  const waiting = waitingBySubject(await familyPageRead(page, (db) => quizCards(db, { accountId: page.session.accountId, childId: child.childId }, indiaDate(), { all: true })));
 
   const readerHref = (key: string) => `/family/study/chapter/${encodeURIComponent(key)}`;
   const readerLabel = t(lang, 'fam.study.openChapter');
@@ -165,7 +167,8 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
       const c = bc.catalogKey ? catalogByKey.get(bc.catalogKey) : undefined;
       const reader = { href: bookHref(bc.key), label: readerLabel };
       const title = bc.title[lang === 'hi' ? 'hi' : 'en'];
-      return c ? { ...catalogRow(c), key: bc.key, title, reader } : { key: bc.key, title, reader, status: publishedBadge, topics: [] };
+      // W22-S1 (C488): no "Explain this chapter" on a book row: the reader and its tutor teach the chapter.
+      return c ? { ...catalogRow(c), key: bc.key, title, reader, href: undefined, hrefLabel: undefined } : { key: bc.key, title, reader, status: publishedBadge, topics: [] };
     }),
     ...(catalog?.chapters ?? []).filter((c) => !inBook.has(c.key)).map(catalogRow),
     // S1 (C374), S3 (C376): a published chapter to read and hear that is not in the catalog (the parent's own, the showcase).
@@ -206,37 +209,35 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
         }
       />
       <main className="relative mx-auto -mt-8 flex w-full max-w-xl flex-1 flex-col gap-4 px-4 pb-24">
+        <StudySearch w={familyWords(lang, SEARCH_KEYS)} />
         <nav aria-label={t(lang, 'fam.study.subjects')} className="fam-surface relative -mx-1 flex gap-2 overflow-x-auto bg-white p-2">
           {subjects.map((s) => {
             const on = s === subject;
             const locked = !subjectAccess(child, s, openToAll).open;
-            // S4 (C377): Published only where a version is really released; nothing is shown otherwise.
-            const status = subjectStatus(s, published, queueStatusOf(requests, s));
             return (
-              <Link
-                key={s}
-                href={tabHref(s)}
-                aria-current={on ? 'page' : undefined}
-                className={`fam-press flex min-h-[48px] shrink-0 items-center gap-2 rounded-xl px-3 text-base font-bold ${on ? 'bg-ink text-white shadow-md' : 'bg-white text-slate hover:bg-off-white'}`}
-              >
-                <span aria-hidden="true" className={`flex h-8 w-8 items-center justify-center rounded-lg ${on ? 'fam-icon-glass' : subjectTheme(s).soft + ' ' + subjectTheme(s).ink}`}>
-                  <SubjectGlyph subject={s} className="h-5 w-5" />
-                </span>
-                {t(lang, `fam.subject.${s}`)}
-                {status && <StatusBadge status={status} label={t(lang, STUDY_STATUS_KEY[status])} />}
-                {locked && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
-                {locked && (
-                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="5" y="11" width="14" height="10" rx="2" />
-                    <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-                  </svg>
-                )}
-              </Link>
+              <div key={s} className={`flex shrink-0 items-center rounded-xl ${on ? 'bg-ink shadow-md' : 'bg-white hover:bg-off-white'}`}>
+                <Link
+                  href={tabHref(s)}
+                  aria-current={on ? 'page' : undefined}
+                  className={`fam-press flex min-h-[48px] items-center gap-2 rounded-xl pl-3 text-base font-bold ${waiting[s] ? 'pr-1' : 'pr-3'} ${on ? 'text-white' : 'text-slate'}`}
+                >
+                  <span aria-hidden="true" className={`flex h-8 w-8 items-center justify-center rounded-lg ${on ? 'fam-icon-glass' : subjectTheme(s).soft + ' ' + subjectTheme(s).ink}`}>
+                    <SubjectGlyph subject={s} className="h-5 w-5" />
+                  </span>
+                  {t(lang, `fam.subject.${s}`)}
+                  {locked && <span className="sr-only"> ({t(lang, 'fam.subject.locked')})</span>}
+                  {locked && (
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="5" y="11" width="14" height="10" rx="2" />
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
+                    </svg>
+                  )}
+                </Link>
+                {waiting[s] > 0 && <QuizBadge href={`/family/study/quizzes?subject=${s}`} count={waiting[s]} label={fill(t(lang, 'fam.quiz.badge'), { n: waiting[s], subject: t(lang, `fam.subject.${s}`) })} on={on} />}
+              </div>
             );
           })}
         </nav>
-        {!child.freeSubject && <p className="fam-rise flex items-center gap-2 rounded-2xl bg-sunshine/30 px-4 py-3 text-sm font-semibold text-slate"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-gold-deep" fill="currentColor"><path d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" /></svg>{t(lang, 'fam.subject.firstIsFree')}</p>}
-        <QuizCards cards={quizzes} lang={lang} today={indiaDate()} />
         <TestList w={familyWords(lang, TEST_LIST_KEYS)} lang={lang} tests={tests} />
         {!access.open ? (
           <p data-family-locked className="fam-surface bg-white p-5 text-base text-slate">
@@ -246,7 +247,7 @@ export default async function FamilyStudyPage({ searchParams }: { searchParams: 
           // S2 (C375), W6-A (C395): the tutor window holds the chapters, so its composer stays pinned while they scroll.
           <TutorWindow w={w} subject={subject} tone={tone} voice={voice} files={files} homework={homeworkOn} serverVoice={serverVoice} follow tutor={tutorHere} call={callOn ? { href: callHref, label: fill(w['fam.tutors.callWith'], { name: tutorHere?.name ?? w['fam.call.tutorDefault'] }) } : null}>
             {school.tonight.length > 0 && <TonightPractice w={w} topics={school.tonight} tone={tone} />}
-            {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} />}
+            {rows.length > 0 && <SyllabusList id="fam-chapters" title={t(lang, 'fam.study.chapters')} tone={subject} chapters={rows} openKey={searchParams.chapter} />}
             {schoolChapters && <SchoolSyllabus w={w} chapters={schoolChapters} tone={tone} />}
             {own && (
               <SyllabusList
