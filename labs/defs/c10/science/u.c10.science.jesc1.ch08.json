@@ -18,7 +18,8 @@
     "c10-science-jesc1-ch08-tall-dwarf",
     "c10-science-jesc1-ch08-f2-ratio",
     "c10-science-jesc1-ch08-two-traits",
-    "c10-science-jesc1-ch08-boy-or-girl"
+    "c10-science-jesc1-ch08-boy-or-girl",
+    "c10-science-jesc1-ch08-test-cross"
    ],
    "why_no_lab": null
   }
@@ -644,6 +645,161 @@
      "say": {
       "en": "Explore: tap the squares to fill in the cross and tap Grow many times. Does the count of boys and girls stay close to equal?",
       "hi": "आज़माओ: खानों पर टैप करके संकरण भरो और कई बार उगाओ दबाओ। क्या लड़कों और लड़कियों की गिनती लगभग बराबर रहती है?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch08-test-cross",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "Test cross: is the tall plant pure?",
+    "hi": "परीक्षण संकरण: क्या लंबा पौधा शुद्ध है?"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "test-cross",
+    "trait": "height",
+    "parents": [
+     "Tt",
+     "tt"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "A tall pea plant is crossed with a short plant (tt). We do not know if the tall plant is TT or Tt. Tap Cross.",
+      "hi": "एक लंबे मटर के पौधे का संकरण बौने पौधे (tt) से कराया जाता है। हमें नहीं पता कि लंबा पौधा TT है या Tt। संकरण पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The short plant gives only t gametes. If half of the offspring come out short, what are the genes of the tall plant?",
+      "hi": "बौना पौधा केवल t युग्मक देता है। यदि आधी संतति बौनी निकले, तो लंबे पौधे के जीन क्या हैं?"
+     },
+     "options": [
+      {
+       "id": "Tt",
+       "en": "Tt: it also carries a hidden t",
+       "hi": "Tt: उसमें छिपा t भी है"
+      },
+      {
+       "id": "TT",
+       "en": "TT: it is pure tall",
+       "hi": "TT: वह शुद्ध लंबा है"
+      },
+      {
+       "id": "none",
+       "en": "Nothing can be said",
+       "hi": "कुछ नहीं कहा जा सकता"
+      }
+     ],
+     "answer": "Tt"
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "grown",
+     "say": {
+      "en": "Tap Grow to raise the offspring.",
+      "hi": "संतति उगाने के लिए उगाओ पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A tall plant can be TT or Tt, and both look the same. Crossing it with a short plant (tt) reveals it. If the tall plant is TT, all offspring are Tt and tall. If it is Tt, about half of the offspring are short (tt). The short offspring show that the tall plant carried a hidden t.",
+      "hi": "हर लंबा पौधा TT या Tt हो सकता है, और दोनों एक जैसे दिखते हैं। उसका बौने पौधे (tt) से संकरण उसे प्रकट कर देता है। यदि लंबा पौधा TT हो, तो सारी संतति Tt और लंबी होगी। यदि Tt हो, तो लगभग आधी संतति बौनी (tt) होगी। बौनी संतति दिखाती है कि लंबे पौधे में छिपा t था।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "If a cross with a short plant gives only tall offspring, the tall plant is most likely",
+        "hi": "यदि बौने पौधे से संकरण पर सारी संतति लंबी आए, तो लंबा पौधा संभवतः है"
+       },
+       "options": [
+        {
+         "en": "TT (pure tall)",
+         "hi": "TT (शुद्ध लंबा)"
+        },
+        {
+         "en": "Tt (tall, with a hidden t)",
+         "hi": "Tt (लंबा, छिपे t के साथ)"
+        },
+        {
+         "en": "tt (short)",
+         "hi": "tt (बौना)"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A TT plant gives only T gametes, so every offspring is Tt and tall.",
+        "hi": "TT पौधा केवल T युग्मक देता है, इसलिए हर संतति Tt और लंबी होती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A Tt plant would give some short offspring.",
+         "hi": "Tt पौधा कुछ बौनी संतति देता।"
+        },
+        {
+         "en": "A tt plant is short, not tall.",
+         "hi": "tt पौधा बौना होता है, लंबा नहीं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why is the plant crossed with a short (tt) plant?",
+        "hi": "पौधे का संकरण बौने (tt) पौधे से क्यों कराया जाता है?"
+       },
+       "options": [
+        {
+         "en": "The short plant gives only t, so any hidden t of the tall plant shows",
+         "hi": "बौना पौधा केवल t देता है, इसलिए लंबे पौधे का छिपा t दिख जाता है"
+        },
+        {
+         "en": "Short plants make more seeds",
+         "hi": "बौने पौधे अधिक बीज बनाते हैं"
+        },
+        {
+         "en": "Short plants are dominant",
+         "hi": "बौने पौधे प्रभावी होते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "With only t from the short plant, the offspring show what the tall plant gave.",
+        "hi": "बौने पौधे से केवल t मिलने पर संतति दिखाती है कि लंबे पौधे ने क्या दिया।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Seed number has nothing to do with it.",
+         "hi": "बीजों की संख्या का इससे संबंध नहीं।"
+        },
+        {
+         "en": "Short is the recessive trait, not the dominant one.",
+         "hi": "बौनापन अप्रभावी लक्षण है, प्रभावी नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap the tall plant to change it between TT and Tt and cross again. What offspring would show a pure tall plant?",
+      "hi": "आज़माओ: लंबे पौधे को छूकर उसे TT और Tt के बीच बदलो और फिर संकरण कराओ। शुद्ध लंबे पौधे को कौन-सी संतति दिखाएगी?"
      }
     }
    ]

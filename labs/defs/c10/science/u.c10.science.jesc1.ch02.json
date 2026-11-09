@@ -10,6 +10,7 @@
    "title": "Chemical properties of acids and bases: indicators, reactions with metals, carbonates, each other, metal and non-metal oxides",
    "labs": [
     "c10-science-jesc1-ch02-indicators",
+    "c10-science-jesc1-ch02-metal-acid",
     "c10-science-jesc1-ch02-carbonate",
     "c10-science-jesc1-ch02-neutralise",
     "c10-science-jesc1-ch02-metal-oxide"
@@ -28,7 +29,8 @@
    "n": "2.3",
    "title": "Strength of solutions: the pH scale; importance of pH in everyday life",
    "labs": [
-    "c10-science-jesc1-ch02-ph-scale"
+    "c10-science-jesc1-ch02-ph-scale",
+    "c10-science-jesc1-ch02-acid-strength"
    ],
    "why_no_lab": null
   },
@@ -1550,6 +1552,362 @@
      "say": {
       "en": "Explore: clean the beaker, heat the blue crystals again and watch the drops of water form on the cool glass.",
       "hi": "आज़माओ: बीकर साफ़ करो, नीले क्रिस्टल फिर गर्म करो और ठंडे काँच पर बनती पानी की बूँदें देखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-metal-acid",
+   "topic": "2.1",
+   "template": "beaker",
+   "title": {
+    "en": "Acid and metal: catch the hydrogen",
+    "hi": "अम्ल और धातु: हाइड्रोजन को पकड़ना"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "zinc",
+     "hcl",
+     "ethanoic"
+    ],
+    "tools": [
+     "splint"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:zinc",
+     "expect": "pick:zinc",
+     "say": {
+      "en": "Pick up the zinc granules.",
+      "hi": "ज़िंक के दाने उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:zinc",
+     "say": {
+      "en": "Put them in the beaker.",
+      "hi": "इन्हें बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will pour dilute hydrochloric acid on the zinc. What will you see?",
+      "hi": "तुम ज़िंक पर तनु हाइड्रोक्लोरिक अम्ल डालोगे। क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "gas",
+       "en": "Bubbles of a gas",
+       "hi": "गैस के बुलबुले"
+      },
+      {
+       "id": "none",
+       "en": "Nothing happens",
+       "hi": "कुछ नहीं होगा"
+      },
+      {
+       "id": "solid",
+       "en": "A yellow solid forms",
+       "hi": "पीला ठोस बनेगा"
+      }
+     ],
+     "answer": "gas"
+    },
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and watch the zinc.",
+      "hi": "इसे डालो और ज़िंक को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "tool:splint",
+     "expect": "tested:splint",
+     "say": {
+      "en": "Test the gas with the splint.",
+      "hi": "गैस की तीली से जाँच करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The zinc pushed hydrogen out of the acid, and a salt, zinc chloride, stayed dissolved. Hydrogen burns with a squeaky pop, which tells it from other gases. Acid plus metal gives a salt and hydrogen.",
+      "hi": "ज़िंक ने अम्ल से हाइड्रोजन को बाहर निकाल दिया और लवण, ज़िंक क्लोराइड, घुला रहा। हाइड्रोजन पॉप की आवाज़ से जलती है, जिससे वह दूसरी गैसों से अलग पहचानी जाती है। अम्ल + धातु से लवण और हाइड्रोजन बनते हैं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which gas came off the zinc?",
+        "hi": "ज़िंक से कौन-सी गैस निकली?"
+       },
+       "options": [
+        {
+         "en": "Hydrogen",
+         "hi": "हाइड्रोजन"
+        },
+        {
+         "en": "Carbon dioxide",
+         "hi": "कार्बन डाइऑक्साइड"
+        },
+        {
+         "en": "Oxygen",
+         "hi": "ऑक्सीजन"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "A metal pushes hydrogen out of an acid.",
+        "hi": "धातु अम्ल से हाइड्रोजन को बाहर निकाल देती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Carbon dioxide needs a carbonate; zinc has no carbon.",
+         "hi": "कार्बन डाइऑक्साइड के लिए कार्बोनेट चाहिए; ज़िंक में कार्बन नहीं है।"
+        },
+        {
+         "en": "Oxygen is not part of the acid that is given off.",
+         "hi": "ऑक्सीजन वह गैस नहीं जो अम्ल से निकलती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "What does the splint do near the gas?",
+        "hi": "गैस के पास तीली क्या करती है?"
+       },
+       "options": [
+        {
+         "en": "It burns with a pop",
+         "hi": "पॉप की आवाज़ से जलती है"
+        },
+        {
+         "en": "It goes out",
+         "hi": "बुझ जाती है"
+        },
+        {
+         "en": "It relights from a glow",
+         "hi": "सुलगने से फिर जल उठती है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Hydrogen burns with a pop.",
+        "hi": "हाइड्रोजन पॉप की आवाज़ से जलती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "A burning splint goes out in carbon dioxide, not in hydrogen.",
+         "hi": "जलती तीली कार्बन डाइऑक्साइड में बुझती है, हाइड्रोजन में नहीं।"
+        },
+        {
+         "en": "Relighting a glowing splint is the test for oxygen.",
+         "hi": "सुलगती तीली का जलना ऑक्सीजन की जाँच है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, put in zinc and pour the dilute ethanoic (acetic) acid instead. Is the bubbling faster or slower?",
+      "hi": "आज़माओ: बीकर साफ़ करो, ज़िंक डालो और इसके बजाय तनु एथेनॉइक (ऐसीटिक) अम्ल डालो। बुलबुले तेज़ बनते हैं या धीमे?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch02-acid-strength",
+   "topic": "2.3",
+   "template": "beaker",
+   "title": {
+    "en": "Strong and weak acid: who fizzes faster?",
+    "hi": "प्रबल और दुर्बल अम्ल: कौन तेज़ झाग देता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "items": [
+     "mg",
+     "hcl",
+     "ethanoic"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "pick:mg",
+     "expect": "pick:mg",
+     "say": {
+      "en": "Pick up the magnesium ribbon.",
+      "hi": "मैग्नीशियम रिबन उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "add:mg",
+     "say": {
+      "en": "Put it in the beaker.",
+      "hi": "इसे बीकर में डालो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Dilute hydrochloric acid and dilute ethanoic acid have the same concentration. Which makes magnesium fizz faster?",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल और तनु एथेनॉइक अम्ल की सांद्रता समान है। कौन मैग्नीशियम पर तेज़ झाग देगा?"
+     },
+     "options": [
+      {
+       "id": "hcl",
+       "en": "Hydrochloric acid",
+       "hi": "हाइड्रोक्लोरिक अम्ल"
+      },
+      {
+       "id": "eth",
+       "en": "Ethanoic acid",
+       "hi": "एथेनॉइक अम्ल"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "hcl"
+    },
+    {
+     "kind": "do",
+     "target": "pick:hcl",
+     "expect": "pick:hcl",
+     "say": {
+      "en": "Pick up the dilute hydrochloric acid.",
+      "hi": "तनु हाइड्रोक्लोरिक अम्ल उठाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "beaker",
+     "expect": "reacted",
+     "say": {
+      "en": "Pour it in and watch how fast the bubbles come.",
+      "hi": "इसे डालो और देखो कि बुलबुले कितनी तेज़ी से आते हैं।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Hydrochloric acid is a strong acid: at this concentration it gives many H+ ions, so magnesium fizzes fast. Ethanoic acid is a weak acid and gives few H+ ions, so the fizzing is slower. Strength is about H+ ions, not about how much acid is dissolved.",
+      "hi": "हाइड्रोक्लोरिक अम्ल प्रबल अम्ल है: इस सांद्रता पर वह अधिक H+ आयन देता है, इसलिए मैग्नीशियम तेज़ झाग देता है। एथेनॉइक अम्ल दुर्बल अम्ल है और कम H+ आयन देता है, इसलिए झाग धीमा है। प्रबलता H+ आयनों की बात है, घुले अम्ल की मात्रा की नहीं।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Why does HCl make magnesium fizz faster than ethanoic acid at the same concentration?",
+        "hi": "समान सांद्रता पर HCl मैग्नीशियम पर एथेनॉइक अम्ल से तेज़ झाग क्यों देता है?"
+       },
+       "options": [
+        {
+         "en": "It gives more H+ ions",
+         "hi": "वह अधिक H+ आयन देता है"
+        },
+        {
+         "en": "It is more dilute",
+         "hi": "वह अधिक तनु है"
+        },
+        {
+         "en": "It is a base",
+         "hi": "वह क्षारक है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "More H+ ions mean a faster reaction with the metal.",
+        "hi": "अधिक H+ आयन धातु के साथ तेज़ अभिक्रिया देते हैं।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The concentrations are equal here, so dilution is not the reason.",
+         "hi": "यहाँ सांद्रताएँ बराबर हैं, इसलिए तनुता कारण नहीं।"
+        },
+        {
+         "en": "HCl is an acid; a base would not make magnesium fizz.",
+         "hi": "HCl अम्ल है; क्षारक से मैग्नीशियम झाग नहीं देता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Ethanoic acid is called a weak acid because it",
+        "hi": "एथेनॉइक अम्ल को दुर्बल अम्ल इसलिए कहते हैं क्योंकि वह"
+       },
+       "options": [
+        {
+         "en": "gives few H+ ions",
+         "hi": "कम H+ आयन देता है"
+        },
+        {
+         "en": "has no hydrogen",
+         "hi": "उसमें हाइड्रोजन नहीं है"
+        },
+        {
+         "en": "cannot dissolve in water",
+         "hi": "पानी में नहीं घुलता"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Strength depends on how many H+ ions an acid gives.",
+        "hi": "प्रबलता इस पर निर्भर है कि अम्ल कितने H+ आयन देता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Ethanoic acid has hydrogen; it just releases little of it as H+.",
+         "hi": "एथेनॉइक अम्ल में हाइड्रोजन है; वह उसे H+ के रूप में कम छोड़ता है।"
+        },
+        {
+         "en": "It dissolves in water, which is how it gives any ions.",
+         "hi": "वह पानी में घुलता है, तभी तो आयन देता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: clean the beaker, add magnesium again and pour the ethanoic acid. Compare the bubbling with the first time.",
+      "hi": "आज़माओ: बीकर साफ़ करो, फिर मैग्नीशियम डालो और एथेनॉइक अम्ल डालो। बुलबुलों की पहली बार से तुलना करो।"
      }
     }
    ]

@@ -1,18 +1,17 @@
 /* Layout: a gallery of labs, and a lab player with the experiment on a stage and a guide panel beside it (below it
    on a phone). Every lab uses one engine and one of four templates. Colours: NetCyberAI's logo tokens. */
 :root {
-  --bg: #F2F5FC; --surface: #FFFFFF; --sunk: #E8EDF8; --line: #D4DCEE; --ink: #1E293B; --ink-2: #4A5772;
-  --night: #061233; --night-2: #12245E; --royal: #1D4ED8; --royal-t: #E3EAFE; --grape: #6D28D9; --grape-t: #EFE6FF;
-  --cyan: #02CFF9; --action: #FF7A1A; --on-action: #1E293B; --good: #0F766E; --good-t: #DFF5F0; --bad: #B42318; --bad-t: #FDEBE8;
-  --sun: #FFD23F; --sun-t: #FFF6D2; --stage: #EEF2F9;
-  --font-display: "Baloo 2", "Mukta", system-ui, sans-serif;
-  --font-body: "Mukta", "Noto Sans Devanagari", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* LOCKED (founder, 9 Nov 2026): the Family app's lesson colours (src/lib/design-tokens.ts lessonColors / lessonTints).
+     Warm paper, near-black ink, no dark blue; saffron acts with ink text on it, teal is progress and correct, plum is
+     the AI. The old names are kept so templates keep working; they now point at the Family palette. */
+  --bg: #FBF8F3; --surface: #FFFDF9; --sunk: #F4EFE7; --line: #E7E1D6; --ink: #1C1B1A; --ink-2: #4B5563;
+  --night: #1C1B1A; --night-2: #2B2926; --royal: #0F766E; --royal-t: #E4F3EA; --grape: #6D28D9; --grape-t: #EFE9FB;
+  --cyan: #0F766E; --action: #E8702A; --on-action: #1C1B1A; --good: #0F766E; --good-t: #E4F3EA; --bad: #B42318; --bad-t: #FBE6E3;
+  --sun: #E8702A; --sun-t: #FBF1D3; --stage: #FFFDF9;
+  --font-display: ui-rounded, "SF Pro Rounded", "Segoe UI Variable Display", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
   --r: 16px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #080E22; --surface: #10183A; --sunk: #0C1430; --line: #25325A; --ink: #E8EDF8; --ink-2: #AAB6D0; --royal: #8EA9FF; --royal-t: #18245A; --grape: #C4A5FF; --grape-t: #231845; --good: #5EE0C9; --good-t: #0E2E2B; --bad: #FF9C90; --bad-t: #3A1614; --sun-t: #2E2911; --stage: #0D1533; color-scheme: dark; }
-}
-:root[data-theme="dark"] { --bg: #080E22; --surface: #10183A; --sunk: #0C1430; --line: #25325A; --ink: #E8EDF8; --ink-2: #AAB6D0; --royal: #8EA9FF; --royal-t: #18245A; --grape: #C4A5FF; --grape-t: #231845; --good: #5EE0C9; --good-t: #0E2E2B; --bad: #FF9C90; --bad-t: #3A1614; --sun-t: #2E2911; --stage: #0D1533; color-scheme: dark; }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.55; }
@@ -172,3 +171,26 @@ sub { font-size: .72em; line-height: 0; }
 }
 @media (max-width: 480px) { .tplrow { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* Embed mode: a lab inside another page (the chapter reader). The host shows the title and the language switch. */
+html.embed header.top, html.embed .labtop .back, html.embed #another, html.embed #tochapter, html.embed #chapnote { display: none !important; }
+html.embed body { background: transparent; }
+html.embed .labtop { padding-top: 8px; }
+
+/* Family palette: paper header and hero, no gradients (locked, 9 Nov 2026). */
+.top { background: var(--bg); color: var(--ink); border-bottom: 1px solid var(--line); }
+body::before { background: var(--bg); }
+.hero { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgb(28 27 26 / 0.05), 0 4px 12px -6px rgb(28 27 26 / 0.1); }
+.hero h1 span { background: none; color: #C2410C; -webkit-text-fill-color: currentColor; }
+.tutorbtn { background: #6D28D9; color: #fff; }
+.cue { background: var(--ink); color: var(--surface); }
+.seg { background: var(--surface); border-color: var(--line); }
+.seg button { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--action); color: var(--on-action); }
+.loop li { background: var(--sunk); border-color: var(--line); color: var(--ink); }
+.brand { color: var(--ink); }
+/* Real photos above a lab's stage (lab.photos → assets/manifest.json). Scrolls sideways inside its own strip on a phone. */
+.labphotos { display: flex; gap: 10px; overflow-x: auto; padding: 4px 0 10px; scroll-snap-type: x mandatory; }
+.labphotos figure { margin: 0; flex: 0 0 min(240px, 70%); scroll-snap-align: start; background: var(--surface); border-radius: 12px; overflow: hidden; box-shadow: 0 1px 2px rgb(28 27 26 / 0.05), 0 4px 12px -6px rgb(28 27 26 / 0.1); }
+.labphotos img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.labphotos figcaption { font-size: .85rem; padding: 6px 10px 8px; color: var(--ink-2); }

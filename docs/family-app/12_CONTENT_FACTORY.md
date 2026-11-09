@@ -51,8 +51,13 @@ says what to do with them.
     `biology`, `accountancy`, `business_studies`, `economics`, `history`, `geography`, `political_science`,
     `computer_science`, `informatics_practices`, `psychology`, `sociology`).
 - **Nursery to UKG are not in this format.** They learn by play with a parent (audio, pictures, tapping, tracing). Their
-  format is a separate small spec (Wave B, C263). Classes 1 and 2 use this format with short steps and picture-word
-  checks.
+  format is a separate play spec (Wave B, C263), aligned to NCF-FS play, EYFS care and play, and Montessori materials.
+- **Class 1** uses this format with very short steps and picture-word checks. NIPUN Class 1 Lakshyas: read small
+  sentences of at least 4–5 simple words; add and subtract up to 9.
+- **Class 2** uses this format with short steps and short sentences the child can also hear. NIPUN Class 2 Lakshyas:
+  read 8–10 sentences of unknown simple text at about 45–60 words per minute; add and subtract up to 99.
+- **Reading-level assumption.** Many children are 1–3 years behind their grade label (ASER). Write below the class
+  label. Audio and offline are the default design (see the band table in §3).
 
 ---
 
@@ -69,7 +74,7 @@ Study → Subject → Chapter list
           Chapter 3  🔒 opens when Chapter 2's test is passed (or the parent opens it)
 ```
 
-**Inside a topic** (8 to 15 minutes), one step on the screen at a time, "Next" to go on:
+**Inside a topic** (length and gate by band, see the table below), one step on the screen at a time, "Next" to go on:
 
 1. **Hook** — a real situation or puzzle the child already knows ("Why does a spoon look broken in a glass of water?").
 2. **Explain** — the idea in small parts, in plain words, with an Indian everyday example; new words with their Hindi.
@@ -80,16 +85,43 @@ Study → Subject → Chapter list
 7. **Remember / exam tip** — key points, one memory hook; for Classes 9–12, how the board asks it.
 8. **Practice** — 3 to 6 questions, easy to hard, each wrong option explained.
 9. **English moment** (optional) and **sources** (official pages only).
-10. **Topic check (the gate)** — 5 questions drawn from the topic's pool of 8. **4 of 5 right opens the next topic.**
-    A wrong answer shows why it is wrong and why the right one is right. Below 4: the step that the wrong answers point
-    to (by their mistake tag) is shown again in a new way, then 5 fresh questions.
+10. **Topic check (the gate)** — 5 questions drawn from the topic's pool of 8. **The gate depends on the band** (table
+    below): no hard lock in Class 1, a softer gate in Classes 3–5, and 4 of 5 right from Class 6.
+    A wrong answer shows why it is wrong and why the right one is right. Below the gate: the step that the wrong
+    answers point to (by their mistake tag) is shown again in a new way, then 5 fresh questions. A retry never shames.
+
+### Band table (Classes 1–12)
+
+This table replaces the single "8 to 15 minutes" and "4 of 5" rule. It is built from the age-band rules in the
+framework (feedback §5.3.7 and §5.4). Minutes marked *heuristic* are guides, not limits. Minutes marked *factory
+default* are the first version's numbers, kept until a batch proves otherwise.
+
+| Band | Topic minutes | Gate | Bloom mix (recommendation, not a law) | Item types | Lab openness | Audio / offline | Parent role |
+|---|---|---|---|---|---|---|---|
+| Class 1 | 5–8 (a shorter sit, heuristic) | No hard lock. Retry without shame, stars for trying, parent-supported unlock. | About 50% remember, 35% understand, 15% apply (picture or oral) | Picture-word match, oral "say it", 2–3 option taps | Guided play: sort, pour, build, match. Almost no open experiments. | Required | Co-player; one spoken prompt |
+| Class 2 | About 8 (heuristic; longer than Class 1) | Gentle picture check. Not a board-like lock. | About 50% remember, 35% understand, 15% apply | Picture-word checks, 2–3 option taps, short sentence checks | Guided play; still almost no open design | Required | Co-player; one spoken prompt |
+| Classes 3–5 | 8–15 (one activity piece) | Softer than 4 of 5: 3 of 5, or 4 of 5 with unlimited calm retry. | About 30% remember, 35% understand, 25% apply, 10% analyse | Short MCQ, matching, one-line "why", simple market or rainfall caselets | Guided predict, observe, explain. The child says what will happen before tapping. | Required | Listener; one short home note |
+| Classes 6–8 | 10–15 (factory default) | 4 of 5 acceptable, with kind explanations and retry allowed. | About 20% remember, 30% understand, 25% apply, 20% analyse, 5% evaluate | Two-step apply, short caselets, source snippets (a water bill, a weather table). Not full board papers. | Inquiry with scaffolds (question, plan, data table, claim), fading across the stage | On by default | Occasional progress audio |
+| Classes 9–10 | 12–15 (factory default) | 4 of 5 topic check; 70% chapter test. | About half competency (apply, analyse), some evaluate | CBSE 50/20/30 mix: about half competency items (case, source-based, assertion-reason), about a fifth plain MCQ, the rest constructed | More open (the child picks a variable), safety-checked, with a simulation option | Available; offline paths kept | Awareness only; the student owns the work |
+| Classes 11–12 | 12–15 (factory default) | 4 of 5 topic check; 70% chapter test. | Board mix, with more evaluate and create | CBSE 50/20/30 target, plus evaluate and create items and practical skills | Investigative and project-like, still safe; claims need evidence | Available; offline paths kept | Career and stream conversation, not surveillance |
+
+- **Class 1 and the gate.** Four of five is too harsh for Class 1, because NCF-FS has no explicit tests in the
+  Foundational Stage. It is too exam-like for much of Classes 3–5. The 4 of 5 hard lock starts at about Class 6.
+- **Chapter test size.** Classes 1–2: a short picture-rich or observational check, not a 15-item test. Classes 3–5:
+  15 items, kept short and not board-like. Classes 6–8: 20 items. Classes 9–12 target the CBSE 50/20/30 mix, not
+  only two assertion-reason and two case items.
+- **Chapter reader contract.** `reader/CONTRACT.md` is the contract for the chapter reader. Class 9–10 topic pools hold
+  8 items per topic; the reader draws 5 and passes at 4. The chapter test has 20 items and passes at 70%.
+- **Parents.** Parent content is audio-first for low-literacy caregivers: a short spoken summary, very few words, and
+  no text-heavy parent gate. Parent unlock stays: a parent can open any locked topic.
 
 **"Teach me"** reads each step aloud (the phone's own voice, already in the app) and pauses at every question.
 **"Read"** shows the same steps without the voice. **"Ask a doubt"** on any step sends the child's question to
 Understand *with that step's text as context*, so the AI explains our lesson rather than inventing its own.
 
-**Chapter test** — 10 questions drawn from a pool of 20 (8 from 15 for Classes 1–5), across all topics, every wrong
-answer explained. 70 % passes the chapter. The result shows which topics to revisit.
+**Chapter test** — sized by band (see the table): a short picture-rich check for Classes 1–2; 15 items for Classes 3–5;
+20 items from Class 6. It covers all topics, every wrong answer is explained, and 70 % passes the chapter (Classes 9–10
+per `reader/CONTRACT.md`). The result shows which topics to revisit.
 
 **Mastered** stays the C252 rule. Seven days after a topic is passed, Home offers a 3-question "remember it?" card;
 right on that second day makes it mastered. This is what makes it stay.
@@ -199,7 +231,8 @@ exam_tip → practice → english_moment → sources.
 
 - `format`: `mcq` (2–4 options), `true_false` (2 options), `assertion_reason` (the four standard options), `case`
   (a short passage, then one question). Each is answered by tapping, so the server can check it.
-- `skill`: `remember`, `understand`, `apply`, `analyse`. `level`: 1 easy, 2 medium, 3 hard.
+- `skill`: `remember`, `understand`, `apply`, `analyse`, `evaluate`, `create`. Classes 9–12 may tag `evaluate` and
+  `create`; the band table gives the mix. `level`: 1 easy, 2 medium, 3 hard.
 - `answer` counts from 0. `wrong` has one entry per option, `""` at the answer. Every other entry is filled, says what
   the child probably thought, and why it fails. `wrong_tags` points a wrong option at a misconception id.
 - Distractors are real mistakes children make, never silly options; no "all of the above"; options of similar length.
@@ -212,7 +245,8 @@ exam_tip → practice → english_moment → sources.
 
 1. The file parses and every block passes the app's own block check (`checkBlock`), unchanged.
 2. Every `expression` (worked examples and items) recomputes to its stated result.
-3. Counts in §4.3 hold; the topic check has 8 items, the chapter test 20 (15 for Classes 1–5).
+3. Counts in §4.3 hold; the topic check has 8 items; the chapter test has 20 (15 for Classes 3–5; a short
+   picture-rich check for Classes 1–2).
 4. Every wrong option has its own explanation; every `wrong_tags` id exists.
 5. Keys match the manifest (§6); no topic is missing or extra; ids unique.
 6. Plain text only: no Markdown, HTML, LaTeX, links outside the list, emoji, or placeholder text ("…", "TBD").
@@ -332,8 +366,8 @@ prompts and reader before scaling.
 
 ## 10. Founder decisions
 
-1. **Locks:** next topic opens at 4 of 5 in the topic check, next chapter at 70 % in the chapter test, and a parent
-   can open anything. (Recommended.) Or: everything open, with the order only suggested.
+1. **Locks:** next topic opens at the band's gate (4 of 5 from Class 6, softer below; see the band table), next chapter
+   at 70 % in the chapter test, and a parent can open anything. (Recommended.) Or: everything open, with the order only suggested.
 2. **First batch:** Class 10 Science chapters 1 and 9 (re-made from the other tool's draft) or Class 10 Mathematics
    chapter 1.
 3. **Reviewer of record:** AI cross-check plus the founder's approval in Control (recommended for now), or a paid

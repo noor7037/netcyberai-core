@@ -58,14 +58,39 @@ learning outcomes. Use exactly these keys, titles and order. Do not add or drop 
 
 ## Writing style
 
-- Short sentences. For Classes 1–5, very short, with familiar words. For Classes 9–12, precise board vocabulary.
+- **Five bands.** Write to the band of the class, and below its label when unsure.
+  - Classes 1–2: a picture plus 4–8 word sentences; Class 1 shorter than Class 2. Familiar spoken words only. A new
+    school word gets its Hindi term and a picture.
+  - Classes 3–5: sentences of 8–12 words, one idea each. Do not rely on a long paragraph.
+  - Classes 6–8: clear paragraphs are fine. Define every new term in the sentence that first uses it.
+  - Classes 9–10: precise, one idea per block, after a plain restatement of the same idea.
+  - Classes 11–12: disciplinary vocabulary, after a plain restatement.
+- **Bloom mix** (a recommendation, not a law): Classes 1–2 about 50% remember, 35% understand, 15% apply. Classes 3–5
+  about 30% remember, 35% understand, 25% apply, 10% analyse. Classes 6–8 about 20% remember, 30% understand, 25%
+  apply, 20% analyse, 5% evaluate. Classes 9–12 about half apply or analyse, with some evaluate; Classes 11–12 add create.
 - One idea per explanation block. Each `steps` entry is one small move of thought.
-- Examples from Indian everyday life: kitchen, market, cricket, trains, festivals, farms, monsoon, kites, cycles,
-  auto-rickshaws, school. Vary them; do not repeat the same example across topics.
+- **Concept first, board format second.** Teach the idea (explanation, diagram, worked example) before any case,
+  assertion-reason or board-style item asks about it.
+- Examples from Indian everyday life: kitchen, market, rupees and the local mandi, cricket (scores and run rates),
+  trains, festivals, farms, monsoon and rainfall, kites, cycles, auto-rickshaws, school. Vary them; do not repeat the
+  same example across topics.
+- **Context without stereotypes.** Do not assume every rural child farms, every urban child has metro access, or every
+  family celebrates the same festival. Rotate festivals (Diwali, Eid, Christmas, Pongal, Onam, Baisakhi and others);
+  never default to one religion. Girls play cricket and code; boys cook and measure dal; any gender can be the
+  scientist, farmer or shopkeeper. No pity narratives ("poor village child"). Familiar is not exotic.
 - `terms`: each new word with its Hindi in Devanagari (`local`), the standard school term.
+- **Code-mixed thinking.** Children think in a mix of home language and English. When an English school term appears,
+  give its standard Hindi term and one plain gloss in simple Hindi. The files stay in English and official Hindi.
+  Never write Hinglish spellings (for example "kemistry").
 - Questions test understanding, not memory alone. Distractors are real mistakes children make, of similar length to
   the answer; never "all of the above" or joke options.
-- `hint` nudges without giving the answer. `why` explains the right answer step by step.
+- **Misconception distractors.** Each wrong option is a real misconception from the topic's `misconceptions` list
+  where one fits (see `wrong_tags`). Use them only after a concrete or pictorial model has been taught. Common
+  classroom patterns: heavier objects always fall faster; heat and temperature are the same; a larger denominator
+  means a larger fraction.
+- `hint` nudges without giving the answer. `why` explains the right answer step by step and names the wrong thinking.
+  Feedback is about the process, never the child: no shaming, and never "only toppers" or comparison with other
+  children.
 
 ## Chapter file
 
@@ -88,9 +113,11 @@ learning outcomes. Use exactly these keys, titles and order. Do not add or drop 
 }
 ```
 
-`chapter_test.items`: **20 question items** (15 for Classes 1–5) covering every topic in proportion, each with its
-`topic_key`; about 30 % level 1, 45 % level 2, 25 % level 3; for Classes 9–12 include 2 `assertion_reason` and 2
-`case` items. `prerequisite_keys` may stay empty if you are not sure.
+`chapter_test.items`: **20 question items** (15 for Classes 3–5; for Classes 1–2 a short set of picture-rich or spoken
+items) covering every topic in proportion, each with its `topic_key`; about 30 % level 1, 45 % level 2, 25 % level 3.
+For Classes 9–12, aim at the CBSE 50/20/30 mix: about half competency items (`case`, source-based `mcq`,
+`assertion_reason`) and about a fifth plain `mcq`. Do not write short or long answer items; the format has no written
+type yet. `prerequisite_keys` may stay empty if you are not sure.
 
 ## Topic file
 
@@ -117,7 +144,7 @@ learning outcomes. Use exactly these keys, titles and order. Do not add or drop 
 ```
 
 `misconceptions`: 2–4. `topic_check.items`: **exactly 8** question items, levels mixed, none repeated from practice.
-`minutes`: 8–15.
+`minutes`: Class 1 about 5–8; Class 2 about 8; Classes 3–5 8–15; Classes 6–8 10–15; Classes 9–12 12–15.
 
 ### Steps, in this order
 
@@ -129,7 +156,7 @@ key_points → exam_tip (Classes 9–12) → practice → english_moment (option
 | `hook` | `scene` ≤ 400, `question` ≤ 200 | exactly 1, first |
 | `explanation` | `title` ≤ 120, `idea` ≤ 300, `example` ≤ 600, `steps` 2–6 entries ≤ 400, `terms` 0–8 of `{ "en" ≤ 60, "local" ≤ 60 }` | 1–4 |
 | `diagram` | `title` ≤ 120, `kind` "flow" or "cycle", `nodes` 2–8 of `{ "id" (a-z 0-9 _ -, ≤ 20), "label" ≤ 60 }`, `edges` 1–12 of `{ "from", "to", "label" ≤ 40 (optional) }` | 0–2 |
-| `worked_example` | `problem` ≤ 500, `steps` 1–8 of `{ "text" ≤ 400, "expression", "result" }`, `answer` ≤ 200 | 0–3; at least 1 in Maths, Physics, Chemistry, Accountancy |
+| `worked_example` | `problem` ≤ 500, `steps` 1–8 of `{ "text" ≤ 400, "expression", "result" }`, `answer` ≤ 200 | 1–3 in every numerical or multi-step topic (Maths, Physics, Chemistry, Accountancy always). The first is fully solved; a later one leaves its last step to the child (`text` asks for it; no `expression` or `result`). |
 | `check` | `items` 1–3 question items | 1–2 |
 | `misconception` | `ref` (a misconception id), `belief` ≤ 200, `truth` ≤ 300, `why` ≤ 400 | 1–3 |
 | `key_points` | `points` 2–6 entries ≤ 240 | exactly 1 |
@@ -161,7 +188,8 @@ key_points → exam_tip (Classes 9–12) → practice → english_moment (option
 - `format`: `mcq` (2–4 options), `true_false` (options `["True", "False"]`), `assertion_reason` (question holds
   "Assertion (A): …  Reason (R): …"; the four standard options: both true and R explains A / both true and R does not
   explain A / A true, R false / A false, R true), `case` (add `"passage"` ≤ 900 before the question).
-- `skill`: remember, understand, apply or analyse. `level`: 1, 2 or 3.
+- `skill`: remember, understand, apply, analyse, evaluate or create (evaluate and create for Classes 9–12, as the Bloom mix
+  above). `level`: 1, 2 or 3.
 - `wrong_tags`: per option, the misconception id that option reveals, or `""`.
 - Spread the correct answer's position; no position more than half the time.
 

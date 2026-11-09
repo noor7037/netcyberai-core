@@ -60,6 +60,8 @@ const bi = (x, where, errs) => {
   if (!x || typeof x !== 'object' || !x.en || !x.hi) { errs.push(`${where}: needs both en and hi`); return; }
   if (!DEV.test(x.hi)) errs.push(`${where}: hi is not in Devanagari`);
 };
+let MANIFEST = {};
+try { MANIFEST = JSON.parse(fs.readFileSync(path.join(LABS, 'assets', 'manifest.json'), 'utf8')); } catch (e) {}
 const KINDS = ['OBJ', 'SCN', 'CUT', 'SEQ', 'MAC', '3DM', 'MAP', 'DIA'];
 const ids = new Map();
 let files = 0, labs = 0, images = 0, topics = 0, noLab = 0;
@@ -96,6 +98,16 @@ for (const file of templatesOnly ? [] : walk(fs.statSync(target).isDirectory() ?
     if (ids.has(lab.id)) errs.push(`${w}: id also used in ${ids.get(lab.id)}`); else ids.set(lab.id, rel);
     if (!topicNs.has(String(lab.topic))) errs.push(`${w}: topic ${lab.topic} is not in topics`);
     bi(lab.title, `${w} title`, errs);
+    // Real photos shown above the stage: every id must be in assets/manifest.json and its file must exist.
+    if (lab.photos !== undefined) {
+      if (!Array.isArray(lab.photos)) errs.push(`${w}: photos must be an array`);
+      else lab.photos.forEach((p, j) => {
+        bi(p.caption, `${w} photo ${j + 1} caption`, errs);
+        const f = MANIFEST[p.img];
+        if (!f) errs.push(`${w} photo ${j + 1}: ${p.img} is not in assets/manifest.json`);
+        else if (!fs.existsSync(path.join(LABS, 'assets', f))) errs.push(`${w} photo ${j + 1}: file assets/${f} is missing`);
+      });
+    }
     const T = globalThis.NCA_T.get(lab.template);
     if (!T) { errs.push(`${w}: template "${lab.template}" does not exist yet`); continue; }
     let ve = [];

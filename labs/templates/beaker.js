@@ -5,7 +5,8 @@
 // balanced by an atom counter; pH comes from a charge balance with real acid constants. A lab can only choose among
 // the substances listed here, so it can never show an impossible result. Config:
 //   { items: [substance ids, 1–6, shown on the bench], start?: [ids already in the beaker, ≤4],
-//     tools?: ['lamp' | 'ph' | 'electrolysis' | 'limewater' | 'splint'] }
+//     tools?: ['lamp' | 'ph' | 'electrolysis' | 'limewater' | 'splint'],
+//     hideEq?: true  (do not print the balanced equation in the result card; for labs met before balancing is taught) }
 (function () {
   const L = window.NCA_LIB;
   const { esc, eqHTML, lerp, ease, mixHex, hex } = L;
@@ -1069,7 +1070,7 @@
       const inside = M.entries.filter((e) => e.state !== 'gone').map((e) => api.t(e.state === 'crust' ? crustName(e) : nameOf(e)));
       if (M.water > 0.01 && !M.entries.some((e) => e.id === 'water')) inside.push(api.t(T2('Water', 'पानी')));
       root.querySelector('.bk-result').innerHTML = (S.results.length
-        ? S.results.map((r) => `<div class="bk-res">${r.eq ? `<div class="eq">${eqHTML(eqLang(r.eq, api.lang ? api.lang() : 'en'))}</div>` : ''}<p>${esc(api.t(r.note))}</p></div>`).join('')
+        ? S.results.map((r) => `<div class="bk-res">${r.eq && !cfg.hideEq ? `<div class="eq">${eqHTML(eqLang(r.eq, api.lang ? api.lang() : 'en'))}</div>` : ''}<p>${esc(api.t(r.note))}</p></div>`).join('')
         : `<p class="muted">${esc(api.t(M.entries.length ? T2('Pick something and tap the beaker to add it.', 'कुछ उठाओ और डालने के लिए बीकर पर टैप करो।') : T2('The beaker is empty. Pick something and tap the beaker.', 'बीकर ख़ाली है। कुछ उठाओ और बीकर पर टैप करो।')))}</p>`)
         + (inside.length ? `<p class="bk-inside">${esc(api.t(T2('In the beaker: ', 'बीकर में: ')))}${esc(inside.join(', '))}</p>` : '');
       const ph = root.querySelector('.bk-ph');
@@ -1285,7 +1286,7 @@
     validate(c) {
       const e = [];
       if (!c || typeof c !== 'object') return ['config must be an object'];
-      Object.keys(c).forEach((k) => { if (!['items', 'start', 'tools'].includes(k)) e.push('unknown key: ' + k); });
+      Object.keys(c).forEach((k) => { if (!['items', 'start', 'tools', 'hideEq'].includes(k)) e.push('unknown key: ' + k); });
       const ok = (id, where) => { if (!SUB[id]) e.push(`unknown substance${where}: ${id}`); else if (SUB[id].prod) e.push(`${id} is only made in reactions; it cannot be put on the bench${where}`); };
       if (!Array.isArray(c.items) || c.items.length < 1 || c.items.length > 6) e.push('items: 1 to 6 substance ids');
       else { c.items.forEach((id) => ok(id, '')); if (new Set(c.items).size !== c.items.length) e.push('items: each substance once'); }
@@ -1298,6 +1299,7 @@
           if (c.start.filter((id) => SUB[id] && SUB[id].ind).length > 1) e.push('start: one indicator at a time');
         }
       }
+      if (c.hideEq != null && typeof c.hideEq !== 'boolean') e.push('hideEq: true or false');
       if (c.tools != null) {
         if (!Array.isArray(c.tools)) e.push('tools: an array');
         else { c.tools.forEach((t) => { if (!TOOLS.includes(t)) e.push('unknown tool: ' + t + ' (use ' + TOOLS.join(', ') + ')'); }); if (new Set(c.tools).size !== c.tools.length) e.push('tools: each tool once'); }
